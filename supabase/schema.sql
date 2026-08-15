@@ -227,12 +227,16 @@ as $$
 declare
   v_row public.certificates;
 begin
+  -- The serial must not be derived from the clock alone: finishing the last item
+  -- of a path issues the course and the path certificate in the same millisecond,
+  -- and `serial` is unique, so a timestamp-only value collides exactly then.
   insert into public.certificates (user_id, kind, ref_id, serial)
   values (
     auth.uid(),
     p_kind,
     p_ref_id,
-    'NA-' || upper(left(p_kind, 1)) || '-' || upper(to_hex((extract(epoch from now()) * 1000)::bigint))
+    'NA-' || upper(left(p_kind, 1)) || '-' || upper(to_hex((extract(epoch from now()))::bigint))
+      || '-' || upper(left(replace(gen_random_uuid()::text, '-', ''), 6))
   )
   on conflict (user_id, kind, ref_id) do nothing;
 

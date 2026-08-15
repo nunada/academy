@@ -250,7 +250,12 @@ export function createLocalBackend(): Backend {
         a.certificates.push({
           kind,
           ref_id: refId,
-          serial: `NA-${kind === 'course' ? 'C' : 'P'}-${Date.now().toString(36).toUpperCase()}`,
+          // Random suffix for the same reason as the SQL version: a course and its
+          // path finish together, so a clock-only serial repeats itself.
+          serial: `NA-${kind === 'course' ? 'C' : 'P'}-${Date.now().toString(36).toUpperCase()}-${Math.random()
+            .toString(36)
+            .slice(2, 8)
+            .toUpperCase()}`,
           issued_at: now(),
         })
         save(db)

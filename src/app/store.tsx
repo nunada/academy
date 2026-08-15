@@ -35,6 +35,23 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     [backend, lang, setLang],
   )
 
+  /** A session can outlive the account it belongs to — a deleted user still holds
+   *  a valid JWT until it expires. Without this, the profile fetch rejects and the
+   *  app sits on "Loading…" forever, signed in as somebody who no longer exists. */
+  const loadOrSignOut = useCallback(
+    async (uid: string) => {
+      try {
+        await loadState(uid)
+      } catch {
+        await backend.signOut()
+        setUser(null)
+        setState(null)
+        langAdopted.current = null
+      }
+    },
+    [backend, loadState],
+  )
+
   useEffect(() => {
     let alive = true
     backend
@@ -42,13 +59,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       .then(async (session) => {
         if (!alive) return
         setUser(session)
-        if (session) await loadState(session.id)
+        if (session) await loadOrSignOut(session.id)
       })
       .finally(() => alive && setReady(true))
 
     const unsub = backend.onAuthChange(async (u) => {
       setUser(u)
-      if (u) await loadState(u.id)
+      if (u) await loadOrSignOut(u.id)
       else {
         setState(null)
         langAdopted.current = null
