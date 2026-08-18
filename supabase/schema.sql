@@ -341,21 +341,27 @@ begin
   end loop;
 end $$;
 
--- Postgres grants EXECUTE to PUBLIC by default when a function is created, so a
--- bare "grant ... to authenticated" widens nothing: the anon role already had it.
--- Revoke first, then hand out exactly what each function is meant to allow.
+-- Two separate grants reach a new function in this schema, and both must go:
+--   1. Postgres grants EXECUTE to the PUBLIC pseudo-role on creation.
+--   2. Supabase sets default privileges on `public` that grant EXECUTE directly
+--      to the anon, authenticated and service_role roles.
+-- Revoking only from PUBLIC leaves (2) intact, and anon keeps its access — so the
+-- anon role has to be named explicitly.
+--
 -- This matters most for the three leaderboard functions: they are security
 -- definer and bypass RLS, so without the revoke anyone holding the publishable
--- key could list every learner's name and XP without signing in.
+-- key (which ships inside the JS bundle) could list every learner's name and XP
+-- without signing in. The `authenticated` role keeps its access through (2), so
+-- the grants below are belt-and-braces rather than load-bearing.
 
-revoke execute on function public.username_available(text)                from public;
-revoke execute on function public.complete_item(text, text, text, integer) from public;
-revoke execute on function public.resolve_hearts()                        from public;
-revoke execute on function public.spend_heart()                           from public;
-revoke execute on function public.issue_certificate(text, text)           from public;
-revoke execute on function public.leaderboard_weekly(integer)             from public;
-revoke execute on function public.leaderboard_alltime(integer)            from public;
-revoke execute on function public.leaderboard_trophies(integer)           from public;
+revoke execute on function public.username_available(text)                from public, anon;
+revoke execute on function public.complete_item(text, text, text, integer) from public, anon;
+revoke execute on function public.resolve_hearts()                        from public, anon;
+revoke execute on function public.spend_heart()                           from public, anon;
+revoke execute on function public.issue_certificate(text, text)           from public, anon;
+revoke execute on function public.leaderboard_weekly(integer)             from public, anon;
+revoke execute on function public.leaderboard_alltime(integer)            from public, anon;
+revoke execute on function public.leaderboard_trophies(integer)           from public, anon;
 
 -- Sign-up has to check a name before the account exists, so anon needs this one.
 grant execute on function public.username_available(text)     to anon, authenticated;
