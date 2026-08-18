@@ -12,6 +12,11 @@ export interface Loc {
 /** A check that runs against the learner's Python code inside Pyodide. */
 export interface PyTest {
   name: Loc
+  /** Python run *before* the learner's code, in the same namespace.
+   *  Lays out any files the exercise expects, and clears leftovers from an
+   *  earlier test — Pyodide keeps one filesystem for the whole session, so
+   *  without this a later test can silently read an earlier test's file. */
+  setup?: string
   /** Lines fed to `input()` while the learner's code runs. */
   stdin?: string[]
   /** stdout must equal this after trimming trailing whitespace on each line. */

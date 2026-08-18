@@ -5,6 +5,7 @@
  *  cannot leak variables into the next. */
 
 import type { PyTest } from '../content/types'
+import { BOOTSTRAP_PY } from './pythonModules'
 
 const PYODIDE_VERSION = '0.26.4'
 const CDN = `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`
@@ -54,6 +55,8 @@ export function getPython(): Promise<Pyodide> {
       await loadScript(`${CDN}pyodide.js`)
       if (!window.loadPyodide) throw new Error('Pyodide loader missing')
       const py = await window.loadPyodide({ indexURL: CDN })
+      // Lay down the course's own modules before anything can import them.
+      await py.runPythonAsync(BOOTSTRAP_PY)
       ready = true
       return py
     })().catch((err) => {
@@ -160,6 +163,7 @@ export async function runTests(code: string, tests: PyTest[]): Promise<TestOutco
     const ns = dict()
     try {
       await prepare(py, ns)
+      if (test.setup) await py.runPythonAsync(test.setup, { globals: ns })
       await py.runPythonAsync(code, { globals: ns })
 
       let passed = true

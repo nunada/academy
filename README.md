@@ -44,7 +44,7 @@ Kunci `anon` memang untuk dipakai di sisi klien; yang menjaga data adalah RLS di
 
 | Hal | Aturan |
 | --- | --- |
-| XP | 20 per pelajaran, 50 per mini proyek, 80 untuk proyek akhir |
+| XP | 20 per pelajaran, 50 per mini proyek, 80 untuk dua proyek besar |
 | Hearts | maksimal 5; jawaban salah mengurangi 1; satu heart pulih tiap 15 menit |
 | Hearts habis | pemeriksaan jawaban terkunci — tunggu, atau lanjut dalam mode latihan tanpa XP |
 | Mini proyek | memeriksa proyek **tidak** memakan heart, karena proyek memang dikerjakan berulang |
@@ -68,6 +68,25 @@ Tiap pemeriksaan berjalan di *namespace* baru, sehingga latihan tidak saling boc
 Saat memeriksa jawaban, `input()` dibayangi agar prompt tidak ikut tercetak ke output
 yang dibandingkan; saat menekan **Run**, prompt tetap tampil seperti terminal sungguhan.
 
+Yang **tidak** ikut baru tiap kali adalah filesystem-nya: satu instance Pyodide melayani
+seluruh sesi. Karena itu tes punya kolom `setup` — Python yang jalan sebelum kode peserta,
+dipakai untuk menyiapkan berkas yang dibutuhkan latihan sekaligus membersihkan sisa tes
+sebelumnya.
+
+### API tiruan untuk modul 9
+
+Pyodide berada di dalam sandbox peramban, jadi `requests` tidak punya soket dan CORS
+memblokir hampir semua host sungguhan — dan menyuruh peserta menempelkan kunci API asli
+ke halaman web jelas nasihat yang buruk. Maka modul "Bekerja dengan API Privat" memakai
+`nunada_api`, modul Python yang ditulis ke filesystem Pyodide saat startup
+([`src/lib/pythonModules.ts`](src/lib/pythonModules.ts)).
+
+Jaringannya disimulasikan, tetapi bentuk pemanggilannya sengaja dibuat sama persis dengan
+API sungguhan: `Authorization: Bearer <kunci>`, kode status 200/201/400/401/404, badan
+JSON. Jadi tidak ada yang perlu dilupakan peserta saat nanti berpindah ke `requests`.
+Datanya disimpan di level modul, sehingga tes memanggil `nunada_api.reset()` di `setup`
+agar satu POST tidak mencemari tes berikutnya.
+
 ## Struktur
 
 ```
@@ -76,11 +95,12 @@ src/
     types.ts        model Course → Module → Submodule → Lesson → Step
     catalog.ts      daftar kursus & jalur karier (termasuk yang belum tersedia)
     trophies.ts     trofi statis
-    python/         kursus Python: m1-basics … m5-functions
+    python/         kursus Python: m1-basics … m9-private-apis
   lib/
     db.ts           kontrak yang harus dipenuhi setiap backend
     backends/       supabase.ts (asli) + local.ts (localStorage) + pemilihnya
     python.ts       pemuat Pyodide, runner, dan pemeriksa tes
+    pythonModules.ts modul Python yang ditanam ke filesystem Pyodide (API tiruan)
     hearts.ts       ekonomi heart
     progress.ts     turunan: apa yang terbuka, tuntas, dan diperoleh
     week.ts         batas minggu (Senin UTC), disamakan dengan Postgres
@@ -118,8 +138,9 @@ ada komponen baru yang perlu ditulis.
 3. Isi `en` dan `id` untuk setiap teks — `Loc` mewajibkan keduanya, jadi teks yang
    belum diterjemahkan akan ketahuan sebagai galat TypeScript.
 4. Untuk langkah `code` dan mini proyek, tulis `solution` yang benar. Tes bisa
-   membandingkan keluaran (`expectOutput`), memeriksa potongan teks (`expectContains`),
-   atau menjalankan Python tambahan di namespace yang sama (`assert`).
+   menyiapkan keadaan lebih dulu (`setup`), memberi masukan (`stdin`), membandingkan
+   keluaran (`expectOutput`), memeriksa potongan teks (`expectContains`), atau
+   menjalankan Python tambahan di namespace yang sama (`assert`).
 
 Untuk membuka kursus yang masih "Segera hadir", ubah `available: true` di
 `src/content/catalog.ts` dan isi `modules`-nya.
@@ -149,6 +170,22 @@ bad
 ```
 
 Hasil `[]` berarti aman.
+
+## Isi kursus Python
+
+9 modul, 18 submateri, 37 pelajaran, 18 mini proyek, 1700 XP:
+
+| Modul | Isi |
+| --- | --- |
+| 1 Mulai dari Nol | print, komentar, variabel, tipe data, f-string, input |
+| 2 Membuat Keputusan | perbandingan, bool, and/or/not, if/elif/else |
+| 3 Mengulang Pekerjaan | for, range, akumulator, while, break/continue |
+| 4 Koleksi Data | list, indeks, method, dictionary, items() |
+| 5 Fungsi | def, return, parameter bawaan, komposisi, scope |
+| 6 Ketika Terjadi Kesalahan | try/except, jenis error, validasi input, raise |
+| 7 Berkas | tulis/baca, with, split/join, berkas terstruktur |
+| 8 Objek | class, __init__, method, __str__, list objek, pewarisan |
+| 9 Bekerja dengan API Privat | kunci API, header bearer, kode status, JSON, POST, menjaga rahasia |
 
 ## Peta jalan
 
