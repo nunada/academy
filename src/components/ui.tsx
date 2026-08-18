@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { MAX_HEARTS, formatCountdown } from '../lib/hearts'
 import { useI18n } from '../i18n'
+import { previewDocument } from '../lib/web'
 
 /** Minimal inline formatting for lesson prose: `code` and **bold**.
  *  A full markdown dependency would be far more than the content needs. */
@@ -118,6 +119,20 @@ export function CodeEditor({
       disabled={disabled}
       onChange={(e) => onChange(e.target.value)}
       onKeyDown={handleKey}
+    />
+  )
+}
+
+/** Live render of the learner's markup.
+ *  Same sandbox as the checker, so what they see is what gets checked. */
+export function LivePreview({ source, height = 260 }: { source: string; height?: number }) {
+  return (
+    <iframe
+      className="preview"
+      title="preview"
+      sandbox="allow-scripts"
+      srcDoc={previewDocument(source)}
+      style={{ height }}
     />
   )
 }

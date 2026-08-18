@@ -42,6 +42,8 @@ export default function LessonPage() {
   if (!isUnlocked(course, lesson.id, state.progress)) return <Navigate to={`/course/${courseId}`} replace />
 
   const step = lesson.steps[index]
+  // A markup step shows an editor beside a preview, which needs the wider page.
+  const wide = step.kind === 'web'
   const isLast = index === lesson.steps.length - 1
   const stepSolved = solved.has(step.id)
   const blocked = hearts === 0 && !practice
@@ -111,7 +113,7 @@ export default function LessonPage() {
   }
 
   return (
-    <main className="page narrow">
+    <main className={wide ? 'page' : 'page narrow'}>
       <div className="between" style={{ marginBottom: 10 }}>
         <Link className="small muted" to={`/course/${courseId}`} style={{ textDecoration: 'none' }}>
           ← {t('backToCourse')}

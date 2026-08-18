@@ -2,7 +2,9 @@ import { useMemo, useState } from 'react'
 import type { Step } from '../content/types'
 import { useI18n } from '../i18n'
 import { runPython, runTests, type TestOutcome } from '../lib/python'
-import { CodeBlock, CodeEditor, Output, Rich } from './ui'
+import { runWebTests, type WebOutcome } from '../lib/web'
+import { CodeBlock, CodeEditor, LivePreview, Output, Rich } from './ui'
+import { ResultList, fromPython, fromWeb } from './results'
 
 interface Props {
   step: Step
@@ -26,6 +28,8 @@ export default function StepView(props: Props) {
       return <OrderStep {...props} step={props.step} />
     case 'code':
       return <CodeStep {...props} step={props.step} />
+    case 'web':
+      return <WebStep {...props} step={props.step} />
   }
 }
 
@@ -43,6 +47,12 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
         <>
           <div className="io-label">{t('worked')}</div>
           <CodeBlock>{step.code}</CodeBlock>
+        </>
+      )}
+      {step.preview && step.code && (
+        <>
+          <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>
+          <LivePreview source={step.code} height={200} />
         </>
       )}
       {step.output && (
@@ -262,35 +272,6 @@ function OrderStep({ step, solved, onSolved, onWrong, blocked }: Props & { step:
 
 /* ------------------------------------------------------------------ code */
 
-export function TestList({ outcomes }: { outcomes: TestOutcome[] }) {
-  const { t, tc } = useI18n()
-  return (
-    <div style={{ marginTop: 12 }}>
-      {outcomes.map((o, i) => (
-        <div className={o.passed ? 'testrow pass' : 'testrow fail'} key={i}>
-          <span className="mark">{o.passed ? '✓' : '✕'}</span>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div>{tc(o.test.name)}</div>
-            {!o.passed && o.detail && <div className="small muted">{o.detail}</div>}
-            {!o.passed && !o.detail && o.test.expectOutput !== undefined && (
-              <div className="grid two small" style={{ marginTop: 6 }}>
-                <div>
-                  <div className="io-label">{t('yourAnswer')}</div>
-                  <Output text={o.stdout || '(kosong)'} />
-                </div>
-                <div>
-                  <div className="io-label">{t('expected')}</div>
-                  <Output text={o.test.expectOutput} />
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'code' }> }) {
   const { t, tc } = useI18n()
   const [code, setCode] = useState(step.starter)
@@ -397,7 +378,97 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
           <div className={allPass ? 'verdict ok' : 'verdict no'} style={{ marginTop: 12 }}>
             <b>{allPass ? t('allTestsPass') : t('someTestsFail')}</b>
           </div>
-          <TestList outcomes={outcomes} />
+          <ResultList rows={fromPython(outcomes)} />
+        </>
+      )}
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------------- web */
+
+function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'web' }> }) {
+  const { t, tc } = useI18n()
+  const [code, setCode] = useState(step.starter)
+  const [busy, setBusy] = useState(false)
+  const [outcomes, setOutcomes] = useState<WebOutcome[] | null>(null)
+  const [hintsShown, setHintsShown] = useState(0)
+  const [showSolution, setShowSolution] = useState(false)
+
+  const allPass = outcomes !== null && outcomes.every((o) => o.passed)
+
+  async function doCheck() {
+    setBusy(true)
+    try {
+      const res = await runWebTests(code, step.tests)
+      setOutcomes(res)
+      if (res.every((o) => o.passed)) onSolved()
+      else onWrong()
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="card">
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
+
+      <div className="split">
+        <div>
+          <div className="io-label">HTML</div>
+          <CodeEditor value={code} onChange={setCode} disabled={solved} />
+        </div>
+        <div>
+          <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>
+          <LivePreview source={code} />
+        </div>
+      </div>
+
+      <div className="row" style={{ marginTop: 12 }}>
+        {!solved && (
+          <button className="btn sm" onClick={() => void doCheck()} disabled={busy || blocked}>
+            {t('check')}
+          </button>
+        )}
+        {step.hints.length > 0 && hintsShown < step.hints.length && !solved && (
+          <button className="btn ghost sm" onClick={() => setHintsShown((n) => n + 1)}>
+            💡 {t('hint')} ({hintsShown}/{step.hints.length})
+          </button>
+        )}
+        {hintsShown >= step.hints.length && !solved && !showSolution && (
+          <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
+            {t('showSolution')}
+          </button>
+        )}
+      </div>
+
+      {step.hints.slice(0, hintsShown).map((h, i) => (
+        <div className="banner" key={i} style={{ marginTop: 10, marginBottom: 0 }}>
+          <span>💡</span>
+          <span>
+            <Rich text={tc(h)} />
+          </span>
+        </div>
+      ))}
+
+      {showSolution && (
+        <div style={{ marginTop: 12 }}>
+          <div className="io-label">{t('showSolution')}</div>
+          <CodeBlock>{step.solution}</CodeBlock>
+          <button className="btn ghost sm" onClick={() => setCode(step.solution)}>
+            ↧ {tc({ en: 'Copy into the editor', id: 'Salin ke editor' })}
+          </button>
+        </div>
+      )}
+
+      {outcomes && (
+        <>
+          <div className={allPass ? 'verdict ok' : 'verdict no'} style={{ marginTop: 12 }}>
+            <b>{allPass ? t('allTestsPass') : t('someTestsFail')}</b>
+          </div>
+          <ResultList rows={fromWeb(outcomes)} />
         </>
       )}
     </div>

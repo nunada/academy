@@ -430,3 +430,18 @@ pre.out.err { background: var(--bad-soft); color: var(--bad); border-color: tran
   .page { padding: 18px 14px 60px; }
   .cert { padding: 28px 20px; }
 }
+
+/* ------------------------------------------------------------ web preview */
+
+.preview {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  display: block;
+}
+
+.split { display: grid; gap: 12px; grid-template-columns: 1fr; }
+@media (min-width: 860px) {
+  .split { grid-template-columns: 1fr 1fr; align-items: start; }
+}

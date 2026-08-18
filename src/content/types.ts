@@ -28,6 +28,21 @@ export interface PyTest {
   assert?: string
 }
 
+/** A check that runs against the learner's markup, inside the sandboxed preview.
+ *
+ *  `check` is JavaScript, evaluated in the rendered page after it parses. These
+ *  helpers are in scope:
+ *    sel(q)        first matching element, or null
+ *    all(q)        array of matching elements
+ *    text(q)       trimmed textContent of the first match, or ""
+ *    attr(q, a)    attribute value of the first match, or null
+ *    assert(c, m)  fail with message m when c is falsy
+ *  Throwing fails the test, and the thrown message is what the learner sees. */
+export interface WebTest {
+  name: Loc
+  check: string
+}
+
 /**
  * Steps are ordered so support fades across a lesson:
  * `concept` (worked example) -> `quiz` (predict) -> `fill` (complete) ->
@@ -42,6 +57,9 @@ export type Step =
       code?: string
       /** What the sample code prints, shown as a worked example. */
       output?: string
+      /** Render `code` as a live page instead of printing text.
+       *  Markup is easier to understand seen than described. */
+      preview?: boolean
     }
   | {
       kind: 'quiz'
@@ -79,6 +97,17 @@ export type Step =
       hints: Loc[]
       solution: string
     }
+  | {
+      /** Same rung of the ladder as `code`, but the learner writes markup and
+       *  sees it render rather than writing a program and reading its output. */
+      kind: 'web'
+      id: string
+      prompt: Loc
+      starter: string
+      tests: WebTest[]
+      hints: Loc[]
+      solution: string
+    }
 
 export interface Lesson {
   id: string
@@ -90,17 +119,22 @@ export interface Lesson {
 }
 
 /** The mini project that closes every submodule. */
-export interface MiniProject {
+interface MiniProjectBase {
   id: string
   title: Loc
   brief: Loc
   requirements: Loc[]
   starter: string
-  tests: PyTest[]
   hints: Loc[]
   solution: string
   xp: number
 }
+
+/** Discriminated by `runtime` so each kind carries only the tests it can run.
+ *  Python is the default, which keeps every existing project unchanged. */
+export type MiniProject =
+  | (MiniProjectBase & { runtime?: 'python'; tests: PyTest[] })
+  | (MiniProjectBase & { runtime: 'web'; tests: WebTest[] })
 
 export interface Submodule {
   id: string

@@ -6,8 +6,9 @@ import { courseById } from '../content/catalog'
 import { courseItems, type MiniProject } from '../content/types'
 import { isUnlocked } from '../lib/progress'
 import { runPython, runTests, splitStdin, type TestOutcome } from '../lib/python'
-import { TestList } from '../components/StepView'
-import { CodeBlock, CodeEditor, Output, Rich } from '../components/ui'
+import { runWebTests, type WebOutcome } from '../lib/web'
+import { ResultList, fromPython, fromWeb, type ResultRow } from '../components/results'
+import { CodeBlock, CodeEditor, LivePreview, Output, Rich } from '../components/ui'
 
 function findProject(courseId: string, projectId: string): MiniProject | undefined {
   const course = courseById(courseId)
@@ -31,7 +32,7 @@ export default function ProjectPage() {
   const [code, setCode] = useState(() => project?.starter ?? '')
   const [stdin, setStdin] = useState('')
   const [busy, setBusy] = useState(false)
-  const [outcomes, setOutcomes] = useState<TestOutcome[] | null>(null)
+  const [rows, setRows] = useState<ResultRow[] | null>(null)
   const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
   const [showSolution, setShowSolution] = useState(false)
@@ -41,6 +42,9 @@ export default function ProjectPage() {
   if (!course || !project) return <Navigate to="/catalog" replace />
   if (!state) return <main className="page muted">{t('loading')}</main>
   if (!isUnlocked(course, project.id, state.progress)) return <Navigate to={`/course/${courseId}`} replace />
+
+  // Markup projects render live instead of printing, so the page differs.
+  const isWeb = project.runtime === 'web'
 
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === project.id)
@@ -54,7 +58,7 @@ export default function ProjectPage() {
         text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)',
         error: Boolean(res.error),
       })
-      setOutcomes(null)
+      setRows(null)
     } finally {
       setBusy(false)
     }
@@ -64,10 +68,11 @@ export default function ProjectPage() {
     if (!project) return
     setBusy(true)
     try {
-      const res = await runTests(code, project.tests)
-      setOutcomes(res)
+      const results: TestOutcome[] | WebOutcome[] =
+        project.runtime === 'web' ? await runWebTests(code, project.tests) : await runTests(code, project.tests)
+      setRows(project.runtime === 'web' ? fromWeb(results as WebOutcome[]) : fromPython(results as TestOutcome[]))
       setRunOut(null)
-      if (res.every((o) => o.passed)) {
+      if (results.every((o) => o.passed)) {
         const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: project.xp })
         setAwarded(xp)
         setFinished(true)
@@ -103,7 +108,7 @@ export default function ProjectPage() {
   }
 
   return (
-    <main className="page narrow">
+    <main className={isWeb ? 'page' : 'page narrow'}>
       <Link className="small muted" to={`/course/${courseId}`} style={{ textDecoration: 'none' }}>
         ← {t('backToCourse')}
       </Link>
@@ -128,17 +133,33 @@ export default function ProjectPage() {
       </div>
 
       <div className="card">
-        <CodeEditor value={code} onChange={setCode} rows={16} />
+        {isWeb ? (
+          <div className="split">
+            <div>
+              <div className="io-label">HTML</div>
+              <CodeEditor value={code} onChange={setCode} rows={20} />
+            </div>
+            <div>
+              <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>
+              <LivePreview source={code} height={420} />
+            </div>
+          </div>
+        ) : (
+          <>
+            <CodeEditor value={code} onChange={setCode} rows={16} />
+            <label className="field" style={{ marginTop: 6 }}>
+              <span className="small">{t('stdinLabel')}</span>
+              <textarea rows={2} value={stdin} onChange={(e) => setStdin(e.target.value)} spellCheck={false} />
+            </label>
+          </>
+        )}
 
-        <label className="field" style={{ marginTop: 6 }}>
-          <span className="small">{t('stdinLabel')}</span>
-          <textarea rows={2} value={stdin} onChange={(e) => setStdin(e.target.value)} spellCheck={false} />
-        </label>
-
-        <div className="row">
-          <button className="btn soft sm" onClick={() => void doRun()} disabled={busy}>
-            ▶ {t('runCode')}
-          </button>
+        <div className="row" style={{ marginTop: isWeb ? 12 : 0 }}>
+          {!isWeb && (
+            <button className="btn soft sm" onClick={() => void doRun()} disabled={busy}>
+              ▶ {t('runCode')}
+            </button>
+          )}
           <button className="btn sm" onClick={() => void doCheck()} disabled={busy}>
             ✓ {t('runTests')}
           </button>
@@ -161,7 +182,7 @@ export default function ProjectPage() {
           })}
         </p>
 
-        {busy && (
+        {busy && !isWeb && (
           <p className="small muted" style={{ marginTop: 8 }}>
             🐍 {t('loadingPython')}
           </p>
@@ -190,12 +211,12 @@ export default function ProjectPage() {
           </div>
         )}
 
-        {outcomes && (
+        {rows && (
           <>
-            <div className={outcomes.every((o) => o.passed) ? 'verdict ok' : 'verdict no'} style={{ marginTop: 12 }}>
-              <b>{outcomes.every((o) => o.passed) ? t('allTestsPass') : t('someTestsFail')}</b>
+            <div className={rows.every((r) => r.passed) ? 'verdict ok' : 'verdict no'} style={{ marginTop: 12 }}>
+              <b>{rows.every((r) => r.passed) ? t('allTestsPass') : t('someTestsFail')}</b>
             </div>
-            <TestList outcomes={outcomes} />
+            <ResultList rows={rows} />
           </>
         )}
       </div>

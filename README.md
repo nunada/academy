@@ -5,7 +5,8 @@ selangkah demi selangkah, dan tiap submateri ditutup satu mini proyek yang diper
 oleh tes sungguhan. Antarmuka bisa diganti antara **English** dan **Bahasa Indonesia**
 kapan saja.
 
-Rilis pertama berisi kursus **Python** dan jalur karier **Python Developer**.
+Kursus yang sudah aktif: **Python** (9 modul) dan **HTML** (4 modul), ditambah jalur
+karier **Python Developer**.
 
 ## Menjalankan
 
@@ -44,7 +45,7 @@ Kunci `anon` memang untuk dipakai di sisi klien; yang menjaga data adalah RLS di
 
 | Hal | Aturan |
 | --- | --- |
-| XP | 20 per pelajaran, 50 per mini proyek, 80 untuk dua proyek besar |
+| XP | 20 per pelajaran, 50 per mini proyek, 80 untuk proyek besar |
 | Hearts | maksimal 5; jawaban salah mengurangi 1; satu heart pulih tiap 15 menit |
 | Hearts habis | pemeriksaan jawaban terkunci — tunggu, atau lanjut dalam mode latihan tanpa XP |
 | Mini proyek | memeriksa proyek **tidak** memakan heart, karena proyek memang dikerjakan berulang |
@@ -87,6 +88,37 @@ JSON. Jadi tidak ada yang perlu dilupakan peserta saat nanti berpindah ke `reque
 Datanya disimpan di level modul, sehingga tes memanggil `nunada_api.reset()` di `setup`
 agar satu POST tidak mencemari tes berikutnya.
 
+## Isi kursus HTML
+
+4 modul, 7 submateri, 14 pelajaran, 7 mini proyek, 660 XP:
+
+| Modul | Isi |
+| --- | --- |
+| 1 Halaman Pertamamu | tag, elemen, kerangka dokumen, jenjang judul, penekanan bermakna |
+| 2 Tautan, Gambar, Daftar | atribut, href, img dan alt, ul/ol, navigasi dari daftar |
+| 3 Tabel dan Formulir | tr/th/td, caption, thead, colspan, input, label, select, textarea |
+| 4 Struktur Semantik | header/nav/main/footer, article vs section, div/span, id vs class |
+
+Aksesibilitas tidak dibuat modul terpisah — ia dijalin ke tempat kesalahannya benar-benar
+terjadi: `alt` saat gambar diperkenalkan, `label for` saat input diperkenalkan, urutan
+judul saat heading diperkenalkan.
+
+## Menjalankan HTML di browser
+
+Markup peserta dirender dalam iframe `sandbox="allow-scripts"` — tanpa
+`allow-same-origin`, jadi halamannya berada di origin buram dan apa pun yang ditulis
+peserta tidak bisa menyentuh halaman aplikasi.
+
+Konsekuensinya: induk tidak bisa membaca `contentDocument` frame itu. Maka
+pemeriksaannya **dijalankan di dalam frame** dan hasilnya dikirim balik lewat
+`postMessage` ([`src/lib/web.ts`](src/lib/web.ts)). Rancangan ini sengaja dipilih agar
+bisa dipakai ulang oleh CSS, JavaScript, dan React nanti — di sana skrip peserta justru
+inti materinya.
+
+Tiap `WebTest` berisi JavaScript dengan pembantu `sel`, `all`, `text`, `attr`, dan
+`assert` yang sudah tersedia. Pesan pada `assert` itulah yang dibaca peserta saat gagal,
+jadi tulislah dalam kalimat yang bisa langsung ditindaklanjuti.
+
 ## Struktur
 
 ```
@@ -96,16 +128,18 @@ src/
     catalog.ts      daftar kursus & jalur karier (termasuk yang belum tersedia)
     trophies.ts     trofi statis
     python/         kursus Python: m1-basics … m9-private-apis
+    html/           kursus HTML: m1-document … m4-semantics
   lib/
     db.ts           kontrak yang harus dipenuhi setiap backend
     backends/       supabase.ts (asli) + local.ts (localStorage) + pemilihnya
     python.ts       pemuat Pyodide, runner, dan pemeriksa tes
+    web.ts          runner iframe tersandbox untuk HTML (dan CSS/JS nanti)
     pythonModules.ts modul Python yang ditanam ke filesystem Pyodide (API tiruan)
     hearts.ts       ekonomi heart
     progress.ts     turunan: apa yang terbuka, tuntas, dan diperoleh
     week.ts         batas minggu (Senin UTC), disamakan dengan Postgres
   app/store.tsx     satu sumber kebenaran untuk sesi + progres
-  components/       Layout, StepView (pemutar langkah), ui.tsx
+  components/       Layout, StepView (pemutar langkah), results.tsx, ui.tsx
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
                     Project, Playground, Leaderboard, Profile, Certificate
 supabase/schema.sql skema, RPC, dan RLS
@@ -123,6 +157,7 @@ Tiap pelajaran menurunkan bantuan secara bertahap lewat lima jenis langkah
 | `fill` | mengisi bagian kosong pada kode yang hampir lengkap | sedang |
 | `order` | menyusun baris yang sudah benar ke urutan yang tepat | rendah |
 | `code` | menulis sendiri, diperiksa tes, petunjuk muncul bila diminta | minimal |
+| `web` | sama seperti `code`, tetapi menulis markup dan melihatnya langsung dirender | minimal |
 
 Mini proyek di akhir submateri adalah tahap tanpa penopang: hanya daftar syarat,
 editor kosong, dan tes.
@@ -151,6 +186,8 @@ Jalankan potongan berikut di konsol browser (saat `npm run dev` aktif). Ia menja
 **setiap** solusi acuan terhadap tesnya sendiri, lalu memastikan tidak ada tes yang
 lolos hanya dengan kode awal:
 
+Untuk kursus Python:
+
 ```js
 const py = await import('/src/lib/python.ts')
 const { pythonCourse } = await import('/src/content/python/index.ts')
@@ -170,6 +207,32 @@ bad
 ```
 
 Hasil `[]` berarti aman.
+
+Untuk kursus HTML, polanya sama dengan runner web. Ia lebih lambat karena tiap
+pemeriksaan merender iframe sungguhan, jadi simpan hasilnya lalu baca belakangan:
+
+```js
+window.__cek = { done: false }
+;(async () => {
+  const web = await import('/src/lib/web.ts')
+  const { htmlCourse } = await import('/src/content/html/index.ts')
+  const bad = []
+  for (const m of htmlCourse.modules)
+    for (const s of m.submodules) {
+      for (const l of s.lessons)
+        for (const st of l.steps)
+          if (st.kind === 'web') {
+            if ((await web.runWebTests(st.solution, st.tests)).some(o => !o.passed)) bad.push(['solusi gagal', st.id])
+            if ((await web.runWebTests(st.starter, st.tests)).every(o => o.passed)) bad.push(['tes kosong', st.id])
+          }
+      if ((await web.runWebTests(s.project.solution, s.project.tests)).some(o => !o.passed)) bad.push(['solusi gagal', s.project.id])
+      if ((await web.runWebTests(s.project.starter, s.project.tests)).every(o => o.passed)) bad.push(['tes kosong', s.project.id])
+    }
+  window.__cek = { done: true, bad }
+})()
+```
+
+Tunggu sebentar, lalu periksa `window.__cek`.
 
 ## Isi kursus Python
 
