@@ -341,6 +341,23 @@ begin
   end loop;
 end $$;
 
+-- Postgres grants EXECUTE to PUBLIC by default when a function is created, so a
+-- bare "grant ... to authenticated" widens nothing: the anon role already had it.
+-- Revoke first, then hand out exactly what each function is meant to allow.
+-- This matters most for the three leaderboard functions: they are security
+-- definer and bypass RLS, so without the revoke anyone holding the publishable
+-- key could list every learner's name and XP without signing in.
+
+revoke execute on function public.username_available(text)                from public;
+revoke execute on function public.complete_item(text, text, text, integer) from public;
+revoke execute on function public.resolve_hearts()                        from public;
+revoke execute on function public.spend_heart()                           from public;
+revoke execute on function public.issue_certificate(text, text)           from public;
+revoke execute on function public.leaderboard_weekly(integer)             from public;
+revoke execute on function public.leaderboard_alltime(integer)            from public;
+revoke execute on function public.leaderboard_trophies(integer)           from public;
+
+-- Sign-up has to check a name before the account exists, so anon needs this one.
 grant execute on function public.username_available(text)     to anon, authenticated;
 grant execute on function public.complete_item(text, text, text, integer) to authenticated;
 grant execute on function public.resolve_hearts()             to authenticated;
