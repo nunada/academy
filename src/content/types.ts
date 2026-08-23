@@ -64,6 +64,25 @@ export interface WebTest {
   check: string
 }
 
+/** A check that runs the learner's SQL against a fresh database.
+ *
+ *  Each check gets its own database, built from the exercise's schema, so a
+ *  write in one cannot be seen by the next. */
+export interface SqlTest {
+  name: Loc
+  /** SQL run after the schema and before the learner's, to vary the data. */
+  setup?: string
+  /** The rows the learner's statement must return. */
+  expectRows?: (string | number | null)[][]
+  /** Column names the result must have, in order. Compared case-insensitively. */
+  expectColumns?: string[]
+  /** Row order matters. Leave false unless the exercise asks for ORDER BY. */
+  ordered?: boolean
+  /** Run after the learner's statement; its rows are compared instead.
+   *  This is how INSERT, UPDATE and DELETE exercises are checked. */
+  verify?: string
+}
+
 /**
  * Steps are ordered so support fades across a lesson:
  * `concept` (worked example) -> `quiz` (predict) -> `fill` (complete) ->
@@ -138,6 +157,19 @@ export type Step =
        *  React and ReactDOM are already on the page as globals. */
       react?: boolean
     }
+  | {
+      /** Same rung as `code` and `web`: the learner writes a statement and sees
+       *  the rows it returns. */
+      kind: 'sql'
+      id: string
+      prompt: Loc
+      starter: string
+      tests: SqlTest[]
+      hints: Loc[]
+      solution: string
+      /** DDL and seed data, run before every check and before every free run. */
+      schema: string
+    }
 
 export interface Lesson {
   id: string
@@ -165,6 +197,7 @@ interface MiniProjectBase {
 export type MiniProject =
   | (MiniProjectBase & { runtime?: 'python'; tests: PyTest[] })
   | (MiniProjectBase & { runtime: 'web'; tests: WebTest[]; html?: string; js?: boolean; react?: boolean })
+  | (MiniProjectBase & { runtime: 'sql'; tests: SqlTest[]; schema: string })
 
 export interface Submodule {
   id: string

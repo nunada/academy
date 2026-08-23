@@ -4,6 +4,7 @@ import { htmlCourse } from './html'
 import { cssCourse } from './css'
 import { javascriptCourse } from './javascript'
 import { reactCourse } from './react'
+import { sqlCourse } from './sql'
 
 /** A course that is listed but not yet written.
  *  Keeping these in the catalogue makes the roadmap visible without pretending
@@ -32,7 +33,6 @@ function soon(
   }
 }
 
-const BEGINNER = { en: 'Beginner', id: 'Pemula' }
 const INTERMEDIATE = { en: 'Intermediate', id: 'Menengah' }
 
 export const COURSES: Course[] = [
@@ -40,10 +40,7 @@ export const COURSES: Course[] = [
   htmlCourse,
   cssCourse,
   javascriptCourse,
-  soon('sql', 'SQL', '🗄️', '#4f8b56', 'sql', {
-    en: 'Ask a database questions and get exactly the rows you meant.',
-    id: 'Bertanya kepada basis data dan mendapatkan baris yang benar-benar kamu maksud.',
-  }, BEGINNER),
+  sqlCourse,
   soon('typescript', 'TypeScript', '🧩', '#6d8175', 'typescript', {
     en: 'JavaScript that tells you about a mistake before you ship it.',
     id: 'JavaScript yang memberitahumu soal kesalahan sebelum kamu rilis.',
@@ -90,7 +87,7 @@ export const PATHS: CareerPath[] = [
     icon: '⚙️',
     color: '#4f8b56',
     courseIds: ['python', 'sql'],
-    available: false,
+    available: true,
   },
   {
     id: 'full-stack',

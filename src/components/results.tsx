@@ -3,8 +3,10 @@
 import type { Loc } from '../content/types'
 import type { TestOutcome } from '../lib/python'
 import type { WebOutcome } from '../lib/web'
+import type { SqlOutcome, SqlValue } from '../lib/sql'
 import { useI18n } from '../i18n'
 import { Output } from './ui'
+import { RowDiff } from './ResultTable'
 
 export interface ResultRow {
   name: Loc
@@ -13,6 +15,8 @@ export interface ResultRow {
   /** Shown side by side when the check was an exact-output comparison. */
   got?: string
   want?: string
+  /** Same idea, but for SQL: two result grids instead of two strings. */
+  sql?: { got: SqlValue[][]; want: SqlValue[][]; columns: string[]; wantColumns: string[] }
 }
 
 export const fromPython = (outcomes: TestOutcome[]): ResultRow[] =>
@@ -27,6 +31,24 @@ export const fromPython = (outcomes: TestOutcome[]): ResultRow[] =>
 export const fromWeb = (outcomes: WebOutcome[]): ResultRow[] =>
   outcomes.map((o) => ({ name: o.test.name, passed: o.passed, detail: o.detail }))
 
+/** A failed row comparison carries two grids rather than two blobs of text, so
+ *  it is handed through untouched for ResultList to render. */
+export const fromSql = (outcomes: SqlOutcome[]): ResultRow[] =>
+  outcomes.map((o) => ({
+    name: o.test.name,
+    passed: o.passed,
+    detail: o.detail,
+    sql:
+      o.got && o.want
+        ? {
+            got: o.got.rows,
+            want: o.want,
+            columns: o.got.columns,
+            wantColumns: o.wantColumns ?? o.got.columns,
+          }
+        : undefined,
+  }))
+
 export function ResultList({ rows }: { rows: ResultRow[] }) {
   const { t, tc } = useI18n()
   return (
@@ -37,6 +59,14 @@ export function ResultList({ rows }: { rows: ResultRow[] }) {
           <div style={{ flex: 1, minWidth: 0 }}>
             <div>{tc(r.name)}</div>
             {!r.passed && r.detail && <div className="small muted">{r.detail}</div>}
+            {!r.passed && r.sql && (
+              <RowDiff
+                got={r.sql.got}
+                want={r.sql.want}
+                columns={r.sql.columns}
+                wantColumns={r.sql.wantColumns}
+              />
+            )}
             {!r.passed && r.want !== undefined && (
               <div className="grid two small" style={{ marginTop: 6 }}>
                 <div>

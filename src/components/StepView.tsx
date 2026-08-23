@@ -3,8 +3,10 @@ import type { Step } from '../content/types'
 import { useI18n } from '../i18n'
 import { runPython, runTests, type TestOutcome } from '../lib/python'
 import { runWebTests, type WebOutcome } from '../lib/web'
+import { runSql, runSqlTests, type SqlOutcome, type SqlResult } from '../lib/sql'
 import { CodeBlock, CodeEditor, LivePreview, Output, Rich } from './ui'
-import { ResultList, fromPython, fromWeb } from './results'
+import { ResultList, fromPython, fromWeb, fromSql } from './results'
+import { ResultTable } from './ResultTable'
 
 interface Props {
   step: Step
@@ -30,6 +32,8 @@ export default function StepView(props: Props) {
       return <CodeStep {...props} step={props.step} />
     case 'web':
       return <WebStep {...props} step={props.step} />
+    case 'sql':
+      return <SqlStep {...props} step={props.step} />
   }
 }
 
@@ -39,7 +43,9 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
   const { t, tc } = useI18n()
   return (
     <div className="card">
-      <h2>{tc(step.title)}</h2>
+      <h2>
+        <Rich text={tc(step.title)} />
+      </h2>
       <p>
         <Rich text={tc(step.body)} />
       </p>
@@ -88,7 +94,9 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
 
   return (
     <div className="card">
-      <h3>{tc(step.prompt)}</h3>
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
       {step.code && <CodeBlock>{step.code}</CodeBlock>}
 
       {step.options.map((o, i) => {
@@ -107,7 +115,9 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
             }}
           >
             <span className="key">{String.fromCharCode(65 + i)}</span>
-            <span>{tc(o)}</span>
+            <span>
+              <Rich text={tc(o)} />
+            </span>
           </button>
         )
       })}
@@ -146,7 +156,9 @@ function FillStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
 
   return (
     <div className="card">
-      <h3>{tc(step.prompt)}</h3>
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
       <pre className="code">
         {segments.map((seg, i) => (
           <span key={i}>
@@ -172,7 +184,9 @@ function FillStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       {checked && (
         <div className={right ? 'verdict ok' : 'verdict no'}>
           <b>{right ? t('correct') : t('notQuite')}</b>
-          {right ? <Rich text={tc(step.explain)} /> : <span className="small muted">{tc(step.explain)}</span>}
+          {right ? <Rich text={tc(step.explain)} /> : <span className="small muted">
+              <Rich text={tc(step.explain)} />
+            </span>}
         </div>
       )}
 
@@ -233,7 +247,9 @@ function OrderStep({ step, solved, onSolved, onWrong, blocked }: Props & { step:
 
   return (
     <div className="card">
-      <h3>{tc(step.prompt)}</h3>
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
       <p className="small muted">{t('dragToOrder')}</p>
 
       {order.map((lineIndex, pos) => (
@@ -487,6 +503,117 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
             <b>{allPass ? t('allTestsPass') : t('someTestsFail')}</b>
           </div>
           <ResultList rows={fromWeb(outcomes)} />
+        </>
+      )}
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------------- sql */
+
+function SqlStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'sql' }> }) {
+  const { t, tc } = useI18n()
+  const [code, setCode] = useState(step.starter)
+  const [busy, setBusy] = useState(false)
+  const [outcomes, setOutcomes] = useState<SqlOutcome[] | null>(null)
+  const [result, setResult] = useState<SqlResult | null>(null)
+  const [hintsShown, setHintsShown] = useState(0)
+  const [showSolution, setShowSolution] = useState(false)
+
+  const allPass = outcomes !== null && outcomes.every((o) => o.passed)
+
+  async function doRun() {
+    setBusy(true)
+    try {
+      setResult(await runSql(step.schema, code))
+      setOutcomes(null)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function doCheck() {
+    setBusy(true)
+    try {
+      const res = await runSqlTests(step.schema, code, step.tests)
+      setOutcomes(res)
+      setResult(null)
+      if (res.every((o) => o.passed)) onSolved()
+      else onWrong()
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="card">
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
+
+      <details style={{ marginBottom: 12 }}>
+        <summary className="io-label" style={{ cursor: 'pointer' }}>
+          {tc({ en: 'The tables (already set up)', id: 'Tabelnya (sudah disiapkan)' })}
+        </summary>
+        <CodeBlock>{step.schema}</CodeBlock>
+      </details>
+
+      <div className="io-label">SQL</div>
+      <CodeEditor value={code} onChange={setCode} disabled={solved} rows={9} />
+
+      <div className="row">
+        <button className="btn soft sm" onClick={() => void doRun()} disabled={busy}>
+          ▶ {t('runCode')}
+        </button>
+        {!solved && (
+          <button className="btn sm" onClick={() => void doCheck()} disabled={busy || blocked}>
+            {t('check')}
+          </button>
+        )}
+        {step.hints.length > 0 && hintsShown < step.hints.length && !solved && (
+          <button className="btn ghost sm" onClick={() => setHintsShown((n) => n + 1)}>
+            💡 {t('hint')} ({hintsShown}/{step.hints.length})
+          </button>
+        )}
+        {hintsShown >= step.hints.length && !solved && !showSolution && (
+          <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
+            {t('showSolution')}
+          </button>
+        )}
+      </div>
+
+      {step.hints.slice(0, hintsShown).map((h, i) => (
+        <div className="banner" key={i} style={{ marginTop: 10, marginBottom: 0 }}>
+          <span>💡</span>
+          <span>
+            <Rich text={tc(h)} />
+          </span>
+        </div>
+      ))}
+
+      {showSolution && (
+        <div style={{ marginTop: 12 }}>
+          <div className="io-label">{t('showSolution')}</div>
+          <CodeBlock>{step.solution}</CodeBlock>
+          <button className="btn ghost sm" onClick={() => setCode(step.solution)}>
+            ↧ {tc({ en: 'Copy into the editor', id: 'Salin ke editor' })}
+          </button>
+        </div>
+      )}
+
+      {result && (
+        <div style={{ marginTop: 12 }}>
+          <div className="io-label">{tc({ en: 'Result', id: 'Hasil' })}</div>
+          <ResultTable result={result} />
+        </div>
+      )}
+
+      {outcomes && (
+        <>
+          <div className={allPass ? 'verdict ok' : 'verdict no'} style={{ marginTop: 12 }}>
+            <b>{allPass ? t('allTestsPass') : t('someTestsFail')}</b>
+          </div>
+          <ResultList rows={fromSql(outcomes)} />
         </>
       )}
     </div>

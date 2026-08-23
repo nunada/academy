@@ -7,6 +7,9 @@ import { Logo } from '../components/Logo'
 export default function Landing() {
   const { t, tc } = useI18n()
   const live = COURSES.filter((c) => c.available)
+  // Derived, not written out by hand: the sentence went stale every time a
+  // course moved from the roadmap into the catalogue.
+  const soon = COURSES.filter((c) => !c.available).map((c) => tc(c.title))
 
   return (
     <main className="page">
@@ -82,12 +85,15 @@ export default function Landing() {
             </div>
           ))}
         </div>
-        <p className="small muted" style={{ marginTop: 14 }}>
-          {tc({
-            en: 'HTML, CSS, JavaScript, React, SQL, TypeScript and Game Development are on the roadmap — see the catalog.',
-            id: 'HTML, CSS, JavaScript, React, SQL, TypeScript, dan Game Development ada di peta jalan — lihat katalog.',
-          })}
-        </p>
+        {soon.length > 0 && (
+          <p className="small muted" style={{ marginTop: 14 }}>
+            {soon.join(', ')}{' '}
+            {tc({
+              en: 'are on the roadmap — see the catalog.',
+              id: 'ada di peta jalan — lihat katalog.',
+            })}
+          </p>
+        )}
       </section>
     </main>
   )

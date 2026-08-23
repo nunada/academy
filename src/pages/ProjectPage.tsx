@@ -5,10 +5,12 @@ import { useI18n } from '../i18n'
 import { courseById } from '../content/catalog'
 import { courseItems, type MiniProject } from '../content/types'
 import { isUnlocked } from '../lib/progress'
-import { runPython, runTests, splitStdin, type TestOutcome } from '../lib/python'
-import { runWebTests, type WebOutcome } from '../lib/web'
-import { ResultList, fromPython, fromWeb, type ResultRow } from '../components/results'
+import { runPython, runTests, splitStdin } from '../lib/python'
+import { runWebTests } from '../lib/web'
+import { runSql, runSqlTests, type SqlResult } from '../lib/sql'
+import { ResultList, fromPython, fromWeb, fromSql, type ResultRow } from '../components/results'
 import { CodeBlock, CodeEditor, LivePreview, Output, Rich } from '../components/ui'
+import { ResultTable } from '../components/ResultTable'
 
 function findProject(courseId: string, projectId: string): MiniProject | undefined {
   const course = courseById(courseId)
@@ -34,6 +36,7 @@ export default function ProjectPage() {
   const [busy, setBusy] = useState(false)
   const [rows, setRows] = useState<ResultRow[] | null>(null)
   const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
+  const [runRows, setRunRows] = useState<SqlResult | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
   const [showSolution, setShowSolution] = useState(false)
   const [finished, setFinished] = useState(false)
@@ -53,19 +56,26 @@ export default function ProjectPage() {
   const hasGivenMarkup = isWeb && project.html !== undefined && project.html.trim() !== ''
   const editorLabel = isReact ? 'JSX' : isJs ? 'JavaScript' : isCss ? 'CSS' : 'HTML'
   const consoleOnly = isJs && !isReact && (project.html === undefined || project.html.trim() === '')
+  // SQL projects run in the app like Python, but answer with a grid of rows.
+  const isSql = project.runtime === 'sql'
 
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === project.id)
   const nextItem = pos >= 0 ? items[pos + 1] : undefined
 
   async function doRun() {
+    if (!project) return
     setBusy(true)
     try {
-      const res = await runPython(code, splitStdin(stdin))
-      setRunOut({
-        text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)',
-        error: Boolean(res.error),
-      })
+      if (project.runtime === 'sql') {
+        setRunRows(await runSql(project.schema, code))
+      } else {
+        const res = await runPython(code, splitStdin(stdin))
+        setRunOut({
+          text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)',
+          error: Boolean(res.error),
+        })
+      }
       setRows(null)
     } finally {
       setBusy(false)
@@ -76,13 +86,17 @@ export default function ProjectPage() {
     if (!project) return
     setBusy(true)
     try {
-      const results: TestOutcome[] | WebOutcome[] =
+      // Each runtime reports differently; they meet again as ResultRow[].
+      const next: ResultRow[] =
         project.runtime === 'web'
-          ? await runWebTests(code, project.tests, project.html, project.js, project.react)
-          : await runTests(code, project.tests)
-      setRows(project.runtime === 'web' ? fromWeb(results as WebOutcome[]) : fromPython(results as TestOutcome[]))
+          ? fromWeb(await runWebTests(code, project.tests, project.html, project.js, project.react))
+          : project.runtime === 'sql'
+            ? fromSql(await runSqlTests(project.schema, code, project.tests))
+            : fromPython(await runTests(code, project.tests))
+      setRows(next)
       setRunOut(null)
-      if (results.every((o) => o.passed)) {
+      setRunRows(null)
+      if (next.every((o) => o.passed)) {
         const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: project.xp })
         setAwarded(xp)
         setFinished(true)
@@ -164,6 +178,17 @@ export default function ProjectPage() {
               </div>
             </div>
           </>
+        ) : isSql ? (
+          <>
+            <details style={{ marginBottom: 12 }}>
+              <summary className="io-label" style={{ cursor: 'pointer' }}>
+                {tc({ en: 'The tables (already set up)', id: 'Tabelnya (sudah disiapkan)' })}
+              </summary>
+              <CodeBlock>{project.schema}</CodeBlock>
+            </details>
+            <div className="io-label">SQL</div>
+            <CodeEditor value={code} onChange={setCode} rows={16} />
+          </>
         ) : (
           <>
             <CodeEditor value={code} onChange={setCode} rows={16} />
@@ -202,7 +227,7 @@ export default function ProjectPage() {
           })}
         </p>
 
-        {busy && !isWeb && (
+        {busy && !isWeb && !isSql && (
           <p className="small muted" style={{ marginTop: 8 }}>
             🐍 {t('loadingPython')}
           </p>
@@ -228,6 +253,13 @@ export default function ProjectPage() {
           <div style={{ marginTop: 12 }}>
             <div className="io-label">{t('output')}</div>
             <Output text={runOut.text} error={runOut.error} />
+          </div>
+        )}
+
+        {runRows && (
+          <div style={{ marginTop: 12 }}>
+            <div className="io-label">{tc({ en: 'Result', id: 'Hasil' })}</div>
+            <ResultTable result={runRows} />
           </div>
         )}
 

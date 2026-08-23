@@ -6,7 +6,8 @@ oleh tes sungguhan. Antarmuka bisa diganti antara **English** dan **Bahasa Indon
 kapan saja.
 
 Kursus yang sudah aktif: **Python** (9 modul), lalu **HTML**, **CSS**, **JavaScript**,
-dan **React** (masing-masing 4 modul), ditambah jalur karier **Python Developer**.
+**SQL**, dan **React** (masing-masing 4 modul), ditambah jalur karier
+**Python Developer** dan **Back-End Developer**.
 
 ## Menjalankan
 
@@ -276,6 +277,32 @@ Dua hal yang perlu diingat saat menulis materi React:
   mengklik tidak boleh menganggap dirinya mulai dari nol: baca nilainya dulu, bertindak,
   lalu bandingkan dengan yang tadi dibaca.
 
+## Menjalankan SQL peserta
+
+SQL tidak memerlukan iframe. Ia tidak menyentuh DOM dan tidak menjangkau jaringan —
+[sql.js](https://sql.js.org) sudah berupa sandbox WebAssembly yang memegang basis data
+yang hanya ada di memori. Jadi ia berjalan di dalam aplikasi seperti Pyodide, dan
+mesinnya disimpan untuk sisa sesi ([`src/lib/sql.ts`](src/lib/sql.ts)).
+
+**Tiap pemeriksaan mendapat basis data baru,** dibangun ulang dari skema latihannya.
+Itulah seluruh cerita isolasinya: sebuah `UPDATE` di satu pemeriksaan tidak mungkin
+terlihat oleh pemeriksaan berikutnya. Ini berbeda dari Pyodide, yang berbagi satu
+filesystem untuk seluruh sesi.
+
+Pernyataan yang menulis diperiksa lewat `verify`: runner menjalankan pernyataan peserta,
+lalu menanyakan kembali kepada basis datanya apa yang sekarang tersimpan, dan baris
+itulah yang dibandingkan. Karena itu latihan `INSERT`, `UPDATE`, dan `DELETE` diuji dari
+akibatnya, bukan dari teks yang ditulis peserta.
+
+Satu perangkap yang perlu diketahui saat menulis tes: **sql.js melaporkan `SELECT` yang
+tidak cocok dengan apa pun persis seperti pernyataan yang memang tidak punya hasil.**
+Keduanya mengembalikan larik kosong, jadi "senyap" dan "nol baris" adalah pengamatan
+yang sama. Sebuah tes boleh menyatakan bahwa ia memang menginginkan nol baris dengan
+`expectRows: []`; selain itu, hasil kosong dihitung gagal.
+
+Perbandingan barisnya tidak peduli urutan kecuali tes menyebut `ordered: true` — jadi
+`ORDER BY` hanya wajib ketika latihannya memang meminta urutan.
+
 ## Struktur
 
 ```
@@ -289,18 +316,21 @@ src/
     css/            kursus CSS: m1-rules … m4-states
     javascript/     kursus JavaScript: m1-values … m4-robust
     react/          kursus React: m1-components … m4-app
+    sql/            kursus SQL: m1-select … m4-writing
   lib/
     db.ts           kontrak yang harus dipenuhi setiap backend
     backends/       supabase.ts (asli) + local.ts (localStorage) + pemilihnya
     python.ts       pemuat Pyodide, runner, dan pemeriksa tes
     web.ts          runner iframe tersandbox untuk HTML, CSS, JavaScript, React
     reactRuntime.ts React/ReactDOM sebagai teks + transpilasi JSX lewat Babel
+    sql.ts          SQLite lewat sql.js — basis data baru untuk tiap pemeriksaan
     pythonModules.ts modul Python yang ditanam ke filesystem Pyodide (API tiruan)
     hearts.ts       ekonomi heart
     progress.ts     turunan: apa yang terbuka, tuntas, dan diperoleh
     week.ts         batas minggu (Senin UTC), disamakan dengan Postgres
   app/store.tsx     satu sumber kebenaran untuk sesi + progres
-  components/       Layout, StepView (pemutar langkah), results.tsx, ui.tsx
+  components/       Layout, StepView (pemutar langkah), results.tsx, ui.tsx,
+                    ResultTable.tsx (kisi hasil SQL)
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
                     Project, Playground, Leaderboard, Profile, Certificate
 supabase/schema.sql skema, RPC, dan RLS
@@ -319,6 +349,7 @@ Tiap pelajaran menurunkan bantuan secara bertahap lewat lima jenis langkah
 | `order` | menyusun baris yang sudah benar ke urutan yang tepat | rendah |
 | `code` | menulis sendiri, diperiksa tes, petunjuk muncul bila diminta | minimal |
 | `web` | sama seperti `code`, tetapi menulis markup, CSS, JavaScript, atau JSX dan melihat hasilnya langsung | minimal |
+| `sql` | sama seperti `code`, tetapi menulis pernyataan SQL dan melihat baris yang kembali | minimal |
 
 Mini proyek di akhir submateri adalah tahap tanpa penopang: hanya daftar syarat,
 editor kosong, dan tes.
@@ -337,6 +368,8 @@ ada komponen baru yang perlu ditulis.
    menyiapkan keadaan lebih dulu (`setup`), memberi masukan (`stdin`), membandingkan
    keluaran (`expectOutput`), memeriksa potongan teks (`expectContains`), atau
    menjalankan Python tambahan di namespace yang sama (`assert`).
+5. Untuk langkah `sql`, tesnya memakai `expectColumns`, `expectRows`, `ordered`, dan
+   `verify` — lihat `SqlTest` di [`src/content/types.ts`](src/content/types.ts).
 
 Untuk membuka kursus yang masih "Segera hadir", ubah `available: true` di
 `src/content/catalog.ts` dan isi `modules`-nya.
@@ -402,6 +435,26 @@ harus ikut dioper:
 await web.runWebTests(st.solution, st.tests, st.html, st.js, st.react)
 ```
 
+Untuk kursus SQL — jauh lebih cepat, karena tidak ada iframe dan tidak ada Pyodide:
+
+```js
+const sql = await import('/src/lib/sql.ts')
+const { sqlCourse } = await import('/src/content/sql/index.ts')
+const bad = []
+const cek = async (it) => {
+  if ((await sql.runSqlTests(it.schema, it.solution, it.tests)).some(o => !o.passed)) bad.push(['solusi gagal', it.id])
+  if ((await sql.runSqlTests(it.schema, it.starter, it.tests)).every(o => o.passed)) bad.push(['tes kosong', it.id])
+}
+for (const m of sqlCourse.modules)
+  for (const s of m.submodules) {
+    for (const l of s.lessons)
+      for (const st of l.steps)
+        if (st.kind === 'sql') await cek(st)
+    await cek(s.project)
+  }
+bad
+```
+
 ## Isi kursus Python
 
 9 modul, 18 submateri, 37 pelajaran, 18 mini proyek, 1700 XP:
@@ -418,10 +471,31 @@ await web.runWebTests(st.solution, st.tests, st.html, st.js, st.react)
 | 8 Objek | class, __init__, method, __str__, list objek, pewarisan |
 | 9 Bekerja dengan API Privat | kunci API, header bearer, kode status, JSON, POST, menjaga rahasia |
 
+## Isi kursus SQL
+
+4 modul, 7 submateri, 14 pelajaran, 7 mini proyek, 660 XP. Tanpa prasyarat.
+
+| Modul | Isi |
+| --- | --- |
+| 1 Bertanya kepada Tabel | SELECT, AS, WHERE, AND/OR, ORDER BY, LIMIT, BETWEEN, IN, LIKE |
+| 2 Menghitung dan Mengelompokkan | COUNT/SUM/AVG/MIN/MAX, NULL dalam agregat, DISTINCT, ROUND, GROUP BY, HAVING |
+| 3 Lebih dari Satu Tabel | kunci asing, JOIN … ON, alias, tiga tabel, LEFT JOIN, subkueri |
+| 4 Mengubah Datanya | INSERT, DEFAULT, UNIQUE/CHECK, UPDATE, DELETE, WHERE yang hilang, transaksi |
+
+Dua gagasan sengaja diberi ruang lebih. Yang pertama, beda antara `WHERE` dan `HAVING`
+dijelaskan lewat urutan jalannya klausa, bukan lewat aturan hafalan. Yang kedua,
+`COUNT(*)` setelah `LEFT JOIN` — kelas kosong yang terbaca "1 siswa" — diberi satu
+konsep dan satu tes tersendiri, karena kutu itu terlihat benar sampai seseorang
+memeriksa angkanya.
+
+Data tiap modul dibentuk untuk latihannya: tabel `buku` cukup kecil untuk diperiksa
+dengan mata, tabel `pesanan` punya kolom `kupon` yang sebagian besar NULL, dan skema
+sekolah di modul 3 sengaja menyimpan satu kelas tanpa siswa dan satu siswa tanpa kelas.
+
 ## Peta jalan
 
-Katalog sudah menampilkan HTML, CSS, JavaScript, SQL, TypeScript, React, dan Game
-Development beserta prasyaratnya, juga jalur Front-End, Back-End, dan Full-Stack —
-semuanya bertanda "Segera hadir" sampai materinya ditulis. Playground pun sudah
-menyiapkan tempat untuk static website, React app, React app + router, dan JavaScript;
-saat ini hanya Python yang aktif.
+Yang masih bertanda "Segera hadir" di katalog tinggal **TypeScript** (prasyarat
+JavaScript) dan **Game Development** (prasyarat Python). Jalur karier Front-End dan
+Full-Stack masih terkunci karena keduanya menunggu kursus-kursus itu. Playground pun
+sudah menyiapkan tempat untuk static website, React app, React app + router, dan
+JavaScript; saat ini hanya Python yang aktif.
