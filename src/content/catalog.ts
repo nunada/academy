@@ -37,23 +37,23 @@ export const COURSES: Course[] = [
   pythonCourse,
   htmlCourse,
   cssCourse,
-  soon('javascript', 'JavaScript', '⚡', '#eab308', 'javascript', {
+  soon('javascript', 'JavaScript', '⚡', '#c8912f', 'javascript', {
     en: 'Make pages respond to the person using them.',
     id: 'Membuat halaman merespons orang yang memakainya.',
   }, BEGINNER),
-  soon('sql', 'SQL', '🗄️', '#14b8a6', 'sql', {
+  soon('sql', 'SQL', '🗄️', '#4f8b56', 'sql', {
     en: 'Ask a database questions and get exactly the rows you meant.',
     id: 'Bertanya kepada basis data dan mendapatkan baris yang benar-benar kamu maksud.',
   }, BEGINNER),
-  soon('typescript', 'TypeScript', '🧩', '#0ea5e9', 'typescript', {
+  soon('typescript', 'TypeScript', '🧩', '#6d8175', 'typescript', {
     en: 'JavaScript that tells you about a mistake before you ship it.',
     id: 'JavaScript yang memberitahumu soal kesalahan sebelum kamu rilis.',
   }, INTERMEDIATE, ['javascript']),
-  soon('react', 'React', '⚛️', '#22d3ee', 'react', {
+  soon('react', 'React', '⚛️', '#7eaa71', 'react', {
     en: 'Build interfaces out of components that manage their own state.',
     id: 'Membangun antarmuka dari komponen yang mengelola state-nya sendiri.',
   }, INTERMEDIATE, ['html', 'css', 'javascript']),
-  soon('game-dev', 'Game Development', '🎮', '#a855f7', 'python', {
+  soon('game-dev', 'Game Development', '🎮', '#ef8f70', 'python', {
     en: 'Loops, sprites, collisions — a small game you can actually play.',
     id: 'Loop, sprite, tabrakan — game kecil yang benar-benar bisa dimainkan.',
   }, INTERMEDIATE, ['python']),
@@ -68,7 +68,7 @@ export const PATHS: CareerPath[] = [
       id: 'Mulai dari nol dan berakhir mampu membaca, menulis, dan menyusun program Python nyata.',
     },
     icon: '🐍',
-    color: '#3b82f6',
+    color: '#24463d',
     courseIds: ['python'],
     available: true,
   },
@@ -80,7 +80,7 @@ export const PATHS: CareerPath[] = [
       id: 'Semua yang dijalankan peramban: struktur, gaya, perilaku, komponen.',
     },
     icon: '🖼️',
-    color: '#f97316',
+    color: '#e16f47',
     courseIds: ['html', 'css', 'javascript', 'react'],
     available: false,
   },
@@ -92,7 +92,7 @@ export const PATHS: CareerPath[] = [
       id: 'Bagian yang tak terlihat: data, kueri, dan aturan di balik sebuah aplikasi.',
     },
     icon: '⚙️',
-    color: '#14b8a6',
+    color: '#4f8b56',
     courseIds: ['python', 'sql'],
     available: false,
   },
@@ -104,7 +104,7 @@ export const PATHS: CareerPath[] = [
       id: 'Kedua sisi, ujung ke ujung — dari tombolnya sampai baris basis datanya.',
     },
     icon: '🧱',
-    color: '#8b5cf6',
+    color: '#dda52b',
     courseIds: ['html', 'css', 'javascript', 'react', 'sql', 'python'],
     available: false,
   },

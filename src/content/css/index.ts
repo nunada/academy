@@ -12,7 +12,7 @@ export const cssCourse: Course = {
     id: 'Tata letak, warna, dan tipografi — buat halaman tampak dirancang.',
   },
   icon: '🎨',
-  color: '#ec4899',
+  color: '#dda52b',
   level: { en: 'Beginner', id: 'Pemula' },
   language: 'css',
   requires: ['html'],

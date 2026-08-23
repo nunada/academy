@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useI18n } from '../i18n'
 import { COURSES, PATHS } from '../content/catalog'
 import { lessonCount, projectCount } from '../content/types'
+import { Logo } from '../components/Logo'
 
 export default function Landing() {
   const { t, tc } = useI18n()
@@ -10,7 +11,7 @@ export default function Landing() {
   return (
     <main className="page">
       <section className="hero">
-        <span className="pill brand">🐍 Python + Python Developer</span>
+        <Logo size={72} title="Nunada" />
         <h1 style={{ marginTop: 16 }}>{t('heroTitle')}</h1>
         <p>{t('heroBody')}</p>
         <div className="row" style={{ justifyContent: 'center', marginTop: 20 }}>

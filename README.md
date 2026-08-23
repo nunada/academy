@@ -41,6 +41,30 @@ papan peringkat tidak kosong. Berguna untuk mencoba, **bukan** untuk dipakai sun
 Kunci `anon` memang untuk dipakai di sisi klien; yang menjaga data adalah RLS di
 `schema.sql`, bukan kerahasiaan kunci itu. Jangan pernah menaruh `service_role` di sini.
 
+## Identitas visual
+
+Logo dan warnanya sama dengan add-in PowerPoint Nunada
+(`PPT Add In/src/shared/theme.css`), supaya keduanya terbaca sebagai satu produk.
+
+Logonya digambar ulang sebagai vektor di [`src/components/Logo.tsx`](src/components/Logo.tsx),
+diukur dari `icon-128.png` milik add-in: lengkung "n" bertumpu pada garis tengah
+beradius 26 dengan goresan setebal 26 berujung bulat, dan titiknya beradius 10,5 di
+(106, 23) dalam kotak 128. Warnanya dipaku — terakota `#e16f47` dan emas `#dda52b` —
+karena tanda merek yang berganti rona bukan lagi tanda yang sama.
+
+Tiga penyimpangan yang disengaja dari palet add-in, semuanya dicatat di
+[`src/styles.css`](src/styles.css):
+
+1. **Tema gelap otomatis.** Add-in hanya gelap bila diminta karena diproyeksikan ke
+   kelas; Academy dibaca sendirian, jadi ia mengikuti tema sistem. Warnanya yang
+   disamakan, bukan perilakunya.
+2. **Tombol utama memakai hijau hutan.** Add-in sudah begitu (`--accent-strong`);
+   dicatat di sini karena hijau daun tampak menggoda dan hanya mencapai 2,5:1.
+3. **`--muted`, `--good`, dan `--bad` digelapkan sedikit** dari `#6d8175`, `#4f8b56`,
+   `#c0492b`. Rona sama, kecerahan turun: versi aslinya hanya mencapai 4,1 / 3,5 / 4,2
+   banding 1 di atas krem, sementara kursus CSS aplikasi ini mengajarkan 4,5:1 di
+   modul 1.2. Nilai penggantinya layak dipertimbangkan untuk add-in juga.
+
 ## Aturan permainan
 
 | Hal | Aturan |

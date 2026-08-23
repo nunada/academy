@@ -3,6 +3,7 @@ import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
 import { describeTrophy } from '../lib/progress'
 import { Hearts } from './ui'
+import { Logo } from './Logo'
 
 function LangToggle() {
   const { lang, setLang } = useI18n()
@@ -48,9 +49,11 @@ export default function Layout() {
     <div className="app">
       <header className="topbar">
         <Link className="brand" to={user ? '/learn' : '/'}>
-          <span className="mark">N</span>
+          <span className="mark">
+            <Logo size={30} />
+          </span>
           <span>
-            Nunada Academy
+            <span className="brand-name">Nunada Academy</span>
             <small>{t('appTagline')}</small>
           </span>
         </Link>

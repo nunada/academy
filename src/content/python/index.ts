@@ -17,7 +17,7 @@ export const pythonCourse: Course = {
     id: 'Dari baris cetak pertamamu sampai class yang berbicara dengan API privat.',
   },
   icon: '🐍',
-  color: '#3b82f6',
+  color: '#24463d',
   level: { en: 'Beginner', id: 'Pemula' },
   language: 'python',
   requires: [],

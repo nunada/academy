@@ -12,7 +12,7 @@ export const htmlCourse: Course = {
     id: 'Menyusun halaman web dengan bahasa yang benar-benar dibaca peramban.',
   },
   icon: '📄',
-  color: '#f97316',
+  color: '#e16f47',
   level: { en: 'Beginner', id: 'Pemula' },
   language: 'html',
   requires: [],
