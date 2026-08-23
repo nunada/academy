@@ -2,15 +2,15 @@ import { useMemo, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
-import { courseById } from '../content/catalog'
-import { courseItems, type Lesson } from '../content/types'
+import { courseInfo } from '../content/catalog'
+import { useCourse } from '../app/curriculum'
+import { courseItems, type Course, type Lesson } from '../content/types'
 import { isUnlocked } from '../lib/progress'
 import { formatCountdown } from '../lib/hearts'
 import StepView from '../components/StepView'
 import { Modal } from '../components/ui'
 
-function findLesson(courseId: string, lessonId: string): Lesson | undefined {
-  const course = courseById(courseId)
+function findLesson(course: Course | undefined, lessonId: string): Lesson | undefined {
   if (!course) return undefined
   for (const m of course.modules) {
     for (const s of m.submodules) {
@@ -27,8 +27,9 @@ export default function LessonPage() {
   const { state, complete, loseHeart, hearts, nextHeartIn } = useStore()
   const { t, tc } = useI18n()
 
-  const course = courseById(courseId)
-  const lesson = useMemo(() => findLesson(courseId, itemId), [courseId, itemId])
+  const info = courseInfo(courseId)
+  const course = useCourse(courseId)
+  const lesson = useMemo(() => findLesson(course, itemId), [course, itemId])
 
   const [index, setIndex] = useState(0)
   const [solved, setSolved] = useState<Set<string>>(new Set())
@@ -37,8 +38,9 @@ export default function LessonPage() {
   const [awarded, setAwarded] = useState(0)
   const [showHeartModal, setShowHeartModal] = useState(false)
 
-  if (!course || !lesson) return <Navigate to="/catalog" replace />
-  if (!state) return <main className="page muted">{t('loading')}</main>
+  if (!info || !info.available) return <Navigate to="/catalog" replace />
+  if (!state || !course) return <main className="page muted">{t('loading')}</main>
+  if (!lesson) return <Navigate to={`/course/${courseId}`} replace />
   if (!isUnlocked(course, lesson.id, state.progress)) return <Navigate to={`/course/${courseId}`} replace />
 
   const step = lesson.steps[index]

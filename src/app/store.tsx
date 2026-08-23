@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } fro
 import { getBackend } from '../lib/backends'
 import type { AuthUser, UserState } from '../lib/db'
 import { MAX_HEARTS, resolveHearts } from '../lib/hearts'
+import { loadAllCourses, prefetchCourses } from '../content/catalog'
 import { certificatesDue, earnedTrophyIds, totalXp, weeklyXp } from '../lib/progress'
 import { useI18n } from '../i18n'
 import type { Lang } from '../content/types'
@@ -42,6 +43,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     async (uid: string) => {
       try {
         await loadState(uid)
+        // Nothing waits on this, and only somebody signed in gets it: a visitor
+        // reading the landing page has no use for 282 KB of curriculum. For a
+        // learner it means the chunk is already here by the time they open a
+        // lesson or finish one.
+        prefetchCourses()
       } catch {
         await backend.signOut()
         setUser(null)
@@ -104,7 +110,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   /** Award any trophies and certificates the new progress has just unlocked. */
   const settleRewards = useCallback(
     async (next: UserState) => {
-      const earned = earnedTrophyIds(next)
+      // Module trophies need the curricula; the prefetch below means this is
+      // almost always a cache read rather than a fetch.
+      const earned = earnedTrophyIds(next, await loadAllCourses())
       const have = new Set(next.trophies.map((t) => t.trophy_id))
       const missing = earned.filter((id) => !have.has(id))
 

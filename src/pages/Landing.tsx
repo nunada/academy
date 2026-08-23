@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useI18n } from '../i18n'
 import { COURSES, PATHS } from '../content/catalog'
-import { lessonCount, projectCount } from '../content/types'
 import { Logo } from '../components/Logo'
 
 export default function Landing() {
@@ -62,10 +61,10 @@ export default function Landing() {
               </p>
               <div className="row small muted">
                 <span className="pill">
-                  {lessonCount(c)} {t('lessonsWord')}
+                  {c.lessons} {t('lessonsWord')}
                 </span>
                 <span className="pill">
-                  {projectCount(c)} {t('projectsWord')}
+                  {c.projects} {t('projectsWord')}
                 </span>
               </div>
             </div>

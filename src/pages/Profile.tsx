@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { formatDate, useI18n } from '../i18n'
+import { useAllCourses } from '../app/curriculum'
 import { allTrophyIds, certificateTitle, describeTrophy } from '../lib/progress'
 import { Stat } from '../components/ui'
 
@@ -8,10 +9,14 @@ export default function Profile() {
   const { state, xpTotal, xpWeek } = useStore()
   const { t, tc, lang, setLang } = useI18n()
 
-  if (!state) return <main className="page muted">{t('loading')}</main>
+  // The trophy grid is the one page that names every module, so it is also
+  // the one page that waits for every curriculum.
+  const courses = useAllCourses()
+
+  if (!state || !courses) return <main className="page muted">{t('loading')}</main>
 
   const earned = new Set(state.trophies.map((x) => x.trophy_id))
-  const all = allTrophyIds()
+  const all = allTrophyIds(courses)
 
   return (
     <main className="page narrow">
@@ -68,7 +73,7 @@ export default function Profile() {
       <h2 style={{ marginTop: 28 }}>{t('trophies')}</h2>
       <div className="grid two">
         {all.map((id) => {
-          const tr = describeTrophy(id)
+          const tr = describeTrophy(id, courses)
           const got = earned.has(id)
           return (
             <div className={got ? 'trophy' : 'trophy off'} key={id}>

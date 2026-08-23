@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "check:curriculum": "node tools/check-curriculum.mjs"
   },
   "dependencies": {
     "@babel/standalone": "^7.29.8",

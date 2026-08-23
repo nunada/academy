@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
-import { COURSES, PATHS, courseById } from '../content/catalog'
-import { lessonCount, projectCount } from '../content/types'
-import { courseStatus } from '../lib/progress'
+import { COURSES, PATHS, courseInfo } from '../content/catalog'
+import { courseProgress } from '../lib/progress'
 import { Bar } from '../components/ui'
 
 export default function Catalog() {
@@ -16,9 +15,10 @@ export default function Catalog() {
       <div className="grid two">
         {COURSES.map((c) => {
           const enrolled = isEnrolled('course', c.id)
-          const st = state ? courseStatus(c, state.progress) : null
+          // Counts and rows only: the catalogue never fetches a curriculum.
+          const st = state ? courseProgress(c, state.progress) : null
           const missing = c.requires
-            .map(courseById)
+            .map(courseInfo)
             .filter((r): r is NonNullable<typeof r> => Boolean(r))
 
           return (
@@ -39,10 +39,10 @@ export default function Catalog() {
               {c.available && (
                 <div className="row small">
                   <span className="pill">
-                    {lessonCount(c)} {t('lessonsWord')}
+                    {c.lessons} {t('lessonsWord')}
                   </span>
                   <span className="pill">
-                    {projectCount(c)} {t('projectsWord')}
+                    {c.projects} {t('projectsWord')}
                   </span>
                 </div>
               )}
@@ -81,7 +81,7 @@ export default function Catalog() {
       <div className="grid two">
         {PATHS.map((p) => {
           const enrolled = isEnrolled('path', p.id)
-          const courses = p.courseIds.map(courseById).filter((c): c is NonNullable<typeof c> => Boolean(c))
+          const courses = p.courseIds.map(courseInfo).filter((c): c is NonNullable<typeof c> => Boolean(c))
           return (
             <div className="card" key={p.id} style={{ opacity: p.available ? 1 : 0.72 }}>
               <div className="row">

@@ -1,6 +1,7 @@
 import { NavLink, Link, Outlet } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
+import { useAllCourses } from '../app/curriculum'
 import { describeTrophy } from '../lib/progress'
 import { Hearts } from './ui'
 import { Logo } from './Logo'
@@ -19,14 +20,27 @@ function LangToggle() {
   )
 }
 
+/** Split in two on purpose. Naming a module trophy needs the curricula, and a
+ *  hook cannot be called conditionally — so the guard lives out here, and the
+ *  half that asks for them only mounts when there is a toast to name. Layout
+ *  renders on every page, including the landing page a signed-out visitor sees,
+ *  and that page has no business fetching a curriculum. */
 function TrophyToasts() {
-  const { freshTrophies, clearFreshTrophies } = useStore()
-  const { tc } = useI18n()
+  const { freshTrophies } = useStore()
   if (!freshTrophies.length) return null
+  return <TrophyList ids={freshTrophies} />
+}
+
+function TrophyList({ ids }: { ids: string[] }) {
+  const { clearFreshTrophies } = useStore()
+  const { tc } = useI18n()
+  // A trophy is only ever awarded after the curricula have been read, so by
+  // the time a toast appears these are already in the cache.
+  const courses = useAllCourses()
   return (
     <div className="toasts">
-      {freshTrophies.map((id) => {
-        const t = describeTrophy(id)
+      {ids.map((id) => {
+        const t = describeTrophy(id, courses ?? [])
         return (
           <div className="toast" key={id} onClick={clearFreshTrophies} role="status">
             <span style={{ fontSize: '1.5rem' }}>{t.icon}</span>

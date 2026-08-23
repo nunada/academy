@@ -2,9 +2,9 @@
  *  Everything here is a pure function of the rows the backend returned, so the
  *  UI never has to keep a second copy of the truth. */
 
-import { COURSES, PATHS, courseById, pathById } from '../content/catalog'
+import { COURSES, PATHS, courseInfo, pathById } from '../content/catalog'
 import { TROPHIES, trophyById, type Trophy } from '../content/trophies'
-import { courseItems, type Course, type Lang, type Loc, type Module } from '../content/types'
+import { courseItems, type Course, type CourseInfo, type Lang, type Loc, type Module } from '../content/types'
 import type { ProgressItem, UserState, XpEvent } from './db'
 import { isThisWeek } from './week'
 
@@ -18,13 +18,35 @@ export function weeklyXp(events: XpEvent[]): number {
   return events.filter((e) => isThisWeek(e.created_at)).reduce((n, e) => n + e.amount, 0)
 }
 
-export interface CourseStatus {
+export interface CourseCounts {
   done: number
   total: number
   percent: number
+  finished: boolean
+}
+
+export interface CourseStatus extends CourseCounts {
   /** The next item the learner should open, or null when the course is finished. */
   nextItemId: string | null
-  finished: boolean
+}
+
+/** How far through a course, without fetching it.
+ *
+ *  Every progress row names the course it belongs to, and the catalogue knows
+ *  how many items a course has — so a card can show 12 of 55 having downloaded
+ *  neither. It cannot say which item comes next; for that you need the order,
+ *  which means the curriculum, which means `courseStatus`. */
+export function courseProgress(info: CourseInfo, progress: ProgressItem[]): CourseCounts {
+  const total = info.lessons + info.projects
+  // Clamped: a row for an item that has since been rewritten out of the course
+  // should not push the bar past the end.
+  const done = Math.min(total, progress.filter((p) => p.course_id === info.id).length)
+  return {
+    done,
+    total,
+    percent: total ? Math.round((done / total) * 100) : 0,
+    finished: total > 0 && done >= total,
+  }
 }
 
 export function courseStatus(course: Course, progress: ProgressItem[]): CourseStatus {
@@ -60,15 +82,22 @@ export function pathFinished(pathId: string, progress: ProgressItem[]): boolean 
   const path = pathById(pathId)
   if (!path || !path.available) return false
   return path.courseIds.every((cid) => {
-    const c = courseById(cid)
-    return c ? courseStatus(c, progress).finished : false
+    const info = courseInfo(cid)
+    return info ? courseProgress(info, progress).finished : false
   })
 }
 
 /* ------------------------------------------------------------------ trophies */
 
-/** Trophy ids that the current state has earned, static and generated alike. */
-export function earnedTrophyIds(state: Pick<UserState, 'progress' | 'xpEvents'>): string[] {
+/** Trophy ids that the current state has earned, static and generated alike.
+ *
+ *  `courses` has to be the loaded curricula: a module trophy is earned when
+ *  every item *in that module* is done, and only the curriculum says which
+ *  items those are. Everything else here counts rows. */
+export function earnedTrophyIds(
+  state: Pick<UserState, 'progress' | 'xpEvents'>,
+  courses: Course[],
+): string[] {
   const out: string[] = []
   const lessons = state.progress.filter((p) => p.kind === 'lesson').length
   const projects = state.progress.filter((p) => p.kind === 'project').length
@@ -84,12 +113,12 @@ export function earnedTrophyIds(state: Pick<UserState, 'progress' | 'xpEvents'>)
   if (week >= 100) out.push('week-100')
   if (week >= 300) out.push('week-300')
 
-  for (const course of COURSES) {
+  for (const course of courses) {
     if (!course.available) continue
     for (const m of course.modules) {
       if (moduleFinished(m, state.progress)) out.push(`module:${m.id}`)
     }
-    if (courseStatus(course, state.progress).finished) out.push(`course:${course.id}`)
+    if (courseProgress(course, state.progress).finished) out.push(`course:${course.id}`)
   }
   for (const p of PATHS) {
     if (pathFinished(p.id, state.progress)) out.push(`path:${p.id}`)
@@ -98,15 +127,18 @@ export function earnedTrophyIds(state: Pick<UserState, 'progress' | 'xpEvents'>)
   return out
 }
 
-/** Metadata for a trophy id, including the ones generated from the catalogue. */
-export function describeTrophy(id: string): Trophy {
+/** Metadata for a trophy id, including the ones generated from the catalogue.
+ *
+ *  Only a `module:` trophy needs a loaded curriculum, for the module's own
+ *  title; course and path trophies read the catalogue. Pass what you have. */
+export function describeTrophy(id: string, courses: Course[] = []): Trophy {
   const stat = trophyById(id)
   if (stat) return stat
 
   const [kind, ref] = id.split(':')
 
   if (kind === 'module') {
-    for (const c of COURSES) {
+    for (const c of courses) {
       const m = c.modules.find((x) => x.id === ref)
       if (m) {
         return {
@@ -123,7 +155,7 @@ export function describeTrophy(id: string): Trophy {
   }
 
   if (kind === 'course') {
-    const c = courseById(ref)
+    const c = courseInfo(ref)
     if (c) {
       return {
         id,
@@ -149,10 +181,11 @@ export function describeTrophy(id: string): Trophy {
   return { id, icon: '🎖️', title: { en: id, id }, desc: { en: '', id: '' } }
 }
 
-/** Every trophy that exists right now, for the "not yet earned" grid. */
-export function allTrophyIds(): string[] {
+/** Every trophy that exists right now, for the "not yet earned" grid.
+ *  Needs the curricula, because the module trophies are named after modules. */
+export function allTrophyIds(courses: Course[]): string[] {
   const generated: string[] = []
-  for (const c of COURSES) {
+  for (const c of courses) {
     if (!c.available) continue
     for (const m of c.modules) generated.push(`module:${m.id}`)
     generated.push(`course:${c.id}`)
@@ -173,7 +206,7 @@ export interface EarnedCertificate {
 export function certificatesDue(progress: ProgressItem[]): EarnedCertificate[] {
   const out: EarnedCertificate[] = []
   for (const c of COURSES) {
-    if (c.available && courseStatus(c, progress).finished) {
+    if (c.available && courseProgress(c, progress).finished) {
       out.push({ kind: 'course', refId: c.id, title: c.title })
     }
   }
@@ -184,6 +217,6 @@ export function certificatesDue(progress: ProgressItem[]): EarnedCertificate[] {
 }
 
 export function certificateTitle(kind: 'course' | 'path', refId: string, lang: Lang): string {
-  const item = kind === 'course' ? courseById(refId) : pathById(refId)
+  const item = kind === 'course' ? courseInfo(refId) : pathById(refId)
   return item ? item.title[lang] : refId
 }

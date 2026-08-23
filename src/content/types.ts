@@ -271,7 +271,13 @@ export interface Module {
   submodules: Submodule[]
 }
 
-export interface Course {
+/** What the catalogue knows about a course without fetching its curriculum.
+ *
+ *  Everything a card shows lives here, including the two counts — the landing
+ *  page and the catalogue must never pull a curriculum just to say "37 lessons".
+ *  Those counts are the one fact that crosses the lazy boundary by hand; the
+ *  curriculum check counts the real thing and fails on a mismatch. */
+export interface CourseInfo {
   id: string
   title: Loc
   tagline: Loc
@@ -285,6 +291,13 @@ export interface Course {
   requires: string[]
   /** false = shown on the catalogue but not yet playable. */
   available: boolean
+  /** How many of each the curriculum holds. */
+  lessons: number
+  projects: number
+}
+
+/** A course with its curriculum attached — what `loadCourse` hands back. */
+export interface Course extends CourseInfo {
   modules: Module[]
 }
 

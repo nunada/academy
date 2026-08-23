@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
-import { courseById } from '../content/catalog'
-import { courseItems, type MiniProject } from '../content/types'
+import { courseInfo } from '../content/catalog'
+import { useCourse } from '../app/curriculum'
+import { courseItems, type Course, type MiniProject } from '../content/types'
 import { isUnlocked } from '../lib/progress'
 import { runPython, runTests, splitStdin } from '../lib/python'
 import { runWebTests } from '../lib/web'
@@ -15,8 +16,7 @@ import { ResultTable } from '../components/ResultTable'
 import { CompileReport } from '../components/CompileReport'
 import { GamePreview } from '../components/GamePreview'
 
-function findProject(courseId: string, projectId: string): MiniProject | undefined {
-  const course = courseById(courseId)
+function findProject(course: Course | undefined, projectId: string): MiniProject | undefined {
   if (!course) return undefined
   for (const m of course.modules) {
     for (const s of m.submodules) {
@@ -31,8 +31,9 @@ export default function ProjectPage() {
   const { state, complete } = useStore()
   const { t, tc } = useI18n()
 
-  const course = courseById(courseId)
-  const project = useMemo(() => findProject(courseId, itemId), [courseId, itemId])
+  const info = courseInfo(courseId)
+  const course = useCourse(courseId)
+  const project = useMemo(() => findProject(course, itemId), [course, itemId])
 
   const [code, setCode] = useState(() => project?.starter ?? '')
   const [stdin, setStdin] = useState('')
@@ -47,7 +48,16 @@ export default function ProjectPage() {
   const [finished, setFinished] = useState(false)
   const [awarded, setAwarded] = useState(0)
 
-  if (!course || !project) return <Navigate to="/catalog" replace />
+  // On a cold load the project is not here for the first render, so the
+  // starter has to be planted once it arrives. Keyed on the id, so it never
+  // overwrites what the learner has typed.
+  useEffect(() => {
+    if (project) setCode(project.starter)
+  }, [project?.id])
+
+  if (!info || !info.available) return <Navigate to="/catalog" replace />
+  if (!state || !course) return <main className="page muted">{t('loading')}</main>
+  if (!project) return <Navigate to={`/course/${courseId}`} replace />
   if (!state) return <main className="page muted">{t('loading')}</main>
   if (!isUnlocked(course, project.id, state.progress)) return <Navigate to={`/course/${courseId}`} replace />
 

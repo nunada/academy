@@ -1,30 +1,44 @@
 import { Link } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
-import { COURSES, PATHS, courseById } from '../content/catalog'
-import { courseItems } from '../content/types'
-import { courseStatus } from '../lib/progress'
+import { COURSES, PATHS, courseInfo } from '../content/catalog'
+import { useCourse } from '../app/curriculum'
+import { courseItems, type Course } from '../content/types'
+import { courseProgress, courseStatus } from '../lib/progress'
 import { Bar, Stat } from '../components/ui'
 
 export default function Dashboard() {
   const { state, xpTotal, xpWeek, isEnrolled } = useStore()
   const { t, tc } = useI18n()
 
-  if (!state) return <main className="page muted">{t('loading')}</main>
-
+  // Everything on this page but the "continue" link is arithmetic on progress
+  // rows and the catalogue counts, so the dashboard renders without fetching
+  // a curriculum. Only the one course being continued needs its item order,
+  // and the hooks have to run before the guard below.
+  const progress = state?.progress ?? []
   const myCourses = COURSES.filter((c) => c.available && isEnrolled('course', c.id))
   const myPaths = PATHS.filter((p) => p.available && isEnrolled('path', p.id))
 
   // Courses reachable through an enrolled path count as "mine" too.
   const fromPaths = myPaths
     .flatMap((p) => p.courseIds)
-    .map(courseById)
+    .map(courseInfo)
     .filter((c): c is NonNullable<typeof c> => Boolean(c?.available))
   const courses = [...new Map([...myCourses, ...fromPaths].map((c) => [c.id, c])).values()]
 
-  const next = courses
-    .map((c) => ({ course: c, status: courseStatus(c, state.progress) }))
-    .find((x) => !x.status.finished)
+  const nextInfo = courses.find((c) => !courseProgress(c, progress).finished)
+  const nextCourse = useCourse(nextInfo?.id ?? '')
+
+  if (!state) return <main className="page muted">{t('loading')}</main>
+
+  const next = nextInfo
+    ? {
+        course: nextInfo,
+        counts: courseProgress(nextInfo, state.progress),
+        // Until the curriculum lands, the button goes to the map.
+        nextItemId: nextCourse ? courseStatus(nextCourse, state.progress).nextItemId : null,
+      }
+    : null
 
   return (
     <main className="page">
@@ -56,18 +70,15 @@ export default function Dashboard() {
                 {next.course.icon} {tc(next.course.title)}
               </h2>
               <div className="small muted">
-                {next.status.done} {t('of')} {next.status.total} {t('complete')} · {next.status.percent}%
+                {next.counts.done} {t('of')} {next.counts.total} {t('complete')} · {next.counts.percent}%
               </div>
             </div>
-            <Link
-              className="btn"
-              to={nextHref(next.course.id, next.status.nextItemId, next.course.id)}
-            >
-              {next.status.done === 0 ? t('startCourse') : t('continueBtn')}
+            <Link className="btn" to={nextHref(nextCourse, next.nextItemId)}>
+              {next.counts.done === 0 ? t('startCourse') : t('continueBtn')}
             </Link>
           </div>
           <div style={{ marginTop: 12 }}>
-            <Bar percent={next.status.percent} />
+            <Bar percent={next.counts.percent} />
           </div>
         </section>
       )}
@@ -83,7 +94,7 @@ export default function Dashboard() {
       ) : (
         <div className="grid two">
           {courses.map((c) => {
-            const st = courseStatus(c, state.progress)
+            const st = courseProgress(c, state.progress)
             return (
               <Link className="card" to={`/course/${c.id}`} key={c.id} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="row">
@@ -110,9 +121,9 @@ export default function Dashboard() {
           <h2 style={{ marginTop: 26 }}>{t('pathsTitle')}</h2>
           <div className="grid two">
             {myPaths.map((p) => {
-              const inPath = p.courseIds.map(courseById).filter((c): c is NonNullable<typeof c> => Boolean(c))
-              const total = inPath.reduce((n, c) => n + courseItems(c).length, 0)
-              const done = inPath.reduce((n, c) => n + courseStatus(c, state.progress).done, 0)
+              const inPath = p.courseIds.map(courseInfo).filter((c): c is NonNullable<typeof c> => Boolean(c))
+              const total = inPath.reduce((n, c) => n + c.lessons + c.projects, 0)
+              const done = inPath.reduce((n, c) => n + courseProgress(c, state.progress).done, 0)
               const percent = total ? Math.round((done / total) * 100) : 0
               return (
                 <div className="card" key={p.id}>
@@ -138,11 +149,12 @@ export default function Dashboard() {
   )
 }
 
-/** Link straight to the next unfinished item, or the map when there is none. */
-function nextHref(courseId: string, itemId: string | null, fallbackCourse: string): string {
-  if (!itemId) return `/course/${fallbackCourse}`
-  const course = courseById(courseId)
-  const item = course && courseItems(course).find((i) => i.id === itemId)
-  if (!item) return `/course/${courseId}`
-  return `/course/${courseId}/${item.kind}/${itemId}`
+/** Link straight to the next unfinished item, or the map when there is none —
+ *  which is also where it points while the curriculum is still arriving. */
+function nextHref(course: Course | undefined, itemId: string | null): string {
+  if (!course) return '/learn'
+  if (!itemId) return `/course/${course.id}`
+  const item = courseItems(course).find((i) => i.id === itemId)
+  if (!item) return `/course/${course.id}`
+  return `/course/${course.id}/${item.kind}/${itemId}`
 }

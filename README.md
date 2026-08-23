@@ -430,8 +430,8 @@ dengan tujuan yang berbeda.
 ```
 src/
   content/          kurikulum — data murni, dwibahasa
-    types.ts        model Course → Module → Submodule → Lesson → Step
-    catalog.ts      daftar kursus & jalur karier (termasuk yang belum tersedia)
+    types.ts        model CourseInfo / Course → Module → Submodule → Lesson → Step
+    catalog.ts      metadata kursus & jalur karier, dan pemuat malas kurikulumnya
     trophies.ts     trofi statis
     python/         kursus Python: m1-basics … m9-private-apis
     html/           kursus HTML: m1-document … m4-semantics
@@ -457,6 +457,7 @@ src/
     progress.ts     turunan: apa yang terbuka, tuntas, dan diperoleh
     week.ts         batas minggu (Senin UTC), disamakan dengan Postgres
   app/store.tsx     satu sumber kebenaran untuk sesi + progres
+  app/curriculum.ts hook useCourse / useAllCourses di atas pemuat malasnya
   components/       Layout, StepView (pemutar langkah), results.tsx, ui.tsx,
                     ResultTable.tsx (kisi hasil SQL),
                     CompileReport.tsx (keberatan kompiler TypeScript),
@@ -464,7 +465,57 @@ src/
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
                     Project, Playground, Leaderboard, Profile, Certificate
 supabase/schema.sql skema, RPC, dan RLS
+tools/check-curriculum.mjs  menghitung kurikulum sungguhan lalu mencocokkannya
 ```
+
+## Memuat kurikulum saat dibutuhkan
+
+Kedelapan kurikulum bersama-sama berukuran 1,00 MB terminifikasi — 282 KB lewat
+kabel, dan sebagian besar dari apa yang dulu dikirim aplikasi ini sebelum apa pun
+muncul. Sekarang tiap kursus punya potongannya sendiri.
+
+| | sebelum | sesudah |
+| --- | --- | --- |
+| bundel utama | 1.582 KB / 444 KB gzip | 561 KB / **167 KB gzip** |
+| halaman depan (belum masuk) | 9 berkas, 444 KB | **1 berkas, 163 KB** |
+| tiap kursus | — | 25–52 KB gzip, diambil saat dibutuhkan |
+
+**Kuncinya bukan pemisahannya, melainkan menemukan siapa yang sebenarnya butuh
+kurikulum.** Ternyata hampir tak ada. Tiap baris progres membawa `course_id`-nya
+sendiri, dan katalog tahu sebuah kursus berisi berapa item — jadi "12 dari 55,
+22%" adalah aritmetika atas baris yang sudah dipegang aplikasi. Halaman depan,
+katalog, dan dasbor tidak mengambil satu kurikulum pun.
+
+Yang benar-benar butuh hanya empat hal, dan semuanya khas:
+
+- **peta kursus, pelajaran, dan proyek** — satu kursus, yaitu yang sedang dibuka;
+- **tautan "lanjutkan"** di dasbor — butuh urutan itemnya, jadi satu kursus juga;
+- **kisi trofi** — menamai tiap modul, jadi ia satu-satunya halaman yang menunggu
+  semuanya;
+- **penyelesaian sebuah pelajaran** — trofi modul perlu tahu item apa saja yang
+  ada di dalam sebuah modul.
+
+Sisanya — sertifikat, kemajuan jalur karier, bilah progres — berjalan dari
+hitungan.
+
+**Prasambar.** Begitu seorang pembelajar masuk, seluruh kurikulum ditarik di
+latar belakang. Tak ada yang menunggunya; ia hanya berarti bahwa saat mereka
+membuka pelajaran atau menyelesaikannya, potongannya sudah ada. Pengunjung yang
+belum masuk tidak mendapatkannya — halaman depan tak berkepentingan dengan 282 KB
+kurikulum. Satu jebakan yang sempat terjadi dan terukur: `Layout` merender di
+tiap halaman, dan `TrophyToasts` di dalamnya memanggil `useAllCourses()`. Hook
+tak bisa dipanggil bersyarat, jadi komponennya yang dipecah dua — penjaganya di
+luar, dan bagian yang meminta kurikulum baru terpasang saat ada toast untuk
+dinamai.
+
+**Harga yang dibayar** adalah dua angka: `lessons` dan `projects` di
+[`src/content/catalog.ts`](src/content/catalog.ts). Itu satu-satunya fakta yang
+disalin melintasi batas malas, dan angka yang salah akan menampilkan "12 dari 55"
+pada kursus berisi 54 item — diam-diam, selamanya. Karena itu ada
+`npm run check:curriculum`
+([`tools/check-curriculum.mjs`](tools/check-curriculum.mjs)): ia memuat kurikulum
+sungguhan, menghitungnya, dan gagal pada ketidakcocokan apa pun. Ia juga menolak
+id item yang terduplikasi, karena id-lah cara progres dicatat.
 
 ## Bentuk scaffolding
 
@@ -508,8 +559,10 @@ ada komponen baru yang perlu ditulis.
    cuplikan `assert` yang memanggil `awal`, `perbarui`, dan `gambar` secara
    langsung.
 
-Untuk membuka kursus yang masih "Segera hadir", ubah `available: true` di
-`src/content/catalog.ts` dan isi `modules`-nya.
+Menambah atau membuang sebuah pelajaran mengubah hitungan kursusnya, jadi
+perbarui `lessons` / `projects` di [`src/content/catalog.ts`](src/content/catalog.ts)
+dan jalankan `npm run check:curriculum` — ia akan menyebutkan angka yang benar
+kalau kamu keliru.
 
 ### Memastikan materi baru tidak rusak
 
@@ -521,7 +574,8 @@ Untuk kursus Python:
 
 ```js
 const py = await import('/src/lib/python.ts')
-const { pythonCourse } = await import('/src/content/python/index.ts')
+const { loadCourse } = await import('/src/content/catalog.ts')
+const pythonCourse = await loadCourse('python')
 const bad = []
 for (const m of pythonCourse.modules)
   for (const s of m.submodules) {
@@ -546,7 +600,8 @@ pemeriksaan merender iframe sungguhan, jadi simpan hasilnya lalu baca belakangan
 window.__cek = { done: false }
 ;(async () => {
   const web = await import('/src/lib/web.ts')
-  const { htmlCourse } = await import('/src/content/html/index.ts')
+  const { loadCourse } = await import('/src/content/catalog.ts')
+  const htmlCourse = await loadCourse('html')
   const bad = []
   for (const m of htmlCourse.modules)
     for (const s of m.submodules) {
@@ -576,7 +631,8 @@ Untuk kursus SQL — jauh lebih cepat, karena tidak ada iframe dan tidak ada Pyo
 
 ```js
 const sql = await import('/src/lib/sql.ts')
-const { sqlCourse } = await import('/src/content/sql/index.ts')
+const { loadCourse } = await import('/src/content/catalog.ts')
+const sqlCourse = await loadCourse('sql')
 const bad = []
 const cek = async (it) => {
   if ((await sql.runSqlTests(it.schema, it.solution, it.tests)).some(o => !o.passed)) bad.push(['solusi gagal', it.id])
@@ -599,7 +655,8 @@ jadi berikan waktu sebentar:
 window.__cek = { done: false }
 ;(async () => {
   const tsr = await import('/src/lib/ts.ts')
-  const { typescriptCourse } = await import('/src/content/typescript/index.ts')
+  const { loadCourse } = await import('/src/content/catalog.ts')
+  const typescriptCourse = await loadCourse('typescript')
   const bad = []
   const cek = async (it) => {
     if ((await tsr.runTsTests(it.solution, it.tests)).some(o => !o.passed)) bad.push(['solusi gagal', it.id])
@@ -621,7 +678,8 @@ tesnya memang `PyTest` — hanya jenis langkahnya yang berbeda:
 
 ```js
 const py = await import('/src/lib/python.ts')
-const { gameDevCourse } = await import('/src/content/gamedev/index.ts')
+const { loadCourse } = await import('/src/content/catalog.ts')
+const gameDevCourse = await loadCourse('game-dev')
 const bad = []
 const cek = async (it) => {
   if ((await py.runTests(it.solution, it.tests)).some(o => !o.passed)) bad.push(['solusi gagal', it.id])

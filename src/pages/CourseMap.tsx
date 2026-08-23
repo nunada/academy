@@ -1,7 +1,8 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
-import { courseById } from '../content/catalog'
+import { courseInfo } from '../content/catalog'
+import { useCourse } from '../app/curriculum'
 import { courseStatus, doneIds, isUnlocked } from '../lib/progress'
 import { Bar } from '../components/ui'
 
@@ -10,9 +11,12 @@ export default function CourseMap() {
   const { state } = useStore()
   const { t, tc } = useI18n()
 
-  const course = courseById(courseId)
-  if (!course || !course.available) return <Navigate to="/catalog" replace />
-  if (!state) return <main className="page muted">{t('loading')}</main>
+  // The metadata says whether the course exists; the curriculum arrives after.
+  const info = courseInfo(courseId)
+  const course = useCourse(courseId)
+
+  if (!info || !info.available) return <Navigate to="/catalog" replace />
+  if (!state || !course) return <main className="page muted">{t('loading')}</main>
 
   const done = doneIds(state.progress)
   const st = courseStatus(course, state.progress)
