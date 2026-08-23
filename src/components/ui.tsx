@@ -125,13 +125,22 @@ export function CodeEditor({
 
 /** Live render of the learner's markup.
  *  Same sandbox as the checker, so what they see is what gets checked. */
-export function LivePreview({ source, height = 260 }: { source: string; height?: number }) {
+export function LivePreview({
+  source,
+  html,
+  height = 260,
+}: {
+  source: string
+  /** Fixed markup for a CSS exercise; `source` is then the stylesheet. */
+  html?: string
+  height?: number
+}) {
   return (
     <iframe
       className="preview"
       title="preview"
       sandbox="allow-scripts"
-      srcDoc={previewDocument(source)}
+      srcDoc={previewDocument(source, html)}
       style={{ height }}
     />
   )

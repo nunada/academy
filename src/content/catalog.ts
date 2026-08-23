@@ -1,6 +1,7 @@
 import type { CareerPath, Course } from './types'
 import { pythonCourse } from './python'
 import { htmlCourse } from './html'
+import { cssCourse } from './css'
 
 /** A course that is listed but not yet written.
  *  Keeping these in the catalogue makes the roadmap visible without pretending
@@ -35,10 +36,7 @@ const INTERMEDIATE = { en: 'Intermediate', id: 'Menengah' }
 export const COURSES: Course[] = [
   pythonCourse,
   htmlCourse,
-  soon('css', 'CSS', '🎨', '#ec4899', 'css', {
-    en: 'Layout, colour, and type — make a page look like it was designed.',
-    id: 'Tata letak, warna, dan tipografi — buat halaman tampak dirancang.',
-  }, BEGINNER, ['html']),
+  cssCourse,
   soon('javascript', 'JavaScript', '⚡', '#eab308', 'javascript', {
     en: 'Make pages respond to the person using them.',
     id: 'Membuat halaman merespons orang yang memakainya.',

@@ -397,10 +397,13 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
 
   const allPass = outcomes !== null && outcomes.every((o) => o.passed)
 
+  // With fixed markup supplied, the learner is writing CSS against it.
+  const isCss = step.html !== undefined
+
   async function doCheck() {
     setBusy(true)
     try {
-      const res = await runWebTests(code, step.tests)
+      const res = await runWebTests(code, step.tests, step.html)
       setOutcomes(res)
       if (res.every((o) => o.passed)) onSolved()
       else onWrong()
@@ -415,14 +418,23 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
         <Rich text={tc(step.prompt)} />
       </h3>
 
+      {isCss && (
+        <details style={{ marginBottom: 12 }}>
+          <summary className="io-label" style={{ cursor: 'pointer' }}>
+            {tc({ en: 'The markup (already written for you)', id: 'Markup-nya (sudah disediakan)' })}
+          </summary>
+          <CodeBlock>{step.html!}</CodeBlock>
+        </details>
+      )}
+
       <div className="split">
         <div>
-          <div className="io-label">HTML</div>
+          <div className="io-label">{isCss ? 'CSS' : 'HTML'}</div>
           <CodeEditor value={code} onChange={setCode} disabled={solved} />
         </div>
         <div>
           <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>
-          <LivePreview source={code} />
+          <LivePreview source={code} html={step.html} />
         </div>
       </div>
 

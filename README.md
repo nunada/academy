@@ -5,8 +5,8 @@ selangkah demi selangkah, dan tiap submateri ditutup satu mini proyek yang diper
 oleh tes sungguhan. Antarmuka bisa diganti antara **English** dan **Bahasa Indonesia**
 kapan saja.
 
-Kursus yang sudah aktif: **Python** (9 modul) dan **HTML** (4 modul), ditambah jalur
-karier **Python Developer**.
+Kursus yang sudah aktif: **Python** (9 modul), **HTML** (4 modul), dan **CSS** (4 modul),
+ditambah jalur karier **Python Developer**.
 
 ## Menjalankan
 
@@ -119,6 +119,49 @@ Tiap `WebTest` berisi JavaScript dengan pembantu `sel`, `all`, `text`, `attr`, d
 `assert` yang sudah tersedia. Pesan pada `assert` itulah yang dibaca peserta saat gagal,
 jadi tulislah dalam kalimat yang bisa langsung ditindaklanjuti.
 
+## Isi kursus CSS
+
+4 modul, 7 submateri, 14 pelajaran, 7 mini proyek, 660 XP. Prasyaratnya kursus HTML.
+
+| Modul | Isi |
+| --- | --- |
+| 1 Aturan dan Selektor | anatomi aturan, class/id/keturunan, kespesifikan, tipografi, warna, kontras |
+| 2 Model Kotak | padding/border/margin, box-sizing, max-width, block vs inline, memusatkan |
+| 3 Tata Letak | flexbox (arah, gap, justify, align), grid (kolom, fr, span, auto-fit) |
+| 4 Keadaan dan Layar | :hover dan :focus, transisi, media query, mobile-first |
+
+Di kursus ini markup-nya **sudah disediakan** dan peserta hanya menulis CSS — sesuai
+kerja nyata, dan menjaga fokus latihannya. Bidang `html` pada langkah `web` dan pada
+mini proyek yang menyediakannya.
+
+Aksesibilitas kembali dijalin, bukan dipisah: kontras dibahas saat warna diperkenalkan,
+dan `:focus` diajarkan berdampingan dengan `:hover` — dengan alasannya, bukan sebagai
+aturan hafalan.
+
+## Memeriksa CSS
+
+Dua hal yang perlu diketahui sebelum menulis tes CSS.
+
+**Pemeriksaannya membaca gaya terhitung, bukan teks yang diketik.** Pembantu
+`style(q, prop)` mengembalikan nilai hasil `getComputedStyle`, jadi `red`, `#f00`, dan
+`rgb(255,0,0)` sama-sama lolos — sebagaimana mestinya. Konsekuensinya, `color` selalu
+terbaca sebagai `rgb(...)` dan `grid-template-columns` terbaca sebagai piksel hasil,
+bukan `repeat(3, 1fr)` yang ditulis. Karena itu tes grid menghitung jumlah jalur dan
+membandingkan posisi, bukan mencocokkan teks deklarasinya.
+
+**Sebagian aturan tidak terlihat oleh gaya terhitung sama sekali** — `:hover` saat
+penunjuk tidak di sana, atau media query yang sedang tidak berlaku. Untuk itu ada
+pembantu `css()` yang mengembalikan seluruh stylesheet sebagai teks. Yang diperiksa
+adalah keberadaan aturannya, dan itulah klaim yang jujur untuk keadaan yang mustahil
+dimasuki saat pemeriksaan berjalan.
+
+Satu jebakan yang sudah dibereskan dan sebaiknya tidak diperkenalkan lagi: pemeriksaan
+tidak boleh dijalankan pada `DOMContentLoaded`, karena frame-nya sudah terurai tetapi
+belum di-*layout* — `getBoundingClientRect` mengembalikan 0. Runner-nya menunggu `load`
+lalu membaca `offsetHeight` untuk memaksa layout. `requestAnimationFrame` **tidak** bisa
+dipakai untuk ini: frame-nya berada di luar viewport dan peramban berhenti melayani rAF
+di sana, sehingga penantiannya tak pernah selesai.
+
 ## Struktur
 
 ```
@@ -129,11 +172,12 @@ src/
     trophies.ts     trofi statis
     python/         kursus Python: m1-basics … m9-private-apis
     html/           kursus HTML: m1-document … m4-semantics
+    css/            kursus CSS: m1-rules … m4-states
   lib/
     db.ts           kontrak yang harus dipenuhi setiap backend
     backends/       supabase.ts (asli) + local.ts (localStorage) + pemilihnya
     python.ts       pemuat Pyodide, runner, dan pemeriksa tes
-    web.ts          runner iframe tersandbox untuk HTML (dan CSS/JS nanti)
+    web.ts          runner iframe tersandbox untuk HTML dan CSS (JS/React nanti)
     pythonModules.ts modul Python yang ditanam ke filesystem Pyodide (API tiruan)
     hearts.ts       ekonomi heart
     progress.ts     turunan: apa yang terbuka, tuntas, dan diperoleh
@@ -157,7 +201,7 @@ Tiap pelajaran menurunkan bantuan secara bertahap lewat lima jenis langkah
 | `fill` | mengisi bagian kosong pada kode yang hampir lengkap | sedang |
 | `order` | menyusun baris yang sudah benar ke urutan yang tepat | rendah |
 | `code` | menulis sendiri, diperiksa tes, petunjuk muncul bila diminta | minimal |
-| `web` | sama seperti `code`, tetapi menulis markup dan melihatnya langsung dirender | minimal |
+| `web` | sama seperti `code`, tetapi menulis markup atau CSS dan melihatnya langsung dirender | minimal |
 
 Mini proyek di akhir submateri adalah tahap tanpa penopang: hanya daftar syarat,
 editor kosong, dan tes.
@@ -233,6 +277,13 @@ window.__cek = { done: false }
 ```
 
 Tunggu sebentar, lalu periksa `window.__cek`.
+
+Untuk kursus CSS, sama persis tetapi `st.html` dan `s.project.html` harus ikut dioper
+sebagai argumen ketiga:
+
+```js
+await web.runWebTests(st.solution, st.tests, st.html)
+```
 
 ## Isi kursus Python
 

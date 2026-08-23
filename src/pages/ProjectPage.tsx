@@ -45,6 +45,8 @@ export default function ProjectPage() {
 
   // Markup projects render live instead of printing, so the page differs.
   const isWeb = project.runtime === 'web'
+  // ...and a CSS project supplies the markup, leaving only the stylesheet to write.
+  const isCss = isWeb && project.html !== undefined
 
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === project.id)
@@ -69,7 +71,9 @@ export default function ProjectPage() {
     setBusy(true)
     try {
       const results: TestOutcome[] | WebOutcome[] =
-        project.runtime === 'web' ? await runWebTests(code, project.tests) : await runTests(code, project.tests)
+        project.runtime === 'web'
+          ? await runWebTests(code, project.tests, project.html)
+          : await runTests(code, project.tests)
       setRows(project.runtime === 'web' ? fromWeb(results as WebOutcome[]) : fromPython(results as TestOutcome[]))
       setRunOut(null)
       if (results.every((o) => o.passed)) {
@@ -134,16 +138,26 @@ export default function ProjectPage() {
 
       <div className="card">
         {isWeb ? (
-          <div className="split">
-            <div>
-              <div className="io-label">HTML</div>
-              <CodeEditor value={code} onChange={setCode} rows={20} />
+          <>
+            {isCss && (
+              <details style={{ marginBottom: 12 }}>
+                <summary className="io-label" style={{ cursor: 'pointer' }}>
+                  {tc({ en: 'The markup (already written for you)', id: 'Markup-nya (sudah disediakan)' })}
+                </summary>
+                <CodeBlock>{project.html!}</CodeBlock>
+              </details>
+            )}
+            <div className="split">
+              <div>
+                <div className="io-label">{isCss ? 'CSS' : 'HTML'}</div>
+                <CodeEditor value={code} onChange={setCode} rows={20} />
+              </div>
+              <div>
+                <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>
+                <LivePreview source={code} html={project.html} height={420} />
+              </div>
             </div>
-            <div>
-              <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>
-              <LivePreview source={code} height={420} />
-            </div>
-          </div>
+          </>
         ) : (
           <>
             <CodeEditor value={code} onChange={setCode} rows={16} />

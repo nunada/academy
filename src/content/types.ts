@@ -36,6 +36,9 @@ export interface PyTest {
  *    all(q)        array of matching elements
  *    text(q)       trimmed textContent of the first match, or ""
  *    attr(q, a)    attribute value of the first match, or null
+ *    style(q, p)   computed value of CSS property p on the first match
+ *    css()         the whole stylesheet as text, for rules getComputedStyle
+ *                  cannot see — :hover, or a media query that is not matching
  *    assert(c, m)  fail with message m when c is falsy
  *  Throwing fails the test, and the thrown message is what the learner sees. */
 export interface WebTest {
@@ -107,6 +110,10 @@ export type Step =
       tests: WebTest[]
       hints: Loc[]
       solution: string
+      /** Fixed markup for the exercise. When present the learner writes CSS,
+       *  which is wrapped in a <style> tag and applied to this markup — the
+       *  shape a CSS lesson needs, where the HTML is context, not the task. */
+      html?: string
     }
 
 export interface Lesson {
@@ -134,7 +141,7 @@ interface MiniProjectBase {
  *  Python is the default, which keeps every existing project unchanged. */
 export type MiniProject =
   | (MiniProjectBase & { runtime?: 'python'; tests: PyTest[] })
-  | (MiniProjectBase & { runtime: 'web'; tests: WebTest[] })
+  | (MiniProjectBase & { runtime: 'web'; tests: WebTest[]; html?: string })
 
 export interface Submodule {
   id: string
