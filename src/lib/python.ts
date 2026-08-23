@@ -87,7 +87,7 @@ async function prepare(py: Pyodide, ns: unknown): Promise<void> {
 }
 
 /** Turn a Python traceback into the one or two lines a beginner can act on. */
-function friendlyError(raw: string): string {
+export function friendlyError(raw: string): string {
   const lines = raw.trimEnd().split('\n')
   // Drop Pyodide's own frames; keep the learner's traceback tail.
   const keep = lines.filter((l) => !l.includes('/lib/python3') && !l.includes('pyodide'))

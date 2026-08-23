@@ -202,6 +202,19 @@ export type Step =
       schema: string
     }
   | {
+      /** Same rung again, and the only one that is played rather than read.
+       *  The learner writes `awal`, `perbarui` and `gambar`; the checks call
+       *  those functions directly, so the tests are ordinary Python and the
+       *  canvas is for the learner, not for the checking. */
+      kind: 'game'
+      id: string
+      prompt: Loc
+      starter: string
+      tests: PyTest[]
+      hints: Loc[]
+      solution: string
+    }
+  | {
       /** Same rung as `code`, `web` and `sql`: the learner writes TypeScript and
        *  finds out what the compiler makes of it. */
       kind: 'ts'
@@ -241,6 +254,7 @@ export type MiniProject =
   | (MiniProjectBase & { runtime: 'web'; tests: WebTest[]; html?: string; js?: boolean; react?: boolean })
   | (MiniProjectBase & { runtime: 'sql'; tests: SqlTest[]; schema: string })
   | (MiniProjectBase & { runtime: 'ts'; tests: TsTest[] })
+  | (MiniProjectBase & { runtime: 'game'; tests: PyTest[] })
 
 export interface Submodule {
   id: string

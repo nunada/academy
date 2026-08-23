@@ -13,6 +13,7 @@ import { ResultList, fromPython, fromWeb, fromSql, fromTs, type ResultRow } from
 import { CodeBlock, CodeEditor, LivePreview, Output, Rich } from '../components/ui'
 import { ResultTable } from '../components/ResultTable'
 import { CompileReport } from '../components/CompileReport'
+import { GamePreview } from '../components/GamePreview'
 
 function findProject(courseId: string, projectId: string): MiniProject | undefined {
   const course = courseById(courseId)
@@ -40,6 +41,7 @@ export default function ProjectPage() {
   const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
   const [runRows, setRunRows] = useState<SqlResult | null>(null)
   const [compiled, setCompiled] = useState<TsCompile | null>(null)
+  const [runNonce, setRunNonce] = useState(0)
   const [hintsShown, setHintsShown] = useState(0)
   const [showSolution, setShowSolution] = useState(false)
   const [finished, setFinished] = useState(false)
@@ -63,6 +65,8 @@ export default function ProjectPage() {
   const isSql = project.runtime === 'sql'
   // TypeScript projects answer with the compiler's opinion first of all.
   const isTs = project.runtime === 'ts'
+  // A game project is checked like Python and played on a canvas.
+  const isGame = project.runtime === 'game'
 
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === project.id)
@@ -76,6 +80,8 @@ export default function ProjectPage() {
         setRunRows(await runSql(project.schema, code))
       } else if (project.runtime === 'ts') {
         setCompiled(await compileTs(code))
+      } else if (project.runtime === 'game') {
+        setRunNonce((n) => n + 1)
       } else {
         const res = await runPython(code, splitStdin(stdin))
         setRunOut({
@@ -102,6 +108,8 @@ export default function ProjectPage() {
             : project.runtime === 'ts'
               ? fromTs(await runTsTests(code, project.tests))
               : fromPython(await runTests(code, project.tests))
+      // The checks and the game share one interpreter, so stop the loop first.
+      if (project.runtime === 'game') setRunNonce(0)
       setRows(next)
       setRunOut(null)
       setRunRows(null)
@@ -204,6 +212,17 @@ export default function ProjectPage() {
             <div className="io-label">TypeScript</div>
             <CodeEditor value={code} onChange={setCode} rows={18} />
           </>
+        ) : isGame ? (
+          <div className="split">
+            <div>
+              <div className="io-label">Python</div>
+              <CodeEditor value={code} onChange={setCode} rows={22} />
+            </div>
+            <div>
+              <div className="io-label">{tc({ en: 'The game', id: 'Gamenya' })}</div>
+              <GamePreview code={code} runNonce={runNonce} />
+            </div>
+          </div>
         ) : (
           <>
             <CodeEditor value={code} onChange={setCode} rows={16} />
@@ -242,7 +261,7 @@ export default function ProjectPage() {
           })}
         </p>
 
-        {busy && !isWeb && !isSql && !isTs && (
+        {busy && !isWeb && !isSql && !isTs && !isGame && (
           <p className="small muted" style={{ marginTop: 8 }}>
             🐍 {t('loadingPython')}
           </p>

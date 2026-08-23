@@ -9,6 +9,7 @@ import { CodeBlock, CodeEditor, LivePreview, Output, Rich } from './ui'
 import { ResultList, fromPython, fromWeb, fromSql, fromTs } from './results'
 import { ResultTable } from './ResultTable'
 import { CompileReport } from './CompileReport'
+import { GamePreview } from './GamePreview'
 
 interface Props {
   step: Step
@@ -38,6 +39,8 @@ export default function StepView(props: Props) {
       return <SqlStep {...props} step={props.step} />
     case 'ts':
       return <TsStep {...props} step={props.step} />
+    case 'game':
+      return <GameStep {...props} step={props.step} />
   }
 }
 
@@ -723,6 +726,102 @@ function TsStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Ex
             <b>{allPass ? t('allTestsPass') : t('someTestsFail')}</b>
           </div>
           <ResultList rows={fromTs(outcomes)} />
+        </>
+      )}
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------------ game */
+
+function GameStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'game' }> }) {
+  const { t, tc } = useI18n()
+  const [code, setCode] = useState(step.starter)
+  const [busy, setBusy] = useState(false)
+  const [outcomes, setOutcomes] = useState<TestOutcome[] | null>(null)
+  const [runNonce, setRunNonce] = useState(0)
+  const [hintsShown, setHintsShown] = useState(0)
+  const [showSolution, setShowSolution] = useState(false)
+
+  const allPass = outcomes !== null && outcomes.every((o) => o.passed)
+
+  async function doCheck() {
+    setBusy(true)
+    try {
+      // Stop the loop first: the checks and the game share one interpreter.
+      setRunNonce(0)
+      const res = await runTests(code, step.tests)
+      setOutcomes(res)
+      if (res.every((o) => o.passed)) onSolved()
+      else onWrong()
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="card">
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
+
+      <div className="split">
+        <div>
+          <div className="io-label">Python</div>
+          <CodeEditor value={code} onChange={setCode} disabled={solved} rows={18} />
+        </div>
+        <div>
+          <div className="io-label">{tc({ en: 'The game', id: 'Gamenya' })}</div>
+          <GamePreview code={code} runNonce={runNonce} />
+        </div>
+      </div>
+
+      <div className="row" style={{ marginTop: 12 }}>
+        <button className="btn soft sm" onClick={() => setRunNonce((n) => n + 1)} disabled={busy}>
+          ▶ {t('runCode')}
+        </button>
+        {!solved && (
+          <button className="btn sm" onClick={() => void doCheck()} disabled={busy || blocked}>
+            {t('check')}
+          </button>
+        )}
+        {step.hints.length > 0 && hintsShown < step.hints.length && !solved && (
+          <button className="btn ghost sm" onClick={() => setHintsShown((n) => n + 1)}>
+            💡 {t('hint')} ({hintsShown}/{step.hints.length})
+          </button>
+        )}
+        {hintsShown >= step.hints.length && !solved && !showSolution && (
+          <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
+            {t('showSolution')}
+          </button>
+        )}
+      </div>
+
+      {step.hints.slice(0, hintsShown).map((h, i) => (
+        <div className="banner" key={i} style={{ marginTop: 10, marginBottom: 0 }}>
+          <span>💡</span>
+          <span>
+            <Rich text={tc(h)} />
+          </span>
+        </div>
+      ))}
+
+      {showSolution && (
+        <div style={{ marginTop: 12 }}>
+          <div className="io-label">{t('showSolution')}</div>
+          <CodeBlock>{step.solution}</CodeBlock>
+          <button className="btn ghost sm" onClick={() => setCode(step.solution)}>
+            ↧ {tc({ en: 'Copy into the editor', id: 'Salin ke editor' })}
+          </button>
+        </div>
+      )}
+
+      {outcomes && (
+        <>
+          <div className={allPass ? 'verdict ok' : 'verdict no'} style={{ marginTop: 12 }}>
+            <b>{allPass ? t('allTestsPass') : t('someTestsFail')}</b>
+          </div>
+          <ResultList rows={fromPython(outcomes)} />
         </>
       )}
     </div>

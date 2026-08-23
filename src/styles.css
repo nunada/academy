@@ -525,3 +525,40 @@ table.rows tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surfa
 .testrow .detail {
   white-space: pre-wrap;
 }
+
+/* ---------------------------------------------------------------- game
+
+   Lapangan permainan berukuran tetap 320x240 satuan; kanvasnya diperbesar
+   mengikuti lebar yang tersedia, dan `image-rendering: pixelated` menjaga
+   tepinya tetap tajam alih-alih kabur saat diperbesar.
+
+   Pembungkusnya bisa difokus karena permainannya membaca papan ketik: tanpa
+   fokus, tombol panah menggulirkan halaman, bukan menggerakkan pemain. */
+.gamewrap {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface-2);
+  outline: none;
+}
+.gamewrap.fokus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--brand-soft);
+}
+canvas.game {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  image-rendering: pixelated;
+}
+.gamehint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+}

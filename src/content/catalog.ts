@@ -6,36 +6,12 @@ import { javascriptCourse } from './javascript'
 import { reactCourse } from './react'
 import { sqlCourse } from './sql'
 import { typescriptCourse } from './typescript'
+import { gameDevCourse } from './gamedev'
 
-/** A course that is listed but not yet written.
- *  Keeping these in the catalogue makes the roadmap visible without pretending
- *  the content exists — `available: false` blocks enrolment everywhere. */
-function soon(
-  id: string,
-  title: string,
-  icon: string,
-  color: string,
-  language: Course['language'],
-  tagline: { en: string; id: string },
-  level: { en: string; id: string },
-  requires: string[] = [],
-): Course {
-  return {
-    id,
-    title: { en: title, id: title },
-    tagline,
-    icon,
-    color,
-    level,
-    language,
-    requires,
-    available: false,
-    modules: [],
-  }
-}
-
-const INTERMEDIATE = { en: 'Intermediate', id: 'Menengah' }
-
+/** Every course here is written. A course that is planned but not yet built
+ *  belongs in this list too, with `available: false` and an empty `modules` —
+ *  that is what keeps it visible on the roadmap while blocking enrolment
+ *  everywhere, and the landing page derives its "coming soon" line from it. */
 export const COURSES: Course[] = [
   pythonCourse,
   htmlCourse,
@@ -44,10 +20,7 @@ export const COURSES: Course[] = [
   sqlCourse,
   typescriptCourse,
   reactCourse,
-  soon('game-dev', 'Game Development', '🎮', '#ef8f70', 'python', {
-    en: 'Loops, sprites, collisions — a small game you can actually play.',
-    id: 'Loop, sprite, tabrakan — game kecil yang benar-benar bisa dimainkan.',
-  }, INTERMEDIATE, ['python']),
+  gameDevCourse,
 ]
 
 export const PATHS: CareerPath[] = [

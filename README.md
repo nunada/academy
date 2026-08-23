@@ -5,9 +5,10 @@ selangkah demi selangkah, dan tiap submateri ditutup satu mini proyek yang diper
 oleh tes sungguhan. Antarmuka bisa diganti antara **English** dan **Bahasa Indonesia**
 kapan saja.
 
-Kursus yang sudah aktif: **Python** (9 modul), lalu **HTML**, **CSS**, **JavaScript**,
-**SQL**, **TypeScript**, dan **React** (masing-masing 4 modul), ditambah jalur karier
-**Python Developer**, **Front-End**, **Back-End**, dan **Full-Stack Developer**.
+Tujuh kursus, semuanya sudah ditulis: **Python** (9 modul), lalu **HTML**, **CSS**,
+**JavaScript**, **SQL**, **TypeScript**, **React**, dan **Game Development**
+(masing-masing 4 modul), ditambah jalur karier **Python Developer**, **Front-End**,
+**Back-End**, dan **Full-Stack Developer**.
 
 ## Menjalankan
 
@@ -352,6 +353,50 @@ alih-alih `terjual` memberi TS2561, bukan TS2353, dan `"Kecil"` alih-alih
 `"kecil"` memberi TS2820, bukan TS2322. Jalankan pemeriksanya (di bawah) dan
 biarkan ia yang menyebutkan kodenya.
 
+## Menjalankan game peserta
+
+Kursus ini bisa saja diajarkan tanpa layar — *logika* sebuah game adalah fungsi
+biasa atas keadaan, dan itulah bagian yang layak diajarkan sekaligus satu-satunya
+bagian yang layak diuji. Tetapi game yang tak bisa dimainkan adalah hal yang aneh
+untuk dihabiskan empat modul, jadi ia benar-benar dijalankan
+([`src/lib/game.ts`](src/lib/game.ts), [`src/components/GamePreview.tsx`](src/components/GamePreview.tsx)).
+
+Bentuk yang diminta disengaja:
+
+```python
+awal()                        # keadaan awalnya
+perbarui(keadaan, tombol, dt) # keadaan berikutnya
+gambar(keadaan)               # daftar perintah gambar
+```
+
+**`perbarui` adalah fungsi murni** — keadaan masuk, keadaan keluar, tanpa
+menggambar dan tanpa membaca papan ketik sendiri. Itulah yang membuat sebuah
+pemeriksaan bisa memanggilnya langsung dengan keadaan karangan dan himpunan
+tombol karangan. Akibatnya seluruh kursus ini diperiksa dengan mesin `PyTest`
+yang sama persis dengan kursus Python, tanpa satu pun kanvas terlibat — yang baru
+hanyalah *pemutarnya*. Dan `gambar` mengembalikan **data**, bukan melukis, dengan
+alasan yang sama.
+
+**Jembatan antara Python dan kanvas adalah JSON, sekali per bingkai.** Itu sedikit
+boros dan sepenuhnya bisa diramalkan: tak ada proksi yang bocor, tak ada masa
+hidup yang salah dikelola, dan adegannya berupa data biasa di kedua sisi.
+Ongkosnya terukur **0,032 ms per bingkai** — 0,2% dari anggaran bingkai 60 fps,
+jadi yang jadi hambatan adalah kode pesertanya sendiri, bukan jembatannya.
+
+Keadaannya disimpan di sisi Python di antara bingkai, jadi loop di sisi
+JavaScript tetap berupa loop dan yang menyeberang hanya tombol yang masuk dan
+adegan yang keluar.
+
+**`dt` adalah waktu nyata, dijepit.** Peramban meredam `requestAnimationFrame`
+sampai berhenti di tab yang tersembunyi; tanpa jepitan, kembali ke tab setelah
+sepuluh detik akan melemparkan pemainnya menembus dinding. Batasnya `1/15` detik
+— cukup untuk melewati satu tersendat, cukup pendek agar tak ada yang melompat.
+
+Tombolnya disimpan di sebuah ref, bukan di state: satu ketukan tidak boleh
+merender ulang komponennya enam puluh kali sedetik, dan loop-nya membaca ref itu
+langsung. Pembungkus kanvasnya bisa difokus karena tanpa fokus, tombol panah
+menggulirkan halaman alih-alih menggerakkan pemain.
+
 ## Struktur
 
 ```
@@ -367,6 +412,7 @@ src/
     react/          kursus React: m1-components … m4-app
     sql/            kursus SQL: m1-select … m4-writing
     typescript/     kursus TypeScript: m1-annotations … m4-holding
+    gamedev/        kursus Game Development: m1-loop … m4-whole
   lib/
     db.ts           kontrak yang harus dipenuhi setiap backend
     backends/       supabase.ts (asli) + local.ts (localStorage) + pemilihnya
@@ -376,6 +422,7 @@ src/
     sql.ts          SQLite lewat sql.js — basis data baru untuk tiap pemeriksaan
     ts.ts           kompiler TypeScript sungguhan, dimuat malas, untuk diagnostik
     tsLib.ts        rantai lib.es*.d.ts sebagai teks (dibangkitkan)
+    game.ts         sesi game Python: namespace bertahan + jembatan JSON per bingkai
     pythonModules.ts modul Python yang ditanam ke filesystem Pyodide (API tiruan)
     hearts.ts       ekonomi heart
     progress.ts     turunan: apa yang terbuka, tuntas, dan diperoleh
@@ -383,7 +430,8 @@ src/
   app/store.tsx     satu sumber kebenaran untuk sesi + progres
   components/       Layout, StepView (pemutar langkah), results.tsx, ui.tsx,
                     ResultTable.tsx (kisi hasil SQL),
-                    CompileReport.tsx (keberatan kompiler TypeScript)
+                    CompileReport.tsx (keberatan kompiler TypeScript),
+                    GamePreview.tsx (kanvas dan loop bingkainya)
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
                     Project, Playground, Leaderboard, Profile, Certificate
 supabase/schema.sql skema, RPC, dan RLS
@@ -404,6 +452,7 @@ Tiap pelajaran menurunkan bantuan secara bertahap lewat lima jenis langkah
 | `web` | sama seperti `code`, tetapi menulis markup, CSS, JavaScript, atau JSX dan melihat hasilnya langsung | minimal |
 | `sql` | sama seperti `code`, tetapi menulis pernyataan SQL dan melihat baris yang kembali | minimal |
 | `ts` | sama seperti `code`, tetapi menulis TypeScript dan melihat apa kata kompilernya | minimal |
+| `game` | sama seperti `code`, tetapi menulis game Python dan benar-benar memainkannya | minimal |
 
 Mini proyek di akhir submateri adalah tahap tanpa penopang: hanya daftar syarat,
 editor kosong, dan tes.
@@ -426,6 +475,9 @@ ada komponen baru yang perlu ditulis.
    `verify` — lihat `SqlTest` di [`src/content/types.ts`](src/content/types.ts).
 6. Untuk langkah `ts`, tesnya memakai `probe`, `expectError`, `errorCode`, dan
    `check` — lihat `TsTest` di [`src/content/types.ts`](src/content/types.ts).
+7. Langkah `game` memakai `PyTest` yang sama dengan kursus Python: tesnya berupa
+   cuplikan `assert` yang memanggil `awal`, `perbarui`, dan `gambar` secara
+   langsung.
 
 Untuk membuka kursus yang masih "Segera hadir", ubah `available: true` di
 `src/content/catalog.ts` dan isi `modules`-nya.
@@ -535,6 +587,27 @@ window.__cek = { done: false }
 })()
 ```
 
+Untuk kursus Game Development, potongan Python di atas berlaku apa adanya —
+tesnya memang `PyTest` — hanya jenis langkahnya yang berbeda:
+
+```js
+const py = await import('/src/lib/python.ts')
+const { gameDevCourse } = await import('/src/content/gamedev/index.ts')
+const bad = []
+const cek = async (it) => {
+  if ((await py.runTests(it.solution, it.tests)).some(o => !o.passed)) bad.push(['solusi gagal', it.id])
+  if ((await py.runTests(it.starter, it.tests)).every(o => o.passed)) bad.push(['tes kosong', it.id])
+}
+for (const m of gameDevCourse.modules)
+  for (const s of m.submodules) {
+    for (const l of s.lessons)
+      for (const st of l.steps)
+        if (st.kind === 'game') await cek(st)
+    await cek(s.project)
+  }
+bad
+```
+
 ## Isi kursus Python
 
 9 modul, 18 submateri, 37 pelajaran, 18 mini proyek, 1700 XP:
@@ -595,9 +668,40 @@ sesudahnya. Yang kedua, memodelkan agar keadaan buruk tak bisa ditulis — beber
 kode awal di modul 2 dan 4 justru berupa satu objek dengan semua field opsional,
 bentuk yang keberadaan union bertanda memang untuk menggantikannya.
 
+## Isi kursus Game Development
+
+4 modul, 7 submateri, 14 pelajaran, 7 mini proyek, 660 XP. Prasyaratnya Python.
+
+| Modul | Isi |
+| --- | --- |
+| 1 Bingkai demi Bingkai | tiga fungsinya, keadaan sebagai dict, `dt` dan kecepatan, membaca tombol, penjepitan |
+| 2 Ketika Benda Bersentuhan | tumpang tindih kotak, jarak dan lingkaran, pemantulan berarah, daftar yang datang dan pergi |
+| 3 Aturan Permainan | nyawa dan kekebalan, jam dan tanjakan kesulitan, fase, deteksi tepi tombol, tingkat |
+| 4 Game Utuh | memecah pembaruan jadi pembantu, kedip dan guncangan, satu game lengkap |
+
+Lapangannya tetap 320 kali 240 dengan `(0, 0)` di kiri atas, dan tiap latihan
+menggambar ke lapangan yang sama. Angkanya sengaja bulat agar hitungan di sebuah
+latihan bisa dikerjakan di kepala.
+
+Tiga hal diberi ruang lebih karena ketiganya menjebak semua orang sekali. Yang
+pertama, `x = x + 2` bukan gerakan melainkan jarak per bingkai — kode awal
+pelajaran 1.2 memang menulis kutu itu, dan tesnya menangkapnya. Yang kedua,
+`vx = -vx` membuat bola yang masih menembus dinding membalik tiap bingkai dan
+menggigil; kursus ini mengajarkan memilih arah (`abs`) alih-alih mengingkari, dan
+ada satu tes khusus untuk itu. Yang ketiga, `tombol` adalah potret sesaat, jadi
+"spasi sedang ditekan" bernilai benar di tiap bingkai selama jarinya di sana —
+memulai permainan dengan itu berarti memulainya enam puluh kali sedetik.
+
 ## Peta jalan
 
-Yang masih bertanda "Segera hadir" di katalog tinggal **Game Development**
-(prasyarat Python). Keempat jalur karier sudah terbuka. Playground pun sudah
-menyiapkan tempat untuk static website, React app, React app + router, dan
-JavaScript; saat ini hanya Python yang aktif.
+Katalognya sudah penuh: ketujuh kursusnya ditulis dan keempat jalur kariernya
+terbuka. Tak ada lagi yang bertanda "Segera hadir".
+
+Kursus yang direncanakan tetapi belum dibangun ditulis sebagai objek `Course`
+biasa di [`src/content/catalog.ts`](src/content/catalog.ts) dengan
+`available: false` dan `modules: []` — itulah yang membuatnya tampak di katalog
+tanpa bisa didaftari, dan halaman depan menurunkan kalimat "segera hadir"-nya
+dari daftar itu.
+
+Playground sudah menyiapkan tempat untuk static website, React app, React app +
+router, dan JavaScript; saat ini hanya Python yang aktif.
