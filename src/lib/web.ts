@@ -8,6 +8,7 @@
  *  serve JavaScript and React, where learner scripts are the whole point. */
 
 import type { WebTest } from '../content/types'
+import { reactRuntime, transpileJsx } from './reactRuntime'
 
 export interface WebOutcome {
   test: WebTest
@@ -73,22 +74,30 @@ function insertBefore(doc: string, tag: string, chunk: string): string {
 
 /** Build the page under test.
  *
- *  Three shapes, one function:
- *    no `html`          — `source` *is* the markup (HTML course)
- *    `html`             — markup fixed, `source` is CSS applied to it (CSS course)
- *    `html` + `js`      — markup fixed, `source` is a script that runs on it
+ *  Four shapes, one function:
+ *    no `html`       — `source` *is* the markup (HTML course)
+ *    `html`          — markup fixed, `source` is CSS applied to it (CSS course)
+ *    `html` + `js`   — markup fixed, `source` is a script that runs on it
+ *    `runtime`       — extra <script> blocks inlined ahead of it, for React
  *
- *  In the `js` shape the script is a classic one, not a module. That is what
- *  lets a check reference the learner's top-level names directly: classic
- *  scripts share the frame's global scope, modules do not. */
-export function buildDocument(source: string, html?: string, js?: boolean, reportLogsTo?: string): string {
-  if (html === undefined && !js) return wrap(source)
+ *  The script is always a classic one, never a module. That is what lets a
+ *  check reference the learner's top-level names directly: classic scripts
+ *  share the frame's global scope, modules do not. */
+export function buildDocument(
+  source: string,
+  html?: string,
+  js?: boolean,
+  reportLogsTo?: string,
+  runtime?: string,
+): string {
+  if (html === undefined && !js && !runtime) return wrap(source)
 
   const doc = wrap(html ?? '')
 
-  if (js) {
-    const withCapture = insertBefore(doc, '</head>', consoleCapture(reportLogsTo))
-    return insertBefore(withCapture, '</body>', `<script>\n${source}\n</script>`)
+  if (js || runtime) {
+    const head = (runtime ? runtime + '\n' : '') + consoleCapture(reportLogsTo)
+    const withHead = insertBefore(doc, '</head>', head)
+    return insertBefore(withHead, '</body>', `<script>\n${source}\n</script>`)
   }
 
   return insertBefore(doc, '</head>', `<style>\n${source}\n</style>`)
@@ -97,18 +106,36 @@ export function buildDocument(source: string, html?: string, js?: boolean, repor
 /** The document handed to the preview pane.
  *  `reportLogsTo` lets the preview send its console output back to the app, so a
  *  pure-logic JavaScript exercise shows its result instead of a blank frame. */
-export function previewDocument(source: string, html?: string, js?: boolean, reportLogsTo?: string): string {
-  return buildDocument(source, html, js, reportLogsTo)
+export function previewDocument(
+  source: string,
+  html?: string,
+  js?: boolean,
+  reportLogsTo?: string,
+  runtime?: string,
+): string {
+  return buildDocument(source, html, js, reportLogsTo, runtime)
 }
 
-const HARNESS = (nonce: string, checks: string[]) => `
+/** JSX in, a ready-to-render document out. Returns the syntax error instead
+ *  when the learner's JSX does not parse, so the preview can show it. */
+export async function previewReactDocument(
+  source: string,
+  html: string | undefined,
+  reportLogsTo?: string,
+): Promise<{ doc?: string; error?: string }> {
+  const [runtime, { code, error }] = await Promise.all([reactRuntime(), transpileJsx(source)])
+  if (error !== undefined) return { error }
+  return { doc: buildDocument(code ?? '', html, true, reportLogsTo, runtime) }
+}
+
+const HARNESS = (nonce: string, checks: string[], settleTurns: number) => `
 <script>
 (function () {
   function report(results) {
     parent.postMessage({ nunada: ${JSON.stringify(nonce)}, results: results }, "*");
   }
 
-  function run() {
+  async function run() {
     var doc = document;
     // Reading a layout property forces the browser to compute layout right now.
     // Without it, getBoundingClientRect reports 0 and getComputedStyle hands back
@@ -140,6 +167,32 @@ const HARNESS = (nonce: string, checks: string[]) => `
     var logs = function () { return (window.__logs || []).slice(); };
     var out = function () { return logs().join("\\n"); };
     var error = function () { return window.__error || null; };
+    // React commits after the handler that triggered it returns, so a check that
+    // reads the DOM straight after a click sees the value from before it. These
+    // two give a check somewhere to wait.
+    //
+    // Deliberately not setTimeout: this frame sits outside the viewport, where
+    // browsers clamp timers to about a second. A check with four short tick
+    // calls would then take four seconds and blow the run's budget. A
+    // MessageChannel turn is a real macrotask and is not clamped — it is what
+    // React's own scheduler uses.
+    var turn = function () {
+      return new Promise(function (r) {
+        var ch = new MessageChannel();
+        ch.port1.onmessage = function () { r(); };
+        ch.port2.postMessage(0);
+      });
+    };
+    var tick = async function (ms) {
+      var n = Math.min(8, Math.max(1, Math.ceil((ms || 0) / 16)));
+      for (var i = 0; i < n; i++) await turn();
+    };
+    var click = function (q) {
+      var e = typeof q === "string" ? sel(q) : q;
+      if (!e) throw new Error("elemen tidak ditemukan: " + q);
+      e.click();
+      return tick(0);
+    };
     var assert = function (cond, msg) { if (!cond) throw new Error(msg || "pemeriksaan gagal"); };
 
     var checks = ${JSON.stringify(checks)};
@@ -150,9 +203,11 @@ const HARNESS = (nonce: string, checks: string[]) => `
         // Indirect eval keeps the check in global scope, so it can see the
         // learner's top-level const and let, not just what landed on window.
         var fn = (0, eval)(
-          "(function (doc, sel, all, text, attr, style, css, logs, out, error, assert) {" + checks[i] + "\\n})"
+          "(async function (doc, sel, all, text, attr, style, css, logs, out, error, tick, click, assert) {" +
+            checks[i] +
+            "\\n})"
         );
-        fn(doc, sel, all, text, attr, style, css, logs, out, error, assert);
+        await fn(doc, sel, all, text, attr, style, css, logs, out, error, tick, click, assert);
         results.push({ passed: true });
       } catch (err) {
         results.push({ passed: false, detail: String((err && err.message) || err) });
@@ -164,8 +219,20 @@ const HARNESS = (nonce: string, checks: string[]) => `
   // Wait for load rather than DOMContentLoaded, so stylesheets have applied.
   // Note: no requestAnimationFrame here — the frame sits outside the viewport
   // and browsers stop servicing rAF there, so a rAF-based wait never fires.
+  //
+  // React needs more than zero turns: createRoot().render() commits on a later
+  // tick, so checking immediately would read an empty root. Turns rather than a
+  // timer, for the throttling reason above.
   function start() {
-    setTimeout(run, 0);
+    var left = ${settleTurns};
+    function step() {
+      if (left <= 0) { run(); return; }
+      left -= 1;
+      var ch = new MessageChannel();
+      ch.port1.onmessage = step;
+      ch.port2.postMessage(0);
+    }
+    step();
   }
 
   if (document.readyState === "complete") {
@@ -183,24 +250,40 @@ function documentWithHarness(
   checks: string[],
   html?: string,
   js?: boolean,
+  runtime?: string,
 ): string {
-  const doc = buildDocument(source, html, js)
-  const harness = HARNESS(nonce, checks)
+  const doc = buildDocument(source, html, js, undefined, runtime)
+  // React commits on a later tick than the script that called render(), so a
+  // zero-delay check would read an empty root.
+  const harness = HARNESS(nonce, checks, runtime ? 4 : 1)
 
   const body = indexOfTag(doc, '</body>')
   if (body !== -1) return doc.slice(0, body) + harness + '\n' + doc.slice(body)
   return doc + harness
 }
 
-const TIMEOUT_MS = 4000
+const TIMEOUT_MS = 8000
 
 export async function runWebTests(
   source: string,
   tests: WebTest[],
   html?: string,
   js?: boolean,
+  react?: boolean,
 ): Promise<WebOutcome[]> {
   if (!tests.length) return []
+
+  // JSX is transpiled here, in the app, not by a Babel inside every frame.
+  let runtime: string | undefined
+  let code = source
+  if (react) {
+    const [rt, out] = await Promise.all([reactRuntime(), transpileJsx(source)])
+    if (out.error !== undefined) {
+      return tests.map((test) => ({ test, passed: false, detail: out.error }))
+    }
+    runtime = rt
+    code = out.code ?? ''
+  }
 
   const nonce = `n${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`
   const frame = document.createElement('iframe')
@@ -249,11 +332,12 @@ export async function runWebTests(
       // In the document first, so the frame has a size to lay out into.
       document.body.appendChild(frame)
       frame.srcdoc = documentWithHarness(
-        source,
+        code,
         nonce,
         tests.map((t) => t.check),
         html,
         js,
+        runtime,
       )
     })
   } catch (err) {

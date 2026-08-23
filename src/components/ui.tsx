@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { MAX_HEARTS, formatCountdown } from '../lib/hearts'
 import { useI18n } from '../i18n'
-import { previewDocument } from '../lib/web'
+import { previewDocument, previewReactDocument } from '../lib/web'
 
 /** Minimal inline formatting for lesson prose: `code` and **bold**.
  *  A full markdown dependency would be far more than the content needs. */
@@ -129,25 +129,31 @@ export function LivePreview({
   source,
   html,
   js,
+  react,
   height = 260,
 }: {
   source: string
   /** Fixed markup; `source` is then the stylesheet, or the script when `js`. */
   html?: string
   js?: boolean
+  /** `source` is JSX, transpiled in the frame. Implies a script runtime. */
+  react?: boolean
   height?: number
 }) {
   const { tc } = useI18n()
   const [logs, setLogs] = useState<string[]>([])
   const [failure, setFailure] = useState<string | null>(null)
+  // React needs JSX transpiled before the document exists, so the doc is state.
+  const [reactDoc, setReactDoc] = useState<string>('')
 
   // A JavaScript exercise with no markup would otherwise render a blank frame,
   // while everything the learner actually produced went to console.log.
   const nonce = useMemo(() => `p${Math.random().toString(36).slice(2)}`, [])
-  const consoleOnly = js === true && (html === undefined || html.trim() === '')
+  const scripted = js === true || react === true
+  const consoleOnly = js === true && !react && (html === undefined || html.trim() === '')
 
   useEffect(() => {
-    if (!js) return
+    if (!scripted) return
     function onMessage(event: MessageEvent) {
       const data = event.data as { nunadaLogs?: string; logs?: string[]; error?: string | null }
       if (!data || data.nunadaLogs !== nonce) return
@@ -156,7 +162,7 @@ export function LivePreview({
     }
     window.addEventListener('message', onMessage)
     return () => window.removeEventListener('message', onMessage)
-  }, [js, nonce])
+  }, [scripted, nonce])
 
   // Each edit reloads the frame, so drop what the previous run said.
   useEffect(() => {
@@ -164,16 +170,31 @@ export function LivePreview({
     setFailure(null)
   }, [source])
 
+  // Transpiling is async, and a half-typed JSX tag is a syntax error most of the
+  // time — so report that in the console strip instead of rebuilding the frame.
+  useEffect(() => {
+    if (!react) return
+    let alive = true
+    previewReactDocument(source, html, nonce).then(({ doc, error }) => {
+      if (!alive) return
+      if (error !== undefined) setFailure(error)
+      else setReactDoc(doc ?? '')
+    })
+    return () => {
+      alive = false
+    }
+  }, [react, source, html, nonce])
+
   return (
     <>
       <iframe
         className="preview"
         title="preview"
         sandbox="allow-scripts"
-        srcDoc={previewDocument(source, html, js, js ? nonce : undefined)}
+        srcDoc={react ? reactDoc : previewDocument(source, html, js, scripted ? nonce : undefined)}
         style={{ height: consoleOnly ? 0 : height, border: consoleOnly ? 'none' : undefined }}
       />
-      {js && (
+      {scripted && (
         <>
           <div className="io-label" style={{ marginTop: consoleOnly ? 0 : 8 }}>
             console

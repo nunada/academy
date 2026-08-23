@@ -47,11 +47,12 @@ export default function ProjectPage() {
   const isWeb = project.runtime === 'web'
   // ...and a project may supply the markup, leaving only the stylesheet or the
   // script to write.
-  const isJs = isWeb && project.js === true
+  const isReact = isWeb && project.react === true
+  const isJs = isWeb && (project.js === true || isReact)
   const isCss = isWeb && project.html !== undefined && !isJs
   const hasGivenMarkup = isWeb && project.html !== undefined && project.html.trim() !== ''
-  const editorLabel = isJs ? 'JavaScript' : isCss ? 'CSS' : 'HTML'
-  const consoleOnly = isJs && (project.html === undefined || project.html.trim() === '')
+  const editorLabel = isReact ? 'JSX' : isJs ? 'JavaScript' : isCss ? 'CSS' : 'HTML'
+  const consoleOnly = isJs && !isReact && (project.html === undefined || project.html.trim() === '')
 
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === project.id)
@@ -77,7 +78,7 @@ export default function ProjectPage() {
     try {
       const results: TestOutcome[] | WebOutcome[] =
         project.runtime === 'web'
-          ? await runWebTests(code, project.tests, project.html, project.js)
+          ? await runWebTests(code, project.tests, project.html, project.js, project.react)
           : await runTests(code, project.tests)
       setRows(project.runtime === 'web' ? fromWeb(results as WebOutcome[]) : fromPython(results as TestOutcome[]))
       setRunOut(null)
@@ -159,7 +160,7 @@ export default function ProjectPage() {
               </div>
               <div>
                 {!consoleOnly && <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>}
-                <LivePreview source={code} html={project.html} js={project.js} height={420} />
+                <LivePreview source={code} html={project.html} js={project.js} react={project.react} height={420} />
               </div>
             </div>
           </>

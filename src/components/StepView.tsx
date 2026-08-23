@@ -399,16 +399,17 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
 
   // Fixed markup means the learner writes against a page rather than authoring
   // one: CSS by default, JavaScript when the step says so.
-  const isJs = step.js === true
+  const isReact = step.react === true
+  const isJs = step.js === true || isReact
   const isCss = step.html !== undefined && !isJs
-  const editorLabel = isJs ? 'JavaScript' : isCss ? 'CSS' : 'HTML'
+  const editorLabel = isReact ? 'JSX' : isJs ? 'JavaScript' : isCss ? 'CSS' : 'HTML'
   // A logic-only exercise has no page to show; LivePreview renders its console instead.
-  const consoleOnly = isJs && (step.html === undefined || step.html.trim() === '')
+  const consoleOnly = isJs && !isReact && (step.html === undefined || step.html.trim() === '')
 
   async function doCheck() {
     setBusy(true)
     try {
-      const res = await runWebTests(code, step.tests, step.html, step.js)
+      const res = await runWebTests(code, step.tests, step.html, step.js, step.react)
       setOutcomes(res)
       if (res.every((o) => o.passed)) onSolved()
       else onWrong()
@@ -439,7 +440,7 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
         </div>
         <div>
           {!consoleOnly && <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>}
-          <LivePreview source={code} html={step.html} js={step.js} />
+          <LivePreview source={code} html={step.html} js={step.js} react={step.react} />
         </div>
       </div>
 

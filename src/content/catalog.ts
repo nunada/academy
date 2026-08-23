@@ -3,6 +3,7 @@ import { pythonCourse } from './python'
 import { htmlCourse } from './html'
 import { cssCourse } from './css'
 import { javascriptCourse } from './javascript'
+import { reactCourse } from './react'
 
 /** A course that is listed but not yet written.
  *  Keeping these in the catalogue makes the roadmap visible without pretending
@@ -47,10 +48,7 @@ export const COURSES: Course[] = [
     en: 'JavaScript that tells you about a mistake before you ship it.',
     id: 'JavaScript yang memberitahumu soal kesalahan sebelum kamu rilis.',
   }, INTERMEDIATE, ['javascript']),
-  soon('react', 'React', '⚛️', '#7eaa71', 'react', {
-    en: 'Build interfaces out of components that manage their own state.',
-    id: 'Membangun antarmuka dari komponen yang mengelola state-nya sendiri.',
-  }, INTERMEDIATE, ['html', 'css', 'javascript']),
+  reactCourse,
   soon('game-dev', 'Game Development', '🎮', '#ef8f70', 'python', {
     en: 'Loops, sprites, collisions — a small game you can actually play.',
     id: 'Loop, sprite, tabrakan — game kecil yang benar-benar bisa dimainkan.',

@@ -5,8 +5,8 @@ selangkah demi selangkah, dan tiap submateri ditutup satu mini proyek yang diper
 oleh tes sungguhan. Antarmuka bisa diganti antara **English** dan **Bahasa Indonesia**
 kapan saja.
 
-Kursus yang sudah aktif: **Python** (9 modul), **HTML**, **CSS**, dan **JavaScript**
-(masing-masing 4 modul), ditambah jalur karier **Python Developer**.
+Kursus yang sudah aktif: **Python** (9 modul), lalu **HTML**, **CSS**, **JavaScript**,
+dan **React** (masing-masing 4 modul), ditambah jalur karier **Python Developer**.
 
 ## Menjalankan
 
@@ -221,6 +221,61 @@ Untuk kejadian, pemeriksaan memicu sendiri event-nya lalu membaca akibatnya —
 — sehingga yang dibuktikan adalah penangannya benar-benar terpasang dan benar, bukan
 sekadar ada teks tertentu di kode.
 
+## Isi kursus React
+
+4 modul, 7 submateri, 14 pelajaran, 7 mini proyek, 660 XP. Prasyaratnya HTML, CSS,
+dan JavaScript.
+
+| Modul | Isi |
+| --- | --- |
+| 1 Komponen dan JSX | JSX, className, komponen, props, map + key, && dan ternary |
+| 2 State dan Interaksi | useState, event handler, pembaruan fungsional, imutabilitas, input terkendali, mengangkat state |
+| 3 Komposisi dan Efek | children, memecah komponen, menurunkan alih-alih menyimpan, useEffect dan dependensinya |
+| 4 Aplikasi Utuh | custom hook, kepemilikan state, aplikasi kecil yang utuh |
+
+Modul 3 sengaja menekan satu gagasan: sebagian besar hal yang membuat pemula meraih
+`useEffect` sebenarnya cukup dihitung saat render. Latihannya memberi nilai pada yang
+menurunkan, bukan yang menyimpan.
+
+## Menjalankan React peserta
+
+Ini bagian yang paling banyak menuntut penyesuaian, dan sebagian besar keputusannya
+lahir dari pengukuran, bukan dugaan.
+
+**JSX ditranspilasi di aplikasi induk, bukan di dalam frame.** Rencana awalnya memuat
+Babel lewat `<script src>` di dalam frame. Ternyata frame ber-`sandbox="allow-scripts"`
+tanpa `allow-same-origin` berada di origin buram, dan **peramban memblokir seluruh
+pemuatan subresource-nya** — terbukti karena frame yang sama berhasil begitu
+`allow-same-origin` ditambahkan, yaitu izin yang justru akan membuat skrip peserta bisa
+menjangkau DOM aplikasi dan sesi Supabase-nya. Sandbox yang ketat lebih berharga
+daripada kemudahannya.
+
+Maka: React dan ReactDOM disisipkan sebagai teks ke dalam dokumennya, dan JSX
+ditranspilasi di aplikasi lewat `@babel/standalone` yang diimpor dinamis
+([`src/lib/reactRuntime.ts`](src/lib/reactRuntime.ts)). Babel 2,3 MB — dimuat sekali,
+malas, jauh lebih baik daripada 40 kali. Efek sampingnya menyenangkan: JSX yang belum
+selesai diketik dilaporkan sebagai *syntax error* beserta cuplikan barisnya, bukan
+sebagai kesenyapan.
+
+**Pemeriksaan berjalan asinkron.** React melakukan commit setelah penangan yang
+memicunya selesai, jadi pemeriksaan yang membaca DOM tepat setelah klik akan melihat
+nilai lama. Tersedia `await click(q)` dan `await tick(ms)`.
+
+**`setTimeout` tidak dipakai untuk menunggu.** Frame-nya berada di luar viewport, dan di
+sana peramban meredam timer sampai ~1 detik. Gejalanya: tiga proyek React kehabisan
+waktu, dan setiap frame di semua kursus web diam-diam memakan sedetik. Penantiannya kini
+memakai `MessageChannel` — makrotask sungguhan yang tidak diredam, mekanisme yang sama
+dipakai penjadwal React sendiri. Proyek yang tadinya habis waktu di 8 detik kini selesai
+dalam 24 milidetik.
+
+Dua hal yang perlu diingat saat menulis materi React:
+
+- Pemeriksaan **tidak** ikut ditranspilasi. Untuk merender komponen peserta dari dalam
+  sebuah pemeriksaan, pakai `React.createElement(Komponen, props)`, bukan JSX.
+- Semua pemeriksaan dalam satu tes berbagi **satu halaman**, berurutan. Pemeriksaan yang
+  mengklik tidak boleh menganggap dirinya mulai dari nol: baca nilainya dulu, bertindak,
+  lalu bandingkan dengan yang tadi dibaca.
+
 ## Struktur
 
 ```
@@ -233,11 +288,13 @@ src/
     html/           kursus HTML: m1-document … m4-semantics
     css/            kursus CSS: m1-rules … m4-states
     javascript/     kursus JavaScript: m1-values … m4-robust
+    react/          kursus React: m1-components … m4-app
   lib/
     db.ts           kontrak yang harus dipenuhi setiap backend
     backends/       supabase.ts (asli) + local.ts (localStorage) + pemilihnya
     python.ts       pemuat Pyodide, runner, dan pemeriksa tes
-    web.ts          runner iframe tersandbox untuk HTML, CSS, dan JavaScript
+    web.ts          runner iframe tersandbox untuk HTML, CSS, JavaScript, React
+    reactRuntime.ts React/ReactDOM sebagai teks + transpilasi JSX lewat Babel
     pythonModules.ts modul Python yang ditanam ke filesystem Pyodide (API tiruan)
     hearts.ts       ekonomi heart
     progress.ts     turunan: apa yang terbuka, tuntas, dan diperoleh
@@ -261,7 +318,7 @@ Tiap pelajaran menurunkan bantuan secara bertahap lewat lima jenis langkah
 | `fill` | mengisi bagian kosong pada kode yang hampir lengkap | sedang |
 | `order` | menyusun baris yang sudah benar ke urutan yang tepat | rendah |
 | `code` | menulis sendiri, diperiksa tes, petunjuk muncul bila diminta | minimal |
-| `web` | sama seperti `code`, tetapi menulis markup, CSS, atau JavaScript dan melihat hasilnya langsung | minimal |
+| `web` | sama seperti `code`, tetapi menulis markup, CSS, JavaScript, atau JSX dan melihat hasilnya langsung | minimal |
 
 Mini proyek di akhir submateri adalah tahap tanpa penopang: hanya daftar syarat,
 editor kosong, dan tes.
@@ -338,10 +395,11 @@ window.__cek = { done: false }
 
 Tunggu sebentar, lalu periksa `window.__cek`.
 
-Untuk kursus CSS dan JavaScript, sama persis tetapi `html` dan `js` harus ikut dioper:
+Untuk kursus CSS, JavaScript, dan React, sama persis tetapi `html`, `js`, dan `react`
+harus ikut dioper:
 
 ```js
-await web.runWebTests(st.solution, st.tests, st.html, st.js)
+await web.runWebTests(st.solution, st.tests, st.html, st.js, st.react)
 ```
 
 ## Isi kursus Python

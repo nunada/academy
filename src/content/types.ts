@@ -42,7 +42,18 @@ export interface PyTest {
  *    logs()        array of lines the learner's code passed to console.log
  *    out()         those lines joined with newlines
  *    error()       message of an uncaught error, or null
+ *    tick(ms)      await this to let the page settle
+ *    click(q)      click the first match, then wait a tick
  *    assert(c, m)  fail with message m when c is falsy
+ *
+ *  `check` runs as an async function, so it may `await`. React commits after
+ *  the handler that triggered it returns, which means a check reading the DOM
+ *  straight after a click sees the value from before it — write
+ *  `await click(q)` rather than `sel(q).click()`.
+ *
+ *  Every check in a test runs against the *same* page, in order, so anything an
+ *  earlier one did is still there. A check that clicks must not assume it starts
+ *  from zero: read the value first, act, then compare against what you read.
  *
  *  In a `js` exercise the learner's script has already run in this same frame,
  *  so its top-level names — `function`, `const`, `let` alike — can be referenced
@@ -123,6 +134,9 @@ export type Step =
       html?: string
       /** The editor holds JavaScript, run as a script on the page. */
       js?: boolean
+      /** The editor holds JSX, transpiled in the frame before it runs.
+       *  React and ReactDOM are already on the page as globals. */
+      react?: boolean
     }
 
 export interface Lesson {
@@ -150,7 +164,7 @@ interface MiniProjectBase {
  *  Python is the default, which keeps every existing project unchanged. */
 export type MiniProject =
   | (MiniProjectBase & { runtime?: 'python'; tests: PyTest[] })
-  | (MiniProjectBase & { runtime: 'web'; tests: WebTest[]; html?: string; js?: boolean })
+  | (MiniProjectBase & { runtime: 'web'; tests: WebTest[]; html?: string; js?: boolean; react?: boolean })
 
 export interface Submodule {
   id: string
