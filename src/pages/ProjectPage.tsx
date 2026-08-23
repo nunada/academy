@@ -45,8 +45,13 @@ export default function ProjectPage() {
 
   // Markup projects render live instead of printing, so the page differs.
   const isWeb = project.runtime === 'web'
-  // ...and a CSS project supplies the markup, leaving only the stylesheet to write.
-  const isCss = isWeb && project.html !== undefined
+  // ...and a project may supply the markup, leaving only the stylesheet or the
+  // script to write.
+  const isJs = isWeb && project.js === true
+  const isCss = isWeb && project.html !== undefined && !isJs
+  const hasGivenMarkup = isWeb && project.html !== undefined && project.html.trim() !== ''
+  const editorLabel = isJs ? 'JavaScript' : isCss ? 'CSS' : 'HTML'
+  const consoleOnly = isJs && (project.html === undefined || project.html.trim() === '')
 
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === project.id)
@@ -72,7 +77,7 @@ export default function ProjectPage() {
     try {
       const results: TestOutcome[] | WebOutcome[] =
         project.runtime === 'web'
-          ? await runWebTests(code, project.tests, project.html)
+          ? await runWebTests(code, project.tests, project.html, project.js)
           : await runTests(code, project.tests)
       setRows(project.runtime === 'web' ? fromWeb(results as WebOutcome[]) : fromPython(results as TestOutcome[]))
       setRunOut(null)
@@ -139,7 +144,7 @@ export default function ProjectPage() {
       <div className="card">
         {isWeb ? (
           <>
-            {isCss && (
+            {hasGivenMarkup && (
               <details style={{ marginBottom: 12 }}>
                 <summary className="io-label" style={{ cursor: 'pointer' }}>
                   {tc({ en: 'The markup (already written for you)', id: 'Markup-nya (sudah disediakan)' })}
@@ -149,12 +154,12 @@ export default function ProjectPage() {
             )}
             <div className="split">
               <div>
-                <div className="io-label">{isCss ? 'CSS' : 'HTML'}</div>
+                <div className="io-label">{editorLabel}</div>
                 <CodeEditor value={code} onChange={setCode} rows={20} />
               </div>
               <div>
-                <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>
-                <LivePreview source={code} html={project.html} height={420} />
+                {!consoleOnly && <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>}
+                <LivePreview source={code} html={project.html} js={project.js} height={420} />
               </div>
             </div>
           </>

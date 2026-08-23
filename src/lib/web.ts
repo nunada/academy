@@ -29,29 +29,76 @@ function indexOfTag(doc: string, tag: string): number {
   return doc.toLowerCase().indexOf(tag)
 }
 
-/** Build the page under test.
- *
- *  With no `html`, `source` *is* the markup — that is the HTML course.
- *  With `html`, the markup is fixed and `source` is CSS applied to it — that is
- *  the CSS course, where the page is context rather than the exercise. */
-export function buildDocument(source: string, html?: string): string {
-  if (html === undefined) return wrap(source)
+/** Installed before the learner's script so nothing they log is missed.
+ *  console still forwards to the real one, so the browser devtools keep working
+ *  for anyone who opens them on the preview. */
+const consoleCapture = (reportTo?: string) => `<script>
+window.__logs = [];
+window.__error = null;
+(function () {
+  function show(v) {
+    if (typeof v === "string") return v;
+    if (typeof v === "undefined") return "undefined";
+    if (v === null) return "null";
+    try { return JSON.stringify(v); } catch (e) { return String(v); }
+  }
+  ${
+    reportTo
+      ? `function post() {
+    parent.postMessage({ nunadaLogs: ${JSON.stringify(reportTo)}, logs: window.__logs.slice(), error: window.__error }, "*");
+  }`
+      : 'function post() {}'
+  }
+  ["log", "info", "warn", "error"].forEach(function (k) {
+    var orig = console[k];
+    console[k] = function () {
+      window.__logs.push(Array.prototype.map.call(arguments, show).join(" "));
+      post();
+      try { orig.apply(console, arguments); } catch (e) {}
+    };
+  });
+  window.addEventListener("error", function (e) {
+    if (window.__error === null) window.__error = String(e.message);
+    post();
+  });
+  window.addEventListener("load", post);
+})();
+</script>`
 
-  const style = `<style>\n${source}\n</style>`
-  const doc = wrap(html)
-
-  const head = indexOfTag(doc, '</head>')
-  if (head !== -1) return doc.slice(0, head) + style + '\n' + doc.slice(head)
-
-  const body = indexOfTag(doc, '</body>')
-  if (body !== -1) return doc.slice(0, body) + style + '\n' + doc.slice(body)
-
-  return doc + style
+function insertBefore(doc: string, tag: string, chunk: string): string {
+  const at = indexOfTag(doc, tag)
+  if (at === -1) return doc + chunk
+  return doc.slice(0, at) + chunk + '\n' + doc.slice(at)
 }
 
-/** The document handed to the preview pane — no checker, nothing injected. */
-export function previewDocument(source: string, html?: string): string {
-  return buildDocument(source, html)
+/** Build the page under test.
+ *
+ *  Three shapes, one function:
+ *    no `html`          — `source` *is* the markup (HTML course)
+ *    `html`             — markup fixed, `source` is CSS applied to it (CSS course)
+ *    `html` + `js`      — markup fixed, `source` is a script that runs on it
+ *
+ *  In the `js` shape the script is a classic one, not a module. That is what
+ *  lets a check reference the learner's top-level names directly: classic
+ *  scripts share the frame's global scope, modules do not. */
+export function buildDocument(source: string, html?: string, js?: boolean, reportLogsTo?: string): string {
+  if (html === undefined && !js) return wrap(source)
+
+  const doc = wrap(html ?? '')
+
+  if (js) {
+    const withCapture = insertBefore(doc, '</head>', consoleCapture(reportLogsTo))
+    return insertBefore(withCapture, '</body>', `<script>\n${source}\n</script>`)
+  }
+
+  return insertBefore(doc, '</head>', `<style>\n${source}\n</style>`)
+}
+
+/** The document handed to the preview pane.
+ *  `reportLogsTo` lets the preview send its console output back to the app, so a
+ *  pure-logic JavaScript exercise shows its result instead of a blank frame. */
+export function previewDocument(source: string, html?: string, js?: boolean, reportLogsTo?: string): string {
+  return buildDocument(source, html, js, reportLogsTo)
 }
 
 const HARNESS = (nonce: string, checks: string[]) => `
@@ -90,6 +137,9 @@ const HARNESS = (nonce: string, checks: string[]) => `
       }
       return out;
     };
+    var logs = function () { return (window.__logs || []).slice(); };
+    var out = function () { return logs().join("\\n"); };
+    var error = function () { return window.__error || null; };
     var assert = function (cond, msg) { if (!cond) throw new Error(msg || "pemeriksaan gagal"); };
 
     var checks = ${JSON.stringify(checks)};
@@ -97,8 +147,12 @@ const HARNESS = (nonce: string, checks: string[]) => `
     for (var i = 0; i < checks.length; i++) {
       try {
         // eslint-disable-next-line no-new-func
-        var fn = new Function("doc", "sel", "all", "text", "attr", "style", "css", "assert", checks[i]);
-        fn(doc, sel, all, text, attr, style, css, assert);
+        // Indirect eval keeps the check in global scope, so it can see the
+        // learner's top-level const and let, not just what landed on window.
+        var fn = (0, eval)(
+          "(function (doc, sel, all, text, attr, style, css, logs, out, error, assert) {" + checks[i] + "\\n})"
+        );
+        fn(doc, sel, all, text, attr, style, css, logs, out, error, assert);
         results.push({ passed: true });
       } catch (err) {
         results.push({ passed: false, detail: String((err && err.message) || err) });
@@ -123,8 +177,14 @@ const HARNESS = (nonce: string, checks: string[]) => `
 </script>`
 
 /** Put the harness last so the learner's markup has already parsed. */
-function documentWithHarness(source: string, nonce: string, checks: string[], html?: string): string {
-  const doc = buildDocument(source, html)
+function documentWithHarness(
+  source: string,
+  nonce: string,
+  checks: string[],
+  html?: string,
+  js?: boolean,
+): string {
+  const doc = buildDocument(source, html, js)
   const harness = HARNESS(nonce, checks)
 
   const body = indexOfTag(doc, '</body>')
@@ -134,7 +194,12 @@ function documentWithHarness(source: string, nonce: string, checks: string[], ht
 
 const TIMEOUT_MS = 4000
 
-export async function runWebTests(source: string, tests: WebTest[], html?: string): Promise<WebOutcome[]> {
+export async function runWebTests(
+  source: string,
+  tests: WebTest[],
+  html?: string,
+  js?: boolean,
+): Promise<WebOutcome[]> {
   if (!tests.length) return []
 
   const nonce = `n${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`
@@ -188,6 +253,7 @@ export async function runWebTests(source: string, tests: WebTest[], html?: strin
         nonce,
         tests.map((t) => t.check),
         html,
+        js,
       )
     })
   } catch (err) {

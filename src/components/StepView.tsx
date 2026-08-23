@@ -397,13 +397,18 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
 
   const allPass = outcomes !== null && outcomes.every((o) => o.passed)
 
-  // With fixed markup supplied, the learner is writing CSS against it.
-  const isCss = step.html !== undefined
+  // Fixed markup means the learner writes against a page rather than authoring
+  // one: CSS by default, JavaScript when the step says so.
+  const isJs = step.js === true
+  const isCss = step.html !== undefined && !isJs
+  const editorLabel = isJs ? 'JavaScript' : isCss ? 'CSS' : 'HTML'
+  // A logic-only exercise has no page to show; LivePreview renders its console instead.
+  const consoleOnly = isJs && (step.html === undefined || step.html.trim() === '')
 
   async function doCheck() {
     setBusy(true)
     try {
-      const res = await runWebTests(code, step.tests, step.html)
+      const res = await runWebTests(code, step.tests, step.html, step.js)
       setOutcomes(res)
       if (res.every((o) => o.passed)) onSolved()
       else onWrong()
@@ -418,7 +423,7 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
         <Rich text={tc(step.prompt)} />
       </h3>
 
-      {isCss && (
+      {step.html !== undefined && step.html.trim() !== '' && (
         <details style={{ marginBottom: 12 }}>
           <summary className="io-label" style={{ cursor: 'pointer' }}>
             {tc({ en: 'The markup (already written for you)', id: 'Markup-nya (sudah disediakan)' })}
@@ -429,12 +434,12 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
 
       <div className="split">
         <div>
-          <div className="io-label">{isCss ? 'CSS' : 'HTML'}</div>
+          <div className="io-label">{editorLabel}</div>
           <CodeEditor value={code} onChange={setCode} disabled={solved} />
         </div>
         <div>
-          <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>
-          <LivePreview source={code} html={step.html} />
+          {!consoleOnly && <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>}
+          <LivePreview source={code} html={step.html} js={step.js} />
         </div>
       </div>
 

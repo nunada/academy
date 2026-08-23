@@ -5,8 +5,8 @@ selangkah demi selangkah, dan tiap submateri ditutup satu mini proyek yang diper
 oleh tes sungguhan. Antarmuka bisa diganti antara **English** dan **Bahasa Indonesia**
 kapan saja.
 
-Kursus yang sudah aktif: **Python** (9 modul), **HTML** (4 modul), dan **CSS** (4 modul),
-ditambah jalur karier **Python Developer**.
+Kursus yang sudah aktif: **Python** (9 modul), **HTML**, **CSS**, dan **JavaScript**
+(masing-masing 4 modul), ditambah jalur karier **Python Developer**.
 
 ## Menjalankan
 
@@ -186,6 +186,41 @@ lalu membaca `offsetHeight` untuk memaksa layout. `requestAnimationFrame` **tida
 dipakai untuk ini: frame-nya berada di luar viewport dan peramban berhenti melayani rAF
 di sana, sehingga penantiannya tak pernah selesai.
 
+## Isi kursus JavaScript
+
+4 modul, 7 submateri, 14 pelajaran, 7 mini proyek, 660 XP.
+
+| Modul | Isi |
+| --- | --- |
+| 1 Nilai dan Logika | console.log, const/let, tipe, template literal, === vs ==, if/else, falsy, loop |
+| 2 Fungsi dan Koleksi | return, arrow function, nilai bawaan, scope, array, object, map/filter/reduce |
+| 3 Bekerja dengan Halaman | querySelector, textContent vs innerHTML, classList, createElement, event, form |
+| 4 Kode yang Tangguh | try/catch/throw, JSON, optional chaining, `??` vs `\|\|`, proyek akhir |
+
+Modul 1 dan 2 murni logika: tidak ada HTML, dan hasilnya dibaca lewat `console.log`.
+Modul 3 dan 4 menyediakan markup, sehingga peserta menulis skrip terhadap halaman
+sungguhan dan melihatnya berubah.
+
+## Menjalankan JavaScript peserta
+
+Skrip peserta disisipkan sebagai **classic script**, bukan module. Itu disengaja: skrip
+klasik berbagi cakupan global frame-nya, sehingga pemeriksaan bisa menyebut langsung
+nama tingkat atas milik peserta — termasuk `const` dan `let`, yang tidak pernah mendarat
+di `window`. Pemeriksaannya sendiri dievaluasi lewat *indirect eval* agar berada di
+cakupan global yang sama.
+
+`console.log` ditangkap oleh skrip kecil yang dipasang **sebelum** kode peserta, dan
+tetap meneruskan ke konsol asli agar devtools tetap berguna. Pemeriksaan membacanya
+lewat `logs()`, `out()`, dan `error()`.
+
+Pratinjaunya juga menerima aliran log itu lewat `postMessage`, jadi latihan modul 1–2
+yang tidak punya halaman menampilkan panel konsol yang hidup alih-alih bingkai kosong.
+
+Untuk kejadian, pemeriksaan memicu sendiri event-nya lalu membaca akibatnya —
+`sel("#tombol").click()` atau `dispatchEvent(new Event("submit", { cancelable: true }))`
+— sehingga yang dibuktikan adalah penangannya benar-benar terpasang dan benar, bukan
+sekadar ada teks tertentu di kode.
+
 ## Struktur
 
 ```
@@ -197,11 +232,12 @@ src/
     python/         kursus Python: m1-basics … m9-private-apis
     html/           kursus HTML: m1-document … m4-semantics
     css/            kursus CSS: m1-rules … m4-states
+    javascript/     kursus JavaScript: m1-values … m4-robust
   lib/
     db.ts           kontrak yang harus dipenuhi setiap backend
     backends/       supabase.ts (asli) + local.ts (localStorage) + pemilihnya
     python.ts       pemuat Pyodide, runner, dan pemeriksa tes
-    web.ts          runner iframe tersandbox untuk HTML dan CSS (JS/React nanti)
+    web.ts          runner iframe tersandbox untuk HTML, CSS, dan JavaScript
     pythonModules.ts modul Python yang ditanam ke filesystem Pyodide (API tiruan)
     hearts.ts       ekonomi heart
     progress.ts     turunan: apa yang terbuka, tuntas, dan diperoleh
@@ -225,7 +261,7 @@ Tiap pelajaran menurunkan bantuan secara bertahap lewat lima jenis langkah
 | `fill` | mengisi bagian kosong pada kode yang hampir lengkap | sedang |
 | `order` | menyusun baris yang sudah benar ke urutan yang tepat | rendah |
 | `code` | menulis sendiri, diperiksa tes, petunjuk muncul bila diminta | minimal |
-| `web` | sama seperti `code`, tetapi menulis markup atau CSS dan melihatnya langsung dirender | minimal |
+| `web` | sama seperti `code`, tetapi menulis markup, CSS, atau JavaScript dan melihat hasilnya langsung | minimal |
 
 Mini proyek di akhir submateri adalah tahap tanpa penopang: hanya daftar syarat,
 editor kosong, dan tes.
@@ -302,11 +338,10 @@ window.__cek = { done: false }
 
 Tunggu sebentar, lalu periksa `window.__cek`.
 
-Untuk kursus CSS, sama persis tetapi `st.html` dan `s.project.html` harus ikut dioper
-sebagai argumen ketiga:
+Untuk kursus CSS dan JavaScript, sama persis tetapi `html` dan `js` harus ikut dioper:
 
 ```js
-await web.runWebTests(st.solution, st.tests, st.html)
+await web.runWebTests(st.solution, st.tests, st.html, st.js)
 ```
 
 ## Isi kursus Python

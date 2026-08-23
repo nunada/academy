@@ -39,7 +39,14 @@ export interface PyTest {
  *    style(q, p)   computed value of CSS property p on the first match
  *    css()         the whole stylesheet as text, for rules getComputedStyle
  *                  cannot see — :hover, or a media query that is not matching
+ *    logs()        array of lines the learner's code passed to console.log
+ *    out()         those lines joined with newlines
+ *    error()       message of an uncaught error, or null
  *    assert(c, m)  fail with message m when c is falsy
+ *
+ *  In a `js` exercise the learner's script has already run in this same frame,
+ *  so its top-level names — `function`, `const`, `let` alike — can be referenced
+ *  directly by name inside `check`.
  *  Throwing fails the test, and the thrown message is what the learner sees. */
 export interface WebTest {
   name: Loc
@@ -110,10 +117,12 @@ export type Step =
       tests: WebTest[]
       hints: Loc[]
       solution: string
-      /** Fixed markup for the exercise. When present the learner writes CSS,
-       *  which is wrapped in a <style> tag and applied to this markup — the
-       *  shape a CSS lesson needs, where the HTML is context, not the task. */
+      /** Fixed markup for the exercise. When present the learner writes CSS
+       *  (or, with `js`, JavaScript) against this page rather than authoring it.
+       *  The HTML becomes context; the exercise is the stylesheet or the script. */
       html?: string
+      /** The editor holds JavaScript, run as a script on the page. */
+      js?: boolean
     }
 
 export interface Lesson {
@@ -141,7 +150,7 @@ interface MiniProjectBase {
  *  Python is the default, which keeps every existing project unchanged. */
 export type MiniProject =
   | (MiniProjectBase & { runtime?: 'python'; tests: PyTest[] })
-  | (MiniProjectBase & { runtime: 'web'; tests: WebTest[]; html?: string })
+  | (MiniProjectBase & { runtime: 'web'; tests: WebTest[]; html?: string; js?: boolean })
 
 export interface Submodule {
   id: string
