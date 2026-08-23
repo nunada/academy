@@ -4,9 +4,11 @@ import { useI18n } from '../i18n'
 import { runPython, runTests, type TestOutcome } from '../lib/python'
 import { runWebTests, type WebOutcome } from '../lib/web'
 import { runSql, runSqlTests, type SqlOutcome, type SqlResult } from '../lib/sql'
+import { compileTs, runTsTests, type TsCompile, type TsOutcome } from '../lib/ts'
 import { CodeBlock, CodeEditor, LivePreview, Output, Rich } from './ui'
-import { ResultList, fromPython, fromWeb, fromSql } from './results'
+import { ResultList, fromPython, fromWeb, fromSql, fromTs } from './results'
 import { ResultTable } from './ResultTable'
+import { CompileReport } from './CompileReport'
 
 interface Props {
   step: Step
@@ -34,6 +36,8 @@ export default function StepView(props: Props) {
       return <WebStep {...props} step={props.step} />
     case 'sql':
       return <SqlStep {...props} step={props.step} />
+    case 'ts':
+      return <TsStep {...props} step={props.step} />
   }
 }
 
@@ -614,6 +618,111 @@ function SqlStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
             <b>{allPass ? t('allTestsPass') : t('someTestsFail')}</b>
           </div>
           <ResultList rows={fromSql(outcomes)} />
+        </>
+      )}
+    </div>
+  )
+}
+
+/* -------------------------------------------------------------------- ts */
+
+function TsStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'ts' }> }) {
+  const { t, tc } = useI18n()
+  const [code, setCode] = useState(step.starter)
+  const [busy, setBusy] = useState(false)
+  const [outcomes, setOutcomes] = useState<TsOutcome[] | null>(null)
+  const [compiled, setCompiled] = useState<TsCompile | null>(null)
+  const [hintsShown, setHintsShown] = useState(0)
+  const [showSolution, setShowSolution] = useState(false)
+
+  const allPass = outcomes !== null && outcomes.every((o) => o.passed)
+
+  async function doRun() {
+    setBusy(true)
+    try {
+      setCompiled(await compileTs(code))
+      setOutcomes(null)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function doCheck() {
+    setBusy(true)
+    try {
+      const res = await runTsTests(code, step.tests)
+      setOutcomes(res)
+      setCompiled(null)
+      if (res.every((o) => o.passed)) onSolved()
+      else onWrong()
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="card">
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
+
+      <div className="io-label">TypeScript</div>
+      <CodeEditor value={code} onChange={setCode} disabled={solved} rows={12} />
+
+      <div className="row">
+        <button className="btn soft sm" onClick={() => void doRun()} disabled={busy}>
+          ▶ {t('runCode')}
+        </button>
+        {!solved && (
+          <button className="btn sm" onClick={() => void doCheck()} disabled={busy || blocked}>
+            {t('check')}
+          </button>
+        )}
+        {step.hints.length > 0 && hintsShown < step.hints.length && !solved && (
+          <button className="btn ghost sm" onClick={() => setHintsShown((n) => n + 1)}>
+            💡 {t('hint')} ({hintsShown}/{step.hints.length})
+          </button>
+        )}
+        {hintsShown >= step.hints.length && !solved && !showSolution && (
+          <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
+            {t('showSolution')}
+          </button>
+        )}
+      </div>
+
+      {busy && (
+        <p className="small muted" style={{ marginTop: 8 }}>
+          🧩 {tc({ en: 'Loading the TypeScript compiler…', id: 'Memuat kompiler TypeScript…' })}
+        </p>
+      )}
+
+      {step.hints.slice(0, hintsShown).map((h, i) => (
+        <div className="banner" key={i} style={{ marginTop: 10, marginBottom: 0 }}>
+          <span>💡</span>
+          <span>
+            <Rich text={tc(h)} />
+          </span>
+        </div>
+      ))}
+
+      {showSolution && (
+        <div style={{ marginTop: 12 }}>
+          <div className="io-label">{t('showSolution')}</div>
+          <CodeBlock>{step.solution}</CodeBlock>
+          <button className="btn ghost sm" onClick={() => setCode(step.solution)}>
+            ↧ {tc({ en: 'Copy into the editor', id: 'Salin ke editor' })}
+          </button>
+        </div>
+      )}
+
+      {compiled && <CompileReport result={compiled} />}
+
+      {outcomes && (
+        <>
+          <div className={allPass ? 'verdict ok' : 'verdict no'} style={{ marginTop: 12 }}>
+            <b>{allPass ? t('allTestsPass') : t('someTestsFail')}</b>
+          </div>
+          <ResultList rows={fromTs(outcomes)} />
         </>
       )}
     </div>

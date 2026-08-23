@@ -8,9 +8,11 @@ import { isUnlocked } from '../lib/progress'
 import { runPython, runTests, splitStdin } from '../lib/python'
 import { runWebTests } from '../lib/web'
 import { runSql, runSqlTests, type SqlResult } from '../lib/sql'
-import { ResultList, fromPython, fromWeb, fromSql, type ResultRow } from '../components/results'
+import { compileTs, runTsTests, type TsCompile } from '../lib/ts'
+import { ResultList, fromPython, fromWeb, fromSql, fromTs, type ResultRow } from '../components/results'
 import { CodeBlock, CodeEditor, LivePreview, Output, Rich } from '../components/ui'
 import { ResultTable } from '../components/ResultTable'
+import { CompileReport } from '../components/CompileReport'
 
 function findProject(courseId: string, projectId: string): MiniProject | undefined {
   const course = courseById(courseId)
@@ -37,6 +39,7 @@ export default function ProjectPage() {
   const [rows, setRows] = useState<ResultRow[] | null>(null)
   const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
   const [runRows, setRunRows] = useState<SqlResult | null>(null)
+  const [compiled, setCompiled] = useState<TsCompile | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
   const [showSolution, setShowSolution] = useState(false)
   const [finished, setFinished] = useState(false)
@@ -58,6 +61,8 @@ export default function ProjectPage() {
   const consoleOnly = isJs && !isReact && (project.html === undefined || project.html.trim() === '')
   // SQL projects run in the app like Python, but answer with a grid of rows.
   const isSql = project.runtime === 'sql'
+  // TypeScript projects answer with the compiler's opinion first of all.
+  const isTs = project.runtime === 'ts'
 
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === project.id)
@@ -69,6 +74,8 @@ export default function ProjectPage() {
     try {
       if (project.runtime === 'sql') {
         setRunRows(await runSql(project.schema, code))
+      } else if (project.runtime === 'ts') {
+        setCompiled(await compileTs(code))
       } else {
         const res = await runPython(code, splitStdin(stdin))
         setRunOut({
@@ -92,10 +99,13 @@ export default function ProjectPage() {
           ? fromWeb(await runWebTests(code, project.tests, project.html, project.js, project.react))
           : project.runtime === 'sql'
             ? fromSql(await runSqlTests(project.schema, code, project.tests))
-            : fromPython(await runTests(code, project.tests))
+            : project.runtime === 'ts'
+              ? fromTs(await runTsTests(code, project.tests))
+              : fromPython(await runTests(code, project.tests))
       setRows(next)
       setRunOut(null)
       setRunRows(null)
+      setCompiled(null)
       if (next.every((o) => o.passed)) {
         const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: project.xp })
         setAwarded(xp)
@@ -189,6 +199,11 @@ export default function ProjectPage() {
             <div className="io-label">SQL</div>
             <CodeEditor value={code} onChange={setCode} rows={16} />
           </>
+        ) : isTs ? (
+          <>
+            <div className="io-label">TypeScript</div>
+            <CodeEditor value={code} onChange={setCode} rows={18} />
+          </>
         ) : (
           <>
             <CodeEditor value={code} onChange={setCode} rows={16} />
@@ -227,9 +242,15 @@ export default function ProjectPage() {
           })}
         </p>
 
-        {busy && !isWeb && !isSql && (
+        {busy && !isWeb && !isSql && !isTs && (
           <p className="small muted" style={{ marginTop: 8 }}>
             🐍 {t('loadingPython')}
+          </p>
+        )}
+
+        {busy && isTs && (
+          <p className="small muted" style={{ marginTop: 8 }}>
+            🧩 {tc({ en: 'Loading the TypeScript compiler…', id: 'Memuat kompiler TypeScript…' })}
           </p>
         )}
 
@@ -262,6 +283,8 @@ export default function ProjectPage() {
             <ResultTable result={runRows} />
           </div>
         )}
+
+        {compiled && <CompileReport result={compiled} />}
 
         {rows && (
           <>

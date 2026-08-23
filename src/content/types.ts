@@ -83,6 +83,37 @@ export interface SqlTest {
   verify?: string
 }
 
+/** A check that runs against the learner's TypeScript.
+ *
+ *  A type is only as good as what it refuses, so the usual check appends a
+ *  `probe` — a value handed to the type they wrote — and asks the compiler
+ *  whether it accepted it. Set `expectError` when the probe is the bad value
+ *  the type is supposed to catch, and leave it off when the probe is a good
+ *  value that must go through.
+ *
+ *  The learner's own code is compiled first and must be clean, so an error
+ *  found with a probe attached can only have come from the probe.
+ *
+ *  `errorCode` pins the expectation to one TypeScript error — 2322 not
+ *  assignable, 2345 bad argument, 2339 no such property, 2741 missing
+ *  property, 18048 possibly undefined. Steadier than matching message text,
+ *  which changes between compiler releases.
+ *
+ *  `check` is the other kind: JavaScript run against the emitted output in the
+ *  sandboxed frame, with every helper a `web` check gets. Use it for what the
+ *  code *does*; use a probe for what the types *say*. */
+export interface TsTest {
+  name: Loc
+  /** TypeScript appended after the learner's code. */
+  probe?: string
+  /** The probe must be rejected. Without this, it must be accepted. */
+  expectError?: boolean
+  /** Narrow `expectError` to one TypeScript error code. */
+  errorCode?: number
+  /** Behaviour check, run on the compiled JavaScript. */
+  check?: string
+}
+
 /**
  * Steps are ordered so support fades across a lesson:
  * `concept` (worked example) -> `quiz` (predict) -> `fill` (complete) ->
@@ -170,6 +201,17 @@ export type Step =
       /** DDL and seed data, run before every check and before every free run. */
       schema: string
     }
+  | {
+      /** Same rung as `code`, `web` and `sql`: the learner writes TypeScript and
+       *  finds out what the compiler makes of it. */
+      kind: 'ts'
+      id: string
+      prompt: Loc
+      starter: string
+      tests: TsTest[]
+      hints: Loc[]
+      solution: string
+    }
 
 export interface Lesson {
   id: string
@@ -198,6 +240,7 @@ export type MiniProject =
   | (MiniProjectBase & { runtime?: 'python'; tests: PyTest[] })
   | (MiniProjectBase & { runtime: 'web'; tests: WebTest[]; html?: string; js?: boolean; react?: boolean })
   | (MiniProjectBase & { runtime: 'sql'; tests: SqlTest[]; schema: string })
+  | (MiniProjectBase & { runtime: 'ts'; tests: TsTest[] })
 
 export interface Submodule {
   id: string

@@ -6,8 +6,8 @@ oleh tes sungguhan. Antarmuka bisa diganti antara **English** dan **Bahasa Indon
 kapan saja.
 
 Kursus yang sudah aktif: **Python** (9 modul), lalu **HTML**, **CSS**, **JavaScript**,
-**SQL**, dan **React** (masing-masing 4 modul), ditambah jalur karier
-**Python Developer** dan **Back-End Developer**.
+**SQL**, **TypeScript**, dan **React** (masing-masing 4 modul), ditambah jalur karier
+**Python Developer**, **Front-End**, **Back-End**, dan **Full-Stack Developer**.
 
 ## Menjalankan
 
@@ -303,6 +303,55 @@ yang sama. Sebuah tes boleh menyatakan bahwa ia memang menginginkan nol baris de
 Perbandingan barisnya tidak peduli urutan kecuali tes menyebut `ordered: true` — jadi
 `ORDER BY` hanya wajib ketika latihannya memang meminta urutan.
 
+## Menjalankan TypeScript peserta
+
+Kursus TypeScript yang hanya *menjalankan* kodenya akan jadi kursus JavaScript
+dengan tanda baca tambahan — seluruh pokok bahasannya justru adalah apa yang
+**ditolak** kompilernya. Maka `typescript` sungguhan dimuat di peramban dan
+dimintai diagnostiknya ([`src/lib/ts.ts`](src/lib/ts.ts)).
+
+Ukurannya 3,4 MB terminifikasi (0,97 MB lewat kabel), dan itulah sebabnya baik
+kompilernya maupun teks lib-nya berada di balik `await import(...)`: tak ada satu
+pun yang masuk ke bundel utama, dan peserta yang tak pernah membuka kursus ini
+tak pernah membayarnya. Vite memisahkannya jadi dua potong tersendiri,
+`typescript-*.js` dan `tsLib-*.js`.
+
+**Lib-nya diambil apa adanya, kecuali DOM.** Tanpa `lib.es*.d.ts`, tiap program
+biasa jadi dinding "Cannot find name". [`src/lib/tsLib.ts`](src/lib/tsLib.ts)
+mengimpor 45 berkas itu sebagai teks — penutupan transitif dari referensi di
+`lib.es2020.d.ts`, dibangkitkan, bukan ditebak. `lib.dom.d.ts` ditinggalkan
+karena ia sendirian 1,9 MB dan kursus ini tak pernah menyentuh DOM; deklarasi
+`console` empat baris menggantikannya.
+
+**Berkas lib yang sudah diurai disimpan.** Mengurai 425 KB lib di tiap
+pemeriksaan memakan 48 ms; menyimpan hasil uraiannya memakan 3 ms. Hanya berkas
+peserta yang diurai ulang. Proyek penutup punya 18 pemeriksaan, dan selisih itu
+yang membuatnya terasa 1,5 detik alih-alih belasan.
+
+**Ada dua macam pemeriksaan**, dan itu langsung mengikuti dari cara kerjanya:
+
+- pemeriksaan **tipe** mengompilasi kode peserta dengan sebuah `probe`
+  ditempelkan — sebuah nilai yang disodorkan ke tipe buatan mereka — lalu
+  menanyakan apakah kompilernya menerimanya. Menyodorkan nilai ke sebuah tipe
+  adalah satu-satunya cara mengetahui apa yang sebenarnya tipe itu katakan.
+  `expectError` dipakai ketika probe-nya justru nilai buruk yang seharusnya
+  ditangkap; `errorCode` mempersempitnya ke satu galat tertentu.
+- pemeriksaan **perilaku** menjalankan JavaScript hasil kompilasinya di dalam
+  frame tersandbox yang sudah dipakai kursus web, dengan seluruh pembantu yang
+  sama.
+
+**Kode peserta dikompilasi sendirian lebih dulu.** Kalau ia tidak lolos, tiap
+tes gagal dengan kata-kata kompilernya sendiri — tak ada gunanya bertanya apa
+yang diterima sebuah tipe selagi tipenya masih rusak. Ini juga yang membuat
+`expectError` jujur: sumbernya sudah terbukti bersih, jadi galat yang muncul
+hanya mungkin berasal dari probe-nya.
+
+Satu catatan saat menulis materi: **jangan menebak `errorCode`.** TypeScript
+punya varian "Did you mean" tersendiri untuk nilai yang nyaris benar — `terjal`
+alih-alih `terjual` memberi TS2561, bukan TS2353, dan `"Kecil"` alih-alih
+`"kecil"` memberi TS2820, bukan TS2322. Jalankan pemeriksanya (di bawah) dan
+biarkan ia yang menyebutkan kodenya.
+
 ## Struktur
 
 ```
@@ -317,6 +366,7 @@ src/
     javascript/     kursus JavaScript: m1-values … m4-robust
     react/          kursus React: m1-components … m4-app
     sql/            kursus SQL: m1-select … m4-writing
+    typescript/     kursus TypeScript: m1-annotations … m4-holding
   lib/
     db.ts           kontrak yang harus dipenuhi setiap backend
     backends/       supabase.ts (asli) + local.ts (localStorage) + pemilihnya
@@ -324,13 +374,16 @@ src/
     web.ts          runner iframe tersandbox untuk HTML, CSS, JavaScript, React
     reactRuntime.ts React/ReactDOM sebagai teks + transpilasi JSX lewat Babel
     sql.ts          SQLite lewat sql.js — basis data baru untuk tiap pemeriksaan
+    ts.ts           kompiler TypeScript sungguhan, dimuat malas, untuk diagnostik
+    tsLib.ts        rantai lib.es*.d.ts sebagai teks (dibangkitkan)
     pythonModules.ts modul Python yang ditanam ke filesystem Pyodide (API tiruan)
     hearts.ts       ekonomi heart
     progress.ts     turunan: apa yang terbuka, tuntas, dan diperoleh
     week.ts         batas minggu (Senin UTC), disamakan dengan Postgres
   app/store.tsx     satu sumber kebenaran untuk sesi + progres
   components/       Layout, StepView (pemutar langkah), results.tsx, ui.tsx,
-                    ResultTable.tsx (kisi hasil SQL)
+                    ResultTable.tsx (kisi hasil SQL),
+                    CompileReport.tsx (keberatan kompiler TypeScript)
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
                     Project, Playground, Leaderboard, Profile, Certificate
 supabase/schema.sql skema, RPC, dan RLS
@@ -350,6 +403,7 @@ Tiap pelajaran menurunkan bantuan secara bertahap lewat lima jenis langkah
 | `code` | menulis sendiri, diperiksa tes, petunjuk muncul bila diminta | minimal |
 | `web` | sama seperti `code`, tetapi menulis markup, CSS, JavaScript, atau JSX dan melihat hasilnya langsung | minimal |
 | `sql` | sama seperti `code`, tetapi menulis pernyataan SQL dan melihat baris yang kembali | minimal |
+| `ts` | sama seperti `code`, tetapi menulis TypeScript dan melihat apa kata kompilernya | minimal |
 
 Mini proyek di akhir submateri adalah tahap tanpa penopang: hanya daftar syarat,
 editor kosong, dan tes.
@@ -370,6 +424,8 @@ ada komponen baru yang perlu ditulis.
    menjalankan Python tambahan di namespace yang sama (`assert`).
 5. Untuk langkah `sql`, tesnya memakai `expectColumns`, `expectRows`, `ordered`, dan
    `verify` — lihat `SqlTest` di [`src/content/types.ts`](src/content/types.ts).
+6. Untuk langkah `ts`, tesnya memakai `probe`, `expectError`, `errorCode`, dan
+   `check` — lihat `TsTest` di [`src/content/types.ts`](src/content/types.ts).
 
 Untuk membuka kursus yang masih "Segera hadir", ubah `available: true` di
 `src/content/catalog.ts` dan isi `modules`-nya.
@@ -455,6 +511,30 @@ for (const m of sqlCourse.modules)
 bad
 ```
 
+Untuk kursus TypeScript, polanya sama. Pemuatan pertama mengunduh kompilernya,
+jadi berikan waktu sebentar:
+
+```js
+window.__cek = { done: false }
+;(async () => {
+  const tsr = await import('/src/lib/ts.ts')
+  const { typescriptCourse } = await import('/src/content/typescript/index.ts')
+  const bad = []
+  const cek = async (it) => {
+    if ((await tsr.runTsTests(it.solution, it.tests)).some(o => !o.passed)) bad.push(['solusi gagal', it.id])
+    if ((await tsr.runTsTests(it.starter, it.tests)).every(o => o.passed)) bad.push(['tes kosong', it.id])
+  }
+  for (const m of typescriptCourse.modules)
+    for (const s of m.submodules) {
+      for (const l of s.lessons)
+        for (const st of l.steps)
+          if (st.kind === 'ts') await cek(st)
+      await cek(s.project)
+    }
+  window.__cek = { done: true, bad }
+})()
+```
+
 ## Isi kursus Python
 
 9 modul, 18 submateri, 37 pelajaran, 18 mini proyek, 1700 XP:
@@ -492,10 +572,32 @@ Data tiap modul dibentuk untuk latihannya: tabel `buku` cukup kecil untuk diperi
 dengan mata, tabel `pesanan` punya kolom `kupon` yang sebagian besar NULL, dan skema
 sekolah di modul 3 sengaja menyimpan satu kelas tanpa siswa dan satu siswa tanpa kelas.
 
+## Isi kursus TypeScript
+
+4 modul, 7 submateri, 14 pelajaran, 7 mini proyek, 660 XP. Prasyaratnya JavaScript.
+
+| Modul | Isi |
+| --- | --- |
+| 1 Menyatakan Maksudmu | keterangan tipe, inferensi, `any`, parameter, opsional dan nilai bawaan, interface, array, tuple |
+| 2 Salah Satu dari Beberapa | union, tipe literal, penyempitan lewat typeof/===/Array.isArray, union bertanda, `never`, null dan `?.` dan `??` |
+| 3 Tipe yang Menerima Tipe | fungsi generik, batasan, tipe generik, `Record`, `keyof`, `T[K]`, `Partial`/`Pick`/`Omit` |
+| 4 Tipe yang Tahan Uji | `unknown` lawan `any`, predikat tipe, `as` sebagai kebohongan, `as const`, `readonly` |
+
+Kursusnya berjalan dengan `strict: true` sejak baris pertama, karena TypeScript
+tanpa `strict` mengajarkan separuh bahasanya yang justru tidak menangkap apa pun.
+Akibatnya, banyak kode awal di sini memang **sengaja tidak bisa dikompilasi** —
+`function sapa(nama)` di pelajaran pertama gagal dengan TS7006, dan membaca galat
+itu adalah langkah pertama latihannya, bukan kecelakaan.
+
+Dua gagasan diberi ruang lebih. Yang pertama, `unknown` lawan `any`: keduanya
+menerima nilai yang sama dan berbeda sepenuhnya pada apa yang boleh kamu lakukan
+sesudahnya. Yang kedua, memodelkan agar keadaan buruk tak bisa ditulis — beberapa
+kode awal di modul 2 dan 4 justru berupa satu objek dengan semua field opsional,
+bentuk yang keberadaan union bertanda memang untuk menggantikannya.
+
 ## Peta jalan
 
-Yang masih bertanda "Segera hadir" di katalog tinggal **TypeScript** (prasyarat
-JavaScript) dan **Game Development** (prasyarat Python). Jalur karier Front-End dan
-Full-Stack masih terkunci karena keduanya menunggu kursus-kursus itu. Playground pun
-sudah menyiapkan tempat untuk static website, React app, React app + router, dan
+Yang masih bertanda "Segera hadir" di katalog tinggal **Game Development**
+(prasyarat Python). Keempat jalur karier sudah terbuka. Playground pun sudah
+menyiapkan tempat untuk static website, React app, React app + router, dan
 JavaScript; saat ini hanya Python yang aktif.

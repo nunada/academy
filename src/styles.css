@@ -519,3 +519,9 @@ table.rows th {
 }
 table.rows td.nul { color: var(--muted); font-style: italic; }
 table.rows tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surface-2) 45%, transparent); }
+
+/* A type error arrives as several lines, and they only read as an error list
+   if the newlines survive. */
+.testrow .detail {
+  white-space: pre-wrap;
+}

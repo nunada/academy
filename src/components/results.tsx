@@ -4,6 +4,7 @@ import type { Loc } from '../content/types'
 import type { TestOutcome } from '../lib/python'
 import type { WebOutcome } from '../lib/web'
 import type { SqlOutcome, SqlValue } from '../lib/sql'
+import type { TsOutcome } from '../lib/ts'
 import { useI18n } from '../i18n'
 import { Output } from './ui'
 import { RowDiff } from './ResultTable'
@@ -49,6 +50,10 @@ export const fromSql = (outcomes: SqlOutcome[]): ResultRow[] =>
         : undefined,
   }))
 
+/** Type errors are already one line each; they only need carrying across. */
+export const fromTs = (outcomes: TsOutcome[]): ResultRow[] =>
+  outcomes.map((o) => ({ name: o.test.name, passed: o.passed, detail: o.detail }))
+
 export function ResultList({ rows }: { rows: ResultRow[] }) {
   const { t, tc } = useI18n()
   return (
@@ -58,7 +63,7 @@ export function ResultList({ rows }: { rows: ResultRow[] }) {
           <span className="mark">{r.passed ? '✓' : '✕'}</span>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div>{tc(r.name)}</div>
-            {!r.passed && r.detail && <div className="small muted">{r.detail}</div>}
+            {!r.passed && r.detail && <div className="small muted detail">{r.detail}</div>}
             {!r.passed && r.sql && (
               <RowDiff
                 got={r.sql.got}
