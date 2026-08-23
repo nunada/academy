@@ -562,3 +562,11 @@ canvas.game {
   color: var(--muted);
   background: color-mix(in srgb, var(--surface) 78%, transparent);
 }
+
+/* Playground: the runtime picker sits above the template chips, and two rows of
+   small buttons otherwise read as one long row. A rule separates the levels. */
+.row.modes {
+  gap: 6px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}

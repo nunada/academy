@@ -397,6 +397,34 @@ merender ulang komponennya enam puluh kali sedetik, dan loop-nya membaca ref itu
 langsung. Pembungkus kanvasnya bisa difokus karena tanpa fokus, tombol panah
 menggulirkan halaman alih-alih menggerakkan pemain.
 
+## Playground
+
+Ruang bebas yang memakai ulang ketujuh runtime-nya tanpa membangun apa pun yang
+baru: Python (Pyodide), situs statis, JavaScript, dan React (bingkai tersandbox
+dalam tiga bentuknya), SQL (sql.js), TypeScript (kompilernya), dan Game (loop
+bingkainya). Halamannya sekadar switch atas mode; isinya ada di
+[`src/content/playground.ts`](src/content/playground.ts) sebagai data, seperti
+kurikulumnya.
+
+Apa yang kamu tulis disimpan per mode di localStorage. Ruang coret-coret yang
+kehilangan pekerjaanmu saat halaman dimuat ulang bukanlah ruang coret-coret.
+
+**Soal "React app + router".** Rencana awalnya menyisipkan react-router seperti
+React disisipkan. Dua pengukuran menghentikannya. Pertama, di dalam bingkai
+ber-origin buram, `history.pushState` dan `replaceState` melempar SecurityError —
+dan di situlah react-router memindahkan halaman; ia akan jatuh ke
+`location.assign`, yang memuat ulang bingkainya dan menghapus seluruh state di
+tiap klik tautan. Kedua, `location.hash` dan `hashchange` justru bekerja.
+
+Maka router-nya ditulis di dalam templatnya sendiri: dua puluh baris yang bisa
+dibaca dan diubah peserta, memakai hash. Ada satu jebakan lagi yang juga terukur:
+`href="#/tentang"` saja tidak cukup, karena dokumen `srcdoc` ber-origin buram tak
+punya alamat dasar yang bisa dipakai — `#/tentang` diselesaikan terhadap
+`about:blank` dan peramban memperlakukan kliknya sebagai pindah halaman, sehingga
+pratinjaunya jadi kosong. Jadi tautannya mencegat kliknya sendiri lalu menyetel
+hash-nya. Kebetulan itu justru yang dilakukan `<Link>` react-router — hanya
+dengan tujuan yang berbeda.
+
 ## Struktur
 
 ```
@@ -413,6 +441,7 @@ src/
     sql/            kursus SQL: m1-select … m4-writing
     typescript/     kursus TypeScript: m1-annotations … m4-holding
     gamedev/        kursus Game Development: m1-loop … m4-whole
+    playground.ts   mode dan templat Playground
   lib/
     db.ts           kontrak yang harus dipenuhi setiap backend
     backends/       supabase.ts (asli) + local.ts (localStorage) + pemilihnya
@@ -703,5 +732,5 @@ biasa di [`src/content/catalog.ts`](src/content/catalog.ts) dengan
 tanpa bisa didaftari, dan halaman depan menurunkan kalimat "segera hadir"-nya
 dari daftar itu.
 
-Playground sudah menyiapkan tempat untuk static website, React app, React app +
-router, dan JavaScript; saat ini hanya Python yang aktif.
+Playground pun sudah lengkap: ketujuh runtime-nya aktif, termasuk situs statis,
+JavaScript, React, dan React dengan router.
