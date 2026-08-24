@@ -258,6 +258,10 @@ $$;
 -- learner would see one number in their header and another on the board.
 -- Spelling out the zone makes them agree by construction instead of by
 -- configuration. Both are Monday-based: Postgres weeks are ISO weeks.
+--
+-- Measured on this project afterwards: TimeZone is UTC, so the two spellings
+-- return the same instant and nothing was ever wrong here. This guards against
+-- a database that is not UTC, not against an outage that happened.
 
 create or replace function public.leaderboard_weekly(p_limit integer default 50)
 returns table (user_id uuid, username text, display_name text, value bigint)
