@@ -9,8 +9,22 @@
  *  sandbox strict is worth more than the convenience.
  *
  *  So React and ReactDOM are inlined into the document as text, and JSX is
- *  transpiled out here in the app rather than by a Babel loaded in every frame.
- *  Babel is 2.3 MB; loading it once, lazily, beats loading it 40 times. */
+ *  transpiled out here in the app rather than by a transpiler loaded into every
+ *  frame — once, lazily, instead of forty times.
+ *
+ *  That transpiler is sucrase rather than Babel. Babel was the obvious first
+ *  choice and it worked, but @babel/standalone is the whole toolchain — 684 KB
+ *  over the wire — to perform one transform. sucrase does the same JSX
+ *  transform in 46 KB, produces the same `React.createElement` calls, leaves
+ *  every top-level binding exactly where it was (which is what lets a check
+ *  name them), and decodes JSX entities identically. Checked case by case
+ *  against Babel's output before the swap: spreads, entities, boolean
+ *  attributes, fragments and nesting all come out equivalent.
+ *
+ *  Two things Babel gave for free are bought back below: a code frame on a
+ *  syntax error, built from the line and column sucrase reports; and validation
+ *  of the whole file, since sucrase parses only as far as the JSX transform
+ *  needs and would let a plain JavaScript mistake through. */
 
 let runtimeCache: string | null = null
 
@@ -34,21 +48,46 @@ export async function reactRuntime(): Promise<string> {
 
 export interface Transpiled {
   code?: string
-  /** A syntax error, already trimmed to the line the learner can act on. */
+  /** A syntax error, with the offending line under it. */
   error?: string
+}
+
+/** sucrase reports `(line:column)` at the end of its message. Turn that into
+ *  the line itself with a caret under the spot — the thing a learner actually
+ *  reads. Falls back to the bare message when there is no position. */
+function withFrame(message: string, source: string): string {
+  const at = /\((\d+):(\d+)\)\s*$/.exec(message)
+  if (!at) return message
+
+  const line = Number(at[1])
+  const column = Number(at[2])
+  const text = source.split('\n')[line - 1]
+  if (text === undefined) return message
+
+  const gutter = `${line} | `
+  return [message, gutter + text, ' '.repeat(gutter.length + column) + '^'].join('\n')
 }
 
 /** JSX in, plain JavaScript out. Only the JSX transform runs, so the learner's
  *  const, let and arrow functions reach the frame exactly as written — which is
  *  what lets a check name their top-level bindings. */
 export async function transpileJsx(source: string): Promise<Transpiled> {
-  const Babel = await import('@babel/standalone')
+  const { transform } = await import('sucrase')
   try {
-    const out = Babel.transform(source, { presets: ['react'], sourceType: 'script' })
-    return { code: out.code ?? '' }
+    // `production` drops the development-only source annotations; only the JSX
+    // transform runs, so const, let and arrow functions reach the frame exactly
+    // as written, on the lines they were written on.
+    const out = transform(source, { transforms: ['jsx'], production: true })
+
+    // sucrase parses only as far as the JSX transform needs, so a plain
+    // JavaScript syntax error further down would sail through and surface as a
+    // check that mysteriously found nothing. Babel validated the whole file;
+    // this buys that back for nothing. `new Function` compiles without running.
+    new Function(out.code)
+
+    return { code: out.code }
   } catch (err) {
     const message = String((err as Error).message ?? err)
-    // Babel prefixes the pseudo-filename; the learner never saw that name.
-    return { error: message.replace(/^unknown( file)?:\s*/i, '') }
+    return { error: withFrame(message, source) }
   }
 }

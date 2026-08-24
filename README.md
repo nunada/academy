@@ -253,11 +253,27 @@ menjangkau DOM aplikasi dan sesi Supabase-nya. Sandbox yang ketat lebih berharga
 daripada kemudahannya.
 
 Maka: React dan ReactDOM disisipkan sebagai teks ke dalam dokumennya, dan JSX
-ditranspilasi di aplikasi lewat `@babel/standalone` yang diimpor dinamis
-([`src/lib/reactRuntime.ts`](src/lib/reactRuntime.ts)). Babel 2,3 MB — dimuat sekali,
-malas, jauh lebih baik daripada 40 kali. Efek sampingnya menyenangkan: JSX yang belum
-selesai diketik dilaporkan sebagai *syntax error* beserta cuplikan barisnya, bukan
-sebagai kesenyapan.
+ditranspilasi di aplikasi ([`src/lib/reactRuntime.ts`](src/lib/reactRuntime.ts)) —
+sekali, malas, alih-alih empat puluh kali.
+
+**Transpilernya sucrase, bukan Babel.** Babel pilihan pertama yang wajar dan ia bekerja,
+tetapi `@babel/standalone` adalah seluruh perkakasnya — 684 KB lewat kabel — untuk
+mengerjakan satu transformasi. sucrase mengerjakan transformasi JSX yang sama dalam
+**46 KB**: 15 kali lebih kecil. Sebelum ditukar, keluarannya dibandingkan kasus per
+kasus dengan Babel — spread, entitas HTML, atribut boolean, fragmen, dan sarang — dan
+semuanya setara: `React.createElement` yang sama, tiap pengikatan tingkat atas tetap di
+tempatnya (dan itulah yang membuat sebuah pemeriksaan bisa menyebut namanya), entitas
+JSX diterjemahkan sama. sucrase malah mempertahankan nomor baris, jadi galat waktu jalan
+menunjuk baris yang benar-benar ditulis peserta.
+
+Dua hal yang tadinya gratis dari Babel dibeli kembali, keduanya murah:
+
+- **Cuplikan baris pada galat sintaks.** sucrase melaporkan `(baris:kolom)`; bingkainya
+  dibangun sendiri — baris yang bersangkutan, dengan caret di bawah titiknya.
+- **Validasi seluruh berkas.** sucrase hanya mengurai sejauh yang dibutuhkan transformasi
+  JSX, jadi kesalahan JavaScript biasa di bagian lain akan lolos dan muncul sebagai
+  pemeriksaan yang misterius tidak menemukan apa pun. Satu panggilan `new Function` pada
+  hasilnya mengompilasi tanpa menjalankan, dan mengembalikan jaminan itu.
 
 **Pemeriksaan berjalan asinkron.** React melakukan commit setelah penangan yang
 memicunya selesai, jadi pemeriksaan yang membaca DOM tepat setelah klik akan melihat
@@ -447,7 +463,7 @@ src/
     backends/       supabase.ts (asli) + local.ts (localStorage) + pemilihnya
     python.ts       pemuat Pyodide, runner, dan pemeriksa tes
     web.ts          runner iframe tersandbox untuk HTML, CSS, JavaScript, React
-    reactRuntime.ts React/ReactDOM sebagai teks + transpilasi JSX lewat Babel
+    reactRuntime.ts React/ReactDOM sebagai teks + transpilasi JSX lewat sucrase
     sql.ts          SQLite lewat sql.js — basis data baru untuk tiap pemeriksaan
     ts.ts           kompiler TypeScript sungguhan, dimuat malas, untuk diagnostik
     tsLib.ts        rantai lib.es*.d.ts sebagai teks (dibangkitkan)
@@ -476,9 +492,10 @@ muncul. Sekarang tiap kursus punya potongannya sendiri.
 
 | | sebelum | sesudah |
 | --- | --- | --- |
-| bundel utama | 1.582 KB / 444 KB gzip | 561 KB / **167 KB gzip** |
+| bundel utama | 1.582 KB / 444 KB gzip | 548 KB / **162 KB gzip** |
 | halaman depan (belum masuk) | 9 berkas, 444 KB | **1 berkas, 163 KB** |
 | tiap kursus | — | 25–52 KB gzip, diambil saat dibutuhkan |
+| transpiler JSX (hanya latihan React) | 684 KB gzip | **46 KB gzip** |
 
 **Kuncinya bukan pemisahannya, melainkan menemukan siapa yang sebenarnya butuh
 kurikulum.** Ternyata hampir tak ada. Tiap baris progres membawa `course_id`-nya

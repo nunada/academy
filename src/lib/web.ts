@@ -273,7 +273,7 @@ export async function runWebTests(
 ): Promise<WebOutcome[]> {
   if (!tests.length) return []
 
-  // JSX is transpiled here, in the app, not by a Babel inside every frame.
+  // JSX is transpiled here, in the app, not by a transpiler inside every frame.
   let runtime: string | undefined
   let code = source
   if (react) {

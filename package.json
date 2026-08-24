@@ -11,12 +11,12 @@
     "check:curriculum": "node tools/check-curriculum.mjs"
   },
   "dependencies": {
-    "@babel/standalone": "^7.29.8",
     "@supabase/supabase-js": "^2.45.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
-    "sql.js": "^1.14.2"
+    "sql.js": "^1.14.2",
+    "sucrase": "^3.35.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.11",
