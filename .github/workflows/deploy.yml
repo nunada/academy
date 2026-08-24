@@ -34,11 +34,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - run: npm ci
@@ -72,8 +72,14 @@ jobs:
           URL: ${{ secrets.VITE_SUPABASE_URL }}
           KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: |
-          if [ -z "$URL" ] || [ -z "$KEY" ]; then
-            echo "::error::Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY under Settings -> Secrets and variables -> Actions. Without them this would publish the local-mode app."
+          # Plain ifs, not `[ ... ] && ...`: steps run under `bash -e`, and a
+          # test that comes back false would end the step with a failure when
+          # everything was in fact fine.
+          missing=""
+          if [ -z "$URL" ]; then missing="VITE_SUPABASE_URL"; fi
+          if [ -z "$KEY" ]; then missing="$missing VITE_SUPABASE_ANON_KEY"; fi
+          if [ -n "$missing" ]; then
+            echo "::error::Empty:$missing. Two things make this happen. Either the secret is not there — check the exact name under Settings -> Secrets and variables -> Actions -> Repository secrets, and note that names are case-sensitive and an *environment* secret would not be visible to this job. Or this run simply started before the secret existed: a run reads secrets when it runs, not when the commit was pushed, so re-run it."
             exit 1
           fi
 
@@ -84,7 +90,7 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -96,4 +102,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
