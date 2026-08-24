@@ -46,7 +46,19 @@
      "ayo coba"; keduanya tidak boleh tertukar pada pesan jawaban salah. */
   --bad: #b84629;
   --bad-soft: #fbe9e3;
-  --warn: #c8912f;
+  /* Digelapkan dari #c8912f dengan alasan yang sama seperti ketiga token di
+     atas. `pill warn` menaruh warna ini di atas gold 18%, dan campuran itulah
+     yang harus dilawan — bukan krem polosnya. Nilai lama hanya mencapai 2,4:1
+     di sana. Selama ini tak terlihat karena satu-satunya chip warn adalah
+     lencana "Mode lokal", yang tidak pernah ikut terbit; halaman Kelas
+     memakainya untuk "Belum mulai" dan "10 hari lalu", justru kolom yang
+     dipindai seorang guru.
+
+     Diuji terhadap latar paling gelap yang mungkin, bukan yang paling terang:
+     baris tabel yang sedang disorot kursor. Di situ 4,7:1 — dan 5,3 di atas
+     baris biasa, 6,0 di atas bidang polos. Nada yang lolos di krem saja
+     (#8f5e10) jatuh ke 4,3 begitu barisnya tersorot. */
+  --warn: #87590f;
   --gold: #e0a92c;
 
   --radius: 14px;
@@ -570,3 +582,42 @@ canvas.game {
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border);
 }
+
+/* ------------------------------------------------------------------ kelas */
+
+table.roster {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+table.roster th, table.roster td {
+  border-bottom: 1px solid var(--border);
+  padding: 9px 12px;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: top;
+}
+table.roster th {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  font-weight: 700;
+}
+table.roster tbody tr:hover { background: var(--surface-2); }
+
+/* A sortable heading stays a button so it can be reached and pressed from the
+   keyboard. All it has to do is stop looking like one. */
+th .sortable {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+th .sortable:hover { color: var(--text); }
+th .sortable.on { color: var(--brand-dark); }
+th .sortable.on::after { content: ' ↓'; }

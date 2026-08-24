@@ -6,11 +6,13 @@ import type {
   AuthUser,
   Backend,
   CertificateRow,
+  CourseProgressRow,
   Enrollment,
   LeaderRow,
   LeaderboardKind,
   Profile,
   ProgressItem,
+  RosterRow,
   TrophyRow,
   UserState,
   XpEvent,
@@ -190,6 +192,22 @@ export function createSupabaseBackend(): Backend {
       const { data, error } = await sb.rpc(RPC_BY_KIND[kind], { p_limit: 50 })
       if (error) throw error
       return (data ?? []) as LeaderRow[]
+    },
+
+    // The two below raise 42501 for anybody who is not a teacher, and the error
+    // is left to travel: a learner who reaches this URL should see the page
+    // fail, not an empty roster that looks like a cohort of nobody.
+
+    async teacherRoster() {
+      const { data, error } = await sb.rpc('teacher_roster')
+      if (error) throw error
+      return (data ?? []) as RosterRow[]
+    },
+
+    async teacherCourseProgress() {
+      const { data, error } = await sb.rpc('teacher_course_progress')
+      if (error) throw error
+      return (data ?? []) as CourseProgressRow[]
     },
   }
 }

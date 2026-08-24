@@ -56,7 +56,7 @@ function TrophyList({ ids }: { ids: string[] }) {
 }
 
 export default function Layout() {
-  const { user, signOut, hearts, nextHeartIn, xpTotal, mode } = useStore()
+  const { user, state, signOut, hearts, nextHeartIn, xpTotal, mode } = useStore()
   const { t } = useI18n()
 
   return (
@@ -79,6 +79,7 @@ export default function Layout() {
             <NavLink to="/playground">{t('navPlayground')}</NavLink>
             <NavLink to="/leaderboard">{t('navLeaderboard')}</NavLink>
             <NavLink to="/profile">{t('navProfile')}</NavLink>
+            {state?.profile.role === 'teacher' && <NavLink to="/teacher">{t('navTeacher')}</NavLink>}
           </nav>
         )}
 

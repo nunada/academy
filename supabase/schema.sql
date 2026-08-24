@@ -384,3 +384,155 @@ grant execute on function public.issue_certificate(text, text) to authenticated;
 grant execute on function public.leaderboard_weekly(integer)   to authenticated;
 grant execute on function public.leaderboard_alltime(integer)  to authenticated;
 grant execute on function public.leaderboard_trophies(integer) to authenticated;
+
+-- ================================================================= teachers
+--
+-- A teacher sees every learner's standing. That is exactly the read the
+-- leaderboards refuse: they return an aggregate, and the rows behind it stay
+-- owner-only. So the roster arrives through security-definer functions that
+-- check the caller's role first, rather than by loosening row-level security
+-- and hoping every future query remembers to filter.
+
+alter table public.profiles
+  add column if not exists role text not null default 'learner'
+  check (role in ('learner', 'teacher'));
+
+-- Promote somebody by hand, from the SQL editor:
+--   update public.profiles set role = 'teacher' where username = 'yourname';
+-- The guard below is what stops that statement working from the app.
+
+create or replace function public.is_teacher()
+returns boolean
+language sql
+security definer
+stable
+set search_path = public
+as $$
+  select exists (select 1 from public.profiles where id = auth.uid() and role = 'teacher');
+$$;
+
+-- `profiles_write` lets a learner update their own row. Left alone, that now
+-- includes `role` — anybody could promote themselves and read the whole
+-- cohort. Row-level security cannot express "every column but this one", so
+-- the column grant does it: update is revoked wholesale and handed back for
+-- the two columns the app actually writes.
+--
+-- The trigger says the same thing a second time. It is not redundant against
+-- today's schema, it is redundant against a future `grant all on all tables`,
+-- which is advice common enough to turn up in a Supabase thread one day.
+
+revoke update on public.profiles from anon, authenticated;
+grant  update (display_name, lang) on public.profiles to authenticated;
+
+create or replace function public.guard_profile_role()
+returns trigger
+language plpgsql
+security invoker
+set search_path = public
+as $$
+begin
+  -- auth.uid() is null in the SQL editor and under the service role, which is
+  -- where a promotion is meant to come from.
+  if new.role is distinct from old.role and auth.uid() is not null then
+    raise exception 'role is not self-assignable' using errcode = '42501';
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists profiles_role_guard on public.profiles;
+create trigger profiles_role_guard
+  before update on public.profiles
+  for each row execute function public.guard_profile_role();
+
+-- One row per learner. Everybody appears, including somebody who signed up and
+-- has finished nothing — those are the rows a teacher most needs to see, and an
+-- inner join would drop them.
+--
+-- XP is summed from xp_events rather than from progress.xp, so this total and
+-- the leaderboard's agree by construction rather than by coincidence.
+create or replace function public.teacher_roster()
+returns table (
+  user_id      uuid,
+  username     text,
+  display_name text,
+  role         text,
+  created_at   timestamptz,
+  xp           bigint,
+  lessons      bigint,
+  projects     bigint,
+  trophies     bigint,
+  certificates bigint,
+  last_active  timestamptz
+)
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if not public.is_teacher() then
+    raise exception 'teachers only' using errcode = '42501';
+  end if;
+
+  return query
+    select p.id, p.username::text, p.display_name, p.role, p.created_at,
+           coalesce(x.xp, 0)::bigint,
+           coalesce(d.lessons, 0)::bigint,
+           coalesce(d.projects, 0)::bigint,
+           coalesce(t.trophies, 0)::bigint,
+           coalesce(c.certificates, 0)::bigint,
+           d.last_done
+      from public.profiles p
+      left join (select e.user_id, sum(e.amount) as xp
+                   from public.xp_events e group by e.user_id) x on x.user_id = p.id
+      left join (select g.user_id,
+                        count(*) filter (where g.kind = 'lesson')  as lessons,
+                        count(*) filter (where g.kind = 'project') as projects,
+                        max(g.completed_at)                        as last_done
+                   from public.progress g group by g.user_id) d on d.user_id = p.id
+      left join (select r.user_id, count(*) as trophies
+                   from public.trophies r group by r.user_id) t on t.user_id = p.id
+      left join (select f.user_id, count(*) as certificates
+                   from public.certificates f group by f.user_id) c on c.user_id = p.id
+     order by coalesce(x.xp, 0) desc, p.username asc;
+end;
+$$;
+
+-- Counts per learner per course, and nothing else. How many items a course
+-- holds is a property of the curriculum in src/content, not of this database,
+-- so the denominator stays in the app — which already carries it for every
+-- course card. Returning raw counts is what keeps that number in one place.
+create or replace function public.teacher_course_progress()
+returns table (
+  user_id      uuid,
+  course_id    text,
+  lessons      bigint,
+  projects     bigint,
+  last_touched timestamptz
+)
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if not public.is_teacher() then
+    raise exception 'teachers only' using errcode = '42501';
+  end if;
+
+  return query
+    select g.user_id, g.course_id,
+           count(*) filter (where g.kind = 'lesson')::bigint,
+           count(*) filter (where g.kind = 'project')::bigint,
+           max(g.completed_at)
+      from public.progress g
+     group by g.user_id, g.course_id;
+end;
+$$;
+
+revoke execute on function public.is_teacher()               from public, anon;
+revoke execute on function public.teacher_roster()           from public, anon;
+revoke execute on function public.teacher_course_progress()  from public, anon;
+
+grant execute on function public.is_teacher()              to authenticated;
+grant execute on function public.teacher_roster()          to authenticated;
+grant execute on function public.teacher_course_progress() to authenticated;

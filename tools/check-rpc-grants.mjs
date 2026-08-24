@@ -51,6 +51,12 @@ const TERTUTUP = {
   leaderboard_trophies: { p_limit: 3 },
   resolve_hearts: {},
   spend_heart: {},
+  // These three read every learner's rows. They check the caller's role too,
+  // but the grant is the outer wall and it is the one that can be lost by
+  // re-running a function without its revoke.
+  is_teacher: {},
+  teacher_roster: {},
+  teacher_course_progress: {},
 }
 
 /** ...and allowed this one, or nobody can sign up. */
@@ -81,6 +87,13 @@ for (const [rpc, args] of Object.entries(TERTUTUP)) {
   if (r.ok) {
     masalah.push(`${rpc} is callable without a login`)
     console.log(`  ${rpc}: OPEN TO ANON (${r.status})`)
+  } else if (r.status === 404) {
+    // A function that does not exist is refused just as firmly as one that is
+    // locked, and the difference matters: it means schema.sql has grown since
+    // this project last ran it. Reading that as "safe" is how a new RPC ships
+    // with nobody having checked its grants.
+    masalah.push(`${rpc} is not on the project — re-run supabase/schema.sql`)
+    console.log(`  ${rpc}: MISSING (404) — ${r.pesan}`)
   } else {
     console.log(`  ${rpc}: refused (${r.status}) — ${r.pesan}`)
   }
@@ -98,7 +111,11 @@ for (const [rpc, args] of Object.entries(TERBUKA)) {
 
 if (masalah.length) {
   console.error('\ngrant check failed:\n' + masalah.map((m) => '  · ' + m).join('\n'))
-  console.error('\nre-run the grant block at the end of supabase/schema.sql')
+  console.error(
+    masalah.some((m) => m.includes('not on the project'))
+      ? '\nrun the whole of supabase/schema.sql in the SQL editor — it is safe to re-run'
+      : '\nre-run the grant block at the end of supabase/schema.sql'
+  )
   process.exit(1)
 }
 

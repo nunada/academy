@@ -8,11 +8,14 @@ import type {
   AuthUser,
   Backend,
   CertificateRow,
+  CourseProgressRow,
   Enrollment,
   LeaderRow,
   LeaderboardKind,
   Profile,
   ProgressItem,
+  Role,
+  RosterRow,
   TrophyRow,
   UserState,
   XpEvent,
@@ -61,12 +64,20 @@ const SEED: { username: string; display_name: string; weekly: number; alltime: n
   { username: 'dimas', display_name: 'Dimas H.', weekly: 60, alltime: 320, trophies: 2 },
 ]
 
-function blankAccount(id: string, email: string, passwordHash: string, username: string, displayName: string, lang: Lang): Account {
+function blankAccount(
+  id: string,
+  email: string,
+  passwordHash: string,
+  username: string,
+  displayName: string,
+  lang: Lang,
+  role: Role = 'learner',
+): Account {
   return {
     id,
     email,
     passwordHash,
-    profile: { id, username, display_name: displayName, lang, created_at: now() },
+    profile: { id, username, display_name: displayName, lang, created_at: now(), role },
     progress: [],
     xpEvents: [],
     enrollments: [],
@@ -76,10 +87,31 @@ function blankAccount(id: string, email: string, passwordHash: string, username:
   }
 }
 
+/** Accounts saved before roles existed have no `role` at all. Rather than
+ *  clearing the store and taking somebody's practice with it, the field is
+ *  filled in on the way past, by the same rule sign-up uses: the first real
+ *  account in this browser owns the sandbox. */
+function normalise(db: Db): boolean {
+  const known = db.accounts.some((a) => (a.profile as Partial<Profile>).role)
+  let changed = false
+  let owner = !known
+  for (const a of db.accounts) {
+    if ((a.profile as Partial<Profile>).role) continue
+    a.profile.role = owner && !a.seeded ? 'teacher' : 'learner'
+    if (!a.seeded) owner = false
+    changed = true
+  }
+  return changed
+}
+
 function load(): Db {
   try {
     const raw = localStorage.getItem(KEY)
-    if (raw) return JSON.parse(raw) as Db
+    if (raw) {
+      const db = JSON.parse(raw) as Db
+      if (normalise(db)) save(db)
+      return db
+    }
   } catch {
     /* corrupt store — start over */
   }
@@ -144,7 +176,20 @@ export function createLocalBackend(): Backend {
       if (db.accounts.some((a) => a.profile.username.toLowerCase() === user.toLowerCase()))
         throw new AuthError('taken', 'username-taken')
 
-      const acc = blankAccount(`u_${Date.now().toString(36)}`, mail, hash(password), user, displayName.trim() || user, lang)
+      // The first real account in this browser is the teacher. Local mode is a
+      // one-person sandbox seeded with six invented rivals, so whoever opens it
+      // is the owner — and without this the teacher page could only ever be
+      // seen against a live Supabase project.
+      const firstReal = !db.accounts.some((a) => !a.seeded)
+      const acc = blankAccount(
+        `u_${Date.now().toString(36)}`,
+        mail,
+        hash(password),
+        user,
+        displayName.trim() || user,
+        lang,
+        firstReal ? 'teacher' : 'learner',
+      )
       db.accounts.push(acc)
       save(db)
       localStorage.setItem(SESSION_KEY, acc.id)
@@ -284,6 +329,67 @@ export function createLocalBackend(): Backend {
         }
       })
       return rows.filter((r) => r.value > 0).sort((a, b) => b.value - a.value)
+    },
+
+    async teacherRoster() {
+      const db = load()
+      const me = db.accounts.find((a) => a.id === localStorage.getItem(SESSION_KEY))
+      // Not a security boundary — everything here is in one browser already —
+      // but refusing mirrors what the database does, so the page's error path
+      // is the same one in both modes.
+      if (me?.profile.role !== 'teacher') throw new AuthError('teachers only', 'invalid')
+
+      const rows: RosterRow[] = db.accounts.map((a) => ({
+        user_id: a.id,
+        username: a.profile.username,
+        display_name: a.profile.display_name,
+        role: a.profile.role,
+        created_at: a.profile.created_at,
+        // Deliberately not the seeded totals the leaderboard uses. Those rivals
+        // are invented to keep a board from being empty, and they have no
+        // progress rows behind them — reporting their XP here would print a
+        // learner with 2,340 XP who has never started anything. This page is
+        // about work actually done, so it counts rows and nothing else.
+        //
+        // The real backend cannot disagree with itself this way: complete_item
+        // writes the progress row and the XP event together.
+        xp: a.xpEvents.reduce((n, e) => n + e.amount, 0),
+        lessons: a.progress.filter((p) => p.kind === 'lesson').length,
+        projects: a.progress.filter((p) => p.kind === 'project').length,
+        trophies: a.trophies.length,
+        certificates: a.certificates.length,
+        last_active: a.progress.reduce<string | null>(
+          (latest, p) => (latest && latest > p.completed_at ? latest : p.completed_at),
+          null,
+        ),
+      }))
+      return rows.sort((x, y) => y.xp - x.xp || x.username.localeCompare(y.username))
+    },
+
+    async teacherCourseProgress() {
+      const db = load()
+      const me = db.accounts.find((a) => a.id === localStorage.getItem(SESSION_KEY))
+      if (me?.profile.role !== 'teacher') throw new AuthError('teachers only', 'invalid')
+
+      const out: CourseProgressRow[] = []
+      for (const a of db.accounts) {
+        const byCourse = new Map<string, ProgressItem[]>()
+        for (const p of a.progress) {
+          const list = byCourse.get(p.course_id)
+          if (list) list.push(p)
+          else byCourse.set(p.course_id, [p])
+        }
+        for (const [course_id, items] of byCourse) {
+          out.push({
+            user_id: a.id,
+            course_id,
+            lessons: items.filter((i) => i.kind === 'lesson').length,
+            projects: items.filter((i) => i.kind === 'project').length,
+            last_touched: items.reduce((l, i) => (l > i.completed_at ? l : i.completed_at), items[0].completed_at),
+          })
+        }
+      }
+      return out
     },
   }
 }

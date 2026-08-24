@@ -15,6 +15,7 @@ import Playground from './pages/Playground'
 import Leaderboard from './pages/Leaderboard'
 import Profile from './pages/Profile'
 import Certificate from './pages/Certificate'
+import Teacher from './pages/Teacher'
 
 function RequireAuth({ children }: { children: ReactNode }) {
   const { ready, user } = useStore()
@@ -23,6 +24,20 @@ function RequireAuth({ children }: { children: ReactNode }) {
 
   if (!ready) return <main className="page center muted">{t('loading')}</main>
   if (!user) return <Navigate to="/auth" replace state={{ from: location.pathname }} />
+  return <>{children}</>
+}
+
+/** Same shape as RequireAuth, one condition further on.
+ *
+ *  This decides what to render, not what may be read: the roster comes from
+ *  security-definer functions that check the caller's role themselves. Somebody
+ *  editing this check in their own browser gets an empty page and a refusal. */
+function RequireTeacher({ children }: { children: ReactNode }) {
+  const { ready, state } = useStore()
+  const { t } = useI18n()
+
+  if (!ready || !state) return <main className="page center muted">{t('loading')}</main>
+  if (state.profile.role !== 'teacher') return <Navigate to="/learn" replace />
   return <>{children}</>
 }
 
@@ -96,6 +111,16 @@ export default function App() {
           element={
             <RequireAuth>
               <Profile />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/teacher"
+          element={
+            <RequireAuth>
+              <RequireTeacher>
+                <Teacher />
+              </RequireTeacher>
             </RequireAuth>
           }
         />

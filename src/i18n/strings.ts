@@ -178,6 +178,39 @@ export const ui = {
   stdinLabel: { en: 'Input (one line per input() call)', id: 'Input (satu baris per pemanggilan input())' },
   templates: { en: 'Templates', id: 'Templat' },
 
+  // teacher
+  navTeacher: { en: 'Class', id: 'Kelas' },
+  teacherTitle: { en: 'Class', id: 'Kelas' },
+  teacherIntro: {
+    en: 'Everyone who has an account, and what they have finished. Only teachers can open this.',
+    id: 'Semua yang punya akun, dan apa saja yang sudah mereka selesaikan. Hanya guru yang bisa membukanya.',
+  },
+  teacherDenied: {
+    en: 'This page is for teachers. If it should be yours, ask whoever runs the project to set your role.',
+    id: 'Halaman ini untuk guru. Kalau seharusnya milikmu, minta pengelola proyek menyetel peranmu.',
+  },
+  teacherLocalNote: {
+    en: 'Local mode: these learners live in this browser only, and six of them are invented.',
+    id: 'Mode lokal: pembelajar ini hanya ada di browser ini, dan enam di antaranya karangan.',
+  },
+  tabRoster: { en: 'Everyone', id: 'Semua' },
+  tabByCourse: { en: 'By course', id: 'Per kursus' },
+  thLearner: { en: 'Learner', id: 'Pembelajar' },
+  thCourse: { en: 'Course', id: 'Kursus' },
+  thJoined: { en: 'Joined', id: 'Bergabung' },
+  thLessons: { en: 'Lessons', id: 'Pelajaran' },
+  thProjects: { en: 'Projects', id: 'Proyek' },
+  thLastActive: { en: 'Last active', id: 'Terakhir aktif' },
+  statLearners: { en: 'Learners', id: 'Pembelajar' },
+  statActiveWeek: { en: 'Active this week', id: 'Aktif minggu ini' },
+  statFinished: { en: 'Finished a course', id: 'Menuntaskan kursus' },
+  neverStarted: { en: 'Never started', id: 'Belum mulai' },
+  today: { en: 'Today', id: 'Hari ini' },
+  daysAgo: { en: 'd ago', id: 'hari lalu' },
+  teacherBadge: { en: 'Teacher', id: 'Guru' },
+  noLearners: { en: 'Nobody has signed up yet.', id: 'Belum ada yang mendaftar.' },
+  notStartedCourse: { en: 'Not started', id: 'Belum dimulai' },
+
   // misc
   loading: { en: 'Loading…', id: 'Memuat…' },
   errorGeneric: { en: 'Something went wrong.', id: 'Terjadi kesalahan.' },

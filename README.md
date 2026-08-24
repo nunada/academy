@@ -121,36 +121,90 @@ MSYS_NO_PATHCONV=1 VITE_BASE=/nunada-academy/ npm run build
 
 ### Sebelum orang lain mendaftar
 
+- Jalankan `npm run check:grants` — papan peringkat dan ketiga fungsi guru harus
+  tertutup bagi `anon`, pemeriksa nama harus terbuka.
+- Periksa **Authentication → Providers → Email** di Supabase: kalau konfirmasi
+  surel menyala, pastikan langkah 4 sudah dilakukan dan cobalah satu pendaftaran
+  sungguhan sampai selesai.
+- Angkat dirimu sendiri jadi guru (lihat di bawah) lalu buka **Kelas** sekali,
+  supaya kamu tahu halamannya memuat sebelum ada yang perlu kamu lihat di sana.
+- Domain khusus: **Settings → Pages → Custom domain**. Setelah dipasang, situsnya
+  pindah ke akar domain — hapus `VITE_BASE` dari alur kerjanya (atau ganti jadi
+  `/`), lalu perbarui Site URL di Supabase.
+
+### Surel pendaftaran: dua per jam, sampai kamu menggantinya
+
+SMTP bawaan Supabase mengirim **dua surel per jam untuk seluruh proyek**. Bukan
+dua per orang — dua, titik. Satu kelas yang mendaftar bersamaan berarti orang
+ketiga menunggu satu jam, dan orang kelima belas menunggu tujuh jam. Batas itu
+tidak bisa dinaikkan; ia hanya hilang kalau kamu memakai SMTP sendiri.
+
+Ada dua jalan keluar, dan yang kedua sah untuk kelas kecil.
+
+**1. Pasang SMTP sendiri.** Buka **Authentication → SMTP Settings**
+(`/project/_/auth/smtp`), nyalakan *Enable Custom SMTP*, lalu isi enam kolomnya
+dari penyedia yang kamu pakai:
+
+| Kolom | Contoh |
+| --- | --- |
+| SMTP Host | `smtp.resend.com` |
+| SMTP Port | `587` |
+| SMTP User | dari penyedia |
+| SMTP Password | dari penyedia |
+| From Address | `no-reply@domainmu.sch.id` |
+| Sender Name | `Nunada Academy` |
+
+Resend, Brevo, Postmark, SendGrid, AWS SES, dan ZeptoMail semuanya cocok; yang
+gratisnya paling lega biasanya Brevo dan Resend. Alamat pengirimnya harus di
+domain yang kamu kendalikan dan sudah diverifikasi di sisi penyedia — kalau
+tidak, surelnya terkirim tapi mendarat di folder spam.
+
+**Lalu naikkan batasnya.** Ini bagian yang mudah terlewat: menyalakan SMTP
+sendiri justru memasang batas baru **30 surel per jam**, dan itu masih kurang
+untuk satu kelas yang mendaftar serentak. Ubah di **Authentication → Rate
+Limits** (`/project/_/auth/rate-limits`), pada *Rate limit for sending emails*.
+Tanpa langkah ini kamu sudah membayar penyedia surel dan tetap tertahan.
+
+**2. Matikan konfirmasi surel.** **Authentication → Providers → Email**, matikan
+*Confirm email*. Pendaftaran langsung jadi tanpa perlu surel apa pun, dan
+seluruh soal ini hilang. Yang kamu lepas adalah bukti bahwa alamat surelnya
+benar-benar milik si pendaftar — untuk kelas yang orangnya kamu kenal, itu
+harga yang wajar; untuk pendaftaran terbuka, tidak.
+
 ### Melihat capaian pembelajar
 
-Papan peringkat hanya memberi peringkat XP; ia tidak memberi tahu siapa berhenti
-di mana. [`supabase/reports.sql`](supabase/reports.sql) berisi empat kueri untuk
-ditempel ke **SQL Editor**: satu baris per pembelajar, sejauh mana tiap orang di
-tiap kursus, siapa yang seminggu tak menyentuh apa pun, dan butir mana yang
-paling sering menjadi tempat orang berhenti.
+Dua cara. Keduanya membaca baris yang sama, dan tak satu pun menulis apa pun.
 
-Kueri-kueri itu tidak bisa dijalankan dari aplikasi, dan memang tidak boleh: RLS
-mengurung tiap pembelajar pada barisnya sendiri, sedangkan kueri ini membaca
-semua orang. SQL Editor berjalan sebagai peran istimewa, jadi di sanalah
-tempatnya. Tak satu pun menulis apa pun.
+**Halaman Kelas, di dalam aplikasi.** Muncul di navigasi hanya untuk akun
+bertanda guru. Isinya satu baris per pembelajar — XP, pelajaran, proyek, trofi,
+sertifikat, dan kapan terakhir ia menyelesaikan sesuatu — plus tab kedua yang
+menunjukkan sejauh mana tiap orang di satu kursus. Kolom yang paling berguna
+biasanya yang paling kanan: "Belum mulai" dan "10 hari lalu" ditandai warna,
+karena itulah yang dicari saat kamu memindai daftarnya.
+
+Angkat seseorang jadi guru dari **SQL Editor**:
+
+```sql
+update public.profiles set role = 'teacher' where username = 'nama_penggunanya';
+```
+
+Hanya dari sana. Basis datanya menolak pernyataan itu kalau datang dari
+aplikasi — dua kali, lewat hibah kolom dan lewat trigger — supaya tidak ada
+pembelajar yang bisa mengangkat dirinya sendiri lalu membaca data satu kelas.
+
+**Empat kueri di SQL Editor**, untuk yang tidak muat di halaman:
+[`supabase/reports.sql`](supabase/reports.sql) — satu baris per pembelajar,
+sejauh mana tiap orang di tiap kursus, siapa yang seminggu tak menyentuh apa
+pun, dan butir mana yang paling sering menjadi tempat orang berhenti. Tempel
+seluruh berkasnya, lalu sorot satu kueri dan tekan Ctrl+Enter; menjalankan
+semuanya sekaligus hanya menampilkan hasil yang terakhir.
 
 Angka pembagi di kueri kedua — berapa pelajaran yang dimiliki tiap kursus —
 tinggal di kurikulum, bukan di basis data, jadi ia ditulis ulang di sana dan
 harus dijaga tetap seiring; `npm run check:curriculum` yang membuktikan angka
 itu masih cocok. Kursus yang tak ada di daftarnya menghasilkan persentase
-kosong, bukan persentase yang keliru.
-
-- Jalankan `npm run check:grants` — papan peringkat harus tertutup bagi `anon`,
-  pemeriksa nama harus terbuka.
-- Periksa **Authentication → Providers → Email** di Supabase: kalau konfirmasi
-  surel menyala, pastikan langkah 4 sudah dilakukan dan cobalah satu pendaftaran
-  sungguhan sampai selesai.
-- Batas surel bawaan Supabase kecil (beberapa surel per jam). Untuk kelas yang
-  mendaftar bersamaan, pasang penyedia SMTP sendiri, atau matikan konfirmasi
-  surel kalau memang bisa diterima.
-- Domain khusus: **Settings → Pages → Custom domain**. Setelah dipasang, situsnya
-  pindah ke akar domain — hapus `VITE_BASE` dari alur kerjanya (atau ganti jadi
-  `/`), lalu perbarui Site URL di Supabase.
+kosong, bukan persentase yang keliru. Halaman Kelas tidak punya soal itu: ia
+memakai angka yang sudah dipakai kartu kursus, jadi hanya ada satu salinan.
 
 ## Identitas visual
 
@@ -588,7 +642,8 @@ src/
                     CompileReport.tsx (keberatan kompiler TypeScript),
                     GamePreview.tsx (kanvas dan loop bingkainya)
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
-                    Project, Playground, Leaderboard, Profile, Certificate
+                    Project, Playground, Leaderboard, Profile, Certificate,
+                    Teacher (halaman Kelas, hanya untuk akun guru)
 .github/workflows/deploy.yml  build dan terbitkan ke GitHub Pages
 supabase/schema.sql skema, RPC, dan RLS
 supabase/reports.sql  capaian tiap pembelajar, untuk SQL Editor

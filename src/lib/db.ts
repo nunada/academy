@@ -12,12 +12,17 @@ export interface AuthUser {
   email: string
 }
 
+export type Role = 'learner' | 'teacher'
+
 export interface Profile {
   id: string
   username: string
   display_name: string
   lang: Lang
   created_at: string
+  /** Only a teacher may read the roster. Set by hand from the SQL editor —
+   *  the database refuses to let anybody assign it to themselves. */
+  role: Role
 }
 
 export interface ProgressItem {
@@ -71,6 +76,33 @@ export interface LeaderRow {
 
 export type LeaderboardKind = 'weekly' | 'alltime' | 'trophies'
 
+/** One learner as a teacher sees them. Everybody appears, including somebody
+ *  who signed up and finished nothing — `last_active` is null for them. */
+export interface RosterRow {
+  user_id: string
+  username: string
+  display_name: string
+  role: Role
+  created_at: string
+  xp: number
+  lessons: number
+  projects: number
+  trophies: number
+  certificates: number
+  last_active: string | null
+}
+
+/** Counts only. How many items a course holds belongs to the curriculum, and
+ *  the catalogue already carries it — so the denominator is applied here
+ *  rather than duplicated into SQL. */
+export interface CourseProgressRow {
+  user_id: string
+  course_id: string
+  lessons: number
+  projects: number
+  last_touched: string
+}
+
 export interface Backend {
   readonly mode: 'supabase' | 'local'
 
@@ -93,6 +125,11 @@ export interface Backend {
   awardTrophies(userId: string, ids: string[]): Promise<TrophyRow[]>
   issueCertificate(userId: string, kind: 'course' | 'path', refId: string): Promise<CertificateRow[]>
   leaderboard(kind: LeaderboardKind): Promise<LeaderRow[]>
+
+  /** Both are teachers-only. The check lives in the database, not here: these
+   *  read every learner's rows, so a client-side guard would be decoration. */
+  teacherRoster(): Promise<RosterRow[]>
+  teacherCourseProgress(): Promise<CourseProgressRow[]>
 }
 
 export class AuthError extends Error {
