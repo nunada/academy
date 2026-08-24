@@ -108,7 +108,19 @@ export interface Backend {
 
   getSession(): Promise<AuthUser | null>
   onAuthChange(cb: (user: AuthUser | null) => void): () => void
-  signUp(input: { email: string; password: string; username: string; displayName: string; lang: Lang }): Promise<AuthUser>
+  /** `needsConfirmation` is true when the account was created but no session
+   *  came with it — Supabase does this whenever email confirmation is
+   *  switched on, which is the default. The caller must not treat `user` as
+   *  signed in when this is true: there is no session yet for it to read
+   *  its own profile with, and the auth-state listener will report exactly
+   *  that a moment later. */
+  signUp(input: {
+    email: string
+    password: string
+    username: string
+    displayName: string
+    lang: Lang
+  }): Promise<{ user: AuthUser; needsConfirmation: boolean }>
   signIn(input: { email: string; password: string }): Promise<AuthUser>
   signOut(): Promise<void>
 

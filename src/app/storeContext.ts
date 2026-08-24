@@ -18,7 +18,15 @@ export interface StoreValue {
   xpWeek: number
 
   signIn: (email: string, password: string) => Promise<void>
-  signUp: (input: { email: string; password: string; username: string; displayName: string }) => Promise<void>
+  /** Resolves once the account exists. `needsConfirmation: true` means
+   *  Supabase is waiting on an email click before any session exists — the
+   *  caller is still signed out, and must say so rather than act signed in. */
+  signUp: (input: {
+    email: string
+    password: string
+    username: string
+    displayName: string
+  }) => Promise<{ needsConfirmation: boolean }>
   signOut: () => Promise<void>
   enroll: (kind: 'course' | 'path', refId: string) => Promise<void>
   isEnrolled: (kind: 'course' | 'path', refId: string) => boolean

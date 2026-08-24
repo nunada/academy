@@ -83,7 +83,10 @@ export function createSupabaseBackend(): Backend {
       }
       const u = data.user
       if (!u) throw new AuthError('no user returned', 'unknown')
-      return { id: u.id, email: u.email ?? email }
+      // data.session is null exactly when confirmation is required — Supabase
+      // creates the account either way, but only a real session lets getState
+      // read the profile row past RLS.
+      return { user: { id: u.id, email: u.email ?? email }, needsConfirmation: !data.session }
     },
 
     async signIn({ email, password }) {

@@ -64,6 +64,13 @@ export const ui = {
   passwordMismatch: { en: 'The two do not match.', id: 'Keduanya tidak sama.' },
   changePassword: { en: 'Change password', id: 'Ganti kata sandi' },
 
+  // sign-up confirmation
+  signupConfirmTitle: { en: 'Check your email', id: 'Periksa emailmu' },
+  signupConfirmBody: {
+    en: 'Your account is created. Click the link we sent to confirm it, then sign in — the link works once and expires within the hour.',
+    id: 'Akunmu sudah dibuat. Klik tautan yang kami kirim untuk mengonfirmasinya, lalu masuk — tautannya hanya berlaku sekali dan kedaluwarsa dalam sejam.',
+  },
+
   // landing
   heroTitle: { en: 'Learn to code, one small win at a time.', id: 'Belajar coding, satu kemenangan kecil setiap kali.' },
   heroBody: {

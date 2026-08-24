@@ -155,15 +155,28 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     },
 
     async signUp({ email, password, username, displayName }) {
-      const u = await backend.signUp({ email, password, username, displayName, lang })
+      const { user: u, needsConfirmation } = await backend.signUp({ email, password, username, displayName, lang })
+
+      // With email confirmation switched on — the default — Supabase creates
+      // the account but hands back no session, and won't until the link in
+      // the email is clicked. Setting user here anyway used to cause a real
+      // bug, not just a cosmetic one: RequireAuth would let the optimistic
+      // user through to render /learn for a moment, loadState would fail
+      // against RLS with no session to authenticate it, and then the
+      // auth-state listener would report the same "no session" a moment
+      // later and silently wipe user back to null — bouncing the new arrival
+      // straight to a bare sign-in screen with no explanation at all. Leaving
+      // user untouched here means Auth.tsx is the one that decides what the
+      // screen says, instead of that race deciding it by accident.
+      if (needsConfirmation) return { needsConfirmation: true }
+
       setUser(u)
-      // With email confirmation switched on, Supabase returns a user but no
-      // session; the profile row only exists once they confirm and sign in.
       try {
         await loadState(u.id)
       } catch {
         setState(null)
       }
+      return { needsConfirmation: false }
     },
 
     async signOut() {

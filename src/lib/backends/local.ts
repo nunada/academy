@@ -198,7 +198,8 @@ export function createLocalBackend(): Backend {
       localStorage.setItem(SESSION_KEY, acc.id)
       const u = { id: acc.id, email: acc.email }
       emit(u)
-      return u
+      // Local mode has no email to confirm, so there is nothing to wait for.
+      return { user: u, needsConfirmation: false }
     },
 
     async signIn({ email, password }) {

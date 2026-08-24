@@ -21,6 +21,9 @@ export default function Auth() {
   /** Set once a reset has been asked for. Says the same thing whether or not
    *  the address has an account — see requestPasswordReset. */
   const [sent, setSent] = useState<{ localLink?: string } | null>(null)
+  /** Set once sign-up has succeeded but no session exists yet — the email
+   *  confirmation case. See the comment in store.tsx's signUp. */
+  const [awaitingConfirm, setAwaitingConfirm] = useState(false)
 
   async function submit(e: FormEvent) {
     e.preventDefault()
@@ -30,7 +33,8 @@ export default function Auth() {
       if (mode === 'reset') {
         setSent(await getBackend().requestPasswordReset(email))
       } else if (mode === 'signup') {
-        await signUp({ email, password, username, displayName })
+        const { needsConfirmation } = await signUp({ email, password, username, displayName })
+        setAwaitingConfirm(needsConfirmation)
       } else {
         await signIn(email, password)
       }
@@ -42,25 +46,55 @@ export default function Auth() {
     }
   }
 
-  const swap = () => setParams(mode === 'signup' ? {} : { mode: 'signup' })
+  const swap = () => {
+    setAwaitingConfirm(false)
+    setParams(mode === 'signup' ? {} : { mode: 'signup' })
+  }
+  const backToSignIn = () => {
+    setAwaitingConfirm(false)
+    setParams({})
+  }
 
-  const judul = mode === 'signup' ? t('authTitleUp') : mode === 'reset' ? t('resetTitle') : t('authTitleIn')
-  const sub_ = mode === 'signup' ? t('authSubUp') : mode === 'reset' ? t('resetSub') : t('authSubIn')
+  const judul = awaitingConfirm
+    ? t('signupConfirmTitle')
+    : mode === 'signup'
+      ? t('authTitleUp')
+      : mode === 'reset'
+        ? t('resetTitle')
+        : t('authTitleIn')
+  const sub_ = awaitingConfirm
+    ? ''
+    : mode === 'signup'
+      ? t('authSubUp')
+      : mode === 'reset'
+        ? t('resetSub')
+        : t('authSubIn')
 
   return (
     <main className="page narrow" style={{ maxWidth: 440 }}>
       <div className="card" style={{ marginTop: 28 }}>
         <h1 style={{ fontSize: '1.5rem' }}>{judul}</h1>
-        <p className="muted small">{sub_}</p>
+        {sub_ && <p className="muted small">{sub_}</p>}
 
-        {backendMode === 'local' && (
+        {backendMode === 'local' && !awaitingConfirm && (
           <div className="banner">
             <span>⚠️</span>
             <span>{t('localModeNote')}</span>
           </div>
         )}
 
-        {sent ? (
+        {awaitingConfirm ? (
+          <>
+            <div className="verdict ok" style={{ marginBottom: 14 }}>
+              {t('signupConfirmBody')}
+            </div>
+            <p className="small muted center" style={{ marginTop: 16, marginBottom: 0 }}>
+              <button className="btn ghost sm" type="button" onClick={backToSignIn}>
+                ← {t('signIn')}
+              </button>
+            </p>
+          </>
+        ) : sent ? (
           <>
             <div className="verdict ok" style={{ marginBottom: 14 }}>
               {t('resetSentBody')}
@@ -72,96 +106,98 @@ export default function Auth() {
             )}
           </>
         ) : (
-        <form onSubmit={submit}>
-          {mode === 'signup' && (
-            <>
+          <>
+            <form onSubmit={submit}>
+              {mode === 'signup' && (
+                <>
+                  <label className="field">
+                    <span>{t('username')}</span>
+                    <input
+                      type="text"
+                      value={username}
+                      required
+                      minLength={3}
+                      maxLength={24}
+                      pattern="[A-Za-z0-9_.]+"
+                      onChange={(e) => setUsername(e.target.value)}
+                      autoComplete="username"
+                    />
+                    <small className="muted">{t('usernameHint')}</small>
+                  </label>
+                  <label className="field">
+                    <span>{t('displayName')}</span>
+                    <input
+                      type="text"
+                      value={displayName}
+                      required
+                      maxLength={40}
+                      onChange={(e) => setDisplayName(e.target.value)}
+                      autoComplete="name"
+                    />
+                  </label>
+                </>
+              )}
+
               <label className="field">
-                <span>{t('username')}</span>
+                <span>{t('email')}</span>
                 <input
-                  type="text"
-                  value={username}
+                  type="email"
+                  value={email}
                   required
-                  minLength={3}
-                  maxLength={24}
-                  pattern="[A-Za-z0-9_.]+"
-                  onChange={(e) => setUsername(e.target.value)}
-                  autoComplete="username"
-                />
-                <small className="muted">{t('usernameHint')}</small>
-              </label>
-              <label className="field">
-                <span>{t('displayName')}</span>
-                <input
-                  type="text"
-                  value={displayName}
-                  required
-                  maxLength={40}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  autoComplete="name"
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
                 />
               </label>
-            </>
-          )}
 
-          <label className="field">
-            <span>{t('email')}</span>
-            <input
-              type="email"
-              value={email}
-              required
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-            />
-          </label>
+              {mode !== 'reset' && (
+                <label className="field">
+                  <span>{t('password')}</span>
+                  <input
+                    type="password"
+                    value={password}
+                    required
+                    minLength={6}
+                    onChange={(e) => setPassword(e.target.value)}
+                    autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
+                  />
+                  {mode === 'signup' && <small className="muted">{t('passwordHint')}</small>}
+                </label>
+              )}
 
-          {mode !== 'reset' && (
-          <label className="field">
-            <span>{t('password')}</span>
-            <input
-              type="password"
-              value={password}
-              required
-              minLength={6}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
-            />
-            {mode === 'signup' && <small className="muted">{t('passwordHint')}</small>}
-          </label>
-          )}
+              {error && (
+                <div className="verdict no" style={{ marginBottom: 14 }}>
+                  {error}
+                </div>
+              )}
 
-          {error && (
-            <div className="verdict no" style={{ marginBottom: 14 }}>
-              {error}
-            </div>
-          )}
+              <button className="btn wide" disabled={busy}>
+                {busy ? t('working') : mode === 'signup' ? t('signUp') : mode === 'reset' ? t('resetSend') : t('signIn')}
+              </button>
+            </form>
 
-          <button className="btn wide" disabled={busy}>
-            {busy ? t('working') : mode === 'signup' ? t('signUp') : mode === 'reset' ? t('resetSend') : t('signIn')}
-          </button>
-        </form>
-        )}
+            {mode === 'signin' && (
+              <p className="small center" style={{ marginTop: 12, marginBottom: 0 }}>
+                <button className="btn ghost sm" type="button" onClick={() => setParams({ mode: 'reset' })}>
+                  {t('forgotPassword')}
+                </button>
+              </p>
+            )}
 
-        {mode === 'signin' && (
-          <p className="small center" style={{ marginTop: 12, marginBottom: 0 }}>
-            <button className="btn ghost sm" type="button" onClick={() => setParams({ mode: 'reset' })}>
-              {t('forgotPassword')}
-            </button>
-          </p>
-        )}
-
-        {mode === 'reset' ? (
-          <p className="small muted center" style={{ marginTop: 16, marginBottom: 0 }}>
-            <button className="btn ghost sm" type="button" onClick={() => setParams({})}>
-              ← {t('signIn')}
-            </button>
-          </p>
-        ) : (
-          <p className="small muted center" style={{ marginTop: 16, marginBottom: 0 }}>
-            {mode === 'signup' ? t('haveAccount') : t('noAccount')}{' '}
-            <button className="btn ghost sm" type="button" onClick={swap}>
-              {mode === 'signup' ? t('signIn') : t('signUp')}
-            </button>
-          </p>
+            {mode === 'reset' ? (
+              <p className="small muted center" style={{ marginTop: 16, marginBottom: 0 }}>
+                <button className="btn ghost sm" type="button" onClick={backToSignIn}>
+                  ← {t('signIn')}
+                </button>
+              </p>
+            ) : (
+              <p className="small muted center" style={{ marginTop: 16, marginBottom: 0 }}>
+                {mode === 'signup' ? t('haveAccount') : t('noAccount')}{' '}
+                <button className="btn ghost sm" type="button" onClick={swap}>
+                  {mode === 'signup' ? t('signIn') : t('signUp')}
+                </button>
+              </p>
+            )}
+          </>
         )}
       </div>
 
