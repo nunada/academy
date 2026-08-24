@@ -49,14 +49,14 @@ export default function Leaderboard() {
         </button>
       </div>
 
-      <p className="small muted">
-        {kind === 'weekly' && (
-          <>
-            {t('lbWeeklyNote')} · {countdown(msUntilWeekEnd(), lang)}
-          </>
-        )}
-        {kind === 'trophies' && t('lbTrophyNote')}
-      </p>
+      {/* The all-time board has nothing to explain, and an empty <p> would still
+          carry its bottom margin — so it is left out rather than emptied. */}
+      {kind === 'weekly' && (
+        <p className="small muted">
+          {t('lbWeeklyNote')} · {countdown(msUntilWeekEnd(), lang)}
+        </p>
+      )}
+      {kind === 'trophies' && <p className="small muted">{t('lbTrophyNote')}</p>}
 
       {rows === null ? (
         <p className="muted">{t('loading')}</p>

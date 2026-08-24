@@ -250,6 +250,14 @@ $$;
 -- ---------------------------------------------------------- leaderboards
 -- security definer: everyone may read the aggregate, nobody may read the
 -- underlying per-user rows of other learners.
+--
+-- The weekly window is pinned to UTC rather than left to the session's
+-- TimeZone. `date_trunc('week', now())` truncates in whatever zone the
+-- session happens to be set to, and src/lib/week.ts computes Monday 00:00
+-- UTC — so on any database not set to UTC the two would disagree, and a
+-- learner would see one number in their header and another on the board.
+-- Spelling out the zone makes them agree by construction instead of by
+-- configuration. Both are Monday-based: Postgres weeks are ISO weeks.
 
 create or replace function public.leaderboard_weekly(p_limit integer default 50)
 returns table (user_id uuid, username text, display_name text, value bigint)
@@ -260,7 +268,7 @@ as $$
   select p.id, p.username::text, p.display_name, sum(e.amount)::bigint as value
     from public.xp_events e
     join public.profiles p on p.id = e.user_id
-   where e.created_at >= date_trunc('week', now())
+   where e.created_at >= date_trunc('week', now() at time zone 'utc') at time zone 'utc'
    group by p.id, p.username, p.display_name
    order by value desc, p.username asc
    limit p_limit;

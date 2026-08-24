@@ -75,7 +75,7 @@ Tiga penyimpangan yang disengaja dari palet add-in, semuanya dicatat di
 | Hearts | maksimal 5; jawaban salah mengurangi 1; satu heart pulih tiap 15 menit |
 | Hearts habis | pemeriksaan jawaban terkunci — tunggu, atau lanjut dalam mode latihan tanpa XP |
 | Mini proyek | memeriksa proyek **tidak** memakan heart, karena proyek memang dikerjakan berulang |
-| Papan peringkat mingguan | menjumlahkan XP sejak Senin 00:00 UTC; tidak ada proses reset, hanya jendela waktu |
+| Papan peringkat mingguan | menjumlahkan XP sejak Senin 00:00 UTC; tidak ada proses reset, hanya jendela waktu. Zona waktunya dieja di kedua sisi — klien dan RPC — agar tidak bergantung pada setelan sesi basis datanya |
 | Trofi | otomatis diberikan dari progres (XP, jumlah proyek, modul/kursus/jalur yang tuntas) |
 | Sertifikat | terbit sendiri saat sebuah kursus atau jalur karier tuntas 100% |
 
