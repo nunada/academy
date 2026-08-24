@@ -162,6 +162,22 @@ export const COURSES: CourseInfo[] = [
     lessons: 16,
     projects: 8,
   },
+  {
+    id: 'python-media',
+    title: { en: 'Python for Math Teaching Media', id: 'Python untuk Media Pembelajaran Matematika' },
+    tagline: {
+      en: 'Problem generators, an automatic grader, and interactive figures you could show a class.',
+      id: 'Generator soal, penilai otomatis, dan peraga interaktif yang bisa ditunjukkan ke satu kelas.',
+    },
+    icon: '🧑‍🏫',
+    color: '#7eaa71',
+    level: { en: 'Intermediate', id: 'Menengah' },
+    language: 'python',
+    requires: ['python-math'],
+    available: true,
+    lessons: 16,
+    projects: 9,
+  },
 ]
 
 /** One dynamic import per course. Written out rather than built from the id so
@@ -176,6 +192,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   react: () => import('./react'),
   'game-dev': () => import('./gamedev'),
   'python-math': () => import('./python-math'),
+  'python-media': () => import('./python-media'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes

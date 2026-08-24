@@ -16,6 +16,7 @@ interface Pyodide {
   setStderr(opts: { batched: (s: string) => void }): void
   setStdin(opts: { stdin: () => string | null; autoEOF?: boolean }): void
   globals: { get(name: string): any }
+  loadPackage(names: string | string[]): Promise<unknown>
 }
 
 declare global {
@@ -67,6 +68,38 @@ export function getPython(): Promise<Pyodide> {
   return pyodidePromise
 }
 
+/** Packages beyond the base Pyodide distribution, fetched only when a piece of
+ *  code actually imports one — plain-Python exercises never pay for this.
+ *
+ *  Checked against the real package lock for the pinned Pyodide version:
+ *  numpy, scipy, sympy and matplotlib all exist as loadable wheels here;
+ *  pygame, tkinter, turtle, kivy, arcade, ursina, manim, vpython, streamlit
+ *  and seaborn do not — there is no display, window system, or renderer for
+ *  them to draw into inside a browser tab, and no amount of loadPackage
+ *  fixes that. Those stay theory-only content; these four are the ones a
+ *  lesson can actually run and check. */
+const CATALOGUED_PACKAGES: { rx: RegExp; name: string }[] = [
+  { rx: /\bimport\s+numpy\b|\bfrom\s+numpy\b/, name: 'numpy' },
+  { rx: /\bimport\s+scipy\b|\bfrom\s+scipy\b/, name: 'scipy' },
+  { rx: /\bimport\s+sympy\b|\bfrom\s+sympy\b/, name: 'sympy' },
+  { rx: /\bimport\s+matplotlib\b|\bfrom\s+matplotlib\b/, name: 'matplotlib' },
+]
+
+const loadedPackages = new Set<string>()
+
+/** Scans `text` for one of the imports above and loads it if not already
+ *  loaded. Must be called with everything about to run — a learner's code
+ *  alone is not enough, since a test's own `setup` or `assert` can import a
+ *  package the learner's snippet never mentions. */
+async function ensurePackages(py: Pyodide, text: string): Promise<void> {
+  for (const { rx, name } of CATALOGUED_PACKAGES) {
+    if (rx.test(text) && !loadedPackages.has(name)) {
+      await py.loadPackage(name)
+      loadedPackages.add(name)
+    }
+  }
+}
+
 export interface RunResult {
   stdout: string
   /** Present when the program raised. Already trimmed to the useful part. */
@@ -116,6 +149,7 @@ export async function runPython(code: string, stdin: string[] = []): Promise<Run
   const dict = py.globals.get('dict')
   const ns = dict()
   try {
+    await ensurePackages(py, code)
     // Note: no PREAMBLE here — a free run should echo the prompt, like a terminal.
     await py.runPythonAsync(code, { globals: ns })
     return { stdout: out }
@@ -162,6 +196,10 @@ export async function runTests(code: string, tests: PyTest[]): Promise<TestOutco
     const dict = py.globals.get('dict')
     const ns = dict()
     try {
+      // Scanned together: a test's own setup or assert can import a package
+      // the learner's code never mentions, e.g. building a numpy fixture for
+      // them or checking the result with np.allclose.
+      await ensurePackages(py, `${code}\n${test.setup ?? ''}\n${test.assert ?? ''}`)
       await prepare(py, ns)
       if (test.setup) await py.runPythonAsync(test.setup, { globals: ns })
       await py.runPythonAsync(code, { globals: ns })
