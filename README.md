@@ -121,6 +121,25 @@ MSYS_NO_PATHCONV=1 VITE_BASE=/nunada-academy/ npm run build
 
 ### Sebelum orang lain mendaftar
 
+### Melihat capaian pembelajar
+
+Papan peringkat hanya memberi peringkat XP; ia tidak memberi tahu siapa berhenti
+di mana. [`supabase/reports.sql`](supabase/reports.sql) berisi empat kueri untuk
+ditempel ke **SQL Editor**: satu baris per pembelajar, sejauh mana tiap orang di
+tiap kursus, siapa yang seminggu tak menyentuh apa pun, dan butir mana yang
+paling sering menjadi tempat orang berhenti.
+
+Kueri-kueri itu tidak bisa dijalankan dari aplikasi, dan memang tidak boleh: RLS
+mengurung tiap pembelajar pada barisnya sendiri, sedangkan kueri ini membaca
+semua orang. SQL Editor berjalan sebagai peran istimewa, jadi di sanalah
+tempatnya. Tak satu pun menulis apa pun.
+
+Angka pembagi di kueri kedua — berapa pelajaran yang dimiliki tiap kursus —
+tinggal di kurikulum, bukan di basis data, jadi ia ditulis ulang di sana dan
+harus dijaga tetap seiring; `npm run check:curriculum` yang membuktikan angka
+itu masih cocok. Kursus yang tak ada di daftarnya menghasilkan persentase
+kosong, bukan persentase yang keliru.
+
 - Jalankan `npm run check:grants` — papan peringkat harus tertutup bagi `anon`,
   pemeriksa nama harus terbuka.
 - Periksa **Authentication → Providers → Email** di Supabase: kalau konfirmasi
@@ -572,6 +591,7 @@ src/
                     Project, Playground, Leaderboard, Profile, Certificate
 .github/workflows/deploy.yml  build dan terbitkan ke GitHub Pages
 supabase/schema.sql skema, RPC, dan RLS
+supabase/reports.sql  capaian tiap pembelajar, untuk SQL Editor
 tools/check-curriculum.mjs  menghitung kurikulum sungguhan lalu mencocokkannya
 tools/check-rpc-grants.mjs  siapa boleh memanggil RPC apa, diuji ke proyek langsung
 ```
