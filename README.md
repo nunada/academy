@@ -55,6 +55,79 @@ dan tak ada akun yang dibuat.
 Jalankan itu setiap kali kamu menambahkan RPC atau menjalankan ulang salah satunya —
 menjalankan ulang adalah saat sebuah pencabutan hak paling mungkin lenyap diam-diam.
 
+## Menerbitkan ke GitHub Pages
+
+Alur kerjanya sudah ada di
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml): tiap dorongan ke
+`main` atau `master` membangun aplikasinya dan menerbitkannya. Yang tersisa hanya
+empat langkah, dan semuanya sekali saja.
+
+1. **Buat repositori dan dorong.** Belum ada remote di sini.
+
+   ```bash
+   git remote add origin https://github.com/<kamu>/<repo>.git && git push -u origin master
+   ```
+
+2. **Settings → Pages → Source: GitHub Actions.** Bukan "Deploy from a branch".
+
+3. **Settings → Secrets and variables → Actions**, tambahkan `VITE_SUPABASE_URL`
+   dan `VITE_SUPABASE_ANON_KEY` — isinya sama persis dengan `.env`-mu. Tanpa
+   keduanya alur kerjanya berhenti dengan pesan yang menyebutkan langkah ini;
+   itu disengaja, karena build tanpa kunci akan menghasilkan aplikasi mode lokal
+   yang tampak baik-baik saja dan diam-diam tidak menyimpan apa pun.
+
+4. **Supabase → Authentication → URL Configuration.** Setel **Site URL** ke
+   alamat situsmu, dan tambahkan alamat yang sama ke **Redirect URLs**. Tanpa
+   ini, tautan konfirmasi di surel pendaftaran menunjuk ke `localhost` dan tak
+   seorang pun bisa menyelesaikan pendaftarannya.
+
+### Yang sudah disiapkan, dan mengapa
+
+**Subjalur.** Situs proyek GitHub Pages berada di
+`https://<kamu>.github.io/<repo>/`, bukan di akar domain. Alur kerjanya membaca
+nama repositorimu dan mengoperkannya sebagai `VITE_BASE`; Vite memakainya untuk
+tiap aset, dan router membacanya kembali lewat `import.meta.env.BASE_URL` sebagai
+`basename`. Satu setelan menggerakkan keduanya. Repositori bernama
+`<kamu>.github.io` dikenali dan memakai `/`.
+
+**Muat ulang di URL dalam.** Pages tidak punya aturan penulisan ulang, jadi
+menyegarkan `/course/sql/lesson/…` seharusnya 404 — berkasnya memang tidak ada;
+rutenya baru bermakna setelah aplikasinya berjalan. Yang dipunyai Pages adalah
+`404.html`, yang ia sajikan untuk jalur apa pun yang tak ditemukannya. Build
+menyalin `index.html` ke sana, jadi aplikasinya boot, router membaca alamatnya,
+dan pembelajar mendarat di tempat yang ia tuju.
+
+Ini diuji sebelum dipakai, bukan diasumsikan: sebuah tiruan Pages menyajikan
+build subjalur dengan perilaku yang sama — `404.html` pada status 404, bukan
+penulisan ulang — dan URL pelajaran yang diketik langsung tetap memuat langkah
+yang benar, dengan kedelapan potongan kursusnya, tanpa satu pun aset gagal.
+
+Satu akibat yang perlu diketahui: halaman-halaman itu dijawab dengan status HTTP
+404. Peramban mengabaikannya, perayap tidak. Untuk aplikasi yang harus dimasuki
+dulu itu tidak masalah; kalau suatu saat kamu ingin halaman depannya terindeks,
+di situlah GitHub Pages berhenti cocok.
+
+**Membangun subjalur secara lokal.** Di Git Bash pada Windows, MSYS mengubah
+`VITE_BASE=/repo/` menjadi jalur Windows. Awali dengan `MSYS_NO_PATHCONV=1`:
+
+```bash
+MSYS_NO_PATHCONV=1 VITE_BASE=/nunada-academy/ npm run build
+```
+
+### Sebelum orang lain mendaftar
+
+- Jalankan `npm run check:grants` — papan peringkat harus tertutup bagi `anon`,
+  pemeriksa nama harus terbuka.
+- Periksa **Authentication → Providers → Email** di Supabase: kalau konfirmasi
+  surel menyala, pastikan langkah 4 sudah dilakukan dan cobalah satu pendaftaran
+  sungguhan sampai selesai.
+- Batas surel bawaan Supabase kecil (beberapa surel per jam). Untuk kelas yang
+  mendaftar bersamaan, pasang penyedia SMTP sendiri, atau matikan konfirmasi
+  surel kalau memang bisa diterima.
+- Domain khusus: **Settings → Pages → Custom domain**. Setelah dipasang, situsnya
+  pindah ke akar domain — hapus `VITE_BASE` dari alur kerjanya (atau ganti jadi
+  `/`), lalu perbarui Site URL di Supabase.
+
 ## Identitas visual
 
 Logo dan warnanya sama dengan add-in PowerPoint Nunada
@@ -492,6 +565,7 @@ src/
                     GamePreview.tsx (kanvas dan loop bingkainya)
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
                     Project, Playground, Leaderboard, Profile, Certificate
+.github/workflows/deploy.yml  build dan terbitkan ke GitHub Pages
 supabase/schema.sql skema, RPC, dan RLS
 tools/check-curriculum.mjs  menghitung kurikulum sungguhan lalu mencocokkannya
 tools/check-rpc-grants.mjs  siapa boleh memanggil RPC apa, diuji ke proyek langsung

@@ -62,7 +62,16 @@ export function createSupabaseBackend(): Backend {
       const { data, error } = await sb.auth.signUp({
         email,
         password,
-        options: { data: { username, display_name: displayName || username, lang } },
+        options: {
+          data: { username, display_name: displayName || username, lang },
+          // Without this, the confirmation link points at whatever the project's
+          // Site URL happens to be — which is localhost until somebody
+          // remembers to change it, and then nobody can confirm an account.
+          // Asking for the address this copy is actually served from means a
+          // deploy anywhere works, provided that address is on Supabase's
+          // redirect allow-list.
+          emailRedirectTo: window.location.origin + import.meta.env.BASE_URL,
+        },
       })
       if (error) {
         const msg = error.message.toLowerCase()

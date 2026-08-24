@@ -1,0 +1,99 @@
+# Build the app and publish it to GitHub Pages.
+#
+# Two settings have to exist before this works, and both are one-off:
+#
+#   Settings -> Pages -> Source: GitHub Actions
+#   Settings -> Secrets and variables -> Actions: VITE_SUPABASE_URL and
+#     VITE_SUPABASE_ANON_KEY
+#
+# The anon key is meant to be read by browsers — it is in the built bundle
+# either way, and what protects the data is the row-level security in
+# supabase/schema.sql. It lives in secrets here because that is where a build
+# reads configuration from, not because it is a secret.
+
+name: Deploy
+
+on:
+  push:
+    # No remote existed when this was written, and the local branch is master.
+    # Both are listed so the first push deploys whichever name it lands on.
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; a newer push makes an in-flight one pointless.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # `npm run build` type-checks on its way through, so this adds the one
+      # check it does not do: that the catalogue's lesson and project counts
+      # still match the curriculum they describe.
+      - run: npm run check:curriculum
+
+      - name: Work out where the site will live
+        id: base
+        run: |
+          repo="${{ github.event.repository.name }}"
+          # A repository named <user>.github.io is served at the domain root;
+          # anything else is a project site under /<repo>/.
+          if [[ "$repo" == *.github.io ]]; then
+            echo "value=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=/$repo/" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Refuse to build without the keys
+        # Missing them is not an error — the app falls back to local mode, where
+        # accounts live in one browser and nothing is shared. That is right for
+        # `npm run dev` and wrong for a published site, which would look
+        # perfectly fine and quietly store nothing. So it is caught here.
+        #
+        # The inputs are checked rather than the output: `supabase.co` appears
+        # in the bundle either way, because the client library carries it.
+        env:
+          URL: ${{ secrets.VITE_SUPABASE_URL }}
+          KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: |
+          if [ -z "$URL" ] || [ -z "$KEY" ]; then
+            echo "::error::Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY under Settings -> Secrets and variables -> Actions. Without them this would publish the local-mode app."
+            exit 1
+          fi
+
+      - name: Build
+        env:
+          VITE_BASE: ${{ steps.base.outputs.value }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
