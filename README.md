@@ -43,6 +43,18 @@ papan peringkat tidak kosong. Berguna untuk mencoba, **bukan** untuk dipakai sun
 Kunci `anon` memang untuk dipakai di sisi klien; yang menjaga data adalah RLS di
 `schema.sql`, bukan kerahasiaan kunci itu. Jangan pernah menaruh `service_role` di sini.
 
+Yang **tidak** dijaga RLS adalah fungsi RPC: Supabase memberikan EXECUTE kepada `anon`
+secara bawaan, jadi `schema.sql` mencabutnya lalu memberikannya kepada `authenticated` —
+kecuali `username_available`, yang harus bisa dipanggil sebelum akunnya ada.
+`npm run check:grants` memeriksa keduanya terhadap proyek sungguhan: papan peringkat dan
+fungsi heart harus **ditolak** tanpa login, dan pemeriksa nama harus **diterima**. Uji
+dua arah itu disengaja — pemeriksa yang hanya menunggu "ditolak" akan lulus dengan riang
+pada proyek yang semua fungsinya sudah terhapus. Ia hanya membaca; tak ada yang ditulis
+dan tak ada akun yang dibuat.
+
+Jalankan itu setiap kali kamu menambahkan RPC atau menjalankan ulang salah satunya —
+menjalankan ulang adalah saat sebuah pencabutan hak paling mungkin lenyap diam-diam.
+
 ## Identitas visual
 
 Logo dan warnanya sama dengan add-in PowerPoint Nunada
@@ -482,6 +494,7 @@ src/
                     Project, Playground, Leaderboard, Profile, Certificate
 supabase/schema.sql skema, RPC, dan RLS
 tools/check-curriculum.mjs  menghitung kurikulum sungguhan lalu mencocokkannya
+tools/check-rpc-grants.mjs  siapa boleh memanggil RPC apa, diuji ke proyek langsung
 ```
 
 ## Memuat kurikulum saat dibutuhkan

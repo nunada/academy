@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
-    "check:curriculum": "node tools/check-curriculum.mjs"
+    "check:curriculum": "node tools/check-curriculum.mjs",
+    "check:grants": "node tools/check-rpc-grants.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",
