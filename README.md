@@ -71,10 +71,15 @@ empat langkah, dan semuanya sekali saja.
 2. **Settings → Pages → Source: GitHub Actions.** Bukan "Deploy from a branch".
 
 3. **Settings → Secrets and variables → Actions**, tambahkan `VITE_SUPABASE_URL`
-   dan `VITE_SUPABASE_ANON_KEY` — isinya sama persis dengan `.env`-mu. Tanpa
-   keduanya alur kerjanya berhenti dengan pesan yang menyebutkan langkah ini;
-   itu disengaja, karena build tanpa kunci akan menghasilkan aplikasi mode lokal
-   yang tampak baik-baik saja dan diam-diam tidak menyimpan apa pun.
+   dan `VITE_SUPABASE_ANON_KEY`. Namanya masuk ke kolom *Name*; kolom *Secret*
+   diisi **nilainya saja** — bagian di sebelah kanan tanda `=` di `.env`, tanpa
+   nama, tanpa tanda kutip, tanpa spasi di ujung. Menyalin satu baris `.env`
+   bulat-bulat adalah kekeliruan yang paling gampang terjadi di sini, dan
+   dulu ia menghasilkan situs yang terbit tanpa keluhan lalu tampil kosong.
+   Sekarang alur kerjanya menolaknya sebelum membangun — sama seperti kalau
+   secret-nya memang tidak ada, dan sama-sama disengaja: build tanpa kunci yang
+   berfungsi menghasilkan aplikasi mode lokal yang tampak baik-baik saja dan
+   diam-diam tidak menyimpan apa pun.
 
 4. **Supabase → Authentication → URL Configuration.** Setel **Site URL** ke
    alamat situsmu, dan tambahkan alamat yang sama ke **Redirect URLs**. Tanpa

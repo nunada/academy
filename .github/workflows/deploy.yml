@@ -60,7 +60,7 @@ jobs:
             echo "value=/$repo/" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Refuse to build without the keys
+      - name: Refuse to build with keys that would not work
         # Missing them is not an error — the app falls back to local mode, where
         # accounts live in one browser and nothing is shared. That is right for
         # `npm run dev` and wrong for a published site, which would look
@@ -68,18 +68,59 @@ jobs:
         #
         # The inputs are checked rather than the output: `supabase.co` appears
         # in the bundle either way, because the client library carries it.
+        #
+        # Shape is checked as well as presence, because presence alone let a
+        # broken deploy through once. A secret holding a whole .env line —
+        # `VITE_SUPABASE_URL=https://…` instead of `https://…` — is not empty,
+        # so it built cleanly, and then supabase-js threw on the very first
+        # render. React unmounted, and the published site was a blank page with
+        # the reason visible only in the browser console.
         env:
           URL: ${{ secrets.VITE_SUPABASE_URL }}
           KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: |
           # Plain ifs, not `[ ... ] && ...`: steps run under `bash -e`, and a
           # test that comes back false would end the step with a failure when
-          # everything was in fact fine.
+          # everything was in fact fine. `case` is safe the same way — no match
+          # is a success, and so is an empty branch.
           missing=""
           if [ -z "$URL" ]; then missing="VITE_SUPABASE_URL"; fi
           if [ -z "$KEY" ]; then missing="$missing VITE_SUPABASE_ANON_KEY"; fi
           if [ -n "$missing" ]; then
             echo "::error::Empty:$missing. Two things make this happen. Either the secret is not there — check the exact name under Settings -> Secrets and variables -> Actions -> Repository secrets, and note that names are case-sensitive and an *environment* secret would not be visible to this job. Or this run simply started before the secret existed: a run reads secrets when it runs, not when the commit was pushed, so re-run it."
+            exit 1
+          fi
+
+          # A secret holds only the value. Copying a line out of .env brings the
+          # name along with it, and nothing downstream would notice.
+          named=""
+          case "$URL" in VITE_*) named="VITE_SUPABASE_URL" ;; esac
+          case "$KEY" in VITE_*) named="$named VITE_SUPABASE_ANON_KEY" ;; esac
+          if [ -n "$named" ]; then
+            echo "::error::Prefixed:$named. The value begins with its own name, so the secret holds a whole .env line rather than the value. Edit each one under Settings -> Secrets and variables -> Actions and paste only what follows the '=' — no name, no quotes, no trailing spaces."
+            exit 1
+          fi
+
+          case "$URL" in
+            https://*) ;;
+            *)
+              echo "::error::VITE_SUPABASE_URL does not begin with https://, so supabase-js rejects it on the first render and the published site is blank. Copy it from Supabase -> Project Settings -> Data API -> Project URL. A quote or a stray space at the front is enough to land here."
+              exit 1
+              ;;
+          esac
+
+          # This value is read by every visitor's browser; that is what the anon
+          # key is for, and row-level security is what stands behind it. A
+          # service-role key bypasses row-level security entirely, so publishing
+          # one would hand every visitor the whole database.
+          bad_key=""
+          case "$KEY" in sb_secret_*) bad_key="yes" ;; esac
+          if printf '%s' "$KEY" | grep -q '^eyJ'; then
+            role=$(node -e 'const p=process.argv[1].split(".")[1]||"";try{console.log(JSON.parse(Buffer.from(p,"base64url").toString()).role||"")}catch{console.log("")}' "$KEY" || true)
+            if [ "$role" = "service_role" ]; then bad_key="yes"; fi
+          fi
+          if [ -n "$bad_key" ]; then
+            echo "::error::VITE_SUPABASE_ANON_KEY is a service-role key, and this one ends up in a file every visitor downloads. Use the publishable or anon key instead (sb_publishable_… or a JWT whose role is anon), and rotate the key that was pasted here — treat it as leaked."
             exit 1
           fi
 
