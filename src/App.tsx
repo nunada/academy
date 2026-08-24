@@ -16,6 +16,7 @@ import Leaderboard from './pages/Leaderboard'
 import Profile from './pages/Profile'
 import Certificate from './pages/Certificate'
 import Teacher from './pages/Teacher'
+import ResetPassword from './pages/ResetPassword'
 
 function RequireAuth({ children }: { children: ReactNode }) {
   const { ready, user } = useStore()
@@ -49,6 +50,10 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={ready && user ? <Navigate to="/learn" replace /> : <Landing />} />
         <Route path="/auth" element={ready && user ? <Navigate to="/learn" replace /> : <Auth />} />
+        {/* No auth guard and no redirect-if-signed-in. A recovery link signs
+            you in on arrival, so both would bounce the visitor away from the
+            page the link was for. */}
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         <Route
           path="/learn"

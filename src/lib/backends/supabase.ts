@@ -98,6 +98,34 @@ export function createSupabaseBackend(): Backend {
       await sb.auth.signOut()
     },
 
+    async requestPasswordReset(email) {
+      // The address of this copy, not a hard-coded one, for the same reason
+      // sign-up does it: a build served anywhere sends people back to where
+      // they started. It has to be on Supabase's redirect allow-list.
+      const redirectTo = window.location.origin + import.meta.env.BASE_URL + 'reset-password'
+      const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo })
+      // Supabase returns no error for an address it has never seen, on purpose;
+      // anything that does arrive here is a real failure, like a rate limit.
+      if (error) throw new AuthError(error.message, 'unknown')
+      return {}
+    },
+
+    async updatePassword(password) {
+      if (password.length < 6) throw new AuthError('weak', 'weak-password')
+      const { error } = await sb.auth.updateUser({ password })
+      if (error) {
+        // Landing here without a session means the recovery link was stale or
+        // already spent — supabase-js reads it out of the URL before this page
+        // renders, so by now there is nothing left to try.
+        const msg = error.message.toLowerCase()
+        if (msg.includes('session') || msg.includes('jwt') || msg.includes('expired')) {
+          throw new AuthError(error.message, 'link-expired')
+        }
+        if (msg.includes('password')) throw new AuthError(error.message, 'weak-password')
+        throw new AuthError(error.message, 'unknown')
+      }
+    },
+
     async getState(userId): Promise<UserState> {
       const [profileRes, progressRes, xpRes, enrollRes, trophyRes, certRes, heartsRes] = await Promise.all([
         sb.from('profiles').select('*').eq('id', userId).single(),

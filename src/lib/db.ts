@@ -112,6 +112,22 @@ export interface Backend {
   signIn(input: { email: string; password: string }): Promise<AuthUser>
   signOut(): Promise<void>
 
+  /** Starts a reset. Never says whether the address has an account — telling a
+   *  stranger which emails are registered is a leak, and Supabase declines to
+   *  do it, so the local backend declines too.
+   *
+   *  Supabase sends a link by email. Local mode has no email, so it hands the
+   *  link back instead and the page shows it. */
+  requestPasswordReset(email: string): Promise<{ localLink?: string }>
+
+  /** Sets a new password.
+   *
+   *  Two callers: somebody who followed a reset link, and somebody already
+   *  signed in changing it from their profile. Supabase treats both the same
+   *  way, because the link established a session before the page loaded — the
+   *  token is only there for local mode, which has no such thing. */
+  updatePassword(password: string, token?: string): Promise<void>
+
   getState(userId: string): Promise<UserState>
   setLang(userId: string, lang: Lang): Promise<void>
   enroll(userId: string, kind: 'course' | 'path', refId: string): Promise<Enrollment[]>
@@ -136,7 +152,14 @@ export class AuthError extends Error {
   constructor(
     message: string,
     /** Key into `authErrors` so the message can be shown in the learner's language. */
-    public code: 'email-taken' | 'username-taken' | 'bad-credentials' | 'weak-password' | 'invalid' | 'unknown' = 'unknown',
+    public code:
+      | 'email-taken'
+      | 'username-taken'
+      | 'bad-credentials'
+      | 'weak-password'
+      | 'invalid'
+      | 'link-expired'
+      | 'unknown' = 'unknown',
   ) {
     super(message)
   }
@@ -148,6 +171,10 @@ export const authErrors: Record<string, { en: string; id: string }> = {
   'bad-credentials': { en: 'Wrong email or password.', id: 'Email atau kata sandi salah.' },
   'weak-password': { en: 'Password must be at least 6 characters.', id: 'Kata sandi minimal 6 karakter.' },
   invalid: { en: 'Please check the form and try again.', id: 'Periksa kembali isian lalu coba lagi.' },
+  'link-expired': {
+    en: 'That link has expired or has already been used. Ask for a new one.',
+    id: 'Tautan itu sudah kedaluwarsa atau sudah dipakai. Minta yang baru.',
+  },
   unknown: { en: 'Something went wrong. Try again.', id: 'Terjadi kesalahan. Coba lagi.' },
 }
 

@@ -46,6 +46,13 @@ export default function Profile() {
         </div>
       </div>
 
+      <div className="card between" style={{ marginBottom: 24 }}>
+        <b>{t('password')}</b>
+        <Link className="btn ghost sm" to="/reset-password">
+          {t('changePassword')}
+        </Link>
+      </div>
+
       <h2>{t('certificates')}</h2>
       {state.certificates.length === 0 ? (
         <div className="card muted small">{t('noCertificates')}</div>

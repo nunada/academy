@@ -41,6 +41,9 @@ interface Account {
   hearts: { hearts: number; updated_at: string }
   /** Rivals on the leaderboard are seeded with plain totals instead of events. */
   seeded?: { weekly: number; alltime: number; trophies: number }
+  /** Outstanding password-reset token. One at a time, spent on use — the same
+   *  two rules Supabase's emailed link follows. */
+  reset?: { token: string; expires: number }
 }
 
 interface Db {
@@ -212,6 +215,44 @@ export function createLocalBackend(): Backend {
     async signOut() {
       localStorage.removeItem(SESSION_KEY)
       emit(null)
+    },
+
+    async requestPasswordReset(email) {
+      const db = load()
+      const acc = db.accounts.find((a) => a.email === email.trim().toLowerCase())
+      // Deliberately silent about a miss. There is nobody to hide from inside
+      // one browser, but the page above must behave identically in both modes,
+      // and the only way to be sure of that is to give it nothing to tell apart.
+      if (!acc) return {}
+
+      const token = `r_${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`
+      acc.reset = { token, expires: Date.now() + 3600_000 }
+      save(db)
+      // No email to send it in, so it goes back to the caller and the page
+      // prints it. Local mode is a sandbox; this is the honest version of a
+      // link that would otherwise never arrive.
+      return { localLink: `/reset-password?token=${token}` }
+    },
+
+    async updatePassword(password, token) {
+      if (password.length < 6) throw new AuthError('weak', 'weak-password')
+      const db = load()
+
+      const acc = token
+        ? db.accounts.find((a) => a.reset?.token === token && a.reset.expires > Date.now())
+        : db.accounts.find((a) => a.id === localStorage.getItem(SESSION_KEY))
+
+      if (!acc) throw new AuthError('no such token or session', token ? 'link-expired' : 'invalid')
+
+      acc.passwordHash = hash(password)
+      // Spent, whether it was used to reset or not — a link that still works
+      // after it has been followed is not a reset link.
+      delete acc.reset
+      save(db)
+
+      // Following the link signs you in, the way the emailed one does.
+      localStorage.setItem(SESSION_KEY, acc.id)
+      emit({ id: acc.id, email: acc.email })
     },
 
     async getState(userId) {

@@ -82,9 +82,18 @@ empat langkah, dan semuanya sekali saja.
    diam-diam tidak menyimpan apa pun.
 
 4. **Supabase → Authentication → URL Configuration.** Setel **Site URL** ke
-   alamat situsmu, dan tambahkan alamat yang sama ke **Redirect URLs**. Tanpa
-   ini, tautan konfirmasi di surel pendaftaran menunjuk ke `localhost` dan tak
-   seorang pun bisa menyelesaikan pendaftarannya.
+   alamat situsmu, lalu tambahkan **dua** alamat ke **Redirect URLs**:
+
+   ```
+   https://<kamu>.github.io/<repo>/
+   https://<kamu>.github.io/<repo>/reset-password
+   ```
+
+   Yang pertama untuk tautan konfirmasi pendaftaran; tanpa itu tautannya
+   menunjuk ke `localhost` dan tak seorang pun bisa menyelesaikan
+   pendaftarannya. Yang kedua untuk tautan lupa-sandi; tanpa itu Supabase
+   menolak mengarahkan orangnya ke sana dan tautannya tampak rusak. Satu pola
+   `https://<kamu>.github.io/<repo>/**` juga menutupi keduanya.
 
 ### Yang sudah disiapkan, dan mengapa
 
@@ -170,6 +179,31 @@ Tanpa langkah ini kamu sudah membayar penyedia surel dan tetap tertahan.
 seluruh soal ini hilang. Yang kamu lepas adalah bukti bahwa alamat surelnya
 benar-benar milik si pendaftar — untuk kelas yang orangnya kamu kenal, itu
 harga yang wajar; untuk pendaftaran terbuka, tidak.
+
+### Kalau ada yang lupa kata sandinya
+
+Ada tautan **"Lupa kata sandi?"** di halaman masuk. Orangnya mengetik alamat
+surelnya, menerima tautan, memilih sandi baru, dan langsung masuk. Tautannya
+sekali pakai dan kedaluwarsa dalam sejam; meminta yang baru membatalkan yang
+lama. Yang sudah ingat sandinya tapi ingin menggantinya bisa lewat **Profil →
+Ganti kata sandi**.
+
+Halamannya menjawab hal yang sama untuk alamat yang terdaftar maupun yang
+tidak. Itu disengaja: memberi tahu orang asing alamat mana yang punya akun
+adalah kebocoran tersendiri, dan Supabase menolak melakukannya, jadi mode lokal
+menolak juga.
+
+Dua hal yang menggagalkannya, dan keduanya di luar kode:
+
+- Alamat `/reset-password` harus ada di **Redirect URLs** (langkah 4 di atas).
+- Surelnya lewat jalur yang sama dengan konfirmasi pendaftaran, jadi **batas dua
+  per jam itu berlaku di sini juga**. Kalau kamu mematikan konfirmasi surel agar
+  pendaftaran lancar, pemulihan sandi tetap butuh surel — ini alasan tersendiri
+  untuk memasang SMTP.
+
+Di mode lokal tidak ada surel sama sekali, jadi tautannya ditampilkan di layar.
+Itu bukan jalan pintas yang ikut terbit: mode lokal hanya aktif saat kunci
+Supabase tidak ada, dan build yang terbit selalu punya kuncinya.
 
 ### Melihat capaian pembelajar
 
@@ -643,7 +677,8 @@ src/
                     GamePreview.tsx (kanvas dan loop bingkainya)
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
                     Project, Playground, Leaderboard, Profile, Certificate,
-                    Teacher (halaman Kelas, hanya untuk akun guru)
+                    Teacher (halaman Kelas, hanya untuk akun guru),
+                    ResetPassword (tempat tautan lupa-sandi mendarat)
 .github/workflows/deploy.yml  build dan terbitkan ke GitHub Pages
 supabase/schema.sql skema, RPC, dan RLS
 supabase/reports.sql  capaian tiap pembelajar, untuk SQL Editor

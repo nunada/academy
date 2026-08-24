@@ -35,6 +35,35 @@ export const ui = {
     id: 'Tampil di papan peringkat. Huruf, angka, garis bawah.',
   },
 
+  // password reset
+  forgotPassword: { en: 'Forgot your password?', id: 'Lupa kata sandi?' },
+  resetTitle: { en: 'Reset your password', id: 'Atur ulang kata sandi' },
+  resetSub: {
+    en: 'Type the email you signed up with and we will send you a link.',
+    id: 'Ketik email yang kamu pakai mendaftar, dan kami kirimkan tautannya.',
+  },
+  resetSend: { en: 'Send the link', id: 'Kirim tautannya' },
+  resetSentBody: {
+    en: 'If that email has an account, a link is on its way. It works once and expires within the hour. Check the spam folder if it does not appear.',
+    id: 'Kalau email itu punya akun, tautannya sedang dikirim. Ia hanya bisa dipakai sekali dan kedaluwarsa dalam sejam. Periksa folder spam kalau belum muncul.',
+  },
+  resetLocalNote: {
+    en: 'Local mode sends no email, so here is the link:',
+    id: 'Mode lokal tidak mengirim email, jadi ini tautannya:',
+  },
+  resetLocalOpen: { en: 'Open it', id: 'Buka' },
+  newPasswordTitle: { en: 'Choose a new password', id: 'Pilih kata sandi baru' },
+  newPasswordSub: {
+    en: 'You will be signed in once it is saved.',
+    id: 'Kamu akan langsung masuk setelah tersimpan.',
+  },
+  newPassword: { en: 'New password', id: 'Kata sandi baru' },
+  newPasswordAgain: { en: 'Type it again', id: 'Ketik sekali lagi' },
+  newPasswordSave: { en: 'Save it', id: 'Simpan' },
+  newPasswordDone: { en: 'Saved. Taking you to your courses…', id: 'Tersimpan. Mengantarmu ke kursusmu…' },
+  passwordMismatch: { en: 'The two do not match.', id: 'Keduanya tidak sama.' },
+  changePassword: { en: 'Change password', id: 'Ganti kata sandi' },
+
   // landing
   heroTitle: { en: 'Learn to code, one small win at a time.', id: 'Belajar coding, satu kemenangan kecil setiap kali.' },
   heroBody: {
