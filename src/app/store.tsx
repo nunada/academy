@@ -186,6 +186,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       langAdopted.current = null
     },
 
+    async updateProfile(changes) {
+      if (!user) return
+      const profile = await backend.updateProfile(user.id, changes)
+      setState((s) => (s ? { ...s, profile } : s))
+    },
+
     async enroll(kind, refId) {
       if (!user) return
       const enrollments = await backend.enroll(user.id, kind, refId)

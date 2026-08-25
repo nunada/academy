@@ -415,14 +415,20 @@ $$;
 -- includes `role` — anybody could promote themselves and read the whole
 -- cohort. Row-level security cannot express "every column but this one", so
 -- the column grant does it: update is revoked wholesale and handed back for
--- the two columns the app actually writes.
+-- the columns the app actually writes.
+--
+-- `username` joined this list once the profile page could rename its owner —
+-- the column's own unique constraint (see its `citext` definition above)
+-- is still what actually stops two learners taking the same one; the app's
+-- pre-check via username_available only makes the common case a friendly
+-- message instead of a raw constraint error.
 --
 -- The trigger says the same thing a second time. It is not redundant against
 -- today's schema, it is redundant against a future `grant all on all tables`,
 -- which is advice common enough to turn up in a Supabase thread one day.
 
 revoke update on public.profiles from anon, authenticated;
-grant  update (display_name, lang) on public.profiles to authenticated;
+grant  update (username, display_name, lang) on public.profiles to authenticated;
 
 create or replace function public.guard_profile_role()
 returns trigger

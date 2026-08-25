@@ -273,6 +273,26 @@ export function createLocalBackend(): Backend {
       save(db)
     },
 
+    async updateProfile(userId, { username, displayName }) {
+      const db = load()
+      const a = find(db, userId)
+
+      if (username !== undefined) {
+        const trimmed = username.trim()
+        const changing = trimmed.toLowerCase() !== a.profile.username.toLowerCase()
+        if (changing && db.accounts.some((x) => x.id !== userId && x.profile.username.toLowerCase() === trimmed.toLowerCase())) {
+          throw new AuthError('taken', 'username-taken')
+        }
+        a.profile.username = trimmed
+      }
+      if (displayName !== undefined) {
+        a.profile.display_name = displayName.trim() || a.profile.display_name
+      }
+
+      save(db)
+      return a.profile
+    },
+
     async enroll(userId, kind, refId) {
       const db = load()
       const a = find(db, userId)

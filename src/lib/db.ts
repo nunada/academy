@@ -142,6 +142,11 @@ export interface Backend {
 
   getState(userId: string): Promise<UserState>
   setLang(userId: string, lang: Lang): Promise<void>
+  /** Changes username and/or display name — whichever keys are present.
+   *  Throws AuthError('username-taken') if the new username belongs to
+   *  someone else already; changing only the case of your own username, or
+   *  passing the same one back, is not a conflict with yourself. */
+  updateProfile(userId: string, changes: { username?: string; displayName?: string }): Promise<Profile>
   enroll(userId: string, kind: 'course' | 'path', refId: string): Promise<Enrollment[]>
   /** Idempotent: completing an already-finished item awards no extra XP. */
   completeItem(

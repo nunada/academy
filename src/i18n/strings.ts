@@ -63,6 +63,11 @@ export const ui = {
   newPasswordDone: { en: 'Saved. Taking you to your courses…', id: 'Tersimpan. Mengantarmu ke kursusmu…' },
   passwordMismatch: { en: 'The two do not match.', id: 'Keduanya tidak sama.' },
   changePassword: { en: 'Change password', id: 'Ganti kata sandi' },
+  nameAndUsername: { en: 'Name & username', id: 'Nama & nama pengguna' },
+  edit: { en: 'Edit', id: 'Ubah' },
+  save: { en: 'Save', id: 'Simpan' },
+  cancel: { en: 'Cancel', id: 'Batal' },
+  profileSaved: { en: 'Saved.', id: 'Tersimpan.' },
 
   // sign-up confirmation
   signupConfirmTitle: { en: 'Check your email', id: 'Periksa emailmu' },

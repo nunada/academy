@@ -159,6 +159,35 @@ export function createSupabaseBackend(): Backend {
       await sb.from('profiles').update({ lang }).eq('id', userId)
     },
 
+    async updateProfile(userId, { username, displayName }) {
+      const patch: Record<string, string> = {}
+
+      if (username !== undefined) {
+        const { data: mine } = await sb.from('profiles').select('username').eq('id', userId).single()
+        const changing = !mine || mine.username.toLowerCase() !== username.toLowerCase()
+        if (changing) {
+          // Same check sign-up runs before creating the account — a stranger's
+          // name is refused before a write is even attempted.
+          const { data: free, error: checkErr } = await sb.rpc('username_available', { p_username: username })
+          if (checkErr) throw new AuthError(checkErr.message, 'unknown')
+          if (!free) throw new AuthError('taken', 'username-taken')
+        }
+        patch.username = username
+      }
+      if (displayName !== undefined) patch.display_name = displayName
+
+      const { data, error } = await sb.from('profiles').update(patch).eq('id', userId).select().single()
+      if (error) {
+        // The RPC check above closes the common case; this catches the rare
+        // race where two people claim the same name between the check and
+        // the write — the column's own unique constraint is what actually
+        // stops it, this just gives it the same friendly message.
+        if (error.code === '23505') throw new AuthError(error.message, 'username-taken')
+        throw new AuthError(error.message, 'unknown')
+      }
+      return data as Profile
+    },
+
     async enroll(userId, kind, refId) {
       await sb.from('enrollments').upsert(
         { user_id: userId, kind, ref_id: refId },
