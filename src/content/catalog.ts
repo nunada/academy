@@ -178,6 +178,22 @@ export const COURSES: CourseInfo[] = [
     lessons: 16,
     projects: 9,
   },
+  {
+    id: 'python-numpy',
+    title: { en: 'Numerical Python', id: 'Python untuk Matematika: Numerik' },
+    tagline: {
+      en: 'Vectors, matrices, and simulation — numpy arrays instead of arithmetic written out by hand.',
+      id: 'Vektor, matriks, dan simulasi — array numpy alih-alih aritmetika yang ditulis manual.',
+    },
+    icon: '📐',
+    color: '#437649',
+    level: { en: 'Intermediate', id: 'Menengah' },
+    language: 'python',
+    requires: ['python-math'],
+    available: true,
+    lessons: 12,
+    projects: 6,
+  },
 ]
 
 /** One dynamic import per course. Written out rather than built from the id so
@@ -193,6 +209,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'game-dev': () => import('./gamedev'),
   'python-math': () => import('./python-math'),
   'python-media': () => import('./python-media'),
+  'python-numpy': () => import('./python-numpy'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes
