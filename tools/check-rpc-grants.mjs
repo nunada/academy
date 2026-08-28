@@ -46,8 +46,13 @@ console.log('project:', URL_.replace(/https:\/\/([^.]{6}).*/, 'https://$1…'))
 
 /** `anon` must be refused everything here. */
 const TERTUTUP = {
+  // The two XP boards take a course filter as well. Both shapes are sent —
+  // with and without it — because the grant is on the signature, and an
+  // overload left behind by an older schema would have its own.
   leaderboard_weekly: { p_limit: 3 },
+  'leaderboard_weekly(filtered)': { p_limit: 3, p_courses: ['vektor'] },
   leaderboard_alltime: { p_limit: 3 },
+  'leaderboard_alltime(filtered)': { p_limit: 3, p_courses: ['vektor'] },
   leaderboard_trophies: { p_limit: 3 },
   resolve_hearts: {},
   spend_heart: {},
@@ -82,20 +87,23 @@ async function panggil(rpc, args) {
 
 const masalah = []
 
-for (const [rpc, args] of Object.entries(TERTUTUP)) {
+for (const [label, args] of Object.entries(TERTUTUP)) {
+  // A key may name the same function twice with different arguments, so the
+  // part in brackets is a note to the reader rather than part of the name.
+  const rpc = label.replace(/\(.*\)$/, '')
   const r = await panggil(rpc, args)
   if (r.ok) {
-    masalah.push(`${rpc} is callable without a login`)
-    console.log(`  ${rpc}: OPEN TO ANON (${r.status})`)
+    masalah.push(`${label} is callable without a login`)
+    console.log(`  ${label}: OPEN TO ANON (${r.status})`)
   } else if (r.status === 404) {
     // A function that does not exist is refused just as firmly as one that is
     // locked, and the difference matters: it means schema.sql has grown since
     // this project last ran it. Reading that as "safe" is how a new RPC ships
     // with nobody having checked its grants.
-    masalah.push(`${rpc} is not on the project — re-run supabase/schema.sql`)
-    console.log(`  ${rpc}: MISSING (404) — ${r.pesan}`)
+    masalah.push(`${label} is not on the project — re-run supabase/schema.sql`)
+    console.log(`  ${label}: MISSING (404) — ${r.pesan}`)
   } else {
-    console.log(`  ${rpc}: refused (${r.status}) — ${r.pesan}`)
+    console.log(`  ${label}: refused (${r.status}) — ${r.pesan}`)
   }
 }
 

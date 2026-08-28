@@ -43,6 +43,10 @@ papan peringkat tidak kosong. Berguna untuk mencoba, **bukan** untuk dipakai sun
 1. Buat project baru di [supabase.com](https://supabase.com).
 2. Buka **SQL Editor → New query**, tempel seluruh isi [`supabase/schema.sql`](supabase/schema.sql), jalankan.
    Berkas itu membuat tabel, trigger, RPC, dan seluruh kebijakan Row Level Security.
+   Aman dijalankan ulang, dan **harus** dijalankan ulang pada proyek yang sudah
+   terpasang sebelum pemisahan papan peringkat: `xp_events` mendapat kolom
+   `course_id`, dan kedua fungsi papan XP berganti tanda tangan. Baris lama
+   diisikan sendiri oleh berkas itu dari tabel `progress`.
 3. Di **Authentication → Providers**, pastikan Email aktif. Untuk pengembangan,
    matikan *Confirm email* agar bisa langsung masuk setelah mendaftar.
 4. Salin `.env.example` menjadi `.env`, lalu isi dari **Project Settings → API**:
@@ -253,6 +257,28 @@ harus dijaga tetap seiring; `npm run check:curriculum` yang membuktikan angka
 itu masih cocok. Kursus yang tak ada di daftarnya menghasilkan persentase
 kosong, bukan persentase yang keliru. Halaman Kelas tidak punya soal itu: ia
 memakai angka yang sudah dipakai kartu kursus, jadi hanya ada satu salinan.
+
+## Papan peringkat, dua babak
+
+XP matematika dan XP pemrograman tidak lagi diadu dalam satu kolom. Mengadu
+keduanya membandingkan dua jenis pekerjaan yang berbeda, dan mengubur orang yang
+mengerjakan salah satunya dengan baik di bawah semua orang yang mengerjakan yang
+lain. Papan XP mingguan dan sepanjang masa kini bisa dipersempit ke satu jalur.
+
+Papan **trofi** tidak ikut disaring, dan itu disengaja: "kumpulkan 100 XP total"
+tidak dimiliki jalur mana pun. Penyaringnya hanya muncul di tab yang memang
+berarti.
+
+Yang dikirim aplikasi ke basis data adalah **daftar id kursus**, bukan nama
+jalurnya. Keanggotaan jalur diputuskan `content/catalog.ts`; menyalin tabel itu
+ke dalam basis data hanya akan memberinya tempat kedua untuk salah. Dua RPC-nya
+menerima `p_courses text[] default null`, dan `null` berarti semuanya — persis
+perilaku versi lama, sehingga pemanggilan tanpa argumen itu tetap sah.
+
+`xp_events` mendapat kolom `course_id` untuk ini. Baris lama diisikan dari
+`progress` dengan mencocokkan `source` terhadap `kind || ':' || item_id` — nilai
+yang memang ditulis `complete_item`, jadi hasilnya tepat dan bukan tebakan.
+
 
 ## Identitas visual
 

@@ -36,6 +36,9 @@ export interface ProgressItem {
 export interface XpEvent {
   amount: number
   source: string
+  /** Which course the XP was earned in, so a board can be narrowed to one
+   *  track. Null on rows written before the column existed. */
+  course_id?: string | null
   created_at: string
 }
 
@@ -75,6 +78,17 @@ export interface LeaderRow {
 }
 
 export type LeaderboardKind = 'weekly' | 'alltime' | 'trophies'
+
+/** Which half of the catalogue a board counts.
+ *
+ *  Ranking mathematics and programming in one column compares two different
+ *  kinds of work, and buries somebody doing one of them well under everybody
+ *  doing the other. So the XP boards can be narrowed to a single track.
+ *
+ *  The backend is told the track rather than a list of course ids: which
+ *  course belongs where is decided in `content/catalog.ts`, and that decision
+ *  should not have to be restated at every call site. */
+export type LeaderboardTrack = 'all' | 'math' | 'code'
 
 /** One learner as a teacher sees them. Everybody appears, including somebody
  *  who signed up and finished nothing — `last_active` is null for them. */
@@ -157,7 +171,9 @@ export interface Backend {
   syncHearts(userId: string, row: { hearts: number; updated_at: string }): Promise<void>
   awardTrophies(userId: string, ids: string[]): Promise<TrophyRow[]>
   issueCertificate(userId: string, kind: 'course' | 'path', refId: string): Promise<CertificateRow[]>
-  leaderboard(kind: LeaderboardKind): Promise<LeaderRow[]>
+  /** `track` narrows the XP boards to one half of the catalogue. The trophy
+   *  board ignores it: "earn 100 XP in total" belongs to no track. */
+  leaderboard(kind: LeaderboardKind, track: LeaderboardTrack): Promise<LeaderRow[]>
 
   /** Both are teachers-only. The check lives in the database, not here: these
    *  read every learner's rows, so a client-side guard would be decoration. */

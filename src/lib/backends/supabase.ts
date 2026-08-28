@@ -18,6 +18,7 @@ import type {
   XpEvent,
 } from '../db'
 import { AuthError } from '../db'
+import { coursesIn } from '../../content/catalog'
 import { MAX_HEARTS } from '../hearts'
 
 function client(): SupabaseClient {
@@ -248,8 +249,14 @@ export function createSupabaseBackend(): Backend {
       return (data ?? []) as CertificateRow[]
     },
 
-    async leaderboard(kind) {
-      const { data, error } = await sb.rpc(RPC_BY_KIND[kind], { p_limit: 50 })
+    async leaderboard(kind, track) {
+      // The trophy board has no course filter, and passing one to it would be
+      // a call to a function that does not take it.
+      const args =
+        kind === 'trophies' || track === 'all'
+          ? { p_limit: 50 }
+          : { p_limit: 50, p_courses: coursesIn(track).map((c) => c.id) }
+      const { data, error } = await sb.rpc(RPC_BY_KIND[kind], args)
       if (error) throw error
       return (data ?? []) as LeaderRow[]
     },

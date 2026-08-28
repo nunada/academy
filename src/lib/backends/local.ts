@@ -12,6 +12,7 @@ import type {
   Enrollment,
   LeaderRow,
   LeaderboardKind,
+  LeaderboardTrack,
   Profile,
   ProgressItem,
   Role,
@@ -24,6 +25,7 @@ import { AuthError } from '../db'
 import type { Lang } from '../../content/types'
 import { MAX_HEARTS, loseHeart, resolveHearts } from '../hearts'
 import { isThisWeek } from '../week'
+import { coursesIn } from '../../content/catalog'
 
 const KEY = 'nunada.local.db.v1'
 const SESSION_KEY = 'nunada.local.session'
@@ -39,8 +41,9 @@ interface Account {
   trophies: TrophyRow[]
   certificates: CertificateRow[]
   hearts: { hearts: number; updated_at: string }
-  /** Rivals on the leaderboard are seeded with plain totals instead of events. */
-  seeded?: { weekly: number; alltime: number; trophies: number }
+  /** Rivals on the leaderboard are seeded with plain totals instead of events,
+   *  split by track so the filtered boards are not a list of one. */
+  seeded?: { weekly: TrackXp; alltime: TrackXp; trophies: number }
   /** Outstanding password-reset token. One at a time, spent on use — the same
    *  two rules Supabase's emailed link follows. */
   reset?: { token: string; expires: number }
@@ -58,13 +61,28 @@ function hash(s: string): string {
 
 const now = () => new Date().toISOString()
 
-const SEED: { username: string; display_name: string; weekly: number; alltime: number; trophies: number }[] = [
-  { username: 'rania_dev', display_name: 'Rania P.', weekly: 340, alltime: 1820, trophies: 6 },
-  { username: 'bagas', display_name: 'Bagas W.', weekly: 275, alltime: 990, trophies: 4 },
-  { username: 'nadia.codes', display_name: 'Nadia S.', weekly: 210, alltime: 2340, trophies: 8 },
-  { username: 'ilham_r', display_name: 'Ilham R.', weekly: 160, alltime: 640, trophies: 3 },
-  { username: 'putri', display_name: 'Putri A.', weekly: 95, alltime: 1210, trophies: 5 },
-  { username: 'dimas', display_name: 'Dimas H.', weekly: 60, alltime: 320, trophies: 2 },
+/** XP split the way the boards split it. The two always sum to the total. */
+interface TrackXp {
+  code: number
+  math: number
+}
+
+/** Deliberately lopsided rivals: somebody near the top of the combined board
+ *  who is nowhere on the mathematics one is the whole reason the filter is
+ *  worth having, and the seeds should show it rather than hide it. */
+const SEED: {
+  username: string
+  display_name: string
+  weekly: TrackXp
+  alltime: TrackXp
+  trophies: number
+}[] = [
+  { username: 'rania_dev', display_name: 'Rania P.', weekly: { code: 320, math: 20 }, alltime: { code: 1720, math: 100 }, trophies: 6 },
+  { username: 'bagas', display_name: 'Bagas W.', weekly: { code: 55, math: 220 }, alltime: { code: 190, math: 800 }, trophies: 4 },
+  { username: 'nadia.codes', display_name: 'Nadia S.', weekly: { code: 130, math: 80 }, alltime: { code: 1640, math: 700 }, trophies: 8 },
+  { username: 'ilham_r', display_name: 'Ilham R.', weekly: { code: 0, math: 160 }, alltime: { code: 40, math: 600 }, trophies: 3 },
+  { username: 'putri', display_name: 'Putri A.', weekly: { code: 95, math: 0 }, alltime: { code: 1210, math: 0 }, trophies: 5 },
+  { username: 'dimas', display_name: 'Dimas H.', weekly: { code: 20, math: 40 }, alltime: { code: 120, math: 200 }, trophies: 2 },
 ]
 
 function blankAccount(
@@ -99,6 +117,18 @@ function normalise(db: Db): boolean {
   let changed = false
   let owner = !known
   for (const a of db.accounts) {
+    // A store written before the boards were split has plain numbers here.
+    // Those seeds predate the mathematics courses, so all of it is `code` —
+    // reading it as anything else would be inventing a standing nobody earned.
+    if (a.seeded && typeof (a.seeded.weekly as unknown) === 'number') {
+      const old = a.seeded as unknown as { weekly: number; alltime: number; trophies: number }
+      a.seeded = {
+        weekly: { code: old.weekly, math: 0 },
+        alltime: { code: old.alltime, math: 0 },
+        trophies: old.trophies,
+      }
+      changed = true
+    }
     if ((a.profile as Partial<Profile>).role) continue
     a.profile.role = owner && !a.seeded ? 'teacher' : 'learner'
     if (!a.seeded) owner = false
@@ -317,7 +347,12 @@ export function createLocalBackend(): Backend {
         xp: item.xp,
         completed_at: stamp,
       })
-      a.xpEvents.push({ amount: item.xp, source: `${item.kind}:${item.itemId}`, created_at: stamp })
+      a.xpEvents.push({
+        amount: item.xp,
+        source: `${item.kind}:${item.itemId}`,
+        course_id: item.courseId,
+        created_at: stamp,
+      })
       save(db)
       return { progress: a.progress, xpEvents: a.xpEvents, awardedXp: item.xp }
     },
@@ -370,18 +405,27 @@ export function createLocalBackend(): Backend {
       return a.certificates
     },
 
-    async leaderboard(kind: LeaderboardKind) {
+    async leaderboard(kind: LeaderboardKind, track: LeaderboardTrack) {
       const db = load()
+      // Which courses count. The trophy board counts all of them: a trophy for
+      // earning 100 XP in total belongs to neither track.
+      const counted =
+        kind === 'trophies' || track === 'all' ? null : new Set(coursesIn(track).map((c) => c.id))
+      const mine = (e: XpEvent) => counted === null || (e.course_id != null && counted.has(e.course_id))
+      const seededXp = (t: TrackXp) => (track === 'all' ? t.code + t.math : t[track])
+
       const rows: LeaderRow[] = db.accounts.map((a) => {
         let value: number
         if (kind === 'trophies') {
           value = a.seeded ? a.seeded.trophies : a.trophies.length
         } else if (kind === 'weekly') {
           value = a.seeded
-            ? a.seeded.weekly
-            : a.xpEvents.filter((e) => isThisWeek(e.created_at)).reduce((n, e) => n + e.amount, 0)
+            ? seededXp(a.seeded.weekly)
+            : a.xpEvents.filter((e) => isThisWeek(e.created_at) && mine(e)).reduce((n, e) => n + e.amount, 0)
         } else {
-          value = a.seeded ? a.seeded.alltime : a.xpEvents.reduce((n, e) => n + e.amount, 0)
+          value = a.seeded
+            ? seededXp(a.seeded.alltime)
+            : a.xpEvents.filter(mine).reduce((n, e) => n + e.amount, 0)
         }
         return {
           user_id: a.id,

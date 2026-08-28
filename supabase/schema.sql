@@ -50,8 +50,25 @@ create table if not exists public.xp_events (
   created_at timestamptz not null default now()
 );
 
+-- Added after the mathematics courses arrived, so that a leaderboard can be
+-- narrowed to one half of the catalogue. Nullable, because rows written before
+-- the column existed have no answer — the backfill below gives them one.
+alter table public.xp_events add column if not exists course_id text;
+
 create index if not exists xp_events_user_time_idx on public.xp_events (user_id, created_at desc);
 create index if not exists xp_events_time_idx on public.xp_events (created_at desc);
+create index if not exists xp_events_course_time_idx on public.xp_events (course_id, created_at desc);
+
+-- Every event was written by complete_item alongside a progress row, and the
+-- source it recorded is exactly that row's kind and item. So the old rows can
+-- be filled in exactly rather than guessed at. Runs once; the `is null` guard
+-- makes re-running the whole file harmless.
+update public.xp_events e
+   set course_id = p.course_id
+  from public.progress p
+ where e.course_id is null
+   and p.user_id = e.user_id
+   and e.source = p.kind || ':' || p.item_id;
 
 -- ----------------------------------------------------------------- hearts
 
@@ -150,8 +167,8 @@ begin
     return 0;  -- already done, no double XP
   end if;
 
-  insert into public.xp_events (user_id, amount, source)
-  values (auth.uid(), p_xp, p_kind || ':' || p_item_id);
+  insert into public.xp_events (user_id, amount, source, course_id)
+  values (auth.uid(), p_xp, p_kind || ':' || p_item_id, p_course_id);
 
   return p_xp;
 end;
@@ -263,7 +280,24 @@ $$;
 -- return the same instant and nothing was ever wrong here. This guards against
 -- a database that is not UTC, not against an outage that happened.
 
-create or replace function public.leaderboard_weekly(p_limit integer default 50)
+-- Both XP boards take an optional list of courses to count. Null means all of
+-- them, which is what the unfiltered board asks for and what the old
+-- one-argument version did — so a call that predates this change still works.
+--
+-- The app sends course ids rather than a track name because the catalogue in
+-- `content/catalog.ts` decides which course is which, and copying that table
+-- into the database would give it a second place to be wrong.
+--
+-- The single-argument versions have to go: adding a defaulted parameter makes
+-- an overload, and a call with one argument would then be ambiguous rather
+-- than resolved.
+drop function if exists public.leaderboard_weekly(integer);
+drop function if exists public.leaderboard_alltime(integer);
+
+create or replace function public.leaderboard_weekly(
+  p_limit   integer default 50,
+  p_courses text[] default null
+)
 returns table (user_id uuid, username text, display_name text, value bigint)
 language sql
 security definer
@@ -273,12 +307,16 @@ as $$
     from public.xp_events e
     join public.profiles p on p.id = e.user_id
    where e.created_at >= date_trunc('week', now() at time zone 'utc') at time zone 'utc'
+     and (p_courses is null or e.course_id = any(p_courses))
    group by p.id, p.username, p.display_name
    order by value desc, p.username asc
    limit p_limit;
 $$;
 
-create or replace function public.leaderboard_alltime(p_limit integer default 50)
+create or replace function public.leaderboard_alltime(
+  p_limit   integer default 50,
+  p_courses text[] default null
+)
 returns table (user_id uuid, username text, display_name text, value bigint)
 language sql
 security definer
@@ -287,6 +325,7 @@ as $$
   select p.id, p.username::text, p.display_name, sum(e.amount)::bigint as value
     from public.xp_events e
     join public.profiles p on p.id = e.user_id
+   where p_courses is null or e.course_id = any(p_courses)
    group by p.id, p.username, p.display_name
    order by value desc, p.username asc
    limit p_limit;
@@ -371,8 +410,8 @@ revoke execute on function public.complete_item(text, text, text, integer) from 
 revoke execute on function public.resolve_hearts()                        from public, anon;
 revoke execute on function public.spend_heart()                           from public, anon;
 revoke execute on function public.issue_certificate(text, text)           from public, anon;
-revoke execute on function public.leaderboard_weekly(integer)             from public, anon;
-revoke execute on function public.leaderboard_alltime(integer)            from public, anon;
+revoke execute on function public.leaderboard_weekly(integer, text[])     from public, anon;
+revoke execute on function public.leaderboard_alltime(integer, text[])    from public, anon;
 revoke execute on function public.leaderboard_trophies(integer)           from public, anon;
 
 -- Sign-up has to check a name before the account exists, so anon needs this one.
@@ -381,8 +420,8 @@ grant execute on function public.complete_item(text, text, text, integer) to aut
 grant execute on function public.resolve_hearts()             to authenticated;
 grant execute on function public.spend_heart()                to authenticated;
 grant execute on function public.issue_certificate(text, text) to authenticated;
-grant execute on function public.leaderboard_weekly(integer)   to authenticated;
-grant execute on function public.leaderboard_alltime(integer)  to authenticated;
+grant execute on function public.leaderboard_weekly(integer, text[])  to authenticated;
+grant execute on function public.leaderboard_alltime(integer, text[]) to authenticated;
 grant execute on function public.leaderboard_trophies(integer) to authenticated;
 
 -- ================================================================= teachers

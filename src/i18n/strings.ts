@@ -186,6 +186,11 @@ export const ui = {
   lbWeekly: { en: 'Weekly XP', id: 'XP Mingguan' },
   lbAllTime: { en: 'All-time XP', id: 'XP Sepanjang Masa' },
   lbTrophies: { en: 'Trophies', id: 'Trofi' },
+  lbTrackAll: { en: 'Everything', id: 'Semua' },
+  lbTrackNote: {
+    en: 'Only XP earned in this half of the catalogue counts here.',
+    id: 'Hanya XP yang diperoleh di bagian katalog ini yang dihitung di sini.',
+  },
   lbWeeklyNote: {
     en: 'Counts XP earned since Monday. Resets every week.',
     id: 'Menghitung XP sejak Senin. Direset tiap minggu.',
