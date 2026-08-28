@@ -181,15 +181,21 @@ export const module2: Module = {
                 { label: '(f \\circ g)(3) =', answer: 2 },
                 { label: '(g \\circ f)(9) =', answer: 4 },
                 { label: '(f \\circ f)(16) =', answer: 2 },
+                { label: '(f \\circ g)(x) =', formula: 'sqrt(x+1)', domain: [0, 6] },
               ],
               hints: [
                 { en: 'Always the inner one first.', id: 'Selalu yang di dalam dulu.' },
                 { en: 'The third composes $f$ with itself: $\\sqrt{\\sqrt{16}}$.', id: 'Yang ketiga mengomposisikan $f$ dengan dirinya sendiri: $\\sqrt{\\sqrt{16}}$.' },
+                {
+                  en: 'The last box wants a formula, not a number: put $g(x)$ inside $f$ and leave the $x$ where it is.',
+                  id: 'Kotak terakhir meminta rumus, bukan bilangan: masukkan $g(x)$ ke dalam $f$ dan biarkan $x$-nya tetap di tempatnya.',
+                },
               ],
               solution: [
                 '(f \\circ g)(3) = f(4) = 2',
                 '(g \\circ f)(9) = g(3) = 4',
                 '(f \\circ f)(16) = f(4) = 2',
+                '(f \\circ g)(x) = f(x+1) = \\sqrt{x+1}',
               ],
               explain: {
                 en: 'A function may be composed with itself, and $\\sqrt{\\sqrt{16}} = \\sqrt{4} = 2$. Nothing in the definition says the two functions have to be different.',
@@ -252,13 +258,22 @@ export const module2: Module = {
                 id: 'Misalkan $f(x) = \\sqrt{x}$ dan $g(x) = x - 3$. Jawab keduanya.',
               },
               blanks: [
+                { label: '(f \\circ g)(x) =', formula: 'sqrt(x-3)', domain: [3.5, 9] },
                 { label: '\\text{domain } f \\circ g \\text{ mulai di } x =', answer: 3 },
                 { label: '(f \\circ g)(12) =', answer: 3 },
               ],
               hints: [
                 { en: 'The inner value must be at least zero: $x - 3 \\geq 0$.', id: 'Nilai di dalamnya harus paling sedikit nol: $x - 3 \\geq 0$.' },
+                {
+                  en: 'Write the composite first and the other two read off it.',
+                  id: 'Tulis komposisinya dulu, lalu dua sisanya bisa dibaca darinya.',
+                },
               ],
-              solution: ['x - 3 \\geq 0 \\Rightarrow x \\geq 3', '(f \\circ g)(12) = f(9) = 3'],
+              solution: [
+                '(f \\circ g)(x) = f(x-3) = \\sqrt{x-3}',
+                'x - 3 \\geq 0 \\Rightarrow x \\geq 3',
+                '(f \\circ g)(12) = f(9) = 3',
+              ],
               explain: {
                 en: 'The composite is $\\sqrt{x-3}$ — the familiar square root graph, moved three to the right, which is exactly what the next submodule is about.',
                 id: 'Komposisinya adalah $\\sqrt{x-3}$ — grafik akar yang sudah dikenal, digeser tiga satuan ke kanan, dan itulah persis isi submateri berikutnya.',

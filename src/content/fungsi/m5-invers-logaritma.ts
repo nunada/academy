@@ -169,15 +169,20 @@ export const module5: Module = {
                 id: 'Dengan $f(x) = 2x + 3$ dan $g(x) = x^3 + 1$, hitung tiap inversnya.',
               },
               blanks: [
+                { label: 'f^{-1}(x) =', formula: '(x-3)/2' },
                 { label: 'f^{-1}(7) =', answer: 2 },
                 { label: 'f^{-1}(0) =', answer: -1.5 },
                 { label: 'g^{-1}(9) =', answer: 2 },
               ],
               hints: [
-                { en: 'Ask "what input would $f$ have needed to give this?"', id: 'Tanyakan "masukan apa yang dibutuhkan $f$ untuk menghasilkan ini?"' },
-                { en: '$f^{-1}(x) = (x-3)/2$ and $g^{-1}(x) = \\sqrt[3]{x-1}$.', id: '$f^{-1}(x) = (x-3)/2$ dan $g^{-1}(x) = \\sqrt[3]{x-1}$.' },
+                {
+                  en: 'The first box wants the rule itself. Swap and solve: $x = 2y + 3$.',
+                  id: 'Kotak pertama meminta aturannya sendiri. Tukar lalu selesaikan: $x = 2y + 3$.',
+                },
+                { en: 'For the others, ask "what input would $f$ have needed to give this?"', id: 'Untuk sisanya, tanyakan "masukan apa yang dibutuhkan $f$ untuk menghasilkan ini?"' },
               ],
               solution: [
+                'f^{-1}(x) = \\tfrac{x-3}{2}',
                 'f^{-1}(7) = \\tfrac{7-3}{2} = 2',
                 'f^{-1}(0) = \\tfrac{-3}{2} = -1{,}5',
                 'g^{-1}(9) = \\sqrt[3]{8} = 2',
@@ -303,6 +308,7 @@ export const module5: Module = {
               id: 'Untuk $g(x) = \\sqrt{x - 4}$, hitung $g^{-1}(3)$, dan sebutkan nilai terkecil yang diterima $g^{-1}$.',
             },
             blanks: [
+              { label: 'g^{-1}(x) =', formula: 'x^2+4', domain: [0, 6] },
               { label: 'g^{-1}(3) =', answer: 13 },
               { label: 'x_{\\min} =', answer: 0 },
             ],

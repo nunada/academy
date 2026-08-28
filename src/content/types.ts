@@ -116,28 +116,47 @@ export interface TsTest {
   check?: string
 }
 
-/** One answer box in a mathematics exercise.
- *
- *  Every box holds a single number, and that is the whole design. Marking a
- *  typed vector or a typed formula means guessing at notation — whether
- *  `(3,4)` is a point, whether `3i+4j` was spelled with hats — and guessing
- *  wrong marks a learner who was right as wrong. One box per component
- *  sidesteps all of it, and reads the way the working does anyway.
- *
- *  A learner may type the decimal (`3.74`), the exact form (`sqrt(14)`), a
- *  fraction (`-7/2`), or the decimal written with a comma (`1,5`). */
-export interface MathBlank {
-  /** LaTeX printed to the left of the box, e.g. `\\vec{a}\\cdot\\vec{b} =`. */
+/** What every answer box shares. */
+interface MathBlankBase {
+  /** LaTeX printed to the left of the box, e.g. `\vec{a}\cdot\vec{b} =`. */
   label?: string
   /** LaTeX printed to the right — a unit, or a closing bracket. */
   after?: string
+  /** Placeholder shown in the empty box. */
+  placeholder?: string
+}
+
+/** A box holding one number.
+ *
+ *  One number per box is deliberate. Marking a typed vector means guessing at
+ *  notation — whether `(3,4)` is a point, whether `3i+4j` was spelled with
+ *  hats — and guessing wrong marks a learner who was right as wrong. One box
+ *  per component sidesteps all of it, and reads the way the working does.
+ *
+ *  A learner may type the decimal (`3.74`), the exact form (`sqrt(14)`), a
+ *  fraction (`-7/2`), or the decimal written with a comma (`1,5`). */
+export interface MathNumberBlank extends MathBlankBase {
   answer: number
   /** Absolute tolerance. Defaults to half a percent of the answer, which
    *  accepts two decimal places without accepting a different number. */
   tol?: number
-  /** Placeholder shown in the empty box. */
-  placeholder?: string
 }
+
+/** A box holding a formula rather than a number — an inverse, a composite, a
+ *  transformed graph. Marked by agreeing with `formula` wherever that is
+ *  defined, so the learner may spell it however they like. */
+export interface MathFormulaBlank extends MathBlankBase {
+  /** The expected answer, as an expression `lib/expr.ts` can read. */
+  formula: string
+  /** The letter it is written in. Defaults to `x`. */
+  variable?: string
+  /** Where the two are compared. Give it whenever the answer is not defined
+   *  on the whole line — a root, a logarithm, a vanishing denominator. */
+  domain?: [number, number]
+}
+
+/** One answer box in a mathematics exercise. */
+export type MathBlank = MathNumberBlank | MathFormulaBlank
 
 /** A question answered by filling boxes. Shared by the `math` step and by the
  *  parts of a mathematics mini project. */

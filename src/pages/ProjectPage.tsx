@@ -217,7 +217,9 @@ export default function ProjectPage() {
       <div className="card">
         {isMath ? (
           <>
-            <MathInputNote />
+            <MathInputNote
+              formula={project.tasks.some((t) => t.blanks.some((b) => 'formula' in b))}
+            />
             {project.tasks.map((task, i) => (
               <div className="part" key={i}>
                 <span className="partno">{i + 1}</span>

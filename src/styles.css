@@ -914,3 +914,34 @@ th .sortable.on::after { content: ' ↓'; }
   font-size: 1.05em;
 }
 .figslider input[type='range'] { width: 100%; accent-color: var(--brand); }
+
+/* Kotak yang menampung rumus perlu lebih lebar daripada kotak yang menampung
+   satu bilangan — `(x-3)/2` tidak muat di sembilan karakter. */
+.mathbox.wide {
+  width: 15ch;
+  text-align: left;
+}
+
+/* Papan simbol: bukan papan ketik kedua, hanya karakter yang canggung diketik.
+   Yang disisipkannya sama persis dengan yang bisa diketik sendiri, sehingga
+   ia sekaligus memberi tahu bahwa `√` dan `π` memang boleh dipakai. */
+.mathkeys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.mathkeys button {
+  min-width: 34px;
+  padding: 5px 9px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  cursor: pointer;
+}
+.mathkeys button:hover { border-color: var(--brand); }
+.mathkeys button:active { transform: translateY(1px); }

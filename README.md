@@ -668,15 +668,40 @@ Satu hal yang perlu diketahui: rumus butuh font ber-tabel OpenType MATH agar kur
 dan garis determinan bisa meregang. `.tex math` di
 [`styles.css`](src/styles.css) menyebut Cambria Math dan kawan-kawannya untuk itu.
 
-**Jawaban.** [`src/lib/answer.ts`](src/lib/answer.ts) membaca apa yang diketik
-pembelajar sebagai bilangan: `3,74`, `sqrt(14)`, `-7/2`, `2√3`, `pi/4` semuanya
-terbaca. Setiap kotak hanya memuat **satu** bilangan — vektor diisi satu kotak per
-komponen. Itu disengaja: menilai vektor atau rumus yang diketik berarti menebak
-notasi, dan tebakan yang meleset menyalahkan pembelajar yang sebenarnya benar.
+**Jawaban.** [`src/lib/answer.ts`](src/lib/answer.ts) menilai dua macam jawaban.
+
+*Bilangan.* `3,74`, `sqrt(14)`, `-7/2`, `2√3`, `pi/4`, `ln(20)/ln(3)` semuanya
+terbaca. Satu kotak memuat **satu** bilangan — vektor diisi satu kotak per
+komponen. Itu disengaja: menilai vektor yang diketik berarti menebak notasi, dan
+tebakan yang meleset menyalahkan pembelajar yang sebenarnya benar.
 
 Toleransinya dua desimal atau setengah persen, mana yang lebih longgar. Setengah
 persen saja terlalu kejam untuk jawaban kecil — setengah persen dari $2/7$ hanya
 0,0014, sehingga `0,29` yang dibulatkan dengan benar akan disalahkan.
+
+*Rumus.* Sebagian jawaban memang berupa fungsi, bukan bilangan: invers, komposisi,
+grafik yang ditransformasi — dan, begitu jalur ini sampai turunan, hampir
+semuanya. Kotak semacam itu diberi `formula` alih-alih `answer`, dan dinilai
+**dengan menguji kedua rumus di dua puluh empat titik**. Tidak perlu CAS: dua
+rumus adalah fungsi yang sama bila nilainya sama di mana-mana. Hasilnya `(x-3)/2`,
+`x/2 - 1,5`, dan `0.5x - 3/2` sama-sama diterima — pembelajar tak dihukum karena
+mengeja jawabannya berbeda dari penulis soal. Awalan `y =` atau `f(x) =` boleh
+ikut ditulis dan diabaikan.
+
+Titik-titik ujinya sengaja bukan bilangan bulat. Dua fungsi berbeda bisa kebetulan
+berpapasan di 0, 1, dan 2; mereka tidak berpapasan di 0,7413 dan sebelas
+tetangganya.
+
+Satu jebakan yang layak diketahui: rumus yang hanya terdefinisi pada sebagian garis
+— akar, logaritma, penyebut yang nol — perlu `domain`. Tanpa itu titik ujinya jatuh
+di tempat rumusnya tak bernilai, dan **tak ada** jawaban yang bisa dinilai benar.
+`check:math` menangkapnya dengan menilai jawaban penulis terhadap dirinya sendiri;
+kalau jawaban penulis pun disalahkan, domainnya keliru.
+
+**Papan simbol.** Deretan tombol `x √ π ^ / ( ) |` di bawah kotak, menyisipkan pada
+posisi karet. Tombol `x` hanya muncul bila ada kotak rumus. Gunanya bukan menjadi
+papan ketik kedua — `sqrt(` dan `pi` selalu bisa diketik sendiri — melainkan
+**memberi tahu** bahwa simbol-simbol itu memang diterima.
 
 **Gambar.** [`src/lib/figure.ts`](src/lib/figure.ts) mendefinisikan gambar sebagai
 data: beberapa vektor bernama, lalu daftar hal yang digambar *dalam bentuk* vektor

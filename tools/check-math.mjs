@@ -1,7 +1,8 @@
 /** The two pieces the mathematics courses stand on have no runtime to check
  *  them the way Pyodide checks a Python lesson: `tex.ts` turns the authored
  *  LaTeX into MathML, and `answer.ts` decides whether what a learner typed is
- *  the number the author meant. Both are pure functions, so they get a script.
+ *  the number — or the function — the author meant. Both are pure functions,
+ *  so they get a script.
  *
  *  A wrong marker is the worse of the two failures — it fails a learner who
  *  was right — so the marking cases are the ones to add to when something
@@ -24,14 +25,14 @@ const entry = path.join(tmp, 'entry.ts')
 fs.writeFileSync(
   entry,
   `export { tex } from '${q('src/lib/tex.ts')}'\n` +
-    `export { evalAnswer, isRight } from '${q('src/lib/answer.ts')}'\n` +
+    `export { evalAnswer, isRight, isSameFormula } from '${q('src/lib/answer.ts')}'\n` +
     `export { modules as vektor } from '${q('src/content/vektor/index.ts')}'\n` +
     `export { modules as fungsi } from '${q('src/content/fungsi/index.ts')}'
 `,
 )
 const bundle = path.join(tmp, 'bundle.mjs')
 await build({ entryPoints: [entry], bundle: true, format: 'esm', outfile: bundle, logLevel: 'error' })
-const { tex, evalAnswer, isRight, vektor, fungsi } = await import('file://' + bundle)
+const { tex, evalAnswer, isRight, isSameFormula, vektor, fungsi } = await import('file://' + bundle)
 
 const problems = []
 const fail = (m) => problems.push(m)
@@ -104,6 +105,39 @@ marks('41.4', 41.409622, true)
 marks('40', 41.409622, false)
 marks('3.1', Math.PI, true, 0.05) // an author-set tolerance is honoured
 marks('3.1', Math.PI, false, 0.01)
+
+/* ------------------------------------------------------ marking a formula */
+
+const same = (typed, formula, want, spec = {}) => {
+  const got = isSameFormula(typed, { formula, ...spec })
+  if (got !== want) fail(`isSameFormula(${JSON.stringify(typed)}, ${JSON.stringify(formula)}) = ${got}, want ${want}`)
+}
+
+// The whole point: one function, spelled several ways, all accepted.
+same('(x-3)/2', '(x-3)/2', true)
+same('x/2 - 1.5', '(x-3)/2', true)
+same('0.5x - 3/2', '(x-3)/2', true)
+same('f(x) = (x-3)/2', '(x-3)/2', true) // an answer written as a whole equation
+same('y=(x-3)/2', '(x-3)/2', true)
+
+same('(x-3)*2', '(x-3)/2', false)
+same('(x+3)/2', '(x-3)/2', false)
+same('x/2', '(x-3)/2', false)
+same('2', '(x-3)/2', false) // a constant is not a line
+same('', '(x-3)/2', false)
+same('sqrt(', '(x-3)/2', false)
+
+same('x^2+4', 'x^2+4', true)
+same('x*x+4', 'x^2+4', true)
+same('sqrt(x+1)', 'sqrt(x+1)', true, { domain: [0, 6] })
+// Same values on the sampled stretch, different function off it — the domain
+// is the author's promise about where the question is being asked.
+same('sqrt(x-3)', 'sqrt(x-3)', true, { domain: [3.5, 9] })
+same('sqrt(3-x)', 'sqrt(x-3)', false, { domain: [3.5, 9] })
+
+// A formula sampled where it is not defined can never be marked right, which
+// is the mistake the curriculum sweep exists to catch.
+same('sqrt(x-3)', 'sqrt(x-3)', false)
 
 /* ------------------------------------------------------------ rendering it */
 
@@ -271,10 +305,25 @@ function sweepTask(task, where) {
   if (task.given) sweep(task.given, `${where} given`)
   for (const line of task.solution ?? []) sweep(line, `${where} solution`)
   task.blanks.forEach((b, i) => {
-    if (b.label) sweep(b.label, `${where} blank ${i + 1} label`)
-    if (b.after) sweep(b.after, `${where} blank ${i + 1} after`)
-    if (typeof b.answer !== 'number' || !Number.isFinite(b.answer)) {
-      fail(`${where} blank ${i + 1}: answer is not a finite number`)
+    const at = `${where} blank ${i + 1}`
+    if (b.label) sweep(b.label, `${at} label`)
+    if (b.after) sweep(b.after, `${at} after`)
+
+    if ('formula' in b) {
+      // The strongest check available, and the cheapest: mark the author's own
+      // answer against itself. It fails when the formula does not parse, when
+      // it uses a name the evaluator has not got, and — the one worth having —
+      // when the sampling domain is somewhere the formula is undefined, which
+      // would silently make every learner answer wrong.
+      if (!isSameFormula(b.formula, b)) {
+        fail(`${at}: the answer "${b.formula}" does not mark itself correct — check the domain`)
+      }
+      // A domain the author gave but got backwards samples nothing.
+      if (b.domain && !(b.domain[0] < b.domain[1])) {
+        fail(`${at}: domain [${b.domain}] is empty or reversed`)
+      }
+    } else if (typeof b.answer !== 'number' || !Number.isFinite(b.answer)) {
+      fail(`${at}: answer is not a finite number`)
     }
   })
 }

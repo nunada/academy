@@ -80,7 +80,7 @@ function MathStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
           setMarks(null)
         }}
       />
-      <MathInputNote />
+      <MathInputNote formula={step.blanks.some((b) => 'formula' in b)} />
 
       <div className="row">
         {!solved && (
