@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
     "check:curriculum": "node tools/check-curriculum.mjs",
+    "check:math": "node tools/check-math.mjs",
     "check:grants": "node tools/check-rpc-grants.mjs"
   },
   "dependencies": {

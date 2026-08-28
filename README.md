@@ -1,14 +1,20 @@
-# Nunada Academy: Learn to Code
+# Nunada Academy: Coding & Matematika
 
-Aplikasi belajar coding berbasis web dengan pendekatan *scaffolding*: bantuan dilepas
+Aplikasi belajar berbasis web dengan pendekatan *scaffolding*: bantuan dilepas
 selangkah demi selangkah, dan tiap submateri ditutup satu mini proyek yang diperiksa
 oleh tes sungguhan. Antarmuka bisa diganti antara **English** dan **Bahasa Indonesia**
 kapan saja.
 
-Tujuh kursus, semuanya sudah ditulis: **Python** (9 modul), lalu **HTML**, **CSS**,
-**JavaScript**, **SQL**, **TypeScript**, **React**, dan **Game Development**
-(masing-masing 4 modul), ditambah jalur karier **Python Developer**, **Front-End**,
-**Back-End**, dan **Full-Stack Developer**.
+Kursus pemrograman: **Python** (9 modul), lalu **HTML**, **CSS**, **JavaScript**,
+**SQL**, **TypeScript**, **React**, dan **Game Development** (masing-masing 4 modul),
+ditambah tiga kursus Python bercita rasa matematika (**Dasar**, **Media
+Pembelajaran**, **Numerik**) dan jalur karier **Python Developer**, **Front-End**,
+**Back-End**, serta **Full-Stack Developer**.
+
+Kursus matematika — dikerjakan di kertas, dijawab di kotak, bukan diketik sebagai
+program: **Vektor di Bidang dan di Ruang** (5 modul, 22 pelajaran, 10 kumpulan soal),
+dari notasi dan komponen sampai perkalian titik, perkalian silang, serta garis dan
+bidang di ruang. Mesinnya dijelaskan di [Kursus matematika](#kursus-matematika).
 
 ## Menjalankan
 
@@ -609,6 +615,61 @@ Tombolnya disimpan di sebuah ref, bukan di state: satu ketukan tidak boleh
 merender ulang komponennya enam puluh kali sedetik, dan loop-nya membaca ref itu
 langsung. Pembungkus kanvasnya bisa difokus karena tanpa fokus, tombol panah
 menggulirkan halaman alih-alih menggerakkan pemain.
+
+## Kursus matematika
+
+Kursus vektor tidak menjalankan apa pun. Tak ada Pyodide, tak ada iframe, tak ada
+kompiler — pembelajarnya mengerjakan soal di kertas lalu mengetik hasilnya. Itu
+membuat tiga hal harus dibangun sendiri.
+
+**Rumus.** [`src/lib/tex.ts`](src/lib/tex.ts) membaca sebagian kecil LaTeX —
+pecahan, akar, pangkat dan indeks, anak panah di atas huruf, matriks, dan sekitar
+delapan puluh lambang — lalu mengeluarkan MathML, yang kini ditata sendiri oleh
+peramban. KaTeX bisa lebih banyak, tetapi ia 280 KB skrip ditambah satu megabyte
+font, sementara seluruh kurikulum aplikasi ini saja hanya 282 KB di kabel.
+
+Dalam prosa, `$...$` menjadi rumus sebaris dan `$$...$$` menjadi rumus yang berdiri
+sendiri; `Rich` di [`components/ui.tsx`](src/components/ui.tsx) yang memisahkannya.
+Satu hal yang perlu diketahui: rumus butuh font ber-tabel OpenType MATH agar kurung
+dan garis determinan bisa meregang. `.tex math` di
+[`styles.css`](src/styles.css) menyebut Cambria Math dan kawan-kawannya untuk itu.
+
+**Jawaban.** [`src/lib/answer.ts`](src/lib/answer.ts) membaca apa yang diketik
+pembelajar sebagai bilangan: `3,74`, `sqrt(14)`, `-7/2`, `2√3`, `pi/4` semuanya
+terbaca. Setiap kotak hanya memuat **satu** bilangan — vektor diisi satu kotak per
+komponen. Itu disengaja: menilai vektor atau rumus yang diketik berarti menebak
+notasi, dan tebakan yang meleset menyalahkan pembelajar yang sebenarnya benar.
+
+Toleransinya dua desimal atau setengah persen, mana yang lebih longgar. Setengah
+persen saja terlalu kejam untuk jawaban kecil — setengah persen dari $2/7$ hanya
+0,0014, sehingga `0,29` yang dibulatkan dengan benar akan disalahkan.
+
+**Gambar.** [`src/lib/figure.ts`](src/lib/figure.ts) mendefinisikan gambar sebagai
+data: beberapa vektor bernama, lalu daftar hal yang digambar *dalam bentuk* vektor
+itu — `{ sum: [...] }`, `{ cross: [...] }`, `{ proj: [...] }`, dan seterusnya.
+[`components/Figure.tsx`](src/components/Figure.tsx) menggambarnya sebagai SVG.
+
+Perantaraan itulah intinya. Ketika pembaca menyeret ujung `a`, semua yang tadi
+dinyatakan tersusun dari `a` — jumlahnya, proyeksinya, jajargenjang yang diarsir,
+busur sudutnya, angka-angka di bawahnya — dihitung ulang dari deskripsi yang sama
+yang menggambarnya. Gambar dengan koordinat harfiah hanya akan menjadi gambar;
+yang ini adalah pernyataannya sendiri.
+
+Gambar bidang diseret ujungnya; gambar ruang diputar seluruhnya. Pembagian itu
+disengaja: menyeret ujung pada proyeksi datar dari ruang adalah tebakan tentang
+kedalaman, bukan jawaban.
+
+**Memeriksanya.** `npm run check:math` menjalankan tiga hal sekaligus: kasus uji
+untuk pembacaan bilangan dan penilaian, kasus uji untuk perender LaTeX, lalu sapuan
+atas **seluruh** kurikulum matematika — setiap rumus dirender dan setiap gambar
+ditelusuri. Perintah LaTeX yang tak dikenal keluar sebagai teks biasa, dan gambar
+yang menyebut vektor tak bernama tetap tergambar; keduanya salah tanpa bersuara,
+jadi keduanya diperiksa.
+
+```bash
+npm run check:math
+```
+
 
 ## Playground
 

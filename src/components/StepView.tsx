@@ -5,7 +5,10 @@ import { runPython, runTests, type TestOutcome } from '../lib/python'
 import { runWebTests, type WebOutcome } from '../lib/web'
 import { runSql, runSqlTests, type SqlOutcome, type SqlResult } from '../lib/sql'
 import { compileTs, runTsTests, type TsCompile, type TsOutcome } from '../lib/ts'
-import { CodeBlock, CodeEditor, LivePreview, Output, Rich } from './ui'
+import { CodeBlock, CodeEditor, LivePreview, Output, Rich, Tex, TexLines } from './ui'
+import { MathBoard, MathInputNote, emptyValues, markTask } from './MathBoard'
+import { evalAnswer, isRight } from '../lib/answer'
+import { FigureView } from './Figure'
 import { ResultList, fromPython, fromWeb, fromSql, fromTs } from './results'
 import { ResultTable } from './ResultTable'
 import { CompileReport } from './CompileReport'
@@ -41,7 +44,86 @@ export default function StepView(props: Props) {
       return <TsStep {...props} step={props.step} />
     case 'game':
       return <GameStep {...props} step={props.step} />
+    case 'math':
+      return <MathStep {...props} step={props.step} />
   }
+}
+
+/* ------------------------------------------------------------------ math */
+
+function MathStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'math' }> }) {
+  const { t, tc } = useI18n()
+  const [values, setValues] = useState<string[]>(() => emptyValues(step))
+  const [marks, setMarks] = useState<boolean[] | null>(null)
+  const [hintsShown, setHintsShown] = useState(0)
+  const [showWorking, setShowWorking] = useState(false)
+
+  const right = marks !== null && marks.every(Boolean)
+
+  function check() {
+    const next = markTask(step, values)
+    setMarks(next)
+    if (next.every(Boolean)) onSolved()
+    else onWrong()
+  }
+
+  return (
+    <div className="card">
+      <MathBoard
+        task={step}
+        values={values}
+        marks={marks}
+        disabled={solved}
+        onChange={(v) => {
+          setValues(v)
+          // A verdict belongs to the answer that earned it, not to the next one.
+          setMarks(null)
+        }}
+      />
+      <MathInputNote />
+
+      <div className="row">
+        {!solved && (
+          <button className="btn sm" onClick={check} disabled={blocked}>
+            {t('check')}
+          </button>
+        )}
+        {step.hints.length > 0 && hintsShown < step.hints.length && !solved && (
+          <button className="btn ghost sm" onClick={() => setHintsShown((n) => n + 1)}>
+            💡 {t('hint')} ({hintsShown}/{step.hints.length})
+          </button>
+        )}
+        {step.solution && hintsShown >= step.hints.length && !solved && !showWorking && (
+          <button className="btn ghost sm" onClick={() => setShowWorking(true)}>
+            {t('showWorking')}
+          </button>
+        )}
+      </div>
+
+      {step.hints.slice(0, hintsShown).map((h, i) => (
+        <div className="banner" key={i} style={{ marginTop: 10, marginBottom: 0 }}>
+          <span>💡</span>
+          <span>
+            <Rich text={tc(h)} />
+          </span>
+        </div>
+      ))}
+
+      {showWorking && step.solution && (
+        <div style={{ marginTop: 12 }}>
+          <div className="io-label">{t('showWorking')}</div>
+          <TexLines lines={step.solution} />
+        </div>
+      )}
+
+      {marks !== null && (
+        <div className={right ? 'verdict ok' : 'verdict no'}>
+          <b>{right ? t('correct') : t('notQuite')}</b>
+          {right && <Rich text={tc(step.explain)} />}
+        </div>
+      )}
+    </div>
+  )
 }
 
 /* --------------------------------------------------------------- concept */
@@ -56,6 +138,7 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
       <p>
         <Rich text={tc(step.body)} />
       </p>
+      {step.figure && <FigureView figure={step.figure} />}
       {step.code && (
         <>
           <div className="io-label">{t('worked')}</div>
@@ -153,7 +236,15 @@ function FillStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
   const [values, setValues] = useState<string[]>(() => step.blanks.map(() => ''))
   const [checked, setChecked] = useState(false)
 
-  const right = values.every((v, i) => v.trim() === step.blanks[i])
+  // A blank in a program is one exact string. A blank in a formula is a
+  // number, and `-0.8` and `-0,8` are the same number written in two
+  // countries — so a mathematical blank is marked the way an answer box is.
+  const right = values.every((v, i) => {
+    const want = step.blanks[i]
+    if (!step.math) return v.trim() === want
+    const target = evalAnswer(want)
+    return target === null ? v.trim() === want : isRight(v, target)
+  })
 
   function check() {
     setChecked(true)
@@ -166,27 +257,30 @@ function FillStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       <h3>
         <Rich text={tc(step.prompt)} />
       </h3>
-      <pre className="code">
-        {segments.map((seg, i) => (
-          <span key={i}>
-            {seg}
-            {i < segments.length - 1 && (
-              <input
-                className="blank"
-                value={values[i] ?? ''}
-                disabled={solved}
-                aria-label={`blank ${i + 1}`}
-                onChange={(e) => {
-                  const next = [...values]
-                  next[i] = e.target.value
-                  setValues(next)
-                  setChecked(false)
-                }}
-              />
-            )}
-          </span>
-        ))}
-      </pre>
+      {/* A formula belongs on the page as a formula, not in a code block. */}
+      <div className={step.math ? 'given mathfill' : undefined}>
+        <pre className={step.math ? 'plain' : 'code'}>
+          {segments.map((seg, i) => (
+            <span key={i}>
+              {step.math ? <Tex src={seg} /> : seg}
+              {i < segments.length - 1 && (
+                <input
+                  className="blank"
+                  value={values[i] ?? ''}
+                  disabled={solved}
+                  aria-label={`blank ${i + 1}`}
+                  onChange={(e) => {
+                    const next = [...values]
+                    next[i] = e.target.value
+                    setValues(next)
+                    setChecked(false)
+                  }}
+                />
+              )}
+            </span>
+          ))}
+        </pre>
+      </div>
 
       {checked && (
         <div className={right ? 'verdict ok' : 'verdict no'}>
@@ -260,8 +354,10 @@ function OrderStep({ step, solved, onSolved, onWrong, blocked }: Props & { step:
       <p className="small muted">{t('dragToOrder')}</p>
 
       {order.map((lineIndex, pos) => (
-        <div className="orderline" key={lineIndex}>
-          <span>{step.lines[lineIndex] === '' ? ' ' : step.lines[lineIndex]}</span>
+        <div className={step.math ? 'orderline math' : 'orderline'} key={lineIndex}>
+          <span>
+            {step.math ? <Tex src={step.lines[lineIndex]} /> : step.lines[lineIndex] === '' ? ' ' : step.lines[lineIndex]}
+          </span>
           <span className="grip">
             <button onClick={() => move(pos, -1)} disabled={pos === 0 || solved} aria-label={t('moveUp')}>
               ↑

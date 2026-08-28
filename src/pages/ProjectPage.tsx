@@ -11,7 +11,8 @@ import { runWebTests } from '../lib/web'
 import { runSql, runSqlTests, type SqlResult } from '../lib/sql'
 import { compileTs, runTsTests, type TsCompile } from '../lib/ts'
 import { ResultList, fromPython, fromWeb, fromSql, fromTs, type ResultRow } from '../components/results'
-import { CodeBlock, CodeEditor, LivePreview, Output, Rich } from '../components/ui'
+import { CodeBlock, CodeEditor, LivePreview, Output, Rich, TexLines } from '../components/ui'
+import { MathBoard, MathInputNote, emptyValues, markTask } from '../components/MathBoard'
 import { ResultTable } from '../components/ResultTable'
 import { CompileReport } from '../components/CompileReport'
 import { GamePreview } from '../components/GamePreview'
@@ -35,8 +36,11 @@ export default function ProjectPage() {
   const course = useCourse(courseId)
   const project = useMemo(() => findProject(course, itemId), [course, itemId])
 
-  const [code, setCode] = useState(() => project?.starter ?? '')
+  const [code, setCode] = useState(() => (project && 'starter' in project ? project.starter : ''))
   const [stdin, setStdin] = useState('')
+  // One row of typed answers per part, for a mathematics problem set.
+  const [answers, setAnswers] = useState<string[][]>([])
+  const [answerMarks, setAnswerMarks] = useState<(boolean[] | null)[]>([])
   const [busy, setBusy] = useState(false)
   const [rows, setRows] = useState<ResultRow[] | null>(null)
   const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
@@ -49,10 +53,16 @@ export default function ProjectPage() {
   const [awarded, setAwarded] = useState(0)
 
   // On a cold load the project is not here for the first render, so the
-  // starter has to be planted once it arrives. Keyed on the id, so it never
-  // overwrites what the learner has typed.
+  // starter — or the empty answer boxes — has to be planted once it arrives.
+  // Keyed on the id, so it never overwrites what the learner has typed.
   useEffect(() => {
-    if (project) setCode(project.starter)
+    if (!project) return
+    if (project.runtime === 'math') {
+      setAnswers(project.tasks.map(emptyValues))
+      setAnswerMarks(project.tasks.map(() => null))
+    } else {
+      setCode(project.starter)
+    }
   }, [project?.id])
 
   if (!info || !info.available) return <Navigate to="/catalog" replace />
@@ -77,6 +87,8 @@ export default function ProjectPage() {
   const isTs = project.runtime === 'ts'
   // A game project is checked like Python and played on a canvas.
   const isGame = project.runtime === 'game'
+  // A mathematics project is a problem set: no editor, no runtime, just boxes.
+  const isMath = project.runtime === 'math'
 
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === project.id)
@@ -109,6 +121,24 @@ export default function ProjectPage() {
     if (!project) return
     setBusy(true)
     try {
+      // A problem set is marked here rather than in a runtime, and every box
+      // has to be right before its part counts as answered.
+      if (project.runtime === 'math') {
+        const marks = project.tasks.map((task, i) => markTask(task, answers[i] ?? []))
+        setAnswerMarks(marks)
+        const next = project.tasks.map((task, i) => ({
+          name: task.prompt,
+          passed: marks[i].every(Boolean),
+        }))
+        setRows(next)
+        if (next.every((o) => o.passed)) {
+          const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: project.xp })
+          setAwarded(xp)
+          setFinished(true)
+        }
+        return
+      }
+
       // Each runtime reports differently; they meet again as ResultRow[].
       const next: ResultRow[] =
         project.runtime === 'web'
@@ -185,7 +215,29 @@ export default function ProjectPage() {
       </div>
 
       <div className="card">
-        {isWeb ? (
+        {isMath ? (
+          <>
+            <MathInputNote />
+            {project.tasks.map((task, i) => (
+              <div className="part" key={i}>
+                <span className="partno">{i + 1}</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <MathBoard
+                    task={task}
+                    values={answers[i] ?? emptyValues(task)}
+                    marks={answerMarks[i] ?? null}
+                    disabled={false}
+                    onChange={(v) => {
+                      setAnswers((prev) => prev.map((row, j) => (j === i ? v : row)))
+                      setAnswerMarks((prev) => prev.map((m, j) => (j === i ? null : m)))
+                    }}
+                  />
+                  {showSolution && task.solution && <TexLines lines={task.solution} />}
+                </div>
+              </div>
+            ))}
+          </>
+        ) : isWeb ? (
           <>
             {hasGivenMarkup && (
               <details style={{ marginBottom: 12 }}>
@@ -243,14 +295,14 @@ export default function ProjectPage() {
           </>
         )}
 
-        <div className="row" style={{ marginTop: isWeb ? 12 : 0 }}>
-          {!isWeb && (
+        <div className="row" style={{ marginTop: isWeb || isMath ? 12 : 0 }}>
+          {!isWeb && !isMath && (
             <button className="btn soft sm" onClick={() => void doRun()} disabled={busy}>
               ▶ {t('runCode')}
             </button>
           )}
           <button className="btn sm" onClick={() => void doCheck()} disabled={busy}>
-            ✓ {t('runTests')}
+            ✓ {isMath ? t('check') : t('runTests')}
           </button>
           {hintsShown < project.hints.length && (
             <button className="btn ghost sm" onClick={() => setHintsShown((n) => n + 1)}>
@@ -259,7 +311,7 @@ export default function ProjectPage() {
           )}
           {hintsShown >= project.hints.length && !showSolution && (
             <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
-              {t('showSolution')}
+              {isMath ? t('showWorking') : t('showSolution')}
             </button>
           )}
         </div>
@@ -271,7 +323,7 @@ export default function ProjectPage() {
           })}
         </p>
 
-        {busy && !isWeb && !isSql && !isTs && !isGame && (
+        {busy && !isWeb && !isSql && !isTs && !isGame && !isMath && (
           <p className="small muted" style={{ marginTop: 8 }}>
             🐍 {t('loadingPython')}
           </p>
@@ -292,7 +344,8 @@ export default function ProjectPage() {
           </div>
         ))}
 
-        {showSolution && (
+        {/* A problem set shows its working beside each part, not in one block. */}
+        {showSolution && !isMath && (
           <div style={{ marginTop: 12 }}>
             <div className="io-label">{t('showSolution')}</div>
             <CodeBlock>{project.solution}</CodeBlock>

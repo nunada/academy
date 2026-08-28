@@ -634,3 +634,243 @@ th .sortable {
 th .sortable:hover { color: var(--text); }
 th .sortable.on { color: var(--brand-dark); }
 th .sortable.on::after { content: ' ↓'; }
+
+/* ------------------------------------------------------------- matematika
+
+   Rumus dirender sebagai MathML oleh `lib/tex.ts`, jadi peramban yang menata
+   letaknya, bukan berkas ini. Yang diatur di sini hanya ukuran, jarak, dan
+   kotak jawaban di sekelilingnya.
+
+   `math-style: normal` menjaga pecahan pada rumus sebaris tetap seukuran
+   penuh; tanpa itu sebuah pecahan di tengah kalimat mengecil sampai sulit
+   dibaca. */
+.tex {
+  font-size: 1.06em;
+  math-style: normal;
+}
+
+/* Rumus perlu font yang punya tabel OpenType MATH. Tanpanya peramban tak bisa
+   meregangkan kurung dan garis determinan mengikuti tinggi isinya, sehingga
+   matriks 3x3 tampil di antara dua garis sependek satu huruf. Nama-nama di
+   bawah adalah font matematika yang lazim ada — Cambria Math ikut Windows,
+   STIX Two Math ikut banyak pemasangan TeX — dan `math` di ujung adalah kata
+   kunci CSS untuk font matematika bawaan peramban. */
+.tex math {
+  font-family: 'Cambria Math', 'STIX Two Math', 'Latin Modern Math', math, serif;
+}
+
+.tex.block {
+  display: block;
+  margin: 4px 0;
+  font-size: 1.15em;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Penyelesaian: satu baris per langkah, rata kiri seperti di buku tulis. */
+.texlines {
+  border-left: 2px solid var(--border);
+  padding: 4px 0 4px 14px;
+  margin-top: 8px;
+  display: grid;
+  gap: 2px;
+}
+.texlines .tex.block { margin: 0; }
+
+.mathprompt { margin: 0 0 10px; }
+
+/* Soalnya, seperti tercetak di kertas. */
+/* `overflow-x: auto` on its own computes the other axis to `auto` as well,
+   and a formula that is a fraction tall then earns a vertical scrollbar it
+   has no use for. Both axes are stated, everywhere a formula can overflow. */
+.given {
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.blanks { display: grid; gap: 10px; }
+.blanks.inline {
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-items: center;
+}
+
+.mathrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+/* Kotak jawaban sengaja pendek. Isinya satu bilangan — `3,74`, `sqrt(14)`,
+   `-7/2` — dan kotak selebar halaman mengundang seluruh vektor diketik di
+   dalamnya, yang justru bukan yang diminta. */
+.mathbox {
+  width: 9ch;
+  padding: 6px 9px;
+  border: 1px solid var(--border);
+  border-bottom: 2px solid var(--brand);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: inherit;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  text-align: center;
+}
+.mathbox:focus-visible { outline: 2px solid var(--brand); outline-offset: 1px; }
+.mathbox:disabled { opacity: 0.7; }
+
+.mathrow.ok .mathbox { border-color: var(--good); background: var(--good-soft); }
+.mathrow.no .mathbox { border-color: var(--bad); background: var(--bad-soft); }
+.mathmark { font-weight: 700; }
+.mathrow.ok .mathmark { color: var(--good); }
+.mathrow.no .mathmark { color: var(--bad); }
+
+.mathnote { margin: 10px 0 0; }
+
+/* Satu butir soal dalam kumpulan soal, dengan nomornya di pinggir. */
+.part {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.part:first-child { padding-top: 0; }
+.part:last-child { border-bottom: none; }
+.partno {
+  flex: none;
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  border-radius: 999px;
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Isian dan penyusunan baris versi matematika: latarnya terang dan isinya
+   rumus, bukan blok kode gelap dengan huruf monospace. */
+.mathfill pre.plain {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  white-space: normal;
+  font: inherit;
+  color: inherit;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.mathfill .blank { width: 7ch; min-width: 0; text-align: center; font-family: var(--mono); font-size: 0.9em; }
+
+.orderline.math {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border);
+  font-family: inherit;
+  font-size: 1rem;
+  white-space: normal;
+}
+.orderline.math button {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------------ gambar
+
+   Gambar vektor digambar sebagai SVG oleh `components/Figure.tsx`, yang tak
+   menyebut satu warna pun: ia hanya memberi peran — `a`, `b`, `c`, hasil, dan
+   garis bantu — lalu token di bawah ini yang memutuskan warnanya. Dengan
+   begitu tema gelap cukup mengganti daftar ini.
+
+   Warnanya diambil dari palet yang sama dengan kursus lain: hijau hutan untuk
+   vektor pertama, koral untuk yang kedua, kuning untuk yang ketiga, dan hijau
+   daun untuk apa pun yang dihasilkan dari ketiganya. */
+:root {
+  --fig-a: #24463d;
+  --fig-b: #d4633c;
+  --fig-c: #b8860b;
+  --fig-result: #4f8b56;
+  --fig-muted: #97a79c;
+  --fig-grid: #e7e0cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fig-a: #9fc7b4;
+    --fig-b: #ef8f70;
+    --fig-c: #f5c65b;
+    --fig-result: #7eaa71;
+    --fig-muted: #6f8377;
+    --fig-grid: #2b3a33;
+  }
+}
+
+.fig { margin: 14px 0 0; }
+
+.figsvg {
+  display: block;
+  height: auto;
+  margin-inline: auto;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  touch-action: none;
+}
+.figsvg.grab { cursor: grab; }
+.figsvg.grab:active { cursor: grabbing; }
+
+.figgrid { stroke: var(--fig-grid); stroke-width: 1; }
+.figaxis { stroke: var(--fig-muted); stroke-width: 1.2; }
+.figaxislabel { fill: var(--muted); font-size: 13px; font-style: italic; }
+
+/* Label pada gambar memakai huruf miring berserif, sama seperti huruf pada
+   rumus, supaya `a` di gambar terbaca sebagai `a` yang sama di teks. */
+.figlabel {
+  font-family: 'Cambria Math', 'STIX Two Math', Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  paint-order: stroke;
+  stroke: var(--surface-2);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.figface { fill-opacity: 0.16; stroke-width: 1.4; stroke-dasharray: 4 3; }
+.figedge { stroke: var(--fig-muted); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.figarc { fill: none; stroke: var(--fig-result); stroke-width: 1.6; }
+.figright { fill: none; stroke: var(--fig-muted); stroke-width: 1.4; }
+
+/* Ujung yang bisa diseret: lingkaran tembus pandang yang cukup besar untuk
+   disentuh jari, bukan hanya cukup untuk dilihat. */
+.fighandle {
+  fill: var(--surface);
+  fill-opacity: 0.35;
+  stroke-width: 1.6;
+  stroke-dasharray: 3 3;
+  cursor: grab;
+}
+.fighandle:active { cursor: grabbing; }
+
+.figreadout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+.figreadout i { color: var(--muted); font-style: normal; }
+
+.fig figcaption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.fig figcaption .btn { vertical-align: middle; }
+.figtip { font-style: italic; }

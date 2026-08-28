@@ -28,7 +28,9 @@ export default function Certificate() {
       </div>
 
       <article className="cert">
-        <div className="kicker">Nunada Academy · Learn to Code</div>
+        <div className="kicker">
+          {t('appName')} · {t('appTagline')}
+        </div>
         <h2>{t('certificateOf')}</h2>
 
         <p className="small" style={{ marginBottom: 0 }}>

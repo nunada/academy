@@ -2,7 +2,7 @@
 
 export const ui = {
   appName: { en: 'Nunada Academy', id: 'Nunada Academy' },
-  appTagline: { en: 'Learn to Code', id: 'Learn to Code' },
+  appTagline: { en: 'Code & Mathematics', id: 'Coding & Matematika' },
 
   // nav
   navLearn: { en: 'Learn', id: 'Belajar' },
@@ -77,22 +77,25 @@ export const ui = {
   },
 
   // landing
-  heroTitle: { en: 'Learn to code, one small win at a time.', id: 'Belajar coding, satu kemenangan kecil setiap kali.' },
+  heroTitle: {
+    en: 'Code and mathematics, one small win at a time.',
+    id: 'Coding dan matematika, satu kemenangan kecil setiap kali.',
+  },
   heroBody: {
-    en: 'Guided lessons that hand over control step by step, a mini project at the end of every submodule, and a certificate when you finish.',
-    id: 'Pelajaran terbimbing yang melepas bantuan selangkah demi selangkah, mini proyek di akhir tiap submateri, dan sertifikat saat kamu selesai.',
+    en: 'Programming courses and mathematics courses, built the same way: guided lessons that hand over control step by step, a mini project at the end of every submodule, and a certificate when you finish.',
+    id: 'Kursus pemrograman dan kursus matematika, disusun dengan cara yang sama: pelajaran terbimbing yang melepas bantuan selangkah demi selangkah, mini proyek di akhir tiap submateri, dan sertifikat saat kamu selesai.',
   },
   getStarted: { en: 'Get started — free', id: 'Mulai — gratis' },
   iHaveAccount: { en: 'I already have an account', id: 'Saya sudah punya akun' },
   featScaffold: { en: 'Scaffolded practice', id: 'Latihan berjenjang' },
   featScaffoldBody: {
-    en: 'Watch a worked example, predict the output, fill the blanks, assemble the lines, then write it yourself.',
-    id: 'Lihat contoh, tebak keluarannya, isi bagian kosong, susun barisnya, lalu tulis sendiri.',
+    en: 'Watch a worked example, predict the answer, fill the blanks, put the steps in order, then do it yourself.',
+    id: 'Lihat contoh, tebak jawabannya, isi bagian kosong, susun langkahnya, lalu kerjakan sendiri.',
   },
   featProjects: { en: 'A mini project every submodule', id: 'Mini proyek tiap submateri' },
   featProjectsBody: {
-    en: 'Real Python running in your browser, checked against real tests.',
-    id: 'Python asli berjalan di browser, diperiksa dengan tes sungguhan.',
+    en: 'Real code running in your browser, or a problem set marked box by box — either way, checked properly.',
+    id: 'Kode sungguhan berjalan di peramban, atau kumpulan soal yang diperiksa kotak demi kotak — keduanya dinilai sungguhan.',
   },
   featCompete: { en: 'XP, hearts & weekly leaderboard', id: 'XP, hearts & papan peringkat mingguan' },
   featCompeteBody: {
@@ -141,6 +144,7 @@ export const ui = {
   runTests: { en: 'Run tests', id: 'Jalankan tes' },
   hint: { en: 'Hint', id: 'Petunjuk' },
   showSolution: { en: 'Show solution', id: 'Lihat solusi' },
+  showWorking: { en: 'Show the working', id: 'Lihat penyelesaian' },
   correct: { en: 'Correct!', id: 'Benar!' },
   notQuite: { en: 'Not quite.', id: 'Belum tepat.' },
   yourAnswer: { en: 'Your answer', id: 'Jawabanmu' },

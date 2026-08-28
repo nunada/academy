@@ -194,6 +194,22 @@ export const COURSES: CourseInfo[] = [
     lessons: 12,
     projects: 6,
   },
+  {
+    id: 'vektor',
+    title: { en: 'Vectors in the Plane and in Space', id: 'Vektor di Bidang dan di Ruang' },
+    tagline: {
+      en: 'Components, dot and cross products, and the lines and planes they describe.',
+      id: 'Komponen, perkalian titik dan silang, serta garis dan bidang yang dinyatakannya.',
+    },
+    icon: '➗',
+    color: '#4f8b56',
+    level: { en: 'Intermediate', id: 'Menengah' },
+    language: 'math',
+    requires: [],
+    available: true,
+    lessons: 22,
+    projects: 10,
+  },
 ]
 
 /** One dynamic import per course. Written out rather than built from the id so
@@ -210,6 +226,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'python-math': () => import('./python-math'),
   'python-media': () => import('./python-media'),
   'python-numpy': () => import('./python-numpy'),
+  vektor: () => import('./vektor'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes

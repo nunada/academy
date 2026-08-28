@@ -2,14 +2,46 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { MAX_HEARTS, formatCountdown } from '../lib/hearts'
 import { useI18n } from '../i18n'
 import { previewDocument, previewReactDocument } from '../lib/web'
+import { tex } from '../lib/tex'
 
-/** Minimal inline formatting for lesson prose: `code` and **bold**.
+/** One formula. MathML is markup, not React elements, so it goes in as HTML —
+ *  from `tex()`, which escapes what it emits and only ever sees strings this
+ *  repository wrote. */
+export function Tex({ src, display = false }: { src: string; display?: boolean }) {
+  return (
+    <span
+      className={display ? 'tex block' : 'tex'}
+      dangerouslySetInnerHTML={{ __html: tex(src, display) }}
+    />
+  )
+}
+
+/** A displayed equation, or a short stack of them — the working, one line at
+ *  a time, centred the way it would be on paper. */
+export function TexLines({ lines }: { lines: string[] }) {
+  return (
+    <div className="texlines">
+      {lines.map((l, i) => (
+        <Tex src={l} display key={i} />
+      ))}
+    </div>
+  )
+}
+
+/** Minimal inline formatting for lesson prose: `code`, **bold**, $maths$, and
+ *  $$a displayed equation$$ on a line of its own.
  *  A full markdown dependency would be far more than the content needs. */
 export function Rich({ text }: { text: string }) {
-  const parts = text.split(/(`[^`]+`|\*\*[^*]+\*\*)/g)
+  const parts = text.split(/(\$\$[^$]+\$\$|\$[^$]+\$|`[^`]+`|\*\*[^*]+\*\*)/g)
   return (
     <>
       {parts.map((part, i) => {
+        if (part.startsWith('$$') && part.endsWith('$$') && part.length > 4) {
+          return <Tex src={part.slice(2, -2)} display key={i} />
+        }
+        if (part.startsWith('$') && part.endsWith('$') && part.length > 2) {
+          return <Tex src={part.slice(1, -1)} key={i} />
+        }
         if (part.startsWith('`') && part.endsWith('`') && part.length > 2) {
           return (
             <code className="inline" key={i}>

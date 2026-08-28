@@ -2,6 +2,8 @@
  *  Every learner-facing string is bilingual (`Loc`), so a course is authored once
  *  and rendered in whichever language the learner picked. */
 
+import type { Figure } from '../lib/figure'
+
 export type Lang = 'en' | 'id'
 
 export interface Loc {
@@ -114,10 +116,52 @@ export interface TsTest {
   check?: string
 }
 
+/** One answer box in a mathematics exercise.
+ *
+ *  Every box holds a single number, and that is the whole design. Marking a
+ *  typed vector or a typed formula means guessing at notation — whether
+ *  `(3,4)` is a point, whether `3i+4j` was spelled with hats — and guessing
+ *  wrong marks a learner who was right as wrong. One box per component
+ *  sidesteps all of it, and reads the way the working does anyway.
+ *
+ *  A learner may type the decimal (`3.74`), the exact form (`sqrt(14)`), a
+ *  fraction (`-7/2`), or the decimal written with a comma (`1,5`). */
+export interface MathBlank {
+  /** LaTeX printed to the left of the box, e.g. `\\vec{a}\\cdot\\vec{b} =`. */
+  label?: string
+  /** LaTeX printed to the right — a unit, or a closing bracket. */
+  after?: string
+  answer: number
+  /** Absolute tolerance. Defaults to half a percent of the answer, which
+   *  accepts two decimal places without accepting a different number. */
+  tol?: number
+  /** Placeholder shown in the empty box. */
+  placeholder?: string
+}
+
+/** A question answered by filling boxes. Shared by the `math` step and by the
+ *  parts of a mathematics mini project. */
+export interface MathTask {
+  prompt: Loc
+  /** The problem as it would be printed on paper, in LaTeX, above the boxes. */
+  given?: string
+  /** A drawing of the situation, shown above the boxes. */
+  figure?: Figure
+  blanks: MathBlank[]
+  /** Boxes side by side — a vector's components — rather than stacked. */
+  inline?: boolean
+  /** The working, one LaTeX line at a time. Offered once the hints run out. */
+  solution?: string[]
+}
+
 /**
  * Steps are ordered so support fades across a lesson:
  * `concept` (worked example) -> `quiz` (predict) -> `fill` (complete) ->
  * `order` (assemble) -> `code` (write it alone).
+ *
+ * A mathematics lesson climbs the same ladder and ends on `math` rather than
+ * `code`: nothing to choose between and no template to complete — the learner
+ * does the working and types what came out of it.
  */
 export type Step =
   | {
@@ -125,6 +169,9 @@ export type Step =
       id: string
       title: Loc
       body: Loc
+      /** A drawing, shown between the prose and any sample code. Some of the
+       *  ideas in this app are geometry, and geometry is faster looked at. */
+      figure?: Figure
       code?: string
       /** What the sample code prints, shown as a worked example. */
       output?: string
@@ -149,6 +196,9 @@ export type Step =
       template: string
       blanks: string[]
       explain: Loc
+      /** The template is LaTeX, and the pieces around the blanks are set as
+       *  a formula rather than as monospaced code. */
+      math?: boolean
     }
   | {
       kind: 'order'
@@ -157,6 +207,9 @@ export type Step =
       /** Correct order. Shuffled for the learner. */
       lines: string[]
       explain: Loc
+      /** The lines are LaTeX — the steps of a derivation rather than of a
+       *  program — and are set as formulas. */
+      math?: boolean
     }
   | {
       kind: 'code'
@@ -225,6 +278,14 @@ export type Step =
       hints: Loc[]
       solution: string
     }
+  | ({
+      /** The last rung of a mathematics lesson. There is nothing to pick from
+       *  and no template to complete: work it out, type the number. */
+      kind: 'math'
+      id: string
+      hints: Loc[]
+      explain: Loc
+    } & MathTask)
 
 export interface Lesson {
   id: string
@@ -241,20 +302,26 @@ interface MiniProjectBase {
   title: Loc
   brief: Loc
   requirements: Loc[]
-  starter: string
   hints: Loc[]
-  solution: string
   xp: number
 }
+
+/** The shape every project had before mathematics arrived: an editor with
+ *  something in it to begin with, and one right answer to fall back on. */
+type CodeProject = MiniProjectBase & { starter: string; solution: string }
 
 /** Discriminated by `runtime` so each kind carries only the tests it can run.
  *  Python is the default, which keeps every existing project unchanged. */
 export type MiniProject =
-  | (MiniProjectBase & { runtime?: 'python'; tests: PyTest[] })
-  | (MiniProjectBase & { runtime: 'web'; tests: WebTest[]; html?: string; js?: boolean; react?: boolean })
-  | (MiniProjectBase & { runtime: 'sql'; tests: SqlTest[]; schema: string })
-  | (MiniProjectBase & { runtime: 'ts'; tests: TsTest[] })
-  | (MiniProjectBase & { runtime: 'game'; tests: PyTest[] })
+  | (CodeProject & { runtime?: 'python'; tests: PyTest[] })
+  | (CodeProject & { runtime: 'web'; tests: WebTest[]; html?: string; js?: boolean; react?: boolean })
+  | (CodeProject & { runtime: 'sql'; tests: SqlTest[]; schema: string })
+  | (CodeProject & { runtime: 'ts'; tests: TsTest[] })
+  | (CodeProject & { runtime: 'game'; tests: PyTest[] })
+  /** A problem set: several questions, every box right before it counts.
+   *  No starter and no single solution string — each part carries its own
+   *  working instead. */
+  | (MiniProjectBase & { runtime: 'math'; tasks: MathTask[] })
 
 export interface Submodule {
   id: string
@@ -286,7 +353,9 @@ export interface CourseInfo {
   /** CSS colour used for the card accent. */
   color: string
   level: Loc
-  language: 'python' | 'html' | 'css' | 'javascript' | 'typescript' | 'sql' | 'react' | 'mixed'
+  /** What the learner writes. `math` is the one that is not a programming
+   *  language: those courses are worked on paper and answered in a box. */
+  language: 'python' | 'html' | 'css' | 'javascript' | 'typescript' | 'sql' | 'react' | 'mixed' | 'math'
   /** Courses that must be finished first. */
   requires: string[]
   /** false = shown on the catalogue but not yet playable. */
