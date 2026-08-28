@@ -12,7 +12,7 @@
  *  head in a flat projection of space is a guess about depth, not an answer.
  */
 
-import { useMemo, useRef, useState } from 'react'
+import { useId, useMemo, useRef, useState } from 'react'
 import {
   camera,
   resolve,
@@ -26,6 +26,7 @@ import {
   type Vec,
   type VecRef,
 } from '../lib/figure'
+import { evaluateAt } from '../lib/expr'
 import { useI18n } from '../i18n'
 import { Rich } from './ui'
 
@@ -53,6 +54,43 @@ function labelBeside(from: P, to: P, gap = 14): P {
   const dy = to[1] - from[1]
   const d = Math.hypot(dx, dy) || 1
   return [(from[0] + to[0]) / 2 - (dy / d) * gap, (from[1] + to[1]) / 2 + (dx / d) * gap]
+}
+
+/** A figure label, set the way mathematics is written: a variable is italic,
+ *  everything that is not a variable is upright.
+ *
+ *  The rule is the ordinary one. A single letter is a variable (`x`, `a`,
+ *  `θ`). A run of capitals is a name made of points, so still variables
+ *  (`AB`, `PQR`). A lower-case run of two letters or more is a function name
+ *  or an ordinary word (`sin`, `ln`, `proj`, `puncak`) and stays upright — as
+ *  do digits, operators and brackets. So `tan x` gets exactly one italic
+ *  letter, which is the whole point of doing this at all. */
+function LabelText({ text }: { text: string }) {
+  const parts: { s: string; italic: boolean }[] = []
+  const letters = /[A-Za-z]+|[Ͱ-Ͽ]/g
+  let last = 0
+  for (let m = letters.exec(text); m; m = letters.exec(text)) {
+    if (m.index > last) parts.push({ s: text.slice(last, m.index), italic: false })
+    const word = m[0]
+    const greek = /^[Ͱ-Ͽ]$/.test(word)
+    parts.push({ s: word, italic: greek || word.length === 1 || word === word.toUpperCase() })
+    last = m.index + word.length
+  }
+  if (last < text.length) parts.push({ s: text.slice(last), italic: false })
+
+  return (
+    <>
+      {parts.map((p, i) =>
+        p.italic ? (
+          <tspan className="var" key={i}>
+            {p.s}
+          </tspan>
+        ) : (
+          <tspan key={i}>{p.s}</tspan>
+        ),
+      )}
+    </>
+  )
 }
 
 function Arrow({ from, to, color, dashed }: { from: P; to: P; color?: FigColor; dashed?: boolean }) {
@@ -103,28 +141,63 @@ function arcPoints(u: Vec, v: Vec, radius: number, dim: number): Vec[] {
   return out
 }
 
+/** A grid step that lands on round numbers and gives roughly eight lines. */
+function niceStep(span: number): number {
+  const rough = span / 8
+  const mag = Math.pow(10, Math.floor(Math.log10(rough)))
+  for (const m of [1, 2, 2.5, 5, 10]) if (m * mag >= rough) return m * mag
+  return 10 * mag
+}
+
+/** Round off the floating-point dust a step of 0.1 leaves on a tick label. */
+const tickText = (v: number, step: number): string => {
+  const dp = Math.max(0, -Math.floor(Math.log10(step)))
+  return v.toFixed(dp)
+}
+
 export function FigureView({ figure }: { figure: Figure }) {
   const { tc } = useI18n()
   const dim = figure.dim
   const range = figure.range ?? 5
   const [vars, setVars] = useState<Record<string, Vec>>(() => ({ ...(figure.vars ?? {}) }))
+  const [params, setParams] = useState<Record<string, number>>(() =>
+    Object.fromEntries((figure.params ?? []).map((p) => [p.name, p.value])),
+  )
   const [view, setView] = useState<[number, number]>(() => figure.view ?? [38, 22])
   const svgRef = useRef<SVGSVGElement>(null)
+  // Curves are clipped to the grid rather than to the whole drawing, so a
+  // steep one leaves through the frame instead of running past the ticks.
+  const clipId = useId()
   const dragging = useRef<{ name: string } | { az: number; el: number; x: number; y: number } | null>(null)
 
   const scale = (SIZE / 2 - PAD) / range
   const cx = SIZE / 2
   const cy = SIZE / 2
 
+  // A vector figure keeps one scale on both axes so a right angle looks like
+  // one; a graph is free to stretch y, and usually has to.
+  const xSpan: [number, number] = figure.xSpan ?? [-range, range]
+  const ySpan: [number, number] = figure.ySpan ?? [-range, range]
+  const kx = (SIZE - 2 * PAD) / (xSpan[1] - xSpan[0])
+  const ky = (SIZE - 2 * PAD) / (ySpan[1] - ySpan[0])
+
   const cam = useMemo(() => camera(view[0], view[1]), [view])
 
   /** Graph units to screen pixels, whichever dimension we are in. */
   const px = useMemo(() => {
     return (v: Vec): P => {
-      const [x, y] = dim === 2 ? [v[0] ?? 0, v[1] ?? 0] : cam.to2d(v)
-      return [cx + x * scale, cy - y * scale]
+      if (dim === 3) {
+        const [u, w] = cam.to2d(v)
+        return [cx + u * scale, cy - w * scale]
+      }
+      return [PAD + ((v[0] ?? 0) - xSpan[0]) * kx, SIZE - PAD - ((v[1] ?? 0) - ySpan[0]) * ky]
     }
-  }, [dim, cam, scale, cx, cy])
+  }, [dim, cam, scale, cx, cy, kx, ky, xSpan[0], ySpan[0]])
+
+  /** A number an item gave as either a literal or an expression in the
+   *  sliders. Everything a graph draws goes through here. */
+  const num = (v: number | string): number =>
+    typeof v === 'number' ? v : evaluateAt(v, params)
 
   const at = (ref: VecRef): Vec => resolve(ref, vars, dim)
   const depthOf = (v: Vec): number => (dim === 2 ? 0 : cam.depth(v))
@@ -134,6 +207,7 @@ export function FigureView({ figure }: { figure: Figure }) {
 
   const reset = () => {
     setVars({ ...(figure.vars ?? {}) })
+    setParams(Object.fromEntries((figure.params ?? []).map((p) => [p.name, p.value])))
     setView(figure.view ?? [38, 22])
   }
 
@@ -159,9 +233,10 @@ export function FigureView({ figure }: { figure: Figure }) {
     if ('name' in d) {
       const [sx, sy] = pointerPos(e)
       const snap = figure.snap ?? 0.5
-      const raw = [(sx - cx) / scale, (cy - sy) / scale]
-      const next = raw.map((x) => {
-        const clamped = Math.max(-range, Math.min(range, x))
+      const raw: [number, number] = [xSpan[0] + (sx - PAD) / kx, ySpan[0] + (SIZE - PAD - sy) / ky]
+      const next = raw.map((v, i) => {
+        const [lo, hi] = i === 0 ? xSpan : ySpan
+        const clamped = Math.max(lo, Math.min(hi, v))
         return snap > 0 ? Math.round(clamped / snap) * snap : clamped
       })
       setVars((prev) => ({ ...prev, [d.name]: next }))
@@ -178,21 +253,43 @@ export function FigureView({ figure }: { figure: Figure }) {
 
   const axes: React.ReactNode[] = []
   if (dim === 2) {
-    for (let i = -Math.floor(range); i <= Math.floor(range); i++) {
-      axes.push(
-        <line key={`gx${i}`} className="figgrid" x1={px([i, -range])[0]} y1={0} x2={px([i, -range])[0]} y2={SIZE} />,
-      )
-      axes.push(
-        <line key={`gy${i}`} className="figgrid" x1={0} y1={px([0, i])[1]} x2={SIZE} y2={px([0, i])[1]} />,
-      )
+    const stepX = niceStep(xSpan[1] - xSpan[0])
+    const stepY = niceStep(ySpan[1] - ySpan[0])
+    // Where the axes actually sit: on the origin when it is in view, and
+    // otherwise pinned to the edge, so a graph of e^x still has an x axis.
+    const axisY = Math.max(PAD, Math.min(SIZE - PAD, px([0, 0])[1]))
+    const axisX = Math.max(PAD, Math.min(SIZE - PAD, px([0, 0])[0]))
+
+    for (let v = Math.ceil(xSpan[0] / stepX) * stepX; v <= xSpan[1] + 1e-9; v += stepX) {
+      const x = px([v, 0])[0]
+      axes.push(<line key={`gx${v}`} className="figgrid" x1={x} y1={PAD} x2={x} y2={SIZE - PAD} />)
+      if (figure.ticks && Math.abs(v) > 1e-9) {
+        axes.push(
+          <text key={`tx${v}`} className="figtick" x={x} y={axisY + 15} textAnchor="middle">
+            {tickText(v, stepX)}
+          </text>,
+        )
+      }
     }
-    axes.push(<line key="ax" className="figaxis" x1={0} y1={cy} x2={SIZE} y2={cy} />)
-    axes.push(<line key="ay" className="figaxis" x1={cx} y1={0} x2={cx} y2={SIZE} />)
+    for (let v = Math.ceil(ySpan[0] / stepY) * stepY; v <= ySpan[1] + 1e-9; v += stepY) {
+      const y = px([0, v])[1]
+      axes.push(<line key={`gy${v}`} className="figgrid" x1={PAD} y1={y} x2={SIZE - PAD} y2={y} />)
+      if (figure.ticks && Math.abs(v) > 1e-9) {
+        axes.push(
+          <text key={`ty${v}`} className="figtick" x={axisX - 6} y={y + 4} textAnchor="end">
+            {tickText(v, stepY)}
+          </text>,
+        )
+      }
+    }
+
+    axes.push(<line key="ax" className="figaxis" x1={PAD} y1={axisY} x2={SIZE - PAD} y2={axisY} />)
+    axes.push(<line key="ay" className="figaxis" x1={axisX} y1={PAD} x2={axisX} y2={SIZE - PAD} />)
     axes.push(
-      <text key="lx" className="figaxislabel" x={SIZE - 10} y={cy - 7} textAnchor="end">
+      <text key="lx" className="figaxislabel" x={SIZE - PAD + 2} y={axisY - 7} textAnchor="end">
         x
       </text>,
-      <text key="ly" className="figaxislabel" x={cx + 7} y={12}>
+      <text key="ly" className="figaxislabel" x={axisX + 7} y={PAD - 6}>
         y
       </text>,
     )
@@ -232,13 +329,52 @@ export function FigureView({ figure }: { figure: Figure }) {
         return depthOf(at(item.at ?? origin))
       case 'box':
         return -Infinity // edges belong behind whatever is inside the box
+      default:
+        return 0 // graph items are plane-only, so depth never comes up
     }
+  }
+
+  /** The graph of one expression, as a list of unbroken runs. A run ends
+   *  where the function does — at a pole, at the edge of its domain, or where
+   *  it leaves the picture — so an asymptote is a gap rather than a near
+   *  vertical line joining +infinity to -infinity. */
+  function sample(f: string, from: number, to: number): P[][] {
+    const steps = 480
+    const height = ySpan[1] - ySpan[0]
+    const segments: P[][] = []
+    let run: P[] = []
+    let prev: number | null = null
+
+    const flush = () => {
+      if (run.length > 1) segments.push(run)
+      run = []
+    }
+
+    for (let i = 0; i <= steps; i++) {
+      const x = from + ((to - from) * i) / steps
+      const y = evaluateAt(f, { ...params, x })
+      if (!Number.isFinite(y)) {
+        flush()
+        prev = null
+        continue
+      }
+      if (prev !== null && Math.abs(y - prev) > height * 1.5) flush()
+      // Clamped, not dropped: a curve leaving the top should be drawn going
+      // there, and only the part past the edge is thrown away.
+      run.push(px([x, Math.max(ySpan[0] - height, Math.min(ySpan[1] + height, y))]))
+      prev = y
+    }
+    flush()
+    return segments
   }
 
   /** Every label the figure carries, gathered so they can be drawn last.
    *  A label placed at the tail of an arrow is otherwise painted over by the
    *  arrow itself, and in space by whatever turns out to be in front. */
   const labels: { p: P; text: string; color: string }[] = []
+  /** Curves plotted together tend to leave the frame through the same corner,
+   *  so each one's name is set a little further back along it than the last. */
+  let curvesSoFar = 0
   const label = (p: P, text: string | undefined, color: string) => {
     if (text) labels.push({ p, text, color })
   }
@@ -348,6 +484,91 @@ export function FigureView({ figure }: { figure: Figure }) {
           />
         )
       }
+      case 'curve': {
+        const from = item.from ?? xSpan[0]
+        const to = item.to ?? xSpan[1]
+        const runs = sample(item.f, from, to)
+        const last = runs[runs.length - 1]
+        if (last && item.label) {
+          // Along the last run rather than at its very end, and a little
+          // further back for each curve already named.
+          const along = 0.84 - 0.16 * (curvesSoFar % 3)
+          const p = last[Math.floor((last.length - 1) * along)]
+          label([p[0] + 4, p[1] - 12], item.label, stroke(item.color))
+        }
+        curvesSoFar++
+        return (
+          <g key={key} clipPath={`url(#${clipId})`}>
+            {runs.map((run, n) => (
+              <polyline
+                key={n}
+                className="figcurve"
+                points={run.map((p) => `${p[0]},${p[1]}`).join(' ')}
+                stroke={stroke(item.color)}
+                strokeDasharray={item.dashed ? '6 4' : undefined}
+              />
+            ))}
+          </g>
+        )
+      }
+      case 'hline': {
+        const y = num(item.y)
+        if (!Number.isFinite(y) || y < ySpan[0] || y > ySpan[1]) return null
+        const p = px([0, y])[1]
+        label([SIZE - PAD - 14, p - 8], item.label, stroke(item.color ?? 'muted'))
+        return (
+          <line
+            key={key}
+            className="figrule"
+            clipPath={`url(#${clipId})`}
+            x1={PAD}
+            y1={p}
+            x2={SIZE - PAD}
+            y2={p}
+            stroke={stroke(item.color ?? 'muted')}
+            strokeDasharray={item.dashed === false ? undefined : '6 4'}
+          />
+        )
+      }
+      case 'vline': {
+        const x = num(item.x)
+        if (!Number.isFinite(x) || x < xSpan[0] || x > xSpan[1]) return null
+        const p = px([x, 0])[0]
+        label([p + 12, PAD + 14], item.label, stroke(item.color ?? 'muted'))
+        return (
+          <line
+            key={key}
+            className="figrule"
+            clipPath={`url(#${clipId})`}
+            x1={p}
+            y1={PAD}
+            x2={p}
+            y2={SIZE - PAD}
+            stroke={stroke(item.color ?? 'muted')}
+            strokeDasharray={item.dashed === false ? undefined : '6 4'}
+          />
+        )
+      }
+      case 'dot': {
+        const x = num(item.x)
+        const y = num(item.y)
+        if (!Number.isFinite(x) || !Number.isFinite(y)) return null
+        const p = px([x, y])
+        label([p[0] + 11, p[1] - 10], item.label, stroke(item.color ?? 'result'))
+        return (
+          <circle
+            key={key}
+            cx={p[0]}
+            cy={p[1]}
+            r={5}
+            // A hollow dot is the notation for an endpoint that is not
+            // included — the whole point of a piecewise definition.
+            fill={item.open ? 'var(--surface-2)' : stroke(item.color ?? 'result')}
+            stroke={stroke(item.color ?? 'result')}
+            strokeWidth={2}
+          />
+        )
+      }
       case 'box': {
         const a = at(item.a)
         const b = at(item.b)
@@ -398,7 +619,9 @@ export function FigureView({ figure }: { figure: Figure }) {
   }
 
   const rotatable = Boolean(figure.interactive) && dim === 3
-  const draggable = Boolean(figure.interactive) && dim === 2
+  const draggable =
+    Boolean(figure.interactive) && dim === 2 && figure.items.some((i) => i.t === 'vec' && i.drag)
+  const sliders = figure.params ?? []
 
   return (
     <figure className="fig">
@@ -416,15 +639,40 @@ export function FigureView({ figure }: { figure: Figure }) {
         onPointerUp={end}
         onPointerCancel={end}
       >
+        <defs>
+          <clipPath id={clipId}>
+            <rect x={PAD} y={PAD} width={SIZE - 2 * PAD} height={SIZE - 2 * PAD} />
+          </clipPath>
+        </defs>
         {axes}
         {drawn.map(({ item, i }) => render(item, i))}
         {/* Labels last, so nothing is ever drawn over a name. */}
         {labels.map((l, i) => (
           <text className="figlabel" fill={l.color} key={`l${i}`} {...anchor(l.p)}>
-            {l.text}
+            <LabelText text={l.text} />
           </text>
         ))}
       </svg>
+
+      {sliders.length > 0 && (
+        <div className="figsliders">
+          {sliders.map((p) => (
+            <label className="figslider" key={p.name}>
+              <span>
+                <i>{p.label ?? p.name}</i> = {show(params[p.name] ?? p.value, 2)}
+              </span>
+              <input
+                type="range"
+                min={p.min}
+                max={p.max}
+                step={p.step ?? 0.1}
+                value={params[p.name] ?? p.value}
+                onChange={(e) => setParams((prev) => ({ ...prev, [p.name]: Number(e.target.value) }))}
+              />
+            </label>
+          ))}
+        </div>
+      )}
 
       {figure.readouts && figure.readouts.length > 0 && (
         <div className="figreadout">
@@ -443,14 +691,16 @@ export function FigureView({ figure }: { figure: Figure }) {
 
       <figcaption>
         {figure.caption && <Rich text={tc(figure.caption)} />}
-        {figure.interactive && (
+        {(figure.interactive || sliders.length > 0) && (
           <>
             {' '}
             <span className="figtip">
               {tc(
                 draggable
                   ? { en: 'Drag a circled head to move it.', id: 'Seret ujung berlingkaran untuk memindahkannya.' }
-                  : { en: 'Drag the drawing to turn it.', id: 'Seret gambarnya untuk memutar.' },
+                  : rotatable
+                    ? { en: 'Drag the drawing to turn it.', id: 'Seret gambarnya untuk memutar.' }
+                    : { en: 'Move the sliders.', id: 'Geser penggesernya.' },
               )}
             </span>{' '}
             <button className="btn ghost sm" onClick={reset}>

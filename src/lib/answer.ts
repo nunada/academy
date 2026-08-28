@@ -7,145 +7,27 @@
  *
  *  Accepting the exact form matters pedagogically. An answer of √14 marked
  *  wrong because the learner did not round it the way the author did teaches
- *  the wrong lesson, so the tolerance is generous — half a percent — and an
- *  exact expression lands dead on it anyway.
+ *  the wrong lesson.
+ *
+ *  The arithmetic itself lives in `expr.ts`, shared with the figure plotter.
+ *  What is decided here is which functions a learner may reach for — and
+ *  trigonometry is deliberately not among them. These courses work in degrees
+ *  in some places and radians in others, so `sin(30)` would silently mean one
+ *  of the two, and marking it either way would be wrong half the time.
  */
 
-const CONSTANTS: Record<string, number> = { pi: Math.PI, π: Math.PI, e: Math.E }
+import { evaluate } from './expr'
 
-/** Functions of one argument. Deliberately no trigonometry: this course works
- *  in degrees and `sin(30)` would silently mean radians. */
-const FUNCTIONS: Record<string, (x: number) => number> = {
+const FUNCTIONS = {
   sqrt: Math.sqrt,
   akar: Math.sqrt,
   abs: Math.abs,
-}
-
-interface S {
-  src: string
-  i: number
-}
-
-const ws = (s: S): void => {
-  while (s.i < s.src.length && s.src[s.i] === ' ') s.i++
-}
-
-/** Something a `*` could be implied in front of. */
-function startsValue(s: S): boolean {
-  ws(s)
-  const c = s.src[s.i]
-  if (c === undefined) return false
-  return /[0-9(.√πa-z]/.test(c)
-}
-
-function parseExpr(s: S): number {
-  let value = parseTerm(s)
-  for (;;) {
-    ws(s)
-    const c = s.src[s.i]
-    if (c === '+' || c === '-') {
-      s.i++
-      const rhs = parseTerm(s)
-      value = c === '+' ? value + rhs : value - rhs
-    } else {
-      return value
-    }
-  }
-}
-
-function parseTerm(s: S): number {
-  let value = parsePower(s)
-  for (;;) {
-    ws(s)
-    const c = s.src[s.i]
-    if (c === '*' || c === '×' || c === '⋅' || c === '·') {
-      s.i++
-      value *= parsePower(s)
-    } else if (c === '/' || c === '÷' || c === ':') {
-      s.i++
-      value /= parsePower(s)
-    } else if (startsValue(s) && s.src[s.i] !== undefined && !/[0-9.]/.test(s.src[s.i])) {
-      // `2√3`, `3pi`, `2(1+4)` — implied multiplication. A digit is excluded
-      // so that `12` stays twelve rather than becoming one times two.
-      value *= parsePower(s)
-    } else {
-      return value
-    }
-  }
-}
-
-function parsePower(s: S): number {
-  const base = parseUnary(s)
-  ws(s)
-  if (s.src[s.i] === '^') {
-    s.i++
-    return Math.pow(base, parsePower(s))
-  }
-  return base
-}
-
-function parseUnary(s: S): number {
-  ws(s)
-  // The sign binds looser than the exponent, so `-2^2` is minus four.
-  if (s.src[s.i] === '-') {
-    s.i++
-    return -parsePower(s)
-  }
-  if (s.src[s.i] === '+') {
-    s.i++
-    return parsePower(s)
-  }
-  return parsePrimary(s)
-}
-
-function parsePrimary(s: S): number {
-  ws(s)
-  const c = s.src[s.i]
-  if (c === undefined) throw new Error('empty')
-
-  if (c === '(') {
-    s.i++
-    const v = parseExpr(s)
-    ws(s)
-    if (s.src[s.i] !== ')') throw new Error('unclosed')
-    s.i++
-    return v
-  }
-
-  if (c === '|') {
-    s.i++
-    const v = parseExpr(s)
-    ws(s)
-    if (s.src[s.i] !== '|') throw new Error('unclosed')
-    s.i++
-    return Math.abs(v)
-  }
-
-  if (c === '√') {
-    s.i++
-    return Math.sqrt(parseUnary(s))
-  }
-
-  if (/[0-9.]/.test(c)) {
-    const m = /^[0-9]*\.?[0-9]*/.exec(s.src.slice(s.i))
-    const lit = m?.[0] ?? ''
-    if (lit === '' || lit === '.') throw new Error('number')
-    s.i += lit.length
-    return Number(lit)
-  }
-
-  const word = /^[a-zπ]+/.exec(s.src.slice(s.i))
-  if (word) {
-    const name = word[0]
-    s.i += name.length
-    const fn = FUNCTIONS[name]
-    if (fn) return fn(parseUnary(s))
-    const konst = CONSTANTS[name]
-    if (konst !== undefined) return konst
-    throw new Error('unknown ' + name)
-  }
-
-  throw new Error('unexpected ' + c)
+  // Logarithms are here and trigonometry is not, for the same reason: these
+  // three mean one thing each, whereas `sin(30)` would be a guess about
+  // whether the learner was working in degrees or in radians.
+  ln: Math.log,
+  log: Math.log10,
+  exp: Math.exp,
 }
 
 /** A comma is the decimal mark here, so `1,5` has to be read as one and a
@@ -162,18 +44,7 @@ function decimalComma(src: string): string {
 
 /** The number a learner meant, or null when what they typed is not one. */
 export function evalAnswer(input: string): number | null {
-  const src = decimalComma(input.trim().toLowerCase().replace(/\s+/g, ' '))
-  if (src === '') return null
-
-  try {
-    const s: S = { src, i: 0 }
-    const value = parseExpr(s)
-    ws(s)
-    if (s.i !== src.length) return null
-    return Number.isFinite(value) ? value : null
-  } catch {
-    return null
-  }
+  return evaluate(decimalComma(input.trim().toLowerCase().replace(/\s+/g, ' ')), { funcs: FUNCTIONS })
 }
 
 /** Two decimal places, or half a percent — whichever is the kinder of the two.

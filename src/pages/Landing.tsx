@@ -1,14 +1,38 @@
 import { Link } from 'react-router-dom'
+import type { CourseInfo } from '../content/types'
 import { useI18n } from '../i18n'
-import { COURSES, PATHS } from '../content/catalog'
+import { COURSES, PATHS, coursesIn } from '../content/catalog'
 import { Logo } from '../components/Logo'
 
 export default function Landing() {
   const { t, tc } = useI18n()
-  const live = COURSES.filter((c) => c.available)
+  const live = (track: 'code' | 'math'): CourseInfo[] => coursesIn(track).filter((c) => c.available)
   // Derived, not written out by hand: the sentence went stale every time a
   // course moved from the roadmap into the catalogue.
   const soon = COURSES.filter((c) => !c.available).map((c) => tc(c.title))
+
+  const card = (c: CourseInfo) => (
+    <div className="card" key={c.id}>
+      <div className="row">
+        <span style={{ fontSize: '1.7rem' }}>{c.icon}</span>
+        <div>
+          <b>{tc(c.title)}</b>
+          <div className="small muted">{tc(c.level)}</div>
+        </div>
+      </div>
+      <p className="small muted" style={{ marginTop: 10 }}>
+        {tc(c.tagline)}
+      </p>
+      <div className="row small muted">
+        <span className="pill">
+          {c.lessons} {t('lessonsWord')}
+        </span>
+        <span className="pill">
+          {c.projects} {t('projectsWord')}
+        </span>
+      </div>
+    </div>
+  )
 
   return (
     <main className="page">
@@ -45,30 +69,12 @@ export default function Landing() {
       </section>
 
       <section style={{ marginTop: 42 }}>
-        <h2>{t('catalogTitle')}</h2>
+        <h2>{t('trackMath')}</h2>
+        <div className="grid two">{live('math').map(card)}</div>
+
+        <h2 style={{ marginTop: 32 }}>{t('trackCode')}</h2>
         <div className="grid two">
-          {live.map((c) => (
-            <div className="card" key={c.id}>
-              <div className="row">
-                <span style={{ fontSize: '1.7rem' }}>{c.icon}</span>
-                <div>
-                  <b>{tc(c.title)}</b>
-                  <div className="small muted">{tc(c.level)}</div>
-                </div>
-              </div>
-              <p className="small muted" style={{ marginTop: 10 }}>
-                {tc(c.tagline)}
-              </p>
-              <div className="row small muted">
-                <span className="pill">
-                  {c.lessons} {t('lessonsWord')}
-                </span>
-                <span className="pill">
-                  {c.projects} {t('projectsWord')}
-                </span>
-              </div>
-            </div>
-          ))}
+          {live('code').map(card)}
           {PATHS.filter((p) => p.available).map((p) => (
             <div className="card" key={p.id}>
               <div className="row">

@@ -282,6 +282,23 @@ function parseCommand(p: P, cmd: string): string {
     }
     case 'right':
       return '' // only reachable when the content is unbalanced
+    // The manual sizing commands. MathML sizes a bracket from what it
+    // contains, so the size itself is ignored and only the delimiter is kept.
+    case 'big':
+    case 'Big':
+    case 'bigg':
+    case 'Bigg':
+    case 'bigl':
+    case 'bigr':
+    case 'Bigl':
+    case 'Bigr':
+    case 'biggl':
+    case 'biggr':
+    case 'Biggl':
+    case 'Biggr': {
+      skipSpace(p)
+      return fence(p.toks[p.i++] ?? '', !name.endsWith('r'))
+    }
     case 'begin':
       return parseMatrix(p, parseRaw(p))
     case 'end':

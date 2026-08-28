@@ -29,6 +29,7 @@ export const COURSES: CourseInfo[] = [
     color: '#24463d',
     level: { en: 'Beginner', id: 'Pemula' },
     language: 'python',
+    track: 'code',
     requires: [],
     available: true,
     lessons: 37,
@@ -45,6 +46,7 @@ export const COURSES: CourseInfo[] = [
     color: '#e16f47',
     level: { en: 'Beginner', id: 'Pemula' },
     language: 'html',
+    track: 'code',
     requires: [],
     available: true,
     lessons: 14,
@@ -61,6 +63,7 @@ export const COURSES: CourseInfo[] = [
     color: '#dda52b',
     level: { en: 'Beginner', id: 'Pemula' },
     language: 'css',
+    track: 'code',
     requires: ['html'],
     available: true,
     lessons: 14,
@@ -77,6 +80,7 @@ export const COURSES: CourseInfo[] = [
     color: '#c8912f',
     level: { en: 'Beginner', id: 'Pemula' },
     language: 'javascript',
+    track: 'code',
     requires: [],
     available: true,
     lessons: 14,
@@ -93,6 +97,7 @@ export const COURSES: CourseInfo[] = [
     color: '#4f8b56',
     level: { en: 'Beginner', id: 'Pemula' },
     language: 'sql',
+    track: 'code',
     requires: [],
     available: true,
     lessons: 14,
@@ -109,6 +114,7 @@ export const COURSES: CourseInfo[] = [
     color: '#6d8175',
     level: { en: 'Intermediate', id: 'Menengah' },
     language: 'typescript',
+    track: 'code',
     requires: ['javascript'],
     available: true,
     lessons: 14,
@@ -125,6 +131,7 @@ export const COURSES: CourseInfo[] = [
     color: '#7eaa71',
     level: { en: 'Intermediate', id: 'Menengah' },
     language: 'react',
+    track: 'code',
     requires: ['html', 'css', 'javascript'],
     available: true,
     lessons: 14,
@@ -141,6 +148,7 @@ export const COURSES: CourseInfo[] = [
     color: '#ef8f70',
     level: { en: 'Intermediate', id: 'Menengah' },
     language: 'python',
+    track: 'code',
     requires: ['python'],
     available: true,
     lessons: 14,
@@ -157,6 +165,7 @@ export const COURSES: CourseInfo[] = [
     color: '#437649',
     level: { en: 'Beginner', id: 'Pemula' },
     language: 'python',
+    track: 'code',
     requires: [],
     available: true,
     lessons: 16,
@@ -173,6 +182,7 @@ export const COURSES: CourseInfo[] = [
     color: '#7eaa71',
     level: { en: 'Intermediate', id: 'Menengah' },
     language: 'python',
+    track: 'code',
     requires: ['python-math'],
     available: true,
     lessons: 16,
@@ -189,10 +199,28 @@ export const COURSES: CourseInfo[] = [
     color: '#437649',
     level: { en: 'Intermediate', id: 'Menengah' },
     language: 'python',
+    track: 'code',
     requires: ['python-math'],
     available: true,
     lessons: 12,
     projects: 6,
+  },
+  {
+    id: 'fungsi',
+    title: { en: 'Functions and Graphs', id: 'Fungsi dan Grafik' },
+    tagline: {
+      en: 'Domain and range, composition and transformation, trigonometric, exponential, inverse and logarithmic functions.',
+      id: 'Domain dan range, komposisi dan transformasi, fungsi trigonometri, eksponen, invers, dan logaritma.',
+    },
+    icon: '📈',
+    color: '#437649',
+    level: { en: 'Beginner', id: 'Pemula' },
+    language: 'math',
+    track: 'math',
+    requires: [],
+    available: true,
+    lessons: 29,
+    projects: 10,
   },
   {
     id: 'vektor',
@@ -205,6 +233,7 @@ export const COURSES: CourseInfo[] = [
     color: '#4f8b56',
     level: { en: 'Intermediate', id: 'Menengah' },
     language: 'math',
+    track: 'math',
     requires: [],
     available: true,
     lessons: 22,
@@ -226,6 +255,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'python-math': () => import('./python-math'),
   'python-media': () => import('./python-media'),
   'python-numpy': () => import('./python-numpy'),
+  fungsi: () => import('./fungsi'),
   vektor: () => import('./vektor'),
 }
 
@@ -234,6 +264,10 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
 const dimuat = new Map<string, Course>()
 
 export const courseInfo = (id: string): CourseInfo | undefined => COURSES.find((c) => c.id === id)
+
+/** The catalogue in two halves. Programming and mathematics are listed
+ *  separately everywhere they are listed at all — see `CourseInfo.track`. */
+export const coursesIn = (track: 'code' | 'math'): CourseInfo[] => COURSES.filter((c) => c.track === track)
 
 export function pathById(id: string): CareerPath | undefined {
   return PATHS.find((p) => p.id === id)

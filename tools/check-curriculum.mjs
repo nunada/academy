@@ -26,7 +26,7 @@ fs.writeFileSync(
   entry,
   [
     `export { COURSES } from '${q('src/content/catalog.ts')}'`,
-    ...['python', 'html', 'css', 'javascript', 'sql', 'typescript', 'react', 'gamedev', 'python-math', 'python-media', 'python-numpy', 'vektor'].map(
+    ...['python', 'html', 'css', 'javascript', 'sql', 'typescript', 'react', 'gamedev', 'python-math', 'python-media', 'python-numpy', 'vektor', 'fungsi'].map(
       (c) => `export { modules as ${c.replace('-', '')}Modules } from '${q(`src/content/${c}/index.ts`)}'`,
     ),
   ].join('\n'),
@@ -52,6 +52,7 @@ const SUMBER = {
   'python-media': 'pythonmediaModules',
   'python-numpy': 'pythonnumpyModules',
   vektor: 'vektorModules',
+  fungsi: 'fungsiModules',
 }
 
 const masalah = []

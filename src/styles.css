@@ -827,19 +827,32 @@ th .sortable.on::after { content: ' ↓'; }
 
 .figgrid { stroke: var(--fig-grid); stroke-width: 1; }
 .figaxis { stroke: var(--fig-muted); stroke-width: 1.2; }
-.figaxislabel { fill: var(--muted); font-size: 13px; font-style: italic; }
-
-/* Label pada gambar memakai huruf miring berserif, sama seperti huruf pada
-   rumus, supaya `a` di gambar terbaca sebagai `a` yang sama di teks. */
-.figlabel {
-  font-family: 'Cambria Math', 'STIX Two Math', Georgia, serif;
+/* Nama sumbu adalah variabel, jadi miring — dengan huruf yang sama. */
+.figaxislabel {
+  fill: var(--muted);
+  font-family: 'Times New Roman', Times, 'Liberation Serif', 'Nimbus Roman', serif;
+  font-size: 15px;
   font-style: italic;
-  font-size: 16px;
+}
+
+/* Label pada gambar diset seperti matematika ditulis: yang miring hanya
+   variabelnya. `tan x` berarti satu huruf miring, bukan empat; `proj`,
+   `puncak`, angka, dan tanda operasi tetap tegak. Pembagiannya dikerjakan
+   `LabelText` di `components/Figure.tsx`; berkas ini hanya memberi rupanya.
+
+   Times New Roman dipilih karena itulah huruf yang dipakai hampir semua buku
+   matematika untuk variabel — dan mata yang terbiasa membacanya di kertas
+   akan membaca `x` di layar sebagai `x` yang sama. */
+.figlabel {
+  font-family: 'Times New Roman', Times, 'Liberation Serif', 'Nimbus Roman', serif;
+  font-style: normal;
+  font-size: 17px;
   paint-order: stroke;
   stroke: var(--surface-2);
   stroke-width: 3px;
   stroke-linejoin: round;
 }
+.figlabel .var { font-style: italic; }
 
 .figface { fill-opacity: 0.16; stroke-width: 1.4; stroke-dasharray: 4 3; }
 .figedge { stroke: var(--fig-muted); stroke-width: 1.2; stroke-dasharray: 4 3; }
@@ -874,3 +887,30 @@ th .sortable.on::after { content: ' ↓'; }
 }
 .fig figcaption .btn { vertical-align: middle; }
 .figtip { font-style: italic; }
+
+/* Grafik fungsi: kurva, garis bantu, angka pada sumbu, dan penggeser. */
+.figcurve { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.figrule { stroke-width: 1.5; }
+/* Angka pada sumbu bukan variabel: tegak. */
+.figtick {
+  fill: var(--muted);
+  font-family: 'Times New Roman', Times, 'Liberation Serif', 'Nimbus Roman', serif;
+  font-size: 13px;
+}
+
+.figsliders {
+  display: grid;
+  gap: 8px 20px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin-top: 10px;
+}
+.figslider { display: grid; gap: 2px; font-size: 0.85rem; }
+.figslider span { font-family: var(--mono); }
+/* Nama penggeser adalah variabel pada grafiknya, jadi ditulis sama. */
+.figslider i {
+  color: var(--muted);
+  font-family: 'Times New Roman', Times, 'Liberation Serif', 'Nimbus Roman', serif;
+  font-style: italic;
+  font-size: 1.05em;
+}
+.figslider input[type='range'] { width: 100%; accent-color: var(--brand); }

@@ -66,6 +66,45 @@ export type FigItem =
   | { t: 'right'; at?: VecRef; from: VecRef; to: VecRef }
   /** The twelve edges of the box on three vectors, for a volume. */
   | { t: 'box'; a: VecRef; b: VecRef; c: VecRef }
+  /** The graph of `y = f(x)`, sampled across the visible span or across
+   *  `from`..`to`. `f` is an expression in `x` and in any slider the figure
+   *  declares — see `expr.ts`. Plane figures only. */
+  | {
+      t: 'curve'
+      f: string
+      color?: FigColor
+      dashed?: boolean
+      label?: string
+      from?: number
+      to?: number
+    }
+  /** A horizontal or vertical rule: an asymptote, an axis of symmetry, the
+   *  line y = x a function is reflected in. The value may be an expression. */
+  | { t: 'hline'; y: number | string; color?: FigColor; dashed?: boolean; label?: string }
+  | { t: 'vline'; x: number | string; color?: FigColor; dashed?: boolean; label?: string }
+  /** A marked point on a graph. `open` draws the hollow circle that says the
+   *  endpoint is excluded, which is how a piecewise definition is read. */
+  | {
+      t: 'dot'
+      x: number | string
+      y: number | string
+      label?: string
+      color?: FigColor
+      open?: boolean
+    }
+
+/** A number the reader can change, drawn as a slider under the figure.
+ *  Curves and rules may use it by name, so a whole family of graphs is one
+ *  figure — which is the only honest way to teach a shift or a scaling. */
+export interface FigParam {
+  name: string
+  min: number
+  max: number
+  step?: number
+  value: number
+  /** Shown beside the slider. Defaults to the name. */
+  label?: string
+}
 
 export interface Readout {
   label: string
@@ -80,8 +119,18 @@ export interface Figure {
   dim: 2 | 3
   /** The vectors everything else is written in terms of. */
   vars?: Record<string, Vec>
-  /** Half the width of the visible region, in graph units. */
+  /** Half the width of the visible region, in graph units. Both axes get the
+   *  same span, which is what a vector figure needs — a right angle has to
+   *  look like one. A graph of a function usually does not: use `xSpan` and
+   *  `ySpan` instead, and accept that the scales differ. */
   range?: number
+  xSpan?: [number, number]
+  ySpan?: [number, number]
+  /** Draw the numbers on the axes. Off by default: a vector figure is read by
+   *  its arrows, and the ticks are clutter there. */
+  ticks?: boolean
+  /** Sliders, for a figure that shows a family rather than one drawing. */
+  params?: FigParam[]
   items: FigItem[]
   readouts?: Readout[]
   caption?: Loc

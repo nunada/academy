@@ -117,6 +117,8 @@ export const ui = {
 
   // catalog
   catalogTitle: { en: 'Courses', id: 'Kursus' },
+  trackCode: { en: 'Programming', id: 'Pemrograman' },
+  trackMath: { en: 'Mathematics', id: 'Matematika' },
   pathsTitle: { en: 'Career paths', id: 'Jalur karier' },
   pathsBlurb: {
     en: 'A path bundles several courses into one goal, and pays out one certificate at the end.',

@@ -25,11 +25,13 @@ fs.writeFileSync(
   entry,
   `export { tex } from '${q('src/lib/tex.ts')}'\n` +
     `export { evalAnswer, isRight } from '${q('src/lib/answer.ts')}'\n` +
-    `export { modules as vektor } from '${q('src/content/vektor/index.ts')}'\n`,
+    `export { modules as vektor } from '${q('src/content/vektor/index.ts')}'\n` +
+    `export { modules as fungsi } from '${q('src/content/fungsi/index.ts')}'
+`,
 )
 const bundle = path.join(tmp, 'bundle.mjs')
 await build({ entryPoints: [entry], bundle: true, format: 'esm', outfile: bundle, logLevel: 'error' })
-const { tex, evalAnswer, isRight, vektor } = await import('file://' + bundle)
+const { tex, evalAnswer, isRight, vektor, fungsi } = await import('file://' + bundle)
 
 const problems = []
 const fail = (m) => problems.push(m)
@@ -74,6 +76,10 @@ reads('-2^2', -4) // the sign binds looser than the exponent
 reads('|-6|', 6)
 reads('  12  ', 12)
 reads('SQRT(9)', 3) // case does not matter
+reads('ln(20)/ln(3)', Math.log(20) / Math.log(3))
+reads('e^2', Math.E * Math.E)
+reads('log(1000)', 3) // a bare log is base ten
+rejects('sin(30)') // degrees or radians? the course uses both, so neither is offered
 
 rejects('')
 rejects('   ')
@@ -113,6 +119,9 @@ renders('\\sqrt[3]{27}', '<mroot>')
 renders('^\\circ', '<msup>', '∘') // a bare degree sign, set beside an answer box
 renders('\\text{comp}_{\\vec{b}}\\,\\vec{a}', '<msub>', '<mtext>comp</mtext>')
 renders('\\vec{u}\\times\\vec{v}\\cdot\\hat{n}', '×', '⋅')
+renders('f\\big(b(x - h)\\big)', 'fence="true"') // manual sizing: ignored, not dropped
+renders('\\begin{array} a & b \\\\ c & d \\end{array}', '<mtable', '<mtr>')
+renders('y = a^x \\text{ dan } \\ln x', '<msup>', '<mi>ln</mi>')
 
 // A number keeps its digits together, or MathML spaces it like a product.
 if (!tex('12.5').includes('<mn>12.5</mn>')) fail('tex("12.5") split the number up')
@@ -127,7 +136,14 @@ if (!tex('12.5').includes('<mn>12.5</mn>')) fail('tex("12.5") split the number u
    Prose is scanned for $...$ and $$...$$; the LaTeX-only fields are rendered
    whole. Add a course to `CURRICULA` when it starts writing formulas. */
 
-const CURRICULA = { vektor }
+/** The function names `expr.ts` offers a plotted curve. */
+const MATH_NAMES = {
+  sin: 1, cos: 1, tan: 1, asin: 1, acos: 1, atan: 1, sinh: 1, cosh: 1, tanh: 1,
+  exp: 1, ln: 1, log: 1, log2: 1, sqrt: 1, akar: 1, abs: 1, floor: 1, ceil: 1,
+  round: 1, sign: 1,
+}
+
+const CURRICULA = { vektor, fungsi }
 let formulas = 0
 let figures = 0
 
@@ -189,12 +205,51 @@ function sweepFigure(fig, where) {
     }
   }
 
+  const sliders = new Set((fig.params ?? []).map((p) => p.name))
+  /** A curve or a rule may be written as an expression in x and the sliders.
+   *  A name it does not have is a silently blank drawing, so it is checked. */
+  const walkExpr = (src, at) => {
+    if (typeof src !== 'string') return
+    for (const name of src.toLowerCase().match(/[a-z]+/g) ?? []) {
+      const known =
+        name === 'x' || name === 'pi' || name === 'e' || sliders.has(name) || name in MATH_NAMES
+      if (!known) fail(`${where} ${at}: "${name}" is neither a slider nor a function`)
+    }
+  }
+
   fig.items.forEach((item, i) => {
     const at = `item ${i + 1} (${item.t})`
-    for (const key of ['from', 'to', 'at', 'a', 'b', 'c']) {
-      if (item[key] !== undefined) walkVec(item[key], at)
+    switch (item.t) {
+      case 'vec':
+      case 'seg':
+      case 'angle':
+      case 'right':
+        for (const key of ['from', 'to', 'at']) if (item[key] !== undefined) walkVec(item[key], at)
+        break
+      case 'point':
+        walkVec(item.at, at)
+        break
+      case 'poly':
+        item.pts.forEach((p) => walkVec(p, at))
+        break
+      case 'box':
+        for (const key of ['a', 'b', 'c']) walkVec(item[key], at)
+        break
+      case 'curve':
+        walkExpr(item.f, at)
+        if (fig.dim !== 2) fail(`${where} ${at}: a curve belongs to a plane figure`)
+        break
+      case 'hline':
+        walkExpr(item.y, at)
+        break
+      case 'vline':
+        walkExpr(item.x, at)
+        break
+      case 'dot':
+        walkExpr(item.x, at)
+        walkExpr(item.y, at)
+        break
     }
-    if (item.pts) item.pts.forEach((p) => walkVec(p, at))
     if (item.drag && !named.has(item.drag)) fail(`${where} ${at}: drags "${item.drag}", which is not a vector`)
     if (item.drag && fig.dim !== 2) fail(`${where} ${at}: only a plane figure can be dragged by the head`)
   })

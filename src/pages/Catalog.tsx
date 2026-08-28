@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
-import { COURSES, PATHS, courseInfo } from '../content/catalog'
+import type { CourseInfo } from '../content/types'
+import { PATHS, courseInfo, coursesIn } from '../content/catalog'
 import { courseProgress } from '../lib/progress'
 import { Bar } from '../components/ui'
 
@@ -9,72 +10,75 @@ export default function Catalog() {
   const { state, enroll, isEnrolled } = useStore()
   const { t, tc } = useI18n()
 
+  const card = (c: CourseInfo) => {
+    const enrolled = isEnrolled('course', c.id)
+    // Counts and rows only: the catalogue never fetches a curriculum.
+    const st = state ? courseProgress(c, state.progress) : null
+    const missing = c.requires.map(courseInfo).filter((r): r is NonNullable<typeof r> => Boolean(r))
+
+    return (
+      <div className="card" key={c.id} style={{ opacity: c.available ? 1 : 0.72 }}>
+        <div className="row">
+          <span style={{ fontSize: '1.8rem' }}>{c.icon}</span>
+          <div style={{ flex: 1 }}>
+            <b>{tc(c.title)}</b>
+            <div className="small muted">{tc(c.level)}</div>
+          </div>
+          {!c.available && <span className="pill">{t('comingSoon')}</span>}
+        </div>
+
+        <p className="small muted" style={{ marginTop: 10 }}>
+          {tc(c.tagline)}
+        </p>
+
+        {c.available && (
+          <div className="row small">
+            <span className="pill">
+              {c.lessons} {t('lessonsWord')}
+            </span>
+            <span className="pill">
+              {c.projects} {t('projectsWord')}
+            </span>
+          </div>
+        )}
+
+        {missing.length > 0 && (
+          <p className="small muted" style={{ marginTop: 8, marginBottom: 0 }}>
+            {t('requiresLabel')}: {missing.map((r) => tc(r.title)).join(', ')}
+          </p>
+        )}
+
+        {c.available && (
+          <div style={{ marginTop: 14 }}>
+            {enrolled && st && (
+              <div style={{ marginBottom: 10 }}>
+                <Bar percent={st.percent} good={st.finished} />
+              </div>
+            )}
+            {enrolled ? (
+              <Link className="btn wide" to={`/course/${c.id}`}>
+                {st && st.done > 0 ? t('continueBtn') : t('startCourse')}
+              </Link>
+            ) : (
+              <button className="btn wide" onClick={() => void enroll('course', c.id)}>
+                {t('enroll')}
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+    )
+  }
+
   return (
     <main className="page">
       <h1>{t('catalogTitle')}</h1>
-      <div className="grid two">
-        {COURSES.map((c) => {
-          const enrolled = isEnrolled('course', c.id)
-          // Counts and rows only: the catalogue never fetches a curriculum.
-          const st = state ? courseProgress(c, state.progress) : null
-          const missing = c.requires
-            .map(courseInfo)
-            .filter((r): r is NonNullable<typeof r> => Boolean(r))
 
-          return (
-            <div className="card" key={c.id} style={{ opacity: c.available ? 1 : 0.72 }}>
-              <div className="row">
-                <span style={{ fontSize: '1.8rem' }}>{c.icon}</span>
-                <div style={{ flex: 1 }}>
-                  <b>{tc(c.title)}</b>
-                  <div className="small muted">{tc(c.level)}</div>
-                </div>
-                {!c.available && <span className="pill">{t('comingSoon')}</span>}
-              </div>
+      <h2>{t('trackMath')}</h2>
+      <div className="grid two">{coursesIn('math').map(card)}</div>
 
-              <p className="small muted" style={{ marginTop: 10 }}>
-                {tc(c.tagline)}
-              </p>
-
-              {c.available && (
-                <div className="row small">
-                  <span className="pill">
-                    {c.lessons} {t('lessonsWord')}
-                  </span>
-                  <span className="pill">
-                    {c.projects} {t('projectsWord')}
-                  </span>
-                </div>
-              )}
-
-              {missing.length > 0 && (
-                <p className="small muted" style={{ marginTop: 8, marginBottom: 0 }}>
-                  {t('requiresLabel')}: {missing.map((r) => tc(r.title)).join(', ')}
-                </p>
-              )}
-
-              {c.available && (
-                <div style={{ marginTop: 14 }}>
-                  {enrolled && st && (
-                    <div style={{ marginBottom: 10 }}>
-                      <Bar percent={st.percent} good={st.finished} />
-                    </div>
-                  )}
-                  {enrolled ? (
-                    <Link className="btn wide" to={`/course/${c.id}`}>
-                      {st && st.done > 0 ? t('continueBtn') : t('startCourse')}
-                    </Link>
-                  ) : (
-                    <button className="btn wide" onClick={() => void enroll('course', c.id)}>
-                      {t('enroll')}
-                    </button>
-                  )}
-                </div>
-              )}
-            </div>
-          )
-        })}
-      </div>
+      <h2 style={{ marginTop: 32 }}>{t('trackCode')}</h2>
+      <div className="grid two">{coursesIn('code').map(card)}</div>
 
       <h2 style={{ marginTop: 32 }}>{t('pathsTitle')}</h2>
       <p className="muted small">{t('pathsBlurb')}</p>

@@ -356,6 +356,15 @@ export interface CourseInfo {
   /** What the learner writes. `math` is the one that is not a programming
    *  language: those courses are worked on paper and answered in a box. */
   language: 'python' | 'html' | 'css' | 'javascript' | 'typescript' | 'sql' | 'react' | 'mixed' | 'math'
+  /** Which half of the catalogue this belongs under.
+   *
+   *  Not the same question as `language`. The three Python-for-mathematics
+   *  courses are about mathematics but are `code`: the learner writes a
+   *  program and a runtime checks it. A `math` course is worked on paper and
+   *  answered in a box. The two are different enough — different exercises,
+   *  different marking, different reason to be here — that a learner
+   *  scanning for one should not have to read past the other. */
+  track: 'code' | 'math'
   /** Courses that must be finished first. */
   requires: string[]
   /** false = shown on the catalogue but not yet playable. */

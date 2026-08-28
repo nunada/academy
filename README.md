@@ -12,9 +12,17 @@ Pembelajaran**, **Numerik**) dan jalur karier **Python Developer**, **Front-End*
 **Back-End**, serta **Full-Stack Developer**.
 
 Kursus matematika — dikerjakan di kertas, dijawab di kotak, bukan diketik sebagai
-program: **Vektor di Bidang dan di Ruang** (5 modul, 22 pelajaran, 10 kumpulan soal),
-dari notasi dan komponen sampai perkalian titik, perkalian silang, serta garis dan
-bidang di ruang. Mesinnya dijelaskan di [Kursus matematika](#kursus-matematika).
+program. **Fungsi dan Grafik** (5 modul, 29 pelajaran, 10 kumpulan soal): domain dan
+range, komposisi dan transformasi, trigonometri, eksponen, invers, dan logaritma —
+bab pembuka kalkulus. **Vektor di Bidang dan di Ruang** (5 modul, 22 pelajaran, 10
+kumpulan soal): dari notasi dan komponen sampai perkalian titik, perkalian silang,
+serta garis dan bidang di ruang. Keduanya berdiri sendiri; mesinnya dijelaskan di
+[Kursus matematika](#kursus-matematika).
+
+Katalog dan halaman depan memisahkan keduanya: matematika satu baris, pemrograman
+satu baris lagi. `CourseInfo.track` yang menentukannya, dan itu pertanyaan yang
+berbeda dari `language` — ketiga kursus Python-bercita-rasa-matematika tetap masuk
+`code`, sebab pembelajarnya menulis program dan sebuah runtime yang memeriksanya.
 
 ## Menjalankan
 
@@ -648,6 +656,21 @@ persen saja terlalu kejam untuk jawaban kecil — setengah persen dari $2/7$ han
 data: beberapa vektor bernama, lalu daftar hal yang digambar *dalam bentuk* vektor
 itu — `{ sum: [...] }`, `{ cross: [...] }`, `{ proj: [...] }`, dan seterusnya.
 [`components/Figure.tsx`](src/components/Figure.tsx) menggambarnya sebagai SVG.
+
+Untuk kursus fungsi, gambar yang sama juga memuat kurva: `{ t: 'curve', f: 'a*sin(b*x)' }`
+dan seterusnya, dengan `f` sebuah ekspresi dalam `x` dan dalam penggeser yang
+dideklarasikan gambar itu. Ekspresinya dibaca [`src/lib/expr.ts`](src/lib/expr.ts) —
+parser yang sama dengan yang menilai jawaban, hanya dengan himpunan fungsi yang lebih
+besar. Kutub digambar sebagai celah, bukan sebagai garis hampir tegak: sebuah lari
+tersambung berakhir begitu nilainya melompat, sehingga `tan x` tampak sebagaimana
+mestinya.
+
+Label pada gambar dituliskan seperti matematika ditulis: yang miring hanya
+variabelnya, dengan Times New Roman. `tan x` berarti satu huruf miring, bukan empat;
+`proj`, `puncak`, angka, dan tanda operasi tetap tegak. `LabelText` di
+`components/Figure.tsx` yang memisahkannya — satu huruf, atau serangkaian huruf
+kapital seperti `AB`, adalah variabel; rangkaian huruf kecil adalah nama fungsi atau
+kata biasa.
 
 Perantaraan itulah intinya. Ketika pembaca menyeret ujung `a`, semua yang tadi
 dinyatakan tersusun dari `a` — jumlahnya, proyeksinya, jajargenjang yang diarsir,
