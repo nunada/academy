@@ -490,6 +490,19 @@ pre.out.err { background: var(--bad-soft); color: var(--bad); border-color: tran
   .brand small { display: none; }
   .page { padding: 18px 14px 60px; }
   .cert { padding: 28px 20px; }
+
+  /* The topbar packs brand, nav, XP/hearts, the local-mode badge, language
+     toggle, and sign-out into a single non-wrapping row — fine on a laptop,
+     far too much for a 375px phone, where it forced the whole page to
+     scroll sideways. Letting it wrap keeps every control reachable; the nav
+     is pinned to its own full-width row after everything else (`order`,
+     not markup position) and scrolls sideways only if it still doesn't
+     fit, same idea as `.gridwrap` elsewhere in this file. */
+  .topbar { flex-wrap: wrap; row-gap: 6px; padding: 10px 14px; }
+  .nav { order: 5; width: 100%; margin-left: 0; flex-wrap: nowrap; overflow-x: auto; }
+  .nav a { flex: none; }
+  .hearts { font-size: 0.85rem; }
+  .pill { padding: 3px 8px; font-size: 0.75rem; }
 }
 
 /* ------------------------------------------------------------ web preview */
