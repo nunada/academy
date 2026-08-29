@@ -192,6 +192,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       setState((s) => (s ? { ...s, profile } : s))
     },
 
+    async submitFeedback(rating, comment) {
+      if (!user) return
+      await backend.submitFeedback(user.id, rating, comment)
+    },
+
     async enroll(kind, refId) {
       if (!user) return
       const enrollments = await backend.enroll(user.id, kind, refId)

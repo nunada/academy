@@ -249,6 +249,11 @@ export function createSupabaseBackend(): Backend {
       return (data ?? []) as CertificateRow[]
     },
 
+    async submitFeedback(userId, rating, comment) {
+      const { error } = await sb.from('feedback').insert({ user_id: userId, rating, comment })
+      if (error) throw error
+    },
+
     async leaderboard(kind, track) {
       // The trophy board has no course filter, and passing one to it would be
       // a call to a function that does not take it.

@@ -99,6 +99,19 @@ create table if not exists public.certificates (
   primary key (user_id, kind, ref_id)
 );
 
+-- ------------------------------------------------------------------ feedback
+
+-- Read from the SQL editor, not by the app — there is no in-app viewer.
+create table if not exists public.feedback (
+  id         bigserial primary key,
+  user_id    uuid not null references auth.users (id) on delete cascade,
+  rating     smallint not null check (rating between 1 and 5),
+  comment    text,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists feedback_user_time_idx on public.feedback (user_id, created_at desc);
+
 -- ================================================================ triggers
 
 -- Create the profile + a full set of hearts the moment an auth user appears.
@@ -354,6 +367,7 @@ alter table public.xp_events    enable row level security;
 alter table public.hearts       enable row level security;
 alter table public.trophies     enable row level security;
 alter table public.certificates enable row level security;
+alter table public.feedback     enable row level security;
 
 do $$
 begin
@@ -372,7 +386,7 @@ do $$
 declare
   tbl text;
 begin
-  foreach tbl in array array['enrollments', 'progress', 'xp_events', 'hearts', 'trophies', 'certificates']
+  foreach tbl in array array['enrollments', 'progress', 'xp_events', 'hearts', 'trophies', 'certificates', 'feedback']
   loop
     if not exists (select 1 from pg_policies where tablename = tbl and policyname = tbl || '_own_select') then
       execute format(

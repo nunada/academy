@@ -5,6 +5,7 @@ import { useAllCourses } from '../app/curriculum'
 import { describeTrophy } from '../lib/progress'
 import { Hearts } from './ui'
 import { Logo } from './Logo'
+import { FeedbackWidget } from './FeedbackWidget'
 
 function LangToggle() {
   const { lang, setLang } = useI18n()
@@ -108,6 +109,7 @@ export default function Layout() {
 
       <Outlet />
       <TrophyToasts />
+      <FeedbackWidget />
     </div>
   )
 }

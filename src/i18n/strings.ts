@@ -273,6 +273,15 @@ export const ui = {
   },
   of: { en: 'of', id: 'dari' },
   complete: { en: 'complete', id: 'selesai' },
+
+  // feedback
+  feedbackButton: { en: 'Give feedback', id: 'Beri masukan' },
+  feedbackTitle: { en: 'How is it going?', id: 'Bagaimana sejauh ini?' },
+  feedbackRatingLabel: { en: 'Rate your experience', id: 'Nilai pengalamanmu' },
+  feedbackCommentLabel: { en: 'Anything you want to add? (optional)', id: 'Ada yang ingin ditambahkan? (opsional)' },
+  feedbackSubmit: { en: 'Send', id: 'Kirim' },
+  feedbackThanks: { en: 'Thanks for the feedback!', id: 'Terima kasih atas masukannya!' },
+  feedbackError: { en: 'Could not send that — try again.', id: 'Gagal mengirim — coba lagi.' },
 } as const
 
 export type UiKey = keyof typeof ui

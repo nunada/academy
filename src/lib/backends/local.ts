@@ -40,6 +40,7 @@ interface Account {
   enrollments: Enrollment[]
   trophies: TrophyRow[]
   certificates: CertificateRow[]
+  feedback: { rating: number; comment?: string; created_at: string }[]
   hearts: { hearts: number; updated_at: string }
   /** Rivals on the leaderboard are seeded with plain totals instead of events,
    *  split by track so the filtered boards are not a list of one. */
@@ -104,6 +105,7 @@ function blankAccount(
     enrollments: [],
     trophies: [],
     certificates: [],
+    feedback: [],
     hearts: { hearts: MAX_HEARTS, updated_at: now() },
   }
 }
@@ -127,6 +129,11 @@ function normalise(db: Db): boolean {
         alltime: { code: old.alltime, math: 0 },
         trophies: old.trophies,
       }
+      changed = true
+    }
+    // A store written before feedback existed has no array to push into.
+    if (!a.feedback) {
+      a.feedback = []
       changed = true
     }
     if ((a.profile as Partial<Profile>).role) continue
@@ -403,6 +410,13 @@ export function createLocalBackend(): Backend {
         save(db)
       }
       return a.certificates
+    },
+
+    async submitFeedback(userId, rating, comment) {
+      const db = load()
+      const a = find(db, userId)
+      a.feedback.push({ rating, comment, created_at: now() })
+      save(db)
     },
 
     async leaderboard(kind: LeaderboardKind, track: LeaderboardTrack) {

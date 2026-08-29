@@ -171,6 +171,9 @@ export interface Backend {
   syncHearts(userId: string, row: { hearts: number; updated_at: string }): Promise<void>
   awardTrophies(userId: string, ids: string[]): Promise<TrophyRow[]>
   issueCertificate(userId: string, kind: 'course' | 'path', refId: string): Promise<CertificateRow[]>
+  /** Write-only: nothing in the app reads this back, it is for the owner to
+   *  read from the database directly. */
+  submitFeedback(userId: string, rating: number, comment?: string): Promise<void>
   /** `track` narrows the XP boards to one half of the catalogue. The trophy
    *  board ignores it: "earn 100 XP in total" belongs to no track. */
   leaderboard(kind: LeaderboardKind, track: LeaderboardTrack): Promise<LeaderRow[]>

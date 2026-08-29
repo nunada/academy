@@ -31,6 +31,7 @@ export interface StoreValue {
   /** Throws AuthError('username-taken') if the new username is somebody
    *  else's already. */
   updateProfile: (changes: { username?: string; displayName?: string }) => Promise<void>
+  submitFeedback: (rating: number, comment?: string) => Promise<void>
   enroll: (kind: 'course' | 'path', refId: string) => Promise<void>
   isEnrolled: (kind: 'course' | 'path', refId: string) => boolean
   /** Returns the XP actually awarded (0 if the item was already finished). */
