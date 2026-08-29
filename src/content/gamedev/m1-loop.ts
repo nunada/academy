@@ -34,7 +34,7 @@ export const module1: Module = {
               },
               code:
                 'keadaan = awal()\n' +
-                'ulangi selamanya:\n' +
+                'while True:\n' +
                 '    keadaan = perbarui(keadaan, tombol, dt)\n' +
                 '    gambar(keadaan)',
             },
