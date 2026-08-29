@@ -205,7 +205,10 @@ export const module4: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'After naikkan(nilai, 3) runs below, what does main print?', id: 'Setelah naikkan(nilai, 3) berjalan di bawah, apa yang dicetak main?' },
-              code: 'void naikkan(int arr[], int n) {\n    for (int i = 0; i < n; i++) arr[i]++;\n}\nint main() {\n    int nilai[3] = {5, 5, 5};\n    naikkan(nilai, 3);\n    // cetak nilai[0]\n}',
+              code: {
+                en: 'void naikkan(int arr[], int n) {\n    for (int i = 0; i < n; i++) arr[i]++;\n}\nint main() {\n    int nilai[3] = {5, 5, 5};\n    naikkan(nilai, 3);\n    // print nilai[0]\n}',
+                id: 'void naikkan(int arr[], int n) {\n    for (int i = 0; i < n; i++) arr[i]++;\n}\nint main() {\n    int nilai[3] = {5, 5, 5};\n    naikkan(nilai, 3);\n    // cetak nilai[0]\n}',
+              },
               options: [
                 { en: '6', id: '6' },
                 { en: '5', id: '5' },

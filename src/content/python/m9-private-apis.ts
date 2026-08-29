@@ -40,7 +40,20 @@ export const module9: Module = {
                 en: 'A public API answers anyone. A **private** API answers only callers who prove who they are — a school does not hand out student records to a stranger. The proof is usually an **API key**, a long secret string the service issued to you.',
                 id: 'API publik menjawab siapa saja. API **privat** hanya menjawab pemanggil yang membuktikan identitasnya — sekolah tidak menyerahkan data siswa kepada orang asing. Buktinya biasanya berupa **kunci API**, string rahasia panjang yang diterbitkan layanan itu untukmu.',
               },
-              code: '# Latihan ini memakai API tiruan. Jaringannya disimulasikan,\n# tetapi bentuk pemanggilannya sama persis dengan API sungguhan.\nimport nunada_api\n\nrespons = nunada_api.get("https://api.nunada.test/siswa")\nprint(respons.status_code)',
+              code: {
+                en:
+                  '# This exercise uses a fake API. The network is simulated,\n' +
+                  '# but the calling shape is exactly the same as a real API.\n' +
+                  'import nunada_api\n\n' +
+                  'respons = nunada_api.get("https://api.nunada.test/siswa")\n' +
+                  'print(respons.status_code)',
+                id:
+                  '# Latihan ini memakai API tiruan. Jaringannya disimulasikan,\n' +
+                  '# tetapi bentuk pemanggilannya sama persis dengan API sungguhan.\n' +
+                  'import nunada_api\n\n' +
+                  'respons = nunada_api.get("https://api.nunada.test/siswa")\n' +
+                  'print(respons.status_code)',
+              },
               output: '401',
             },
             {
@@ -388,7 +401,10 @@ export const module9: Module = {
                 en: 'Type the key straight into your program and it goes wherever the program goes — into Git, into a screenshot, into a shared folder. Anyone who reads the file can now act as you. Treat a leaked key as one that must be revoked, not one you can quietly delete.',
                 id: 'Ketik kunci langsung di programmu dan ia ikut ke mana pun program itu pergi — masuk ke Git, ke tangkapan layar, ke folder bersama. Siapa pun yang membaca berkasnya kini bisa bertindak sebagai dirimu. Anggap kunci yang bocor sebagai kunci yang wajib dicabut, bukan yang cukup dihapus diam-diam.',
               },
-              code: '# JANGAN seperti ini\nKUNCI = "nunada-rahasia-123"',
+              code: {
+                en: '# DO NOT do this\nKUNCI = "nunada-rahasia-123"',
+                id: '# JANGAN seperti ini\nKUNCI = "nunada-rahasia-123"',
+              },
               output: '(tidak ada keluaran — tetapi rahasianya sudah ikut tersimpan di berkas)',
             },
             {

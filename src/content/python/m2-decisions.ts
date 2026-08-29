@@ -43,7 +43,10 @@ export const module2: Module = {
                 en: 'One equals sign puts a value into a variable. Two equals signs ask whether two things are the same. Mixing them up is the most common beginner bug in any language.',
                 id: 'Satu tanda sama dengan memasukkan nilai ke variabel. Dua tanda sama dengan menanyakan apakah dua hal itu sama. Mempertukarkannya adalah bug pemula paling umum di bahasa mana pun.',
               },
-              code: 'x = 5        # menetapkan\nprint(x == 5)  # menanya\nprint(x != 5)',
+              code: {
+                en: 'x = 5        # assigns\nprint(x == 5)  # asks\nprint(x != 5)',
+                id: 'x = 5        # menetapkan\nprint(x == 5)  # menanya\nprint(x != 5)',
+              },
               output: 'True\nFalse',
             },
             {

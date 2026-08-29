@@ -251,7 +251,10 @@ export const module3: Module = {
                 en: 'Forget the `-= 1` and `sisa` stays 3 forever. If your program hangs, this is almost always why: the condition never changes.',
                 id: 'Lupakan `-= 1` dan `sisa` akan tetap 3 selamanya. Kalau programmu menggantung, hampir selalu inilah sebabnya: kondisinya tidak pernah berubah.',
               },
-              code: '# JANGAN dijalankan\nsisa = 3\nwhile sisa > 0:\n    print("halo")',
+              code: {
+                en: '# do NOT run this\nsisa = 3\nwhile sisa > 0:\n    print("halo")',
+                id: '# JANGAN dijalankan\nsisa = 3\nwhile sisa > 0:\n    print("halo")',
+              },
               output: 'halo\nhalo\nhalo\n…tak pernah berhenti',
             },
             {

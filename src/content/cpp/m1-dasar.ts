@@ -120,7 +120,10 @@ export const module1: Module = {
                 en: 'Text after `//` is a comment — the compiler ignores the rest of that line completely. It exists for whoever reads the code later, which is usually you.',
                 id: 'Teks setelah `//` adalah komentar — kompiler mengabaikan sisa baris itu sepenuhnya. Ia ada untuk siapa pun yang membaca kodenya nanti, yang biasanya dirimu sendiri.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // ini catatan, tidak dijalankan\n    cout << "Ini dijalankan" << endl;\n    return 0;\n}',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // this is a note, and does not run\n    cout << "Ini dijalankan" << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // ini catatan, tidak dijalankan\n    cout << "Ini dijalankan" << endl;\n    return 0;\n}',
+              },
               output: 'Ini dijalankan',
             },
             {
@@ -258,7 +261,22 @@ export const module1: Module = {
                 en: '`int` is a whole number, `double` is a number with a decimal point, `char` is a single character in single quotes, `bool` is true or false. This course has no `std::string`, so text stays as `char` arrays for now — you will meet those in Module 3.',
                 id: '`int` adalah bilangan bulat, `double` adalah bilangan dengan titik desimal, `char` adalah satu karakter dalam kutip tunggal, `bool` adalah true atau false. Kursus ini belum punya `std::string`, jadi teks untuk sementara memakai array `char` — kamu akan mempelajarinya di Modul 3.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur = 17;      // bilangan bulat\n    double tinggi = 1.62; // bilangan desimal\n    char inisial = \'A\';  // satu karakter\n    bool lulus = true;   // benar atau salah\n    cout << umur << endl;\n    cout << tinggi << endl;\n    cout << inisial << endl;\n    cout << lulus << endl;\n    return 0;\n}',
+              code: {
+                en:
+                  '#include <iostream>\nusing namespace std;\n\nint main() {\n' +
+                  '    int umur = 17;      // whole number\n' +
+                  '    double tinggi = 1.62; // decimal number\n' +
+                  "    char inisial = 'A';  // one character\n" +
+                  '    bool lulus = true;   // true or false\n' +
+                  '    cout << umur << endl;\n    cout << tinggi << endl;\n    cout << inisial << endl;\n    cout << lulus << endl;\n    return 0;\n}',
+                id:
+                  '#include <iostream>\nusing namespace std;\n\nint main() {\n' +
+                  '    int umur = 17;      // bilangan bulat\n' +
+                  '    double tinggi = 1.62; // bilangan desimal\n' +
+                  "    char inisial = 'A';  // satu karakter\n" +
+                  '    bool lulus = true;   // benar atau salah\n' +
+                  '    cout << umur << endl;\n    cout << tinggi << endl;\n    cout << inisial << endl;\n    cout << lulus << endl;\n    return 0;\n}',
+              },
               output: '17\n1.62\nA\n1',
             },
             {

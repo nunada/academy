@@ -117,7 +117,10 @@ export const module1: Module = {
                 en: 'A line starting with `#` is a comment. Python ignores it completely — it is there for whoever reads the code later, which is usually you.',
                 id: 'Baris yang diawali `#` adalah komentar. Python mengabaikannya — komentar itu untuk siapa pun yang membaca kodenya nanti, yang biasanya dirimu sendiri.',
               },
-              code: '# ini catatan, tidak dijalankan\nprint("Ini dijalankan")',
+              code: {
+                en: '# this is a note, and does not run\nprint("Ini dijalankan")',
+                id: '# ini catatan, tidak dijalankan\nprint("Ini dijalankan")',
+              },
               output: 'Ini dijalankan',
             },
             {
