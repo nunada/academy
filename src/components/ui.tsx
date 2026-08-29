@@ -66,8 +66,15 @@ export function Bar({ percent, good = false }: { percent: number; good?: boolean
   )
 }
 
-export function Hearts({ count, nextIn }: { count: number; nextIn: number | null }) {
-  const { t } = useI18n()
+export function Hearts({ count, nextIn, infinite = false }: { count: number; nextIn: number | null; infinite?: boolean }) {
+  const { t, tc } = useI18n()
+  if (infinite) {
+    return (
+      <span className="hearts" title={tc({ en: 'Unlimited — teacher accounts never lose hearts.', id: 'Tanpa batas — akun guru tidak pernah kehilangan heart.' })}>
+        <span className="h on">❤️♾️</span>
+      </span>
+    )
+  }
   return (
     <span className="hearts" title={nextIn === null ? t('fullHearts') : `${t('nextHeartIn')} ${formatCountdown(nextIn)}`}>
       {Array.from({ length: MAX_HEARTS }, (_, i) => (

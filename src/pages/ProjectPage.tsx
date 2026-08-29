@@ -145,7 +145,7 @@ export default function ProjectPage() {
         }))
         setRows(next)
         if (next.every((o) => o.passed)) {
-          const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: project.xp })
+          const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: isTeacher ? 0 : project.xp })
           setAwarded(xp)
           setFinished(true)
         }
@@ -170,7 +170,7 @@ export default function ProjectPage() {
       setRunRows(null)
       setCompiled(null)
       if (next.every((o) => o.passed)) {
-        const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: project.xp })
+        const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: isTeacher ? 0 : project.xp })
         setAwarded(xp)
         setFinished(true)
       }
@@ -186,9 +186,18 @@ export default function ProjectPage() {
           <div style={{ fontSize: '3rem' }}>🛠️</div>
           <h1>{t('projectComplete')}</h1>
           <p className="muted">{tc(project.title)}</p>
-          <p className="pill brand" style={{ fontSize: '1rem' }}>
-            ⚡ +{awarded} {t('earnedXp')}
-          </p>
+          {isTeacher ? (
+            <p className="small muted">
+              {tc({
+                en: 'Marked done. Teacher accounts do not earn XP.',
+                id: 'Ditandai selesai. Akun guru tidak mendapatkan XP.',
+              })}
+            </p>
+          ) : (
+            <p className="pill brand" style={{ fontSize: '1rem' }}>
+              ⚡ +{awarded} {t('earnedXp')}
+            </p>
+          )}
           <div className="row" style={{ justifyContent: 'center', marginTop: 18 }}>
             <Link className="btn ghost" to={`/course/${courseId}`}>
               {t('backToMap')}

@@ -91,7 +91,7 @@ export default function Layout() {
             <span className="pill brand" title={t('totalXpLabel')}>
               ⚡ {xpTotal}
             </span>
-            <Hearts count={hearts} nextIn={nextHeartIn} />
+            <Hearts count={hearts} nextIn={nextHeartIn} infinite={state?.profile.role === 'teacher'} />
           </>
         )}
         {mode === 'local' && (

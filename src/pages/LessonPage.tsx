@@ -52,7 +52,7 @@ export default function LessonPage() {
   const wide = step.kind === 'web'
   const isLast = index === lesson.steps.length - 1
   const stepSolved = solved.has(step.id)
-  const blocked = hearts === 0 && !practice
+  const blocked = hearts === 0 && !practice && !isTeacher
 
   async function handleSolved() {
     if (!lesson) return
@@ -67,14 +67,18 @@ export default function LessonPage() {
         setFinished(true)
         return
       }
-      const xp = await complete({ courseId, itemId: lesson.id, kind: 'lesson', xp: lesson.xp })
+      // A teacher's progress still counts — a lesson can be marked done for
+      // planning purposes — but XP and the leaderboard are a learner's game.
+      const xp = await complete({ courseId, itemId: lesson.id, kind: 'lesson', xp: isTeacher ? 0 : lesson.xp })
       setAwarded(xp)
       setFinished(true)
     }
   }
 
   async function handleWrong() {
-    if (practice) return
+    // A teacher is here to preview the material, not to play it — wrong
+    // answers cost nothing and never lock them out.
+    if (practice || isTeacher) return
     const left = await loseHeart()
     if (left === 0) setShowHeartModal(true)
   }
@@ -96,6 +100,13 @@ export default function LessonPage() {
               {tc({
                 en: 'Practice mode — no XP recorded. Come back with a heart to earn it.',
                 id: 'Mode latihan — XP tidak dicatat. Kembalilah saat punya heart untuk mendapatkannya.',
+              })}
+            </p>
+          ) : isTeacher ? (
+            <p className="small muted">
+              {tc({
+                en: 'Marked done. Teacher accounts do not earn XP.',
+                id: 'Ditandai selesai. Akun guru tidak mendapatkan XP.',
               })}
             </p>
           ) : (
