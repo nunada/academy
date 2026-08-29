@@ -59,7 +59,10 @@ export const module1: Module = {
                 en: 'One: every tag closes, including `<br />`. Two: there must be a single root — wrap siblings in a `<div>` or an empty `<> </>`. Three: `class` is a reserved word in JavaScript, so JSX spells it `className`, and `for` becomes `htmlFor`.',
                 id: 'Satu: setiap tag ditutup, termasuk `<br />`. Dua: harus ada satu akar tunggal — bungkus elemen bersaudara dalam `<div>` atau `<> </>` kosong. Tiga: `class` adalah kata kunci JavaScript, jadi JSX menuliskannya `className`, dan `for` menjadi `htmlFor`.',
               },
-              code: '// salah: dua akar\n// const x = <h1>A</h1><p>B</p>;\n\n// benar\nconst x = (\n  <>\n    <h1 className="judul">A</h1>\n    <p>B</p>\n  </>\n);',
+              code: {
+                en: '// wrong: two roots\n// const x = <h1>A</h1><p>B</p>;\n\n// correct\nconst x = (\n  <>\n    <h1 className="judul">A</h1>\n    <p>B</p>\n  </>\n);',
+                id: '// salah: dua akar\n// const x = <h1>A</h1><p>B</p>;\n\n// benar\nconst x = (\n  <>\n    <h1 className="judul">A</h1>\n    <p>B</p>\n  </>\n);',
+              },
             },
             {
               kind: 'quiz',
@@ -402,7 +405,10 @@ export const module1: Module = {
                 en: 'React ignores `false` but it *renders* `0`. So `{jumlah && <p>…</p>}` puts a bare `0` on the page when the count is zero. Compare explicitly — `{jumlah > 0 && …}` — and the problem never appears.',
                 id: 'React mengabaikan `false` tetapi ia *merender* `0`. Jadi `{jumlah && <p>…</p>}` menaruh angka `0` telanjang di halaman saat jumlahnya nol. Bandingkan secara eksplisit — `{jumlah > 0 && …}` — dan masalahnya tak pernah muncul.',
               },
-              code: 'const jumlah = 0;\n\n// menampilkan 0 di halaman\n// {jumlah && <p>Ada isinya</p>}\n\n// benar\n// {jumlah > 0 && <p>Ada isinya</p>}',
+              code: {
+                en: 'const jumlah = 0;\n\n// puts a 0 on the page\n// {jumlah && <p>Ada isinya</p>}\n\n// correct\n// {jumlah > 0 && <p>Ada isinya</p>}',
+                id: 'const jumlah = 0;\n\n// menampilkan 0 di halaman\n// {jumlah && <p>Ada isinya</p>}\n\n// benar\n// {jumlah > 0 && <p>Ada isinya</p>}',
+              },
             },
             {
               kind: 'concept',

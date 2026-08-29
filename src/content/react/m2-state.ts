@@ -40,7 +40,10 @@ export const module2: Module = {
                 en: 'Changing an ordinary variable changes nothing on screen: React has no idea it happened, so it never re-renders. And even if it did, the function would run again and reset the variable. State solves both halves.',
                 id: 'Mengubah variabel biasa tidak mengubah apa pun di layar: React tidak tahu itu terjadi, jadi ia tak pernah merender ulang. Dan seandainya pun tahu, fungsinya akan berjalan lagi dan menyetel ulang variabelnya. State menyelesaikan kedua sisinya.',
               },
-              code: '// tidak berfungsi\nfunction Salah() {\n  let hitung = 0;\n  return <button onClick={() => hitung++}>{hitung}</button>;\n}',
+              code: {
+                en: '// does not work\nfunction Salah() {\n  let hitung = 0;\n  return <button onClick={() => hitung++}>{hitung}</button>;\n}',
+                id: '// tidak berfungsi\nfunction Salah() {\n  let hitung = 0;\n  return <button onClick={() => hitung++}>{hitung}</button>;\n}',
+              },
             },
             {
               kind: 'concept',
@@ -60,7 +63,10 @@ export const module2: Module = {
                 en: '`onClick={naik}` registers the handler. `onClick={naik()}` calls it during rendering and registers whatever it returned — which usually means the state updates once immediately and then never again, or loops forever.',
                 id: '`onClick={naik}` mendaftarkan penangannya. `onClick={naik()}` memanggilnya saat perenderan dan mendaftarkan apa pun hasilnya — yang biasanya berarti state-nya berubah sekali langsung lalu tak pernah lagi, atau berputar tanpa henti.',
               },
-              code: '// salah: dipanggil saat render\n// <button onClick={setHitung(hitung + 1)}>\n\n// benar: fungsi diserahkan\n// <button onClick={() => setHitung(hitung + 1)}>',
+              code: {
+                en: '// wrong: called during render\n// <button onClick={setHitung(hitung + 1)}>\n\n// correct: function handed over\n// <button onClick={() => setHitung(hitung + 1)}>',
+                id: '// salah: dipanggil saat render\n// <button onClick={setHitung(hitung + 1)}>\n\n// benar: fungsi diserahkan\n// <button onClick={() => setHitung(hitung + 1)}>',
+              },
             },
             {
               kind: 'quiz',
@@ -146,7 +152,10 @@ export const module2: Module = {
                 en: 'Inside one render, `hitung` never changes. So calling `setHitung(hitung + 1)` twice in a row sets the same number twice — the second call did not see the first. Pass a function instead and React hands you the latest value.',
                 id: 'Di dalam satu render, `hitung` tidak pernah berubah. Jadi memanggil `setHitung(hitung + 1)` dua kali berturut-turut menyetel angka yang sama dua kali — panggilan kedua tidak melihat yang pertama. Oper sebuah fungsi, maka React memberimu nilai terbarunya.',
               },
-              code: '// menambah satu, bukan dua\nsetHitung(hitung + 1);\nsetHitung(hitung + 1);\n\n// menambah dua\nsetHitung((n) => n + 1);\nsetHitung((n) => n + 1);',
+              code: {
+                en: '// adds one, not two\nsetHitung(hitung + 1);\nsetHitung(hitung + 1);\n\n// adds two\nsetHitung((n) => n + 1);\nsetHitung((n) => n + 1);',
+                id: '// menambah satu, bukan dua\nsetHitung(hitung + 1);\nsetHitung(hitung + 1);\n\n// menambah dua\nsetHitung((n) => n + 1);\nsetHitung((n) => n + 1);',
+              },
             },
             {
               kind: 'concept',
@@ -156,7 +165,10 @@ export const module2: Module = {
                 en: 'React decides whether to re-render by comparing the old value with the new one. `push` returns the same array it was given, so React sees no change and the screen stays still. Build a new array instead — the spread does exactly that.',
                 id: 'React memutuskan perlu tidaknya render ulang dengan membandingkan nilai lama dan baru. `push` mengembalikan array yang sama, jadi React tidak melihat perubahan dan layarnya diam. Bangun array baru — operator sebar melakukan tepat itu.',
               },
-              code: '// tidak merender ulang\n// daftar.push(baru); setDaftar(daftar);\n\n// benar\nsetDaftar([...daftar, baru]);\nsetDaftar(daftar.filter((x) => x.id !== id));',
+              code: {
+                en: '// does not re-render\n// daftar.push(baru); setDaftar(daftar);\n\n// correct\nsetDaftar([...daftar, baru]);\nsetDaftar(daftar.filter((x) => x.id !== id));',
+                id: '// tidak merender ulang\n// daftar.push(baru); setDaftar(daftar);\n\n// benar\nsetDaftar([...daftar, baru]);\nsetDaftar(daftar.filter((x) => x.id !== id));',
+              },
             },
             {
               kind: 'concept',
@@ -312,7 +324,10 @@ export const module2: Module = {
                 en: 'Give an input a `value` and no `onChange` and it becomes read-only: React re-renders it back to the state after every keystroke. Either pair them, or use `defaultValue` when you genuinely want the DOM to keep the value.',
                 id: 'Beri sebuah input `value` tanpa `onChange` dan ia menjadi hanya-baca: React merender ulang ke nilai state setelah tiap ketukan. Pasangkan keduanya, atau pakai `defaultValue` bila kamu memang ingin DOM yang menyimpan nilainya.',
               },
-              code: '// beku, dan React memperingatkan\n// <input value={nama} />\n\n// terkendali\n// <input value={nama} onChange={(e) => setNama(e.target.value)} />',
+              code: {
+                en: '// frozen, and React warns\n// <input value={nama} />\n\n// controlled\n// <input value={nama} onChange={(e) => setNama(e.target.value)} />',
+                id: '// beku, dan React memperingatkan\n// <input value={nama} />\n\n// terkendali\n// <input value={nama} onChange={(e) => setNama(e.target.value)} />',
+              },
             },
             {
               kind: 'concept',

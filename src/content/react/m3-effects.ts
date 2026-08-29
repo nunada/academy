@@ -131,7 +131,10 @@ export const module3: Module = {
                 en: 'When the mapped element is your own component, `key` goes on the component in the list — not inside it. React needs it where the array is, and putting it on the inner element does nothing.',
                 id: 'Ketika elemen hasil map adalah komponenmu sendiri, `key` diletakkan pada komponen di dalam daftarnya — bukan di dalam komponennya. React membutuhkannya di tempat array-nya berada, dan menaruhnya di elemen dalam tidak berpengaruh apa pun.',
               },
-              code: '// benar\n// {kelas.map((s) => <Baris key={s.id} siswa={s} />)}\n\n// salah: key di dalam Baris\n// return <li key={siswa.id}>…</li>;',
+              code: {
+                en: '// correct\n// {kelas.map((s) => <Baris key={s.id} siswa={s} />)}\n\n// wrong: key inside Baris\n// return <li key={siswa.id}>…</li>;',
+                id: '// benar\n// {kelas.map((s) => <Baris key={s.id} siswa={s} />)}\n\n// salah: key di dalam Baris\n// return <li key={siswa.id}>…</li>;',
+              },
             },
             {
               kind: 'quiz',
@@ -281,7 +284,10 @@ export const module3: Module = {
                 en: 'If a value can be worked out from state and props, work it out while rendering. Storing it in a second state and keeping the two in step with an effect gives you two things that can disagree, and an extra render every time.',
                 id: 'Kalau sebuah nilai bisa dihitung dari state dan props, hitunglah saat merender. Menyimpannya di state kedua lalu menjaga keduanya seiring dengan efek memberimu dua hal yang bisa berselisih, dan satu render tambahan setiap kali.',
               },
-              code: '// berlebihan\n// const [jumlah, setJumlah] = React.useState(0);\n// React.useEffect(() => { setJumlah(daftar.length); }, [daftar]);\n\n// cukup\nconst jumlah = daftar.length;\nconst lulus = daftar.filter((s) => s.nilai >= 70);',
+              code: {
+                en: '// overkill\n// const [jumlah, setJumlah] = React.useState(0);\n// React.useEffect(() => { setJumlah(daftar.length); }, [daftar]);\n\n// enough\nconst jumlah = daftar.length;\nconst lulus = daftar.filter((s) => s.nilai >= 70);',
+                id: '// berlebihan\n// const [jumlah, setJumlah] = React.useState(0);\n// React.useEffect(() => { setJumlah(daftar.length); }, [daftar]);\n\n// cukup\nconst jumlah = daftar.length;\nconst lulus = daftar.filter((s) => s.nilai >= 70);',
+              },
             },
             {
               kind: 'concept',

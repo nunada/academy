@@ -210,7 +210,10 @@ export type Step =
       /** A drawing, shown between the prose and any sample code. Some of the
        *  ideas in this app are geometry, and geometry is faster looked at. */
       figure?: Figure
-      code?: string
+      /** A plain string when the snippet is language-neutral code with no
+       *  prose in it; `Loc` only where a comment or string literal needs
+       *  translating, so most snippets don't carry a redundant duplicate. */
+      code?: string | Loc
       /** What the sample code prints, shown as a worked example. */
       output?: string
       /** Render `code` as a live page instead of printing text.
@@ -221,7 +224,7 @@ export type Step =
       kind: 'quiz'
       id: string
       prompt: Loc
-      code?: string
+      code?: string | Loc
       options: Loc[]
       answer: number
       explain: Loc

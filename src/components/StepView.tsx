@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import type { Step } from '../content/types'
+import type { Loc, Step } from '../content/types'
 import { useI18n } from '../i18n'
 import { runPython, runTests, type TestOutcome } from '../lib/python'
 import { runWebTests, type WebOutcome } from '../lib/web'
@@ -131,8 +131,15 @@ function MathStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
 
 /* --------------------------------------------------------------- concept */
 
+/** Most `code` fields are language-neutral, so only the ones with a comment
+ *  or string literal worth translating carry a `Loc`. */
+function codeText(code: string | Loc | undefined, tc: (loc: Loc) => string): string | undefined {
+  return typeof code === 'object' ? tc(code) : code
+}
+
 function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, { kind: 'concept' }> }) {
   const { t, tc } = useI18n()
+  const code = codeText(step.code, tc)
   return (
     <div className="card">
       <h2>
@@ -142,16 +149,16 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
         <Rich text={tc(step.body)} />
       </p>
       {step.figure && <FigureView figure={step.figure} />}
-      {step.code && (
+      {code && (
         <>
           <div className="io-label">{t('worked')}</div>
-          <CodeBlock>{step.code}</CodeBlock>
+          <CodeBlock>{code}</CodeBlock>
         </>
       )}
-      {step.preview && step.code && (
+      {step.preview && code && (
         <>
           <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>
-          <LivePreview source={step.code} height={200} />
+          <LivePreview source={code} height={200} />
         </>
       )}
       {step.output && (
@@ -173,6 +180,7 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
 
 function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'quiz' }> }) {
   const { t, tc } = useI18n()
+  const code = codeText(step.code, tc)
   const [picked, setPicked] = useState<number | null>(null)
   const [checked, setChecked] = useState(false)
 
@@ -190,7 +198,7 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       <h3>
         <Rich text={tc(step.prompt)} />
       </h3>
-      {step.code && <CodeBlock>{step.code}</CodeBlock>}
+      {code && <CodeBlock>{code}</CodeBlock>}
 
       {step.options.map((o, i) => {
         let cls = 'choice'

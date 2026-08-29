@@ -55,7 +55,10 @@ export const module4: Module = {
                 en: 'React matches each `useState` to its value by call order, so a hook inside an `if` or a loop breaks that alignment. Always call them at the top level of a component or another hook.',
                 id: 'React mencocokkan tiap `useState` dengan nilainya berdasarkan urutan pemanggilan, jadi hook di dalam `if` atau perulangan merusak keselarasan itu. Selalu panggil di tingkat atas sebuah komponen atau hook lain.',
               },
-              code: '// salah\n// if (siap) { const [x] = React.useState(0); }\n\n// benar: hook di atas, kondisi menyusul\n// const [x, setX] = React.useState(0);\n// if (siap) { … }',
+              code: {
+                en: '// wrong\n// if (siap) { const [x] = React.useState(0); }\n\n// correct: hook at the top, condition follows\n// const [x, setX] = React.useState(0);\n// if (siap) { … }',
+                id: '// salah\n// if (siap) { const [x] = React.useState(0); }\n\n// benar: hook di atas, kondisi menyusul\n// const [x, setX] = React.useState(0);\n// if (siap) { … }',
+              },
             },
             {
               kind: 'quiz',
@@ -133,7 +136,10 @@ export const module4: Module = {
                 en: 'Put each value in the lowest component that needs it, and no lower. Too high and unrelated parts re-render for nothing; too low and you end up copying it sideways, where the copies drift.',
                 id: 'Taruh tiap nilai di komponen terendah yang membutuhkannya, dan tidak lebih rendah. Terlalu tinggi membuat bagian tak terkait ikut render sia-sia; terlalu rendah membuatmu menyalinnya menyamping, dan salinannya akan berselisih.',
               },
-              code: '// state daftar dimiliki App, karena dua anak membutuhkannya\n// state "sedang diketik" dimiliki formulir saja',
+              code: {
+                en: '// list state is owned by App, because two children need it\n// "currently typing" state is owned by the form alone',
+                id: '// state daftar dimiliki App, karena dua anak membutuhkannya\n// state "sedang diketik" dimiliki formulir saja',
+              },
             },
             {
               kind: 'concept',
