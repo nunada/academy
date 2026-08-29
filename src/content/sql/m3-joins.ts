@@ -77,7 +77,10 @@ export const module3: Module = {
                 en: 'You could store the teacher\'s name on every student row. Then a teacher who changes school means editing thirty rows, and missing one leaves the database saying two different things at once. So the class lives in its own table, once, and each student keeps only a **foreign key**: `kelas_id`, the `id` of its class.',
                 id: 'Kamu bisa saja menyimpan nama gurunya di tiap baris siswa. Lalu seorang guru yang pindah sekolah berarti menyunting tiga puluh baris, dan satu yang terlewat membuat basis datanya mengatakan dua hal berbeda sekaligus. Maka kelasnya hidup di tabelnya sendiri, sekali, dan tiap siswa hanya menyimpan sebuah **kunci asing**: `kelas_id`, yaitu `id` kelasnya.',
               },
-              code: 'kelas:  id=1, nama=X-A, guru=Bu Ratna\nsiswa:  id=1, nama=Adi,  kelas_id=1   -- menunjuk ke kelas 1',
+              code: {
+                en: 'kelas:  id=1, nama=X-A, guru=Bu Ratna\nsiswa:  id=1, nama=Adi,  kelas_id=1   -- points to class 1',
+                id: 'kelas:  id=1, nama=X-A, guru=Bu Ratna\nsiswa:  id=1, nama=Adi,  kelas_id=1   -- menunjuk ke kelas 1',
+              },
             },
             {
               kind: 'concept',

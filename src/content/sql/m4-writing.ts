@@ -50,9 +50,14 @@ export const module4: Module = {
                 en: 'You *can* leave the column list out and give a value for every column in order. Do not: the statement then breaks silently the day the table gains a column. Name the columns, and only the ones you are filling — the rest take their `DEFAULT`.',
                 id: 'Kamu *boleh* menghilangkan daftar kolomnya dan memberi nilai untuk tiap kolom secara berurutan. Jangan: pernyataannya lalu rusak diam-diam pada hari tabelnya bertambah kolom. Sebut kolomnya, dan hanya yang kamu isi — sisanya mengambil `DEFAULT`-nya.',
               },
-              code:
-                "INSERT INTO barang (id, nama, kategori, stok, harga)\nVALUES (6, 'Penggaris', 'Tulis', 15, 6000);\n\n" +
-                "-- stok tidak disebut, jadi ia memakai DEFAULT 0\nINSERT INTO barang (id, nama, kategori, harga)\nVALUES (7, 'Stapler', 'Tulis', 25000);",
+              code: {
+                en:
+                  "INSERT INTO barang (id, nama, kategori, stok, harga)\nVALUES (6, 'Penggaris', 'Tulis', 15, 6000);\n\n" +
+                  "-- stok is not named, so it takes DEFAULT 0\nINSERT INTO barang (id, nama, kategori, harga)\nVALUES (7, 'Stapler', 'Tulis', 25000);",
+                id:
+                  "INSERT INTO barang (id, nama, kategori, stok, harga)\nVALUES (6, 'Penggaris', 'Tulis', 15, 6000);\n\n" +
+                  "-- stok tidak disebut, jadi ia memakai DEFAULT 0\nINSERT INTO barang (id, nama, kategori, harga)\nVALUES (7, 'Stapler', 'Tulis', 25000);",
+              },
             },
             {
               kind: 'concept',
@@ -72,11 +77,18 @@ export const module4: Module = {
                 en: '`NOT NULL`, `UNIQUE` and `CHECK` are written into the table itself, so no query can slip past them — not yours, not anyone else\'s, not a buggy program at three in the morning. A rejected statement changes nothing at all, and says why.',
                 id: '`NOT NULL`, `UNIQUE`, dan `CHECK` tertulis di dalam tabelnya sendiri, jadi tak ada kueri yang bisa lolos darinya — bukan kuerimu, bukan kueri orang lain, bukan program bermasalah pada pukul tiga pagi. Pernyataan yang ditolak tidak mengubah apa pun, dan menyebutkan alasannya.',
               },
-              code:
-                "-- UNIQUE: 'Pensil' sudah ada\nINSERT INTO barang (id, nama, kategori, harga) VALUES (8, 'Pensil', 'Tulis', 3000);\n" +
-                '-- UNIQUE constraint failed: barang.nama\n\n' +
-                "-- CHECK: harga harus di atas nol\nINSERT INTO barang (id, nama, kategori, harga) VALUES (9, 'Gratisan', 'Tulis', 0);\n" +
-                '-- CHECK constraint failed',
+              code: {
+                en:
+                  "-- UNIQUE: 'Pensil' already exists\nINSERT INTO barang (id, nama, kategori, harga) VALUES (8, 'Pensil', 'Tulis', 3000);\n" +
+                  '-- UNIQUE constraint failed: barang.nama\n\n' +
+                  "-- CHECK: harga must be above zero\nINSERT INTO barang (id, nama, kategori, harga) VALUES (9, 'Gratisan', 'Tulis', 0);\n" +
+                  '-- CHECK constraint failed',
+                id:
+                  "-- UNIQUE: 'Pensil' sudah ada\nINSERT INTO barang (id, nama, kategori, harga) VALUES (8, 'Pensil', 'Tulis', 3000);\n" +
+                  '-- UNIQUE constraint failed: barang.nama\n\n' +
+                  "-- CHECK: harga harus di atas nol\nINSERT INTO barang (id, nama, kategori, harga) VALUES (9, 'Gratisan', 'Tulis', 0);\n" +
+                  '-- CHECK constraint failed',
+              },
             },
             {
               kind: 'quiz',
@@ -175,10 +187,16 @@ export const module4: Module = {
                 en: '`SET` says which columns change and to what; `WHERE` says which rows. The new value may be worked out from the old one — `stok = stok - 1` reads the row, subtracts, and writes it back, per row.',
                 id: '`SET` menyatakan kolom mana yang berubah dan menjadi apa; `WHERE` menyatakan baris mana. Nilai barunya boleh dihitung dari nilai lamanya — `stok = stok - 1` membaca barisnya, mengurangi, lalu menuliskannya kembali, per baris.',
               },
-              code:
-                "UPDATE barang SET stok = 30 WHERE nama = 'Spidol';\n\n" +
-                "UPDATE barang SET stok = stok - 1 WHERE nama = 'Pensil';\n\n" +
-                "-- dua kolom sekaligus, dipisah koma\nUPDATE barang SET stok = 5, harga = 13000 WHERE id = 4;",
+              code: {
+                en:
+                  "UPDATE barang SET stok = 30 WHERE nama = 'Spidol';\n\n" +
+                  "UPDATE barang SET stok = stok - 1 WHERE nama = 'Pensil';\n\n" +
+                  "-- two columns at once, separated by a comma\nUPDATE barang SET stok = 5, harga = 13000 WHERE id = 4;",
+                id:
+                  "UPDATE barang SET stok = 30 WHERE nama = 'Spidol';\n\n" +
+                  "UPDATE barang SET stok = stok - 1 WHERE nama = 'Pensil';\n\n" +
+                  "-- dua kolom sekaligus, dipisah koma\nUPDATE barang SET stok = 5, harga = 13000 WHERE id = 4;",
+              },
             },
             {
               kind: 'concept',
@@ -188,10 +206,16 @@ export const module4: Module = {
                 en: 'An `UPDATE` with no `WHERE` changes **every row**, and a `DELETE` with no `WHERE` empties the table. There is no confirmation and no undo. This is the single most expensive mistake in SQL, and it is always the same mistake: writing the statement before writing the condition.',
                 id: '`UPDATE` tanpa `WHERE` mengubah **semua baris**, dan `DELETE` tanpa `WHERE` mengosongkan tabelnya. Tak ada konfirmasi dan tak ada pembatalan. Ini kesalahan termahal di SQL, dan selalu kesalahan yang sama: menulis pernyataannya sebelum menulis kondisinya.',
               },
-              code:
-                '-- menghapus SEMUANYA\nDELETE FROM barang;\n\n' +
-                "-- menghapus satu\nDELETE FROM barang WHERE nama = 'Spidol';\n\n" +
-                '-- menghapus sekelompok\nDELETE FROM barang WHERE stok = 0;',
+              code: {
+                en:
+                  '-- deletes EVERYTHING\nDELETE FROM barang;\n\n' +
+                  "-- deletes one\nDELETE FROM barang WHERE nama = 'Spidol';\n\n" +
+                  '-- deletes a group\nDELETE FROM barang WHERE stok = 0;',
+                id:
+                  '-- menghapus SEMUANYA\nDELETE FROM barang;\n\n' +
+                  "-- menghapus satu\nDELETE FROM barang WHERE nama = 'Spidol';\n\n" +
+                  '-- menghapus sekelompok\nDELETE FROM barang WHERE stok = 0;',
+              },
             },
             {
               kind: 'concept',
@@ -201,9 +225,14 @@ export const module4: Module = {
                 en: 'The habit that prevents it: write `SELECT * FROM barang WHERE …` first, look at the rows that come back, and only then swap `SELECT *` for `DELETE` or `UPDATE … SET …`. The condition has already been proved on the rows it will hit.',
                 id: 'Kebiasaan yang mencegahnya: tulis `SELECT * FROM barang WHERE …` lebih dulu, lihat baris yang kembali, dan baru setelah itu tukar `SELECT *` dengan `DELETE` atau `UPDATE … SET …`. Kondisinya sudah terbukti pada baris yang akan ia kenai.',
               },
-              code:
-                "-- 1. lihat dulu\nSELECT * FROM barang WHERE kategori = 'Kertas';\n\n" +
-                "-- 2. baru ubah\nUPDATE barang SET harga = harga - 500 WHERE kategori = 'Kertas';",
+              code: {
+                en:
+                  "-- 1. look first\nSELECT * FROM barang WHERE kategori = 'Kertas';\n\n" +
+                  "-- 2. only then change\nUPDATE barang SET harga = harga - 500 WHERE kategori = 'Kertas';",
+                id:
+                  "-- 1. lihat dulu\nSELECT * FROM barang WHERE kategori = 'Kertas';\n\n" +
+                  "-- 2. baru ubah\nUPDATE barang SET harga = harga - 500 WHERE kategori = 'Kertas';",
+              },
             },
             {
               kind: 'concept',

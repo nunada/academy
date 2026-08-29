@@ -217,11 +217,18 @@ export const module1: Module = {
                 en: 'Join conditions with `AND` (both must hold) and `OR` (either will do). `AND` binds tighter than `OR`, so when you mix them, use brackets and say what you mean — that unwritten bracket is one of the most common wrong answers in SQL.',
                 id: 'Gabungkan kondisi dengan `AND` (keduanya harus benar) dan `OR` (salah satu cukup). `AND` mengikat lebih kuat daripada `OR`, jadi saat kamu mencampurnya, pakai kurung dan katakan maksudmu — kurung yang tak ditulis itu salah satu jawaban salah paling umum di SQL.',
               },
-              code:
-                'SELECT judul FROM buku WHERE stok > 0 AND harga < 100000;\n\n' +
-                '-- dua kueri ini TIDAK sama:\n' +
-                'SELECT judul FROM buku WHERE tahun = 2009 OR tahun = 2005 AND stok > 0;\n' +
-                'SELECT judul FROM buku WHERE (tahun = 2009 OR tahun = 2005) AND stok > 0;',
+              code: {
+                en:
+                  'SELECT judul FROM buku WHERE stok > 0 AND harga < 100000;\n\n' +
+                  '-- these two queries are NOT the same:\n' +
+                  'SELECT judul FROM buku WHERE tahun = 2009 OR tahun = 2005 AND stok > 0;\n' +
+                  'SELECT judul FROM buku WHERE (tahun = 2009 OR tahun = 2005) AND stok > 0;',
+                id:
+                  'SELECT judul FROM buku WHERE stok > 0 AND harga < 100000;\n\n' +
+                  '-- dua kueri ini TIDAK sama:\n' +
+                  'SELECT judul FROM buku WHERE tahun = 2009 OR tahun = 2005 AND stok > 0;\n' +
+                  'SELECT judul FROM buku WHERE (tahun = 2009 OR tahun = 2005) AND stok > 0;',
+              },
             },
             {
               kind: 'quiz',

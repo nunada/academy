@@ -356,11 +356,18 @@ export const module2: Module = {
                 en: 'If you group by `kota` and also select `pelanggan`, the question has no answer — a bucket holds several customers, and only one can fit in the cell. SQLite quietly picks one; most other databases refuse the query outright. Select the grouping columns and aggregates, nothing else.',
                 id: 'Kalau kamu mengelompokkan berdasarkan `kota` dan juga memilih `pelanggan`, pertanyaannya tak punya jawaban — satu ember berisi beberapa pelanggan, dan hanya satu yang muat di selnya. SQLite diam-diam memilih salah satu; kebanyakan basis data lain menolak kuerinya mentah-mentah. Pilih kolom pengelompokan dan agregat saja, tidak lebih.',
               },
-              code:
-                '-- menyesatkan: pelanggan yang mana?\n' +
-                'SELECT kota, pelanggan, SUM(total) FROM pesanan GROUP BY kota;\n\n' +
-                '-- jelas: kelompokkan berdasarkan keduanya\n' +
-                'SELECT kota, pelanggan, SUM(total) FROM pesanan GROUP BY kota, pelanggan;',
+              code: {
+                en:
+                  '-- misleading: which customer?\n' +
+                  'SELECT kota, pelanggan, SUM(total) FROM pesanan GROUP BY kota;\n\n' +
+                  '-- clear: group by both\n' +
+                  'SELECT kota, pelanggan, SUM(total) FROM pesanan GROUP BY kota, pelanggan;',
+                id:
+                  '-- menyesatkan: pelanggan yang mana?\n' +
+                  'SELECT kota, pelanggan, SUM(total) FROM pesanan GROUP BY kota;\n\n' +
+                  '-- jelas: kelompokkan berdasarkan keduanya\n' +
+                  'SELECT kota, pelanggan, SUM(total) FROM pesanan GROUP BY kota, pelanggan;',
+              },
             },
             {
               kind: 'concept',
@@ -461,12 +468,20 @@ export const module2: Module = {
                 en: 'The clauses run in a fixed order: `FROM`, then `WHERE`, then `GROUP BY`, then `HAVING`, then `SELECT`, then `ORDER BY`. `WHERE` happens before the buckets exist, so it cannot mention a total. `HAVING` happens after, so it can.',
                 id: 'Klausanya berjalan dalam urutan tetap: `FROM`, lalu `WHERE`, lalu `GROUP BY`, lalu `HAVING`, lalu `SELECT`, lalu `ORDER BY`. `WHERE` terjadi sebelum embernya ada, jadi ia tak bisa menyebut sebuah total. `HAVING` terjadi sesudahnya, jadi ia bisa.',
               },
-              code:
-                'SELECT kota, SUM(total) AS pendapatan\n' +
-                'FROM pesanan\n' +
-                'WHERE jumlah > 0          -- membuang baris\n' +
-                'GROUP BY kota\n' +
-                'HAVING SUM(total) > 1500000;  -- membuang kelompok',
+              code: {
+                en:
+                  'SELECT kota, SUM(total) AS pendapatan\n' +
+                  'FROM pesanan\n' +
+                  'WHERE jumlah > 0          -- discards rows\n' +
+                  'GROUP BY kota\n' +
+                  'HAVING SUM(total) > 1500000;  -- discards groups',
+                id:
+                  'SELECT kota, SUM(total) AS pendapatan\n' +
+                  'FROM pesanan\n' +
+                  'WHERE jumlah > 0          -- membuang baris\n' +
+                  'GROUP BY kota\n' +
+                  'HAVING SUM(total) > 1500000;  -- membuang kelompok',
+              },
               output: 'kota      pendapatan\nBandung   1550000\nSurabaya  3200000',
             },
             {
@@ -477,9 +492,14 @@ export const module2: Module = {
                 en: 'Writing `WHERE SUM(total) > 1500000` fails, and the message is often unhelpful. The reason is simply timing: when `WHERE` runs, there are no groups yet, so there is nothing to sum. If a condition talks about a group, it belongs in `HAVING`.',
                 id: 'Menulis `WHERE SUM(total) > 1500000` gagal, dan pesannya sering tidak membantu. Alasannya sekadar waktu: saat `WHERE` berjalan, belum ada kelompok apa pun, jadi tidak ada yang bisa dijumlahkan. Kalau sebuah kondisi berbicara tentang kelompok, tempatnya di `HAVING`.',
               },
-              code:
-                '-- salah\nSELECT kota FROM pesanan WHERE SUM(total) > 1500000 GROUP BY kota;\n\n' +
-                '-- benar\nSELECT kota FROM pesanan GROUP BY kota HAVING SUM(total) > 1500000;',
+              code: {
+                en:
+                  '-- wrong\nSELECT kota FROM pesanan WHERE SUM(total) > 1500000 GROUP BY kota;\n\n' +
+                  '-- correct\nSELECT kota FROM pesanan GROUP BY kota HAVING SUM(total) > 1500000;',
+                id:
+                  '-- salah\nSELECT kota FROM pesanan WHERE SUM(total) > 1500000 GROUP BY kota;\n\n' +
+                  '-- benar\nSELECT kota FROM pesanan GROUP BY kota HAVING SUM(total) > 1500000;',
+              },
             },
             {
               kind: 'quiz',
