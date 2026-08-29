@@ -316,7 +316,10 @@ export const module1: Module = {
                 en: 'Jumping from `<h1>` straight to `<h4>` because it looked better is the classic mistake. Size is a job for CSS; the heading level is about structure. One `<h1>` per page is the usual rule.',
                 id: 'Melompat dari `<h1>` langsung ke `<h4>` karena tampak lebih bagus adalah kesalahan klasik. Ukuran itu urusan CSS; jenjang judul itu urusan struktur. Satu `<h1>` per halaman adalah aturan lazimnya.',
               },
-              code: '<!-- salah: melompati h2 dan h3 -->\n<h1>Judul</h1>\n<h4>Bagian</h4>\n\n<!-- benar -->\n<h1>Judul</h1>\n<h2>Bagian</h2>',
+              code: {
+                en: '<!-- wrong: skips h2 and h3 -->\n<h1>Judul</h1>\n<h4>Bagian</h4>\n\n<!-- correct -->\n<h1>Judul</h1>\n<h2>Bagian</h2>',
+                id: '<!-- salah: melompati h2 dan h3 -->\n<h1>Judul</h1>\n<h4>Bagian</h4>\n\n<!-- benar -->\n<h1>Judul</h1>\n<h2>Bagian</h2>',
+              },
             },
             {
               kind: 'quiz',
@@ -405,7 +408,10 @@ export const module1: Module = {
                 en: 'Anything between `<!--` and `-->` is a note for people reading the source; the browser ignores it. And because `<` starts a tag, writing a literal one needs `&lt;` — the same trick gives `&gt;` and `&amp;`.',
                 id: 'Apa pun di antara `<!--` dan `-->` adalah catatan untuk yang membaca sumbernya; peramban mengabaikannya. Dan karena `<` memulai sebuah tag, menulis tanda itu secara harfiah butuh `&lt;` — cara yang sama memberi `&gt;` dan `&amp;`.',
               },
-              code: '<!-- ini tidak tampil -->\n<p>Tulis &lt;p&gt; untuk membuat paragraf.</p>',
+              code: {
+                en: '<!-- this does not show -->\n<p>Tulis &lt;p&gt; untuk membuat paragraf.</p>',
+                id: '<!-- ini tidak tampil -->\n<p>Tulis &lt;p&gt; untuk membuat paragraf.</p>',
+              },
               preview: true,
             },
             {

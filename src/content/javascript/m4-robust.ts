@@ -54,7 +54,10 @@ export const module4: Module = {
                 en: 'A `catch` that swallows everything also swallows your own typos, and hides the bug you needed to see. Keep the `try` around the one risky line, not around half the program.',
                 id: '`catch` yang menelan segalanya juga menelan salah ketikmu sendiri, dan menyembunyikan bug yang justru perlu kamu lihat. Jaga `try` tetap membungkus satu baris berisikonya, bukan separuh program.',
               },
-              code: '// terlalu lebar: kesalahan apa pun ikut tertelan\ntry {\n  siapkan();\n  proses();\n  simpan();\n} catch (err) {\n  console.log("ada yang salah");\n}',
+              code: {
+                en: '// too broad: any error gets swallowed\ntry {\n  siapkan();\n  proses();\n  simpan();\n} catch (err) {\n  console.log("ada yang salah");\n}',
+                id: '// terlalu lebar: kesalahan apa pun ikut tertelan\ntry {\n  siapkan();\n  proses();\n  simpan();\n} catch (err) {\n  console.log("ada yang salah");\n}',
+              },
             },
             {
               kind: 'quiz',

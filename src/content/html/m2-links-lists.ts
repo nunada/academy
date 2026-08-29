@@ -58,7 +58,10 @@ export const module2: Module = {
                 en: '"Klik di sini" tells nobody anything — and a screen-reader user listing the links on a page hears "klik di sini" ten times. Put the destination in the text itself.',
                 id: '"Klik di sini" tidak memberi tahu siapa pun apa-apa — dan pengguna pembaca layar yang mendaftar tautan di sebuah halaman akan mendengar "klik di sini" sepuluh kali. Taruh tujuannya di dalam teksnya.',
               },
-              code: '<!-- lemah -->\n<a href="harga.html">Klik di sini</a>\n\n<!-- jelas -->\n<a href="harga.html">Daftar harga</a>',
+              code: {
+                en: '<!-- weak -->\n<a href="harga.html">Klik di sini</a>\n\n<!-- clear -->\n<a href="harga.html">Daftar harga</a>',
+                id: '<!-- lemah -->\n<a href="harga.html">Klik di sini</a>\n\n<!-- jelas -->\n<a href="harga.html">Daftar harga</a>',
+              },
               preview: true,
             },
             {
@@ -375,7 +378,10 @@ export const module2: Module = {
                 en: 'A list announces how many items there are before reading them. Three links separated by spaces announce nothing. The visual result can be made identical with CSS later, so nothing is lost.',
                 id: 'Daftar mengumumkan ada berapa item sebelum membacakannya. Tiga tautan yang cuma dipisah spasi tidak mengumumkan apa pun. Hasil visualnya bisa dibuat sama persis dengan CSS nanti, jadi tidak ada yang hilang.',
               },
-              code: '<!-- kurang baik -->\n<div><a href="a.html">A</a> <a href="b.html">B</a></div>\n\n<!-- lebih baik -->\n<nav>\n  <ul>\n    <li><a href="a.html">A</a></li>\n    <li><a href="b.html">B</a></li>\n  </ul>\n</nav>',
+              code: {
+                en: '<!-- not as good -->\n<div><a href="a.html">A</a> <a href="b.html">B</a></div>\n\n<!-- better -->\n<nav>\n  <ul>\n    <li><a href="a.html">A</a></li>\n    <li><a href="b.html">B</a></li>\n  </ul>\n</nav>',
+                id: '<!-- kurang baik -->\n<div><a href="a.html">A</a> <a href="b.html">B</a></div>\n\n<!-- lebih baik -->\n<nav>\n  <ul>\n    <li><a href="a.html">A</a></li>\n    <li><a href="b.html">B</a></li>\n  </ul>\n</nav>',
+              },
               preview: true,
             },
             {
