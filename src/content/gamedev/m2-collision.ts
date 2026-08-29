@@ -309,10 +309,16 @@ export const module2: Module = {
                 en: 'Neither is more correct — the hitbox is a lie either way, and the question is which lie the player will forgive. Boxes suit things that stack and sit on ledges; circles suit things that fly and bump. Most games use whichever is kinder to the player and never mention it.',
                 id: 'Tak satu pun lebih benar — kotak tabraknya toh sama-sama kebohongan, dan pertanyaannya kebohongan mana yang akan dimaafkan pemain. Kotak cocok untuk benda yang bertumpuk dan bertengger di tepian; lingkaran cocok untuk benda yang terbang dan berbenturan. Kebanyakan game memakai mana pun yang lebih ramah bagi pemain dan tak pernah menyebutkannya.',
               },
-              code:
-                '# pemain bundar, benda bundar: satu perbandingan\n' +
-                'if sentuh(pemain, benda):\n' +
-                '    skor = skor + 1',
+              code: {
+                en:
+                  '# pemain round, benda round: one comparison\n' +
+                  'if sentuh(pemain, benda):\n' +
+                  '    skor = skor + 1',
+                id:
+                  '# pemain bundar, benda bundar: satu perbandingan\n' +
+                  'if sentuh(pemain, benda):\n' +
+                  '    skor = skor + 1',
+              },
             },
             {
               kind: 'quiz',
@@ -710,9 +716,10 @@ export const module2: Module = {
                 en: 'Hitting a horizontal surface flips the vertical velocity and leaves the horizontal one alone. That is the whole of it. As with the walls in module 1, choose the direction rather than negating — `vy = -abs(vy)` sends it upwards whatever it was doing, and never gets stuck.',
                 id: 'Menabrak permukaan mendatar membalik kecepatan tegaknya dan membiarkan yang mendatar. Hanya itu. Seperti dinding di modul 1, pilih arahnya alih-alih mengingkarinya — `vy = -abs(vy)` mengirimnya ke atas apa pun yang tadi ia lakukan, dan tak pernah tersangkut.',
               },
-              code:
-                'if tabrakan(bola, papan):\n' +
-                '    vy = -abs(vy)   # selalu ke atas, tak pernah menggigil',
+              code: {
+                en: 'if tabrakan(bola, papan):\n    vy = -abs(vy)   # always upward, never jittering',
+                id: 'if tabrakan(bola, papan):\n    vy = -abs(vy)   # selalu ke atas, tak pernah menggigil',
+              },
             },
             {
               kind: 'concept',
@@ -722,10 +729,16 @@ export const module2: Module = {
                 en: 'A ball that always leaves at the same angle is a ball the player cannot aim. Measure how far from the paddle\'s centre it landed, as a fraction from `-1` to `1`, and turn that into horizontal speed. Now the edge of the paddle is a tool, and a game of luck becomes a game of skill.',
                 id: 'Bola yang selalu pergi dengan sudut sama adalah bola yang tak bisa diarahkan pemain. Ukur seberapa jauh dari pusat papannya ia mendarat, sebagai pecahan dari `-1` sampai `1`, lalu ubah itu jadi kecepatan mendatar. Sekarang tepi papannya jadi alat, dan permainan untung-untungan berubah jadi permainan keterampilan.',
               },
-              code:
-                'tengah = px + PAPAN_L / 2\n' +
-                'beda = (bola_x - tengah) / (PAPAN_L / 2)   # -1 di ujung kiri, 1 di kanan\n' +
-                'vx = beda * 180',
+              code: {
+                en:
+                  'tengah = px + PAPAN_L / 2\n' +
+                  'beda = (bola_x - tengah) / (PAPAN_L / 2)   # -1 at the left edge, 1 at the right\n' +
+                  'vx = beda * 180',
+                id:
+                  'tengah = px + PAPAN_L / 2\n' +
+                  'beda = (bola_x - tengah) / (PAPAN_L / 2)   # -1 di ujung kiri, 1 di kanan\n' +
+                  'vx = beda * 180',
+              },
             },
             {
               kind: 'concept',
@@ -949,11 +962,18 @@ export const module2: Module = {
                 en: 'Removing items from a list you are iterating over skips elements — a bug that shows up as "some blocks never disappear" and is maddening to find. A comprehension sidesteps it completely: describe the list you want, and let the old one go.',
                 id: 'Membuang item dari daftar yang sedang kamu telusuri akan melewati elemen — kutu yang muncul sebagai "sebagian balok tak pernah lenyap" dan menjengkelkan untuk dilacak. Comprehension menghindarinya sama sekali: jelaskan daftar yang kamu mau, dan lepaskan yang lama.',
               },
-              code:
-                '# gerakkan semuanya\n' +
-                'balok = [{"x": b["x"], "y": b["y"] + JATUH * dt} for b in keadaan["balok"]]\n\n' +
-                '# lalu simpan yang masih di layar\n' +
-                'balok = [b for b in balok if b["y"] <= 240]',
+              code: {
+                en:
+                  '# move everything\n' +
+                  'balok = [{"x": b["x"], "y": b["y"] + JATUH * dt} for b in keadaan["balok"]]\n\n' +
+                  '# then keep what is still on screen\n' +
+                  'balok = [b for b in balok if b["y"] <= 240]',
+                id:
+                  '# gerakkan semuanya\n' +
+                  'balok = [{"x": b["x"], "y": b["y"] + JATUH * dt} for b in keadaan["balok"]]\n\n' +
+                  '# lalu simpan yang masih di layar\n' +
+                  'balok = [b for b in balok if b["y"] <= 240]',
+              },
             },
             {
               kind: 'concept',

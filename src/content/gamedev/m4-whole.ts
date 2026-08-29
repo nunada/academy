@@ -33,9 +33,14 @@ export const module4: Module = {
                 en: 'By now `perbarui` does five things. It works — but to ask "does the clamping handle the right edge" you have to build a whole game state and read one number out of the answer. Split the five things into five functions and each question has a one-line answer.',
                 id: 'Sampai di sini `perbarui` mengerjakan lima hal. Ia berfungsi — tetapi untuk bertanya "apakah penjepitannya menangani tepi kanan" kamu harus membangun keadaan permainan utuh lalu membaca satu angka dari jawabannya. Pecah kelima hal itu jadi lima fungsi dan tiap pertanyaan punya jawaban satu baris.',
               },
-              code:
-                'gerak_pemain(100.0, {"kanan"}, 0.5)   # 195.0\n' +
-                '# ...alih-alih membangun seluruh keadaan hanya untuk melihat satu angka',
+              code: {
+                en:
+                  'gerak_pemain(100.0, {"kanan"}, 0.5)   # 195.0\n' +
+                  '# ...instead of building the whole keadaan just to look at one number',
+                id:
+                  'gerak_pemain(100.0, {"kanan"}, 0.5)   # 195.0\n' +
+                  '# ...alih-alih membangun seluruh keadaan hanya untuk melihat satu angka',
+              },
             },
             {
               kind: 'concept',
@@ -327,9 +332,10 @@ export const module4: Module = {
                 en: 'Take a life away and change nothing on screen and the player will swear it did not happen. The rule was right; the game never said so. Feedback is not decoration — it is how a player learns what the rules are, and it costs a few lines.',
                 id: 'Ambil satu nyawa tanpa mengubah apa pun di layar dan pemainnya akan bersumpah itu tidak terjadi. Aturannya benar; gamenya tak pernah mengatakannya. Umpan balik bukan hiasan — ia cara pemain mempelajari aturannya, dan biayanya beberapa baris.',
               },
-              code:
-                '# aturannya benar, dan tak terlihat\n' +
-                'nyawa = max(0, nyawa - 1)',
+              code: {
+                en: '# the rule is correct, and invisible\nnyawa = max(0, nyawa - 1)',
+                id: '# aturannya benar, dan tak terlihat\nnyawa = max(0, nyawa - 1)',
+              },
             },
             {
               kind: 'concept',
@@ -339,11 +345,18 @@ export const module4: Module = {
                 en: 'You already have the invulnerability timer. Read its value as a stripe rather than a number — multiply, take the whole part, and ask whether it is odd — and it blinks. No new state, and the blink stops exactly when the mercy does.',
                 id: 'Kamu sudah punya pewaktu kekebalannya. Baca nilainya sebagai garis alih-alih angka — kalikan, ambil bagian bulatnya, lalu tanyakan apakah ganjil — dan ia berkedip. Tanpa state baru, dan kedipnya berhenti persis ketika keringanannya berhenti.',
               },
-              code:
-                'def kedip(kebal):\n' +
-                '    return kebal > 0 and int(kebal * 10) % 2 == 1\n\n' +
-                '# 1.15 -> int(11.5) = 11 -> ganjil -> berkedip\n' +
-                '# 1.00 -> int(10.0) = 10 -> genap -> tidak',
+              code: {
+                en:
+                  'def kedip(kebal):\n' +
+                  '    return kebal > 0 and int(kebal * 10) % 2 == 1\n\n' +
+                  '# 1.15 -> int(11.5) = 11 -> odd -> blinks\n' +
+                  '# 1.00 -> int(10.0) = 10 -> even -> does not',
+                id:
+                  'def kedip(kebal):\n' +
+                  '    return kebal > 0 and int(kebal * 10) % 2 == 1\n\n' +
+                  '# 1.15 -> int(11.5) = 11 -> ganjil -> berkedip\n' +
+                  '# 1.00 -> int(10.0) = 10 -> genap -> tidak',
+              },
             },
             {
               kind: 'concept',

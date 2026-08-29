@@ -33,7 +33,10 @@ export const module3: Module = {
                 en: 'Subtract one from a counter and you have lives. The catch is that a collision is not an instant — a block overlapping the player stays overlapping for several frames, and at sixty frames a second an unguarded `nyawa - 1` empties three lives before the player\'s finger has left the key.',
                 id: 'Kurangi satu dari sebuah penghitung dan kamu punya nyawa. Masalahnya, tabrakan bukan sekejap — balok yang bertumpang tindih dengan pemain tetap bertumpang tindih selama beberapa bingkai, dan pada enam puluh bingkai sedetik, `nyawa - 1` tanpa penjaga menghabiskan tiga nyawa sebelum jari pemainnya lepas dari tombol.',
               },
-              code: 'nyawa = max(0, nyawa - 1)   # tidak pernah di bawah nol',
+              code: {
+                en: 'nyawa = max(0, nyawa - 1)   # never below zero',
+                id: 'nyawa = max(0, nyawa - 1)   # tidak pernah di bawah nol',
+              },
             },
             {
               kind: 'concept',
@@ -307,10 +310,16 @@ export const module3: Module = {
                 en: 'The spawn interval is a **function of** the clock, so work it out where you need it rather than keeping a second number in step with the first. Two numbers that must agree are two numbers that will eventually disagree.',
                 id: 'Selang kemunculan adalah **fungsi dari** jamnya, jadi hitung ia di tempat kamu membutuhkannya alih-alih menyimpan angka kedua yang harus selalu sejalan dengan yang pertama. Dua angka yang harus sepakat adalah dua angka yang cepat atau lambat akan berselisih.',
               },
-              code:
-                'def jeda(waktu):\n' +
-                '    return max(0.25, 0.9 - waktu * 0.02)\n\n' +
-                '# 0 detik -> 0.9   10 detik -> 0.7   40 detik -> 0.25 (dasar)',
+              code: {
+                en:
+                  'def jeda(waktu):\n' +
+                  '    return max(0.25, 0.9 - waktu * 0.02)\n\n' +
+                  '# 0 seconds -> 0.9   10 seconds -> 0.7   40 seconds -> 0.25 (floor)',
+                id:
+                  'def jeda(waktu):\n' +
+                  '    return max(0.25, 0.9 - waktu * 0.02)\n\n' +
+                  '# 0 detik -> 0.9   10 detik -> 0.7   40 detik -> 0.25 (dasar)',
+              },
             },
             {
               kind: 'concept',
@@ -783,11 +792,18 @@ export const module3: Module = {
                 en: 'Here is the problem `tombol` hands you: it is a snapshot, so "space is down" is true for every frame the finger rests there. Use it to start the game and the game restarts sixty times a second. What you want is the **moment** it went down: down now, and not down last frame.',
                 id: 'Inilah masalah yang diberikan `tombol` kepadamu: ia potret sesaat, jadi "spasi sedang ditekan" bernilai benar di tiap bingkai selama jarinya di sana. Pakai itu untuk memulai permainan dan permainannya mulai ulang enam puluh kali sedetik. Yang kamu mau adalah **saat** ia turun: turun sekarang, dan tidak turun di bingkai lalu.',
               },
-              code:
-                'ditekan = "spasi" in tombol\n' +
-                'baru = ditekan and not keadaan["spasi_lalu"]\n\n' +
-                '# ...dan simpan untuk bingkai berikutnya\n' +
-                'return {..., "spasi_lalu": ditekan}',
+              code: {
+                en:
+                  'ditekan = "spasi" in tombol\n' +
+                  'baru = ditekan and not keadaan["spasi_lalu"]\n\n' +
+                  '# ...and save it for the next frame\n' +
+                  'return {..., "spasi_lalu": ditekan}',
+                id:
+                  'ditekan = "spasi" in tombol\n' +
+                  'baru = ditekan and not keadaan["spasi_lalu"]\n\n' +
+                  '# ...dan simpan untuk bingkai berikutnya\n' +
+                  'return {..., "spasi_lalu": ditekan}',
+              },
             },
             {
               kind: 'concept',
@@ -797,9 +813,10 @@ export const module3: Module = {
                 en: 'The previous key state has to be written on every path out of `perbarui`, including the ones that do nothing else. Forget it in one branch and the game gets stuck: the flag says "still held" forever, and no press is ever seen again.',
                 id: 'Keadaan tombol sebelumnya harus ditulis di tiap jalan keluar dari `perbarui`, termasuk jalan yang tak melakukan apa-apa lagi. Lupakan di satu cabang dan permainannya tersangkut: penanda itu menyatakan "masih ditahan" selamanya, dan tak ada tekanan yang terlihat lagi.',
               },
-              code:
-                '# tiap cabang mengembalikan spasi_lalu yang segar\n' +
-                'return {"fase": "main", ..., "spasi_lalu": ditekan}',
+              code: {
+                en: '# every branch returns a fresh spasi_lalu\nreturn {"fase": "main", ..., "spasi_lalu": ditekan}',
+                id: '# tiap cabang mengembalikan spasi_lalu yang segar\nreturn {"fase": "main", ..., "spasi_lalu": ditekan}',
+              },
             },
             {
               kind: 'quiz',

@@ -195,9 +195,10 @@ export const module1: Module = {
                 en: 'It is tempting to write `x = x + 2` and call it movement. But frames arrive when the machine can manage them — sixty a second on a good day, thirty on a busy one. Add a fixed amount per frame and your game runs at half speed on a slower computer, which is exactly the bug that made old PC games unplayable on new hardware.',
                 id: 'Menggoda sekali menulis `x = x + 2` lalu menyebutnya gerakan. Tapi bingkai datang saat mesinnya sanggup — enam puluh sedetik di hari baik, tiga puluh di hari sibuk. Tambahkan jumlah tetap tiap bingkai dan gamemu berjalan setengah kecepatan di komputer yang lebih lambat, dan persis itulah kutu yang membuat game PC lama tak bisa dimainkan di perangkat keras baru.',
               },
-              code:
-                '# tergantung mesin\nx = x + 2\n\n' +
-                '# tergantung waktu\nx = x + 80 * dt',
+              code: {
+                en: '# depends on the machine\nx = x + 2\n\n# depends on time\nx = x + 80 * dt',
+                id: '# tergantung mesin\nx = x + 2\n\n# tergantung waktu\nx = x + 80 * dt',
+              },
             },
             {
               kind: 'concept',
@@ -207,10 +208,16 @@ export const module1: Module = {
                 en: '`dt` is a small fraction — about `0.016` at sixty frames a second. Multiply a **speed** by it and you get how far to move this frame. Now "80 pixels per second" means 80 pixels per second on every machine, and the number in your code is a quantity you can reason about instead of a magic constant.',
                 id: '`dt` adalah pecahan kecil — sekitar `0.016` pada enam puluh bingkai sedetik. Kalikan sebuah **kecepatan** dengannya dan kamu mendapat sejauh apa bergerak di bingkai ini. Sekarang "80 piksel per detik" berarti 80 piksel per detik di tiap mesin, dan angka di kodemu jadi besaran yang bisa kamu nalar alih-alih konstanta ajaib.',
               },
-              code:
-                'KECEPATAN = 80   # piksel per detik\n\n' +
-                'def perbarui(keadaan, tombol, dt):\n' +
-                '    return {"x": keadaan["x"] + KECEPATAN * dt, "y": keadaan["y"]}',
+              code: {
+                en:
+                  'KECEPATAN = 80   # pixels per second\n\n' +
+                  'def perbarui(keadaan, tombol, dt):\n' +
+                  '    return {"x": keadaan["x"] + KECEPATAN * dt, "y": keadaan["y"]}',
+                id:
+                  'KECEPATAN = 80   # piksel per detik\n\n' +
+                  'def perbarui(keadaan, tombol, dt):\n' +
+                  '    return {"x": keadaan["x"] + KECEPATAN * dt, "y": keadaan["y"]}',
+              },
             },
             {
               kind: 'concept',
@@ -220,12 +227,20 @@ export const module1: Module = {
                 en: '`perbarui` is handed a state and returns the next one. Build a new dictionary rather than changing the one you were given. It costs nothing here, and it buys a great deal: a function that only reads its arguments can be called with a made-up state at any time — which is exactly what every check in this course does.',
                 id: '`perbarui` diberi sebuah keadaan dan mengembalikan keadaan berikutnya. Bangun dictionary baru alih-alih mengubah yang diberikan padamu. Di sini itu tak berbiaya, dan hasilnya banyak: fungsi yang hanya membaca argumennya bisa dipanggil dengan keadaan karangan kapan saja — dan persis itulah yang dilakukan tiap pemeriksaan di kursus ini.',
               },
-              code:
-                '# jangan\ndef perbarui(keadaan, tombol, dt):\n' +
-                '    keadaan["x"] += 80 * dt\n' +
-                '    return keadaan\n\n' +
-                '# begini\ndef perbarui(keadaan, tombol, dt):\n' +
-                '    return {"x": keadaan["x"] + 80 * dt, "y": keadaan["y"]}',
+              code: {
+                en:
+                  '# don\'t\ndef perbarui(keadaan, tombol, dt):\n' +
+                  '    keadaan["x"] += 80 * dt\n' +
+                  '    return keadaan\n\n' +
+                  '# like this\ndef perbarui(keadaan, tombol, dt):\n' +
+                  '    return {"x": keadaan["x"] + 80 * dt, "y": keadaan["y"]}',
+                id:
+                  '# jangan\ndef perbarui(keadaan, tombol, dt):\n' +
+                  '    keadaan["x"] += 80 * dt\n' +
+                  '    return keadaan\n\n' +
+                  '# begini\ndef perbarui(keadaan, tombol, dt):\n' +
+                  '    return {"x": keadaan["x"] + 80 * dt, "y": keadaan["y"]}',
+              },
             },
             {
               kind: 'quiz',
@@ -680,9 +695,10 @@ export const module1: Module = {
                 en: '`max(0, x)` refuses to go below zero. `min(300, x)` refuses to go above three hundred. Put them together and the value is pinned inside a range: `max(0, min(300, x))`. Two built-in functions and no `if` in sight.',
                 id: '`max(0, x)` menolak turun di bawah nol. `min(300, x)` menolak naik di atas tiga ratus. Satukan keduanya dan nilainya terpaku di dalam sebuah rentang: `max(0, min(300, x))`. Dua fungsi bawaan dan tanpa `if` sama sekali.',
               },
-              code:
-                'x = max(0, min(300, x))\n\n' +
-                '# yang sama, ditulis panjang\nif x < 0:\n    x = 0\nif x > 300:\n    x = 300',
+              code: {
+                en: 'x = max(0, min(300, x))\n\n# the same thing, written out long\nif x < 0:\n    x = 0\nif x > 300:\n    x = 300',
+                id: 'x = max(0, min(300, x))\n\n# yang sama, ditulis panjang\nif x < 0:\n    x = 0\nif x > 300:\n    x = 300',
+              },
             },
             {
               kind: 'concept',
@@ -705,11 +721,18 @@ export const module1: Module = {
                 en: 'Move first, then clamp. Clamping before the move would let the very next line push the player straight back out again, and the limit would do nothing at all. The order inside an update is not decoration.',
                 id: 'Bergerak dulu, baru jepit. Menjepit sebelum bergerak akan membiarkan baris berikutnya mendorong pemainnya keluar lagi, dan batasnya jadi tak berguna sama sekali. Urutan di dalam sebuah pembaruan bukan hiasan.',
               },
-              code:
-                'if "kanan" in tombol:\n' +
-                '    x = x + LAJU * dt\n' +
-                '# ...semua gerakan lebih dulu...\n' +
-                'x = max(0, min(320 - SISI, x))',
+              code: {
+                en:
+                  'if "kanan" in tombol:\n' +
+                  '    x = x + LAJU * dt\n' +
+                  '# ...all movement happens first...\n' +
+                  'x = max(0, min(320 - SISI, x))',
+                id:
+                  'if "kanan" in tombol:\n' +
+                  '    x = x + LAJU * dt\n' +
+                  '# ...semua gerakan lebih dulu...\n' +
+                  'x = max(0, min(320 - SISI, x))',
+              },
             },
             {
               kind: 'quiz',
