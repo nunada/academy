@@ -20,6 +20,8 @@ export default function CourseMap() {
 
   const done = doneIds(state.progress)
   const st = courseStatus(course, state.progress)
+  // A teacher can open any lesson or project to preview it, regardless of order.
+  const isTeacher = state.profile.role === 'teacher'
 
   return (
     <main className="page narrow">
@@ -64,7 +66,7 @@ export default function CourseMap() {
 
               {s.lessons.map((l) => {
                 const isDone = done.has(l.id)
-                const open = isUnlocked(course, l.id, state.progress)
+                const open = isTeacher || isUnlocked(course, l.id, state.progress)
                 const cls = `node${isDone ? ' done' : ''}${open ? '' : ' locked'}`
                 const inner = (
                   <>
@@ -90,7 +92,7 @@ export default function CourseMap() {
               {(() => {
                 const p = s.project
                 const isDone = done.has(p.id)
-                const open = isUnlocked(course, p.id, state.progress)
+                const open = isTeacher || isUnlocked(course, p.id, state.progress)
                 const cls = `node project${isDone ? ' done' : ''}${open ? '' : ' locked'}`
                 const inner = (
                   <>

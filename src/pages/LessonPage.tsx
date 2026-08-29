@@ -41,7 +41,11 @@ export default function LessonPage() {
   if (!info || !info.available) return <Navigate to="/catalog" replace />
   if (!state || !course) return <main className="page muted">{t('loading')}</main>
   if (!lesson) return <Navigate to={`/course/${courseId}`} replace />
-  if (!isUnlocked(course, lesson.id, state.progress)) return <Navigate to={`/course/${courseId}`} replace />
+  // A teacher previews material out of order — a learner still climbs the ladder.
+  const isTeacher = state.profile.role === 'teacher'
+  if (!isTeacher && !isUnlocked(course, lesson.id, state.progress)) {
+    return <Navigate to={`/course/${courseId}`} replace />
+  }
 
   const step = lesson.steps[index]
   // A markup step shows an editor beside a preview, which needs the wider page.

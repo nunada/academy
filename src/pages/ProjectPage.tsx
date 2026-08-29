@@ -70,7 +70,11 @@ export default function ProjectPage() {
   if (!state || !course) return <main className="page muted">{t('loading')}</main>
   if (!project) return <Navigate to={`/course/${courseId}`} replace />
   if (!state) return <main className="page muted">{t('loading')}</main>
-  if (!isUnlocked(course, project.id, state.progress)) return <Navigate to={`/course/${courseId}`} replace />
+  // A teacher previews material out of order — a learner still climbs the ladder.
+  const isTeacher = state.profile.role === 'teacher'
+  if (!isTeacher && !isUnlocked(course, project.id, state.progress)) {
+    return <Navigate to={`/course/${courseId}`} replace />
+  }
 
   // Markup projects render live instead of printing, so the page differs.
   const isWeb = project.runtime === 'web'
