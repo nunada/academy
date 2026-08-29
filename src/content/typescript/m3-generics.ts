@@ -63,12 +63,20 @@ export const module3: Module = {
                 en: 'A bare `T` could be anything, so you may do nothing with it. `T extends { id: number }` says T is *at least* that — so inside the function you may read `.id`, and outside it the caller still gets back their own full type, not the narrow one you constrained to.',
                 id: '`T` polos bisa apa saja, jadi kamu tak bisa berbuat apa pun dengannya. `T extends { id: number }` menyatakan T *sekurang-kurangnya* itu — jadi di dalam fungsinya kamu boleh membaca `.id`, dan di luar sana pemanggilnya tetap menerima tipe penuhnya sendiri, bukan tipe sempit yang kamu batasi tadi.',
               },
-              code:
-                'function cariId<T extends { id: number }>(daftar: T[], id: number): T | undefined {\n' +
-                '  return daftar.find((x) => x.id === id);\n' +
-                '}\n\n' +
-                'const p = cariId([{ id: 1, nama: "Ani" }], 1);\n' +
-                'p?.nama;   // masih ada: hasilnya tipe penuh yang tadi dikirim',
+              code: {
+                en:
+                  'function cariId<T extends { id: number }>(daftar: T[], id: number): T | undefined {\n' +
+                  '  return daftar.find((x) => x.id === id);\n' +
+                  '}\n\n' +
+                  'const p = cariId([{ id: 1, nama: "Ani" }], 1);\n' +
+                  'p?.nama;   // still there: the result is the full type that was passed in',
+                id:
+                  'function cariId<T extends { id: number }>(daftar: T[], id: number): T | undefined {\n' +
+                  '  return daftar.find((x) => x.id === id);\n' +
+                  '}\n\n' +
+                  'const p = cariId([{ id: 1, nama: "Ani" }], 1);\n' +
+                  'p?.nama;   // masih ada: hasilnya tipe penuh yang tadi dikirim',
+              },
             },
             {
               kind: 'quiz',
@@ -197,13 +205,22 @@ export const module3: Module = {
                 en: 'Put the two ideas together and you get the shape every program eventually needs: a result that either carries a value or explains why it does not. Because the members differ in `ok`, the compiler will not let you read `data` until you have checked — you cannot forget the failure case.',
                 id: 'Satukan kedua gagasannya dan kamu mendapat bentuk yang cepat atau lambat dibutuhkan tiap program: sebuah hasil yang entah membawa nilai atau menjelaskan mengapa tidak. Karena anggotanya berbeda pada `ok`, kompilernya tak akan membiarkanmu membaca `data` sebelum kamu memeriksa — kamu tak bisa melupakan kasus gagalnya.',
               },
-              code:
-                'type Hasil<T> =\n' +
-                '  | { ok: true; data: T }\n' +
-                '  | { ok: false; pesan: string };\n\n' +
-                'const h: Hasil<number> = { ok: true, data: 7 };\n\n' +
-                "h.data;            // Property 'data' does not exist on type 'Hasil<number>'.\n" +
-                'if (h.ok) h.data;  // baik',
+              code: {
+                en:
+                  'type Hasil<T> =\n' +
+                  '  | { ok: true; data: T }\n' +
+                  '  | { ok: false; pesan: string };\n\n' +
+                  'const h: Hasil<number> = { ok: true, data: 7 };\n\n' +
+                  "h.data;            // Property 'data' does not exist on type 'Hasil<number>'.\n" +
+                  'if (h.ok) h.data;  // fine',
+                id:
+                  'type Hasil<T> =\n' +
+                  '  | { ok: true; data: T }\n' +
+                  '  | { ok: false; pesan: string };\n\n' +
+                  'const h: Hasil<number> = { ok: true, data: 7 };\n\n' +
+                  "h.data;            // Property 'data' does not exist on type 'Hasil<number>'.\n" +
+                  'if (h.ok) h.data;  // baik',
+              },
             },
             {
               kind: 'concept',
@@ -213,12 +230,20 @@ export const module3: Module = {
                 en: '`Record<K, V>` is an object used as a lookup: every key of type K maps to a value of type V. `Record<string, number>` is "any string name, always a number" — a dictionary whose values are all checked, unlike a plain object where each key is its own little surprise.',
                 id: '`Record<K, V>` adalah objek yang dipakai sebagai tabel pencarian: tiap kunci bertipe K memetakan ke nilai bertipe V. `Record<string, number>` berarti "nama string apa pun, selalu berupa angka" — kamus yang semua nilainya terperiksa, tak seperti objek biasa yang tiap kuncinya jadi kejutan kecil sendiri.',
               },
-              code:
-                'const stok: Record<string, number> = { pensil: 40, spidol: 0 };\n' +
-                'stok.pensil.toFixed(0);   // aman: nilainya number\n\n' +
-                'type Ukuran = "kecil" | "besar";\n' +
-                'const biaya: Record<Ukuran, number> = { kecil: 0, besar: 10000 };\n' +
-                '// menghilangkan salah satu kuncinya adalah galat',
+              code: {
+                en:
+                  'const stok: Record<string, number> = { pensil: 40, spidol: 0 };\n' +
+                  'stok.pensil.toFixed(0);   // safe: the value is a number\n\n' +
+                  'type Ukuran = "kecil" | "besar";\n' +
+                  'const biaya: Record<Ukuran, number> = { kecil: 0, besar: 10000 };\n' +
+                  '// leaving out one of the keys is an error',
+                id:
+                  'const stok: Record<string, number> = { pensil: 40, spidol: 0 };\n' +
+                  'stok.pensil.toFixed(0);   // aman: nilainya number\n\n' +
+                  'type Ukuran = "kecil" | "besar";\n' +
+                  'const biaya: Record<Ukuran, number> = { kecil: 0, besar: 10000 };\n' +
+                  '// menghilangkan salah satu kuncinya adalah galat',
+              },
             },
             {
               kind: 'quiz',
@@ -450,11 +475,18 @@ export const module3: Module = {
                 en: 'For `{ nama: string; umur: number }`, `keyof` that type is `"nama" | "umur"` — a literal union, worked out from the shape rather than typed out again. Rename a property and the union follows; nothing gets left behind.',
                 id: 'Untuk `{ nama: string; umur: number }`, `keyof` dari tipe itu adalah `"nama" | "umur"` — union literal, dihitung dari bentuknya alih-alih diketik ulang. Ganti nama sebuah properti dan union-nya ikut; tak ada yang tertinggal.',
               },
-              code:
-                'interface Orang { nama: string; umur: number }\n\n' +
-                'type Kunci = keyof Orang;   // "nama" | "umur"\n' +
-                'const k: Kunci = "umur";    // baik\n' +
-                'const j: Kunci = "alamat";  // ditolak',
+              code: {
+                en:
+                  'interface Orang { nama: string; umur: number }\n\n' +
+                  'type Kunci = keyof Orang;   // "nama" | "umur"\n' +
+                  'const k: Kunci = "umur";    // fine\n' +
+                  'const j: Kunci = "alamat";  // rejected',
+                id:
+                  'interface Orang { nama: string; umur: number }\n\n' +
+                  'type Kunci = keyof Orang;   // "nama" | "umur"\n' +
+                  'const k: Kunci = "umur";    // baik\n' +
+                  'const j: Kunci = "alamat";  // ditolak',
+              },
             },
             {
               kind: 'concept',
@@ -464,14 +496,24 @@ export const module3: Module = {
                 en: 'Indexing works on types the way it works on values. `Orang["nama"]` is `string`. Combine that with a constrained parameter and you get a getter whose return type depends on which key you asked for — different for every call, and correct every time.',
                 id: 'Pengindeksan bekerja pada tipe seperti ia bekerja pada nilai. `Orang["nama"]` adalah `string`. Gabungkan itu dengan parameter yang dibatasi dan kamu mendapat pengambil nilai yang tipe kembaliannya bergantung pada kunci yang kamu minta — berbeda di tiap pemanggilan, dan benar setiap kali.',
               },
-              code:
-                'function ambil<T, K extends keyof T>(obj: T, kunci: K): T[K] {\n' +
-                '  return obj[kunci];\n' +
-                '}\n\n' +
-                'const o = { nama: "Ani", umur: 17 };\n' +
-                'ambil(o, "nama");   // string\n' +
-                'ambil(o, "umur");   // number\n' +
-                'ambil(o, "kota");   // ditolak: bukan kunci milik o',
+              code: {
+                en:
+                  'function ambil<T, K extends keyof T>(obj: T, kunci: K): T[K] {\n' +
+                  '  return obj[kunci];\n' +
+                  '}\n\n' +
+                  'const o = { nama: "Ani", umur: 17 };\n' +
+                  'ambil(o, "nama");   // string\n' +
+                  'ambil(o, "umur");   // number\n' +
+                  'ambil(o, "kota");   // rejected: not a key of o',
+                id:
+                  'function ambil<T, K extends keyof T>(obj: T, kunci: K): T[K] {\n' +
+                  '  return obj[kunci];\n' +
+                  '}\n\n' +
+                  'const o = { nama: "Ani", umur: 17 };\n' +
+                  'ambil(o, "nama");   // string\n' +
+                  'ambil(o, "umur");   // number\n' +
+                  'ambil(o, "kota");   // ditolak: bukan kunci milik o',
+              },
             },
             {
               kind: 'concept',
@@ -481,10 +523,16 @@ export const module3: Module = {
                 en: 'The same function written with `kunci: string` compiles, and gives back a value the caller has to guess about. The `keyof` version rejects a mistyped key at the call site *and* tells the caller exactly what came back. Two problems, one signature.',
                 id: 'Fungsi yang sama ditulis dengan `kunci: string` juga lolos kompilasi, dan mengembalikan nilai yang harus ditebak-tebak pemanggilnya. Versi `keyof` menolak kunci yang salah ketik tepat di tempat pemanggilannya *sekaligus* memberi tahu pemanggilnya persis apa yang kembali. Dua masalah, satu tanda tangan.',
               },
-              code:
-                '// kehilangan dua hal sekaligus\nfunction ambilLemah(obj: Record<string, unknown>, kunci: string): unknown {\n' +
-                '  return obj[kunci];\n' +
-                '}',
+              code: {
+                en:
+                  '// loses two things at once\nfunction ambilLemah(obj: Record<string, unknown>, kunci: string): unknown {\n' +
+                  '  return obj[kunci];\n' +
+                  '}',
+                id:
+                  '// kehilangan dua hal sekaligus\nfunction ambilLemah(obj: Record<string, unknown>, kunci: string): unknown {\n' +
+                  '  return obj[kunci];\n' +
+                  '}',
+              },
             },
             {
               kind: 'quiz',
@@ -590,13 +638,22 @@ export const module3: Module = {
                 en: '`Partial<T>` is T with every property optional — exactly what a "patch" argument is. `Readonly<T>` is T with every property read-only. Both are derived from T, so adding a property to T updates them for free, and none of your code goes stale.',
                 id: '`Partial<T>` adalah T dengan tiap propertinya opsional — persis seperti argumen "tambalan". `Readonly<T>` adalah T dengan tiap propertinya read-only. Keduanya diturunkan dari T, jadi menambahkan properti ke T memperbaruinya secara cuma-cuma, dan tak ada kodemu yang jadi basi.',
               },
-              code:
-                'interface Pengguna { id: number; nama: string; aktif: boolean }\n\n' +
-                'function perbarui(p: Pengguna, ubahan: Partial<Pengguna>): Pengguna {\n' +
-                '  return { ...p, ...ubahan };\n' +
-                '}\n\n' +
-                'perbarui(p, { nama: "Ani" });   // baik\n' +
-                'perbarui(p, { nama: 1 });        // ditolak: tetap harus string',
+              code: {
+                en:
+                  'interface Pengguna { id: number; nama: string; aktif: boolean }\n\n' +
+                  'function perbarui(p: Pengguna, ubahan: Partial<Pengguna>): Pengguna {\n' +
+                  '  return { ...p, ...ubahan };\n' +
+                  '}\n\n' +
+                  'perbarui(p, { nama: "Ani" });   // fine\n' +
+                  'perbarui(p, { nama: 1 });        // rejected: still has to be a string',
+                id:
+                  'interface Pengguna { id: number; nama: string; aktif: boolean }\n\n' +
+                  'function perbarui(p: Pengguna, ubahan: Partial<Pengguna>): Pengguna {\n' +
+                  '  return { ...p, ...ubahan };\n' +
+                  '}\n\n' +
+                  'perbarui(p, { nama: "Ani" });   // baik\n' +
+                  'perbarui(p, { nama: 1 });        // ditolak: tetap harus string',
+              },
             },
             {
               kind: 'concept',
@@ -620,9 +677,14 @@ export const module3: Module = {
                 en: 'You could write `Ringkas` out by hand. It would be the same today and wrong in a month, the first time somebody renames a property in `Pengguna` and does not think to look here. Deriving it means the compiler does the looking.',
                 id: 'Kamu bisa saja menulis `Ringkas` dengan tangan. Ia akan sama hari ini dan salah sebulan lagi, pertama kali seseorang mengganti nama properti di `Pengguna` dan tak terpikir untuk melihat ke sini. Menurunkannya berarti kompilernya yang melihat.',
               },
-              code:
-                '// rapuh\ntype Ringkas = { id: number; nama: string };\n\n' +
-                '// mengikuti dengan sendirinya\ntype Ringkas = Pick<Pengguna, "id" | "nama">;',
+              code: {
+                en:
+                  '// fragile\ntype Ringkas = { id: number; nama: string };\n\n' +
+                  '// follows automatically\ntype Ringkas = Pick<Pengguna, "id" | "nama">;',
+                id:
+                  '// rapuh\ntype Ringkas = { id: number; nama: string };\n\n' +
+                  '// mengikuti dengan sendirinya\ntype Ringkas = Pick<Pengguna, "id" | "nama">;',
+              },
             },
             {
               kind: 'quiz',

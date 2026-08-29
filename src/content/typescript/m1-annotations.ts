@@ -44,7 +44,10 @@ export const module1: Module = {
                 en: '`: number` after a name says "this will always be a number". From then on the compiler holds you to it, and every line that breaks the promise is reported with a file and a line number — before anybody runs anything.',
                 id: '`: number` setelah sebuah nama berarti "ini akan selalu berupa angka". Sejak saat itu kompiler menagihmu untuk janji itu, dan tiap baris yang melanggarnya dilaporkan lengkap dengan berkas dan nomor barisnya — sebelum ada yang menjalankan apa pun.',
               },
-              code: 'let jumlah: number = 5;\njumlah = 6;        // baik\njumlah = "enam";   // Type \'string\' is not assignable to type \'number\'.',
+              code: {
+                en: 'let jumlah: number = 5;\njumlah = 6;        // fine\njumlah = "enam";   // Type \'string\' is not assignable to type \'number\'.',
+                id: 'let jumlah: number = 5;\njumlah = 6;        // baik\njumlah = "enam";   // Type \'string\' is not assignable to type \'number\'.',
+              },
             },
             {
               kind: 'concept',
@@ -54,12 +57,20 @@ export const module1: Module = {
                 en: 'TypeScript **infers** the type from the value, so annotating a variable you are initialising right there is usually noise. The compiler already knows. Write the annotation where it cannot know: on function parameters.',
                 id: 'TypeScript **menyimpulkan** tipenya dari nilainya, jadi memberi keterangan pada variabel yang langsung kamu isi biasanya cuma kebisingan. Kompilernya sudah tahu. Tulis keterangannya di tempat ia tak bisa tahu: pada parameter fungsi.',
               },
-              code:
-                'const nama = "Nunada";   // string, tanpa diberi tahu\n' +
-                'const tahun = 2024;      // number\n\n' +
-                'function sapa(nama) {    // ...tapi yang ini? TypeScript tidak bisa menebak.\n' +
-                '  return "Halo, " + nama;\n' +
-                '}',
+              code: {
+                en:
+                  'const nama = "Nunada";   // string, without being told\n' +
+                  'const tahun = 2024;      // number\n\n' +
+                  "function sapa(nama) {    // ...but this one? TypeScript can't guess.\n" +
+                  '  return "Halo, " + nama;\n' +
+                  '}',
+                id:
+                  'const nama = "Nunada";   // string, tanpa diberi tahu\n' +
+                  'const tahun = 2024;      // number\n\n' +
+                  'function sapa(nama) {    // ...tapi yang ini? TypeScript tidak bisa menebak.\n' +
+                  '  return "Halo, " + nama;\n' +
+                  '}',
+              },
             },
             {
               kind: 'concept',
@@ -69,10 +80,16 @@ export const module1: Module = {
                 en: '`any` means "stop checking this". It is occasionally the honest answer, and it is very often a way of making an error message go away without fixing anything — the mistake simply moves to runtime, where it costs more. In this course `any` is never the answer.',
                 id: '`any` berarti "berhenti memeriksa yang ini". Kadang ia jawaban yang jujur, dan sangat sering ia cara menghilangkan pesan galat tanpa membetulkan apa pun — kesalahannya sekadar pindah ke waktu jalan, tempat ia jadi lebih mahal. Di kursus ini `any` tidak pernah jadi jawabannya.',
               },
-              code:
-                'let x: any = "halo";\n' +
-                'console.log(x.toFixed(2));  // diterima kompiler\n' +
-                '// ...lalu meledak saat dijalankan: x.toFixed is not a function',
+              code: {
+                en:
+                  'let x: any = "halo";\n' +
+                  'console.log(x.toFixed(2));  // accepted by the compiler\n' +
+                  '// ...then blows up at runtime: x.toFixed is not a function',
+                id:
+                  'let x: any = "halo";\n' +
+                  'console.log(x.toFixed(2));  // diterima kompiler\n' +
+                  '// ...lalu meledak saat dijalankan: x.toFixed is not a function',
+              },
             },
             {
               kind: 'quiz',
@@ -176,11 +193,18 @@ export const module1: Module = {
                 en: 'A `?` says the argument may be left out — and then, inside the function, its type includes `undefined`, so the compiler makes you deal with that before you use it. You do not get to forget.',
                 id: 'Tanda `?` menyatakan argumennya boleh dihilangkan — dan di dalam fungsinya, tipenya lalu mencakup `undefined`, jadi kompilernya memaksamu menanganinya sebelum kamu memakainya. Kamu tak diberi kesempatan lupa.',
               },
-              code:
-                'function sapa(nama: string, gelar?: string): string {\n' +
-                '  // gelar bertipe string | undefined di sini\n' +
-                '  return gelar ? `Halo, ${gelar} ${nama}` : `Halo, ${nama}`;\n' +
-                '}',
+              code: {
+                en:
+                  'function sapa(nama: string, gelar?: string): string {\n' +
+                  '  // gelar has type string | undefined here\n' +
+                  '  return gelar ? `Halo, ${gelar} ${nama}` : `Halo, ${nama}`;\n' +
+                  '}',
+                id:
+                  'function sapa(nama: string, gelar?: string): string {\n' +
+                  '  // gelar bertipe string | undefined di sini\n' +
+                  '  return gelar ? `Halo, ${gelar} ${nama}` : `Halo, ${nama}`;\n' +
+                  '}',
+              },
             },
             {
               kind: 'concept',
@@ -557,11 +581,18 @@ export const module1: Module = {
                 en: '`number[]` is an array whose every element is a number — any length, all the same kind. It is written `Array<number>` too; the two mean exactly the same thing. Reading an element gives you a `number`, so the methods you expect are there and the ones you do not are refused.',
                 id: '`number[]` adalah array yang setiap elemennya angka — panjangnya bebas, jenisnya sama semua. Ia juga ditulis `Array<number>`; keduanya bermakna persis sama. Membaca satu elemen memberimu `number`, jadi method yang kamu harapkan ada dan yang tidak kamu harapkan ditolak.',
               },
-              code:
-                'const nilai: number[] = [80, 92, 75];\n' +
-                'const nama: string[] = ["Ani", "Budi"];\n\n' +
-                'nilai.push("100");   // ditolak\n' +
-                'nilai[0].toFixed(1); // baik: elemennya number',
+              code: {
+                en:
+                  'const nilai: number[] = [80, 92, 75];\n' +
+                  'const nama: string[] = ["Ani", "Budi"];\n\n' +
+                  'nilai.push("100");   // rejected\n' +
+                  'nilai[0].toFixed(1); // fine: the element is a number',
+                id:
+                  'const nilai: number[] = [80, 92, 75];\n' +
+                  'const nama: string[] = ["Ani", "Budi"];\n\n' +
+                  'nilai.push("100");   // ditolak\n' +
+                  'nilai[0].toFixed(1); // baik: elemennya number',
+              },
             },
             {
               kind: 'concept',
@@ -571,12 +602,20 @@ export const module1: Module = {
                 en: '`[number, number]` is a **tuple**: exactly two elements, each a number. Unlike an array it has a fixed length, and each position may have its own type. It is how you say "a coordinate" or "a key and its value" without inventing an object for it.',
                 id: '`[number, number]` adalah **tuple**: tepat dua elemen, masing-masing angka. Berbeda dari array, panjangnya tetap, dan tiap posisi boleh punya tipenya sendiri. Inilah cara menyatakan "sebuah koordinat" atau "sebuah kunci dan nilainya" tanpa mengarang objek untuknya.',
               },
-              code:
-                'type Titik = [number, number];\n' +
-                'const asal: Titik = [0, 0];\n\n' +
-                'const salah: Titik = [0, 0, 0];   // panjangnya tidak cocok\n\n' +
-                'type Entri = [string, number];    // tiap posisi punya tipenya sendiri\n' +
-                'const e: Entri = ["stok", 12];',
+              code: {
+                en:
+                  'type Titik = [number, number];\n' +
+                  'const asal: Titik = [0, 0];\n\n' +
+                  'const salah: Titik = [0, 0, 0];   // the length does not match\n\n' +
+                  'type Entri = [string, number];    // each position has its own type\n' +
+                  'const e: Entri = ["stok", 12];',
+                id:
+                  'type Titik = [number, number];\n' +
+                  'const asal: Titik = [0, 0];\n\n' +
+                  'const salah: Titik = [0, 0, 0];   // panjangnya tidak cocok\n\n' +
+                  'type Entri = [string, number];    // tiap posisi punya tipenya sendiri\n' +
+                  'const e: Entri = ["stok", 12];',
+              },
             },
             {
               kind: 'concept',

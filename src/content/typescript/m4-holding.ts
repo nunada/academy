@@ -33,9 +33,14 @@ export const module4: Module = {
                 en: 'Inside your own code the compiler has checked everything. The moment data arrives from a file, a form, or a server, all it has is your word for it. `JSON.parse` is typed as `any` — which is to say, the checker has been switched off exactly where you know the least.',
                 id: 'Di dalam kodemu sendiri kompilernya sudah memeriksa semuanya. Begitu data datang dari sebuah berkas, formulir, atau server, yang ia punya hanya perkataanmu. `JSON.parse` bertipe `any` — artinya, pemeriksanya dimatikan persis di tempat kamu paling sedikit tahu.',
               },
-              code:
-                'const data = JSON.parse(teks);   // any\n' +
-                'data.produk.harga.toFixed(2);    // diterima kompiler, meledak saat dijalankan',
+              code: {
+                en:
+                  'const data = JSON.parse(teks);   // any\n' +
+                  'data.produk.harga.toFixed(2);    // accepted by the compiler, blows up at runtime',
+                id:
+                  'const data = JSON.parse(teks);   // any\n' +
+                  'data.produk.harga.toFixed(2);    // diterima kompiler, meledak saat dijalankan',
+              },
             },
             {
               kind: 'concept',
@@ -45,12 +50,20 @@ export const module4: Module = {
                 en: 'Both hold anything. The difference is what they let you do next: with `any` you may do everything, with `unknown` you may do nothing until you have proved something. Annotate outside data as `unknown` and the compiler will not let you past without a check.',
                 id: 'Keduanya bisa memuat apa saja. Bedanya ada pada apa yang boleh kamu lakukan setelahnya: dengan `any` kamu boleh melakukan segalanya, dengan `unknown` kamu tak boleh apa-apa sampai kamu membuktikan sesuatu. Beri keterangan `unknown` pada data luar dan kompilernya tak akan membiarkanmu lewat tanpa pemeriksaan.',
               },
-              code:
-                'const data: unknown = JSON.parse(teks);\n' +
-                "data.harga;   // 'data' is of type 'unknown'.\n\n" +
-                'if (typeof data === "object" && data !== null && "harga" in data) {\n' +
-                '  // sekarang boleh\n' +
-                '}',
+              code: {
+                en:
+                  'const data: unknown = JSON.parse(teks);\n' +
+                  "data.harga;   // 'data' is of type 'unknown'.\n\n" +
+                  'if (typeof data === "object" && data !== null && "harga" in data) {\n' +
+                  '  // now it is allowed\n' +
+                  '}',
+                id:
+                  'const data: unknown = JSON.parse(teks);\n' +
+                  "data.harga;   // 'data' is of type 'unknown'.\n\n" +
+                  'if (typeof data === "object" && data !== null && "harga" in data) {\n' +
+                  '  // sekarang boleh\n' +
+                  '}',
+              },
             },
             {
               kind: 'concept',
@@ -60,15 +73,26 @@ export const module4: Module = {
                 en: 'Writing that check inline everywhere is miserable. A function returning `x is Produk` packages it: the body is ordinary JavaScript returning true or false, and the signature tells the compiler that a `true` result means the narrowing has been earned.',
                 id: 'Menulis pemeriksaan itu berulang-ulang di segala tempat itu menyiksa. Fungsi yang mengembalikan `x is Produk` mengemasnya: badannya JavaScript biasa yang mengembalikan true atau false, dan tanda tangannya memberi tahu kompilernya bahwa hasil `true` berarti penyempitannya sudah dibayar.',
               },
-              code:
-                'function adalahProduk(x: unknown): x is Produk {\n' +
-                '  return (\n' +
-                '    typeof x === "object" && x !== null &&\n' +
-                '    typeof (x as Produk).nama === "string" &&\n' +
-                '    typeof (x as Produk).harga === "number"\n' +
-                '  );\n' +
-                '}\n\n' +
-                'if (adalahProduk(data)) data.harga.toFixed(2);   // aman',
+              code: {
+                en:
+                  'function adalahProduk(x: unknown): x is Produk {\n' +
+                  '  return (\n' +
+                  '    typeof x === "object" && x !== null &&\n' +
+                  '    typeof (x as Produk).nama === "string" &&\n' +
+                  '    typeof (x as Produk).harga === "number"\n' +
+                  '  );\n' +
+                  '}\n\n' +
+                  'if (adalahProduk(data)) data.harga.toFixed(2);   // safe',
+                id:
+                  'function adalahProduk(x: unknown): x is Produk {\n' +
+                  '  return (\n' +
+                  '    typeof x === "object" && x !== null &&\n' +
+                  '    typeof (x as Produk).nama === "string" &&\n' +
+                  '    typeof (x as Produk).harga === "number"\n' +
+                  '  );\n' +
+                  '}\n\n' +
+                  'if (adalahProduk(data)) data.harga.toFixed(2);   // aman',
+              },
             },
             {
               kind: 'concept',
@@ -78,9 +102,14 @@ export const module4: Module = {
                 en: '`data as Produk` tells the compiler to believe you, and checks nothing. Inside a predicate it is honest — the check is right there on the next line. On its own it is the same gamble as `any`, wearing better clothes.',
                 id: '`data as Produk` menyuruh kompilernya percaya padamu, dan tidak memeriksa apa pun. Di dalam sebuah predikat ia jujur — pemeriksaannya ada persis di baris berikutnya. Sendirian ia taruhan yang sama dengan `any`, hanya berpakaian lebih rapi.',
               },
-              code:
-                'const p = JSON.parse(teks) as Produk;   // tak ada yang diperiksa\n' +
-                'p.harga.toFixed(2);                     // dan ini tetap bisa meledak',
+              code: {
+                en:
+                  'const p = JSON.parse(teks) as Produk;   // nothing gets checked\n' +
+                  'p.harga.toFixed(2);                     // and this can still blow up',
+                id:
+                  'const p = JSON.parse(teks) as Produk;   // tak ada yang diperiksa\n' +
+                  'p.harga.toFixed(2);                     // dan ini tetap bisa meledak',
+              },
             },
             {
               kind: 'quiz',
@@ -219,12 +248,20 @@ export const module4: Module = {
                 en: '`typeof WARNA` is the type of that constant; indexing it with `number` gives the union of everything in it. So the literal union is *derived* from the array — one place to add a colour, and both the runtime list and the type follow.',
                 id: '`typeof WARNA` adalah tipe konstanta itu; mengindeksnya dengan `number` memberi union dari seluruh isinya. Jadi union literalnya *diturunkan* dari array-nya — satu tempat untuk menambah warna, dan daftar saat jalan maupun tipenya sama-sama ikut.',
               },
-              code:
-                'const WARNA = ["merah", "hijau", "biru"] as const;\n' +
-                'type Warna = (typeof WARNA)[number];\n' +
-                '// "merah" | "hijau" | "biru"\n\n' +
-                'const w: Warna = "hijau";    // baik\n' +
-                'const x: Warna = "kuning";   // ditolak',
+              code: {
+                en:
+                  'const WARNA = ["merah", "hijau", "biru"] as const;\n' +
+                  'type Warna = (typeof WARNA)[number];\n' +
+                  '// "merah" | "hijau" | "biru"\n\n' +
+                  'const w: Warna = "hijau";    // fine\n' +
+                  'const x: Warna = "kuning";   // rejected',
+                id:
+                  'const WARNA = ["merah", "hijau", "biru"] as const;\n' +
+                  'type Warna = (typeof WARNA)[number];\n' +
+                  '// "merah" | "hijau" | "biru"\n\n' +
+                  'const w: Warna = "hijau";    // baik\n' +
+                  'const x: Warna = "kuning";   // ditolak',
+              },
             },
             {
               kind: 'concept',
@@ -234,13 +271,22 @@ export const module4: Module = {
                 en: '`readonly` on a property refuses assignment after construction; `readonly T[]` refuses `push`, `sort` and the rest. It is not a runtime lock — the object is still mutable at runtime — but it does stop the code that would have done it from compiling, which is where you can still fix it.',
                 id: '`readonly` pada sebuah properti menolak penugasan setelah objeknya dibuat; `readonly T[]` menolak `push`, `sort`, dan kawan-kawan. Ia bukan kunci saat program berjalan — objeknya tetap bisa diubah saat jalan — tetapi ia menghentikan kode yang akan melakukannya dari lolos kompilasi, dan di situlah kamu masih bisa membetulkannya.',
               },
-              code:
-                'interface Kotak {\n' +
-                '  readonly id: number;\n' +
-                '  warna: Warna;\n' +
-                '}\n\n' +
-                'k.warna = "biru";   // baik\n' +
-                "k.id = 2;           // Cannot assign to 'id' because it is a read-only property.",
+              code: {
+                en:
+                  'interface Kotak {\n' +
+                  '  readonly id: number;\n' +
+                  '  warna: Warna;\n' +
+                  '}\n\n' +
+                  'k.warna = "biru";   // fine\n' +
+                  "k.id = 2;           // Cannot assign to 'id' because it is a read-only property.",
+                id:
+                  'interface Kotak {\n' +
+                  '  readonly id: number;\n' +
+                  '  warna: Warna;\n' +
+                  '}\n\n' +
+                  'k.warna = "biru";   // baik\n' +
+                  "k.id = 2;           // Cannot assign to 'id' because it is a read-only property.",
+              },
             },
             {
               kind: 'concept',
@@ -250,9 +296,14 @@ export const module4: Module = {
                 en: 'Every technique in this course points the same way: put the rule in the type, so the wrong thing cannot be written at all. A comment saying "do not change the id" is a hope. `readonly id` is a fact — and unlike the comment, it is still true after somebody else edits the file.',
                 id: 'Tiap teknik di kursus ini menunjuk ke arah yang sama: taruh aturannya di dalam tipenya, agar yang salah sama sekali tak bisa ditulis. Komentar bertuliskan "jangan ubah id-nya" adalah harapan. `readonly id` adalah fakta — dan tak seperti komentarnya, ia tetap benar setelah orang lain menyunting berkasnya.',
               },
-              code:
-                '// harapan\nconst STATUS = ["baru", "selesai"];   // jangan tambahkan apa pun di sini!\n\n' +
-                '// fakta\nconst STATUS = ["baru", "selesai"] as const;',
+              code: {
+                en:
+                  '// the hope\nconst STATUS = ["baru", "selesai"];   // don\'t add anything here!\n\n' +
+                  '// the fact\nconst STATUS = ["baru", "selesai"] as const;',
+                id:
+                  '// harapan\nconst STATUS = ["baru", "selesai"];   // jangan tambahkan apa pun di sini!\n\n' +
+                  '// fakta\nconst STATUS = ["baru", "selesai"] as const;',
+              },
             },
             {
               kind: 'quiz',

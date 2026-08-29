@@ -33,12 +33,20 @@ export const module2: Module = {
                 en: '`string | number` is a **union**: the value is one of those, and TypeScript does not know which. So it lets you do only what is safe for *both* — the things every member of the union can do. Anything else has to wait until you have narrowed it down.',
                 id: '`string | number` adalah **union**: nilainya salah satu dari itu, dan TypeScript tidak tahu yang mana. Jadi ia hanya membolehkanmu melakukan yang aman bagi *keduanya* — hal-hal yang bisa dilakukan tiap anggota union-nya. Selain itu harus menunggu sampai kamu mempersempitnya.',
               },
-              code:
-                'let id: string | number;\n' +
-                'id = "A-1";   // baik\n' +
-                'id = 7;       // baik\n' +
-                'id = true;    // ditolak\n\n' +
-                "id.toUpperCase();  // Property 'toUpperCase' does not exist on type 'string | number'.",
+              code: {
+                en:
+                  'let id: string | number;\n' +
+                  'id = "A-1";   // fine\n' +
+                  'id = 7;       // fine\n' +
+                  'id = true;    // rejected\n\n' +
+                  "id.toUpperCase();  // Property 'toUpperCase' does not exist on type 'string | number'.",
+                id:
+                  'let id: string | number;\n' +
+                  'id = "A-1";   // baik\n' +
+                  'id = 7;       // baik\n' +
+                  'id = true;    // ditolak\n\n' +
+                  "id.toUpperCase();  // Property 'toUpperCase' does not exist on type 'string | number'.",
+              },
             },
             {
               kind: 'concept',
@@ -48,11 +56,18 @@ export const module2: Module = {
                 en: 'The type `"kecil"` contains exactly one value: the string `"kecil"`. On its own that is useless; as a union it is one of the most useful things in the language. `"kecil" | "sedang" | "besar"` is a set of allowed strings, checked at every call, spelled correctly or not at all.',
                 id: 'Tipe `"kecil"` memuat tepat satu nilai: string `"kecil"`. Sendirian itu tak berguna; sebagai union ia salah satu hal paling berguna di bahasanya. `"kecil" | "sedang" | "besar"` adalah himpunan string yang diizinkan, diperiksa di tiap pemanggilan, dieja benar atau tidak sama sekali.',
               },
-              code:
-                'type Ukuran = "kecil" | "sedang" | "besar";\n\n' +
-                'let u: Ukuran = "sedang";  // baik\n' +
-                'u = "Sedang";              // ditolak: huruf besarnya berbeda\n' +
-                'u = "raksasa";             // ditolak: bukan salah satunya',
+              code: {
+                en:
+                  'type Ukuran = "kecil" | "sedang" | "besar";\n\n' +
+                  'let u: Ukuran = "sedang";  // fine\n' +
+                  'u = "Sedang";              // rejected: the capitalization differs\n' +
+                  'u = "raksasa";             // rejected: not one of them',
+                id:
+                  'type Ukuran = "kecil" | "sedang" | "besar";\n\n' +
+                  'let u: Ukuran = "sedang";  // baik\n' +
+                  'u = "Sedang";              // ditolak: huruf besarnya berbeda\n' +
+                  'u = "raksasa";             // ditolak: bukan salah satunya',
+              },
             },
             {
               kind: 'concept',
@@ -62,10 +77,16 @@ export const module2: Module = {
                 en: 'Before literal types, a function taking a "mode" took a `string`, and a typo became a bug you found in production. With a literal union the typo is a red squiggle, your editor offers the three choices, and renaming one of them shows you every place it is used.',
                 id: 'Sebelum ada tipe literal, fungsi yang menerima sebuah "mode" menerima `string`, dan salah ketik jadi kutu yang baru kamu temukan di produksi. Dengan union literal, salah ketiknya jadi garis merah, editormu menawarkan ketiga pilihannya, dan mengganti nama salah satunya menunjukkan tiap tempat ia dipakai.',
               },
-              code:
-                'function kirim(mode: "cepat" | "hemat"): void { /* ... */ }\n\n' +
-                'kirim("cepat");   // baik\n' +
-                'kirim("cepatt");  // Argument of type \'"cepatt"\' is not assignable...',
+              code: {
+                en:
+                  'function kirim(mode: "cepat" | "hemat"): void { /* ... */ }\n\n' +
+                  'kirim("cepat");   // fine\n' +
+                  'kirim("cepatt");  // Argument of type \'"cepatt"\' is not assignable...',
+                id:
+                  'function kirim(mode: "cepat" | "hemat"): void { /* ... */ }\n\n' +
+                  'kirim("cepat");   // baik\n' +
+                  'kirim("cepatt");  // Argument of type \'"cepatt"\' is not assignable...',
+              },
             },
             {
               kind: 'quiz',
@@ -171,13 +192,22 @@ export const module2: Module = {
                 en: 'This is the part that surprises people: TypeScript reads your `if`. Inside a branch guarded by `typeof x === "string"`, the type of `x` **is** `string` — not the union any more — so every string method is available and the compiler stops objecting. Nothing special was added to JavaScript; the checker just follows the same reasoning you do.',
                 id: 'Inilah bagian yang mengejutkan banyak orang: TypeScript membaca `if`-mu. Di dalam cabang yang dijaga `typeof x === "string"`, tipe `x` **adalah** `string` — bukan union-nya lagi — jadi tiap method string tersedia dan kompilernya berhenti keberatan. Tak ada yang ditambahkan ke JavaScript; pemeriksanya sekadar mengikuti penalaran yang sama denganmu.',
               },
-              code:
-                'function tampil(nilai: string | number): string {\n' +
-                '  if (typeof nilai === "string") {\n' +
-                '    return nilai.toUpperCase();   // di sini nilai bertipe string\n' +
-                '  }\n' +
-                '  return nilai.toFixed(2);        // dan di sini number\n' +
-                '}',
+              code: {
+                en:
+                  'function tampil(nilai: string | number): string {\n' +
+                  '  if (typeof nilai === "string") {\n' +
+                  '    return nilai.toUpperCase();   // nilai has type string here\n' +
+                  '  }\n' +
+                  '  return nilai.toFixed(2);        // and here, number\n' +
+                  '}',
+                id:
+                  'function tampil(nilai: string | number): string {\n' +
+                  '  if (typeof nilai === "string") {\n' +
+                  '    return nilai.toUpperCase();   // di sini nilai bertipe string\n' +
+                  '  }\n' +
+                  '  return nilai.toFixed(2);        // dan di sini number\n' +
+                  '}',
+              },
             },
             {
               kind: 'concept',
@@ -187,12 +217,20 @@ export const module2: Module = {
                 en: 'Comparing against one member of a literal union narrows it too, and so does an early `return`: after `if (u === "kecil") return ...`, the compiler knows that below that line `u` can only be `"sedang" | "besar"`. It keeps track as you go.',
                 id: 'Membandingkan dengan salah satu anggota union literal juga mempersempitnya, begitu pula `return` lebih awal: setelah `if (u === "kecil") return ...`, kompilernya tahu bahwa di bawah baris itu `u` hanya bisa `"sedang" | "besar"`. Ia terus mencatat sambil jalan.',
               },
-              code:
-                'function biaya(u: "kecil" | "sedang" | "besar"): number {\n' +
-                '  if (u === "kecil") return 0;\n' +
-                '  // u di sini: "sedang" | "besar"\n' +
-                '  return u === "sedang" ? 5000 : 10000;\n' +
-                '}',
+              code: {
+                en:
+                  'function biaya(u: "kecil" | "sedang" | "besar"): number {\n' +
+                  '  if (u === "kecil") return 0;\n' +
+                  '  // u here: "sedang" | "besar"\n' +
+                  '  return u === "sedang" ? 5000 : 10000;\n' +
+                  '}',
+                id:
+                  'function biaya(u: "kecil" | "sedang" | "besar"): number {\n' +
+                  '  if (u === "kecil") return 0;\n' +
+                  '  // u di sini: "sedang" | "besar"\n' +
+                  '  return u === "sedang" ? 5000 : 10000;\n' +
+                  '}',
+              },
             },
             {
               kind: 'concept',
@@ -439,14 +477,24 @@ export const module2: Module = {
                 en: 'A union of object shapes is hard to narrow — `typeof` says `"object"` for all of them. So give each member a property whose type is a distinct literal. Checking that one property tells the compiler exactly which member you are holding, and every other property of that member becomes available.',
                 id: 'Union berisi bentuk objek sulit dipersempit — `typeof` menyebut `"object"` untuk semuanya. Maka beri tiap anggota sebuah properti yang tipenya literal berbeda. Memeriksa satu properti itu memberi tahu kompilernya persis anggota mana yang sedang kamu pegang, dan tiap properti lain milik anggota itu jadi tersedia.',
               },
-              code:
-                'type Bentuk =\n' +
-                '  | { jenis: "lingkaran"; jari: number }\n' +
-                '  | { jenis: "persegi"; sisi: number };\n\n' +
-                'function luas(b: Bentuk): number {\n' +
-                '  if (b.jenis === "lingkaran") return Math.PI * b.jari ** 2;\n' +
-                '  return b.sisi ** 2;   // di sini b pasti persegi\n' +
-                '}',
+              code: {
+                en:
+                  'type Bentuk =\n' +
+                  '  | { jenis: "lingkaran"; jari: number }\n' +
+                  '  | { jenis: "persegi"; sisi: number };\n\n' +
+                  'function luas(b: Bentuk): number {\n' +
+                  '  if (b.jenis === "lingkaran") return Math.PI * b.jari ** 2;\n' +
+                  '  return b.sisi ** 2;   // b here has to be persegi\n' +
+                  '}',
+                id:
+                  'type Bentuk =\n' +
+                  '  | { jenis: "lingkaran"; jari: number }\n' +
+                  '  | { jenis: "persegi"; sisi: number };\n\n' +
+                  'function luas(b: Bentuk): number {\n' +
+                  '  if (b.jenis === "lingkaran") return Math.PI * b.jari ** 2;\n' +
+                  '  return b.sisi ** 2;   // di sini b pasti persegi\n' +
+                  '}',
+              },
             },
             {
               kind: 'concept',
@@ -596,10 +644,16 @@ export const module2: Module = {
                 en: '`a?.b` gives `undefined` instead of throwing when `a` is null or undefined, so a whole chain can be walked safely. `x ?? y` gives `y` only when `x` is null or undefined — unlike `||`, which also replaces `0` and `""`, and has quietly broken a great many programs.',
                 id: '`a?.b` menghasilkan `undefined` alih-alih melempar ketika `a` bernilai null atau undefined, jadi seluruh rantainya bisa ditelusuri dengan aman. `x ?? y` menghasilkan `y` hanya ketika `x` bernilai null atau undefined — berbeda dari `||`, yang juga mengganti `0` dan `""`, dan diam-diam sudah merusak sangat banyak program.',
               },
-              code:
-                'const kota = profil.alamat?.kota ?? "Tidak diketahui";\n\n' +
-                'const jumlah = pesanan.jumlah ?? 1;   // 0 tetap 0\n' +
-                'const salah = pesanan.jumlah || 1;    // 0 berubah jadi 1',
+              code: {
+                en:
+                  'const kota = profil.alamat?.kota ?? "Tidak diketahui";\n\n' +
+                  'const jumlah = pesanan.jumlah ?? 1;   // 0 stays 0\n' +
+                  'const salah = pesanan.jumlah || 1;    // 0 becomes 1',
+                id:
+                  'const kota = profil.alamat?.kota ?? "Tidak diketahui";\n\n' +
+                  'const jumlah = pesanan.jumlah ?? 1;   // 0 tetap 0\n' +
+                  'const salah = pesanan.jumlah || 1;    // 0 berubah jadi 1',
+              },
             },
             {
               kind: 'concept',
@@ -609,10 +663,16 @@ export const module2: Module = {
                 en: '`x!` tells the compiler "trust me, this is not null". It silences the error and changes nothing about the value. If you are wrong, you have swapped a message you would have read for a crash a user will see. Check instead; `!` is for the rare case where you can prove what the compiler cannot.',
                 id: '`x!` memberi tahu kompilernya "percaya saja, ini bukan null". Ia membungkam galatnya dan tak mengubah apa pun pada nilainya. Kalau kamu salah, kamu menukar pesan yang tadinya kamu baca dengan kerusakan yang akan dilihat pengguna. Periksa saja; `!` untuk kasus langka ketika kamu bisa membuktikan apa yang tak bisa dibuktikan kompilernya.',
               },
-              code:
-                'const el = cari(id)!;   // berani\n' +
-                'const el = cari(id);    // lebih baik\n' +
-                'if (el === null) return;',
+              code: {
+                en:
+                  'const el = cari(id)!;   // bold\n' +
+                  'const el = cari(id);    // better\n' +
+                  'if (el === null) return;',
+                id:
+                  'const el = cari(id)!;   // berani\n' +
+                  'const el = cari(id);    // lebih baik\n' +
+                  'if (el === null) return;',
+              },
             },
             {
               kind: 'quiz',
