@@ -26,7 +26,7 @@ fs.writeFileSync(
   entry,
   [
     `export { COURSES } from '${q('src/content/catalog.ts')}'`,
-    ...['python', 'html', 'css', 'javascript', 'sql', 'typescript', 'react', 'gamedev', 'python-math', 'python-media', 'python-numpy', 'vektor', 'fungsi'].map(
+    ...['python', 'html', 'css', 'javascript', 'cpp', 'sql', 'typescript', 'react', 'gamedev', 'python-math', 'python-media', 'python-numpy', 'vektor', 'fungsi'].map(
       (c) => `export { modules as ${c.replace('-', '')}Modules } from '${q(`src/content/${c}/index.ts`)}'`,
     ),
   ].join('\n'),
@@ -44,6 +44,7 @@ const SUMBER = {
   html: 'htmlModules',
   css: 'cssModules',
   javascript: 'javascriptModules',
+  cpp: 'cppModules',
   sql: 'sqlModules',
   typescript: 'typescriptModules',
   react: 'reactModules',

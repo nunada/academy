@@ -5,11 +5,12 @@ import { runPython, runTests, type TestOutcome } from '../lib/python'
 import { runWebTests, type WebOutcome } from '../lib/web'
 import { runSql, runSqlTests, type SqlOutcome, type SqlResult } from '../lib/sql'
 import { compileTs, runTsTests, type TsCompile, type TsOutcome } from '../lib/ts'
+import { runCpp, runCppTests, type TestOutcome as CppOutcome } from '../lib/cpp'
 import { CodeBlock, CodeEditor, LivePreview, Output, Rich, Tex, TexLines } from './ui'
 import { MathBoard, MathInputNote, emptyValues, markTask } from './MathBoard'
 import { evalAnswer, isRight } from '../lib/answer'
 import { FigureView } from './Figure'
-import { ResultList, fromPython, fromWeb, fromSql, fromTs } from './results'
+import { ResultList, fromPython, fromWeb, fromSql, fromTs, fromCpp } from './results'
 import { ResultTable } from './ResultTable'
 import { CompileReport } from './CompileReport'
 import { GamePreview } from './GamePreview'
@@ -42,6 +43,8 @@ export default function StepView(props: Props) {
       return <SqlStep {...props} step={props.step} />
     case 'ts':
       return <TsStep {...props} step={props.step} />
+    case 'cpp':
+      return <CppStep {...props} step={props.step} />
     case 'game':
       return <GameStep {...props} step={props.step} />
     case 'math':
@@ -822,6 +825,116 @@ function TsStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Ex
             <b>{allPass ? t('allTestsPass') : t('someTestsFail')}</b>
           </div>
           <ResultList rows={fromTs(outcomes)} />
+        </>
+      )}
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------------- cpp */
+
+function CppStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'cpp' }> }) {
+  const { t, tc } = useI18n()
+  const [code, setCode] = useState(step.starter)
+  const [busy, setBusy] = useState(false)
+  const [outcomes, setOutcomes] = useState<CppOutcome[] | null>(null)
+  const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
+  const [hintsShown, setHintsShown] = useState(0)
+  const [showSolution, setShowSolution] = useState(false)
+
+  const allPass = outcomes !== null && outcomes.every((o) => o.passed)
+
+  async function doRun() {
+    setBusy(true)
+    try {
+      const res = await runCpp(code)
+      setRunOut({ text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)', error: Boolean(res.error) })
+      setOutcomes(null)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function doCheck() {
+    setBusy(true)
+    try {
+      const res = await runCppTests(code, step.tests)
+      setOutcomes(res)
+      setRunOut(null)
+      if (res.every((o) => o.passed)) onSolved()
+      else onWrong()
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="card">
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
+
+      <CodeEditor value={code} onChange={setCode} disabled={solved} />
+
+      <div className="row">
+        <button className="btn soft sm" onClick={() => void doRun()} disabled={busy}>
+          ▶ {t('runCode')}
+        </button>
+        {!solved && (
+          <button className="btn sm" onClick={() => void doCheck()} disabled={busy || blocked}>
+            {t('check')}
+          </button>
+        )}
+        {step.hints.length > 0 && hintsShown < step.hints.length && !solved && (
+          <button className="btn ghost sm" onClick={() => setHintsShown((n) => n + 1)}>
+            💡 {t('hint')} ({hintsShown}/{step.hints.length})
+          </button>
+        )}
+        {hintsShown >= step.hints.length && !solved && !showSolution && (
+          <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
+            {t('showSolution')}
+          </button>
+        )}
+      </div>
+
+      {busy && (
+        <p className="small muted" style={{ marginTop: 10 }}>
+          🔧 {tc({ en: 'Loading the C++ interpreter…', id: 'Memuat interpreter C++…' })}
+        </p>
+      )}
+
+      {step.hints.slice(0, hintsShown).map((h, i) => (
+        <div className="banner" key={i} style={{ marginTop: 10, marginBottom: 0 }}>
+          <span>💡</span>
+          <span>
+            <Rich text={tc(h)} />
+          </span>
+        </div>
+      ))}
+
+      {showSolution && (
+        <div style={{ marginTop: 12 }}>
+          <div className="io-label">{t('showSolution')}</div>
+          <CodeBlock>{step.solution}</CodeBlock>
+          <button className="btn ghost sm" onClick={() => setCode(step.solution)}>
+            ↧ {tc({ en: 'Copy into the editor', id: 'Salin ke editor' })}
+          </button>
+        </div>
+      )}
+
+      {runOut && (
+        <div style={{ marginTop: 12 }}>
+          <div className="io-label">{t('output')}</div>
+          <Output text={runOut.text} error={runOut.error} />
+        </div>
+      )}
+
+      {outcomes && (
+        <>
+          <div className={allPass ? 'verdict ok' : 'verdict no'} style={{ marginTop: 12 }}>
+            <b>{allPass ? t('allTestsPass') : t('someTestsFail')}</b>
+          </div>
+          <ResultList rows={fromCpp(outcomes)} />
         </>
       )}
     </div>

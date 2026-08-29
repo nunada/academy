@@ -21,3 +21,20 @@ declare module 'sql.js/dist/sql-wasm.js' {
   }
   export default function initSqlJs(config?: { locateFile?: (file: string) => string }): Promise<SqlJsStatic>
 }
+
+/** JSCPP ships no types either. `run()` is the only entry point used — it
+ *  interprets `code` synchronously (with `input` as the whole of stdin) and
+ *  returns the program's exit code, throwing on a parse or runtime error. */
+declare module 'JSCPP' {
+  interface JSCPPConfig {
+    stdio?: { write?: (s: string) => void }
+    /** Checked between statements; past this many milliseconds a runaway
+     *  loop throws instead of hanging the tab. */
+    maxTimeout?: number
+  }
+  interface JSCPPStatic {
+    run(code: string, input: string, config?: JSCPPConfig): number
+  }
+  const JSCPP: JSCPPStatic
+  export default JSCPP
+}

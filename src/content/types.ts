@@ -30,6 +30,25 @@ export interface PyTest {
   assert?: string
 }
 
+/** A check that runs against the learner's C++, interpreted by JSCPP.
+ *
+ *  JSCPP has no `std::string`, no `std::vector`, and no references — a subset
+ *  of the language built around primitives, arrays and pointers. There is no
+ *  `setup` or `assert` here the way `PyTest` has them: everything a check needs
+ *  has to come out through `cout`, since there is no shared namespace to poke
+ *  a variable out of once the program has run. */
+export interface CppTest {
+  name: Loc
+  /** Lines fed to `cin` while the learner's code runs, joined with newlines —
+   *  `cin >>` skips whitespace including line breaks, so one line or three
+   *  reads exactly the same way. */
+  stdin?: string[]
+  /** stdout must equal this after trimming trailing whitespace on each line. */
+  expectOutput?: string
+  /** stdout must contain every one of these fragments (case-insensitive). */
+  expectContains?: string[]
+}
+
 /** A check that runs against the learner's markup, inside the sandboxed preview.
  *
  *  `check` is JavaScript, evaluated in the rendered page after it parses. These
@@ -274,6 +293,16 @@ export type Step =
       schema: string
     }
   | {
+      /** Same rung as `code`, in C++ rather than Python. */
+      kind: 'cpp'
+      id: string
+      prompt: Loc
+      starter: string
+      tests: CppTest[]
+      hints: Loc[]
+      solution: string
+    }
+  | {
       /** Same rung again, and the only one that is played rather than read.
        *  The learner writes `awal`, `perbarui` and `gambar`; the checks call
        *  those functions directly, so the tests are ordinary Python and the
@@ -337,6 +366,7 @@ export type MiniProject =
   | (CodeProject & { runtime: 'sql'; tests: SqlTest[]; schema: string })
   | (CodeProject & { runtime: 'ts'; tests: TsTest[] })
   | (CodeProject & { runtime: 'game'; tests: PyTest[] })
+  | (CodeProject & { runtime: 'cpp'; tests: CppTest[] })
   /** A problem set: several questions, every box right before it counts.
    *  No starter and no single solution string — each part carries its own
    *  working instead. */
@@ -374,7 +404,7 @@ export interface CourseInfo {
   level: Loc
   /** What the learner writes. `math` is the one that is not a programming
    *  language: those courses are worked on paper and answered in a box. */
-  language: 'python' | 'html' | 'css' | 'javascript' | 'typescript' | 'sql' | 'react' | 'mixed' | 'math'
+  language: 'python' | 'html' | 'css' | 'javascript' | 'typescript' | 'sql' | 'react' | 'cpp' | 'mixed' | 'math'
   /** Which half of the catalogue this belongs under.
    *
    *  Not the same question as `language`. The three Python-for-mathematics

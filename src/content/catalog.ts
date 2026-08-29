@@ -87,6 +87,23 @@ export const COURSES: CourseInfo[] = [
     projects: 7,
   },
   {
+    id: 'cpp',
+    title: { en: 'C++', id: 'C++' },
+    tagline: {
+      en: 'Types, pointers, and arrays — the language underneath the languages that hide them.',
+      id: 'Tipe data, pointer, dan array — bahasa di balik bahasa-bahasa yang menyembunyikannya.',
+    },
+    icon: '➕',
+    color: '#39567d',
+    level: { en: 'Beginner', id: 'Pemula' },
+    language: 'cpp',
+    track: 'code',
+    requires: [],
+    available: true,
+    lessons: 22,
+    projects: 8,
+  },
+  {
     id: 'sql',
     title: { en: 'SQL', id: 'SQL' },
     tagline: {
@@ -248,6 +265,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   html: () => import('./html'),
   css: () => import('./css'),
   javascript: () => import('./javascript'),
+  cpp: () => import('./cpp'),
   sql: () => import('./sql'),
   typescript: () => import('./typescript'),
   react: () => import('./react'),

@@ -5,11 +5,12 @@ selangkah demi selangkah, dan tiap submateri ditutup satu mini proyek yang diper
 oleh tes sungguhan. Antarmuka bisa diganti antara **English** dan **Bahasa Indonesia**
 kapan saja.
 
-Kursus pemrograman: **Python** (9 modul), lalu **HTML**, **CSS**, **JavaScript**,
-**SQL**, **TypeScript**, **React**, dan **Game Development** (masing-masing 4 modul),
-ditambah tiga kursus Python bercita rasa matematika (**Dasar**, **Media
-Pembelajaran**, **Numerik**) dan jalur karier **Python Developer**, **Front-End**,
-**Back-End**, serta **Full-Stack Developer**.
+Kursus pemrograman: **Python** (9 modul), **C++** (4 modul — interpreter JSCPP,
+bukan kompiler sungguhan; lihat [Menjalankan C++ peserta](#menjalankan-c-peserta)),
+lalu **HTML**, **CSS**, **JavaScript**, **SQL**, **TypeScript**, **React**, dan
+**Game Development** (masing-masing 4 modul), ditambah tiga kursus Python bercita
+rasa matematika (**Dasar**, **Media Pembelajaran**, **Numerik**) dan jalur karier
+**Python Developer**, **Front-End**, **Back-End**, serta **Full-Stack Developer**.
 
 Kursus matematika — dikerjakan di kertas, dijawab di kotak, bukan diketik sebagai
 program. **Fungsi dan Grafik** (5 modul, 29 pelajaran, 10 kumpulan soal): domain dan
@@ -531,6 +532,42 @@ Dua hal yang perlu diingat saat menulis materi React:
   mengklik tidak boleh menganggap dirinya mulai dari nol: baca nilainya dulu, bertindak,
   lalu bandingkan dengan yang tadi dibaca.
 
+## Menjalankan C++ peserta
+
+Tidak ada WebAssembly di sini — [JSCPP](https://github.com/felixhao28/JSCPP) adalah
+interpreter tulisan tangan, bukan kompiler sungguhan, dan berjalan sinkron di thread
+utama ([`src/lib/cpp.ts`](src/lib/cpp.ts)). Itulah yang membuatnya masuk akal untuk
+kursus ini: tak ada unduhan berukuran Pyodide, dan cukup cepat untuk sebuah latihan.
+
+**Ia mengerti sebagian C++, bukan seluruhnya.** Tanpa `std::string`, tanpa
+`std::vector`, dan referensi (`int &x`) gagal diurai sama sekali — jadi setiap
+latihan memakai array gaya-C dan pointer, bukan STL. Kelas dasar ada, namespace dan
+berkas jamak tidak. Batasan ini ditemukan dengan mencobanya langsung, bukan dari
+dokumentasinya: `strcmp` pada dua string yang identik melempar galat aneh
+("overflow of NaN"), dan `strcat` diam-diam menjatuhkan satu spasi ketika
+menyambung string yang huruf keduanya spasi (`", dunia!"` menjadi `",dunia!"`) —
+keduanya dihindari, yang kedua dengan memecah satu `strcat` jadi dua panggilan.
+
+**`maxTimeout` adalah katup pengaman.** Berbeda dari Pyodide yang WebAssembly-nya
+bisa disela, `JSCPP.run` adalah loop sinkron biasa — `while (true) {}` milik
+peserta akan membekukan tab selamanya kalau tak ada yang menghentikannya. Batas
+waktu 4 detik dicek di antara pernyataan, sehingga sebuah loop yang lolos berhenti
+dengan galat yang bisa dibaca, bukan tab yang harus dimatikan paksa.
+
+**`CppTest` sengaja lebih sempit dari `PyTest`.** Tidak ada `setup` atau `assert` —
+setiap pemeriksaan yang perlu dilakukan harus keluar lewat `cout`, karena tidak ada
+namespace bersama untuk mengintip nilai sebuah variabel begitu programnya selesai.
+Ini membentuk bagaimana latihannya ditulis: hasil dari sebuah fungsi diuji dengan
+memanggilnya dari `main` dan mencetak hasilnya, bukan dengan menyodok variabel dari
+luar.
+
+**Diperiksa di Node, bukan hanya dipercaya.** `npm run check:cpp` menjalankan JSCPP
+sungguhan atas setiap contoh kerja pada langkah `concept`, dan setiap `solution`
+melawan tes miliknya sendiri — dua kelas kesalahan diam ini muncul lewat cara ini:
+contoh yang butuh `cin` tapi langkah `concept` tak punya ladang `stdin` untuk
+mengisinya (dilewati, dianggap transkrip ilustratif seperti contoh `input()` di
+kursus Python), dan bug `strcat` di atas.
+
 ## Menjalankan SQL peserta
 
 SQL tidak memerlukan iframe. Ia tidak menyentuh DOM dan tidak menjangkau jaringan —
@@ -912,6 +949,13 @@ ada komponen baru yang perlu ditulis.
 7. Langkah `game` memakai `PyTest` yang sama dengan kursus Python: tesnya berupa
    cuplikan `assert` yang memanggil `awal`, `perbarui`, dan `gambar` secara
    langsung.
+8. Untuk langkah `cpp`, tesnya `CppTest` — lebih sempit dari `PyTest`, sengaja
+   tanpa `setup` atau `assert`: JSCPP tak punya namespace bersama untuk
+   diintip setelah program peserta selesai, jadi `stdin`, `expectOutput`, dan
+   `expectContains` adalah satu-satunya yang ada. **Jangan lupa `runtime: 'cpp'`
+   pada `project`** — tanpanya `MiniProject` jatuh ke varian Python secara diam-diam
+   (keduanya struktural cocok kalau `PyTest`-nya tak memakai `setup`/`assert`),
+   dan proyeknya akan dijalankan lewat Pyodide, bukan JSCPP.
 
 Menambah atau membuang sebuah pelajaran mengubah hitungan kursusnya, jadi
 perbarui `lessons` / `projects` di [`src/content/catalog.ts`](src/content/catalog.ts)
@@ -1048,6 +1092,11 @@ for (const m of gameDevCourse.modules)
   }
 bad
 ```
+
+Untuk kursus C++, jalankan `npm run check:cpp` alih-alih menempel apa pun di
+konsol — JSCPP adalah paket npm sungguhan, jadi pemeriksanya berjalan di Node dan
+menjalankan **setiap** contoh kerja langkah `concept`, tiap `solution` langkah
+`cpp`, dan tiap `solution` proyek, melawan tesnya masing-masing.
 
 ## Isi kursus Python
 

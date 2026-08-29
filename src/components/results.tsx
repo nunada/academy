@@ -5,6 +5,7 @@ import type { TestOutcome } from '../lib/python'
 import type { WebOutcome } from '../lib/web'
 import type { SqlOutcome, SqlValue } from '../lib/sql'
 import type { TsOutcome } from '../lib/ts'
+import type { TestOutcome as CppOutcome } from '../lib/cpp'
 import { useI18n } from '../i18n'
 import { Output } from './ui'
 import { RowDiff } from './ResultTable'
@@ -53,6 +54,15 @@ export const fromSql = (outcomes: SqlOutcome[]): ResultRow[] =>
 /** Type errors are already one line each; they only need carrying across. */
 export const fromTs = (outcomes: TsOutcome[]): ResultRow[] =>
   outcomes.map((o) => ({ name: o.test.name, passed: o.passed, detail: o.detail }))
+
+export const fromCpp = (outcomes: CppOutcome[]): ResultRow[] =>
+  outcomes.map((o) => ({
+    name: o.test.name,
+    passed: o.passed,
+    detail: o.detail,
+    got: !o.passed && !o.detail && o.test.expectOutput !== undefined ? o.stdout : undefined,
+    want: !o.passed && !o.detail && o.test.expectOutput !== undefined ? o.test.expectOutput : undefined,
+  }))
 
 export function ResultList({ rows }: { rows: ResultRow[] }) {
   const { t, tc } = useI18n()

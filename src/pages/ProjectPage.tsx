@@ -10,7 +10,8 @@ import { runPython, runTests, splitStdin } from '../lib/python'
 import { runWebTests } from '../lib/web'
 import { runSql, runSqlTests, type SqlResult } from '../lib/sql'
 import { compileTs, runTsTests, type TsCompile } from '../lib/ts'
-import { ResultList, fromPython, fromWeb, fromSql, fromTs, type ResultRow } from '../components/results'
+import { runCpp, runCppTests } from '../lib/cpp'
+import { ResultList, fromPython, fromWeb, fromSql, fromTs, fromCpp, type ResultRow } from '../components/results'
 import { CodeBlock, CodeEditor, LivePreview, Output, Rich, TexLines } from '../components/ui'
 import { MathBoard, MathInputNote, emptyValues, markTask } from '../components/MathBoard'
 import { ResultTable } from '../components/ResultTable'
@@ -87,6 +88,8 @@ export default function ProjectPage() {
   const isTs = project.runtime === 'ts'
   // A game project is checked like Python and played on a canvas.
   const isGame = project.runtime === 'game'
+  // A C++ project is checked and run the same way Python is, against JSCPP.
+  const isCpp = project.runtime === 'cpp'
   // A mathematics project is a problem set: no editor, no runtime, just boxes.
   const isMath = project.runtime === 'math'
 
@@ -104,6 +107,12 @@ export default function ProjectPage() {
         setCompiled(await compileTs(code))
       } else if (project.runtime === 'game') {
         setRunNonce((n) => n + 1)
+      } else if (project.runtime === 'cpp') {
+        const res = await runCpp(code, splitStdin(stdin))
+        setRunOut({
+          text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)',
+          error: Boolean(res.error),
+        })
       } else {
         const res = await runPython(code, splitStdin(stdin))
         setRunOut({
@@ -147,7 +156,9 @@ export default function ProjectPage() {
             ? fromSql(await runSqlTests(project.schema, code, project.tests))
             : project.runtime === 'ts'
               ? fromTs(await runTsTests(code, project.tests))
-              : fromPython(await runTests(code, project.tests))
+              : project.runtime === 'cpp'
+                ? fromCpp(await runCppTests(code, project.tests))
+                : fromPython(await runTests(code, project.tests))
       // The checks and the game share one interpreter, so stop the loop first.
       if (project.runtime === 'game') setRunNonce(0)
       setRows(next)
@@ -291,7 +302,9 @@ export default function ProjectPage() {
           <>
             <CodeEditor value={code} onChange={setCode} rows={16} />
             <label className="field" style={{ marginTop: 6 }}>
-              <span className="small">{t('stdinLabel')}</span>
+              <span className="small">
+                {isCpp ? tc({ en: 'Input (one line per cin >>)', id: 'Input (satu baris per cin >>)' }) : t('stdinLabel')}
+              </span>
               <textarea rows={2} value={stdin} onChange={(e) => setStdin(e.target.value)} spellCheck={false} />
             </label>
           </>
@@ -325,7 +338,7 @@ export default function ProjectPage() {
           })}
         </p>
 
-        {busy && !isWeb && !isSql && !isTs && !isGame && !isMath && (
+        {busy && !isWeb && !isSql && !isTs && !isGame && !isMath && !isCpp && (
           <p className="small muted" style={{ marginTop: 8 }}>
             🐍 {t('loadingPython')}
           </p>
@@ -334,6 +347,12 @@ export default function ProjectPage() {
         {busy && isTs && (
           <p className="small muted" style={{ marginTop: 8 }}>
             🧩 {tc({ en: 'Loading the TypeScript compiler…', id: 'Memuat kompiler TypeScript…' })}
+          </p>
+        )}
+
+        {busy && isCpp && (
+          <p className="small muted" style={{ marginTop: 8 }}>
+            🔧 {tc({ en: 'Loading the C++ interpreter…', id: 'Memuat interpreter C++…' })}
           </p>
         )}
 
