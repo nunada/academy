@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import type { Loc, Step } from '../content/types'
 import { resolveBi } from '../content/types'
 import { useI18n } from '../i18n'
-import { runPython, runTests, type TestOutcome } from '../lib/python'
+import { runPython, runTests, splitStdin, type TestOutcome } from '../lib/python'
 import { runWebTests, type WebOutcome } from '../lib/web'
 import { runSql, runSqlTests, type SqlOutcome, type SqlResult } from '../lib/sql'
 import { compileTs, runTsTests, type TsCompile, type TsOutcome } from '../lib/ts'
@@ -411,6 +411,7 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
   const tests = resolveBi(step.tests, lang)
   const solution = resolveBi(step.solution, lang)
   const [code, setCode] = useState(starter)
+  const [stdin, setStdin] = useState('')
   const [busy, setBusy] = useState(false)
   const [loadingPy, setLoadingPy] = useState(false)
   const [outcomes, setOutcomes] = useState<TestOutcome[] | null>(null)
@@ -424,7 +425,7 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
     setBusy(true)
     setLoadingPy(true)
     try {
-      const res = await runPython(code)
+      const res = await runPython(code, splitStdin(stdin))
       setRunOut({ text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)', error: Boolean(res.error) })
       setOutcomes(null)
     } finally {
@@ -455,6 +456,11 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       </h3>
 
       <CodeEditor value={code} onChange={setCode} disabled={solved} />
+
+      <label className="field" style={{ marginTop: 6 }}>
+        <span className="small">{t('stdinLabel')}</span>
+        <textarea rows={2} value={stdin} onChange={(e) => setStdin(e.target.value)} disabled={solved} spellCheck={false} />
+      </label>
 
       <div className="row">
         <button className="btn soft sm" onClick={() => void doRun()} disabled={busy}>
@@ -853,6 +859,7 @@ function CppStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
   const tests = resolveBi(step.tests, lang)
   const solution = resolveBi(step.solution, lang)
   const [code, setCode] = useState(starter)
+  const [stdin, setStdin] = useState('')
   const [busy, setBusy] = useState(false)
   const [outcomes, setOutcomes] = useState<CppOutcome[] | null>(null)
   const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
@@ -864,7 +871,7 @@ function CppStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
   async function doRun() {
     setBusy(true)
     try {
-      const res = await runCpp(code)
+      const res = await runCpp(code, splitStdin(stdin))
       setRunOut({ text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)', error: Boolean(res.error) })
       setOutcomes(null)
     } finally {
@@ -892,6 +899,11 @@ function CppStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
       </h3>
 
       <CodeEditor value={code} onChange={setCode} disabled={solved} />
+
+      <label className="field" style={{ marginTop: 6 }}>
+        <span className="small">{tc({ en: 'Input (one line per cin >>)', id: 'Input (satu baris per cin >>)' })}</span>
+        <textarea rows={2} value={stdin} onChange={(e) => setStdin(e.target.value)} disabled={solved} spellCheck={false} />
+      </label>
 
       <div className="row">
         <button className="btn soft sm" onClick={() => void doRun()} disabled={busy}>
