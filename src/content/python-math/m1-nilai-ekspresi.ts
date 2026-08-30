@@ -70,7 +70,10 @@ export const module1: Module = {
                 en: 'Compute the area of a rectangle with length `p` and width `l`, store it in `luas`.',
                 id: 'Hitung luas persegi panjang dengan panjang `p` dan lebar `l`, simpan di `luas`.',
               },
-              template: 'p = 8\nl = 5\nluas = p ___ l\nprint(luas)',
+              template: {
+                en: 'p = 8\nl = 5\narea = p ___ l\nprint(area)',
+                id: 'p = 8\nl = 5\nluas = p ___ l\nprint(luas)',
+              },
               blanks: ['*'],
               explain: {
                 en: 'Area is length times width — the same formula as on paper.',
@@ -84,7 +87,10 @@ export const module1: Module = {
                 en: 'Assemble a program that prints the average of three values a, b, c (10, 20, 30).',
                 id: 'Susun program yang mencetak rata-rata tiga nilai a, b, c (10, 20, 30).',
               },
-              lines: ['a = 10', 'b = 20', 'c = 30', 'rata = (a + b + c) / 3', 'print(rata)'],
+              lines: {
+                en: ['a = 10', 'b = 20', 'c = 30', 'average = (a + b + c) / 3', 'print(average)'],
+                id: ['a = 10', 'b = 20', 'c = 30', 'rata = (a + b + c) / 3', 'print(rata)'],
+              },
               explain: {
                 en: 'The parentheses matter here: without them, `/ 3` would only divide `c`.',
                 id: 'Kurungnya penting di sini: tanpanya, `/ 3` hanya akan membagi `c`.',
@@ -164,7 +170,10 @@ export const module1: Module = {
                 en: 'Round the square root of 50 to 2 decimal places, store it in `hasil`.',
                 id: 'Bulatkan akar dari 50 ke 2 angka desimal, simpan di `hasil`.',
               },
-              template: 'import math\nhasil = ___(math.sqrt(50), 2)\nprint(hasil)',
+              template: {
+                en: 'import math\nresult = ___(math.sqrt(50), 2)\nprint(result)',
+                id: 'import math\nhasil = ___(math.sqrt(50), 2)\nprint(hasil)',
+              },
               blanks: ['round'],
               explain: {
                 en: 'round() takes the value first, then how many decimal places.',
@@ -178,7 +187,10 @@ export const module1: Module = {
                 en: 'Assemble a program that prints the circumference of a circle with radius 7 (`2 * pi * r`), rounded to 2 decimal places.',
                 id: 'Susun program yang mencetak keliling lingkaran berjari-jari 7 (`2 * pi * r`), dibulatkan ke 2 angka desimal.',
               },
-              lines: ['import math', 'r = 7', 'keliling = 2 * math.pi * r', 'print(round(keliling, 2))'],
+              lines: {
+                en: ['import math', 'r = 7', 'circumference = 2 * math.pi * r', 'print(round(circumference, 2))'],
+                id: ['import math', 'r = 7', 'keliling = 2 * math.pi * r', 'print(round(keliling, 2))'],
+              },
               explain: {
                 en: 'import has to come before math is used, and the formula reads left to right just like the name.',
                 id: 'import harus datang sebelum math dipakai, dan formulanya dibaca kiri ke kanan seperti namanya.',
@@ -202,7 +214,10 @@ export const module1: Module = {
                 { en: 'The formula is math.pi * r ** 2 — ** binds tighter than *.', id: 'Formulanya math.pi * r ** 2 — ** mengikat lebih erat daripada *.' },
                 { en: 'Round the final area, not r itself.', id: 'Bulatkan luas akhirnya, bukan r itu sendiri.' },
               ],
-              solution: 'import math\nr = float(input())\nluas = math.pi * r ** 2\nprint(round(luas, 2))',
+              solution: {
+                en: 'import math\nr = float(input())\narea = math.pi * r ** 2\nprint(round(area, 2))',
+                id: 'import math\nr = float(input())\nluas = math.pi * r ** 2\nprint(round(luas, 2))',
+              },
             },
           ],
         },
@@ -230,8 +245,10 @@ export const module1: Module = {
           { en: 'Find dx and dy first: x2 - x1, y2 - y1.', id: 'Cari dx dan dy dulu: x2 - x1, y2 - y1.' },
           { en: 'math.sqrt takes one argument — build the sum under the root first.', id: 'math.sqrt mengambil satu argumen — susun dulu jumlah di bawah akarnya.' },
         ],
-        solution:
-          'import math\nx1 = float(input())\ny1 = float(input())\nx2 = float(input())\ny2 = float(input())\ndx = x2 - x1\ndy = y2 - y1\njarak = math.sqrt(dx ** 2 + dy ** 2)\nprint(round(jarak, 2))',
+        solution: {
+          en: 'import math\nx1 = float(input())\ny1 = float(input())\nx2 = float(input())\ny2 = float(input())\ndx = x2 - x1\ndy = y2 - y1\ndistance = math.sqrt(dx ** 2 + dy ** 2)\nprint(round(distance, 2))',
+          id: 'import math\nx1 = float(input())\ny1 = float(input())\nx2 = float(input())\ny2 = float(input())\ndx = x2 - x1\ndy = y2 - y1\njarak = math.sqrt(dx ** 2 + dy ** 2)\nprint(round(jarak, 2))',
+        },
         xp: 50,
       },
     },
@@ -259,8 +276,11 @@ export const module1: Module = {
                 en: 'An `f` before the opening quote turns `{ }` into a window onto a real expression. Python evaluates what is inside and drops the result straight into the text.',
                 id: '`f` sebelum tanda kutip pembuka mengubah `{ }` menjadi jendela ke ekspresi sungguhan. Python mengevaluasi isinya dan menaruh hasilnya langsung ke dalam teks.',
               },
-              code: 'nama = "Rina"\nnilai = 95\nprint(f"{nama} mendapat {nilai}")',
-              output: 'Rina mendapat 95',
+              code: {
+                en: 'name = "Rina"\nscore = 95\nprint(f"{name} scored {score}")',
+                id: 'nama = "Rina"\nnilai = 95\nprint(f"{nama} mendapat {nilai}")',
+              },
+              output: { en: 'Rina scored 95', id: 'Rina mendapat 95' },
             },
             {
               kind: 'concept',
@@ -277,11 +297,14 @@ export const module1: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'x = 7\nprint(f"Nilai x adalah {x * 2}")',
+              code: {
+                en: 'x = 7\nprint(f"The value of x is {x * 2}")',
+                id: 'x = 7\nprint(f"Nilai x adalah {x * 2}")',
+              },
               options: [
-                { en: 'Nilai x adalah 14', id: 'Nilai x adalah 14' },
-                { en: 'Nilai x adalah x * 2', id: 'Nilai x adalah x * 2' },
-                { en: 'Nilai x adalah {x * 2}', id: 'Nilai x adalah {x * 2}' },
+                { en: 'The value of x is 14', id: 'Nilai x adalah 14' },
+                { en: 'The value of x is x * 2', id: 'Nilai x adalah x * 2' },
+                { en: 'The value of x is {x * 2}', id: 'Nilai x adalah {x * 2}' },
                 { en: 'An error', id: 'Error' },
               ],
               answer: 0,
@@ -294,10 +317,13 @@ export const module1: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Print `Luas: 12.50` from `luas = 12.5`, with 2 decimal places.',
+                en: 'Print `Area: 12.50` from `area = 12.5`, with 2 decimal places.',
                 id: 'Cetak `Luas: 12.50` dari `luas = 12.5`, dengan 2 angka desimal.',
               },
-              template: 'luas = 12.5\nprint(f"Luas: {luas___}")',
+              template: {
+                en: 'area = 12.5\nprint(f"Area: {area___}")',
+                id: 'luas = 12.5\nprint(f"Luas: {luas___}")',
+              },
               blanks: [':.2f'],
               explain: {
                 en: 'The format spec goes right after the expression, still inside the braces.',
@@ -308,10 +334,13 @@ export const module1: Module = {
               kind: 'order',
               id: 'o1',
               prompt: {
-                en: 'Assemble a program that prints `Suhu: 36.7 C` from `celsius = 36.66`, rounded to 1 decimal place via the f-string.',
+                en: 'Assemble a program that prints `Temperature: 36.7 C` from `celsius = 36.66`, rounded to 1 decimal place via the f-string.',
                 id: 'Susun program yang mencetak `Suhu: 36.7 C` dari `celsius = 36.66`, dibulatkan ke 1 angka desimal lewat f-string.',
               },
-              lines: ['celsius = 36.66', 'print(f"Suhu: {celsius:.1f} C")'],
+              lines: {
+                en: ['celsius = 36.66', 'print(f"Temperature: {celsius:.1f} C")'],
+                id: ['celsius = 36.66', 'print(f"Suhu: {celsius:.1f} C")'],
+              },
               explain: {
                 en: ':.1f rounds and shows one decimal place, all in one step.',
                 id: ':.1f membulatkan dan menampilkan satu angka desimal, sekaligus.',
@@ -321,10 +350,13 @@ export const module1: Module = {
               kind: 'code',
               id: 'k1',
               prompt: {
-                en: 'Read a name and a decimal `nilai`. Print `nama: X.XX` with the value shown to 2 decimal places, using an f-string.',
+                en: 'Read a name and a decimal `value`. Print `name: X.XX` with the value shown to 2 decimal places, using an f-string.',
                 id: 'Baca sebuah nama dan `nilai` desimal. Cetak `nama: X.XX` dengan nilainya ditampilkan 2 angka desimal, memakai f-string.',
               },
-              starter: 'nama = input()\nnilai = float(input())\n',
+              starter: {
+                en: 'name = input()\nvalue = float(input())\n',
+                id: 'nama = input()\nnilai = float(input())\n',
+              },
               tests: [
                 { name: { en: 'Budi, 88', id: 'Budi, 88' }, stdin: ['Budi', '88'], expectOutput: 'Budi: 88.00' },
                 { name: { en: 'Sari, 72.5', id: 'Sari, 72.5' }, stdin: ['Sari', '72.5'], expectOutput: 'Sari: 72.50' },
@@ -333,9 +365,12 @@ export const module1: Module = {
               ],
               hints: [
                 { en: 'One f-string, both values inside it.', id: 'Satu f-string, kedua nilainya di dalamnya.' },
-                { en: 'f"{nama}: {nilai:.2f}"', id: 'f"{nama}: {nilai:.2f}"' },
+                { en: 'f"{name}: {value:.2f}"', id: 'f"{nama}: {nilai:.2f}"' },
               ],
-              solution: 'nama = input()\nnilai = float(input())\nprint(f"{nama}: {nilai:.2f}")',
+              solution: {
+                en: 'name = input()\nvalue = float(input())\nprint(f"{name}: {value:.2f}")',
+                id: 'nama = input()\nnilai = float(input())\nprint(f"{nama}: {nilai:.2f}")',
+              },
             },
           ],
         },
@@ -350,10 +385,13 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Name every quantity first', id: 'Beri nama tiap besaran dulu' },
               body: {
-                en: 'A formula reads best when every quantity has a name that matches the problem — `berat` and `tinggi`, not `a` and `b`. `**` binds tighter than `/`, so `berat / tinggi ** 2` divides by the *square* of `tinggi`, exactly as intended.',
+                en: 'A formula reads best when every quantity has a name that matches the problem — `weight` and `height`, not `a` and `b`. `**` binds tighter than `/`, so `weight / height ** 2` divides by the *square* of `height`, exactly as intended.',
                 id: 'Formula paling enak dibaca kalau tiap besaran punya nama yang cocok dengan soalnya — `berat` dan `tinggi`, bukan `a` dan `b`. `**` mengikat lebih erat daripada `/`, jadi `berat / tinggi ** 2` membagi dengan *kuadrat* dari `tinggi`, persis seperti maksudnya.',
               },
-              code: 'berat = 65\ntinggi = 1.7\nbmi = berat / tinggi ** 2\nprint(round(bmi, 1))',
+              code: {
+                en: 'weight = 65\nheight = 1.7\nbmi = weight / height ** 2\nprint(round(bmi, 1))',
+                id: 'berat = 65\ntinggi = 1.7\nbmi = berat / tinggi ** 2\nprint(round(bmi, 1))',
+              },
               output: '22.5',
             },
             {
@@ -364,14 +402,20 @@ export const module1: Module = {
                 en: 'Nothing stops the same formula appearing more than once with different values. It works, but writing it out twice is also a hint — later you will wrap a formula like this in a function so it is written only once.',
                 id: 'Tidak ada yang melarang formula yang sama muncul lebih dari sekali dengan nilai berbeda. Ini berjalan, tapi menulisnya dua kali juga sebuah petunjuk — nanti kamu akan membungkus formula seperti ini dalam sebuah fungsi supaya hanya ditulis sekali.',
               },
-              code: 'p1 = 100000\np2 = 250000\npajak1 = p1 * 0.1\npajak2 = p2 * 0.1\nprint(pajak1)\nprint(pajak2)',
+              code: {
+                en: 'p1 = 100000\np2 = 250000\ntax1 = p1 * 0.1\ntax2 = p2 * 0.1\nprint(tax1)\nprint(tax2)',
+                id: 'p1 = 100000\np2 = 250000\npajak1 = p1 * 0.1\npajak2 = p2 * 0.1\nprint(pajak1)\nprint(pajak2)',
+              },
               output: '10000.0\n25000.0',
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'a = 2\nb = 3\nc = 4\nhasil = a + b * c\nprint(hasil)',
+              code: {
+                en: 'a = 2\nb = 3\nc = 4\nresult = a + b * c\nprint(result)',
+                id: 'a = 2\nb = 3\nc = 4\nhasil = a + b * c\nprint(hasil)',
+              },
               options: [
                 { en: '14', id: '14' },
                 { en: '20', id: '20' },
@@ -388,10 +432,13 @@ export const module1: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Compute a discounted price: the price minus (price times percent over 100). `harga = 200000`, `persen = 15`.',
+                en: 'Compute a discounted price: the price minus (price times percent over 100). `price = 200000`, `percent = 15`.',
                 id: 'Hitung harga setelah diskon: harga dikurangi (harga kali persen per 100). `harga = 200000`, `persen = 15`.',
               },
-              template: 'harga = 200000\npersen = 15\nharga_akhir = harga ___ (harga * persen / 100)\nprint(harga_akhir)',
+              template: {
+                en: 'price = 200000\npercent = 15\nfinal_price = price ___ (price * percent / 100)\nprint(final_price)',
+                id: 'harga = 200000\npersen = 15\nharga_akhir = harga ___ (harga * persen / 100)\nprint(harga_akhir)',
+              },
               blanks: ['-'],
               explain: {
                 en: 'The discount amount is computed first inside the parentheses, then subtracted.',
@@ -405,7 +452,10 @@ export const module1: Module = {
                 en: 'Assemble a program that prints the perimeter of a rectangle (`2 * (p + l)`) with `p = 12`, `l = 5`.',
                 id: 'Susun program yang mencetak keliling persegi panjang (`2 * (p + l)`) dengan `p = 12`, `l = 5`.',
               },
-              lines: ['p = 12', 'l = 5', 'keliling = 2 * (p + l)', 'print(keliling)'],
+              lines: {
+                en: ['p = 12', 'l = 5', 'perimeter = 2 * (p + l)', 'print(perimeter)'],
+                id: ['p = 12', 'l = 5', 'keliling = 2 * (p + l)', 'print(keliling)'],
+              },
               explain: {
                 en: 'Without the parentheses, 2 * p + l would only double p.',
                 id: 'Tanpa kurungnya, 2 * p + l hanya akan menggandakan p.',
@@ -415,10 +465,13 @@ export const module1: Module = {
               kind: 'code',
               id: 'k1',
               prompt: {
-                en: 'Read `massa` (kg) and `tinggi` (m). Compute BMI (`massa / tinggi ** 2`) and print it rounded to 1 decimal place.',
+                en: 'Read `mass` (kg) and `height` (m). Compute BMI (`mass / height ** 2`) and print it rounded to 1 decimal place.',
                 id: 'Baca `massa` (kg) dan `tinggi` (m). Hitung BMI (`massa / tinggi ** 2`) dan cetak dibulatkan ke 1 angka desimal.',
               },
-              starter: 'massa = float(input())\ntinggi = float(input())\n',
+              starter: {
+                en: 'mass = float(input())\nheight = float(input())\n',
+                id: 'massa = float(input())\ntinggi = float(input())\n',
+              },
               tests: [
                 { name: { en: '65, 1.7', id: '65, 1.7' }, stdin: ['65', '1.7'], expectOutput: '22.5' },
                 { name: { en: '80, 1.8', id: '80, 1.8' }, stdin: ['80', '1.8'], expectOutput: '24.7' },
@@ -427,9 +480,12 @@ export const module1: Module = {
               ],
               hints: [
                 { en: 'One line for the formula, one to print it.', id: 'Satu baris untuk formulanya, satu untuk mencetaknya.' },
-                { en: 'bmi = massa / tinggi ** 2', id: 'bmi = massa / tinggi ** 2' },
+                { en: 'bmi = mass / height ** 2', id: 'bmi = massa / tinggi ** 2' },
               ],
-              solution: 'massa = float(input())\ntinggi = float(input())\nbmi = massa / tinggi ** 2\nprint(round(bmi, 1))',
+              solution: {
+                en: 'mass = float(input())\nheight = float(input())\nbmi = mass / height ** 2\nprint(round(bmi, 1))',
+                id: 'massa = float(input())\ntinggi = float(input())\nbmi = massa / tinggi ** 2\nprint(round(bmi, 1))',
+              },
             },
           ],
         },
@@ -442,11 +498,14 @@ export const module1: Module = {
           id: 'Diberikan modal awal, suku bunga tahunan, dan lama tahun, hitung nilai akhirnya.',
         },
         requirements: [
-          { en: 'Read `pokok` (starting amount), `bunga` (rate as a percent, e.g. 5 for 5%), and `tahun` (a whole number of years).', id: 'Baca `pokok` (modal awal), `bunga` (suku bunga dalam persen, mis. 5 untuk 5%), dan `tahun` (bilangan bulat tahun).' },
-          { en: 'Compute the final amount: `pokok * (1 + bunga / 100) ** tahun`.', id: 'Hitung nilai akhirnya: `pokok * (1 + bunga / 100) ** tahun`.' },
+          { en: 'Read `principal` (starting amount), `rate` (rate as a percent, e.g. 5 for 5%), and `years` (a whole number of years).', id: 'Baca `pokok` (modal awal), `bunga` (suku bunga dalam persen, mis. 5 untuk 5%), dan `tahun` (bilangan bulat tahun).' },
+          { en: 'Compute the final amount: `principal * (1 + rate / 100) ** years`.', id: 'Hitung nilai akhirnya: `pokok * (1 + bunga / 100) ** tahun`.' },
           { en: 'Print it rounded to 2 decimal places.', id: 'Cetak hasilnya dibulatkan ke 2 angka desimal.' },
         ],
-        starter: 'pokok = float(input())\nbunga = float(input())\ntahun = int(input())\n',
+        starter: {
+          en: 'principal = float(input())\nrate = float(input())\nyears = int(input())\n',
+          id: 'pokok = float(input())\nbunga = float(input())\ntahun = int(input())\n',
+        },
         tests: [
           { name: { en: '1,000,000 at 5% for 1 year', id: '1.000.000 pada 5% selama 1 tahun' }, stdin: ['1000000', '5', '1'], expectOutput: '1050000.0' },
           { name: { en: '1,000,000 at 5% for 2 years', id: '1.000.000 pada 5% selama 2 tahun' }, stdin: ['1000000', '5', '2'], expectOutput: '1102500.0' },
@@ -454,11 +513,13 @@ export const module1: Module = {
           { name: { en: 'zero interest', id: 'bunga nol' }, stdin: ['200000', '0', '5'], expectOutput: '200000.0' },
         ],
         hints: [
-          { en: 'Turn the percent into a fraction first: bunga / 100.', id: 'Ubah persennya jadi pecahan dulu: bunga / 100.' },
-          { en: '** applies to (1 + bunga / 100) as a whole, raised to tahun.', id: '** berlaku untuk (1 + bunga / 100) sebagai satu kesatuan, dipangkatkan tahun.' },
+          { en: 'Turn the percent into a fraction first: rate / 100.', id: 'Ubah persennya jadi pecahan dulu: bunga / 100.' },
+          { en: '** applies to (1 + rate / 100) as a whole, raised to years.', id: '** berlaku untuk (1 + bunga / 100) sebagai satu kesatuan, dipangkatkan tahun.' },
         ],
-        solution:
-          'pokok = float(input())\nbunga = float(input())\ntahun = int(input())\nakhir = pokok * (1 + bunga / 100) ** tahun\nprint(round(akhir, 2))',
+        solution: {
+          en: 'principal = float(input())\nrate = float(input())\nyears = int(input())\nfinal_amount = principal * (1 + rate / 100) ** years\nprint(round(final_amount, 2))',
+          id: 'pokok = float(input())\nbunga = float(input())\ntahun = int(input())\nakhir = pokok * (1 + bunga / 100) ** tahun\nprint(round(akhir, 2))',
+        },
         xp: 50,
       },
     },
