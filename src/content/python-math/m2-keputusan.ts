@@ -43,8 +43,11 @@ export const module2: Module = {
                 en: 'Store the comparison in a variable with a name that reads like the question it answers, and it slots straight into an f-string.',
                 id: 'Simpan hasil perbandingannya di variabel dengan nama yang terbaca seperti pertanyaan yang dijawabnya, dan ia langsung masuk ke f-string.',
               },
-              code: 'suhu = 38.5\ndemam = suhu > 37.5\nprint(f"Demam: {demam}")',
-              output: 'Demam: True',
+              code: {
+                en: 'temperature = 38.5\nfever = temperature > 37.5\nprint(f"Fever: {fever}")',
+                id: 'suhu = 38.5\ndemam = suhu > 37.5\nprint(f"Demam: {demam}")',
+              },
+              output: { en: 'Fever: True', id: 'Demam: True' },
             },
             {
               kind: 'quiz',
@@ -67,10 +70,13 @@ export const module2: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Store whether `umur` (17) is at least 17 in a variable `boleh`.',
+                en: 'Store whether `age` (17) is at least 17 in a variable `allowed`.',
                 id: 'Simpan apakah `umur` (17) sudah minimal 17 di variabel `boleh`.',
               },
-              template: 'umur = 17\nboleh = umur ___ 17\nprint(boleh)',
+              template: {
+                en: 'age = 17\nallowed = age ___ 17\nprint(allowed)',
+                id: 'umur = 17\nboleh = umur ___ 17\nprint(boleh)',
+              },
               blanks: ['>='],
               explain: {
                 en: '"At least" includes the boundary, so it is >=, not >.',
@@ -84,7 +90,10 @@ export const module2: Module = {
                 en: 'Assemble a program that prints whether x equals y (x = 8, y = 8).',
                 id: 'Susun program yang mencetak apakah x sama dengan y (x = 8, y = 8).',
               },
-              lines: ['x = 8', 'y = 8', 'sama = x == y', 'print(sama)'],
+              lines: {
+                en: ['x = 8', 'y = 8', 'equal = x == y', 'print(equal)'],
+                id: ['x = 8', 'y = 8', 'sama = x == y', 'print(sama)'],
+              },
               explain: {
                 en: '== asks a question; = stores an answer. They are never interchangeable.',
                 id: '== bertanya; = menyimpan jawaban. Keduanya tak pernah bisa saling gantikan.',
@@ -126,8 +135,11 @@ export const module2: Module = {
                 en: '`n % 2` is 0 for an even number and 1 for an odd one — the classic use of the remainder operator. The line ends with a colon, and everything indented under it belongs to that branch.',
                 id: '`n % 2` bernilai 0 untuk bilangan genap dan 1 untuk ganjil — pemakaian klasik operator sisa bagi. Barisnya diakhiri titik dua, dan semua yang menjorok di bawahnya milik cabang itu.',
               },
-              code: 'n = 7\nif n % 2 == 0:\n    print("Genap")\nelse:\n    print("Ganjil")',
-              output: 'Ganjil',
+              code: {
+                en: 'n = 7\nif n % 2 == 0:\n    print("Even")\nelse:\n    print("Odd")',
+                id: 'n = 7\nif n % 2 == 0:\n    print("Genap")\nelse:\n    print("Ganjil")',
+              },
+              output: { en: 'Odd', id: 'Ganjil' },
             },
             {
               kind: 'concept',
@@ -137,18 +149,24 @@ export const module2: Module = {
                 en: 'A number is positive, negative, or exactly zero — three outcomes need `elif` between `if` and `else`. Python checks each condition in order and stops at the first one that is `True`.',
                 id: 'Sebuah bilangan itu positif, negatif, atau tepat nol — tiga hasil butuh `elif` di antara `if` dan `else`. Python memeriksa tiap kondisi berurutan dan berhenti di yang pertama bernilai `True`.',
               },
-              code: 'x = -4\nif x > 0:\n    print("Positif")\nelif x < 0:\n    print("Negatif")\nelse:\n    print("Nol")',
-              output: 'Negatif',
+              code: {
+                en: 'x = -4\nif x > 0:\n    print("Positive")\nelif x < 0:\n    print("Negative")\nelse:\n    print("Zero")',
+                id: 'x = -4\nif x > 0:\n    print("Positif")\nelif x < 0:\n    print("Negatif")\nelse:\n    print("Nol")',
+              },
+              output: { en: 'Negative', id: 'Negatif' },
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'With x = 0, what is printed?', id: 'Dengan x = 0, apa yang dicetak?' },
-              code: 'x = 0\nif x > 0:\n    print("Positif")\nelif x < 0:\n    print("Negatif")\nelse:\n    print("Nol")',
+              code: {
+                en: 'x = 0\nif x > 0:\n    print("Positive")\nelif x < 0:\n    print("Negative")\nelse:\n    print("Zero")',
+                id: 'x = 0\nif x > 0:\n    print("Positif")\nelif x < 0:\n    print("Negatif")\nelse:\n    print("Nol")',
+              },
               options: [
-                { en: 'Nol', id: 'Nol' },
-                { en: 'Positif', id: 'Positif' },
-                { en: 'Negatif', id: 'Negatif' },
+                { en: 'Zero', id: 'Nol' },
+                { en: 'Positive', id: 'Positif' },
+                { en: 'Negative', id: 'Negatif' },
                 { en: 'Nothing is printed', id: 'Tidak ada yang dicetak' },
               ],
               answer: 0,
@@ -164,7 +182,10 @@ export const module2: Module = {
                 en: 'Complete the even/odd check for `n = 12`.',
                 id: 'Lengkapi pemeriksaan genap/ganjil untuk `n = 12`.',
               },
-              template: 'n = 12\nif n % 2 ___ 0:\n    print("Genap")\nelse:\n    print("Ganjil")',
+              template: {
+                en: 'n = 12\nif n % 2 ___ 0:\n    print("Even")\nelse:\n    print("Odd")',
+                id: 'n = 12\nif n % 2 ___ 0:\n    print("Genap")\nelse:\n    print("Ganjil")',
+              },
               blanks: ['=='],
               explain: {
                 en: 'Comparing needs ==; a single = would try to assign, which is not allowed here.',
@@ -175,10 +196,13 @@ export const module2: Module = {
               kind: 'order',
               id: 'o1',
               prompt: {
-                en: 'Assemble a program that classifies y = 15 as Positif, Negatif, or Nol.',
+                en: 'Assemble a program that classifies y = 15 as Positive, Negative, or Zero.',
                 id: 'Susun program yang mengklasifikasikan y = 15 sebagai Positif, Negatif, atau Nol.',
               },
-              lines: ['y = 15', 'if y > 0:', '    print("Positif")', 'elif y < 0:', '    print("Negatif")', 'else:', '    print("Nol")'],
+              lines: {
+                en: ['y = 15', 'if y > 0:', '    print("Positive")', 'elif y < 0:', '    print("Negative")', 'else:', '    print("Zero")'],
+                id: ['y = 15', 'if y > 0:', '    print("Positif")', 'elif y < 0:', '    print("Negatif")', 'else:', '    print("Nol")'],
+              },
               explain: {
                 en: 'Same shape as the concept above, with y in place of x.',
                 id: 'Bentuknya sama seperti pada konsep di atas, dengan y menggantikan x.',
@@ -188,20 +212,31 @@ export const module2: Module = {
               kind: 'code',
               id: 'k1',
               prompt: {
-                en: 'Read a whole number `n`. Print `Genap` if it divides evenly by 2, `Ganjil` otherwise.',
+                en: 'Read a whole number `n`. Print `Even` if it divides evenly by 2, `Odd` otherwise.',
                 id: 'Baca bilangan bulat `n`. Cetak `Genap` jika habis dibagi 2, `Ganjil` selain itu.',
               },
               starter: 'n = int(input())\n',
-              tests: [
-                { name: { en: '4 → Genap', id: '4 → Genap' }, stdin: ['4'], expectOutput: 'Genap' },
-                { name: { en: '7 → Ganjil', id: '7 → Ganjil' }, stdin: ['7'], expectOutput: 'Ganjil' },
-                { name: { en: '0 → Genap', id: '0 → Genap' }, stdin: ['0'], expectOutput: 'Genap' },
-                { name: { en: '-4 → Genap (negative)', id: '-4 → Genap (negatif)' }, stdin: ['-4'], expectOutput: 'Genap' },
-              ],
+              tests: {
+                en: [
+                  { name: { en: '4 → Even', id: '4 → Genap' }, stdin: ['4'], expectOutput: 'Even' },
+                  { name: { en: '7 → Odd', id: '7 → Ganjil' }, stdin: ['7'], expectOutput: 'Odd' },
+                  { name: { en: '0 → Even', id: '0 → Genap' }, stdin: ['0'], expectOutput: 'Even' },
+                  { name: { en: '-4 → Even (negative)', id: '-4 → Genap (negatif)' }, stdin: ['-4'], expectOutput: 'Even' },
+                ],
+                id: [
+                  { name: { en: '4 → Genap', id: '4 → Genap' }, stdin: ['4'], expectOutput: 'Genap' },
+                  { name: { en: '7 → Ganjil', id: '7 → Ganjil' }, stdin: ['7'], expectOutput: 'Ganjil' },
+                  { name: { en: '0 → Genap', id: '0 → Genap' }, stdin: ['0'], expectOutput: 'Genap' },
+                  { name: { en: '-4 → Genap (negative)', id: '-4 → Genap (negatif)' }, stdin: ['-4'], expectOutput: 'Genap' },
+                ],
+              },
               hints: [
                 { en: 'The same n % 2 == 0 check as the lesson above.', id: 'Pemeriksaan n % 2 == 0 yang sama seperti pada pelajaran di atas.' },
               ],
-              solution: 'n = int(input())\nif n % 2 == 0:\n    print("Genap")\nelse:\n    print("Ganjil")',
+              solution: {
+                en: 'n = int(input())\nif n % 2 == 0:\n    print("Even")\nelse:\n    print("Odd")',
+                id: 'n = int(input())\nif n % 2 == 0:\n    print("Genap")\nelse:\n    print("Ganjil")',
+              },
             },
           ],
         },
@@ -215,22 +250,34 @@ export const module2: Module = {
         },
         requirements: [
           { en: 'Read three side lengths `a`, `b`, `c` (each may have a decimal point).', id: 'Baca tiga panjang sisi `a`, `b`, `c` (masing-masing bisa desimal).' },
-          { en: 'If any two sides do not together exceed the third, print `Bukan segitiga`.', id: 'Jika ada dua sisi yang jumlahnya tidak melebihi sisi ketiga, cetak `Bukan segitiga`.' },
-          { en: 'Otherwise print `Sama sisi` (all three equal), `Sama kaki` (exactly two equal), or `Sembarang` (all different).', id: 'Selain itu cetak `Sama sisi` (ketiganya sama), `Sama kaki` (tepat dua sama), atau `Sembarang` (semua beda).' },
+          { en: 'If any two sides do not together exceed the third, print `Not a triangle`.', id: 'Jika ada dua sisi yang jumlahnya tidak melebihi sisi ketiga, cetak `Bukan segitiga`.' },
+          { en: 'Otherwise print `Equilateral` (all three equal), `Isosceles` (exactly two equal), or `Scalene` (all different).', id: 'Selain itu cetak `Sama sisi` (ketiganya sama), `Sama kaki` (tepat dua sama), atau `Sembarang` (semua beda).' },
         ],
         starter: 'a = float(input())\nb = float(input())\nc = float(input())\n',
-        tests: [
-          { name: { en: '3, 3, 3 → Sama sisi', id: '3, 3, 3 → Sama sisi' }, stdin: ['3', '3', '3'], expectOutput: 'Sama sisi' },
-          { name: { en: '3, 3, 5 → Sama kaki', id: '3, 3, 5 → Sama kaki' }, stdin: ['3', '3', '5'], expectOutput: 'Sama kaki' },
-          { name: { en: '3, 4, 5 → Sembarang', id: '3, 4, 5 → Sembarang' }, stdin: ['3', '4', '5'], expectOutput: 'Sembarang' },
-          { name: { en: '1, 1, 5 → Bukan segitiga', id: '1, 1, 5 → Bukan segitiga' }, stdin: ['1', '1', '5'], expectOutput: 'Bukan segitiga' },
-        ],
+        tests: {
+          en: [
+            { name: { en: '3, 3, 3 → Equilateral', id: '3, 3, 3 → Sama sisi' }, stdin: ['3', '3', '3'], expectOutput: 'Equilateral' },
+            { name: { en: '3, 3, 5 → Isosceles', id: '3, 3, 5 → Sama kaki' }, stdin: ['3', '3', '5'], expectOutput: 'Isosceles' },
+            { name: { en: '3, 4, 5 → Scalene', id: '3, 4, 5 → Sembarang' }, stdin: ['3', '4', '5'], expectOutput: 'Scalene' },
+            { name: { en: '1, 1, 5 → Not a triangle', id: '1, 1, 5 → Bukan segitiga' }, stdin: ['1', '1', '5'], expectOutput: 'Not a triangle' },
+          ],
+          id: [
+            { name: { en: '3, 3, 3 → Sama sisi', id: '3, 3, 3 → Sama sisi' }, stdin: ['3', '3', '3'], expectOutput: 'Sama sisi' },
+            { name: { en: '3, 3, 5 → Sama kaki', id: '3, 3, 5 → Sama kaki' }, stdin: ['3', '3', '5'], expectOutput: 'Sama kaki' },
+            { name: { en: '3, 4, 5 → Sembarang', id: '3, 4, 5 → Sembarang' }, stdin: ['3', '4', '5'], expectOutput: 'Sembarang' },
+            { name: { en: '1, 1, 5 → Bukan segitiga', id: '1, 1, 5 → Bukan segitiga' }, stdin: ['1', '1', '5'], expectOutput: 'Bukan segitiga' },
+          ],
+        },
         hints: [
           { en: 'Check the triangle inequality first — the whole answer depends on it.', id: 'Periksa dulu ketaksamaan segitiganya — seluruh jawaban bergantung padanya.' },
           { en: 'A valid triangle needs all three: a+b>c, b+c>a, a+c>b.', id: 'Segitiga yang sah butuh ketiganya: a+b>c, b+c>a, a+c>b.' },
         ],
-        solution:
-          'a = float(input())\nb = float(input())\nc = float(input())\nif a + b <= c or b + c <= a or a + c <= b:\n    print("Bukan segitiga")\nelif a == b and b == c:\n    print("Sama sisi")\nelif a == b or b == c or a == c:\n    print("Sama kaki")\nelse:\n    print("Sembarang")',
+        solution: {
+          en:
+            'a = float(input())\nb = float(input())\nc = float(input())\nif a + b <= c or b + c <= a or a + c <= b:\n    print("Not a triangle")\nelif a == b and b == c:\n    print("Equilateral")\nelif a == b or b == c or a == c:\n    print("Isosceles")\nelse:\n    print("Scalene")',
+          id:
+            'a = float(input())\nb = float(input())\nc = float(input())\nif a + b <= c or b + c <= a or a + c <= b:\n    print("Bukan segitiga")\nelif a == b and b == c:\n    print("Sama sisi")\nelif a == b or b == c or a == c:\n    print("Sama kaki")\nelse:\n    print("Sembarang")',
+        },
         xp: 50,
       },
     },
@@ -258,7 +305,10 @@ export const module2: Module = {
                 en: '`and` is only `True` when both sides are. It reads the way "and" reads in a requirement: both conditions have to hold.',
                 id: '`and` hanya `True` kalau kedua sisinya True. Ia terbaca seperti "dan" pada sebuah syarat: kedua kondisi harus terpenuhi.',
               },
-              code: 'umur = 25\npunya_ktp = True\nboleh_pinjam = umur >= 21 and punya_ktp\nprint(boleh_pinjam)',
+              code: {
+                en: 'age = 25\nhas_id = True\nmay_borrow = age >= 21 and has_id\nprint(may_borrow)',
+                id: 'umur = 25\npunya_ktp = True\nboleh_pinjam = umur >= 21 and punya_ktp\nprint(boleh_pinjam)',
+              },
               output: 'True',
             },
             {
@@ -269,7 +319,10 @@ export const module2: Module = {
                 en: '`or` is `True` when at least one side is. `not` flips a `True`/`False` to its opposite.',
                 id: '`or` bernilai `True` kalau setidaknya satu sisinya True. `not` membalik `True`/`False` ke lawannya.',
               },
-              code: 'x = 3\ndalam_rentang = x < 0 or x > 10\nprint(dalam_rentang)\nprint(not dalam_rentang)',
+              code: {
+                en: 'x = 3\nin_range = x < 0 or x > 10\nprint(in_range)\nprint(not in_range)',
+                id: 'x = 3\ndalam_rentang = x < 0 or x > 10\nprint(dalam_rentang)\nprint(not dalam_rentang)',
+              },
               output: 'False\nTrue',
             },
             {
@@ -296,7 +349,10 @@ export const module2: Module = {
                 en: 'Check whether `n` divides evenly by 3 AND by 5 (a multiple of 15).',
                 id: 'Cek apakah `n` habis dibagi 3 DAN habis dibagi 5 (kelipatan 15).',
               },
-              template: 'n = 30\nkelipatan15 = n % 3 == 0 ___ n % 5 == 0\nprint(kelipatan15)',
+              template: {
+                en: 'n = 30\nmultiple_of_15 = n % 3 == 0 ___ n % 5 == 0\nprint(multiple_of_15)',
+                id: 'n = 30\nkelipatan15 = n % 3 == 0 ___ n % 5 == 0\nprint(kelipatan15)',
+              },
               blanks: ['and'],
               explain: {
                 en: 'Both conditions must hold for a true multiple of 15.',
@@ -310,7 +366,10 @@ export const module2: Module = {
                 en: 'Assemble a program that flags a score as invalid when it is below 0 or above 100 (score = 150).',
                 id: 'Susun program yang menandai skor sebagai tidak sah kalau di bawah 0 atau di atas 100 (skor = 150).',
               },
-              lines: ['skor = 150', 'tidak_sah = skor < 0 or skor > 100', 'print(tidak_sah)'],
+              lines: {
+                en: ['score = 150', 'invalid = score < 0 or score > 100', 'print(invalid)'],
+                id: ['skor = 150', 'tidak_sah = skor < 0 or skor > 100', 'print(tidak_sah)'],
+              },
               explain: {
                 en: 'Either extreme alone is enough to make it invalid — that is what or means here.',
                 id: 'Salah satu ujungnya saja sudah cukup membuatnya tidak sah — itulah arti or di sini.',
@@ -353,7 +412,10 @@ export const module2: Module = {
                 en: 'A piecewise function is just an elif chain where each branch computes the value a different way. Here: `-x` when `x` is negative, `x**2` when it is under 5, and 25 otherwise.',
                 id: 'Fungsi sepotong-sepotong hanyalah rantai elif yang tiap cabangnya menghitung nilai dengan cara berbeda. Di sini: `-x` kalau `x` negatif, `x**2` kalau di bawah 5, dan 25 selain itu.',
               },
-              code: 'x = 7\nif x < 0:\n    hasil = -x\nelif x < 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
+              code: {
+                en: 'x = 7\nif x < 0:\n    result = -x\nelif x < 5:\n    result = x ** 2\nelse:\n    result = 25\nprint(result)',
+                id: 'x = 7\nif x < 0:\n    hasil = -x\nelif x < 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
+              },
               output: '25',
             },
             {
@@ -364,14 +426,20 @@ export const module2: Module = {
                 en: 'Change only `x` and a different branch runs. `-3` is negative, so it takes the first branch: `-(-3)` is `3`.',
                 id: 'Ubah hanya `x` dan cabang yang berbeda yang berjalan. `-3` negatif, jadi mengambil cabang pertama: `-(-3)` adalah `3`.',
               },
-              code: 'x = -3\nif x < 0:\n    hasil = -x\nelif x < 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
+              code: {
+                en: 'x = -3\nif x < 0:\n    result = -x\nelif x < 5:\n    result = x ** 2\nelse:\n    result = 25\nprint(result)',
+                id: 'x = -3\nif x < 0:\n    hasil = -x\nelif x < 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
+              },
               output: '3',
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'With x = 2, what is printed by the same three branches?', id: 'Dengan x = 2, apa yang dicetak oleh tiga cabang yang sama?' },
-              code: 'x = 2\nif x < 0:\n    hasil = -x\nelif x < 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
+              code: {
+                en: 'x = 2\nif x < 0:\n    result = -x\nelif x < 5:\n    result = x ** 2\nelse:\n    result = 25\nprint(result)',
+                id: 'x = 2\nif x < 0:\n    hasil = -x\nelif x < 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
+              },
               options: [
                 { en: '4', id: '4' },
                 { en: '2', id: '2' },
@@ -391,7 +459,10 @@ export const module2: Module = {
                 en: 'Complete the chain so it correctly separates the negative and middle branches.',
                 id: 'Lengkapi rantainya agar benar memisahkan cabang negatif dan tengah.',
               },
-              template: 'x = 5\nif x < 0:\n    hasil = -x\nelif x ___ 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
+              template: {
+                en: 'x = 5\nif x < 0:\n    result = -x\nelif x ___ 5:\n    result = x ** 2\nelse:\n    result = 25\nprint(result)',
+                id: 'x = 5\nif x < 0:\n    hasil = -x\nelif x ___ 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
+              },
               blanks: ['<'],
               explain: {
                 en: 'The same boundary as the worked example: strictly less than 5 for the middle branch.',
@@ -402,21 +473,35 @@ export const module2: Module = {
               kind: 'order',
               id: 'o1',
               prompt: {
-                en: 'Assemble a grading scale: 90+ is A, 75+ is B, 60+ is C, otherwise D (nilai = 68).',
+                en: 'Assemble a grading scale: 90+ is A, 75+ is B, 60+ is C, otherwise D (score = 68).',
                 id: 'Susun skala nilai: 90 ke atas A, 75 ke atas B, 60 ke atas C, selain itu D (nilai = 68).',
               },
-              lines: [
-                'nilai = 68',
-                'if nilai >= 90:',
-                '    huruf = "A"',
-                'elif nilai >= 75:',
-                '    huruf = "B"',
-                'elif nilai >= 60:',
-                '    huruf = "C"',
-                'else:',
-                '    huruf = "D"',
-                'print(huruf)',
-              ],
+              lines: {
+                en: [
+                  'score = 68',
+                  'if score >= 90:',
+                  '    letter = "A"',
+                  'elif score >= 75:',
+                  '    letter = "B"',
+                  'elif score >= 60:',
+                  '    letter = "C"',
+                  'else:',
+                  '    letter = "D"',
+                  'print(letter)',
+                ],
+                id: [
+                  'nilai = 68',
+                  'if nilai >= 90:',
+                  '    huruf = "A"',
+                  'elif nilai >= 75:',
+                  '    huruf = "B"',
+                  'elif nilai >= 60:',
+                  '    huruf = "C"',
+                  'else:',
+                  '    huruf = "D"',
+                  'print(huruf)',
+                ],
+              },
               explain: {
                 en: 'Each threshold is checked in order, from highest to lowest.',
                 id: 'Tiap ambang batas diperiksa berurutan, dari tertinggi ke terendah.',
@@ -426,7 +511,7 @@ export const module2: Module = {
               kind: 'code',
               id: 'k1',
               prompt: {
-                en: 'Read a whole number `x`. Compute `hasil` using the three branches from this lesson (`-x` if negative, `x**2` if under 5, 25 otherwise), and print it.',
+                en: 'Read a whole number `x`. Compute `result` using the three branches from this lesson (`-x` if negative, `x**2` if under 5, 25 otherwise), and print it.',
                 id: 'Baca bilangan bulat `x`. Hitung `hasil` memakai tiga cabang dari pelajaran ini (`-x` kalau negatif, `x**2` kalau di bawah 5, 25 selain itu), lalu cetak.',
               },
               starter: 'x = int(input())\n',
@@ -440,7 +525,10 @@ export const module2: Module = {
               hints: [
                 { en: 'Exactly the three branches from the concept steps above.', id: 'Persis tiga cabang dari langkah konsep di atas.' },
               ],
-              solution: 'x = int(input())\nif x < 0:\n    hasil = -x\nelif x < 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
+              solution: {
+                en: 'x = int(input())\nif x < 0:\n    result = -x\nelif x < 5:\n    result = x ** 2\nelse:\n    result = 25\nprint(result)',
+                id: 'x = int(input())\nif x < 0:\n    hasil = -x\nelif x < 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
+              },
             },
           ],
         },
@@ -453,26 +541,42 @@ export const module2: Module = {
           id: 'Listrik ditagih bertingkat: 50 kWh pertama gratis, 100 kWh berikutnya seharga 1000 per kWh, dan di atas 150 kWh seharga 1500 per kWh.',
         },
         requirements: [
-          { en: 'Read `pemakaian`, a whole number of kWh.', id: 'Baca `pemakaian`, bilangan bulat kWh.' },
+          { en: 'Read `usage`, a whole number of kWh.', id: 'Baca `pemakaian`, bilangan bulat kWh.' },
           { en: 'If it is 50 or under, the bill is 0.', id: 'Jika 50 atau kurang, tagihannya 0.' },
-          { en: 'If it is 150 or under, the bill is `(pemakaian - 50) * 1000`.', id: 'Jika 150 atau kurang, tagihannya `(pemakaian - 50) * 1000`.' },
-          { en: 'Otherwise, the bill is `100 * 1000 + (pemakaian - 150) * 1500`.', id: 'Selain itu, tagihannya `100 * 1000 + (pemakaian - 150) * 1500`.' },
+          { en: 'If it is 150 or under, the bill is `(usage - 50) * 1000`.', id: 'Jika 150 atau kurang, tagihannya `(pemakaian - 50) * 1000`.' },
+          { en: 'Otherwise, the bill is `100 * 1000 + (usage - 150) * 1500`.', id: 'Selain itu, tagihannya `100 * 1000 + (pemakaian - 150) * 1500`.' },
           { en: 'Print the bill.', id: 'Cetak tagihannya.' },
         ],
-        starter: 'pemakaian = int(input())\n',
-        tests: [
-          { name: { en: '30 kWh → 0', id: '30 kWh → 0' }, stdin: ['30'], expectOutput: '0' },
-          { name: { en: '50 kWh (boundary) → 0', id: '50 kWh (batas) → 0' }, stdin: ['50'], expectOutput: '0' },
-          { name: { en: '100 kWh → 50000', id: '100 kWh → 50000' }, stdin: ['100'], expectOutput: '50000' },
-          { name: { en: '150 kWh (boundary) → 100000', id: '150 kWh (batas) → 100000' }, stdin: ['150'], expectOutput: '100000' },
-          { name: { en: '200 kWh → 175000', id: '200 kWh → 175000' }, stdin: ['200'], expectOutput: '175000' },
-        ],
+        starter: {
+          en: 'usage = int(input())\n',
+          id: 'pemakaian = int(input())\n',
+        },
+        tests: {
+          en: [
+            { name: { en: '30 kWh → 0', id: '30 kWh → 0' }, stdin: ['30'], expectOutput: '0' },
+            { name: { en: '50 kWh (boundary) → 0', id: '50 kWh (batas) → 0' }, stdin: ['50'], expectOutput: '0' },
+            { name: { en: '100 kWh → 50000', id: '100 kWh → 50000' }, stdin: ['100'], expectOutput: '50000' },
+            { name: { en: '150 kWh (boundary) → 100000', id: '150 kWh (batas) → 100000' }, stdin: ['150'], expectOutput: '100000' },
+            { name: { en: '200 kWh → 175000', id: '200 kWh → 175000' }, stdin: ['200'], expectOutput: '175000' },
+          ],
+          id: [
+            { name: { en: '30 kWh → 0', id: '30 kWh → 0' }, stdin: ['30'], expectOutput: '0' },
+            { name: { en: '50 kWh (boundary) → 0', id: '50 kWh (batas) → 0' }, stdin: ['50'], expectOutput: '0' },
+            { name: { en: '100 kWh → 50000', id: '100 kWh → 50000' }, stdin: ['100'], expectOutput: '50000' },
+            { name: { en: '150 kWh (boundary) → 100000', id: '150 kWh (batas) → 100000' }, stdin: ['150'], expectOutput: '100000' },
+            { name: { en: '200 kWh → 175000', id: '200 kWh → 175000' }, stdin: ['200'], expectOutput: '175000' },
+          ],
+        },
         hints: [
           { en: 'Three branches, checked from the lowest boundary to the highest.', id: 'Tiga cabang, diperiksa dari batas terendah ke tertinggi.' },
           { en: 'The middle branch only counts kWh past the free 50.', id: 'Cabang tengah hanya menghitung kWh setelah 50 yang gratis.' },
         ],
-        solution:
-          'pemakaian = int(input())\nif pemakaian <= 50:\n    tagihan = 0\nelif pemakaian <= 150:\n    tagihan = (pemakaian - 50) * 1000\nelse:\n    tagihan = 100 * 1000 + (pemakaian - 150) * 1500\nprint(tagihan)',
+        solution: {
+          en:
+            'usage = int(input())\nif usage <= 50:\n    bill = 0\nelif usage <= 150:\n    bill = (usage - 50) * 1000\nelse:\n    bill = 100 * 1000 + (usage - 150) * 1500\nprint(bill)',
+          id:
+            'pemakaian = int(input())\nif pemakaian <= 50:\n    tagihan = 0\nelif pemakaian <= 150:\n    tagihan = (pemakaian - 50) * 1000\nelse:\n    tagihan = 100 * 1000 + (pemakaian - 150) * 1500\nprint(tagihan)',
+        },
         xp: 50,
       },
     },
