@@ -9,6 +9,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { useI18n } from '../i18n'
+import { resolveBi } from '../content/types'
 import { MODES, ROOT_HTML, SQL_SCHEMA, modeById, type ModeId } from '../content/playground'
 import { runPython, splitStdin } from '../lib/python'
 import { runSql, type SqlResult } from '../lib/sql'
@@ -36,7 +37,7 @@ function baca(): Tersimpan | null {
 }
 
 export default function Playground() {
-  const { t, tc } = useI18n()
+  const { t, tc, lang } = useI18n()
 
   const awal = useMemo(baca, [])
   const [modeId, setModeId] = useState<ModeId>(awal?.mode ?? 'python')
@@ -51,7 +52,7 @@ export default function Playground() {
   const [busy, setBusy] = useState(false)
 
   const mode = modeById(modeId)
-  const source = kode[modeId] ?? mode.templat[0].code
+  const source = kode[modeId] ?? resolveBi(mode.templat[0].code, lang)
 
   // Keep the scratch space across reloads. One write per edit is plenty here —
   // this is a few kilobytes of text, not a document store.
@@ -78,7 +79,7 @@ export default function Playground() {
   function pakaiTemplat(id: string) {
     const tpl = mode.templat.find((x) => x.id === id)
     if (!tpl) return
-    setSource(tpl.code)
+    setSource(resolveBi(tpl.code, lang))
     if (tpl.stdin !== undefined) setStdin(tpl.stdin)
     setOut(null)
     setRows(null)
@@ -96,7 +97,7 @@ export default function Playground() {
           error: Boolean(res.error),
         })
       } else if (modeId === 'sql') {
-        setRows(await runSql(SQL_SCHEMA, source))
+        setRows(await runSql(resolveBi(SQL_SCHEMA, lang), source))
       } else if (modeId === 'typescript') {
         setCompiled(await compileTs(source))
       } else {
@@ -159,7 +160,7 @@ export default function Playground() {
               <summary className="io-label" style={{ cursor: 'pointer' }}>
                 {tc({ en: 'The tables (already set up)', id: 'Tabelnya (sudah disiapkan)' })}
               </summary>
-              <CodeBlock>{SQL_SCHEMA}</CodeBlock>
+              <CodeBlock>{resolveBi(SQL_SCHEMA, lang)}</CodeBlock>
             </details>
           )}
 
