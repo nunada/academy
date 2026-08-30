@@ -33,7 +33,7 @@ export const module6: Module = {
                 en: 'Until now an error ended the program on the spot — every line after it was skipped. `int("abc")` is the classic case: the user types something that is not a number, and the whole thing falls over.',
                 id: 'Sampai sekarang, error mengakhiri program saat itu juga — semua baris setelahnya dilewati. `int("abc")` adalah kasus klasiknya: pengguna mengetik sesuatu yang bukan angka, dan semuanya runtuh.',
               },
-              code: 'n = int("abc")\nprint("baris ini tidak pernah jalan")',
+              code: { en: 'n = int("abc")\nprint("this line never runs")', id: 'n = int("abc")\nprint("baris ini tidak pernah jalan")' },
               output: "ValueError: invalid literal for int() with base 10: 'abc'",
             },
             {
@@ -44,8 +44,11 @@ export const module6: Module = {
                 en: 'Put the risky line under `try`. If it raises, Python jumps to `except` instead of stopping. The program keeps going.',
                 id: 'Taruh baris berisikonya di bawah `try`. Kalau gagal, Python melompat ke `except` alih-alih berhenti. Programnya tetap berjalan.',
               },
-              code: 'try:\n    n = int("abc")\n    print("berhasil")\nexcept ValueError:\n    print("bukan angka")\n\nprint("program lanjut")',
-              output: 'bukan angka\nprogram lanjut',
+              code: {
+                en: 'try:\n    n = int("abc")\n    print("success")\nexcept ValueError:\n    print("not a number")\n\nprint("program continues")',
+                id: 'try:\n    n = int("abc")\n    print("berhasil")\nexcept ValueError:\n    print("bukan angka")\n\nprint("program lanjut")',
+              },
+              output: { en: 'not a number\nprogram continues', id: 'bukan angka\nprogram lanjut' },
             },
             {
               kind: 'concept',
@@ -55,8 +58,11 @@ export const module6: Module = {
                 en: 'Each kind of failure has a name. `ValueError` is the right type but an impossible value, `ZeroDivisionError` speaks for itself, `KeyError` is a missing dictionary key, `IndexError` a position past the end of a list.',
                 id: 'Tiap jenis kegagalan punya nama. `ValueError` berarti tipenya benar tapi nilainya mustahil, `ZeroDivisionError` sudah jelas, `KeyError` adalah kunci dictionary yang tidak ada, `IndexError` adalah posisi melewati ujung list.',
               },
-              code: 'try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print("tidak bisa dibagi nol")',
-              output: 'tidak bisa dibagi nol',
+              code: {
+                en: 'try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print("cannot divide by zero")',
+                id: 'try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print("tidak bisa dibagi nol")',
+              },
+              output: { en: 'cannot divide by zero', id: 'tidak bisa dibagi nol' },
             },
             {
               kind: 'quiz',
@@ -79,10 +85,13 @@ export const module6: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Catch the division by zero and print `tak hingga` instead.',
+                en: 'Catch the division by zero and print `infinity` instead.',
                 id: 'Tangkap pembagian nol dan cetak `tak hingga` sebagai gantinya.',
               },
-              template: '___:\n    print(5 / 0)\n___ ZeroDivisionError:\n    print("tak hingga")',
+              template: {
+                en: '___:\n    print(5 / 0)\n___ ZeroDivisionError:\n    print("infinity")',
+                id: '___:\n    print(5 / 0)\n___ ZeroDivisionError:\n    print("tak hingga")',
+              },
               blanks: ['try', 'except'],
               explain: {
                 en: 'try wraps the risky line; except names the failure it will handle.',
@@ -93,34 +102,52 @@ export const module6: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'Read one line of input. Print the number doubled if it is a number, otherwise print `Bukan angka`.',
+                en: 'Read one line of input. Print the number doubled if it is a number, otherwise print `Not a number`.',
                 id: 'Baca satu baris input. Cetak angkanya dikali dua jika berupa angka, selain itu cetak `Bukan angka`.',
               },
-              starter: 'teks = input("Angka: ")\n',
-              tests: [
-                { name: { en: '"5" gives 10', id: '"5" menghasilkan 10' }, stdin: ['5'], expectOutput: '10' },
-                {
-                  name: { en: '"abc" gives Bukan angka', id: '"abc" menghasilkan Bukan angka' },
-                  stdin: ['abc'],
-                  expectOutput: 'Bukan angka',
-                },
-                { name: { en: '"-3" gives -6', id: '"-3" menghasilkan -6' }, stdin: ['-3'], expectOutput: '-6' },
-                {
-                  name: { en: 'An empty line is refused', id: 'Baris kosong ditolak' },
-                  stdin: [''],
-                  expectOutput: 'Bukan angka',
-                },
-              ],
+              starter: { en: 'text = input("Number: ")\n', id: 'teks = input("Angka: ")\n' },
+              tests: {
+                en: [
+                  { name: { en: '"5" gives 10', id: '"5" menghasilkan 10' }, stdin: ['5'], expectOutput: '10' },
+                  {
+                    name: { en: '"abc" gives Not a number', id: '"abc" menghasilkan Bukan angka' },
+                    stdin: ['abc'],
+                    expectOutput: 'Not a number',
+                  },
+                  { name: { en: '"-3" gives -6', id: '"-3" menghasilkan -6' }, stdin: ['-3'], expectOutput: '-6' },
+                  {
+                    name: { en: 'An empty line is refused', id: 'Baris kosong ditolak' },
+                    stdin: [''],
+                    expectOutput: 'Not a number',
+                  },
+                ],
+                id: [
+                  { name: { en: '"5" gives 10', id: '"5" menghasilkan 10' }, stdin: ['5'], expectOutput: '10' },
+                  {
+                    name: { en: '"abc" gives Bukan angka', id: '"abc" menghasilkan Bukan angka' },
+                    stdin: ['abc'],
+                    expectOutput: 'Bukan angka',
+                  },
+                  { name: { en: '"-3" gives -6', id: '"-3" menghasilkan -6' }, stdin: ['-3'], expectOutput: '-6' },
+                  {
+                    name: { en: 'An empty line is refused', id: 'Baris kosong ditolak' },
+                    stdin: [''],
+                    expectOutput: 'Bukan angka',
+                  },
+                ],
+              },
               hints: [
                 { en: 'The conversion is the risky part, so it goes inside try.', id: 'Konversinya bagian yang berisiko, jadi ia masuk ke dalam try.' },
                 { en: 'except ValueError: is the one int() raises.', id: 'except ValueError: adalah yang dimunculkan int().' },
                 {
-                  en: 'try: n = int(teks) then print(n * 2) — except ValueError: then print("Bukan angka")',
+                  en: 'try: n = int(text) then print(n * 2) — except ValueError: then print("Not a number")',
                   id: 'try: n = int(teks) lalu print(n * 2) — except ValueError: lalu print("Bukan angka")',
                 },
               ],
-              solution:
-                'teks = input("Angka: ")\ntry:\n    n = int(teks)\n    print(n * 2)\nexcept ValueError:\n    print("Bukan angka")',
+              solution: {
+                en: 'text = input("Number: ")\ntry:\n    n = int(text)\n    print(n * 2)\nexcept ValueError:\n    print("Not a number")',
+                id: 'teks = input("Angka: ")\ntry:\n    n = int(teks)\n    print(n * 2)\nexcept ValueError:\n    print("Bukan angka")',
+              },
             },
           ],
         },
@@ -138,8 +165,11 @@ export const module6: Module = {
                 en: 'A block can have several `except` clauses. Python runs the first one that matches, so each kind of failure gets its own message.',
                 id: 'Sebuah blok boleh punya beberapa klausa `except`. Python menjalankan yang pertama cocok, jadi tiap jenis kegagalan dapat pesannya sendiri.',
               },
-              code: 'def bagi(a, b):\n    try:\n        return int(a) / int(b)\n    except ValueError:\n        return "bukan angka"\n    except ZeroDivisionError:\n        return "tidak bisa dibagi nol"\n\nprint(bagi("10", "2"))\nprint(bagi("x", "2"))\nprint(bagi("10", "0"))',
-              output: '5.0\nbukan angka\ntidak bisa dibagi nol',
+              code: {
+                en: 'def divide(a, b):\n    try:\n        return int(a) / int(b)\n    except ValueError:\n        return "not a number"\n    except ZeroDivisionError:\n        return "cannot divide by zero"\n\nprint(divide("10", "2"))\nprint(divide("x", "2"))\nprint(divide("10", "0"))',
+                id: 'def bagi(a, b):\n    try:\n        return int(a) / int(b)\n    except ValueError:\n        return "bukan angka"\n    except ZeroDivisionError:\n        return "tidak bisa dibagi nol"\n\nprint(bagi("10", "2"))\nprint(bagi("x", "2"))\nprint(bagi("10", "0"))',
+              },
+              output: { en: '5.0\nnot a number\ncannot divide by zero', id: '5.0\nbukan angka\ntidak bisa dibagi nol' },
             },
             {
               kind: 'concept',
@@ -149,17 +179,26 @@ export const module6: Module = {
                 en: 'A bare `except:` swallows every error, including your own typos, and hides the bug you actually need to see. Name the failure you expected. `as e` gives you the message Python would have shown.',
                 id: '`except:` polos menelan semua error, termasuk salah ketikmu sendiri, dan menyembunyikan bug yang justru perlu kamu lihat. Sebutkan kegagalan yang kamu perkirakan. `as e` memberimu pesan yang tadinya akan ditampilkan Python.',
               },
-              code: 'try:\n    n = int("abc")\nexcept ValueError as e:\n    print("gagal:", e)',
-              output: "gagal: invalid literal for int() with base 10: 'abc'",
+              code: {
+                en: 'try:\n    n = int("abc")\nexcept ValueError as e:\n    print("failed:", e)',
+                id: 'try:\n    n = int("abc")\nexcept ValueError as e:\n    print("gagal:", e)',
+              },
+              output: {
+                en: "failed: invalid literal for int() with base 10: 'abc'",
+                id: "gagal: invalid literal for int() with base 10: 'abc'",
+              },
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'data = {"a": 1}\ntry:\n    print(data["b"])\nexcept ValueError:\n    print("nilai salah")\nexcept KeyError:\n    print("kunci tidak ada")',
+              code: {
+                en: 'data = {"a": 1}\ntry:\n    print(data["b"])\nexcept ValueError:\n    print("wrong value")\nexcept KeyError:\n    print("key does not exist")',
+                id: 'data = {"a": 1}\ntry:\n    print(data["b"])\nexcept ValueError:\n    print("nilai salah")\nexcept KeyError:\n    print("kunci tidak ada")',
+              },
               options: [
-                { en: 'kunci tidak ada', id: 'kunci tidak ada' },
-                { en: 'nilai salah', id: 'nilai salah' },
+                { en: 'key does not exist', id: 'kunci tidak ada' },
+                { en: 'wrong value', id: 'nilai salah' },
                 { en: 'None', id: 'None' },
                 { en: 'Both messages', id: 'Kedua pesan' },
               ],
@@ -176,13 +215,22 @@ export const module6: Module = {
                 en: 'Assemble a lookup that survives a missing position.',
                 id: 'Susun pencarian yang selamat dari posisi yang tidak ada.',
               },
-              lines: [
-                'angka = [1, 2, 3]',
-                'try:',
-                '    print(angka[10])',
-                'except IndexError:',
-                '    print("posisi tidak ada")',
-              ],
+              lines: {
+                en: [
+                  'numbers = [1, 2, 3]',
+                  'try:',
+                  '    print(numbers[10])',
+                  'except IndexError:',
+                  '    print("position does not exist")',
+                ],
+                id: [
+                  'angka = [1, 2, 3]',
+                  'try:',
+                  '    print(angka[10])',
+                  'except IndexError:',
+                  '    print("posisi tidak ada")',
+                ],
+              },
               explain: {
                 en: 'The risky access sits inside try; the handler names IndexError because that is what a list raises.',
                 id: 'Akses berisikonya ada di dalam try; penanganannya menyebut IndexError karena itulah yang dimunculkan list.',
@@ -192,36 +240,56 @@ export const module6: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'Write `aman_bagi(a, b)` returning `a / b`, but the text `nol` when b is 0, and `bukan angka` when either value cannot be converted with `float()`.',
+                en: 'Write `safe_divide(a, b)` returning `a / b`, but the text `zero` when b is 0, and `not a number` when either value cannot be converted with `float()`.',
                 id: 'Tulis `aman_bagi(a, b)` yang mengembalikan `a / b`, tetapi teks `nol` bila b bernilai 0, dan `bukan angka` bila salah satu nilainya tidak bisa dikonversi dengan `float()`.',
               },
-              starter: 'def aman_bagi(a, b):\n    pass\n',
-              tests: [
-                {
-                  name: { en: 'Normal division', id: 'Pembagian biasa' },
-                  assert:
-                    'assert aman_bagi("10", "4") == 2.5, "10 / 4 harus 2.5"\nassert aman_bagi(9, 3) == 3.0, "angka biasa juga harus jalan"',
-                },
-                {
-                  name: { en: 'Divide by zero', id: 'Dibagi nol' },
-                  assert: 'assert aman_bagi("5", "0") == "nol", "pembagi 0 harus mengembalikan nol"',
-                },
-                {
-                  name: { en: 'Not a number', id: 'Bukan angka' },
-                  assert:
-                    'assert aman_bagi("x", "2") == "bukan angka", "nilai a tak valid"\nassert aman_bagi("2", "y") == "bukan angka", "nilai b tak valid"',
-                },
-              ],
+              starter: { en: 'def safe_divide(a, b):\n    pass\n', id: 'def aman_bagi(a, b):\n    pass\n' },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Normal division', id: 'Pembagian biasa' },
+                    assert:
+                      'assert safe_divide("10", "4") == 2.5, "10 / 4 must be 2.5"\nassert safe_divide(9, 3) == 3.0, "plain numbers must work too"',
+                  },
+                  {
+                    name: { en: 'Divide by zero', id: 'Dibagi nol' },
+                    assert: 'assert safe_divide("5", "0") == "zero", "dividing by 0 must return zero"',
+                  },
+                  {
+                    name: { en: 'Not a number', id: 'Bukan angka' },
+                    assert:
+                      'assert safe_divide("x", "2") == "not a number", "invalid value for a"\nassert safe_divide("2", "y") == "not a number", "invalid value for b"',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Normal division', id: 'Pembagian biasa' },
+                    assert:
+                      'assert aman_bagi("10", "4") == 2.5, "10 / 4 harus 2.5"\nassert aman_bagi(9, 3) == 3.0, "angka biasa juga harus jalan"',
+                  },
+                  {
+                    name: { en: 'Divide by zero', id: 'Dibagi nol' },
+                    assert: 'assert aman_bagi("5", "0") == "nol", "pembagi 0 harus mengembalikan nol"',
+                  },
+                  {
+                    name: { en: 'Not a number', id: 'Bukan angka' },
+                    assert:
+                      'assert aman_bagi("x", "2") == "bukan angka", "nilai a tak valid"\nassert aman_bagi("2", "y") == "bukan angka", "nilai b tak valid"',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Convert both with float() inside the try.', id: 'Konversi keduanya dengan float() di dalam try.' },
                 { en: 'Two except clauses: ValueError and ZeroDivisionError.', id: 'Dua klausa except: ValueError dan ZeroDivisionError.' },
                 {
-                  en: 'try: return float(a) / float(b) — except ZeroDivisionError: return "nol" — except ValueError: return "bukan angka"',
+                  en: 'try: return float(a) / float(b) — except ZeroDivisionError: return "zero" — except ValueError: return "not a number"',
                   id: 'try: return float(a) / float(b) — except ZeroDivisionError: return "nol" — except ValueError: return "bukan angka"',
                 },
               ],
-              solution:
-                'def aman_bagi(a, b):\n    try:\n        return float(a) / float(b)\n    except ZeroDivisionError:\n        return "nol"\n    except ValueError:\n        return "bukan angka"',
+              solution: {
+                en: 'def safe_divide(a, b):\n    try:\n        return float(a) / float(b)\n    except ZeroDivisionError:\n        return "zero"\n    except ValueError:\n        return "not a number"',
+                id: 'def aman_bagi(a, b):\n    try:\n        return float(a) / float(b)\n    except ZeroDivisionError:\n        return "nol"\n    except ValueError:\n        return "bukan angka"',
+              },
             },
           ],
         },
@@ -236,29 +304,44 @@ export const module6: Module = {
         requirements: [
           { en: 'Read a number, then an operator (`+ - * /`), then a second number.', id: 'Baca sebuah angka, lalu operator (`+ - * /`), lalu angka kedua.' },
           { en: 'Print the result, for example `7.0`.', id: 'Cetak hasilnya, misalnya `7.0`.' },
-          { en: 'A value that is not a number: print `Angka tidak valid`.', id: 'Nilai yang bukan angka: cetak `Angka tidak valid`.' },
-          { en: 'Dividing by zero: print `Tidak bisa dibagi nol`.', id: 'Pembagian dengan nol: cetak `Tidak bisa dibagi nol`.' },
-          { en: 'An unknown operator: print `Operator tidak dikenal`.', id: 'Operator tak dikenal: cetak `Operator tidak dikenal`.' },
+          { en: 'A value that is not a number: print `Invalid number`.', id: 'Nilai yang bukan angka: cetak `Angka tidak valid`.' },
+          { en: 'Dividing by zero: print `Cannot divide by zero`.', id: 'Pembagian dengan nol: cetak `Tidak bisa dibagi nol`.' },
+          { en: 'An unknown operator: print `Unknown operator`.', id: 'Operator tak dikenal: cetak `Operator tidak dikenal`.' },
         ],
-        starter:
-          '# Kalkulator aman\na = input("Angka pertama: ")\nop = input("Operator (+ - * /): ")\nb = input("Angka kedua: ")\n',
-        tests: [
-          { name: { en: '3 + 4', id: '3 + 4' }, stdin: ['3', '+', '4'], expectOutput: '7.0' },
-          { name: { en: '10 / 4', id: '10 / 4' }, stdin: ['10', '/', '4'], expectOutput: '2.5' },
-          { name: { en: '6 * 7', id: '6 * 7' }, stdin: ['6', '*', '7'], expectOutput: '42.0' },
-          { name: { en: '9 - 2', id: '9 - 2' }, stdin: ['9', '-', '2'], expectOutput: '7.0' },
-          { name: { en: 'Divide by zero', id: 'Dibagi nol' }, stdin: ['5', '/', '0'], expectOutput: 'Tidak bisa dibagi nol' },
-          { name: { en: 'Not a number', id: 'Bukan angka' }, stdin: ['abc', '+', '2'], expectOutput: 'Angka tidak valid' },
-          { name: { en: 'Unknown operator', id: 'Operator tak dikenal' }, stdin: ['3', '^', '4'], expectOutput: 'Operator tidak dikenal' },
-        ],
+        starter: {
+          en: '# Safe calculator\na = input("First number: ")\nop = input("Operator (+ - * /): ")\nb = input("Second number: ")\n',
+          id: '# Kalkulator aman\na = input("Angka pertama: ")\nop = input("Operator (+ - * /): ")\nb = input("Angka kedua: ")\n',
+        },
+        tests: {
+          en: [
+            { name: { en: '3 + 4', id: '3 + 4' }, stdin: ['3', '+', '4'], expectOutput: '7.0' },
+            { name: { en: '10 / 4', id: '10 / 4' }, stdin: ['10', '/', '4'], expectOutput: '2.5' },
+            { name: { en: '6 * 7', id: '6 * 7' }, stdin: ['6', '*', '7'], expectOutput: '42.0' },
+            { name: { en: '9 - 2', id: '9 - 2' }, stdin: ['9', '-', '2'], expectOutput: '7.0' },
+            { name: { en: 'Divide by zero', id: 'Dibagi nol' }, stdin: ['5', '/', '0'], expectOutput: 'Cannot divide by zero' },
+            { name: { en: 'Not a number', id: 'Bukan angka' }, stdin: ['abc', '+', '2'], expectOutput: 'Invalid number' },
+            { name: { en: 'Unknown operator', id: 'Operator tak dikenal' }, stdin: ['3', '^', '4'], expectOutput: 'Unknown operator' },
+          ],
+          id: [
+            { name: { en: '3 + 4', id: '3 + 4' }, stdin: ['3', '+', '4'], expectOutput: '7.0' },
+            { name: { en: '10 / 4', id: '10 / 4' }, stdin: ['10', '/', '4'], expectOutput: '2.5' },
+            { name: { en: '6 * 7', id: '6 * 7' }, stdin: ['6', '*', '7'], expectOutput: '42.0' },
+            { name: { en: '9 - 2', id: '9 - 2' }, stdin: ['9', '-', '2'], expectOutput: '7.0' },
+            { name: { en: 'Divide by zero', id: 'Dibagi nol' }, stdin: ['5', '/', '0'], expectOutput: 'Tidak bisa dibagi nol' },
+            { name: { en: 'Not a number', id: 'Bukan angka' }, stdin: ['abc', '+', '2'], expectOutput: 'Angka tidak valid' },
+            { name: { en: 'Unknown operator', id: 'Operator tak dikenal' }, stdin: ['3', '^', '4'], expectOutput: 'Operator tidak dikenal' },
+          ],
+        },
         hints: [
           { en: 'Convert both numbers first, inside a try — that failure is separate from the operator.', id: 'Konversi kedua angka lebih dulu di dalam try — kegagalan itu terpisah dari urusan operator.' },
           { en: 'Use float() so 3 + 4 prints 7.0 rather than 7.', id: 'Pakai float() agar 3 + 4 tercetak 7.0, bukan 7.' },
-          { en: 'Check the operator with an if/elif chain, and let else print `Operator tidak dikenal`.', id: 'Periksa operatornya dengan rantai if/elif, dan biarkan else mencetak `Operator tidak dikenal`.' },
+          { en: 'Check the operator with an if/elif chain, and let else print `Unknown operator`.', id: 'Periksa operatornya dengan rantai if/elif, dan biarkan else mencetak `Operator tidak dikenal`.' },
           { en: 'Division needs its own try, or an explicit check for 0 before dividing.', id: 'Pembagian butuh try sendiri, atau pemeriksaan nol sebelum membagi.' },
         ],
-        solution:
-          'a = input("Angka pertama: ")\nop = input("Operator (+ - * /): ")\nb = input("Angka kedua: ")\n\ntry:\n    x = float(a)\n    y = float(b)\nexcept ValueError:\n    print("Angka tidak valid")\nelse:\n    if op == "+":\n        print(x + y)\n    elif op == "-":\n        print(x - y)\n    elif op == "*":\n        print(x * y)\n    elif op == "/":\n        try:\n            print(x / y)\n        except ZeroDivisionError:\n            print("Tidak bisa dibagi nol")\n    else:\n        print("Operator tidak dikenal")',
+        solution: {
+          en: 'a = input("First number: ")\nop = input("Operator (+ - * /): ")\nb = input("Second number: ")\n\ntry:\n    x = float(a)\n    y = float(b)\nexcept ValueError:\n    print("Invalid number")\nelse:\n    if op == "+":\n        print(x + y)\n    elif op == "-":\n        print(x - y)\n    elif op == "*":\n        print(x * y)\n    elif op == "/":\n        try:\n            print(x / y)\n        except ZeroDivisionError:\n            print("Cannot divide by zero")\n    else:\n        print("Unknown operator")',
+          id: 'a = input("Angka pertama: ")\nop = input("Operator (+ - * /): ")\nb = input("Angka kedua: ")\n\ntry:\n    x = float(a)\n    y = float(b)\nexcept ValueError:\n    print("Angka tidak valid")\nelse:\n    if op == "+":\n        print(x + y)\n    elif op == "-":\n        print(x - y)\n    elif op == "*":\n        print(x * y)\n    elif op == "/":\n        try:\n            print(x / y)\n        except ZeroDivisionError:\n            print("Tidak bisa dibagi nol")\n    else:\n        print("Operator tidak dikenal")',
+        },
         xp: 50,
       },
     },
@@ -286,8 +369,11 @@ export const module6: Module = {
                 en: 'Handling the error is only half the job — you still need a number. Put the `try` inside `while True` and `break` only once it worked.',
                 id: 'Menangani error baru separuh pekerjaan — kamu tetap butuh angkanya. Taruh `try` di dalam `while True` dan `break` hanya setelah berhasil.',
               },
-              code: 'while True:\n    try:\n        umur = int(input("Umur: "))\n        break\n    except ValueError:\n        print("Masukkan angka saja")\n\nprint(f"Umur kamu {umur}")',
-              output: 'Masukkan angka saja\nUmur kamu 17',
+              code: {
+                en: 'while True:\n    try:\n        age = int(input("Age: "))\n        break\n    except ValueError:\n        print("Enter numbers only")\n\nprint(f"Your age is {age}")',
+                id: 'while True:\n    try:\n        umur = int(input("Umur: "))\n        break\n    except ValueError:\n        print("Masukkan angka saja")\n\nprint(f"Umur kamu {umur}")',
+              },
+              output: { en: 'Enter numbers only\nYour age is 17', id: 'Masukkan angka saja\nUmur kamu 17' },
             },
             {
               kind: 'concept',
@@ -297,8 +383,11 @@ export const module6: Module = {
                 en: '`int("-5")` converts happily, but an age of -5 is still nonsense. Two separate checks: can it be converted, and is the value sensible.',
                 id: '`int("-5")` berhasil dikonversi, tetapi umur -5 tetap tidak masuk akal. Dua pemeriksaan terpisah: bisakah dikonversi, dan masuk akalkah nilainya.',
               },
-              code: 'while True:\n    try:\n        umur = int(input("Umur: "))\n    except ValueError:\n        print("Bukan angka")\n        continue\n    if umur < 0:\n        print("Tidak boleh negatif")\n        continue\n    break\n\nprint(umur)',
-              output: 'Bukan angka\nTidak boleh negatif\n21',
+              code: {
+                en: 'while True:\n    try:\n        age = int(input("Age: "))\n    except ValueError:\n        print("Not a number")\n        continue\n    if age < 0:\n        print("Cannot be negative")\n        continue\n    break\n\nprint(age)',
+                id: 'while True:\n    try:\n        umur = int(input("Umur: "))\n    except ValueError:\n        print("Bukan angka")\n        continue\n    if umur < 0:\n        print("Tidak boleh negatif")\n        continue\n    break\n\nprint(umur)',
+              },
+              output: { en: 'Not a number\nCannot be negative\n21', id: 'Bukan angka\nTidak boleh negatif\n21' },
             },
             {
               kind: 'quiz',
@@ -323,30 +412,47 @@ export const module6: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'Keep asking for a number between 1 and 10 until you get one, then print `Diterima: N`. Print `Ulangi` for anything else.',
+                en: 'Keep asking for a number between 1 and 10 until you get one, then print `Accepted: N`. Print `Try again` for anything else.',
                 id: 'Terus minta angka antara 1 dan 10 sampai dapat, lalu cetak `Diterima: N`. Cetak `Ulangi` untuk selain itu.',
               },
-              starter: 'while True:\n    teks = input("Angka 1-10: ")\n',
-              tests: [
-                { name: { en: 'Accepts 7 straight away', id: 'Langsung menerima 7' }, stdin: ['7'], expectOutput: 'Diterima: 7' },
-                {
-                  name: { en: 'Rejects text, then accepts', id: 'Menolak teks, lalu menerima' },
-                  stdin: ['abc', '3'],
-                  expectOutput: 'Ulangi\nDiterima: 3',
-                },
-                {
-                  name: { en: 'Rejects out of range twice', id: 'Menolak di luar rentang dua kali' },
-                  stdin: ['0', '99', '10'],
-                  expectOutput: 'Ulangi\nUlangi\nDiterima: 10',
-                },
-              ],
+              starter: { en: 'while True:\n    text = input("Number 1-10: ")\n', id: 'while True:\n    teks = input("Angka 1-10: ")\n' },
+              tests: {
+                en: [
+                  { name: { en: 'Accepts 7 straight away', id: 'Langsung menerima 7' }, stdin: ['7'], expectOutput: 'Accepted: 7' },
+                  {
+                    name: { en: 'Rejects text, then accepts', id: 'Menolak teks, lalu menerima' },
+                    stdin: ['abc', '3'],
+                    expectOutput: 'Try again\nAccepted: 3',
+                  },
+                  {
+                    name: { en: 'Rejects out of range twice', id: 'Menolak di luar rentang dua kali' },
+                    stdin: ['0', '99', '10'],
+                    expectOutput: 'Try again\nTry again\nAccepted: 10',
+                  },
+                ],
+                id: [
+                  { name: { en: 'Accepts 7 straight away', id: 'Langsung menerima 7' }, stdin: ['7'], expectOutput: 'Diterima: 7' },
+                  {
+                    name: { en: 'Rejects text, then accepts', id: 'Menolak teks, lalu menerima' },
+                    stdin: ['abc', '3'],
+                    expectOutput: 'Ulangi\nDiterima: 3',
+                  },
+                  {
+                    name: { en: 'Rejects out of range twice', id: 'Menolak di luar rentang dua kali' },
+                    stdin: ['0', '99', '10'],
+                    expectOutput: 'Ulangi\nUlangi\nDiterima: 10',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Both failures print the same word, so one message covers them.', id: 'Kedua kegagalan mencetak kata yang sama, jadi satu pesan cukup.' },
                 { en: 'try/except ValueError for the conversion, then an if for the range.', id: 'try/except ValueError untuk konversinya, lalu if untuk rentangnya.' },
                 { en: 'Only break once the value is inside 1 to 10.', id: 'Baru break setelah nilainya ada di antara 1 sampai 10.' },
               ],
-              solution:
-                'while True:\n    teks = input("Angka 1-10: ")\n    try:\n        n = int(teks)\n    except ValueError:\n        print("Ulangi")\n        continue\n    if 1 <= n <= 10:\n        print(f"Diterima: {n}")\n        break\n    print("Ulangi")',
+              solution: {
+                en: 'while True:\n    text = input("Number 1-10: ")\n    try:\n        n = int(text)\n    except ValueError:\n        print("Try again")\n        continue\n    if 1 <= n <= 10:\n        print(f"Accepted: {n}")\n        break\n    print("Try again")',
+                id: 'while True:\n    teks = input("Angka 1-10: ")\n    try:\n        n = int(teks)\n    except ValueError:\n        print("Ulangi")\n        continue\n    if 1 <= n <= 10:\n        print(f"Diterima: {n}")\n        break\n    print("Ulangi")',
+              },
             },
           ],
         },
@@ -364,8 +470,11 @@ export const module6: Module = {
                 en: 'A function that quietly returns a wrong answer is worse than one that refuses. `raise ValueError("pesan")` stops it and hands the caller a reason.',
                 id: 'Fungsi yang diam-diam mengembalikan jawaban salah lebih buruk daripada yang menolak. `raise ValueError("pesan")` menghentikannya dan memberi pemanggil sebuah alasan.',
               },
-              code: 'def akar(n):\n    if n < 0:\n        raise ValueError("tidak boleh negatif")\n    return n ** 0.5\n\nprint(akar(9))\nprint(akar(-1))',
-              output: '3.0\nValueError: tidak boleh negatif',
+              code: {
+                en: 'def sqrt(n):\n    if n < 0:\n        raise ValueError("cannot be negative")\n    return n ** 0.5\n\nprint(sqrt(9))\nprint(sqrt(-1))',
+                id: 'def akar(n):\n    if n < 0:\n        raise ValueError("tidak boleh negatif")\n    return n ** 0.5\n\nprint(akar(9))\nprint(akar(-1))',
+              },
+              output: { en: '3.0\nValueError: cannot be negative', id: '3.0\nValueError: tidak boleh negatif' },
             },
             {
               kind: 'concept',
@@ -375,17 +484,23 @@ export const module6: Module = {
                 en: 'The function decides what counts as invalid; the caller decides what to do about it. That split is why `raise` and `try` belong in different places.',
                 id: 'Fungsi menentukan apa yang dianggap tidak valid; pemanggil menentukan tindakannya. Pemisahan itulah sebabnya `raise` dan `try` berada di tempat berbeda.',
               },
-              code: 'def akar(n):\n    if n < 0:\n        raise ValueError("tidak boleh negatif")\n    return n ** 0.5\n\ntry:\n    print(akar(-4))\nexcept ValueError as e:\n    print("ditolak:", e)',
-              output: 'ditolak: tidak boleh negatif',
+              code: {
+                en: 'def sqrt(n):\n    if n < 0:\n        raise ValueError("cannot be negative")\n    return n ** 0.5\n\ntry:\n    print(sqrt(-4))\nexcept ValueError as e:\n    print("rejected:", e)',
+                id: 'def akar(n):\n    if n < 0:\n        raise ValueError("tidak boleh negatif")\n    return n ** 0.5\n\ntry:\n    print(akar(-4))\nexcept ValueError as e:\n    print("ditolak:", e)',
+              },
+              output: { en: 'rejected: cannot be negative', id: 'ditolak: tidak boleh negatif' },
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'def cek(n):\n    if n > 100:\n        raise ValueError("terlalu besar")\n    return n\n\ntry:\n    print(cek(5))\n    print(cek(500))\nexcept ValueError as e:\n    print(e)',
+              code: {
+                en: 'def check(n):\n    if n > 100:\n        raise ValueError("too big")\n    return n\n\ntry:\n    print(check(5))\n    print(check(500))\nexcept ValueError as e:\n    print(e)',
+                id: 'def cek(n):\n    if n > 100:\n        raise ValueError("terlalu besar")\n    return n\n\ntry:\n    print(cek(5))\n    print(cek(500))\nexcept ValueError as e:\n    print(e)',
+              },
               options: [
-                { en: '5 then terlalu besar', id: '5 lalu terlalu besar' },
-                { en: 'terlalu besar only', id: 'hanya terlalu besar' },
+                { en: '5 then too big', id: '5 lalu terlalu besar' },
+                { en: 'too big only', id: 'hanya terlalu besar' },
                 { en: '5 then 500', id: '5 lalu 500' },
                 { en: '5 only', id: 'hanya 5' },
               ],
@@ -399,7 +514,10 @@ export const module6: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: { en: 'Refuse an empty name.', id: 'Tolak nama yang kosong.' },
-              template: 'def daftar(nama):\n    if nama == "":\n        ___ ValueError("nama wajib diisi")\n    return nama',
+              template: {
+                en: 'def register(name):\n    if name == "":\n        ___ ValueError("name is required")\n    return name',
+                id: 'def daftar(nama):\n    if nama == "":\n        ___ ValueError("nama wajib diisi")\n    return nama',
+              },
               blanks: ['raise'],
               explain: {
                 en: 'raise creates the error; the caller decides whether to catch it.',
@@ -410,27 +528,42 @@ export const module6: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'Write `nilai_valid(n)` returning n when it is between 0 and 100, and raising `ValueError` with the message `di luar rentang` otherwise.',
+                en: 'Write `valid_value(n)` returning n when it is between 0 and 100, and raising `ValueError` with the message `out of range` otherwise.',
                 id: 'Tulis `nilai_valid(n)` yang mengembalikan n bila berada antara 0 dan 100, dan memunculkan `ValueError` berpesan `di luar rentang` bila tidak.',
               },
-              starter: 'def nilai_valid(n):\n    pass\n',
-              tests: [
-                {
-                  name: { en: 'Accepts values in range', id: 'Menerima nilai dalam rentang' },
-                  assert: 'assert nilai_valid(0) == 0\nassert nilai_valid(75) == 75\nassert nilai_valid(100) == 100',
-                },
-                {
-                  name: { en: 'Raises for values outside', id: 'Menolak nilai di luar rentang' },
-                  assert:
-                    'for bad in (-1, 101):\n    try:\n        nilai_valid(bad)\n        raise AssertionError(str(bad) + " seharusnya ditolak")\n    except ValueError as e:\n        assert "di luar rentang" in str(e), "pesan error harus memuat: di luar rentang"',
-                },
-              ],
+              starter: { en: 'def valid_value(n):\n    pass\n', id: 'def nilai_valid(n):\n    pass\n' },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Accepts values in range', id: 'Menerima nilai dalam rentang' },
+                    assert: 'assert valid_value(0) == 0\nassert valid_value(75) == 75\nassert valid_value(100) == 100',
+                  },
+                  {
+                    name: { en: 'Raises for values outside', id: 'Menolak nilai di luar rentang' },
+                    assert:
+                      'for bad in (-1, 101):\n    try:\n        valid_value(bad)\n        raise AssertionError(str(bad) + " should have been rejected")\n    except ValueError as e:\n        assert "out of range" in str(e), "the error message must contain: out of range"',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Accepts values in range', id: 'Menerima nilai dalam rentang' },
+                    assert: 'assert nilai_valid(0) == 0\nassert nilai_valid(75) == 75\nassert nilai_valid(100) == 100',
+                  },
+                  {
+                    name: { en: 'Raises for values outside', id: 'Menolak nilai di luar rentang' },
+                    assert:
+                      'for bad in (-1, 101):\n    try:\n        nilai_valid(bad)\n        raise AssertionError(str(bad) + " seharusnya ditolak")\n    except ValueError as e:\n        assert "di luar rentang" in str(e), "pesan error harus memuat: di luar rentang"',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Guard first, return last.', id: 'Periksa dulu, kembalikan belakangan.' },
-                { en: 'if not (0 <= n <= 100): raise ValueError("di luar rentang")', id: 'if not (0 <= n <= 100): raise ValueError("di luar rentang")' },
+                { en: 'if not (0 <= n <= 100): raise ValueError("out of range")', id: 'if not (0 <= n <= 100): raise ValueError("di luar rentang")' },
               ],
-              solution:
-                'def nilai_valid(n):\n    if not (0 <= n <= 100):\n        raise ValueError("di luar rentang")\n    return n',
+              solution: {
+                en: 'def valid_value(n):\n    if not (0 <= n <= 100):\n        raise ValueError("out of range")\n    return n',
+                id: 'def nilai_valid(n):\n    if not (0 <= n <= 100):\n        raise ValueError("di luar rentang")\n    return n',
+              },
             },
           ],
         },
@@ -443,45 +576,71 @@ export const module6: Module = {
           id: 'Kumpulkan nama, umur, dan email, tolak yang tidak layak lalu tanya ulang.',
         },
         requirements: [
-          { en: 'Name must not be empty. Bad: print `Nama wajib diisi` and ask again.', id: 'Nama tidak boleh kosong. Salah: cetak `Nama wajib diisi` lalu tanya lagi.' },
-          { en: 'Age is a whole number from 5 to 100. Bad: print `Umur tidak valid` and ask again.', id: 'Umur adalah bilangan bulat 5 sampai 100. Salah: cetak `Umur tidak valid` lalu tanya lagi.' },
-          { en: 'Email must contain `@`. Bad: print `Email tidak valid` and ask again.', id: 'Email harus memuat `@`. Salah: cetak `Email tidak valid` lalu tanya lagi.' },
-          { en: 'Finally print `Terdaftar: <nama> (<umur>) <email>`.', id: 'Terakhir cetak `Terdaftar: <nama> (<umur>) <email>`.' },
+          { en: 'Name must not be empty. Bad: print `Name is required` and ask again.', id: 'Nama tidak boleh kosong. Salah: cetak `Nama wajib diisi` lalu tanya lagi.' },
+          { en: 'Age is a whole number from 5 to 100. Bad: print `Invalid age` and ask again.', id: 'Umur adalah bilangan bulat 5 sampai 100. Salah: cetak `Umur tidak valid` lalu tanya lagi.' },
+          { en: 'Email must contain `@`. Bad: print `Invalid email` and ask again.', id: 'Email harus memuat `@`. Salah: cetak `Email tidak valid` lalu tanya lagi.' },
+          { en: 'Finally print `Registered: <name> (<age>) <email>`.', id: 'Terakhir cetak `Terdaftar: <nama> (<umur>) <email>`.' },
         ],
-        starter: '# Formulir pendaftaran\n',
-        tests: [
-          {
-            name: { en: 'All three valid first time', id: 'Ketiganya valid sejak awal' },
-            stdin: ['Ani', '17', 'ani@mail.com'],
-            expectOutput: 'Terdaftar: Ani (17) ani@mail.com',
-          },
-          {
-            name: { en: 'Empty name is refused', id: 'Nama kosong ditolak' },
-            stdin: ['', 'Budi', '20', 'budi@mail.com'],
-            expectOutput: 'Nama wajib diisi\nTerdaftar: Budi (20) budi@mail.com',
-          },
-          {
-            name: { en: 'Age: text, then out of range', id: 'Umur: teks, lalu di luar rentang' },
-            stdin: ['Citra', 'dua', '3', '30', 'citra@mail.com'],
-            expectOutput: 'Umur tidak valid\nUmur tidak valid\nTerdaftar: Citra (30) citra@mail.com',
-          },
-          {
-            name: { en: 'Email without @ is refused', id: 'Email tanpa @ ditolak' },
-            stdin: ['Dina', '25', 'dina.mail.com', 'dina@mail.com'],
-            expectOutput: 'Email tidak valid\nTerdaftar: Dina (25) dina@mail.com',
-          },
-        ],
+        starter: { en: '# Registration form\n', id: '# Formulir pendaftaran\n' },
+        tests: {
+          en: [
+            {
+              name: { en: 'All three valid first time', id: 'Ketiganya valid sejak awal' },
+              stdin: ['Ani', '17', 'ani@mail.com'],
+              expectOutput: 'Registered: Ani (17) ani@mail.com',
+            },
+            {
+              name: { en: 'Empty name is refused', id: 'Nama kosong ditolak' },
+              stdin: ['', 'Budi', '20', 'budi@mail.com'],
+              expectOutput: 'Name is required\nRegistered: Budi (20) budi@mail.com',
+            },
+            {
+              name: { en: 'Age: text, then out of range', id: 'Umur: teks, lalu di luar rentang' },
+              stdin: ['Citra', 'two', '3', '30', 'citra@mail.com'],
+              expectOutput: 'Invalid age\nInvalid age\nRegistered: Citra (30) citra@mail.com',
+            },
+            {
+              name: { en: 'Email without @ is refused', id: 'Email tanpa @ ditolak' },
+              stdin: ['Dina', '25', 'dina.mail.com', 'dina@mail.com'],
+              expectOutput: 'Invalid email\nRegistered: Dina (25) dina@mail.com',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'All three valid first time', id: 'Ketiganya valid sejak awal' },
+              stdin: ['Ani', '17', 'ani@mail.com'],
+              expectOutput: 'Terdaftar: Ani (17) ani@mail.com',
+            },
+            {
+              name: { en: 'Empty name is refused', id: 'Nama kosong ditolak' },
+              stdin: ['', 'Budi', '20', 'budi@mail.com'],
+              expectOutput: 'Nama wajib diisi\nTerdaftar: Budi (20) budi@mail.com',
+            },
+            {
+              name: { en: 'Age: text, then out of range', id: 'Umur: teks, lalu di luar rentang' },
+              stdin: ['Citra', 'dua', '3', '30', 'citra@mail.com'],
+              expectOutput: 'Umur tidak valid\nUmur tidak valid\nTerdaftar: Citra (30) citra@mail.com',
+            },
+            {
+              name: { en: 'Email without @ is refused', id: 'Email tanpa @ ditolak' },
+              stdin: ['Dina', '25', 'dina.mail.com', 'dina@mail.com'],
+              expectOutput: 'Email tidak valid\nTerdaftar: Dina (25) dina@mail.com',
+            },
+          ],
+        },
         hints: [
           { en: 'Three loops, one per field — each only breaks when its value is good.', id: 'Tiga loop, satu per isian — masing-masing baru break saat nilainya benar.' },
           { en: 'Only the age needs try/except, because only it converts.', id: 'Hanya umur yang butuh try/except, karena hanya ia yang dikonversi.' },
           { en: 'The `in` operator tests for a fragment: `"@" in email`', id: 'Operator `in` menguji potongan teks: `"@" in email`' },
           {
-            en: 'A helper like `def minta_umur():` keeps the three loops from turning into one long block.',
+            en: 'A helper like `def ask_age():` keeps the three loops from turning into one long block.',
             id: 'Fungsi bantu seperti `def minta_umur():` menjaga ketiga loop tidak menjadi satu blok panjang.',
           },
         ],
-        solution:
-          'while True:\n    nama = input("Nama: ")\n    if nama != "":\n        break\n    print("Nama wajib diisi")\n\nwhile True:\n    teks = input("Umur: ")\n    try:\n        umur = int(teks)\n    except ValueError:\n        print("Umur tidak valid")\n        continue\n    if 5 <= umur <= 100:\n        break\n    print("Umur tidak valid")\n\nwhile True:\n    email = input("Email: ")\n    if "@" in email:\n        break\n    print("Email tidak valid")\n\nprint(f"Terdaftar: {nama} ({umur}) {email}")',
+        solution: {
+          en: 'while True:\n    name = input("Name: ")\n    if name != "":\n        break\n    print("Name is required")\n\nwhile True:\n    text = input("Age: ")\n    try:\n        age = int(text)\n    except ValueError:\n        print("Invalid age")\n        continue\n    if 5 <= age <= 100:\n        break\n    print("Invalid age")\n\nwhile True:\n    email = input("Email: ")\n    if "@" in email:\n        break\n    print("Invalid email")\n\nprint(f"Registered: {name} ({age}) {email}")',
+          id: 'while True:\n    nama = input("Nama: ")\n    if nama != "":\n        break\n    print("Nama wajib diisi")\n\nwhile True:\n    teks = input("Umur: ")\n    try:\n        umur = int(teks)\n    except ValueError:\n        print("Umur tidak valid")\n        continue\n    if 5 <= umur <= 100:\n        break\n    print("Umur tidak valid")\n\nwhile True:\n    email = input("Email: ")\n    if "@" in email:\n        break\n    print("Email tidak valid")\n\nprint(f"Terdaftar: {nama} ({umur}) {email}")',
+        },
         xp: 50,
       },
     },
