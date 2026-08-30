@@ -29,10 +29,13 @@ export const module4: Module = {
               id: 'c1',
               title: { en: 'A function is a named formula', id: 'Fungsi adalah formula bernama' },
               body: {
-                en: '`def kuadrat(x):` names a function and the input it expects. `return` hands back the result of calling it, without printing anything itself — the caller decides what to do with it.',
+                en: '`def square(x):` names a function and the input it expects. `return` hands back the result of calling it, without printing anything itself — the caller decides what to do with it.',
                 id: '`def kuadrat(x):` menamai sebuah fungsi dan input yang diharapkannya. `return` mengembalikan hasil pemanggilannya, tanpa mencetak apa pun sendiri — pemanggilnya yang menentukan mau diapakan hasilnya.',
               },
-              code: 'def kuadrat(x):\n    return x ** 2\n\nprint(kuadrat(3))\nprint(kuadrat(5))',
+              code: {
+                en: 'def square(x):\n    return x ** 2\n\nprint(square(3))\nprint(square(5))',
+                id: 'def kuadrat(x):\n    return x ** 2\n\nprint(kuadrat(3))\nprint(kuadrat(5))',
+              },
               output: '9\n25',
             },
             {
@@ -43,14 +46,20 @@ export const module4: Module = {
                 en: 'This is the payoff from module 1: the tax formula that was written out twice there now lives in one place, called with whatever price it is needed for.',
                 id: 'Inilah manfaat yang dijanjikan di modul 1: formula pajak yang dulu ditulis dua kali di sana kini hidup di satu tempat, dipanggil dengan harga berapa pun yang dibutuhkan.',
               },
-              code: 'def pajak(harga):\n    return harga * 0.1\n\nprint(pajak(100000))\nprint(pajak(250000))',
+              code: {
+                en: 'def tax(price):\n    return price * 0.1\n\nprint(tax(100000))\nprint(tax(250000))',
+                id: 'def pajak(harga):\n    return harga * 0.1\n\nprint(pajak(100000))\nprint(pajak(250000))',
+              },
               output: '10000.0\n25000.0',
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'def kali_dua(n):\n    return n * 2\n\nhasil = kali_dua(7) + kali_dua(3)\nprint(hasil)',
+              code: {
+                en: 'def double(n):\n    return n * 2\n\nresult = double(7) + double(3)\nprint(result)',
+                id: 'def kali_dua(n):\n    return n * 2\n\nhasil = kali_dua(7) + kali_dua(3)\nprint(hasil)',
+              },
               options: [
                 { en: '20', id: '20' },
                 { en: '10', id: '10' },
@@ -59,7 +68,7 @@ export const module4: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'kali_dua(7) is 14 and kali_dua(3) is 6 — 14 + 6 is 20.',
+                en: 'double(7) is 14 and double(3) is 6 — 14 + 6 is 20.',
                 id: 'kali_dua(7) adalah 14 dan kali_dua(3) adalah 6 — 14 + 6 adalah 20.',
               },
             },
@@ -70,7 +79,10 @@ export const module4: Module = {
                 en: 'Complete a function that cubes its input.',
                 id: 'Lengkapi fungsi yang memangkatkan tiga inputnya.',
               },
-              template: 'def pangkat_tiga(x):\n    return x ___ 3\n\nprint(pangkat_tiga(2))',
+              template: {
+                en: 'def cube(x):\n    return x ___ 3\n\nprint(cube(2))',
+                id: 'def pangkat_tiga(x):\n    return x ___ 3\n\nprint(pangkat_tiga(2))',
+              },
               blanks: ['**'],
               explain: {
                 en: 'Cubing is raising to the power of 3.',
@@ -84,7 +96,10 @@ export const module4: Module = {
                 en: 'Assemble a function converting Celsius to Fahrenheit, and call it with 100.',
                 id: 'Susun fungsi yang mengonversi Celsius ke Fahrenheit, dan panggil dengan 100.',
               },
-              lines: ['def ke_fahrenheit(celsius):', '    return celsius * 9 / 5 + 32', 'print(ke_fahrenheit(100))'],
+              lines: {
+                en: ['def to_fahrenheit(celsius):', '    return celsius * 9 / 5 + 32', 'print(to_fahrenheit(100))'],
+                id: ['def ke_fahrenheit(celsius):', '    return celsius * 9 / 5 + 32', 'print(ke_fahrenheit(100))'],
+              },
               explain: {
                 en: 'The def line and its indented body have to stay together, before any call to it.',
                 id: 'Baris def dan isinya yang menjorok harus tetap bersama, sebelum ada pemanggilan padanya.',
@@ -126,7 +141,10 @@ export const module4: Module = {
                 en: 'Separate parameters with commas, in the definition and in every call. Their order is how Python matches each argument to each name.',
                 id: 'Pisahkan parameter dengan koma, baik di definisi maupun tiap pemanggilan. Urutannya adalah cara Python mencocokkan tiap argumen dengan tiap nama.',
               },
-              code: 'def luas_persegi_panjang(p, l):\n    return p * l\n\nprint(luas_persegi_panjang(8, 5))\nprint(luas_persegi_panjang(3, 3))',
+              code: {
+                en: 'def rectangle_area(p, l):\n    return p * l\n\nprint(rectangle_area(8, 5))\nprint(rectangle_area(3, 3))',
+                id: 'def luas_persegi_panjang(p, l):\n    return p * l\n\nprint(luas_persegi_panjang(8, 5))\nprint(luas_persegi_panjang(3, 3))',
+              },
               output: '40\n9',
             },
             {
@@ -134,17 +152,23 @@ export const module4: Module = {
               id: 'c2',
               title: { en: 'A function calling a function', id: 'Fungsi memanggil fungsi' },
               body: {
-                en: 'Once `kuadrat` exists, other functions can call it just like anything else — this is how a big formula gets built out of small, named pieces.',
+                en: 'Once `square` exists, other functions can call it just like anything else — this is how a big formula gets built out of small, named pieces.',
                 id: 'Begitu `kuadrat` ada, fungsi lain bisa memanggilnya seperti hal lain — begitulah cara formula besar dibangun dari potongan-potongan kecil yang bernama.',
               },
-              code: 'def kuadrat(x):\n    return x ** 2\n\ndef jumlah_kuadrat(a, b):\n    return kuadrat(a) + kuadrat(b)\n\nprint(jumlah_kuadrat(3, 4))',
+              code: {
+                en: 'def square(x):\n    return x ** 2\n\ndef sum_of_squares(a, b):\n    return square(a) + square(b)\n\nprint(sum_of_squares(3, 4))',
+                id: 'def kuadrat(x):\n    return x ** 2\n\ndef jumlah_kuadrat(a, b):\n    return kuadrat(a) + kuadrat(b)\n\nprint(jumlah_kuadrat(3, 4))',
+              },
               output: '25',
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'def volume_balok(p, l, t):\n    return p * l * t\n\nprint(volume_balok(2, 3, 4))',
+              code: {
+                en: 'def box_volume(p, l, t):\n    return p * l * t\n\nprint(box_volume(2, 3, 4))',
+                id: 'def volume_balok(p, l, t):\n    return p * l * t\n\nprint(volume_balok(2, 3, 4))',
+              },
               options: [
                 { en: '24', id: '24' },
                 { en: '9', id: '9' },
@@ -164,7 +188,10 @@ export const module4: Module = {
                 en: 'Complete a function computing the hypotenuse of a right triangle from legs a and b.',
                 id: 'Lengkapi fungsi yang menghitung sisi miring segitiga siku-siku dari sisi a dan b.',
               },
-              template: 'import math\n\ndef sisi_miring(a, b):\n    return math.sqrt(a ___ 2 + b ** 2)\n\nprint(sisi_miring(3, 4))',
+              template: {
+                en: 'import math\n\ndef hypotenuse(a, b):\n    return math.sqrt(a ___ 2 + b ** 2)\n\nprint(hypotenuse(3, 4))',
+                id: 'import math\n\ndef sisi_miring(a, b):\n    return math.sqrt(a ___ 2 + b ** 2)\n\nprint(sisi_miring(3, 4))',
+              },
               blanks: ['**'],
               explain: {
                 en: 'Both legs are squared before being added, the same as the concept from module 1.',
@@ -175,10 +202,13 @@ export const module4: Module = {
               kind: 'order',
               id: 'o1',
               prompt: {
-                en: 'Assemble a BMI function and print the result for massa=65, tinggi=1.7, rounded to 1 decimal place.',
+                en: 'Assemble a BMI function and print the result for mass=65, height=1.7, rounded to 1 decimal place.',
                 id: 'Susun fungsi BMI dan cetak hasilnya untuk massa=65, tinggi=1.7, dibulatkan ke 1 angka desimal.',
               },
-              lines: ['def hitung_bmi(massa, tinggi):', '    return massa / tinggi ** 2', 'print(round(hitung_bmi(65, 1.7), 1))'],
+              lines: {
+                en: ['def calculate_bmi(mass, height):', '    return mass / height ** 2', 'print(round(calculate_bmi(65, 1.7), 1))'],
+                id: ['def hitung_bmi(massa, tinggi):', '    return massa / tinggi ** 2', 'print(round(hitung_bmi(65, 1.7), 1))'],
+              },
               explain: {
                 en: 'The same BMI formula from module 1, now wrapped as a function that can be called with anyone\'s numbers.',
                 id: 'Formula BMI yang sama dari modul 1, kini dibungkus sebagai fungsi yang bisa dipanggil dengan angka siapa saja.',
@@ -188,10 +218,13 @@ export const module4: Module = {
               kind: 'code',
               id: 'k1',
               prompt: {
-                en: 'Define `jarak(x1, y1, x2, y2)` returning the distance between the two points. Read the four values and print `jarak(...)` rounded to 2 decimal places.',
+                en: 'Define `distance(x1, y1, x2, y2)` returning the distance between the two points. Read the four values and print `distance(...)` rounded to 2 decimal places.',
                 id: 'Definisikan `jarak(x1, y1, x2, y2)` yang mengembalikan jarak antara kedua titik. Baca keempat nilainya dan cetak `jarak(...)` dibulatkan ke 2 angka desimal.',
               },
-              starter: 'import math\n\ndef jarak(x1, y1, x2, y2):\n    pass\n\nx1 = float(input())\ny1 = float(input())\nx2 = float(input())\ny2 = float(input())\n',
+              starter: {
+                en: 'import math\n\ndef distance(x1, y1, x2, y2):\n    pass\n\nx1 = float(input())\ny1 = float(input())\nx2 = float(input())\ny2 = float(input())\n',
+                id: 'import math\n\ndef jarak(x1, y1, x2, y2):\n    pass\n\nx1 = float(input())\ny1 = float(input())\nx2 = float(input())\ny2 = float(input())\n',
+              },
               tests: [
                 { name: { en: '(0,0) to (3,4) → 5.0', id: '(0,0) ke (3,4) → 5.0' }, stdin: ['0', '0', '3', '4'], expectOutput: '5.0' },
                 { name: { en: 'same point → 0.0', id: 'titik sama → 0.0' }, stdin: ['1', '1', '1', '1'], expectOutput: '0.0' },
@@ -201,8 +234,10 @@ export const module4: Module = {
               hints: [
                 { en: 'The same formula as the module 1 project, now inside a function.', id: 'Formula yang sama seperti proyek modul 1, kini di dalam fungsi.' },
               ],
-              solution:
-                'import math\n\ndef jarak(x1, y1, x2, y2):\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\n\nx1 = float(input())\ny1 = float(input())\nx2 = float(input())\ny2 = float(input())\nprint(round(jarak(x1, y1, x2, y2), 2))',
+              solution: {
+                en: 'import math\n\ndef distance(x1, y1, x2, y2):\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\n\nx1 = float(input())\ny1 = float(input())\nx2 = float(input())\ny2 = float(input())\nprint(round(distance(x1, y1, x2, y2), 2))',
+                id: 'import math\n\ndef jarak(x1, y1, x2, y2):\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\n\nx1 = float(input())\ny1 = float(input())\nx2 = float(input())\ny2 = float(input())\nprint(round(jarak(x1, y1, x2, y2), 2))',
+              },
             },
           ],
         },
@@ -216,20 +251,26 @@ export const module4: Module = {
         },
         requirements: [
           { en: 'Define `f(x)` returning `2 * x - 1`.', id: 'Definisikan `f(x)` yang mengembalikan `2 * x - 1`.' },
-          { en: 'Read `awal` and `akhir` (whole numbers, inclusive on both ends).', id: 'Baca `awal` dan `akhir` (bilangan bulat, kedua batasnya termasuk).' },
-          { en: 'For each x from awal to akhir, print `x f(x)` separated by a single space.', id: 'Untuk tiap x dari awal sampai akhir, cetak `x f(x)` dipisah satu spasi.' },
+          { en: 'Read `start` and `end` (whole numbers, inclusive on both ends).', id: 'Baca `awal` dan `akhir` (bilangan bulat, kedua batasnya termasuk).' },
+          { en: 'For each x from start to end, print `x f(x)` separated by a single space.', id: 'Untuk tiap x dari awal sampai akhir, cetak `x f(x)` dipisah satu spasi.' },
         ],
-        starter: 'def f(x):\n    return 2 * x - 1\n\nawal = int(input())\nakhir = int(input())\n',
+        starter: {
+          en: 'def f(x):\n    return 2 * x - 1\n\nstart = int(input())\nend = int(input())\n',
+          id: 'def f(x):\n    return 2 * x - 1\n\nawal = int(input())\nakhir = int(input())\n',
+        },
         tests: [
           { name: { en: '1 to 3', id: '1 sampai 3' }, stdin: ['1', '3'], expectOutput: '1 1\n2 3\n3 5' },
           { name: { en: '0 to 2 (includes negative f)', id: '0 sampai 2 (ada f negatif)' }, stdin: ['0', '2'], expectOutput: '0 -1\n1 1\n2 3' },
           { name: { en: 'single value', id: 'satu nilai' }, stdin: ['5', '5'], expectOutput: '5 9' },
         ],
         hints: [
-          { en: 'range(awal, akhir + 1) — the +1 keeps akhir itself in the table.', id: 'range(awal, akhir + 1) — +1-nya membuat akhir sendiri tetap masuk tabel.' },
+          { en: 'range(start, end + 1) — the +1 keeps end itself in the table.', id: 'range(awal, akhir + 1) — +1-nya membuat akhir sendiri tetap masuk tabel.' },
           { en: 'f"{x} {f(x)}" builds the whole line in one f-string.', id: 'f"{x} {f(x)}" menyusun seluruh barisnya dalam satu f-string.' },
         ],
-        solution: 'def f(x):\n    return 2 * x - 1\n\nawal = int(input())\nakhir = int(input())\nfor x in range(awal, akhir + 1):\n    print(f"{x} {f(x)}")',
+        solution: {
+          en: 'def f(x):\n    return 2 * x - 1\n\nstart = int(input())\nend = int(input())\nfor x in range(start, end + 1):\n    print(f"{x} {f(x)}")',
+          id: 'def f(x):\n    return 2 * x - 1\n\nawal = int(input())\nakhir = int(input())\nfor x in range(awal, akhir + 1):\n    print(f"{x} {f(x)}")',
+        },
         xp: 50,
       },
     },
@@ -257,7 +298,10 @@ export const module4: Module = {
                 en: '`n!` is `n` times `(n-1)!`, and `0!` is 1 by definition. That second part is the **base case** — without it, the function would call itself forever. Every recursive function needs one.',
                 id: '`n!` adalah `n` dikali `(n-1)!`, dan `0!` adalah 1 menurut definisi. Bagian kedua itulah **kasus dasar** — tanpanya, fungsinya akan memanggil dirinya sendiri selamanya. Tiap fungsi rekursif butuh itu.',
               },
-              code: 'def faktorial(n):\n    if n == 0:\n        return 1\n    return n * faktorial(n - 1)\n\nprint(faktorial(5))',
+              code: {
+                en: 'def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(5))',
+                id: 'def faktorial(n):\n    if n == 0:\n        return 1\n    return n * faktorial(n - 1)\n\nprint(faktorial(5))',
+              },
               output: '120',
             },
             {
@@ -265,17 +309,23 @@ export const module4: Module = {
               id: 'c2',
               title: { en: 'A smaller example, unwound', id: 'Contoh lebih kecil, terurai' },
               body: {
-                en: '`faktorial(3)` calls `faktorial(2)`, which calls `faktorial(1)`, which calls `faktorial(0)` — that last one hits the base case and returns 1 without calling anything further. Then each waiting call multiplies and returns: 1, then 1, then 2, then 6.',
+                en: '`factorial(3)` calls `factorial(2)`, which calls `factorial(1)`, which calls `factorial(0)` — that last one hits the base case and returns 1 without calling anything further. Then each waiting call multiplies and returns: 1, then 1, then 2, then 6.',
                 id: '`faktorial(3)` memanggil `faktorial(2)`, yang memanggil `faktorial(1)`, yang memanggil `faktorial(0)` — yang terakhir itu mencapai kasus dasar dan mengembalikan 1 tanpa memanggil apa pun lagi. Lalu tiap pemanggilan yang menunggu mengalikan dan mengembalikan: 1, lalu 1, lalu 2, lalu 6.',
               },
-              code: 'def faktorial(n):\n    if n == 0:\n        return 1\n    return n * faktorial(n - 1)\n\nprint(faktorial(3))\nprint(faktorial(0))',
+              code: {
+                en: 'def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(3))\nprint(factorial(0))',
+                id: 'def faktorial(n):\n    if n == 0:\n        return 1\n    return n * faktorial(n - 1)\n\nprint(faktorial(3))\nprint(faktorial(0))',
+              },
               output: '6\n1',
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'def faktorial(n):\n    if n == 0:\n        return 1\n    return n * faktorial(n - 1)\n\nprint(faktorial(4))',
+              code: {
+                en: 'def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(4))',
+                id: 'def faktorial(n):\n    if n == 0:\n        return 1\n    return n * faktorial(n - 1)\n\nprint(faktorial(4))',
+              },
               options: [
                 { en: '24', id: '24' },
                 { en: '10', id: '10' },
@@ -295,7 +345,10 @@ export const module4: Module = {
                 en: 'Complete the base case.',
                 id: 'Lengkapi kasus dasarnya.',
               },
-              template: 'def faktorial(n):\n    if n == ___:\n        return 1\n    return n * faktorial(n - 1)\n\nprint(faktorial(6))',
+              template: {
+                en: 'def factorial(n):\n    if n == ___:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(6))',
+                id: 'def faktorial(n):\n    if n == ___:\n        return 1\n    return n * faktorial(n - 1)\n\nprint(faktorial(6))',
+              },
               blanks: ['0'],
               explain: {
                 en: 'The recursion has to stop somewhere, and 0! = 1 is that stopping point.',
@@ -309,7 +362,10 @@ export const module4: Module = {
                 en: 'Assemble a recursive function summing 1 through n, and call it with 5.',
                 id: 'Susun fungsi rekursif yang menjumlahkan 1 sampai n, dan panggil dengan 5.',
               },
-              lines: ['def jumlah(n):', '    if n == 0:', '        return 0', '    return n + jumlah(n - 1)', 'print(jumlah(5))'],
+              lines: {
+                en: ['def total(n):', '    if n == 0:', '        return 0', '    return n + total(n - 1)', 'print(total(5))'],
+                id: ['def jumlah(n):', '    if n == 0:', '        return 0', '    return n + jumlah(n - 1)', 'print(jumlah(5))'],
+              },
               explain: {
                 en: 'Same shape as factorial: a base case at 0, and a step that shrinks n by one.',
                 id: 'Bentuknya sama seperti faktorial: kasus dasar di 0, dan langkah yang mengecilkan n satu-satu.',
@@ -319,10 +375,13 @@ export const module4: Module = {
               kind: 'code',
               id: 'k1',
               prompt: {
-                en: 'Define `faktorial(n)` recursively. Read a whole number `n` and print `faktorial(n)`.',
+                en: 'Define `factorial(n)` recursively. Read a whole number `n` and print `factorial(n)`.',
                 id: 'Definisikan `faktorial(n)` secara rekursif. Baca bilangan bulat `n` dan cetak `faktorial(n)`.',
               },
-              starter: 'def faktorial(n):\n    pass\n\nn = int(input())\n',
+              starter: {
+                en: 'def factorial(n):\n    pass\n\nn = int(input())\n',
+                id: 'def faktorial(n):\n    pass\n\nn = int(input())\n',
+              },
               tests: [
                 { name: { en: 'n = 0 → 1', id: 'n = 0 → 1' }, stdin: ['0'], expectOutput: '1' },
                 { name: { en: 'n = 1 → 1', id: 'n = 1 → 1' }, stdin: ['1'], expectOutput: '1' },
@@ -332,7 +391,10 @@ export const module4: Module = {
               hints: [
                 { en: 'Exactly the definition from the concept steps above.', id: 'Persis definisi dari langkah konsep di atas.' },
               ],
-              solution: 'def faktorial(n):\n    if n == 0:\n        return 1\n    return n * faktorial(n - 1)\n\nn = int(input())\nprint(faktorial(n))',
+              solution: {
+                en: 'def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\nn = int(input())\nprint(factorial(n))',
+                id: 'def faktorial(n):\n    if n == 0:\n        return 1\n    return n * faktorial(n - 1)\n\nn = int(input())\nprint(faktorial(n))',
+              },
             },
           ],
         },
@@ -460,8 +522,10 @@ export const module4: Module = {
           { en: 'C has two base cases, at the two edges of the row: k == 0 and k == n.', id: 'C punya dua kasus dasar, di kedua ujung barisnya: k == 0 dan k == n.' },
           { en: '" ".join(...) turns a list of pieces into one spaced-out line — join needs strings, so wrap each number in str(...) first.', id: '" ".join(...) mengubah daftar potongan jadi satu baris berspasi — join butuh string, jadi bungkus tiap angkanya dengan str(...) dulu.' },
         ],
-        solution:
-          'def C(n, k):\n    if k == 0 or k == n:\n        return 1\n    return C(n - 1, k - 1) + C(n - 1, k)\n\nn = int(input())\nbaris = [str(C(n, k)) for k in range(n + 1)]\nprint(" ".join(baris))',
+        solution: {
+          en: 'def C(n, k):\n    if k == 0 or k == n:\n        return 1\n    return C(n - 1, k - 1) + C(n - 1, k)\n\nn = int(input())\nrow = [str(C(n, k)) for k in range(n + 1)]\nprint(" ".join(row))',
+          id: 'def C(n, k):\n    if k == 0 or k == n:\n        return 1\n    return C(n - 1, k - 1) + C(n - 1, k)\n\nn = int(input())\nbaris = [str(C(n, k)) for k in range(n + 1)]\nprint(" ".join(baris))',
+        },
         xp: 50,
       },
     },
