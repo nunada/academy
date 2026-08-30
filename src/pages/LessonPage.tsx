@@ -25,7 +25,7 @@ export default function LessonPage() {
   const { courseId = '', itemId = '' } = useParams()
   const navigate = useNavigate()
   const { state, complete, loseHeart, hearts, nextHeartIn } = useStore()
-  const { t, tc } = useI18n()
+  const { t, tc, lang } = useI18n()
 
   const info = courseInfo(courseId)
   const course = useCourse(courseId)
@@ -162,7 +162,10 @@ export default function LessonPage() {
 
       <div className="player">
         <StepView
-          key={step.id}
+          // A language toggle mid-exercise remounts the step: an edited
+          // Indonesian starter has no useful "unmodified" comparison against
+          // an English one, so there's nothing worth preserving across it.
+          key={`${step.id}:${lang}`}
           step={step}
           solved={stepSolved}
           onSolved={() => void handleSolved()}

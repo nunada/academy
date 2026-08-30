@@ -11,6 +11,19 @@ export interface Loc {
   id: string
 }
 
+/** Like `Loc`, but for a value that is executed rather than displayed — code,
+ *  test data, anything Pyodide runs. Only wrap fields that actually need a
+ *  second language; most content stays a plain, language-neutral `T`.
+ *  Never instantiate with a `T` that itself has `en`/`id` keys — `resolveBi`
+ *  can't tell that apart from an actual bilingual wrapper. */
+export type Bi<T> = T | { en: T; id: T }
+
+export function resolveBi<T>(v: Bi<T>, lang: Lang): T {
+  return v !== null && typeof v === 'object' && !Array.isArray(v) && 'en' in v && 'id' in v
+    ? (v as { en: T; id: T })[lang]
+    : (v as T)
+}
+
 /** A check that runs against the learner's Python code inside Pyodide. */
 export interface PyTest {
   name: Loc
@@ -234,8 +247,8 @@ export type Step =
       id: string
       prompt: Loc
       /** Use `___` (three underscores) for each blank, in order. */
-      template: string
-      blanks: string[]
+      template: Bi<string>
+      blanks: Bi<string[]>
       explain: Loc
       /** The template is LaTeX, and the pieces around the blanks are set as
        *  a formula rather than as monospaced code. */
@@ -246,7 +259,7 @@ export type Step =
       id: string
       prompt: Loc
       /** Correct order. Shuffled for the learner. */
-      lines: string[]
+      lines: Bi<string[]>
       explain: Loc
       /** The lines are LaTeX — the steps of a derivation rather than of a
        *  program — and are set as formulas. */
@@ -256,11 +269,11 @@ export type Step =
       kind: 'code'
       id: string
       prompt: Loc
-      starter: string
-      tests: PyTest[]
+      starter: Bi<string>
+      tests: Bi<PyTest[]>
       /** Revealed one at a time; the last hint may show the answer shape. */
       hints: Loc[]
-      solution: string
+      solution: Bi<string>
     }
   | {
       /** Same rung of the ladder as `code`, but the learner writes markup and
@@ -359,16 +372,16 @@ interface MiniProjectBase {
 
 /** The shape every project had before mathematics arrived: an editor with
  *  something in it to begin with, and one right answer to fall back on. */
-type CodeProject = MiniProjectBase & { starter: string; solution: string }
+type CodeProject = MiniProjectBase & { starter: Bi<string>; solution: Bi<string> }
 
 /** Discriminated by `runtime` so each kind carries only the tests it can run.
  *  Python is the default, which keeps every existing project unchanged. */
 export type MiniProject =
-  | (CodeProject & { runtime?: 'python'; tests: PyTest[] })
+  | (CodeProject & { runtime?: 'python'; tests: Bi<PyTest[]> })
   | (CodeProject & { runtime: 'web'; tests: WebTest[]; html?: string; js?: boolean; react?: boolean })
   | (CodeProject & { runtime: 'sql'; tests: SqlTest[]; schema: string })
   | (CodeProject & { runtime: 'ts'; tests: TsTest[] })
-  | (CodeProject & { runtime: 'game'; tests: PyTest[] })
+  | (CodeProject & { runtime: 'game'; tests: Bi<PyTest[]> })
   | (CodeProject & { runtime: 'cpp'; tests: CppTest[] })
   /** A problem set: several questions, every box right before it counts.
    *  No starter and no single solution string — each part carries its own

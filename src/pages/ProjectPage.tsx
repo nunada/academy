@@ -4,7 +4,7 @@ import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
 import { courseInfo } from '../content/catalog'
 import { useCourse } from '../app/curriculum'
-import { courseItems, type Course, type MiniProject } from '../content/types'
+import { courseItems, resolveBi, type Course, type MiniProject } from '../content/types'
 import { isUnlocked } from '../lib/progress'
 import { runPython, runTests, splitStdin } from '../lib/python'
 import { runWebTests } from '../lib/web'
@@ -31,13 +31,13 @@ function findProject(course: Course | undefined, projectId: string): MiniProject
 export default function ProjectPage() {
   const { courseId = '', itemId = '' } = useParams()
   const { state, complete } = useStore()
-  const { t, tc } = useI18n()
+  const { t, tc, lang } = useI18n()
 
   const info = courseInfo(courseId)
   const course = useCourse(courseId)
   const project = useMemo(() => findProject(course, itemId), [course, itemId])
 
-  const [code, setCode] = useState(() => (project && 'starter' in project ? project.starter : ''))
+  const [code, setCode] = useState(() => (project && 'starter' in project ? resolveBi(project.starter, lang) : ''))
   const [stdin, setStdin] = useState('')
   // One row of typed answers per part, for a mathematics problem set.
   const [answers, setAnswers] = useState<string[][]>([])
@@ -55,16 +55,19 @@ export default function ProjectPage() {
 
   // On a cold load the project is not here for the first render, so the
   // starter — or the empty answer boxes — has to be planted once it arrives.
-  // Keyed on the id, so it never overwrites what the learner has typed.
+  // Keyed on the id, so it never overwrites what the learner has typed —
+  // except a language toggle, which deliberately does reseed: an edited
+  // Indonesian starter has no useful "unmodified" comparison against an
+  // English one, so there is nothing worth preserving across that switch.
   useEffect(() => {
     if (!project) return
     if (project.runtime === 'math') {
       setAnswers(project.tasks.map(emptyValues))
       setAnswerMarks(project.tasks.map(() => null))
     } else {
-      setCode(project.starter)
+      setCode(resolveBi(project.starter, lang))
     }
-  }, [project?.id])
+  }, [project?.id, lang])
 
   if (!info || !info.available) return <Navigate to="/catalog" replace />
   if (!state || !course) return <main className="page muted">{t('loading')}</main>
@@ -162,7 +165,7 @@ export default function ProjectPage() {
               ? fromTs(await runTsTests(code, project.tests))
               : project.runtime === 'cpp'
                 ? fromCpp(await runCppTests(code, project.tests))
-                : fromPython(await runTests(code, project.tests))
+                : fromPython(await runTests(code, resolveBi(project.tests, lang)))
       // The checks and the game share one interpreter, so stop the loop first.
       if (project.runtime === 'game') setRunNonce(0)
       setRows(next)
@@ -382,7 +385,7 @@ export default function ProjectPage() {
         {showSolution && !isMath && (
           <div style={{ marginTop: 12 }}>
             <div className="io-label">{t('showSolution')}</div>
-            <CodeBlock>{project.solution}</CodeBlock>
+            <CodeBlock>{resolveBi(project.solution, lang)}</CodeBlock>
           </div>
         )}
 

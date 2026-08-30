@@ -85,7 +85,7 @@ export const module1: Module = {
                 en: 'Write a program that prints exactly two lines: `Halo!` then `Nama saya Nunada`.',
                 id: 'Tulis program yang mencetak tepat dua baris: `Halo!` lalu `Nama saya Nunada`.',
               },
-              starter: '# tulis kodemu di bawah ini\n',
+              starter: { en: '# write your code below\n', id: '# tulis kodemu di bawah ini\n' },
               tests: [
                 {
                   name: { en: 'Prints both lines in order', id: 'Mencetak kedua baris berurutan' },
@@ -186,7 +186,7 @@ export const module1: Module = {
                 { en: 'Close the string with a quote, then close the bracket.', id: 'Tutup string dengan tanda kutip, lalu tutup kurungnya.' },
                 { en: 'A comment line starts with #.', id: 'Baris komentar diawali #.' },
               ],
-              solution: '# mencetak sapaan\nprint("Belajar Python")',
+              solution: { en: '# prints a greeting\nprint("Belajar Python")', id: '# mencetak sapaan\nprint("Belajar Python")' },
             },
           ],
         },
@@ -204,7 +204,7 @@ export const module1: Module = {
           { en: 'Line 3: `Kota  : Surabaya`', id: 'Baris 3: `Kota  : Surabaya`' },
           { en: 'Line 4: `==================`', id: 'Baris 4: `==================`' },
         ],
-        starter: '# Kartu nama\n',
+        starter: { en: '# Name card\n', id: '# Kartu nama\n' },
         tests: [
           {
             name: { en: 'All four lines are exact', id: 'Keempat baris tepat' },
@@ -279,11 +279,11 @@ export const module1: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Store the number 25 in a variable called `umur`, then print it.',
+                en: 'Store the number 25 in a variable called `age`, then print it.',
                 id: 'Simpan angka 25 dalam variabel bernama `umur`, lalu cetak.',
               },
-              template: 'umur ___ 25\nprint(___)',
-              blanks: ['=', 'umur'],
+              template: { en: 'age ___ 25\nprint(___)', id: 'umur ___ 25\nprint(___)' },
+              blanks: { en: ['=', 'age'], id: ['=', 'umur'] },
               explain: {
                 en: '= assigns; printing the name prints the stored value.',
                 id: '= menetapkan nilai; mencetak namanya berarti mencetak nilai yang tersimpan.',
@@ -293,25 +293,40 @@ export const module1: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'Create `nama` = "Budi" and `kelas` = 10, then print each on its own line.',
+                en: 'Create `name` = "Budi" and `grade` = 10, then print each on its own line.',
                 id: 'Buat `nama` = "Budi" dan `kelas` = 10, lalu cetak masing-masing di barisnya sendiri.',
               },
               starter: '',
-              tests: [
-                {
-                  name: { en: 'Prints Budi then 10', id: 'Mencetak Budi lalu 10' },
-                  expectOutput: 'Budi\n10',
-                },
-                {
-                  name: { en: 'Uses the right variable names', id: 'Memakai nama variabel yang benar' },
-                  assert: 'assert nama == "Budi", "variabel nama harus berisi Budi"\nassert kelas == 10, "variabel kelas harus berisi angka 10"',
-                },
-              ],
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Prints Budi then 10', id: 'Mencetak Budi lalu 10' },
+                    expectOutput: 'Budi\n10',
+                  },
+                  {
+                    name: { en: 'Uses the right variable names', id: 'Memakai nama variabel yang benar' },
+                    assert: 'assert name == "Budi", "variable name must contain Budi"\nassert grade == 10, "variable grade must contain the number 10"',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Prints Budi then 10', id: 'Mencetak Budi lalu 10' },
+                    expectOutput: 'Budi\n10',
+                  },
+                  {
+                    name: { en: 'Uses the right variable names', id: 'Memakai nama variabel yang benar' },
+                    assert: 'assert nama == "Budi", "variabel nama harus berisi Budi"\nassert kelas == 10, "variabel kelas harus berisi angka 10"',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Text needs quotes; numbers do not.', id: 'Teks butuh tanda kutip; angka tidak.' },
-                { en: 'print(nama) on one line, print(kelas) on the next.', id: 'print(nama) di satu baris, print(kelas) di baris berikutnya.' },
+                { en: 'print(name) on one line, print(grade) on the next.', id: 'print(nama) di satu baris, print(kelas) di baris berikutnya.' },
               ],
-              solution: 'nama = "Budi"\nkelas = 10\nprint(nama)\nprint(kelas)',
+              solution: {
+                en: 'name = "Budi"\ngrade = 10\nprint(name)\nprint(grade)',
+                id: 'nama = "Budi"\nkelas = 10\nprint(nama)\nprint(kelas)',
+              },
             },
           ],
         },
@@ -380,22 +395,34 @@ export const module1: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'A rectangle is 8 wide and 5 tall. Compute its area into a variable `luas` and print exactly: `Luas: 40`.',
+                en: 'A rectangle is 8 wide and 5 tall. Compute its area into a variable `area` and print exactly: `Area: 40`.',
                 id: 'Sebuah persegi panjang lebarnya 8 dan tingginya 5. Hitung luasnya ke variabel `luas` lalu cetak tepat: `Luas: 40`.',
               },
-              starter: 'lebar = 8\ntinggi = 5\n',
-              tests: [
-                { name: { en: 'Prints the sentence', id: 'Mencetak kalimatnya' }, expectOutput: 'Luas: 40' },
-                {
-                  name: { en: 'Stores the area in `luas`', id: 'Menyimpan luas di `luas`' },
-                  assert: 'assert luas == 40, "variabel luas harus bernilai 40"',
-                },
-              ],
+              starter: { en: 'width = 8\nheight = 5\n', id: 'lebar = 8\ntinggi = 5\n' },
+              tests: {
+                en: [
+                  { name: { en: 'Prints the sentence', id: 'Mencetak kalimatnya' }, expectOutput: 'Area: 40' },
+                  {
+                    name: { en: 'Stores the area in `area`', id: 'Menyimpan luas di `luas`' },
+                    assert: 'assert area == 40, "variable area must equal 40"',
+                  },
+                ],
+                id: [
+                  { name: { en: 'Prints the sentence', id: 'Mencetak kalimatnya' }, expectOutput: 'Luas: 40' },
+                  {
+                    name: { en: 'Stores the area in `luas`', id: 'Menyimpan luas di `luas`' },
+                    assert: 'assert luas == 40, "variabel luas harus bernilai 40"',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Area is width times height: use *.', id: 'Luas adalah lebar kali tinggi: gunakan *.' },
-                { en: 'print(f"Luas: {luas}")', id: 'print(f"Luas: {luas}")' },
+                { en: 'print(f"Area: {area}")', id: 'print(f"Luas: {luas}")' },
               ],
-              solution: 'lebar = 8\ntinggi = 5\nluas = lebar * tinggi\nprint(f"Luas: {luas}")',
+              solution: {
+                en: 'width = 8\nheight = 5\narea = width * height\nprint(f"Area: {area}")',
+                id: 'lebar = 8\ntinggi = 5\nluas = lebar * tinggi\nprint(f"Luas: {luas}")',
+              },
             },
           ],
         },
@@ -468,10 +495,10 @@ export const module1: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'Ask for a name, then an age (whole number), then print `<nama> akan berumur <umur+1> tahun depan`.',
+                en: 'Ask for a name, then an age (whole number), then print `<name> akan berumur <age+1> tahun depan`.',
                 id: 'Minta nama, lalu umur (bilangan bulat), lalu cetak `<nama> akan berumur <umur+1> tahun depan`.',
               },
-              starter: 'nama = input("Nama: ")\n',
+              starter: { en: 'name = input("Nama: ")\n', id: 'nama = input("Nama: ")\n' },
               tests: [
                 {
                   name: { en: 'Ani, 17 → 18', id: 'Ani, 17 → 18' },
@@ -488,12 +515,14 @@ export const module1: Module = {
                 { en: 'Two input() calls, in the order name then age.', id: 'Dua input(), urutannya nama lalu umur.' },
                 { en: 'Wrap the age input in int().', id: 'Bungkus input umur dengan int().' },
                 {
-                  en: 'print(f"{nama} akan berumur {umur + 1} tahun depan")',
+                  en: 'print(f"{name} akan berumur {age + 1} tahun depan")',
                   id: 'print(f"{nama} akan berumur {umur + 1} tahun depan")',
                 },
               ],
-              solution:
-                'nama = input("Nama: ")\numur = int(input("Umur: "))\nprint(f"{nama} akan berumur {umur + 1} tahun depan")',
+              solution: {
+                en: 'name = input("Nama: ")\nage = int(input("Umur: "))\nprint(f"{name} akan berumur {age + 1} tahun depan")',
+                id: 'nama = input("Nama: ")\numur = int(input("Umur: "))\nprint(f"{nama} akan berumur {umur + 1} tahun depan")',
+              },
             },
           ],
         },
@@ -510,7 +539,10 @@ export const module1: Module = {
           { en: 'Convert with F = C × 9 / 5 + 32.', id: 'Konversi dengan F = C × 9 / 5 + 32.' },
           { en: 'Print `<C>C = <F>F`, for example `25.0C = 77.0F`.', id: 'Cetak `<C>C = <F>F`, misalnya `25.0C = 77.0F`.' },
         ],
-        starter: '# Konverter suhu Celsius ke Fahrenheit\ncelsius = float(input("Suhu (C): "))\n',
+        starter: {
+          en: '# Celsius to Fahrenheit temperature converter\ncelsius = float(input("Suhu (C): "))\n',
+          id: '# Konverter suhu Celsius ke Fahrenheit\ncelsius = float(input("Suhu (C): "))\n',
+        },
         tests: [
           {
             name: { en: '25 → 77', id: '25 → 77' },

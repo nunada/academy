@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { Loc, Step } from '../content/types'
+import { resolveBi } from '../content/types'
 import { useI18n } from '../i18n'
 import { runPython, runTests, type TestOutcome } from '../lib/python'
 import { runWebTests, type WebOutcome } from '../lib/web'
@@ -242,16 +243,18 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
 /* ------------------------------------------------------------------ fill */
 
 function FillStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'fill' }> }) {
-  const { t, tc } = useI18n()
-  const segments = useMemo(() => step.template.split('___'), [step.template])
-  const [values, setValues] = useState<string[]>(() => step.blanks.map(() => ''))
+  const { t, tc, lang } = useI18n()
+  const template = resolveBi(step.template, lang)
+  const blanks = resolveBi(step.blanks, lang)
+  const segments = useMemo(() => template.split('___'), [template])
+  const [values, setValues] = useState<string[]>(() => blanks.map(() => ''))
   const [checked, setChecked] = useState(false)
 
   // A blank in a program is one exact string. A blank in a formula is a
   // number, and `-0.8` and `-0,8` are the same number written in two
   // countries — so a mathematical blank is marked the way an answer box is.
   const right = values.every((v, i) => {
-    const want = step.blanks[i]
+    const want = blanks[i]
     if (!step.math) return v.trim() === want
     const target = evalAnswer(want)
     return target === null ? v.trim() === want : isRight(v, target)
@@ -336,8 +339,9 @@ function shuffled(lines: string[], seed: string): number[] {
 }
 
 function OrderStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'order' }> }) {
-  const { t, tc } = useI18n()
-  const [order, setOrder] = useState<number[]>(() => shuffled(step.lines, step.id))
+  const { t, tc, lang } = useI18n()
+  const lines = resolveBi(step.lines, lang)
+  const [order, setOrder] = useState<number[]>(() => shuffled(lines, step.id))
   const [checked, setChecked] = useState(false)
 
   const right = order.every((v, i) => v === i)
@@ -366,9 +370,7 @@ function OrderStep({ step, solved, onSolved, onWrong, blocked }: Props & { step:
 
       {order.map((lineIndex, pos) => (
         <div className={step.math ? 'orderline math' : 'orderline'} key={lineIndex}>
-          <span>
-            {step.math ? <Tex src={step.lines[lineIndex]} /> : step.lines[lineIndex] === '' ? ' ' : step.lines[lineIndex]}
-          </span>
+          <span>{step.math ? <Tex src={lines[lineIndex]} /> : lines[lineIndex] === '' ? ' ' : lines[lineIndex]}</span>
           <span className="grip">
             <button onClick={() => move(pos, -1)} disabled={pos === 0 || solved} aria-label={t('moveUp')}>
               ↑
@@ -403,8 +405,11 @@ function OrderStep({ step, solved, onSolved, onWrong, blocked }: Props & { step:
 /* ------------------------------------------------------------------ code */
 
 function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'code' }> }) {
-  const { t, tc } = useI18n()
-  const [code, setCode] = useState(step.starter)
+  const { t, tc, lang } = useI18n()
+  const starter = resolveBi(step.starter, lang)
+  const tests = resolveBi(step.tests, lang)
+  const solution = resolveBi(step.solution, lang)
+  const [code, setCode] = useState(starter)
   const [busy, setBusy] = useState(false)
   const [loadingPy, setLoadingPy] = useState(false)
   const [outcomes, setOutcomes] = useState<TestOutcome[] | null>(null)
@@ -431,7 +436,7 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
     setBusy(true)
     setLoadingPy(true)
     try {
-      const res = await runTests(code, step.tests)
+      const res = await runTests(code, tests)
       setOutcomes(res)
       setRunOut(null)
       if (res.every((o) => o.passed)) onSolved()
@@ -489,8 +494,8 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       {showSolution && (
         <div style={{ marginTop: 12 }}>
           <div className="io-label">{t('showSolution')}</div>
-          <CodeBlock>{step.solution}</CodeBlock>
-          <button className="btn ghost sm" onClick={() => setCode(step.solution)}>
+          <CodeBlock>{solution}</CodeBlock>
+          <button className="btn ghost sm" onClick={() => setCode(solution)}>
             ↧ {tc({ en: 'Copy into the editor', id: 'Salin ke editor' })}
           </button>
         </div>
