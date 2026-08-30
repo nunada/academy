@@ -89,7 +89,7 @@ export default function Layout() {
         {user && (
           <>
             <span className="pill brand" title={t('totalXpLabel')}>
-              ⚡ {xpTotal}
+              ⚡ {state?.profile.role === 'teacher' ? 99999 : xpTotal}
             </span>
             <Hearts count={hearts} nextIn={nextHeartIn} infinite={state?.profile.role === 'teacher'} />
           </>
