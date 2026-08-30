@@ -428,26 +428,32 @@ export function createLocalBackend(): Backend {
       const mine = (e: XpEvent) => counted === null || (e.course_id != null && counted.has(e.course_id))
       const seededXp = (t: TrackXp) => (track === 'all' ? t.code + t.math : t[track])
 
-      const rows: LeaderRow[] = db.accounts.map((a) => {
-        let value: number
-        if (kind === 'trophies') {
-          value = a.seeded ? a.seeded.trophies : a.trophies.length
-        } else if (kind === 'weekly') {
-          value = a.seeded
-            ? seededXp(a.seeded.weekly)
-            : a.xpEvents.filter((e) => isThisWeek(e.created_at) && mine(e)).reduce((n, e) => n + e.amount, 0)
-        } else {
-          value = a.seeded
-            ? seededXp(a.seeded.alltime)
-            : a.xpEvents.filter(mine).reduce((n, e) => n + e.amount, 0)
-        }
-        return {
-          user_id: a.id,
-          username: a.profile.username,
-          display_name: a.profile.display_name,
-          value,
-        }
-      })
+      // A teacher account never earns XP or trophies today, but that is a
+      // caller-side convention, not something enforced where xpEvents/trophies
+      // get written — so this filters on role directly rather than trusting
+      // every value to already be zero.
+      const rows: LeaderRow[] = db.accounts
+        .filter((a) => a.profile.role !== 'teacher')
+        .map((a) => {
+          let value: number
+          if (kind === 'trophies') {
+            value = a.seeded ? a.seeded.trophies : a.trophies.length
+          } else if (kind === 'weekly') {
+            value = a.seeded
+              ? seededXp(a.seeded.weekly)
+              : a.xpEvents.filter((e) => isThisWeek(e.created_at) && mine(e)).reduce((n, e) => n + e.amount, 0)
+          } else {
+            value = a.seeded
+              ? seededXp(a.seeded.alltime)
+              : a.xpEvents.filter(mine).reduce((n, e) => n + e.amount, 0)
+          }
+          return {
+            user_id: a.id,
+            username: a.profile.username,
+            display_name: a.profile.display_name,
+            value,
+          }
+        })
       return rows.filter((r) => r.value > 0).sort((a, b) => b.value - a.value)
     },
 

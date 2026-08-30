@@ -321,6 +321,7 @@ as $$
     join public.profiles p on p.id = e.user_id
    where e.created_at >= date_trunc('week', now() at time zone 'utc') at time zone 'utc'
      and (p_courses is null or e.course_id = any(p_courses))
+     and p.role = 'learner'
    group by p.id, p.username, p.display_name
    order by value desc, p.username asc
    limit p_limit;
@@ -338,12 +339,19 @@ as $$
   select p.id, p.username::text, p.display_name, sum(e.amount)::bigint as value
     from public.xp_events e
     join public.profiles p on p.id = e.user_id
-   where p_courses is null or e.course_id = any(p_courses)
+   where (p_courses is null or e.course_id = any(p_courses))
+     and p.role = 'learner'
    group by p.id, p.username, p.display_name
    order by value desc, p.username asc
    limit p_limit;
 $$;
 
+-- A teacher account never earns XP or trophies through the app today, but
+-- that is a client-side convention (LessonPage/ProjectPage pass xp: 0), not
+-- something complete_item enforces server-side — so a stray or legacy row
+-- is possible. Filtering on role here makes "teachers are never on the
+-- leaderboard" a guarantee of the board itself, not a side effect of every
+-- caller happening to behave.
 create or replace function public.leaderboard_trophies(p_limit integer default 50)
 returns table (user_id uuid, username text, display_name text, value bigint)
 language sql
@@ -353,6 +361,7 @@ as $$
   select p.id, p.username::text, p.display_name, count(t.trophy_id)::bigint as value
     from public.trophies t
     join public.profiles p on p.id = t.user_id
+   where p.role = 'learner'
    group by p.id, p.username, p.display_name
    order by value desc, p.username asc
    limit p_limit;
