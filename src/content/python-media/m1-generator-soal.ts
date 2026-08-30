@@ -86,7 +86,10 @@ export const module1: Module = {
                 en: 'Assemble a program that seeds the generator before drawing a number, not after.',
                 id: 'Susun program yang men-seed generatornya sebelum mengambil angka, bukan sesudahnya.',
               },
-              lines: ['import random', 'random.seed(3)', 'nilai = random.randint(1, 20)', 'print(nilai)'],
+              lines: {
+                en: ['import random', 'random.seed(3)', 'value = random.randint(1, 20)', 'print(value)'],
+                id: ['import random', 'random.seed(3)', 'nilai = random.randint(1, 20)', 'print(nilai)'],
+              },
               explain: {
                 en: 'Seeding after the draw would do nothing for that draw — order matters.',
                 id: 'Men-seed setelah pengambilan tidak berpengaruh pada pengambilan itu — urutan penting.',
@@ -124,37 +127,46 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Picking one item from a list', id: 'Memilih satu unsur dari list' },
               body: {
-                en: '`random.choice(daftar)` returns one item from `daftar`, chosen at random — useful for picking an operator, a word-problem character, or a unit of measurement from a list you control.',
+                en: '`random.choice(list)` returns one item from `list`, chosen at random — useful for picking an operator, a word-problem character, or a unit of measurement from a list you control.',
                 id: '`random.choice(daftar)` mengembalikan satu unsur dari `daftar`, dipilih secara acak — berguna untuk memilih operator, tokoh soal cerita, atau satuan ukuran dari daftar yang kamu kendalikan.',
               },
-              code: 'import random\nrandom.seed(2)\nbuah = ["apel", "jeruk", "mangga", "pisang"]\nprint(random.choice(buah))',
-              output: 'apel',
+              code: {
+                en: 'import random\nrandom.seed(2)\nfruits = ["apple", "orange", "mango", "banana"]\nprint(random.choice(fruits))',
+                id: 'import random\nrandom.seed(2)\nbuah = ["apel", "jeruk", "mangga", "pisang"]\nprint(random.choice(buah))',
+              },
+              output: { en: 'apple', id: 'apel' },
             },
             {
               kind: 'concept',
               id: 'c2',
               title: { en: 'Reordering a whole list', id: 'Mengacak urutan seluruh list' },
               body: {
-                en: '`random.shuffle(daftar)` reorders `daftar` in place — it changes the list itself and returns nothing. Useful for handing out the same set of problems in a different order to every student.',
+                en: '`random.shuffle(list)` reorders `list` in place — it changes the list itself and returns nothing. Useful for handing out the same set of problems in a different order to every student.',
                 id: '`random.shuffle(daftar)` mengacak urutan `daftar` di tempat — ia mengubah list-nya sendiri dan tidak mengembalikan apa-apa. Berguna untuk membagikan set soal yang sama dengan urutan berbeda ke tiap siswa.',
               },
-              code: 'import random\nrandom.seed(3)\nangka = [1, 2, 3, 4, 5]\nrandom.shuffle(angka)\nprint(angka)',
+              code: {
+                en: 'import random\nrandom.seed(3)\nnumbers = [1, 2, 3, 4, 5]\nrandom.shuffle(numbers)\nprint(numbers)',
+                id: 'import random\nrandom.seed(3)\nangka = [1, 2, 3, 4, 5]\nrandom.shuffle(angka)\nprint(angka)',
+              },
               output: '[1, 3, 4, 5, 2]',
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'import random\nrandom.seed(7)\nwarna = ["merah", "biru", "hijau"]\nprint(random.choice(warna))',
+              code: {
+                en: 'import random\nrandom.seed(7)\ncolors = ["red", "blue", "green"]\nprint(random.choice(colors))',
+                id: 'import random\nrandom.seed(7)\nwarna = ["merah", "biru", "hijau"]\nprint(random.choice(warna))',
+              },
               options: [
-                { en: 'biru', id: 'biru' },
-                { en: 'merah', id: 'merah' },
-                { en: 'hijau', id: 'hijau' },
+                { en: 'blue', id: 'biru' },
+                { en: 'red', id: 'merah' },
+                { en: 'green', id: 'hijau' },
                 { en: 'A different colour every time', id: 'Warna berbeda tiap kali' },
               ],
               answer: 0,
               explain: {
-                en: 'Seeded with 7, this exact sequence of calls always lands on "biru".',
+                en: 'Seeded with 7, this exact sequence of calls always lands on "blue".',
                 id: 'Dengan seed 7, urutan pemanggilan persis ini selalu jatuh pada "biru".',
               },
             },
@@ -165,7 +177,10 @@ export const module1: Module = {
                 en: 'Pick one operator from the list, reproducibly.',
                 id: 'Pilih satu operator dari list-nya, secara bisa diulang.',
               },
-              template: 'import random\nrandom.seed(4)\noperator = ["+", "-", "*"]\npilihan = random.___(operator)\nprint(pilihan)',
+              template: {
+                en: 'import random\nrandom.seed(4)\noperator = ["+", "-", "*"]\npick = random.___(operator)\nprint(pick)',
+                id: 'import random\nrandom.seed(4)\noperator = ["+", "-", "*"]\npilihan = random.___(operator)\nprint(pilihan)',
+              },
               blanks: ['choice'],
               explain: {
                 en: 'choice picks one item; shuffle would reorder the whole list instead.',
@@ -179,9 +194,12 @@ export const module1: Module = {
                 en: 'Assemble a program that shuffles a list of three names and prints the result.',
                 id: 'Susun program yang mengacak list tiga nama dan mencetak hasilnya.',
               },
-              lines: ['import random', 'random.seed(6)', 'nama = ["Ani", "Budi", "Citra"]', 'random.shuffle(nama)', 'print(nama)'],
+              lines: {
+                en: ['import random', 'random.seed(6)', 'names = ["Ani", "Budi", "Citra"]', 'random.shuffle(names)', 'print(names)'],
+                id: ['import random', 'random.seed(6)', 'nama = ["Ani", "Budi", "Citra"]', 'random.shuffle(nama)', 'print(nama)'],
+              },
               explain: {
-                en: 'shuffle changes nama itself — there is nothing to assign the result to.',
+                en: 'shuffle changes names itself — there is nothing to assign the result to.',
                 id: 'shuffle mengubah nama itu sendiri — tak ada hasil yang perlu ditugaskan ke mana pun.',
               },
             },
