@@ -162,7 +162,10 @@ export const module3: Module = {
                 en: 'Accumulate a product instead of a sum, to compute 1 × 2 × 3 × 4.',
                 id: 'Akumulasikan hasil kali, bukan jumlah, untuk menghitung 1 × 2 × 3 × 4.',
               },
-              template: 'hasil = 1\nfor i in range(1, 5):\n    hasil ___ i\nprint(hasil)',
+              template: {
+                en: 'result = 1\nfor i in range(1, 5):\n    result ___ i\nprint(result)',
+                id: 'hasil = 1\nfor i in range(1, 5):\n    hasil ___ i\nprint(hasil)',
+              },
               blanks: ['*='],
               explain: {
                 en: 'A product accumulator starts at 1 (not 0) and multiplies on each pass.',
@@ -305,10 +308,13 @@ export const module3: Module = {
               kind: 'order',
               id: 'o1',
               prompt: {
-                en: 'Assemble a countdown from 5 to 1, followed by "Selesai!".',
+                en: 'Assemble a countdown from 5 to 1, followed by "Done!".',
                 id: 'Susun hitung mundur dari 5 ke 1, diikuti "Selesai!".',
               },
-              lines: ['i = 5', 'while i > 0:', '    print(i)', '    i -= 1', 'print("Selesai!")'],
+              lines: {
+                en: ['i = 5', 'while i > 0:', '    print(i)', '    i -= 1', 'print("Done!")'],
+                id: ['i = 5', 'while i > 0:', '    print(i)', '    i -= 1', 'print("Selesai!")'],
+              },
               explain: {
                 en: 'The final print sits outside the loop, at the outer indentation — it runs once, after i reaches 0.',
                 id: 'Print terakhirnya ada di luar perulangan, pada indentasi luar — ia berjalan sekali, setelah i mencapai 0.',
@@ -350,7 +356,10 @@ export const module3: Module = {
                 en: "There is no `sqrt` here — only a guess that gets better each time. Averaging a guess with `n` divided by that guess pulls it toward the real root; repeating it a few times gets remarkably close. This is **Newton's method**.",
                 id: 'Tidak ada `sqrt` di sini — hanya tebakan yang membaik tiap kali. Merata-ratakan sebuah tebakan dengan `n` dibagi tebakan itu menariknya mendekati akar sebenarnya; mengulanginya beberapa kali membuatnya sangat dekat. Inilah **metode Newton**.',
               },
-              code: 'n = 10\ntebak = n / 2\ntebak = (tebak + n / tebak) / 2\ntebak = (tebak + n / tebak) / 2\nprint(round(tebak, 4))',
+              code: {
+                en: 'n = 10\nguess = n / 2\nguess = (guess + n / guess) / 2\nguess = (guess + n / guess) / 2\nprint(round(guess, 4))',
+                id: 'n = 10\ntebak = n / 2\ntebak = (tebak + n / tebak) / 2\ntebak = (tebak + n / tebak) / 2\nprint(round(tebak, 4))',
+              },
               output: '3.1786',
             },
             {
@@ -361,14 +370,20 @@ export const module3: Module = {
                 en: 'Instead of copying the update line a fixed number of times, a `while` loop repeats it until `tebak * tebak` is close enough to `n` — within `0.0001`, say. `abs()` measures "close" in either direction.',
                 id: 'Alih-alih menyalin baris pembaruannya berkali-kali, perulangan `while` mengulanginya sampai `tebak * tebak` cukup dekat dengan `n` — dalam jarak `0.0001`, misalnya. `abs()` mengukur "dekat" dari kedua arah.',
               },
-              code: 'n = 10\ntebak = n / 2\nwhile abs(tebak * tebak - n) > 0.0001:\n    tebak = (tebak + n / tebak) / 2\nprint(round(tebak, 4))',
+              code: {
+                en: 'n = 10\nguess = n / 2\nwhile abs(guess * guess - n) > 0.0001:\n    guess = (guess + n / guess) / 2\nprint(round(guess, 4))',
+                id: 'n = 10\ntebak = n / 2\nwhile abs(tebak * tebak - n) > 0.0001:\n    tebak = (tebak + n / tebak) / 2\nprint(round(tebak, 4))',
+              },
               output: '3.1623',
             },
             {
               kind: 'quiz',
               id: 'q1',
-              prompt: { en: 'For n = 16, starting from tebak = 8, what is tebak after exactly one update?', id: 'Untuk n = 16, mulai dari tebak = 8, berapa tebak setelah tepat satu pembaruan?' },
-              code: 'n = 16\ntebak = 8\ntebak = (tebak + n / tebak) / 2\nprint(tebak)',
+              prompt: { en: 'For n = 16, starting from guess = 8, what is guess after exactly one update?', id: 'Untuk n = 16, mulai dari tebak = 8, berapa tebak setelah tepat satu pembaruan?' },
+              code: {
+                en: 'n = 16\nguess = 8\nguess = (guess + n / guess) / 2\nprint(guess)',
+                id: 'n = 16\ntebak = 8\ntebak = (tebak + n / tebak) / 2\nprint(tebak)',
+              },
               options: [
                 { en: '5.0', id: '5.0' },
                 { en: '8.0', id: '8.0' },
@@ -388,7 +403,10 @@ export const module3: Module = {
                 en: 'Complete the update formula.',
                 id: 'Lengkapi rumus pembaruannya.',
               },
-              template: 'n = 25\ntebak = 5\ntebak = (tebak + n / tebak) ___ 2\nprint(tebak)',
+              template: {
+                en: 'n = 25\nguess = 5\nguess = (guess + n / guess) ___ 2\nprint(guess)',
+                id: 'n = 25\ntebak = 5\ntebak = (tebak + n / tebak) ___ 2\nprint(tebak)',
+              },
               blanks: ['/'],
               explain: {
                 en: 'The average of two numbers is their sum divided by 2.',
@@ -402,13 +420,22 @@ export const module3: Module = {
                 en: "Assemble Newton's method as a while loop, approximating the square root of 2.",
                 id: 'Susun metode Newton sebagai perulangan while, menaksir akar dari 2.',
               },
-              lines: [
-                'n = 2',
-                'tebak = 1.0',
-                'while abs(tebak * tebak - n) > 0.0001:',
-                '    tebak = (tebak + n / tebak) / 2',
-                'print(round(tebak, 4))',
-              ],
+              lines: {
+                en: [
+                  'n = 2',
+                  'guess = 1.0',
+                  'while abs(guess * guess - n) > 0.0001:',
+                  '    guess = (guess + n / guess) / 2',
+                  'print(round(guess, 4))',
+                ],
+                id: [
+                  'n = 2',
+                  'tebak = 1.0',
+                  'while abs(tebak * tebak - n) > 0.0001:',
+                  '    tebak = (tebak + n / tebak) / 2',
+                  'print(round(tebak, 4))',
+                ],
+              },
               explain: {
                 en: 'Same shape as the concept above, with a starting guess of 1.0 instead of n / 2 — Newton\'s method does not need a particular starting point, only a nonzero one.',
                 id: 'Bentuknya sama seperti pada konsep di atas, dengan tebakan awal 1.0 alih-alih n / 2 — metode Newton tidak butuh titik awal tertentu, hanya yang bukan nol.',
@@ -418,37 +445,67 @@ export const module3: Module = {
               kind: 'code',
               id: 'k1',
               prompt: {
-                en: 'Read a positive number `n`. Starting from `tebak = n / 2`, apply Newton\'s method — `tebak = (tebak + n / tebak) / 2` — until `abs(tebak * tebak - n)` is under `0.0001`. Leave the final value in `tebak` (printing it is optional).',
+                en: 'Read a positive number `n`. Starting from `guess = n / 2`, apply Newton\'s method — `guess = (guess + n / guess) / 2` — until `abs(guess * guess - n)` is under `0.0001`. Leave the final value in `guess` (printing it is optional).',
                 id: 'Baca bilangan positif `n`. Mulai dari `tebak = n / 2`, terapkan metode Newton — `tebak = (tebak + n / tebak) / 2` — sampai `abs(tebak * tebak - n)` di bawah `0.0001`. Biarkan nilai akhirnya di `tebak` (mencetaknya opsional).',
               },
-              starter: 'n = float(input())\ntebak = n / 2\n',
-              tests: [
-                {
-                  name: { en: 'n = 4 → tebak ≈ 2.0', id: 'n = 4 → tebak ≈ 2.0' },
-                  stdin: ['4'],
-                  assert: 'assert abs(tebak - 2.0) < 0.001, f"tebak harus mendekati 2.0, sekarang: {tebak}"',
-                },
-                {
-                  name: { en: 'n = 2 → tebak ≈ 1.41421', id: 'n = 2 → tebak ≈ 1,41421' },
-                  stdin: ['2'],
-                  assert: 'assert abs(tebak - 1.41421356) < 0.001, f"tebak harus mendekati 1.41421, sekarang: {tebak}"',
-                },
-                {
-                  name: { en: 'n = 9 → tebak ≈ 3.0', id: 'n = 9 → tebak ≈ 3.0' },
-                  stdin: ['9'],
-                  assert: 'assert abs(tebak - 3.0) < 0.001, f"tebak harus mendekati 3.0, sekarang: {tebak}"',
-                },
-                {
-                  name: { en: 'n = 100 → tebak ≈ 10.0', id: 'n = 100 → tebak ≈ 10.0' },
-                  stdin: ['100'],
-                  assert: 'assert abs(tebak - 10.0) < 0.001, f"tebak harus mendekati 10.0, sekarang: {tebak}"',
-                },
-              ],
+              starter: {
+                en: 'n = float(input())\nguess = n / 2\n',
+                id: 'n = float(input())\ntebak = n / 2\n',
+              },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'n = 4 → guess ≈ 2.0', id: 'n = 4 → tebak ≈ 2.0' },
+                    stdin: ['4'],
+                    assert: 'assert abs(guess - 2.0) < 0.001, f"guess should be close to 2.0, now: {guess}"',
+                  },
+                  {
+                    name: { en: 'n = 2 → guess ≈ 1.41421', id: 'n = 2 → tebak ≈ 1,41421' },
+                    stdin: ['2'],
+                    assert: 'assert abs(guess - 1.41421356) < 0.001, f"guess should be close to 1.41421, now: {guess}"',
+                  },
+                  {
+                    name: { en: 'n = 9 → guess ≈ 3.0', id: 'n = 9 → tebak ≈ 3.0' },
+                    stdin: ['9'],
+                    assert: 'assert abs(guess - 3.0) < 0.001, f"guess should be close to 3.0, now: {guess}"',
+                  },
+                  {
+                    name: { en: 'n = 100 → guess ≈ 10.0', id: 'n = 100 → tebak ≈ 10.0' },
+                    stdin: ['100'],
+                    assert: 'assert abs(guess - 10.0) < 0.001, f"guess should be close to 10.0, now: {guess}"',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'n = 4 → tebak ≈ 2.0', id: 'n = 4 → tebak ≈ 2.0' },
+                    stdin: ['4'],
+                    assert: 'assert abs(tebak - 2.0) < 0.001, f"tebak harus mendekati 2.0, sekarang: {tebak}"',
+                  },
+                  {
+                    name: { en: 'n = 2 → tebak ≈ 1.41421', id: 'n = 2 → tebak ≈ 1,41421' },
+                    stdin: ['2'],
+                    assert: 'assert abs(tebak - 1.41421356) < 0.001, f"tebak harus mendekati 1.41421, sekarang: {tebak}"',
+                  },
+                  {
+                    name: { en: 'n = 9 → tebak ≈ 3.0', id: 'n = 9 → tebak ≈ 3.0' },
+                    stdin: ['9'],
+                    assert: 'assert abs(tebak - 3.0) < 0.001, f"tebak harus mendekati 3.0, sekarang: {tebak}"',
+                  },
+                  {
+                    name: { en: 'n = 100 → tebak ≈ 10.0', id: 'n = 100 → tebak ≈ 10.0' },
+                    stdin: ['100'],
+                    assert: 'assert abs(tebak - 10.0) < 0.001, f"tebak harus mendekati 10.0, sekarang: {tebak}"',
+                  },
+                ],
+              },
               hints: [
-                { en: 'The variable must end up named tebak — that is what gets checked.', id: 'Variabelnya harus tetap bernama tebak — itulah yang diperiksa.' },
+                { en: 'The variable must end up named guess — that is what gets checked.', id: 'Variabelnya harus tetap bernama tebak — itulah yang diperiksa.' },
                 { en: 'This is the exact while loop from the concept steps above.', id: 'Ini persis perulangan while dari langkah konsep di atas.' },
               ],
-              solution: 'n = float(input())\ntebak = n / 2\nwhile abs(tebak * tebak - n) > 0.0001:\n    tebak = (tebak + n / tebak) / 2\nprint(round(tebak, 4))',
+              solution: {
+                en: 'n = float(input())\nguess = n / 2\nwhile abs(guess * guess - n) > 0.0001:\n    guess = (guess + n / guess) / 2\nprint(round(guess, 4))',
+                id: 'n = float(input())\ntebak = n / 2\nwhile abs(tebak * tebak - n) > 0.0001:\n    tebak = (tebak + n / tebak) / 2\nprint(round(tebak, 4))',
+              },
             },
           ],
         },
@@ -462,39 +519,68 @@ export const module3: Module = {
         },
         requirements: [
           { en: 'Read a positive number `n`.', id: 'Baca bilangan positif `n`.' },
-          { en: 'Start from `tebak = n / 3`.', id: 'Mulai dari `tebak = n / 3`.' },
-          { en: "Repeat `tebak = (2 * tebak + n / tebak ** 2) / 3` until `abs(tebak ** 3 - n)` is under `0.0001`.", id: 'Ulangi `tebak = (2 * tebak + n / tebak ** 2) / 3` sampai `abs(tebak ** 3 - n)` di bawah `0.0001`.' },
-          { en: 'Leave the final value in `tebak`.', id: 'Biarkan nilai akhirnya di `tebak`.' },
+          { en: 'Start from `guess = n / 3`.', id: 'Mulai dari `tebak = n / 3`.' },
+          { en: "Repeat `guess = (2 * guess + n / guess ** 2) / 3` until `abs(guess ** 3 - n)` is under `0.0001`.", id: 'Ulangi `tebak = (2 * tebak + n / tebak ** 2) / 3` sampai `abs(tebak ** 3 - n)` di bawah `0.0001`.' },
+          { en: 'Leave the final value in `guess`.', id: 'Biarkan nilai akhirnya di `tebak`.' },
         ],
-        starter: 'n = float(input())\ntebak = n / 3\n',
-        tests: [
-          {
-            name: { en: 'n = 8 → tebak ≈ 2.0', id: 'n = 8 → tebak ≈ 2.0' },
-            stdin: ['8'],
-            assert: 'assert abs(tebak - 2.0) < 0.001, f"tebak harus mendekati 2.0, sekarang: {tebak}"',
-          },
-          {
-            name: { en: 'n = 27 → tebak ≈ 3.0', id: 'n = 27 → tebak ≈ 3.0' },
-            stdin: ['27'],
-            assert: 'assert abs(tebak - 3.0) < 0.001, f"tebak harus mendekati 3.0, sekarang: {tebak}"',
-          },
-          {
-            name: { en: 'n = 1 → tebak ≈ 1.0', id: 'n = 1 → tebak ≈ 1.0' },
-            stdin: ['1'],
-            assert: 'assert abs(tebak - 1.0) < 0.001, f"tebak harus mendekati 1.0, sekarang: {tebak}"',
-          },
-          {
-            name: { en: 'n = 1000 → tebak ≈ 10.0', id: 'n = 1000 → tebak ≈ 10.0' },
-            stdin: ['1000'],
-            assert: 'assert abs(tebak - 10.0) < 0.001, f"tebak harus mendekati 10.0, sekarang: {tebak}"',
-          },
-        ],
+        starter: {
+          en: 'n = float(input())\nguess = n / 3\n',
+          id: 'n = float(input())\ntebak = n / 3\n',
+        },
+        tests: {
+          en: [
+            {
+              name: { en: 'n = 8 → guess ≈ 2.0', id: 'n = 8 → tebak ≈ 2.0' },
+              stdin: ['8'],
+              assert: 'assert abs(guess - 2.0) < 0.001, f"guess should be close to 2.0, now: {guess}"',
+            },
+            {
+              name: { en: 'n = 27 → guess ≈ 3.0', id: 'n = 27 → tebak ≈ 3.0' },
+              stdin: ['27'],
+              assert: 'assert abs(guess - 3.0) < 0.001, f"guess should be close to 3.0, now: {guess}"',
+            },
+            {
+              name: { en: 'n = 1 → guess ≈ 1.0', id: 'n = 1 → tebak ≈ 1.0' },
+              stdin: ['1'],
+              assert: 'assert abs(guess - 1.0) < 0.001, f"guess should be close to 1.0, now: {guess}"',
+            },
+            {
+              name: { en: 'n = 1000 → guess ≈ 10.0', id: 'n = 1000 → tebak ≈ 10.0' },
+              stdin: ['1000'],
+              assert: 'assert abs(guess - 10.0) < 0.001, f"guess should be close to 10.0, now: {guess}"',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'n = 8 → tebak ≈ 2.0', id: 'n = 8 → tebak ≈ 2.0' },
+              stdin: ['8'],
+              assert: 'assert abs(tebak - 2.0) < 0.001, f"tebak harus mendekati 2.0, sekarang: {tebak}"',
+            },
+            {
+              name: { en: 'n = 27 → tebak ≈ 3.0', id: 'n = 27 → tebak ≈ 3.0' },
+              stdin: ['27'],
+              assert: 'assert abs(tebak - 3.0) < 0.001, f"tebak harus mendekati 3.0, sekarang: {tebak}"',
+            },
+            {
+              name: { en: 'n = 1 → tebak ≈ 1.0', id: 'n = 1 → tebak ≈ 1.0' },
+              stdin: ['1'],
+              assert: 'assert abs(tebak - 1.0) < 0.001, f"tebak harus mendekati 1.0, sekarang: {tebak}"',
+            },
+            {
+              name: { en: 'n = 1000 → tebak ≈ 10.0', id: 'n = 1000 → tebak ≈ 10.0' },
+              stdin: ['1000'],
+              assert: 'assert abs(tebak - 10.0) < 0.001, f"tebak harus mendekati 10.0, sekarang: {tebak}"',
+            },
+          ],
+        },
         hints: [
           { en: 'Same shape as the square-root version, with ** 2 and / 3 instead of / 2.', id: 'Bentuknya sama seperti versi akar kuadrat, dengan ** 2 dan / 3, bukan / 2.' },
-          { en: 'The loop condition compares tebak ** 3 to n, not tebak * tebak.', id: 'Kondisi perulangannya membandingkan tebak ** 3 dengan n, bukan tebak * tebak.' },
+          { en: 'The loop condition compares guess ** 3 to n, not guess * guess.', id: 'Kondisi perulangannya membandingkan tebak ** 3 dengan n, bukan tebak * tebak.' },
         ],
-        solution:
-          'n = float(input())\ntebak = n / 3\nwhile abs(tebak ** 3 - n) > 0.0001:\n    tebak = (2 * tebak + n / tebak ** 2) / 3\nprint(round(tebak, 4))',
+        solution: {
+          en: 'n = float(input())\nguess = n / 3\nwhile abs(guess ** 3 - n) > 0.0001:\n    guess = (2 * guess + n / guess ** 2) / 3\nprint(round(guess, 4))',
+          id: 'n = float(input())\ntebak = n / 3\nwhile abs(tebak ** 3 - n) > 0.0001:\n    tebak = (2 * tebak + n / tebak ** 2) / 3\nprint(round(tebak, 4))',
+        },
         xp: 50,
       },
     },
