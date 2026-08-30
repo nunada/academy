@@ -34,8 +34,11 @@ export const module1: Module = {
                 en: 'Every C++ program you write in this course has the same skeleton. `#include <iostream>` brings in the tools for printing and reading text. `using namespace std;` lets you write `cout` instead of `std::cout`. Your own code lives between the braces of `int main() { ... }`, and `return 0;` tells the operating system the program finished without errors.',
                 id: 'Setiap program C++ yang kamu tulis di kursus ini punya kerangka yang sama. `#include <iostream>` memuat perkakas untuk mencetak dan membaca teks. `using namespace std;` membuatmu bisa menulis `cout` alih-alih `std::cout`. Kodemu sendiri ada di antara kurung kurawal `int main() { ... }`, dan `return 0;` memberitahu sistem operasi bahwa program selesai tanpa error.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Halo, dunia!" << endl;\n    return 0;\n}',
-              output: 'Halo, dunia!',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, world!" << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Halo, dunia!" << endl;\n    return 0;\n}',
+              },
+              output: { en: 'Hello, world!', id: 'Halo, dunia!' },
             },
             {
               kind: 'concept',
@@ -45,8 +48,11 @@ export const module1: Module = {
                 en: '`cout` is the output stream — the thing that writes to the screen. The `<<` arrows point at it, feeding it one piece at a time. `endl` ends the line, the way pressing Enter would. Chain as many `<<` as you like on one line.',
                 id: '`cout` adalah aliran keluaran — hal yang menulis ke layar. Tanda panah `<<` menunjuk ke arahnya, menyodorkan satu bagian setiap kali. `endl` mengakhiri baris, seperti menekan Enter. Kamu boleh menyambung `<<` sebanyak yang kamu mau dalam satu baris.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Nama saya Nunada" << endl;\n    cout << "Saya belajar C++" << endl;\n    return 0;\n}',
-              output: 'Nama saya Nunada\nSaya belajar C++',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "My name is Nunada" << endl;\n    cout << "I am learning C++" << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Nama saya Nunada" << endl;\n    cout << "Saya belajar C++" << endl;\n    return 0;\n}',
+              },
+              output: { en: 'My name is Nunada\nI am learning C++', id: 'Nama saya Nunada\nSaya belajar C++' },
             },
             {
               kind: 'quiz',
@@ -69,10 +75,13 @@ export const module1: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Complete the line so it prints: Selamat datang',
+                en: 'Complete the line so it prints: Welcome',
                 id: 'Lengkapi baris ini agar mencetak: Selamat datang',
               },
-              template: '___ << "Selamat datang" << endl;',
+              template: {
+                en: '___ << "Welcome" << endl;',
+                id: '___ << "Selamat datang" << endl;',
+              },
               blanks: ['cout'],
               explain: {
                 en: 'cout is the output stream every printed line starts from.',
@@ -83,23 +92,35 @@ export const module1: Module = {
               kind: 'cpp',
               id: 'w1',
               prompt: {
-                en: 'Write a program that prints exactly two lines: `Halo!` then `Nama saya Nunada`.',
+                en: 'Write a program that prints exactly two lines: `Hello!` then `My name is Nunada`.',
                 id: 'Tulis program yang mencetak tepat dua baris: `Halo!` lalu `Nama saya Nunada`.',
               },
-              starter:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    // tulis kodemu di bawah ini\n\n    return 0;\n}',
-              tests: [
-                {
-                  name: { en: 'Prints both lines in order', id: 'Mencetak kedua baris berurutan' },
-                  expectOutput: 'Halo!\nNama saya Nunada',
-                },
-              ],
+              starter: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // write your code below\n\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // tulis kodemu di bawah ini\n\n    return 0;\n}',
+              },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Prints both lines in order', id: 'Mencetak kedua baris berurutan' },
+                    expectOutput: 'Hello!\nMy name is Nunada',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Prints both lines in order', id: 'Mencetak kedua baris berurutan' },
+                    expectOutput: 'Halo!\nNama saya Nunada',
+                  },
+                ],
+              },
               hints: [
                 { en: 'You need two cout lines, each ending with endl.', id: 'Kamu butuh dua baris cout, masing-masing diakhiri endl.' },
                 { en: 'The text must match exactly, including the "!".', id: 'Teksnya harus sama persis, termasuk tanda "!".' },
               ],
-              solution:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Halo!" << endl;\n    cout << "Nama saya Nunada" << endl;\n    return 0;\n}',
+              solution: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello!" << endl;\n    cout << "My name is Nunada" << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Halo!" << endl;\n    cout << "Nama saya Nunada" << endl;\n    return 0;\n}',
+              },
             },
           ],
         },
@@ -121,10 +142,10 @@ export const module1: Module = {
                 id: 'Teks setelah `//` adalah komentar — kompiler mengabaikan sisa baris itu sepenuhnya. Ia ada untuk siapa pun yang membaca kodenya nanti, yang biasanya dirimu sendiri.',
               },
               code: {
-                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // this is a note, and does not run\n    cout << "Ini dijalankan" << endl;\n    return 0;\n}',
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // this is a note, and does not run\n    cout << "This runs" << endl;\n    return 0;\n}',
                 id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // ini catatan, tidak dijalankan\n    cout << "Ini dijalankan" << endl;\n    return 0;\n}',
               },
-              output: 'Ini dijalankan',
+              output: { en: 'This runs', id: 'Ini dijalankan' },
             },
             {
               kind: 'concept',
@@ -141,11 +162,14 @@ export const module1: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'Which line will actually run?', id: 'Baris mana yang benar-benar dijalankan?' },
-              code: '// cout << "satu" << endl;\ncout << "dua" << endl;',
+              code: {
+                en: '// cout << "one" << endl;\ncout << "two" << endl;',
+                id: '// cout << "satu" << endl;\ncout << "dua" << endl;',
+              },
               options: [
-                { en: 'Only cout << "dua"', id: 'Hanya cout << "dua"' },
+                { en: 'Only cout << "two"', id: 'Hanya cout << "dua"' },
                 { en: 'Both lines', id: 'Kedua baris' },
-                { en: 'Only cout << "satu"', id: 'Hanya cout << "satu"' },
+                { en: 'Only cout << "one"', id: 'Hanya cout << "satu"' },
                 { en: 'Neither', id: 'Tidak keduanya' },
               ],
               answer: 0,
@@ -158,7 +182,10 @@ export const module1: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: { en: 'What is missing from this line?', id: 'Apa yang hilang dari baris ini?' },
-              code: 'cout << "Selamat pagi" << endl',
+              code: {
+                en: 'cout << "Good morning" << endl',
+                id: 'cout << "Selamat pagi" << endl',
+              },
               options: [
                 { en: 'A semicolon at the end', id: 'Titik koma di akhir' },
                 { en: 'cout must be uppercase', id: 'cout harus huruf besar' },
@@ -175,23 +202,35 @@ export const module1: Module = {
               kind: 'cpp',
               id: 'w1',
               prompt: {
-                en: 'Fix the broken program so it prints `Belajar C++` — and add a comment above the line explaining what it does.',
+                en: 'Fix the broken program so it prints `Learning C++` — and add a comment above the line explaining what it does.',
                 id: 'Perbaiki program yang rusak ini agar mencetak `Belajar C++` — dan tambahkan komentar di atas barisnya yang menjelaskan fungsinya.',
               },
-              starter:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Belajar C++" << endl\n    return 0;\n}',
-              tests: [
-                {
-                  name: { en: 'Prints the right text', id: 'Mencetak teks yang benar' },
-                  expectOutput: 'Belajar C++',
-                },
-              ],
+              starter: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Learning C++" << endl\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Belajar C++" << endl\n    return 0;\n}',
+              },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Prints the right text', id: 'Mencetak teks yang benar' },
+                    expectOutput: 'Learning C++',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Prints the right text', id: 'Mencetak teks yang benar' },
+                    expectOutput: 'Belajar C++',
+                  },
+                ],
+              },
               hints: [
                 { en: 'The cout line is missing its semicolon.', id: 'Baris cout kehilangan titik koma-nya.' },
                 { en: 'A comment line starts with //.', id: 'Baris komentar diawali //.' },
               ],
-              solution:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    // mencetak status belajar\n    cout << "Belajar C++" << endl;\n    return 0;\n}',
+              solution: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // prints the learning status\n    cout << "Learning C++" << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // mencetak status belajar\n    cout << "Belajar C++" << endl;\n    return 0;\n}',
+              },
             },
           ],
         },
@@ -205,24 +244,37 @@ export const module1: Module = {
           id: 'Cetak sebuah kartu nama kecil, tepat empat baris, hanya dengan cout.',
         },
         requirements: [
-          { en: 'Line 1: `=== KARTU NAMA ===`', id: 'Baris 1: `=== KARTU NAMA ===`' },
-          { en: 'Line 2: `Nama  : Nunada`', id: 'Baris 2: `Nama  : Nunada`' },
-          { en: 'Line 3: `Kota  : Surabaya`', id: 'Baris 3: `Kota  : Surabaya`' },
+          { en: 'Line 1: `=== NAME CARD ===`', id: 'Baris 1: `=== KARTU NAMA ===`' },
+          { en: 'Line 2: `Name  : Nunada`', id: 'Baris 2: `Nama  : Nunada`' },
+          { en: 'Line 3: `City  : Surabaya`', id: 'Baris 3: `Kota  : Surabaya`' },
           { en: 'Line 4: `==================`', id: 'Baris 4: `==================`' },
         ],
-        starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // Kartu nama\n\n    return 0;\n}',
-        tests: [
-          {
-            name: { en: 'All four lines are exact', id: 'Keempat baris tepat' },
-            expectOutput: '=== KARTU NAMA ===\nNama  : Nunada\nKota  : Surabaya\n==================',
-          },
-        ],
+        starter: {
+          en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // Name card\n\n    return 0;\n}',
+          id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // Kartu nama\n\n    return 0;\n}',
+        },
+        tests: {
+          en: [
+            {
+              name: { en: 'All four lines are exact', id: 'Keempat baris tepat' },
+              expectOutput: '=== NAME CARD ===\nName  : Nunada\nCity  : Surabaya\n==================',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'All four lines are exact', id: 'Keempat baris tepat' },
+              expectOutput: '=== KARTU NAMA ===\nNama  : Nunada\nKota  : Surabaya\n==================',
+            },
+          ],
+        },
         hints: [
           { en: 'Four lines means four cout << ... << endl; statements.', id: 'Empat baris berarti empat pernyataan cout << ... << endl;.' },
-          { en: 'Copy the spacing in `Nama  :` carefully — two spaces.', id: 'Perhatikan spasi pada `Nama  :` dengan cermat — dua spasi.' },
+          { en: 'Copy the spacing in `Name  :` carefully — two spaces.', id: 'Perhatikan spasi pada `Nama  :` dengan cermat — dua spasi.' },
         ],
-        solution:
-          '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "=== KARTU NAMA ===" << endl;\n    cout << "Nama  : Nunada" << endl;\n    cout << "Kota  : Surabaya" << endl;\n    cout << "==================" << endl;\n    return 0;\n}',
+        solution: {
+          en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "=== NAME CARD ===" << endl;\n    cout << "Name  : Nunada" << endl;\n    cout << "City  : Surabaya" << endl;\n    cout << "==================" << endl;\n    return 0;\n}',
+          id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "=== KARTU NAMA ===" << endl;\n    cout << "Nama  : Nunada" << endl;\n    cout << "Kota  : Surabaya" << endl;\n    cout << "==================" << endl;\n    return 0;\n}',
+        },
         xp: 50,
       },
     },
@@ -250,7 +302,10 @@ export const module1: Module = {
                 en: 'Unlike some languages, C++ asks you to say up front what kind of value a variable will hold. Write the type, then the name, then `=` and the value. Once declared, the name alone reads the value back.',
                 id: 'Tidak seperti sebagian bahasa lain, C++ memintamu menyatakan sejak awal jenis nilai apa yang akan disimpan sebuah variabel. Tulis tipenya, lalu namanya, lalu `=` dan nilainya. Setelah dideklarasikan, namanya saja sudah membaca nilainya kembali.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur = 17;\n    cout << umur << endl;\n    return 0;\n}',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int age = 17;\n    cout << age << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur = 17;\n    cout << umur << endl;\n    return 0;\n}',
+              },
               output: '17',
             },
             {
@@ -264,11 +319,11 @@ export const module1: Module = {
               code: {
                 en:
                   '#include <iostream>\nusing namespace std;\n\nint main() {\n' +
-                  '    int umur = 17;      // whole number\n' +
-                  '    double tinggi = 1.62; // decimal number\n' +
-                  "    char inisial = 'A';  // one character\n" +
-                  '    bool lulus = true;   // true or false\n' +
-                  '    cout << umur << endl;\n    cout << tinggi << endl;\n    cout << inisial << endl;\n    cout << lulus << endl;\n    return 0;\n}',
+                  '    int age = 17;        // whole number\n' +
+                  '    double height = 1.62; // decimal number\n' +
+                  "    char initial = 'A';  // one character\n" +
+                  '    bool passed = true;  // true or false\n' +
+                  '    cout << age << endl;\n    cout << height << endl;\n    cout << initial << endl;\n    cout << passed << endl;\n    return 0;\n}',
                 id:
                   '#include <iostream>\nusing namespace std;\n\nint main() {\n' +
                   '    int umur = 17;      // bilangan bulat\n' +
@@ -283,7 +338,10 @@ export const module1: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What does this print?', id: 'Apa yang dicetak ini?' },
-              code: 'bool cukup = false;\ncout << cukup << endl;',
+              code: {
+                en: 'bool enough = false;\ncout << enough << endl;',
+                id: 'bool cukup = false;\ncout << cukup << endl;',
+              },
               options: [
                 { en: '0', id: '0' },
                 { en: 'false', id: 'false' },
@@ -300,10 +358,13 @@ export const module1: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Declare a whole-number variable called `kelas` holding 10.',
+                en: 'Declare a whole-number variable called `grade` holding 10.',
                 id: 'Deklarasikan variabel bilangan bulat bernama `kelas` berisi 10.',
               },
-              template: '___ kelas = 10;',
+              template: {
+                en: '___ grade = 10;',
+                id: '___ kelas = 10;',
+              },
               blanks: ['int'],
               explain: {
                 en: 'int declares a whole-number variable.',
@@ -314,7 +375,7 @@ export const module1: Module = {
               kind: 'cpp',
               id: 'w1',
               prompt: {
-                en: 'Declare `int umur = 17;` and `double tinggi = 1.7;`, then print each on its own line.',
+                en: 'Declare `int age = 17;` and `double height = 1.7;`, then print each on its own line.',
                 id: 'Deklarasikan `int umur = 17;` dan `double tinggi = 1.7;`, lalu cetak masing-masing di barisnya sendiri.',
               },
               starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n\n    return 0;\n}',
@@ -326,10 +387,12 @@ export const module1: Module = {
               ],
               hints: [
                 { en: 'Two variables, two types: int and double.', id: 'Dua variabel, dua tipe: int dan double.' },
-                { en: 'cout << umur << endl; then cout << tinggi << endl;', id: 'cout << umur << endl; lalu cout << tinggi << endl;' },
+                { en: 'cout << age << endl; then cout << height << endl;', id: 'cout << umur << endl; lalu cout << tinggi << endl;' },
               ],
-              solution:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur = 17;\n    double tinggi = 1.7;\n    cout << umur << endl;\n    cout << tinggi << endl;\n    return 0;\n}',
+              solution: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int age = 17;\n    double height = 1.7;\n    cout << age << endl;\n    cout << height << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur = 17;\n    double tinggi = 1.7;\n    cout << umur << endl;\n    cout << tinggi << endl;\n    return 0;\n}',
+              },
             },
           ],
         },
@@ -355,10 +418,13 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'int division hides in variables too', id: 'Pembagian int juga bersembunyi di variabel' },
               body: {
-                en: 'The rule looks at the two values being divided, not what you plan to store the result in. `int a = 7, b = 2; double hasil = a / b;` still divides as int first — `hasil` ends up `3`, not `3.5`. Make at least one side a double before dividing, or write the numbers as `7.0` and `2.0` from the start.',
+                en: 'The rule looks at the two values being divided, not what you plan to store the result in. `int a = 7, b = 2; double result = a / b;` still divides as int first — `result` ends up `3`, not `3.5`. Make at least one side a double before dividing, or write the numbers as `7.0` and `2.0` from the start.',
                 id: 'Aturannya melihat dua nilai yang dibagi, bukan ke mana hasilnya akan disimpan. `int a = 7, b = 2; double hasil = a / b;` tetap membagi sebagai int lebih dulu — `hasil` menjadi `3`, bukan `3.5`. Jadikan setidaknya satu sisi double sebelum membagi, atau tulis angkanya sebagai `7.0` dan `2.0` sejak awal.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 7, b = 2;\n    double salah = a / b;\n    double benar = (double)a / b;\n    cout << salah << endl;\n    cout << benar << endl;\n    return 0;\n}',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 7, b = 2;\n    double wrong = a / b;\n    double right = (double)a / b;\n    cout << wrong << endl;\n    cout << right << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 7, b = 2;\n    double salah = a / b;\n    double benar = (double)a / b;\n    cout << salah << endl;\n    cout << benar << endl;\n    return 0;\n}',
+              },
               output: '3\n3.5',
             },
             {
@@ -400,19 +466,25 @@ export const module1: Module = {
               kind: 'cpp',
               id: 'w1',
               prompt: {
-                en: 'A rectangle is 8 wide and 5 tall. Compute its area into a variable `luas` and print exactly: `Luas: 40`.',
+                en: 'A rectangle is 8 wide and 5 tall. Compute its area into a variable `area` and print exactly: `Area: 40`.',
                 id: 'Sebuah persegi panjang lebarnya 8 dan tingginya 5. Hitung luasnya ke variabel `luas` lalu cetak tepat: `Luas: 40`.',
               },
-              starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int lebar = 8;\n    int tinggi = 5;\n\n    return 0;\n}',
-              tests: [
-                { name: { en: 'Prints the sentence', id: 'Mencetak kalimatnya' }, expectOutput: 'Luas: 40' },
-              ],
+              starter: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int width = 8;\n    int height = 5;\n\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int lebar = 8;\n    int tinggi = 5;\n\n    return 0;\n}',
+              },
+              tests: {
+                en: [{ name: { en: 'Prints the sentence', id: 'Mencetak kalimatnya' }, expectOutput: 'Area: 40' }],
+                id: [{ name: { en: 'Prints the sentence', id: 'Mencetak kalimatnya' }, expectOutput: 'Luas: 40' }],
+              },
               hints: [
                 { en: 'Area is width times height: use *.', id: 'Luas adalah lebar kali tinggi: gunakan *.' },
-                { en: 'cout << "Luas: " << luas << endl;', id: 'cout << "Luas: " << luas << endl;' },
+                { en: 'cout << "Area: " << area << endl;', id: 'cout << "Luas: " << luas << endl;' },
               ],
-              solution:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    int lebar = 8;\n    int tinggi = 5;\n    int luas = lebar * tinggi;\n    cout << "Luas: " << luas << endl;\n    return 0;\n}',
+              solution: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int width = 8;\n    int height = 5;\n    int area = width * height;\n    cout << "Area: " << area << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int lebar = 8;\n    int tinggi = 5;\n    int luas = lebar * tinggi;\n    cout << "Luas: " << luas << endl;\n    return 0;\n}',
+              },
             },
           ],
         },
@@ -430,8 +502,11 @@ export const module1: Module = {
                 en: '`cin >>` is the mirror of `cout <<`: the arrows now point at the variable, filling it from what the user types. Unlike some languages, cin already knows the type — reading into an `int` gives you a number ready to compute with, no conversion needed.',
                 id: '`cin >>` adalah cerminan dari `cout <<`: tanda panahnya kini menunjuk ke variabel, mengisinya dari apa yang diketik pengguna. Tidak seperti sebagian bahasa lain, cin sudah tahu tipenya — membaca ke `int` langsung memberimu angka yang siap dihitung, tanpa perlu konversi.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur;\n    cout << "Umur: ";\n    cin >> umur;\n    cout << umur + 1 << endl;\n    return 0;\n}',
-              output: 'Umur: 21',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int age;\n    cout << "Age: ";\n    cin >> age;\n    cout << age + 1 << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur;\n    cout << "Umur: ";\n    cin >> umur;\n    cout << umur + 1 << endl;\n    return 0;\n}',
+              },
+              output: { en: 'Age: 21', id: 'Umur: 21' },
             },
             {
               kind: 'concept',
@@ -482,20 +557,28 @@ export const module1: Module = {
               kind: 'cpp',
               id: 'w1',
               prompt: {
-                en: 'Read two whole numbers `a` and `b`, then print `Jumlah: <a+b>`.',
+                en: 'Read two whole numbers `a` and `b`, then print `Sum: <a+b>`.',
                 id: 'Baca dua bilangan bulat `a` dan `b`, lalu cetak `Jumlah: <a+b>`.',
               },
               starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, b;\n    cin >> a >> b;\n\n    return 0;\n}',
-              tests: [
-                { name: { en: '3 and 4 → 7', id: '3 dan 4 → 7' }, stdin: ['3 4'], expectContains: ['Jumlah: 7'] },
-                { name: { en: '10 and 20 → 30', id: '10 dan 20 → 30' }, stdin: ['10 20'], expectContains: ['Jumlah: 30'] },
-              ],
+              tests: {
+                en: [
+                  { name: { en: '3 and 4 → 7', id: '3 dan 4 → 7' }, stdin: ['3 4'], expectContains: ['Sum: 7'] },
+                  { name: { en: '10 and 20 → 30', id: '10 dan 20 → 30' }, stdin: ['10 20'], expectContains: ['Sum: 30'] },
+                ],
+                id: [
+                  { name: { en: '3 and 4 → 7', id: '3 dan 4 → 7' }, stdin: ['3 4'], expectContains: ['Jumlah: 7'] },
+                  { name: { en: '10 and 20 → 30', id: '10 dan 20 → 30' }, stdin: ['10 20'], expectContains: ['Jumlah: 30'] },
+                ],
+              },
               hints: [
                 { en: 'a and b are already read for you.', id: 'a dan b sudah dibaca untukmu.' },
-                { en: 'cout << "Jumlah: " << a + b << endl;', id: 'cout << "Jumlah: " << a + b << endl;' },
+                { en: 'cout << "Sum: " << a + b << endl;', id: 'cout << "Jumlah: " << a + b << endl;' },
               ],
-              solution:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, b;\n    cin >> a >> b;\n    cout << "Jumlah: " << a + b << endl;\n    return 0;\n}',
+              solution: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, b;\n    cin >> a >> b;\n    cout << "Sum: " << a + b << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, b;\n    cin >> a >> b;\n    cout << "Jumlah: " << a + b << endl;\n    return 0;\n}',
+              },
             },
           ],
         },
@@ -513,7 +596,10 @@ export const module1: Module = {
           { en: 'Convert with F = C * 9 / 5 + 32, keeping the result a whole number.', id: 'Konversi dengan F = C * 9 / 5 + 32, hasilnya tetap bilangan bulat.' },
           { en: 'Print `<C>C = <F>F`, for example `25C = 77F`.', id: 'Cetak `<C>C = <F>F`, misalnya `25C = 77F`.' },
         ],
-        starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // Konverter suhu Celsius ke Fahrenheit\n    int celsius;\n    cin >> celsius;\n\n    return 0;\n}',
+        starter: {
+          en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // Celsius to Fahrenheit temperature converter\n    int celsius;\n    cin >> celsius;\n\n    return 0;\n}',
+          id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // Konverter suhu Celsius ke Fahrenheit\n    int celsius;\n    cin >> celsius;\n\n    return 0;\n}',
+        },
         tests: [
           { name: { en: '25 → 77', id: '25 → 77' }, stdin: ['25'], expectContains: ['25C = 77F'] },
           { name: { en: '0 → 32', id: '0 → 32' }, stdin: ['0'], expectContains: ['0C = 32F'] },
