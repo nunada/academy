@@ -33,8 +33,11 @@ export const module2: Module = {
                 en: '`if (kondisi) { ... }` runs its block only when the condition is true. Add `else { ... }` for what happens otherwise. The parentheses around the condition are required; the braces are not, but keep them — a stray line quietly falling outside an `if` without them is a classic bug.',
                 id: '`if (kondisi) { ... }` menjalankan bloknya hanya ketika kondisinya benar. Tambahkan `else { ... }` untuk yang terjadi sebaliknya. Kurung di sekitar kondisi wajib ada; kurung kurawalnya tidak, tapi pertahankan — sebuah baris yang diam-diam jatuh di luar `if` tanpanya adalah bug klasik.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int nilai = 75;\n    if (nilai >= 60) {\n        cout << "Lulus" << endl;\n    } else {\n        cout << "Belum lulus" << endl;\n    }\n    return 0;\n}',
-              output: 'Lulus',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int score = 75;\n    if (score >= 60) {\n        cout << "Passed" << endl;\n    } else {\n        cout << "Not passed" << endl;\n    }\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int nilai = 75;\n    if (nilai >= 60) {\n        cout << "Lulus" << endl;\n    } else {\n        cout << "Belum lulus" << endl;\n    }\n    return 0;\n}',
+              },
+              output: { en: 'Passed', id: 'Lulus' },
             },
             {
               kind: 'concept',
@@ -44,23 +47,29 @@ export const module2: Module = {
                 en: 'Stack `else if` to test several conditions in order. C++ checks each one top to bottom and runs the first one that is true, skipping the rest — so put the more specific conditions first.',
                 id: 'Susun `else if` untuk menguji beberapa kondisi berurutan. C++ memeriksa satu per satu dari atas ke bawah dan menjalankan yang pertama benar, melewati sisanya — jadi letakkan kondisi yang lebih spesifik lebih dulu.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int nilai = 82;\n    if (nilai >= 90) {\n        cout << "A" << endl;\n    } else if (nilai >= 80) {\n        cout << "B" << endl;\n    } else if (nilai >= 70) {\n        cout << "C" << endl;\n    } else {\n        cout << "D" << endl;\n    }\n    return 0;\n}',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int score = 82;\n    if (score >= 90) {\n        cout << "A" << endl;\n    } else if (score >= 80) {\n        cout << "B" << endl;\n    } else if (score >= 70) {\n        cout << "C" << endl;\n    } else {\n        cout << "D" << endl;\n    }\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int nilai = 82;\n    if (nilai >= 90) {\n        cout << "A" << endl;\n    } else if (nilai >= 80) {\n        cout << "B" << endl;\n    } else if (nilai >= 70) {\n        cout << "C" << endl;\n    } else {\n        cout << "D" << endl;\n    }\n    return 0;\n}',
+              },
               output: 'B',
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'int x = 5;\nif (x > 10) {\n    cout << "besar";\n} else if (x > 3) {\n    cout << "sedang";\n} else {\n    cout << "kecil";\n}',
+              code: {
+                en: 'int x = 5;\nif (x > 10) {\n    cout << "big";\n} else if (x > 3) {\n    cout << "medium";\n} else {\n    cout << "small";\n}',
+                id: 'int x = 5;\nif (x > 10) {\n    cout << "besar";\n} else if (x > 3) {\n    cout << "sedang";\n} else {\n    cout << "kecil";\n}',
+              },
               options: [
-                { en: 'sedang', id: 'sedang' },
-                { en: 'besar', id: 'besar' },
-                { en: 'kecil', id: 'kecil' },
+                { en: 'medium', id: 'sedang' },
+                { en: 'big', id: 'besar' },
+                { en: 'small', id: 'kecil' },
                 { en: 'Nothing — x is never compared', id: 'Tidak ada — x tak pernah dibandingkan' },
               ],
               answer: 0,
               explain: {
-                en: 'x > 10 is false, but x > 3 is true, and that branch runs before kecil is even checked.',
+                en: 'x > 10 is false, but x > 3 is true, and that branch runs before small is even checked.',
                 id: 'x > 10 salah, tapi x > 3 benar, dan cabang itu berjalan sebelum kecil sempat diperiksa.',
               },
             },
@@ -68,10 +77,13 @@ export const module2: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Print `Genap` when n is divisible by 2, otherwise `Ganjil`.',
+                en: 'Print `Even` when n is divisible by 2, otherwise `Odd`.',
                 id: 'Cetak `Genap` bila n habis dibagi 2, jika tidak `Ganjil`.',
               },
-              template: 'if (n % 2 == 0) {\n    cout << "Genap";\n} ___ {\n    cout << "Ganjil";\n}',
+              template: {
+                en: 'if (n % 2 == 0) {\n    cout << "Even";\n} ___ {\n    cout << "Odd";\n}',
+                id: 'if (n % 2 == 0) {\n    cout << "Genap";\n} ___ {\n    cout << "Ganjil";\n}',
+              },
               blanks: ['else'],
               explain: {
                 en: 'else covers every case the if did not.',
@@ -82,21 +94,30 @@ export const module2: Module = {
               kind: 'cpp',
               id: 'w1',
               prompt: {
-                en: 'Read a whole number `n`. Print `Positif` if it is greater than 0, `Negatif` if less than 0, otherwise `Nol`.',
+                en: 'Read a whole number `n`. Print `Positive` if it is greater than 0, `Negative` if less than 0, otherwise `Zero`.',
                 id: 'Baca sebuah bilangan bulat `n`. Cetak `Positif` bila lebih besar dari 0, `Negatif` bila kurang dari 0, jika tidak `Nol`.',
               },
               starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    return 0;\n}',
-              tests: [
-                { name: { en: '5 → Positif', id: '5 → Positif' }, stdin: ['5'], expectOutput: 'Positif' },
-                { name: { en: '-3 → Negatif', id: '-3 → Negatif' }, stdin: ['-3'], expectOutput: 'Negatif' },
-                { name: { en: '0 → Nol', id: '0 → Nol' }, stdin: ['0'], expectOutput: 'Nol' },
-              ],
+              tests: {
+                en: [
+                  { name: { en: '5 → Positive', id: '5 → Positif' }, stdin: ['5'], expectOutput: 'Positive' },
+                  { name: { en: '-3 → Negative', id: '-3 → Negatif' }, stdin: ['-3'], expectOutput: 'Negative' },
+                  { name: { en: '0 → Zero', id: '0 → Nol' }, stdin: ['0'], expectOutput: 'Zero' },
+                ],
+                id: [
+                  { name: { en: '5 → Positif', id: '5 → Positif' }, stdin: ['5'], expectOutput: 'Positif' },
+                  { name: { en: '-3 → Negatif', id: '-3 → Negatif' }, stdin: ['-3'], expectOutput: 'Negatif' },
+                  { name: { en: '0 → Nol', id: '0 → Nol' }, stdin: ['0'], expectOutput: 'Nol' },
+                ],
+              },
               hints: [
                 { en: 'Three outcomes need if, else if, else.', id: 'Tiga kemungkinan hasil butuh if, else if, else.' },
                 { en: 'Check n > 0 first, then n < 0, then whatever is left is 0.', id: 'Periksa n > 0 lebih dulu, lalu n < 0, sisanya pasti 0.' },
               ],
-              solution:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    if (n > 0) {\n        cout << "Positif" << endl;\n    } else if (n < 0) {\n        cout << "Negatif" << endl;\n    } else {\n        cout << "Nol" << endl;\n    }\n    return 0;\n}',
+              solution: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    if (n > 0) {\n        cout << "Positive" << endl;\n    } else if (n < 0) {\n        cout << "Negative" << endl;\n    } else {\n        cout << "Zero" << endl;\n    }\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    if (n > 0) {\n        cout << "Positif" << endl;\n    } else if (n < 0) {\n        cout << "Negatif" << endl;\n    } else {\n        cout << "Nol" << endl;\n    }\n    return 0;\n}',
+              },
             },
           ],
         },
@@ -125,8 +146,11 @@ export const module2: Module = {
                 en: '`&&` is true when both sides are, `||` is true when either side is, `!` flips true and false. Combine several relational checks into one condition instead of nesting if-inside-if.',
                 id: '`&&` benar ketika kedua sisinya benar, `||` benar ketika salah satu sisinya benar, `!` membalik true dan false. Gabungkan beberapa pemeriksaan relasi menjadi satu kondisi alih-alih menumpuk if di dalam if.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur = 20;\n    bool punyaKTP = true;\n    if (umur >= 17 && punyaKTP) {\n        cout << "Boleh memilih" << endl;\n    } else {\n        cout << "Belum boleh" << endl;\n    }\n    return 0;\n}',
-              output: 'Boleh memilih',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int age = 20;\n    bool hasId = true;\n    if (age >= 17 && hasId) {\n        cout << "May vote" << endl;\n    } else {\n        cout << "Not yet allowed" << endl;\n    }\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur = 20;\n    bool punyaKTP = true;\n    if (umur >= 17 && punyaKTP) {\n        cout << "Boleh memilih" << endl;\n    } else {\n        cout << "Belum boleh" << endl;\n    }\n    return 0;\n}',
+              },
+              output: { en: 'May vote', id: 'Boleh memilih' },
             },
             {
               kind: 'quiz',
@@ -163,22 +187,32 @@ export const module2: Module = {
               kind: 'cpp',
               id: 'w1',
               prompt: {
-                en: 'Read a whole number `n`. Print `Valid` if it is between 1 and 100 (inclusive), otherwise `Tidak valid`.',
+                en: 'Read a whole number `n`. Print `Valid` if it is between 1 and 100 (inclusive), otherwise `Invalid`.',
                 id: 'Baca sebuah bilangan bulat `n`. Cetak `Valid` bila berada di antara 1 dan 100 (termasuk keduanya), jika tidak `Tidak valid`.',
               },
               starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    return 0;\n}',
-              tests: [
-                { name: { en: '50 → Valid', id: '50 → Valid' }, stdin: ['50'], expectOutput: 'Valid' },
-                { name: { en: '1 → Valid', id: '1 → Valid' }, stdin: ['1'], expectOutput: 'Valid' },
-                { name: { en: '0 → Tidak valid', id: '0 → Tidak valid' }, stdin: ['0'], expectOutput: 'Tidak valid' },
-                { name: { en: '150 → Tidak valid', id: '150 → Tidak valid' }, stdin: ['150'], expectOutput: 'Tidak valid' },
-              ],
+              tests: {
+                en: [
+                  { name: { en: '50 → Valid', id: '50 → Valid' }, stdin: ['50'], expectOutput: 'Valid' },
+                  { name: { en: '1 → Valid', id: '1 → Valid' }, stdin: ['1'], expectOutput: 'Valid' },
+                  { name: { en: '0 → Invalid', id: '0 → Tidak valid' }, stdin: ['0'], expectOutput: 'Invalid' },
+                  { name: { en: '150 → Invalid', id: '150 → Tidak valid' }, stdin: ['150'], expectOutput: 'Invalid' },
+                ],
+                id: [
+                  { name: { en: '50 → Valid', id: '50 → Valid' }, stdin: ['50'], expectOutput: 'Valid' },
+                  { name: { en: '1 → Valid', id: '1 → Valid' }, stdin: ['1'], expectOutput: 'Valid' },
+                  { name: { en: '0 → Tidak valid', id: '0 → Tidak valid' }, stdin: ['0'], expectOutput: 'Tidak valid' },
+                  { name: { en: '150 → Tidak valid', id: '150 → Tidak valid' }, stdin: ['150'], expectOutput: 'Tidak valid' },
+                ],
+              },
               hints: [
                 { en: 'One if with && covers both edges at once.', id: 'Satu if dengan && menutupi kedua batas sekaligus.' },
                 { en: 'if (n >= 1 && n <= 100) { ... } else { ... }', id: 'if (n >= 1 && n <= 100) { ... } else { ... }' },
               ],
-              solution:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    if (n >= 1 && n <= 100) {\n        cout << "Valid" << endl;\n    } else {\n        cout << "Tidak valid" << endl;\n    }\n    return 0;\n}',
+              solution: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    if (n >= 1 && n <= 100) {\n        cout << "Valid" << endl;\n    } else {\n        cout << "Invalid" << endl;\n    }\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    if (n >= 1 && n <= 100) {\n        cout << "Valid" << endl;\n    } else {\n        cout << "Tidak valid" << endl;\n    }\n    return 0;\n}',
+              },
             },
           ],
         },
@@ -196,8 +230,11 @@ export const module2: Module = {
                 en: 'When every branch checks the same variable against exact values, `switch` reads better than a chain of `else if`. Each `case` needs its own `break;` — without one, execution falls through into the next case, running that too.',
                 id: 'Ketika setiap cabang memeriksa variabel yang sama terhadap nilai persis, `switch` lebih enak dibaca daripada rangkaian `else if`. Setiap `case` butuh `break;` sendiri — tanpanya, eksekusi jatuh ke case berikutnya dan ikut menjalankannya.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int hari = 3;\n    switch (hari) {\n        case 1: cout << "Senin" << endl; break;\n        case 2: cout << "Selasa" << endl; break;\n        case 3: cout << "Rabu" << endl; break;\n        default: cout << "Hari tak dikenal" << endl;\n    }\n    return 0;\n}',
-              output: 'Rabu',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int day = 3;\n    switch (day) {\n        case 1: cout << "Monday" << endl; break;\n        case 2: cout << "Tuesday" << endl; break;\n        case 3: cout << "Wednesday" << endl; break;\n        default: cout << "Unknown day" << endl;\n    }\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int hari = 3;\n    switch (hari) {\n        case 1: cout << "Senin" << endl; break;\n        case 2: cout << "Selasa" << endl; break;\n        case 3: cout << "Rabu" << endl; break;\n        default: cout << "Hari tak dikenal" << endl;\n    }\n    return 0;\n}',
+              },
+              output: { en: 'Wednesday', id: 'Rabu' },
             },
             {
               kind: 'concept',
@@ -207,18 +244,24 @@ export const module2: Module = {
                 en: '`default:` runs when no `case` matched — the switch equivalent of a final `else`. It does not have to be last, but writing it last reads most naturally.',
                 id: '`default:` berjalan ketika tidak ada `case` yang cocok — padanan switch untuk `else` terakhir. Ia tak harus diletakkan paling akhir, tapi menulisnya di akhir paling wajar dibaca.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int hari = 9;\n    switch (hari) {\n        case 1: cout << "Senin" << endl; break;\n        case 2: cout << "Selasa" << endl; break;\n        default: cout << "Hari tak dikenal" << endl;\n    }\n    return 0;\n}',
-              output: 'Hari tak dikenal',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int day = 9;\n    switch (day) {\n        case 1: cout << "Monday" << endl; break;\n        case 2: cout << "Tuesday" << endl; break;\n        default: cout << "Unknown day" << endl;\n    }\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int hari = 9;\n    switch (hari) {\n        case 1: cout << "Senin" << endl; break;\n        case 2: cout << "Selasa" << endl; break;\n        default: cout << "Hari tak dikenal" << endl;\n    }\n    return 0;\n}',
+              },
+              output: { en: 'Unknown day', id: 'Hari tak dikenal' },
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What does this print? (Look closely at the breaks.)', id: 'Apa yang dicetak ini? (Perhatikan baik-baik break-nya.)' },
-              code: 'int x = 1;\nswitch (x) {\n    case 1: cout << "satu ";\n    case 2: cout << "dua "; break;\n    case 3: cout << "tiga "; break;\n}',
+              code: {
+                en: 'int x = 1;\nswitch (x) {\n    case 1: cout << "one ";\n    case 2: cout << "two "; break;\n    case 3: cout << "three "; break;\n}',
+                id: 'int x = 1;\nswitch (x) {\n    case 1: cout << "satu ";\n    case 2: cout << "dua "; break;\n    case 3: cout << "tiga "; break;\n}',
+              },
               options: [
-                { en: 'satu dua', id: 'satu dua' },
-                { en: 'satu', id: 'satu' },
-                { en: 'satu dua tiga', id: 'satu dua tiga' },
+                { en: 'one two', id: 'satu dua' },
+                { en: 'one', id: 'satu' },
+                { en: 'one two three', id: 'satu dua tiga' },
                 { en: 'Nothing prints', id: 'Tidak ada yang dicetak' },
               ],
               answer: 0,
@@ -234,7 +277,10 @@ export const module2: Module = {
                 en: 'Stop case 1 from falling into case 2.',
                 id: 'Hentikan case 1 agar tidak jatuh ke case 2.',
               },
-              template: 'switch (n) {\n    case 1: cout << "satu"; ___;\n    case 2: cout << "dua"; break;\n}',
+              template: {
+                en: 'switch (n) {\n    case 1: cout << "one"; ___;\n    case 2: cout << "two"; break;\n}',
+                id: 'switch (n) {\n    case 1: cout << "satu"; ___;\n    case 2: cout << "dua"; break;\n}',
+              },
               blanks: ['break'],
               explain: {
                 en: 'break; ends the current case instead of falling through.',
@@ -245,21 +291,33 @@ export const module2: Module = {
               kind: 'cpp',
               id: 'w1',
               prompt: {
-                en: 'Read a whole number 1-4 into `hari`. Print the matching name — `Senin`, `Selasa`, `Rabu`, `Kamis` — or `Tidak dikenal` for anything else.',
+                en: 'Read a whole number 1-4 into `day`. Print the matching name — `Monday`, `Tuesday`, `Wednesday`, `Thursday` — or `Unknown` for anything else.',
                 id: 'Baca sebuah bilangan bulat 1-4 ke `hari`. Cetak nama yang cocok — `Senin`, `Selasa`, `Rabu`, `Kamis` — atau `Tidak dikenal` untuk selain itu.',
               },
-              starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int hari;\n    cin >> hari;\n\n    return 0;\n}',
-              tests: [
-                { name: { en: '1 → Senin', id: '1 → Senin' }, stdin: ['1'], expectOutput: 'Senin' },
-                { name: { en: '4 → Kamis', id: '4 → Kamis' }, stdin: ['4'], expectOutput: 'Kamis' },
-                { name: { en: '9 → Tidak dikenal', id: '9 → Tidak dikenal' }, stdin: ['9'], expectOutput: 'Tidak dikenal' },
-              ],
+              starter: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int day;\n    cin >> day;\n\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int hari;\n    cin >> hari;\n\n    return 0;\n}',
+              },
+              tests: {
+                en: [
+                  { name: { en: '1 → Monday', id: '1 → Senin' }, stdin: ['1'], expectOutput: 'Monday' },
+                  { name: { en: '4 → Thursday', id: '4 → Kamis' }, stdin: ['4'], expectOutput: 'Thursday' },
+                  { name: { en: '9 → Unknown', id: '9 → Tidak dikenal' }, stdin: ['9'], expectOutput: 'Unknown' },
+                ],
+                id: [
+                  { name: { en: '1 → Senin', id: '1 → Senin' }, stdin: ['1'], expectOutput: 'Senin' },
+                  { name: { en: '4 → Kamis', id: '4 → Kamis' }, stdin: ['4'], expectOutput: 'Kamis' },
+                  { name: { en: '9 → Tidak dikenal', id: '9 → Tidak dikenal' }, stdin: ['9'], expectOutput: 'Tidak dikenal' },
+                ],
+              },
               hints: [
                 { en: 'Four cases, each with its own break;.', id: 'Empat case, masing-masing dengan break; sendiri.' },
-                { en: 'default: cout << "Tidak dikenal" << endl;', id: 'default: cout << "Tidak dikenal" << endl;' },
+                { en: 'default: cout << "Unknown" << endl;', id: 'default: cout << "Tidak dikenal" << endl;' },
               ],
-              solution:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    int hari;\n    cin >> hari;\n    switch (hari) {\n        case 1: cout << "Senin" << endl; break;\n        case 2: cout << "Selasa" << endl; break;\n        case 3: cout << "Rabu" << endl; break;\n        case 4: cout << "Kamis" << endl; break;\n        default: cout << "Tidak dikenal" << endl;\n    }\n    return 0;\n}',
+              solution: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int day;\n    cin >> day;\n    switch (day) {\n        case 1: cout << "Monday" << endl; break;\n        case 2: cout << "Tuesday" << endl; break;\n        case 3: cout << "Wednesday" << endl; break;\n        case 4: cout << "Thursday" << endl; break;\n        default: cout << "Unknown" << endl;\n    }\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int hari;\n    cin >> hari;\n    switch (hari) {\n        case 1: cout << "Senin" << endl; break;\n        case 2: cout << "Selasa" << endl; break;\n        case 3: cout << "Rabu" << endl; break;\n        case 4: cout << "Kamis" << endl; break;\n        default: cout << "Tidak dikenal" << endl;\n    }\n    return 0;\n}',
+              },
             },
           ],
         },
@@ -273,11 +331,14 @@ export const module2: Module = {
           id: 'Baca sebuah nilai dan cetak huruf mutunya.',
         },
         requirements: [
-          { en: 'Read one whole number `nilai` with cin.', id: 'Baca satu bilangan bulat `nilai` dengan cin.' },
+          { en: 'Read one whole number `score` with cin.', id: 'Baca satu bilangan bulat `nilai` dengan cin.' },
           { en: '90 and above is `A`, 80-89 is `B`, 70-79 is `C`, 60-69 is `D`, below 60 is `E`.', id: '90 ke atas adalah `A`, 80-89 adalah `B`, 70-79 adalah `C`, 60-69 adalah `D`, di bawah 60 adalah `E`.' },
           { en: 'Print just the letter, nothing else.', id: 'Cetak hanya hurufnya, tidak ada yang lain.' },
         ],
-        starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int nilai;\n    cin >> nilai;\n\n    return 0;\n}',
+        starter: {
+          en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int score;\n    cin >> score;\n\n    return 0;\n}',
+          id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int nilai;\n    cin >> nilai;\n\n    return 0;\n}',
+        },
         tests: [
           { name: { en: '95 → A', id: '95 → A' }, stdin: ['95'], expectOutput: 'A' },
           { name: { en: '82 → B', id: '82 → B' }, stdin: ['82'], expectOutput: 'B' },
@@ -287,10 +348,12 @@ export const module2: Module = {
         ],
         hints: [
           { en: 'A chain of else if, checked from the highest boundary down, is simplest here.', id: 'Rangkaian else if, diperiksa dari batas tertinggi ke bawah, paling sederhana di sini.' },
-          { en: 'if (nilai >= 90) ... else if (nilai >= 80) ... and so on.', id: 'if (nilai >= 90) ... else if (nilai >= 80) ... dan seterusnya.' },
+          { en: 'if (score >= 90) ... else if (score >= 80) ... and so on.', id: 'if (nilai >= 90) ... else if (nilai >= 80) ... dan seterusnya.' },
         ],
-        solution:
-          '#include <iostream>\nusing namespace std;\n\nint main() {\n    int nilai;\n    cin >> nilai;\n    if (nilai >= 90) {\n        cout << "A" << endl;\n    } else if (nilai >= 80) {\n        cout << "B" << endl;\n    } else if (nilai >= 70) {\n        cout << "C" << endl;\n    } else if (nilai >= 60) {\n        cout << "D" << endl;\n    } else {\n        cout << "E" << endl;\n    }\n    return 0;\n}',
+        solution: {
+          en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int score;\n    cin >> score;\n    if (score >= 90) {\n        cout << "A" << endl;\n    } else if (score >= 80) {\n        cout << "B" << endl;\n    } else if (score >= 70) {\n        cout << "C" << endl;\n    } else if (score >= 60) {\n        cout << "D" << endl;\n    } else {\n        cout << "E" << endl;\n    }\n    return 0;\n}',
+          id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int nilai;\n    cin >> nilai;\n    if (nilai >= 90) {\n        cout << "A" << endl;\n    } else if (nilai >= 80) {\n        cout << "B" << endl;\n    } else if (nilai >= 70) {\n        cout << "C" << endl;\n    } else if (nilai >= 60) {\n        cout << "D" << endl;\n    } else {\n        cout << "E" << endl;\n    }\n    return 0;\n}',
+        },
         xp: 50,
       },
     },
@@ -399,7 +462,10 @@ export const module2: Module = {
                 en: '`while (syarat) { ... }` repeats for as long as the condition holds, checked before every round — including the very first. Reach for it when you do not know in advance how many rounds it will take.',
                 id: '`while (syarat) { ... }` mengulang selama kondisinya terpenuhi, diperiksa sebelum setiap putaran — termasuk yang pertama. Pakai ini ketika kamu belum tahu sejak awal akan butuh berapa putaran.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n = 5, fakt = 1;\n    while (n > 1) {\n        fakt *= n;\n        n--;\n    }\n    cout << fakt << endl;\n    return 0;\n}',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n = 5, fact = 1;\n    while (n > 1) {\n        fact *= n;\n        n--;\n    }\n    cout << fact << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n = 5, fakt = 1;\n    while (n > 1) {\n        fakt *= n;\n        n--;\n    }\n    cout << fakt << endl;\n    return 0;\n}',
+              },
               output: '120',
             },
             {
@@ -451,18 +517,23 @@ export const module2: Module = {
                 en: 'Read a whole number `n` greater than 1. Print how many times it can be divided by 2 before it drops to 1 or below (integer division).',
                 id: 'Baca bilangan bulat `n` lebih besar dari 1. Cetak berapa kali ia bisa dibagi 2 sebelum turun ke 1 atau kurang (pembagian bilangan bulat).',
               },
-              starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int langkah = 0;\n\n    return 0;\n}',
+              starter: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int steps = 0;\n\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int langkah = 0;\n\n    return 0;\n}',
+              },
               tests: [
                 { name: { en: 'n=8 → 3', id: 'n=8 → 3' }, stdin: ['8'], expectOutput: '3' },
                 { name: { en: 'n=16 → 4', id: 'n=16 → 4' }, stdin: ['16'], expectOutput: '4' },
                 { name: { en: 'n=2 → 1', id: 'n=2 → 1' }, stdin: ['2'], expectOutput: '1' },
               ],
               hints: [
-                { en: 'while (n > 1) { n /= 2; langkah++; }', id: 'while (n > 1) { n /= 2; langkah++; }' },
-                { en: 'Print langkah after the loop ends.', id: 'Cetak langkah setelah perulangan berakhir.' },
+                { en: 'while (n > 1) { n /= 2; steps++; }', id: 'while (n > 1) { n /= 2; langkah++; }' },
+                { en: 'Print steps after the loop ends.', id: 'Cetak langkah setelah perulangan berakhir.' },
               ],
-              solution:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int langkah = 0;\n    while (n > 1) {\n        n /= 2;\n        langkah++;\n    }\n    cout << langkah << endl;\n    return 0;\n}',
+              solution: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int steps = 0;\n    while (n > 1) {\n        n /= 2;\n        steps++;\n    }\n    cout << steps << endl;\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int langkah = 0;\n    while (n > 1) {\n        n /= 2;\n        langkah++;\n    }\n    cout << langkah << endl;\n    return 0;\n}',
+              },
             },
           ],
         },
@@ -491,7 +562,10 @@ export const module2: Module = {
                 en: 'Nesting one `for` inside another is how a grid — rows and columns — gets visited. The inner loop finishes completely for every single round of the outer one.',
                 id: 'Menyarangkan satu `for` di dalam yang lain adalah cara sebuah kisi — baris dan kolom — dikunjungi. Perulangan dalam selesai sepenuhnya untuk setiap satu putaran perulangan luar.',
               },
-              code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int baris = 1; baris <= 3; baris++) {\n        for (int kolom = 1; kolom <= 3; kolom++) {\n            cout << baris * kolom << " ";\n        }\n        cout << endl;\n    }\n    return 0;\n}',
+              code: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int row = 1; row <= 3; row++) {\n        for (int col = 1; col <= 3; col++) {\n            cout << row * col << " ";\n        }\n        cout << endl;\n    }\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int baris = 1; baris <= 3; baris++) {\n        for (int kolom = 1; kolom <= 3; kolom++) {\n            cout << baris * kolom << " ";\n        }\n        cout << endl;\n    }\n    return 0;\n}',
+              },
               output: '1 2 3 \n2 4 6 \n3 6 9 ',
             },
             {
@@ -547,8 +621,10 @@ export const module2: Module = {
                 { en: 'Outer loop for rows, inner loop for the stars in one row.', id: 'Perulangan luar untuk baris, perulangan dalam untuk bintang di satu baris.' },
                 { en: 'End each row with cout << endl; after the inner loop finishes.', id: 'Akhiri setiap baris dengan cout << endl; setelah perulangan dalam selesai.' },
               ],
-              solution:
-                '#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int baris = 1; baris <= 5; baris++) {\n        for (int kolom = 1; kolom <= 5; kolom++) {\n            cout << "*";\n        }\n        cout << endl;\n    }\n    return 0;\n}',
+              solution: {
+                en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int row = 1; row <= 5; row++) {\n        for (int col = 1; col <= 5; col++) {\n            cout << "*";\n        }\n        cout << endl;\n    }\n    return 0;\n}',
+                id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int baris = 1; baris <= 5; baris++) {\n        for (int kolom = 1; kolom <= 5; kolom++) {\n            cout << "*";\n        }\n        cout << endl;\n    }\n    return 0;\n}',
+              },
             },
           ],
         },
@@ -563,7 +639,7 @@ export const module2: Module = {
         },
         requirements: [
           { en: 'Read one whole number `n`.', id: 'Baca satu bilangan bulat `n`.' },
-          { en: 'Print ten lines, formatted exactly `n x i = hasil` for i from 1 to 10.', id: 'Cetak sepuluh baris, berformat tepat `n x i = hasil` untuk i dari 1 sampai 10.' },
+          { en: 'Print ten lines, formatted exactly `n x i = result` for i from 1 to 10.', id: 'Cetak sepuluh baris, berformat tepat `n x i = hasil` untuk i dari 1 sampai 10.' },
           { en: 'For n = 3, the first line is `3 x 1 = 3` and the last is `3 x 10 = 30`.', id: 'Untuk n = 3, baris pertama adalah `3 x 1 = 3` dan terakhir `3 x 10 = 30`.' },
         ],
         starter: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    return 0;\n}',
