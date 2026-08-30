@@ -33,8 +33,8 @@ export const module1: Module = {
                 en: 'A program that says nothing is hard to trust. `print()` puts text on the screen. The text goes inside the brackets, wrapped in quotes.',
                 id: 'Program yang diam sulit dipercaya. `print()` menampilkan teks di layar. Teksnya ditulis di dalam kurung, diapit tanda kutip.',
               },
-              code: 'print("Halo, dunia!")',
-              output: 'Halo, dunia!',
+              code: { en: 'print("Hello, world!")', id: 'print("Halo, dunia!")' },
+              output: { en: 'Hello, world!', id: 'Halo, dunia!' },
             },
             {
               kind: 'concept',
@@ -44,8 +44,11 @@ export const module1: Module = {
                 en: 'Python runs your lines top to bottom. Two `print()` calls give two lines, in the order you wrote them.',
                 id: 'Python menjalankan barismu dari atas ke bawah. Dua `print()` menghasilkan dua baris, sesuai urutan penulisan.',
               },
-              code: 'print("Nama saya Nunada")\nprint("Saya belajar Python")',
-              output: 'Nama saya Nunada\nSaya belajar Python',
+              code: {
+                en: 'print("My name is Nunada")\nprint("I am learning Python")',
+                id: 'print("Nama saya Nunada")\nprint("Saya belajar Python")',
+              },
+              output: { en: 'My name is Nunada\nI am learning Python', id: 'Nama saya Nunada\nSaya belajar Python' },
             },
             {
               kind: 'quiz',
@@ -68,10 +71,10 @@ export const module1: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Complete the program so it prints: Selamat datang',
+                en: 'Complete the program so it prints: Welcome',
                 id: 'Lengkapi program agar mencetak: Selamat datang',
               },
-              template: '___("Selamat datang")',
+              template: { en: '___("Welcome")', id: '___("Selamat datang")' },
               blanks: ['print'],
               explain: {
                 en: 'print is the built-in function that writes to the screen.',
@@ -82,21 +85,32 @@ export const module1: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'Write a program that prints exactly two lines: `Halo!` then `Nama saya Nunada`.',
+                en: 'Write a program that prints exactly two lines: `Hello!` then `My name is Nunada`.',
                 id: 'Tulis program yang mencetak tepat dua baris: `Halo!` lalu `Nama saya Nunada`.',
               },
               starter: { en: '# write your code below\n', id: '# tulis kodemu di bawah ini\n' },
-              tests: [
-                {
-                  name: { en: 'Prints both lines in order', id: 'Mencetak kedua baris berurutan' },
-                  expectOutput: 'Halo!\nNama saya Nunada',
-                },
-              ],
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Prints both lines in order', id: 'Mencetak kedua baris berurutan' },
+                    expectOutput: 'Hello!\nMy name is Nunada',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Prints both lines in order', id: 'Mencetak kedua baris berurutan' },
+                    expectOutput: 'Halo!\nNama saya Nunada',
+                  },
+                ],
+              },
               hints: [
                 { en: 'You need two print() calls.', id: 'Kamu butuh dua pemanggilan print().' },
                 { en: 'The text must match exactly, including the "!".', id: 'Teksnya harus sama persis, termasuk tanda "!".' },
               ],
-              solution: 'print("Halo!")\nprint("Nama saya Nunada")',
+              solution: {
+                en: 'print("Hello!")\nprint("My name is Nunada")',
+                id: 'print("Halo!")\nprint("Nama saya Nunada")',
+              },
             },
           ],
         },
@@ -118,10 +132,10 @@ export const module1: Module = {
                 id: 'Baris yang diawali `#` adalah komentar. Python mengabaikannya — komentar itu untuk siapa pun yang membaca kodenya nanti, yang biasanya dirimu sendiri.',
               },
               code: {
-                en: '# this is a note, and does not run\nprint("Ini dijalankan")',
+                en: '# this is a note, and does not run\nprint("This runs")',
                 id: '# ini catatan, tidak dijalankan\nprint("Ini dijalankan")',
               },
-              output: 'Ini dijalankan',
+              output: { en: 'This runs', id: 'Ini dijalankan' },
             },
             {
               kind: 'concept',
@@ -131,18 +145,18 @@ export const module1: Module = {
                 en: 'When Python cannot understand a line it stops and tells you the line number and the kind of problem. `SyntaxError` almost always means a missing bracket or quote.',
                 id: 'Ketika Python tidak memahami sebuah baris, ia berhenti dan memberi tahu nomor baris serta jenis masalahnya. `SyntaxError` hampir selalu berarti kurung atau kutip yang hilang.',
               },
-              code: 'print("Halo)',
+              code: { en: 'print("Hello)', id: 'print("Halo)' },
               output: 'SyntaxError: unterminated string literal (detected at line 1)',
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'Which line will Python actually run?', id: 'Baris mana yang benar-benar dijalankan Python?' },
-              code: '# print("satu")\nprint("dua")',
+              code: { en: '# print("one")\nprint("two")', id: '# print("satu")\nprint("dua")' },
               options: [
-                { en: 'Only print("dua")', id: 'Hanya print("dua")' },
+                { en: 'Only print("two")', id: 'Hanya print("dua")' },
                 { en: 'Both lines', id: 'Kedua baris' },
-                { en: 'Only print("satu")', id: 'Hanya print("satu")' },
+                { en: 'Only print("one")', id: 'Hanya print("satu")' },
                 { en: 'Neither', id: 'Tidak keduanya' },
               ],
               answer: 0,
@@ -155,7 +169,7 @@ export const module1: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: { en: 'What is wrong with this line?', id: 'Apa yang salah pada baris ini?' },
-              code: 'print("Selamat pagi"',
+              code: { en: 'print("Good morning"', id: 'print("Selamat pagi"' },
               options: [
                 { en: 'The closing bracket is missing', id: 'Kurung tutup hilang' },
                 { en: 'print must be uppercase', id: 'print harus huruf besar' },
@@ -172,21 +186,32 @@ export const module1: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'Fix the broken program so it prints `Belajar Python` — and add a comment above it explaining what it does.',
+                en: 'Fix the broken program so it prints `Learning Python` — and add a comment above it explaining what it does.',
                 id: 'Perbaiki program yang rusak ini agar mencetak `Belajar Python` — dan tambahkan komentar di atasnya yang menjelaskan fungsinya.',
               },
-              starter: 'print("Belajar Python',
-              tests: [
-                {
-                  name: { en: 'Prints the right text', id: 'Mencetak teks yang benar' },
-                  expectOutput: 'Belajar Python',
-                },
-              ],
+              starter: { en: 'print("Learning Python', id: 'print("Belajar Python' },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Prints the right text', id: 'Mencetak teks yang benar' },
+                    expectOutput: 'Learning Python',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Prints the right text', id: 'Mencetak teks yang benar' },
+                    expectOutput: 'Belajar Python',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Close the string with a quote, then close the bracket.', id: 'Tutup string dengan tanda kutip, lalu tutup kurungnya.' },
                 { en: 'A comment line starts with #.', id: 'Baris komentar diawali #.' },
               ],
-              solution: { en: '# prints a greeting\nprint("Belajar Python")', id: '# mencetak sapaan\nprint("Belajar Python")' },
+              solution: {
+                en: '# prints a greeting\nprint("Learning Python")',
+                id: '# mencetak sapaan\nprint("Belajar Python")',
+              },
             },
           ],
         },
@@ -199,24 +224,34 @@ export const module1: Module = {
           id: 'Cetak sebuah kartu nama kecil, tepat empat baris, hanya dengan print().',
         },
         requirements: [
-          { en: 'Line 1: `=== KARTU NAMA ===`', id: 'Baris 1: `=== KARTU NAMA ===`' },
-          { en: 'Line 2: `Nama  : Nunada`', id: 'Baris 2: `Nama  : Nunada`' },
-          { en: 'Line 3: `Kota  : Surabaya`', id: 'Baris 3: `Kota  : Surabaya`' },
+          { en: 'Line 1: `=== NAME CARD ===`', id: 'Baris 1: `=== KARTU NAMA ===`' },
+          { en: 'Line 2: `Name  : Nunada`', id: 'Baris 2: `Nama  : Nunada`' },
+          { en: 'Line 3: `City  : Surabaya`', id: 'Baris 3: `Kota  : Surabaya`' },
           { en: 'Line 4: `==================`', id: 'Baris 4: `==================`' },
         ],
         starter: { en: '# Name card\n', id: '# Kartu nama\n' },
-        tests: [
-          {
-            name: { en: 'All four lines are exact', id: 'Keempat baris tepat' },
-            expectOutput: '=== KARTU NAMA ===\nNama  : Nunada\nKota  : Surabaya\n==================',
-          },
-        ],
+        tests: {
+          en: [
+            {
+              name: { en: 'All four lines are exact', id: 'Keempat baris tepat' },
+              expectOutput: '=== NAME CARD ===\nName  : Nunada\nCity  : Surabaya\n==================',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'All four lines are exact', id: 'Keempat baris tepat' },
+              expectOutput: '=== KARTU NAMA ===\nNama  : Nunada\nKota  : Surabaya\n==================',
+            },
+          ],
+        },
         hints: [
           { en: 'Four lines means four print() calls.', id: 'Empat baris berarti empat print().' },
-          { en: 'Copy the spacing in `Nama  :` carefully — two spaces.', id: 'Perhatikan spasi pada `Nama  :` — dua spasi.' },
+          { en: 'Copy the spacing in `Name  :` carefully — two spaces.', id: 'Perhatikan spasi pada `Nama  :` — dua spasi.' },
         ],
-        solution:
-          'print("=== KARTU NAMA ===")\nprint("Nama  : Nunada")\nprint("Kota  : Surabaya")\nprint("==================")',
+        solution: {
+          en: 'print("=== NAME CARD ===")\nprint("Name  : Nunada")\nprint("City  : Surabaya")\nprint("==================")',
+          id: 'print("=== KARTU NAMA ===")\nprint("Nama  : Nunada")\nprint("Kota  : Surabaya")\nprint("==================")',
+        },
         xp: 50,
       },
     },
@@ -244,7 +279,7 @@ export const module1: Module = {
                 en: 'Writing the same value twice is a bug waiting to happen. Give it a name once with `=`, then use the name.',
                 id: 'Menulis nilai yang sama dua kali adalah bug yang menunggu terjadi. Beri nama sekali dengan `=`, lalu pakai namanya.',
               },
-              code: 'nama = "Nunada"\nprint(nama)\nprint(nama)',
+              code: { en: 'name = "Nunada"\nprint(name)\nprint(name)', id: 'nama = "Nunada"\nprint(nama)\nprint(nama)' },
               output: 'Nunada\nNunada',
             },
             {
@@ -255,19 +290,22 @@ export const module1: Module = {
                 en: 'Three types cover most beginner work: `str` for text (in quotes), `int` for whole numbers, `float` for decimals. Quotes are what make it text — `"7"` is not the number 7.',
                 id: 'Tiga tipe menutupi hampir semua pekerjaan pemula: `str` untuk teks (dalam kutip), `int` untuk bilangan bulat, `float` untuk desimal. Tanda kutiplah yang membuatnya teks — `"7"` bukan angka 7.',
               },
-              code: 'nama = "Ani"      # str\numur = 17         # int\ntinggi = 1.62     # float\nprint(nama, umur, tinggi)',
+              code: {
+                en: 'name = "Ani"      # str\nage = 17          # int\nheight = 1.62     # float\nprint(name, age, height)',
+                id: 'nama = "Ani"      # str\numur = 17         # int\ntinggi = 1.62     # float\nprint(nama, umur, tinggi)',
+              },
               output: 'Ani 17 1.62',
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'kota = "Surabaya"\nkota = "Malang"\nprint(kota)',
+              code: { en: 'city = "Surabaya"\ncity = "Malang"\nprint(city)', id: 'kota = "Surabaya"\nkota = "Malang"\nprint(kota)' },
               options: [
                 { en: 'Malang', id: 'Malang' },
                 { en: 'Surabaya', id: 'Surabaya' },
                 { en: 'Surabaya Malang', id: 'Surabaya Malang' },
-                { en: 'An error — kota was set twice', id: 'Error — kota diisi dua kali' },
+                { en: 'An error — city was set twice', id: 'Error — kota diisi dua kali' },
               ],
               answer: 0,
               explain: {
@@ -358,8 +396,11 @@ export const module1: Module = {
                 en: 'Put `f` before the opening quote and you may write variables inside `{ }`. This reads far better than gluing pieces together with `+`.',
                 id: 'Letakkan `f` sebelum tanda kutip pembuka, lalu kamu boleh menulis variabel di dalam `{ }`. Ini jauh lebih enak dibaca daripada menyambung dengan `+`.',
               },
-              code: 'nama = "Ani"\nnilai = 88\nprint(f"{nama} mendapat nilai {nilai}")',
-              output: 'Ani mendapat nilai 88',
+              code: {
+                en: 'name = "Ani"\nscore = 88\nprint(f"{name} scored {score}")',
+                id: 'nama = "Ani"\nnilai = 88\nprint(f"{nama} mendapat nilai {nilai}")',
+              },
+              output: { en: 'Ani scored 88', id: 'Ani mendapat nilai 88' },
             },
             {
               kind: 'quiz',
@@ -443,8 +484,8 @@ export const module1: Module = {
                 en: 'This is the trap that catches everyone: whatever the user types, `input()` hands back a `str`. Adding to it glues text together instead of doing maths.',
                 id: 'Ini jebakan yang menjerat semua orang: apa pun yang diketik pengguna, `input()` mengembalikan `str`. Menambahkannya justru menyambung teks, bukan menghitung.',
               },
-              code: 'jawab = input("Umur: ")\nprint(jawab + "1")',
-              output: 'Umur: 20\n201',
+              code: { en: 'answer = input("Age: ")\nprint(answer + "1")', id: 'jawab = input("Umur: ")\nprint(jawab + "1")' },
+              output: { en: 'Age: 20\n201', id: 'Umur: 20\n201' },
             },
             {
               kind: 'concept',
@@ -454,8 +495,8 @@ export const module1: Module = {
                 en: 'Wrap the input in `int()` for a whole number or `float()` for a decimal, and the maths behaves.',
                 id: 'Bungkus input dengan `int()` untuk bilangan bulat atau `float()` untuk desimal, maka hitungannya benar.',
               },
-              code: 'umur = int(input("Umur: "))\nprint(umur + 1)',
-              output: 'Umur: 20\n21',
+              code: { en: 'age = int(input("Age: "))\nprint(age + 1)', id: 'umur = int(input("Umur: "))\nprint(umur + 1)' },
+              output: { en: 'Age: 20\n21', id: 'Umur: 20\n21' },
             },
             {
               kind: 'quiz',
@@ -464,7 +505,7 @@ export const module1: Module = {
                 en: 'The user types 5. What is printed?',
                 id: 'Pengguna mengetik 5. Apa yang dicetak?',
               },
-              code: 'n = input("Angka: ")\nprint(n * 2)',
+              code: { en: 'n = input("Number: ")\nprint(n * 2)', id: 'n = input("Angka: ")\nprint(n * 2)' },
               options: [
                 { en: '55', id: '55' },
                 { en: '10', id: '10' },
@@ -484,7 +525,7 @@ export const module1: Module = {
                 en: 'Read a whole number into `n` so that `n + 1` does real arithmetic.',
                 id: 'Baca sebuah bilangan bulat ke `n` agar `n + 1` benar-benar menghitung.',
               },
-              template: 'n = ___(input("Angka: "))\nprint(n + 1)',
+              template: { en: 'n = ___(input("Number: "))\nprint(n + 1)', id: 'n = ___(input("Angka: "))\nprint(n + 1)' },
               blanks: ['int'],
               explain: {
                 en: 'int() turns the text into a whole number.',
@@ -495,32 +536,46 @@ export const module1: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'Ask for a name, then an age (whole number), then print `<name> akan berumur <age+1> tahun depan`.',
+                en: 'Ask for a name, then an age (whole number), then print `<name> will turn <age+1> next year`.',
                 id: 'Minta nama, lalu umur (bilangan bulat), lalu cetak `<nama> akan berumur <umur+1> tahun depan`.',
               },
-              starter: { en: 'name = input("Nama: ")\n', id: 'nama = input("Nama: ")\n' },
-              tests: [
-                {
-                  name: { en: 'Ani, 17 → 18', id: 'Ani, 17 → 18' },
-                  stdin: ['Ani', '17'],
-                  expectContains: ['Ani akan berumur 18 tahun depan'],
-                },
-                {
-                  name: { en: 'Budi, 9 → 10', id: 'Budi, 9 → 10' },
-                  stdin: ['Budi', '9'],
-                  expectContains: ['Budi akan berumur 10 tahun depan'],
-                },
-              ],
+              starter: { en: 'name = input("Name: ")\n', id: 'nama = input("Nama: ")\n' },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Ani, 17 → 18', id: 'Ani, 17 → 18' },
+                    stdin: ['Ani', '17'],
+                    expectContains: ['Ani will turn 18 next year'],
+                  },
+                  {
+                    name: { en: 'Budi, 9 → 10', id: 'Budi, 9 → 10' },
+                    stdin: ['Budi', '9'],
+                    expectContains: ['Budi will turn 10 next year'],
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Ani, 17 → 18', id: 'Ani, 17 → 18' },
+                    stdin: ['Ani', '17'],
+                    expectContains: ['Ani akan berumur 18 tahun depan'],
+                  },
+                  {
+                    name: { en: 'Budi, 9 → 10', id: 'Budi, 9 → 10' },
+                    stdin: ['Budi', '9'],
+                    expectContains: ['Budi akan berumur 10 tahun depan'],
+                  },
+                ],
+              },
               hints: [
                 { en: 'Two input() calls, in the order name then age.', id: 'Dua input(), urutannya nama lalu umur.' },
                 { en: 'Wrap the age input in int().', id: 'Bungkus input umur dengan int().' },
                 {
-                  en: 'print(f"{name} akan berumur {age + 1} tahun depan")',
+                  en: 'print(f"{name} will turn {age + 1} next year")',
                   id: 'print(f"{nama} akan berumur {umur + 1} tahun depan")',
                 },
               ],
               solution: {
-                en: 'name = input("Nama: ")\nage = int(input("Umur: "))\nprint(f"{name} akan berumur {age + 1} tahun depan")',
+                en: 'name = input("Name: ")\nage = int(input("Age: "))\nprint(f"{name} will turn {age + 1} next year")',
                 id: 'nama = input("Nama: ")\numur = int(input("Umur: "))\nprint(f"{nama} akan berumur {umur + 1} tahun depan")',
               },
             },
@@ -540,7 +595,7 @@ export const module1: Module = {
           { en: 'Print `<C>C = <F>F`, for example `25.0C = 77.0F`.', id: 'Cetak `<C>C = <F>F`, misalnya `25.0C = 77.0F`.' },
         ],
         starter: {
-          en: '# Celsius to Fahrenheit temperature converter\ncelsius = float(input("Suhu (C): "))\n',
+          en: '# Celsius to Fahrenheit temperature converter\ncelsius = float(input("Temperature (C): "))\n',
           id: '# Konverter suhu Celsius ke Fahrenheit\ncelsius = float(input("Suhu (C): "))\n',
         },
         tests: [
@@ -565,8 +620,10 @@ export const module1: Module = {
           { en: 'Store the result: fahrenheit = celsius * 9 / 5 + 32', id: 'Simpan hasilnya: fahrenheit = celsius * 9 / 5 + 32' },
           { en: 'print(f"{celsius}C = {fahrenheit}F")', id: 'print(f"{celsius}C = {fahrenheit}F")' },
         ],
-        solution:
-          'celsius = float(input("Suhu (C): "))\nfahrenheit = celsius * 9 / 5 + 32\nprint(f"{celsius}C = {fahrenheit}F")',
+        solution: {
+          en: 'celsius = float(input("Temperature (C): "))\nfahrenheit = celsius * 9 / 5 + 32\nprint(f"{celsius}C = {fahrenheit}F")',
+          id: 'celsius = float(input("Suhu (C): "))\nfahrenheit = celsius * 9 / 5 + 32\nprint(f"{celsius}C = {fahrenheit}F")',
+        },
         xp: 50,
       },
     },

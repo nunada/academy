@@ -139,8 +139,9 @@ function codeText(code: string | Loc | undefined, tc: (loc: Loc) => string): str
 }
 
 function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, { kind: 'concept' }> }) {
-  const { t, tc } = useI18n()
+  const { t, tc, lang } = useI18n()
   const code = codeText(step.code, tc)
+  const output = step.output !== undefined ? resolveBi(step.output, lang) : undefined
   return (
     <div className="card">
       <h2>
@@ -162,10 +163,10 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
           <LivePreview source={code} height={200} />
         </>
       )}
-      {step.output && (
+      {output && (
         <>
           <div className="io-label">{t('output')}</div>
-          <Output text={step.output} />
+          <Output text={output} />
         </>
       )}
       {!solved && (

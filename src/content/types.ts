@@ -228,7 +228,7 @@ export type Step =
        *  translating, so most snippets don't carry a redundant duplicate. */
       code?: string | Loc
       /** What the sample code prints, shown as a worked example. */
-      output?: string
+      output?: Bi<string>
       /** Render `code` as a live page instead of printing text.
        *  Markup is easier to understand seen than described. */
       preview?: boolean
