@@ -50,7 +50,7 @@ export const module3: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'How many lines does this print?', id: 'Berapa baris yang dicetak ini?' },
-              code: 'for i in range(3):\n    print("halo")',
+              code: { en: 'for i in range(3):\n    print("hello")', id: 'for i in range(3):\n    print("halo")' },
               options: [
                 { en: '3', id: '3' },
                 { en: '2', id: '2' },
@@ -131,7 +131,10 @@ export const module3: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: { en: 'What is printed?', id: 'Apa yang dicetak?' },
-              code: 'hasil = 1\nfor i in range(1, 4):\n    hasil *= i\nprint(hasil)',
+              code: {
+                en: 'result = 1\nfor i in range(1, 4):\n    result *= i\nprint(result)',
+                id: 'hasil = 1\nfor i in range(1, 4):\n    hasil *= i\nprint(hasil)',
+              },
               options: [
                 { en: '6', id: '6' },
                 { en: '3', id: '3' },
@@ -192,7 +195,7 @@ export const module3: Module = {
           { en: 'Print ten lines, from ×1 to ×10.', id: 'Cetak sepuluh baris, dari ×1 sampai ×10.' },
           { en: 'Each line reads `7 x 3 = 21`.', id: 'Tiap baris berbentuk `7 x 3 = 21`.' },
         ],
-        starter: '# Tabel perkalian\nn = int(input("Angka: "))\n',
+        starter: { en: '# Times table\nn = int(input("Number: "))\n', id: '# Tabel perkalian\nn = int(input("Angka: "))\n' },
         tests: [
           {
             name: { en: 'Table of 7', id: 'Tabel 7' },
@@ -212,7 +215,10 @@ export const module3: Module = {
           { en: 'An f-string can hold a calculation: {n * i}', id: 'f-string bisa memuat perhitungan: {n * i}' },
           { en: 'print(f"{n} x {i} = {n * i}")', id: 'print(f"{n} x {i} = {n * i}")' },
         ],
-        solution: 'n = int(input("Angka: "))\nfor i in range(1, 11):\n    print(f"{n} x {i} = {n * i}")',
+        solution: {
+          en: 'n = int(input("Number: "))\nfor i in range(1, 11):\n    print(f"{n} x {i} = {n * i}")',
+          id: 'n = int(input("Angka: "))\nfor i in range(1, 11):\n    print(f"{n} x {i} = {n * i}")',
+        },
         xp: 50,
       },
     },
@@ -240,8 +246,11 @@ export const module3: Module = {
                 en: 'Use `for` when you know how many times; use `while` when you only know when to stop. Something inside the loop must move the condition toward False, or it runs forever.',
                 id: 'Pakai `for` bila kamu tahu berapa kali; pakai `while` bila kamu hanya tahu kapan berhenti. Sesuatu di dalam loop harus menggerakkan kondisi menuju False, atau loop berjalan selamanya.',
               },
-              code: 'sisa = 3\nwhile sisa > 0:\n    print(f"sisa {sisa}")\n    sisa -= 1\nprint("habis")',
-              output: 'sisa 3\nsisa 2\nsisa 1\nhabis',
+              code: {
+                en: 'remaining = 3\nwhile remaining > 0:\n    print(f"remaining {remaining}")\n    remaining -= 1\nprint("done")',
+                id: 'sisa = 3\nwhile sisa > 0:\n    print(f"sisa {sisa}")\n    sisa -= 1\nprint("habis")',
+              },
+              output: { en: 'remaining 3\nremaining 2\nremaining 1\ndone', id: 'sisa 3\nsisa 2\nsisa 1\nhabis' },
             },
             {
               kind: 'concept',
@@ -252,10 +261,10 @@ export const module3: Module = {
                 id: 'Lupakan `-= 1` dan `sisa` akan tetap 3 selamanya. Kalau programmu menggantung, hampir selalu inilah sebabnya: kondisinya tidak pernah berubah.',
               },
               code: {
-                en: '# do NOT run this\nsisa = 3\nwhile sisa > 0:\n    print("halo")',
+                en: '# do NOT run this\nremaining = 3\nwhile remaining > 0:\n    print("hello")',
                 id: '# JANGAN dijalankan\nsisa = 3\nwhile sisa > 0:\n    print("halo")',
               },
-              output: 'halo\nhalo\nhalo\n…tak pernah berhenti',
+              output: { en: 'hello\nhello\nhello\n…never stops', id: 'halo\nhalo\nhalo\n…tak pernah berhenti' },
             },
             {
               kind: 'quiz',
@@ -295,7 +304,7 @@ export const module3: Module = {
                 en: 'Read a whole number and print how many times you can halve it (with `//`) before it reaches 0. For 8 the answer is 4.',
                 id: 'Baca bilangan bulat lalu cetak berapa kali ia bisa dibagi dua (dengan `//`) sebelum mencapai 0. Untuk 8 jawabannya 4.',
               },
-              starter: 'n = int(input("Angka: "))\nlangkah = 0\n',
+              starter: { en: 'n = int(input("Number: "))\nsteps = 0\n', id: 'n = int(input("Angka: "))\nlangkah = 0\n' },
               tests: [
                 { name: { en: '8 → 4', id: '8 → 4' }, stdin: ['8'], expectOutput: '4' },
                 { name: { en: '1 → 1', id: '1 → 1' }, stdin: ['1'], expectOutput: '1' },
@@ -304,11 +313,13 @@ export const module3: Module = {
               ],
               hints: [
                 { en: 'Keep going while n is bigger than 0.', id: 'Terus jalan selama n lebih besar dari 0.' },
-                { en: 'Inside: n = n // 2 and langkah += 1', id: 'Di dalam: n = n // 2 dan langkah += 1' },
-                { en: 'Print langkah after the loop.', id: 'Cetak langkah setelah loop.' },
+                { en: 'Inside: n = n // 2 and steps += 1', id: 'Di dalam: n = n // 2 dan langkah += 1' },
+                { en: 'Print steps after the loop.', id: 'Cetak langkah setelah loop.' },
               ],
-              solution:
-                'n = int(input("Angka: "))\nlangkah = 0\nwhile n > 0:\n    n = n // 2\n    langkah += 1\nprint(langkah)',
+              solution: {
+                en: 'n = int(input("Number: "))\nsteps = 0\nwhile n > 0:\n    n = n // 2\n    steps += 1\nprint(steps)',
+                id: 'n = int(input("Angka: "))\nlangkah = 0\nwhile n > 0:\n    n = n // 2\n    langkah += 1\nprint(langkah)',
+              },
             },
           ],
         },
@@ -383,7 +394,10 @@ export const module3: Module = {
                 en: 'Read numbers one per line until the user types `0`, then print how many numbers were entered before the 0.',
                 id: 'Baca angka satu per baris sampai pengguna mengetik `0`, lalu cetak berapa angka yang dimasukkan sebelum 0.',
               },
-              starter: 'jumlah = 0\nwhile True:\n    n = int(input("Angka (0 untuk selesai): "))\n',
+              starter: {
+                en: 'count = 0\nwhile True:\n    n = int(input("Number (0 to finish): "))\n',
+                id: 'jumlah = 0\nwhile True:\n    n = int(input("Angka (0 untuk selesai): "))\n',
+              },
               tests: [
                 { name: { en: '3 numbers then 0 → 3', id: '3 angka lalu 0 → 3' }, stdin: ['5', '9', '1', '0'], expectOutput: '3' },
                 { name: { en: 'Immediate 0 → 0', id: 'Langsung 0 → 0' }, stdin: ['0'], expectOutput: '0' },
@@ -391,10 +405,12 @@ export const module3: Module = {
               hints: [
                 { en: '`while True:` loops forever — break is what ends it.', id: '`while True:` mengulang selamanya — break-lah yang mengakhirinya.' },
                 { en: 'Check for 0 *before* counting, or the 0 gets counted too.', id: 'Periksa 0 *sebelum* menghitung, atau 0 ikut terhitung.' },
-                { en: 'if n == 0: break — then jumlah += 1', id: 'if n == 0: break — lalu jumlah += 1' },
+                { en: 'if n == 0: break — then count += 1', id: 'if n == 0: break — lalu jumlah += 1' },
               ],
-              solution:
-                'jumlah = 0\nwhile True:\n    n = int(input("Angka (0 untuk selesai): "))\n    if n == 0:\n        break\n    jumlah += 1\nprint(jumlah)',
+              solution: {
+                en: 'count = 0\nwhile True:\n    n = int(input("Number (0 to finish): "))\n    if n == 0:\n        break\n    count += 1\nprint(count)',
+                id: 'jumlah = 0\nwhile True:\n    n = int(input("Angka (0 untuk selesai): "))\n    if n == 0:\n        break\n    jumlah += 1\nprint(jumlah)',
+              },
             },
           ],
         },
@@ -408,38 +424,59 @@ export const module3: Module = {
         },
         requirements: [
           { en: 'Loop until the guess equals 42.', id: 'Ulang sampai tebakan sama dengan 42.' },
-          { en: 'Too low → print `Terlalu kecil`.', id: 'Terlalu kecil → cetak `Terlalu kecil`.' },
-          { en: 'Too high → print `Terlalu besar`.', id: 'Terlalu besar → cetak `Terlalu besar`.' },
-          { en: 'Correct → print `Benar! Kamu menebak dalam N percobaan` and stop.', id: 'Benar → cetak `Benar! Kamu menebak dalam N percobaan` lalu berhenti.' },
+          { en: 'Too low → print `Too low`.', id: 'Terlalu kecil → cetak `Terlalu kecil`.' },
+          { en: 'Too high → print `Too high`.', id: 'Terlalu besar → cetak `Terlalu besar`.' },
+          { en: 'Correct → print `Correct! You guessed it in N tries` and stop.', id: 'Benar → cetak `Benar! Kamu menebak dalam N percobaan` lalu berhenti.' },
         ],
-        starter: '# Tebak angka\nrahasia = 42\npercobaan = 0\n',
-        tests: [
-          {
-            name: { en: 'Three guesses: 10, 50, 42', id: 'Tiga tebakan: 10, 50, 42' },
-            stdin: ['10', '50', '42'],
-            expectOutput: 'Terlalu kecil\nTerlalu besar\nBenar! Kamu menebak dalam 3 percobaan',
-          },
-          {
-            name: { en: 'First guess correct', id: 'Tebakan pertama benar' },
-            stdin: ['42'],
-            expectOutput: 'Benar! Kamu menebak dalam 1 percobaan',
-          },
-          {
-            name: { en: 'Two high guesses first', id: 'Dua tebakan terlalu besar dulu' },
-            stdin: ['99', '43', '42'],
-            expectOutput: 'Terlalu besar\nTerlalu besar\nBenar! Kamu menebak dalam 3 percobaan',
-          },
-        ],
+        starter: { en: '# Guess the number\nsecret = 42\nattempts = 0\n', id: '# Tebak angka\nrahasia = 42\npercobaan = 0\n' },
+        tests: {
+          en: [
+            {
+              name: { en: 'Three guesses: 10, 50, 42', id: 'Tiga tebakan: 10, 50, 42' },
+              stdin: ['10', '50', '42'],
+              expectOutput: 'Too low\nToo high\nCorrect! You guessed it in 3 tries',
+            },
+            {
+              name: { en: 'First guess correct', id: 'Tebakan pertama benar' },
+              stdin: ['42'],
+              expectOutput: 'Correct! You guessed it in 1 tries',
+            },
+            {
+              name: { en: 'Two high guesses first', id: 'Dua tebakan terlalu besar dulu' },
+              stdin: ['99', '43', '42'],
+              expectOutput: 'Too high\nToo high\nCorrect! You guessed it in 3 tries',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'Three guesses: 10, 50, 42', id: 'Tiga tebakan: 10, 50, 42' },
+              stdin: ['10', '50', '42'],
+              expectOutput: 'Terlalu kecil\nTerlalu besar\nBenar! Kamu menebak dalam 3 percobaan',
+            },
+            {
+              name: { en: 'First guess correct', id: 'Tebakan pertama benar' },
+              stdin: ['42'],
+              expectOutput: 'Benar! Kamu menebak dalam 1 percobaan',
+            },
+            {
+              name: { en: 'Two high guesses first', id: 'Dua tebakan terlalu besar dulu' },
+              stdin: ['99', '43', '42'],
+              expectOutput: 'Terlalu besar\nTerlalu besar\nBenar! Kamu menebak dalam 3 percobaan',
+            },
+          ],
+        },
         hints: [
           { en: 'Count every guess, including the correct one.', id: 'Hitung setiap tebakan, termasuk yang benar.' },
           { en: '`while True:` with a `break` after the correct message is the cleanest shape.', id: '`while True:` dengan `break` setelah pesan benar adalah bentuk paling rapi.' },
           {
-            en: 'if tebak < rahasia: … elif tebak > rahasia: … else: print + break',
+            en: 'if guess < secret: … elif guess > secret: … else: print + break',
             id: 'if tebak < rahasia: … elif tebak > rahasia: … else: print + break',
           },
         ],
-        solution:
-          'rahasia = 42\npercobaan = 0\nwhile True:\n    tebak = int(input("Tebakan: "))\n    percobaan += 1\n    if tebak < rahasia:\n        print("Terlalu kecil")\n    elif tebak > rahasia:\n        print("Terlalu besar")\n    else:\n        print(f"Benar! Kamu menebak dalam {percobaan} percobaan")\n        break',
+        solution: {
+          en: 'secret = 42\nattempts = 0\nwhile True:\n    guess = int(input("Guess: "))\n    attempts += 1\n    if guess < secret:\n        print("Too low")\n    elif guess > secret:\n        print("Too high")\n    else:\n        print(f"Correct! You guessed it in {attempts} tries")\n        break',
+          id: 'rahasia = 42\npercobaan = 0\nwhile True:\n    tebak = int(input("Tebakan: "))\n    percobaan += 1\n    if tebak < rahasia:\n        print("Terlalu kecil")\n    elif tebak > rahasia:\n        print("Terlalu besar")\n    else:\n        print(f"Benar! Kamu menebak dalam {percobaan} percobaan")\n        break',
+        },
         xp: 50,
       },
     },
