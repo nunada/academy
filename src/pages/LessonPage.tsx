@@ -173,11 +173,16 @@ export default function LessonPage() {
           blocked={blocked}
         />
 
-        {stepSolved && !isLast && (
-          <button className="btn wide" onClick={() => setIndex((i) => i + 1)}>
-            {t('continueNext')} →
+        <div className="between" style={{ marginTop: 14 }}>
+          <button className="btn ghost" onClick={() => setIndex((i) => i - 1)} disabled={index === 0}>
+            ← {t('previousStep')}
           </button>
-        )}
+          {!isLast && (
+            <button className="btn" onClick={() => setIndex((i) => i + 1)} disabled={!stepSolved}>
+              {t('continueNext')} →
+            </button>
+          )}
+        </div>
 
         {blocked && (
           <div className="banner">

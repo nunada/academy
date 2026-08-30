@@ -141,6 +141,7 @@ export const ui = {
 
   // lesson player
   check: { en: 'Check', id: 'Periksa' },
+  previousStep: { en: 'Back', id: 'Kembali' },
   continueNext: { en: 'Continue', id: 'Lanjut' },
   runCode: { en: 'Run', id: 'Jalankan' },
   runTests: { en: 'Run tests', id: 'Jalankan tes' },

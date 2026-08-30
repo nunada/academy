@@ -203,10 +203,12 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       {code && <CodeBlock>{code}</CodeBlock>}
 
       {step.options.map((o, i) => {
+        // A wrong pick is marked wrong, but the correct option stays neutral —
+        // revealing it would hand over the answer instead of letting the
+        // learner reason their way to it on a retry.
         let cls = 'choice'
-        if (checked && i === step.answer) cls += ' right'
-        else if (checked && i === picked) cls += ' wrong'
-        else if (picked === i) cls += ' picked'
+        if (checked && i === picked) cls += right ? ' right' : ' wrong'
+        else if (!checked && picked === i) cls += ' picked'
         return (
           <button
             className={cls}
@@ -228,7 +230,7 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       {checked && (
         <div className={right ? 'verdict ok' : 'verdict no'}>
           <b>{right ? t('correct') : t('notQuite')}</b>
-          <Rich text={tc(step.explain)} />
+          {right && <Rich text={tc(step.explain)} />}
         </div>
       )}
 
