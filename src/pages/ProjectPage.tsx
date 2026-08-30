@@ -164,7 +164,7 @@ export default function ProjectPage() {
             : project.runtime === 'ts'
               ? fromTs(await runTsTests(code, project.tests))
               : project.runtime === 'cpp'
-                ? fromCpp(await runCppTests(code, project.tests))
+                ? fromCpp(await runCppTests(code, resolveBi(project.tests, lang)))
                 : fromPython(await runTests(code, resolveBi(project.tests, lang)))
       // The checks and the game share one interpreter, so stop the loop first.
       if (project.runtime === 'game') setRunNonce(0)

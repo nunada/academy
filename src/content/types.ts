@@ -313,10 +313,10 @@ export type Step =
       kind: 'cpp'
       id: string
       prompt: Loc
-      starter: string
-      tests: CppTest[]
+      starter: Bi<string>
+      tests: Bi<CppTest[]>
       hints: Loc[]
-      solution: string
+      solution: Bi<string>
     }
   | {
       /** Same rung again, and the only one that is played rather than read.
@@ -382,7 +382,7 @@ export type MiniProject =
   | (CodeProject & { runtime: 'sql'; tests: SqlTest[]; schema: string })
   | (CodeProject & { runtime: 'ts'; tests: TsTest[] })
   | (CodeProject & { runtime: 'game'; tests: Bi<PyTest[]> })
-  | (CodeProject & { runtime: 'cpp'; tests: CppTest[] })
+  | (CodeProject & { runtime: 'cpp'; tests: Bi<CppTest[]> })
   /** A problem set: several questions, every box right before it counts.
    *  No starter and no single solution string — each part carries its own
    *  working instead. */

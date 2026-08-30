@@ -55,6 +55,14 @@ function run(code, input) {
 let programsChecked = 0
 let testsChecked = 0
 
+/** Most fields are a plain value, shared by both languages. A `{ en, id }`
+ *  shape is a genuinely different program per language — walk both. */
+function bothLangs(v) {
+  return v !== null && typeof v === 'object' && !Array.isArray(v) && 'en' in v && 'id' in v
+    ? [['en', v.en], ['id', v.id]]
+    : [[null, v]]
+}
+
 function checkTests(where, code, tests) {
   for (const test of tests) {
     testsChecked++
@@ -78,6 +86,23 @@ function checkTests(where, code, tests) {
   }
 }
 
+/** A starter is meant to fail — this is the "starter fails at least one
+ *  test" half of the bilingual-content discipline, mirrored from the Python
+ *  course's verification harnesses. Skipped where a program has no `main`
+ *  yet (nothing to run at all is a trivial, uninteresting fail). */
+function checkStarterFails(where, starter, tests) {
+  if (!starter.includes('int main')) return
+  for (const test of tests) {
+    const res = run(starter, (test.stdin ?? []).join('\n'))
+    const passed =
+      !res.error &&
+      (test.expectOutput === undefined || normalize(res.stdout) === normalize(test.expectOutput)) &&
+      (!test.expectContains?.length || test.expectContains.every((f) => res.stdout.toLowerCase().includes(f.toLowerCase())))
+    if (!passed) return
+  }
+  fail(`${where}: starter passes every test — it should fail at least one`)
+}
+
 for (const m of modules) {
   for (const s of m.submodules) {
     for (const l of s.lessons) {
@@ -89,29 +114,41 @@ for (const m of modules) {
         // transcript, not a literal capture, the same way the Python course's
         // input() examples are. Only a complete, input-free program is
         // checked here.
-        if (
-          step.kind === 'concept' &&
-          step.code?.includes('int main') &&
-          !step.code.includes('cin') &&
-          step.output !== undefined
-        ) {
-          programsChecked++
-          const res = run(step.code, '')
-          if (res.error) {
-            fail(`${l.id}/${step.id} (concept): raised\n    ${res.error}`)
-          } else if (normalize(res.stdout) !== normalize(step.output)) {
-            fail(`${l.id}/${step.id} (concept): got ${JSON.stringify(res.stdout)}, want ${JSON.stringify(step.output)}`)
+        if (step.kind === 'concept' && step.output !== undefined) {
+          for (const [lang, code] of bothLangs(step.code)) {
+            const output = bothLangs(step.output).find(([l2]) => l2 === lang)?.[1] ?? bothLangs(step.output)[0][1]
+            if (typeof code !== 'string' || !code.includes('int main') || code.includes('cin')) continue
+            programsChecked++
+            const res = run(code, '')
+            const tag = lang ? `[${lang}] ` : ''
+            if (res.error) {
+              fail(`${tag}${l.id}/${step.id} (concept): raised\n    ${res.error}`)
+            } else if (normalize(res.stdout) !== normalize(output)) {
+              fail(`${tag}${l.id}/${step.id} (concept): got ${JSON.stringify(res.stdout)}, want ${JSON.stringify(output)}`)
+            }
           }
         }
         if (step.kind === 'cpp') {
-          programsChecked++
-          checkTests(`${l.id}/${step.id}`, step.solution, step.tests)
+          for (const [lang, solution] of bothLangs(step.solution)) {
+            const tests = bothLangs(step.tests).find(([l2]) => l2 === lang)?.[1] ?? bothLangs(step.tests)[0][1]
+            const starter = bothLangs(step.starter).find(([l2]) => l2 === lang)?.[1] ?? bothLangs(step.starter)[0][1]
+            const tag = lang ? `[${lang}] ` : ''
+            programsChecked++
+            checkTests(`${tag}${l.id}/${step.id}`, solution, tests)
+            checkStarterFails(`${tag}${l.id}/${step.id}`, starter, tests)
+          }
         }
       }
     }
     if (s.project.runtime === 'cpp') {
-      programsChecked++
-      checkTests(`${s.project.id} (project)`, s.project.solution, s.project.tests)
+      for (const [lang, solution] of bothLangs(s.project.solution)) {
+        const tests = bothLangs(s.project.tests).find(([l2]) => l2 === lang)?.[1] ?? bothLangs(s.project.tests)[0][1]
+        const starter = bothLangs(s.project.starter).find(([l2]) => l2 === lang)?.[1] ?? bothLangs(s.project.starter)[0][1]
+        const tag = lang ? `[${lang}] ` : ''
+        programsChecked++
+        checkTests(`${tag}${s.project.id} (project)`, solution, tests)
+        checkStarterFails(`${tag}${s.project.id} (project)`, starter, tests)
+      }
     }
   }
 }

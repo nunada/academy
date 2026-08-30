@@ -848,8 +848,11 @@ function TsStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Ex
 /* ------------------------------------------------------------------- cpp */
 
 function CppStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'cpp' }> }) {
-  const { t, tc } = useI18n()
-  const [code, setCode] = useState(step.starter)
+  const { t, tc, lang } = useI18n()
+  const starter = resolveBi(step.starter, lang)
+  const tests = resolveBi(step.tests, lang)
+  const solution = resolveBi(step.solution, lang)
+  const [code, setCode] = useState(starter)
   const [busy, setBusy] = useState(false)
   const [outcomes, setOutcomes] = useState<CppOutcome[] | null>(null)
   const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
@@ -872,7 +875,7 @@ function CppStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
   async function doCheck() {
     setBusy(true)
     try {
-      const res = await runCppTests(code, step.tests)
+      const res = await runCppTests(code, tests)
       setOutcomes(res)
       setRunOut(null)
       if (res.every((o) => o.passed)) onSolved()
@@ -929,8 +932,8 @@ function CppStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
       {showSolution && (
         <div style={{ marginTop: 12 }}>
           <div className="io-label">{t('showSolution')}</div>
-          <CodeBlock>{step.solution}</CodeBlock>
-          <button className="btn ghost sm" onClick={() => setCode(step.solution)}>
+          <CodeBlock>{solution}</CodeBlock>
+          <button className="btn ghost sm" onClick={() => setCode(solution)}>
             ↧ {tc({ en: 'Copy into the editor', id: 'Salin ke editor' })}
           </button>
         </div>
