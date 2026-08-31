@@ -30,15 +30,15 @@ export const module4: Module = {
               id: 'c1',
               title: { en: 'A long update is not wrong, it is just hard to check', id: 'Pembaruan panjang tidak salah, ia hanya sulit diperiksa' },
               body: {
-                en: 'By now `perbarui` does five things. It works — but to ask "does the clamping handle the right edge" you have to build a whole game state and read one number out of the answer. Split the five things into five functions and each question has a one-line answer.',
-                id: 'Sampai di sini `perbarui` mengerjakan lima hal. Ia berfungsi — tetapi untuk bertanya "apakah penjepitannya menangani tepi kanan" kamu harus membangun keadaan permainan utuh lalu membaca satu angka dari jawabannya. Pecah kelima hal itu jadi lima fungsi dan tiap pertanyaan punya jawaban satu baris.',
+                en: 'By now `update` does five things. It works — but to ask "does the clamping handle the right edge" you have to build a whole game state and read one number out of the answer. Split the five things into five functions and each question has a one-line answer.',
+                id: 'Sampai di sini `update` mengerjakan lima hal. Ia berfungsi — tetapi untuk bertanya "apakah penjepitannya menangani tepi kanan" kamu harus membangun keadaan permainan utuh lalu membaca satu angka dari jawabannya. Pecah kelima hal itu jadi lima fungsi dan tiap pertanyaan punya jawaban satu baris.',
               },
               code: {
                 en:
-                  'gerak_pemain(100.0, {"kanan"}, 0.5)   # 195.0\n' +
-                  '# ...instead of building the whole keadaan just to look at one number',
+                  'move_player(100.0, {"right"}, 0.5)   # 195.0\n' +
+                  '# ...instead of building the whole state just to look at one number',
                 id:
-                  'gerak_pemain(100.0, {"kanan"}, 0.5)   # 195.0\n' +
+                  'move_player(100.0, {"right"}, 0.5)   # 195.0\n' +
                   '# ...alih-alih membangun seluruh keadaan hanya untuk melihat satu angka',
               },
             },
@@ -51,12 +51,12 @@ export const module4: Module = {
                 id: 'Penggerak pemain butuh sebuah `x`, tombolnya, dan `dt` — bukan seluruh keadaan. Mengoper lebih sedikit membuat fungsinya lebih mudah dibaca, mustahil disalahgunakan, dan sepele dipanggil dari sebuah pemeriksaan. Kalau sebuah pembantu butuh enam hal, itu tanda ia sebenarnya dua pembantu.',
               },
               code:
-                'def gerak_pemain(x, tombol, dt):\n' +
-                '    if "kiri" in tombol:\n' +
-                '        x = x - LAJU * dt\n' +
-                '    if "kanan" in tombol:\n' +
-                '        x = x + LAJU * dt\n' +
-                '    return max(0, min(LEBAR - SISI, x))',
+                'def move_player(x, keys, dt):\n' +
+                '    if "left" in keys:\n' +
+                '        x = x - SPEED * dt\n' +
+                '    if "right" in keys:\n' +
+                '        x = x + SPEED * dt\n' +
+                '    return max(0, min(WIDTH - SIDE, x))',
             },
             {
               kind: 'concept',
@@ -67,7 +67,7 @@ export const module4: Module = {
                 id: 'Memilah baloknya menjawab dua pertanyaan sekaligus: mana yang tersisa, dan berapa yang mengenai. Kembalikan keduanya sebagai tuple dan bongkar saat memanggilnya. Itu jauh lebih jelas daripada pembantu yang sekalian memperbarui penghitung yang dioperkan padanya — dan ia tetap fungsi dari argumennya, dan itulah yang membuatnya bisa diuji.',
               },
               code:
-                'tersisa, kena, lolos = bersihkan(balok, pemain)',
+                'survivors, hit, dodged = resolve(blocks, player)',
             },
             {
               kind: 'quiz',
@@ -92,229 +92,229 @@ export const module4: Module = {
               kind: 'game',
               id: 'g1',
               prompt: {
-                en: 'The game already works. Take it apart: write `gerak_pemain(x, tombol, dt)` returning the new clamped x, `jatuhkan(balok, dt)` returning a new moved list, and `bersihkan(balok, pemain)` returning `(tersisa, kena, lolos)` — then make `perbarui` call all three.',
-                id: 'Gamenya sudah berfungsi. Pecah ia: tulis `gerak_pemain(x, tombol, dt)` yang mengembalikan x baru yang sudah dijepit, `jatuhkan(balok, dt)` yang mengembalikan daftar baru yang sudah bergerak, dan `bersihkan(balok, pemain)` yang mengembalikan `(tersisa, kena, lolos)` — lalu buat `perbarui` memanggil ketiganya.',
+                en: 'The game already works. Take it apart: write `move_player(x, keys, dt)` returning the new clamped x, `fall(blocks, dt)` returning a new moved list, and `resolve(blocks, player)` returning `(survivors, hit, dodged)` — then make `update` call all three.',
+                id: 'Gamenya sudah berfungsi. Pecah ia: tulis `move_player(x, keys, dt)` yang mengembalikan x baru yang sudah dijepit, `fall(blocks, dt)` yang mengembalikan daftar baru yang sudah bergerak, dan `resolve(blocks, player)` yang mengembalikan `(survivors, hit, dodged)` — lalu buat `update` memanggil ketiganya.',
               },
               starter:
-                'TITIK_X = [30, 120, 210, 280, 70, 160]\n' +
-                'LAJU = 190\n' +
-                'JATUH = 120\n' +
-                'JEDA = 0.6\n' +
-                'SISI = 16\n' +
-                'BALOK = 14\n' +
-                'PEMAIN_Y = 210\n' +
-                'LEBAR = 320\n' +
-                'TINGGI = 240\n\n' +
-                'def tabrakan(a, b):\n' +
+                'SPOT_X = [30, 120, 210, 280, 70, 160]\n' +
+                'SPEED = 190\n' +
+                'FALL = 120\n' +
+                'SPAWN_DELAY = 0.6\n' +
+                'SIDE = 16\n' +
+                'BLOCK = 14\n' +
+                'PLAYER_Y = 210\n' +
+                'WIDTH = 320\n' +
+                'HEIGHT = 240\n\n' +
+                'def overlaps(a, b):\n' +
                 '    return (\n' +
-                '        a["x"] < b["x"] + b["l"]\n' +
-                '        and a["x"] + a["l"] > b["x"]\n' +
-                '        and a["y"] < b["y"] + b["t"]\n' +
-                '        and a["y"] + a["t"] > b["y"]\n' +
+                '        a["x"] < b["x"] + b["w"]\n' +
+                '        and a["x"] + a["w"] > b["x"]\n' +
+                '        and a["y"] < b["y"] + b["h"]\n' +
+                '        and a["y"] + a["h"] > b["y"]\n' +
                 '    )\n\n' +
-                'def gerak_pemain(x, tombol, dt):\n' +
+                'def move_player(x, keys, dt):\n' +
                 '    return x\n\n' +
-                'def jatuhkan(balok, dt):\n' +
-                '    return balok\n\n' +
-                'def bersihkan(balok, pemain):\n' +
-                '    return balok, 0, 0\n\n' +
-                'def awal():\n' +
-                '    return {"x": 152.0, "balok": [], "i": 0, "sisa": 0.0, "lolos": 0, "kena": 0}\n\n' +
-                'def perbarui(keadaan, tombol, dt):\n' +
-                '    x = keadaan["x"]\n' +
-                '    if "kiri" in tombol:\n' +
-                '        x = x - LAJU * dt\n' +
-                '    if "kanan" in tombol:\n' +
-                '        x = x + LAJU * dt\n' +
-                '    x = max(0, min(LEBAR - SISI, x))\n\n' +
-                '    pemain = {"x": x, "y": PEMAIN_Y, "l": SISI, "t": SISI}\n' +
-                '    lolos = keadaan["lolos"]\n' +
-                '    kena = keadaan["kena"]\n' +
-                '    tersisa = []\n' +
-                '    for b in keadaan["balok"]:\n' +
-                '        turun = {"x": b["x"], "y": b["y"] + JATUH * dt}\n' +
-                '        kotak = {"x": turun["x"], "y": turun["y"], "l": BALOK, "t": BALOK}\n' +
-                '        if tabrakan(kotak, pemain):\n' +
-                '            kena = kena + 1\n' +
-                '        elif turun["y"] > TINGGI:\n' +
-                '            lolos = lolos + 1\n' +
+                'def fall(blocks, dt):\n' +
+                '    return blocks\n\n' +
+                'def resolve(blocks, player):\n' +
+                '    return blocks, 0, 0\n\n' +
+                'def start():\n' +
+                '    return {"x": 152.0, "blocks": [], "i": 0, "remaining": 0.0, "dodged": 0, "hit": 0}\n\n' +
+                'def update(state, keys, dt):\n' +
+                '    x = state["x"]\n' +
+                '    if "left" in keys:\n' +
+                '        x = x - SPEED * dt\n' +
+                '    if "right" in keys:\n' +
+                '        x = x + SPEED * dt\n' +
+                '    x = max(0, min(WIDTH - SIDE, x))\n\n' +
+                '    player = {"x": x, "y": PLAYER_Y, "w": SIDE, "h": SIDE}\n' +
+                '    dodged = state["dodged"]\n' +
+                '    hit = state["hit"]\n' +
+                '    survivors = []\n' +
+                '    for b in state["blocks"]:\n' +
+                '        moved = {"x": b["x"], "y": b["y"] + FALL * dt}\n' +
+                '        box = {"x": moved["x"], "y": moved["y"], "w": BLOCK, "h": BLOCK}\n' +
+                '        if overlaps(box, player):\n' +
+                '            hit = hit + 1\n' +
+                '        elif moved["y"] > HEIGHT:\n' +
+                '            dodged = dodged + 1\n' +
                 '        else:\n' +
-                '            tersisa.append(turun)\n\n' +
-                '    i = keadaan["i"]\n' +
-                '    sisa = keadaan["sisa"] - dt\n' +
-                '    if sisa <= 0:\n' +
-                '        tersisa = tersisa + [{"x": TITIK_X[i], "y": -float(BALOK)}]\n' +
-                '        i = (i + 1) % len(TITIK_X)\n' +
-                '        sisa = JEDA\n\n' +
-                '    return {"x": x, "balok": tersisa, "i": i, "sisa": sisa, "lolos": lolos, "kena": kena}\n\n' +
-                'def gambar(keadaan):\n' +
-                '    hasil = []\n' +
-                '    for b in keadaan["balok"]:\n' +
-                '        hasil.append({"bentuk": "kotak", "x": b["x"], "y": b["y"], "l": BALOK, "t": BALOK, "warna": "#ef8f70"})\n' +
-                '    hasil.append({"bentuk": "kotak", "x": keadaan["x"], "y": PEMAIN_Y, "l": SISI, "t": SISI, "warna": "#24463d"})\n' +
-                '    hasil.append({"bentuk": "teks", "x": 8, "y": 8, "isi": "Lolos: " + str(keadaan["lolos"]) + "  Kena: " + str(keadaan["kena"]), "warna": "#24463d"})\n' +
-                '    return hasil\n',
+                '            survivors.append(moved)\n\n' +
+                '    i = state["i"]\n' +
+                '    remaining = state["remaining"] - dt\n' +
+                '    if remaining <= 0:\n' +
+                '        survivors = survivors + [{"x": SPOT_X[i], "y": -float(BLOCK)}]\n' +
+                '        i = (i + 1) % len(SPOT_X)\n' +
+                '        remaining = SPAWN_DELAY\n\n' +
+                '    return {"x": x, "blocks": survivors, "i": i, "remaining": remaining, "dodged": dodged, "hit": hit}\n\n' +
+                'def draw(state):\n' +
+                '    result = []\n' +
+                '    for b in state["blocks"]:\n' +
+                '        result.append({"shape": "box", "x": b["x"], "y": b["y"], "w": BLOCK, "h": BLOCK, "color": "#ef8f70"})\n' +
+                '    result.append({"shape": "box", "x": state["x"], "y": PLAYER_Y, "w": SIDE, "h": SIDE, "color": "#24463d"})\n' +
+                '    result.append({"shape": "text", "x": 8, "y": 8, "text": "Dodged: " + str(state["dodged"]) + "  Hit: " + str(state["hit"]), "color": "#24463d"})\n' +
+                '    return result\n',
               tests: [
                 {
                   name: { en: 'The mover moves', id: 'Penggeraknya menggerakkan' },
                   assert:
-                    'assert abs(gerak_pemain(100.0, {"kanan"}, 0.5) - 195) < 1e-9, f"kanan setengah detik harus 195, sekarang: {gerak_pemain(100.0, {\'kanan\'}, 0.5)}"\n' +
-                    'assert abs(gerak_pemain(100.0, {"kiri"}, 0.5) - 5) < 1e-9, f"kiri setengah detik harus 5, sekarang: {gerak_pemain(100.0, {\'kiri\'}, 0.5)}"\n' +
-                    'assert abs(gerak_pemain(100.0, set(), 0.5) - 100) < 1e-9, "tanpa tombol tidak bergerak"',
+                    'assert abs(move_player(100.0, {"right"}, 0.5) - 195) < 1e-9, f"right for half a second must be 195, now: {move_player(100.0, {\'right\'}, 0.5)}"\n' +
+                    'assert abs(move_player(100.0, {"left"}, 0.5) - 5) < 1e-9, f"left for half a second must be 5, now: {move_player(100.0, {\'left\'}, 0.5)}"\n' +
+                    'assert abs(move_player(100.0, set(), 0.5) - 100) < 1e-9, "no keys means no movement"',
                 },
                 {
                   name: { en: 'The mover clamps', id: 'Penggeraknya menjepit' },
                   assert:
-                    'assert abs(gerak_pemain(10.0, {"kiri"}, 1.0)) < 1e-9, f"harus terjepit di 0, sekarang: {gerak_pemain(10.0, {\'kiri\'}, 1.0)}"\n' +
-                    'assert abs(gerak_pemain(300.0, {"kanan"}, 1.0) - 304) < 1e-9, f"harus terjepit di 304, sekarang: {gerak_pemain(300.0, {\'kanan\'}, 1.0)}"',
+                    'assert abs(move_player(10.0, {"left"}, 1.0)) < 1e-9, f"must clamp to 0, now: {move_player(10.0, {\'left\'}, 1.0)}"\n' +
+                    'assert abs(move_player(300.0, {"right"}, 1.0) - 304) < 1e-9, f"must clamp to 304, now: {move_player(300.0, {\'right\'}, 1.0)}"',
                 },
                 {
                   name: { en: 'The dropper drops, without touching the old list', id: 'Penjatuhnya menjatuhkan, tanpa menyentuh daftar lama' },
                   assert:
-                    'asal = [{"x": 30, "y": 0.0}, {"x": 70, "y": 100.0}]\n' +
-                    'baru = jatuhkan(asal, 0.5)\n' +
-                    'assert len(baru) == 2, f"harus tetap dua, sekarang: {len(baru)}"\n' +
-                    'assert abs(baru[0]["y"] - 60) < 1e-9, f"harus turun 60, sekarang: {baru[0][\'y\']}"\n' +
-                    'assert abs(baru[1]["y"] - 160) < 1e-9, f"yang kedua juga, sekarang: {baru[1][\'y\']}"\n' +
-                    'assert baru[0]["x"] == 30, "x tidak boleh berubah"\n' +
-                    'assert asal[0]["y"] == 0.0, f"daftar aslinya tidak boleh ikut bergerak, sekarang: {asal[0][\'y\']}"\n' +
-                    'assert jatuhkan([], 0.5) == [], "daftar kosong tetap kosong"',
+                    'original = [{"x": 30, "y": 0.0}, {"x": 70, "y": 100.0}]\n' +
+                    'moved = fall(original, 0.5)\n' +
+                    'assert len(moved) == 2, f"must stay two, now: {len(moved)}"\n' +
+                    'assert abs(moved[0]["y"] - 60) < 1e-9, f"must fall 60, now: {moved[0][\'y\']}"\n' +
+                    'assert abs(moved[1]["y"] - 160) < 1e-9, f"so must the second, now: {moved[1][\'y\']}"\n' +
+                    'assert moved[0]["x"] == 30, "x must not change"\n' +
+                    'assert original[0]["y"] == 0.0, f"the original list must not move too, now: {original[0][\'y\']}"\n' +
+                    'assert fall([], 0.5) == [], "an empty list stays empty"',
                 },
                 {
                   name: { en: 'The sorter finds the hits', id: 'Pemilahnya menemukan yang mengenai' },
                   assert:
-                    'pemain = {"x": 152.0, "y": 210, "l": 16, "t": 16}\n' +
-                    'tersisa, kena, lolos = bersihkan([{"x": 152, "y": 208.0}], pemain)\n' +
-                    'assert kena == 1, f"harus satu kena, sekarang: {kena}"\n' +
-                    'assert lolos == 0 and tersisa == [], "dan tidak ada sisanya"',
+                    'player = {"x": 152.0, "y": 210, "w": 16, "h": 16}\n' +
+                    'survivors, hit, dodged = resolve([{"x": 152, "y": 208.0}], player)\n' +
+                    'assert hit == 1, f"must be one hit, now: {hit}"\n' +
+                    'assert dodged == 0 and survivors == [], "and nothing left over"',
                 },
                 {
                   name: { en: 'And the ones that got away', id: 'Dan yang lolos' },
                   assert:
-                    'pemain = {"x": 0.0, "y": 210, "l": 16, "t": 16}\n' +
-                    'tersisa, kena, lolos = bersihkan([{"x": 300, "y": 250.0}], pemain)\n' +
-                    'assert lolos == 1, f"harus satu lolos, sekarang: {lolos}"\n' +
-                    'assert kena == 0 and tersisa == [], "dan tidak ada sisanya"',
+                    'player = {"x": 0.0, "y": 210, "w": 16, "h": 16}\n' +
+                    'survivors, hit, dodged = resolve([{"x": 300, "y": 250.0}], player)\n' +
+                    'assert dodged == 1, f"must be one dodge, now: {dodged}"\n' +
+                    'assert hit == 0 and survivors == [], "and nothing left over"',
                 },
                 {
                   name: { en: 'And leaves the rest alone', id: 'Dan membiarkan sisanya' },
                   assert:
-                    'pemain = {"x": 152.0, "y": 210, "l": 16, "t": 16}\n' +
-                    'balok = [{"x": 152, "y": 208.0}, {"x": 300, "y": 250.0}, {"x": 30, "y": 50.0}]\n' +
-                    'tersisa, kena, lolos = bersihkan(balok, pemain)\n' +
-                    'assert kena == 1 and lolos == 1, f"satu dan satu, sekarang: {kena} dan {lolos}"\n' +
-                    'assert len(tersisa) == 1 and tersisa[0]["x"] == 30, f"satu masih jatuh, sekarang: {tersisa}"\n' +
-                    'assert bersihkan([], pemain) == ([], 0, 0), "daftar kosong memberi nol semuanya"',
+                    'player = {"x": 152.0, "y": 210, "w": 16, "h": 16}\n' +
+                    'blocks = [{"x": 152, "y": 208.0}, {"x": 300, "y": 250.0}, {"x": 30, "y": 50.0}]\n' +
+                    'survivors, hit, dodged = resolve(blocks, player)\n' +
+                    'assert hit == 1 and dodged == 1, f"one and one, now: {hit} and {dodged}"\n' +
+                    'assert len(survivors) == 1 and survivors[0]["x"] == 30, f"one still falling, now: {survivors}"\n' +
+                    'assert resolve([], player) == ([], 0, 0), "an empty list gives all zeros"',
                 },
                 {
                   name: { en: 'And the game still plays', id: 'Dan gamenya tetap bisa dimainkan' },
                   assert:
-                    'k = perbarui({"x": 152.0, "balok": [{"x": 152, "y": 205.0}], "i": 0, "sisa": 5.0, "lolos": 0, "kena": 0}, set(), 1 / 60)\n' +
-                    'assert k["kena"] == 1, f"harus terhitung kena, sekarang: {k[\'kena\']}"\n' +
-                    'b = perbarui({"x": 100.0, "balok": [], "i": 0, "sisa": 5.0, "lolos": 0, "kena": 0}, {"kanan"}, 0.5)\n' +
-                    'assert abs(b["x"] - 195) < 1e-9, f"pemainnya harus bergerak, sekarang: {b[\'x\']}"\n' +
-                    'c = awal()\n' +
+                    'k = update({"x": 152.0, "blocks": [{"x": 152, "y": 205.0}], "i": 0, "remaining": 5.0, "dodged": 0, "hit": 0}, set(), 1 / 60)\n' +
+                    'assert k["hit"] == 1, f"must count as a hit, now: {k[\'hit\']}"\n' +
+                    'b = update({"x": 100.0, "blocks": [], "i": 0, "remaining": 5.0, "dodged": 0, "hit": 0}, {"right"}, 0.5)\n' +
+                    'assert abs(b["x"] - 195) < 1e-9, f"the player must move, now: {b[\'x\']}"\n' +
+                    'c = start()\n' +
                     'for _ in range(600):\n' +
-                    '    c = perbarui(c, set(), 1 / 60)\n' +
-                    'assert c["kena"] + c["lolos"] > 3, "sepuluh detik harus menyelesaikan beberapa balok"\n' +
-                    'assert len(c["balok"]) < 12, f"dan daftarnya tetap kecil, sekarang: {len(c[\'balok\'])}"',
+                    '    c = update(c, set(), 1 / 60)\n' +
+                    'assert c["hit"] + c["dodged"] > 3, "ten seconds must resolve several blocks"\n' +
+                    'assert len(c["blocks"]) < 12, f"and the list must stay small, now: {len(c[\'blocks\'])}"',
                 },
                 {
-                  name: { en: 'perbarui really does use the helpers', id: 'perbarui benar-benar memakai pembantunya' },
+                  name: { en: 'update really does use the helpers', id: 'perbarui benar-benar memakai pembantunya' },
                   assert:
-                    'asli = gerak_pemain\n' +
-                    'dipanggil = []\n\n' +
-                    'def mata_mata(x, tombol, dt):\n' +
-                    '    dipanggil.append(True)\n' +
-                    '    return asli(x, tombol, dt)\n\n' +
-                    'globals()["gerak_pemain"] = mata_mata\n' +
+                    'original = move_player\n' +
+                    'called = []\n\n' +
+                    'def spy(x, keys, dt):\n' +
+                    '    called.append(True)\n' +
+                    '    return original(x, keys, dt)\n\n' +
+                    'globals()["move_player"] = spy\n' +
                     'try:\n' +
-                    '    perbarui({"x": 100.0, "balok": [], "i": 0, "sisa": 5.0, "lolos": 0, "kena": 0}, {"kanan"}, 0.1)\n' +
+                    '    update({"x": 100.0, "blocks": [], "i": 0, "remaining": 5.0, "dodged": 0, "hit": 0}, {"right"}, 0.1)\n' +
                     'finally:\n' +
-                    '    globals()["gerak_pemain"] = asli\n' +
-                    'assert dipanggil, "perbarui harus memanggil gerak_pemain, bukan mengulang isinya"',
+                    '    globals()["move_player"] = original\n' +
+                    'assert called, "update must call move_player, not repeat its contents"',
                 },
                 {
                   name: { en: 'The state it was given is left alone', id: 'Keadaan yang diberikan padanya dibiarkan' },
                   assert:
-                    'asal = [{"x": 30, "y": 10.0}]\n' +
-                    'k = {"x": 152.0, "balok": asal, "i": 0, "sisa": 5.0, "lolos": 0, "kena": 0}\n' +
-                    'perbarui(k, {"kanan"}, 0.5)\n' +
-                    'assert asal[0]["y"] == 10.0, f"balok lamanya tidak boleh ikut bergerak, sekarang: {asal[0][\'y\']}"\n' +
-                    'assert k["x"] == 152.0, "keadaan yang diberikan tidak boleh berubah"',
+                    'original = [{"x": 30, "y": 10.0}]\n' +
+                    'k = {"x": 152.0, "blocks": original, "i": 0, "remaining": 5.0, "dodged": 0, "hit": 0}\n' +
+                    'update(k, {"right"}, 0.5)\n' +
+                    'assert original[0]["y"] == 10.0, f"the old blocks must not move too, now: {original[0][\'y\']}"\n' +
+                    'assert k["x"] == 152.0, "the state it was given must not change"',
                 },
               ],
               hints: [
-                { en: 'Nothing new is being written. Every line you need is already inside `perbarui` — it is being moved, not invented.', id: 'Tak ada yang baru ditulis. Tiap baris yang kamu butuhkan sudah ada di dalam `perbarui` — ia dipindahkan, bukan dikarang.' },
-                { en: '`jatuhkan` is one comprehension, building a new dictionary per block.', id: '`jatuhkan` adalah satu comprehension, membangun dictionary baru per balok.' },
-                { en: '`bersihkan` takes blocks that have **already** fallen, so it only sorts them — it does not move anything.', id: '`bersihkan` menerima balok yang **sudah** jatuh, jadi ia hanya memilah — ia tidak menggerakkan apa pun.' },
-                { en: 'Return the three with commas: `return tersisa, kena, lolos`.', id: 'Kembalikan ketiganya dengan koma: `return tersisa, kena, lolos`.' },
+                { en: 'Nothing new is being written. Every line you need is already inside `update` — it is being moved, not invented.', id: 'Tak ada yang baru ditulis. Tiap baris yang kamu butuhkan sudah ada di dalam `update` — ia dipindahkan, bukan dikarang.' },
+                { en: '`fall` is one comprehension, building a new dictionary per block.', id: '`fall` adalah satu comprehension, membangun dictionary baru per balok.' },
+                { en: '`resolve` takes blocks that have **already** fallen, so it only sorts them — it does not move anything.', id: '`resolve` menerima balok yang **sudah** jatuh, jadi ia hanya memilah — ia tidak menggerakkan apa pun.' },
+                { en: 'Return the three with commas: `return survivors, hit, dodged`.', id: 'Kembalikan ketiganya dengan koma: `return survivors, hit, dodged`.' },
               ],
               solution:
-                'TITIK_X = [30, 120, 210, 280, 70, 160]\n' +
-                'LAJU = 190\n' +
-                'JATUH = 120\n' +
-                'JEDA = 0.6\n' +
-                'SISI = 16\n' +
-                'BALOK = 14\n' +
-                'PEMAIN_Y = 210\n' +
-                'LEBAR = 320\n' +
-                'TINGGI = 240\n\n' +
-                'def tabrakan(a, b):\n' +
+                'SPOT_X = [30, 120, 210, 280, 70, 160]\n' +
+                'SPEED = 190\n' +
+                'FALL = 120\n' +
+                'SPAWN_DELAY = 0.6\n' +
+                'SIDE = 16\n' +
+                'BLOCK = 14\n' +
+                'PLAYER_Y = 210\n' +
+                'WIDTH = 320\n' +
+                'HEIGHT = 240\n\n' +
+                'def overlaps(a, b):\n' +
                 '    return (\n' +
-                '        a["x"] < b["x"] + b["l"]\n' +
-                '        and a["x"] + a["l"] > b["x"]\n' +
-                '        and a["y"] < b["y"] + b["t"]\n' +
-                '        and a["y"] + a["t"] > b["y"]\n' +
+                '        a["x"] < b["x"] + b["w"]\n' +
+                '        and a["x"] + a["w"] > b["x"]\n' +
+                '        and a["y"] < b["y"] + b["h"]\n' +
+                '        and a["y"] + a["h"] > b["y"]\n' +
                 '    )\n\n' +
-                'def gerak_pemain(x, tombol, dt):\n' +
-                '    if "kiri" in tombol:\n' +
-                '        x = x - LAJU * dt\n' +
-                '    if "kanan" in tombol:\n' +
-                '        x = x + LAJU * dt\n' +
-                '    return max(0, min(LEBAR - SISI, x))\n\n' +
-                'def jatuhkan(balok, dt):\n' +
-                '    return [{"x": b["x"], "y": b["y"] + JATUH * dt} for b in balok]\n\n' +
-                'def bersihkan(balok, pemain):\n' +
-                '    tersisa = []\n' +
-                '    kena = 0\n' +
-                '    lolos = 0\n' +
-                '    for b in balok:\n' +
-                '        kotak = {"x": b["x"], "y": b["y"], "l": BALOK, "t": BALOK}\n' +
-                '        if tabrakan(kotak, pemain):\n' +
-                '            kena = kena + 1\n' +
-                '        elif b["y"] > TINGGI:\n' +
-                '            lolos = lolos + 1\n' +
+                'def move_player(x, keys, dt):\n' +
+                '    if "left" in keys:\n' +
+                '        x = x - SPEED * dt\n' +
+                '    if "right" in keys:\n' +
+                '        x = x + SPEED * dt\n' +
+                '    return max(0, min(WIDTH - SIDE, x))\n\n' +
+                'def fall(blocks, dt):\n' +
+                '    return [{"x": b["x"], "y": b["y"] + FALL * dt} for b in blocks]\n\n' +
+                'def resolve(blocks, player):\n' +
+                '    survivors = []\n' +
+                '    hit = 0\n' +
+                '    dodged = 0\n' +
+                '    for b in blocks:\n' +
+                '        box = {"x": b["x"], "y": b["y"], "w": BLOCK, "h": BLOCK}\n' +
+                '        if overlaps(box, player):\n' +
+                '            hit = hit + 1\n' +
+                '        elif b["y"] > HEIGHT:\n' +
+                '            dodged = dodged + 1\n' +
                 '        else:\n' +
-                '            tersisa.append(b)\n' +
-                '    return tersisa, kena, lolos\n\n' +
-                'def awal():\n' +
-                '    return {"x": 152.0, "balok": [], "i": 0, "sisa": 0.0, "lolos": 0, "kena": 0}\n\n' +
-                'def perbarui(keadaan, tombol, dt):\n' +
-                '    x = gerak_pemain(keadaan["x"], tombol, dt)\n' +
-                '    pemain = {"x": x, "y": PEMAIN_Y, "l": SISI, "t": SISI}\n\n' +
-                '    tersisa, kena, lolos = bersihkan(jatuhkan(keadaan["balok"], dt), pemain)\n\n' +
-                '    i = keadaan["i"]\n' +
-                '    sisa = keadaan["sisa"] - dt\n' +
-                '    if sisa <= 0:\n' +
-                '        tersisa = tersisa + [{"x": TITIK_X[i], "y": -float(BALOK)}]\n' +
-                '        i = (i + 1) % len(TITIK_X)\n' +
-                '        sisa = JEDA\n\n' +
+                '            survivors.append(b)\n' +
+                '    return survivors, hit, dodged\n\n' +
+                'def start():\n' +
+                '    return {"x": 152.0, "blocks": [], "i": 0, "remaining": 0.0, "dodged": 0, "hit": 0}\n\n' +
+                'def update(state, keys, dt):\n' +
+                '    x = move_player(state["x"], keys, dt)\n' +
+                '    player = {"x": x, "y": PLAYER_Y, "w": SIDE, "h": SIDE}\n\n' +
+                '    survivors, hit, dodged = resolve(fall(state["blocks"], dt), player)\n\n' +
+                '    i = state["i"]\n' +
+                '    remaining = state["remaining"] - dt\n' +
+                '    if remaining <= 0:\n' +
+                '        survivors = survivors + [{"x": SPOT_X[i], "y": -float(BLOCK)}]\n' +
+                '        i = (i + 1) % len(SPOT_X)\n' +
+                '        remaining = SPAWN_DELAY\n\n' +
                 '    return {\n' +
                 '        "x": x,\n' +
-                '        "balok": tersisa,\n' +
+                '        "blocks": survivors,\n' +
                 '        "i": i,\n' +
-                '        "sisa": sisa,\n' +
-                '        "lolos": keadaan["lolos"] + lolos,\n' +
-                '        "kena": keadaan["kena"] + kena,\n' +
+                '        "remaining": remaining,\n' +
+                '        "dodged": state["dodged"] + dodged,\n' +
+                '        "hit": state["hit"] + hit,\n' +
                 '    }\n\n' +
-                'def gambar(keadaan):\n' +
-                '    hasil = []\n' +
-                '    for b in keadaan["balok"]:\n' +
-                '        hasil.append({"bentuk": "kotak", "x": b["x"], "y": b["y"], "l": BALOK, "t": BALOK, "warna": "#ef8f70"})\n' +
-                '    hasil.append({"bentuk": "kotak", "x": keadaan["x"], "y": PEMAIN_Y, "l": SISI, "t": SISI, "warna": "#24463d"})\n' +
-                '    hasil.append({"bentuk": "teks", "x": 8, "y": 8, "isi": "Lolos: " + str(keadaan["lolos"]) + "  Kena: " + str(keadaan["kena"]), "warna": "#24463d"})\n' +
-                '    return hasil\n',
+                'def draw(state):\n' +
+                '    result = []\n' +
+                '    for b in state["blocks"]:\n' +
+                '        result.append({"shape": "box", "x": b["x"], "y": b["y"], "w": BLOCK, "h": BLOCK, "color": "#ef8f70"})\n' +
+                '    result.append({"shape": "box", "x": state["x"], "y": PLAYER_Y, "w": SIDE, "h": SIDE, "color": "#24463d"})\n' +
+                '    result.append({"shape": "text", "x": 8, "y": 8, "text": "Dodged: " + str(state["dodged"]) + "  Hit: " + str(state["hit"]), "color": "#24463d"})\n' +
+                '    return result\n',
             },
           ],
         },
@@ -333,8 +333,8 @@ export const module4: Module = {
                 id: 'Ambil satu nyawa tanpa mengubah apa pun di layar dan pemainnya akan bersumpah itu tidak terjadi. Aturannya benar; gamenya tak pernah mengatakannya. Umpan balik bukan hiasan — ia cara pemain mempelajari aturannya, dan biayanya beberapa baris.',
               },
               code: {
-                en: '# the rule is correct, and invisible\nnyawa = max(0, nyawa - 1)',
-                id: '# aturannya benar, dan tak terlihat\nnyawa = max(0, nyawa - 1)',
+                en: '# the rule is correct, and invisible\nlives = max(0, lives - 1)',
+                id: '# aturannya benar, dan tak terlihat\nlives = max(0, lives - 1)',
               },
             },
             {
@@ -347,13 +347,13 @@ export const module4: Module = {
               },
               code: {
                 en:
-                  'def kedip(kebal):\n' +
-                  '    return kebal > 0 and int(kebal * 10) % 2 == 1\n\n' +
+                  'def blink(mercy):\n' +
+                  '    return mercy > 0 and int(mercy * 10) % 2 == 1\n\n' +
                   '# 1.15 -> int(11.5) = 11 -> odd -> blinks\n' +
                   '# 1.00 -> int(10.0) = 10 -> even -> does not',
                 id:
-                  'def kedip(kebal):\n' +
-                  '    return kebal > 0 and int(kebal * 10) % 2 == 1\n\n' +
+                  'def blink(mercy):\n' +
+                  '    return mercy > 0 and int(mercy * 10) % 2 == 1\n\n' +
                   '# 1.15 -> int(11.5) = 11 -> ganjil -> berkedip\n' +
                   '# 1.00 -> int(10.0) = 10 -> genap -> tidak',
               },
@@ -363,25 +363,25 @@ export const module4: Module = {
               id: 'c3',
               title: { en: 'A shake is an offset, not a moved world', id: 'Guncangan adalah pergeseran, bukan dunia yang berpindah' },
               body: {
-                en: 'Do not move anything in `perbarui` to shake the screen — the positions are the truth of the game and must not lie. Keep a timer, work out an offset from it in `gambar`, and add that to every coordinate as you draw. The world stays where it is; only the picture wobbles.',
-                id: 'Jangan menggerakkan apa pun di `perbarui` untuk mengguncang layar — posisinya adalah kebenaran permainannya dan tak boleh berdusta. Simpan sebuah pewaktu, hitung pergeseran darinya di `gambar`, dan tambahkan itu ke tiap koordinat saat menggambar. Dunianya tetap di tempatnya; hanya gambarnya yang bergoyang.',
+                en: 'Do not move anything in `update` to shake the screen — the positions are the truth of the game and must not lie. Keep a timer, work out an offset from it in `draw`, and add that to every coordinate as you draw. The world stays where it is; only the picture wobbles.',
+                id: 'Jangan menggerakkan apa pun di `update` untuk mengguncang layar — posisinya adalah kebenaran permainannya dan tak boleh berdusta. Simpan sebuah pewaktu, hitung pergeseran darinya di `draw`, dan tambahkan itu ke tiap koordinat saat menggambar. Dunianya tetap di tempatnya; hanya gambarnya yang bergoyang.',
               },
               code:
-                'def getar(guncang):\n' +
-                '    if guncang <= 0:\n' +
+                'def shake_offset(shake):\n' +
+                '    if shake <= 0:\n' +
                 '        return 0\n' +
-                '    return 4 if int(guncang * 60) % 2 == 0 else -4',
+                '    return 4 if int(shake * 60) % 2 == 0 else -4',
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'Why work the shake out in `gambar` rather than moving things in `perbarui`?',
-                id: 'Mengapa menghitung guncangannya di `gambar` alih-alih menggerakkan benda di `perbarui`?',
+                en: 'Why work the shake out in `draw` rather than moving things in `update`?',
+                id: 'Mengapa menghitung guncangannya di `draw` alih-alih menggerakkan benda di `update`?',
               },
               options: [
                 { en: 'The positions are the game — shaking them would change what collides', id: 'Posisinya adalah permainannya — mengguncangnya akan mengubah apa yang bertabrakan' },
-                { en: '`perbarui` cannot do arithmetic', id: '`perbarui` tidak bisa berhitung' },
+                { en: '`update` cannot do arithmetic', id: '`update` tidak bisa berhitung' },
                 { en: 'It is faster', id: 'Itu lebih cepat' },
                 { en: 'There is no difference', id: 'Tidak ada bedanya' },
               ],
@@ -399,12 +399,12 @@ export const module4: Module = {
                 id: 'Susun penggambaran yang mengguncang seluruh gambarnya.',
               },
               lines: [
-                'def gambar(keadaan):',
-                '    geser = getar(keadaan["guncang"])',
-                '    hasil = []',
-                '    for b in keadaan["balok"]:',
-                '        hasil.append({"bentuk": "kotak", "x": b["x"] + geser, "y": b["y"], "l": BALOK, "t": BALOK, "warna": "#ef8f70"})',
-                '    return hasil',
+                'def draw(state):',
+                '    offset = shake_offset(state["shake"])',
+                '    result = []',
+                '    for b in state["blocks"]:',
+                '        result.append({"shape": "box", "x": b["x"] + offset, "y": b["y"], "w": BLOCK, "h": BLOCK, "color": "#ef8f70"})',
+                '    return result',
               ],
               explain: {
                 en: 'Work the offset out once, then add it as you build each command.',
@@ -415,231 +415,231 @@ export const module4: Module = {
               kind: 'game',
               id: 'g1',
               prompt: {
-                en: 'Add the feel. Write `kedip(kebal)` and `getar(guncang)`, start a 0.3 second shake on every hit, count it down like the mercy timer, and make `gambar` shift everything by the offset and skip drawing the player while it is blinking.',
-                id: 'Tambahkan rasanya. Tulis `kedip(kebal)` dan `getar(guncang)`, mulai guncangan 0,3 detik tiap benturan, hitung mundur seperti pewaktu keringanannya, dan buat `gambar` menggeser semuanya sebesar pergeserannya serta melewatkan penggambaran pemain selagi ia berkedip.',
+                en: 'Add the feel. Write `blink(mercy)` and `shake_offset(shake)`, start a 0.3 second shake on every hit, count it down like the mercy timer, and make `draw` shift everything by the offset and skip drawing the player while it is blinking.',
+                id: 'Tambahkan rasanya. Tulis `blink(mercy)` dan `shake_offset(shake)`, mulai guncangan 0,3 detik tiap benturan, hitung mundur seperti pewaktu keringanannya, dan buat `draw` menggeser semuanya sebesar pergeserannya serta melewatkan penggambaran pemain selagi ia berkedip.',
               },
               starter:
-                'TITIK_X = [30, 120, 210, 280, 70, 160]\n' +
-                'LAJU = 190\n' +
-                'JATUH = 130\n' +
-                'JEDA = 0.6\n' +
-                'SISI = 16\n' +
-                'BALOK = 14\n' +
-                'PEMAIN_Y = 210\n' +
-                'KEBAL = 1.5\n' +
-                'GUNCANG = 0.3\n' +
-                'LEBAR = 320\n' +
-                'TINGGI = 240\n\n' +
-                'def tabrakan(a, b):\n' +
+                'SPOT_X = [30, 120, 210, 280, 70, 160]\n' +
+                'SPEED = 190\n' +
+                'FALL = 130\n' +
+                'SPAWN_DELAY = 0.6\n' +
+                'SIDE = 16\n' +
+                'BLOCK = 14\n' +
+                'PLAYER_Y = 210\n' +
+                'MERCY = 1.5\n' +
+                'SHAKE = 0.3\n' +
+                'WIDTH = 320\n' +
+                'HEIGHT = 240\n\n' +
+                'def overlaps(a, b):\n' +
                 '    return (\n' +
-                '        a["x"] < b["x"] + b["l"]\n' +
-                '        and a["x"] + a["l"] > b["x"]\n' +
-                '        and a["y"] < b["y"] + b["t"]\n' +
-                '        and a["y"] + a["t"] > b["y"]\n' +
+                '        a["x"] < b["x"] + b["w"]\n' +
+                '        and a["x"] + a["w"] > b["x"]\n' +
+                '        and a["y"] < b["y"] + b["h"]\n' +
+                '        and a["y"] + a["h"] > b["y"]\n' +
                 '    )\n\n' +
-                'def kedip(kebal):\n' +
+                'def blink(mercy):\n' +
                 '    return False\n\n' +
-                'def getar(guncang):\n' +
+                'def shake_offset(shake):\n' +
                 '    return 0\n\n' +
-                'def awal():\n' +
-                '    return {"x": 152.0, "balok": [], "i": 0, "sisa": 0.0, "nyawa": 3, "kebal": 0.0, "guncang": 0.0}\n\n' +
-                'def perbarui(keadaan, tombol, dt):\n' +
-                '    x = keadaan["x"]\n' +
-                '    if "kiri" in tombol:\n' +
-                '        x = x - LAJU * dt\n' +
-                '    if "kanan" in tombol:\n' +
-                '        x = x + LAJU * dt\n' +
-                '    x = max(0, min(LEBAR - SISI, x))\n\n' +
-                '    nyawa = keadaan["nyawa"]\n' +
-                '    kebal = max(0.0, keadaan["kebal"] - dt)\n' +
-                '    guncang = keadaan["guncang"]\n\n' +
-                '    pemain = {"x": x, "y": PEMAIN_Y, "l": SISI, "t": SISI}\n' +
-                '    tersisa = []\n' +
-                '    for b in keadaan["balok"]:\n' +
-                '        turun = {"x": b["x"], "y": b["y"] + JATUH * dt}\n' +
-                '        kotak = {"x": turun["x"], "y": turun["y"], "l": BALOK, "t": BALOK}\n' +
-                '        if tabrakan(kotak, pemain):\n' +
-                '            if kebal <= 0:\n' +
-                '                nyawa = max(0, nyawa - 1)\n' +
-                '                kebal = KEBAL\n' +
-                '        elif turun["y"] <= TINGGI:\n' +
-                '            tersisa.append(turun)\n\n' +
-                '    i = keadaan["i"]\n' +
-                '    sisa = keadaan["sisa"] - dt\n' +
-                '    if sisa <= 0:\n' +
-                '        tersisa = tersisa + [{"x": TITIK_X[i], "y": -float(BALOK)}]\n' +
-                '        i = (i + 1) % len(TITIK_X)\n' +
-                '        sisa = JEDA\n\n' +
-                '    return {"x": x, "balok": tersisa, "i": i, "sisa": sisa, "nyawa": nyawa, "kebal": kebal, "guncang": guncang}\n\n' +
-                'def gambar(keadaan):\n' +
-                '    hasil = []\n' +
-                '    for b in keadaan["balok"]:\n' +
-                '        hasil.append({"bentuk": "kotak", "x": b["x"], "y": b["y"], "l": BALOK, "t": BALOK, "warna": "#ef8f70"})\n' +
-                '    hasil.append({"bentuk": "kotak", "x": keadaan["x"], "y": PEMAIN_Y, "l": SISI, "t": SISI, "warna": "#24463d"})\n' +
-                '    hasil.append({"bentuk": "teks", "x": 8, "y": 8, "isi": "Nyawa: " + str(keadaan["nyawa"]), "warna": "#24463d"})\n' +
-                '    return hasil\n',
+                'def start():\n' +
+                '    return {"x": 152.0, "blocks": [], "i": 0, "remaining": 0.0, "lives": 3, "mercy": 0.0, "shake": 0.0}\n\n' +
+                'def update(state, keys, dt):\n' +
+                '    x = state["x"]\n' +
+                '    if "left" in keys:\n' +
+                '        x = x - SPEED * dt\n' +
+                '    if "right" in keys:\n' +
+                '        x = x + SPEED * dt\n' +
+                '    x = max(0, min(WIDTH - SIDE, x))\n\n' +
+                '    lives = state["lives"]\n' +
+                '    mercy = max(0.0, state["mercy"] - dt)\n' +
+                '    shake = state["shake"]\n\n' +
+                '    player = {"x": x, "y": PLAYER_Y, "w": SIDE, "h": SIDE}\n' +
+                '    survivors = []\n' +
+                '    for b in state["blocks"]:\n' +
+                '        moved = {"x": b["x"], "y": b["y"] + FALL * dt}\n' +
+                '        box = {"x": moved["x"], "y": moved["y"], "w": BLOCK, "h": BLOCK}\n' +
+                '        if overlaps(box, player):\n' +
+                '            if mercy <= 0:\n' +
+                '                lives = max(0, lives - 1)\n' +
+                '                mercy = MERCY\n' +
+                '        elif moved["y"] <= HEIGHT:\n' +
+                '            survivors.append(moved)\n\n' +
+                '    i = state["i"]\n' +
+                '    remaining = state["remaining"] - dt\n' +
+                '    if remaining <= 0:\n' +
+                '        survivors = survivors + [{"x": SPOT_X[i], "y": -float(BLOCK)}]\n' +
+                '        i = (i + 1) % len(SPOT_X)\n' +
+                '        remaining = SPAWN_DELAY\n\n' +
+                '    return {"x": x, "blocks": survivors, "i": i, "remaining": remaining, "lives": lives, "mercy": mercy, "shake": shake}\n\n' +
+                'def draw(state):\n' +
+                '    result = []\n' +
+                '    for b in state["blocks"]:\n' +
+                '        result.append({"shape": "box", "x": b["x"], "y": b["y"], "w": BLOCK, "h": BLOCK, "color": "#ef8f70"})\n' +
+                '    result.append({"shape": "box", "x": state["x"], "y": PLAYER_Y, "w": SIDE, "h": SIDE, "color": "#24463d"})\n' +
+                '    result.append({"shape": "text", "x": 8, "y": 8, "text": "Lives: " + str(state["lives"]), "color": "#24463d"})\n' +
+                '    return result\n',
               tests: [
                 {
                   name: { en: 'The blink is off when the mercy is', id: 'Kedipnya mati ketika keringanannya mati' },
                   assert:
-                    'assert kedip(0.0) is False or not kedip(0.0), "tanpa kekebalan tidak boleh berkedip"\n' +
-                    'assert not kedip(-1.0), "nilai negatif juga tidak"',
+                    'assert blink(0.0) is False or not blink(0.0), "without mercy it must not blink"\n' +
+                    'assert not blink(-1.0), "a negative value must not either"',
                 },
                 {
                   name: { en: 'And it alternates while it runs', id: 'Dan ia berganti-ganti selagi berjalan' },
                   assert:
-                    'assert kedip(1.15), f"1.15 harus berkedip, sekarang: {kedip(1.15)}"\n' +
-                    'assert not kedip(1.05), f"1.05 tidak, sekarang: {kedip(1.05)}"\n' +
-                    'assert kedip(0.35), f"0.35 harus berkedip, sekarang: {kedip(0.35)}"\n' +
-                    'nyala = sum(1 for n in range(1, 15) if kedip(n / 10 + 0.05))\n' +
-                    'assert 5 <= nyala <= 9, f"harus berganti-ganti kira-kira separuh waktu, sekarang: {nyala} dari 14"',
+                    'assert blink(1.15), f"1.15 must blink, now: {blink(1.15)}"\n' +
+                    'assert not blink(1.05), f"1.05 must not, now: {blink(1.05)}"\n' +
+                    'assert blink(0.35), f"0.35 must blink, now: {blink(0.35)}"\n' +
+                    'on = sum(1 for n in range(1, 15) if blink(n / 10 + 0.05))\n' +
+                    'assert 5 <= on <= 9, f"it must alternate roughly half the time, now: {on} of 14"',
                 },
                 {
                   name: { en: 'A still screen does not shake', id: 'Layar yang tenang tidak berguncang' },
                   assert:
-                    'assert getar(0.0) == 0, f"tanpa guncangan harus nol, sekarang: {getar(0.0)}"\n' +
-                    'assert getar(-1.0) == 0, "nilai negatif juga nol"',
+                    'assert shake_offset(0.0) == 0, f"without a shake it must be zero, now: {shake_offset(0.0)}"\n' +
+                    'assert shake_offset(-1.0) == 0, "a negative value must also be zero"',
                 },
                 {
                   name: { en: 'And a shaken one moves both ways', id: 'Dan yang terguncang bergerak ke dua arah' },
                   assert:
-                    'nilai = set(getar(n / 60 + 0.001) for n in range(1, 20))\n' +
-                    'assert 4 in nilai and -4 in nilai, f"harus bergoyang ke kedua sisi, sekarang: {sorted(nilai)}"\n' +
-                    'assert all(abs(v) == 4 for v in nilai), f"besarnya harus selalu 4, sekarang: {sorted(nilai)}"',
+                    'values = set(shake_offset(n / 60 + 0.001) for n in range(1, 20))\n' +
+                    'assert 4 in values and -4 in values, f"must move both ways, now: {sorted(values)}"\n' +
+                    'assert all(abs(v) == 4 for v in values), f"the size must always be 4, now: {sorted(values)}"',
                 },
                 {
                   name: { en: 'A hit starts the shake', id: 'Benturan memulai guncangannya' },
                   assert:
-                    'k = perbarui({"x": 152.0, "balok": [{"x": 152, "y": 205.0}], "i": 0, "sisa": 5.0, "nyawa": 3, "kebal": 0.0, "guncang": 0.0}, set(), 1 / 60)\n' +
-                    'assert k["guncang"] > 0.2, f"guncangannya harus menyala, sekarang: {k[\'guncang\']}"\n' +
-                    'assert k["nyawa"] == 2, "dan nyawanya tetap berkurang"',
+                    'k = update({"x": 152.0, "blocks": [{"x": 152, "y": 205.0}], "i": 0, "remaining": 5.0, "lives": 3, "mercy": 0.0, "shake": 0.0}, set(), 1 / 60)\n' +
+                    'assert k["shake"] > 0.2, f"the shake must switch on, now: {k[\'shake\']}"\n' +
+                    'assert k["lives"] == 2, "and the lives must still drop"',
                 },
                 {
                   name: { en: 'And it settles down', id: 'Dan ia mereda' },
                   assert:
-                    'k = perbarui({"x": 0.0, "balok": [], "i": 0, "sisa": 5.0, "nyawa": 3, "kebal": 0.0, "guncang": 0.2}, set(), 0.05)\n' +
-                    'assert abs(k["guncang"] - 0.15) < 1e-9, f"harus turun ke 0.15, sekarang: {k[\'guncang\']}"\n' +
-                    'b = perbarui({"x": 0.0, "balok": [], "i": 0, "sisa": 5.0, "nyawa": 3, "kebal": 0.0, "guncang": 0.05}, set(), 0.5)\n' +
-                    'assert b["guncang"] == 0, f"tidak boleh negatif, sekarang: {b[\'guncang\']}"',
+                    'k = update({"x": 0.0, "blocks": [], "i": 0, "remaining": 5.0, "lives": 3, "mercy": 0.0, "shake": 0.2}, set(), 0.05)\n' +
+                    'assert abs(k["shake"] - 0.15) < 1e-9, f"must drop to 0.15, now: {k[\'shake\']}"\n' +
+                    'b = update({"x": 0.0, "blocks": [], "i": 0, "remaining": 5.0, "lives": 3, "mercy": 0.0, "shake": 0.05}, set(), 0.5)\n' +
+                    'assert b["shake"] == 0, f"must not go negative, now: {b[\'shake\']}"',
                 },
                 {
                   name: { en: 'A hit while merciful does not shake again', id: 'Benturan saat kebal tidak mengguncang lagi' },
                   assert:
-                    'k = perbarui({"x": 152.0, "balok": [{"x": 152, "y": 205.0}], "i": 0, "sisa": 5.0, "nyawa": 3, "kebal": 1.0, "guncang": 0.0}, set(), 1 / 60)\n' +
-                    'assert k["guncang"] == 0, f"sedang kebal, tidak boleh mengguncang, sekarang: {k[\'guncang\']}"',
+                    'k = update({"x": 152.0, "blocks": [{"x": 152, "y": 205.0}], "i": 0, "remaining": 5.0, "lives": 3, "mercy": 1.0, "shake": 0.0}, set(), 1 / 60)\n' +
+                    'assert k["shake"] == 0, f"while invulnerable, it must not shake, now: {k[\'shake\']}"',
                 },
                 {
                   name: { en: 'The picture moves with the shake', id: 'Gambarnya ikut bergerak bersama guncangannya' },
                   assert:
-                    'dasar = {"x": 100.0, "balok": [{"x": 50, "y": 60.0}], "i": 0, "sisa": 5.0, "nyawa": 3, "kebal": 0.0, "guncang": 0.0}\n' +
-                    'tenang = gambar(dict(dasar))\n' +
-                    'goyang = gambar({**dasar, "guncang": 0.25})\n' +
-                    'geser = getar(0.25)\n' +
-                    'kotak_tenang = [p for p in tenang if p["bentuk"] == "kotak"]\n' +
-                    'kotak_goyang = [p for p in goyang if p["bentuk"] == "kotak"]\n' +
-                    'assert len(kotak_tenang) == len(kotak_goyang), "jumlah kotaknya tidak boleh berubah"\n' +
-                    'for a, b in zip(kotak_tenang, kotak_goyang):\n' +
-                    '    assert abs((b["x"] - a["x"]) - geser) < 1e-9, f"tiap kotak harus bergeser {geser}, sekarang: {b[\'x\'] - a[\'x\']}"',
+                    'base = {"x": 100.0, "blocks": [{"x": 50, "y": 60.0}], "i": 0, "remaining": 5.0, "lives": 3, "mercy": 0.0, "shake": 0.0}\n' +
+                    'still = draw(dict(base))\n' +
+                    'shaken = draw({**base, "shake": 0.25})\n' +
+                    'offset = shake_offset(0.25)\n' +
+                    'boxes_still = [p for p in still if p["shape"] == "box"]\n' +
+                    'boxes_shaken = [p for p in shaken if p["shape"] == "box"]\n' +
+                    'assert len(boxes_still) == len(boxes_shaken), "the number of boxes must not change"\n' +
+                    'for a, b in zip(boxes_still, boxes_shaken):\n' +
+                    '    assert abs((b["x"] - a["x"]) - offset) < 1e-9, f"each box must shift by {offset}, now: {b[\'x\'] - a[\'x\']}"',
                 },
                 {
                   name: { en: 'The player flickers while merciful', id: 'Pemainnya berkelip selagi kebal' },
                   assert:
-                    'dasar = {"x": 100.0, "balok": [], "i": 0, "sisa": 5.0, "nyawa": 3, "guncang": 0.0}\n' +
-                    'ada = gambar({**dasar, "kebal": 1.05})\n' +
-                    'hilang = gambar({**dasar, "kebal": 1.15})\n' +
-                    'assert len([p for p in ada if p["bentuk"] == "kotak"]) == 1, "pada fase menyala pemainnya harus tergambar"\n' +
-                    'assert len([p for p in hilang if p["bentuk"] == "kotak"]) == 0, "pada fase padam pemainnya harus hilang"\n' +
-                    'biasa = gambar({**dasar, "kebal": 0.0})\n' +
-                    'assert len([p for p in biasa if p["bentuk"] == "kotak"]) == 1, "di luar kekebalan pemainnya harus selalu tergambar"',
+                    'base = {"x": 100.0, "blocks": [], "i": 0, "remaining": 5.0, "lives": 3, "shake": 0.0}\n' +
+                    'on = draw({**base, "mercy": 1.05})\n' +
+                    'off = draw({**base, "mercy": 1.15})\n' +
+                    'assert len([p for p in on if p["shape"] == "box"]) == 1, "on the visible phase the player must be drawn"\n' +
+                    'assert len([p for p in off if p["shape"] == "box"]) == 0, "on the hidden phase the player must vanish"\n' +
+                    'normal = draw({**base, "mercy": 0.0})\n' +
+                    'assert len([p for p in normal if p["shape"] == "box"]) == 1, "outside mercy the player must always be drawn"',
                 },
                 {
                   name: { en: 'The state it was given is left alone', id: 'Keadaan yang diberikan padanya dibiarkan' },
                   assert:
-                    'k = {"x": 152.0, "balok": [], "i": 0, "sisa": 5.0, "nyawa": 3, "kebal": 0.0, "guncang": 0.2}\n' +
-                    'salinan = dict(k)\n' +
-                    'perbarui(k, set(), 0.05)\n' +
-                    'assert k == salinan, f"perbarui tidak boleh mengubah keadaan yang diberikan, sekarang jadi: {k}"',
+                    'k = {"x": 152.0, "blocks": [], "i": 0, "remaining": 5.0, "lives": 3, "mercy": 0.0, "shake": 0.2}\n' +
+                    'copy = dict(k)\n' +
+                    'update(k, set(), 0.05)\n' +
+                    'assert k == copy, f"update must not change the state it was given, now: {k}"',
                 },
               ],
               hints: [
                 { en: 'Both helpers are one or two lines, and neither needs any state of its own.', id: 'Kedua pembantunya satu atau dua baris, dan tak satu pun butuh state-nya sendiri.' },
-                { en: 'The shake timer counts down exactly like `kebal` — one `max(0.0, ... - dt)`.', id: 'Pewaktu guncangannya menghitung mundur persis seperti `kebal` — satu `max(0.0, ... - dt)`.' },
+                { en: 'The shake timer counts down exactly like `mercy` — one `max(0.0, ... - dt)`.', id: 'Pewaktu guncangannya menghitung mundur persis seperti `mercy` — satu `max(0.0, ... - dt)`.' },
                 { en: 'Start it in the same branch that takes the life, so mercy silences it too.', id: 'Mulai ia di cabang yang sama dengan yang mengambil nyawanya, agar keringanannya juga membungkamnya.' },
-                { en: 'In `gambar`, work `geser` out once and add it to every `x` — including the text.', id: 'Di `gambar`, hitung `geser` sekali dan tambahkan ke tiap `x` — termasuk teksnya.' },
+                { en: 'In `draw`, work `offset` out once and add it to every `x` — including the text.', id: 'Di `draw`, hitung `offset` sekali dan tambahkan ke tiap `x` — termasuk teksnya.' },
               ],
               solution:
-                'TITIK_X = [30, 120, 210, 280, 70, 160]\n' +
-                'LAJU = 190\n' +
-                'JATUH = 130\n' +
-                'JEDA = 0.6\n' +
-                'SISI = 16\n' +
-                'BALOK = 14\n' +
-                'PEMAIN_Y = 210\n' +
-                'KEBAL = 1.5\n' +
-                'GUNCANG = 0.3\n' +
-                'LEBAR = 320\n' +
-                'TINGGI = 240\n\n' +
-                'def tabrakan(a, b):\n' +
+                'SPOT_X = [30, 120, 210, 280, 70, 160]\n' +
+                'SPEED = 190\n' +
+                'FALL = 130\n' +
+                'SPAWN_DELAY = 0.6\n' +
+                'SIDE = 16\n' +
+                'BLOCK = 14\n' +
+                'PLAYER_Y = 210\n' +
+                'MERCY = 1.5\n' +
+                'SHAKE = 0.3\n' +
+                'WIDTH = 320\n' +
+                'HEIGHT = 240\n\n' +
+                'def overlaps(a, b):\n' +
                 '    return (\n' +
-                '        a["x"] < b["x"] + b["l"]\n' +
-                '        and a["x"] + a["l"] > b["x"]\n' +
-                '        and a["y"] < b["y"] + b["t"]\n' +
-                '        and a["y"] + a["t"] > b["y"]\n' +
+                '        a["x"] < b["x"] + b["w"]\n' +
+                '        and a["x"] + a["w"] > b["x"]\n' +
+                '        and a["y"] < b["y"] + b["h"]\n' +
+                '        and a["y"] + a["h"] > b["y"]\n' +
                 '    )\n\n' +
-                'def kedip(kebal):\n' +
-                '    return kebal > 0 and int(kebal * 10) % 2 == 1\n\n' +
-                'def getar(guncang):\n' +
-                '    if guncang <= 0:\n' +
+                'def blink(mercy):\n' +
+                '    return mercy > 0 and int(mercy * 10) % 2 == 1\n\n' +
+                'def shake_offset(shake):\n' +
+                '    if shake <= 0:\n' +
                 '        return 0\n' +
-                '    return 4 if int(guncang * 60) % 2 == 0 else -4\n\n' +
-                'def awal():\n' +
-                '    return {"x": 152.0, "balok": [], "i": 0, "sisa": 0.0, "nyawa": 3, "kebal": 0.0, "guncang": 0.0}\n\n' +
-                'def perbarui(keadaan, tombol, dt):\n' +
-                '    x = keadaan["x"]\n' +
-                '    if "kiri" in tombol:\n' +
-                '        x = x - LAJU * dt\n' +
-                '    if "kanan" in tombol:\n' +
-                '        x = x + LAJU * dt\n' +
-                '    x = max(0, min(LEBAR - SISI, x))\n\n' +
-                '    nyawa = keadaan["nyawa"]\n' +
-                '    kebal = max(0.0, keadaan["kebal"] - dt)\n' +
-                '    guncang = max(0.0, keadaan["guncang"] - dt)\n\n' +
-                '    pemain = {"x": x, "y": PEMAIN_Y, "l": SISI, "t": SISI}\n' +
-                '    tersisa = []\n' +
-                '    for b in keadaan["balok"]:\n' +
-                '        turun = {"x": b["x"], "y": b["y"] + JATUH * dt}\n' +
-                '        kotak = {"x": turun["x"], "y": turun["y"], "l": BALOK, "t": BALOK}\n' +
-                '        if tabrakan(kotak, pemain):\n' +
-                '            if kebal <= 0:\n' +
-                '                nyawa = max(0, nyawa - 1)\n' +
-                '                kebal = KEBAL\n' +
-                '                guncang = GUNCANG\n' +
-                '        elif turun["y"] <= TINGGI:\n' +
-                '            tersisa.append(turun)\n\n' +
-                '    i = keadaan["i"]\n' +
-                '    sisa = keadaan["sisa"] - dt\n' +
-                '    if sisa <= 0:\n' +
-                '        tersisa = tersisa + [{"x": TITIK_X[i], "y": -float(BALOK)}]\n' +
-                '        i = (i + 1) % len(TITIK_X)\n' +
-                '        sisa = JEDA\n\n' +
+                '    return 4 if int(shake * 60) % 2 == 0 else -4\n\n' +
+                'def start():\n' +
+                '    return {"x": 152.0, "blocks": [], "i": 0, "remaining": 0.0, "lives": 3, "mercy": 0.0, "shake": 0.0}\n\n' +
+                'def update(state, keys, dt):\n' +
+                '    x = state["x"]\n' +
+                '    if "left" in keys:\n' +
+                '        x = x - SPEED * dt\n' +
+                '    if "right" in keys:\n' +
+                '        x = x + SPEED * dt\n' +
+                '    x = max(0, min(WIDTH - SIDE, x))\n\n' +
+                '    lives = state["lives"]\n' +
+                '    mercy = max(0.0, state["mercy"] - dt)\n' +
+                '    shake = max(0.0, state["shake"] - dt)\n\n' +
+                '    player = {"x": x, "y": PLAYER_Y, "w": SIDE, "h": SIDE}\n' +
+                '    survivors = []\n' +
+                '    for b in state["blocks"]:\n' +
+                '        moved = {"x": b["x"], "y": b["y"] + FALL * dt}\n' +
+                '        box = {"x": moved["x"], "y": moved["y"], "w": BLOCK, "h": BLOCK}\n' +
+                '        if overlaps(box, player):\n' +
+                '            if mercy <= 0:\n' +
+                '                lives = max(0, lives - 1)\n' +
+                '                mercy = MERCY\n' +
+                '                shake = SHAKE\n' +
+                '        elif moved["y"] <= HEIGHT:\n' +
+                '            survivors.append(moved)\n\n' +
+                '    i = state["i"]\n' +
+                '    remaining = state["remaining"] - dt\n' +
+                '    if remaining <= 0:\n' +
+                '        survivors = survivors + [{"x": SPOT_X[i], "y": -float(BLOCK)}]\n' +
+                '        i = (i + 1) % len(SPOT_X)\n' +
+                '        remaining = SPAWN_DELAY\n\n' +
                 '    return {\n' +
                 '        "x": x,\n' +
-                '        "balok": tersisa,\n' +
+                '        "blocks": survivors,\n' +
                 '        "i": i,\n' +
-                '        "sisa": sisa,\n' +
-                '        "nyawa": nyawa,\n' +
-                '        "kebal": kebal,\n' +
-                '        "guncang": guncang,\n' +
+                '        "remaining": remaining,\n' +
+                '        "lives": lives,\n' +
+                '        "mercy": mercy,\n' +
+                '        "shake": shake,\n' +
                 '    }\n\n' +
-                'def gambar(keadaan):\n' +
-                '    geser = getar(keadaan["guncang"])\n' +
-                '    hasil = []\n' +
-                '    for b in keadaan["balok"]:\n' +
-                '        hasil.append({"bentuk": "kotak", "x": b["x"] + geser, "y": b["y"], "l": BALOK, "t": BALOK, "warna": "#ef8f70"})\n' +
-                '    if not kedip(keadaan["kebal"]):\n' +
-                '        hasil.append({"bentuk": "kotak", "x": keadaan["x"] + geser, "y": PEMAIN_Y, "l": SISI, "t": SISI, "warna": "#24463d"})\n' +
-                '    hasil.append({"bentuk": "teks", "x": 8 + geser, "y": 8, "isi": "Nyawa: " + str(keadaan["nyawa"]), "warna": "#24463d"})\n' +
-                '    return hasil\n',
+                'def draw(state):\n' +
+                '    offset = shake_offset(state["shake"])\n' +
+                '    result = []\n' +
+                '    for b in state["blocks"]:\n' +
+                '        result.append({"shape": "box", "x": b["x"] + offset, "y": b["y"], "w": BLOCK, "h": BLOCK, "color": "#ef8f70"})\n' +
+                '    if not blink(state["mercy"]):\n' +
+                '        result.append({"shape": "box", "x": state["x"] + offset, "y": PLAYER_Y, "w": SIDE, "h": SIDE, "color": "#24463d"})\n' +
+                '    result.append({"shape": "text", "x": 8 + offset, "y": 8, "text": "Lives: " + str(state["lives"]), "color": "#24463d"})\n' +
+                '    return result\n',
             },
           ],
         },
@@ -653,383 +653,696 @@ export const module4: Module = {
           id: 'Seluruh kursus dalam satu game. Tangkap yang baik, hindari yang buruk, jaga tiga nyawa, naiki tingkatnya, dan kalahkan rekormu sendiri.',
         },
         requirements: [
-          { en: 'Phases `"siap"`, `"main"`, `"selesai"`. A space **press** starts a game from `"siap"`; from `"selesai"` it goes back to `"siap"`. `segar` is given to you.', id: 'Fase `"siap"`, `"main"`, `"selesai"`. **Tekanan** spasi memulai permainan dari `"siap"`; dari `"selesai"` ia kembali ke `"siap"`. `segar` sudah diberikan.' },
-          { en: '`tingkat(skor)` is `1 + skor // 5`; `laju(skor)` is `120 + tingkat * 20` capped at 300; `jeda(skor)` is `0.9 - tingkat * 0.06` floored at 0.35.', id: '`tingkat(skor)` adalah `1 + skor // 5`; `laju(skor)` adalah `120 + tingkat * 20` berplafon 300; `jeda(skor)` adalah `0.9 - tingkat * 0.06` berlantai 0,35.' },
-          { en: 'Items are 14 by 14 and spawn at `TITIK_X[i % len(TITIK_X)]` with `jenis` from `POLA[i % len(POLA)]`. `i` only ever counts up.', id: 'Bendanya 14 kali 14 dan muncul di `TITIK_X[i % len(TITIK_X)]` dengan `jenis` dari `POLA[i % len(POLA)]`. `i` hanya pernah bertambah.' },
-          { en: 'Catching a `"baik"` scores a point. Catching a `"buruk"` costs a life, starts 1.5 seconds of mercy and a 0.3 second shake — unless mercy is already running, in which case it is only removed.', id: 'Menangkap `"baik"` menambah satu poin. Menangkap `"buruk"` berbiaya satu nyawa, memulai keringanan 1,5 detik dan guncangan 0,3 detik — kecuali keringanannya sedang berjalan, dan kalau begitu ia hanya dibuang.' },
+          { en: 'Phases `"ready"`, `"playing"`, `"over"`. A space **press** starts a game from `"ready"`; from `"over"` it goes back to `"ready"`. `fresh` is given to you.', id: 'Fase `"ready"`, `"playing"`, `"over"`. **Tekanan** spasi memulai permainan dari `"ready"`; dari `"over"` ia kembali ke `"ready"`. `fresh` sudah diberikan.' },
+          { en: '`level(score)` is `1 + score // 5`; `speed(score)` is `120 + level * 20` capped at 300; `spawn_delay(score)` is `0.9 - level * 0.06` floored at 0.35.', id: '`level(score)` adalah `1 + score // 5`; `speed(score)` adalah `120 + level * 20` berplafon 300; `spawn_delay(score)` adalah `0.9 - level * 0.06` berlantai 0,35.' },
+          { en: 'Items are 14 by 14 and spawn at `SPOT_X[i % len(SPOT_X)]` with `kind` from `PATTERN[i % len(PATTERN)]`. `i` only ever counts up.', id: 'Bendanya 14 kali 14 dan muncul di `SPOT_X[i % len(SPOT_X)]` dengan `kind` dari `PATTERN[i % len(PATTERN)]`. `i` hanya pernah bertambah.' },
+          { en: 'Catching a `"good"` scores a point. Catching a `"bad"` costs a life, starts 1.5 seconds of mercy and a 0.3 second shake — unless mercy is already running, in which case it is only removed.', id: 'Menangkap `"good"` menambah satu poin. Menangkap `"bad"` berbiaya satu nyawa, memulai keringanan 1,5 detik dan guncangan 0,3 detik — kecuali keringanannya sedang berjalan, dan kalau begitu ia hanya dibuang.' },
           { en: 'Anything that reaches the bottom is simply gone. Missing costs nothing.', id: 'Apa pun yang mencapai dasar sekadar hilang. Melewatkan tidak berbiaya apa pun.' },
-          { en: 'At zero lives the phase becomes `"selesai"` and `rekor` becomes the larger of `rekor` and `skor`. `rekor` survives every restart.', id: 'Saat nyawa nol, fasenya jadi `"selesai"` dan `rekor` jadi yang lebih besar antara `rekor` dan `skor`. `rekor` selamat dari tiap mulai ulang.' },
-          { en: '`gambar` shifts everything by `getar(guncang)`, hides the player on the dark half of `kedip(kebal)`, and draws good items in `#f5c65b` and bad ones in `#ef8f70`.', id: '`gambar` menggeser semuanya sebesar `getar(guncang)`, menyembunyikan pemainnya pada separuh gelap `kedip(kebal)`, dan menggambar benda baik dengan `#f5c65b` serta yang buruk dengan `#ef8f70`.' },
+          { en: 'At zero lives the phase becomes `"over"` and `record` becomes the larger of `record` and `score`. `record` survives every restart.', id: 'Saat nyawa nol, fasenya jadi `"over"` dan `record` jadi yang lebih besar antara `record` dan `score`. `record` selamat dari tiap mulai ulang.' },
+          { en: '`draw` shifts everything by `shake_offset(shake)`, hides the player on the dark half of `blink(mercy)`, and draws good items in `#f5c65b` and bad ones in `#ef8f70`.', id: '`draw` menggeser semuanya sebesar `shake_offset(shake)`, menyembunyikan pemainnya pada separuh gelap `blink(mercy)`, dan menggambar benda baik dengan `#f5c65b` serta yang buruk dengan `#ef8f70`.' },
         ],
         starter:
-          'TITIK_X = [40, 160, 280, 100, 220]\n' +
-          'POLA = ["baik", "baik", "buruk", "baik", "buruk", "baik"]\n' +
-          'LAJU = 200\n' +
-          'PAPAN_L = 56\n' +
-          'PAPAN_T = 12\n' +
-          'PAPAN_Y = 214\n' +
-          'BENDA = 14\n' +
-          'KEBAL = 1.5\n' +
-          'GUNCANG = 0.3\n' +
-          'LEBAR = 320\n' +
-          'TINGGI = 240\n\n' +
-          'def tabrakan(a, b):\n' +
+          'SPOT_X = [40, 160, 280, 100, 220]\n' +
+          'PATTERN = ["good", "good", "bad", "good", "bad", "good"]\n' +
+          'SPEED = 200\n' +
+          'PADDLE_W = 56\n' +
+          'PADDLE_H = 12\n' +
+          'PADDLE_Y = 214\n' +
+          'ITEM = 14\n' +
+          'MERCY = 1.5\n' +
+          'SHAKE = 0.3\n' +
+          'WIDTH = 320\n' +
+          'HEIGHT = 240\n\n' +
+          'def overlaps(a, b):\n' +
           '    return (\n' +
-          '        a["x"] < b["x"] + b["l"]\n' +
-          '        and a["x"] + a["l"] > b["x"]\n' +
-          '        and a["y"] < b["y"] + b["t"]\n' +
-          '        and a["y"] + a["t"] > b["y"]\n' +
+          '        a["x"] < b["x"] + b["w"]\n' +
+          '        and a["x"] + a["w"] > b["x"]\n' +
+          '        and a["y"] < b["y"] + b["h"]\n' +
+          '        and a["y"] + a["h"] > b["y"]\n' +
           '    )\n\n' +
-          'def segar(fase, spasi_lalu, rekor):\n' +
+          'def fresh(phase, space_last, record):\n' +
           '    return {\n' +
-          '        "fase": fase,\n' +
+          '        "phase": phase,\n' +
           '        "px": 132.0,\n' +
-          '        "benda": [],\n' +
+          '        "items": [],\n' +
           '        "i": 0,\n' +
-          '        "sisa": 0.0,\n' +
-          '        "skor": 0,\n' +
-          '        "nyawa": 3,\n' +
-          '        "kebal": 0.0,\n' +
-          '        "guncang": 0.0,\n' +
-          '        "rekor": rekor,\n' +
-          '        "spasi_lalu": spasi_lalu,\n' +
+          '        "remaining": 0.0,\n' +
+          '        "score": 0,\n' +
+          '        "lives": 3,\n' +
+          '        "mercy": 0.0,\n' +
+          '        "shake": 0.0,\n' +
+          '        "record": record,\n' +
+          '        "space_last": space_last,\n' +
           '    }\n\n' +
-          'def tingkat(skor):\n' +
+          'def level(score):\n' +
           '    return 1\n\n' +
-          'def laju(skor):\n' +
+          'def speed(score):\n' +
           '    return 120\n\n' +
-          'def jeda(skor):\n' +
+          'def spawn_delay(score):\n' +
           '    return 0.9\n\n' +
-          'def kedip(kebal):\n' +
+          'def blink(mercy):\n' +
           '    return False\n\n' +
-          'def getar(guncang):\n' +
+          'def shake_offset(shake):\n' +
           '    return 0\n\n' +
-          'def awal():\n' +
-          '    return segar("siap", False, 0)\n\n' +
-          'def perbarui(keadaan, tombol, dt):\n' +
-          '    return keadaan\n\n' +
-          'def gambar(keadaan):\n' +
-          '    hasil = []\n' +
-          '    for b in keadaan["benda"]:\n' +
-          '        hasil.append({"bentuk": "kotak", "x": b["x"], "y": b["y"], "l": BENDA, "t": BENDA, "warna": "#f5c65b"})\n' +
-          '    hasil.append({"bentuk": "kotak", "x": keadaan["px"], "y": PAPAN_Y, "l": PAPAN_L, "t": PAPAN_T, "warna": "#24463d"})\n' +
-          '    hasil.append({"bentuk": "teks", "x": 8, "y": 8, "isi": "Skor: 0", "warna": "#24463d"})\n' +
-          '    return hasil\n',
-        tests: [
-          {
-            name: { en: 'The tuning functions are right', id: 'Fungsi penyetelnya benar' },
-            assert:
-              'assert tingkat(0) == 1 and tingkat(4) == 1 and tingkat(5) == 2 and tingkat(14) == 3, "rentang tingkatnya salah"\n' +
-              'assert abs(laju(0) - 140) < 1e-9, f"tingkat 1 harus 140, sekarang: {laju(0)}"\n' +
-              'assert abs(laju(5) - 160) < 1e-9, f"tingkat 2 harus 160, sekarang: {laju(5)}"\n' +
-              'assert abs(laju(500) - 300) < 1e-9, f"harus berplafon 300, sekarang: {laju(500)}"\n' +
-              'assert abs(jeda(0) - 0.84) < 1e-9, f"tingkat 1 harus 0.84, sekarang: {jeda(0)}"\n' +
-              'assert abs(jeda(500) - 0.35) < 1e-9, f"harus berlantai 0.35, sekarang: {jeda(500)}"',
-          },
-          {
-            name: { en: 'The feel helpers are right', id: 'Pembantu rasanya benar' },
-            assert:
-              'assert not kedip(0.0) and not kedip(-1.0), "tanpa kekebalan tidak berkedip"\n' +
-              'assert kedip(1.15) and not kedip(1.05), "harus berganti-ganti selagi berjalan"\n' +
-              'assert getar(0.0) == 0, "tanpa guncangan tidak bergeser"\n' +
-              'nilai = set(getar(n / 60 + 0.001) for n in range(1, 20))\n' +
-              'assert 4 in nilai and -4 in nilai and all(abs(v) == 4 for v in nilai), f"harus bergoyang empat ke kedua sisi, sekarang: {sorted(nilai)}"',
-          },
-          {
-            name: { en: 'It waits, starts, and does not restart while held', id: 'Ia menunggu, mulai, dan tidak mengulang selagi ditahan' },
-            assert:
-              'k = awal()\n' +
-              'for _ in range(60):\n' +
-              '    k = perbarui(k, set(), 1 / 60)\n' +
-              'assert k["fase"] == "siap" and len(k["benda"]) == 0, "tanpa tombol harus tetap menunggu"\n' +
-              'k = perbarui(k, {"spasi"}, 1 / 60)\n' +
-              'assert k["fase"] == "main" and k["skor"] == 0 and k["nyawa"] == 3, f"harus mulai segar, sekarang: {k[\'fase\']}"\n' +
-              'for _ in range(180):\n' +
-              '    k = perbarui(k, {"spasi"}, 1 / 60)\n' +
-              'assert k["fase"] == "main", "menahan spasi tidak boleh mengulang"\n' +
-              'assert k["i"] > 1, "dan permainannya harus benar-benar berjalan"',
-          },
-          {
-            name: { en: 'Items spawn in the right pattern', id: 'Bendanya muncul dengan pola yang benar' },
-            assert:
-              'k = perbarui({**segar("main", True, 0), "sisa": 0.0, "i": 7}, set(), 0.01)\n' +
-              'assert len(k["benda"]) == 1, f"harus muncul satu, sekarang: {len(k[\'benda\'])}"\n' +
-              'b = k["benda"][0]\n' +
-              'assert b["x"] == TITIK_X[7 % len(TITIK_X)], f"x harus dari TITIK_X, sekarang: {b[\'x\']}"\n' +
-              'assert b["jenis"] == POLA[7 % len(POLA)], f"jenisnya harus dari POLA, sekarang: {b[\'jenis\']}"\n' +
-              'assert abs(b["y"] + 14) < 1e-9, f"harus mulai di -14, sekarang: {b[\'y\']}"\n' +
-              'assert k["i"] == 8, f"i harus terus naik, sekarang: {k[\'i\']}"',
-          },
-          {
-            name: { en: 'Items fall at the level speed', id: 'Bendanya jatuh pada kecepatan tingkatnya' },
-            assert:
-              'dasar = {**segar("main", True, 0), "sisa": 5.0, "benda": [{"x": 40, "y": 0.0, "jenis": "baik"}]}\n' +
-              'k = perbarui(dict(dasar), set(), 0.5)\n' +
-              'assert abs(k["benda"][0]["y"] - 70) < 1e-9, f"tingkat 1 setengah detik harus 70, sekarang: {k[\'benda\'][0][\'y\']}"\n' +
-              'b = perbarui({**dasar, "skor": 5}, set(), 0.5)\n' +
-              'assert abs(b["benda"][0]["y"] - 80) < 1e-9, f"tingkat 2 setengah detik harus 80, sekarang: {b[\'benda\'][0][\'y\']}"',
-          },
-          {
-            name: { en: 'Catching the good scores', id: 'Menangkap yang baik menambah skor' },
-            assert:
-              'k = perbarui({**segar("main", True, 0), "sisa": 5.0, "px": 132.0, "skor": 2, "benda": [{"x": 140, "y": 210.0, "jenis": "baik"}]}, set(), 1 / 60)\n' +
-              'assert k["skor"] == 3, f"harus menambah skor, sekarang: {k[\'skor\']}"\n' +
-              'assert k["nyawa"] == 3, "dan tidak berbiaya nyawa"\n' +
-              'assert len(k["benda"]) == 0, "bendanya harus dibuang"',
-          },
-          {
-            name: { en: 'Catching the bad hurts', id: 'Menangkap yang buruk menyakitkan' },
-            assert:
-              'k = perbarui({**segar("main", True, 0), "sisa": 5.0, "px": 132.0, "skor": 2, "benda": [{"x": 140, "y": 210.0, "jenis": "buruk"}]}, set(), 1 / 60)\n' +
-              'assert k["nyawa"] == 2, f"harus kehilangan nyawa, sekarang: {k[\'nyawa\']}"\n' +
-              'assert k["skor"] == 2, "dan tidak menambah skor"\n' +
-              'assert k["kebal"] > 1.0, f"keringanannya harus menyala, sekarang: {k[\'kebal\']}"\n' +
-              'assert k["guncang"] > 0.2, f"guncangannya harus menyala, sekarang: {k[\'guncang\']}"\n' +
-              'assert len(k["benda"]) == 0, "bendanya harus dibuang"',
-          },
-          {
-            name: { en: 'Mercy protects, but the item still goes', id: 'Keringanan melindungi, tapi bendanya tetap pergi' },
-            assert:
-              'k = perbarui({**segar("main", True, 0), "sisa": 5.0, "px": 132.0, "kebal": 1.0, "benda": [{"x": 140, "y": 210.0, "jenis": "buruk"}]}, set(), 1 / 60)\n' +
-              'assert k["nyawa"] == 3, f"sedang kebal, tidak boleh berkurang, sekarang: {k[\'nyawa\']}"\n' +
-              'assert k["guncang"] == 0, f"dan tidak mengguncang, sekarang: {k[\'guncang\']}"\n' +
-              'assert len(k["benda"]) == 0, "bendanya tetap dibuang"',
-          },
-          {
-            name: { en: 'Missing costs nothing', id: 'Melewatkan tidak berbiaya apa pun' },
-            assert:
-              'dasar = {**segar("main", True, 0), "sisa": 5.0, "px": 0.0, "skor": 4}\n' +
-              'k = perbarui({**dasar, "benda": [{"x": 280, "y": 239.0, "jenis": "baik"}]}, set(), 0.5)\n' +
-              'assert k["skor"] == 4 and k["nyawa"] == 3, "melewatkan yang baik tidak berbiaya"\n' +
-              'assert len(k["benda"]) == 0, "tapi bendanya hilang"\n' +
-              'b = perbarui({**dasar, "benda": [{"x": 280, "y": 239.0, "jenis": "buruk"}]}, set(), 0.5)\n' +
-              'assert b["nyawa"] == 3, "melewatkan yang buruk justru bagus"',
-          },
-          {
-            name: { en: 'The last life ends it, and sets the record', id: 'Nyawa terakhir mengakhirinya, dan menetapkan rekornya' },
-            assert:
-              'k = perbarui({**segar("main", True, 3), "sisa": 5.0, "px": 132.0, "skor": 9, "nyawa": 1, "benda": [{"x": 140, "y": 210.0, "jenis": "buruk"}]}, set(), 1 / 60)\n' +
-              'assert k["nyawa"] == 0 and k["fase"] == "selesai", f"harus berakhir, sekarang: {k[\'fase\']}"\n' +
-              'assert k["rekor"] == 9, f"rekornya harus naik ke 9, sekarang: {k[\'rekor\']}"\n' +
-              'b = perbarui({**segar("main", True, 20), "sisa": 5.0, "px": 132.0, "skor": 2, "nyawa": 1, "benda": [{"x": 140, "y": 210.0, "jenis": "buruk"}]}, set(), 1 / 60)\n' +
-              'assert b["rekor"] == 20, f"permainan lebih buruk tidak menurunkan rekor, sekarang: {b[\'rekor\']}"',
-          },
-          {
-            name: { en: 'Finished, nothing moves; the record survives', id: 'Setelah usai, tak ada yang bergerak; rekornya bertahan' },
-            assert:
-              'k = {**segar("selesai", False, 11), "benda": [{"x": 40, "y": 100.0, "jenis": "baik"}], "nyawa": 0, "skor": 6}\n' +
-              'b = perbarui(dict(k), {"kanan"}, 0.5)\n' +
-              'assert abs(b["px"] - 132.0) < 1e-9, "papannya harus diam"\n' +
-              'assert abs(b["benda"][0]["y"] - 100.0) < 1e-9, "bendanya harus diam"\n' +
-              'c = perbarui(b, {"spasi"}, 1 / 60)\n' +
-              'assert c["fase"] == "siap" and c["rekor"] == 11, f"harus kembali ke siap dengan rekor utuh, sekarang: {c[\'fase\']}, {c[\'rekor\']}"\n' +
-              'd = perbarui(perbarui(c, set(), 1 / 60), {"spasi"}, 1 / 60)\n' +
-              'assert d["fase"] == "main" and d["skor"] == 0 and d["rekor"] == 11, "permainan barunya segar, rekornya tidak"',
-          },
-          {
-            name: { en: 'The picture shakes and flickers', id: 'Gambarnya berguncang dan berkelip' },
-            assert:
-              'dasar = {**segar("main", True, 0), "benda": [{"x": 40, "y": 60.0, "jenis": "baik"}]}\n' +
-              'tenang = gambar(dict(dasar))\n' +
-              'goyang = gambar({**dasar, "guncang": 0.25})\n' +
-              'geser = getar(0.25)\n' +
-              'a = [p for p in tenang if p["bentuk"] == "kotak"]\n' +
-              'b = [p for p in goyang if p["bentuk"] == "kotak"]\n' +
-              'assert len(a) == len(b) and len(a) == 2, f"harus dua kotak di kedua gambar, sekarang: {len(a)} dan {len(b)}"\n' +
-              'for satu, dua in zip(a, b):\n' +
-              '    assert abs((dua["x"] - satu["x"]) - geser) < 1e-9, "semuanya harus bergeser sama"\n' +
-              'padam = gambar({**dasar, "kebal": 1.15})\n' +
-              'assert len([p for p in padam if p["bentuk"] == "kotak"]) == 1, "pada fase padam papannya harus hilang"',
-          },
-          {
-            name: { en: 'Good and bad look different', id: 'Yang baik dan yang buruk tampak berbeda' },
-            assert:
-              'a = gambar({**segar("main", True, 0), "benda": [\n' +
-              '    {"x": 40, "y": 60.0, "jenis": "baik"},\n' +
-              '    {"x": 160, "y": 60.0, "jenis": "buruk"},\n' +
-              ']})\n' +
-              'warna = [p["warna"] for p in a if p["bentuk"] == "kotak"]\n' +
-              'assert "#f5c65b" in warna, f"yang baik harus #f5c65b, sekarang: {warna}"\n' +
-              'assert "#ef8f70" in warna, f"yang buruk harus #ef8f70, sekarang: {warna}"',
-          },
-          {
-            name: { en: 'A whole game can be played end to end', id: 'Satu permainan penuh bisa dilalui ujung ke ujung' },
-            assert:
-              'k = perbarui(awal(), {"spasi"}, 1 / 60)\n' +
-              'for _ in range(9000):\n' +
-              '    # kejar yang baik terdekat, dan jangan berdiri di bawah yang buruk\n' +
-              '    incar = None\n' +
-              '    for b in k["benda"]:\n' +
-              '        if b["jenis"] == "baik" and (incar is None or b["y"] > incar["y"]):\n' +
-              '            incar = b\n' +
-              '    ditekan = set()\n' +
-              '    if incar is not None:\n' +
-              '        target = incar["x"] - 21\n' +
-              '        if k["px"] < target - 2:\n' +
-              '            ditekan = {"kanan"}\n' +
-              '        elif k["px"] > target + 2:\n' +
-              '            ditekan = {"kiri"}\n' +
-              '    k = perbarui(k, ditekan, 1 / 60)\n' +
-              '    if k["fase"] == "selesai":\n' +
-              '        break\n' +
-              'assert k["skor"] > 5, f"pemain yang mengejar harus mencetak skor, sekarang: {k[\'skor\']}"\n' +
-              'assert len(k["benda"]) < 20, f"daftarnya harus tetap kecil, sekarang: {len(k[\'benda\'])}"',
-          },
-          {
-            name: { en: 'The state it was given is left alone', id: 'Keadaan yang diberikan padanya dibiarkan' },
-            assert:
-              'asal = [{"x": 40, "y": 10.0, "jenis": "baik"}]\n' +
-              'k = {**segar("main", False, 4), "benda": asal, "sisa": 5.0}\n' +
-              'perbarui(k, {"kanan"}, 0.5)\n' +
-              'assert asal[0]["y"] == 10.0, f"benda lamanya tidak boleh ikut bergerak, sekarang: {asal[0][\'y\']}"\n' +
-              'assert k["px"] == 132.0 and k["skor"] == 0, "keadaan yang diberikan tidak boleh berubah"',
-          },
-        ],
+          'def start():\n' +
+          '    return fresh("ready", False, 0)\n\n' +
+          'def update(state, keys, dt):\n' +
+          '    return state\n\n' +
+          'def draw(state):\n' +
+          '    result = []\n' +
+          '    for b in state["items"]:\n' +
+          '        result.append({"shape": "box", "x": b["x"], "y": b["y"], "w": ITEM, "h": ITEM, "color": "#f5c65b"})\n' +
+          '    result.append({"shape": "box", "x": state["px"], "y": PADDLE_Y, "w": PADDLE_W, "h": PADDLE_H, "color": "#24463d"})\n' +
+          '    result.append({"shape": "text", "x": 8, "y": 8, "text": "Score: 0", "color": "#24463d"})\n' +
+          '    return result\n',
+        tests: {
+          en: [
+            {
+              name: { en: 'The tuning functions are right', id: 'Fungsi penyetelnya benar' },
+              assert:
+                'assert level(0) == 1 and level(4) == 1 and level(5) == 2 and level(14) == 3, "the level bands are wrong"\n' +
+                'assert abs(speed(0) - 140) < 1e-9, f"level 1 must be 140, now: {speed(0)}"\n' +
+                'assert abs(speed(5) - 160) < 1e-9, f"level 2 must be 160, now: {speed(5)}"\n' +
+                'assert abs(speed(500) - 300) < 1e-9, f"must cap at 300, now: {speed(500)}"\n' +
+                'assert abs(spawn_delay(0) - 0.84) < 1e-9, f"level 1 must be 0.84, now: {spawn_delay(0)}"\n' +
+                'assert abs(spawn_delay(500) - 0.35) < 1e-9, f"must floor at 0.35, now: {spawn_delay(500)}"',
+            },
+            {
+              name: { en: 'The feel helpers are right', id: 'Pembantu rasanya benar' },
+              assert:
+                'assert not blink(0.0) and not blink(-1.0), "without mercy it must not blink"\n' +
+                'assert blink(1.15) and not blink(1.05), "it must alternate while it runs"\n' +
+                'assert shake_offset(0.0) == 0, "without a shake it must not shift"\n' +
+                'values = set(shake_offset(n / 60 + 0.001) for n in range(1, 20))\n' +
+                'assert 4 in values and -4 in values and all(abs(v) == 4 for v in values), f"must shift by 4 both ways, now: {sorted(values)}"',
+            },
+            {
+              name: { en: 'It waits, starts, and does not restart while held', id: 'Ia menunggu, mulai, dan tidak mengulang selagi ditahan' },
+              assert:
+                'k = start()\n' +
+                'for _ in range(60):\n' +
+                '    k = update(k, set(), 1 / 60)\n' +
+                'assert k["phase"] == "ready" and len(k["items"]) == 0, "without a key it must keep waiting"\n' +
+                'k = update(k, {"space"}, 1 / 60)\n' +
+                'assert k["phase"] == "playing" and k["score"] == 0 and k["lives"] == 3, f"must start fresh, now: {k[\'phase\']}"\n' +
+                'for _ in range(180):\n' +
+                '    k = update(k, {"space"}, 1 / 60)\n' +
+                'assert k["phase"] == "playing", "holding space must not restart it"\n' +
+                'assert k["i"] > 1, "and the game must really be running"',
+            },
+            {
+              name: { en: 'Items spawn in the right pattern', id: 'Bendanya muncul dengan pola yang benar' },
+              assert:
+                'k = update({**fresh("playing", True, 0), "remaining": 0.0, "i": 7}, set(), 0.01)\n' +
+                'assert len(k["items"]) == 1, f"one must appear, now: {len(k[\'items\'])}"\n' +
+                'b = k["items"][0]\n' +
+                'assert b["x"] == SPOT_X[7 % len(SPOT_X)], f"x must come from SPOT_X, now: {b[\'x\']}"\n' +
+                'assert b["kind"] == PATTERN[7 % len(PATTERN)], f"the kind must come from PATTERN, now: {b[\'kind\']}"\n' +
+                'assert abs(b["y"] + 14) < 1e-9, f"must start at -14, now: {b[\'y\']}"\n' +
+                'assert k["i"] == 8, f"i must keep rising, now: {k[\'i\']}"',
+            },
+            {
+              name: { en: 'Items fall at the level speed', id: 'Bendanya jatuh pada kecepatan tingkatnya' },
+              assert:
+                'base = {**fresh("playing", True, 0), "remaining": 5.0, "items": [{"x": 40, "y": 0.0, "kind": "good"}]}\n' +
+                'k = update(dict(base), set(), 0.5)\n' +
+                'assert abs(k["items"][0]["y"] - 70) < 1e-9, f"level 1 for half a second must be 70, now: {k[\'items\'][0][\'y\']}"\n' +
+                'b = update({**base, "score": 5}, set(), 0.5)\n' +
+                'assert abs(b["items"][0]["y"] - 80) < 1e-9, f"level 2 for half a second must be 80, now: {b[\'items\'][0][\'y\']}"',
+            },
+            {
+              name: { en: 'Catching the good scores', id: 'Menangkap yang baik menambah skor' },
+              assert:
+                'k = update({**fresh("playing", True, 0), "remaining": 5.0, "px": 132.0, "score": 2, "items": [{"x": 140, "y": 210.0, "kind": "good"}]}, set(), 1 / 60)\n' +
+                'assert k["score"] == 3, f"must add to the score, now: {k[\'score\']}"\n' +
+                'assert k["lives"] == 3, "and cost nothing"\n' +
+                'assert len(k["items"]) == 0, "the item must be removed"',
+            },
+            {
+              name: { en: 'Catching the bad hurts', id: 'Menangkap yang buruk menyakitkan' },
+              assert:
+                'k = update({**fresh("playing", True, 0), "remaining": 5.0, "px": 132.0, "score": 2, "items": [{"x": 140, "y": 210.0, "kind": "bad"}]}, set(), 1 / 60)\n' +
+                'assert k["lives"] == 2, f"must lose a life, now: {k[\'lives\']}"\n' +
+                'assert k["score"] == 2, "and must not add to the score"\n' +
+                'assert k["mercy"] > 1.0, f"mercy must switch on, now: {k[\'mercy\']}"\n' +
+                'assert k["shake"] > 0.2, f"the shake must switch on, now: {k[\'shake\']}"\n' +
+                'assert len(k["items"]) == 0, "the item must be removed"',
+            },
+            {
+              name: { en: 'Mercy protects, but the item still goes', id: 'Keringanan melindungi, tapi bendanya tetap pergi' },
+              assert:
+                'k = update({**fresh("playing", True, 0), "remaining": 5.0, "px": 132.0, "mercy": 1.0, "items": [{"x": 140, "y": 210.0, "kind": "bad"}]}, set(), 1 / 60)\n' +
+                'assert k["lives"] == 3, f"while invulnerable, lives must not drop, now: {k[\'lives\']}"\n' +
+                'assert k["shake"] == 0, f"and it must not shake, now: {k[\'shake\']}"\n' +
+                'assert len(k["items"]) == 0, "the item must still be removed"',
+            },
+            {
+              name: { en: 'Missing costs nothing', id: 'Melewatkan tidak berbiaya apa pun' },
+              assert:
+                'base = {**fresh("playing", True, 0), "remaining": 5.0, "px": 0.0, "score": 4}\n' +
+                'k = update({**base, "items": [{"x": 280, "y": 239.0, "kind": "good"}]}, set(), 0.5)\n' +
+                'assert k["score"] == 4 and k["lives"] == 3, "missing a good one must cost nothing"\n' +
+                'assert len(k["items"]) == 0, "but the item is gone"\n' +
+                'b = update({**base, "items": [{"x": 280, "y": 239.0, "kind": "bad"}]}, set(), 0.5)\n' +
+                'assert b["lives"] == 3, "missing a bad one is actually good"',
+            },
+            {
+              name: { en: 'The last life ends it, and sets the record', id: 'Nyawa terakhir mengakhirinya, dan menetapkan rekornya' },
+              assert:
+                'k = update({**fresh("playing", True, 3), "remaining": 5.0, "px": 132.0, "score": 9, "lives": 1, "items": [{"x": 140, "y": 210.0, "kind": "bad"}]}, set(), 1 / 60)\n' +
+                'assert k["lives"] == 0 and k["phase"] == "over", f"must end, now: {k[\'phase\']}"\n' +
+                'assert k["record"] == 9, f"the record must rise to 9, now: {k[\'record\']}"\n' +
+                'b = update({**fresh("playing", True, 20), "remaining": 5.0, "px": 132.0, "score": 2, "lives": 1, "items": [{"x": 140, "y": 210.0, "kind": "bad"}]}, set(), 1 / 60)\n' +
+                'assert b["record"] == 20, f"a worse game must not lower the record, now: {b[\'record\']}"',
+            },
+            {
+              name: { en: 'Finished, nothing moves; the record survives', id: 'Setelah usai, tak ada yang bergerak; rekornya bertahan' },
+              assert:
+                'k = {**fresh("over", False, 11), "items": [{"x": 40, "y": 100.0, "kind": "good"}], "lives": 0, "score": 6}\n' +
+                'b = update(dict(k), {"right"}, 0.5)\n' +
+                'assert abs(b["px"] - 132.0) < 1e-9, "the paddle must stay still"\n' +
+                'assert abs(b["items"][0]["y"] - 100.0) < 1e-9, "the items must stay still"\n' +
+                'c = update(b, {"space"}, 1 / 60)\n' +
+                'assert c["phase"] == "ready" and c["record"] == 11, f"must return to ready with the record intact, now: {c[\'phase\']}, {c[\'record\']}"\n' +
+                'd = update(update(c, set(), 1 / 60), {"space"}, 1 / 60)\n' +
+                'assert d["phase"] == "playing" and d["score"] == 0 and d["record"] == 11, "the new game must be fresh, the record must not"',
+            },
+            {
+              name: { en: 'The picture shakes and flickers', id: 'Gambarnya berguncang dan berkelip' },
+              assert:
+                'base = {**fresh("playing", True, 0), "items": [{"x": 40, "y": 60.0, "kind": "good"}]}\n' +
+                'still = draw(dict(base))\n' +
+                'shaken = draw({**base, "shake": 0.25})\n' +
+                'offset = shake_offset(0.25)\n' +
+                'a = [p for p in still if p["shape"] == "box"]\n' +
+                'b = [p for p in shaken if p["shape"] == "box"]\n' +
+                'assert len(a) == len(b) and len(a) == 2, f"must be two boxes in both pictures, now: {len(a)} and {len(b)}"\n' +
+                'for one, two in zip(a, b):\n' +
+                '    assert abs((two["x"] - one["x"]) - offset) < 1e-9, "everything must shift the same"\n' +
+                'hidden = draw({**base, "mercy": 1.15})\n' +
+                'assert len([p for p in hidden if p["shape"] == "box"]) == 1, "on the hidden phase the paddle must vanish"',
+            },
+            {
+              name: { en: 'Good and bad look different', id: 'Yang baik dan yang buruk tampak berbeda' },
+              assert:
+                'a = draw({**fresh("playing", True, 0), "items": [\n' +
+                '    {"x": 40, "y": 60.0, "kind": "good"},\n' +
+                '    {"x": 160, "y": 60.0, "kind": "bad"},\n' +
+                ']})\n' +
+                'colors = [p["color"] for p in a if p["shape"] == "box"]\n' +
+                'assert "#f5c65b" in colors, f"a good one must be #f5c65b, now: {colors}"\n' +
+                'assert "#ef8f70" in colors, f"a bad one must be #ef8f70, now: {colors}"',
+            },
+            {
+              name: { en: 'A whole game can be played end to end', id: 'Satu permainan penuh bisa dilalui ujung ke ujung' },
+              assert:
+                'k = update(start(), {"space"}, 1 / 60)\n' +
+                'for _ in range(9000):\n' +
+                '    # chase the nearest good one, and do not sit under a bad one\n' +
+                '    target_item = None\n' +
+                '    for b in k["items"]:\n' +
+                '        if b["kind"] == "good" and (target_item is None or b["y"] > target_item["y"]):\n' +
+                '            target_item = b\n' +
+                '    held = set()\n' +
+                '    if target_item is not None:\n' +
+                '        target = target_item["x"] - 21\n' +
+                '        if k["px"] < target - 2:\n' +
+                '            held = {"right"}\n' +
+                '        elif k["px"] > target + 2:\n' +
+                '            held = {"left"}\n' +
+                '    k = update(k, held, 1 / 60)\n' +
+                '    if k["phase"] == "over":\n' +
+                '        break\n' +
+                'assert k["score"] > 5, f"a player that chases must score, now: {k[\'score\']}"\n' +
+                'assert len(k["items"]) < 20, f"the list must stay small, now: {len(k[\'items\'])}"',
+            },
+            {
+              name: { en: 'The state it was given is left alone', id: 'Keadaan yang diberikan padanya dibiarkan' },
+              assert:
+                'original = [{"x": 40, "y": 10.0, "kind": "good"}]\n' +
+                'k = {**fresh("playing", False, 4), "items": original, "remaining": 5.0}\n' +
+                'update(k, {"right"}, 0.5)\n' +
+                'assert original[0]["y"] == 10.0, f"the old items must not move too, now: {original[0][\'y\']}"\n' +
+                'assert k["px"] == 132.0 and k["score"] == 0, "the state it was given must not change"',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'The tuning functions are right', id: 'Fungsi penyetelnya benar' },
+              assert:
+                'assert level(0) == 1 and level(4) == 1 and level(5) == 2 and level(14) == 3, "rentang tingkatnya salah"\n' +
+                'assert abs(speed(0) - 140) < 1e-9, f"tingkat 1 harus 140, sekarang: {speed(0)}"\n' +
+                'assert abs(speed(5) - 160) < 1e-9, f"tingkat 2 harus 160, sekarang: {speed(5)}"\n' +
+                'assert abs(speed(500) - 300) < 1e-9, f"harus berplafon 300, sekarang: {speed(500)}"\n' +
+                'assert abs(spawn_delay(0) - 0.84) < 1e-9, f"tingkat 1 harus 0.84, sekarang: {spawn_delay(0)}"\n' +
+                'assert abs(spawn_delay(500) - 0.35) < 1e-9, f"harus berlantai 0.35, sekarang: {spawn_delay(500)}"',
+            },
+            {
+              name: { en: 'The feel helpers are right', id: 'Pembantu rasanya benar' },
+              assert:
+                'assert not blink(0.0) and not blink(-1.0), "tanpa kekebalan tidak berkedip"\n' +
+                'assert blink(1.15) and not blink(1.05), "harus berganti-ganti selagi berjalan"\n' +
+                'assert shake_offset(0.0) == 0, "tanpa guncangan tidak bergeser"\n' +
+                'values = set(shake_offset(n / 60 + 0.001) for n in range(1, 20))\n' +
+                'assert 4 in values and -4 in values and all(abs(v) == 4 for v in values), f"harus bergoyang empat ke kedua sisi, sekarang: {sorted(values)}"',
+            },
+            {
+              name: { en: 'It waits, starts, and does not restart while held', id: 'Ia menunggu, mulai, dan tidak mengulang selagi ditahan' },
+              assert:
+                'k = start()\n' +
+                'for _ in range(60):\n' +
+                '    k = update(k, set(), 1 / 60)\n' +
+                'assert k["phase"] == "ready" and len(k["items"]) == 0, "tanpa tombol harus tetap menunggu"\n' +
+                'k = update(k, {"space"}, 1 / 60)\n' +
+                'assert k["phase"] == "playing" and k["score"] == 0 and k["lives"] == 3, f"harus mulai segar, sekarang: {k[\'phase\']}"\n' +
+                'for _ in range(180):\n' +
+                '    k = update(k, {"space"}, 1 / 60)\n' +
+                'assert k["phase"] == "playing", "menahan spasi tidak boleh mengulang"\n' +
+                'assert k["i"] > 1, "dan permainannya harus benar-benar berjalan"',
+            },
+            {
+              name: { en: 'Items spawn in the right pattern', id: 'Bendanya muncul dengan pola yang benar' },
+              assert:
+                'k = update({**fresh("playing", True, 0), "remaining": 0.0, "i": 7}, set(), 0.01)\n' +
+                'assert len(k["items"]) == 1, f"harus muncul satu, sekarang: {len(k[\'items\'])}"\n' +
+                'b = k["items"][0]\n' +
+                'assert b["x"] == SPOT_X[7 % len(SPOT_X)], f"x harus dari SPOT_X, sekarang: {b[\'x\']}"\n' +
+                'assert b["kind"] == PATTERN[7 % len(PATTERN)], f"jenisnya harus dari PATTERN, sekarang: {b[\'kind\']}"\n' +
+                'assert abs(b["y"] + 14) < 1e-9, f"harus mulai di -14, sekarang: {b[\'y\']}"\n' +
+                'assert k["i"] == 8, f"i harus terus naik, sekarang: {k[\'i\']}"',
+            },
+            {
+              name: { en: 'Items fall at the level speed', id: 'Bendanya jatuh pada kecepatan tingkatnya' },
+              assert:
+                'base = {**fresh("playing", True, 0), "remaining": 5.0, "items": [{"x": 40, "y": 0.0, "kind": "good"}]}\n' +
+                'k = update(dict(base), set(), 0.5)\n' +
+                'assert abs(k["items"][0]["y"] - 70) < 1e-9, f"tingkat 1 setengah detik harus 70, sekarang: {k[\'items\'][0][\'y\']}"\n' +
+                'b = update({**base, "score": 5}, set(), 0.5)\n' +
+                'assert abs(b["items"][0]["y"] - 80) < 1e-9, f"tingkat 2 setengah detik harus 80, sekarang: {b[\'items\'][0][\'y\']}"',
+            },
+            {
+              name: { en: 'Catching the good scores', id: 'Menangkap yang baik menambah skor' },
+              assert:
+                'k = update({**fresh("playing", True, 0), "remaining": 5.0, "px": 132.0, "score": 2, "items": [{"x": 140, "y": 210.0, "kind": "good"}]}, set(), 1 / 60)\n' +
+                'assert k["score"] == 3, f"harus menambah skor, sekarang: {k[\'score\']}"\n' +
+                'assert k["lives"] == 3, "dan tidak berbiaya nyawa"\n' +
+                'assert len(k["items"]) == 0, "bendanya harus dibuang"',
+            },
+            {
+              name: { en: 'Catching the bad hurts', id: 'Menangkap yang buruk menyakitkan' },
+              assert:
+                'k = update({**fresh("playing", True, 0), "remaining": 5.0, "px": 132.0, "score": 2, "items": [{"x": 140, "y": 210.0, "kind": "bad"}]}, set(), 1 / 60)\n' +
+                'assert k["lives"] == 2, f"harus kehilangan nyawa, sekarang: {k[\'lives\']}"\n' +
+                'assert k["score"] == 2, "dan tidak menambah skor"\n' +
+                'assert k["mercy"] > 1.0, f"keringanannya harus menyala, sekarang: {k[\'mercy\']}"\n' +
+                'assert k["shake"] > 0.2, f"guncangannya harus menyala, sekarang: {k[\'shake\']}"\n' +
+                'assert len(k["items"]) == 0, "bendanya harus dibuang"',
+            },
+            {
+              name: { en: 'Mercy protects, but the item still goes', id: 'Keringanan melindungi, tapi bendanya tetap pergi' },
+              assert:
+                'k = update({**fresh("playing", True, 0), "remaining": 5.0, "px": 132.0, "mercy": 1.0, "items": [{"x": 140, "y": 210.0, "kind": "bad"}]}, set(), 1 / 60)\n' +
+                'assert k["lives"] == 3, f"sedang kebal, tidak boleh berkurang, sekarang: {k[\'lives\']}"\n' +
+                'assert k["shake"] == 0, f"dan tidak mengguncang, sekarang: {k[\'shake\']}"\n' +
+                'assert len(k["items"]) == 0, "bendanya tetap dibuang"',
+            },
+            {
+              name: { en: 'Missing costs nothing', id: 'Melewatkan tidak berbiaya apa pun' },
+              assert:
+                'base = {**fresh("playing", True, 0), "remaining": 5.0, "px": 0.0, "score": 4}\n' +
+                'k = update({**base, "items": [{"x": 280, "y": 239.0, "kind": "good"}]}, set(), 0.5)\n' +
+                'assert k["score"] == 4 and k["lives"] == 3, "melewatkan yang baik tidak berbiaya"\n' +
+                'assert len(k["items"]) == 0, "tapi bendanya hilang"\n' +
+                'b = update({**base, "items": [{"x": 280, "y": 239.0, "kind": "bad"}]}, set(), 0.5)\n' +
+                'assert b["lives"] == 3, "melewatkan yang buruk justru bagus"',
+            },
+            {
+              name: { en: 'The last life ends it, and sets the record', id: 'Nyawa terakhir mengakhirinya, dan menetapkan rekornya' },
+              assert:
+                'k = update({**fresh("playing", True, 3), "remaining": 5.0, "px": 132.0, "score": 9, "lives": 1, "items": [{"x": 140, "y": 210.0, "kind": "bad"}]}, set(), 1 / 60)\n' +
+                'assert k["lives"] == 0 and k["phase"] == "over", f"harus berakhir, sekarang: {k[\'phase\']}"\n' +
+                'assert k["record"] == 9, f"rekornya harus naik ke 9, sekarang: {k[\'record\']}"\n' +
+                'b = update({**fresh("playing", True, 20), "remaining": 5.0, "px": 132.0, "score": 2, "lives": 1, "items": [{"x": 140, "y": 210.0, "kind": "bad"}]}, set(), 1 / 60)\n' +
+                'assert b["record"] == 20, f"permainan lebih buruk tidak menurunkan rekor, sekarang: {b[\'record\']}"',
+            },
+            {
+              name: { en: 'Finished, nothing moves; the record survives', id: 'Setelah usai, tak ada yang bergerak; rekornya bertahan' },
+              assert:
+                'k = {**fresh("over", False, 11), "items": [{"x": 40, "y": 100.0, "kind": "good"}], "lives": 0, "score": 6}\n' +
+                'b = update(dict(k), {"right"}, 0.5)\n' +
+                'assert abs(b["px"] - 132.0) < 1e-9, "papannya harus diam"\n' +
+                'assert abs(b["items"][0]["y"] - 100.0) < 1e-9, "bendanya harus diam"\n' +
+                'c = update(b, {"space"}, 1 / 60)\n' +
+                'assert c["phase"] == "ready" and c["record"] == 11, f"harus kembali ke ready dengan rekor utuh, sekarang: {c[\'phase\']}, {c[\'record\']}"\n' +
+                'd = update(update(c, set(), 1 / 60), {"space"}, 1 / 60)\n' +
+                'assert d["phase"] == "playing" and d["score"] == 0 and d["record"] == 11, "permainan barunya segar, rekornya tidak"',
+            },
+            {
+              name: { en: 'The picture shakes and flickers', id: 'Gambarnya berguncang dan berkelip' },
+              assert:
+                'base = {**fresh("playing", True, 0), "items": [{"x": 40, "y": 60.0, "kind": "good"}]}\n' +
+                'still = draw(dict(base))\n' +
+                'shaken = draw({**base, "shake": 0.25})\n' +
+                'offset = shake_offset(0.25)\n' +
+                'a = [p for p in still if p["shape"] == "box"]\n' +
+                'b = [p for p in shaken if p["shape"] == "box"]\n' +
+                'assert len(a) == len(b) and len(a) == 2, f"harus dua kotak di kedua gambar, sekarang: {len(a)} dan {len(b)}"\n' +
+                'for one, two in zip(a, b):\n' +
+                '    assert abs((two["x"] - one["x"]) - offset) < 1e-9, "semuanya harus bergeser sama"\n' +
+                'hidden = draw({**base, "mercy": 1.15})\n' +
+                'assert len([p for p in hidden if p["shape"] == "box"]) == 1, "pada fase padam papannya harus hilang"',
+            },
+            {
+              name: { en: 'Good and bad look different', id: 'Yang baik dan yang buruk tampak berbeda' },
+              assert:
+                'a = draw({**fresh("playing", True, 0), "items": [\n' +
+                '    {"x": 40, "y": 60.0, "kind": "good"},\n' +
+                '    {"x": 160, "y": 60.0, "kind": "bad"},\n' +
+                ']})\n' +
+                'colors = [p["color"] for p in a if p["shape"] == "box"]\n' +
+                'assert "#f5c65b" in colors, f"yang baik harus #f5c65b, sekarang: {colors}"\n' +
+                'assert "#ef8f70" in colors, f"yang buruk harus #ef8f70, sekarang: {colors}"',
+            },
+            {
+              name: { en: 'A whole game can be played end to end', id: 'Satu permainan penuh bisa dilalui ujung ke ujung' },
+              assert:
+                'k = update(start(), {"space"}, 1 / 60)\n' +
+                'for _ in range(9000):\n' +
+                '    # kejar yang baik terdekat, dan jangan berdiri di bawah yang buruk\n' +
+                '    target_item = None\n' +
+                '    for b in k["items"]:\n' +
+                '        if b["kind"] == "good" and (target_item is None or b["y"] > target_item["y"]):\n' +
+                '            target_item = b\n' +
+                '    held = set()\n' +
+                '    if target_item is not None:\n' +
+                '        target = target_item["x"] - 21\n' +
+                '        if k["px"] < target - 2:\n' +
+                '            held = {"right"}\n' +
+                '        elif k["px"] > target + 2:\n' +
+                '            held = {"left"}\n' +
+                '    k = update(k, held, 1 / 60)\n' +
+                '    if k["phase"] == "over":\n' +
+                '        break\n' +
+                'assert k["score"] > 5, f"pemain yang mengejar harus mencetak skor, sekarang: {k[\'score\']}"\n' +
+                'assert len(k["items"]) < 20, f"daftarnya harus tetap kecil, sekarang: {len(k[\'items\'])}"',
+            },
+            {
+              name: { en: 'The state it was given is left alone', id: 'Keadaan yang diberikan padanya dibiarkan' },
+              assert:
+                'original = [{"x": 40, "y": 10.0, "kind": "good"}]\n' +
+                'k = {**fresh("playing", False, 4), "items": original, "remaining": 5.0}\n' +
+                'update(k, {"right"}, 0.5)\n' +
+                'assert original[0]["y"] == 10.0, f"benda lamanya tidak boleh ikut bergerak, sekarang: {original[0][\'y\']}"\n' +
+                'assert k["px"] == 132.0 and k["score"] == 0, "keadaan yang diberikan tidak boleh berubah"',
+            },
+          ],
+        },
         hints: [
-          { en: 'You have written all of this before. The only new thing is that an item carries a `jenis`, and the two kinds are resolved differently.', id: 'Kamu sudah pernah menulis semua ini. Satu-satunya yang baru adalah bendanya membawa `jenis`, dan kedua jenisnya diselesaikan berbeda.' },
+          { en: 'You have written all of this before. The only new thing is that an item carries a `kind`, and the two kinds are resolved differently.', id: 'Kamu sudah pernah menulis semua ini. Satu-satunya yang baru adalah bendanya membawa `kind`, dan kedua jenisnya diselesaikan berbeda.' },
           { en: 'Keep `i` as a plain counter and take the remainder where you read the lists — that is why the pattern and the positions can be different lengths.', id: 'Jaga `i` tetap penghitung biasa dan ambil sisanya di tempat kamu membaca daftarnya — itulah sebabnya polanya dan posisinya boleh berbeda panjang.' },
           { en: 'The bad-item branch has two cases inside it: mercy running, or not. Only one of them costs anything.', id: 'Cabang benda buruknya punya dua kasus di dalamnya: keringanan sedang berjalan, atau tidak. Hanya satu dari keduanya yang berbiaya.' },
-          { en: 'Work `geser` out once at the top of `gambar`, and remember the text moves with everything else.', id: 'Hitung `geser` sekali di atas `gambar`, dan ingat teksnya ikut bergerak bersama yang lain.' },
+          { en: 'Work `offset` out once at the top of `draw`, and remember the text moves with everything else.', id: 'Hitung `offset` sekali di atas `draw`, dan ingat teksnya ikut bergerak bersama yang lain.' },
         ],
-        solution:
-          'TITIK_X = [40, 160, 280, 100, 220]\n' +
-          'POLA = ["baik", "baik", "buruk", "baik", "buruk", "baik"]\n' +
-          'LAJU = 200\n' +
-          'PAPAN_L = 56\n' +
-          'PAPAN_T = 12\n' +
-          'PAPAN_Y = 214\n' +
-          'BENDA = 14\n' +
-          'KEBAL = 1.5\n' +
-          'GUNCANG = 0.3\n' +
-          'LEBAR = 320\n' +
-          'TINGGI = 240\n\n' +
-          'def tabrakan(a, b):\n' +
-          '    return (\n' +
-          '        a["x"] < b["x"] + b["l"]\n' +
-          '        and a["x"] + a["l"] > b["x"]\n' +
-          '        and a["y"] < b["y"] + b["t"]\n' +
-          '        and a["y"] + a["t"] > b["y"]\n' +
-          '    )\n\n' +
-          'def segar(fase, spasi_lalu, rekor):\n' +
-          '    return {\n' +
-          '        "fase": fase,\n' +
-          '        "px": 132.0,\n' +
-          '        "benda": [],\n' +
-          '        "i": 0,\n' +
-          '        "sisa": 0.0,\n' +
-          '        "skor": 0,\n' +
-          '        "nyawa": 3,\n' +
-          '        "kebal": 0.0,\n' +
-          '        "guncang": 0.0,\n' +
-          '        "rekor": rekor,\n' +
-          '        "spasi_lalu": spasi_lalu,\n' +
-          '    }\n\n' +
-          'def tingkat(skor):\n' +
-          '    return 1 + skor // 5\n\n' +
-          'def laju(skor):\n' +
-          '    return min(300, 120 + tingkat(skor) * 20)\n\n' +
-          'def jeda(skor):\n' +
-          '    return max(0.35, 0.9 - tingkat(skor) * 0.06)\n\n' +
-          'def kedip(kebal):\n' +
-          '    return kebal > 0 and int(kebal * 10) % 2 == 1\n\n' +
-          'def getar(guncang):\n' +
-          '    if guncang <= 0:\n' +
-          '        return 0\n' +
-          '    return 4 if int(guncang * 60) % 2 == 0 else -4\n\n' +
-          'def awal():\n' +
-          '    return segar("siap", False, 0)\n\n' +
-          'def perbarui(keadaan, tombol, dt):\n' +
-          '    ditekan = "spasi" in tombol\n' +
-          '    baru = ditekan and not keadaan["spasi_lalu"]\n\n' +
-          '    if keadaan["fase"] == "siap":\n' +
-          '        if baru:\n' +
-          '            return segar("main", ditekan, keadaan["rekor"])\n' +
-          '        return {**keadaan, "spasi_lalu": ditekan}\n\n' +
-          '    if keadaan["fase"] == "selesai":\n' +
-          '        if baru:\n' +
-          '            return segar("siap", ditekan, keadaan["rekor"])\n' +
-          '        return {**keadaan, "spasi_lalu": ditekan}\n\n' +
-          '    px = keadaan["px"]\n' +
-          '    if "kiri" in tombol:\n' +
-          '        px = px - LAJU * dt\n' +
-          '    if "kanan" in tombol:\n' +
-          '        px = px + LAJU * dt\n' +
-          '    px = max(0, min(LEBAR - PAPAN_L, px))\n\n' +
-          '    skor = keadaan["skor"]\n' +
-          '    nyawa = keadaan["nyawa"]\n' +
-          '    kebal = max(0.0, keadaan["kebal"] - dt)\n' +
-          '    guncang = max(0.0, keadaan["guncang"] - dt)\n' +
-          '    turun = laju(skor)\n\n' +
-          '    papan = {"x": px, "y": PAPAN_Y, "l": PAPAN_L, "t": PAPAN_T}\n' +
-          '    tersisa = []\n' +
-          '    for b in keadaan["benda"]:\n' +
-          '        pindah = {"x": b["x"], "y": b["y"] + turun * dt, "jenis": b["jenis"]}\n' +
-          '        kotak = {"x": pindah["x"], "y": pindah["y"], "l": BENDA, "t": BENDA}\n' +
-          '        if tabrakan(kotak, papan):\n' +
-          '            if pindah["jenis"] == "baik":\n' +
-          '                skor = skor + 1\n' +
-          '            elif kebal <= 0:\n' +
-          '                nyawa = max(0, nyawa - 1)\n' +
-          '                kebal = KEBAL\n' +
-          '                guncang = GUNCANG\n' +
-          '        elif pindah["y"] <= TINGGI:\n' +
-          '            tersisa.append(pindah)\n\n' +
-          '    i = keadaan["i"]\n' +
-          '    sisa = keadaan["sisa"] - dt\n' +
-          '    if sisa <= 0:\n' +
-          '        tersisa = tersisa + [{\n' +
-          '            "x": TITIK_X[i % len(TITIK_X)],\n' +
-          '            "y": -float(BENDA),\n' +
-          '            "jenis": POLA[i % len(POLA)],\n' +
-          '        }]\n' +
-          '        i = i + 1\n' +
-          '        sisa = jeda(skor)\n\n' +
-          '    rekor = keadaan["rekor"]\n' +
-          '    fase = "main"\n' +
-          '    if nyawa <= 0:\n' +
-          '        fase = "selesai"\n' +
-          '        rekor = max(rekor, skor)\n\n' +
-          '    return {\n' +
-          '        "fase": fase,\n' +
-          '        "px": px,\n' +
-          '        "benda": tersisa,\n' +
-          '        "i": i,\n' +
-          '        "sisa": sisa,\n' +
-          '        "skor": skor,\n' +
-          '        "nyawa": nyawa,\n' +
-          '        "kebal": kebal,\n' +
-          '        "guncang": guncang,\n' +
-          '        "rekor": rekor,\n' +
-          '        "spasi_lalu": ditekan,\n' +
-          '    }\n\n' +
-          'def gambar(keadaan):\n' +
-          '    geser = getar(keadaan["guncang"])\n' +
-          '    hasil = []\n\n' +
-          '    for b in keadaan["benda"]:\n' +
-          '        warna = "#f5c65b" if b["jenis"] == "baik" else "#ef8f70"\n' +
-          '        hasil.append({"bentuk": "kotak", "x": b["x"] + geser, "y": b["y"], "l": BENDA, "t": BENDA, "warna": warna})\n\n' +
-          '    if not kedip(keadaan["kebal"]):\n' +
-          '        hasil.append({\n' +
-          '            "bentuk": "kotak",\n' +
-          '            "x": keadaan["px"] + geser,\n' +
-          '            "y": PAPAN_Y,\n' +
-          '            "l": PAPAN_L,\n' +
-          '            "t": PAPAN_T,\n' +
-          '            "warna": "#24463d",\n' +
-          '        })\n\n' +
-          '    if keadaan["fase"] == "siap":\n' +
-          '        hasil.append({"bentuk": "teks", "x": 90 + geser, "y": 110, "isi": "Spasi untuk mulai", "warna": "#24463d"})\n' +
-          '    elif keadaan["fase"] == "selesai":\n' +
-          '        hasil.append({"bentuk": "teks", "x": 84 + geser, "y": 110, "isi": "Habis! Rekor " + str(keadaan["rekor"]), "warna": "#ef8f70"})\n' +
-          '    else:\n' +
-          '        hasil.append({\n' +
-          '            "bentuk": "teks",\n' +
-          '            "x": 8 + geser,\n' +
-          '            "y": 8,\n' +
-          '            "isi": "Skor: " + str(keadaan["skor"]) + "  Nyawa: " + str(keadaan["nyawa"]) + "  Tingkat: " + str(tingkat(keadaan["skor"])),\n' +
-          '            "warna": "#24463d",\n' +
-          '        })\n\n' +
-          '    return hasil\n',
+        solution: {
+          en:
+            'SPOT_X = [40, 160, 280, 100, 220]\n' +
+            'PATTERN = ["good", "good", "bad", "good", "bad", "good"]\n' +
+            'SPEED = 200\n' +
+            'PADDLE_W = 56\n' +
+            'PADDLE_H = 12\n' +
+            'PADDLE_Y = 214\n' +
+            'ITEM = 14\n' +
+            'MERCY = 1.5\n' +
+            'SHAKE = 0.3\n' +
+            'WIDTH = 320\n' +
+            'HEIGHT = 240\n\n' +
+            'def overlaps(a, b):\n' +
+            '    return (\n' +
+            '        a["x"] < b["x"] + b["w"]\n' +
+            '        and a["x"] + a["w"] > b["x"]\n' +
+            '        and a["y"] < b["y"] + b["h"]\n' +
+            '        and a["y"] + a["h"] > b["y"]\n' +
+            '    )\n\n' +
+            'def fresh(phase, space_last, record):\n' +
+            '    return {\n' +
+            '        "phase": phase,\n' +
+            '        "px": 132.0,\n' +
+            '        "items": [],\n' +
+            '        "i": 0,\n' +
+            '        "remaining": 0.0,\n' +
+            '        "score": 0,\n' +
+            '        "lives": 3,\n' +
+            '        "mercy": 0.0,\n' +
+            '        "shake": 0.0,\n' +
+            '        "record": record,\n' +
+            '        "space_last": space_last,\n' +
+            '    }\n\n' +
+            'def level(score):\n' +
+            '    return 1 + score // 5\n\n' +
+            'def speed(score):\n' +
+            '    return min(300, 120 + level(score) * 20)\n\n' +
+            'def spawn_delay(score):\n' +
+            '    return max(0.35, 0.9 - level(score) * 0.06)\n\n' +
+            'def blink(mercy):\n' +
+            '    return mercy > 0 and int(mercy * 10) % 2 == 1\n\n' +
+            'def shake_offset(shake):\n' +
+            '    if shake <= 0:\n' +
+            '        return 0\n' +
+            '    return 4 if int(shake * 60) % 2 == 0 else -4\n\n' +
+            'def start():\n' +
+            '    return fresh("ready", False, 0)\n\n' +
+            'def update(state, keys, dt):\n' +
+            '    down = "space" in keys\n' +
+            '    pressed = down and not state["space_last"]\n\n' +
+            '    if state["phase"] == "ready":\n' +
+            '        if pressed:\n' +
+            '            return fresh("playing", down, state["record"])\n' +
+            '        return {**state, "space_last": down}\n\n' +
+            '    if state["phase"] == "over":\n' +
+            '        if pressed:\n' +
+            '            return fresh("ready", down, state["record"])\n' +
+            '        return {**state, "space_last": down}\n\n' +
+            '    px = state["px"]\n' +
+            '    if "left" in keys:\n' +
+            '        px = px - SPEED * dt\n' +
+            '    if "right" in keys:\n' +
+            '        px = px + SPEED * dt\n' +
+            '    px = max(0, min(WIDTH - PADDLE_W, px))\n\n' +
+            '    score = state["score"]\n' +
+            '    lives = state["lives"]\n' +
+            '    mercy = max(0.0, state["mercy"] - dt)\n' +
+            '    shake = max(0.0, state["shake"] - dt)\n' +
+            '    fall_speed = speed(score)\n\n' +
+            '    paddle = {"x": px, "y": PADDLE_Y, "w": PADDLE_W, "h": PADDLE_H}\n' +
+            '    survivors = []\n' +
+            '    for b in state["items"]:\n' +
+            '        moved = {"x": b["x"], "y": b["y"] + fall_speed * dt, "kind": b["kind"]}\n' +
+            '        box = {"x": moved["x"], "y": moved["y"], "w": ITEM, "h": ITEM}\n' +
+            '        if overlaps(box, paddle):\n' +
+            '            if moved["kind"] == "good":\n' +
+            '                score = score + 1\n' +
+            '            elif mercy <= 0:\n' +
+            '                lives = max(0, lives - 1)\n' +
+            '                mercy = MERCY\n' +
+            '                shake = SHAKE\n' +
+            '        elif moved["y"] <= HEIGHT:\n' +
+            '            survivors.append(moved)\n\n' +
+            '    i = state["i"]\n' +
+            '    remaining = state["remaining"] - dt\n' +
+            '    if remaining <= 0:\n' +
+            '        survivors = survivors + [{\n' +
+            '            "x": SPOT_X[i % len(SPOT_X)],\n' +
+            '            "y": -float(ITEM),\n' +
+            '            "kind": PATTERN[i % len(PATTERN)],\n' +
+            '        }]\n' +
+            '        i = i + 1\n' +
+            '        remaining = spawn_delay(score)\n\n' +
+            '    record = state["record"]\n' +
+            '    phase = "playing"\n' +
+            '    if lives <= 0:\n' +
+            '        phase = "over"\n' +
+            '        record = max(record, score)\n\n' +
+            '    return {\n' +
+            '        "phase": phase,\n' +
+            '        "px": px,\n' +
+            '        "items": survivors,\n' +
+            '        "i": i,\n' +
+            '        "remaining": remaining,\n' +
+            '        "score": score,\n' +
+            '        "lives": lives,\n' +
+            '        "mercy": mercy,\n' +
+            '        "shake": shake,\n' +
+            '        "record": record,\n' +
+            '        "space_last": down,\n' +
+            '    }\n\n' +
+            'def draw(state):\n' +
+            '    offset = shake_offset(state["shake"])\n' +
+            '    result = []\n\n' +
+            '    for b in state["items"]:\n' +
+            '        color = "#f5c65b" if b["kind"] == "good" else "#ef8f70"\n' +
+            '        result.append({"shape": "box", "x": b["x"] + offset, "y": b["y"], "w": ITEM, "h": ITEM, "color": color})\n\n' +
+            '    if not blink(state["mercy"]):\n' +
+            '        result.append({\n' +
+            '            "shape": "box",\n' +
+            '            "x": state["px"] + offset,\n' +
+            '            "y": PADDLE_Y,\n' +
+            '            "w": PADDLE_W,\n' +
+            '            "h": PADDLE_H,\n' +
+            '            "color": "#24463d",\n' +
+            '        })\n\n' +
+            '    if state["phase"] == "ready":\n' +
+            '        result.append({"shape": "text", "x": 90 + offset, "y": 110, "text": "Space to start", "color": "#24463d"})\n' +
+            '    elif state["phase"] == "over":\n' +
+            '        result.append({"shape": "text", "x": 84 + offset, "y": 110, "text": "Game over! Record " + str(state["record"]), "color": "#ef8f70"})\n' +
+            '    else:\n' +
+            '        result.append({\n' +
+            '            "shape": "text",\n' +
+            '            "x": 8 + offset,\n' +
+            '            "y": 8,\n' +
+            '            "text": "Score: " + str(state["score"]) + "  Lives: " + str(state["lives"]) + "  Level: " + str(level(state["score"])),\n' +
+            '            "color": "#24463d",\n' +
+            '        })\n\n' +
+            '    return result\n',
+          id:
+            'SPOT_X = [40, 160, 280, 100, 220]\n' +
+            'PATTERN = ["good", "good", "bad", "good", "bad", "good"]\n' +
+            'SPEED = 200\n' +
+            'PADDLE_W = 56\n' +
+            'PADDLE_H = 12\n' +
+            'PADDLE_Y = 214\n' +
+            'ITEM = 14\n' +
+            'MERCY = 1.5\n' +
+            'SHAKE = 0.3\n' +
+            'WIDTH = 320\n' +
+            'HEIGHT = 240\n\n' +
+            'def overlaps(a, b):\n' +
+            '    return (\n' +
+            '        a["x"] < b["x"] + b["w"]\n' +
+            '        and a["x"] + a["w"] > b["x"]\n' +
+            '        and a["y"] < b["y"] + b["h"]\n' +
+            '        and a["y"] + a["h"] > b["y"]\n' +
+            '    )\n\n' +
+            'def fresh(phase, space_last, record):\n' +
+            '    return {\n' +
+            '        "phase": phase,\n' +
+            '        "px": 132.0,\n' +
+            '        "items": [],\n' +
+            '        "i": 0,\n' +
+            '        "remaining": 0.0,\n' +
+            '        "score": 0,\n' +
+            '        "lives": 3,\n' +
+            '        "mercy": 0.0,\n' +
+            '        "shake": 0.0,\n' +
+            '        "record": record,\n' +
+            '        "space_last": space_last,\n' +
+            '    }\n\n' +
+            'def level(score):\n' +
+            '    return 1 + score // 5\n\n' +
+            'def speed(score):\n' +
+            '    return min(300, 120 + level(score) * 20)\n\n' +
+            'def spawn_delay(score):\n' +
+            '    return max(0.35, 0.9 - level(score) * 0.06)\n\n' +
+            'def blink(mercy):\n' +
+            '    return mercy > 0 and int(mercy * 10) % 2 == 1\n\n' +
+            'def shake_offset(shake):\n' +
+            '    if shake <= 0:\n' +
+            '        return 0\n' +
+            '    return 4 if int(shake * 60) % 2 == 0 else -4\n\n' +
+            'def start():\n' +
+            '    return fresh("ready", False, 0)\n\n' +
+            'def update(state, keys, dt):\n' +
+            '    down = "space" in keys\n' +
+            '    pressed = down and not state["space_last"]\n\n' +
+            '    if state["phase"] == "ready":\n' +
+            '        if pressed:\n' +
+            '            return fresh("playing", down, state["record"])\n' +
+            '        return {**state, "space_last": down}\n\n' +
+            '    if state["phase"] == "over":\n' +
+            '        if pressed:\n' +
+            '            return fresh("ready", down, state["record"])\n' +
+            '        return {**state, "space_last": down}\n\n' +
+            '    px = state["px"]\n' +
+            '    if "left" in keys:\n' +
+            '        px = px - SPEED * dt\n' +
+            '    if "right" in keys:\n' +
+            '        px = px + SPEED * dt\n' +
+            '    px = max(0, min(WIDTH - PADDLE_W, px))\n\n' +
+            '    score = state["score"]\n' +
+            '    lives = state["lives"]\n' +
+            '    mercy = max(0.0, state["mercy"] - dt)\n' +
+            '    shake = max(0.0, state["shake"] - dt)\n' +
+            '    fall_speed = speed(score)\n\n' +
+            '    paddle = {"x": px, "y": PADDLE_Y, "w": PADDLE_W, "h": PADDLE_H}\n' +
+            '    survivors = []\n' +
+            '    for b in state["items"]:\n' +
+            '        moved = {"x": b["x"], "y": b["y"] + fall_speed * dt, "kind": b["kind"]}\n' +
+            '        box = {"x": moved["x"], "y": moved["y"], "w": ITEM, "h": ITEM}\n' +
+            '        if overlaps(box, paddle):\n' +
+            '            if moved["kind"] == "good":\n' +
+            '                score = score + 1\n' +
+            '            elif mercy <= 0:\n' +
+            '                lives = max(0, lives - 1)\n' +
+            '                mercy = MERCY\n' +
+            '                shake = SHAKE\n' +
+            '        elif moved["y"] <= HEIGHT:\n' +
+            '            survivors.append(moved)\n\n' +
+            '    i = state["i"]\n' +
+            '    remaining = state["remaining"] - dt\n' +
+            '    if remaining <= 0:\n' +
+            '        survivors = survivors + [{\n' +
+            '            "x": SPOT_X[i % len(SPOT_X)],\n' +
+            '            "y": -float(ITEM),\n' +
+            '            "kind": PATTERN[i % len(PATTERN)],\n' +
+            '        }]\n' +
+            '        i = i + 1\n' +
+            '        remaining = spawn_delay(score)\n\n' +
+            '    record = state["record"]\n' +
+            '    phase = "playing"\n' +
+            '    if lives <= 0:\n' +
+            '        phase = "over"\n' +
+            '        record = max(record, score)\n\n' +
+            '    return {\n' +
+            '        "phase": phase,\n' +
+            '        "px": px,\n' +
+            '        "items": survivors,\n' +
+            '        "i": i,\n' +
+            '        "remaining": remaining,\n' +
+            '        "score": score,\n' +
+            '        "lives": lives,\n' +
+            '        "mercy": mercy,\n' +
+            '        "shake": shake,\n' +
+            '        "record": record,\n' +
+            '        "space_last": down,\n' +
+            '    }\n\n' +
+            'def draw(state):\n' +
+            '    offset = shake_offset(state["shake"])\n' +
+            '    result = []\n\n' +
+            '    for b in state["items"]:\n' +
+            '        color = "#f5c65b" if b["kind"] == "good" else "#ef8f70"\n' +
+            '        result.append({"shape": "box", "x": b["x"] + offset, "y": b["y"], "w": ITEM, "h": ITEM, "color": color})\n\n' +
+            '    if not blink(state["mercy"]):\n' +
+            '        result.append({\n' +
+            '            "shape": "box",\n' +
+            '            "x": state["px"] + offset,\n' +
+            '            "y": PADDLE_Y,\n' +
+            '            "w": PADDLE_W,\n' +
+            '            "h": PADDLE_H,\n' +
+            '            "color": "#24463d",\n' +
+            '        })\n\n' +
+            '    if state["phase"] == "ready":\n' +
+            '        result.append({"shape": "text", "x": 90 + offset, "y": 110, "text": "Space to start", "color": "#24463d"})\n' +
+            '    elif state["phase"] == "over":\n' +
+            '        result.append({"shape": "text", "x": 84 + offset, "y": 110, "text": "Game over! Record " + str(state["record"]), "color": "#ef8f70"})\n' +
+            '    else:\n' +
+            '        result.append({\n' +
+            '            "shape": "text",\n' +
+            '            "x": 8 + offset,\n' +
+            '            "y": 8,\n' +
+            '            "text": "Score: " + str(state["score"]) + "  Lives: " + str(state["lives"]) + "  Level: " + str(level(state["score"])),\n' +
+            '            "color": "#24463d",\n' +
+            '        })\n\n' +
+            '    return result\n',
+        },
         xp: 80,
       },
     },

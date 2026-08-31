@@ -7,15 +7,15 @@
  *
  *  The shape it asks for is deliberate:
  *
- *      awal()                    -> the starting state
- *      perbarui(keadaan, tombol, dt) -> the next state
- *      gambar(keadaan)           -> a list of drawing commands
+ *      start()                  -> the starting state
+ *      update(state, keys, dt)  -> the next state
+ *      draw(state)              -> a list of drawing commands
  *
- *  `perbarui` is a **pure function**: state in, state out, no drawing and no
+ *  `update` is a **pure function**: state in, state out, no drawing and no
  *  input of its own. That is what lets a check call it directly with a made-up
  *  state and a made-up set of keys — every exercise in this course is tested
  *  with the same PyTest machinery as the Python course, with no canvas in sight.
- *  And `gambar` returns *data* rather than painting, for the same reason.
+ *  And `draw` returns *data* rather than painting, for the same reason.
  *
  *  The bridge between Python and the canvas is JSON, once per frame. That is a
  *  little wasteful and completely predictable: no proxies to leak, no lifetime
@@ -27,55 +27,55 @@ import { friendlyError, getPython } from './python'
 /** The logical field. Everything the learner draws is in these units, whatever
  *  size the canvas ends up on screen. Small round numbers make the arithmetic
  *  in an exercise something you can do in your head. */
-export const LEBAR = 320
-export const TINGGI = 240
+export const WIDTH = 320
+export const HEIGHT = 240
 
 /** One drawing command. Anything else in the list is ignored rather than
- *  fatal — a half-written `gambar` should still show what it got right. */
-export interface Perintah {
-  bentuk: 'kotak' | 'lingkaran' | 'teks' | 'garis'
-  warna?: string
+ *  fatal — a half-written `draw` should still show what it got right. */
+export interface Command {
+  shape: 'box' | 'circle' | 'text' | 'line'
+  color?: string
   x?: number
   y?: number
-  l?: number
-  t?: number
+  w?: number
+  h?: number
   r?: number
   x1?: number
   y1?: number
   x2?: number
   y2?: number
-  tebal?: number
-  isi?: string
-  ukuran?: number
+  thickness?: number
+  text?: string
+  size?: number
 }
 
 /** The keys a game may read, named the way the rest of the content is named. */
-export const TOMBOL = ['kiri', 'kanan', 'atas', 'bawah', 'spasi'] as const
-export type Tombol = (typeof TOMBOL)[number]
+export const KEYS = ['left', 'right', 'up', 'down', 'space'] as const
+export type Key = (typeof KEYS)[number]
 
 /** Maps a browser key to one of ours. Arrows and WASD both, because a learner
  *  testing their own game should not have to think about it. */
-export function namaTombol(key: string): Tombol | null {
+export function keyName(key: string): Key | null {
   switch (key) {
     case 'ArrowLeft':
     case 'a':
     case 'A':
-      return 'kiri'
+      return 'left'
     case 'ArrowRight':
     case 'd':
     case 'D':
-      return 'kanan'
+      return 'right'
     case 'ArrowUp':
     case 'w':
     case 'W':
-      return 'atas'
+      return 'up'
     case 'ArrowDown':
     case 's':
     case 'S':
-      return 'bawah'
+      return 'down'
     case ' ':
     case 'Spacebar':
-      return 'spasi'
+      return 'space'
     default:
       return null
   }
@@ -89,27 +89,27 @@ import json as _nunada_json
 
 def _nunada_mulai():
     global _nunada_keadaan
-    _nunada_keadaan = awal()
-    return _nunada_json.dumps(gambar(_nunada_keadaan))
+    _nunada_keadaan = start()
+    return _nunada_json.dumps(draw(_nunada_keadaan))
 
 def _nunada_langkah(_tombol_json, _dt):
     global _nunada_keadaan
     _tombol = set(_nunada_json.loads(_tombol_json))
-    _nunada_keadaan = perbarui(_nunada_keadaan, _tombol, _dt)
-    return _nunada_json.dumps(gambar(_nunada_keadaan))
+    _nunada_keadaan = update(_nunada_keadaan, _tombol, _dt)
+    return _nunada_json.dumps(draw(_nunada_keadaan))
 
 def _nunada_keadaan_json():
     return _nunada_json.dumps(_nunada_keadaan)
 `
 
-export interface Sesi {
+export interface Session {
   /** Advance one frame and get the scene to draw. */
-  langkah(tombol: Set<string>, dt: number): Perintah[]
+  step(keys: Set<string>, dt: number): Command[]
   /** Back to the starting state. */
-  ulang(): Perintah[]
+  reset(): Command[]
   /** The current state, for the little inspector under the canvas. */
-  keadaan(): unknown
-  hentikan(): void
+  state(): unknown
+  stop(): void
 }
 
 /** A thrown message a learner can act on, rather than a stack from our code. */
@@ -117,13 +117,13 @@ export class GameError extends Error {}
 
 /** Start a session. Throws GameError when the code will not load, or when it
  *  does not define the three functions the loop needs. */
-export async function mulaiGame(code: string): Promise<Sesi> {
+export async function startGame(code: string): Promise<Session> {
   const py = await getPython()
 
   const dict = py.globals.get('dict')
   const ns = dict()
 
-  const bersihkan = () => {
+  const cleanup = () => {
     ns.destroy?.()
     dict.destroy?.()
   }
@@ -131,34 +131,34 @@ export async function mulaiGame(code: string): Promise<Sesi> {
   try {
     await py.runPythonAsync(code, { globals: ns })
   } catch (err) {
-    bersihkan()
+    cleanup()
     throw new GameError(friendlyError(String((err as Error).message ?? err)))
   }
 
-  for (const nama of ['awal', 'perbarui', 'gambar']) {
-    if (ns.get(nama) === undefined) {
-      bersihkan()
-      throw new GameError(`Belum ada fungsi ${nama}(). / No ${nama}() function yet.`)
+  for (const name of ['start', 'update', 'draw']) {
+    if (ns.get(name) === undefined) {
+      cleanup()
+      throw new GameError(`Belum ada fungsi ${name}(). / No ${name}() function yet.`)
     }
   }
 
   try {
     await py.runPythonAsync(DRIVER, { globals: ns })
   } catch (err) {
-    bersihkan()
+    cleanup()
     throw new GameError(friendlyError(String((err as Error).message ?? err)))
   }
 
-  const mulai = ns.get('_nunada_mulai')
-  const langkah = ns.get('_nunada_langkah')
-  const keadaanJson = ns.get('_nunada_keadaan_json')
+  const start = ns.get('_nunada_mulai')
+  const step = ns.get('_nunada_langkah')
+  const stateJson = ns.get('_nunada_keadaan_json')
 
-  const bacaAdegan = (raw: unknown): Perintah[] => {
+  const readScene = (raw: unknown): Command[] => {
     const data: unknown = JSON.parse(String(raw))
-    return Array.isArray(data) ? (data as Perintah[]) : []
+    return Array.isArray(data) ? (data as Command[]) : []
   }
 
-  const panggil = <T>(fn: () => T): T => {
+  const call = <T>(fn: () => T): T => {
     try {
       return fn()
     } catch (err) {
@@ -166,69 +166,69 @@ export async function mulaiGame(code: string): Promise<Sesi> {
     }
   }
 
-  const sesi: Sesi = {
-    langkah: (tombol, dt) =>
-      bacaAdegan(panggil(() => langkah(JSON.stringify([...tombol]), dt))),
-    ulang: () => bacaAdegan(panggil(() => mulai())),
-    keadaan: () => {
+  const session: Session = {
+    step: (keys, dt) =>
+      readScene(call(() => step(JSON.stringify([...keys]), dt))),
+    reset: () => readScene(call(() => start())),
+    state: () => {
       try {
-        return JSON.parse(String(keadaanJson()))
+        return JSON.parse(String(stateJson()))
       } catch {
         return null
       }
     },
-    hentikan: () => {
-      mulai.destroy?.()
-      langkah.destroy?.()
-      keadaanJson.destroy?.()
-      bersihkan()
+    stop: () => {
+      start.destroy?.()
+      step.destroy?.()
+      stateJson.destroy?.()
+      cleanup()
     },
   }
 
-  // Fail here rather than on the first frame: a broken awal() or gambar() is
+  // Fail here rather than on the first frame: a broken start() or draw() is
   // much easier to understand before anything has been drawn.
   try {
-    sesi.ulang()
+    session.reset()
   } catch (err) {
-    sesi.hentikan()
+    session.stop()
     throw err
   }
-  return sesi
+  return session
 }
 
 /** Paint a scene. Unknown shapes are skipped, and a missing field falls back to
- *  something harmless — a half-finished `gambar` shows what it got right. */
-export function gambarAdegan(ctx: CanvasRenderingContext2D, adegan: Perintah[], latar: string): void {
+ *  something harmless — a half-finished `draw` shows what it got right. */
+export function drawScene(ctx: CanvasRenderingContext2D, scene: Command[], background: string): void {
   ctx.save()
-  ctx.fillStyle = latar
-  ctx.fillRect(0, 0, LEBAR, TINGGI)
+  ctx.fillStyle = background
+  ctx.fillRect(0, 0, WIDTH, HEIGHT)
 
-  for (const p of adegan) {
+  for (const p of scene) {
     if (!p || typeof p !== 'object') continue
-    const warna = typeof p.warna === 'string' ? p.warna : '#24463d'
-    ctx.fillStyle = warna
-    ctx.strokeStyle = warna
+    const color = typeof p.color === 'string' ? p.color : '#24463d'
+    ctx.fillStyle = color
+    ctx.strokeStyle = color
 
-    switch (p.bentuk) {
-      case 'kotak':
-        ctx.fillRect(p.x ?? 0, p.y ?? 0, p.l ?? 0, p.t ?? 0)
+    switch (p.shape) {
+      case 'box':
+        ctx.fillRect(p.x ?? 0, p.y ?? 0, p.w ?? 0, p.h ?? 0)
         break
-      case 'lingkaran':
+      case 'circle':
         ctx.beginPath()
         ctx.arc(p.x ?? 0, p.y ?? 0, Math.max(0, p.r ?? 0), 0, Math.PI * 2)
         ctx.fill()
         break
-      case 'garis':
-        ctx.lineWidth = p.tebal ?? 1
+      case 'line':
+        ctx.lineWidth = p.thickness ?? 1
         ctx.beginPath()
         ctx.moveTo(p.x1 ?? 0, p.y1 ?? 0)
         ctx.lineTo(p.x2 ?? 0, p.y2 ?? 0)
         ctx.stroke()
         break
-      case 'teks':
-        ctx.font = `${p.ukuran ?? 12}px ui-monospace, monospace`
+      case 'text':
+        ctx.font = `${p.size ?? 12}px ui-monospace, monospace`
         ctx.textBaseline = 'top'
-        ctx.fillText(String(p.isi ?? ''), p.x ?? 0, p.y ?? 0)
+        ctx.fillText(String(p.text ?? ''), p.x ?? 0, p.y ?? 0)
         break
       default:
         break

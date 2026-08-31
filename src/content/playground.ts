@@ -1033,13 +1033,13 @@ const GAME: Templat[] = [
         'RADIUS = 8\n' +
         'WIDTH = 320\n' +
         'HEIGHT = 240\n\n' +
-        'def awal():\n' +
+        'def start():\n' +
         '    return {"x": 60.0, "y": 60.0, "vx": 120.0, "vy": 95.0}\n\n' +
-        'def perbarui(keadaan, tombol, dt):\n' +
-        '    x = keadaan["x"] + keadaan["vx"] * dt\n' +
-        '    y = keadaan["y"] + keadaan["vy"] * dt\n' +
-        '    vx = keadaan["vx"]\n' +
-        '    vy = keadaan["vy"]\n\n' +
+        'def update(state, keys, dt):\n' +
+        '    x = state["x"] + state["vx"] * dt\n' +
+        '    y = state["y"] + state["vy"] * dt\n' +
+        '    vx = state["vx"]\n' +
+        '    vy = state["vy"]\n\n' +
         '    if x < RADIUS:\n' +
         '        x, vx = RADIUS, abs(vx)\n' +
         '    if x > WIDTH - RADIUS:\n' +
@@ -1049,21 +1049,21 @@ const GAME: Templat[] = [
         '    if y > HEIGHT - RADIUS:\n' +
         '        y, vy = HEIGHT - RADIUS, -abs(vy)\n\n' +
         '    return {"x": x, "y": y, "vx": vx, "vy": vy}\n\n' +
-        'def gambar(keadaan):\n' +
+        'def draw(state):\n' +
         '    return [\n' +
-        '        {"bentuk": "lingkaran", "x": keadaan["x"], "y": keadaan["y"], "r": RADIUS, "warna": "#ef8f70"}\n' +
+        '        {"shape": "circle", "x": state["x"], "y": state["y"], "r": RADIUS, "color": "#ef8f70"}\n' +
         '    ]\n',
       id:
         'JARI = 8\n' +
         'LEBAR = 320\n' +
         'TINGGI = 240\n\n' +
-        'def awal():\n' +
+        'def start():\n' +
         '    return {"x": 60.0, "y": 60.0, "vx": 120.0, "vy": 95.0}\n\n' +
-        'def perbarui(keadaan, tombol, dt):\n' +
-        '    x = keadaan["x"] + keadaan["vx"] * dt\n' +
-        '    y = keadaan["y"] + keadaan["vy"] * dt\n' +
-        '    vx = keadaan["vx"]\n' +
-        '    vy = keadaan["vy"]\n\n' +
+        'def update(state, keys, dt):\n' +
+        '    x = state["x"] + state["vx"] * dt\n' +
+        '    y = state["y"] + state["vy"] * dt\n' +
+        '    vx = state["vx"]\n' +
+        '    vy = state["vy"]\n\n' +
         '    if x < JARI:\n' +
         '        x, vx = JARI, abs(vx)\n' +
         '    if x > LEBAR - JARI:\n' +
@@ -1073,9 +1073,9 @@ const GAME: Templat[] = [
         '    if y > TINGGI - JARI:\n' +
         '        y, vy = TINGGI - JARI, -abs(vy)\n\n' +
         '    return {"x": x, "y": y, "vx": vx, "vy": vy}\n\n' +
-        'def gambar(keadaan):\n' +
+        'def draw(state):\n' +
         '    return [\n' +
-        '        {"bentuk": "lingkaran", "x": keadaan["x"], "y": keadaan["y"], "r": JARI, "warna": "#ef8f70"}\n' +
+        '        {"shape": "circle", "x": state["x"], "y": state["y"], "r": JARI, "color": "#ef8f70"}\n' +
         '    ]\n',
     },
   },
@@ -1089,38 +1089,38 @@ const GAME: Templat[] = [
         'WIDTH = 320\n' +
         'HEIGHT = 240\n' +
         'TRAIL = 40\n\n' +
-        'def awal():\n' +
+        'def start():\n' +
         '    return {"x": 151.0, "y": 111.0, "trail": []}\n\n' +
-        'def perbarui(keadaan, tombol, dt):\n' +
-        '    x = keadaan["x"]\n' +
-        '    y = keadaan["y"]\n\n' +
-        '    if "kiri" in tombol:\n' +
+        'def update(state, keys, dt):\n' +
+        '    x = state["x"]\n' +
+        '    y = state["y"]\n\n' +
+        '    if "left" in keys:\n' +
         '        x = x - SPEED * dt\n' +
-        '    if "kanan" in tombol:\n' +
+        '    if "right" in keys:\n' +
         '        x = x + SPEED * dt\n' +
-        '    if "atas" in tombol:\n' +
+        '    if "up" in keys:\n' +
         '        y = y - SPEED * dt\n' +
-        '    if "bawah" in tombol:\n' +
+        '    if "down" in keys:\n' +
         '        y = y + SPEED * dt\n\n' +
         '    x = max(0, min(WIDTH - SIDE, x))\n' +
         '    y = max(0, min(HEIGHT - SIDE, y))\n\n' +
-        '    trail = (keadaan["trail"] + [{"x": x, "y": y}])[-TRAIL:]\n' +
+        '    trail = (state["trail"] + [{"x": x, "y": y}])[-TRAIL:]\n' +
         '    return {"x": x, "y": y, "trail": trail}\n\n' +
-        'def gambar(keadaan):\n' +
+        'def draw(state):\n' +
         '    result = []\n' +
-        '    count = len(keadaan["trail"])\n' +
-        '    for n, point in enumerate(keadaan["trail"]):\n' +
+        '    count = len(state["trail"])\n' +
+        '    for n, point in enumerate(state["trail"]):\n' +
         '        side = SIDE * (n + 1) / count\n' +
         '        result.append({\n' +
-        '            "bentuk": "kotak",\n' +
+        '            "shape": "box",\n' +
         '            "x": point["x"] + (SIDE - side) / 2,\n' +
         '            "y": point["y"] + (SIDE - side) / 2,\n' +
-        '            "l": side,\n' +
-        '            "t": side,\n' +
-        '            "warna": "#e9f0e5",\n' +
+        '            "w": side,\n' +
+        '            "h": side,\n' +
+        '            "color": "#e9f0e5",\n' +
         '        })\n' +
-        '    result.append({"bentuk": "kotak", "x": keadaan["x"], "y": keadaan["y"], "l": SIDE, "t": SIDE, "warna": "#24463d"})\n' +
-        '    result.append({"bentuk": "teks", "x": 8, "y": 8, "isi": "Arrow keys or WASD", "warna": "#5f7066"})\n' +
+        '    result.append({"shape": "box", "x": state["x"], "y": state["y"], "w": SIDE, "h": SIDE, "color": "#24463d"})\n' +
+        '    result.append({"shape": "text", "x": 8, "y": 8, "text": "Arrow keys or WASD", "color": "#5f7066"})\n' +
         '    return result\n',
       id:
         'LAJU = 150\n' +
@@ -1128,38 +1128,38 @@ const GAME: Templat[] = [
         'LEBAR = 320\n' +
         'TINGGI = 240\n' +
         'JEJAK = 40\n\n' +
-        'def awal():\n' +
+        'def start():\n' +
         '    return {"x": 151.0, "y": 111.0, "jejak": []}\n\n' +
-        'def perbarui(keadaan, tombol, dt):\n' +
-        '    x = keadaan["x"]\n' +
-        '    y = keadaan["y"]\n\n' +
-        '    if "kiri" in tombol:\n' +
+        'def update(state, keys, dt):\n' +
+        '    x = state["x"]\n' +
+        '    y = state["y"]\n\n' +
+        '    if "left" in keys:\n' +
         '        x = x - LAJU * dt\n' +
-        '    if "kanan" in tombol:\n' +
+        '    if "right" in keys:\n' +
         '        x = x + LAJU * dt\n' +
-        '    if "atas" in tombol:\n' +
+        '    if "up" in keys:\n' +
         '        y = y - LAJU * dt\n' +
-        '    if "bawah" in tombol:\n' +
+        '    if "down" in keys:\n' +
         '        y = y + LAJU * dt\n\n' +
         '    x = max(0, min(LEBAR - SISI, x))\n' +
         '    y = max(0, min(TINGGI - SISI, y))\n\n' +
-        '    jejak = (keadaan["jejak"] + [{"x": x, "y": y}])[-JEJAK:]\n' +
+        '    jejak = (state["jejak"] + [{"x": x, "y": y}])[-JEJAK:]\n' +
         '    return {"x": x, "y": y, "jejak": jejak}\n\n' +
-        'def gambar(keadaan):\n' +
+        'def draw(state):\n' +
         '    hasil = []\n' +
-        '    banyak = len(keadaan["jejak"])\n' +
-        '    for n, titik in enumerate(keadaan["jejak"]):\n' +
+        '    banyak = len(state["jejak"])\n' +
+        '    for n, titik in enumerate(state["jejak"]):\n' +
         '        sisi = SISI * (n + 1) / banyak\n' +
         '        hasil.append({\n' +
-        '            "bentuk": "kotak",\n' +
+        '            "shape": "box",\n' +
         '            "x": titik["x"] + (SISI - sisi) / 2,\n' +
         '            "y": titik["y"] + (SISI - sisi) / 2,\n' +
-        '            "l": sisi,\n' +
-        '            "t": sisi,\n' +
-        '            "warna": "#e9f0e5",\n' +
+        '            "w": sisi,\n' +
+        '            "h": sisi,\n' +
+        '            "color": "#e9f0e5",\n' +
         '        })\n' +
-        '    hasil.append({"bentuk": "kotak", "x": keadaan["x"], "y": keadaan["y"], "l": SISI, "t": SISI, "warna": "#24463d"})\n' +
-        '    hasil.append({"bentuk": "teks", "x": 8, "y": 8, "isi": "Panah atau WASD", "warna": "#5f7066"})\n' +
+        '    hasil.append({"shape": "box", "x": state["x"], "y": state["y"], "w": SISI, "h": SISI, "color": "#24463d"})\n' +
+        '    hasil.append({"shape": "text", "x": 8, "y": 8, "text": "Panah atau WASD", "color": "#5f7066"})\n' +
         '    return hasil\n',
     },
   },
