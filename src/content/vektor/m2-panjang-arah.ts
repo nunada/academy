@@ -494,11 +494,18 @@ export const module2: Module = {
                 { label: '\\cos\\gamma =', answer: 2 / 3 },
               ],
               hints: [{ en: '$|\\vec{a}| = 3$. Divide each component by it.', id: '$|\\vec{a}| = 3$. Bagi setiap komponen dengannya.' }],
-              solution: [
-                '|\\vec{a}| = \\sqrt{1 + 4 + 4} = 3',
-                '\\cos\\alpha = \\tfrac{1}{3}, \\quad \\cos\\beta = \\tfrac{2}{3}, \\quad \\cos\\gamma = \\tfrac{2}{3}',
-                '\\text{periksa: } \\tfrac{1}{9} + \\tfrac{4}{9} + \\tfrac{4}{9} = 1 \\quad \\checkmark',
-              ],
+              solution: {
+                en: [
+                  '|\\vec{a}| = \\sqrt{1 + 4 + 4} = 3',
+                  '\\cos\\alpha = \\tfrac{1}{3}, \\quad \\cos\\beta = \\tfrac{2}{3}, \\quad \\cos\\gamma = \\tfrac{2}{3}',
+                  '\\text{check: } \\tfrac{1}{9} + \\tfrac{4}{9} + \\tfrac{4}{9} = 1 \\quad \\checkmark',
+                ],
+                id: [
+                  '|\\vec{a}| = \\sqrt{1 + 4 + 4} = 3',
+                  '\\cos\\alpha = \\tfrac{1}{3}, \\quad \\cos\\beta = \\tfrac{2}{3}, \\quad \\cos\\gamma = \\tfrac{2}{3}',
+                  '\\text{periksa: } \\tfrac{1}{9} + \\tfrac{4}{9} + \\tfrac{4}{9} = 1 \\quad \\checkmark',
+                ],
+              },
               explain: {
                 en: 'The direction cosines are exactly the components of $\\hat{a}$, and $\\frac{1}{9} + \\frac{4}{9} + \\frac{4}{9} = 1$ confirms it.',
                 id: 'Cosinus arahnya persis komponen $\\hat{a}$, dan $\\frac{1}{9} + \\frac{4}{9} + \\frac{4}{9} = 1$ membenarkannya.',

@@ -151,7 +151,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Writing a domain down', id: 'Menuliskan domain' },
               body: {
-                en: 'Interval notation is the usual shorthand. A square bracket includes the endpoint, a round one excludes it, and infinity always gets a round one because it is not a number you can reach.\n$$[4, \\infty) \\text{ berarti } x \\geq 4$$\n$$(-\\infty, 3) \\cup (3, \\infty) \\text{ berarti setiap } x \\text{ kecuali } 3$$\nWhen a formula has both kinds of trouble, both conditions must hold at once. For $\\dfrac{\\sqrt{x-1}}{x-5}$ you need $x \\geq 1$ **and** $x \\neq 5$, so the domain is $[1, 5) \\cup (5, \\infty)$.',
+                en: 'Interval notation is the usual shorthand. A square bracket includes the endpoint, a round one excludes it, and infinity always gets a round one because it is not a number you can reach.\n$$[4, \\infty) \\text{ means } x \\geq 4$$\n$$(-\\infty, 3) \\cup (3, \\infty) \\text{ means every } x \\text{ except } 3$$\nWhen a formula has both kinds of trouble, both conditions must hold at once. For $\\dfrac{\\sqrt{x-1}}{x-5}$ you need $x \\geq 1$ **and** $x \\neq 5$, so the domain is $[1, 5) \\cup (5, \\infty)$.',
                 id: 'Notasi selang adalah cara ringkas yang lazim. Kurung siku memuat titik ujungnya, kurung biasa tidak, dan tak hingga selalu memakai kurung biasa karena ia bukan bilangan yang bisa dicapai.\n$$[4, \\infty) \\text{ berarti } x \\geq 4$$\n$$(-\\infty, 3) \\cup (3, \\infty) \\text{ berarti setiap } x \\text{ kecuali } 3$$\nBila sebuah rumus mengandung kedua jenis masalah, kedua syaratnya harus berlaku bersamaan. Untuk $\\dfrac{\\sqrt{x-1}}{x-5}$ diperlukan $x \\geq 1$ **dan** $x \\neq 5$, sehingga domainnya $[1, 5) \\cup (5, \\infty)$.',
               },
             },
@@ -182,8 +182,20 @@ export const module1: Module = {
                 id: 'Tentukan bilangan yang dilarang atau yang menjadi awal bagi tiap rumus.',
               },
               blanks: [
-                { label: '\\tfrac{5}{2x - 7}: \\text{ x yang dilarang} =', answer: 3.5 },
-                { label: '\\sqrt{3x - 12}: \\text{ x terkecil} =', answer: 4 },
+                {
+                  label: {
+                    en: '\\tfrac{5}{2x - 7}: \\text{ x excluded} =',
+                    id: '\\tfrac{5}{2x - 7}: \\text{ x yang dilarang} =',
+                  },
+                  answer: 3.5,
+                },
+                {
+                  label: {
+                    en: '\\sqrt{3x - 12}: \\text{ smallest x} =',
+                    id: '\\sqrt{3x - 12}: \\text{ x terkecil} =',
+                  },
+                  answer: 4,
+                },
               ],
               hints: [
                 { en: 'Set the denominator to zero for the first; set the inside of the root to zero for the second.', id: 'Nolkan penyebutnya untuk yang pertama; nolkan isi akarnya untuk yang kedua.' },
@@ -259,12 +271,20 @@ export const module1: Module = {
                 en: 'Order the working that finds the intercepts of $y = x^2 - 4x + 3$.',
                 id: 'Susun langkah untuk menentukan titik-titik potong $y = x^2 - 4x + 3$.',
               },
-              lines: [
-                'x = 0: \\quad y = 0 - 0 + 3 = 3',
-                '\\text{potong sumbu } y: (0, 3)',
-                'y = 0: \\quad x^2 - 4x + 3 = (x-1)(x-3) = 0',
-                '\\text{potong sumbu } x: (1, 0) \\text{ dan } (3, 0)',
-              ],
+              lines: {
+                en: [
+                  'x = 0: \\quad y = 0 - 0 + 3 = 3',
+                  '\\text{y-intercept}: (0, 3)',
+                  'y = 0: \\quad x^2 - 4x + 3 = (x-1)(x-3) = 0',
+                  '\\text{x-intercepts}: (1, 0) \\text{ and } (3, 0)',
+                ],
+                id: [
+                  'x = 0: \\quad y = 0 - 0 + 3 = 3',
+                  '\\text{potong sumbu } y: (0, 3)',
+                  'y = 0: \\quad x^2 - 4x + 3 = (x-1)(x-3) = 0',
+                  '\\text{potong sumbu } x: (1, 0) \\text{ dan } (3, 0)',
+                ],
+              },
               explain: {
                 en: 'Set $x = 0$ for the vertical intercept and $y = 0$ for the horizontal ones. There is at most one of the first — a function has only one value at zero — but there may be several of the second.',
                 id: 'Nolkan $x$ untuk titik potong sumbu tegak dan nolkan $y$ untuk yang mendatar. Yang pertama paling banyak satu — fungsi hanya punya satu nilai di nol — sedangkan yang kedua bisa beberapa.',
@@ -289,20 +309,36 @@ export const module1: Module = {
                 },
               },
               blanks: [
-                { label: '\\text{potong sumbu } y: \\ y =', answer: 3 },
-                { label: '\\text{potong sumbu } x: \\ x =', answer: 1 },
-                { label: '\\text{dan } x =', answer: 3 },
-                { label: '\\text{titik terendah: } y =', answer: -1 },
+                {
+                  label: { en: '\\text{y-intercept}: \\ y =', id: '\\text{potong sumbu } y: \\ y =' },
+                  answer: 3,
+                },
+                {
+                  label: { en: '\\text{x-intercept}: \\ x =', id: '\\text{potong sumbu } x: \\ x =' },
+                  answer: 1,
+                },
+                { label: { en: '\\text{and } x =', id: '\\text{dan } x =' }, answer: 3 },
+                {
+                  label: { en: '\\text{lowest point: } y =', id: '\\text{titik terendah: } y =' },
+                  answer: -1,
+                },
               ],
               hints: [
                 { en: 'The lowest point of $ax^2 + bx + c$ sits at $x = -b/(2a)$.', id: 'Titik terendah $ax^2 + bx + c$ berada di $x = -b/(2a)$.' },
                 { en: 'Here $x = 4/2 = 2$; now put 2 back into the formula.', id: 'Di sini $x = 4/2 = 2$; sekarang masukkan 2 kembali ke rumusnya.' },
               ],
-              solution: [
-                'y\\text{-int}: f(0) = 3',
-                'x\\text{-int}: (x-1)(x-3) = 0 \\Rightarrow x = 1, \\ x = 3',
-                'x_{\\text{puncak}} = \\tfrac{4}{2} = 2, \\quad f(2) = 4 - 8 + 3 = -1',
-              ],
+              solution: {
+                en: [
+                  'y\\text{-int}: f(0) = 3',
+                  'x\\text{-int}: (x-1)(x-3) = 0 \\Rightarrow x = 1, \\ x = 3',
+                  'x_{\\text{vertex}} = \\tfrac{4}{2} = 2, \\quad f(2) = 4 - 8 + 3 = -1',
+                ],
+                id: [
+                  'y\\text{-int}: f(0) = 3',
+                  'x\\text{-int}: (x-1)(x-3) = 0 \\Rightarrow x = 1, \\ x = 3',
+                  'x_{\\text{puncak}} = \\tfrac{4}{2} = 2, \\quad f(2) = 4 - 8 + 3 = -1',
+                ],
+              },
               explain: {
                 en: 'The turning point sits halfway between the two roots, at $x = 2$, and its value $-1$ is the smallest the function takes. So the range is $[-1, \\infty)$.',
                 id: 'Titik baliknya berada tepat di tengah kedua akarnya, di $x = 2$, dan nilainya $-1$ adalah yang terkecil yang dicapai fungsi itu. Jadi range-nya $[-1, \\infty)$.',
@@ -341,8 +377,8 @@ export const module1: Module = {
               id: 'Domain dari $g(x) = \\dfrac{\\sqrt{x - 1}}{x - 5}$ dimulai pada satu bilangan dan kehilangan satu bilangan lain. Tentukan keduanya.',
             },
             blanks: [
-              { label: '\\text{dimulai di } x =', answer: 1 },
-              { label: '\\text{dilarang: } x =', answer: 5 },
+              { label: { en: '\\text{starts at } x =', id: '\\text{dimulai di } x =' }, answer: 1 },
+              { label: { en: '\\text{excluded: } x =', id: '\\text{dilarang: } x =' }, answer: 5 },
             ],
             solution: [
               'x - 1 \\geq 0 \\Rightarrow x \\geq 1',
@@ -357,14 +393,21 @@ export const module1: Module = {
             },
             blanks: [
               { label: 'x =', answer: 1 },
-              { label: '\\text{dan } x =', answer: 5 },
-              { label: 'y_{\\text{maks}} =', answer: 4 },
+              { label: { en: '\\text{and } x =', id: '\\text{dan } x =' }, answer: 5 },
+              { label: { en: 'y_{\\text{max}} =', id: 'y_{\\text{maks}} =' }, answer: 4 },
             ],
-            solution: [
-              '-x^2 + 6x - 5 = -(x-1)(x-5) = 0 \\Rightarrow x = 1, \\ x = 5',
-              'x_{\\text{puncak}} = \\tfrac{-6}{2(-1)} = 3',
-              'y = -9 + 18 - 5 = 4',
-            ],
+            solution: {
+              en: [
+                '-x^2 + 6x - 5 = -(x-1)(x-5) = 0 \\Rightarrow x = 1, \\ x = 5',
+                'x_{\\text{vertex}} = \\tfrac{-6}{2(-1)} = 3',
+                'y = -9 + 18 - 5 = 4',
+              ],
+              id: [
+                '-x^2 + 6x - 5 = -(x-1)(x-5) = 0 \\Rightarrow x = 1, \\ x = 5',
+                'x_{\\text{puncak}} = \\tfrac{-6}{2(-1)} = 3',
+                'y = -9 + 18 - 5 = 4',
+              ],
+            },
           },
         ],
         hints: [

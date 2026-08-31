@@ -7,6 +7,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { MathBlank, MathTask } from '../content/types'
+import { resolveBi } from '../content/types'
 import { isRight, isSameFormula } from '../lib/answer'
 import { useI18n } from '../i18n'
 import { Rich, Tex } from './ui'
@@ -48,7 +49,7 @@ export function MathBoard({
   disabled: boolean
   onChange: (values: string[]) => void
 }) {
-  const { tc } = useI18n()
+  const { tc, lang } = useI18n()
   const boxes = useRef<(HTMLInputElement | null)[]>([])
   // Which box a palette press lands in. The buttons steal focus, so the last
   // box the learner was in has to be remembered rather than asked for.
@@ -98,7 +99,7 @@ export function MathBoard({
 
       {task.given && (
         <div className="given">
-          <Tex src={task.given} display />
+          <Tex src={resolveBi(task.given, lang)} display />
         </div>
       )}
 
@@ -110,7 +111,7 @@ export function MathBoard({
           const formula = wantsFormula(b)
           return (
             <label className={mark === undefined ? 'mathrow' : mark ? 'mathrow ok' : 'mathrow no'} key={i}>
-              {b.label && <Tex src={b.label} />}
+              {b.label && <Tex src={resolveBi(b.label, lang)} />}
               <input
                 ref={(el) => {
                   boxes.current[i] = el
@@ -126,7 +127,7 @@ export function MathBoard({
                 onFocus={() => setActive(i)}
                 onChange={(e) => set(i, e.target.value)}
               />
-              {b.after && <Tex src={b.after} />}
+              {b.after && <Tex src={resolveBi(b.after, lang)} />}
               {mark !== undefined && <span className="mathmark">{mark ? '✓' : '✕'}</span>}
             </label>
           )
@@ -136,7 +137,7 @@ export function MathBoard({
       {!disabled && (
         <div className="mathkeys">
           {(anyFormula ? [VAR_KEY, ...KEYS] : KEYS).map((k) => (
-            <button type="button" key={k} onClick={() => insert(k)} aria-label={`sisipkan ${k}`}>
+            <button type="button" key={k} onClick={() => insert(k)} aria-label={`${lang === 'id' ? 'sisipkan' : 'insert'} ${k}`}>
               {k}
             </button>
           ))}

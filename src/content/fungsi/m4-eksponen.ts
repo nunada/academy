@@ -427,8 +427,8 @@ export const module4: Module = {
                 id: 'Investasikan 1000 dengan bunga 6% setahun selama 5 tahun. Hitung kedua totalnya.',
               },
               blanks: [
-                { label: '\\text{bulanan} =', answer: 1000 * Math.pow(1 + 0.06 / 12, 60), tol: 0.5 },
-                { label: '\\text{sinambung} =', answer: 1000 * Math.exp(0.3), tol: 0.5 },
+                { label: { en: '\\text{monthly} =', id: '\\text{bulanan} =' }, answer: 1000 * Math.pow(1 + 0.06 / 12, 60), tol: 0.5 },
+                { label: { en: '\\text{continuous} =', id: '\\text{sinambung} =' }, answer: 1000 * Math.exp(0.3), tol: 0.5 },
               ],
               hints: [
                 { en: 'Monthly: $1000(1 + 0{,}06/12)^{12 \\cdot 5}$, so 60 periods of $0{,}5\\%$.', id: 'Bulanan: $1000(1 + 0{,}06/12)^{12 \\cdot 5}$, jadi 60 periode masing-masing $0{,}5\\%$.' },

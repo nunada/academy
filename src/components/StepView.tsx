@@ -56,7 +56,8 @@ export default function StepView(props: Props) {
 /* ------------------------------------------------------------------ math */
 
 function MathStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'math' }> }) {
-  const { t, tc } = useI18n()
+  const { t, tc, lang } = useI18n()
+  const solution = step.solution && resolveBi(step.solution, lang)
   const [values, setValues] = useState<string[]>(() => emptyValues(step))
   const [marks, setMarks] = useState<boolean[] | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
@@ -97,7 +98,7 @@ function MathStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
             💡 {t('hint')} ({hintsShown}/{step.hints.length})
           </button>
         )}
-        {step.solution && hintsShown >= step.hints.length && !solved && !showWorking && (
+        {solution && hintsShown >= step.hints.length && !solved && !showWorking && (
           <button className="btn ghost sm" onClick={() => setShowWorking(true)}>
             {t('showWorking')}
           </button>
@@ -113,10 +114,10 @@ function MathStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
         </div>
       ))}
 
-      {showWorking && step.solution && (
+      {showWorking && solution && (
         <div style={{ marginTop: 12 }}>
           <div className="io-label">{t('showWorking')}</div>
-          <TexLines lines={step.solution} />
+          <TexLines lines={solution} />
         </div>
       )}
 

@@ -77,7 +77,10 @@ export const module3: Module = {
                 id: 'Sebuah juring lingkaran berjari-jari 5 mempunyai sudut pusat $\\tfrac{\\pi}{3}$. Jawab ketiganya.',
               },
               blanks: [
-                { label: '\\tfrac{\\pi}{3} \\text{ dalam derajat} =', answer: 60 },
+                {
+                  label: { en: '\\tfrac{\\pi}{3} \\text{ in degrees} =', id: '\\tfrac{\\pi}{3} \\text{ dalam derajat} =' },
+                  answer: 60,
+                },
                 { label: 's =', answer: (5 * Math.PI) / 3 },
                 { label: 'L =', answer: (25 * Math.PI) / 6 },
               ],
@@ -227,12 +230,20 @@ export const module3: Module = {
                 en: 'Given $\\sin\\theta = \\tfrac{3}{5}$ with $\\theta$ in the second quadrant, order the working for $\\cos\\theta$.',
                 id: 'Diberikan $\\sin\\theta = \\tfrac{3}{5}$ dengan $\\theta$ di kuadran kedua, susun langkah untuk mencari $\\cos\\theta$.',
               },
-              lines: [
-                '\\cos^2\\theta = 1 - \\sin^2\\theta = 1 - \\tfrac{9}{25}',
-                '\\cos^2\\theta = \\tfrac{16}{25}',
-                '\\cos\\theta = \\pm\\tfrac{4}{5}',
-                '\\text{kuadran II} \\Rightarrow \\cos\\theta = -\\tfrac{4}{5}',
-              ],
+              lines: {
+                en: [
+                  '\\cos^2\\theta = 1 - \\sin^2\\theta = 1 - \\tfrac{9}{25}',
+                  '\\cos^2\\theta = \\tfrac{16}{25}',
+                  '\\cos\\theta = \\pm\\tfrac{4}{5}',
+                  '\\text{quadrant II} \\Rightarrow \\cos\\theta = -\\tfrac{4}{5}',
+                ],
+                id: [
+                  '\\cos^2\\theta = 1 - \\sin^2\\theta = 1 - \\tfrac{9}{25}',
+                  '\\cos^2\\theta = \\tfrac{16}{25}',
+                  '\\cos\\theta = \\pm\\tfrac{4}{5}',
+                  '\\text{kuadran II} \\Rightarrow \\cos\\theta = -\\tfrac{4}{5}',
+                ],
+              },
               explain: {
                 en: 'The identity only ever gives the square, so it gives two candidates. The quadrant is what chooses between them — and it is the step people leave out.',
                 id: 'Identitasnya hanya pernah memberi kuadratnya, jadi ia memberi dua calon. Kuadrannyalah yang memilih di antara keduanya — dan justru langkah itulah yang sering ditinggalkan.',
@@ -315,11 +326,18 @@ export const module3: Module = {
               { label: '\\sin\\theta =', answer: -12 / 13 },
               { label: '\\cos 2\\theta =', answer: -119 / 169 },
             ],
-            solution: [
-              '\\sin^2\\theta = 1 - \\tfrac{25}{169} = \\tfrac{144}{169} \\Rightarrow \\sin\\theta = \\pm\\tfrac{12}{13}',
-              '\\text{kuadran III} \\Rightarrow \\sin\\theta = -\\tfrac{12}{13}',
-              '\\cos 2\\theta = 2\\cos^2\\theta - 1 = \\tfrac{50}{169} - 1 = -\\tfrac{119}{169} \\approx -0{,}704',
-            ],
+            solution: {
+              en: [
+                '\\sin^2\\theta = 1 - \\tfrac{25}{169} = \\tfrac{144}{169} \\Rightarrow \\sin\\theta = \\pm\\tfrac{12}{13}',
+                '\\text{quadrant III} \\Rightarrow \\sin\\theta = -\\tfrac{12}{13}',
+                '\\cos 2\\theta = 2\\cos^2\\theta - 1 = \\tfrac{50}{169} - 1 = -\\tfrac{119}{169} \\approx -0{,}704',
+              ],
+              id: [
+                '\\sin^2\\theta = 1 - \\tfrac{25}{169} = \\tfrac{144}{169} \\Rightarrow \\sin\\theta = \\pm\\tfrac{12}{13}',
+                '\\text{kuadran III} \\Rightarrow \\sin\\theta = -\\tfrac{12}{13}',
+                '\\cos 2\\theta = 2\\cos^2\\theta - 1 = \\tfrac{50}{169} - 1 = -\\tfrac{119}{169} \\approx -0{,}704',
+              ],
+            },
           },
         ],
         hints: [
@@ -470,7 +488,7 @@ export const module3: Module = {
                 en: 'Complete the period of $y = 4\\cos(3x)$.',
                 id: 'Lengkapi periode dari $y = 4\\cos(3x)$.',
               },
-              template: '\\text{periode} = \\frac{2\\pi}{___}',
+              template: { en: '\\text{period} = \\frac{2\\pi}{___}', id: '\\text{periode} = \\frac{2\\pi}{___}' },
               blanks: ['3'],
               explain: {
                 en: 'The period is $\\frac{2\\pi}{|B|} = \\frac{2\\pi}{3}$. The 4 out front changes the height, never the period.',
@@ -504,20 +522,27 @@ export const module3: Module = {
                 id: 'Untuk $y = 3\\sin(2x - \\pi) + 1$, tentukan masing-masing.',
               },
               blanks: [
-                { label: '\\text{amplitudo} =', answer: 3 },
-                { label: '\\text{periode} =', answer: Math.PI },
-                { label: '\\text{pergeseran fase} =', answer: Math.PI / 2 },
-                { label: 'y_{\\text{maks}} =', answer: 4 },
+                { label: { en: '\\text{amplitude} =', id: '\\text{amplitudo} =' }, answer: 3 },
+                { label: { en: '\\text{period} =', id: '\\text{periode} =' }, answer: Math.PI },
+                { label: { en: '\\text{phase shift} =', id: '\\text{pergeseran fase} =' }, answer: Math.PI / 2 },
+                { label: { en: 'y_{\\text{max}} =', id: 'y_{\\text{maks}} =' }, answer: 4 },
               ],
               hints: [
                 { en: 'Factor the inside: $2x - \\pi = 2\\left(x - \\tfrac{\\pi}{2}\\right)$.', id: 'Faktorkan bagian dalamnya: $2x - \\pi = 2\\left(x - \\tfrac{\\pi}{2}\\right)$.' },
                 { en: 'The maximum is midline plus amplitude.', id: 'Nilai maksimumnya adalah garis tengah ditambah amplitudo.' },
               ],
-              solution: [
-                'y = 3\\sin\\left(2\\left(x - \\tfrac{\\pi}{2}\\right)\\right) + 1',
-                'A = 3, \\quad B = 2 \\Rightarrow \\text{periode} = \\tfrac{2\\pi}{2} = \\pi',
-                'C = \\tfrac{\\pi}{2}, \\quad D = 1 \\Rightarrow y_{\\text{maks}} = 1 + 3 = 4',
-              ],
+              solution: {
+                en: [
+                  'y = 3\\sin\\left(2\\left(x - \\tfrac{\\pi}{2}\\right)\\right) + 1',
+                  'A = 3, \\quad B = 2 \\Rightarrow \\text{period} = \\tfrac{2\\pi}{2} = \\pi',
+                  'C = \\tfrac{\\pi}{2}, \\quad D = 1 \\Rightarrow y_{\\text{max}} = 1 + 3 = 4',
+                ],
+                id: [
+                  'y = 3\\sin\\left(2\\left(x - \\tfrac{\\pi}{2}\\right)\\right) + 1',
+                  'A = 3, \\quad B = 2 \\Rightarrow \\text{periode} = \\tfrac{2\\pi}{2} = \\pi',
+                  'C = \\tfrac{\\pi}{2}, \\quad D = 1 \\Rightarrow y_{\\text{maks}} = 1 + 3 = 4',
+                ],
+              },
               explain: {
                 en: 'Reading $C = \\pi$ straight off the unfactored formula is the mistake this question exists to catch. The shift is $\\tfrac{\\pi}{2}$.',
                 id: 'Membaca $C = \\pi$ langsung dari rumus yang belum difaktorkan adalah kekeliruan yang justru ingin ditangkap soal ini. Pergeserannya $\\tfrac{\\pi}{2}$.',
@@ -589,18 +614,25 @@ export const module3: Module = {
               blanks: [
                 { label: '\\tan\\tfrac{\\pi}{3} =', answer: Math.sqrt(3) },
                 { label: '\\sec\\pi =', answer: -1 },
-                { label: '\\text{periode } \\tan =', answer: Math.PI },
-                { label: '\\text{asimtot tan positif terkecil: } x =', answer: Math.PI / 2 },
+                { label: { en: '\\text{period } \\tan =', id: '\\text{periode } \\tan =' }, answer: Math.PI },
+                { label: { en: '\\text{smallest positive tan asymptote: } x =', id: '\\text{asimtot tan positif terkecil: } x =' }, answer: Math.PI / 2 },
               ],
               hints: [
                 { en: '$\\tan\\tfrac{\\pi}{3} = \\tfrac{\\sqrt3/2}{1/2}$.', id: '$\\tan\\tfrac{\\pi}{3} = \\tfrac{\\sqrt3/2}{1/2}$.' },
                 { en: '$\\sec\\pi = 1/\\cos\\pi = 1/(-1)$.', id: '$\\sec\\pi = 1/\\cos\\pi = 1/(-1)$.' },
               ],
-              solution: [
-                '\\tan\\tfrac{\\pi}{3} = \\tfrac{\\sqrt3/2}{1/2} = \\sqrt3 \\approx 1{,}73',
-                '\\sec\\pi = \\tfrac{1}{-1} = -1',
-                '\\text{periode } \\tan = \\pi, \\qquad \\text{asimtot pertama } x = \\tfrac{\\pi}{2}',
-              ],
+              solution: {
+                en: [
+                  '\\tan\\tfrac{\\pi}{3} = \\tfrac{\\sqrt3/2}{1/2} = \\sqrt3 \\approx 1{,}73',
+                  '\\sec\\pi = \\tfrac{1}{-1} = -1',
+                  '\\text{period } \\tan = \\pi, \\qquad \\text{first asymptote } x = \\tfrac{\\pi}{2}',
+                ],
+                id: [
+                  '\\tan\\tfrac{\\pi}{3} = \\tfrac{\\sqrt3/2}{1/2} = \\sqrt3 \\approx 1{,}73',
+                  '\\sec\\pi = \\tfrac{1}{-1} = -1',
+                  '\\text{periode } \\tan = \\pi, \\qquad \\text{asimtot pertama } x = \\tfrac{\\pi}{2}',
+                ],
+              },
               explain: {
                 en: 'Dividing the two circle coordinates is all a tangent ever is, and $\\sqrt{3}$ is what $\\tfrac{\\sqrt3/2}{1/2}$ comes to. Notice it is larger than 1 — tangent is not bounded the way its two parents are.',
                 id: 'Membagi kedua koordinat lingkaran itulah seluruh isi tangen, dan $\\sqrt{3}$ adalah hasil dari $\\tfrac{\\sqrt3/2}{1/2}$. Perhatikan nilainya lebih besar dari 1 — tangen tidak terbatas seperti kedua induknya.',
@@ -629,13 +661,19 @@ export const module3: Module = {
             },
             blanks: [
               { label: '|A| =', answer: 5 },
-              { label: '\\text{periode} =', answer: 4 * Math.PI },
+              { label: { en: '\\text{period} =', id: '\\text{periode} =' }, answer: 4 * Math.PI },
               { label: 'y_{\\min} =', answer: -8 },
             ],
-            solution: [
-              'B = \\tfrac{1}{2} \\Rightarrow \\text{periode} = \\tfrac{2\\pi}{1/2} = 4\\pi \\approx 12{,}57',
-              'y_{\\min} = D - |A| = -3 - 5 = -8',
-            ],
+            solution: {
+              en: [
+                'B = \\tfrac{1}{2} \\Rightarrow \\text{period} = \\tfrac{2\\pi}{1/2} = 4\\pi \\approx 12{,}57',
+                'y_{\\min} = D - |A| = -3 - 5 = -8',
+              ],
+              id: [
+                'B = \\tfrac{1}{2} \\Rightarrow \\text{periode} = \\tfrac{2\\pi}{1/2} = 4\\pi \\approx 12{,}57',
+                'y_{\\min} = D - |A| = -3 - 5 = -8',
+              ],
+            },
           },
           {
             prompt: {
@@ -643,13 +681,19 @@ export const module3: Module = {
               id: 'Untuk $y = 2\\sin(4x + \\pi)$, sebutkan periode dan pergeseran fasenya.',
             },
             blanks: [
-              { label: '\\text{periode} =', answer: Math.PI / 2 },
+              { label: { en: '\\text{period} =', id: '\\text{periode} =' }, answer: Math.PI / 2 },
               { label: 'C =', answer: -Math.PI / 4 },
             ],
-            solution: [
-              '4x + \\pi = 4\\left(x + \\tfrac{\\pi}{4}\\right) = 4\\left(x - \\left(-\\tfrac{\\pi}{4}\\right)\\right)',
-              '\\text{periode} = \\tfrac{2\\pi}{4} = \\tfrac{\\pi}{2}, \\qquad C = -\\tfrac{\\pi}{4}',
-            ],
+            solution: {
+              en: [
+                '4x + \\pi = 4\\left(x + \\tfrac{\\pi}{4}\\right) = 4\\left(x - \\left(-\\tfrac{\\pi}{4}\\right)\\right)',
+                '\\text{period} = \\tfrac{2\\pi}{4} = \\tfrac{\\pi}{2}, \\qquad C = -\\tfrac{\\pi}{4}',
+              ],
+              id: [
+                '4x + \\pi = 4\\left(x + \\tfrac{\\pi}{4}\\right) = 4\\left(x - \\left(-\\tfrac{\\pi}{4}\\right)\\right)',
+                '\\text{periode} = \\tfrac{2\\pi}{4} = \\tfrac{\\pi}{2}, \\qquad C = -\\tfrac{\\pi}{4}',
+              ],
+            },
           },
           {
             prompt: {
@@ -658,12 +702,18 @@ export const module3: Module = {
             },
             blanks: [
               { label: 'x =', answer: Math.PI / 4 },
-              { label: '\\text{periode} =', answer: Math.PI / 2 },
+              { label: { en: '\\text{period} =', id: '\\text{periode} =' }, answer: Math.PI / 2 },
             ],
-            solution: [
-              '2x = \\tfrac{\\pi}{2} \\Rightarrow x = \\tfrac{\\pi}{4}',
-              '\\text{periode tan} = \\tfrac{\\pi}{|B|} = \\tfrac{\\pi}{2}',
-            ],
+            solution: {
+              en: [
+                '2x = \\tfrac{\\pi}{2} \\Rightarrow x = \\tfrac{\\pi}{4}',
+                '\\text{period of tan} = \\tfrac{\\pi}{|B|} = \\tfrac{\\pi}{2}',
+              ],
+              id: [
+                '2x = \\tfrac{\\pi}{2} \\Rightarrow x = \\tfrac{\\pi}{4}',
+                '\\text{periode tan} = \\tfrac{\\pi}{|B|} = \\tfrac{\\pi}{2}',
+              ],
+            },
           },
         ],
         hints: [

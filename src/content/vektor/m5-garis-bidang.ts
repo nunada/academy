@@ -93,7 +93,10 @@ export const module5: Module = {
                 en: 'The line through $A(1, -2, 4)$ with direction $(3, 0, -1)$ is written parametrically. Complete the point at $t = 2$.',
                 id: 'Garis melalui $A(1, -2, 4)$ dengan arah $(3, 0, -1)$ ditulis secara parametrik. Lengkapi titik pada $t = 2$.',
               },
-              template: '(1 + 3t,\\ -2 + 0t,\\ 4 - t) \\text{ pada } t = 2: \\quad (___,\\ ___,\\ ___)',
+              template: {
+                en: '(1 + 3t,\\ -2 + 0t,\\ 4 - t) \\text{ at } t = 2: \\quad (___,\\ ___,\\ ___)',
+                id: '(1 + 3t,\\ -2 + 0t,\\ 4 - t) \\text{ pada } t = 2: \\quad (___,\\ ___,\\ ___)',
+              },
               blanks: ['7', '-2', '2'],
               explain: {
                 en: '$1 + 6 = 7$, the middle coordinate never moves because its direction component is 0, and $4 - 2 = 2$. A zero component means the line is level in that coordinate.',

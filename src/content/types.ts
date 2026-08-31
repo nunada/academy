@@ -150,10 +150,12 @@ export interface TsTest {
 
 /** What every answer box shares. */
 interface MathBlankBase {
-  /** LaTeX printed to the left of the box, e.g. `\vec{a}\cdot\vec{b} =`. */
-  label?: string
+  /** LaTeX printed to the left of the box, e.g. `\vec{a}\cdot\vec{b} =`. Wrap
+   *  in `Bi<T>` whenever it carries a word rather than bare notation — a
+   *  bare `x =` needs no translation, but `\text{starts at } x =` does. */
+  label?: Bi<string>
   /** LaTeX printed to the right — a unit, or a closing bracket. */
-  after?: string
+  after?: Bi<string>
   /** Placeholder shown in the empty box. */
   placeholder?: string
 }
@@ -195,14 +197,14 @@ export type MathBlank = MathNumberBlank | MathFormulaBlank
 export interface MathTask {
   prompt: Loc
   /** The problem as it would be printed on paper, in LaTeX, above the boxes. */
-  given?: string
+  given?: Bi<string>
   /** A drawing of the situation, shown above the boxes. */
   figure?: Figure
   blanks: MathBlank[]
   /** Boxes side by side — a vector's components — rather than stacked. */
   inline?: boolean
   /** The working, one LaTeX line at a time. Offered once the hints run out. */
-  solution?: string[]
+  solution?: Bi<string[]>
 }
 
 /**

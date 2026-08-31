@@ -261,7 +261,7 @@ export default function ProjectPage() {
                       setAnswerMarks((prev) => prev.map((m, j) => (j === i ? null : m)))
                     }}
                   />
-                  {showSolution && task.solution && <TexLines lines={task.solution} />}
+                  {showSolution && task.solution && <TexLines lines={resolveBi(task.solution, lang)} />}
                 </div>
               </div>
             ))}

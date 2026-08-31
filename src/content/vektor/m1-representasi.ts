@@ -707,10 +707,16 @@ export const module1: Module = {
               id: 'Tentukan skalar $m$ yang memenuhi $m(2, -6) = (-5, 15)$.',
             },
             blanks: [{ label: 'm =', answer: -2.5 }],
-            solution: [
-              '2m = -5 \\Rightarrow m = -\\tfrac{5}{2}',
-              '\\text{periksa: } -\\tfrac{5}{2}(-6) = 15 \\quad \\checkmark',
-            ],
+            solution: {
+              en: [
+                '2m = -5 \\Rightarrow m = -\\tfrac{5}{2}',
+                '\\text{check: } -\\tfrac{5}{2}(-6) = 15 \\quad \\checkmark',
+              ],
+              id: [
+                '2m = -5 \\Rightarrow m = -\\tfrac{5}{2}',
+                '\\text{periksa: } -\\tfrac{5}{2}(-6) = 15 \\quad \\checkmark',
+              ],
+            },
           },
         ],
         hints: [

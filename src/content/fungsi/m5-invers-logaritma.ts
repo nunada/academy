@@ -85,8 +85,8 @@ export const module5: Module = {
               },
               blanks: [
                 { label: 'x =', answer: -5 },
-                { label: '\\text{dan } x =', answer: 5 },
-                { label: '\\text{pada } [0, \\infty): x =', answer: 5 },
+                { label: { en: '\\text{and } x =', id: '\\text{dan } x =' }, answer: 5 },
+                { label: { en: '\\text{on } [0, \\infty): x =', id: '\\text{pada } [0, \\infty): x =' }, answer: 5 },
               ],
               hints: [
                 { en: 'Both a number and its negative square to the same thing.', id: 'Sebuah bilangan dan negatifnya menghasilkan kuadrat yang sama.' },
@@ -112,7 +112,7 @@ export const module5: Module = {
               id: 'c1',
               title: { en: 'Swap, then solve', id: 'Tukar, lalu selesaikan' },
               body: {
-                en: 'The inverse $f^{-1}$ undoes $f$:\n$$f^{-1}(f(x)) = x \\qquad \\text{dan} \\qquad f(f^{-1}(y)) = y$$\nThe recipe has three steps. Write $y = f(x)$; **swap** $x$ and $y$; solve for $y$. For $f(x) = 2x + 3$:\n$$y = 2x + 3 \\ \\to \\ x = 2y + 3 \\ \\to \\ y = \\frac{x - 3}{2}$$\nso $f^{-1}(x) = \\dfrac{x-3}{2}$ — undo the doubling and undo the adding, in the opposite order to the way they were done.\n\nOne piece of notation to be careful with: $f^{-1}$ means the inverse function, **not** $1/f$. The $-1$ is not an exponent here, however much it looks like one.',
+                en: 'The inverse $f^{-1}$ undoes $f$:\n$$f^{-1}(f(x)) = x \\qquad \\text{and} \\qquad f(f^{-1}(y)) = y$$\nThe recipe has three steps. Write $y = f(x)$; **swap** $x$ and $y$; solve for $y$. For $f(x) = 2x + 3$:\n$$y = 2x + 3 \\ \\to \\ x = 2y + 3 \\ \\to \\ y = \\frac{x - 3}{2}$$\nso $f^{-1}(x) = \\dfrac{x-3}{2}$ — undo the doubling and undo the adding, in the opposite order to the way they were done.\n\nOne piece of notation to be careful with: $f^{-1}$ means the inverse function, **not** $1/f$. The $-1$ is not an exponent here, however much it looks like one.',
                 id: 'Invers $f^{-1}$ membalik $f$:\n$$f^{-1}(f(x)) = x \\qquad \\text{dan} \\qquad f(f^{-1}(y)) = y$$\nCaranya tiga langkah. Tulis $y = f(x)$; **tukar** $x$ dan $y$; selesaikan untuk $y$. Untuk $f(x) = 2x + 3$:\n$$y = 2x + 3 \\ \\to \\ x = 2y + 3 \\ \\to \\ y = \\frac{x - 3}{2}$$\nsehingga $f^{-1}(x) = \\dfrac{x-3}{2}$ — batalkan penggandaannya dan batalkan penambahannya, dengan urutan terbalik dari cara keduanya dikerjakan.\n\nSatu notasi yang perlu diwaspadai: $f^{-1}$ berarti fungsi inversnya, **bukan** $1/f$. Angka $-1$ di situ bukan pangkat, sekalipun sangat mirip pangkat.',
               },
             },
@@ -442,11 +442,18 @@ export const module5: Module = {
                 { en: 'Ask each time: what power of the base gives that number?', id: 'Tanyakan tiap kali: pangkat berapa dari basisnya yang menghasilkan bilangan itu?' },
                 { en: 'A number below 1 needs a negative exponent.', id: 'Bilangan di bawah 1 memerlukan pangkat negatif.' },
               ],
-              solution: [
-                '2^5 = 32, \\qquad 10^3 = 1000',
-                '\\ln e^3 = 3 \\text{ karena } \\ln \\text{ membalik } e^x',
-                '3^{-2} = \\tfrac{1}{9} \\Rightarrow \\log_3\\tfrac{1}{9} = -2',
-              ],
+              solution: {
+                en: [
+                  '2^5 = 32, \\qquad 10^3 = 1000',
+                  '\\ln e^3 = 3 \\text{ because } \\ln \\text{ inverts } e^x',
+                  '3^{-2} = \\tfrac{1}{9} \\Rightarrow \\log_3\\tfrac{1}{9} = -2',
+                ],
+                id: [
+                  '2^5 = 32, \\qquad 10^3 = 1000',
+                  '\\ln e^3 = 3 \\text{ karena } \\ln \\text{ membalik } e^x',
+                  '3^{-2} = \\tfrac{1}{9} \\Rightarrow \\log_3\\tfrac{1}{9} = -2',
+                ],
+              },
               explain: {
                 en: 'The last one is negative because $\\tfrac{1}{9}$ is below 1, and every logarithm is negative there. It is never undefined for small positive numbers — only for zero and below.',
                 id: 'Yang terakhir negatif karena $\\tfrac{1}{9}$ berada di bawah 1, dan setiap logaritma bernilai negatif di sana. Ia tak pernah tak terdefinisi untuk bilangan positif yang kecil — hanya untuk nol dan yang di bawahnya.',
@@ -658,10 +665,16 @@ export const module5: Module = {
               id: 'Populasi $P = 5000(1{,}04)^t$ mencapai 10000 dalam berapa tahun?',
             },
             blanks: [{ label: 't =', answer: Math.log(2) / Math.log(1.04) }],
-            solution: [
-              '(1{,}04)^t = 2',
-              't = \\tfrac{\\ln 2}{\\ln 1{,}04} \\approx 17{,}67 \\text{ tahun}',
-            ],
+            solution: {
+              en: [
+                '(1{,}04)^t = 2',
+                't = \\tfrac{\\ln 2}{\\ln 1{,}04} \\approx 17{,}67 \\text{ years}',
+              ],
+              id: [
+                '(1{,}04)^t = 2',
+                't = \\tfrac{\\ln 2}{\\ln 1{,}04} \\approx 17{,}67 \\text{ tahun}',
+              ],
+            },
           },
         ],
         hints: [

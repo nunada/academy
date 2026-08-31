@@ -259,7 +259,13 @@ export const module2: Module = {
               },
               blanks: [
                 { label: '(f \\circ g)(x) =', formula: 'sqrt(x-3)', domain: [3.5, 9] },
-                { label: '\\text{domain } f \\circ g \\text{ mulai di } x =', answer: 3 },
+                {
+                  label: {
+                    en: '\\text{domain } f \\circ g \\text{ starts at } x =',
+                    id: '\\text{domain } f \\circ g \\text{ mulai di } x =',
+                  },
+                  answer: 3,
+                },
                 { label: '(f \\circ g)(12) =', answer: 3 },
               ],
               hints: [
@@ -372,7 +378,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'Outside moves it up, inside moves it sideways', id: 'Di luar menggeser tegak, di dalam menggeser mendatar' },
               body: {
-                en: 'Two rules, and only two:\n$$y = f(x) + k \\quad \\text{menggeser tegak sejauh } k$$\n$$y = f(x - h) \\quad \\text{menggeser mendatar sejauh } h$$\nA change **outside** the function moves the graph vertically, by exactly what you added. A change **inside** moves it horizontally — and the direction is the one you do not expect.\n\n$f(x - 3)$ moves the graph **three to the right**, even though the formula says minus. The reason is worth holding on to: the new graph does at $x = 3$ whatever the old one did at $x = 0$, so every feature has moved to a larger $x$.',
+                en: 'Two rules, and only two:\n$$y = f(x) + k \\quad \\text{shifts up by } k$$\n$$y = f(x - h) \\quad \\text{shifts right by } h$$\nA change **outside** the function moves the graph vertically, by exactly what you added. A change **inside** moves it horizontally — and the direction is the one you do not expect.\n\n$f(x - 3)$ moves the graph **three to the right**, even though the formula says minus. The reason is worth holding on to: the new graph does at $x = 3$ whatever the old one did at $x = 0$, so every feature has moved to a larger $x$.',
                 id: 'Dua aturan, dan hanya dua:\n$$y = f(x) + k \\quad \\text{menggeser tegak sejauh } k$$\n$$y = f(x - h) \\quad \\text{menggeser mendatar sejauh } h$$\nPerubahan **di luar** fungsi menggeser grafik secara tegak, sejauh persis yang kamu tambahkan. Perubahan **di dalam** menggesernya secara mendatar — dan arahnya justru bukan yang kamu duga.\n\n$f(x - 3)$ menggeser grafik **tiga satuan ke kanan**, meskipun rumusnya bertanda minus. Alasannya layak dipegang: grafik baru melakukan di $x = 3$ apa pun yang dilakukan grafik lama di $x = 0$, jadi setiap cirinya berpindah ke $x$ yang lebih besar.',
               },
               figure: {
@@ -467,7 +473,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'Multiply outside, multiply inside', id: 'Kalikan di luar, kalikan di dalam' },
               body: {
-                en: 'Where adding shifted, multiplying scales:\n$$y = a\\,f(x) \\quad \\text{meregang tegak dengan faktor } a$$\n$$y = f(bx) \\quad \\text{memampat mendatar dengan faktor } b$$\nThe vertical one behaves: $a = 3$ makes everything three times as tall. The horizontal one is again upside down — $b = 3$ makes the graph three times **narrower**, not wider, because $x$ only has to travel a third as far to make the inside reach the same value.\n\nA negative sign is a reflection. $y = -f(x)$ flips the graph across the $x$-axis (up becomes down); $y = f(-x)$ flips it across the $y$-axis (left becomes right).',
+                en: 'Where adding shifted, multiplying scales:\n$$y = a\\,f(x) \\quad \\text{stretches vertically by factor } a$$\n$$y = f(bx) \\quad \\text{compresses horizontally by factor } b$$\nThe vertical one behaves: $a = 3$ makes everything three times as tall. The horizontal one is again upside down — $b = 3$ makes the graph three times **narrower**, not wider, because $x$ only has to travel a third as far to make the inside reach the same value.\n\nA negative sign is a reflection. $y = -f(x)$ flips the graph across the $x$-axis (up becomes down); $y = f(-x)$ flips it across the $y$-axis (left becomes right).',
                 id: 'Bila penambahan menggeser, perkalian menskala:\n$$y = a\\,f(x) \\quad \\text{meregang tegak dengan faktor } a$$\n$$y = f(bx) \\quad \\text{memampat mendatar dengan faktor } b$$\nYang tegak berperilaku wajar: $a = 3$ membuat semuanya tiga kali lebih tinggi. Yang mendatar sekali lagi terbalik — $b = 3$ membuat grafiknya tiga kali lebih **sempit**, bukan lebih lebar, sebab $x$ hanya perlu menempuh sepertiga jarak agar bagian dalamnya mencapai nilai yang sama.\n\nTanda negatif berarti pencerminan. $y = -f(x)$ membalik grafik terhadap sumbu $x$ (atas menjadi bawah); $y = f(-x)$ membalikkannya terhadap sumbu $y$ (kiri menjadi kanan).',
               },
               figure: {
@@ -575,12 +581,20 @@ export const module2: Module = {
                 en: 'Order the transformations that turn $y = \\sqrt{x}$ into $y = -2\\sqrt{x + 1} + 3$.',
                 id: 'Susun transformasi yang mengubah $y = \\sqrt{x}$ menjadi $y = -2\\sqrt{x + 1} + 3$.',
               },
-              lines: [
-                '\\text{geser 1 ke kiri}: \\ \\sqrt{x+1}',
-                '\\text{regangkan tegak 2 kali}: \\ 2\\sqrt{x+1}',
-                '\\text{cerminkan terhadap sumbu } x: \\ -2\\sqrt{x+1}',
-                '\\text{geser 3 ke atas}: \\ -2\\sqrt{x+1} + 3',
-              ],
+              lines: {
+                en: [
+                  '\\text{shift 1 left}: \\ \\sqrt{x+1}',
+                  '\\text{stretch vertically 2x}: \\ 2\\sqrt{x+1}',
+                  '\\text{reflect across the } x\\text{-axis}: \\ -2\\sqrt{x+1}',
+                  '\\text{shift 3 up}: \\ -2\\sqrt{x+1} + 3',
+                ],
+                id: [
+                  '\\text{geser 1 ke kiri}: \\ \\sqrt{x+1}',
+                  '\\text{regangkan tegak 2 kali}: \\ 2\\sqrt{x+1}',
+                  '\\text{cerminkan terhadap sumbu } x: \\ -2\\sqrt{x+1}',
+                  '\\text{geser 3 ke atas}: \\ -2\\sqrt{x+1} + 3',
+                ],
+              },
               explain: {
                 en: 'Inside before outside, and among the outside changes, multiplication before addition — the same precedence arithmetic always had. The starting point $(0,0)$ ends at $(-1, 3)$.',
                 id: 'Yang di dalam sebelum yang di luar, dan di antara perubahan luar, perkalian sebelum penjumlahan — urutan yang memang selalu berlaku dalam aritmetika. Titik awalnya $(0,0)$ berakhir di $(-1, 3)$.',
@@ -594,7 +608,7 @@ export const module2: Module = {
                 id: 'Untuk $y = 2(x + 1)^2 - 3$, tentukan puncaknya dan nilainya pada $x = 1$.',
               },
               blanks: [
-                { label: '\\text{puncak: } x =', answer: -1 },
+                { label: { en: '\\text{vertex: } x =', id: '\\text{puncak: } x =' }, answer: -1 },
                 { label: 'y =', answer: -3 },
                 { label: 'y(1) =', answer: 5 },
               ],
@@ -602,7 +616,10 @@ export const module2: Module = {
                 { en: '$(x+1)$ is $(x - (-1))$, so the shift is to the left.', id: '$(x+1)$ adalah $(x - (-1))$, jadi pergeserannya ke kiri.' },
                 { en: 'At $x = 1$: $2(2)^2 - 3$.', id: 'Pada $x = 1$: $2(2)^2 - 3$.' },
               ],
-              solution: ['\\text{puncak } (-1, -3)', 'y(1) = 2(4) - 3 = 5'],
+              solution: {
+                en: ['\\text{vertex } (-1, -3)', 'y(1) = 2(4) - 3 = 5'],
+                id: ['\\text{puncak } (-1, -3)', 'y(1) = 2(4) - 3 = 5'],
+              },
               explain: {
                 en: 'The stretch by 2 does not move the vertex — it is where the squared term is zero, and twice zero is still zero. It only makes everything either side of it climb twice as fast.',
                 id: 'Peregangan 2 kali tidak memindahkan puncaknya — di situlah suku kuadratnya nol, dan dua kali nol tetap nol. Ia hanya membuat segala sesuatu di kedua sisinya menanjak dua kali lebih cepat.',
@@ -631,7 +648,10 @@ export const module2: Module = {
             },
             inline: true,
             blanks: [{ answer: 4 }, { answer: 1 }],
-            solution: ['h = 4, \\ k = 1 \\Rightarrow \\text{puncak } (4, 1)'],
+            solution: {
+              en: ['h = 4, \\ k = 1 \\Rightarrow \\text{vertex } (4, 1)'],
+              id: ['h = 4, \\ k = 1 \\Rightarrow \\text{puncak } (4, 1)'],
+            },
           },
           {
             prompt: {
@@ -639,14 +659,20 @@ export const module2: Module = {
               id: 'Untuk $y = -3|x + 2| + 6$, sebutkan sudutnya dan nilainya pada $x = 0$.',
             },
             blanks: [
-              { label: '\\text{sudut: } x =', answer: -2 },
+              { label: { en: '\\text{corner: } x =', id: '\\text{sudut: } x =' }, answer: -2 },
               { label: 'y =', answer: 6 },
               { label: 'y(0) =', answer: 0 },
             ],
-            solution: [
-              '\\text{sudut } (-2, 6)',
-              'y(0) = -3|2| + 6 = -6 + 6 = 0',
-            ],
+            solution: {
+              en: [
+                '\\text{corner } (-2, 6)',
+                'y(0) = -3|2| + 6 = -6 + 6 = 0',
+              ],
+              id: [
+                '\\text{sudut } (-2, 6)',
+                'y(0) = -3|2| + 6 = -6 + 6 = 0',
+              ],
+            },
           },
           {
             prompt: {
@@ -654,14 +680,21 @@ export const module2: Module = {
               id: 'Grafik $y = \\sqrt{x}$ menjadi $y = \\sqrt{2x - 6}$. Faktorkan bagian dalamnya lalu sebutkan pergeseran mendatarnya, dan $x$ terkecil di domainnya.',
             },
             blanks: [
-              { label: '\\text{geser ke kanan sejauh}', answer: 3 },
+              { label: { en: '\\text{shift right by}', id: '\\text{geser ke kanan sejauh}' }, answer: 3 },
               { label: 'x_{\\min} =', answer: 3 },
             ],
-            solution: [
-              '\\sqrt{2x - 6} = \\sqrt{2(x - 3)}',
-              'h = 3 \\Rightarrow \\text{geser 3 ke kanan}',
-              '2x - 6 \\geq 0 \\Rightarrow x \\geq 3',
-            ],
+            solution: {
+              en: [
+                '\\sqrt{2x - 6} = \\sqrt{2(x - 3)}',
+                'h = 3 \\Rightarrow \\text{shift 3 to the right}',
+                '2x - 6 \\geq 0 \\Rightarrow x \\geq 3',
+              ],
+              id: [
+                '\\sqrt{2x - 6} = \\sqrt{2(x - 3)}',
+                'h = 3 \\Rightarrow \\text{geser 3 ke kanan}',
+                '2x - 6 \\geq 0 \\Rightarrow x \\geq 3',
+              ],
+            },
           },
         ],
         hints: [
