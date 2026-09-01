@@ -533,8 +533,11 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
 /* ------------------------------------------------------------------- web */
 
 function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'web' }> }) {
-  const { t, tc } = useI18n()
-  const [code, setCode] = useState(step.starter)
+  const { t, tc, lang } = useI18n()
+  const starter = resolveBi(step.starter, lang)
+  const tests = resolveBi(step.tests, lang)
+  const solution = resolveBi(step.solution, lang)
+  const [code, setCode] = useState(starter)
   const [busy, setBusy] = useState(false)
   const [outcomes, setOutcomes] = useState<WebOutcome[] | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
@@ -554,7 +557,7 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
   async function doCheck() {
     setBusy(true)
     try {
-      const res = await runWebTests(code, step.tests, step.html, step.js, step.react)
+      const res = await runWebTests(code, tests, step.html, step.js, step.react)
       setOutcomes(res)
       if (res.every((o) => o.passed)) onSolved()
       else onWrong()
@@ -619,8 +622,8 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
       {showSolution && (
         <div style={{ marginTop: 12 }}>
           <div className="io-label">{t('showSolution')}</div>
-          <CodeBlock>{step.solution}</CodeBlock>
-          <button className="btn ghost sm" onClick={() => setCode(step.solution)}>
+          <CodeBlock>{solution}</CodeBlock>
+          <button className="btn ghost sm" onClick={() => setCode(solution)}>
             ↧ {tc({ en: 'Copy into the editor', id: 'Salin ke editor' })}
           </button>
         </div>

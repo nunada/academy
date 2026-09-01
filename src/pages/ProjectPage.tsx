@@ -158,7 +158,7 @@ export default function ProjectPage() {
       // Each runtime reports differently; they meet again as ResultRow[].
       const next: ResultRow[] =
         project.runtime === 'web'
-          ? fromWeb(await runWebTests(code, project.tests, project.html, project.js, project.react))
+          ? fromWeb(await runWebTests(code, resolveBi(project.tests, lang), project.html, project.js, project.react))
           : project.runtime === 'sql'
             ? fromSql(await runSqlTests(project.schema, code, project.tests))
             : project.runtime === 'ts'

@@ -34,7 +34,10 @@ export const module1: Module = {
                 en: 'HTML is not a programming language and it is not a drawing tool. It **labels** text so the browser knows what each piece is. `<h1>` says "this is the main heading"; `<p>` says "this is a paragraph". The browser then decides how to show it.',
                 id: 'HTML bukan bahasa pemrograman dan bukan alat menggambar. Ia **melabeli** teks agar peramban tahu tiap bagian itu apa. `<h1>` berkata "ini judul utama"; `<p>` berkata "ini paragraf". Peramban lalu memutuskan cara menampilkannya.',
               },
-              code: '<h1>Nunada Academy</h1>\n<p>Belajar coding langkah demi langkah.</p>',
+              code: {
+                en: '<h1>Nunada Academy</h1>\n<p>Learn to code step by step.</p>',
+                id: '<h1>Nunada Academy</h1>\n<p>Belajar coding langkah demi langkah.</p>',
+              },
               preview: true,
             },
             {
@@ -45,7 +48,10 @@ export const module1: Module = {
                 en: 'Most elements come in a pair: `<p>` opens and `</p>` closes — the slash is the only difference. Everything between them belongs to that element. Forget the closing tag and the browser guesses, usually wrongly.',
                 id: 'Sebagian besar elemen berpasangan: `<p>` membuka dan `</p>` menutup — garis miring satu-satunya pembeda. Semua di antaranya milik elemen itu. Lupakan tag penutupnya dan peramban akan menebak, biasanya keliru.',
               },
-              code: '<p>Paragraf ini ditutup dengan benar.</p>\n<p>Yang ini juga.</p>',
+              code: {
+                en: '<p>This paragraph is closed correctly.</p>\n<p>So is this one.</p>',
+                id: '<p>Paragraf ini ditutup dengan benar.</p>\n<p>Yang ini juga.</p>',
+              },
               preview: true,
             },
             {
@@ -56,7 +62,10 @@ export const module1: Module = {
                 en: 'A few elements have no content to wrap, so they never get a closing tag. `<br>` breaks a line and `<hr>` draws a dividing rule. These are the exception, not the rule.',
                 id: 'Beberapa elemen tidak punya isi untuk dibungkus, jadi tidak pernah punya tag penutup. `<br>` memutus baris dan `<hr>` menggambar garis pemisah. Ini pengecualian, bukan kelaziman.',
               },
-              code: '<p>Baris pertama<br>Baris kedua</p>\n<hr>\n<p>Setelah garis.</p>',
+              code: {
+                en: '<p>First line<br>Second line</p>\n<hr>\n<p>After the rule.</p>',
+                id: '<p>Baris pertama<br>Baris kedua</p>\n<hr>\n<p>Setelah garis.</p>',
+              },
               preview: true,
             },
             {
@@ -82,7 +91,10 @@ export const module1: Module = {
                 en: 'Complete the heading and the paragraph.',
                 id: 'Lengkapi judul dan paragrafnya.',
               },
-              template: '<h1>Halo</h1___\n<___>Selamat datang</p>',
+              template: {
+                en: '<h1>Hello</h1___\n<___>Welcome</p>',
+                id: '<h1>Halo</h1___\n<___>Selamat datang</p>',
+              },
               blanks: ['>', 'p'],
               explain: {
                 en: 'A tag always ends with `>`, and the opening tag names the element.',
@@ -93,26 +105,41 @@ export const module1: Module = {
               kind: 'web',
               id: 'w1',
               prompt: {
-                en: 'Write a heading that says `Profil Saya` and a paragraph below it that says `Saya sedang belajar HTML.`',
+                en: 'Write a heading that says `My Profile` and a paragraph below it that says `I am learning HTML.`',
                 id: 'Tulis judul bertuliskan `Profil Saya` dan sebuah paragraf di bawahnya bertuliskan `Saya sedang belajar HTML.`',
               },
               starter: '',
-              tests: [
-                {
-                  name: { en: 'There is an h1 with the right text', id: 'Ada h1 dengan teks yang benar' },
-                  check: 'assert(sel("h1"), "belum ada elemen <h1>");\nassert(text("h1") === "Profil Saya", "teks h1 harus tepat: Profil Saya");',
-                },
-                {
-                  name: { en: 'There is a paragraph with the right text', id: 'Ada paragraf dengan teks yang benar' },
-                  check: 'assert(sel("p"), "belum ada elemen <p>");\nassert(text("p") === "Saya sedang belajar HTML.", "teks paragraf harus tepat, termasuk titiknya");',
-                },
-              ],
+              tests: {
+                en: [
+                  {
+                    name: { en: 'There is an h1 with the right text', id: 'There is an h1 with the right text' },
+                    check: 'assert(sel("h1"), "there is no <h1> element yet");\nassert(text("h1") === "My Profile", "the h1 text must be exactly: My Profile");',
+                  },
+                  {
+                    name: { en: 'There is a paragraph with the right text', id: 'There is a paragraph with the right text' },
+                    check: 'assert(sel("p"), "there is no <p> element yet");\nassert(text("p") === "I am learning HTML.", "the paragraph text must be exact, period included");',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'There is an h1 with the right text', id: 'Ada h1 dengan teks yang benar' },
+                    check: 'assert(sel("h1"), "belum ada elemen <h1>");\nassert(text("h1") === "Profil Saya", "teks h1 harus tepat: Profil Saya");',
+                  },
+                  {
+                    name: { en: 'There is a paragraph with the right text', id: 'Ada paragraf dengan teks yang benar' },
+                    check: 'assert(sel("p"), "belum ada elemen <p>");\nassert(text("p") === "Saya sedang belajar HTML.", "teks paragraf harus tepat, termasuk titiknya");',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Two elements, each on its own line.', id: 'Dua elemen, masing-masing di barisnya sendiri.' },
                 { en: 'The heading uses h1; the paragraph uses p.', id: 'Judulnya memakai h1; paragrafnya memakai p.' },
-                { en: '<h1>Profil Saya</h1> then <p>Saya sedang belajar HTML.</p>', id: '<h1>Profil Saya</h1> lalu <p>Saya sedang belajar HTML.</p>' },
+                { en: '<h1>My Profile</h1> then <p>I am learning HTML.</p>', id: '<h1>Profil Saya</h1> lalu <p>Saya sedang belajar HTML.</p>' },
               ],
-              solution: '<h1>Profil Saya</h1>\n<p>Saya sedang belajar HTML.</p>',
+              solution: {
+                en: '<h1>My Profile</h1>\n<p>I am learning HTML.</p>',
+                id: '<h1>Profil Saya</h1>\n<p>Saya sedang belajar HTML.</p>',
+              },
             },
           ],
         },
@@ -130,7 +157,10 @@ export const module1: Module = {
                 en: 'A real page is not loose tags. `<!doctype html>` says which version, `<html>` wraps everything, `<head>` holds information *about* the page, and `<body>` holds what people actually see.',
                 id: 'Halaman sungguhan bukan tag yang berserak. `<!doctype html>` menyatakan versinya, `<html>` membungkus semuanya, `<head>` memuat keterangan *tentang* halamannya, dan `<body>` memuat yang benar-benar dilihat orang.',
               },
-              code: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Profil Saya</title>\n  </head>\n  <body>\n    <h1>Halo</h1>\n  </body>\n</html>',
+              code: {
+                en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>My Profile</title>\n  </head>\n  <body>\n    <h1>Hello</h1>\n  </body>\n</html>',
+                id: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Profil Saya</title>\n  </head>\n  <body>\n    <h1>Halo</h1>\n  </body>\n</html>',
+              },
               preview: true,
             },
             {
@@ -141,17 +171,23 @@ export const module1: Module = {
                 en: 'Nothing in `<head>` appears on the page. `<title>` names the browser tab and is what search results show. `<meta charset="utf-8">` tells the browser how to read the letters — leave it out and accented characters turn into rubbish.',
                 id: 'Tidak ada isi `<head>` yang muncul di halaman. `<title>` menamai tab peramban dan itulah yang ditampilkan hasil pencarian. `<meta charset="utf-8">` memberi tahu peramban cara membaca hurufnya — hilangkan ia dan huruf beraksen berubah jadi sampah.',
               },
-              code: '<head>\n  <meta charset="utf-8">\n  <title>Judul di tab, bukan di halaman</title>\n</head>',
+              code: {
+                en: '<head>\n  <meta charset="utf-8">\n  <title>Title in the tab, not on the page</title>\n</head>',
+                id: '<head>\n  <meta charset="utf-8">\n  <title>Judul di tab, bukan di halaman</title>\n</head>',
+              },
             },
             {
               kind: 'concept',
               id: 'c3',
               title: { en: 'Nesting must not cross', id: 'Sarang tidak boleh bersilang' },
               body: {
-                en: 'Elements sit inside one another like boxes. The one opened last must close first. Crossing them — `<b><i>teks</b></i>` — is invalid, and browsers repair it in ways you did not ask for.',
+                en: 'Elements sit inside one another like boxes. The one opened last must close first. Crossing them — `<b><i>text</b></i>` — is invalid, and browsers repair it in ways you did not ask for.',
                 id: 'Elemen bersarang satu di dalam lainnya seperti kotak. Yang dibuka terakhir harus ditutup pertama. Menyilangkannya — `<b><i>teks</b></i>` — tidak sah, dan peramban memperbaikinya dengan cara yang tidak kamu minta.',
               },
-              code: '<body>\n  <h1>Benar</h1>\n  <p>Teks <strong>tebal</strong> di dalam paragraf.</p>\n</body>',
+              code: {
+                en: '<body>\n  <h1>Correct</h1>\n  <p>This <strong>bold</strong> text is inside a paragraph.</p>\n</body>',
+                id: '<body>\n  <h1>Benar</h1>\n  <p>Teks <strong>tebal</strong> di dalam paragraf.</p>\n</body>',
+              },
               preview: true,
             },
             {
@@ -180,17 +216,30 @@ export const module1: Module = {
                 en: 'Put the skeleton of a document in order.',
                 id: 'Susun kerangka sebuah dokumen dengan urutan yang benar.',
               },
-              lines: [
-                '<!doctype html>',
-                '<html lang="id">',
-                '  <head>',
-                '    <title>Halaman Saya</title>',
-                '  </head>',
-                '  <body>',
-                '    <h1>Halo</h1>',
-                '  </body>',
-                '</html>',
-              ],
+              lines: {
+                en: [
+                  '<!doctype html>',
+                  '<html lang="en">',
+                  '  <head>',
+                  '    <title>My Page</title>',
+                  '  </head>',
+                  '  <body>',
+                  '    <h1>Hello</h1>',
+                  '  </body>',
+                  '</html>',
+                ],
+                id: [
+                  '<!doctype html>',
+                  '<html lang="id">',
+                  '  <head>',
+                  '    <title>Halaman Saya</title>',
+                  '  </head>',
+                  '  <body>',
+                  '    <h1>Halo</h1>',
+                  '  </body>',
+                  '</html>',
+                ],
+              },
               explain: {
                 en: 'The doctype comes first, head before body, and every element closes in the reverse order it opened.',
                 id: 'Doctype lebih dulu, head sebelum body, dan tiap elemen ditutup dengan urutan terbalik dari pembukaannya.',
@@ -200,35 +249,60 @@ export const module1: Module = {
               kind: 'web',
               id: 'w1',
               prompt: {
-                en: 'Write a complete document: language `id`, charset utf-8, the title `Halaman Saya`, and inside the body an `h1` saying `Halo Dunia`.',
+                en: 'Write a complete document: language `en`, charset utf-8, the title `My Page`, and inside the body an `h1` saying `Hello World`.',
                 id: 'Tulis dokumen lengkap: bahasa `id`, charset utf-8, judul `Halaman Saya`, dan di dalam body sebuah `h1` bertuliskan `Halo Dunia`.',
               },
-              starter: '<!doctype html>\n<html lang="id">\n  <head>\n\n  </head>\n  <body>\n\n  </body>\n</html>\n',
-              tests: [
-                {
-                  name: { en: 'The language is set to id', id: 'Bahasanya disetel ke id' },
-                  check: 'assert(doc.documentElement.getAttribute("lang") === "id", "atribut lang pada <html> harus id");',
-                },
-                {
-                  name: { en: 'The charset is declared', id: 'Charset dideklarasikan' },
-                  check: 'assert(sel("meta[charset]"), "belum ada <meta charset>");\nassert(attr("meta[charset]", "charset").toLowerCase() === "utf-8", "charset harus utf-8");',
-                },
-                {
-                  name: { en: 'The title is right', id: 'Judulnya benar' },
-                  check: 'assert(doc.title === "Halaman Saya", "judul harus: Halaman Saya, sekarang: " + doc.title);',
-                },
-                {
-                  name: { en: 'The heading is in the body', id: 'Judulnya ada di dalam body' },
-                  check: 'assert(sel("body h1"), "h1 harus berada di dalam <body>");\nassert(text("body h1") === "Halo Dunia", "teks h1 harus: Halo Dunia");',
-                },
-              ],
+              starter: {
+                en: '<!doctype html>\n<html lang="en">\n  <head>\n\n  </head>\n  <body>\n\n  </body>\n</html>\n',
+                id: '<!doctype html>\n<html lang="id">\n  <head>\n\n  </head>\n  <body>\n\n  </body>\n</html>\n',
+              },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'The language is set to en', id: 'The language is set to en' },
+                    check: 'assert(doc.documentElement.getAttribute("lang") === "en", "the lang attribute on <html> must be en");',
+                  },
+                  {
+                    name: { en: 'The charset is declared', id: 'The charset is declared' },
+                    check: 'assert(sel("meta[charset]"), "there is no <meta charset> yet");\nassert(attr("meta[charset]", "charset").toLowerCase() === "utf-8", "the charset must be utf-8");',
+                  },
+                  {
+                    name: { en: 'The title is right', id: 'The title is right' },
+                    check: 'assert(doc.title === "My Page", "the title must be: My Page, currently: " + doc.title);',
+                  },
+                  {
+                    name: { en: 'The heading is in the body', id: 'The heading is in the body' },
+                    check: 'assert(sel("body h1"), "the h1 must be inside <body>");\nassert(text("body h1") === "Hello World", "the h1 text must be: Hello World");',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'The language is set to id', id: 'Bahasanya disetel ke id' },
+                    check: 'assert(doc.documentElement.getAttribute("lang") === "id", "atribut lang pada <html> harus id");',
+                  },
+                  {
+                    name: { en: 'The charset is declared', id: 'Charset dideklarasikan' },
+                    check: 'assert(sel("meta[charset]"), "belum ada <meta charset>");\nassert(attr("meta[charset]", "charset").toLowerCase() === "utf-8", "charset harus utf-8");',
+                  },
+                  {
+                    name: { en: 'The title is right', id: 'Judulnya benar' },
+                    check: 'assert(doc.title === "Halaman Saya", "judul harus: Halaman Saya, sekarang: " + doc.title);',
+                  },
+                  {
+                    name: { en: 'The heading is in the body', id: 'Judulnya ada di dalam body' },
+                    check: 'assert(sel("body h1"), "h1 harus berada di dalam <body>");\nassert(text("body h1") === "Halo Dunia", "teks h1 harus: Halo Dunia");',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Two things go in the head, one in the body.', id: 'Dua hal masuk ke head, satu ke body.' },
-                { en: '<meta charset="utf-8"> and <title>Halaman Saya</title>', id: '<meta charset="utf-8"> dan <title>Halaman Saya</title>' },
+                { en: '<meta charset="utf-8"> and <title>My Page</title>', id: '<meta charset="utf-8"> dan <title>Halaman Saya</title>' },
                 { en: 'The h1 goes between <body> and </body>.', id: 'h1-nya diletakkan di antara <body> dan </body>.' },
               ],
-              solution:
-                '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Halaman Saya</title>\n  </head>\n  <body>\n    <h1>Halo Dunia</h1>\n  </body>\n</html>',
+              solution: {
+                en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>My Page</title>\n  </head>\n  <body>\n    <h1>Hello World</h1>\n  </body>\n</html>',
+                id: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Halaman Saya</title>\n  </head>\n  <body>\n    <h1>Halo Dunia</h1>\n  </body>\n</html>',
+              },
             },
           ],
         },
@@ -242,42 +316,71 @@ export const module1: Module = {
           id: 'Sebuah dokumen utuh yang memperkenalkan dirimu.',
         },
         requirements: [
-          { en: 'A full document: doctype, `<html lang="id">`, head and body.', id: 'Dokumen lengkap: doctype, `<html lang="id">`, head dan body.' },
-          { en: 'Charset utf-8 and the title `Perkenalan`.', id: 'Charset utf-8 dan judul `Perkenalan`.' },
+          { en: 'A full document: doctype, `<html lang="en">`, head and body.', id: 'Dokumen lengkap: doctype, `<html lang="id">`, head dan body.' },
+          { en: 'Charset utf-8 and the title `Introduction`.', id: 'Charset utf-8 dan judul `Perkenalan`.' },
           { en: 'An `h1` with your name — use `Nunada`.', id: 'Sebuah `h1` berisi namamu — pakai `Nunada`.' },
           { en: 'Exactly two paragraphs below it.', id: 'Tepat dua paragraf di bawahnya.' },
           { en: 'A horizontal rule between the heading and the paragraphs.', id: 'Sebuah garis pemisah antara judul dan paragrafnya.' },
         ],
-        starter: '<!doctype html>\n<html lang="id">\n  <head>\n\n  </head>\n  <body>\n\n  </body>\n</html>\n',
-        tests: [
-          {
-            name: { en: 'The document is complete', id: 'Dokumennya lengkap' },
-            check:
-              'assert(doc.documentElement.getAttribute("lang") === "id", "lang harus id");\nassert(sel("meta[charset]"), "belum ada meta charset");\nassert(doc.title === "Perkenalan", "judul harus: Perkenalan");',
-          },
-          {
-            name: { en: 'One heading with the name', id: 'Satu judul berisi nama' },
-            check:
-              'assert(all("h1").length === 1, "harus tepat satu h1, ada: " + all("h1").length);\nassert(text("h1") === "Nunada", "teks h1 harus: Nunada");',
-          },
-          {
-            name: { en: 'Exactly two paragraphs', id: 'Tepat dua paragraf' },
-            check:
-              'var p = all("p");\nassert(p.length === 2, "harus tepat 2 paragraf, ada: " + p.length);\nassert(p[0].textContent.trim().length > 0, "paragraf pertama tidak boleh kosong");\nassert(p[1].textContent.trim().length > 0, "paragraf kedua tidak boleh kosong");',
-          },
-          {
-            name: { en: 'A rule sits between them', id: 'Ada garis di antaranya' },
-            check:
-              'var hr = sel("hr");\nassert(hr, "belum ada <hr>");\nvar h1 = sel("h1");\nvar p1 = all("p")[0];\nassert(h1.compareDocumentPosition(hr) & Node.DOCUMENT_POSITION_FOLLOWING, "hr harus setelah h1");\nassert(hr.compareDocumentPosition(p1) & Node.DOCUMENT_POSITION_FOLLOWING, "hr harus sebelum paragraf pertama");',
-          },
-        ],
+        starter: {
+          en: '<!doctype html>\n<html lang="en">\n  <head>\n\n  </head>\n  <body>\n\n  </body>\n</html>\n',
+          id: '<!doctype html>\n<html lang="id">\n  <head>\n\n  </head>\n  <body>\n\n  </body>\n</html>\n',
+        },
+        tests: {
+          en: [
+            {
+              name: { en: 'The document is complete', id: 'The document is complete' },
+              check:
+                'assert(doc.documentElement.getAttribute("lang") === "en", "lang must be en");\nassert(sel("meta[charset]"), "there is no meta charset yet");\nassert(doc.title === "Introduction", "the title must be: Introduction");',
+            },
+            {
+              name: { en: 'One heading with the name', id: 'One heading with the name' },
+              check:
+                'assert(all("h1").length === 1, "there must be exactly one h1, found: " + all("h1").length);\nassert(text("h1") === "Nunada", "the h1 text must be: Nunada");',
+            },
+            {
+              name: { en: 'Exactly two paragraphs', id: 'Exactly two paragraphs' },
+              check:
+                'var p = all("p");\nassert(p.length === 2, "there must be exactly 2 paragraphs, found: " + p.length);\nassert(p[0].textContent.trim().length > 0, "the first paragraph must not be empty");\nassert(p[1].textContent.trim().length > 0, "the second paragraph must not be empty");',
+            },
+            {
+              name: { en: 'A rule sits between them', id: 'A rule sits between them' },
+              check:
+                'var hr = sel("hr");\nassert(hr, "there is no <hr> yet");\nvar h1 = sel("h1");\nvar p1 = all("p")[0];\nassert(h1.compareDocumentPosition(hr) & Node.DOCUMENT_POSITION_FOLLOWING, "the hr must come after the h1");\nassert(hr.compareDocumentPosition(p1) & Node.DOCUMENT_POSITION_FOLLOWING, "the hr must come before the first paragraph");',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'The document is complete', id: 'Dokumennya lengkap' },
+              check:
+                'assert(doc.documentElement.getAttribute("lang") === "id", "lang harus id");\nassert(sel("meta[charset]"), "belum ada meta charset");\nassert(doc.title === "Perkenalan", "judul harus: Perkenalan");',
+            },
+            {
+              name: { en: 'One heading with the name', id: 'Satu judul berisi nama' },
+              check:
+                'assert(all("h1").length === 1, "harus tepat satu h1, ada: " + all("h1").length);\nassert(text("h1") === "Nunada", "teks h1 harus: Nunada");',
+            },
+            {
+              name: { en: 'Exactly two paragraphs', id: 'Tepat dua paragraf' },
+              check:
+                'var p = all("p");\nassert(p.length === 2, "harus tepat 2 paragraf, ada: " + p.length);\nassert(p[0].textContent.trim().length > 0, "paragraf pertama tidak boleh kosong");\nassert(p[1].textContent.trim().length > 0, "paragraf kedua tidak boleh kosong");',
+            },
+            {
+              name: { en: 'A rule sits between them', id: 'Ada garis di antaranya' },
+              check:
+                'var hr = sel("hr");\nassert(hr, "belum ada <hr>");\nvar h1 = sel("h1");\nvar p1 = all("p")[0];\nassert(h1.compareDocumentPosition(hr) & Node.DOCUMENT_POSITION_FOLLOWING, "hr harus setelah h1");\nassert(hr.compareDocumentPosition(p1) & Node.DOCUMENT_POSITION_FOLLOWING, "hr harus sebelum paragraf pertama");',
+            },
+          ],
+        },
         hints: [
           { en: 'The head needs the charset and the title; everything else goes in the body.', id: 'Head butuh charset dan judul; sisanya masuk ke body.' },
           { en: '`<hr>` has no closing tag.', id: '`<hr>` tidak punya tag penutup.' },
           { en: 'Order in the body: h1, then hr, then the two paragraphs.', id: 'Urutan di body: h1, lalu hr, lalu dua paragraf.' },
         ],
-        solution:
-          '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Perkenalan</title>\n  </head>\n  <body>\n    <h1>Nunada</h1>\n    <hr>\n    <p>Saya sedang belajar membuat halaman web.</p>\n    <p>Halaman ini adalah latihan pertama saya.</p>\n  </body>\n</html>',
+        solution: {
+          en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>Introduction</title>\n  </head>\n  <body>\n    <h1>Nunada</h1>\n    <hr>\n    <p>I am learning to build web pages.</p>\n    <p>This page is my first exercise.</p>\n  </body>\n</html>',
+          id: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Perkenalan</title>\n  </head>\n  <body>\n    <h1>Nunada</h1>\n    <hr>\n    <p>Saya sedang belajar membuat halaman web.</p>\n    <p>Halaman ini adalah latihan pertama saya.</p>\n  </body>\n</html>',
+        },
         xp: 50,
       },
     },
@@ -305,7 +408,10 @@ export const module1: Module = {
                 en: '`<h1>` down to `<h6>` are the table of contents of your page. `<h2>` is a section of the `<h1>`, `<h3>` a section of that. Screen readers navigate by these, so the order is a promise, not decoration.',
                 id: '`<h1>` sampai `<h6>` adalah daftar isi halamanmu. `<h2>` adalah bagian dari `<h1>`, `<h3>` bagian darinya lagi. Pembaca layar menyusuri halaman lewat ini, jadi urutannya adalah janji, bukan hiasan.',
               },
-              code: '<h1>Kursus Python</h1>\n<h2>Modul 1</h2>\n<h3>Pelajaran 1</h3>\n<h2>Modul 2</h2>',
+              code: {
+                en: '<h1>Python Course</h1>\n<h2>Module 1</h2>\n<h3>Lesson 1</h3>\n<h2>Module 2</h2>',
+                id: '<h1>Kursus Python</h1>\n<h2>Modul 1</h2>\n<h3>Pelajaran 1</h3>\n<h2>Modul 2</h2>',
+              },
               preview: true,
             },
             {
@@ -317,7 +423,7 @@ export const module1: Module = {
                 id: 'Melompat dari `<h1>` langsung ke `<h4>` karena tampak lebih bagus adalah kesalahan klasik. Ukuran itu urusan CSS; jenjang judul itu urusan struktur. Satu `<h1>` per halaman adalah aturan lazimnya.',
               },
               code: {
-                en: '<!-- wrong: skips h2 and h3 -->\n<h1>Judul</h1>\n<h4>Bagian</h4>\n\n<!-- correct -->\n<h1>Judul</h1>\n<h2>Bagian</h2>',
+                en: '<!-- wrong: skips h2 and h3 -->\n<h1>Title</h1>\n<h4>Section</h4>\n\n<!-- correct -->\n<h1>Title</h1>\n<h2>Section</h2>',
                 id: '<!-- salah: melompati h2 dan h3 -->\n<h1>Judul</h1>\n<h4>Bagian</h4>\n\n<!-- benar -->\n<h1>Judul</h1>\n<h2>Bagian</h2>',
               },
             },
@@ -344,31 +450,52 @@ export const module1: Module = {
               kind: 'web',
               id: 'w1',
               prompt: {
-                en: 'Build an outline: one `h1` `Resep`, then an `h2` `Bahan`, then an `h2` `Cara Memasak` with an `h3` `Persiapan` under it.',
+                en: 'Build an outline: one `h1` `Recipe`, then an `h2` `Ingredients`, then an `h2` `How to Cook` with an `h3` `Preparation` under it.',
                 id: 'Bangun kerangka: satu `h1` `Resep`, lalu `h2` `Bahan`, lalu `h2` `Cara Memasak` dengan `h3` `Persiapan` di bawahnya.',
               },
               starter: '',
-              tests: [
-                {
-                  name: { en: 'One h1 named Resep', id: 'Satu h1 bernama Resep' },
-                  check: 'assert(all("h1").length === 1, "harus tepat satu h1");\nassert(text("h1") === "Resep", "h1 harus: Resep");',
-                },
-                {
-                  name: { en: 'Two h2 in the right order', id: 'Dua h2 dengan urutan benar' },
-                  check:
-                    'var h2 = all("h2");\nassert(h2.length === 2, "harus ada dua h2, ada: " + h2.length);\nassert(h2[0].textContent.trim() === "Bahan", "h2 pertama harus: Bahan");\nassert(h2[1].textContent.trim() === "Cara Memasak", "h2 kedua harus: Cara Memasak");',
-                },
-                {
-                  name: { en: 'An h3 after the second h2', id: 'Sebuah h3 setelah h2 kedua' },
-                  check:
-                    'var h3 = sel("h3");\nassert(h3, "belum ada h3");\nassert(h3.textContent.trim() === "Persiapan", "h3 harus: Persiapan");\nvar h2b = all("h2")[1];\nassert(h2b.compareDocumentPosition(h3) & Node.DOCUMENT_POSITION_FOLLOWING, "h3 harus setelah h2 Cara Memasak");',
-                },
-              ],
+              tests: {
+                en: [
+                  {
+                    name: { en: 'One h1 named Recipe', id: 'One h1 named Recipe' },
+                    check: 'assert(all("h1").length === 1, "there must be exactly one h1");\nassert(text("h1") === "Recipe", "h1 must be: Recipe");',
+                  },
+                  {
+                    name: { en: 'Two h2 in the right order', id: 'Two h2 in the right order' },
+                    check:
+                      'var h2 = all("h2");\nassert(h2.length === 2, "there must be two h2, found: " + h2.length);\nassert(h2[0].textContent.trim() === "Ingredients", "the first h2 must be: Ingredients");\nassert(h2[1].textContent.trim() === "How to Cook", "the second h2 must be: How to Cook");',
+                  },
+                  {
+                    name: { en: 'An h3 after the second h2', id: 'An h3 after the second h2' },
+                    check:
+                      'var h3 = sel("h3");\nassert(h3, "there is no h3 yet");\nassert(h3.textContent.trim() === "Preparation", "h3 must be: Preparation");\nvar h2b = all("h2")[1];\nassert(h2b.compareDocumentPosition(h3) & Node.DOCUMENT_POSITION_FOLLOWING, "the h3 must come after the How to Cook h2");',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'One h1 named Resep', id: 'Satu h1 bernama Resep' },
+                    check: 'assert(all("h1").length === 1, "harus tepat satu h1");\nassert(text("h1") === "Resep", "h1 harus: Resep");',
+                  },
+                  {
+                    name: { en: 'Two h2 in the right order', id: 'Dua h2 dengan urutan benar' },
+                    check:
+                      'var h2 = all("h2");\nassert(h2.length === 2, "harus ada dua h2, ada: " + h2.length);\nassert(h2[0].textContent.trim() === "Bahan", "h2 pertama harus: Bahan");\nassert(h2[1].textContent.trim() === "Cara Memasak", "h2 kedua harus: Cara Memasak");',
+                  },
+                  {
+                    name: { en: 'An h3 after the second h2', id: 'Sebuah h3 setelah h2 kedua' },
+                    check:
+                      'var h3 = sel("h3");\nassert(h3, "belum ada h3");\nassert(h3.textContent.trim() === "Persiapan", "h3 harus: Persiapan");\nvar h2b = all("h2")[1];\nassert(h2b.compareDocumentPosition(h3) & Node.DOCUMENT_POSITION_FOLLOWING, "h3 harus setelah h2 Cara Memasak");',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Four elements, in the order the outline reads.', id: 'Empat elemen, sesuai urutan bacaan kerangkanya.' },
                 { en: 'The h3 belongs after the second h2, not the first.', id: 'h3-nya diletakkan setelah h2 kedua, bukan yang pertama.' },
               ],
-              solution: '<h1>Resep</h1>\n<h2>Bahan</h2>\n<h2>Cara Memasak</h2>\n<h3>Persiapan</h3>',
+              solution: {
+                en: '<h1>Recipe</h1>\n<h2>Ingredients</h2>\n<h2>How to Cook</h2>\n<h3>Preparation</h3>',
+                id: '<h1>Resep</h1>\n<h2>Bahan</h2>\n<h2>Cara Memasak</h2>\n<h3>Persiapan</h3>',
+              },
             },
           ],
         },
@@ -386,7 +513,10 @@ export const module1: Module = {
                 en: '`<strong>` means "this matters"; `<em>` means "stress this word". They usually render bold and italic, but the point is the meaning — a screen reader changes its voice for them. `<b>` and `<i>` only change looks and say nothing.',
                 id: '`<strong>` berarti "ini penting"; `<em>` berarti "tekankan kata ini". Keduanya biasanya tampil tebal dan miring, tetapi intinya adalah maknanya — pembaca layar mengubah nadanya untuk itu. `<b>` dan `<i>` hanya mengubah tampilan dan tidak bermakna apa pun.',
               },
-              code: '<p><strong>Perhatian:</strong> tugas dikumpulkan <em>hari ini</em>.</p>',
+              code: {
+                en: '<p><strong>Attention:</strong> the assignment is due <em>today</em>.</p>',
+                id: '<p><strong>Perhatian:</strong> tugas dikumpulkan <em>hari ini</em>.</p>',
+              },
               preview: true,
             },
             {
@@ -397,7 +527,10 @@ export const module1: Module = {
                 en: '`<blockquote>` is a quoted passage, `<code>` is a piece of code inside a sentence. Both let the browser and other tools understand what they are looking at.',
                 id: '`<blockquote>` adalah kutipan panjang, `<code>` adalah potongan kode di dalam kalimat. Keduanya membuat peramban dan alat lain paham apa yang sedang mereka lihat.',
               },
-              code: '<blockquote>Kode yang baik menjelaskan dirinya sendiri.</blockquote>\n<p>Gunakan <code>print()</code> untuk menampilkan teks.</p>',
+              code: {
+                en: '<blockquote>Good code explains itself.</blockquote>\n<p>Use <code>print()</code> to display text.</p>',
+                id: '<blockquote>Kode yang baik menjelaskan dirinya sendiri.</blockquote>\n<p>Gunakan <code>print()</code> untuk menampilkan teks.</p>',
+              },
               preview: true,
             },
             {
@@ -409,7 +542,7 @@ export const module1: Module = {
                 id: 'Apa pun di antara `<!--` dan `-->` adalah catatan untuk yang membaca sumbernya; peramban mengabaikannya. Dan karena `<` memulai sebuah tag, menulis tanda itu secara harfiah butuh `&lt;` — cara yang sama memberi `&gt;` dan `&amp;`.',
               },
               code: {
-                en: '<!-- this does not show -->\n<p>Tulis &lt;p&gt; untuk membuat paragraf.</p>',
+                en: '<!-- this does not show -->\n<p>Write &lt;p&gt; to make a paragraph.</p>',
                 id: '<!-- ini tidak tampil -->\n<p>Tulis &lt;p&gt; untuk membuat paragraf.</p>',
               },
               preview: true,
@@ -440,7 +573,10 @@ export const module1: Module = {
                 en: 'Write the text `<h1>` so it appears literally on the page.',
                 id: 'Tulis teks `<h1>` agar tampil apa adanya di halaman.',
               },
-              template: '<p>Gunakan ___h1&gt; untuk judul.</p>',
+              template: {
+                en: '<p>Use ___h1&gt; for a heading.</p>',
+                id: '<p>Gunakan ___h1&gt; untuk judul.</p>',
+              },
               blanks: ['&lt;'],
               explain: {
                 en: '&lt; is the escape for a literal less-than sign, so the browser does not read it as a tag.',
@@ -451,32 +587,51 @@ export const module1: Module = {
               kind: 'web',
               id: 'w1',
               prompt: {
-                en: 'Write one paragraph that contains the word `wajib` marked as important, and the word `besok` marked as stressed.',
+                en: 'Write one paragraph that contains the word `mandatory` marked as important, and the word `tomorrow` marked as stressed.',
                 id: 'Tulis satu paragraf yang memuat kata `wajib` ditandai penting, dan kata `besok` ditandai bertekanan.',
               },
               starter: '<p></p>\n',
-              tests: [
-                {
-                  name: { en: 'A single paragraph', id: 'Satu paragraf saja' },
-                  check: 'assert(all("p").length === 1, "harus tepat satu paragraf");',
-                },
-                {
-                  name: { en: '`wajib` is marked important', id: '`wajib` ditandai penting' },
-                  check: 'assert(sel("p strong"), "belum ada <strong> di dalam paragraf");\nassert(text("p strong") === "wajib", "isi <strong> harus: wajib");',
-                },
-                {
-                  name: { en: '`besok` is marked stressed', id: '`besok` ditandai bertekanan' },
-                  check: 'assert(sel("p em"), "belum ada <em> di dalam paragraf");\nassert(text("p em") === "besok", "isi <em> harus: besok");',
-                },
-              ],
+              tests: {
+                en: [
+                  {
+                    name: { en: 'A single paragraph', id: 'A single paragraph' },
+                    check: 'assert(all("p").length === 1, "there must be exactly one paragraph");',
+                  },
+                  {
+                    name: { en: '`mandatory` is marked important', id: '`mandatory` is marked important' },
+                    check: 'assert(sel("p strong"), "there is no <strong> inside the paragraph yet");\nassert(text("p strong") === "mandatory", "the <strong> content must be: mandatory");',
+                  },
+                  {
+                    name: { en: '`tomorrow` is marked stressed', id: '`tomorrow` is marked stressed' },
+                    check: 'assert(sel("p em"), "there is no <em> inside the paragraph yet");\nassert(text("p em") === "tomorrow", "the <em> content must be: tomorrow");',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'A single paragraph', id: 'Satu paragraf saja' },
+                    check: 'assert(all("p").length === 1, "harus tepat satu paragraf");',
+                  },
+                  {
+                    name: { en: '`wajib` is marked important', id: '`wajib` ditandai penting' },
+                    check: 'assert(sel("p strong"), "belum ada <strong> di dalam paragraf");\nassert(text("p strong") === "wajib", "isi <strong> harus: wajib");',
+                  },
+                  {
+                    name: { en: '`besok` is marked stressed', id: '`besok` ditandai bertekanan' },
+                    check: 'assert(sel("p em"), "belum ada <em> di dalam paragraf");\nassert(text("p em") === "besok", "isi <em> harus: besok");',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Both elements go inside the paragraph, wrapping just one word each.', id: 'Kedua elemen ada di dalam paragraf, masing-masing membungkus satu kata saja.' },
                 {
-                  en: '<p>Tugas ini <strong>wajib</strong> dikumpulkan <em>besok</em>.</p>',
+                  en: '<p>This assignment is <strong>mandatory</strong>, due <em>tomorrow</em>.</p>',
                   id: '<p>Tugas ini <strong>wajib</strong> dikumpulkan <em>besok</em>.</p>',
                 },
               ],
-              solution: '<p>Tugas ini <strong>wajib</strong> dikumpulkan <em>besok</em>.</p>',
+              solution: {
+                en: '<p>This assignment is <strong>mandatory</strong>, due <em>tomorrow</em>.</p>',
+                id: '<p>Tugas ini <strong>wajib</strong> dikumpulkan <em>besok</em>.</p>',
+              },
             },
           ],
         },
@@ -490,46 +645,78 @@ export const module1: Module = {
           id: 'Artikel terbaca dengan kerangka yang benar dan penekanan yang bermakna.',
         },
         requirements: [
-          { en: 'Full document, charset utf-8, title `Artikel`.', id: 'Dokumen lengkap, charset utf-8, judul `Artikel`.' },
+          { en: 'Full document, charset utf-8, title `Article`.', id: 'Dokumen lengkap, charset utf-8, judul `Artikel`.' },
           { en: 'One `h1`, then two `h2` sections.', id: 'Satu `h1`, lalu dua bagian `h2`.' },
           { en: 'At least three paragraphs in total.', id: 'Minimal tiga paragraf seluruhnya.' },
           { en: 'At least one `strong` and one `em`, both inside a paragraph.', id: 'Minimal satu `strong` dan satu `em`, keduanya di dalam paragraf.' },
           { en: 'One `blockquote`.', id: 'Satu `blockquote`.' },
           { en: 'One HTML comment anywhere.', id: 'Satu komentar HTML di mana saja.' },
         ],
-        starter: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Artikel</title>\n  </head>\n  <body>\n\n  </body>\n</html>\n',
-        tests: [
-          {
-            name: { en: 'Heading outline', id: 'Kerangka judul' },
-            check:
-              'assert(all("h1").length === 1, "harus tepat satu h1");\nassert(all("h2").length === 2, "harus tepat dua h2, ada: " + all("h2").length);',
-          },
-          {
-            name: { en: 'At least three paragraphs', id: 'Minimal tiga paragraf' },
-            check: 'assert(all("p").length >= 3, "minimal tiga paragraf, ada: " + all("p").length);',
-          },
-          {
-            name: { en: 'Meaningful emphasis inside a paragraph', id: 'Penekanan bermakna di dalam paragraf' },
-            check:
-              'assert(sel("p strong"), "butuh <strong> di dalam sebuah paragraf");\nassert(sel("p em"), "butuh <em> di dalam sebuah paragraf");\nassert(text("p strong").length > 0, "<strong> tidak boleh kosong");\nassert(text("p em").length > 0, "<em> tidak boleh kosong");',
-          },
-          {
-            name: { en: 'A quotation', id: 'Sebuah kutipan' },
-            check: 'assert(sel("blockquote"), "belum ada <blockquote>");\nassert(text("blockquote").length > 0, "kutipan tidak boleh kosong");',
-          },
-          {
-            name: { en: 'A comment in the source', id: 'Sebuah komentar di sumbernya' },
-            check:
-              'function cari(n) { for (var i = 0; i < n.childNodes.length; i++) { var c = n.childNodes[i]; if (c.nodeType === 8) return true; if (cari(c)) return true; } return false; }\nassert(cari(doc.documentElement), "belum ada komentar <!-- ... -->");',
-          },
-        ],
+        starter: {
+          en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>Article</title>\n  </head>\n  <body>\n\n  </body>\n</html>\n',
+          id: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Artikel</title>\n  </head>\n  <body>\n\n  </body>\n</html>\n',
+        },
+        tests: {
+          en: [
+            {
+              name: { en: 'Heading outline', id: 'Heading outline' },
+              check:
+                'assert(all("h1").length === 1, "there must be exactly one h1");\nassert(all("h2").length === 2, "there must be exactly two h2, found: " + all("h2").length);',
+            },
+            {
+              name: { en: 'At least three paragraphs', id: 'At least three paragraphs' },
+              check: 'assert(all("p").length >= 3, "at least three paragraphs, found: " + all("p").length);',
+            },
+            {
+              name: { en: 'Meaningful emphasis inside a paragraph', id: 'Meaningful emphasis inside a paragraph' },
+              check:
+                'assert(sel("p strong"), "need a <strong> inside a paragraph");\nassert(sel("p em"), "need an <em> inside a paragraph");\nassert(text("p strong").length > 0, "<strong> must not be empty");\nassert(text("p em").length > 0, "<em> must not be empty");',
+            },
+            {
+              name: { en: 'A quotation', id: 'A quotation' },
+              check: 'assert(sel("blockquote"), "there is no <blockquote> yet");\nassert(text("blockquote").length > 0, "the quotation must not be empty");',
+            },
+            {
+              name: { en: 'A comment in the source', id: 'A comment in the source' },
+              check:
+                'function find(n) { for (var i = 0; i < n.childNodes.length; i++) { var c = n.childNodes[i]; if (c.nodeType === 8) return true; if (find(c)) return true; } return false; }\nassert(find(doc.documentElement), "there is no <!-- ... --> comment yet");',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'Heading outline', id: 'Kerangka judul' },
+              check:
+                'assert(all("h1").length === 1, "harus tepat satu h1");\nassert(all("h2").length === 2, "harus tepat dua h2, ada: " + all("h2").length);',
+            },
+            {
+              name: { en: 'At least three paragraphs', id: 'Minimal tiga paragraf' },
+              check: 'assert(all("p").length >= 3, "minimal tiga paragraf, ada: " + all("p").length);',
+            },
+            {
+              name: { en: 'Meaningful emphasis inside a paragraph', id: 'Penekanan bermakna di dalam paragraf' },
+              check:
+                'assert(sel("p strong"), "butuh <strong> di dalam sebuah paragraf");\nassert(sel("p em"), "butuh <em> di dalam sebuah paragraf");\nassert(text("p strong").length > 0, "<strong> tidak boleh kosong");\nassert(text("p em").length > 0, "<em> tidak boleh kosong");',
+            },
+            {
+              name: { en: 'A quotation', id: 'Sebuah kutipan' },
+              check: 'assert(sel("blockquote"), "belum ada <blockquote>");\nassert(text("blockquote").length > 0, "kutipan tidak boleh kosong");',
+            },
+            {
+              name: { en: 'A comment in the source', id: 'Sebuah komentar di sumbernya' },
+              check:
+                'function cari(n) { for (var i = 0; i < n.childNodes.length; i++) { var c = n.childNodes[i]; if (c.nodeType === 8) return true; if (cari(c)) return true; } return false; }\nassert(cari(doc.documentElement), "belum ada komentar <!-- ... -->");',
+            },
+          ],
+        },
         hints: [
           { en: 'Build the outline first — h1, h2, h2 — then fill paragraphs under each.', id: 'Bangun kerangkanya dulu — h1, h2, h2 — lalu isi paragraf di bawah masing-masing.' },
           { en: 'strong and em must sit inside a paragraph, not on their own.', id: 'strong dan em harus di dalam paragraf, bukan berdiri sendiri.' },
-          { en: 'A comment is `<!-- catatan -->` and can go anywhere in the body.', id: 'Komentar berbentuk `<!-- catatan -->` dan boleh diletakkan di mana saja dalam body.' },
+          { en: 'A comment is `<!-- note -->` and can go anywhere in the body.', id: 'Komentar berbentuk `<!-- catatan -->` dan boleh diletakkan di mana saja dalam body.' },
         ],
-        solution:
-          '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Artikel</title>\n  </head>\n  <body>\n    <!-- artikel latihan -->\n    <h1>Belajar HTML</h1>\n\n    <h2>Mengapa HTML</h2>\n    <p>HTML adalah <strong>dasar</strong> dari setiap halaman web.</p>\n    <p>Tanpa struktur yang jelas, halaman sulit dibaca mesin maupun manusia.</p>\n\n    <h2>Cara Memulai</h2>\n    <p>Mulailah dari kerangka dokumen, lalu isi <em>sedikit demi sedikit</em>.</p>\n    <blockquote>Struktur yang benar mengalahkan tampilan yang bagus.</blockquote>\n  </body>\n</html>',
+        solution: {
+          en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>Article</title>\n  </head>\n  <body>\n    <!-- practice article -->\n    <h1>Learning HTML</h1>\n\n    <h2>Why HTML</h2>\n    <p>HTML is the <strong>foundation</strong> of every web page.</p>\n    <p>Without clear structure, a page is hard for both machines and humans to read.</p>\n\n    <h2>How to Start</h2>\n    <p>Start from the document skeleton, then fill it in <em>little by little</em>.</p>\n    <blockquote>Correct structure beats good looks.</blockquote>\n  </body>\n</html>',
+          id: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Artikel</title>\n  </head>\n  <body>\n    <!-- artikel latihan -->\n    <h1>Belajar HTML</h1>\n\n    <h2>Mengapa HTML</h2>\n    <p>HTML adalah <strong>dasar</strong> dari setiap halaman web.</p>\n    <p>Tanpa struktur yang jelas, halaman sulit dibaca mesin maupun manusia.</p>\n\n    <h2>Cara Memulai</h2>\n    <p>Mulailah dari kerangka dokumen, lalu isi <em>sedikit demi sedikit</em>.</p>\n    <blockquote>Struktur yang benar mengalahkan tampilan yang bagus.</blockquote>\n  </body>\n</html>',
+        },
         xp: 50,
       },
     },

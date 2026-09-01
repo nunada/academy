@@ -33,10 +33,13 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'An attribute is extra information', id: 'Atribut adalah keterangan tambahan' },
               body: {
-                en: 'Attributes live in the opening tag as `nama="nilai"`. They configure the element rather than being its content. A link without its `href` attribute is just text.',
+                en: 'Attributes live in the opening tag as `name="value"`. They configure the element rather than being its content. A link without its `href` attribute is just text.',
                 id: 'Atribut ditulis di tag pembuka sebagai `nama="nilai"`. Mereka mengatur elemennya, bukan menjadi isinya. Tautan tanpa atribut `href` hanyalah teks biasa.',
               },
-              code: '<a href="https://example.com">Kunjungi contoh</a>',
+              code: {
+                en: '<a href="https://example.com">Visit example</a>',
+                id: '<a href="https://example.com">Kunjungi contoh</a>',
+              },
               preview: true,
             },
             {
@@ -44,10 +47,13 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'Where the address points', id: 'Ke mana alamatnya menunjuk' },
               body: {
-                en: 'A full address like `https://example.com` goes anywhere on the web. A relative one like `tentang.html` means "a file beside this one", and `#bagian` jumps to an element with that `id` on the same page.',
+                en: 'A full address like `https://example.com` goes anywhere on the web. A relative one like `about.html` means "a file beside this one", and `#section` jumps to an element with that `id` on the same page.',
                 id: 'Alamat lengkap seperti `https://example.com` menuju ke mana pun di web. Alamat relatif seperti `tentang.html` berarti "berkas di sebelah berkas ini", dan `#bagian` melompat ke elemen ber-`id` itu di halaman yang sama.',
               },
-              code: '<a href="tentang.html">Tentang kami</a>\n<a href="#kontak">Lompat ke kontak</a>\n<h2 id="kontak">Kontak</h2>',
+              code: {
+                en: '<a href="about.html">About us</a>\n<a href="#contact">Jump to contact</a>\n<h2 id="contact">Contact</h2>',
+                id: '<a href="tentang.html">Tentang kami</a>\n<a href="#kontak">Lompat ke kontak</a>\n<h2 id="kontak">Kontak</h2>',
+              },
               preview: true,
             },
             {
@@ -55,11 +61,11 @@ export const module2: Module = {
               id: 'c3',
               title: { en: 'The text of a link is a promise', id: 'Teks tautan adalah sebuah janji' },
               body: {
-                en: '"Klik di sini" tells nobody anything — and a screen-reader user listing the links on a page hears "klik di sini" ten times. Put the destination in the text itself.',
+                en: '"Click here" tells nobody anything — and a screen-reader user listing the links on a page hears "click here" ten times. Put the destination in the text itself.',
                 id: '"Klik di sini" tidak memberi tahu siapa pun apa-apa — dan pengguna pembaca layar yang mendaftar tautan di sebuah halaman akan mendengar "klik di sini" sepuluh kali. Taruh tujuannya di dalam teksnya.',
               },
               code: {
-                en: '<!-- weak -->\n<a href="harga.html">Klik di sini</a>\n\n<!-- clear -->\n<a href="harga.html">Daftar harga</a>',
+                en: '<!-- weak -->\n<a href="prices.html">Click here</a>\n\n<!-- clear -->\n<a href="prices.html">Price list</a>',
                 id: '<!-- lemah -->\n<a href="harga.html">Klik di sini</a>\n\n<!-- jelas -->\n<a href="harga.html">Daftar harga</a>',
               },
               preview: true,
@@ -83,8 +89,11 @@ export const module2: Module = {
             {
               kind: 'fill',
               id: 'f1',
-              prompt: { en: 'Link the text `Beranda` to `index.html`.', id: 'Tautkan teks `Beranda` ke `index.html`.' },
-              template: '<a ___="index.html">Beranda___a>',
+              prompt: { en: 'Link the text `Home` to `index.html`.', id: 'Tautkan teks `Beranda` ke `index.html`.' },
+              template: {
+                en: '<a ___="index.html">Home___a>',
+                id: '<a ___="index.html">Beranda___a>',
+              },
               blanks: ['href', '</'],
               explain: {
                 en: 'href carries the address, and the element closes with </a>.',
@@ -95,29 +104,48 @@ export const module2: Module = {
               kind: 'web',
               id: 'w1',
               prompt: {
-                en: 'Write a paragraph containing a link to `https://python.org` whose text is `Situs resmi Python`.',
+                en: 'Write a paragraph containing a link to `https://python.org` whose text is `Official Python site`.',
                 id: 'Tulis sebuah paragraf yang memuat tautan ke `https://python.org` dengan teks `Situs resmi Python`.',
               },
               starter: '<p></p>\n',
-              tests: [
-                {
-                  name: { en: 'The link is inside a paragraph', id: 'Tautannya ada di dalam paragraf' },
-                  check: 'assert(sel("p a"), "tautan harus berada di dalam sebuah <p>");',
-                },
-                {
-                  name: { en: 'It points at the right address', id: 'Ia menunjuk alamat yang benar' },
-                  check: 'assert(attr("p a", "href") === "https://python.org", "href harus https://python.org, sekarang: " + attr("p a", "href"));',
-                },
-                {
-                  name: { en: 'The text describes the destination', id: 'Teksnya menjelaskan tujuannya' },
-                  check: 'assert(text("p a") === "Situs resmi Python", "teks tautan harus: Situs resmi Python");',
-                },
-              ],
+              tests: {
+                en: [
+                  {
+                    name: { en: 'The link is inside a paragraph', id: 'The link is inside a paragraph' },
+                    check: 'assert(sel("p a"), "the link must be inside a <p>");',
+                  },
+                  {
+                    name: { en: 'It points at the right address', id: 'It points at the right address' },
+                    check: 'assert(attr("p a", "href") === "https://python.org", "href must be https://python.org, currently: " + attr("p a", "href"));',
+                  },
+                  {
+                    name: { en: 'The text describes the destination', id: 'The text describes the destination' },
+                    check: 'assert(text("p a") === "Official Python site", "the link text must be: Official Python site");',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'The link is inside a paragraph', id: 'Tautannya ada di dalam paragraf' },
+                    check: 'assert(sel("p a"), "tautan harus berada di dalam sebuah <p>");',
+                  },
+                  {
+                    name: { en: 'It points at the right address', id: 'Ia menunjuk alamat yang benar' },
+                    check: 'assert(attr("p a", "href") === "https://python.org", "href harus https://python.org, sekarang: " + attr("p a", "href"));',
+                  },
+                  {
+                    name: { en: 'The text describes the destination', id: 'Teksnya menjelaskan tujuannya' },
+                    check: 'assert(text("p a") === "Situs resmi Python", "teks tautan harus: Situs resmi Python");',
+                  },
+                ],
+              },
               hints: [
                 { en: 'The a element goes between <p> and </p>.', id: 'Elemen a diletakkan di antara <p> dan </p>.' },
-                { en: '<a href="https://python.org">Situs resmi Python</a>', id: '<a href="https://python.org">Situs resmi Python</a>' },
+                { en: '<a href="https://python.org">Official Python site</a>', id: '<a href="https://python.org">Situs resmi Python</a>' },
               ],
-              solution: '<p><a href="https://python.org">Situs resmi Python</a></p>',
+              solution: {
+                en: '<p><a href="https://python.org">Official Python site</a></p>',
+                id: '<p><a href="https://python.org">Situs resmi Python</a></p>',
+              },
             },
           ],
         },
@@ -135,7 +163,10 @@ export const module2: Module = {
                 en: '`<img>` has no closing tag and needs two attributes: `src` is where the file is, `alt` is what the picture shows. `alt` is not optional — it is what a blind reader hears, and what everyone sees when the file fails to load.',
                 id: '`<img>` tidak punya tag penutup dan butuh dua atribut: `src` adalah letak berkasnya, `alt` adalah apa yang digambarkannya. `alt` bukan pilihan — itulah yang didengar pembaca tunanetra, dan yang dilihat semua orang saat berkasnya gagal dimuat.',
               },
-              code: '<img src="foto-tidak-ada.png" alt="Seekor kucing oranye sedang tidur">',
+              code: {
+                en: '<img src="missing-photo.png" alt="An orange cat sleeping">',
+                id: '<img src="foto-tidak-ada.png" alt="Seekor kucing oranye sedang tidur">',
+              },
               preview: true,
             },
             {
@@ -143,10 +174,13 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'Describe the purpose, not the file', id: 'Jelaskan maksudnya, bukan berkasnya' },
               body: {
-                en: 'Good alt text says what the picture *tells* you. "Grafik penjualan naik dari 20 ke 80 sepanjang 2026" is useful; "gambar1.png" is not. A purely decorative image takes `alt=""`, which tells screen readers to skip it.',
+                en: 'Good alt text says what the picture *tells* you. "Sales chart rising from 20 to 80 across 2026" is useful; "image1.png" is not. A purely decorative image takes `alt=""`, which tells screen readers to skip it.',
                 id: 'Teks alt yang baik menyatakan apa yang *disampaikan* gambarnya. "Grafik penjualan naik dari 20 ke 80 sepanjang 2026" itu berguna; "gambar1.png" tidak. Gambar yang murni hiasan memakai `alt=""`, yang memberi tahu pembaca layar untuk melewatinya.',
               },
-              code: '<img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'60\'%3E%3Crect width=\'120\' height=\'60\' fill=\'%233b82f6\'/%3E%3C/svg%3E" alt="Persegi panjang biru">',
+              code: {
+                en: '<img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'60\'%3E%3Crect width=\'120\' height=\'60\' fill=\'%233b82f6\'/%3E%3C/svg%3E" alt="Blue rectangle">',
+                id: '<img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'60\'%3E%3Crect width=\'120\' height=\'60\' fill=\'%233b82f6\'/%3E%3C/svg%3E" alt="Persegi panjang biru">',
+              },
               preview: true,
             },
             {
@@ -159,8 +193,8 @@ export const module2: Module = {
               options: [
                 { en: 'alt="" — empty, so it is skipped', id: 'alt="" — kosong, agar dilewati' },
                 { en: 'Leave the attribute out', id: 'Hilangkan atributnya' },
-                { en: 'alt="hiasan"', id: 'alt="hiasan"' },
-                { en: 'alt="gambar"', id: 'alt="gambar"' },
+                { en: 'alt="decoration"', id: 'alt="hiasan"' },
+                { en: 'alt="image"', id: 'alt="gambar"' },
               ],
               answer: 0,
               explain: {
@@ -176,18 +210,32 @@ export const module2: Module = {
                 id: 'Tambahkan gambar dengan `src` bernilai `logo.png` dan teks alt `Logo Nunada Academy`, dibungkus tautan menuju `index.html`.',
               },
               starter: '',
-              tests: [
-                {
-                  name: { en: 'The image has both attributes', id: 'Gambarnya punya kedua atribut' },
-                  check:
-                    'assert(sel("img"), "belum ada <img>");\nassert(attr("img", "src") === "logo.png", "src harus logo.png");\nassert(attr("img", "alt") === "Logo Nunada Academy", "alt harus: Logo Nunada Academy");',
-                },
-                {
-                  name: { en: 'The image is inside a link', id: 'Gambarnya ada di dalam tautan' },
-                  check:
-                    'assert(sel("a img"), "gambar harus berada di dalam <a>");\nassert(attr("a", "href") === "index.html", "href harus index.html");',
-                },
-              ],
+              tests: {
+                en: [
+                  {
+                    name: { en: 'The image has both attributes', id: 'The image has both attributes' },
+                    check:
+                      'assert(sel("img"), "there is no <img> yet");\nassert(attr("img", "src") === "logo.png", "src must be logo.png");\nassert(attr("img", "alt") === "Logo Nunada Academy", "alt must be: Logo Nunada Academy");',
+                  },
+                  {
+                    name: { en: 'The image is inside a link', id: 'The image is inside a link' },
+                    check:
+                      'assert(sel("a img"), "the image must be inside an <a>");\nassert(attr("a", "href") === "index.html", "href must be index.html");',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'The image has both attributes', id: 'Gambarnya punya kedua atribut' },
+                    check:
+                      'assert(sel("img"), "belum ada <img>");\nassert(attr("img", "src") === "logo.png", "src harus logo.png");\nassert(attr("img", "alt") === "Logo Nunada Academy", "alt harus: Logo Nunada Academy");',
+                  },
+                  {
+                    name: { en: 'The image is inside a link', id: 'Gambarnya ada di dalam tautan' },
+                    check:
+                      'assert(sel("a img"), "gambar harus berada di dalam <a>");\nassert(attr("a", "href") === "index.html", "href harus index.html");',
+                  },
+                ],
+              },
               hints: [
                 { en: 'The a element wraps the img element.', id: 'Elemen a membungkus elemen img.' },
                 { en: 'img has no closing tag.', id: 'img tidak punya tag penutup.' },
@@ -207,44 +255,72 @@ export const module2: Module = {
           id: 'Profil ringkas dengan gambar dan tautan yang menjelaskan dirinya sendiri.',
         },
         requirements: [
-          { en: 'Full document with the title `Kartu Profil`.', id: 'Dokumen lengkap dengan judul `Kartu Profil`.' },
+          { en: 'Full document with the title `Profile Card`.', id: 'Dokumen lengkap dengan judul `Kartu Profil`.' },
           { en: 'An `h1` with a name.', id: 'Sebuah `h1` berisi nama.' },
           { en: 'An image with `src` `foto.jpg` and a descriptive `alt` of at least 10 characters.', id: 'Gambar dengan `src` `foto.jpg` dan `alt` deskriptif minimal 10 karakter.' },
           { en: 'A paragraph describing the person.', id: 'Sebuah paragraf yang menggambarkan orangnya.' },
           { en: 'Exactly two links: one to `https://github.com` and one to `mailto:halo@nunada.test`.', id: 'Tepat dua tautan: satu ke `https://github.com` dan satu ke `mailto:halo@nunada.test`.' },
-          { en: 'Neither link may say `klik di sini`.', id: 'Kedua tautan tidak boleh bertuliskan `klik di sini`.' },
+          { en: 'Neither link may say `click here`.', id: 'Kedua tautan tidak boleh bertuliskan `klik di sini`.' },
         ],
-        starter:
-          '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Kartu Profil</title>\n  </head>\n  <body>\n\n  </body>\n</html>\n',
-        tests: [
-          {
-            name: { en: 'Heading and description', id: 'Judul dan keterangan' },
-            check:
-              'assert(all("h1").length === 1, "harus tepat satu h1");\nassert(text("h1").length > 0, "h1 tidak boleh kosong");\nassert(all("p").length >= 1, "butuh minimal satu paragraf");',
-          },
-          {
-            name: { en: 'The image describes itself', id: 'Gambarnya menjelaskan dirinya' },
-            check:
-              'assert(sel("img"), "belum ada <img>");\nassert(attr("img", "src") === "foto.jpg", "src harus foto.jpg");\nvar a = attr("img", "alt");\nassert(a !== null, "img wajib punya alt");\nassert(a.trim().length >= 10, "alt harus deskriptif, minimal 10 karakter");',
-          },
-          {
-            name: { en: 'Two links, to the right places', id: 'Dua tautan, ke tempat yang benar' },
-            check:
-              'var a = all("a");\nassert(a.length === 2, "harus tepat dua tautan, ada: " + a.length);\nvar h = a.map(function (x) { return x.getAttribute("href"); });\nassert(h.indexOf("https://github.com") !== -1, "butuh tautan ke https://github.com");\nassert(h.indexOf("mailto:halo@nunada.test") !== -1, "butuh tautan mailto:halo@nunada.test");',
-          },
-          {
-            name: { en: 'The link text is meaningful', id: 'Teks tautannya bermakna' },
-            check:
-              'all("a").forEach(function (x) {\n  var t = x.textContent.trim();\n  assert(t.length > 0, "teks tautan tidak boleh kosong");\n  assert(t.toLowerCase().indexOf("klik di sini") === -1, "hindari teks tautan: klik di sini");\n});',
-          },
-        ],
+        starter: {
+          en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>Profile Card</title>\n  </head>\n  <body>\n\n  </body>\n</html>\n',
+          id: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Kartu Profil</title>\n  </head>\n  <body>\n\n  </body>\n</html>\n',
+        },
+        tests: {
+          en: [
+            {
+              name: { en: 'Heading and description', id: 'Heading and description' },
+              check:
+                'assert(all("h1").length === 1, "there must be exactly one h1");\nassert(text("h1").length > 0, "h1 must not be empty");\nassert(all("p").length >= 1, "need at least one paragraph");',
+            },
+            {
+              name: { en: 'The image describes itself', id: 'The image describes itself' },
+              check:
+                'assert(sel("img"), "there is no <img> yet");\nassert(attr("img", "src") === "foto.jpg", "src must be foto.jpg");\nvar a = attr("img", "alt");\nassert(a !== null, "img must have an alt");\nassert(a.trim().length >= 10, "alt must be descriptive, at least 10 characters");',
+            },
+            {
+              name: { en: 'Two links, to the right places', id: 'Two links, to the right places' },
+              check:
+                'var a = all("a");\nassert(a.length === 2, "there must be exactly two links, found: " + a.length);\nvar h = a.map(function (x) { return x.getAttribute("href"); });\nassert(h.indexOf("https://github.com") !== -1, "need a link to https://github.com");\nassert(h.indexOf("mailto:halo@nunada.test") !== -1, "need a link mailto:halo@nunada.test");',
+            },
+            {
+              name: { en: 'The link text is meaningful', id: 'The link text is meaningful' },
+              check:
+                'all("a").forEach(function (x) {\n  var t = x.textContent.trim();\n  assert(t.length > 0, "link text must not be empty");\n  assert(t.toLowerCase().indexOf("click here") === -1, "avoid the link text: click here");\n});',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'Heading and description', id: 'Judul dan keterangan' },
+              check:
+                'assert(all("h1").length === 1, "harus tepat satu h1");\nassert(text("h1").length > 0, "h1 tidak boleh kosong");\nassert(all("p").length >= 1, "butuh minimal satu paragraf");',
+            },
+            {
+              name: { en: 'The image describes itself', id: 'Gambarnya menjelaskan dirinya' },
+              check:
+                'assert(sel("img"), "belum ada <img>");\nassert(attr("img", "src") === "foto.jpg", "src harus foto.jpg");\nvar a = attr("img", "alt");\nassert(a !== null, "img wajib punya alt");\nassert(a.trim().length >= 10, "alt harus deskriptif, minimal 10 karakter");',
+            },
+            {
+              name: { en: 'Two links, to the right places', id: 'Dua tautan, ke tempat yang benar' },
+              check:
+                'var a = all("a");\nassert(a.length === 2, "harus tepat dua tautan, ada: " + a.length);\nvar h = a.map(function (x) { return x.getAttribute("href"); });\nassert(h.indexOf("https://github.com") !== -1, "butuh tautan ke https://github.com");\nassert(h.indexOf("mailto:halo@nunada.test") !== -1, "butuh tautan mailto:halo@nunada.test");',
+            },
+            {
+              name: { en: 'The link text is meaningful', id: 'Teks tautannya bermakna' },
+              check:
+                'all("a").forEach(function (x) {\n  var t = x.textContent.trim();\n  assert(t.length > 0, "teks tautan tidak boleh kosong");\n  assert(t.toLowerCase().indexOf("klik di sini") === -1, "hindari teks tautan: klik di sini");\n});',
+            },
+          ],
+        },
         hints: [
           { en: 'Order does not matter as long as everything sits inside the body.', id: 'Urutannya bebas asalkan semuanya berada di dalam body.' },
           { en: 'A mail link is just an href starting with mailto:', id: 'Tautan surel hanyalah href yang diawali mailto:' },
-          { en: 'Name the destination in the link text: `Profil GitHub`, `Kirim email`.', id: 'Sebut tujuannya di teks tautan: `Profil GitHub`, `Kirim email`.' },
+          { en: 'Name the destination in the link text: `GitHub profile`, `Send email`.', id: 'Sebut tujuannya di teks tautan: `Profil GitHub`, `Kirim email`.' },
         ],
-        solution:
-          '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Kartu Profil</title>\n  </head>\n  <body>\n    <h1>Nunada</h1>\n    <img src="foto.jpg" alt="Foto Nunada sedang mengajar di depan kelas">\n    <p>Pengajar dan pengembang, sedang membangun Nunada Academy.</p>\n    <p>\n      <a href="https://github.com">Profil GitHub</a>\n      <a href="mailto:halo@nunada.test">Kirim email</a>\n    </p>\n  </body>\n</html>',
+        solution: {
+          en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>Profile Card</title>\n  </head>\n  <body>\n    <h1>Nunada</h1>\n    <img src="foto.jpg" alt="Photo of Nunada teaching in front of a class">\n    <p>Teacher and developer, building Nunada Academy.</p>\n    <p>\n      <a href="https://github.com">GitHub profile</a>\n      <a href="mailto:halo@nunada.test">Send email</a>\n    </p>\n  </body>\n</html>',
+          id: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Kartu Profil</title>\n  </head>\n  <body>\n    <h1>Nunada</h1>\n    <img src="foto.jpg" alt="Foto Nunada sedang mengajar di depan kelas">\n    <p>Pengajar dan pengembang, sedang membangun Nunada Academy.</p>\n    <p>\n      <a href="https://github.com">Profil GitHub</a>\n      <a href="mailto:halo@nunada.test">Kirim email</a>\n    </p>\n  </body>\n</html>',
+        },
         xp: 50,
       },
     },
@@ -272,7 +348,10 @@ export const module2: Module = {
                 en: '`<ul>` is an unordered list — a shopping list, a set of features. Every item is an `<li>`, and nothing but `<li>` may be a direct child of the list.',
                 id: '`<ul>` adalah daftar tak berurut — daftar belanja, kumpulan fitur. Tiap item adalah `<li>`, dan tidak boleh ada anak langsung selain `<li>`.',
               },
-              code: '<ul>\n  <li>Pensil</li>\n  <li>Buku</li>\n  <li>Tas</li>\n</ul>',
+              code: {
+                en: '<ul>\n  <li>Pencil</li>\n  <li>Book</li>\n  <li>Bag</li>\n</ul>',
+                id: '<ul>\n  <li>Pensil</li>\n  <li>Buku</li>\n  <li>Tas</li>\n</ul>',
+              },
               preview: true,
             },
             {
@@ -283,7 +362,10 @@ export const module2: Module = {
                 en: '`<ol>` is ordered — steps in a recipe, a ranking. The browser numbers them, so renumbering after an edit is not your problem.',
                 id: '`<ol>` itu berurut — langkah resep, peringkat. Peramban yang menomorinya, jadi penomoran ulang setelah penyuntingan bukan urusanmu.',
               },
-              code: '<ol>\n  <li>Panaskan minyak</li>\n  <li>Masukkan bawang</li>\n  <li>Tambahkan telur</li>\n</ol>',
+              code: {
+                en: '<ol>\n  <li>Heat the oil</li>\n  <li>Add the onion</li>\n  <li>Add the egg</li>\n</ol>',
+                id: '<ol>\n  <li>Panaskan minyak</li>\n  <li>Masukkan bawang</li>\n  <li>Tambahkan telur</li>\n</ol>',
+              },
               preview: true,
             },
             {
@@ -294,7 +376,10 @@ export const module2: Module = {
                 en: 'A nested list goes **inside** an `<li>`, not between two of them. Getting this wrong is the most common list mistake there is.',
                 id: 'Daftar bersarang diletakkan **di dalam** sebuah `<li>`, bukan di antara dua `<li>`. Keliru di sini adalah kesalahan daftar paling umum.',
               },
-              code: '<ul>\n  <li>Buah\n    <ul>\n      <li>Apel</li>\n      <li>Mangga</li>\n    </ul>\n  </li>\n  <li>Sayur</li>\n</ul>',
+              code: {
+                en: '<ul>\n  <li>Fruit\n    <ul>\n      <li>Apple</li>\n      <li>Mango</li>\n    </ul>\n  </li>\n  <li>Vegetable</li>\n</ul>',
+                id: '<ul>\n  <li>Buah\n    <ul>\n      <li>Apel</li>\n      <li>Mangga</li>\n    </ul>\n  </li>\n  <li>Sayur</li>\n</ul>',
+              },
               preview: true,
             },
             {
@@ -320,7 +405,10 @@ export const module2: Module = {
               kind: 'order',
               id: 'o1',
               prompt: { en: 'Assemble a correctly nested list.', id: 'Susun daftar bersarang yang benar.' },
-              lines: ['<ul>', '  <li>Buah', '    <ul>', '      <li>Apel</li>', '    </ul>', '  </li>', '</ul>'],
+              lines: {
+                en: ['<ul>', '  <li>Fruit', '    <ul>', '      <li>Apple</li>', '    </ul>', '  </li>', '</ul>'],
+                id: ['<ul>', '  <li>Buah', '    <ul>', '      <li>Apel</li>', '    </ul>', '  </li>', '</ul>'],
+              },
               explain: {
                 en: 'The inner list opens after the outer item\'s text and closes before that item does.',
                 id: 'Daftar dalamnya dibuka setelah teks item luarnya dan ditutup sebelum item itu ditutup.',
@@ -330,26 +418,42 @@ export const module2: Module = {
               kind: 'web',
               id: 'w1',
               prompt: {
-                en: 'Write an ordered list of three steps: `Buka editor`, `Tulis kode`, `Simpan berkas`.',
+                en: 'Write an ordered list of three steps: `Open the editor`, `Write the code`, `Save the file`.',
                 id: 'Tulis daftar berurut berisi tiga langkah: `Buka editor`, `Tulis kode`, `Simpan berkas`.',
               },
               starter: '',
-              tests: [
-                {
-                  name: { en: 'It is an ordered list', id: 'Daftarnya berjenis berurut' },
-                  check: 'assert(sel("ol"), "harus memakai <ol>, bukan <ul>");',
-                },
-                {
-                  name: { en: 'Three items in order', id: 'Tiga item sesuai urutan' },
-                  check:
-                    'var li = all("ol > li");\nassert(li.length === 3, "harus tepat tiga <li>, ada: " + li.length);\nvar mau = ["Buka editor", "Tulis kode", "Simpan berkas"];\nfor (var i = 0; i < 3; i++) assert(li[i].textContent.trim() === mau[i], "item ke-" + (i + 1) + " harus: " + mau[i]);',
-                },
-              ],
+              tests: {
+                en: [
+                  {
+                    name: { en: 'It is an ordered list', id: 'It is an ordered list' },
+                    check: 'assert(sel("ol"), "must use <ol>, not <ul>");',
+                  },
+                  {
+                    name: { en: 'Three items in order', id: 'Three items in order' },
+                    check:
+                      'var li = all("ol > li");\nassert(li.length === 3, "there must be exactly three <li>, found: " + li.length);\nvar want = ["Open the editor", "Write the code", "Save the file"];\nfor (var i = 0; i < 3; i++) assert(li[i].textContent.trim() === want[i], "item " + (i + 1) + " must be: " + want[i]);',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'It is an ordered list', id: 'Daftarnya berjenis berurut' },
+                    check: 'assert(sel("ol"), "harus memakai <ol>, bukan <ul>");',
+                  },
+                  {
+                    name: { en: 'Three items in order', id: 'Tiga item sesuai urutan' },
+                    check:
+                      'var li = all("ol > li");\nassert(li.length === 3, "harus tepat tiga <li>, ada: " + li.length);\nvar mau = ["Buka editor", "Tulis kode", "Simpan berkas"];\nfor (var i = 0; i < 3; i++) assert(li[i].textContent.trim() === mau[i], "item ke-" + (i + 1) + " harus: " + mau[i]);',
+                  },
+                ],
+              },
               hints: [
                 { en: 'The steps must happen in order, so the list is ol.', id: 'Langkahnya harus berurutan, jadi daftarnya ol.' },
                 { en: 'Each step is its own <li>…</li>.', id: 'Tiap langkah adalah <li>…</li> tersendiri.' },
               ],
-              solution: '<ol>\n  <li>Buka editor</li>\n  <li>Tulis kode</li>\n  <li>Simpan berkas</li>\n</ol>',
+              solution: {
+                en: '<ol>\n  <li>Open the editor</li>\n  <li>Write the code</li>\n  <li>Save the file</li>\n</ol>',
+                id: '<ol>\n  <li>Buka editor</li>\n  <li>Tulis kode</li>\n  <li>Simpan berkas</li>\n</ol>',
+              },
             },
           ],
         },
@@ -367,7 +471,10 @@ export const module2: Module = {
                 en: 'A menu is a list of links, and wrapping it in `<nav>` tells assistive technology "this is how you move around this site". A screen reader can then jump straight past it — or straight to it.',
                 id: 'Menu adalah daftar tautan, dan membungkusnya dengan `<nav>` memberi tahu teknologi bantu "beginilah cara berpindah di situs ini". Pembaca layar lalu bisa melompatinya — atau langsung menujunya.',
               },
-              code: '<nav>\n  <ul>\n    <li><a href="index.html">Beranda</a></li>\n    <li><a href="kursus.html">Kursus</a></li>\n    <li><a href="kontak.html">Kontak</a></li>\n  </ul>\n</nav>',
+              code: {
+                en: '<nav>\n  <ul>\n    <li><a href="index.html">Home</a></li>\n    <li><a href="courses.html">Courses</a></li>\n    <li><a href="contact.html">Contact</a></li>\n  </ul>\n</nav>',
+                id: '<nav>\n  <ul>\n    <li><a href="index.html">Beranda</a></li>\n    <li><a href="kursus.html">Kursus</a></li>\n    <li><a href="kontak.html">Kontak</a></li>\n  </ul>\n</nav>',
+              },
               preview: true,
             },
             {
@@ -404,31 +511,50 @@ export const module2: Module = {
               kind: 'web',
               id: 'w1',
               prompt: {
-                en: 'Build a `nav` containing an unordered list of three links: `Beranda` to `index.html`, `Kursus` to `kursus.html`, `Kontak` to `kontak.html`.',
+                en: 'Build a `nav` containing an unordered list of three links: `Home` to `index.html`, `Courses` to `courses.html`, `Contact` to `contact.html`.',
                 id: 'Bangun sebuah `nav` berisi daftar tak berurut dengan tiga tautan: `Beranda` ke `index.html`, `Kursus` ke `kursus.html`, `Kontak` ke `kontak.html`.',
               },
               starter: '<nav>\n\n</nav>\n',
-              tests: [
-                {
-                  name: { en: 'A list inside the nav', id: 'Sebuah daftar di dalam nav' },
-                  check: 'assert(sel("nav ul"), "butuh <ul> di dalam <nav>");\nassert(all("nav ul > li").length === 3, "harus tiga <li>, ada: " + all("nav ul > li").length);',
-                },
-                {
-                  name: { en: 'Each item holds one link', id: 'Tiap item memuat satu tautan' },
-                  check: 'all("nav ul > li").forEach(function (li, i) { assert(li.querySelector("a"), "item ke-" + (i + 1) + " harus memuat <a>"); });',
-                },
-                {
-                  name: { en: 'The links point where they say', id: 'Tautannya menunjuk sesuai namanya' },
-                  check:
-                    'var mau = [["Beranda", "index.html"], ["Kursus", "kursus.html"], ["Kontak", "kontak.html"]];\nvar a = all("nav ul > li a");\nfor (var i = 0; i < 3; i++) {\n  assert(a[i].textContent.trim() === mau[i][0], "tautan ke-" + (i + 1) + " harus bertuliskan " + mau[i][0]);\n  assert(a[i].getAttribute("href") === mau[i][1], mau[i][0] + " harus menuju " + mau[i][1]);\n}',
-                },
-              ],
+              tests: {
+                en: [
+                  {
+                    name: { en: 'A list inside the nav', id: 'A list inside the nav' },
+                    check: 'assert(sel("nav ul"), "need a <ul> inside <nav>");\nassert(all("nav ul > li").length === 3, "there must be three <li>, found: " + all("nav ul > li").length);',
+                  },
+                  {
+                    name: { en: 'Each item holds one link', id: 'Each item holds one link' },
+                    check: 'all("nav ul > li").forEach(function (li, i) { assert(li.querySelector("a"), "item " + (i + 1) + " must contain an <a>"); });',
+                  },
+                  {
+                    name: { en: 'The links point where they say', id: 'The links point where they say' },
+                    check:
+                      'var want = [["Home", "index.html"], ["Courses", "courses.html"], ["Contact", "contact.html"]];\nvar a = all("nav ul > li a");\nfor (var i = 0; i < 3; i++) {\n  assert(a[i].textContent.trim() === want[i][0], "link " + (i + 1) + " must say " + want[i][0]);\n  assert(a[i].getAttribute("href") === want[i][1], want[i][0] + " must point to " + want[i][1]);\n}',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'A list inside the nav', id: 'Sebuah daftar di dalam nav' },
+                    check: 'assert(sel("nav ul"), "butuh <ul> di dalam <nav>");\nassert(all("nav ul > li").length === 3, "harus tiga <li>, ada: " + all("nav ul > li").length);',
+                  },
+                  {
+                    name: { en: 'Each item holds one link', id: 'Tiap item memuat satu tautan' },
+                    check: 'all("nav ul > li").forEach(function (li, i) { assert(li.querySelector("a"), "item ke-" + (i + 1) + " harus memuat <a>"); });',
+                  },
+                  {
+                    name: { en: 'The links point where they say', id: 'Tautannya menunjuk sesuai namanya' },
+                    check:
+                      'var mau = [["Beranda", "index.html"], ["Kursus", "kursus.html"], ["Kontak", "kontak.html"]];\nvar a = all("nav ul > li a");\nfor (var i = 0; i < 3; i++) {\n  assert(a[i].textContent.trim() === mau[i][0], "tautan ke-" + (i + 1) + " harus bertuliskan " + mau[i][0]);\n  assert(a[i].getAttribute("href") === mau[i][1], mau[i][0] + " harus menuju " + mau[i][1]);\n}',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Three layers: nav wraps ul, ul holds li, each li holds an a.', id: 'Tiga lapis: nav membungkus ul, ul memuat li, tiap li memuat a.' },
-                { en: '<li><a href="index.html">Beranda</a></li>', id: '<li><a href="index.html">Beranda</a></li>' },
+                { en: '<li><a href="index.html">Home</a></li>', id: '<li><a href="index.html">Beranda</a></li>' },
               ],
-              solution:
-                '<nav>\n  <ul>\n    <li><a href="index.html">Beranda</a></li>\n    <li><a href="kursus.html">Kursus</a></li>\n    <li><a href="kontak.html">Kontak</a></li>\n  </ul>\n</nav>',
+              solution: {
+                en: '<nav>\n  <ul>\n    <li><a href="index.html">Home</a></li>\n    <li><a href="courses.html">Courses</a></li>\n    <li><a href="contact.html">Contact</a></li>\n  </ul>\n</nav>',
+                id: '<nav>\n  <ul>\n    <li><a href="index.html">Beranda</a></li>\n    <li><a href="kursus.html">Kursus</a></li>\n    <li><a href="kontak.html">Kontak</a></li>\n  </ul>\n</nav>',
+              },
             },
           ],
         },
@@ -448,37 +574,65 @@ export const module2: Module = {
           { en: 'Every link has a non-empty `href` and text.', id: 'Setiap tautan punya `href` dan teks yang tidak kosong.' },
           { en: 'Below the nav, an `ol` with three steps.', id: 'Di bawah nav, sebuah `ol` berisi tiga langkah.' },
         ],
-        starter:
-          '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Menu</title>\n  </head>\n  <body>\n\n  </body>\n</html>\n',
-        tests: [
-          {
-            name: { en: 'Three top-level items in the nav', id: 'Tiga item tingkat atas di nav' },
-            check:
-              'var ul = sel("nav > ul");\nassert(ul, "butuh <ul> tepat di dalam <nav>");\nvar atas = all("nav > ul > li");\nassert(atas.length === 3, "harus tepat tiga item tingkat atas, ada: " + atas.length);',
-          },
-          {
-            name: { en: 'The submenu is nested correctly', id: 'Submenunya bersarang dengan benar' },
-            check:
-              'var kedua = all("nav > ul > li")[1];\nvar dalam = kedua.querySelector("ul");\nassert(dalam, "item kedua harus memuat <ul> bersarang");\nassert(dalam.querySelectorAll(":scope > li").length === 2, "submenu harus punya dua item");\nassert(dalam.querySelectorAll("a").length === 2, "submenu harus punya dua tautan");',
-          },
-          {
-            name: { en: 'Every link works', id: 'Semua tautan layak' },
-            check:
-              'var a = all("nav a");\nassert(a.length >= 5, "minimal lima tautan di nav, ada: " + a.length);\na.forEach(function (x) {\n  var h = x.getAttribute("href");\n  assert(h && h.trim().length > 0, "setiap tautan butuh href");\n  assert(x.textContent.trim().length > 0, "setiap tautan butuh teks");\n});',
-          },
-          {
-            name: { en: 'A numbered list of three steps', id: 'Daftar bernomor berisi tiga langkah' },
-            check:
-              'var ol = sel("ol");\nassert(ol, "belum ada <ol>");\nassert(ol.querySelectorAll(":scope > li").length === 3, "ol harus punya tiga langkah");\nvar nav = sel("nav");\nassert(nav.compareDocumentPosition(ol) & Node.DOCUMENT_POSITION_FOLLOWING, "ol harus berada setelah nav");',
-          },
-        ],
+        starter: {
+          en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>Menu</title>\n  </head>\n  <body>\n\n  </body>\n</html>\n',
+          id: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Menu</title>\n  </head>\n  <body>\n\n  </body>\n</html>\n',
+        },
+        tests: {
+          en: [
+            {
+              name: { en: 'Three top-level items in the nav', id: 'Three top-level items in the nav' },
+              check:
+                'var ul = sel("nav > ul");\nassert(ul, "need a <ul> directly inside <nav>");\nvar top = all("nav > ul > li");\nassert(top.length === 3, "there must be exactly three top-level items, found: " + top.length);',
+            },
+            {
+              name: { en: 'The submenu is nested correctly', id: 'The submenu is nested correctly' },
+              check:
+                'var second = all("nav > ul > li")[1];\nvar inner = second.querySelector("ul");\nassert(inner, "the second item must contain a nested <ul>");\nassert(inner.querySelectorAll(":scope > li").length === 2, "the submenu must have two items");\nassert(inner.querySelectorAll("a").length === 2, "the submenu must have two links");',
+            },
+            {
+              name: { en: 'Every link works', id: 'Every link works' },
+              check:
+                'var a = all("nav a");\nassert(a.length >= 5, "at least five links in the nav, found: " + a.length);\na.forEach(function (x) {\n  var h = x.getAttribute("href");\n  assert(h && h.trim().length > 0, "every link needs an href");\n  assert(x.textContent.trim().length > 0, "every link needs text");\n});',
+            },
+            {
+              name: { en: 'A numbered list of three steps', id: 'A numbered list of three steps' },
+              check:
+                'var ol = sel("ol");\nassert(ol, "there is no <ol> yet");\nassert(ol.querySelectorAll(":scope > li").length === 3, "the ol must have three steps");\nvar nav = sel("nav");\nassert(nav.compareDocumentPosition(ol) & Node.DOCUMENT_POSITION_FOLLOWING, "the ol must come after the nav");',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'Three top-level items in the nav', id: 'Tiga item tingkat atas di nav' },
+              check:
+                'var ul = sel("nav > ul");\nassert(ul, "butuh <ul> tepat di dalam <nav>");\nvar atas = all("nav > ul > li");\nassert(atas.length === 3, "harus tepat tiga item tingkat atas, ada: " + atas.length);',
+            },
+            {
+              name: { en: 'The submenu is nested correctly', id: 'Submenunya bersarang dengan benar' },
+              check:
+                'var kedua = all("nav > ul > li")[1];\nvar dalam = kedua.querySelector("ul");\nassert(dalam, "item kedua harus memuat <ul> bersarang");\nassert(dalam.querySelectorAll(":scope > li").length === 2, "submenu harus punya dua item");\nassert(dalam.querySelectorAll("a").length === 2, "submenu harus punya dua tautan");',
+            },
+            {
+              name: { en: 'Every link works', id: 'Semua tautan layak' },
+              check:
+                'var a = all("nav a");\nassert(a.length >= 5, "minimal lima tautan di nav, ada: " + a.length);\na.forEach(function (x) {\n  var h = x.getAttribute("href");\n  assert(h && h.trim().length > 0, "setiap tautan butuh href");\n  assert(x.textContent.trim().length > 0, "setiap tautan butuh teks");\n});',
+            },
+            {
+              name: { en: 'A numbered list of three steps', id: 'Daftar bernomor berisi tiga langkah' },
+              check:
+                'var ol = sel("ol");\nassert(ol, "belum ada <ol>");\nassert(ol.querySelectorAll(":scope > li").length === 3, "ol harus punya tiga langkah");\nvar nav = sel("nav");\nassert(nav.compareDocumentPosition(ol) & Node.DOCUMENT_POSITION_FOLLOWING, "ol harus berada setelah nav");',
+            },
+          ],
+        },
         hints: [
           { en: 'Build the three top-level items first, then nest the submenu inside the second one.', id: 'Bangun tiga item tingkat atas dulu, lalu sarangkan submenunya di dalam item kedua.' },
           { en: 'The nested ul goes before the second `</li>`, not after it.', id: 'ul bersarangnya diletakkan sebelum `</li>` kedua, bukan setelahnya.' },
           { en: 'The ol is a sibling of the nav, placed after it in the body.', id: 'ol adalah saudara dari nav, diletakkan setelahnya di dalam body.' },
         ],
-        solution:
-          '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Menu</title>\n  </head>\n  <body>\n    <nav>\n      <ul>\n        <li><a href="index.html">Beranda</a></li>\n        <li><a href="kursus.html">Kursus</a>\n          <ul>\n            <li><a href="python.html">Python</a></li>\n            <li><a href="html.html">HTML</a></li>\n          </ul>\n        </li>\n        <li><a href="kontak.html">Kontak</a></li>\n      </ul>\n    </nav>\n\n    <ol>\n      <li>Pilih kursus</li>\n      <li>Kerjakan pelajaran</li>\n      <li>Selesaikan mini proyek</li>\n    </ol>\n  </body>\n</html>',
+        solution: {
+          en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>Menu</title>\n  </head>\n  <body>\n    <nav>\n      <ul>\n        <li><a href="index.html">Home</a></li>\n        <li><a href="courses.html">Courses</a>\n          <ul>\n            <li><a href="python.html">Python</a></li>\n            <li><a href="html.html">HTML</a></li>\n          </ul>\n        </li>\n        <li><a href="contact.html">Contact</a></li>\n      </ul>\n    </nav>\n\n    <ol>\n      <li>Choose a course</li>\n      <li>Do the lesson</li>\n      <li>Finish the mini project</li>\n    </ol>\n  </body>\n</html>',
+          id: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Menu</title>\n  </head>\n  <body>\n    <nav>\n      <ul>\n        <li><a href="index.html">Beranda</a></li>\n        <li><a href="kursus.html">Kursus</a>\n          <ul>\n            <li><a href="python.html">Python</a></li>\n            <li><a href="html.html">HTML</a></li>\n          </ul>\n        </li>\n        <li><a href="kontak.html">Kontak</a></li>\n      </ul>\n    </nav>\n\n    <ol>\n      <li>Pilih kursus</li>\n      <li>Kerjakan pelajaran</li>\n      <li>Selesaikan mini proyek</li>\n    </ol>\n  </body>\n</html>',
+        },
         xp: 50,
       },
     },
