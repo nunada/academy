@@ -290,7 +290,7 @@ export type Step =
       /** Fixed markup for the exercise. When present the learner writes CSS
        *  (or, with `js`, JavaScript) against this page rather than authoring it.
        *  The HTML becomes context; the exercise is the stylesheet or the script. */
-      html?: string
+      html?: Bi<string>
       /** The editor holds JavaScript, run as a script on the page. */
       js?: boolean
       /** The editor holds JSX, transpiled in the frame before it runs.
@@ -380,7 +380,7 @@ type CodeProject = MiniProjectBase & { starter: Bi<string>; solution: Bi<string>
  *  Python is the default, which keeps every existing project unchanged. */
 export type MiniProject =
   | (CodeProject & { runtime?: 'python'; tests: Bi<PyTest[]> })
-  | (CodeProject & { runtime: 'web'; tests: Bi<WebTest[]>; html?: string; js?: boolean; react?: boolean })
+  | (CodeProject & { runtime: 'web'; tests: Bi<WebTest[]>; html?: Bi<string>; js?: boolean; react?: boolean })
   | (CodeProject & { runtime: 'sql'; tests: SqlTest[]; schema: string })
   | (CodeProject & { runtime: 'ts'; tests: TsTest[] })
   | (CodeProject & { runtime: 'game'; tests: Bi<PyTest[]> })

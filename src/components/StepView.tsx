@@ -537,6 +537,7 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
   const starter = resolveBi(step.starter, lang)
   const tests = resolveBi(step.tests, lang)
   const solution = resolveBi(step.solution, lang)
+  const html = step.html !== undefined ? resolveBi(step.html, lang) : undefined
   const [code, setCode] = useState(starter)
   const [busy, setBusy] = useState(false)
   const [outcomes, setOutcomes] = useState<WebOutcome[] | null>(null)
@@ -549,15 +550,15 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
   // one: CSS by default, JavaScript when the step says so.
   const isReact = step.react === true
   const isJs = step.js === true || isReact
-  const isCss = step.html !== undefined && !isJs
+  const isCss = html !== undefined && !isJs
   const editorLabel = isReact ? 'JSX' : isJs ? 'JavaScript' : isCss ? 'CSS' : 'HTML'
   // A logic-only exercise has no page to show; LivePreview renders its console instead.
-  const consoleOnly = isJs && !isReact && (step.html === undefined || step.html.trim() === '')
+  const consoleOnly = isJs && !isReact && (html === undefined || html.trim() === '')
 
   async function doCheck() {
     setBusy(true)
     try {
-      const res = await runWebTests(code, tests, step.html, step.js, step.react)
+      const res = await runWebTests(code, tests, html, step.js, step.react)
       setOutcomes(res)
       if (res.every((o) => o.passed)) onSolved()
       else onWrong()
@@ -572,12 +573,12 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
         <Rich text={tc(step.prompt)} />
       </h3>
 
-      {step.html !== undefined && step.html.trim() !== '' && (
+      {html !== undefined && html.trim() !== '' && (
         <details style={{ marginBottom: 12 }}>
           <summary className="io-label" style={{ cursor: 'pointer' }}>
             {tc({ en: 'The markup (already written for you)', id: 'Markup-nya (sudah disediakan)' })}
           </summary>
-          <CodeBlock>{step.html!}</CodeBlock>
+          <CodeBlock>{html}</CodeBlock>
         </details>
       )}
 
@@ -588,7 +589,7 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
         </div>
         <div>
           {!consoleOnly && <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>}
-          <LivePreview source={code} html={step.html} js={step.js} react={step.react} />
+          <LivePreview source={code} html={html} js={step.js} react={step.react} />
         </div>
       </div>
 

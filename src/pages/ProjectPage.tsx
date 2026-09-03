@@ -85,10 +85,11 @@ export default function ProjectPage() {
   // script to write.
   const isReact = isWeb && project.react === true
   const isJs = isWeb && (project.js === true || isReact)
-  const isCss = isWeb && project.html !== undefined && !isJs
-  const hasGivenMarkup = isWeb && project.html !== undefined && project.html.trim() !== ''
+  const html = isWeb && project.html !== undefined ? resolveBi(project.html, lang) : undefined
+  const isCss = isWeb && html !== undefined && !isJs
+  const hasGivenMarkup = isWeb && html !== undefined && html.trim() !== ''
   const editorLabel = isReact ? 'JSX' : isJs ? 'JavaScript' : isCss ? 'CSS' : 'HTML'
-  const consoleOnly = isJs && !isReact && (project.html === undefined || project.html.trim() === '')
+  const consoleOnly = isJs && !isReact && (html === undefined || html.trim() === '')
   // SQL projects run in the app like Python, but answer with a grid of rows.
   const isSql = project.runtime === 'sql'
   // TypeScript projects answer with the compiler's opinion first of all.
@@ -158,7 +159,7 @@ export default function ProjectPage() {
       // Each runtime reports differently; they meet again as ResultRow[].
       const next: ResultRow[] =
         project.runtime === 'web'
-          ? fromWeb(await runWebTests(code, resolveBi(project.tests, lang), project.html, project.js, project.react))
+          ? fromWeb(await runWebTests(code, resolveBi(project.tests, lang), html, project.js, project.react))
           : project.runtime === 'sql'
             ? fromSql(await runSqlTests(project.schema, code, project.tests))
             : project.runtime === 'ts'
@@ -273,7 +274,7 @@ export default function ProjectPage() {
                 <summary className="io-label" style={{ cursor: 'pointer' }}>
                   {tc({ en: 'The markup (already written for you)', id: 'Markup-nya (sudah disediakan)' })}
                 </summary>
-                <CodeBlock>{project.html!}</CodeBlock>
+                <CodeBlock>{html!}</CodeBlock>
               </details>
             )}
             <div className="split">
@@ -283,7 +284,7 @@ export default function ProjectPage() {
               </div>
               <div>
                 {!consoleOnly && <div className="io-label">{tc({ en: 'Preview', id: 'Pratinjau' })}</div>}
-                <LivePreview source={code} html={project.html} js={project.js} react={project.react} height={420} />
+                <LivePreview source={code} html={html} js={project.js} react={project.react} height={420} />
               </div>
             </div>
           </>
