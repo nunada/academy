@@ -339,10 +339,10 @@ export type Step =
       kind: 'ts'
       id: string
       prompt: Loc
-      starter: string
-      tests: TsTest[]
+      starter: Bi<string>
+      tests: Bi<TsTest[]>
       hints: Loc[]
-      solution: string
+      solution: Bi<string>
     }
   | ({
       /** The last rung of a mathematics lesson. There is nothing to pick from
@@ -382,7 +382,7 @@ export type MiniProject =
   | (CodeProject & { runtime?: 'python'; tests: Bi<PyTest[]> })
   | (CodeProject & { runtime: 'web'; tests: Bi<WebTest[]>; html?: Bi<string>; js?: boolean; react?: boolean })
   | (CodeProject & { runtime: 'sql'; tests: SqlTest[]; schema: string })
-  | (CodeProject & { runtime: 'ts'; tests: TsTest[] })
+  | (CodeProject & { runtime: 'ts'; tests: Bi<TsTest[]> })
   | (CodeProject & { runtime: 'game'; tests: Bi<PyTest[]> })
   | (CodeProject & { runtime: 'cpp'; tests: Bi<CppTest[]> })
   /** A problem set: several questions, every box right before it counts.

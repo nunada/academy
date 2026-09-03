@@ -163,7 +163,7 @@ export default function ProjectPage() {
           : project.runtime === 'sql'
             ? fromSql(await runSqlTests(project.schema, code, project.tests))
             : project.runtime === 'ts'
-              ? fromTs(await runTsTests(code, project.tests))
+              ? fromTs(await runTsTests(code, resolveBi(project.tests, lang)))
               : project.runtime === 'cpp'
                 ? fromCpp(await runCppTests(code, resolveBi(project.tests, lang)))
                 : fromPython(await runTests(code, resolveBi(project.tests, lang)))

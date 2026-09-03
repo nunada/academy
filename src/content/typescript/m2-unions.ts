@@ -53,15 +53,15 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'A single value can be a type', id: 'Satu nilai pun bisa jadi tipe' },
               body: {
-                en: 'The type `"kecil"` contains exactly one value: the string `"kecil"`. On its own that is useless; as a union it is one of the most useful things in the language. `"kecil" | "sedang" | "besar"` is a set of allowed strings, checked at every call, spelled correctly or not at all.',
+                en: 'The type `"small"` contains exactly one value: the string `"small"`. On its own that is useless; as a union it is one of the most useful things in the language. `"small" | "medium" | "large"` is a set of allowed strings, checked at every call, spelled correctly or not at all.',
                 id: 'Tipe `"kecil"` memuat tepat satu nilai: string `"kecil"`. Sendirian itu tak berguna; sebagai union ia salah satu hal paling berguna di bahasanya. `"kecil" | "sedang" | "besar"` adalah himpunan string yang diizinkan, diperiksa di tiap pemanggilan, dieja benar atau tidak sama sekali.',
               },
               code: {
                 en:
-                  'type Ukuran = "kecil" | "sedang" | "besar";\n\n' +
-                  'let u: Ukuran = "sedang";  // fine\n' +
-                  'u = "Sedang";              // rejected: the capitalization differs\n' +
-                  'u = "raksasa";             // rejected: not one of them',
+                  'type Size = "small" | "medium" | "large";\n\n' +
+                  'let s: Size = "medium";  // fine\n' +
+                  's = "Medium";            // rejected: the capitalization differs\n' +
+                  's = "giant";             // rejected: not one of them',
                 id:
                   'type Ukuran = "kecil" | "sedang" | "besar";\n\n' +
                   'let u: Ukuran = "sedang";  // baik\n' +
@@ -79,9 +79,9 @@ export const module2: Module = {
               },
               code: {
                 en:
-                  'function kirim(mode: "cepat" | "hemat"): void { /* ... */ }\n\n' +
-                  'kirim("cepat");   // fine\n' +
-                  'kirim("cepatt");  // Argument of type \'"cepatt"\' is not assignable...',
+                  'function send(mode: "fast" | "economical"): void { /* ... */ }\n\n' +
+                  'send("fast");   // fine\n' +
+                  'send("fastt");  // Argument of type \'"fastt"\' is not assignable...',
                 id:
                   'function kirim(mode: "cepat" | "hemat"): void { /* ... */ }\n\n' +
                   'kirim("cepat");   // baik\n' +
@@ -95,7 +95,10 @@ export const module2: Module = {
                 en: 'Which line is refused?',
                 id: 'Baris mana yang ditolak?',
               },
-              code: 'type Arah = "naik" | "turun";\n\nlet a: Arah = "naik";\na = "turun";\nlet b: string = a;\nlet c: Arah = b;',
+              code: {
+                en: 'type Direction = "up" | "down";\n\nlet a: Direction = "up";\na = "down";\nlet b: string = a;\nlet c: Direction = b;',
+                id: 'type Arah = "naik" | "turun";\n\nlet a: Arah = "naik";\na = "turun";\nlet b: string = a;\nlet c: Arah = b;',
+              },
               options: [
                 { en: 'Only the last one', id: 'Hanya yang terakhir' },
                 { en: 'The third and the last', id: 'Yang ketiga dan yang terakhir' },
@@ -104,7 +107,7 @@ export const module2: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'Every `Arah` is a string, so widening is fine. Going back the other way is not: a `string` could hold anything.',
+                en: 'Every `Direction` is a string, so widening is fine. Going back the other way is not: a `string` could hold anything.',
                 id: 'Tiap `Arah` adalah string, jadi melebar itu boleh. Kembali ke arah sebaliknya tidak: `string` bisa berisi apa saja.',
               },
             },
@@ -115,7 +118,10 @@ export const module2: Module = {
                 en: 'Complete the type: a status that is one of three words.',
                 id: 'Lengkapi tipenya: status yang berupa salah satu dari tiga kata.',
               },
-              template: 'type Status = "baru" ___ "diproses" ___ "selesai";',
+              template: {
+                en: 'type Status = "new" ___ "processing" ___ "done";',
+                id: 'type Status = "baru" ___ "diproses" ___ "selesai";',
+              },
               blanks: ['|', '|'],
               explain: {
                 en: 'The bar separates the members of a union, the same way it reads in English: this or this or this.',
@@ -126,55 +132,102 @@ export const module2: Module = {
               kind: 'ts',
               id: 't1',
               prompt: {
-                en: 'Declare `type Ukuran = "kecil" | "sedang" | "besar"`, then write `harga(dasar: number, ukuran: Ukuran): number` which adds 0, 5000 or 10000 respectively.',
+                en: 'Declare `type Size = "small" | "medium" | "large"`, then write `price(base: number, size: Size): number` which adds 0, 5000 or 10000 respectively.',
                 id: 'Deklarasikan `type Ukuran = "kecil" | "sedang" | "besar"`, lalu tulis `harga(dasar: number, ukuran: Ukuran): number` yang menambahkan 0, 5000, atau 10000 secara berurutan.',
               },
-              starter:
-                'type Ukuran = string;\n\n' +
-                'function harga(dasar: number, ukuran: Ukuran): number {\n  return dasar;\n}\n',
-              tests: [
-                {
-                  name: { en: 'Each size costs the right amount', id: 'Tiap ukuran berbiaya tepat' },
-                  check:
-                    'assert(harga(20000, "kecil") === 20000, "kecil harus 20000, sekarang: " + harga(20000, "kecil"));\n' +
-                    'assert(harga(20000, "sedang") === 25000, "sedang harus 25000, sekarang: " + harga(20000, "sedang"));\n' +
-                    'assert(harga(20000, "besar") === 30000, "besar harus 30000, sekarang: " + harga(20000, "besar"));',
-                },
-                {
-                  name: { en: 'The three sizes are accepted', id: 'Ketiga ukurannya diterima' },
-                  probe: 'const uji1: Ukuran = "kecil";\nconst uji2: Ukuran = "sedang";\nconst uji3: Ukuran = "besar";',
-                },
-                {
-                  name: { en: 'A fourth size is refused', id: 'Ukuran keempat ditolak' },
-                  probe: 'harga(1000, "raksasa");',
-                  expectError: true,
-                  errorCode: 2345,
-                },
-                {
-                  name: { en: 'Capitalisation matters', id: 'Besar-kecil hurufnya berarti' },
-                  probe: 'const uji4: Ukuran = "Kecil";',
-                  expectError: true,
-                  errorCode: 2820,
-                },
-                {
-                  name: { en: 'A plain string is not a size', id: 'String biasa bukan sebuah ukuran' },
-                  probe: 'const kata: string = "kecil";\nharga(1000, kata);',
-                  expectError: true,
-                  errorCode: 2345,
-                },
-              ],
+              starter: {
+                en:
+                  'type Size = string;\n\n' +
+                  'function price(base: number, size: Size): number {\n  return base;\n}\n',
+                id:
+                  'type Ukuran = string;\n\n' +
+                  'function harga(dasar: number, ukuran: Ukuran): number {\n  return dasar;\n}\n',
+              },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Each size costs the right amount', id: 'Tiap ukuran berbiaya tepat' },
+                    check:
+                      'assert(price(20000, "small") === 20000, "small should be 20000, got: " + price(20000, "small"));\n' +
+                      'assert(price(20000, "medium") === 25000, "medium should be 25000, got: " + price(20000, "medium"));\n' +
+                      'assert(price(20000, "large") === 30000, "large should be 30000, got: " + price(20000, "large"));',
+                  },
+                  {
+                    name: { en: 'The three sizes are accepted', id: 'Ketiga ukurannya diterima' },
+                    probe: 'const t1: Size = "small";\nconst t2: Size = "medium";\nconst t3: Size = "large";',
+                  },
+                  {
+                    name: { en: 'A fourth size is refused', id: 'Ukuran keempat ditolak' },
+                    probe: 'price(1000, "giant");',
+                    expectError: true,
+                    errorCode: 2345,
+                  },
+                  {
+                    name: { en: 'Capitalisation matters', id: 'Besar-kecil hurufnya berarti' },
+                    probe: 'const t4: Size = "Small";',
+                    expectError: true,
+                    errorCode: 2820,
+                  },
+                  {
+                    name: { en: 'A plain string is not a size', id: 'String biasa bukan sebuah ukuran' },
+                    probe: 'const word: string = "small";\nprice(1000, word);',
+                    expectError: true,
+                    errorCode: 2345,
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Each size costs the right amount', id: 'Tiap ukuran berbiaya tepat' },
+                    check:
+                      'assert(harga(20000, "kecil") === 20000, "kecil harus 20000, sekarang: " + harga(20000, "kecil"));\n' +
+                      'assert(harga(20000, "sedang") === 25000, "sedang harus 25000, sekarang: " + harga(20000, "sedang"));\n' +
+                      'assert(harga(20000, "besar") === 30000, "besar harus 30000, sekarang: " + harga(20000, "besar"));',
+                  },
+                  {
+                    name: { en: 'The three sizes are accepted', id: 'Ketiga ukurannya diterima' },
+                    probe: 'const uji1: Ukuran = "kecil";\nconst uji2: Ukuran = "sedang";\nconst uji3: Ukuran = "besar";',
+                  },
+                  {
+                    name: { en: 'A fourth size is refused', id: 'Ukuran keempat ditolak' },
+                    probe: 'harga(1000, "raksasa");',
+                    expectError: true,
+                    errorCode: 2345,
+                  },
+                  {
+                    name: { en: 'Capitalisation matters', id: 'Besar-kecil hurufnya berarti' },
+                    probe: 'const uji4: Ukuran = "Kecil";',
+                    expectError: true,
+                    errorCode: 2820,
+                  },
+                  {
+                    name: { en: 'A plain string is not a size', id: 'String biasa bukan sebuah ukuran' },
+                    probe: 'const kata: string = "kecil";\nharga(1000, kata);',
+                    expectError: true,
+                    errorCode: 2345,
+                  },
+                ],
+              },
               hints: [
                 { en: 'The starter calls a size `string`, which is why every word gets through.', id: 'Kode awalnya menyebut ukuran sebagai `string`, dan itulah sebabnya tiap kata lolos.' },
                 { en: 'Three literals, separated by bars.', id: 'Tiga literal, dipisah garis tegak.' },
-                { en: 'Inside the function an if or a switch on `ukuran` is all you need.', id: 'Di dalam fungsinya, if atau switch pada `ukuran` sudah cukup.' },
+                { en: 'Inside the function an if or a switch on `size` is all you need.', id: 'Di dalam fungsinya, if atau switch pada `ukuran` sudah cukup.' },
               ],
-              solution:
-                'type Ukuran = "kecil" | "sedang" | "besar";\n\n' +
-                'function harga(dasar: number, ukuran: Ukuran): number {\n' +
-                '  if (ukuran === "sedang") return dasar + 5000;\n' +
-                '  if (ukuran === "besar") return dasar + 10000;\n' +
-                '  return dasar;\n' +
-                '}',
+              solution: {
+                en:
+                  'type Size = "small" | "medium" | "large";\n\n' +
+                  'function price(base: number, size: Size): number {\n' +
+                  '  if (size === "medium") return base + 5000;\n' +
+                  '  if (size === "large") return base + 10000;\n' +
+                  '  return base;\n' +
+                  '}',
+                id:
+                  'type Ukuran = "kecil" | "sedang" | "besar";\n\n' +
+                  'function harga(dasar: number, ukuran: Ukuran): number {\n' +
+                  '  if (ukuran === "sedang") return dasar + 5000;\n' +
+                  '  if (ukuran === "besar") return dasar + 10000;\n' +
+                  '  return dasar;\n' +
+                  '}',
+              },
             },
           ],
         },
@@ -194,11 +247,11 @@ export const module2: Module = {
               },
               code: {
                 en:
-                  'function tampil(nilai: string | number): string {\n' +
-                  '  if (typeof nilai === "string") {\n' +
-                  '    return nilai.toUpperCase();   // nilai has type string here\n' +
+                  'function display(value: string | number): string {\n' +
+                  '  if (typeof value === "string") {\n' +
+                  '    return value.toUpperCase();   // value has type string here\n' +
                   '  }\n' +
-                  '  return nilai.toFixed(2);        // and here, number\n' +
+                  '  return value.toFixed(2);        // and here, number\n' +
                   '}',
                 id:
                   'function tampil(nilai: string | number): string {\n' +
@@ -214,15 +267,15 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'So does === on a literal', id: 'Begitu juga === pada sebuah literal' },
               body: {
-                en: 'Comparing against one member of a literal union narrows it too, and so does an early `return`: after `if (u === "kecil") return ...`, the compiler knows that below that line `u` can only be `"sedang" | "besar"`. It keeps track as you go.',
+                en: 'Comparing against one member of a literal union narrows it too, and so does an early `return`: after `if (s === "small") return ...`, the compiler knows that below that line `s` can only be `"medium" | "large"`. It keeps track as you go.',
                 id: 'Membandingkan dengan salah satu anggota union literal juga mempersempitnya, begitu pula `return` lebih awal: setelah `if (u === "kecil") return ...`, kompilernya tahu bahwa di bawah baris itu `u` hanya bisa `"sedang" | "besar"`. Ia terus mencatat sambil jalan.',
               },
               code: {
                 en:
-                  'function biaya(u: "kecil" | "sedang" | "besar"): number {\n' +
-                  '  if (u === "kecil") return 0;\n' +
-                  '  // u here: "sedang" | "besar"\n' +
-                  '  return u === "sedang" ? 5000 : 10000;\n' +
+                  'function cost(s: "small" | "medium" | "large"): number {\n' +
+                  '  if (s === "small") return 0;\n' +
+                  '  // s here: "medium" | "large"\n' +
+                  '  return s === "medium" ? 5000 : 10000;\n' +
                   '}',
                 id:
                   'function biaya(u: "kecil" | "sedang" | "besar"): number {\n' +
@@ -237,14 +290,21 @@ export const module2: Module = {
               id: 'c3',
               title: { en: 'Arrays need Array.isArray', id: 'Array butuh Array.isArray' },
               body: {
-                en: '`typeof []` is `"object"`, which tells you nothing useful, so an array in a union is narrowed with `Array.isArray(x)`. For objects that are not arrays, the `in` operator does the job: `"kota" in alamat` narrows to the member that has that property.',
+                en: '`typeof []` is `"object"`, which tells you nothing useful, so an array in a union is narrowed with `Array.isArray(x)`. For objects that are not arrays, the `in` operator does the job: `"city" in address` narrows to the member that has that property.',
                 id: '`typeof []` adalah `"object"`, yang tak memberi tahu apa pun yang berguna, jadi array di dalam union dipersempit dengan `Array.isArray(x)`. Untuk objek yang bukan array, operator `in` yang bekerja: `"kota" in alamat` mempersempit ke anggota yang punya properti itu.',
               },
-              code:
-                'function gabung(x: string | string[]): string {\n' +
-                '  if (Array.isArray(x)) return x.join(", ");\n' +
-                '  return x;\n' +
-                '}',
+              code: {
+                en:
+                  'function join(x: string | string[]): string {\n' +
+                  '  if (Array.isArray(x)) return x.join(", ");\n' +
+                  '  return x;\n' +
+                  '}',
+                id:
+                  'function gabung(x: string | string[]): string {\n' +
+                  '  if (Array.isArray(x)) return x.join(", ");\n' +
+                  '  return x;\n' +
+                  '}',
+              },
             },
             {
               kind: 'quiz',
@@ -273,14 +333,24 @@ export const module2: Module = {
                 en: 'Assemble a function that narrows before it acts.',
                 id: 'Susun fungsi yang mempersempit sebelum bertindak.',
               },
-              lines: [
-                'function panjang(x: string | string[]): number {',
-                '  if (Array.isArray(x)) {',
-                '    return x.length;',
-                '  }',
-                '  return x.length;',
-                '}',
-              ],
+              lines: {
+                en: [
+                  'function length(x: string | string[]): number {',
+                  '  if (Array.isArray(x)) {',
+                  '    return x.length;',
+                  '  }',
+                  '  return x.length;',
+                  '}',
+                ],
+                id: [
+                  'function panjang(x: string | string[]): number {',
+                  '  if (Array.isArray(x)) {',
+                  '    return x.length;',
+                  '  }',
+                  '  return x.length;',
+                  '}',
+                ],
+              },
               explain: {
                 en: 'Both branches say `.length`, but they mean different things — and the compiler had to be shown which before it allowed either.',
                 id: 'Kedua cabangnya menulis `.length`, tetapi maknanya berbeda — dan kompilernya harus ditunjukkan yang mana sebelum membolehkan keduanya.',
@@ -290,59 +360,110 @@ export const module2: Module = {
               kind: 'ts',
               id: 't1',
               prompt: {
-                en: 'Fix `ringkas(nilai: string | number | string[]): string`. A string comes back unchanged, a number comes back with two decimals, and a list comes back joined with `", "`.',
+                en: 'Fix `summarize(value: string | number | string[]): string`. A string comes back unchanged, a number comes back with two decimals, and a list comes back joined with `", "`.',
                 id: 'Betulkan `ringkas(nilai: string | number | string[]): string`. String kembali apa adanya, angka kembali dengan dua desimal, dan daftar kembali digabung dengan `", "`.',
               },
-              starter:
-                'function ringkas(nilai: string | number | string[]): string {\n' +
-                '  return nilai.toFixed(2);\n' +
-                '}\n',
-              tests: [
-                {
-                  name: { en: 'A string comes back as it was', id: 'String kembali apa adanya' },
-                  check:
-                    'assert(ringkas("halo") === "halo", "ringkas(\\"halo\\") harus \\"halo\\", sekarang: " + JSON.stringify(ringkas("halo")));',
-                },
-                {
-                  name: { en: 'A number gets two decimals', id: 'Angka mendapat dua desimal' },
-                  check:
-                    'assert(ringkas(3.14159) === "3.14", "ringkas(3.14159) harus \\"3.14\\", sekarang: " + JSON.stringify(ringkas(3.14159)));\n' +
-                    'assert(ringkas(7) === "7.00", "ringkas(7) harus \\"7.00\\", sekarang: " + JSON.stringify(ringkas(7)));',
-                },
-                {
-                  name: { en: 'A list is joined', id: 'Daftar digabungkan' },
-                  check:
-                    'assert(ringkas(["a", "b", "c"]) === "a, b, c", "ringkas([\\"a\\",\\"b\\",\\"c\\"]) harus \\"a, b, c\\", sekarang: " + JSON.stringify(ringkas(["a", "b", "c"])));\n' +
-                    'assert(ringkas([]) === "", "daftar kosong harus string kosong, sekarang: " + JSON.stringify(ringkas([])));',
-                },
-                {
-                  name: { en: 'All three kinds are accepted', id: 'Ketiga jenisnya diterima' },
-                  probe: 'const uji1 = ringkas("a");\nconst uji2 = ringkas(1);\nconst uji3 = ringkas(["a"]);',
-                },
-                {
-                  name: { en: 'A boolean is refused', id: 'Boolean ditolak' },
-                  probe: 'ringkas(true);',
-                  expectError: true,
-                  errorCode: 2345,
-                },
-                {
-                  name: { en: 'A list of numbers is refused', id: 'Daftar angka ditolak' },
-                  probe: 'ringkas([1, 2]);',
-                  expectError: true,
-                  errorCode: 2322,
-                },
-              ],
+              starter: {
+                en:
+                  'function summarize(value: string | number | string[]): string {\n' +
+                  '  return value.toFixed(2);\n' +
+                  '}\n',
+                id:
+                  'function ringkas(nilai: string | number | string[]): string {\n' +
+                  '  return nilai.toFixed(2);\n' +
+                  '}\n',
+              },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'A string comes back as it was', id: 'String kembali apa adanya' },
+                    check:
+                      'assert(summarize("hello") === "hello", "summarize(\\"hello\\") should be \\"hello\\", got: " + JSON.stringify(summarize("hello")));',
+                  },
+                  {
+                    name: { en: 'A number gets two decimals', id: 'Angka mendapat dua desimal' },
+                    check:
+                      'assert(summarize(3.14159) === "3.14", "summarize(3.14159) should be \\"3.14\\", got: " + JSON.stringify(summarize(3.14159)));\n' +
+                      'assert(summarize(7) === "7.00", "summarize(7) should be \\"7.00\\", got: " + JSON.stringify(summarize(7)));',
+                  },
+                  {
+                    name: { en: 'A list is joined', id: 'Daftar digabungkan' },
+                    check:
+                      'assert(summarize(["a", "b", "c"]) === "a, b, c", "summarize([\\"a\\",\\"b\\",\\"c\\"]) should be \\"a, b, c\\", got: " + JSON.stringify(summarize(["a", "b", "c"])));\n' +
+                      'assert(summarize([]) === "", "an empty list should be an empty string, got: " + JSON.stringify(summarize([])));',
+                  },
+                  {
+                    name: { en: 'All three kinds are accepted', id: 'Ketiga jenisnya diterima' },
+                    probe: 'const t1 = summarize("a");\nconst t2 = summarize(1);\nconst t3 = summarize(["a"]);',
+                  },
+                  {
+                    name: { en: 'A boolean is refused', id: 'Boolean ditolak' },
+                    probe: 'summarize(true);',
+                    expectError: true,
+                    errorCode: 2345,
+                  },
+                  {
+                    name: { en: 'A list of numbers is refused', id: 'Daftar angka ditolak' },
+                    probe: 'summarize([1, 2]);',
+                    expectError: true,
+                    errorCode: 2322,
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'A string comes back as it was', id: 'String kembali apa adanya' },
+                    check:
+                      'assert(ringkas("halo") === "halo", "ringkas(\\"halo\\") harus \\"halo\\", sekarang: " + JSON.stringify(ringkas("halo")));',
+                  },
+                  {
+                    name: { en: 'A number gets two decimals', id: 'Angka mendapat dua desimal' },
+                    check:
+                      'assert(ringkas(3.14159) === "3.14", "ringkas(3.14159) harus \\"3.14\\", sekarang: " + JSON.stringify(ringkas(3.14159)));\n' +
+                      'assert(ringkas(7) === "7.00", "ringkas(7) harus \\"7.00\\", sekarang: " + JSON.stringify(ringkas(7)));',
+                  },
+                  {
+                    name: { en: 'A list is joined', id: 'Daftar digabungkan' },
+                    check:
+                      'assert(ringkas(["a", "b", "c"]) === "a, b, c", "ringkas([\\"a\\",\\"b\\",\\"c\\"]) harus \\"a, b, c\\", sekarang: " + JSON.stringify(ringkas(["a", "b", "c"])));\n' +
+                      'assert(ringkas([]) === "", "daftar kosong harus string kosong, sekarang: " + JSON.stringify(ringkas([])));',
+                  },
+                  {
+                    name: { en: 'All three kinds are accepted', id: 'Ketiga jenisnya diterima' },
+                    probe: 'const uji1 = ringkas("a");\nconst uji2 = ringkas(1);\nconst uji3 = ringkas(["a"]);',
+                  },
+                  {
+                    name: { en: 'A boolean is refused', id: 'Boolean ditolak' },
+                    probe: 'ringkas(true);',
+                    expectError: true,
+                    errorCode: 2345,
+                  },
+                  {
+                    name: { en: 'A list of numbers is refused', id: 'Daftar angka ditolak' },
+                    probe: 'ringkas([1, 2]);',
+                    expectError: true,
+                    errorCode: 2322,
+                  },
+                ],
+              },
               hints: [
                 { en: 'The starter calls `.toFixed` on the whole union. Read the error: it names all three members.', id: 'Kode awalnya memanggil `.toFixed` pada seluruh union-nya. Baca galatnya: ia menyebut ketiga anggotanya.' },
                 { en: 'Check the array first — `typeof` cannot tell an array from an object.', id: 'Periksa array-nya lebih dulu — `typeof` tak bisa membedakan array dari objek.' },
-                { en: 'Array.isArray(nilai), then typeof nilai === "number", and what is left is the string.', id: 'Array.isArray(nilai), lalu typeof nilai === "number", dan yang tersisa adalah string-nya.' },
+                { en: 'Array.isArray(value), then typeof value === "number", and what is left is the string.', id: 'Array.isArray(nilai), lalu typeof nilai === "number", dan yang tersisa adalah string-nya.' },
               ],
-              solution:
-                'function ringkas(nilai: string | number | string[]): string {\n' +
-                '  if (Array.isArray(nilai)) return nilai.join(", ");\n' +
-                '  if (typeof nilai === "number") return nilai.toFixed(2);\n' +
-                '  return nilai;\n' +
-                '}',
+              solution: {
+                en:
+                  'function summarize(value: string | number | string[]): string {\n' +
+                  '  if (Array.isArray(value)) return value.join(", ");\n' +
+                  '  if (typeof value === "number") return value.toFixed(2);\n' +
+                  '  return value;\n' +
+                  '}',
+                id:
+                  'function ringkas(nilai: string | number | string[]): string {\n' +
+                  '  if (Array.isArray(nilai)) return nilai.join(", ");\n' +
+                  '  if (typeof nilai === "number") return nilai.toFixed(2);\n' +
+                  '  return nilai;\n' +
+                  '}',
+              },
             },
           ],
         },
@@ -356,102 +477,193 @@ export const module2: Module = {
           id: 'Tiga fungsi di sekitar satu himpunan tingkat yang kecil. Intinya adalah tingkat yang salah ketik tak bisa sampai ke satu pun dari mereka.',
         },
         requirements: [
-          { en: '`type Tingkat` is exactly `"info"`, `"peringatan"` or `"galat"`.', id: '`type Tingkat` tepat berisi `"info"`, `"peringatan"`, atau `"galat"`.' },
-          { en: '`label(t)` returns `INFO`, `PERINGATAN` or `GALAT`.', id: '`label(t)` mengembalikan `INFO`, `PERINGATAN`, atau `GALAT`.' },
-          { en: '`format(t, pesan)` returns `"[INFO] halo"`. A list of messages is joined with `"; "` first.', id: '`format(t, pesan)` mengembalikan `"[INFO] halo"`. Daftar pesan digabung dengan `"; "` lebih dulu.' },
-          { en: '`paling(daftar)` returns the most serious level in the list — `"info"` for an empty list — and its return type must be `Tingkat`, not `string`.', id: '`paling(daftar)` mengembalikan tingkat paling serius dalam daftarnya — `"info"` untuk daftar kosong — dan tipe kembaliannya harus `Tingkat`, bukan `string`.' },
+          { en: '`type Level` is exactly `"info"`, `"warning"` or `"error"`.', id: '`type Tingkat` tepat berisi `"info"`, `"peringatan"`, atau `"galat"`.' },
+          { en: '`label(t)` returns `INFO`, `WARNING` or `ERROR`.', id: '`label(t)` mengembalikan `INFO`, `PERINGATAN`, atau `GALAT`.' },
+          { en: '`format(t, message)` returns `"[INFO] hello"`. A list of messages is joined with `"; "` first.', id: '`format(t, pesan)` mengembalikan `"[INFO] halo"`. Daftar pesan digabung dengan `"; "` lebih dulu.' },
+          { en: '`worst(list)` returns the most serious level in the list — `"info"` for an empty list — and its return type must be `Level`, not `string`.', id: '`paling(daftar)` mengembalikan tingkat paling serius dalam daftarnya — `"info"` untuk daftar kosong — dan tipe kembaliannya harus `Tingkat`, bukan `string`.' },
         ],
-        starter:
-          'type Tingkat = string;\n\n' +
-          'function label(t: Tingkat): string {\n\n}\n\n' +
-          'function format(t: Tingkat, pesan: string | string[]): string {\n\n}\n\n' +
-          'function paling(daftar: Tingkat[]): Tingkat {\n\n}\n',
-        tests: [
-          {
-            name: { en: 'Each level has its label', id: 'Tiap tingkat punya labelnya' },
-            check:
-              'assert(label("info") === "INFO", "label(\\"info\\") harus \\"INFO\\", sekarang: " + JSON.stringify(label("info")));\n' +
-              'assert(label("peringatan") === "PERINGATAN", "label(\\"peringatan\\") harus \\"PERINGATAN\\", sekarang: " + JSON.stringify(label("peringatan")));\n' +
-              'assert(label("galat") === "GALAT", "label(\\"galat\\") harus \\"GALAT\\", sekarang: " + JSON.stringify(label("galat")));',
-          },
-          {
-            name: { en: 'A single message is bracketed', id: 'Satu pesan diberi kurung siku' },
-            check:
-              'assert(format("info", "halo") === "[INFO] halo", "harus \\"[INFO] halo\\", sekarang: " + JSON.stringify(format("info", "halo")));\n' +
-              'assert(format("galat", "gagal") === "[GALAT] gagal", "harus \\"[GALAT] gagal\\", sekarang: " + JSON.stringify(format("galat", "gagal")));',
-          },
-          {
-            name: { en: 'Several messages are joined first', id: 'Beberapa pesan digabung lebih dulu' },
-            check:
-              'assert(format("peringatan", ["a", "b"]) === "[PERINGATAN] a; b", "harus \\"[PERINGATAN] a; b\\", sekarang: " + JSON.stringify(format("peringatan", ["a", "b"])));\n' +
-              'assert(format("info", []) === "[INFO] ", "daftar kosong harus menyisakan label dan spasi, sekarang: " + JSON.stringify(format("info", [])));',
-          },
-          {
-            name: { en: 'The worst level wins', id: 'Tingkat terburuk yang menang' },
-            check:
-              'assert(paling([]) === "info", "daftar kosong harus \\"info\\", sekarang: " + JSON.stringify(paling([])));\n' +
-              'assert(paling(["info", "info"]) === "info", "sekarang: " + JSON.stringify(paling(["info", "info"])));\n' +
-              'assert(paling(["info", "peringatan"]) === "peringatan", "sekarang: " + JSON.stringify(paling(["info", "peringatan"])));\n' +
-              'assert(paling(["galat", "info", "peringatan"]) === "galat", "sekarang: " + JSON.stringify(paling(["galat", "info", "peringatan"])));\n' +
-              'assert(paling(["peringatan", "galat"]) === "galat", "urutan dalam daftar tidak boleh berpengaruh, sekarang: " + JSON.stringify(paling(["peringatan", "galat"])));',
-          },
-          {
-            name: { en: 'The three levels are accepted', id: 'Ketiga tingkatnya diterima' },
-            probe: 'const uji1: Tingkat = "info";\nconst uji2: Tingkat = "peringatan";\nconst uji3: Tingkat = "galat";',
-          },
-          {
-            name: { en: 'A fourth level is refused', id: 'Tingkat keempat ditolak' },
-            probe: 'label("fatal");',
-            expectError: true,
-            errorCode: 2345,
-          },
-          {
-            name: { en: 'A plain string is not a level', id: 'String biasa bukan sebuah tingkat' },
-            probe: 'const kata: string = "info";\nlabel(kata);',
-            expectError: true,
-            errorCode: 2345,
-          },
-          {
-            name: { en: 'format wants text, not a number', id: 'format meminta teks, bukan angka' },
-            probe: 'format("info", 42);',
-            expectError: true,
-            errorCode: 2345,
-          },
-          {
-            name: { en: 'A bad level in the list is refused', id: 'Tingkat yang salah di dalam daftar ditolak' },
-            probe: 'paling(["info", "fatal"]);',
-            expectError: true,
-          },
-          {
-            name: { en: 'paling gives back a Tingkat, usable as one', id: 'paling mengembalikan Tingkat, dan bisa dipakai sebagai itu' },
-            probe: 'const uji4: Tingkat = paling(["info"]);\nlabel(paling(["galat"]));',
-          },
-        ],
+        starter: {
+          en:
+            'type Level = string;\n\n' +
+            'function label(t: Level): string {\n\n}\n\n' +
+            'function format(t: Level, message: string | string[]): string {\n\n}\n\n' +
+            'function worst(list: Level[]): Level {\n\n}\n',
+          id:
+            'type Tingkat = string;\n\n' +
+            'function label(t: Tingkat): string {\n\n}\n\n' +
+            'function format(t: Tingkat, pesan: string | string[]): string {\n\n}\n\n' +
+            'function paling(daftar: Tingkat[]): Tingkat {\n\n}\n',
+        },
+        tests: {
+          en: [
+            {
+              name: { en: 'Each level has its label', id: 'Tiap tingkat punya labelnya' },
+              check:
+                'assert(label("info") === "INFO", "label(\\"info\\") should be \\"INFO\\", got: " + JSON.stringify(label("info")));\n' +
+                'assert(label("warning") === "WARNING", "label(\\"warning\\") should be \\"WARNING\\", got: " + JSON.stringify(label("warning")));\n' +
+                'assert(label("error") === "ERROR", "label(\\"error\\") should be \\"ERROR\\", got: " + JSON.stringify(label("error")));',
+            },
+            {
+              name: { en: 'A single message is bracketed', id: 'Satu pesan diberi kurung siku' },
+              check:
+                'assert(format("info", "hello") === "[INFO] hello", "should be \\"[INFO] hello\\", got: " + JSON.stringify(format("info", "hello")));\n' +
+                'assert(format("error", "failed") === "[ERROR] failed", "should be \\"[ERROR] failed\\", got: " + JSON.stringify(format("error", "failed")));',
+            },
+            {
+              name: { en: 'Several messages are joined first', id: 'Beberapa pesan digabung lebih dulu' },
+              check:
+                'assert(format("warning", ["a", "b"]) === "[WARNING] a; b", "should be \\"[WARNING] a; b\\", got: " + JSON.stringify(format("warning", ["a", "b"])));\n' +
+                'assert(format("info", []) === "[INFO] ", "an empty list should leave the label and a space, got: " + JSON.stringify(format("info", [])));',
+            },
+            {
+              name: { en: 'The worst level wins', id: 'Tingkat terburuk yang menang' },
+              check:
+                'assert(worst([]) === "info", "an empty list should be \\"info\\", got: " + JSON.stringify(worst([])));\n' +
+                'assert(worst(["info", "info"]) === "info", "got: " + JSON.stringify(worst(["info", "info"])));\n' +
+                'assert(worst(["info", "warning"]) === "warning", "got: " + JSON.stringify(worst(["info", "warning"])));\n' +
+                'assert(worst(["error", "info", "warning"]) === "error", "got: " + JSON.stringify(worst(["error", "info", "warning"])));\n' +
+                'assert(worst(["warning", "error"]) === "error", "the order in the list must not matter, got: " + JSON.stringify(worst(["warning", "error"])));',
+            },
+            {
+              name: { en: 'The three levels are accepted', id: 'Ketiga tingkatnya diterima' },
+              probe: 'const t1: Level = "info";\nconst t2: Level = "warning";\nconst t3: Level = "error";',
+            },
+            {
+              name: { en: 'A fourth level is refused', id: 'Tingkat keempat ditolak' },
+              probe: 'label("fatal");',
+              expectError: true,
+              errorCode: 2345,
+            },
+            {
+              name: { en: 'A plain string is not a level', id: 'String biasa bukan sebuah tingkat' },
+              probe: 'const word: string = "info";\nlabel(word);',
+              expectError: true,
+              errorCode: 2345,
+            },
+            {
+              name: { en: 'format wants text, not a number', id: 'format meminta teks, bukan angka' },
+              probe: 'format("info", 42);',
+              expectError: true,
+              errorCode: 2345,
+            },
+            {
+              name: { en: 'A bad level in the list is refused', id: 'Tingkat yang salah di dalam daftar ditolak' },
+              probe: 'worst(["info", "fatal"]);',
+              expectError: true,
+            },
+            {
+              name: { en: 'worst gives back a Level, usable as one', id: 'paling mengembalikan Tingkat, dan bisa dipakai sebagai itu' },
+              probe: 'const t4: Level = worst(["info"]);\nlabel(worst(["error"]));',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'Each level has its label', id: 'Tiap tingkat punya labelnya' },
+              check:
+                'assert(label("info") === "INFO", "label(\\"info\\") harus \\"INFO\\", sekarang: " + JSON.stringify(label("info")));\n' +
+                'assert(label("peringatan") === "PERINGATAN", "label(\\"peringatan\\") harus \\"PERINGATAN\\", sekarang: " + JSON.stringify(label("peringatan")));\n' +
+                'assert(label("galat") === "GALAT", "label(\\"galat\\") harus \\"GALAT\\", sekarang: " + JSON.stringify(label("galat")));',
+            },
+            {
+              name: { en: 'A single message is bracketed', id: 'Satu pesan diberi kurung siku' },
+              check:
+                'assert(format("info", "halo") === "[INFO] halo", "harus \\"[INFO] halo\\", sekarang: " + JSON.stringify(format("info", "halo")));\n' +
+                'assert(format("galat", "gagal") === "[GALAT] gagal", "harus \\"[GALAT] gagal\\", sekarang: " + JSON.stringify(format("galat", "gagal")));',
+            },
+            {
+              name: { en: 'Several messages are joined first', id: 'Beberapa pesan digabung lebih dulu' },
+              check:
+                'assert(format("peringatan", ["a", "b"]) === "[PERINGATAN] a; b", "harus \\"[PERINGATAN] a; b\\", sekarang: " + JSON.stringify(format("peringatan", ["a", "b"])));\n' +
+                'assert(format("info", []) === "[INFO] ", "daftar kosong harus menyisakan label dan spasi, sekarang: " + JSON.stringify(format("info", [])));',
+            },
+            {
+              name: { en: 'The worst level wins', id: 'Tingkat terburuk yang menang' },
+              check:
+                'assert(paling([]) === "info", "daftar kosong harus \\"info\\", sekarang: " + JSON.stringify(paling([])));\n' +
+                'assert(paling(["info", "info"]) === "info", "sekarang: " + JSON.stringify(paling(["info", "info"])));\n' +
+                'assert(paling(["info", "peringatan"]) === "peringatan", "sekarang: " + JSON.stringify(paling(["info", "peringatan"])));\n' +
+                'assert(paling(["galat", "info", "peringatan"]) === "galat", "sekarang: " + JSON.stringify(paling(["galat", "info", "peringatan"])));\n' +
+                'assert(paling(["peringatan", "galat"]) === "galat", "urutan dalam daftar tidak boleh berpengaruh, sekarang: " + JSON.stringify(paling(["peringatan", "galat"])));',
+            },
+            {
+              name: { en: 'The three levels are accepted', id: 'Ketiga tingkatnya diterima' },
+              probe: 'const uji1: Tingkat = "info";\nconst uji2: Tingkat = "peringatan";\nconst uji3: Tingkat = "galat";',
+            },
+            {
+              name: { en: 'A fourth level is refused', id: 'Tingkat keempat ditolak' },
+              probe: 'label("fatal");',
+              expectError: true,
+              errorCode: 2345,
+            },
+            {
+              name: { en: 'A plain string is not a level', id: 'String biasa bukan sebuah tingkat' },
+              probe: 'const kata: string = "info";\nlabel(kata);',
+              expectError: true,
+              errorCode: 2345,
+            },
+            {
+              name: { en: 'format wants text, not a number', id: 'format meminta teks, bukan angka' },
+              probe: 'format("info", 42);',
+              expectError: true,
+              errorCode: 2345,
+            },
+            {
+              name: { en: 'A bad level in the list is refused', id: 'Tingkat yang salah di dalam daftar ditolak' },
+              probe: 'paling(["info", "fatal"]);',
+              expectError: true,
+            },
+            {
+              name: { en: 'paling gives back a Tingkat, usable as one', id: 'paling mengembalikan Tingkat, dan bisa dipakai sebagai itu' },
+              probe: 'const uji4: Tingkat = paling(["info"]);\nlabel(paling(["galat"]));',
+            },
+          ],
+        },
         hints: [
           { en: 'The starter says a level is any string. That single line is why nothing else can be checked.', id: 'Kode awalnya menyatakan tingkat adalah string apa pun. Satu baris itulah sebabnya tak ada lagi yang bisa diperiksa.' },
           { en: '`format` takes a union for the message: narrow it with Array.isArray before joining.', id: '`format` menerima union untuk pesannya: persempit dengan Array.isArray sebelum menggabung.' },
-          { en: 'Give the levels an order — an array `["info", "peringatan", "galat"]` and indexOf is enough.', id: 'Beri tingkatnya sebuah urutan — array `["info", "peringatan", "galat"]` dan indexOf sudah cukup.' },
-          { en: 'One test calls `label(paling(...))`. That only compiles if `paling` really returns a Tingkat.', id: 'Satu tes memanggil `label(paling(...))`. Itu hanya lolos kompilasi kalau `paling` benar-benar mengembalikan Tingkat.' },
+          { en: 'Give the levels an order — an array `["info", "warning", "error"]` and indexOf is enough.', id: 'Beri tingkatnya sebuah urutan — array `["info", "peringatan", "galat"]` dan indexOf sudah cukup.' },
+          { en: 'One test calls `label(worst(...))`. That only compiles if `worst` really returns a Level.', id: 'Satu tes memanggil `label(paling(...))`. Itu hanya lolos kompilasi kalau `paling` benar-benar mengembalikan Tingkat.' },
         ],
-        solution:
-          'type Tingkat = "info" | "peringatan" | "galat";\n\n' +
-          'const URUTAN: Tingkat[] = ["info", "peringatan", "galat"];\n\n' +
-          'function label(t: Tingkat): string {\n' +
-          '  if (t === "info") return "INFO";\n' +
-          '  if (t === "peringatan") return "PERINGATAN";\n' +
-          '  return "GALAT";\n' +
-          '}\n\n' +
-          'function format(t: Tingkat, pesan: string | string[]): string {\n' +
-          '  const isi = Array.isArray(pesan) ? pesan.join("; ") : pesan;\n' +
-          '  return `[${label(t)}] ${isi}`;\n' +
-          '}\n\n' +
-          'function paling(daftar: Tingkat[]): Tingkat {\n' +
-          '  let hasil: Tingkat = "info";\n' +
-          '  for (const t of daftar) {\n' +
-          '    if (URUTAN.indexOf(t) > URUTAN.indexOf(hasil)) hasil = t;\n' +
-          '  }\n' +
-          '  return hasil;\n' +
-          '}',
+        solution: {
+          en:
+            'type Level = "info" | "warning" | "error";\n\n' +
+            'const ORDER: Level[] = ["info", "warning", "error"];\n\n' +
+            'function label(t: Level): string {\n' +
+            '  if (t === "info") return "INFO";\n' +
+            '  if (t === "warning") return "WARNING";\n' +
+            '  return "ERROR";\n' +
+            '}\n\n' +
+            'function format(t: Level, message: string | string[]): string {\n' +
+            '  const content = Array.isArray(message) ? message.join("; ") : message;\n' +
+            '  return `[${label(t)}] ${content}`;\n' +
+            '}\n\n' +
+            'function worst(list: Level[]): Level {\n' +
+            '  let result: Level = "info";\n' +
+            '  for (const t of list) {\n' +
+            '    if (ORDER.indexOf(t) > ORDER.indexOf(result)) result = t;\n' +
+            '  }\n' +
+            '  return result;\n' +
+            '}',
+          id:
+            'type Tingkat = "info" | "peringatan" | "galat";\n\n' +
+            'const URUTAN: Tingkat[] = ["info", "peringatan", "galat"];\n\n' +
+            'function label(t: Tingkat): string {\n' +
+            '  if (t === "info") return "INFO";\n' +
+            '  if (t === "peringatan") return "PERINGATAN";\n' +
+            '  return "GALAT";\n' +
+            '}\n\n' +
+            'function format(t: Tingkat, pesan: string | string[]): string {\n' +
+            '  const isi = Array.isArray(pesan) ? pesan.join("; ") : pesan;\n' +
+            '  return `[${label(t)}] ${isi}`;\n' +
+            '}\n\n' +
+            'function paling(daftar: Tingkat[]): Tingkat {\n' +
+            '  let hasil: Tingkat = "info";\n' +
+            '  for (const t of daftar) {\n' +
+            '    if (URUTAN.indexOf(t) > URUTAN.indexOf(hasil)) hasil = t;\n' +
+            '  }\n' +
+            '  return hasil;\n' +
+            '}',
+        },
         xp: 50,
       },
     },
@@ -479,12 +691,12 @@ export const module2: Module = {
               },
               code: {
                 en:
-                  'type Bentuk =\n' +
-                  '  | { jenis: "lingkaran"; jari: number }\n' +
-                  '  | { jenis: "persegi"; sisi: number };\n\n' +
-                  'function luas(b: Bentuk): number {\n' +
-                  '  if (b.jenis === "lingkaran") return Math.PI * b.jari ** 2;\n' +
-                  '  return b.sisi ** 2;   // b here has to be persegi\n' +
+                  'type Shape =\n' +
+                  '  | { kind: "circle"; radius: number }\n' +
+                  '  | { kind: "square"; side: number };\n\n' +
+                  'function area(s: Shape): number {\n' +
+                  '  if (s.kind === "circle") return Math.PI * s.radius ** 2;\n' +
+                  '  return s.side ** 2;   // s here has to be a square\n' +
                   '}',
                 id:
                   'type Bentuk =\n' +
@@ -501,13 +713,19 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'Reach for the wrong field and it says so', id: 'Menjangkau field yang salah dan ia menegurmu' },
               body: {
-                en: 'This is the payoff. A circle has no `sisi`, so asking for one inside the circle branch is an error — not a silent `undefined` that becomes `NaN` three lines later. The shape of the data and the code that reads it can no longer drift apart.',
+                en: 'This is the payoff. A circle has no `side`, so asking for one inside the circle branch is an error — not a silent `undefined` that becomes `NaN` three lines later. The shape of the data and the code that reads it can no longer drift apart.',
                 id: 'Inilah hasilnya. Lingkaran tak punya `sisi`, jadi memintanya di dalam cabang lingkaran adalah galat — bukan `undefined` diam-diam yang jadi `NaN` tiga baris kemudian. Bentuk datanya dan kode yang membacanya tak bisa lagi berselisih.',
               },
-              code:
-                'if (b.jenis === "lingkaran") {\n' +
-                "  return b.sisi;  // Property 'sisi' does not exist on type '{ jenis: \"lingkaran\"; jari: number; }'.\n" +
-                '}',
+              code: {
+                en:
+                  'if (s.kind === "circle") {\n' +
+                  "  return s.side;  // Property 'side' does not exist on type '{ kind: \"circle\"; radius: number; }'.\n" +
+                  '}',
+                id:
+                  'if (b.jenis === "lingkaran") {\n' +
+                  "  return b.sisi;  // Property 'sisi' does not exist on type '{ jenis: \"lingkaran\"; jari: number; }'.\n" +
+                  '}',
+              },
             },
             {
               kind: 'concept',
@@ -517,17 +735,30 @@ export const module2: Module = {
                 en: 'When every member has been handled, what is left is `never` — the type with no values. Assigning the leftover to a `never` therefore compiles today; add a fourth shape tomorrow and that same line stops compiling, pointing at the switch you forgot to extend. It is a reminder that cannot be ignored.',
                 id: 'Ketika tiap anggotanya sudah ditangani, yang tersisa adalah `never` — tipe tanpa nilai. Menugaskan sisanya ke `never` karena itu lolos kompilasi hari ini; tambahkan bentuk keempat besok dan baris yang sama berhenti lolos, sambil menunjuk switch yang lupa kamu perluas. Ini pengingat yang tak bisa diabaikan.',
               },
-              code:
-                'function luas(b: Bentuk): number {\n' +
-                '  switch (b.jenis) {\n' +
-                '    case "lingkaran": return Math.PI * b.jari ** 2;\n' +
-                '    case "persegi": return b.sisi ** 2;\n' +
-                '    default: {\n' +
-                '      const belum: never = b;\n' +
-                '      return belum;\n' +
-                '    }\n' +
-                '  }\n' +
-                '}',
+              code: {
+                en:
+                  'function area(s: Shape): number {\n' +
+                  '  switch (s.kind) {\n' +
+                  '    case "circle": return Math.PI * s.radius ** 2;\n' +
+                  '    case "square": return s.side ** 2;\n' +
+                  '    default: {\n' +
+                  '      const unhandled: never = s;\n' +
+                  '      return unhandled;\n' +
+                  '    }\n' +
+                  '  }\n' +
+                  '}',
+                id:
+                  'function luas(b: Bentuk): number {\n' +
+                  '  switch (b.jenis) {\n' +
+                  '    case "lingkaran": return Math.PI * b.jari ** 2;\n' +
+                  '    case "persegi": return b.sisi ** 2;\n' +
+                  '    default: {\n' +
+                  '      const belum: never = b;\n' +
+                  '      return belum;\n' +
+                  '    }\n' +
+                  '  }\n' +
+                  '}',
+              },
             },
             {
               kind: 'quiz',
@@ -544,7 +775,7 @@ export const module2: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'Narrowing works by elimination. If both members say `jenis: string`, a comparison eliminates neither.',
+                en: 'Narrowing works by elimination. If both members say `kind: string`, a comparison eliminates neither.',
                 id: 'Penyempitan bekerja dengan menyingkirkan. Kalau kedua anggotanya menyebut `jenis: string`, sebuah perbandingan tak menyingkirkan satu pun.',
               },
             },
@@ -552,68 +783,128 @@ export const module2: Module = {
               kind: 'ts',
               id: 't1',
               prompt: {
-                en: 'Declare `type Bentuk` as a tagged union of a circle (`"lingkaran"` with `jari`), a square (`"persegi"` with `sisi`) and a rectangle (`"persegipanjang"` with `panjang` and `lebar`), then write `luas(b: Bentuk): number`.',
+                en: 'Declare `type Shape` as a tagged union of a circle (`"circle"` with `radius`), a square (`"square"` with `side`) and a rectangle (`"rectangle"` with `length` and `width`), then write `area(s: Shape): number`.',
                 id: 'Deklarasikan `type Bentuk` sebagai union bertanda berisi lingkaran (`"lingkaran"` dengan `jari`), persegi (`"persegi"` dengan `sisi`), dan persegi panjang (`"persegipanjang"` dengan `panjang` dan `lebar`), lalu tulis `luas(b: Bentuk): number`.',
               },
-              starter:
-                'type Bentuk = { jenis: string; jari?: number; sisi?: number; panjang?: number; lebar?: number };\n\n' +
-                'function luas(b: Bentuk): number {\n  return 0;\n}\n',
-              tests: [
-                {
-                  name: { en: 'Every shape has the right area', id: 'Tiap bentuk punya luas yang benar' },
-                  check:
-                    'assert(Math.abs(luas({ jenis: "lingkaran", jari: 2 }) - Math.PI * 4) < 1e-9, "lingkaran jari 2 harus pi*4, sekarang: " + luas({ jenis: "lingkaran", jari: 2 }));\n' +
-                    'assert(luas({ jenis: "persegi", sisi: 3 }) === 9, "persegi sisi 3 harus 9, sekarang: " + luas({ jenis: "persegi", sisi: 3 }));\n' +
-                    'assert(luas({ jenis: "persegipanjang", panjang: 3, lebar: 4 }) === 12, "3x4 harus 12, sekarang: " + luas({ jenis: "persegipanjang", panjang: 3, lebar: 4 }));',
-                },
-                {
-                  name: { en: 'All three shapes are accepted', id: 'Ketiga bentuknya diterima' },
-                  probe:
-                    'const uji1: Bentuk = { jenis: "lingkaran", jari: 1 };\n' +
-                    'const uji2: Bentuk = { jenis: "persegi", sisi: 1 };\n' +
-                    'const uji3: Bentuk = { jenis: "persegipanjang", panjang: 1, lebar: 2 };',
-                },
-                {
-                  name: { en: 'A circle without a radius is refused', id: 'Lingkaran tanpa jari-jari ditolak' },
-                  probe: 'const uji4: Bentuk = { jenis: "lingkaran" };',
-                  expectError: true,
-                },
-                {
-                  name: { en: 'A square carrying a radius is refused', id: 'Persegi yang membawa jari-jari ditolak' },
-                  probe: 'const uji5: Bentuk = { jenis: "persegi", sisi: 1, jari: 2 };',
-                  expectError: true,
-                },
-                {
-                  name: { en: 'A fourth kind of shape is refused', id: 'Bentuk jenis keempat ditolak' },
-                  probe: 'const uji6: Bentuk = { jenis: "segitiga", alas: 1, tinggi: 2 };',
-                  expectError: true,
-                },
-                {
-                  name: { en: 'A rectangle needs both sides', id: 'Persegi panjang butuh kedua sisinya' },
-                  probe: 'const uji7: Bentuk = { jenis: "persegipanjang", panjang: 3 };',
-                  expectError: true,
-                },
-              ],
+              starter: {
+                en:
+                  'type Shape = { kind: string; radius?: number; side?: number; length?: number; width?: number };\n\n' +
+                  'function area(s: Shape): number {\n  return 0;\n}\n',
+                id:
+                  'type Bentuk = { jenis: string; jari?: number; sisi?: number; panjang?: number; lebar?: number };\n\n' +
+                  'function luas(b: Bentuk): number {\n  return 0;\n}\n',
+              },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Every shape has the right area', id: 'Tiap bentuk punya luas yang benar' },
+                    check:
+                      'assert(Math.abs(area({ kind: "circle", radius: 2 }) - Math.PI * 4) < 1e-9, "circle radius 2 should be pi*4, got: " + area({ kind: "circle", radius: 2 }));\n' +
+                      'assert(area({ kind: "square", side: 3 }) === 9, "square side 3 should be 9, got: " + area({ kind: "square", side: 3 }));\n' +
+                      'assert(area({ kind: "rectangle", length: 3, width: 4 }) === 12, "3x4 should be 12, got: " + area({ kind: "rectangle", length: 3, width: 4 }));',
+                  },
+                  {
+                    name: { en: 'All three shapes are accepted', id: 'Ketiga bentuknya diterima' },
+                    probe:
+                      'const t1: Shape = { kind: "circle", radius: 1 };\n' +
+                      'const t2: Shape = { kind: "square", side: 1 };\n' +
+                      'const t3: Shape = { kind: "rectangle", length: 1, width: 2 };',
+                  },
+                  {
+                    name: { en: 'A circle without a radius is refused', id: 'Lingkaran tanpa jari-jari ditolak' },
+                    probe: 'const t4: Shape = { kind: "circle" };',
+                    expectError: true,
+                  },
+                  {
+                    name: { en: 'A square carrying a radius is refused', id: 'Persegi yang membawa jari-jari ditolak' },
+                    probe: 'const t5: Shape = { kind: "square", side: 1, radius: 2 };',
+                    expectError: true,
+                  },
+                  {
+                    name: { en: 'A fourth kind of shape is refused', id: 'Bentuk jenis keempat ditolak' },
+                    probe: 'const t6: Shape = { kind: "triangle", base: 1, height: 2 };',
+                    expectError: true,
+                  },
+                  {
+                    name: { en: 'A rectangle needs both sides', id: 'Persegi panjang butuh kedua sisinya' },
+                    probe: 'const t7: Shape = { kind: "rectangle", length: 3 };',
+                    expectError: true,
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Every shape has the right area', id: 'Tiap bentuk punya luas yang benar' },
+                    check:
+                      'assert(Math.abs(luas({ jenis: "lingkaran", jari: 2 }) - Math.PI * 4) < 1e-9, "lingkaran jari 2 harus pi*4, sekarang: " + luas({ jenis: "lingkaran", jari: 2 }));\n' +
+                      'assert(luas({ jenis: "persegi", sisi: 3 }) === 9, "persegi sisi 3 harus 9, sekarang: " + luas({ jenis: "persegi", sisi: 3 }));\n' +
+                      'assert(luas({ jenis: "persegipanjang", panjang: 3, lebar: 4 }) === 12, "3x4 harus 12, sekarang: " + luas({ jenis: "persegipanjang", panjang: 3, lebar: 4 }));',
+                  },
+                  {
+                    name: { en: 'All three shapes are accepted', id: 'Ketiga bentuknya diterima' },
+                    probe:
+                      'const uji1: Bentuk = { jenis: "lingkaran", jari: 1 };\n' +
+                      'const uji2: Bentuk = { jenis: "persegi", sisi: 1 };\n' +
+                      'const uji3: Bentuk = { jenis: "persegipanjang", panjang: 1, lebar: 2 };',
+                  },
+                  {
+                    name: { en: 'A circle without a radius is refused', id: 'Lingkaran tanpa jari-jari ditolak' },
+                    probe: 'const uji4: Bentuk = { jenis: "lingkaran" };',
+                    expectError: true,
+                  },
+                  {
+                    name: { en: 'A square carrying a radius is refused', id: 'Persegi yang membawa jari-jari ditolak' },
+                    probe: 'const uji5: Bentuk = { jenis: "persegi", sisi: 1, jari: 2 };',
+                    expectError: true,
+                  },
+                  {
+                    name: { en: 'A fourth kind of shape is refused', id: 'Bentuk jenis keempat ditolak' },
+                    probe: 'const uji6: Bentuk = { jenis: "segitiga", alas: 1, tinggi: 2 };',
+                    expectError: true,
+                  },
+                  {
+                    name: { en: 'A rectangle needs both sides', id: 'Persegi panjang butuh kedua sisinya' },
+                    probe: 'const uji7: Bentuk = { jenis: "persegipanjang", panjang: 3 };',
+                    expectError: true,
+                  },
+                ],
+              },
               hints: [
                 { en: 'The starter is one shape with everything optional — which is exactly the design a tagged union replaces.', id: 'Kode awalnya satu bentuk dengan semuanya opsional — dan persis desain itulah yang digantikan union bertanda.' },
-                { en: 'Three members, separated by bars, each with its own `jenis` literal.', id: 'Tiga anggota, dipisah garis tegak, masing-masing dengan literal `jenis`-nya sendiri.' },
-                { en: 'Inside `luas`, switch on `b.jenis`; each case sees only that member\'s fields.', id: 'Di dalam `luas`, switch pada `b.jenis`; tiap case hanya melihat field milik anggota itu.' },
+                { en: 'Three members, separated by bars, each with its own `kind` literal.', id: 'Tiga anggota, dipisah garis tegak, masing-masing dengan literal `jenis`-nya sendiri.' },
+                { en: 'Inside `area`, switch on `s.kind`; each case sees only that member\'s fields.', id: 'Di dalam `luas`, switch pada `b.jenis`; tiap case hanya melihat field milik anggota itu.' },
               ],
-              solution:
-                'type Bentuk =\n' +
-                '  | { jenis: "lingkaran"; jari: number }\n' +
-                '  | { jenis: "persegi"; sisi: number }\n' +
-                '  | { jenis: "persegipanjang"; panjang: number; lebar: number };\n\n' +
-                'function luas(b: Bentuk): number {\n' +
-                '  switch (b.jenis) {\n' +
-                '    case "lingkaran":\n' +
-                '      return Math.PI * b.jari ** 2;\n' +
-                '    case "persegi":\n' +
-                '      return b.sisi ** 2;\n' +
-                '    case "persegipanjang":\n' +
-                '      return b.panjang * b.lebar;\n' +
-                '  }\n' +
-                '}',
+              solution: {
+                en:
+                  'type Shape =\n' +
+                  '  | { kind: "circle"; radius: number }\n' +
+                  '  | { kind: "square"; side: number }\n' +
+                  '  | { kind: "rectangle"; length: number; width: number };\n\n' +
+                  'function area(s: Shape): number {\n' +
+                  '  switch (s.kind) {\n' +
+                  '    case "circle":\n' +
+                  '      return Math.PI * s.radius ** 2;\n' +
+                  '    case "square":\n' +
+                  '      return s.side ** 2;\n' +
+                  '    case "rectangle":\n' +
+                  '      return s.length * s.width;\n' +
+                  '  }\n' +
+                  '}',
+                id:
+                  'type Bentuk =\n' +
+                  '  | { jenis: "lingkaran"; jari: number }\n' +
+                  '  | { jenis: "persegi"; sisi: number }\n' +
+                  '  | { jenis: "persegipanjang"; panjang: number; lebar: number };\n\n' +
+                  'function luas(b: Bentuk): number {\n' +
+                  '  switch (b.jenis) {\n' +
+                  '    case "lingkaran":\n' +
+                  '      return Math.PI * b.jari ** 2;\n' +
+                  '    case "persegi":\n' +
+                  '      return b.sisi ** 2;\n' +
+                  '    case "persegipanjang":\n' +
+                  '      return b.panjang * b.lebar;\n' +
+                  '  }\n' +
+                  '}',
+              },
             },
           ],
         },
@@ -631,10 +922,16 @@ export const module2: Module = {
                 en: 'Under `strict`, a `string` is a string — never `null`, never `undefined`. If a value may be absent you say so: `string | null`. And having said so, the compiler will not let you use it until you have checked. This one rule removes most of the "cannot read property of undefined" family.',
                 id: 'Di bawah `strict`, sebuah `string` adalah string — tak pernah `null`, tak pernah `undefined`. Kalau sebuah nilai mungkin tidak ada, katakanlah: `string | null`. Dan setelah mengatakannya, kompilernya tak akan membiarkanmu memakainya sebelum kamu memeriksa. Satu aturan ini menghapus sebagian besar keluarga "cannot read property of undefined".',
               },
-              code:
-                'function panjang(teks: string | null): number {\n' +
-                "  return teks.length;   // 'teks' is possibly 'null'.\n" +
-                '}',
+              code: {
+                en:
+                  'function length(text: string | null): number {\n' +
+                  "  return text.length;   // 'text' is possibly 'null'.\n" +
+                  '}',
+                id:
+                  'function panjang(teks: string | null): number {\n' +
+                  "  return teks.length;   // 'teks' is possibly 'null'.\n" +
+                  '}',
+              },
             },
             {
               kind: 'concept',
@@ -646,9 +943,9 @@ export const module2: Module = {
               },
               code: {
                 en:
-                  'const kota = profil.alamat?.kota ?? "Tidak diketahui";\n\n' +
-                  'const jumlah = pesanan.jumlah ?? 1;   // 0 stays 0\n' +
-                  'const salah = pesanan.jumlah || 1;    // 0 becomes 1',
+                  'const city = profile.address?.city ?? "Unknown";\n\n' +
+                  'const amount = order.amount ?? 1;   // 0 stays 0\n' +
+                  'const wrong = order.amount || 1;    // 0 becomes 1',
                 id:
                   'const kota = profil.alamat?.kota ?? "Tidak diketahui";\n\n' +
                   'const jumlah = pesanan.jumlah ?? 1;   // 0 tetap 0\n' +
@@ -665,8 +962,8 @@ export const module2: Module = {
               },
               code: {
                 en:
-                  'const el = cari(id)!;   // bold\n' +
-                  'const el = cari(id);    // better\n' +
+                  'const el = find(id)!;   // bold\n' +
+                  'const el = find(id);    // better\n' +
                   'if (el === null) return;',
                 id:
                   'const el = cari(id)!;   // berani\n' +
@@ -678,10 +975,13 @@ export const module2: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: '`jumlah` is `number | undefined` and holds `0`. What do these give?',
+                en: '`amount` is `number | undefined` and holds `0`. What do these give?',
                 id: '`jumlah` bertipe `number | undefined` dan berisi `0`. Apa hasil keduanya?',
               },
-              code: 'const a = jumlah ?? 10;\nconst b = jumlah || 10;',
+              code: {
+                en: 'const a = amount ?? 10;\nconst b = amount || 10;',
+                id: 'const a = jumlah ?? 10;\nconst b = jumlah || 10;',
+              },
               options: [
                 { en: 'a is 0, b is 10', id: 'a bernilai 0, b bernilai 10' },
                 { en: 'Both are 0', id: 'Keduanya 0' },
@@ -701,7 +1001,10 @@ export const module2: Module = {
                 en: 'Read a possibly-missing city, falling back to a dash.',
                 id: 'Baca kota yang mungkin tidak ada, dengan cadangan berupa tanda hubung.',
               },
-              template: 'const kota = p.alamat___.kota ___ "-";',
+              template: {
+                en: 'const city = p.address___.city ___ "-";',
+                id: 'const kota = p.alamat___.kota ___ "-";',
+              },
               blanks: ['?', '??'],
               explain: {
                 en: 'The optional chain stops the walk; the nullish coalescing supplies what to use instead.',
@@ -712,74 +1015,140 @@ export const module2: Module = {
               kind: 'ts',
               id: 't1',
               prompt: {
-                en: 'The starter does not compile: both functions walk into an optional property. Fix them so `kota` falls back to `"Tidak diketahui"` and `pos` falls back to `"-"`.',
+                en: 'The starter does not compile: both functions walk into an optional property. Fix them so `city` falls back to `"Unknown"` and `postcode` falls back to `"-"`.',
                 id: 'Kode awalnya tidak bisa dikompilasi: kedua fungsinya menjangkau properti opsional. Betulkan agar `kota` bercadangan `"Tidak diketahui"` dan `pos` bercadangan `"-"`.',
               },
-              starter:
-                'interface Profil {\n' +
-                '  nama: string;\n' +
-                '  alamat?: { kota: string; pos?: string };\n' +
-                '}\n\n' +
-                'function kota(p: Profil): string {\n' +
-                '  return p.alamat.kota;\n' +
-                '}\n\n' +
-                'function pos(p: Profil): string {\n' +
-                '  return p.alamat.pos;\n' +
-                '}\n',
-              tests: [
-                {
-                  name: { en: 'A missing address falls back', id: 'Alamat yang tidak ada punya cadangan' },
-                  check:
-                    'assert(kota({ nama: "Ani" }) === "Tidak diketahui", "tanpa alamat harus \\"Tidak diketahui\\", sekarang: " + JSON.stringify(kota({ nama: "Ani" })));\n' +
-                    'assert(pos({ nama: "Ani" }) === "-", "tanpa alamat harus \\"-\\", sekarang: " + JSON.stringify(pos({ nama: "Ani" })));',
-                },
-                {
-                  name: { en: 'A present city is used', id: 'Kota yang ada dipakai' },
-                  check:
-                    'assert(kota({ nama: "Ani", alamat: { kota: "Surabaya" } }) === "Surabaya", "sekarang: " + JSON.stringify(kota({ nama: "Ani", alamat: { kota: "Surabaya" } })));',
-                },
-                {
-                  name: { en: 'A missing postcode falls back on its own', id: 'Kode pos yang tidak ada punya cadangannya sendiri' },
-                  check:
-                    'assert(pos({ nama: "Ani", alamat: { kota: "Surabaya" } }) === "-", "alamat ada tapi pos tidak, harus \\"-\\", sekarang: " + JSON.stringify(pos({ nama: "Ani", alamat: { kota: "Surabaya" } })));\n' +
-                    'assert(pos({ nama: "Ani", alamat: { kota: "Surabaya", pos: "60111" } }) === "60111", "sekarang: " + JSON.stringify(pos({ nama: "Ani", alamat: { kota: "Surabaya", pos: "60111" } })));',
-                },
-                {
-                  name: { en: 'A profile without an address is accepted', id: 'Profil tanpa alamat diterima' },
-                  probe: 'const uji1: Profil = { nama: "Ani" };',
-                },
-                {
-                  name: { en: 'A profile without a name is refused', id: 'Profil tanpa nama ditolak' },
-                  probe: 'const uji2: Profil = { alamat: { kota: "Surabaya" } };',
-                  expectError: true,
-                  errorCode: 2741,
-                },
-                {
-                  name: { en: 'An address without a city is refused', id: 'Alamat tanpa kota ditolak' },
-                  probe: 'const uji3: Profil = { nama: "Ani", alamat: { pos: "60111" } };',
-                  expectError: true,
-                },
-                {
-                  name: { en: 'Both functions promise a string', id: 'Kedua fungsinya menjanjikan string' },
-                  probe: 'const uji4: string = kota({ nama: "a" });\nconst uji5: string = pos({ nama: "a" });',
-                },
-              ],
+              starter: {
+                en:
+                  'interface Profile {\n' +
+                  '  name: string;\n' +
+                  '  address?: { city: string; postcode?: string };\n' +
+                  '}\n\n' +
+                  'function city(p: Profile): string {\n' +
+                  '  return p.address.city;\n' +
+                  '}\n\n' +
+                  'function postcode(p: Profile): string {\n' +
+                  '  return p.address.postcode;\n' +
+                  '}\n',
+                id:
+                  'interface Profil {\n' +
+                  '  nama: string;\n' +
+                  '  alamat?: { kota: string; pos?: string };\n' +
+                  '}\n\n' +
+                  'function kota(p: Profil): string {\n' +
+                  '  return p.alamat.kota;\n' +
+                  '}\n\n' +
+                  'function pos(p: Profil): string {\n' +
+                  '  return p.alamat.pos;\n' +
+                  '}\n',
+              },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'A missing address falls back', id: 'Alamat yang tidak ada punya cadangan' },
+                    check:
+                      'assert(city({ name: "Ani" }) === "Unknown", "with no address should be \\"Unknown\\", got: " + JSON.stringify(city({ name: "Ani" })));\n' +
+                      'assert(postcode({ name: "Ani" }) === "-", "with no address should be \\"-\\", got: " + JSON.stringify(postcode({ name: "Ani" })));',
+                  },
+                  {
+                    name: { en: 'A present city is used', id: 'Kota yang ada dipakai' },
+                    check:
+                      'assert(city({ name: "Ani", address: { city: "Surabaya" } }) === "Surabaya", "got: " + JSON.stringify(city({ name: "Ani", address: { city: "Surabaya" } })));',
+                  },
+                  {
+                    name: { en: 'A missing postcode falls back on its own', id: 'Kode pos yang tidak ada punya cadangannya sendiri' },
+                    check:
+                      'assert(postcode({ name: "Ani", address: { city: "Surabaya" } }) === "-", "address present but no postcode should be \\"-\\", got: " + JSON.stringify(postcode({ name: "Ani", address: { city: "Surabaya" } })));\n' +
+                      'assert(postcode({ name: "Ani", address: { city: "Surabaya", postcode: "60111" } }) === "60111", "got: " + JSON.stringify(postcode({ name: "Ani", address: { city: "Surabaya", postcode: "60111" } })));',
+                  },
+                  {
+                    name: { en: 'A profile without an address is accepted', id: 'Profil tanpa alamat diterima' },
+                    probe: 'const t1: Profile = { name: "Ani" };',
+                  },
+                  {
+                    name: { en: 'A profile without a name is refused', id: 'Profil tanpa nama ditolak' },
+                    probe: 'const t2: Profile = { address: { city: "Surabaya" } };',
+                    expectError: true,
+                    errorCode: 2741,
+                  },
+                  {
+                    name: { en: 'An address without a city is refused', id: 'Alamat tanpa kota ditolak' },
+                    probe: 'const t3: Profile = { name: "Ani", address: { postcode: "60111" } };',
+                    expectError: true,
+                  },
+                  {
+                    name: { en: 'Both functions promise a string', id: 'Kedua fungsinya menjanjikan string' },
+                    probe: 'const t4: string = city({ name: "a" });\nconst t5: string = postcode({ name: "a" });',
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'A missing address falls back', id: 'Alamat yang tidak ada punya cadangan' },
+                    check:
+                      'assert(kota({ nama: "Ani" }) === "Tidak diketahui", "tanpa alamat harus \\"Tidak diketahui\\", sekarang: " + JSON.stringify(kota({ nama: "Ani" })));\n' +
+                      'assert(pos({ nama: "Ani" }) === "-", "tanpa alamat harus \\"-\\", sekarang: " + JSON.stringify(pos({ nama: "Ani" })));',
+                  },
+                  {
+                    name: { en: 'A present city is used', id: 'Kota yang ada dipakai' },
+                    check:
+                      'assert(kota({ nama: "Ani", alamat: { kota: "Surabaya" } }) === "Surabaya", "sekarang: " + JSON.stringify(kota({ nama: "Ani", alamat: { kota: "Surabaya" } })));',
+                  },
+                  {
+                    name: { en: 'A missing postcode falls back on its own', id: 'Kode pos yang tidak ada punya cadangannya sendiri' },
+                    check:
+                      'assert(pos({ nama: "Ani", alamat: { kota: "Surabaya" } }) === "-", "alamat ada tapi pos tidak, harus \\"-\\", sekarang: " + JSON.stringify(pos({ nama: "Ani", alamat: { kota: "Surabaya" } })));\n' +
+                      'assert(pos({ nama: "Ani", alamat: { kota: "Surabaya", pos: "60111" } }) === "60111", "sekarang: " + JSON.stringify(pos({ nama: "Ani", alamat: { kota: "Surabaya", pos: "60111" } })));',
+                  },
+                  {
+                    name: { en: 'A profile without an address is accepted', id: 'Profil tanpa alamat diterima' },
+                    probe: 'const uji1: Profil = { nama: "Ani" };',
+                  },
+                  {
+                    name: { en: 'A profile without a name is refused', id: 'Profil tanpa nama ditolak' },
+                    probe: 'const uji2: Profil = { alamat: { kota: "Surabaya" } };',
+                    expectError: true,
+                    errorCode: 2741,
+                  },
+                  {
+                    name: { en: 'An address without a city is refused', id: 'Alamat tanpa kota ditolak' },
+                    probe: 'const uji3: Profil = { nama: "Ani", alamat: { pos: "60111" } };',
+                    expectError: true,
+                  },
+                  {
+                    name: { en: 'Both functions promise a string', id: 'Kedua fungsinya menjanjikan string' },
+                    probe: 'const uji4: string = kota({ nama: "a" });\nconst uji5: string = pos({ nama: "a" });',
+                  },
+                ],
+              },
               hints: [
                 { en: 'Read the two errors first — they name the expression that might be undefined.', id: 'Baca dulu kedua galatnya — keduanya menyebut ekspresi yang mungkin undefined.' },
-                { en: 'An optional chain walks past a missing address: `p.alamat?.kota`.', id: 'Rantai opsional melewati alamat yang tidak ada: `p.alamat?.kota`.' },
-                { en: '`pos` needs two steps of safety, because the postcode is optional even when the address is there.', id: '`pos` butuh dua langkah pengamanan, karena kode posnya opsional bahkan ketika alamatnya ada.' },
+                { en: 'An optional chain walks past a missing address: `p.address?.city`.', id: 'Rantai opsional melewati alamat yang tidak ada: `p.alamat?.kota`.' },
+                { en: '`postcode` needs two steps of safety, because the postcode is optional even when the address is there.', id: '`pos` butuh dua langkah pengamanan, karena kode posnya opsional bahkan ketika alamatnya ada.' },
               ],
-              solution:
-                'interface Profil {\n' +
-                '  nama: string;\n' +
-                '  alamat?: { kota: string; pos?: string };\n' +
-                '}\n\n' +
-                'function kota(p: Profil): string {\n' +
-                '  return p.alamat?.kota ?? "Tidak diketahui";\n' +
-                '}\n\n' +
-                'function pos(p: Profil): string {\n' +
-                '  return p.alamat?.pos ?? "-";\n' +
-                '}',
+              solution: {
+                en:
+                  'interface Profile {\n' +
+                  '  name: string;\n' +
+                  '  address?: { city: string; postcode?: string };\n' +
+                  '}\n\n' +
+                  'function city(p: Profile): string {\n' +
+                  '  return p.address?.city ?? "Unknown";\n' +
+                  '}\n\n' +
+                  'function postcode(p: Profile): string {\n' +
+                  '  return p.address?.postcode ?? "-";\n' +
+                  '}',
+                id:
+                  'interface Profil {\n' +
+                  '  nama: string;\n' +
+                  '  alamat?: { kota: string; pos?: string };\n' +
+                  '}\n\n' +
+                  'function kota(p: Profil): string {\n' +
+                  '  return p.alamat?.kota ?? "Tidak diketahui";\n' +
+                  '}\n\n' +
+                  'function pos(p: Profil): string {\n' +
+                  '  return p.alamat?.pos ?? "-";\n' +
+                  '}',
+              },
             },
           ],
         },
@@ -793,116 +1162,221 @@ export const module2: Module = {
           id: 'Tiga jenis peristiwa dalam satu daftar. Modelkan agar membaca field yang salah jadi galat kompilasi, bukan ruang kosong di layar seseorang.',
         },
         requirements: [
-          { en: '`type Peristiwa` is a tagged union of `"pesan"` (with `dari` and `isi`), `"suka"` (with `dari`), and `"sistem"` (with `kode` and an optional `catatan`).', id: '`type Peristiwa` adalah union bertanda berisi `"pesan"` (dengan `dari` dan `isi`), `"suka"` (dengan `dari`), dan `"sistem"` (dengan `kode` dan `catatan` opsional).' },
-          { en: '`ringkas(p)` returns `"Ani: halo"`, `"Ani menyukai kirimanmu"`, or `"Sistem #404"` — and `"Sistem #404 (tidak ditemukan)"` when there is a note.', id: '`ringkas(p)` mengembalikan `"Ani: halo"`, `"Ani menyukai kirimanmu"`, atau `"Sistem #404"` — dan `"Sistem #404 (tidak ditemukan)"` ketika ada catatannya.' },
-          { en: '`dariSiapa(p)` returns the sender, or `null` for a system event. Its return type must say `string | null`.', id: '`dariSiapa(p)` mengembalikan pengirimnya, atau `null` untuk peristiwa sistem. Tipe kembaliannya harus menyatakan `string | null`.' },
-          { en: '`hitungPesan(daftar)` returns how many of the events are messages.', id: '`hitungPesan(daftar)` mengembalikan berapa banyak peristiwanya yang berupa pesan.' },
+          { en: '`type Event` is a tagged union of `"message"` (with `from` and `content`), `"like"` (with `from`), and `"system"` (with `code` and an optional `note`).', id: '`type Peristiwa` adalah union bertanda berisi `"pesan"` (dengan `dari` dan `isi`), `"suka"` (dengan `dari`), dan `"sistem"` (dengan `kode` dan `catatan` opsional).' },
+          { en: '`summarize(p)` returns `"Ani: hello"`, `"Ani liked your post"`, or `"System #404"` — and `"System #404 (not found)"` when there is a note.', id: '`ringkas(p)` mengembalikan `"Ani: halo"`, `"Ani menyukai kirimanmu"`, atau `"Sistem #404"` — dan `"Sistem #404 (tidak ditemukan)"` ketika ada catatannya.' },
+          { en: '`senderOf(p)` returns the sender, or `null` for a system event. Its return type must say `string | null`.', id: '`dariSiapa(p)` mengembalikan pengirimnya, atau `null` untuk peristiwa sistem. Tipe kembaliannya harus menyatakan `string | null`.' },
+          { en: '`countMessages(list)` returns how many of the events are messages.', id: '`hitungPesan(daftar)` mengembalikan berapa banyak peristiwanya yang berupa pesan.' },
         ],
-        starter:
-          'type Peristiwa = {\n' +
-          '  jenis: string;\n' +
-          '  dari?: string;\n' +
-          '  isi?: string;\n' +
-          '  kode?: number;\n' +
-          '  catatan?: string;\n' +
-          '};\n\n' +
-          'function ringkas(p: Peristiwa): string {\n\n}\n\n' +
-          'function dariSiapa(p: Peristiwa): string | null {\n\n}\n\n' +
-          'function hitungPesan(daftar: Peristiwa[]): number {\n\n}\n',
-        tests: [
-          {
-            name: { en: 'Each kind reads correctly', id: 'Tiap jenisnya terbaca dengan benar' },
-            check:
-              'assert(ringkas({ jenis: "pesan", dari: "Ani", isi: "halo" }) === "Ani: halo", "sekarang: " + JSON.stringify(ringkas({ jenis: "pesan", dari: "Ani", isi: "halo" })));\n' +
-              'assert(ringkas({ jenis: "suka", dari: "Budi" }) === "Budi menyukai kirimanmu", "sekarang: " + JSON.stringify(ringkas({ jenis: "suka", dari: "Budi" })));\n' +
-              'assert(ringkas({ jenis: "sistem", kode: 404 }) === "Sistem #404", "sekarang: " + JSON.stringify(ringkas({ jenis: "sistem", kode: 404 })));',
-          },
-          {
-            name: { en: 'A note is appended in brackets', id: 'Catatannya ditambahkan dalam kurung' },
-            check:
-              'assert(ringkas({ jenis: "sistem", kode: 404, catatan: "tidak ditemukan" }) === "Sistem #404 (tidak ditemukan)", "sekarang: " + JSON.stringify(ringkas({ jenis: "sistem", kode: 404, catatan: "tidak ditemukan" })));',
-          },
-          {
-            name: { en: 'The sender is found, or is null', id: 'Pengirimnya ditemukan, atau null' },
-            check:
-              'assert(dariSiapa({ jenis: "pesan", dari: "Ani", isi: "x" }) === "Ani", "sekarang: " + JSON.stringify(dariSiapa({ jenis: "pesan", dari: "Ani", isi: "x" })));\n' +
-              'assert(dariSiapa({ jenis: "suka", dari: "Budi" }) === "Budi", "sekarang: " + JSON.stringify(dariSiapa({ jenis: "suka", dari: "Budi" })));\n' +
-              'assert(dariSiapa({ jenis: "sistem", kode: 500 }) === null, "peristiwa sistem harus null, sekarang: " + JSON.stringify(dariSiapa({ jenis: "sistem", kode: 500 })));',
-          },
-          {
-            name: { en: 'Messages are counted, nothing else', id: 'Pesannya dihitung, yang lain tidak' },
-            check:
-              'const daftar = [\n' +
-              '  { jenis: "pesan", dari: "Ani", isi: "a" },\n' +
-              '  { jenis: "suka", dari: "Budi" },\n' +
-              '  { jenis: "pesan", dari: "Citra", isi: "b" },\n' +
-              '  { jenis: "sistem", kode: 200 },\n' +
-              '];\n' +
-              'assert(hitungPesan(daftar) === 2, "harus 2, sekarang: " + hitungPesan(daftar));\n' +
-              'assert(hitungPesan([]) === 0, "daftar kosong harus 0, sekarang: " + hitungPesan([]));',
-          },
-          {
-            name: { en: 'All three kinds are accepted', id: 'Ketiga jenisnya diterima' },
-            probe:
-              'const uji1: Peristiwa = { jenis: "pesan", dari: "a", isi: "b" };\n' +
-              'const uji2: Peristiwa = { jenis: "suka", dari: "a" };\n' +
-              'const uji3: Peristiwa = { jenis: "sistem", kode: 1 };\n' +
-              'const uji4: Peristiwa = { jenis: "sistem", kode: 1, catatan: "c" };',
-          },
-          {
-            name: { en: 'A message without its text is refused', id: 'Pesan tanpa isinya ditolak' },
-            probe: 'const uji5: Peristiwa = { jenis: "pesan", dari: "a" };',
-            expectError: true,
-          },
-          {
-            name: { en: 'A like carrying a message body is refused', id: 'Suka yang membawa isi pesan ditolak' },
-            probe: 'const uji6: Peristiwa = { jenis: "suka", dari: "a", isi: "b" };',
-            expectError: true,
-          },
-          {
-            name: { en: 'A system event has no sender', id: 'Peristiwa sistem tak punya pengirim' },
-            probe: 'const uji7: Peristiwa = { jenis: "sistem", kode: 1, dari: "a" };',
-            expectError: true,
-          },
-          {
-            name: { en: 'A fourth kind is refused', id: 'Jenis keempat ditolak' },
-            probe: 'const uji8: Peristiwa = { jenis: "undangan", dari: "a" };',
-            expectError: true,
-          },
-          {
-            name: { en: 'The sender may be null, and the caller is made to know it', id: 'Pengirimnya boleh null, dan pemanggilnya dipaksa tahu' },
-            probe: 'const uji9: string = dariSiapa({ jenis: "suka", dari: "a" });',
-            expectError: true,
-            errorCode: 2322,
-          },
-        ],
+        starter: {
+          en:
+            'type Event = {\n' +
+            '  kind: string;\n' +
+            '  from?: string;\n' +
+            '  content?: string;\n' +
+            '  code?: number;\n' +
+            '  note?: string;\n' +
+            '};\n\n' +
+            'function summarize(p: Event): string {\n\n}\n\n' +
+            'function senderOf(p: Event): string | null {\n\n}\n\n' +
+            'function countMessages(list: Event[]): number {\n\n}\n',
+          id:
+            'type Peristiwa = {\n' +
+            '  jenis: string;\n' +
+            '  dari?: string;\n' +
+            '  isi?: string;\n' +
+            '  kode?: number;\n' +
+            '  catatan?: string;\n' +
+            '};\n\n' +
+            'function ringkas(p: Peristiwa): string {\n\n}\n\n' +
+            'function dariSiapa(p: Peristiwa): string | null {\n\n}\n\n' +
+            'function hitungPesan(daftar: Peristiwa[]): number {\n\n}\n',
+        },
+        tests: {
+          en: [
+            {
+              name: { en: 'Each kind reads correctly', id: 'Tiap jenisnya terbaca dengan benar' },
+              check:
+                'assert(summarize({ kind: "message", from: "Ani", content: "hello" }) === "Ani: hello", "got: " + JSON.stringify(summarize({ kind: "message", from: "Ani", content: "hello" })));\n' +
+                'assert(summarize({ kind: "like", from: "Budi" }) === "Budi liked your post", "got: " + JSON.stringify(summarize({ kind: "like", from: "Budi" })));\n' +
+                'assert(summarize({ kind: "system", code: 404 }) === "System #404", "got: " + JSON.stringify(summarize({ kind: "system", code: 404 })));',
+            },
+            {
+              name: { en: 'A note is appended in brackets', id: 'Catatannya ditambahkan dalam kurung' },
+              check:
+                'assert(summarize({ kind: "system", code: 404, note: "not found" }) === "System #404 (not found)", "got: " + JSON.stringify(summarize({ kind: "system", code: 404, note: "not found" })));',
+            },
+            {
+              name: { en: 'The sender is found, or is null', id: 'Pengirimnya ditemukan, atau null' },
+              check:
+                'assert(senderOf({ kind: "message", from: "Ani", content: "x" }) === "Ani", "got: " + JSON.stringify(senderOf({ kind: "message", from: "Ani", content: "x" })));\n' +
+                'assert(senderOf({ kind: "like", from: "Budi" }) === "Budi", "got: " + JSON.stringify(senderOf({ kind: "like", from: "Budi" })));\n' +
+                'assert(senderOf({ kind: "system", code: 500 }) === null, "a system event should be null, got: " + JSON.stringify(senderOf({ kind: "system", code: 500 })));',
+            },
+            {
+              name: { en: 'Messages are counted, nothing else', id: 'Pesannya dihitung, yang lain tidak' },
+              check:
+                'const list = [\n' +
+                '  { kind: "message", from: "Ani", content: "a" },\n' +
+                '  { kind: "like", from: "Budi" },\n' +
+                '  { kind: "message", from: "Citra", content: "b" },\n' +
+                '  { kind: "system", code: 200 },\n' +
+                '];\n' +
+                'assert(countMessages(list) === 2, "should be 2, got: " + countMessages(list));\n' +
+                'assert(countMessages([]) === 0, "an empty list should be 0, got: " + countMessages([]));',
+            },
+            {
+              name: { en: 'All three kinds are accepted', id: 'Ketiga jenisnya diterima' },
+              probe:
+                'const t1: Event = { kind: "message", from: "a", content: "b" };\n' +
+                'const t2: Event = { kind: "like", from: "a" };\n' +
+                'const t3: Event = { kind: "system", code: 1 };\n' +
+                'const t4: Event = { kind: "system", code: 1, note: "c" };',
+            },
+            {
+              name: { en: 'A message without its text is refused', id: 'Pesan tanpa isinya ditolak' },
+              probe: 'const t5: Event = { kind: "message", from: "a" };',
+              expectError: true,
+            },
+            {
+              name: { en: 'A like carrying a message body is refused', id: 'Suka yang membawa isi pesan ditolak' },
+              probe: 'const t6: Event = { kind: "like", from: "a", content: "b" };',
+              expectError: true,
+            },
+            {
+              name: { en: 'A system event has no sender', id: 'Peristiwa sistem tak punya pengirim' },
+              probe: 'const t7: Event = { kind: "system", code: 1, from: "a" };',
+              expectError: true,
+            },
+            {
+              name: { en: 'A fourth kind is refused', id: 'Jenis keempat ditolak' },
+              probe: 'const t8: Event = { kind: "invite", from: "a" };',
+              expectError: true,
+            },
+            {
+              name: { en: 'The sender may be null, and the caller is made to know it', id: 'Pengirimnya boleh null, dan pemanggilnya dipaksa tahu' },
+              probe: 'const t9: string = senderOf({ kind: "like", from: "a" });',
+              expectError: true,
+              errorCode: 2322,
+            },
+          ],
+          id: [
+            {
+              name: { en: 'Each kind reads correctly', id: 'Tiap jenisnya terbaca dengan benar' },
+              check:
+                'assert(ringkas({ jenis: "pesan", dari: "Ani", isi: "halo" }) === "Ani: halo", "sekarang: " + JSON.stringify(ringkas({ jenis: "pesan", dari: "Ani", isi: "halo" })));\n' +
+                'assert(ringkas({ jenis: "suka", dari: "Budi" }) === "Budi menyukai kirimanmu", "sekarang: " + JSON.stringify(ringkas({ jenis: "suka", dari: "Budi" })));\n' +
+                'assert(ringkas({ jenis: "sistem", kode: 404 }) === "Sistem #404", "sekarang: " + JSON.stringify(ringkas({ jenis: "sistem", kode: 404 })));',
+            },
+            {
+              name: { en: 'A note is appended in brackets', id: 'Catatannya ditambahkan dalam kurung' },
+              check:
+                'assert(ringkas({ jenis: "sistem", kode: 404, catatan: "tidak ditemukan" }) === "Sistem #404 (tidak ditemukan)", "sekarang: " + JSON.stringify(ringkas({ jenis: "sistem", kode: 404, catatan: "tidak ditemukan" })));',
+            },
+            {
+              name: { en: 'The sender is found, or is null', id: 'Pengirimnya ditemukan, atau null' },
+              check:
+                'assert(dariSiapa({ jenis: "pesan", dari: "Ani", isi: "x" }) === "Ani", "sekarang: " + JSON.stringify(dariSiapa({ jenis: "pesan", dari: "Ani", isi: "x" })));\n' +
+                'assert(dariSiapa({ jenis: "suka", dari: "Budi" }) === "Budi", "sekarang: " + JSON.stringify(dariSiapa({ jenis: "suka", dari: "Budi" })));\n' +
+                'assert(dariSiapa({ jenis: "sistem", kode: 500 }) === null, "peristiwa sistem harus null, sekarang: " + JSON.stringify(dariSiapa({ jenis: "sistem", kode: 500 })));',
+            },
+            {
+              name: { en: 'Messages are counted, nothing else', id: 'Pesannya dihitung, yang lain tidak' },
+              check:
+                'const daftar = [\n' +
+                '  { jenis: "pesan", dari: "Ani", isi: "a" },\n' +
+                '  { jenis: "suka", dari: "Budi" },\n' +
+                '  { jenis: "pesan", dari: "Citra", isi: "b" },\n' +
+                '  { jenis: "sistem", kode: 200 },\n' +
+                '];\n' +
+                'assert(hitungPesan(daftar) === 2, "harus 2, sekarang: " + hitungPesan(daftar));\n' +
+                'assert(hitungPesan([]) === 0, "daftar kosong harus 0, sekarang: " + hitungPesan([]));',
+            },
+            {
+              name: { en: 'All three kinds are accepted', id: 'Ketiga jenisnya diterima' },
+              probe:
+                'const uji1: Peristiwa = { jenis: "pesan", dari: "a", isi: "b" };\n' +
+                'const uji2: Peristiwa = { jenis: "suka", dari: "a" };\n' +
+                'const uji3: Peristiwa = { jenis: "sistem", kode: 1 };\n' +
+                'const uji4: Peristiwa = { jenis: "sistem", kode: 1, catatan: "c" };',
+            },
+            {
+              name: { en: 'A message without its text is refused', id: 'Pesan tanpa isinya ditolak' },
+              probe: 'const uji5: Peristiwa = { jenis: "pesan", dari: "a" };',
+              expectError: true,
+            },
+            {
+              name: { en: 'A like carrying a message body is refused', id: 'Suka yang membawa isi pesan ditolak' },
+              probe: 'const uji6: Peristiwa = { jenis: "suka", dari: "a", isi: "b" };',
+              expectError: true,
+            },
+            {
+              name: { en: 'A system event has no sender', id: 'Peristiwa sistem tak punya pengirim' },
+              probe: 'const uji7: Peristiwa = { jenis: "sistem", kode: 1, dari: "a" };',
+              expectError: true,
+            },
+            {
+              name: { en: 'A fourth kind is refused', id: 'Jenis keempat ditolak' },
+              probe: 'const uji8: Peristiwa = { jenis: "undangan", dari: "a" };',
+              expectError: true,
+            },
+            {
+              name: { en: 'The sender may be null, and the caller is made to know it', id: 'Pengirimnya boleh null, dan pemanggilnya dipaksa tahu' },
+              probe: 'const uji9: string = dariSiapa({ jenis: "suka", dari: "a" });',
+              expectError: true,
+              errorCode: 2322,
+            },
+          ],
+        },
         hints: [
           { en: 'The starter is the shape this lesson exists to replace: one object with everything optional, where nothing can be checked.', id: 'Kode awalnya adalah bentuk yang keberadaan pelajaran ini justru untuk menggantikannya: satu objek dengan semuanya opsional, tempat tak ada yang bisa diperiksa.' },
-          { en: 'Three members, each with its own `jenis` literal, and only the fields that member really has.', id: 'Tiga anggota, masing-masing dengan literal `jenis`-nya sendiri, dan hanya field yang benar-benar dimiliki anggota itu.' },
-          { en: 'A switch on `p.jenis` inside each function gives you the right fields with no checking of your own.', id: 'Switch pada `p.jenis` di dalam tiap fungsinya memberimu field yang tepat tanpa perlu memeriksa sendiri.' },
-          { en: 'Only `catatan` stays optional — reach for `??` there, not for the tag.', id: 'Hanya `catatan` yang tetap opsional — pakai `??` di situ, bukan pada penandanya.' },
+          { en: 'Three members, each with its own `kind` literal, and only the fields that member really has.', id: 'Tiga anggota, masing-masing dengan literal `jenis`-nya sendiri, dan hanya field yang benar-benar dimiliki anggota itu.' },
+          { en: 'A switch on `p.kind` inside each function gives you the right fields with no checking of your own.', id: 'Switch pada `p.jenis` di dalam tiap fungsinya memberimu field yang tepat tanpa perlu memeriksa sendiri.' },
+          { en: 'Only `note` stays optional — reach for `??` there, not for the tag.', id: 'Hanya `catatan` yang tetap opsional — pakai `??` di situ, bukan pada penandanya.' },
         ],
-        solution:
-          'type Peristiwa =\n' +
-          '  | { jenis: "pesan"; dari: string; isi: string }\n' +
-          '  | { jenis: "suka"; dari: string }\n' +
-          '  | { jenis: "sistem"; kode: number; catatan?: string };\n\n' +
-          'function ringkas(p: Peristiwa): string {\n' +
-          '  switch (p.jenis) {\n' +
-          '    case "pesan":\n' +
-          '      return `${p.dari}: ${p.isi}`;\n' +
-          '    case "suka":\n' +
-          '      return `${p.dari} menyukai kirimanmu`;\n' +
-          '    case "sistem":\n' +
-          '      return p.catatan ? `Sistem #${p.kode} (${p.catatan})` : `Sistem #${p.kode}`;\n' +
-          '  }\n' +
-          '}\n\n' +
-          'function dariSiapa(p: Peristiwa): string | null {\n' +
-          '  return p.jenis === "sistem" ? null : p.dari;\n' +
-          '}\n\n' +
-          'function hitungPesan(daftar: Peristiwa[]): number {\n' +
-          '  return daftar.filter((p) => p.jenis === "pesan").length;\n' +
-          '}',
+        solution: {
+          en:
+            'type Event =\n' +
+            '  | { kind: "message"; from: string; content: string }\n' +
+            '  | { kind: "like"; from: string }\n' +
+            '  | { kind: "system"; code: number; note?: string };\n\n' +
+            'function summarize(p: Event): string {\n' +
+            '  switch (p.kind) {\n' +
+            '    case "message":\n' +
+            '      return `${p.from}: ${p.content}`;\n' +
+            '    case "like":\n' +
+            '      return `${p.from} liked your post`;\n' +
+            '    case "system":\n' +
+            '      return p.note ? `System #${p.code} (${p.note})` : `System #${p.code}`;\n' +
+            '  }\n' +
+            '}\n\n' +
+            'function senderOf(p: Event): string | null {\n' +
+            '  return p.kind === "system" ? null : p.from;\n' +
+            '}\n\n' +
+            'function countMessages(list: Event[]): number {\n' +
+            '  return list.filter((p) => p.kind === "message").length;\n' +
+            '}',
+          id:
+            'type Peristiwa =\n' +
+            '  | { jenis: "pesan"; dari: string; isi: string }\n' +
+            '  | { jenis: "suka"; dari: string }\n' +
+            '  | { jenis: "sistem"; kode: number; catatan?: string };\n\n' +
+            'function ringkas(p: Peristiwa): string {\n' +
+            '  switch (p.jenis) {\n' +
+            '    case "pesan":\n' +
+            '      return `${p.dari}: ${p.isi}`;\n' +
+            '    case "suka":\n' +
+            '      return `${p.dari} menyukai kirimanmu`;\n' +
+            '    case "sistem":\n' +
+            '      return p.catatan ? `Sistem #${p.kode} (${p.catatan})` : `Sistem #${p.kode}`;\n' +
+            '  }\n' +
+            '}\n\n' +
+            'function dariSiapa(p: Peristiwa): string | null {\n' +
+            '  return p.jenis === "sistem" ? null : p.dari;\n' +
+            '}\n\n' +
+            'function hitungPesan(daftar: Peristiwa[]): number {\n' +
+            '  return daftar.filter((p) => p.jenis === "pesan").length;\n' +
+            '}',
+        },
         xp: 50,
       },
     },
