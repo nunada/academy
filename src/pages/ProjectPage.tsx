@@ -110,7 +110,7 @@ export default function ProjectPage() {
     setBusy(true)
     try {
       if (project.runtime === 'sql') {
-        setRunRows(await runSql(project.schema, code))
+        setRunRows(await runSql(resolveBi(project.schema, lang), code))
       } else if (project.runtime === 'ts') {
         setCompiled(await compileTs(code))
       } else if (project.runtime === 'game') {
@@ -161,7 +161,7 @@ export default function ProjectPage() {
         project.runtime === 'web'
           ? fromWeb(await runWebTests(code, resolveBi(project.tests, lang), html, project.js, project.react))
           : project.runtime === 'sql'
-            ? fromSql(await runSqlTests(project.schema, code, project.tests))
+            ? fromSql(await runSqlTests(resolveBi(project.schema, lang), code, resolveBi(project.tests, lang)))
             : project.runtime === 'ts'
               ? fromTs(await runTsTests(code, resolveBi(project.tests, lang)))
               : project.runtime === 'cpp'
@@ -294,7 +294,7 @@ export default function ProjectPage() {
               <summary className="io-label" style={{ cursor: 'pointer' }}>
                 {tc({ en: 'The tables (already set up)', id: 'Tabelnya (sudah disiapkan)' })}
               </summary>
-              <CodeBlock>{project.schema}</CodeBlock>
+              <CodeBlock>{resolveBi(project.schema, lang)}</CodeBlock>
             </details>
             <div className="io-label">SQL</div>
             <CodeEditor value={code} onChange={setCode} rows={16} />

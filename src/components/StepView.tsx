@@ -645,8 +645,12 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
 /* ------------------------------------------------------------------- sql */
 
 function SqlStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'sql' }> }) {
-  const { t, tc } = useI18n()
-  const [code, setCode] = useState(step.starter)
+  const { t, tc, lang } = useI18n()
+  const schema = resolveBi(step.schema, lang)
+  const starter = resolveBi(step.starter, lang)
+  const tests = resolveBi(step.tests, lang)
+  const solution = resolveBi(step.solution, lang)
+  const [code, setCode] = useState(starter)
   const [busy, setBusy] = useState(false)
   const [outcomes, setOutcomes] = useState<SqlOutcome[] | null>(null)
   const [result, setResult] = useState<SqlResult | null>(null)
@@ -658,7 +662,7 @@ function SqlStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
   async function doRun() {
     setBusy(true)
     try {
-      setResult(await runSql(step.schema, code))
+      setResult(await runSql(schema, code))
       setOutcomes(null)
     } finally {
       setBusy(false)
@@ -668,7 +672,7 @@ function SqlStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
   async function doCheck() {
     setBusy(true)
     try {
-      const res = await runSqlTests(step.schema, code, step.tests)
+      const res = await runSqlTests(schema, code, tests)
       setOutcomes(res)
       setResult(null)
       if (res.every((o) => o.passed)) onSolved()
@@ -688,7 +692,7 @@ function SqlStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
         <summary className="io-label" style={{ cursor: 'pointer' }}>
           {tc({ en: 'The tables (already set up)', id: 'Tabelnya (sudah disiapkan)' })}
         </summary>
-        <CodeBlock>{step.schema}</CodeBlock>
+        <CodeBlock>{schema}</CodeBlock>
       </details>
 
       <div className="io-label">SQL</div>
@@ -727,8 +731,8 @@ function SqlStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
       {showSolution && (
         <div style={{ marginTop: 12 }}>
           <div className="io-label">{t('showSolution')}</div>
-          <CodeBlock>{step.solution}</CodeBlock>
-          <button className="btn ghost sm" onClick={() => setCode(step.solution)}>
+          <CodeBlock>{solution}</CodeBlock>
+          <button className="btn ghost sm" onClick={() => setCode(solution)}>
             ↧ {tc({ en: 'Copy into the editor', id: 'Salin ke editor' })}
           </button>
         </div>

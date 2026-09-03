@@ -303,12 +303,12 @@ export type Step =
       kind: 'sql'
       id: string
       prompt: Loc
-      starter: string
-      tests: SqlTest[]
+      starter: Bi<string>
+      tests: Bi<SqlTest[]>
       hints: Loc[]
-      solution: string
+      solution: Bi<string>
       /** DDL and seed data, run before every check and before every free run. */
-      schema: string
+      schema: Bi<string>
     }
   | {
       /** Same rung as `code`, in C++ rather than Python. */
@@ -381,7 +381,7 @@ type CodeProject = MiniProjectBase & { starter: Bi<string>; solution: Bi<string>
 export type MiniProject =
   | (CodeProject & { runtime?: 'python'; tests: Bi<PyTest[]> })
   | (CodeProject & { runtime: 'web'; tests: Bi<WebTest[]>; html?: Bi<string>; js?: boolean; react?: boolean })
-  | (CodeProject & { runtime: 'sql'; tests: SqlTest[]; schema: string })
+  | (CodeProject & { runtime: 'sql'; tests: Bi<SqlTest[]>; schema: Bi<string> })
   | (CodeProject & { runtime: 'ts'; tests: Bi<TsTest[]> })
   | (CodeProject & { runtime: 'game'; tests: Bi<PyTest[]> })
   | (CodeProject & { runtime: 'cpp'; tests: Bi<CppTest[]> })

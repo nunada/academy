@@ -3,28 +3,49 @@ import type { Module } from '../types'
 /** Module 2 — from "which rows" to "what do they add up to". */
 
 /** Orders, deliberately shaped for this module: repeated customers, repeated
- *  cities, repeated products, and a mostly-empty `kupon` column so the
+ *  cities, repeated products, and a mostly-empty `coupon` column so the
  *  difference between COUNT(*) and COUNT(column) is visible rather than
  *  theoretical. */
-const SCHEMA = `CREATE TABLE pesanan (
-  id        INTEGER PRIMARY KEY,
-  pelanggan TEXT    NOT NULL,
-  kota      TEXT    NOT NULL,
-  produk    TEXT    NOT NULL,
-  jumlah    INTEGER NOT NULL,
-  total     INTEGER NOT NULL,
-  kupon     TEXT
-);
-
-INSERT INTO pesanan VALUES
-  (1, 'Rina', 'Surabaya', 'Keyboard', 1,  350000, NULL),
-  (2, 'Budi', 'Jakarta',  'Mouse',    2,  180000, 'HEMAT10'),
-  (3, 'Rina', 'Surabaya', 'Mouse',    1,   90000, NULL),
-  (4, 'Sari', 'Bandung',  'Monitor',  1, 1200000, NULL),
-  (5, 'Budi', 'Jakarta',  'Keyboard', 3, 1050000, 'HEMAT10'),
-  (6, 'Tono', 'Surabaya', 'Mouse',    4,  360000, NULL),
-  (7, 'Sari', 'Bandung',  'Keyboard', 1,  350000, 'GRATISONGKIR'),
-  (8, 'Rina', 'Surabaya', 'Monitor',  2, 2400000, NULL);`
+const SCHEMA = {
+  en:
+    `CREATE TABLE orders (\n` +
+    `  id       INTEGER PRIMARY KEY,\n` +
+    `  customer TEXT    NOT NULL,\n` +
+    `  city     TEXT    NOT NULL,\n` +
+    `  product  TEXT    NOT NULL,\n` +
+    `  quantity INTEGER NOT NULL,\n` +
+    `  total    INTEGER NOT NULL,\n` +
+    `  coupon   TEXT\n` +
+    `);\n\n` +
+    `INSERT INTO orders VALUES\n` +
+    `  (1, 'Rina', 'Surabaya', 'Keyboard', 1,  350000, NULL),\n` +
+    `  (2, 'Budi', 'Jakarta',  'Mouse',    2,  180000, 'SAVE10'),\n` +
+    `  (3, 'Rina', 'Surabaya', 'Mouse',    1,   90000, NULL),\n` +
+    `  (4, 'Sari', 'Bandung',  'Monitor',  1, 1200000, NULL),\n` +
+    `  (5, 'Budi', 'Jakarta',  'Keyboard', 3, 1050000, 'SAVE10'),\n` +
+    `  (6, 'Tono', 'Surabaya', 'Mouse',    4,  360000, NULL),\n` +
+    `  (7, 'Sari', 'Bandung',  'Keyboard', 1,  350000, 'FREESHIP'),\n` +
+    `  (8, 'Rina', 'Surabaya', 'Monitor',  2, 2400000, NULL);`,
+  id:
+    `CREATE TABLE pesanan (\n` +
+    `  id        INTEGER PRIMARY KEY,\n` +
+    `  pelanggan TEXT    NOT NULL,\n` +
+    `  kota      TEXT    NOT NULL,\n` +
+    `  produk    TEXT    NOT NULL,\n` +
+    `  jumlah    INTEGER NOT NULL,\n` +
+    `  total     INTEGER NOT NULL,\n` +
+    `  kupon     TEXT\n` +
+    `);\n\n` +
+    `INSERT INTO pesanan VALUES\n` +
+    `  (1, 'Rina', 'Surabaya', 'Keyboard', 1,  350000, NULL),\n` +
+    `  (2, 'Budi', 'Jakarta',  'Mouse',    2,  180000, 'HEMAT10'),\n` +
+    `  (3, 'Rina', 'Surabaya', 'Mouse',    1,   90000, NULL),\n` +
+    `  (4, 'Sari', 'Bandung',  'Monitor',  1, 1200000, NULL),\n` +
+    `  (5, 'Budi', 'Jakarta',  'Keyboard', 3, 1050000, 'HEMAT10'),\n` +
+    `  (6, 'Tono', 'Surabaya', 'Mouse',    4,  360000, NULL),\n` +
+    `  (7, 'Sari', 'Bandung',  'Keyboard', 1,  350000, 'GRATISONGKIR'),\n` +
+    `  (8, 'Rina', 'Surabaya', 'Monitor',  2, 2400000, NULL);`,
+}
 
 export const module2: Module = {
   id: 'sql-m2',
@@ -56,19 +77,28 @@ export const module2: Module = {
                 en: 'Everything so far returned one result row per table row. An **aggregate function** breaks that: `COUNT`, `SUM`, `AVG`, `MIN` and `MAX` each read the whole set of rows and hand back a single value. With no `GROUP BY`, the whole table is one group, so you get exactly one row back.',
                 id: 'Semua yang tadi mengembalikan satu baris hasil per baris tabel. **Fungsi agregat** mematahkan itu: `COUNT`, `SUM`, `AVG`, `MIN`, dan `MAX` masing-masing membaca seluruh himpunan barisnya dan mengembalikan satu nilai. Tanpa `GROUP BY`, seluruh tabel adalah satu kelompok, jadi kamu menerima tepat satu baris.',
               },
-              code: 'SELECT COUNT(*) AS baris, SUM(total) AS pendapatan, MAX(total) AS terbesar\nFROM pesanan;',
-              output: 'baris  pendapatan  terbesar\n8      5980000     2400000',
+              code: {
+                en: 'SELECT COUNT(*) AS rows, SUM(total) AS revenue, MAX(total) AS largest\nFROM orders;',
+                id: 'SELECT COUNT(*) AS baris, SUM(total) AS pendapatan, MAX(total) AS terbesar\nFROM pesanan;',
+              },
+              output: {
+                en: 'rows  revenue  largest\n8     5980000  2400000',
+                id: 'baris  pendapatan  terbesar\n8      5980000     2400000',
+              },
             },
             {
               kind: 'concept',
               id: 'c2',
               title: { en: 'COUNT(*) and COUNT(column) are different questions', id: 'COUNT(*) dan COUNT(kolom) adalah pertanyaan berbeda' },
               body: {
-                en: '`COUNT(*)` counts **rows**. `COUNT(kupon)` counts rows where `kupon` **has a value** — a `NULL` is not a value, so it is skipped. Every other aggregate skips NULL too: `AVG` divides by how many values it actually saw, not by how many rows there were.',
+                en: '`COUNT(*)` counts **rows**. `COUNT(coupon)` counts rows where `coupon` **has a value** — a `NULL` is not a value, so it is skipped. Every other aggregate skips NULL too: `AVG` divides by how many values it actually saw, not by how many rows there were.',
                 id: '`COUNT(*)` menghitung **baris**. `COUNT(kupon)` menghitung baris yang `kupon`-nya **punya nilai** — `NULL` bukan nilai, jadi ia dilewati. Semua agregat lain juga melewati NULL: `AVG` membagi dengan banyaknya nilai yang benar-benar ia lihat, bukan dengan banyaknya baris.',
               },
-              code: 'SELECT COUNT(*) AS semua, COUNT(kupon) AS pakai_kupon\nFROM pesanan;',
-              output: 'semua  pakai_kupon\n8      3',
+              code: {
+                en: 'SELECT COUNT(*) AS all_orders, COUNT(coupon) AS used_coupon\nFROM orders;',
+                id: 'SELECT COUNT(*) AS semua, COUNT(kupon) AS pakai_kupon\nFROM pesanan;',
+              },
+              output: { en: 'all_orders  used_coupon\n8           3', id: 'semua  pakai_kupon\n8      3' },
             },
             {
               kind: 'concept',
@@ -78,7 +108,10 @@ export const module2: Module = {
                 en: 'A `WHERE` clause still filters rows one at a time, and it does so **before** the aggregate sees anything. So this is "the average of the large orders", not "the large ones among the averages" — a phrase that would not even mean anything.',
                 id: 'Klausa `WHERE` tetap menyaring baris satu per satu, dan ia melakukannya **sebelum** agregatnya melihat apa pun. Jadi ini adalah "rata-rata dari pesanan besar", bukan "yang besar di antara rata-rata" — kalimat yang bahkan tidak bermakna.',
               },
-              code: 'SELECT AVG(total) AS rata_rata\nFROM pesanan\nWHERE jumlah > 1;',
+              code: {
+                en: 'SELECT AVG(total) AS average\nFROM orders\nWHERE quantity > 1;',
+                id: 'SELECT AVG(total) AS rata_rata\nFROM pesanan\nWHERE jumlah > 1;',
+              },
             },
             {
               kind: 'quiz',
@@ -87,7 +120,7 @@ export const module2: Module = {
                 en: 'Three of the eight orders have a coupon. What do these two numbers come out as?',
                 id: 'Tiga dari delapan pesanan punya kupon. Kedua angka ini menjadi berapa?',
               },
-              code: 'SELECT COUNT(*), COUNT(kupon) FROM pesanan;',
+              code: { en: 'SELECT COUNT(*), COUNT(coupon) FROM orders;', id: 'SELECT COUNT(*), COUNT(kupon) FROM pesanan;' },
               options: [
                 { en: '8 and 3', id: '8 dan 3' },
                 { en: '8 and 8', id: '8 dan 8' },
@@ -96,7 +129,7 @@ export const module2: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'COUNT(*) counts rows; COUNT(kupon) counts the rows where that column is not NULL.',
+                en: 'COUNT(*) counts rows; COUNT(coupon) counts the rows where that column is not NULL.',
                 id: 'COUNT(*) menghitung baris; COUNT(kupon) menghitung baris yang kolom itu bukan NULL.',
               },
             },
@@ -107,7 +140,10 @@ export const module2: Module = {
                 en: 'Complete the query for the cheapest and the dearest order.',
                 id: 'Lengkapi kueri untuk pesanan termurah dan termahal.',
               },
-              template: 'SELECT ___(total) AS termurah, ___(total) AS termahal FROM pesanan;',
+              template: {
+                en: 'SELECT ___(total) AS cheapest, ___(total) AS priciest FROM orders;',
+                id: 'SELECT ___(total) AS termurah, ___(total) AS termahal FROM pesanan;',
+              },
               blanks: ['MIN', 'MAX'],
               explain: {
                 en: 'MIN and MAX read a column across every row and keep one value each.',
@@ -119,37 +155,61 @@ export const module2: Module = {
               id: 's1',
               schema: SCHEMA,
               prompt: {
-                en: 'Return one row with three columns: `banyak_pesanan` (how many orders), `pendapatan` (the sum of `total`), and `terbesar` (the largest `total`).',
+                en: 'Return one row with three columns: `order_count` (how many orders), `revenue` (the sum of `total`), and `largest` (the largest `total`).',
                 id: 'Kembalikan satu baris dengan tiga kolom: `banyak_pesanan` (banyaknya pesanan), `pendapatan` (jumlah kolom `total`), dan `terbesar` (nilai `total` terbesar).',
               },
-              starter: 'SELECT total FROM pesanan;\n',
-              tests: [
-                {
-                  name: { en: 'The three columns are named right', id: 'Ketiga kolomnya dinamai dengan benar' },
-                  expectColumns: ['banyak_pesanan', 'pendapatan', 'terbesar'],
-                },
-                {
-                  name: { en: 'The summary is correct', id: 'Rangkumannya benar' },
-                  expectRows: [[8, 5980000, 2400000]],
-                },
-                {
-                  name: { en: 'A new order moves all three', id: 'Pesanan baru menggerakkan ketiganya' },
-                  setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Malang', 'Monitor', 3, 3000000, NULL);",
-                  expectRows: [[9, 8980000, 3000000]],
-                },
-                {
-                  name: { en: 'It is a count of rows, not a fixed 8', id: 'Ini menghitung baris, bukan angka 8 yang dipatok' },
-                  setup: 'DELETE FROM pesanan WHERE id IN (7, 8);',
-                  expectRows: [[6, 3230000, 1200000]],
-                },
-              ],
+              starter: { en: 'SELECT total FROM orders;\n', id: 'SELECT total FROM pesanan;\n' },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'The three columns are named right', id: 'Ketiga kolomnya dinamai dengan benar' },
+                    expectColumns: ['order_count', 'revenue', 'largest'],
+                  },
+                  {
+                    name: { en: 'The summary is correct', id: 'Rangkumannya benar' },
+                    expectRows: [[8, 5980000, 2400000]],
+                  },
+                  {
+                    name: { en: 'A new order moves all three', id: 'Pesanan baru menggerakkan ketiganya' },
+                    setup: "INSERT INTO orders VALUES (9, 'Yuni', 'Malang', 'Monitor', 3, 3000000, NULL);",
+                    expectRows: [[9, 8980000, 3000000]],
+                  },
+                  {
+                    name: { en: 'It is a count of rows, not a fixed 8', id: 'Ini menghitung baris, bukan angka 8 yang dipatok' },
+                    setup: 'DELETE FROM orders WHERE id IN (7, 8);',
+                    expectRows: [[6, 3230000, 1200000]],
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'The three columns are named right', id: 'Ketiga kolomnya dinamai dengan benar' },
+                    expectColumns: ['banyak_pesanan', 'pendapatan', 'terbesar'],
+                  },
+                  {
+                    name: { en: 'The summary is correct', id: 'Rangkumannya benar' },
+                    expectRows: [[8, 5980000, 2400000]],
+                  },
+                  {
+                    name: { en: 'A new order moves all three', id: 'Pesanan baru menggerakkan ketiganya' },
+                    setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Malang', 'Monitor', 3, 3000000, NULL);",
+                    expectRows: [[9, 8980000, 3000000]],
+                  },
+                  {
+                    name: { en: 'It is a count of rows, not a fixed 8', id: 'Ini menghitung baris, bukan angka 8 yang dipatok' },
+                    setup: 'DELETE FROM pesanan WHERE id IN (7, 8);',
+                    expectRows: [[6, 3230000, 1200000]],
+                  },
+                ],
+              },
               hints: [
                 { en: 'Three aggregates in one SELECT list, each with its own AS.', id: 'Tiga agregat dalam satu daftar SELECT, masing-masing dengan AS-nya sendiri.' },
                 { en: '"How many orders" counts rows — that is COUNT(*).', id: '"Banyaknya pesanan" menghitung baris — itu COUNT(*).' },
-                { en: 'SELECT COUNT(*) AS banyak_pesanan, SUM(total) AS pendapatan, ...', id: 'SELECT COUNT(*) AS banyak_pesanan, SUM(total) AS pendapatan, ...' },
+                { en: 'SELECT COUNT(*) AS order_count, SUM(total) AS revenue, ...', id: 'SELECT COUNT(*) AS banyak_pesanan, SUM(total) AS pendapatan, ...' },
               ],
-              solution:
-                'SELECT COUNT(*)   AS banyak_pesanan,\n       SUM(total) AS pendapatan,\n       MAX(total) AS terbesar\nFROM pesanan;',
+              solution: {
+                en: 'SELECT COUNT(*)   AS order_count,\n       SUM(total) AS revenue,\n       MAX(total) AS largest\nFROM orders;',
+                id: 'SELECT COUNT(*)   AS banyak_pesanan,\n       SUM(total) AS pendapatan,\n       MAX(total) AS terbesar\nFROM pesanan;',
+              },
             },
           ],
         },
@@ -164,14 +224,21 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'DISTINCT drops repeats', id: 'DISTINCT membuang pengulangan' },
               body: {
-                en: '`SELECT DISTINCT kota FROM pesanan` returns each city once, however many orders came from it. Inside an aggregate, `COUNT(DISTINCT kota)` answers "how many different cities" — a very different number from `COUNT(kota)`, which is just how many rows had one.',
+                en: '`SELECT DISTINCT city FROM orders` returns each city once, however many orders came from it. Inside an aggregate, `COUNT(DISTINCT city)` answers "how many different cities" — a very different number from `COUNT(city)`, which is just how many rows had one.',
                 id: '`SELECT DISTINCT kota FROM pesanan` mengembalikan tiap kota sekali, berapa pun pesanan yang datang darinya. Di dalam agregat, `COUNT(DISTINCT kota)` menjawab "berapa kota yang berbeda" — angka yang sangat berbeda dari `COUNT(kota)`, yang hanya berarti berapa baris yang punya kota.',
               },
-              code:
-                'SELECT DISTINCT kota FROM pesanan;\n' +
-                '-- Surabaya, Jakarta, Bandung\n\n' +
-                'SELECT COUNT(DISTINCT kota) AS kota, COUNT(kota) AS baris FROM pesanan;\n' +
-                '-- 3, 8',
+              code: {
+                en:
+                  'SELECT DISTINCT city FROM orders;\n' +
+                  '-- Surabaya, Jakarta, Bandung\n\n' +
+                  'SELECT COUNT(DISTINCT city) AS city, COUNT(city) AS rows FROM orders;\n' +
+                  '-- 3, 8',
+                id:
+                  'SELECT DISTINCT kota FROM pesanan;\n' +
+                  '-- Surabaya, Jakarta, Bandung\n\n' +
+                  'SELECT COUNT(DISTINCT kota) AS kota, COUNT(kota) AS baris FROM pesanan;\n' +
+                  '-- 3, 8',
+              },
             },
             {
               kind: 'concept',
@@ -181,8 +248,8 @@ export const module2: Module = {
                 en: '`AVG` divides, so it returns a fractional number even when every input was whole. `ROUND(x)` rounds to the nearest whole number and `ROUND(x, 2)` keeps two decimals. Round when you present a number, not while you are still calculating with it.',
                 id: '`AVG` membagi, jadi ia mengembalikan bilangan pecahan bahkan ketika semua masukannya bulat. `ROUND(x)` membulatkan ke bilangan bulat terdekat dan `ROUND(x, 2)` menyisakan dua desimal. Bulatkan saat kamu menyajikan angkanya, bukan saat kamu masih berhitung dengannya.',
               },
-              code: 'SELECT ROUND(AVG(total)) AS rata_rata FROM pesanan;',
-              output: 'rata_rata\n747500.0',
+              code: { en: 'SELECT ROUND(AVG(total)) AS average FROM orders;', id: 'SELECT ROUND(AVG(total)) AS rata_rata FROM pesanan;' },
+              output: { en: 'average\n747500.0', id: 'rata_rata\n747500.0' },
             },
             {
               kind: 'quiz',
@@ -191,7 +258,7 @@ export const module2: Module = {
                 en: 'Four customers placed eight orders between them. What does this return?',
                 id: 'Empat pelanggan membuat delapan pesanan. Apa yang dikembalikan ini?',
               },
-              code: 'SELECT COUNT(DISTINCT pelanggan) FROM pesanan;',
+              code: { en: 'SELECT COUNT(DISTINCT customer) FROM orders;', id: 'SELECT COUNT(DISTINCT pelanggan) FROM pesanan;' },
               options: [
                 { en: '4', id: '4' },
                 { en: '8', id: '8' },
@@ -211,7 +278,10 @@ export const module2: Module = {
                 en: 'Assemble a query for the average order value in Surabaya, rounded.',
                 id: 'Susun kueri untuk nilai rata-rata pesanan di Surabaya, dibulatkan.',
               },
-              lines: ['SELECT ROUND(AVG(total)) AS rata_rata', 'FROM pesanan', "WHERE kota = 'Surabaya';"],
+              lines: {
+                en: ['SELECT ROUND(AVG(total)) AS average', 'FROM orders', "WHERE city = 'Surabaya';"],
+                id: ['SELECT ROUND(AVG(total)) AS rata_rata', 'FROM pesanan', "WHERE kota = 'Surabaya';"],
+              },
               explain: {
                 en: 'The WHERE narrows the rows; the aggregate then works on what is left.',
                 id: 'WHERE mempersempit barisnya; agregatnya lalu bekerja pada yang tersisa.',
@@ -222,38 +292,63 @@ export const module2: Module = {
               id: 's1',
               schema: SCHEMA,
               prompt: {
-                en: 'Looking only at orders of more than one item, return `kota_berbeda` (how many different cities) and `rata_rata` (the average `total`, rounded to a whole number).',
+                en: 'Looking only at orders of more than one item, return `distinct_cities` (how many different cities) and `average` (the average `total`, rounded to a whole number).',
                 id: 'Dengan hanya melihat pesanan berisi lebih dari satu barang, kembalikan `kota_berbeda` (berapa kota yang berbeda) dan `rata_rata` (rata-rata `total`, dibulatkan ke bilangan bulat).',
               },
-              starter: 'SELECT kota, total FROM pesanan;\n',
-              tests: [
-                {
-                  name: { en: 'Two columns, named right', id: 'Dua kolom, dinamai dengan benar' },
-                  expectColumns: ['kota_berbeda', 'rata_rata'],
-                },
-                {
-                  name: { en: 'Two cities, average 997500', id: 'Dua kota, rata-rata 997500' },
-                  expectRows: [[2, 997500]],
-                },
-                {
-                  name: { en: 'A third city is counted once', id: 'Kota ketiga terhitung sekali' },
-                  setup:
-                    "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Mouse', 5, 500000, NULL), (10, 'Yuni', 'Medan', 'Mouse', 5, 500000, NULL);",
-                  expectRows: [[3, 831667]],
-                },
-                {
-                  name: { en: 'Single-item orders are left out', id: 'Pesanan berisi satu barang ditinggalkan' },
-                  setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Mouse', 1, 90000, NULL);",
-                  expectRows: [[2, 997500]],
-                },
-              ],
+              starter: { en: 'SELECT city, total FROM orders;\n', id: 'SELECT kota, total FROM pesanan;\n' },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Two columns, named right', id: 'Dua kolom, dinamai dengan benar' },
+                    expectColumns: ['distinct_cities', 'average'],
+                  },
+                  {
+                    name: { en: 'Two cities, average 997500', id: 'Dua kota, rata-rata 997500' },
+                    expectRows: [[2, 997500]],
+                  },
+                  {
+                    name: { en: 'A third city is counted once', id: 'Kota ketiga terhitung sekali' },
+                    setup:
+                      "INSERT INTO orders VALUES (9, 'Yuni', 'Medan', 'Mouse', 5, 500000, NULL), (10, 'Yuni', 'Medan', 'Mouse', 5, 500000, NULL);",
+                    expectRows: [[3, 831667]],
+                  },
+                  {
+                    name: { en: 'Single-item orders are left out', id: 'Pesanan berisi satu barang ditinggalkan' },
+                    setup: "INSERT INTO orders VALUES (9, 'Yuni', 'Medan', 'Mouse', 1, 90000, NULL);",
+                    expectRows: [[2, 997500]],
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Two columns, named right', id: 'Dua kolom, dinamai dengan benar' },
+                    expectColumns: ['kota_berbeda', 'rata_rata'],
+                  },
+                  {
+                    name: { en: 'Two cities, average 997500', id: 'Dua kota, rata-rata 997500' },
+                    expectRows: [[2, 997500]],
+                  },
+                  {
+                    name: { en: 'A third city is counted once', id: 'Kota ketiga terhitung sekali' },
+                    setup:
+                      "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Mouse', 5, 500000, NULL), (10, 'Yuni', 'Medan', 'Mouse', 5, 500000, NULL);",
+                    expectRows: [[3, 831667]],
+                  },
+                  {
+                    name: { en: 'Single-item orders are left out', id: 'Pesanan berisi satu barang ditinggalkan' },
+                    setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Mouse', 1, 90000, NULL);",
+                    expectRows: [[2, 997500]],
+                  },
+                ],
+              },
               hints: [
-                { en: 'The filter comes first: WHERE jumlah > 1.', id: 'Penyaringnya lebih dulu: WHERE jumlah > 1.' },
+                { en: 'The filter comes first: WHERE quantity > 1.', id: 'Penyaringnya lebih dulu: WHERE jumlah > 1.' },
                 { en: '"How many different" is COUNT(DISTINCT …), not COUNT(…).', id: '"Berapa yang berbeda" adalah COUNT(DISTINCT …), bukan COUNT(…).' },
                 { en: 'ROUND wraps the whole average: ROUND(AVG(total)).', id: 'ROUND membungkus seluruh rata-ratanya: ROUND(AVG(total)).' },
               ],
-              solution:
-                'SELECT COUNT(DISTINCT kota) AS kota_berbeda,\n       ROUND(AVG(total))    AS rata_rata\nFROM pesanan\nWHERE jumlah > 1;',
+              solution: {
+                en: 'SELECT COUNT(DISTINCT city) AS distinct_cities,\n       ROUND(AVG(total)) AS average\nFROM orders\nWHERE quantity > 1;',
+                id: 'SELECT COUNT(DISTINCT kota) AS kota_berbeda,\n       ROUND(AVG(total))    AS rata_rata\nFROM pesanan\nWHERE jumlah > 1;',
+              },
             },
           ],
         },
@@ -268,54 +363,95 @@ export const module2: Module = {
           id: 'Satu baris yang diinginkan pemilik toko saat tutup: berapa yang bergerak, berapa yang masuk, dan berapa yang didiskon.',
         },
         requirements: [
-          { en: 'Return exactly one row with five columns, in this order: `banyak_pesanan`, `barang_terjual`, `pendapatan`, `rata_rata`, `pakai_kupon`.', id: 'Kembalikan tepat satu baris dengan lima kolom, dalam urutan ini: `banyak_pesanan`, `barang_terjual`, `pendapatan`, `rata_rata`, `pakai_kupon`.' },
-          { en: '`barang_terjual` is the total of `jumlah`, not the number of orders.', id: '`barang_terjual` adalah jumlah kolom `jumlah`, bukan banyaknya pesanan.' },
-          { en: '`rata_rata` is the average `total`, rounded to a whole number.', id: '`rata_rata` adalah rata-rata `total`, dibulatkan ke bilangan bulat.' },
-          { en: '`pakai_kupon` counts only the orders that actually have a coupon.', id: '`pakai_kupon` hanya menghitung pesanan yang benar-benar punya kupon.' },
+          { en: 'Return exactly one row with five columns, in this order: `order_count`, `items_sold`, `revenue`, `average`, `used_coupon`.', id: 'Kembalikan tepat satu baris dengan lima kolom, dalam urutan ini: `banyak_pesanan`, `barang_terjual`, `pendapatan`, `rata_rata`, `pakai_kupon`.' },
+          { en: '`items_sold` is the total of `quantity`, not the number of orders.', id: '`barang_terjual` adalah jumlah kolom `jumlah`, bukan banyaknya pesanan.' },
+          { en: '`average` is the average `total`, rounded to a whole number.', id: '`rata_rata` adalah rata-rata `total`, dibulatkan ke bilangan bulat.' },
+          { en: '`used_coupon` counts only the orders that actually have a coupon.', id: '`pakai_kupon` hanya menghitung pesanan yang benar-benar punya kupon.' },
         ],
-        starter: 'SELECT COUNT(*) FROM pesanan;\n',
-        tests: [
-          {
-            name: { en: 'Five columns, in the right order', id: 'Lima kolom, dalam urutan yang benar' },
-            expectColumns: ['banyak_pesanan', 'barang_terjual', 'pendapatan', 'rata_rata', 'pakai_kupon'],
-          },
-          {
-            name: { en: "Today's figures", id: 'Angka hari ini' },
-            expectRows: [[8, 15, 5980000, 747500, 3]],
-          },
-          {
-            name: { en: 'Items sold is not the number of orders', id: 'Barang terjual bukan banyaknya pesanan' },
-            setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Mouse', 10, 900000, NULL);",
-            expectRows: [[9, 25, 6880000, 764444, 3]],
-          },
-          {
-            name: { en: 'A coupon on a new order is counted', id: 'Kupon pada pesanan baru ikut terhitung' },
-            setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Mouse', 1, 100000, 'HEMAT10');",
-            expectRows: [[9, 16, 6080000, 675556, 4]],
-          },
-          {
-            name: { en: 'Orders without a coupon never count towards it', id: 'Pesanan tanpa kupon tidak pernah ikut terhitung' },
-            setup: 'UPDATE pesanan SET kupon = NULL;',
-            expectRows: [[8, 15, 5980000, 747500, 0]],
-          },
-          {
-            name: { en: 'It follows a shrinking table', id: 'Ia mengikuti tabel yang menyusut' },
-            setup: 'DELETE FROM pesanan WHERE id > 4;',
-            expectRows: [[4, 5, 1820000, 455000, 1]],
-          },
-        ],
+        starter: { en: 'SELECT COUNT(*) FROM orders;\n', id: 'SELECT COUNT(*) FROM pesanan;\n' },
+        tests: {
+          en: [
+            {
+              name: { en: 'Five columns, in the right order', id: 'Lima kolom, dalam urutan yang benar' },
+              expectColumns: ['order_count', 'items_sold', 'revenue', 'average', 'used_coupon'],
+            },
+            {
+              name: { en: "Today's figures", id: 'Angka hari ini' },
+              expectRows: [[8, 15, 5980000, 747500, 3]],
+            },
+            {
+              name: { en: 'Items sold is not the number of orders', id: 'Barang terjual bukan banyaknya pesanan' },
+              setup: "INSERT INTO orders VALUES (9, 'Yuni', 'Medan', 'Mouse', 10, 900000, NULL);",
+              expectRows: [[9, 25, 6880000, 764444, 3]],
+            },
+            {
+              name: { en: 'A coupon on a new order is counted', id: 'Kupon pada pesanan baru ikut terhitung' },
+              setup: "INSERT INTO orders VALUES (9, 'Yuni', 'Medan', 'Mouse', 1, 100000, 'SAVE10');",
+              expectRows: [[9, 16, 6080000, 675556, 4]],
+            },
+            {
+              name: { en: 'Orders without a coupon never count towards it', id: 'Pesanan tanpa kupon tidak pernah ikut terhitung' },
+              setup: 'UPDATE orders SET coupon = NULL;',
+              expectRows: [[8, 15, 5980000, 747500, 0]],
+            },
+            {
+              name: { en: 'It follows a shrinking table', id: 'Ia mengikuti tabel yang menyusut' },
+              setup: 'DELETE FROM orders WHERE id > 4;',
+              expectRows: [[4, 5, 1820000, 455000, 1]],
+            },
+          ],
+          id: [
+            {
+              name: { en: 'Five columns, in the right order', id: 'Lima kolom, dalam urutan yang benar' },
+              expectColumns: ['banyak_pesanan', 'barang_terjual', 'pendapatan', 'rata_rata', 'pakai_kupon'],
+            },
+            {
+              name: { en: "Today's figures", id: 'Angka hari ini' },
+              expectRows: [[8, 15, 5980000, 747500, 3]],
+            },
+            {
+              name: { en: 'Items sold is not the number of orders', id: 'Barang terjual bukan banyaknya pesanan' },
+              setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Mouse', 10, 900000, NULL);",
+              expectRows: [[9, 25, 6880000, 764444, 3]],
+            },
+            {
+              name: { en: 'A coupon on a new order is counted', id: 'Kupon pada pesanan baru ikut terhitung' },
+              setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Mouse', 1, 100000, 'HEMAT10');",
+              expectRows: [[9, 16, 6080000, 675556, 4]],
+            },
+            {
+              name: { en: 'Orders without a coupon never count towards it', id: 'Pesanan tanpa kupon tidak pernah ikut terhitung' },
+              setup: 'UPDATE pesanan SET kupon = NULL;',
+              expectRows: [[8, 15, 5980000, 747500, 0]],
+            },
+            {
+              name: { en: 'It follows a shrinking table', id: 'Ia mengikuti tabel yang menyusut' },
+              setup: 'DELETE FROM pesanan WHERE id > 4;',
+              expectRows: [[4, 5, 1820000, 455000, 1]],
+            },
+          ],
+        },
         hints: [
           { en: 'Five aggregates, one SELECT, no WHERE — the whole table is the group.', id: 'Lima agregat, satu SELECT, tanpa WHERE — seluruh tabel adalah kelompoknya.' },
-          { en: 'SUM(jumlah) and COUNT(*) answer different questions; one test exists to tell them apart.', id: 'SUM(jumlah) dan COUNT(*) menjawab pertanyaan berbeda; ada satu tes untuk membedakannya.' },
-          { en: 'COUNT(kupon) skips NULL all by itself — you do not need a WHERE for it.', id: 'COUNT(kupon) melewati NULL dengan sendirinya — kamu tidak butuh WHERE untuk itu.' },
+          { en: 'SUM(quantity) and COUNT(*) answer different questions; one test exists to tell them apart.', id: 'SUM(jumlah) dan COUNT(*) menjawab pertanyaan berbeda; ada satu tes untuk membedakannya.' },
+          { en: 'COUNT(coupon) skips NULL all by itself — you do not need a WHERE for it.', id: 'COUNT(kupon) melewati NULL dengan sendirinya — kamu tidak butuh WHERE untuk itu.' },
         ],
-        solution:
-          'SELECT COUNT(*)          AS banyak_pesanan,\n' +
-          '       SUM(jumlah)       AS barang_terjual,\n' +
-          '       SUM(total)        AS pendapatan,\n' +
-          '       ROUND(AVG(total)) AS rata_rata,\n' +
-          '       COUNT(kupon)      AS pakai_kupon\n' +
-          'FROM pesanan;',
+        solution: {
+          en:
+            'SELECT COUNT(*)          AS order_count,\n' +
+            '       SUM(quantity)     AS items_sold,\n' +
+            '       SUM(total)        AS revenue,\n' +
+            '       ROUND(AVG(total)) AS average,\n' +
+            '       COUNT(coupon)     AS used_coupon\n' +
+            'FROM orders;',
+          id:
+            'SELECT COUNT(*)          AS banyak_pesanan,\n' +
+            '       SUM(jumlah)       AS barang_terjual,\n' +
+            '       SUM(total)        AS pendapatan,\n' +
+            '       ROUND(AVG(total)) AS rata_rata,\n' +
+            '       COUNT(kupon)      AS pakai_kupon\n' +
+            'FROM pesanan;',
+        },
         xp: 50,
       },
     },
@@ -338,30 +474,40 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'Buckets, then one row each', id: 'Ember, lalu satu baris untuk tiap ember' },
               body: {
-                en: '`GROUP BY kota` sorts the rows into one bucket per city. Every aggregate in the `SELECT` then runs **inside each bucket** on its own, and you get one output row per bucket. Nothing else about the query changes.',
+                en: '`GROUP BY city` sorts the rows into one bucket per city. Every aggregate in the `SELECT` then runs **inside each bucket** on its own, and you get one output row per bucket. Nothing else about the query changes.',
                 id: '`GROUP BY kota` memilah barisnya menjadi satu ember per kota. Tiap agregat di `SELECT` lalu berjalan **di dalam tiap ember** sendiri-sendiri, dan kamu menerima satu baris keluaran per ember. Tidak ada bagian lain dari kuerinya yang berubah.',
               },
-              code: 'SELECT kota, COUNT(*) AS pesanan, SUM(total) AS pendapatan\nFROM pesanan\nGROUP BY kota;',
-              output:
-                'kota      pesanan  pendapatan\n' +
-                'Bandung   2        1550000\n' +
-                'Jakarta   2        1230000\n' +
-                'Surabaya  4        3200000',
+              code: {
+                en: 'SELECT city, COUNT(*) AS orders, SUM(total) AS revenue\nFROM orders\nGROUP BY city;',
+                id: 'SELECT kota, COUNT(*) AS pesanan, SUM(total) AS pendapatan\nFROM pesanan\nGROUP BY kota;',
+              },
+              output: {
+                en:
+                  'city      orders  revenue\n' +
+                  'Bandung   2       1550000\n' +
+                  'Jakarta   2       1230000\n' +
+                  'Surabaya  4       3200000',
+                id:
+                  'kota      pesanan  pendapatan\n' +
+                  'Bandung   2        1550000\n' +
+                  'Jakarta   2        1230000\n' +
+                  'Surabaya  4        3200000',
+              },
             },
             {
               kind: 'concept',
               id: 'c2',
               title: { en: 'Every plain column must be a grouping column', id: 'Tiap kolom polos harus jadi kolom pengelompokan' },
               body: {
-                en: 'If you group by `kota` and also select `pelanggan`, the question has no answer — a bucket holds several customers, and only one can fit in the cell. SQLite quietly picks one; most other databases refuse the query outright. Select the grouping columns and aggregates, nothing else.',
+                en: 'If you group by `city` and also select `customer`, the question has no answer — a bucket holds several customers, and only one can fit in the cell. SQLite quietly picks one; most other databases refuse the query outright. Select the grouping columns and aggregates, nothing else.',
                 id: 'Kalau kamu mengelompokkan berdasarkan `kota` dan juga memilih `pelanggan`, pertanyaannya tak punya jawaban — satu ember berisi beberapa pelanggan, dan hanya satu yang muat di selnya. SQLite diam-diam memilih salah satu; kebanyakan basis data lain menolak kuerinya mentah-mentah. Pilih kolom pengelompokan dan agregat saja, tidak lebih.',
               },
               code: {
                 en:
                   '-- misleading: which customer?\n' +
-                  'SELECT kota, pelanggan, SUM(total) FROM pesanan GROUP BY kota;\n\n' +
+                  'SELECT city, customer, SUM(total) FROM orders GROUP BY city;\n\n' +
                   '-- clear: group by both\n' +
-                  'SELECT kota, pelanggan, SUM(total) FROM pesanan GROUP BY kota, pelanggan;',
+                  'SELECT city, customer, SUM(total) FROM orders GROUP BY city, customer;',
                 id:
                   '-- menyesatkan: pelanggan yang mana?\n' +
                   'SELECT kota, pelanggan, SUM(total) FROM pesanan GROUP BY kota;\n\n' +
@@ -377,7 +523,10 @@ export const module2: Module = {
                 en: '`ORDER BY` runs last of all, on the finished result — so it can sort by an aggregate, and it can use the alias you gave that aggregate. This is the ordinary way to write "the biggest earners first".',
                 id: '`ORDER BY` berjalan paling akhir, pada hasil yang sudah jadi — jadi ia bisa mengurutkan berdasarkan agregat, dan bisa memakai alias yang kamu berikan pada agregat itu. Ini cara biasa menulis "penghasil terbesar dulu".',
               },
-              code: 'SELECT kota, SUM(total) AS pendapatan\nFROM pesanan\nGROUP BY kota\nORDER BY pendapatan DESC;',
+              code: {
+                en: 'SELECT city, SUM(total) AS revenue\nFROM orders\nGROUP BY city\nORDER BY revenue DESC;',
+                id: 'SELECT kota, SUM(total) AS pendapatan\nFROM pesanan\nGROUP BY kota\nORDER BY pendapatan DESC;',
+              },
             },
             {
               kind: 'quiz',
@@ -386,7 +535,7 @@ export const module2: Module = {
                 en: 'The eight orders come from three cities. How many rows does this return?',
                 id: 'Delapan pesanan itu datang dari tiga kota. Berapa baris yang dikembalikan ini?',
               },
-              code: 'SELECT kota, COUNT(*) FROM pesanan GROUP BY kota;',
+              code: { en: 'SELECT city, COUNT(*) FROM orders GROUP BY city;', id: 'SELECT kota, COUNT(*) FROM pesanan GROUP BY kota;' },
               options: [
                 { en: '3 — one per city', id: '3 — satu per kota' },
                 { en: '8 — one per order', id: '8 — satu per pesanan' },
@@ -404,53 +553,93 @@ export const module2: Module = {
               id: 's1',
               schema: SCHEMA,
               prompt: {
-                en: 'For each city, return `kota` and `pendapatan` (the sum of `total`), biggest earner first.',
+                en: 'For each city, return `city` and `revenue` (the sum of `total`), biggest earner first.',
                 id: 'Untuk tiap kota, kembalikan `kota` dan `pendapatan` (jumlah kolom `total`), penghasil terbesar dulu.',
               },
-              starter: 'SELECT kota, total FROM pesanan;\n',
-              tests: [
-                {
-                  name: { en: 'Two columns, kota and pendapatan', id: 'Dua kolom, kota dan pendapatan' },
-                  expectColumns: ['kota', 'pendapatan'],
-                },
-                {
-                  name: { en: 'One row per city, biggest first', id: 'Satu baris per kota, terbesar dulu' },
-                  ordered: true,
-                  expectRows: [
-                    ['Surabaya', 3200000],
-                    ['Bandung', 1550000],
-                    ['Jakarta', 1230000],
-                  ],
-                },
-                {
-                  name: { en: 'A new city gets its own row', id: 'Kota baru mendapat barisnya sendiri' },
-                  setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Monitor', 1, 2000000, NULL);",
-                  ordered: true,
-                  expectRows: [
-                    ['Surabaya', 3200000],
-                    ['Medan', 2000000],
-                    ['Bandung', 1550000],
-                    ['Jakarta', 1230000],
-                  ],
-                },
-                {
-                  name: { en: 'The order follows the money', id: 'Urutannya mengikuti uangnya' },
-                  setup: "UPDATE pesanan SET total = 9000000 WHERE kota = 'Jakarta' AND id = 2;",
-                  ordered: true,
-                  expectRows: [
-                    ['Jakarta', 10050000],
-                    ['Surabaya', 3200000],
-                    ['Bandung', 1550000],
-                  ],
-                },
-              ],
+              starter: { en: 'SELECT city, total FROM orders;\n', id: 'SELECT kota, total FROM pesanan;\n' },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Two columns, city and revenue', id: 'Dua kolom, kota dan pendapatan' },
+                    expectColumns: ['city', 'revenue'],
+                  },
+                  {
+                    name: { en: 'One row per city, biggest first', id: 'Satu baris per kota, terbesar dulu' },
+                    ordered: true,
+                    expectRows: [
+                      ['Surabaya', 3200000],
+                      ['Bandung', 1550000],
+                      ['Jakarta', 1230000],
+                    ],
+                  },
+                  {
+                    name: { en: 'A new city gets its own row', id: 'Kota baru mendapat barisnya sendiri' },
+                    setup: "INSERT INTO orders VALUES (9, 'Yuni', 'Medan', 'Monitor', 1, 2000000, NULL);",
+                    ordered: true,
+                    expectRows: [
+                      ['Surabaya', 3200000],
+                      ['Medan', 2000000],
+                      ['Bandung', 1550000],
+                      ['Jakarta', 1230000],
+                    ],
+                  },
+                  {
+                    name: { en: 'The order follows the money', id: 'Urutannya mengikuti uangnya' },
+                    setup: "UPDATE orders SET total = 9000000 WHERE city = 'Jakarta' AND id = 2;",
+                    ordered: true,
+                    expectRows: [
+                      ['Jakarta', 10050000],
+                      ['Surabaya', 3200000],
+                      ['Bandung', 1550000],
+                    ],
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Two columns, kota and pendapatan', id: 'Dua kolom, kota dan pendapatan' },
+                    expectColumns: ['kota', 'pendapatan'],
+                  },
+                  {
+                    name: { en: 'One row per city, biggest first', id: 'Satu baris per kota, terbesar dulu' },
+                    ordered: true,
+                    expectRows: [
+                      ['Surabaya', 3200000],
+                      ['Bandung', 1550000],
+                      ['Jakarta', 1230000],
+                    ],
+                  },
+                  {
+                    name: { en: 'A new city gets its own row', id: 'Kota baru mendapat barisnya sendiri' },
+                    setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Monitor', 1, 2000000, NULL);",
+                    ordered: true,
+                    expectRows: [
+                      ['Surabaya', 3200000],
+                      ['Medan', 2000000],
+                      ['Bandung', 1550000],
+                      ['Jakarta', 1230000],
+                    ],
+                  },
+                  {
+                    name: { en: 'The order follows the money', id: 'Urutannya mengikuti uangnya' },
+                    setup: "UPDATE pesanan SET total = 9000000 WHERE kota = 'Jakarta' AND id = 2;",
+                    ordered: true,
+                    expectRows: [
+                      ['Jakarta', 10050000],
+                      ['Surabaya', 3200000],
+                      ['Bandung', 1550000],
+                    ],
+                  },
+                ],
+              },
               hints: [
                 { en: 'GROUP BY goes after FROM and before ORDER BY.', id: 'GROUP BY ditulis setelah FROM dan sebelum ORDER BY.' },
                 { en: 'The SELECT list holds only the grouping column and the aggregate.', id: 'Daftar SELECT-nya hanya berisi kolom pengelompokan dan agregatnya.' },
-                { en: 'ORDER BY can name the alias: ORDER BY pendapatan DESC.', id: 'ORDER BY boleh menyebut aliasnya: ORDER BY pendapatan DESC.' },
+                { en: 'ORDER BY can name the alias: ORDER BY revenue DESC.', id: 'ORDER BY boleh menyebut aliasnya: ORDER BY pendapatan DESC.' },
               ],
-              solution:
-                'SELECT kota, SUM(total) AS pendapatan\nFROM pesanan\nGROUP BY kota\nORDER BY pendapatan DESC;',
+              solution: {
+                en: 'SELECT city, SUM(total) AS revenue\nFROM orders\nGROUP BY city\nORDER BY revenue DESC;',
+                id: 'SELECT kota, SUM(total) AS pendapatan\nFROM pesanan\nGROUP BY kota\nORDER BY pendapatan DESC;',
+              },
             },
           ],
         },
@@ -470,10 +659,10 @@ export const module2: Module = {
               },
               code: {
                 en:
-                  'SELECT kota, SUM(total) AS pendapatan\n' +
-                  'FROM pesanan\n' +
-                  'WHERE jumlah > 0          -- discards rows\n' +
-                  'GROUP BY kota\n' +
+                  'SELECT city, SUM(total) AS revenue\n' +
+                  'FROM orders\n' +
+                  'WHERE quantity > 0          -- discards rows\n' +
+                  'GROUP BY city\n' +
                   'HAVING SUM(total) > 1500000;  -- discards groups',
                 id:
                   'SELECT kota, SUM(total) AS pendapatan\n' +
@@ -482,7 +671,10 @@ export const module2: Module = {
                   'GROUP BY kota\n' +
                   'HAVING SUM(total) > 1500000;  -- membuang kelompok',
               },
-              output: 'kota      pendapatan\nBandung   1550000\nSurabaya  3200000',
+              output: {
+                en: 'city      revenue\nBandung   1550000\nSurabaya  3200000',
+                id: 'kota      pendapatan\nBandung   1550000\nSurabaya  3200000',
+              },
             },
             {
               kind: 'concept',
@@ -494,8 +686,8 @@ export const module2: Module = {
               },
               code: {
                 en:
-                  '-- wrong\nSELECT kota FROM pesanan WHERE SUM(total) > 1500000 GROUP BY kota;\n\n' +
-                  '-- correct\nSELECT kota FROM pesanan GROUP BY kota HAVING SUM(total) > 1500000;',
+                  '-- wrong\nSELECT city FROM orders WHERE SUM(total) > 1500000 GROUP BY city;\n\n' +
+                  '-- correct\nSELECT city FROM orders GROUP BY city HAVING SUM(total) > 1500000;',
                 id:
                   '-- salah\nSELECT kota FROM pesanan WHERE SUM(total) > 1500000 GROUP BY kota;\n\n' +
                   '-- benar\nSELECT kota FROM pesanan GROUP BY kota HAVING SUM(total) > 1500000;',
@@ -527,7 +719,10 @@ export const module2: Module = {
                 en: 'Complete the query for products ordered more than twice.',
                 id: 'Lengkapi kueri untuk produk yang dipesan lebih dari dua kali.',
               },
-              template: 'SELECT produk FROM pesanan ___ produk ___ COUNT(*) > 2;',
+              template: {
+                en: 'SELECT product FROM orders ___ product ___ COUNT(*) > 2;',
+                id: 'SELECT produk FROM pesanan ___ produk ___ COUNT(*) > 2;',
+              },
               blanks: ['GROUP BY', 'HAVING'],
               explain: {
                 en: 'GROUP BY builds one bucket per product; HAVING then discards the small ones.',
@@ -539,58 +734,108 @@ export const module2: Module = {
               id: 's1',
               schema: SCHEMA,
               prompt: {
-                en: 'Return `pelanggan` and `banyak_pesanan` for the customers who ordered more than once. Most orders first, and ties broken by name, A to Z.',
+                en: 'Return `customer` and `order_count` for the customers who ordered more than once. Most orders first, and ties broken by name, A to Z.',
                 id: 'Kembalikan `pelanggan` dan `banyak_pesanan` untuk pelanggan yang memesan lebih dari sekali. Yang terbanyak dulu, dan seri dipisah berdasarkan nama, A ke Z.',
               },
-              starter: 'SELECT pelanggan, COUNT(*) AS banyak_pesanan\nFROM pesanan\nGROUP BY pelanggan;\n',
-              tests: [
-                {
-                  name: { en: 'Two columns, named right', id: 'Dua kolom, dinamai dengan benar' },
-                  expectColumns: ['pelanggan', 'banyak_pesanan'],
-                },
-                {
-                  name: { en: 'Three repeat customers, in order', id: 'Tiga pelanggan berulang, dalam urutan' },
-                  ordered: true,
-                  expectRows: [
-                    ['Rina', 3],
-                    ['Budi', 2],
-                    ['Sari', 2],
-                  ],
-                },
-                {
-                  name: { en: 'A one-order customer stays out', id: 'Pelanggan dengan satu pesanan tetap di luar' },
-                  setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Mouse', 1, 90000, NULL);",
-                  ordered: true,
-                  expectRows: [
-                    ['Rina', 3],
-                    ['Budi', 2],
-                    ['Sari', 2],
-                  ],
-                },
-                {
-                  name: { en: 'A second order lets them in', id: 'Pesanan kedua memasukkan mereka' },
-                  setup:
-                    "INSERT INTO pesanan VALUES (9, 'Tono', 'Surabaya', 'Mouse', 1, 90000, NULL), (10, 'Tono', 'Surabaya', 'Mouse', 1, 90000, NULL);",
-                  ordered: true,
-                  expectRows: [
-                    ['Rina', 3],
-                    ['Tono', 3],
-                    ['Budi', 2],
-                    ['Sari', 2],
-                  ],
-                },
-              ],
+              starter: {
+                en: 'SELECT customer, COUNT(*) AS order_count\nFROM orders\nGROUP BY customer;\n',
+                id: 'SELECT pelanggan, COUNT(*) AS banyak_pesanan\nFROM pesanan\nGROUP BY pelanggan;\n',
+              },
+              tests: {
+                en: [
+                  {
+                    name: { en: 'Two columns, named right', id: 'Dua kolom, dinamai dengan benar' },
+                    expectColumns: ['customer', 'order_count'],
+                  },
+                  {
+                    name: { en: 'Three repeat customers, in order', id: 'Tiga pelanggan berulang, dalam urutan' },
+                    ordered: true,
+                    expectRows: [
+                      ['Rina', 3],
+                      ['Budi', 2],
+                      ['Sari', 2],
+                    ],
+                  },
+                  {
+                    name: { en: 'A one-order customer stays out', id: 'Pelanggan dengan satu pesanan tetap di luar' },
+                    setup: "INSERT INTO orders VALUES (9, 'Yuni', 'Medan', 'Mouse', 1, 90000, NULL);",
+                    ordered: true,
+                    expectRows: [
+                      ['Rina', 3],
+                      ['Budi', 2],
+                      ['Sari', 2],
+                    ],
+                  },
+                  {
+                    name: { en: 'A second order lets them in', id: 'Pesanan kedua memasukkan mereka' },
+                    setup:
+                      "INSERT INTO orders VALUES (9, 'Tono', 'Surabaya', 'Mouse', 1, 90000, NULL), (10, 'Tono', 'Surabaya', 'Mouse', 1, 90000, NULL);",
+                    ordered: true,
+                    expectRows: [
+                      ['Rina', 3],
+                      ['Tono', 3],
+                      ['Budi', 2],
+                      ['Sari', 2],
+                    ],
+                  },
+                ],
+                id: [
+                  {
+                    name: { en: 'Two columns, named right', id: 'Dua kolom, dinamai dengan benar' },
+                    expectColumns: ['pelanggan', 'banyak_pesanan'],
+                  },
+                  {
+                    name: { en: 'Three repeat customers, in order', id: 'Tiga pelanggan berulang, dalam urutan' },
+                    ordered: true,
+                    expectRows: [
+                      ['Rina', 3],
+                      ['Budi', 2],
+                      ['Sari', 2],
+                    ],
+                  },
+                  {
+                    name: { en: 'A one-order customer stays out', id: 'Pelanggan dengan satu pesanan tetap di luar' },
+                    setup: "INSERT INTO pesanan VALUES (9, 'Yuni', 'Medan', 'Mouse', 1, 90000, NULL);",
+                    ordered: true,
+                    expectRows: [
+                      ['Rina', 3],
+                      ['Budi', 2],
+                      ['Sari', 2],
+                    ],
+                  },
+                  {
+                    name: { en: 'A second order lets them in', id: 'Pesanan kedua memasukkan mereka' },
+                    setup:
+                      "INSERT INTO pesanan VALUES (9, 'Tono', 'Surabaya', 'Mouse', 1, 90000, NULL), (10, 'Tono', 'Surabaya', 'Mouse', 1, 90000, NULL);",
+                    ordered: true,
+                    expectRows: [
+                      ['Rina', 3],
+                      ['Tono', 3],
+                      ['Budi', 2],
+                      ['Sari', 2],
+                    ],
+                  },
+                ],
+              },
               hints: [
                 { en: 'The starter already groups. What it is missing is the filter on the groups.', id: 'Starter-nya sudah mengelompokkan. Yang kurang adalah penyaring pada kelompoknya.' },
                 { en: 'Two sort keys, separated by a comma — the second one breaks the ties.', id: 'Dua kunci pengurutan, dipisah koma — yang kedua memutus serinya.' },
-                { en: 'HAVING COUNT(*) > 1 … ORDER BY banyak_pesanan DESC, pelanggan', id: 'HAVING COUNT(*) > 1 … ORDER BY banyak_pesanan DESC, pelanggan' },
+                { en: 'HAVING COUNT(*) > 1 … ORDER BY order_count DESC, customer', id: 'HAVING COUNT(*) > 1 … ORDER BY banyak_pesanan DESC, pelanggan' },
               ],
-              solution:
-                'SELECT pelanggan, COUNT(*) AS banyak_pesanan\n' +
-                'FROM pesanan\n' +
-                'GROUP BY pelanggan\n' +
-                'HAVING COUNT(*) > 1\n' +
-                'ORDER BY banyak_pesanan DESC, pelanggan;',
+              solution: {
+                en:
+                  'SELECT customer, COUNT(*) AS order_count\n' +
+                  'FROM orders\n' +
+                  'GROUP BY customer\n' +
+                  'HAVING COUNT(*) > 1\n' +
+                  'ORDER BY order_count DESC, customer;',
+                id:
+                  'SELECT pelanggan, COUNT(*) AS banyak_pesanan\n' +
+                  'FROM pesanan\n' +
+                  'GROUP BY pelanggan\n' +
+                  'HAVING COUNT(*) > 1\n' +
+                  'ORDER BY banyak_pesanan DESC, pelanggan;',
+              },
             },
           ],
         },
@@ -605,78 +850,142 @@ export const module2: Module = {
           id: 'Produk mana yang sebenarnya menopang toko ini? Satu baris untuk tiap produk, dan hanya untuk yang berarti.',
         },
         requirements: [
-          { en: 'Return three columns: `produk`, `terjual` (the total of `jumlah`), and `pendapatan` (the total of `total`).', id: 'Kembalikan tiga kolom: `produk`, `terjual` (jumlah kolom `jumlah`), dan `pendapatan` (jumlah kolom `total`).' },
+          { en: 'Return three columns: `product`, `sold` (the total of `quantity`), and `revenue` (the total of `total`).', id: 'Kembalikan tiga kolom: `produk`, `terjual` (jumlah kolom `jumlah`), dan `pendapatan` (jumlah kolom `total`).' },
           { en: 'Ignore orders whose `total` is below 100000 — they are too small to report on.', id: 'Abaikan pesanan yang `total`-nya di bawah 100000 — terlalu kecil untuk dilaporkan.' },
           { en: 'One row per product.', id: 'Satu baris per produk.' },
-          { en: 'Keep only products whose reported `pendapatan` reaches 1000000 or more.', id: 'Sisakan hanya produk yang `pendapatan` terlaporkannya mencapai 1000000 atau lebih.' },
+          { en: 'Keep only products whose reported `revenue` reaches 1000000 or more.', id: 'Sisakan hanya produk yang `pendapatan` terlaporkannya mencapai 1000000 atau lebih.' },
           { en: 'Biggest earner first.', id: 'Penghasil terbesar dulu.' },
         ],
-        starter: 'SELECT produk, jumlah, total FROM pesanan;\n',
-        tests: [
-          {
-            name: { en: 'Three columns, named right', id: 'Tiga kolom, dinamai dengan benar' },
-            expectColumns: ['produk', 'terjual', 'pendapatan'],
-          },
-          {
-            name: { en: 'Two products make the report', id: 'Dua produk masuk laporan' },
-            ordered: true,
-            expectRows: [
-              ['Monitor', 3, 3600000],
-              ['Keyboard', 5, 1750000],
-            ],
-          },
-          {
-            name: { en: 'A small order is left out of the totals', id: 'Pesanan kecil ditinggalkan dari totalnya' },
-            setup: "INSERT INTO pesanan VALUES (9, 'Rina', 'Surabaya', 'Monitor', 1, 50000, NULL);",
-            ordered: true,
-            expectRows: [
-              ['Monitor', 3, 3600000],
-              ['Keyboard', 5, 1750000],
-            ],
-          },
-          {
-            name: { en: 'A product can earn its way in', id: 'Sebuah produk bisa mendapatkan tempatnya' },
-            setup: "INSERT INTO pesanan VALUES (9, 'Tono', 'Surabaya', 'Mouse', 10, 900000, NULL);",
-            ordered: true,
-            expectRows: [
-              ['Monitor', 3, 3600000],
-              ['Keyboard', 5, 1750000],
-              ['Mouse', 16, 1440000],
-            ],
-          },
-          {
-            name: { en: 'Exactly 1000000 is enough', id: 'Tepat 1000000 sudah cukup' },
-            setup: 'DELETE FROM pesanan WHERE id IN (5, 7);\nUPDATE pesanan SET total = 1000000 WHERE id = 1;',
-            ordered: true,
-            expectRows: [
-              ['Monitor', 3, 3600000],
-              ['Keyboard', 1, 1000000],
-            ],
-          },
-          {
-            name: { en: 'The order follows the money', id: 'Urutannya mengikuti uangnya' },
-            setup: 'UPDATE pesanan SET total = 5000000 WHERE id = 5;',
-            ordered: true,
-            expectRows: [
-              ['Keyboard', 5, 5700000],
-              ['Monitor', 3, 3600000],
-            ],
-          },
-        ],
+        starter: { en: 'SELECT product, quantity, total FROM orders;\n', id: 'SELECT produk, jumlah, total FROM pesanan;\n' },
+        tests: {
+          en: [
+            {
+              name: { en: 'Three columns, named right', id: 'Tiga kolom, dinamai dengan benar' },
+              expectColumns: ['product', 'sold', 'revenue'],
+            },
+            {
+              name: { en: 'Two products make the report', id: 'Dua produk masuk laporan' },
+              ordered: true,
+              expectRows: [
+                ['Monitor', 3, 3600000],
+                ['Keyboard', 5, 1750000],
+              ],
+            },
+            {
+              name: { en: 'A small order is left out of the totals', id: 'Pesanan kecil ditinggalkan dari totalnya' },
+              setup: "INSERT INTO orders VALUES (9, 'Rina', 'Surabaya', 'Monitor', 1, 50000, NULL);",
+              ordered: true,
+              expectRows: [
+                ['Monitor', 3, 3600000],
+                ['Keyboard', 5, 1750000],
+              ],
+            },
+            {
+              name: { en: 'A product can earn its way in', id: 'Sebuah produk bisa mendapatkan tempatnya' },
+              setup: "INSERT INTO orders VALUES (9, 'Tono', 'Surabaya', 'Mouse', 10, 900000, NULL);",
+              ordered: true,
+              expectRows: [
+                ['Monitor', 3, 3600000],
+                ['Keyboard', 5, 1750000],
+                ['Mouse', 16, 1440000],
+              ],
+            },
+            {
+              name: { en: 'Exactly 1000000 is enough', id: 'Tepat 1000000 sudah cukup' },
+              setup: 'DELETE FROM orders WHERE id IN (5, 7);\nUPDATE orders SET total = 1000000 WHERE id = 1;',
+              ordered: true,
+              expectRows: [
+                ['Monitor', 3, 3600000],
+                ['Keyboard', 1, 1000000],
+              ],
+            },
+            {
+              name: { en: 'The order follows the money', id: 'Urutannya mengikuti uangnya' },
+              setup: 'UPDATE orders SET total = 5000000 WHERE id = 5;',
+              ordered: true,
+              expectRows: [
+                ['Keyboard', 5, 5700000],
+                ['Monitor', 3, 3600000],
+              ],
+            },
+          ],
+          id: [
+            {
+              name: { en: 'Three columns, named right', id: 'Tiga kolom, dinamai dengan benar' },
+              expectColumns: ['produk', 'terjual', 'pendapatan'],
+            },
+            {
+              name: { en: 'Two products make the report', id: 'Dua produk masuk laporan' },
+              ordered: true,
+              expectRows: [
+                ['Monitor', 3, 3600000],
+                ['Keyboard', 5, 1750000],
+              ],
+            },
+            {
+              name: { en: 'A small order is left out of the totals', id: 'Pesanan kecil ditinggalkan dari totalnya' },
+              setup: "INSERT INTO pesanan VALUES (9, 'Rina', 'Surabaya', 'Monitor', 1, 50000, NULL);",
+              ordered: true,
+              expectRows: [
+                ['Monitor', 3, 3600000],
+                ['Keyboard', 5, 1750000],
+              ],
+            },
+            {
+              name: { en: 'A product can earn its way in', id: 'Sebuah produk bisa mendapatkan tempatnya' },
+              setup: "INSERT INTO pesanan VALUES (9, 'Tono', 'Surabaya', 'Mouse', 10, 900000, NULL);",
+              ordered: true,
+              expectRows: [
+                ['Monitor', 3, 3600000],
+                ['Keyboard', 5, 1750000],
+                ['Mouse', 16, 1440000],
+              ],
+            },
+            {
+              name: { en: 'Exactly 1000000 is enough', id: 'Tepat 1000000 sudah cukup' },
+              setup: 'DELETE FROM pesanan WHERE id IN (5, 7);\nUPDATE pesanan SET total = 1000000 WHERE id = 1;',
+              ordered: true,
+              expectRows: [
+                ['Monitor', 3, 3600000],
+                ['Keyboard', 1, 1000000],
+              ],
+            },
+            {
+              name: { en: 'The order follows the money', id: 'Urutannya mengikuti uangnya' },
+              setup: 'UPDATE pesanan SET total = 5000000 WHERE id = 5;',
+              ordered: true,
+              expectRows: [
+                ['Keyboard', 5, 5700000],
+                ['Monitor', 3, 3600000],
+              ],
+            },
+          ],
+        },
         hints: [
           { en: 'Both filters appear: one on rows, one on groups. They are different clauses.', id: 'Kedua penyaringnya muncul: satu pada baris, satu pada kelompok. Keduanya klausa berbeda.' },
           { en: '"Reaches 1000000 or more" is >=, and one test checks the boundary exactly.', id: '"Mencapai 1000000 atau lebih" adalah >=, dan satu tes memeriksa batasnya persis.' },
           { en: 'FROM, WHERE, GROUP BY, HAVING, ORDER BY — write them in that order and it falls out.', id: 'FROM, WHERE, GROUP BY, HAVING, ORDER BY — tulis dalam urutan itu dan jawabannya muncul sendiri.' },
         ],
-        solution:
-          'SELECT produk,\n' +
-          '       SUM(jumlah) AS terjual,\n' +
-          '       SUM(total)  AS pendapatan\n' +
-          'FROM pesanan\n' +
-          'WHERE total >= 100000\n' +
-          'GROUP BY produk\n' +
-          'HAVING SUM(total) >= 1000000\n' +
-          'ORDER BY pendapatan DESC;',
+        solution: {
+          en:
+            'SELECT product,\n' +
+            '       SUM(quantity) AS sold,\n' +
+            '       SUM(total)    AS revenue\n' +
+            'FROM orders\n' +
+            'WHERE total >= 100000\n' +
+            'GROUP BY product\n' +
+            'HAVING SUM(total) >= 1000000\n' +
+            'ORDER BY revenue DESC;',
+          id:
+            'SELECT produk,\n' +
+            '       SUM(jumlah) AS terjual,\n' +
+            '       SUM(total)  AS pendapatan\n' +
+            'FROM pesanan\n' +
+            'WHERE total >= 100000\n' +
+            'GROUP BY produk\n' +
+            'HAVING SUM(total) >= 1000000\n' +
+            'ORDER BY pendapatan DESC;',
+        },
         xp: 50,
       },
     },
