@@ -189,11 +189,11 @@ const HARNESS = (nonce: string, checks: string[], settleTurns: number) => `
     };
     var click = function (q) {
       var e = typeof q === "string" ? sel(q) : q;
-      if (!e) throw new Error("elemen tidak ditemukan: " + q);
+      if (!e) throw new Error("elemen tidak ditemukan / element not found: " + q);
       e.click();
       return tick(0);
     };
-    var assert = function (cond, msg) { if (!cond) throw new Error(msg || "pemeriksaan gagal"); };
+    var assert = function (cond, msg) { if (!cond) throw new Error(msg || "pemeriksaan gagal / check failed"); };
 
     var checks = ${JSON.stringify(checks)};
     var results = [];
