@@ -10,7 +10,7 @@ import { pythonInteractiveAvailable, runPython, runPythonInteractive, runTests, 
 import { runWebTests } from '../lib/web'
 import { runSql, runSqlTests, type SqlResult } from '../lib/sql'
 import { compileTs, runTsTests, type TsCompile } from '../lib/ts'
-import { runCpp, runCppTests } from '../lib/cpp'
+import { runCppInteractive, runCppTests } from '../lib/cpp'
 import { ResultList, fromPython, fromWeb, fromSql, fromTs, fromCpp, type ResultRow } from '../components/results'
 import { CodeBlock, CodeEditor, LivePreview, Output, Rich, Terminal, TexLines } from '../components/ui'
 import { MathBoard, MathInputNote, emptyValues, markTask } from '../components/MathBoard'
@@ -121,11 +121,18 @@ export default function ProjectPage() {
       } else if (project.runtime === 'game') {
         setRunNonce((n) => n + 1)
       } else if (project.runtime === 'cpp') {
-        const res = await runCpp(code, splitStdin(stdin))
-        setRunOut({
-          text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)',
-          error: Boolean(res.error),
+        setTermText('')
+        setTermError(false)
+        setWaitingSubmit(null)
+        const res = await runCppInteractive(code, {
+          onChunk: (text) => setTermText((t) => (t ?? '') + text),
+          onWaitingForInput: (submit) => setWaitingSubmit(() => submit),
         })
+        setWaitingSubmit(null)
+        if (res.error) {
+          setTermError(true)
+          setTermText((t) => (t ?? '') + res.error)
+        }
       } else if (!pythonInteractiveAvailable) {
         const res = await runPython(code, splitStdin(stdin))
         setRunOut({
@@ -345,11 +352,9 @@ export default function ProjectPage() {
         ) : (
           <>
             <CodeEditor value={code} onChange={setCode} rows={16} />
-            {(isCpp || !pythonInteractiveAvailable) && (
+            {!isCpp && !pythonInteractiveAvailable && (
               <label className="field" style={{ marginTop: 6 }}>
-                <span className="small">
-                  {isCpp ? tc({ en: 'Input (one line per cin >>)', id: 'Input (satu baris per cin >>)' }) : t('stdinLabel')}
-                </span>
+                <span className="small">{t('stdinLabel')}</span>
                 <textarea rows={2} value={stdin} onChange={(e) => setStdin(e.target.value)} spellCheck={false} />
               </label>
             )}
@@ -396,7 +401,7 @@ export default function ProjectPage() {
           </p>
         )}
 
-        {busy && isCpp && (
+        {busy && isCpp && termText === null && (
           <p className="small muted" style={{ marginTop: 8 }}>
             🔧 {tc({ en: 'Loading the C++ interpreter…', id: 'Memuat interpreter C++…' })}
           </p>
@@ -419,7 +424,7 @@ export default function ProjectPage() {
           </div>
         )}
 
-        {isPython && pythonInteractiveAvailable
+        {isCpp || (isPython && pythonInteractiveAvailable)
           ? termText !== null && (
               <div style={{ marginTop: 12 }}>
                 <div className="io-label">{t('output')}</div>
