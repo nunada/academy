@@ -49,7 +49,10 @@ export const module5: Module = {
                 en: 'The most established 2D game library in Python — sprites, collisions, sound, and a game loop you write yourself, line by line. Powerful and flexible, at the cost of more boilerplate than anything seen in this course.',
                 id: 'Pustaka game 2D paling mapan di Python — sprite, tabrakan, suara, dan loop game yang kamu tulis sendiri baris demi baris. Kuat dan fleksibel, dengan konsekuensi kode dasar (boilerplate) lebih banyak daripada apa pun di kursus ini.',
               },
-              code: 'import pygame\npygame.init()\nlayar = pygame.display.set_mode((320, 240))\nberjalan = True\nwhile berjalan:\n    for e in pygame.event.get():\n        if e.type == pygame.QUIT:\n            berjalan = False\n    pygame.display.flip()',
+              code: {
+                en: 'import pygame\npygame.init()\nscreen = pygame.display.set_mode((320, 240))\nrunning = True\nwhile running:\n    for e in pygame.event.get():\n        if e.type == pygame.QUIT:\n            running = False\n    pygame.display.flip()',
+                id: 'import pygame\npygame.init()\nlayar = pygame.display.set_mode((320, 240))\nberjalan = True\nwhile berjalan:\n    for e in pygame.event.get():\n        if e.type == pygame.QUIT:\n            berjalan = False\n    pygame.display.flip()',
+              },
             },
             {
               kind: 'concept',
@@ -69,7 +72,10 @@ export const module5: Module = {
                 en: 'Built on OpenGL, with a class-based API (`Sprite`, `Window`) that reads more like ordinary Python, plus a built-in physics engine for gravity and collisions. A natural next step once a project outgrows what pygame handles comfortably.',
                 id: 'Dibangun di atas OpenGL, dengan API berbasis kelas (`Sprite`, `Window`) yang terasa lebih seperti Python biasa, plus mesin fisika bawaan untuk gravitasi dan tabrakan. Langkah lanjutan yang wajar begitu sebuah proyek melampaui apa yang nyaman ditangani pygame.',
               },
-              code: 'import arcade\n\nclass Jendela(arcade.Window):\n    def on_draw(self):\n        arcade.start_render()\n        arcade.draw_circle_filled(160, 120, 30, arcade.color.ORANGE)\n\nJendela(320, 240, "Contoh").run()',
+              code: {
+                en: 'import arcade\n\nclass MyWindow(arcade.Window):\n    def on_draw(self):\n        arcade.start_render()\n        arcade.draw_circle_filled(160, 120, 30, arcade.color.ORANGE)\n\nMyWindow(320, 240, "Example").run()',
+                id: 'import arcade\n\nclass Jendela(arcade.Window):\n    def on_draw(self):\n        arcade.start_render()\n        arcade.draw_circle_filled(160, 120, 30, arcade.color.ORANGE)\n\nJendela(320, 240, "Contoh").run()',
+              },
             },
             {
               kind: 'concept',
@@ -79,7 +85,10 @@ export const module5: Module = {
                 en: 'Kivy builds cross-platform apps with touch interfaces — the same code runs on a desktop and on an Android or iOS phone. KivyMD adds Material Design styling on top. The most sensible route when teaching media has to become an app students actually install on their phones.',
                 id: 'Kivy membangun aplikasi lintas platform dengan antarmuka sentuh — kode yang sama berjalan di desktop maupun di HP Android atau iOS. KivyMD menambahkan tampilan bergaya Material Design di atasnya. Jalan paling masuk akal ketika media pembelajarannya harus benar-benar jadi aplikasi yang dipasang siswa di HP mereka.',
               },
-              code: 'from kivy.app import App\nfrom kivy.uix.label import Label\n\nclass AplikasiKu(App):\n    def build(self):\n        return Label(text="Halo dari Kivy")\n\nAplikasiKu().run()',
+              code: {
+                en: 'from kivy.app import App\nfrom kivy.uix.label import Label\n\nclass MyApp(App):\n    def build(self):\n        return Label(text="Hello from Kivy")\n\nMyApp().run()',
+                id: 'from kivy.app import App\nfrom kivy.uix.label import Label\n\nclass AplikasiKu(App):\n    def build(self):\n        return Label(text="Halo dari Kivy")\n\nAplikasiKu().run()',
+              },
             },
             {
               kind: 'concept',
@@ -114,10 +123,13 @@ export const module5: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Complete the lookup so "geometri untuk pemula" maps to the classic beginner tool.',
+                en: 'Complete the lookup so "beginner geometry" maps to the classic beginner tool.',
                 id: 'Lengkapi tabelnya agar "geometri untuk pemula" mengarah ke perkakas klasik untuk pemula.',
               },
-              template: 'perkakas = {\n    "grafis 2D klasik": "pygame",\n    "geometri untuk pemula": ___,\n}\nprint(perkakas["geometri untuk pemula"])',
+              template: {
+                en: 'tools = {\n    "classic 2D graphics": "pygame",\n    "beginner geometry": ___,\n}\nprint(tools["beginner geometry"])',
+                id: 'perkakas = {\n    "grafis 2D klasik": "pygame",\n    "geometri untuk pemula": ___,\n}\nprint(perkakas["geometri untuk pemula"])',
+              },
               blanks: ['"turtle"'],
               explain: {
                 en: 'turtle is the one built into Python itself, aimed squarely at teaching geometry.',
@@ -128,10 +140,13 @@ export const module5: Module = {
               kind: 'order',
               id: 'o1',
               prompt: {
-                en: 'Assemble a lookup mapping "aplikasi lintas platform" to the tool built for it.',
+                en: 'Assemble a lookup mapping "cross-platform app" to the tool built for it.',
                 id: 'Susun tabel yang memetakan "aplikasi lintas platform" ke perkakas yang dibangun untuknya.',
               },
-              lines: ['perkakas = {}', 'perkakas["aplikasi lintas platform"] = "kivy"', 'print(perkakas["aplikasi lintas platform"])'],
+              lines: {
+                en: ['tools = {}', 'tools["cross-platform app"] = "kivy"', 'print(tools["cross-platform app"])'],
+                id: ['perkakas = {}', 'perkakas["aplikasi lintas platform"] = "kivy"', 'print(perkakas["aplikasi lintas platform"])'],
+              },
               explain: {
                 en: 'Kivy is the one built for one codebase running on desktop and mobile alike.',
                 id: 'Kivy adalah yang dibangun untuk satu basis kode yang berjalan di desktop maupun ponsel sekaligus.',
@@ -141,22 +156,34 @@ export const module5: Module = {
               kind: 'code',
               id: 'k1',
               prompt: {
-                en: 'A lookup table maps a need to the matching tool from this lesson. Read `kebutuhan` and print the matching tool name.',
+                en: 'A lookup table maps a need to the matching tool from this lesson. Read `need` and print the matching tool name.',
                 id: 'Sebuah tabel memetakan kebutuhan ke perkakas yang cocok dari pelajaran ini. Baca `kebutuhan` dan cetak nama perkakas yang cocok.',
               },
-              starter:
-                'perkakas = {\n    "grafis 2D klasik": "pygame",\n    "game tanpa boilerplate": "pygame zero",\n    "grafis modern dengan fisika bawaan": "arcade",\n    "aplikasi lintas platform": "kivy",\n    "3D tanpa jadi ahli grafis": "ursina",\n    "geometri untuk pemula": "turtle",\n}\nkebutuhan = input()\n',
-              tests: [
-                { name: { en: 'geometri untuk pemula → turtle', id: 'geometri untuk pemula → turtle' }, stdin: ['geometri untuk pemula'], expectOutput: 'turtle' },
-                { name: { en: 'aplikasi lintas platform → kivy', id: 'aplikasi lintas platform → kivy' }, stdin: ['aplikasi lintas platform'], expectOutput: 'kivy' },
-                { name: { en: '3D tanpa jadi ahli grafis → ursina', id: '3D tanpa jadi ahli grafis → ursina' }, stdin: ['3D tanpa jadi ahli grafis'], expectOutput: 'ursina' },
-                { name: { en: 'fisika bawaan → arcade', id: 'fisika bawaan → arcade' }, stdin: ['grafis modern dengan fisika bawaan'], expectOutput: 'arcade' },
-              ],
+              starter: {
+                en: 'tools = {\n    "classic 2D graphics": "pygame",\n    "game without boilerplate": "pygame zero",\n    "modern graphics with built-in physics": "arcade",\n    "cross-platform app": "kivy",\n    "3D without becoming a graphics expert": "ursina",\n    "beginner geometry": "turtle",\n}\nneed = input()\n',
+                id: 'perkakas = {\n    "grafis 2D klasik": "pygame",\n    "game tanpa boilerplate": "pygame zero",\n    "grafis modern dengan fisika bawaan": "arcade",\n    "aplikasi lintas platform": "kivy",\n    "3D tanpa jadi ahli grafis": "ursina",\n    "geometri untuk pemula": "turtle",\n}\nkebutuhan = input()\n',
+              },
+              tests: {
+                en: [
+                  { name: { en: 'beginner geometry → turtle', id: 'geometri untuk pemula → turtle' }, stdin: ['beginner geometry'], expectOutput: 'turtle' },
+                  { name: { en: 'cross-platform app → kivy', id: 'aplikasi lintas platform → kivy' }, stdin: ['cross-platform app'], expectOutput: 'kivy' },
+                  { name: { en: '3D without becoming a graphics expert → ursina', id: '3D tanpa jadi ahli grafis → ursina' }, stdin: ['3D without becoming a graphics expert'], expectOutput: 'ursina' },
+                  { name: { en: 'built-in physics → arcade', id: 'fisika bawaan → arcade' }, stdin: ['modern graphics with built-in physics'], expectOutput: 'arcade' },
+                ],
+                id: [
+                  { name: { en: 'geometri untuk pemula → turtle', id: 'geometri untuk pemula → turtle' }, stdin: ['geometri untuk pemula'], expectOutput: 'turtle' },
+                  { name: { en: 'aplikasi lintas platform → kivy', id: 'aplikasi lintas platform → kivy' }, stdin: ['aplikasi lintas platform'], expectOutput: 'kivy' },
+                  { name: { en: '3D tanpa jadi ahli grafis → ursina', id: '3D tanpa jadi ahli grafis → ursina' }, stdin: ['3D tanpa jadi ahli grafis'], expectOutput: 'ursina' },
+                  { name: { en: 'fisika bawaan → arcade', id: 'fisika bawaan → arcade' }, stdin: ['grafis modern dengan fisika bawaan'], expectOutput: 'arcade' },
+                ],
+              },
               hints: [
-                { en: 'One line: print(perkakas[kebutuhan]).', id: 'Satu baris: print(perkakas[kebutuhan]).' },
+                { en: 'One line: print(tools[need]).', id: 'Satu baris: print(perkakas[kebutuhan]).' },
               ],
-              solution:
-                'perkakas = {\n    "grafis 2D klasik": "pygame",\n    "game tanpa boilerplate": "pygame zero",\n    "grafis modern dengan fisika bawaan": "arcade",\n    "aplikasi lintas platform": "kivy",\n    "3D tanpa jadi ahli grafis": "ursina",\n    "geometri untuk pemula": "turtle",\n}\nkebutuhan = input()\nprint(perkakas[kebutuhan])',
+              solution: {
+                en: 'tools = {\n    "classic 2D graphics": "pygame",\n    "game without boilerplate": "pygame zero",\n    "modern graphics with built-in physics": "arcade",\n    "cross-platform app": "kivy",\n    "3D without becoming a graphics expert": "ursina",\n    "beginner geometry": "turtle",\n}\nneed = input()\nprint(tools[need])',
+                id: 'perkakas = {\n    "grafis 2D klasik": "pygame",\n    "game tanpa boilerplate": "pygame zero",\n    "grafis modern dengan fisika bawaan": "arcade",\n    "aplikasi lintas platform": "kivy",\n    "3D tanpa jadi ahli grafis": "ursina",\n    "geometri untuk pemula": "turtle",\n}\nkebutuhan = input()\nprint(perkakas[kebutuhan])',
+              },
             },
           ],
         },
@@ -170,22 +197,34 @@ export const module5: Module = {
         },
         requirements: [
           { en: 'Build the same six-entry lookup as the lesson.', id: 'Susun tabel enam entri yang sama seperti di pelajaran.' },
-          { en: 'Read `kebutuhan`.', id: 'Baca `kebutuhan`.' },
+          { en: 'Read `need`.', id: 'Baca `kebutuhan`.' },
           { en: 'Print the matching tool name.', id: 'Cetak nama perkakas yang cocok.' },
         ],
-        starter:
-          'perkakas = {\n    "grafis 2D klasik": "pygame",\n    "game tanpa boilerplate": "pygame zero",\n    "grafis modern dengan fisika bawaan": "arcade",\n    "aplikasi lintas platform": "kivy",\n    "3D tanpa jadi ahli grafis": "ursina",\n    "geometri untuk pemula": "turtle",\n}\nkebutuhan = input()\n',
-        tests: [
-          { name: { en: 'grafis 2D klasik → pygame', id: 'grafis 2D klasik → pygame' }, stdin: ['grafis 2D klasik'], expectOutput: 'pygame' },
-          { name: { en: 'game tanpa boilerplate → pygame zero', id: 'game tanpa boilerplate → pygame zero' }, stdin: ['game tanpa boilerplate'], expectOutput: 'pygame zero' },
-          { name: { en: 'geometri untuk pemula → turtle', id: 'geometri untuk pemula → turtle' }, stdin: ['geometri untuk pemula'], expectOutput: 'turtle' },
-          { name: { en: 'aplikasi lintas platform → kivy', id: 'aplikasi lintas platform → kivy' }, stdin: ['aplikasi lintas platform'], expectOutput: 'kivy' },
-        ],
+        starter: {
+          en: 'tools = {\n    "classic 2D graphics": "pygame",\n    "game without boilerplate": "pygame zero",\n    "modern graphics with built-in physics": "arcade",\n    "cross-platform app": "kivy",\n    "3D without becoming a graphics expert": "ursina",\n    "beginner geometry": "turtle",\n}\nneed = input()\n',
+          id: 'perkakas = {\n    "grafis 2D klasik": "pygame",\n    "game tanpa boilerplate": "pygame zero",\n    "grafis modern dengan fisika bawaan": "arcade",\n    "aplikasi lintas platform": "kivy",\n    "3D tanpa jadi ahli grafis": "ursina",\n    "geometri untuk pemula": "turtle",\n}\nkebutuhan = input()\n',
+        },
+        tests: {
+          en: [
+            { name: { en: 'classic 2D graphics → pygame', id: 'grafis 2D klasik → pygame' }, stdin: ['classic 2D graphics'], expectOutput: 'pygame' },
+            { name: { en: 'game without boilerplate → pygame zero', id: 'game tanpa boilerplate → pygame zero' }, stdin: ['game without boilerplate'], expectOutput: 'pygame zero' },
+            { name: { en: 'beginner geometry → turtle', id: 'geometri untuk pemula → turtle' }, stdin: ['beginner geometry'], expectOutput: 'turtle' },
+            { name: { en: 'cross-platform app → kivy', id: 'aplikasi lintas platform → kivy' }, stdin: ['cross-platform app'], expectOutput: 'kivy' },
+          ],
+          id: [
+            { name: { en: 'grafis 2D klasik → pygame', id: 'grafis 2D klasik → pygame' }, stdin: ['grafis 2D klasik'], expectOutput: 'pygame' },
+            { name: { en: 'game tanpa boilerplate → pygame zero', id: 'game tanpa boilerplate → pygame zero' }, stdin: ['game tanpa boilerplate'], expectOutput: 'pygame zero' },
+            { name: { en: 'geometri untuk pemula → turtle', id: 'geometri untuk pemula → turtle' }, stdin: ['geometri untuk pemula'], expectOutput: 'turtle' },
+            { name: { en: 'aplikasi lintas platform → kivy', id: 'aplikasi lintas platform → kivy' }, stdin: ['aplikasi lintas platform'], expectOutput: 'kivy' },
+          ],
+        },
         hints: [
           { en: 'The same shape as the lesson\'s own exercise, with all six entries present.', id: 'Bentuknya sama seperti latihan di pelajarannya, dengan keenam entrinya lengkap.' },
         ],
-        solution:
-          'perkakas = {\n    "grafis 2D klasik": "pygame",\n    "game tanpa boilerplate": "pygame zero",\n    "grafis modern dengan fisika bawaan": "arcade",\n    "aplikasi lintas platform": "kivy",\n    "3D tanpa jadi ahli grafis": "ursina",\n    "geometri untuk pemula": "turtle",\n}\nkebutuhan = input()\nprint(perkakas[kebutuhan])',
+        solution: {
+          en: 'tools = {\n    "classic 2D graphics": "pygame",\n    "game without boilerplate": "pygame zero",\n    "modern graphics with built-in physics": "arcade",\n    "cross-platform app": "kivy",\n    "3D without becoming a graphics expert": "ursina",\n    "beginner geometry": "turtle",\n}\nneed = input()\nprint(tools[need])',
+          id: 'perkakas = {\n    "grafis 2D klasik": "pygame",\n    "game tanpa boilerplate": "pygame zero",\n    "grafis modern dengan fisika bawaan": "arcade",\n    "aplikasi lintas platform": "kivy",\n    "3D tanpa jadi ahli grafis": "ursina",\n    "geometri untuk pemula": "turtle",\n}\nkebutuhan = input()\nprint(perkakas[kebutuhan])',
+        },
         xp: 50,
       },
     },
@@ -213,8 +252,11 @@ export const module5: Module = {
                 en: 'matplotlib draws almost any chart imaginable — line graphs, bar charts, plotted functions — and it genuinely runs in this sandbox, `Agg` mode saving straight to a file with no display involved. Try it. seaborn is a friendlier layer on top, with better defaults for statistical charts like histograms — checked directly, seaborn itself is not available here.',
                 id: 'matplotlib menggambar hampir semua jenis grafik — grafik garis, batang, plot fungsi — dan sungguh berjalan di sandbox ini, mode `Agg` menyimpan langsung ke berkas tanpa tampilan yang terlibat. Coba sendiri. seaborn adalah lapisan yang lebih ramah di atasnya, dengan tampilan bawaan lebih baik untuk grafik statistik seperti histogram — dicek langsung, seaborn sendiri tidak tersedia di sini.',
               },
-              code: 'import matplotlib\nmatplotlib.use("Agg")\nimport matplotlib.pyplot as plt\nx = [1, 2, 3, 4]\ny = [i ** 2 for i in x]\nplt.plot(x, y)\nplt.savefig("grafik.png")\nprint("tersimpan")',
-              output: 'tersimpan',
+              code: {
+                en: 'import matplotlib\nmatplotlib.use("Agg")\nimport matplotlib.pyplot as plt\nx = [1, 2, 3, 4]\ny = [i ** 2 for i in x]\nplt.plot(x, y)\nplt.savefig("chart.png")\nprint("saved")',
+                id: 'import matplotlib\nmatplotlib.use("Agg")\nimport matplotlib.pyplot as plt\nx = [1, 2, 3, 4]\ny = [i ** 2 for i in x]\nplt.plot(x, y)\nplt.savefig("grafik.png")\nprint("tersimpan")',
+              },
+              output: { en: 'saved', id: 'tersimpan' },
             },
             {
               kind: 'concept',
@@ -224,7 +266,10 @@ export const module5: Module = {
                 en: 'The animation engine behind 3Blue1Brown-style explainer videos — equations and geometric constructions written as code, rendered into a video that walks through them step by step. Of everything on this list, this is the one most directly aimed at "teaching media": not a still picture, but a narrated sequence.',
                 id: 'Mesin animasi di balik video-video penjelasan bergaya 3Blue1Brown — persamaan dan konstruksi geometris ditulis sebagai kode, dirender jadi video yang menjelaskannya langkah demi langkah. Dari semua di daftar ini, inilah yang paling langsung menyasar "media pembelajaran": bukan gambar diam, tapi tayangan yang menuntun.',
               },
-              code: 'from manim import *\n\nclass Animasi(Scene):\n    def construct(self):\n        lingkaran = Circle()\n        self.play(Create(lingkaran))',
+              code: {
+                en: 'from manim import *\n\nclass Animation(Scene):\n    def construct(self):\n        circle = Circle()\n        self.play(Create(circle))',
+                id: 'from manim import *\n\nclass Animasi(Scene):\n    def construct(self):\n        lingkaran = Circle()\n        self.play(Create(lingkaran))',
+              },
             },
             {
               kind: 'concept',
@@ -234,7 +279,10 @@ export const module5: Module = {
                 en: 'Built for visualizing vectors, forces, and motion as a navigable 3D scene. Its browser-based version — Web VPython, formerly called GlowScript — runs directly in a browser, but through its own engine, not through Pyodide the way this app does.',
                 id: 'Dibuat untuk memvisualisasikan vektor, gaya, dan gerak sebagai adegan 3D yang bisa dijelajahi. Versinya yang berbasis peramban — Web VPython, dulu bernama GlowScript — berjalan langsung di peramban, tapi lewat mesinnya sendiri, bukan lewat Pyodide seperti aplikasi ini.',
               },
-              code: 'from vpython import sphere, vector, color\n\nbola = sphere(pos=vector(0, 0, 0), radius=1, color=color.orange)',
+              code: {
+                en: 'from vpython import sphere, vector, color\n\nball = sphere(pos=vector(0, 0, 0), radius=1, color=color.orange)',
+                id: 'from vpython import sphere, vector, color\n\nbola = sphere(pos=vector(0, 0, 0), radius=1, color=color.orange)',
+              },
             },
             {
               kind: 'concept',
@@ -244,7 +292,10 @@ export const module5: Module = {
                 en: 'Turns an ordinary Python script into an interactive web app — sliders, buttons, live charts — with almost no web-development knowledge required. If a piece of teaching media needs to reach a whole class online, each from their own browser, this is the most direct route.',
                 id: 'Mengubah skrip Python biasa menjadi aplikasi web interaktif — slider, tombol, grafik yang hidup — nyaris tanpa pengetahuan pengembangan web. Kalau sebuah media pembelajaran perlu menjangkau satu kelas penuh secara daring, dari peramban masing-masing, inilah jalan paling langsung.',
               },
-              code: 'import streamlit as st\n\nst.title("Kalkulator Bunga Majemuk")\npokok = st.number_input("Modal awal")\nst.write(pokok * 1.05)',
+              code: {
+                en: 'import streamlit as st\n\nst.title("Compound Interest Calculator")\nprincipal = st.number_input("Initial capital")\nst.write(principal * 1.05)',
+                id: 'import streamlit as st\n\nst.title("Kalkulator Bunga Majemuk")\npokok = st.number_input("Modal awal")\nst.write(pokok * 1.05)',
+              },
             },
             {
               kind: 'concept',
@@ -254,7 +305,10 @@ export const module5: Module = {
                 en: "Every numerical method earlier in this course — bisection, Newton's method — converges toward an answer. SymPy instead solves **symbolically**: the result is an exact form, not a decimal that gets close. And unlike everything above, this genuinely runs in this sandbox — try it.",
                 id: 'Setiap metode numerik sebelumnya di kursus ini — bisection, metode Newton — menghampiri jawaban. SymPy sebaliknya menyelesaikan secara **simbolik**: hasilnya bentuk eksak, bukan desimal yang mendekati. Dan tak seperti semua yang di atas, ini sungguh-sungguh berjalan di sandbox ini — coba sendiri.',
               },
-              code: 'import sympy\nx = sympy.symbols("x")\npersamaan = sympy.Eq(x**2 - 5*x + 6, 0)\nprint(sympy.solve(persamaan, x))',
+              code: {
+                en: 'import sympy\nx = sympy.symbols("x")\nequation = sympy.Eq(x**2 - 5*x + 6, 0)\nprint(sympy.solve(equation, x))',
+                id: 'import sympy\nx = sympy.symbols("x")\npersamaan = sympy.Eq(x**2 - 5*x + 6, 0)\nprint(sympy.solve(persamaan, x))',
+              },
               output: '[2, 3]',
             },
             {
@@ -265,7 +319,10 @@ export const module5: Module = {
                 en: 'NumPy gives fast array and vector/matrix operations — the foundation of the next course in this track. SciPy builds on it with ready-made numerical methods: optimization, statistics, differential-equation solvers — so a method like Newton\'s does not have to be hand-written every time. This runs here too.',
                 id: 'NumPy memberi array dan operasi vektor/matriks yang cepat — fondasi kursus berikutnya di jalur ini. SciPy dibangun di atasnya dengan metode numerik siap pakai: optimisasi, statistik, penyelesai persamaan diferensial — supaya metode seperti Newton tidak perlu ditulis tangan tiap kali. Ini juga berjalan di sini.',
               },
-              code: 'import numpy as np\nfrom scipy import optimize\nakar = optimize.brentq(lambda x: x**2 - 2, 0, 2)\nprint(round(akar, 4))',
+              code: {
+                en: 'import numpy as np\nfrom scipy import optimize\nroot = optimize.brentq(lambda x: x**2 - 2, 0, 2)\nprint(round(root, 4))',
+                id: 'import numpy as np\nfrom scipy import optimize\nakar = optimize.brentq(lambda x: x**2 - 2, 0, 2)\nprint(round(akar, 4))',
+              },
               output: '1.4142',
             },
             {
@@ -291,10 +348,13 @@ export const module5: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Complete the lookup so "fisika dalam 3D" maps to the right tool.',
+                en: 'Complete the lookup so "physics in 3D" maps to the right tool.',
                 id: 'Lengkapi tabelnya agar "fisika dalam 3D" mengarah ke perkakas yang tepat.',
               },
-              template: 'perkakas = {\n    "video matematika presisi": "manim",\n    "fisika dalam 3D": ___,\n}\nprint(perkakas["fisika dalam 3D"])',
+              template: {
+                en: 'tools = {\n    "precise math video": "manim",\n    "physics in 3D": ___,\n}\nprint(tools["physics in 3D"])',
+                id: 'perkakas = {\n    "video matematika presisi": "manim",\n    "fisika dalam 3D": ___,\n}\nprint(perkakas["fisika dalam 3D"])',
+              },
               blanks: ['"vpython"'],
               explain: {
                 en: 'VPython is the one built specifically for navigable 3D physics scenes.',
@@ -305,10 +365,13 @@ export const module5: Module = {
               kind: 'order',
               id: 'o1',
               prompt: {
-                en: 'Assemble a lookup mapping "skrip jadi aplikasi web" to the tool built for it.',
+                en: 'Assemble a lookup mapping "script into a web app" to the tool built for it.',
                 id: 'Susun tabel yang memetakan "skrip jadi aplikasi web" ke perkakas yang dibangun untuknya.',
               },
-              lines: ['perkakas = {}', 'perkakas["skrip jadi aplikasi web"] = "streamlit"', 'print(perkakas["skrip jadi aplikasi web"])'],
+              lines: {
+                en: ['tools = {}', 'tools["script into a web app"] = "streamlit"', 'print(tools["script into a web app"])'],
+                id: ['perkakas = {}', 'perkakas["skrip jadi aplikasi web"] = "streamlit"', 'print(perkakas["skrip jadi aplikasi web"])'],
+              },
               explain: {
                 en: 'Streamlit is the one built to turn a script into a web app with minimal extra code.',
                 id: 'Streamlit adalah yang dibangun untuk mengubah skrip jadi aplikasi web dengan kode tambahan minimal.',
@@ -318,22 +381,34 @@ export const module5: Module = {
               kind: 'code',
               id: 'k1',
               prompt: {
-                en: 'A lookup table maps a need to the matching tool from this lesson. Read `kebutuhan` and print the matching tool name.',
+                en: 'A lookup table maps a need to the matching tool from this lesson. Read `need` and print the matching tool name.',
                 id: 'Sebuah tabel memetakan kebutuhan ke perkakas yang cocok dari pelajaran ini. Baca `kebutuhan` dan cetak nama perkakas yang cocok.',
               },
-              starter:
-                'perkakas = {\n    "plot grafik standar": "matplotlib",\n    "video matematika presisi": "manim",\n    "fisika dalam 3D": "vpython",\n    "skrip jadi aplikasi web": "streamlit",\n    "aljabar simbolik eksak": "sympy",\n    "array dan metode numerik": "numpy dan scipy",\n}\nkebutuhan = input()\n',
-              tests: [
-                { name: { en: 'aljabar simbolik eksak → sympy', id: 'aljabar simbolik eksak → sympy' }, stdin: ['aljabar simbolik eksak'], expectOutput: 'sympy' },
-                { name: { en: 'array dan metode numerik → numpy dan scipy', id: 'array dan metode numerik → numpy dan scipy' }, stdin: ['array dan metode numerik'], expectOutput: 'numpy dan scipy' },
-                { name: { en: 'video matematika presisi → manim', id: 'video matematika presisi → manim' }, stdin: ['video matematika presisi'], expectOutput: 'manim' },
-                { name: { en: 'fisika dalam 3D → vpython', id: 'fisika dalam 3D → vpython' }, stdin: ['fisika dalam 3D'], expectOutput: 'vpython' },
-              ],
+              starter: {
+                en: 'tools = {\n    "standard chart plotting": "matplotlib",\n    "precise math video": "manim",\n    "physics in 3D": "vpython",\n    "script into a web app": "streamlit",\n    "exact symbolic algebra": "sympy",\n    "arrays and numerical methods": "numpy and scipy",\n}\nneed = input()\n',
+                id: 'perkakas = {\n    "plot grafik standar": "matplotlib",\n    "video matematika presisi": "manim",\n    "fisika dalam 3D": "vpython",\n    "skrip jadi aplikasi web": "streamlit",\n    "aljabar simbolik eksak": "sympy",\n    "array dan metode numerik": "numpy dan scipy",\n}\nkebutuhan = input()\n',
+              },
+              tests: {
+                en: [
+                  { name: { en: 'exact symbolic algebra → sympy', id: 'aljabar simbolik eksak → sympy' }, stdin: ['exact symbolic algebra'], expectOutput: 'sympy' },
+                  { name: { en: 'arrays and numerical methods → numpy and scipy', id: 'array dan metode numerik → numpy dan scipy' }, stdin: ['arrays and numerical methods'], expectOutput: 'numpy and scipy' },
+                  { name: { en: 'precise math video → manim', id: 'video matematika presisi → manim' }, stdin: ['precise math video'], expectOutput: 'manim' },
+                  { name: { en: 'physics in 3D → vpython', id: 'fisika dalam 3D → vpython' }, stdin: ['physics in 3D'], expectOutput: 'vpython' },
+                ],
+                id: [
+                  { name: { en: 'aljabar simbolik eksak → sympy', id: 'aljabar simbolik eksak → sympy' }, stdin: ['aljabar simbolik eksak'], expectOutput: 'sympy' },
+                  { name: { en: 'array dan metode numerik → numpy dan scipy', id: 'array dan metode numerik → numpy dan scipy' }, stdin: ['array dan metode numerik'], expectOutput: 'numpy dan scipy' },
+                  { name: { en: 'video matematika presisi → manim', id: 'video matematika presisi → manim' }, stdin: ['video matematika presisi'], expectOutput: 'manim' },
+                  { name: { en: 'fisika dalam 3D → vpython', id: 'fisika dalam 3D → vpython' }, stdin: ['fisika dalam 3D'], expectOutput: 'vpython' },
+                ],
+              },
               hints: [
-                { en: 'One line: print(perkakas[kebutuhan]).', id: 'Satu baris: print(perkakas[kebutuhan]).' },
+                { en: 'One line: print(tools[need]).', id: 'Satu baris: print(perkakas[kebutuhan]).' },
               ],
-              solution:
-                'perkakas = {\n    "plot grafik standar": "matplotlib",\n    "video matematika presisi": "manim",\n    "fisika dalam 3D": "vpython",\n    "skrip jadi aplikasi web": "streamlit",\n    "aljabar simbolik eksak": "sympy",\n    "array dan metode numerik": "numpy dan scipy",\n}\nkebutuhan = input()\nprint(perkakas[kebutuhan])',
+              solution: {
+                en: 'tools = {\n    "standard chart plotting": "matplotlib",\n    "precise math video": "manim",\n    "physics in 3D": "vpython",\n    "script into a web app": "streamlit",\n    "exact symbolic algebra": "sympy",\n    "arrays and numerical methods": "numpy and scipy",\n}\nneed = input()\nprint(tools[need])',
+                id: 'perkakas = {\n    "plot grafik standar": "matplotlib",\n    "video matematika presisi": "manim",\n    "fisika dalam 3D": "vpython",\n    "skrip jadi aplikasi web": "streamlit",\n    "aljabar simbolik eksak": "sympy",\n    "array dan metode numerik": "numpy dan scipy",\n}\nkebutuhan = input()\nprint(perkakas[kebutuhan])',
+              },
             },
           ],
         },
@@ -347,42 +422,72 @@ export const module5: Module = {
         },
         requirements: [
           { en: 'Read whole-number coefficients `a`, `b`, `c` of `a*x**2 + b*x + c = 0`.', id: 'Baca koefisien bilangan bulat `a`, `b`, `c` dari `a*x**2 + b*x + c = 0`.' },
-          { en: 'Build the equation with `sympy.Eq` and solve it with `sympy.solve`, storing the result in a variable named `akar`.', id: 'Susun persamaannya dengan `sympy.Eq` dan selesaikan dengan `sympy.solve`, simpan hasilnya di variabel bernama `akar`.' },
-          { en: 'Print `sorted(akar)`.', id: 'Cetak `sorted(akar)`.' },
+          { en: 'Build the equation with `sympy.Eq` and solve it with `sympy.solve`, storing the result in a variable named `roots`.', id: 'Susun persamaannya dengan `sympy.Eq` dan selesaikan dengan `sympy.solve`, simpan hasilnya di variabel bernama `akar`.' },
+          { en: 'Print `sorted(roots)`.', id: 'Cetak `sorted(akar)`.' },
         ],
         starter: 'import sympy\nx = sympy.symbols("x")\na = int(input())\nb = int(input())\nc = int(input())\n',
-        tests: [
-          {
-            name: { en: 'x² - 5x + 6 = 0 → roots 2, 3', id: 'x² - 5x + 6 = 0 → akar 2, 3' },
-            stdin: ['1', '-5', '6'],
-            assert:
-              'hasil = sorted(float(r) for r in akar)\nharap = [2.0, 3.0]\nassert len(hasil) == len(harap) and all(abs(h - p) < 0.0001 for h, p in zip(hasil, harap)), f"akar salah: {hasil}, diharap: {harap}"',
-          },
-          {
-            name: { en: 'x² - 3x + 2 = 0 → roots 1, 2', id: 'x² - 3x + 2 = 0 → akar 1, 2' },
-            stdin: ['1', '-3', '2'],
-            assert:
-              'hasil = sorted(float(r) for r in akar)\nharap = [1.0, 2.0]\nassert len(hasil) == len(harap) and all(abs(h - p) < 0.0001 for h, p in zip(hasil, harap)), f"akar salah: {hasil}, diharap: {harap}"',
-          },
-          {
-            name: { en: 'x² - 4 = 0 → roots -2, 2', id: 'x² - 4 = 0 → akar -2, 2' },
-            stdin: ['1', '0', '-4'],
-            assert:
-              'hasil = sorted(float(r) for r in akar)\nharap = [-2.0, 2.0]\nassert len(hasil) == len(harap) and all(abs(h - p) < 0.0001 for h, p in zip(hasil, harap)), f"akar salah: {hasil}, diharap: {harap}"',
-          },
-          {
-            name: { en: 'x² - 4x + 4 = 0 → double root 2', id: 'x² - 4x + 4 = 0 → akar ganda 2' },
-            stdin: ['1', '-4', '4'],
-            assert:
-              'hasil = sorted(float(r) for r in akar)\nharap = [2.0]\nassert len(hasil) == len(harap) and all(abs(h - p) < 0.0001 for h, p in zip(hasil, harap)), f"akar salah: {hasil}, diharap: {harap}"',
-          },
-        ],
+        tests: {
+          en: [
+            {
+              name: { en: 'x² - 5x + 6 = 0 → roots 2, 3', id: 'x² - 5x + 6 = 0 → akar 2, 3' },
+              stdin: ['1', '-5', '6'],
+              assert:
+                'result = sorted(float(r) for r in roots)\nexpected = [2.0, 3.0]\nassert len(result) == len(expected) and all(abs(h - p) < 0.0001 for h, p in zip(result, expected)), f"wrong roots: {result}, expected: {expected}"',
+            },
+            {
+              name: { en: 'x² - 3x + 2 = 0 → roots 1, 2', id: 'x² - 3x + 2 = 0 → akar 1, 2' },
+              stdin: ['1', '-3', '2'],
+              assert:
+                'result = sorted(float(r) for r in roots)\nexpected = [1.0, 2.0]\nassert len(result) == len(expected) and all(abs(h - p) < 0.0001 for h, p in zip(result, expected)), f"wrong roots: {result}, expected: {expected}"',
+            },
+            {
+              name: { en: 'x² - 4 = 0 → roots -2, 2', id: 'x² - 4 = 0 → akar -2, 2' },
+              stdin: ['1', '0', '-4'],
+              assert:
+                'result = sorted(float(r) for r in roots)\nexpected = [-2.0, 2.0]\nassert len(result) == len(expected) and all(abs(h - p) < 0.0001 for h, p in zip(result, expected)), f"wrong roots: {result}, expected: {expected}"',
+            },
+            {
+              name: { en: 'x² - 4x + 4 = 0 → double root 2', id: 'x² - 4x + 4 = 0 → akar ganda 2' },
+              stdin: ['1', '-4', '4'],
+              assert:
+                'result = sorted(float(r) for r in roots)\nexpected = [2.0]\nassert len(result) == len(expected) and all(abs(h - p) < 0.0001 for h, p in zip(result, expected)), f"wrong roots: {result}, expected: {expected}"',
+            },
+          ],
+          id: [
+            {
+              name: { en: 'x² - 5x + 6 = 0 → roots 2, 3', id: 'x² - 5x + 6 = 0 → akar 2, 3' },
+              stdin: ['1', '-5', '6'],
+              assert:
+                'hasil = sorted(float(r) for r in akar)\nharap = [2.0, 3.0]\nassert len(hasil) == len(harap) and all(abs(h - p) < 0.0001 for h, p in zip(hasil, harap)), f"akar salah: {hasil}, diharap: {harap}"',
+            },
+            {
+              name: { en: 'x² - 3x + 2 = 0 → roots 1, 2', id: 'x² - 3x + 2 = 0 → akar 1, 2' },
+              stdin: ['1', '-3', '2'],
+              assert:
+                'hasil = sorted(float(r) for r in akar)\nharap = [1.0, 2.0]\nassert len(hasil) == len(harap) and all(abs(h - p) < 0.0001 for h, p in zip(hasil, harap)), f"akar salah: {hasil}, diharap: {harap}"',
+            },
+            {
+              name: { en: 'x² - 4 = 0 → roots -2, 2', id: 'x² - 4 = 0 → akar -2, 2' },
+              stdin: ['1', '0', '-4'],
+              assert:
+                'hasil = sorted(float(r) for r in akar)\nharap = [-2.0, 2.0]\nassert len(hasil) == len(harap) and all(abs(h - p) < 0.0001 for h, p in zip(hasil, harap)), f"akar salah: {hasil}, diharap: {harap}"',
+            },
+            {
+              name: { en: 'x² - 4x + 4 = 0 → double root 2', id: 'x² - 4x + 4 = 0 → akar ganda 2' },
+              stdin: ['1', '-4', '4'],
+              assert:
+                'hasil = sorted(float(r) for r in akar)\nharap = [2.0]\nassert len(hasil) == len(harap) and all(abs(h - p) < 0.0001 for h, p in zip(hasil, harap)), f"akar salah: {hasil}, diharap: {harap}"',
+            },
+          ],
+        },
         hints: [
           { en: 'sympy.Eq(a * x**2 + b * x + c, 0) writes the equation; sympy.solve(..., x) solves it for x.', id: 'sympy.Eq(a * x**2 + b * x + c, 0) menuliskan persamaannya; sympy.solve(..., x) menyelesaikannya untuk x.' },
-          { en: 'sympy.solve returns a list already — that list is what akar should be.', id: 'sympy.solve sudah mengembalikan sebuah list — list itulah yang seharusnya jadi akar.' },
+          { en: 'sympy.solve returns a list already — that list is what roots should be.', id: 'sympy.solve sudah mengembalikan sebuah list — list itulah yang seharusnya jadi akar.' },
         ],
-        solution:
-          'import sympy\nx = sympy.symbols("x")\na = int(input())\nb = int(input())\nc = int(input())\npersamaan = sympy.Eq(a * x**2 + b * x + c, 0)\nakar = sympy.solve(persamaan, x)\nprint(sorted(akar))',
+        solution: {
+          en: 'import sympy\nx = sympy.symbols("x")\na = int(input())\nb = int(input())\nc = int(input())\nequation = sympy.Eq(a * x**2 + b * x + c, 0)\nroots = sympy.solve(equation, x)\nprint(sorted(roots))',
+          id: 'import sympy\nx = sympy.symbols("x")\na = int(input())\nb = int(input())\nc = int(input())\npersamaan = sympy.Eq(a * x**2 + b * x + c, 0)\nakar = sympy.solve(persamaan, x)\nprint(sorted(akar))',
+        },
         xp: 50,
       },
     },
