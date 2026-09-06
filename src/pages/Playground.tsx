@@ -11,10 +11,10 @@ import { useEffect, useMemo, useState } from 'react'
 import { useI18n } from '../i18n'
 import { resolveBi } from '../content/types'
 import { MODES, ROOT_HTML, SQL_SCHEMA, modeById, type ModeId } from '../content/playground'
-import { runPython, splitStdin } from '../lib/python'
+import { pythonInteractiveAvailable, runPython, runPythonInteractive, splitStdin } from '../lib/python'
 import { runSql, type SqlResult } from '../lib/sql'
 import { compileTs, type TsCompile } from '../lib/ts'
-import { CodeBlock, CodeEditor, LivePreview, Output } from '../components/ui'
+import { CodeBlock, CodeEditor, LivePreview, Output, Terminal } from '../components/ui'
 import { ResultTable } from '../components/ResultTable'
 import { CompileReport } from '../components/CompileReport'
 import { GamePreview } from '../components/GamePreview'
@@ -45,6 +45,9 @@ export default function Playground() {
   const [stdin, setStdin] = useState(awal?.stdin ?? '')
 
   const [out, setOut] = useState<{ text: string; error: boolean } | null>(null)
+  const [termText, setTermText] = useState<string | null>(null)
+  const [termError, setTermError] = useState(false)
+  const [waitingSubmit, setWaitingSubmit] = useState<((value: string) => void) | null>(null)
   const [rows, setRows] = useState<SqlResult | null>(null)
   const [compiled, setCompiled] = useState<TsCompile | null>(null)
   // The live runtimes redraw as you type; the others wait to be asked.
@@ -71,6 +74,8 @@ export default function Playground() {
   function pilihMode(id: ModeId) {
     setModeId(id)
     setOut(null)
+    setTermText(null)
+    setWaitingSubmit(null)
     setRows(null)
     setCompiled(null)
     setNonce(0)
@@ -82,6 +87,8 @@ export default function Playground() {
     setSource(resolveBi(tpl.code, lang))
     if (tpl.stdin !== undefined) setStdin(tpl.stdin)
     setOut(null)
+    setTermText(null)
+    setWaitingSubmit(null)
     setRows(null)
     setCompiled(null)
     setNonce(0)
@@ -90,12 +97,25 @@ export default function Playground() {
   async function jalankan() {
     setBusy(true)
     try {
-      if (modeId === 'python') {
+      if (modeId === 'python' && !pythonInteractiveAvailable) {
         const res = await runPython(source, splitStdin(stdin))
         setOut({
           text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)',
           error: Boolean(res.error),
         })
+      } else if (modeId === 'python') {
+        setTermText('')
+        setTermError(false)
+        setWaitingSubmit(null)
+        const res = await runPythonInteractive(source, {
+          onChunk: (text) => setTermText((t) => (t ?? '') + text),
+          onWaitingForInput: (submit) => setWaitingSubmit(() => submit),
+        })
+        setWaitingSubmit(null)
+        if (res.error) {
+          setTermError(true)
+          setTermText((t) => (t ?? '') + res.error)
+        }
       } else if (modeId === 'sql') {
         setRows(await runSql(resolveBi(SQL_SCHEMA, lang), source))
       } else if (modeId === 'typescript') {
@@ -109,6 +129,13 @@ export default function Playground() {
     } finally {
       setBusy(false)
     }
+  }
+
+  function submitInput(value: string) {
+    if (!waitingSubmit) return
+    setTermText((t) => (t ?? '') + value + '\n')
+    setWaitingSubmit(null)
+    waitingSubmit(value)
   }
 
   const isReact = modeId === 'react'
@@ -148,7 +175,7 @@ export default function Playground() {
           </div>
           <CodeEditor value={source} onChange={setSource} rows={modeId === 'python' ? 18 : 22} />
 
-          {modeId === 'python' && (
+          {modeId === 'python' && !pythonInteractiveAvailable && (
             <label className="field">
               <span className="small">{t('stdinLabel')}</span>
               <textarea rows={3} value={stdin} onChange={(e) => setStdin(e.target.value)} spellCheck={false} />
@@ -181,7 +208,7 @@ export default function Playground() {
             </button>
           </div>
 
-          {busy && modeId === 'python' && (
+          {busy && modeId === 'python' && (!pythonInteractiveAvailable || termText === null) && (
             <p className="small muted" style={{ marginTop: 8 }}>
               🐍 {t('loadingPython')} — {t('loadingPythonNote')}
             </p>
@@ -202,7 +229,12 @@ export default function Playground() {
                 : t('output')}
           </div>
 
-          {modeId === 'python' && <Output text={out ? out.text : '—'} error={out?.error} />}
+          {modeId === 'python' &&
+            (pythonInteractiveAvailable ? (
+              <Terminal text={termText ?? '—'} error={termError} onSubmit={waitingSubmit ? submitInput : undefined} />
+            ) : (
+              <Output text={out ? out.text : '—'} error={out?.error} />
+            ))}
 
           {modeId === 'sql' &&
             (rows ? (

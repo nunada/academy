@@ -250,3 +250,146 @@ export async function runTests(code: string, tests: PyTest[]): Promise<TestOutco
 
   return outcomes
 }
+
+/* ------------------------------------------------------- interactive run */
+
+/** True in a browser tab that is cross-origin isolated — the only place
+ *  `SharedArrayBuffer` (and therefore genuinely blocking `input()`, see
+ *  ./pythonWorker.ts) exists at all. `main.tsx` arranges for that to be true
+ *  everywhere this app is served, including GitHub Pages, via a
+ *  service-worker shim — but a caller should still check this and fall back
+ *  to the plain `runPython` + a pre-filled stdin box rather than hang
+ *  forever waiting for a worker message that can never arrive. */
+export const pythonInteractiveAvailable = typeof SharedArrayBuffer !== 'undefined'
+
+const SAB_DATA_BYTES = 4096
+// How long a run may go without producing output or asking for input before
+// it's treated as a runaway loop and the worker is killed and replaced.
+// Generous on purpose: this is a safety net, not a normal-case limit.
+const WATCHDOG_MS = 15000
+
+let interactiveWorker: Worker | null = null
+let interactiveReady: Promise<void> | null = null
+let nextRunId = 1
+
+function getInteractiveWorker(): Worker {
+  if (!interactiveWorker) {
+    interactiveWorker = new Worker(new URL('./pythonWorker.ts', import.meta.url), { type: 'module' })
+  }
+  return interactiveWorker
+}
+
+function ensureInteractiveReady(): Promise<void> {
+  const worker = getInteractiveWorker()
+  if (!interactiveReady) {
+    interactiveReady = new Promise<void>((resolve, reject) => {
+      function onMessage(ev: MessageEvent) {
+        const msg = ev.data ?? {}
+        if (msg.type === 'ready') {
+          worker.removeEventListener('message', onMessage)
+          resolve()
+        } else if (msg.type === 'load-failed') {
+          worker.removeEventListener('message', onMessage)
+          reject(new Error(msg.message))
+        }
+      }
+      worker.addEventListener('message', onMessage)
+      worker.postMessage({ type: 'load' })
+    }).catch((err) => {
+      interactiveReady = null
+      throw err
+    })
+  }
+  return interactiveReady
+}
+
+/** Kill a hung worker and forget it, so the next call spins up a fresh one —
+ *  mirrors the same "terminate and respawn" recovery the user's other
+ *  project (PyKelas) uses for exactly this failure mode. */
+function restartInteractiveWorker(): void {
+  interactiveWorker?.terminate()
+  interactiveWorker = null
+  interactiveReady = null
+}
+
+export interface InteractiveHandlers {
+  /** A slice of the program's output, in the order it printed. */
+  onChunk: (text: string) => void
+  /** Called each time the program calls `input()`. Invoke `submit` with what
+   *  the learner typed to let the program continue — it may be called again
+   *  for the next `input()` call after that. */
+  onWaitingForInput: (submit: (value: string) => void) => void
+}
+
+/** Run `code` with real, live `input()`: the program actually pauses at each
+ *  call (via ./pythonWorker.ts's `Atomics.wait`) until `handlers` supplies a
+ *  value, rather than reading from a queue prepared in advance. Requires
+ *  `pythonInteractiveAvailable`. */
+export function runPythonInteractive(code: string, handlers: InteractiveHandlers): Promise<RunResult> {
+  const id = nextRunId++
+  const sab = new SharedArrayBuffer(8 + SAB_DATA_BYTES)
+
+  return ensureInteractiveReady().then(
+    () =>
+      new Promise<RunResult>((resolve) => {
+        const worker = getInteractiveWorker()
+        let watchdog: ReturnType<typeof setTimeout> | null = null
+        let settled = false
+
+        function clearWatchdog() {
+          if (watchdog !== null) {
+            clearTimeout(watchdog)
+            watchdog = null
+          }
+        }
+
+        function armWatchdog() {
+          clearWatchdog()
+          watchdog = setTimeout(() => {
+            if (settled) return
+            settled = true
+            worker.removeEventListener('message', onMessage)
+            restartInteractiveWorker()
+            resolve({ stdout: '', error: 'This took too long and was stopped. Check for a loop that never ends.' })
+          }, WATCHDOG_MS)
+        }
+
+        function onMessage(ev: MessageEvent) {
+          const msg = ev.data ?? {}
+          if (msg.id !== id || settled) return
+
+          if (msg.type === 'chunk') {
+            handlers.onChunk(msg.text)
+            armWatchdog()
+            return
+          }
+
+          if (msg.type === 'need-input') {
+            clearWatchdog() // a human may take a long time to answer
+            handlers.onWaitingForInput((value: string) => {
+              const bytes = new TextEncoder().encode(value)
+              const length = Math.min(bytes.length, SAB_DATA_BYTES)
+              new Uint8Array(sab, 8, SAB_DATA_BYTES).set(bytes.subarray(0, length))
+              const control = new Int32Array(sab, 0, 2)
+              Atomics.store(control, 1, length)
+              Atomics.store(control, 0, 1)
+              Atomics.notify(control, 0, 1)
+              armWatchdog()
+            })
+            return
+          }
+
+          if (msg.type === 'result') {
+            settled = true
+            clearWatchdog()
+            worker.removeEventListener('message', onMessage)
+            resolve({ stdout: msg.stdout, error: msg.error ? friendlyError(msg.error) : undefined })
+          }
+        }
+
+        worker.addEventListener('message', onMessage)
+        armWatchdog()
+        worker.postMessage({ type: 'run', id, code, sab })
+      }),
+  )
+}

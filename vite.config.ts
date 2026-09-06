@@ -41,8 +41,20 @@ function githubPagesFallback(): Plugin {
   }
 }
 
+/** Cross-origin isolation (needed for interactive Python `input()` — see
+ *  src/lib/pythonWorker.ts) straight from the dev/preview server, so local
+ *  work doesn't pay for the service-worker-plus-reload dance that GitHub
+ *  Pages needs (public/coi-serviceworker.js, registered in src/main.tsx).
+ *  `ensureCrossOriginIsolated` still runs locally too — it just finds the
+ *  page already isolated and does nothing. */
+const coiHeaders = {
+  'Cross-Origin-Opener-Policy': 'same-origin',
+  'Cross-Origin-Embedder-Policy': 'credentialless',
+}
+
 export default defineConfig({
   base,
   plugins: [react(), githubPagesFallback()],
-  server: { port: 5180 },
+  server: { port: 5180, headers: coiHeaders },
+  preview: { headers: coiHeaders },
 })

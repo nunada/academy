@@ -6,13 +6,13 @@ import { courseInfo } from '../content/catalog'
 import { useCourse } from '../app/curriculum'
 import { courseItems, resolveBi, type Course, type MiniProject } from '../content/types'
 import { isUnlocked } from '../lib/progress'
-import { runPython, runTests, splitStdin } from '../lib/python'
+import { pythonInteractiveAvailable, runPython, runPythonInteractive, runTests, splitStdin } from '../lib/python'
 import { runWebTests } from '../lib/web'
 import { runSql, runSqlTests, type SqlResult } from '../lib/sql'
 import { compileTs, runTsTests, type TsCompile } from '../lib/ts'
 import { runCpp, runCppTests } from '../lib/cpp'
 import { ResultList, fromPython, fromWeb, fromSql, fromTs, fromCpp, type ResultRow } from '../components/results'
-import { CodeBlock, CodeEditor, LivePreview, Output, Rich, TexLines } from '../components/ui'
+import { CodeBlock, CodeEditor, LivePreview, Output, Rich, Terminal, TexLines } from '../components/ui'
 import { MathBoard, MathInputNote, emptyValues, markTask } from '../components/MathBoard'
 import { ResultTable } from '../components/ResultTable'
 import { CompileReport } from '../components/CompileReport'
@@ -45,6 +45,9 @@ export default function ProjectPage() {
   const [busy, setBusy] = useState(false)
   const [rows, setRows] = useState<ResultRow[] | null>(null)
   const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
+  const [termText, setTermText] = useState<string | null>(null)
+  const [termError, setTermError] = useState(false)
+  const [waitingSubmit, setWaitingSubmit] = useState<((value: string) => void) | null>(null)
   const [runRows, setRunRows] = useState<SqlResult | null>(null)
   const [compiled, setCompiled] = useState<TsCompile | null>(null)
   const [runNonce, setRunNonce] = useState(0)
@@ -100,6 +103,8 @@ export default function ProjectPage() {
   const isCpp = project.runtime === 'cpp'
   // A mathematics project is a problem set: no editor, no runtime, just boxes.
   const isMath = project.runtime === 'math'
+  // Every other project runtime is a plain Python program.
+  const isPython = !isWeb && !isSql && !isTs && !isGame && !isCpp && !isMath
 
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === project.id)
@@ -121,17 +126,37 @@ export default function ProjectPage() {
           text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)',
           error: Boolean(res.error),
         })
-      } else {
+      } else if (!pythonInteractiveAvailable) {
         const res = await runPython(code, splitStdin(stdin))
         setRunOut({
           text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)',
           error: Boolean(res.error),
         })
+      } else {
+        setTermText('')
+        setTermError(false)
+        setWaitingSubmit(null)
+        const res = await runPythonInteractive(code, {
+          onChunk: (text) => setTermText((t) => (t ?? '') + text),
+          onWaitingForInput: (submit) => setWaitingSubmit(() => submit),
+        })
+        setWaitingSubmit(null)
+        if (res.error) {
+          setTermError(true)
+          setTermText((t) => (t ?? '') + res.error)
+        }
       }
       setRows(null)
     } finally {
       setBusy(false)
     }
+  }
+
+  function submitInput(value: string) {
+    if (!waitingSubmit) return
+    setTermText((t) => (t ?? '') + value + '\n')
+    setWaitingSubmit(null)
+    waitingSubmit(value)
   }
 
   async function doCheck() {
@@ -171,6 +196,8 @@ export default function ProjectPage() {
       if (project.runtime === 'game') setRunNonce(0)
       setRows(next)
       setRunOut(null)
+      setTermText(null)
+      setWaitingSubmit(null)
       setRunRows(null)
       setCompiled(null)
       if (next.every((o) => o.passed)) {
@@ -318,12 +345,14 @@ export default function ProjectPage() {
         ) : (
           <>
             <CodeEditor value={code} onChange={setCode} rows={16} />
-            <label className="field" style={{ marginTop: 6 }}>
-              <span className="small">
-                {isCpp ? tc({ en: 'Input (one line per cin >>)', id: 'Input (satu baris per cin >>)' }) : t('stdinLabel')}
-              </span>
-              <textarea rows={2} value={stdin} onChange={(e) => setStdin(e.target.value)} spellCheck={false} />
-            </label>
+            {(isCpp || !pythonInteractiveAvailable) && (
+              <label className="field" style={{ marginTop: 6 }}>
+                <span className="small">
+                  {isCpp ? tc({ en: 'Input (one line per cin >>)', id: 'Input (satu baris per cin >>)' }) : t('stdinLabel')}
+                </span>
+                <textarea rows={2} value={stdin} onChange={(e) => setStdin(e.target.value)} spellCheck={false} />
+              </label>
+            )}
           </>
         )}
 
@@ -355,7 +384,7 @@ export default function ProjectPage() {
           })}
         </p>
 
-        {busy && !isWeb && !isSql && !isTs && !isGame && !isMath && !isCpp && (
+        {busy && isPython && (!pythonInteractiveAvailable || termText === null) && (
           <p className="small muted" style={{ marginTop: 8 }}>
             🐍 {t('loadingPython')}
           </p>
@@ -390,12 +419,19 @@ export default function ProjectPage() {
           </div>
         )}
 
-        {runOut && (
-          <div style={{ marginTop: 12 }}>
-            <div className="io-label">{t('output')}</div>
-            <Output text={runOut.text} error={runOut.error} />
-          </div>
-        )}
+        {isPython && pythonInteractiveAvailable
+          ? termText !== null && (
+              <div style={{ marginTop: 12 }}>
+                <div className="io-label">{t('output')}</div>
+                <Terminal text={termText} error={termError} onSubmit={waitingSubmit ? submitInput : undefined} />
+              </div>
+            )
+          : runOut && (
+              <div style={{ marginTop: 12 }}>
+                <div className="io-label">{t('output')}</div>
+                <Output text={runOut.text} error={runOut.error} />
+              </div>
+            )}
 
         {runRows && (
           <div style={{ marginTop: 12 }}>

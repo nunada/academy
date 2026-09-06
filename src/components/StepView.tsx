@@ -2,12 +2,12 @@ import { useMemo, useState } from 'react'
 import type { Loc, Step } from '../content/types'
 import { resolveBi } from '../content/types'
 import { useI18n } from '../i18n'
-import { runPython, runTests, splitStdin, type TestOutcome } from '../lib/python'
+import { pythonInteractiveAvailable, runPython, runPythonInteractive, runTests, splitStdin, type TestOutcome } from '../lib/python'
 import { runWebTests, type WebOutcome } from '../lib/web'
 import { runSql, runSqlTests, type SqlOutcome, type SqlResult } from '../lib/sql'
 import { compileTs, runTsTests, type TsCompile, type TsOutcome } from '../lib/ts'
 import { runCpp, runCppTests, type TestOutcome as CppOutcome } from '../lib/cpp'
-import { CodeBlock, CodeEditor, LivePreview, Output, Rich, Tex, TexLines } from './ui'
+import { CodeBlock, CodeEditor, LivePreview, Output, Rich, Terminal, Tex, TexLines } from './ui'
 import { MathBoard, MathInputNote, emptyValues, markTask } from './MathBoard'
 import { evalAnswer, isRight } from '../lib/answer'
 import { FigureView } from './Figure'
@@ -419,6 +419,9 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
   const [loadingPy, setLoadingPy] = useState(false)
   const [outcomes, setOutcomes] = useState<TestOutcome[] | null>(null)
   const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
+  const [termText, setTermText] = useState<string | null>(null)
+  const [termError, setTermError] = useState(false)
+  const [waitingSubmit, setWaitingSubmit] = useState<((value: string) => void) | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
   const [showSolution, setShowSolution] = useState(false)
 
@@ -426,15 +429,51 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
 
   async function doRun() {
     setBusy(true)
+    setOutcomes(null)
+
+    if (!pythonInteractiveAvailable) {
+      setLoadingPy(true)
+      try {
+        const res = await runPython(code, splitStdin(stdin))
+        setRunOut({ text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)', error: Boolean(res.error) })
+      } finally {
+        setLoadingPy(false)
+        setBusy(false)
+      }
+      return
+    }
+
     setLoadingPy(true)
+    setTermText('')
+    setTermError(false)
+    setWaitingSubmit(null)
     try {
-      const res = await runPython(code, splitStdin(stdin))
-      setRunOut({ text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)', error: Boolean(res.error) })
-      setOutcomes(null)
+      const res = await runPythonInteractive(code, {
+        onChunk: (text) => {
+          setLoadingPy(false)
+          setTermText((t) => (t ?? '') + text)
+        },
+        onWaitingForInput: (submit) => {
+          setLoadingPy(false)
+          setWaitingSubmit(() => submit)
+        },
+      })
+      setWaitingSubmit(null)
+      if (res.error) {
+        setTermError(true)
+        setTermText((t) => (t ?? '') + res.error)
+      }
     } finally {
       setLoadingPy(false)
       setBusy(false)
     }
+  }
+
+  function submitInput(value: string) {
+    if (!waitingSubmit) return
+    setTermText((t) => (t ?? '') + value + '\n')
+    setWaitingSubmit(null)
+    waitingSubmit(value)
   }
 
   async function doCheck() {
@@ -444,6 +483,8 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       const res = await runTests(code, tests)
       setOutcomes(res)
       setRunOut(null)
+      setTermText(null)
+      setWaitingSubmit(null)
       if (res.every((o) => o.passed)) onSolved()
       else onWrong()
     } finally {
@@ -460,10 +501,12 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
 
       <CodeEditor value={code} onChange={setCode} disabled={solved} />
 
-      <label className="field" style={{ marginTop: 6 }}>
-        <span className="small">{t('stdinLabel')}</span>
-        <textarea rows={2} value={stdin} onChange={(e) => setStdin(e.target.value)} disabled={solved} spellCheck={false} />
-      </label>
+      {!pythonInteractiveAvailable && (
+        <label className="field" style={{ marginTop: 6 }}>
+          <span className="small">{t('stdinLabel')}</span>
+          <textarea rows={2} value={stdin} onChange={(e) => setStdin(e.target.value)} disabled={solved} spellCheck={false} />
+        </label>
+      )}
 
       <div className="row">
         <button className="btn soft sm" onClick={() => void doRun()} disabled={busy}>
@@ -511,12 +554,19 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
         </div>
       )}
 
-      {runOut && (
-        <div style={{ marginTop: 12 }}>
-          <div className="io-label">{t('output')}</div>
-          <Output text={runOut.text} error={runOut.error} />
-        </div>
-      )}
+      {pythonInteractiveAvailable
+        ? termText !== null && (
+            <div style={{ marginTop: 12 }}>
+              <div className="io-label">{t('output')}</div>
+              <Terminal text={termText} error={termError} onSubmit={waitingSubmit ? submitInput : undefined} />
+            </div>
+          )
+        : runOut && (
+            <div style={{ marginTop: 12 }}>
+              <div className="io-label">{t('output')}</div>
+              <Output text={runOut.text} error={runOut.error} />
+            </div>
+          )}
 
       {outcomes && (
         <>

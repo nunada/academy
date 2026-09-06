@@ -104,6 +104,58 @@ export function Output({ text, error = false }: { text: string; error?: boolean 
   return <pre className={error ? 'out err' : 'out'}>{text}</pre>
 }
 
+/** Like `Output`, but for a Python run in progress with real interactive
+ *  `input()` (see runPythonInteractive in ../lib/python.ts): `text` streams
+ *  in as the program prints, and while `onSubmit` is set the program is
+ *  paused waiting for one line of input — shown as a plain text box sitting
+ *  right at the end of the transcript, exactly where a real terminal's
+ *  cursor would be. */
+export function Terminal({
+  text,
+  error = false,
+  onSubmit,
+}: {
+  text: string
+  error?: boolean
+  onSubmit?: (value: string) => void
+}) {
+  const [value, setValue] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+  const preRef = useRef<HTMLPreElement>(null)
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [onSubmit])
+
+  useEffect(() => {
+    const el = preRef.current
+    if (el) el.scrollTop = el.scrollHeight
+  }, [text, onSubmit])
+
+  return (
+    <pre className={error ? 'out err' : 'out'} ref={preRef}>
+      {text}
+      {onSubmit && (
+        <input
+          ref={inputRef}
+          className="term-input"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key !== 'Enter') return
+            e.preventDefault()
+            onSubmit(value)
+            setValue('')
+          }}
+          autoComplete="off"
+          autoCapitalize="off"
+          spellCheck={false}
+        />
+      )}
+    </pre>
+  )
+}
+
 /** A plain textarea that behaves enough like an editor: Tab indents rather
  *  than moving focus, and Enter keeps the previous line's indentation. */
 export function CodeEditor({
