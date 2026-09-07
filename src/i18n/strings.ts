@@ -203,6 +203,15 @@ export const ui = {
   you: { en: 'you', id: 'kamu' },
   empty: { en: 'Nothing here yet.', id: 'Belum ada apa-apa di sini.' },
 
+  // medals (profile)
+  medals: { en: 'Medals', id: 'Medali' },
+  medalWeekly: { en: 'This week', id: 'Minggu ini' },
+  medalAllTime: { en: 'All-time', id: 'Sepanjang masa' },
+  medalRank1: { en: '1st place, overall', id: 'Peringkat 1, keseluruhan' },
+  medalRank2: { en: '2nd place, overall', id: 'Peringkat 2, keseluruhan' },
+  medalRank3: { en: '3rd place, overall', id: 'Peringkat 3, keseluruhan' },
+  medalLocked: { en: 'Not in the top 3 yet', id: 'Belum masuk 3 besar' },
+
   // profile / certificate
   certificates: { en: 'Certificates', id: 'Sertifikat' },
   noCertificates: {

@@ -1,11 +1,60 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { formatDate, useI18n } from '../i18n'
 import { useAllCourses } from '../app/curriculum'
 import { allTrophyIds, certificateTitle, describeTrophy } from '../lib/progress'
 import { AuthError, authErrors } from '../lib/db'
+import { getBackend } from '../lib/backends'
 import { Stat } from '../components/ui'
+
+const MEDAL_ICONS = ['🥇', '🥈', '🥉']
+const MEDAL_LABELS = ['medalRank1', 'medalRank2', 'medalRank3'] as const
+
+/** Where the signed-in learner currently stands on a board — `null` while
+ *  loading, `-1` once loaded if they are not in it (either genuinely unranked,
+ *  or just outside however far the backend looks; both read the same to a
+ *  learner, and both mean "no medal yet"). */
+function useRank(kind: 'weekly' | 'alltime', userId: string | undefined): number | null {
+  const [rank, setRank] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (!userId) return
+    let alive = true
+    setRank(null)
+    getBackend()
+      .leaderboard(kind, 'all')
+      .then((rows) => {
+        if (!alive) return
+        const i = rows.findIndex((r) => r.user_id === userId)
+        setRank(i)
+      })
+      .catch(() => alive && setRank(-1))
+    return () => {
+      alive = false
+    }
+  }, [kind, userId])
+
+  return rank
+}
+
+/** A medal slot: lit up with the rank's medal once the learner has actually
+ *  placed top 3, locked (same visual language as an unearned trophy) until
+ *  then — recognition should feel like the same kind of prize, not a
+ *  different, lesser thing bolted on beside it. */
+function MedalCard({ rank, label }: { rank: number | null; label: string }) {
+  const { t } = useI18n()
+  const placed = rank !== null && rank >= 0 && rank < 3
+  return (
+    <div className={placed ? 'trophy' : 'trophy off'}>
+      <span className="em">{placed ? MEDAL_ICONS[rank] : '🔒'}</span>
+      <div>
+        <b>{label}</b>
+        <div className="small muted">{placed ? t(MEDAL_LABELS[rank]) : t('medalLocked')}</div>
+      </div>
+    </div>
+  )
+}
 
 /** Username and display name, in place — the same click-to-reveal shape as
  *  the reset-password screen's "sent" panel, so an edit that can fail (the
@@ -113,12 +162,17 @@ function ProfileIdentity() {
 }
 
 export default function Profile() {
-  const { state, xpTotal, xpWeek } = useStore()
+  const { state, user, xpTotal, xpWeek } = useStore()
   const { t, tc, lang, setLang } = useI18n()
 
   // The trophy grid is the one page that names every module, so it is also
   // the one page that waits for every curriculum.
   const courses = useAllCourses()
+
+  // Called unconditionally, ahead of the loading guard below, same as every
+  // other hook here — the leaderboard fetch itself waits on `user`.
+  const weeklyRank = useRank('weekly', user?.id)
+  const alltimeRank = useRank('alltime', user?.id)
 
   if (!state || !courses) return <main className="page muted">{t('loading')}</main>
 
@@ -137,6 +191,12 @@ export default function Profile() {
         <Stat value={xpTotal} label={t('totalXpLabel')} />
         <Stat value={state.trophies.length} label={t('trophies')} />
         <Stat value={state.certificates.length} label={t('certificates')} />
+      </div>
+
+      <h2>{t('medals')}</h2>
+      <div className="grid two" style={{ marginBottom: 24 }}>
+        <MedalCard rank={weeklyRank} label={t('medalWeekly')} />
+        <MedalCard rank={alltimeRank} label={t('medalAllTime')} />
       </div>
 
       <div className="card" style={{ marginBottom: 24 }}>
