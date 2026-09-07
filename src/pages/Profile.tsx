@@ -4,18 +4,18 @@ import { useStore } from '../app/store'
 import { formatDate, useI18n } from '../i18n'
 import { useAllCourses } from '../app/curriculum'
 import { allTrophyIds, certificateTitle, describeTrophy } from '../lib/progress'
-import { AuthError, authErrors } from '../lib/db'
+import { AuthError, authErrors, type MedalCounts } from '../lib/db'
 import { getBackend } from '../lib/backends'
 import { Stat } from '../components/ui'
 
-const MEDAL_ICONS = ['🥇', '🥈', '🥉']
-const MEDAL_LABELS = ['medalRank1', 'medalRank2', 'medalRank3'] as const
+const MEDAL_RANK_LABELS = ['medalRank1', 'medalRank2', 'medalRank3'] as const
 
-/** Where the signed-in learner currently stands on a board — `null` while
- *  loading, `-1` once loaded if they are not in it (either genuinely unranked,
- *  or just outside however far the backend looks; both read the same to a
- *  learner, and both mean "no medal yet"). */
-function useRank(kind: 'weekly' | 'alltime', userId: string | undefined): number | null {
+/** Whether the signed-in learner is currently top 3 on the all-time board —
+ *  `null` while loading, `-1` once loaded if they are not there. All-time has
+ *  only one, continuously-updated ranking, so — unlike the weekly medals
+ *  below — there is nothing to accumulate: it is either true right now or it
+ *  is not, and it is never shown at all when it is not (see `MedalCard`). */
+function useAllTimeRank(userId: string | undefined): number | null {
   const [rank, setRank] = useState<number | null>(null)
 
   useEffect(() => {
@@ -23,34 +23,48 @@ function useRank(kind: 'weekly' | 'alltime', userId: string | undefined): number
     let alive = true
     setRank(null)
     getBackend()
-      .leaderboard(kind, 'all')
-      .then((rows) => {
-        if (!alive) return
-        const i = rows.findIndex((r) => r.user_id === userId)
-        setRank(i)
-      })
+      .leaderboard('alltime', 'all')
+      .then((rows) => alive && setRank(rows.findIndex((r) => r.user_id === userId)))
       .catch(() => alive && setRank(-1))
     return () => {
       alive = false
     }
-  }, [kind, userId])
+  }, [userId])
 
   return rank
 }
 
-/** A medal slot: lit up with the rank's medal once the learner has actually
- *  placed top 3, locked (same visual language as an unearned trophy) until
- *  then — recognition should feel like the same kind of prize, not a
- *  different, lesser thing bolted on beside it. */
-function MedalCard({ rank, label }: { rank: number | null; label: string }) {
-  const { t } = useI18n()
-  const placed = rank !== null && rank >= 0 && rank < 3
+/** The learner's own accumulated weekly medal counts — how many *completed*
+ *  weeks they placed 1st/2nd/3rd overall. `null` while loading. */
+function useWeeklyMedals(userId: string | undefined): MedalCounts | null {
+  const [medals, setMedals] = useState<MedalCounts | null>(null)
+
+  useEffect(() => {
+    if (!userId) return
+    let alive = true
+    setMedals(null)
+    getBackend()
+      .myWeeklyMedals()
+      .then((m) => alive && setMedals(m))
+      .catch(() => alive && setMedals({ gold: 0, silver: 0, bronze: 0 }))
+    return () => {
+      alive = false
+    }
+  }, [userId])
+
+  return medals
+}
+
+/** One earned medal. Unlike a trophy, there is no locked state to show for a
+ *  medal that has never been won — the whole point is that only what was
+ *  actually earned appears here at all. */
+function MedalCard({ icon, label, detail }: { icon: string; label: string; detail: string }) {
   return (
-    <div className={placed ? 'trophy' : 'trophy off'}>
-      <span className="em">{placed ? MEDAL_ICONS[rank] : '🔒'}</span>
+    <div className="trophy">
+      <span className="em">{icon}</span>
       <div>
         <b>{label}</b>
-        <div className="small muted">{placed ? t(MEDAL_LABELS[rank]) : t('medalLocked')}</div>
+        <div className="small muted">{detail}</div>
       </div>
     </div>
   )
@@ -171,13 +185,19 @@ export default function Profile() {
 
   // Called unconditionally, ahead of the loading guard below, same as every
   // other hook here — the leaderboard fetch itself waits on `user`.
-  const weeklyRank = useRank('weekly', user?.id)
-  const alltimeRank = useRank('alltime', user?.id)
+  const allTimeRank = useAllTimeRank(user?.id)
+  const weeklyMedals = useWeeklyMedals(user?.id)
 
   if (!state || !courses) return <main className="page muted">{t('loading')}</main>
 
   const earned = new Set(state.trophies.map((x) => x.trophy_id))
   const all = allTrophyIds(courses)
+
+  const allTimePlaced = allTimeRank !== null && allTimeRank >= 0 && allTimeRank < 3
+  const stillLoadingMedals = allTimeRank === null || weeklyMedals === null
+  const hasAnyMedal =
+    allTimePlaced || (weeklyMedals !== null && (weeklyMedals.gold > 0 || weeklyMedals.silver > 0 || weeklyMedals.bronze > 0))
+  const wonCount = (n: number) => (lang === 'id' ? `Diraih ${n} kali` : `Won ${n} time${n === 1 ? '' : 's'}`)
 
   return (
     <main className="page narrow">
@@ -194,10 +214,34 @@ export default function Profile() {
       </div>
 
       <h2>{t('medals')}</h2>
-      <div className="grid two" style={{ marginBottom: 24 }}>
-        <MedalCard rank={weeklyRank} label={t('medalWeekly')} />
-        <MedalCard rank={alltimeRank} label={t('medalAllTime')} />
-      </div>
+      {stillLoadingMedals ? (
+        <p className="muted" style={{ marginBottom: 24 }}>
+          {t('loading')}
+        </p>
+      ) : !hasAnyMedal ? (
+        <div className="card muted small" style={{ marginBottom: 24 }}>
+          {t('medalsEmpty')}
+        </div>
+      ) : (
+        <div className="grid three" style={{ marginBottom: 24 }}>
+          {allTimePlaced && (
+            <MedalCard
+              icon={['🥇', '🥈', '🥉'][allTimeRank!]}
+              label={t('medalAllTime')}
+              detail={t(MEDAL_RANK_LABELS[allTimeRank!])}
+            />
+          )}
+          {weeklyMedals!.gold > 0 && (
+            <MedalCard icon="🥇" label={t('medalGold')} detail={wonCount(weeklyMedals!.gold)} />
+          )}
+          {weeklyMedals!.silver > 0 && (
+            <MedalCard icon="🥈" label={t('medalSilver')} detail={wonCount(weeklyMedals!.silver)} />
+          )}
+          {weeklyMedals!.bronze > 0 && (
+            <MedalCard icon="🥉" label={t('medalBronze')} detail={wonCount(weeklyMedals!.bronze)} />
+          )}
+        </div>
+      )}
 
       <div className="card" style={{ marginBottom: 24 }}>
         <div className="between">

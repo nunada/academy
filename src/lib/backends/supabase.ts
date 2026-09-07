@@ -10,6 +10,7 @@ import type {
   Enrollment,
   LeaderRow,
   LeaderboardKind,
+  MedalCounts,
   Profile,
   ProgressItem,
   RosterRow,
@@ -264,6 +265,16 @@ export function createSupabaseBackend(): Backend {
       const { data, error } = await sb.rpc(RPC_BY_KIND[kind], args)
       if (error) throw error
       return (data ?? []) as LeaderRow[]
+    },
+
+    async myWeeklyMedals(): Promise<MedalCounts> {
+      const { data, error } = await sb.rpc('my_weekly_medals')
+      if (error) throw error
+      // A table-returning function always answers with one row here — the
+      // caller either has completed weeks behind them or all three counts
+      // come back zero, never no row at all.
+      const row = data?.[0] as { gold: number; silver: number; bronze: number } | undefined
+      return { gold: row?.gold ?? 0, silver: row?.silver ?? 0, bronze: row?.bronze ?? 0 }
     },
 
     // The two below raise 42501 for anybody who is not a teacher, and the error

@@ -24,7 +24,7 @@ import type {
 import { AuthError } from '../db'
 import type { Lang } from '../../content/types'
 import { MAX_HEARTS, loseHeart, resolveHearts } from '../hearts'
-import { isThisWeek } from '../week'
+import { isThisWeek, weekStart } from '../week'
 import { coursesIn } from '../../content/catalog'
 
 const KEY = 'nunada.local.db.v1'
@@ -455,6 +455,51 @@ export function createLocalBackend(): Backend {
           }
         })
       return rows.filter((r) => r.value > 0).sort((a, b) => b.value - a.value)
+    },
+
+    // How many *completed* weeks (never the one still running — its rank can
+    // still change) the signed-in learner placed 1st/2nd/3rd overall. Walks
+    // every distinct week their own xpEvents touch and re-ranks that one week
+    // against everybody else's total for it, rather than keeping a running
+    // counter anywhere: xp_events already is the full history, so there is
+    // nothing to keep in sync.
+    async myWeeklyMedals() {
+      const db = load()
+      const me = db.accounts.find((a) => a.id === localStorage.getItem(SESSION_KEY))
+      if (!me || me.seeded) return { gold: 0, silver: 0, bronze: 0 }
+
+      const thisWeekStart = weekStart().getTime()
+      const pastWeeks = new Set<number>()
+      for (const e of me.xpEvents) {
+        const s = weekStart(new Date(e.created_at)).getTime()
+        if (s < thisWeekStart) pastWeeks.add(s)
+      }
+
+      let gold = 0
+      let silver = 0
+      let bronze = 0
+      for (const wk of pastWeeks) {
+        const totals = db.accounts
+          .filter((a) => a.profile.role !== 'teacher')
+          .map((a) => ({
+            user_id: a.id,
+            // A rival's seeded weekly figure stands in for every week alike —
+            // there is no invented history behind it to look up instead.
+            value: a.seeded
+              ? a.seeded.weekly.code + a.seeded.weekly.math
+              : a.xpEvents
+                  .filter((e) => weekStart(new Date(e.created_at)).getTime() === wk)
+                  .reduce((n, e) => n + e.amount, 0),
+          }))
+          .filter((r) => r.value > 0)
+          .sort((a, b) => b.value - a.value)
+
+        const rank = totals.findIndex((r) => r.user_id === me.id)
+        if (rank === 0) gold++
+        else if (rank === 1) silver++
+        else if (rank === 2) bronze++
+      }
+      return { gold, silver, bronze }
     },
 
     async teacherRoster() {

@@ -205,12 +205,17 @@ export const ui = {
 
   // medals (profile)
   medals: { en: 'Medals', id: 'Medali' },
-  medalWeekly: { en: 'This week', id: 'Minggu ini' },
+  medalGold: { en: 'Weekly gold', id: 'Emas mingguan' },
+  medalSilver: { en: 'Weekly silver', id: 'Perak mingguan' },
+  medalBronze: { en: 'Weekly bronze', id: 'Perunggu mingguan' },
   medalAllTime: { en: 'All-time', id: 'Sepanjang masa' },
   medalRank1: { en: '1st place, overall', id: 'Peringkat 1, keseluruhan' },
   medalRank2: { en: '2nd place, overall', id: 'Peringkat 2, keseluruhan' },
   medalRank3: { en: '3rd place, overall', id: 'Peringkat 3, keseluruhan' },
-  medalLocked: { en: 'Not in the top 3 yet', id: 'Belum masuk 3 besar' },
+  medalsEmpty: {
+    en: 'No medals yet — place in the top 3 for a week, or all-time, to earn one.',
+    id: 'Belum ada medali — masuk 3 besar mingguan, atau sepanjang masa, untuk mendapatkannya.',
+  },
 
   // profile / certificate
   certificates: { en: 'Certificates', id: 'Sertifikat' },

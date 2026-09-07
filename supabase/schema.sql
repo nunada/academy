@@ -367,6 +367,45 @@ as $$
    limit p_limit;
 $$;
 
+-- How many *completed* weeks (never the one still running — its rank can
+-- still change before it ends) the calling learner placed 1st/2nd/3rd
+-- overall. Ranks every learner's weekly total against everyone else's for
+-- that same week, then counts how many of the caller's own weeks landed in
+-- each of the top three places — computed straight from xp_events, the same
+-- one-source-of-truth approach leaderboard_weekly already takes, rather than
+-- a count kept and updated separately that could drift from it.
+create or replace function public.my_weekly_medals()
+returns table (gold bigint, silver bigint, bronze bigint)
+language sql
+security definer
+set search_path = public
+as $$
+  with weekly as (
+    select
+      e.user_id,
+      p.username,
+      date_trunc('week', e.created_at at time zone 'utc') as wk,
+      sum(e.amount) as value
+      from public.xp_events e
+      join public.profiles p on p.id = e.user_id
+     where p.role = 'learner'
+       and e.created_at < date_trunc('week', now() at time zone 'utc') at time zone 'utc'
+     group by e.user_id, p.username, date_trunc('week', e.created_at at time zone 'utc')
+  ),
+  ranked as (
+    select
+      user_id,
+      row_number() over (partition by wk order by value desc, username asc) as rnk
+      from weekly
+  )
+  select
+    count(*) filter (where rnk = 1) as gold,
+    count(*) filter (where rnk = 2) as silver,
+    count(*) filter (where rnk = 3) as bronze
+    from ranked
+   where user_id = auth.uid();
+$$;
+
 -- ============================================================ row security
 
 alter table public.profiles     enable row level security;
@@ -436,6 +475,7 @@ revoke execute on function public.issue_certificate(text, text)           from p
 revoke execute on function public.leaderboard_weekly(integer, text[])     from public, anon;
 revoke execute on function public.leaderboard_alltime(integer, text[])    from public, anon;
 revoke execute on function public.leaderboard_trophies(integer)           from public, anon;
+revoke execute on function public.my_weekly_medals()                      from public, anon;
 
 -- Sign-up has to check a name before the account exists, so anon needs this one.
 grant execute on function public.username_available(text)     to anon, authenticated;
@@ -446,6 +486,7 @@ grant execute on function public.issue_certificate(text, text) to authenticated;
 grant execute on function public.leaderboard_weekly(integer, text[])  to authenticated;
 grant execute on function public.leaderboard_alltime(integer, text[]) to authenticated;
 grant execute on function public.leaderboard_trophies(integer) to authenticated;
+grant execute on function public.my_weekly_medals() to authenticated;
 
 -- ================================================================= teachers
 --

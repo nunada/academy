@@ -77,6 +77,19 @@ export interface LeaderRow {
   value: number
 }
 
+/** How many *completed* weeks the caller placed 1st/2nd/3rd overall — a
+ *  running tally, not a live standing. The week still in progress is never
+ *  counted: its rank can still change before it ends, so it has not been won
+ *  yet. All-time has no such history to accumulate — there is only one
+ *  continuously-updated ranking — so it stays a single current badge,
+ *  computed from `leaderboard('alltime', 'all')` directly rather than through
+ *  this. */
+export interface MedalCounts {
+  gold: number
+  silver: number
+  bronze: number
+}
+
 export type LeaderboardKind = 'weekly' | 'alltime' | 'trophies'
 
 /** Which half of the catalogue a board counts.
@@ -177,6 +190,9 @@ export interface Backend {
   /** `track` narrows the XP boards to one half of the catalogue. The trophy
    *  board ignores it: "earn 100 XP in total" belongs to no track. */
   leaderboard(kind: LeaderboardKind, track: LeaderboardTrack): Promise<LeaderRow[]>
+  /** See `MedalCounts` — the signed-in learner's own accumulated weekly medal
+   *  count, overall track only. */
+  myWeeklyMedals(): Promise<MedalCounts>
 
   /** Both are teachers-only. The check lives in the database, not here: these
    *  read every learner's rows, so a client-side guard would be decoration. */
