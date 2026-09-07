@@ -7,13 +7,15 @@
 
 import type { Bi, Loc } from './types'
 
-export type ModeId = 'python' | 'web' | 'javascript' | 'react' | 'sql' | 'typescript' | 'game'
+export type ModeId = 'python' | 'web' | 'javascript' | 'react' | 'sql' | 'typescript' | 'cpp' | 'game'
 
 export interface Templat {
   id: string
   label: Loc
   code: Bi<string>
-  /** Python only: the lines `input()` will read. */
+  /** Python only: the lines `input()` will read. Python and C++ both read
+   *  interactively now (see runPythonInteractive / runCppInteractive), so
+   *  this only still matters as a fallback for a browser that can't do that. */
   stdin?: string
 }
 
@@ -1022,6 +1024,151 @@ const TYPESCRIPT: Templat[] = [
   },
 ]
 
+/* --------------------------------------------------------------------- cpp */
+
+const CPP: Templat[] = [
+  {
+    id: 'kosong',
+    label: { en: 'Blank', id: 'Kosong' },
+    code: {
+      en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // Write any C++ here\n    cout << "Hello!" << endl;\n    return 0;\n}\n',
+      id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    // Tulis C++ apa saja di sini\n    cout << "Halo!" << endl;\n    return 0;\n}\n',
+    },
+  },
+  {
+    id: 'input',
+    label: { en: 'Reads input', id: 'Membaca input' },
+    code: {
+      en:
+        '#include <iostream>\n' +
+        'using namespace std;\n\n' +
+        'int main() {\n' +
+        '    char name[20];\n' +
+        '    int age;\n' +
+        '    cout << "Name: ";\n' +
+        '    cin >> name;\n' +
+        '    cout << "Age: ";\n' +
+        '    cin >> age;\n' +
+        '    cout << name << ", next year " << age + 1 << endl;\n' +
+        '    return 0;\n' +
+        '}\n',
+      id:
+        '#include <iostream>\n' +
+        'using namespace std;\n\n' +
+        'int main() {\n' +
+        '    char nama[20];\n' +
+        '    int umur;\n' +
+        '    cout << "Nama: ";\n' +
+        '    cin >> nama;\n' +
+        '    cout << "Umur: ";\n' +
+        '    cin >> umur;\n' +
+        '    cout << nama << ", tahun depan " << umur + 1 << endl;\n' +
+        '    return 0;\n' +
+        '}\n',
+    },
+  },
+  {
+    id: 'loop',
+    label: { en: 'Loop + array', id: 'Loop + array' },
+    code: {
+      en:
+        '#include <iostream>\n' +
+        'using namespace std;\n\n' +
+        'int main() {\n' +
+        '    int numbers[6] = {4, 8, 15, 16, 23, 42};\n' +
+        '    int total = 0;\n' +
+        '    for (int i = 0; i < 6; i++) {\n' +
+        '        total += numbers[i];\n' +
+        '    }\n' +
+        '    cout << "Total: " << total << endl;\n' +
+        '    cout << "Average: " << (double)total / 6 << endl;\n' +
+        '    return 0;\n' +
+        '}\n',
+      id:
+        '#include <iostream>\n' +
+        'using namespace std;\n\n' +
+        'int main() {\n' +
+        '    int angka[6] = {4, 8, 15, 16, 23, 42};\n' +
+        '    int total = 0;\n' +
+        '    for (int i = 0; i < 6; i++) {\n' +
+        '        total += angka[i];\n' +
+        '    }\n' +
+        '    cout << "Total: " << total << endl;\n' +
+        '    cout << "Rata-rata: " << (double)total / 6 << endl;\n' +
+        '    return 0;\n' +
+        '}\n',
+    },
+  },
+  {
+    id: 'fungsi',
+    label: { en: 'Functions', id: 'Fungsi' },
+    code: {
+      en:
+        '#include <iostream>\n' +
+        'using namespace std;\n\n' +
+        'int main() {\n' +
+        '    int result[10];\n' +
+        '    result[0] = 0;\n' +
+        '    result[1] = 1;\n' +
+        '    for (int i = 2; i < 10; i++) {\n' +
+        '        result[i] = result[i - 1] + result[i - 2];\n' +
+        '    }\n' +
+        '    for (int i = 0; i < 10; i++) {\n' +
+        '        cout << result[i] << " ";\n' +
+        '    }\n' +
+        '    cout << endl;\n' +
+        '    return 0;\n' +
+        '}\n',
+      id:
+        '#include <iostream>\n' +
+        'using namespace std;\n\n' +
+        'int main() {\n' +
+        '    int hasil[10];\n' +
+        '    hasil[0] = 0;\n' +
+        '    hasil[1] = 1;\n' +
+        '    for (int i = 2; i < 10; i++) {\n' +
+        '        hasil[i] = hasil[i - 1] + hasil[i - 2];\n' +
+        '    }\n' +
+        '    for (int i = 0; i < 10; i++) {\n' +
+        '        cout << hasil[i] << " ";\n' +
+        '    }\n' +
+        '    cout << endl;\n' +
+        '    return 0;\n' +
+        '}\n',
+    },
+  },
+  {
+    id: 'ascii',
+    label: { en: 'ASCII art', id: 'Seni ASCII' },
+    code: {
+      en:
+        '#include <iostream>\n' +
+        'using namespace std;\n\n' +
+        'int main() {\n' +
+        '    int height = 5;\n' +
+        '    for (int i = 1; i <= height; i++) {\n' +
+        '        for (int j = 0; j < height - i; j++) cout << " ";\n' +
+        '        for (int j = 0; j < 2 * i - 1; j++) cout << "*";\n' +
+        '        cout << endl;\n' +
+        '    }\n' +
+        '    return 0;\n' +
+        '}\n',
+      id:
+        '#include <iostream>\n' +
+        'using namespace std;\n\n' +
+        'int main() {\n' +
+        '    int tinggi = 5;\n' +
+        '    for (int i = 1; i <= tinggi; i++) {\n' +
+        '        for (int j = 0; j < tinggi - i; j++) cout << " ";\n' +
+        '        for (int j = 0; j < 2 * i - 1; j++) cout << "*";\n' +
+        '        cout << endl;\n' +
+        '    }\n' +
+        '    return 0;\n' +
+        '}\n',
+    },
+  },
+]
+
 /* -------------------------------------------------------------------- game */
 
 const GAME: Templat[] = [
@@ -1111,6 +1258,7 @@ export const MODES: Mode[] = [
   { id: 'react', label: { en: 'React', id: 'React' }, icon: '⚛️', editorLabel: 'JSX', templat: REACT },
   { id: 'sql', label: { en: 'SQL', id: 'SQL' }, icon: '🗄️', editorLabel: 'SQL', templat: SQL },
   { id: 'typescript', label: { en: 'TypeScript', id: 'TypeScript' }, icon: '🧩', editorLabel: 'TypeScript', templat: TYPESCRIPT },
+  { id: 'cpp', label: { en: 'C++', id: 'C++' }, icon: '➕', editorLabel: 'C++', templat: CPP },
   { id: 'game', label: { en: 'Game', id: 'Game' }, icon: '🎮', editorLabel: 'Python', templat: GAME },
 ]
 

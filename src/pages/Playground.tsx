@@ -12,6 +12,7 @@ import { useI18n } from '../i18n'
 import { resolveBi } from '../content/types'
 import { MODES, ROOT_HTML, SQL_SCHEMA, modeById, type ModeId } from '../content/playground'
 import { pythonInteractiveAvailable, runPython, runPythonInteractive, splitStdin } from '../lib/python'
+import { runCppInteractive } from '../lib/cpp'
 import { runSql, type SqlResult } from '../lib/sql'
 import { compileTs, type TsCompile } from '../lib/ts'
 import { CodeBlock, CodeEditor, LivePreview, Output, Terminal } from '../components/ui'
@@ -108,6 +109,19 @@ export default function Playground() {
         setTermError(false)
         setWaitingSubmit(null)
         const res = await runPythonInteractive(source, {
+          onChunk: (text) => setTermText((t) => (t ?? '') + text),
+          onWaitingForInput: (submit) => setWaitingSubmit(() => submit),
+        })
+        setWaitingSubmit(null)
+        if (res.error) {
+          setTermError(true)
+          setTermText((t) => (t ?? '') + res.error)
+        }
+      } else if (modeId === 'cpp') {
+        setTermText('')
+        setTermError(false)
+        setWaitingSubmit(null)
+        const res = await runCppInteractive(source, {
           onChunk: (text) => setTermText((t) => (t ?? '') + text),
           onWaitingForInput: (submit) => setWaitingSubmit(() => submit),
         })
@@ -218,6 +232,11 @@ export default function Playground() {
               🧩 {tc({ en: 'Loading the TypeScript compiler…', id: 'Memuat kompiler TypeScript…' })}
             </p>
           )}
+          {busy && modeId === 'cpp' && termText === null && (
+            <p className="small muted" style={{ marginTop: 8 }}>
+              🔧 {tc({ en: 'Loading the C++ interpreter…', id: 'Memuat interpreter C++…' })}
+            </p>
+          )}
         </div>
 
         <div className="card">
@@ -235,6 +254,10 @@ export default function Playground() {
             ) : (
               <Output text={out ? out.text : '—'} error={out?.error} />
             ))}
+
+          {modeId === 'cpp' && (
+            <Terminal text={termText ?? '—'} error={termError} onSubmit={waitingSubmit ? submitInput : undefined} />
+          )}
 
           {modeId === 'sql' &&
             (rows ? (
