@@ -9,7 +9,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { useI18n } from '../i18n'
-import { resolveBi } from '../content/types'
+import { resolveBi, type Lang } from '../content/types'
 import { MODES, ROOT_HTML, SQL_SCHEMA, modeById, type ModeId } from '../content/playground'
 import { pythonInteractiveAvailable, runPython, runPythonInteractive, splitStdin } from '../lib/python'
 import { runCppInteractive } from '../lib/cpp'
@@ -67,6 +67,19 @@ export default function Playground() {
       // A full or blocked store is not a reason to stop working.
     }
   }, [modeId, kode, stdin])
+
+  // A language toggle should follow you into a template you haven't touched
+  // yet — same as switching a course exercise's starter — but this is a
+  // scratch space, so anything that no longer matches a template's text
+  // verbatim is presumed to be something the learner actually wrote, and is
+  // left alone rather than silently overwritten.
+  useEffect(() => {
+    const current = kode[modeId]
+    if (current === undefined) return
+    const other: Lang = lang === 'en' ? 'id' : 'en'
+    const match = mode.templat.find((tpl) => resolveBi(tpl.code, other) === current)
+    if (match) setSource(resolveBi(match.code, lang))
+  }, [lang, modeId])
 
   function setSource(next: string) {
     setKode((k) => ({ ...k, [modeId]: next }))
