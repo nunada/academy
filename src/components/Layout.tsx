@@ -3,7 +3,7 @@ import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
 import { useAllCourses } from '../app/curriculum'
 import { describeTrophy } from '../lib/progress'
-import { Hearts } from './ui'
+import { Hearts, ShareButton } from './ui'
 import { Logo } from './Logo'
 import { FeedbackWidget } from './FeedbackWidget'
 
@@ -34,7 +34,7 @@ function TrophyToasts() {
 
 function TrophyList({ ids }: { ids: string[] }) {
   const { clearFreshTrophies } = useStore()
-  const { tc } = useI18n()
+  const { tc, lang } = useI18n()
   // A trophy is only ever awarded after the curricula have been read, so by
   // the time a toast appears these are already in the cache.
   const courses = useAllCourses()
@@ -42,12 +42,20 @@ function TrophyList({ ids }: { ids: string[] }) {
     <div className="toasts">
       {ids.map((id) => {
         const t = describeTrophy(id, courses ?? [])
+        const title = tc(t.title)
+        const shareText =
+          lang === 'id'
+            ? `Aku baru saja meraih trofi "${title}" di Nunada Academy! 🏆`
+            : `I just earned the "${title}" trophy on Nunada Academy! 🏆`
         return (
           <div className="toast" key={id} onClick={clearFreshTrophies} role="status">
             <span style={{ fontSize: '1.5rem' }}>{t.icon}</span>
             <div>
-              <b>{tc(t.title)}</b>
+              <b>{title}</b>
               <div className="small muted">{tc(t.desc)}</div>
+              <div style={{ marginTop: 6 }}>
+                <ShareButton text={shareText} />
+              </div>
             </div>
           </div>
         )

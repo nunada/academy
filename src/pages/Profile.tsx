@@ -6,7 +6,7 @@ import { useAllCourses } from '../app/curriculum'
 import { allTrophyIds, certificateTitle, describeTrophy } from '../lib/progress'
 import { AuthError, authErrors, type MedalCounts } from '../lib/db'
 import { getBackend } from '../lib/backends'
-import { Stat } from '../components/ui'
+import { Stat, ShareButton } from '../components/ui'
 
 const MEDAL_RANK_LABELS = ['medalRank1', 'medalRank2', 'medalRank3'] as const
 
@@ -58,13 +58,26 @@ function useWeeklyMedals(userId: string | undefined): MedalCounts | null {
 /** One earned medal. Unlike a trophy, there is no locked state to show for a
  *  medal that has never been won — the whole point is that only what was
  *  actually earned appears here at all. */
-function MedalCard({ icon, label, detail }: { icon: string; label: string; detail: string }) {
+function MedalCard({
+  icon,
+  label,
+  detail,
+  shareText,
+}: {
+  icon: string
+  label: string
+  detail: string
+  shareText: string
+}) {
   return (
     <div className="trophy">
       <span className="em">{icon}</span>
       <div>
         <b>{label}</b>
         <div className="small muted">{detail}</div>
+        <div style={{ marginTop: 6 }}>
+          <ShareButton text={shareText} />
+        </div>
       </div>
     </div>
   )
@@ -198,6 +211,10 @@ export default function Profile() {
   const hasAnyMedal =
     allTimePlaced || (weeklyMedals !== null && (weeklyMedals.gold > 0 || weeklyMedals.silver > 0 || weeklyMedals.bronze > 0))
   const wonCount = (n: number) => (lang === 'id' ? `Diraih ${n} kali` : `Won ${n} time${n === 1 ? '' : 's'}`)
+  const medalShareText = (label: string) =>
+    lang === 'id'
+      ? `Aku baru saja meraih ${label} di Nunada Academy! 🏅`
+      : `I just earned ${label} on Nunada Academy! 🏅`
 
   return (
     <main className="page narrow">
@@ -229,16 +246,32 @@ export default function Profile() {
               icon={['🥇', '🥈', '🥉'][allTimeRank!]}
               label={t('medalAllTime')}
               detail={t(MEDAL_RANK_LABELS[allTimeRank!])}
+              shareText={medalShareText(`${t('medalAllTime')} — ${t(MEDAL_RANK_LABELS[allTimeRank!])}`)}
             />
           )}
           {weeklyMedals!.gold > 0 && (
-            <MedalCard icon="🥇" label={t('medalGold')} detail={wonCount(weeklyMedals!.gold)} />
+            <MedalCard
+              icon="🥇"
+              label={t('medalGold')}
+              detail={wonCount(weeklyMedals!.gold)}
+              shareText={medalShareText(t('medalGold'))}
+            />
           )}
           {weeklyMedals!.silver > 0 && (
-            <MedalCard icon="🥈" label={t('medalSilver')} detail={wonCount(weeklyMedals!.silver)} />
+            <MedalCard
+              icon="🥈"
+              label={t('medalSilver')}
+              detail={wonCount(weeklyMedals!.silver)}
+              shareText={medalShareText(t('medalSilver'))}
+            />
           )}
           {weeklyMedals!.bronze > 0 && (
-            <MedalCard icon="🥉" label={t('medalBronze')} detail={wonCount(weeklyMedals!.bronze)} />
+            <MedalCard
+              icon="🥉"
+              label={t('medalBronze')}
+              detail={wonCount(weeklyMedals!.bronze)}
+              shareText={medalShareText(t('medalBronze'))}
+            />
           )}
         </div>
       )}

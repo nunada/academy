@@ -306,6 +306,40 @@ export function LivePreview({
   )
 }
 
+/** A share action for something just earned — a medal, a trophy, a
+ *  certificate. There is no public page any of those link to (a certificate
+ *  route only renders for its own owner), so this shares a short message
+ *  instead of a URL: the native share sheet where the browser has one, and a
+ *  clipboard copy everywhere else. */
+export function ShareButton({ text }: { text: string }) {
+  const { t } = useI18n()
+  const [copied, setCopied] = useState(false)
+
+  async function share() {
+    if (navigator.share) {
+      try {
+        await navigator.share({ text })
+      } catch {
+        // Cancelling the share sheet is not a failure worth reporting.
+      }
+      return
+    }
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard access denied — nothing else to fall back to.
+    }
+  }
+
+  return (
+    <button className="btn ghost sm" onClick={(e) => { e.stopPropagation(); void share() }}>
+      {copied ? t('shareCopied') : `📤 ${t('share')}`}
+    </button>
+  )
+}
+
 export function Modal({ children, onClose }: { children: ReactNode; onClose?: () => void }) {
   useEffect(() => {
     function esc(e: KeyboardEvent) {

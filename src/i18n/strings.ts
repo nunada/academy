@@ -203,6 +203,10 @@ export const ui = {
   you: { en: 'you', id: 'kamu' },
   empty: { en: 'Nothing here yet.', id: 'Belum ada apa-apa di sini.' },
 
+  // share (medals, trophies, certificates)
+  share: { en: 'Share', id: 'Bagikan' },
+  shareCopied: { en: 'Copied!', id: 'Tersalin!' },
+
   // medals (profile)
   medals: { en: 'Medals', id: 'Medali' },
   medalGold: { en: 'Weekly gold', id: 'Emas mingguan' },

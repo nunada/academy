@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { formatDate, useI18n } from '../i18n'
 import { certificateTitle } from '../lib/progress'
+import { ShareButton } from '../components/ui'
 
 export default function Certificate() {
   const { kind = '', refId = '' } = useParams()
@@ -15,6 +16,10 @@ export default function Certificate() {
   if (!cert) return <Navigate to="/profile" replace />
 
   const title = certificateTitle(kind, refId, lang)
+  const shareText =
+    lang === 'id'
+      ? `Aku baru saja meraih sertifikat "${title}" di Nunada Academy! 🎓`
+      : `I just earned my "${title}" certificate on Nunada Academy! 🎓`
 
   return (
     <main className="page narrow">
@@ -22,9 +27,12 @@ export default function Certificate() {
         <Link className="small muted" to="/profile" style={{ textDecoration: 'none' }}>
           ← {t('navProfile')}
         </Link>
-        <button className="btn sm" onClick={() => window.print()}>
-          🖨️ {t('print')}
-        </button>
+        <div className="row">
+          <ShareButton text={shareText} />
+          <button className="btn sm" onClick={() => window.print()}>
+            🖨️ {t('print')}
+          </button>
+        </div>
       </div>
 
       <article className="cert">
