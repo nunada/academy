@@ -67,6 +67,33 @@ export const module3: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Reading the components of $\\vec{a}$ and $\\vec{b}$ off the grid below, what is $\\vec{a} \\cdot \\vec{b}$?',
+                id: 'Dengan membaca komponen $\\vec{a}$ dan $\\vec{b}$ dari kisi di bawah, berapakah $\\vec{a} \\cdot \\vec{b}$?',
+              },
+              figure: {
+                dim: 2,
+                range: 5,
+                items: [
+                  { t: 'vec', to: [3, 2], color: 'a', label: 'a' },
+                  { t: 'vec', to: [-1, 4], color: 'b', label: 'b' },
+                ],
+              },
+              options: [
+                { en: '5', id: '5' },
+                { en: '11', id: '11' },
+                { en: '-1', id: '-1' },
+                { en: '7', id: '7' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Reading $\\vec{a} = (3, 2)$ and $\\vec{b} = (-1, 4)$ off the grid: $\\vec{a} \\cdot \\vec{b} = (3)(-1) + (2)(4) = -3 + 8 = 5$.',
+                id: 'Membaca $\\vec{a} = (3, 2)$ dan $\\vec{b} = (-1, 4)$ dari kisinya: $\\vec{a} \\cdot \\vec{b} = (3)(-1) + (2)(4) = -3 + 8 = 5$.',
+              },
+            },
+            {
               kind: 'fill',
               id: 'f1',
               math: true,
@@ -166,6 +193,33 @@ export const module3: Module = {
               explain: {
                 en: 'The magnitudes are positive, so a negative dot product forces $\\cos\\theta < 0$, which means $90° < \\theta \\leq 180°$. The magnitudes would only be needed to pin down the exact angle.',
                 id: 'Besar kedua vektornya positif, jadi perkalian titik yang negatif memaksa $\\cos\\theta < 0$, yang berarti $90° < \\theta \\leq 180°$. Besarnya baru diperlukan untuk menentukan sudut tepatnya.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Just from the picture below — without computing anything — is $\\vec{a} \\cdot \\vec{b}$ positive, negative, or zero?',
+                id: 'Hanya dari gambar di bawah — tanpa menghitung apa pun — apakah $\\vec{a} \\cdot \\vec{b}$ positif, negatif, atau nol?',
+              },
+              figure: {
+                dim: 2,
+                range: 4,
+                items: [
+                  { t: 'vec', to: [3, 0], color: 'a', label: 'a' },
+                  { t: 'vec', to: [-2, 1], color: 'b', label: 'b' },
+                ],
+              },
+              options: [
+                { en: 'Negative — the angle between them is obtuse', id: 'Negatif — sudut di antaranya tumpul' },
+                { en: 'Positive — the angle is acute', id: 'Positif — sudutnya lancip' },
+                { en: 'Zero — they are perpendicular', id: 'Nol — keduanya tegak lurus' },
+                { en: 'Cannot be told from a picture', id: 'Tak bisa ditentukan dari gambar' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The angle between $\\vec{a}$ and $\\vec{b}$ is clearly more than $90°$ in the drawing, so $\\cos\\theta < 0$ and therefore $\\vec{a} \\cdot \\vec{b} < 0$ — the sign read straight off the geometry.',
+                id: 'Sudut antara $\\vec{a}$ dan $\\vec{b}$ jelas lebih dari $90°$ pada gambarnya, jadi $\\cos\\theta < 0$ dan karenanya $\\vec{a} \\cdot \\vec{b} < 0$ — tandanya dibaca langsung dari geometrinya.',
               },
             },
             {
@@ -339,6 +393,33 @@ export const module3: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'These two vectors below look close to perpendicular. Are they exactly perpendicular?',
+                id: 'Kedua vektor di bawah tampak hampir tegak lurus. Apakah keduanya persis tegak lurus?',
+              },
+              figure: {
+                dim: 2,
+                range: 5,
+                items: [
+                  { t: 'vec', to: [4, 1], color: 'a', label: 'a' },
+                  { t: 'vec', to: [-1, 3], color: 'b', label: 'b' },
+                ],
+              },
+              options: [
+                { en: 'No — $\\vec{a} \\cdot \\vec{b} = -1$, not 0', id: 'Tidak — $\\vec{a} \\cdot \\vec{b} = -1$, bukan 0' },
+                { en: 'Yes — they look like a right angle', id: 'Ya — tampak seperti sudut siku-siku' },
+                { en: 'Yes, since $\\vec{a} \\cdot \\vec{b}$ is small', id: 'Ya, karena $\\vec{a} \\cdot \\vec{b}$ kecil' },
+                { en: 'Cannot be told without a protractor', id: 'Tak bisa ditentukan tanpa busur derajat' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$\\vec{a} \\cdot \\vec{b} = (4)(-1) + (1)(3) = -1 \\neq 0$, so they are not exactly perpendicular, however close the picture looks. Only an exact zero counts — which is the whole reason to compute rather than eyeball.',
+                id: '$\\vec{a} \\cdot \\vec{b} = (4)(-1) + (1)(3) = -1 \\neq 0$, jadi keduanya tidak persis tegak lurus, sedekat apa pun gambarnya tampak. Hanya nol yang tepat yang berlaku — dan itulah sebabnya harus dihitung, bukan sekadar dikira-kira.',
+              },
+            },
+            {
               kind: 'fill',
               id: 'f1',
               math: true,
@@ -445,6 +526,35 @@ export const module3: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The shadow (projection) of $\\vec{a}$ onto the line of $\\vec{b}$ is marked below. Is the scalar component $\\text{comp}_{\\vec{b}}\\,\\vec{a}$ positive or negative?',
+                id: 'Bayangan (proyeksi) $\\vec{a}$ pada garis $\\vec{b}$ ditandai di bawah. Apakah komponen skalar $\\text{comp}_{\\vec{b}}\\,\\vec{a}$ positif atau negatif?',
+              },
+              figure: {
+                dim: 2,
+                range: 6,
+                items: [
+                  { t: 'vec', to: [5, 0], color: 'b', label: 'b' },
+                  { t: 'vec', to: [-2, 3], color: 'a', label: 'a' },
+                  { t: 'seg', from: [-2, 3], to: [-2, 0], dashed: true },
+                  { t: 'dot', x: -2, y: 0, color: 'result' },
+                ],
+              },
+              options: [
+                { en: 'Negative — the shadow falls on the far side of the origin', id: 'Negatif — bayangannya jatuh di seberang titik asal' },
+                { en: "Positive — the shadow falls beyond $\\vec{b}$'s tip", id: 'Positif — bayangannya jatuh melewati ujung $\\vec{b}$' },
+                { en: 'Zero — $\\vec{a}$ and $\\vec{b}$ are perpendicular', id: 'Nol — $\\vec{a}$ dan $\\vec{b}$ tegak lurus' },
+                { en: 'Cannot be told without computing', id: 'Tak bisa ditentukan tanpa menghitung' },
+              ],
+              answer: 0,
+              explain: {
+                en: "The marked shadow sits at $x = -2$, on the opposite side of the origin from where $\\vec{b}$ points — exactly the obtuse-angle case from the concept above, so $\\text{comp}_{\\vec{b}}\\,\\vec{a}$ is negative.",
+                id: 'Bayangan yang ditandai berada di $x = -2$, di seberang titik asal dari arah $\\vec{b}$ — persis kasus sudut tumpul pada konsep di atas, jadi $\\text{comp}_{\\vec{b}}\\,\\vec{a}$ negatif.',
+              },
+            },
+            {
               kind: 'order',
               id: 'o1',
               math: true,
@@ -543,6 +653,33 @@ export const module3: Module = {
               explain: {
                 en: '$\\theta = 90°$, so $\\cos\\theta = 0$ and $W = 0$. Getting tired is about the muscles holding the load, not about work in this sense.',
                 id: '$\\theta = 90°$, sehingga $\\cos\\theta = 0$ dan $W = 0$. Rasa lelah berkaitan dengan otot yang menahan beban, bukan dengan usaha dalam pengertian ini.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'A force $\\vec{F}$ and displacement $\\vec{d}$ are shown below. Is the work $W = \\vec{F} \\cdot \\vec{d}$ positive, negative, or zero?',
+                id: 'Gaya $\\vec{F}$ dan perpindahan $\\vec{d}$ ditunjukkan di bawah. Apakah usaha $W = \\vec{F} \\cdot \\vec{d}$ positif, negatif, atau nol?',
+              },
+              figure: {
+                dim: 2,
+                range: 6,
+                items: [
+                  { t: 'vec', to: [5, 0], color: 'b', label: 'd' },
+                  { t: 'vec', to: [-3, 2], color: 'a', label: 'F' },
+                ],
+              },
+              options: [
+                { en: 'Negative — the force opposes the motion', id: 'Negatif — gayanya melawan gerak' },
+                { en: 'Positive — the force helps the motion', id: 'Positif — gayanya membantu gerak' },
+                { en: 'Zero — the force is perpendicular to the motion', id: 'Nol — gayanya tegak lurus gerak' },
+                { en: 'Cannot be told without the magnitudes', id: 'Tak bisa ditentukan tanpa besar keduanya' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$\\vec{F}$ points generally backward and to the side relative to $\\vec{d}$ — the angle between them exceeds $90°$, so $\\cos\\theta < 0$ and $W < 0$, exactly like friction opposing motion.',
+                id: '$\\vec{F}$ mengarah umumnya ke belakang dan menyamping terhadap $\\vec{d}$ — sudut di antaranya melebihi $90°$, jadi $\\cos\\theta < 0$ dan $W < 0$, persis seperti gesekan yang melawan gerak.',
               },
             },
             {

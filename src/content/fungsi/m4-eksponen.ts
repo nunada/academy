@@ -86,6 +86,35 @@ export const module4: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Which curve below is $y = \\left(\\tfrac{1}{2}\\right)^x$?',
+                id: 'Kurva manakah di bawah yang merupakan $y = \\left(\\tfrac{1}{2}\\right)^x$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 3],
+                ySpan: [-1, 9],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '2^x', color: 'a', label: 'kurva A' },
+                  { t: 'curve', f: '0.5^x', color: 'b', label: 'kurva B' },
+                ],
+              },
+              options: [
+                { en: 'Curve B', id: 'Kurva B' },
+                { en: 'Curve A', id: 'Kurva A' },
+                { en: 'Both are the same', id: 'Keduanya kurva yang sama' },
+                { en: 'Neither', id: 'Bukan keduanya' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The base $\\tfrac{1}{2}$ is between 0 and 1, so its graph decreases — curve B. Curve A climbs, matching a base greater than 1.',
+                id: 'Basisnya $\\tfrac{1}{2}$ berada antara 0 dan 1, jadi grafiknya turun — kurva B. Kurva A menanjak, sesuai dengan basis lebih dari 1.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -186,6 +215,35 @@ export const module4: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'A population grows as $y = 300 \\cdot 3^{t/2}$. Reading the marked point on the graph below, what is the population at $t = 4$?',
+                id: 'Suatu populasi tumbuh sebagai $y = 300 \\cdot 3^{t/2}$. Dengan membaca titik yang ditandai pada grafik di bawah, berapa populasinya pada $t = 4$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [0, 8],
+                ySpan: [0, 3000],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '300*3^(x/2)', from: 0, color: 'a' },
+                  { t: 'dot', x: 4, y: 2700, color: 'result' },
+                ],
+              },
+              options: [
+                { en: '2700', id: '2700' },
+                { en: '900', id: '900' },
+                { en: '1800', id: '1800' },
+                { en: '3600', id: '3600' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$t = 4$ is two periods of 2, so $y = 300 \\cdot 3^2 = 300 \\cdot 9 = 2700$ — the marked point.',
+                id: '$t = 4$ adalah dua periode selama 2, jadi $y = 300 \\cdot 3^2 = 300 \\cdot 9 = 2700$ — titik yang ditandai.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -264,6 +322,36 @@ export const module4: Module = {
               explain: {
                 en: '$2^{10} = 1024$ against $10^2 = 100$. The exponential wins, and this is with a base of only 2 — with the exponent going up, no power function ever keeps up for long.',
                 id: '$2^{10} = 1024$ melawan $10^2 = 100$. Eksponennya menang, dan itu dengan basis yang hanya 2 — begitu pangkatnya naik, tak ada fungsi pangkat yang bisa mengimbanginya lama-lama.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Three exponential curves are shown below, with bases 2, $e$, and 3, in some order. Which curve is $y = e^x$?',
+                id: 'Tiga kurva eksponen ditunjukkan di bawah, dengan basis 2, $e$, dan 3, dalam suatu urutan. Kurva manakah $y = e^x$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 2.5],
+                ySpan: [-1, 10],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '2^x', color: 'a', label: 'kurva A' },
+                  { t: 'curve', f: 'e^x', color: 'b', label: 'kurva B' },
+                  { t: 'curve', f: '3^x', color: 'c', label: 'kurva C' },
+                ],
+              },
+              options: [
+                { en: 'Curve B, the middle one', id: 'Kurva B, yang di tengah' },
+                { en: 'Curve A, the lowest', id: 'Kurva A, yang terendah' },
+                { en: 'Curve C, the highest', id: 'Kurva C, yang tertinggi' },
+                { en: 'They cannot be told apart', id: 'Tak bisa dibedakan' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Since $2 < e < 3$, the graph of $e^x$ always sits between $2^x$ and $3^x$ for $x > 0$ — curve B, the middle one.',
+                id: 'Karena $2 < e < 3$, grafik $e^x$ selalu berada di antara $2^x$ dan $3^x$ untuk $x > 0$ — kurva B, yang di tengah.',
               },
             },
             {
@@ -420,6 +508,35 @@ export const module4: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Which curve below is simple interest — a fixed amount added every year, never compounded?',
+                id: 'Kurva manakah di bawah yang merupakan bunga tunggal — jumlah tetap yang ditambahkan tiap tahun, tak pernah dimajemukkan?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [0, 20],
+                ySpan: [900, 3400],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '1000*(1+0.06/12)^(12*x)', from: 0, color: 'a', label: 'kurva A' },
+                  { t: 'curve', f: '1000+60*x', from: 0, color: 'muted', dashed: true, label: 'kurva B' },
+                ],
+              },
+              options: [
+                { en: 'Curve B, the straight line', id: 'Kurva B, garis lurusnya' },
+                { en: 'Curve A, the curved one', id: 'Kurva A, yang melengkung' },
+                { en: 'Both are the same', id: 'Keduanya sama' },
+                { en: 'Neither', id: 'Bukan keduanya' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Simple interest adds the same fixed 60 every year — a straight line. Compounding grows the base itself, so the amount added gets bigger every year, which is what bends curve A upward.',
+                id: 'Bunga tunggal menambahkan 60 yang tetap tiap tahun — garis lurus. Pemajemukan membesarkan modalnya sendiri, sehingga jumlah yang ditambahkan makin besar tiap tahun, dan itulah yang membuat kurva A melengkung ke atas.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -497,6 +614,35 @@ export const module4: Module = {
               explain: {
                 en: 'The half-life is a property of the isotope, not of the amount. The big sample loses far more grams per hour, but the same **fraction** — and fractions are what the exponential law is about.',
                 id: 'Waktu paruh adalah sifat isotopnya, bukan sifat jumlahnya. Sampel besar kehilangan jauh lebih banyak gram per jam, tetapi dengan **bagian** yang sama — dan bagianlah yang dibicarakan hukum eksponen.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'A 160 mg sample has a half-life of 8 days. Reading the marked point on the graph below, how much remains after 24 days?',
+                id: 'Sebuah sampel 160 mg mempunyai waktu paruh 8 hari. Dengan membaca titik yang ditandai pada grafik di bawah, berapa yang tersisa setelah 24 hari?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [0, 32],
+                ySpan: [0, 180],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '160*0.5^(x/8)', from: 0, color: 'a' },
+                  { t: 'dot', x: 24, y: 20, color: 'result' },
+                ],
+              },
+              options: [
+                { en: '20 mg', id: '20 mg' },
+                { en: '40 mg', id: '40 mg' },
+                { en: '80 mg', id: '80 mg' },
+                { en: '0 mg', id: '0 mg' },
+              ],
+              answer: 0,
+              explain: {
+                en: '24 days is three half-lives: $160 \\to 80 \\to 40 \\to 20$ — the marked point.',
+                id: '24 hari adalah tiga waktu paruh: $160 \\to 80 \\to 40 \\to 20$ — titik yang ditandai.',
               },
             },
             {

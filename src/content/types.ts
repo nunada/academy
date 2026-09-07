@@ -240,6 +240,9 @@ export type Step =
       id: string
       prompt: Loc
       code?: string | Loc
+      /** A drawing shown above the options — reading a graph is itself the
+       *  question, in a `math`-track quiz. */
+      figure?: Figure
       options: Loc[]
       answer: number
       explain: Loc
@@ -248,6 +251,9 @@ export type Step =
       kind: 'fill'
       id: string
       prompt: Loc
+      /** A drawing shown above the blanks, for a fill that is completed by
+       *  reading it rather than by algebra alone. */
+      figure?: Figure
       /** Use `___` (three underscores) for each blank, in order. */
       template: Bi<string>
       blanks: Bi<string[]>
@@ -260,6 +266,9 @@ export type Step =
       kind: 'order'
       id: string
       prompt: Loc
+      /** A drawing shown above the lines, when the steps being assembled
+       *  refer to it. */
+      figure?: Figure
       /** Correct order. Shuffled for the learner. */
       lines: Bi<string[]>
       explain: Loc

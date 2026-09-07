@@ -70,6 +70,40 @@ export const module1: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Reading the graph of $f(x) = x^2 - 3x$ below, what is the marked value $f(4)$?',
+                id: 'Dengan membaca grafik $f(x) = x^2 - 3x$ di bawah, berapakah nilai $f(4)$ yang ditandai?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-1, 5],
+                ySpan: [-3, 8],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x^2-3*x', color: 'a', label: 'f(x)' },
+                  { t: 'vline', x: 4, color: 'muted', dashed: true },
+                  { t: 'dot', x: 4, y: 4, color: 'result' },
+                ],
+                caption: {
+                  en: 'The dot marks the point $(4, f(4))$.',
+                  id: 'Titik itu menandai titik $(4, f(4))$.',
+                },
+              },
+              options: [
+                { en: '16', id: '16' },
+                { en: '4', id: '4' },
+                { en: '-4', id: '-4' },
+                { en: '28', id: '28' },
+              ],
+              answer: 1,
+              explain: {
+                en: '$f(4) = 4^2 - 3(4) = 16 - 12 = 4$, the same worked example as above. Forgetting the $-3x$ term gives 16 instead.',
+                id: '$f(4) = 4^2 - 3(4) = 16 - 12 = 4$, contoh yang sama seperti di atas. Melupakan suku $-3x$ memberi 16.',
+              },
+            },
+            {
               kind: 'fill',
               id: 'f1',
               math: true,
@@ -175,6 +209,39 @@ export const module1: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The graph of $y = \\sqrt{x+2}$ is shown below. What is its domain?',
+                id: 'Grafik $y = \\sqrt{x+2}$ ditunjukkan di bawah. Berapa domainnya?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 4],
+                ySpan: [-1, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'sqrt(x+2)', from: -2, color: 'a', label: '√(x+2)' },
+                  { t: 'dot', x: -2, y: 0, color: 'a' },
+                ],
+                caption: {
+                  en: 'The curve begins at the marked dot and runs rightward forever.',
+                  id: 'Kurvanya bermula di titik yang ditandai dan berlanjut ke kanan selamanya.',
+                },
+              },
+              options: [
+                { en: '$[-2, \\infty)$', id: '$[-2, \\infty)$' },
+                { en: '$(-\\infty, -2]$', id: '$(-\\infty, -2]$' },
+                { en: '$[2, \\infty)$', id: '$[2, \\infty)$' },
+                { en: 'Every real number', id: 'Semua bilangan real' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The curve starts exactly where the drawing shows it starting, at $x = -2$, and never stops — matching $x + 2 \\geq 0 \\Leftrightarrow x \\geq -2$.',
+                id: 'Kurvanya bermula persis di tempat gambar menunjukkannya bermula, di $x = -2$, dan tak pernah berhenti — sesuai dengan $x + 2 \\geq 0 \\Leftrightarrow x \\geq -2$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -261,6 +328,35 @@ export const module1: Module = {
               explain: {
                 en: 'The range is read off the **vertical** axis: lowest output to highest output, $[-3, 4]$. The $x$ values $[-2, 5]$ are the domain — swapping the two is the most common slip here.',
                 id: 'Range dibaca dari sumbu **tegak**: dari keluaran terendah sampai tertinggi, $[-3, 4]$. Nilai $x$ yaitu $[-2, 5]$ adalah domainnya — menukar keduanya adalah kekeliruan yang paling sering terjadi di sini.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'What is the range of the function graphed below, for $-2 \\leq x \\leq 4$?',
+                id: 'Berapa range fungsi yang digambar di bawah, untuk $-2 \\leq x \\leq 4$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 5],
+                ySpan: [-1, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'abs(x-1)', from: -2, to: 4, color: 'a' },
+                  { t: 'dot', x: 1, y: 0, color: 'result' },
+                ],
+              },
+              options: [
+                { en: '$[0, 3]$', id: '$[0, 3]$' },
+                { en: '$[-2, 4]$', id: '$[-2, 4]$' },
+                { en: '$[0, 4]$', id: '$[0, 4]$' },
+                { en: 'Every non-negative real number', id: 'Semua bilangan real tak negatif' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The lowest point is $0$, at the marked dot; the highest points are the two ends, each at height $|{-2}-1| = |4-1| = 3$. So the range is $[0, 3]$ — $[-2, 4]$ is the domain, not the range.',
+                id: 'Titik terendahnya $0$, di titik yang ditandai; titik tertingginya kedua ujung, masing-masing setinggi $|{-2}-1| = |4-1| = 3$. Jadi range-nya $[0, 3]$ — $[-2, 4]$ adalah domain, bukan range.',
               },
             },
             {
@@ -496,6 +592,37 @@ export const module1: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'With $g(x) = x + 2$ for $x < 0$ and $g(x) = 3$ for $x \\geq 0$, graphed below, what is $g(0)$?',
+                id: 'Dengan $g(x) = x + 2$ untuk $x < 0$ dan $g(x) = 3$ untuk $x \\geq 0$, yang digambar di bawah, berapakah $g(0)$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 4],
+                ySpan: [-2, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x+2', from: -4, to: 0, color: 'a' },
+                  { t: 'dot', x: 0, y: 2, open: true, color: 'a' },
+                  { t: 'seg', from: [0, 3], to: [4, 3], color: 'b' },
+                  { t: 'dot', x: 0, y: 3, color: 'b' },
+                ],
+              },
+              options: [
+                { en: '2', id: '2' },
+                { en: '3', id: '3' },
+                { en: 'Undefined', id: 'Tak terdefinisi' },
+                { en: 'Both 2 and 3', id: 'Keduanya, 2 dan 3' },
+              ],
+              answer: 1,
+              explain: {
+                en: 'The boundary $x = 0$ belongs to the bottom rule, because of the $\\geq$ — shown by the filled dot at $(0, 3)$. The hollow dot at $(0, 2)$ is the value the top rule would have given, but is not taken.',
+                id: 'Batas $x = 0$ menjadi milik aturan bawah, karena tanda $\\geq$-nya — ditunjukkan oleh titik penuh di $(0, 3)$. Titik kosong di $(0, 2)$ adalah nilai yang akan diberikan aturan atas, tetapi tidak diambil.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -586,6 +713,32 @@ export const module1: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Looking only at the graph below — no algebra — is this function even, odd, or neither?',
+                id: 'Hanya dengan melihat grafik di bawah — tanpa aljabar — apakah fungsi ini genap, ganjil, atau bukan keduanya?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 2],
+                ySpan: [-1.5, 1],
+                ticks: true,
+                items: [{ t: 'curve', f: 'x^4-2*x^2', color: 'a' }],
+              },
+              options: [
+                { en: 'Even', id: 'Genap' },
+                { en: 'Odd', id: 'Ganjil' },
+                { en: 'Neither', id: 'Bukan keduanya' },
+                { en: 'It cannot be told from a picture', id: 'Tak bisa ditentukan hanya dari gambar' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Fold the page along the vertical axis and the two halves land on each other — exactly the visual test for an even function.',
+                id: 'Lipat halamannya pada sumbu tegak dan kedua belahannya berimpit — persis uji visual untuk fungsi genap.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -664,6 +817,35 @@ export const module1: Module = {
               explain: {
                 en: 'It is the parabola $x^2$ moved four to the right, so its turning point is at $x = 4$: downhill before it, uphill after. That "moved four to the right" is the whole of Module 2.',
                 id: 'Ia adalah parabola $x^2$ yang digeser empat satuan ke kanan, jadi titik baliknya di $x = 4$: menurun sebelum itu, menanjak sesudahnya. "Digeser empat ke kanan" itulah seluruh isi Modul 2.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'On which interval is the function graphed below increasing?',
+                id: 'Pada selang mana fungsi yang digambar di bawah naik?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-1, 5],
+                ySpan: [-2, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '-(x-2)^2+3', color: 'a' },
+                  { t: 'dot', x: 2, y: 3, label: 'puncak' },
+                ],
+              },
+              options: [
+                { en: '$(-\\infty, 2]$', id: '$(-\\infty, 2]$' },
+                { en: '$[2, \\infty)$', id: '$[2, \\infty)$' },
+                { en: 'Everywhere', id: 'Di mana pun' },
+                { en: 'Nowhere', id: 'Tidak di mana pun' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Reading left to right, the curve climbs uphill until the marked peak at $x = 2$, then falls — so it increases on $(-\\infty, 2]$.',
+                id: 'Dibaca dari kiri ke kanan, kurvanya menanjak sampai puncak yang ditandai di $x = 2$, lalu turun — jadi ia naik pada $(-\\infty, 2]$.',
               },
             },
             {

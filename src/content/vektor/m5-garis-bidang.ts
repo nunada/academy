@@ -86,6 +86,36 @@ export const module5: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The line $\\vec{r} = \\vec{r_0} + t\\vec{v}$ has $\\vec{r_0}$ at the origin and $\\vec{v} = (2, 1, -1)$, shown below. What value of $t$ reaches the marked point $P = (4, 2, -2)$?',
+                id: 'Garis $\\vec{r} = \\vec{r_0} + t\\vec{v}$ mempunyai $\\vec{r_0}$ di titik asal dan $\\vec{v} = (2, 1, -1)$, ditunjukkan di bawah. Nilai $t$ berapakah yang mencapai titik $P = (4, 2, -2)$ yang ditandai?',
+              },
+              figure: {
+                dim: 3,
+                range: 6,
+                view: [60, 20],
+                items: [
+                  { t: 'seg', from: [-2, -1, 1], to: [6, 3, -3], color: 'muted' },
+                  { t: 'vec', to: [2, 1, -1], label: 'v', color: 'b' },
+                  { t: 'point', at: [0, 0, 0], label: 'r₀' },
+                  { t: 'point', at: [4, 2, -2], label: 'P', color: 'result' },
+                ],
+              },
+              options: [
+                { en: '2', id: '2' },
+                { en: '4', id: '4' },
+                { en: '1', id: '1' },
+                { en: '-2', id: '-2' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$2\\vec{v} = 2(2, 1, -1) = (4, 2, -2)$, exactly $P$. So $t = 2$ walks two copies of $\\vec{v}$ from $\\vec{r_0}$ to reach it.',
+                id: '$2\\vec{v} = 2(2, 1, -1) = (4, 2, -2)$, persis $P$. Jadi $t = 2$ berjalan dua kali $\\vec{v}$ dari $\\vec{r_0}$ untuk mencapainya.',
+              },
+            },
+            {
               kind: 'fill',
               id: 'f1',
               math: true,
@@ -168,6 +198,36 @@ export const module5: Module = {
               explain: {
                 en: 'The denominators are the direction components. The numerators give a point on the line, $(3, -1, 0)$ — note the sign flip, since $y + 1$ is $y - (-1)$. And $(-2, 5, -4)$ would also be a valid direction, just not the only one.',
                 id: 'Penyebutnya adalah komponen arahnya. Pembilangnya memberi sebuah titik pada garis, $(3, -1, 0)$ — perhatikan tandanya berbalik, sebab $y + 1$ adalah $y - (-1)$. Dan $(-2, 5, -4)$ juga arah yang sah, hanya saja bukan satu-satunya.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'From this single view, $R$ below looks like it might sit on segment $PQ$. Can you be sure $R$ lies on the line through $P$ and $Q$ just from a picture like this?',
+                id: 'Dari satu sudut pandang ini, $R$ di bawah tampak seolah berada pada ruas $PQ$. Bisakah kamu memastikan $R$ terletak pada garis melalui $P$ dan $Q$ hanya dari gambar seperti ini?',
+              },
+              figure: {
+                dim: 3,
+                range: 5,
+                view: [20, 75],
+                items: [
+                  { t: 'seg', from: [0, 0, 0], to: [4, 2, 0], color: 'muted' },
+                  { t: 'point', at: [0, 0, 0], label: 'P' },
+                  { t: 'point', at: [4, 2, 0], label: 'Q' },
+                  { t: 'point', at: [2, 1, 1], label: 'R', color: 'b' },
+                ],
+              },
+              options: [
+                { en: 'No — a single view can hide an out-of-plane offset; check algebraically', id: 'Tidak — satu sudut pandang bisa menyembunyikan selisih di luar bidang; periksa secara aljabar' },
+                { en: 'Yes — if it looks aligned, it is aligned', id: 'Ya — bila tampak sejajar, berarti memang sejajar' },
+                { en: 'Yes, because all three points are drawn', id: 'Ya, karena ketiga titiknya digambar' },
+                { en: '3D points can never be tested this way', id: 'Titik 3D tak pernah bisa diuji dengan cara ini' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$R = (2, 1, 1)$ has a $z$-coordinate that $P$ and $Q$ (both $z = 0$) do not share, so $R$ is actually off the line — but from this near-overhead angle that offset is hard to see. This is exactly why the algebraic check, solving for $t$ in each coordinate, matters more than any one picture.',
+                id: '$R = (2, 1, 1)$ mempunyai koordinat $z$ yang tidak dimiliki $P$ dan $Q$ (keduanya $z = 0$), jadi $R$ sebenarnya berada di luar garis — tetapi dari sudut pandang yang hampir dari atas ini, selisih itu sulit terlihat. Inilah sebabnya pemeriksaan aljabar, menyelesaikan $t$ pada tiap koordinat, lebih dapat diandalkan daripada satu gambar mana pun.',
               },
             },
             {
@@ -377,6 +437,45 @@ export const module5: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Two vectors are attached to the plane shown below: $\\vec{n}$ and $\\vec{u}$. Which one is a normal vector for this plane?',
+                id: 'Dua vektor ditempelkan pada bidang di bawah: $\\vec{n}$ dan $\\vec{u}$. Manakah yang merupakan vektor normal bidang ini?',
+              },
+              figure: {
+                dim: 3,
+                range: 5,
+                view: [42, 20],
+                items: [
+                  {
+                    t: 'poly',
+                    pts: [
+                      [2.25, 5, -1.75],
+                      [3.75, -1, -0.25],
+                      [-0.25, -1, 3.75],
+                      [-1.75, 5, 2.25],
+                    ],
+                    color: 'result',
+                  },
+                  { t: 'point', at: [1, 2, 1], label: 'P₀' },
+                  { t: 'vec', from: [1, 2, 1], to: [3, 3, 3], label: 'n', color: 'b' },
+                  { t: 'vec', from: [1, 2, 1], to: [3, 2, -1], label: 'u', color: 'c' },
+                ],
+              },
+              options: [
+                { en: '$\\vec{n}$ — it is perpendicular to everything in the plane', id: '$\\vec{n}$ — tegak lurus terhadap segala yang ada di bidang itu' },
+                { en: '$\\vec{u}$ — it lies in the plane', id: '$\\vec{u}$ — terletak di dalam bidang itu' },
+                { en: 'Both', id: 'Keduanya' },
+                { en: 'Neither', id: 'Bukan keduanya' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'A normal must stand perpendicular to the plane, not lie inside it. $\\vec{u}$ is drawn lying flat in the plane itself, one of the displacements the definition tests against; $\\vec{n}$ stands at a right angle to all of them.',
+                id: 'Normal harus berdiri tegak lurus terhadap bidangnya, bukan berbaring di dalamnya. $\\vec{u}$ digambar terbaring rata di dalam bidang itu sendiri, salah satu perpindahan yang diuji oleh definisinya; $\\vec{n}$ berdiri tegak lurus terhadap semuanya.',
+              },
+            },
+            {
               kind: 'fill',
               id: 'f1',
               math: true,
@@ -496,6 +595,34 @@ export const module5: Module = {
               explain: {
                 en: '$\\vec{n_2} = (-4, 2, -6) = -2(2, -1, 3) = -2\\vec{n_1}$, so the normals are parallel and so are the planes. They are not the same plane: the constants do not scale by $-2$, since $-2 \\cdot 5 = -10 \\neq 1$.',
                 id: '$\\vec{n_2} = (-4, 2, -6) = -2(2, -1, 3) = -2\\vec{n_1}$, jadi normalnya sejajar dan bidangnya pun sejajar. Keduanya bukan bidang yang sama: konstantanya tidak berskala $-2$, sebab $-2 \\cdot 5 = -10 \\neq 1$.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The normals of two planes are shown below. Are the planes parallel, perpendicular, or neither?',
+                id: 'Normal dari dua bidang ditunjukkan di bawah. Apakah kedua bidang sejajar, tegak lurus, atau bukan keduanya?',
+              },
+              figure: {
+                dim: 3,
+                range: 4,
+                view: [40, 25],
+                items: [
+                  { t: 'vec', to: [2, -1, 2], label: 'n1', color: 'a' },
+                  { t: 'vec', to: [1, 2, 2], label: 'n2', color: 'b' },
+                ],
+              },
+              options: [
+                { en: 'Neither — the normals are neither parallel nor perpendicular', id: 'Bukan keduanya — normalnya tidak sejajar maupun tegak lurus' },
+                { en: 'Parallel — the normals point in similar directions', id: 'Sejajar — normalnya mengarah ke arah yang mirip' },
+                { en: 'Perpendicular — the normals form a right angle', id: 'Tegak lurus — normalnya membentuk sudut siku-siku' },
+                { en: 'Cannot be told from a picture', id: 'Tak bisa ditentukan dari gambar' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Neither arrow is a scalar multiple of the other, so the planes are not parallel; and they do not meet at a right angle either. These are the same two normals from the worked example above, $\\vec{n_1} \\cdot \\vec{n_2} = 4 \\neq 0$, giving an angle of about $63{,}6°$ — neither special case.',
+                id: 'Tak satu pun anak panah merupakan kelipatan skalar dari yang lain, jadi bidangnya tidak sejajar; keduanya juga tidak bertemu pada sudut siku-siku. Inilah dua normal yang sama dari contoh yang dikerjakan di atas, $\\vec{n_1} \\cdot \\vec{n_2} = 4 \\neq 0$, memberi sudut sekitar $63{,}6°$ — bukan salah satu kasus khusus.',
               },
             },
             {

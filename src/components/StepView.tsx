@@ -202,6 +202,7 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
         <Rich text={tc(step.prompt)} />
       </h3>
       {code && <CodeBlock>{code}</CodeBlock>}
+      {step.figure && <FigureView figure={step.figure} />}
 
       {step.options.map((o, i) => {
         // A wrong pick is marked wrong, but the correct option stays neutral —
@@ -275,6 +276,7 @@ function FillStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       <h3>
         <Rich text={tc(step.prompt)} />
       </h3>
+      {step.figure && <FigureView figure={step.figure} />}
       {/* A formula belongs on the page as a formula, not in a code block. */}
       <div className={step.math ? 'given mathfill' : undefined}>
         <pre className={step.math ? 'plain' : 'code'}>
@@ -370,6 +372,7 @@ function OrderStep({ step, solved, onSolved, onWrong, blocked }: Props & { step:
       <h3>
         <Rich text={tc(step.prompt)} />
       </h3>
+      {step.figure && <FigureView figure={step.figure} />}
       <p className="small muted">{t('dragToOrder')}</p>
 
       {order.map((lineIndex, pos) => (

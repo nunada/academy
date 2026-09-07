@@ -77,6 +77,35 @@ export const module5: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The horizontal line shown meets the curve $y = x^3 - 3x$ more than once. Is this function one-to-one on all of $R$?',
+                id: 'Garis mendatar yang ditunjukkan memotong kurva $y = x^3 - 3x$ lebih dari sekali. Apakah fungsi ini satu-satu pada seluruh $R$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 3],
+                ySpan: [-4, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x^3-3*x', color: 'a' },
+                  { t: 'hline', y: 1, color: 'b', dashed: true },
+                ],
+              },
+              options: [
+                { en: 'No — it fails the horizontal line test', id: 'Tidak — ia gagal uji garis mendatar' },
+                { en: 'Yes — every cubic is one-to-one', id: 'Ya — setiap kubik satu-satu' },
+                { en: 'Yes, but only for $x > 0$', id: 'Ya, tetapi hanya untuk $x > 0$' },
+                { en: 'Cannot be told from a graph', id: 'Tak bisa ditentukan dari grafik' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The dashed line meets the curve three times, so three different inputs share the output 1. A cubic is not automatically one-to-one — this one is not, even though $x^3$ itself is.',
+                id: 'Garis putus-putusnya memotong kurvanya tiga kali, jadi tiga masukan berbeda berbagi keluaran 1. Fungsi kubik tidak otomatis satu-satu — yang ini tidak, sekalipun $x^3$ sendiri satu-satu.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -159,6 +188,35 @@ export const module5: Module = {
               explain: {
                 en: 'Swap first, then solve. Solving before swapping gives you $f$ again, rearranged — a step that feels like progress and is not.',
                 id: 'Tukar dulu, baru selesaikan. Menyelesaikan sebelum menukar hanya memberimu $f$ lagi dalam susunan berbeda — langkah yang terasa seperti kemajuan padahal bukan.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q1',
+              prompt: {
+                en: 'The point $(2, 7)$ lies on $y = f(x) = 2x + 3$, shown below. Which point lies on $y = f^{-1}(x)$?',
+                id: 'Titik $(2, 7)$ terletak pada $y = f(x) = 2x + 3$, ditunjukkan di bawah. Titik manakah yang terletak pada $y = f^{-1}(x)$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 6],
+                ySpan: [-2, 10],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '2*x+3', color: 'a' },
+                  { t: 'dot', x: 2, y: 7, color: 'result', label: '(2, 7)' },
+                ],
+              },
+              options: [
+                { en: '$(7, 2)$', id: '$(7, 2)$' },
+                { en: '$(2, 7)$', id: '$(2, 7)$' },
+                { en: '$(-7, -2)$', id: '$(-7, -2)$' },
+                { en: '$(3, 2)$', id: '$(3, 2)$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Swapping $x$ and $y$ is exactly what inverting does: if $(a, b)$ is on $f$, then $(b, a)$ is on $f^{-1}$. So $(2, 7)$ on $f$ means $(7, 2)$ on $f^{-1}$.',
+                id: 'Menukar $x$ dan $y$ persis apa yang dilakukan pembalikan: bila $(a, b)$ terletak pada $f$, maka $(b, a)$ terletak pada $f^{-1}$. Jadi $(2, 7)$ pada $f$ berarti $(7, 2)$ pada $f^{-1}$.',
               },
             },
             {
@@ -246,6 +304,36 @@ export const module5: Module = {
               explain: {
                 en: 'Sine never exceeds 1, so no angle has a sine of 2 and there is nothing for arcsine to return. Its domain is exactly the range of sine, $[-1, 1]$ — the general rule about inverses, in a particular case.',
                 id: 'Sinus tak pernah melebihi 1, jadi tak ada sudut yang sinusnya 2 dan tak ada yang bisa dikembalikan arcsinus. Domainnya persis range sinus, $[-1, 1]$ — aturan umum tentang invers, dalam satu kasus tertentu.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Looking at the graph above, which of the three inverse functions has domain all of $R$ — it never stops at a vertical edge?',
+                id: 'Melihat grafik di atas, fungsi invers manakah yang berdomain seluruh $R$ — tak pernah berhenti di tepi tegak?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 4],
+                ySpan: [-2, 3.4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'asin(x)', from: -1, to: 1, color: 'a', label: 'arcsin x' },
+                  { t: 'curve', f: 'acos(x)', from: -1, to: 1, color: 'b', label: 'arccos x' },
+                  { t: 'curve', f: 'atan(x)', color: 'c', label: 'arctan x' },
+                ],
+              },
+              options: [
+                { en: 'arctan x', id: 'arctan x' },
+                { en: 'arcsin x', id: 'arcsin x' },
+                { en: 'arccos x', id: 'arccos x' },
+                { en: 'All three do', id: 'Ketiganya' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The arcsine and arccosine curves both stop dead at $x = \\pm 1$, in the drawing exactly where their domain ends. Arctangent keeps going in both directions, flattening toward its asymptotes but never stopping — matching its domain of every real number.',
+                id: 'Kurva arcsinus dan arccosinus sama-sama berhenti tepat di $x = \\pm 1$, dalam gambar persis di tempat domainnya berakhir. Arctangen terus berlanjut ke dua arah, memipih menuju asimtotnya tetapi tak pernah berhenti — sesuai domainnya yang seluruh bilangan real.',
               },
             },
             {
@@ -426,6 +514,35 @@ export const module5: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The graph of $y = \\log_2 x$ is shown below, with a point marked. What is the marked value?',
+                id: 'Grafik $y = \\log_2 x$ ditunjukkan di bawah, dengan sebuah titik ditandai. Berapakah nilai yang ditandai?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 10],
+                ySpan: [-3, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'log2(x)', from: 0.05, color: 'a' },
+                  { t: 'dot', x: 8, y: 3, color: 'result' },
+                ],
+              },
+              options: [
+                { en: '3', id: '3' },
+                { en: '8', id: '8' },
+                { en: '2', id: '2' },
+                { en: '$1/8$', id: '$1/8$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The marked point is $(8, \\log_2 8)$, and $2^3 = 8$, so the value read off the curve is $3$.',
+                id: 'Titik yang ditandai adalah $(8, \\log_2 8)$, dan $2^3 = 8$, jadi nilai yang dibaca dari kurvanya adalah $3$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -496,6 +613,35 @@ export const module5: Module = {
               explain: {
                 en: 'A sum inside a logarithm cannot be split at all. Test it: $\\log(1 + 9) = \\log 10 = 1$, but $\\log 1 + \\log 9 \\approx 0{,}95$. One counterexample settles it.',
                 id: 'Penjumlahan di dalam logaritma sama sekali tak bisa dipecah. Ujilah: $\\log(1 + 9) = \\log 10 = 1$, sedangkan $\\log 1 + \\log 9 \\approx 0{,}95$. Satu contoh penyangkal sudah cukup.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The solid curve below is $y = \\ln(2x)$; the dashed one is $y = \\ln x$. What does the picture show?',
+                id: 'Kurva penuh di bawah adalah $y = \\ln(2x)$; yang putus-putus $y = \\ln x$. Apa yang ditunjukkan gambarnya?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [0.1, 6],
+                ySpan: [-3, 3],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'ln(x)', from: 0.05, color: 'muted', dashed: true, label: 'ln x' },
+                  { t: 'curve', f: 'ln(2*x)', from: 0.02, color: 'a', label: 'ln(2x)' },
+                ],
+              },
+              options: [
+                { en: '$\\ln(2x)$ is $\\ln x$ shifted straight up by $\\ln 2$', id: '$\\ln(2x)$ adalah $\\ln x$ yang digeser lurus ke atas sejauh $\\ln 2$' },
+                { en: '$\\ln(2x)$ is $\\ln x$ shifted right by 2', id: '$\\ln(2x)$ adalah $\\ln x$ yang digeser ke kanan sejauh 2' },
+                { en: '$\\ln(2x)$ is $\\ln x$ stretched vertically by 2', id: '$\\ln(2x)$ adalah $\\ln x$ yang diregangkan tegak 2 kali' },
+                { en: 'They are unrelated curves', id: 'Keduanya kurva yang tak berkaitan' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'By the product law, $\\ln(2x) = \\ln 2 + \\ln x$ — a constant added **outside** the function, which Module 2 taught is a vertical shift, here by $\\ln 2 \\approx 0{,}69$.',
+                id: 'Menurut hukum hasil kali, $\\ln(2x) = \\ln 2 + \\ln x$ — konstanta yang ditambahkan **di luar** fungsi, dan Modul 2 mengajarkan itu adalah pergeseran tegak, di sini sejauh $\\ln 2 \\approx 0{,}69$.',
               },
             },
             {
@@ -597,6 +743,35 @@ export const module5: Module = {
               explain: {
                 en: '$x = -2$ would need $\\log_2(-2)$, which does not exist. Combining the logarithms into one hid the domain condition, and it has to be put back by checking. Such an answer is called extraneous.',
                 id: '$x = -2$ akan memerlukan $\\log_2(-2)$, yang tak ada. Menggabungkan kedua logaritmanya menjadi satu menyembunyikan syarat domainnya, dan syarat itu harus dikembalikan lewat pemeriksaan. Jawaban semacam itu disebut penyelesaian palsu.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The graphs of $y = 3^x$ and $y = 20$ are shown below. Between which two whole numbers does the solution to $3^x = 20$ lie?',
+                id: 'Grafik $y = 3^x$ dan $y = 20$ ditunjukkan di bawah. Di antara dua bilangan bulat manakah penyelesaian $3^x = 20$ berada?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [0, 4],
+                ySpan: [0, 30],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '3^x', color: 'a' },
+                  { t: 'hline', y: 20, color: 'b', dashed: true },
+                ],
+              },
+              options: [
+                { en: 'Between 2 and 3', id: 'Antara 2 dan 3' },
+                { en: 'Between 1 and 2', id: 'Antara 1 dan 2' },
+                { en: 'Between 3 and 4', id: 'Antara 3 dan 4' },
+                { en: 'Between 0 and 1', id: 'Antara 0 dan 1' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$3^2 = 9$ and $3^3 = 27$, and 20 sits between them, so the curve crosses the dashed line somewhere between $x = 2$ and $x = 3$ — matching the worked answer $x \\approx 2{,}73$ above.',
+                id: '$3^2 = 9$ dan $3^3 = 27$, dan 20 berada di antara keduanya, jadi kurvanya memotong garis putus-putus di suatu tempat antara $x = 2$ dan $x = 3$ — sesuai jawaban yang dikerjakan di atas, $x \\approx 2{,}73$.',
               },
             },
             {

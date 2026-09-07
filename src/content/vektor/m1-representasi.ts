@@ -101,6 +101,33 @@ export const module1: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q3',
+              prompt: {
+                en: 'Are $\\vec{a}$ and $\\vec{b}$, drawn below, the same vector?',
+                id: 'Apakah $\\vec{a}$ dan $\\vec{b}$, yang digambar di bawah, vektor yang sama?',
+              },
+              figure: {
+                dim: 2,
+                range: 5,
+                items: [
+                  { t: 'vec', from: [-4, -3], to: [-1, -1], label: 'a', color: 'a' },
+                  { t: 'vec', from: [0, -4], to: [3, -2], label: 'b', color: 'b' },
+                ],
+              },
+              options: [
+                { en: 'Yes — both are 3 across and 2 up', id: 'Ya — keduanya 3 ke kanan dan 2 ke atas' },
+                { en: 'No — they start at different points', id: 'Tidak — pangkalnya berbeda' },
+                { en: 'No — they end at different points', id: 'Tidak — ujungnya berbeda' },
+                { en: 'Cannot be told without more information', id: 'Tak bisa ditentukan tanpa keterangan lain' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Both are 3 across and 2 up, whatever point they start from. Where a vector happens to be drawn does not matter — only its magnitude and direction do.',
+                id: 'Keduanya 3 ke kanan dan 2 ke atas, dari titik pangkal mana pun. Di mana sebuah vektor kebetulan digambar tidak menjadi soal — hanya besar dan arahnya yang menentukan.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -223,6 +250,34 @@ export const module1: Module = {
               explain: {
                 en: 'A position vector starts at the origin, so its components and the coordinates of its terminal point are the same three numbers.',
                 id: 'Vektor posisi berpangkal di titik asal, jadi komponennya dan koordinat titik ujungnya adalah tiga bilangan yang sama.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Reading the grid below, what are the components of $\\vec{a}$?',
+                id: 'Dengan membaca kisi di bawah, berapa komponen $\\vec{a}$?',
+              },
+              figure: {
+                dim: 2,
+                range: 5,
+                items: [
+                  { t: 'seg', from: [0, 0], to: [4, 0], color: 'muted', dashed: true },
+                  { t: 'seg', from: [4, 0], to: [4, -2], color: 'muted', dashed: true },
+                  { t: 'vec', to: [4, -2], color: 'a', label: 'a' },
+                ],
+              },
+              options: [
+                { en: '$(4, -2)$', id: '$(4, -2)$' },
+                { en: '$(-2, 4)$', id: '$(-2, 4)$' },
+                { en: '$(4, 2)$', id: '$(4, 2)$' },
+                { en: '$(2, -4)$', id: '$(2, -4)$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The dashed path goes 4 across and 2 down — components $(4, -2)$, the coordinates of the point the arrow reaches.',
+                id: 'Jalur putus-putusnya berjalan 4 ke kanan dan 2 ke bawah — komponennya $(4, -2)$, koordinat titik yang dicapai anak panahnya.',
               },
             },
             {
@@ -414,6 +469,34 @@ export const module1: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The triangle rule for $\\vec{a} + \\vec{b}$ is drawn below. Reading the grid, what are the components of $\\vec{a} + \\vec{b}$?',
+                id: 'Aturan segitiga untuk $\\vec{a} + \\vec{b}$ digambar di bawah. Dengan membaca kisinya, berapa komponen $\\vec{a} + \\vec{b}$?',
+              },
+              figure: {
+                dim: 2,
+                range: 5,
+                items: [
+                  { t: 'vec', to: [2, -1], color: 'a', label: 'a' },
+                  { t: 'vec', from: [2, -1], to: [3, 2], color: 'b', dashed: true, label: 'b' },
+                  { t: 'vec', to: [3, 2], color: 'result' },
+                ],
+              },
+              options: [
+                { en: '$(3, 2)$', id: '$(3, 2)$' },
+                { en: '$(2, -1)$', id: '$(2, -1)$' },
+                { en: '$(1, 3)$', id: '$(1, 3)$' },
+                { en: '$(5, 1)$', id: '$(5, 1)$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The solid unlabeled arrow runs from the origin to $(3, 2)$ — the tip of the dashed copy of $\\vec{b}$, which starts where $\\vec{a}$ ends. That is $(2,-1) + (1,3) = (3,2)$.',
+                id: 'Anak panah penuh yang tak berlabel berjalan dari titik asal ke $(3, 2)$ — ujung salinan putus-putus $\\vec{b}$, yang berangkat dari tempat $\\vec{a}$ berakhir. Itulah $(2,-1) + (1,3) = (3,2)$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               inline: true,
@@ -521,6 +604,35 @@ export const module1: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'With $\\vec{a}$ shown below, which of the labeled arrows is $-2\\vec{a}$?',
+                id: 'Dengan $\\vec{a}$ yang ditunjukkan di bawah, anak panah berlabel manakah yang merupakan $-2\\vec{a}$?',
+              },
+              figure: {
+                dim: 2,
+                range: 5,
+                items: [
+                  { t: 'vec', to: [1, 2], color: 'a', label: 'a' },
+                  { t: 'vec', to: [2, 4], color: 'b', label: 'A' },
+                  { t: 'vec', to: [-1, -2], color: 'c', label: 'B' },
+                  { t: 'vec', to: [-2, -4], color: 'result', label: 'C' },
+                ],
+              },
+              options: [
+                { en: 'C', id: 'C' },
+                { en: 'A', id: 'A' },
+                { en: 'B', id: 'B' },
+                { en: 'None of them', id: 'Bukan satu pun' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$-2\\vec{a}$ reverses direction and doubles the length: $(1,2)$ becomes $(-2,-4)$, arrow C. Arrow A is $2\\vec{a}$ (same direction, doubled); arrow B is $-\\vec{a}$ (reversed, same length).',
+                id: '$-2\\vec{a}$ membalik arah dan menggandakan panjangnya: $(1,2)$ menjadi $(-2,-4)$, anak panah C. Anak panah A adalah $2\\vec{a}$ (arah sama, digandakan); anak panah B adalah $-\\vec{a}$ (dibalik, panjang sama).',
+              },
+            },
+            {
               kind: 'fill',
               id: 'f1',
               math: true,
@@ -622,6 +734,38 @@ export const module1: Module = {
               explain: {
                 en: 'There is no $\\hat{i}$ term, so the first component is 0. The $\\hat{j}$ coefficient goes in the second slot and the $\\hat{k}$ coefficient in the third.',
                 id: 'Tidak ada suku $\\hat{i}$, jadi komponen pertamanya 0. Koefisien $\\hat{j}$ masuk ke slot kedua dan koefisien $\\hat{k}$ ke slot ketiga.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The long arrow below is built by walking the dashed path: across, then along, then up. In component form, what vector is it?',
+                id: 'Anak panah panjang di bawah disusun dengan menelusuri jalur putus-putus: mendatar, lalu memanjang, lalu ke atas. Dalam bentuk komponen, vektor apakah itu?',
+              },
+              figure: {
+                dim: 3,
+                range: 3,
+                view: [58, 22],
+                items: [
+                  { t: 'vec', to: [1, 0, 0], label: 'i', color: 'a' },
+                  { t: 'vec', to: [0, 1, 0], label: 'j', color: 'b' },
+                  { t: 'vec', to: [0, 0, 1], label: 'k', color: 'c' },
+                  { t: 'vec', to: [1, 2, 1.5], color: 'result' },
+                  { t: 'seg', from: [0, 0, 0], to: [1, 2, 0], dashed: true },
+                  { t: 'seg', from: [1, 2, 0], to: [1, 2, 1.5], dashed: true },
+                ],
+              },
+              options: [
+                { en: '$(1, 2, 1{,}5)$', id: '$(1, 2, 1{,}5)$' },
+                { en: '$(2, 1, 1{,}5)$', id: '$(2, 1, 1{,}5)$' },
+                { en: '$(1{,}5, 2, 1)$', id: '$(1{,}5, 2, 1)$' },
+                { en: '$(1, 1{,}5, 2)$', id: '$(1, 1{,}5, 2)$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The dashed path goes 1 across ($\\hat{i}$), 2 along ($\\hat{j}$), then $1{,}5$ up ($\\hat{k}$) — components $(1, 2, 1{,}5)$, that is $\\hat{i} + 2\\hat{j} + 1{,}5\\hat{k}$.',
+                id: 'Jalur putus-putusnya berjalan 1 mendatar ($\\hat{i}$), 2 memanjang ($\\hat{j}$), lalu $1{,}5$ ke atas ($\\hat{k}$) — komponennya $(1, 2, 1{,}5)$, yaitu $\\hat{i} + 2\\hat{j} + 1{,}5\\hat{k}$.',
               },
             },
             {

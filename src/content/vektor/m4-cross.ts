@@ -67,6 +67,34 @@ export const module4: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'For the axis-aligned vectors $\\vec{a} = (3, 0, 0)$ and $\\vec{b} = (0, 2, 0)$ shown below, what is $\\vec{a} \\times \\vec{b}$?',
+                id: 'Untuk vektor sejajar sumbu $\\vec{a} = (3, 0, 0)$ dan $\\vec{b} = (0, 2, 0)$ yang ditunjukkan di bawah, berapakah $\\vec{a} \\times \\vec{b}$?',
+              },
+              figure: {
+                dim: 3,
+                range: 4,
+                view: [40, 22],
+                items: [
+                  { t: 'vec', to: [3, 0, 0], label: 'a', color: 'a' },
+                  { t: 'vec', to: [0, 2, 0], label: 'b', color: 'b' },
+                ],
+              },
+              options: [
+                { en: '$(0, 0, 6)$', id: '$(0, 0, 6)$' },
+                { en: '$(6, 0, 0)$', id: '$(6, 0, 0)$' },
+                { en: '$(0, 6, 0)$', id: '$(0, 6, 0)$' },
+                { en: '$(0, 0, -6)$', id: '$(0, 0, -6)$' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$\\vec{a} \\times \\vec{b} = (0 \\cdot 0 - 0 \\cdot 2,\\ 0 \\cdot 0 - 3 \\cdot 0,\\ 3 \\cdot 2 - 0 \\cdot 0) = (0, 0, 6)$ — perpendicular to both, pointing straight up out of the plane they lie in.',
+                id: '$\\vec{a} \\times \\vec{b} = (0 \\cdot 0 - 0 \\cdot 2,\\ 0 \\cdot 0 - 3 \\cdot 0,\\ 3 \\cdot 2 - 0 \\cdot 0) = (0, 0, 6)$ — tegak lurus terhadap keduanya, menunjuk lurus ke atas keluar dari bidang tempat keduanya berada.',
+              },
+            },
+            {
               kind: 'fill',
               id: 'f1',
               math: true,
@@ -172,6 +200,36 @@ export const module4: Module = {
               explain: {
                 en: 'The magnitudes are non-zero, so $\\sin\\theta = 0$, which means $\\theta = 0°$ or $180°$ — the same line either way. A zero **dot** product is the one that means perpendicular.',
                 id: 'Besar kedua vektornya tak nol, jadi $\\sin\\theta = 0$, yang berarti $\\theta = 0°$ atau $180°$ — sama-sama pada satu garis. Perkalian **titik** yang bernilai nol itulah yang berarti tegak lurus.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Using the right-hand rule, which labeled arrow below is the direction of $\\vec{a} \\times \\vec{b}$?',
+                id: 'Dengan kaidah tangan kanan, anak panah berlabel manakah di bawah yang merupakan arah $\\vec{a} \\times \\vec{b}$?',
+              },
+              figure: {
+                dim: 3,
+                range: 4,
+                view: [40, 22],
+                items: [
+                  { t: 'vec', to: [3, 0, 0], label: 'a', color: 'a' },
+                  { t: 'vec', to: [0, 3, 0], label: 'b', color: 'b' },
+                  { t: 'vec', to: [0, 0, 2], label: 'up', color: 'result' },
+                  { t: 'vec', to: [0, 0, -2], label: 'down', color: 'c' },
+                ],
+              },
+              options: [
+                { en: '"up"', id: '"up"' },
+                { en: '"down"', id: '"down"' },
+                { en: 'Neither — $\\vec{a} \\times \\vec{b}$ lies in the plane of $\\vec{a}$ and $\\vec{b}$', id: 'Bukan keduanya — $\\vec{a} \\times \\vec{b}$ terletak pada bidang $\\vec{a}$ dan $\\vec{b}$' },
+                { en: 'Both, equally', id: 'Keduanya, sama besar' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Curl the fingers of your right hand from $\\vec{a}$ (along $x$) toward $\\vec{b}$ (along $y$); your thumb points up the $+z$ axis — the arrow labeled "up".',
+                id: 'Lengkungkan jari tangan kananmu dari $\\vec{a}$ (sepanjang $x$) menuju $\\vec{b}$ (sepanjang $y$); ibu jarimu menunjuk ke sumbu $+z$ — anak panah berlabel "up".',
               },
             },
             {
@@ -352,6 +410,34 @@ export const module4: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'What is the area of the parallelogram shown below, with sides $\\vec{a} = (4, 0)$ and $\\vec{b} = (1, 3)$?',
+                id: 'Berapa luas jajargenjang di bawah, dengan sisi $\\vec{a} = (4, 0)$ dan $\\vec{b} = (1, 3)$?',
+              },
+              figure: {
+                dim: 2,
+                range: 6,
+                items: [
+                  { t: 'poly', pts: [[0, 0], [4, 0], [5, 3], [1, 3]], color: 'result' },
+                  { t: 'vec', to: [4, 0], color: 'a', label: 'a' },
+                  { t: 'vec', to: [1, 3], color: 'b', label: 'b' },
+                ],
+              },
+              options: [
+                { en: '12', id: '12' },
+                { en: '7', id: '7' },
+                { en: '5', id: '5' },
+                { en: '24', id: '24' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Treating both as vectors in the $xy$-plane, $|\\vec{a} \\times \\vec{b}| = |4(3) - 0(1)| = 12$ — base $4$ times height $3$, since $\\vec{b}$ rises exactly 3 above the line of $\\vec{a}$.',
+                id: 'Memperlakukan keduanya sebagai vektor pada bidang $xy$, $|\\vec{a} \\times \\vec{b}| = |4(3) - 0(1)| = 12$ — alas $4$ kali tinggi $3$, sebab $\\vec{b}$ naik tepat 3 di atas garis $\\vec{a}$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -489,6 +575,35 @@ export const module4: Module = {
               explain: {
                 en: 'A zero volume means the box has collapsed flat, which is exactly what it means for three vectors to be coplanar. Mutually perpendicular vectors would give the **largest** volume for their lengths, not zero.',
                 id: 'Volume nol berarti baloknya sudah gepeng, dan itu persis makna tiga vektor yang sebidang. Vektor yang saling tegak lurus justru memberi volume **terbesar** untuk panjang yang sama, bukan nol.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The three vectors $\\vec{a}$, $\\vec{b}$, $\\vec{c}$ below all lie flat in the same plane. What is the volume of the parallelepiped they span?',
+                id: 'Ketiga vektor $\\vec{a}$, $\\vec{b}$, $\\vec{c}$ di bawah semuanya terletak datar pada bidang yang sama. Berapa volume paralelepipedum yang mereka bentangkan?',
+              },
+              figure: {
+                dim: 3,
+                range: 4,
+                view: [40, 60],
+                items: [
+                  { t: 'vec', to: [3, 0, 0], label: 'a', color: 'a' },
+                  { t: 'vec', to: [0, 3, 0], label: 'b', color: 'b' },
+                  { t: 'vec', to: [2, 2, 0], label: 'c', color: 'c' },
+                ],
+              },
+              options: [
+                { en: 'Zero — they are coplanar', id: 'Nol — ketiganya sebidang' },
+                { en: 'Positive — three vectors always span a box', id: 'Positif — tiga vektor selalu membentangkan balok' },
+                { en: 'Cannot be told without computing', id: 'Tak bisa ditentukan tanpa menghitung' },
+                { en: 'Negative', id: 'Negatif' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'All three vectors have a zero $z$-component, so they all lie in the same plane and the "box" they span is flat: zero volume, and $\\vec{a} \\cdot (\\vec{b} \\times \\vec{c}) = 0$ — the coplanarity test from the concept above, seen directly in a picture.',
+                id: 'Ketiga vektornya sama-sama berkomponen $z$ nol, jadi ketiganya berada pada bidang yang sama dan "balok" yang dibentangkannya gepeng: volumenya nol, dan $\\vec{a} \\cdot (\\vec{b} \\times \\vec{c}) = 0$ — uji kesebidangan dari konsep di atas, terlihat langsung pada gambar.',
               },
             },
             {

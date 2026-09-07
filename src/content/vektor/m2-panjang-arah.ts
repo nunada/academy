@@ -110,6 +110,34 @@ export const module2: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The legs of the right triangle below are marked 6 and 8. What is $|\\vec{a}|$?',
+                id: 'Sisi siku-siku segitiga di bawah ditandai 6 dan 8. Berapakah $|\\vec{a}|$?',
+              },
+              figure: {
+                dim: 2,
+                range: 10,
+                items: [
+                  { t: 'seg', from: [0, 0], to: [6, 0], color: 'muted', dashed: true, label: '6' },
+                  { t: 'seg', from: [6, 0], to: [6, 8], color: 'muted', dashed: true, label: '8' },
+                  { t: 'vec', to: [6, 8], color: 'a', label: 'a' },
+                ],
+              },
+              options: [
+                { en: '10', id: '10' },
+                { en: '14', id: '14' },
+                { en: '48', id: '48' },
+                { en: '2', id: '2' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$|\\vec{a}| = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10$ — the legs $6$, $8$ and hypotenuse $10$ are a scaled-up copy of the $3$-$4$-$5$ triple.',
+                id: '$|\\vec{a}| = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10$ — sisi $6$, $8$, dan sisi miring $10$ adalah tripel $3$-$4$-$5$ yang diperbesar.',
+              },
+            },
+            {
               kind: 'fill',
               id: 'f1',
               math: true,
@@ -194,6 +222,36 @@ export const module2: Module = {
               explain: {
                 en: '$|-3\\vec{a}| = |-3|\\,|\\vec{a}| = 3 \\cdot 4 = 12$. The minus sign turns the vector around; it does not shorten it, and a length is never negative.',
                 id: '$|-3\\vec{a}| = |-3|\\,|\\vec{a}| = 3 \\cdot 4 = 12$. Tanda minusnya membalik arah vektornya; ia tidak memendekkannya, dan panjang tak pernah negatif.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The horizontal and vertical legs between $A$ and $B$ are marked below. What is the distance $d(A, B)$?',
+                id: 'Sisi mendatar dan tegak antara $A$ dan $B$ ditandai di bawah. Berapa jarak $d(A, B)$?',
+              },
+              figure: {
+                dim: 2,
+                range: 6,
+                items: [
+                  { t: 'point', at: [1, 1], label: 'A' },
+                  { t: 'point', at: [5, 4], label: 'B' },
+                  { t: 'seg', from: [1, 1], to: [5, 1], color: 'muted', dashed: true, label: '4' },
+                  { t: 'seg', from: [5, 1], to: [5, 4], color: 'muted', dashed: true, label: '3' },
+                  { t: 'seg', from: [1, 1], to: [5, 4], color: 'a' },
+                ],
+              },
+              options: [
+                { en: '5', id: '5' },
+                { en: '7', id: '7' },
+                { en: '1', id: '1' },
+                { en: '12', id: '12' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The legs $4$ and $3$ give $d(A,B) = \\sqrt{4^2 + 3^2} = \\sqrt{25} = 5$ — the familiar $3$-$4$-$5$ triple, this time drawn as the gap between two points rather than as a vector from the origin.',
+                id: 'Sisi $4$ dan $3$ memberi $d(A,B) = \\sqrt{4^2 + 3^2} = \\sqrt{25} = 5$ — tripel $3$-$4$-$5$ yang sudah dikenal, kali ini digambar sebagai jarak dua titik, bukan sebagai vektor dari titik asal.',
               },
             },
             {
@@ -350,6 +408,34 @@ export const module2: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: '$\\vec{a}$ is shown below, along with two candidates $X$ and $Y$ drawn beside it. Which one is $\\hat{a}$?',
+                id: '$\\vec{a}$ ditunjukkan di bawah, bersama dua calon $X$ dan $Y$ yang digambar di sebelahnya. Manakah yang merupakan $\\hat{a}$?',
+              },
+              figure: {
+                dim: 2,
+                range: 6,
+                items: [
+                  { t: 'vec', to: [0, -5], color: 'a', label: 'a' },
+                  { t: 'vec', from: [2, 0], to: [2, -1], color: 'b', label: 'X' },
+                  { t: 'vec', from: [4, 0], to: [4, 1], color: 'c', label: 'Y' },
+                ],
+              },
+              options: [
+                { en: 'X', id: 'X' },
+                { en: 'Y', id: 'Y' },
+                { en: 'Both', id: 'Keduanya' },
+                { en: 'Neither', id: 'Bukan keduanya' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$\\hat{a}$ must have length 1 **and** point the same way as $\\vec{a}$, which points straight down. $X$ does both; $Y$ has length 1 but points the wrong way.',
+                id: '$\\hat{a}$ harus berpanjang 1 **dan** searah dengan $\\vec{a}$, yang mengarah lurus ke bawah. $X$ memenuhi keduanya; $Y$ panjangnya 1 tetapi arahnya salah.',
+              },
+            },
+            {
               kind: 'fill',
               id: 'f1',
               math: true,
@@ -457,6 +543,34 @@ export const module2: Module = {
               explain: {
                 en: '$0.36 + 0.64 = 1$, and it always will: the direction cosines are the components of a unit vector, so their squares add to 1 whatever the original length was.',
                 id: '$0{,}36 + 0{,}64 = 1$, dan akan selalu begitu: cosinus arah adalah komponen sebuah vektor satuan, jadi jumlah kuadratnya 1 berapa pun panjang vektor aslinya.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'For $\\vec{a} = (4, 3)$ shown below, with $\\alpha$ the angle to the $x$-axis, what is $\\cos\\alpha$?',
+                id: 'Untuk $\\vec{a} = (4, 3)$ yang ditunjukkan di bawah, dengan $\\alpha$ sudut terhadap sumbu $x$, berapakah $\\cos\\alpha$?',
+              },
+              figure: {
+                dim: 2,
+                range: 6,
+                items: [
+                  { t: 'vec', to: [4, 3], color: 'a', label: 'a' },
+                  { t: 'seg', from: [0, 0], to: [4, 0], color: 'muted', dashed: true },
+                  { t: 'angle', from: [4, 0], to: [4, 3], label: 'α' },
+                ],
+              },
+              options: [
+                { en: '$4/5$', id: '$4/5$' },
+                { en: '$3/5$', id: '$3/5$' },
+                { en: '$5/4$', id: '$5/4$' },
+                { en: '$3/4$', id: '$3/4$' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$|\\vec{a}| = \\sqrt{16+9} = 5$, and $\\cos\\alpha = a_1/|\\vec{a}| = 4/5$ — the first component of $\\vec{a}$ over its length.',
+                id: '$|\\vec{a}| = \\sqrt{16+9} = 5$, dan $\\cos\\alpha = a_1/|\\vec{a}| = 4/5$ — komponen pertama $\\vec{a}$ dibagi panjangnya.',
               },
             },
             {

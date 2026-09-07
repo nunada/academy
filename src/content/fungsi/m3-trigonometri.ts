@@ -70,6 +70,36 @@ export const module3: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The marked angle $\\theta$ below sweeps exactly a quarter of the full circle. What is $\\theta$ in radians?',
+                id: 'Sudut $\\theta$ yang ditandai di bawah menyapu tepat seperempat lingkaran penuh. Berapakah $\\theta$ dalam radian?',
+              },
+              figure: {
+                dim: 2,
+                range: 3,
+                items: [
+                  { t: 'curve', f: 'sqrt(4-x^2)', from: -2, to: 2, color: 'muted' },
+                  { t: 'curve', f: '-sqrt(4-x^2)', from: -2, to: 2, color: 'muted' },
+                  { t: 'vec', to: [2, 0], color: 'a' },
+                  { t: 'vec', to: [0, 2], color: 'a' },
+                  { t: 'angle', from: [2, 0], to: [0, 2], label: 'θ' },
+                ],
+              },
+              options: [
+                { en: '$\\pi/2$', id: '$\\pi/2$' },
+                { en: '$\\pi$', id: '$\\pi$' },
+                { en: '$2\\pi$', id: '$2\\pi$' },
+                { en: '$\\pi/4$', id: '$\\pi/4$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'A full turn is $2\\pi$ radians, and the marked angle is a quarter of a full turn: $\\tfrac{1}{4}(2\\pi) = \\tfrac{\\pi}{2}$.',
+                id: 'Satu putaran penuh adalah $2\\pi$ radian, dan sudut yang ditandai adalah seperempat putaran penuh: $\\tfrac{1}{4}(2\\pi) = \\tfrac{\\pi}{2}$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -167,6 +197,34 @@ export const module3: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The point $P$ marked below lies on the unit circle. What are the signs of $\\sin\\theta$ and $\\cos\\theta$ there?',
+                id: 'Titik $P$ yang ditandai di bawah berada pada lingkaran satuan. Apa tanda $\\sin\\theta$ dan $\\cos\\theta$ di situ?',
+              },
+              figure: {
+                dim: 2,
+                range: 1.4,
+                items: [
+                  { t: 'curve', f: 'sqrt(1-x^2)', from: -1, to: 1, color: 'muted' },
+                  { t: 'curve', f: '-sqrt(1-x^2)', from: -1, to: 1, color: 'muted' },
+                  { t: 'dot', x: -0.5, y: 0.866, color: 'result', label: 'P' },
+                ],
+              },
+              options: [
+                { en: '$\\sin\\theta > 0$, $\\cos\\theta < 0$', id: '$\\sin\\theta > 0$, $\\cos\\theta < 0$' },
+                { en: '$\\sin\\theta < 0$, $\\cos\\theta > 0$', id: '$\\sin\\theta < 0$, $\\cos\\theta > 0$' },
+                { en: 'Both positive', id: 'Keduanya positif' },
+                { en: 'Both negative', id: 'Keduanya negatif' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$P$ sits to the left of the $y$-axis and above the $x$-axis: negative first coordinate, positive second. Since $\\cos\\theta$ is the first coordinate and $\\sin\\theta$ the second, that is $\\cos\\theta < 0$ and $\\sin\\theta > 0$.',
+                id: '$P$ berada di sebelah kiri sumbu $y$ dan di atas sumbu $x$: koordinat pertamanya negatif, koordinat keduanya positif. Karena $\\cos\\theta$ adalah koordinat pertama dan $\\sin\\theta$ koordinat kedua, itu berarti $\\cos\\theta < 0$ dan $\\sin\\theta > 0$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -220,6 +278,34 @@ export const module3: Module = {
               body: {
                 en: 'Two formulas carry the rest:\n$$\\cos(A + B) = \\cos A\\cos B - \\sin A\\sin B$$\n$$\\sin(A + B) = \\sin A\\cos B + \\cos A\\sin B$$\nPut $B = A$ in each and the **double-angle** identities appear:\n$$\\sin 2\\theta = 2\\sin\\theta\\cos\\theta, \\qquad \\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta$$\nUsing $\\cos^2 = 1 - \\sin^2$, the second one has two more faces:\n$$\\cos 2\\theta = 1 - 2\\sin^2\\theta = 2\\cos^2\\theta - 1$$\nRearranged, those last two are the **half-angle** forms $\\sin^2\\theta = \\frac{1 - \\cos 2\\theta}{2}$ and $\\cos^2\\theta = \\frac{1 + \\cos 2\\theta}{2}$, and that is how integrals of squared trigonometric functions get done later.\n\nOne warning that never stops being needed: $\\sin(A + B)$ is **not** $\\sin A + \\sin B$.',
                 id: 'Dua rumus menopang selebihnya:\n$$\\cos(A + B) = \\cos A\\cos B - \\sin A\\sin B$$\n$$\\sin(A + B) = \\sin A\\cos B + \\cos A\\sin B$$\nAmbil $B = A$ pada masing-masing dan identitas **sudut ganda** muncul:\n$$\\sin 2\\theta = 2\\sin\\theta\\cos\\theta, \\qquad \\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta$$\nDengan memakai $\\cos^2 = 1 - \\sin^2$, yang kedua punya dua wajah lagi:\n$$\\cos 2\\theta = 1 - 2\\sin^2\\theta = 2\\cos^2\\theta - 1$$\nDisusun ulang, kedua bentuk terakhir menjadi rumus **setengah sudut** $\\sin^2\\theta = \\frac{1 - \\cos 2\\theta}{2}$ dan $\\cos^2\\theta = \\frac{1 + \\cos 2\\theta}{2}$, dan lewat itulah integral fungsi trigonometri berkuadrat nanti dikerjakan.\n\nSatu peringatan yang tak pernah berhenti diperlukan: $\\sin(A + B)$ **bukan** $\\sin A + \\sin B$.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q1',
+              prompt: {
+                en: 'The triangle below has hypotenuse 1, with legs $\\cos\\theta$ and $\\sin\\theta$. Which equation does Pythagoras give?',
+                id: 'Segitiga di bawah mempunyai hipotenusa 1, dengan sisi siku-siku $\\cos\\theta$ dan $\\sin\\theta$. Persamaan apa yang diberikan Pythagoras?',
+              },
+              figure: {
+                dim: 2,
+                range: 1.2,
+                items: [
+                  { t: 'seg', from: [0, 0], to: [0.6, 0], label: 'cos θ' },
+                  { t: 'seg', from: [0.6, 0], to: [0.6, 0.8], label: 'sin θ' },
+                  { t: 'vec', to: [0.6, 0.8], color: 'a', label: '1' },
+                ],
+              },
+              options: [
+                { en: '$\\cos^2\\theta + \\sin^2\\theta = 1$', id: '$\\cos^2\\theta + \\sin^2\\theta = 1$' },
+                { en: '$\\cos\\theta + \\sin\\theta = 1$', id: '$\\cos\\theta + \\sin\\theta = 1$' },
+                { en: '$\\cos^2\\theta - \\sin^2\\theta = 1$', id: '$\\cos^2\\theta - \\sin^2\\theta = 1$' },
+                { en: '$2\\cos\\theta\\sin\\theta = 1$', id: '$2\\cos\\theta\\sin\\theta = 1$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Pythagoras says the sum of the squared legs equals the squared hypotenuse: $\\cos^2\\theta + \\sin^2\\theta = 1^2 = 1$.',
+                id: 'Pythagoras menyatakan jumlah kuadrat sisi siku-sikunya sama dengan kuadrat hipotenusanya: $\\cos^2\\theta + \\sin^2\\theta = 1^2 = 1$.',
               },
             },
             {
@@ -417,6 +503,36 @@ export const module3: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Two consecutive peaks of $y = \\sin x$ are marked below. What is the period?',
+                id: 'Dua puncak berurutan dari $y = \\sin x$ ditandai di bawah. Berapa periodenya?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-1, 9],
+                ySpan: [-1.8, 1.8],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'sin(x)', color: 'a', label: 'sin x' },
+                  { t: 'dot', x: 'pi/2', y: 1, label: 'puncak 1' },
+                  { t: 'dot', x: '5*pi/2', y: 1, label: 'puncak 2' },
+                ],
+              },
+              options: [
+                { en: '$2\\pi$', id: '$2\\pi$' },
+                { en: '$\\pi$', id: '$\\pi$' },
+                { en: '$4\\pi$', id: '$4\\pi$' },
+                { en: '$\\pi/2$', id: '$\\pi/2$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The distance between two consecutive matching peaks is exactly one period: $\\tfrac{5\\pi}{2} - \\tfrac{\\pi}{2} = 2\\pi$.',
+                id: 'Jarak antara dua puncak berurutan yang sepadan persis satu periode: $\\tfrac{5\\pi}{2} - \\tfrac{\\pi}{2} = 2\\pi$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -515,6 +631,35 @@ export const module3: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Reading the graph of $y = 2\\sin x - 1$ below (midline dashed), what is its range?',
+                id: 'Dengan membaca grafik $y = 2\\sin x - 1$ di bawah (garis tengah putus-putus), berapa range-nya?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-6.5, 6.5],
+                ySpan: [-4, 3],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '2*sin(x)-1', color: 'a' },
+                  { t: 'hline', y: -1, dashed: true, label: 'garis tengah' },
+                ],
+              },
+              options: [
+                { en: '$[-3, 1]$', id: '$[-3, 1]$' },
+                { en: '$[-1, 1]$', id: '$[-1, 1]$' },
+                { en: '$[-2, 2]$', id: '$[-2, 2]$' },
+                { en: '$[1, 3]$', id: '$[1, 3]$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The midline sits at $-1$ and the amplitude is $2$, so the wave reaches from $-1 - 2 = -3$ up to $-1 + 2 = 1$.',
+                id: 'Garis tengahnya berada di $-1$ dan amplitudonya $2$, jadi gelombangnya mencapai dari $-1 - 2 = -3$ sampai $-1 + 2 = 1$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -602,6 +747,37 @@ export const module3: Module = {
               explain: {
                 en: '$\\sec x = 1/\\cos x$, so it fails exactly where cosine is zero — the same places tangent fails, since they share the denominator.',
                 id: '$\\sec x = 1/\\cos x$, jadi ia gagal persis di tempat cosinusnya nol — tempat yang sama dengan kegagalan tangen, sebab keduanya berbagi penyebut.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The graph of $y = \\csc x = 1/\\sin x$ is shown below. Where are its vertical asymptotes?',
+                id: 'Grafik $y = \\csc x = 1/\\sin x$ ditunjukkan di bawah. Di mana letak asimtot tegaknya?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-6.5, 6.5],
+                ySpan: [-5, 5],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '1/sin(x)', color: 'a', label: 'csc x' },
+                  { t: 'vline', x: 0, dashed: true },
+                  { t: 'vline', x: 'pi', dashed: true },
+                  { t: 'vline', x: '-pi', dashed: true },
+                ],
+              },
+              options: [
+                { en: 'At every multiple of $\\pi$', id: 'Di setiap kelipatan $\\pi$' },
+                { en: 'At $\\tfrac{\\pi}{2} + k\\pi$', id: 'Di $\\tfrac{\\pi}{2} + k\\pi$' },
+                { en: 'Nowhere', id: 'Tidak di mana pun' },
+                { en: 'At $x = \\pm 1$', id: 'Di $x = \\pm 1$' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$\\csc x = 1/\\sin x$ fails wherever $\\sin x = 0$ — at every multiple of $\\pi$, exactly the dashed lines in the drawing.',
+                id: '$\\csc x = 1/\\sin x$ gagal di mana pun $\\sin x = 0$ — di setiap kelipatan $\\pi$, persis garis putus-putus pada gambar.',
               },
             },
             {

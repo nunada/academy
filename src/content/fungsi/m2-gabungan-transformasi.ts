@@ -83,6 +83,35 @@ export const module2: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The graph of $g(x) = \\dfrac{1}{x - 2}$ is shown below. If $f(x) = x$ for every real $x$, which value must be removed from the domain of $f + g$?',
+                id: 'Grafik $g(x) = \\dfrac{1}{x - 2}$ ditunjukkan di bawah. Bila $f(x) = x$ untuk setiap $x$ real, nilai apa yang harus dibuang dari domain $f + g$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 6],
+                ySpan: [-6, 6],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '1/(x-2)', color: 'a', label: '1/(x−2)' },
+                  { t: 'vline', x: 2, color: 'muted', dashed: true },
+                ],
+              },
+              options: [
+                { en: '$x = 0$', id: '$x = 0$' },
+                { en: '$x = 2$', id: '$x = 2$' },
+                { en: '$x = -2$', id: '$x = -2$' },
+                { en: 'Nothing needs to be removed', id: 'Tak ada yang perlu dibuang' },
+              ],
+              answer: 1,
+              explain: {
+                en: '$g$ has no value at $x = 2$ — the graph runs off in both directions there instead. $f$ is defined everywhere, so the sum inherits exactly $g$\'s one missing point.',
+                id: '$g$ tak punya nilai di $x = 2$ — grafiknya justru lari ke dua arah di situ. $f$ terdefinisi di mana-mana, jadi jumlahnya mewarisi persis satu titik yang hilang dari $g$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -171,6 +200,35 @@ export const module2: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'With $f(x) = x^2$ and $g(x) = x - 1$, one of the two curves below is $f \\circ g$ and the other is $g \\circ f$. Which one is $f \\circ g$?',
+                id: 'Dengan $f(x) = x^2$ dan $g(x) = x - 1$, salah satu kurva di bawah adalah $f \\circ g$ dan yang lain $g \\circ f$. Manakah yang $f \\circ g$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 3],
+                ySpan: [-2, 6],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '(x-1)^2', color: 'a', label: 'kurva A' },
+                  { t: 'curve', f: 'x^2-1', color: 'b', label: 'kurva B' },
+                ],
+              },
+              options: [
+                { en: 'Curve A', id: 'Kurva A' },
+                { en: 'Curve B', id: 'Kurva B' },
+                { en: 'They are the same curve', id: 'Keduanya kurva yang sama' },
+                { en: 'Neither', id: 'Bukan keduanya' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$f(g(x)) = f(x-1) = (x-1)^2$ — curve A, with its lowest point at $x = 1$. $g(f(x)) = g(x^2) = x^2 - 1$ is curve B, dipping to $-1$ at $x = 0$.',
+                id: '$f(g(x)) = f(x-1) = (x-1)^2$ — kurva A, dengan titik terendah di $x = 1$. $g(f(x)) = g(x^2) = x^2 - 1$ adalah kurva B, turun sampai $-1$ di $x = 0$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -248,6 +306,35 @@ export const module2: Module = {
               explain: {
                 en: 'On a calculator you would key in $x^2 + 4$ and then press the reciprocal. The last option is technically correct and completely useless — it has not taken anything apart.',
                 id: 'Di kalkulator kamu akan mengetik $x^2 + 4$ lalu menekan tombol kebalikan. Pilihan terakhir secara teknis benar dan sama sekali tak berguna — ia belum menguraikan apa pun.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The graph of $h(x) = \\sqrt{5 - x}$ is shown below. What is its domain?',
+                id: 'Grafik $h(x) = \\sqrt{5 - x}$ ditunjukkan di bawah. Berapa domainnya?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 8],
+                ySpan: [-1, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'sqrt(5-x)', to: 5, color: 'a', label: '√(5−x)' },
+                  { t: 'dot', x: 5, y: 0, color: 'a' },
+                ],
+              },
+              options: [
+                { en: '$(-\\infty, 5]$', id: '$(-\\infty, 5]$' },
+                { en: '$[5, \\infty)$', id: '$[5, \\infty)$' },
+                { en: '$[0, 5]$', id: '$[0, 5]$' },
+                { en: 'Every real number', id: 'Semua bilangan real' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The curve ends at the marked dot and runs leftward forever — matching $5 - x \\geq 0 \\Leftrightarrow x \\leq 5$. This is $h = f \\circ g$ for $f(x) = \\sqrt{x}$, $g(x) = 5 - x$, the same pair the mini project uses.',
+                id: 'Kurvanya berakhir di titik yang ditandai dan berlanjut ke kiri selamanya — sesuai dengan $5 - x \\geq 0 \\Leftrightarrow x \\leq 5$. Ini adalah $h = f \\circ g$ untuk $f(x) = \\sqrt{x}$, $g(x) = 5 - x$, pasangan yang sama dengan yang dipakai mini proyek.',
               },
             },
             {
@@ -421,6 +508,35 @@ export const module2: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Reading the graph below — no formula given — what is the vertex of this parabola?',
+                id: 'Dengan membaca grafik di bawah — tanpa rumus yang diberikan — berapa puncak parabola ini?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 6],
+                ySpan: [-1, 8],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '(x-2)^2+3', color: 'a' },
+                  { t: 'dot', x: 2, y: 3, label: 'puncak' },
+                ],
+              },
+              options: [
+                { en: '$(2, 3)$', id: '$(2, 3)$' },
+                { en: '$(-2, 3)$', id: '$(-2, 3)$' },
+                { en: '$(2, -3)$', id: '$(2, -3)$' },
+                { en: '$(3, 2)$', id: '$(3, 2)$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The marked point is where the curve turns, and that is the whole definition of a vertex: $(2, 3)$, read straight off the drawing.',
+                id: 'Titik yang ditandai adalah tempat kurvanya berbalik, dan itulah seluruh definisi puncak: $(2, 3)$, dibaca langsung dari gambarnya.',
+              },
+            },
+            {
               kind: 'fill',
               id: 'f1',
               math: true,
@@ -512,6 +628,35 @@ export const module2: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'The solid curve below is a transformation of the dashed $y = x^2$. Which one is it?',
+                id: 'Kurva penuh di bawah adalah transformasi dari $y = x^2$ yang putus-putus. Transformasi manakah itu?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 3],
+                ySpan: [-6, 6],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x^2', color: 'muted', dashed: true, label: 'x²' },
+                  { t: 'curve', f: '-2*x^2', color: 'a' },
+                ],
+              },
+              options: [
+                { en: '$y = -2x^2$', id: '$y = -2x^2$' },
+                { en: '$y = 2x^2$', id: '$y = 2x^2$' },
+                { en: '$y = -x^2/2$', id: '$y = -x^2/2$' },
+                { en: '$y = (-2x)^2$', id: '$y = (-2x)^2$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The curve opens downward, so it was reflected across the $x$-axis — a negative $a$. It is also narrower than $x^2$, not wider, so $|a| > 1$: together, $a = -2$.',
+                id: 'Kurvanya terbuka ke bawah, jadi ia dicerminkan terhadap sumbu $x$ — $a$ negatif. Ia juga lebih sempit daripada $x^2$, bukan lebih lebar, jadi $|a| > 1$: jadi $a = -2$.',
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: {
@@ -598,6 +743,35 @@ export const module2: Module = {
               explain: {
                 en: 'Inside before outside, and among the outside changes, multiplication before addition — the same precedence arithmetic always had. The starting point $(0,0)$ ends at $(-1, 3)$.',
                 id: 'Yang di dalam sebelum yang di luar, dan di antara perubahan luar, perkalian sebelum penjumlahan — urutan yang memang selalu berlaku dalam aritmetika. Titik awalnya $(0,0)$ berakhir di $(-1, 3)$.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Which formula matches the graph below, with its corner marked?',
+                id: 'Rumus manakah yang cocok dengan grafik di bawah, dengan sudutnya yang ditandai?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-5, 3],
+                ySpan: [-3, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '-abs(x+1)+2', color: 'a' },
+                  { t: 'dot', x: -1, y: 2, label: 'sudut' },
+                ],
+              },
+              options: [
+                { en: '$y = -|x+1|+2$', id: '$y = -|x+1|+2$' },
+                { en: '$y = |x+1|+2$', id: '$y = |x+1|+2$' },
+                { en: '$y = -|x-1|+2$', id: '$y = -|x-1|+2$' },
+                { en: '$y = -|x+1|-2$', id: '$y = -|x+1|-2$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The corner sits at $(-1, 2)$, so $h = -1$ and $k = 2$; the V opens downward, so $a$ is negative. Only $y = -|x+1|+2$ has all three.',
+                id: 'Sudutnya berada di $(-1, 2)$, jadi $h = -1$ dan $k = 2$; huruf V-nya terbuka ke bawah, jadi $a$ negatif. Hanya $y = -|x+1|+2$ yang memenuhi ketiganya.',
               },
             },
             {
