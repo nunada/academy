@@ -76,6 +76,7 @@ export const module3: Module = {
               figure: {
                 dim: 2,
                 range: 5,
+                ticks: true,
                 items: [
                   { t: 'vec', to: [3, 2], color: 'a', label: 'a' },
                   { t: 'vec', to: [-1, 4], color: 'b', label: 'b' },
@@ -402,6 +403,7 @@ export const module3: Module = {
               figure: {
                 dim: 2,
                 range: 5,
+                ticks: true,
                 items: [
                   { t: 'vec', to: [4, 1], color: 'a', label: 'a' },
                   { t: 'vec', to: [-1, 3], color: 'b', label: 'b' },

@@ -262,6 +262,7 @@ export const module1: Module = {
               figure: {
                 dim: 2,
                 range: 5,
+                ticks: true,
                 items: [
                   { t: 'seg', from: [0, 0], to: [4, 0], color: 'muted', dashed: true },
                   { t: 'seg', from: [4, 0], to: [4, -2], color: 'muted', dashed: true },
@@ -478,6 +479,7 @@ export const module1: Module = {
               figure: {
                 dim: 2,
                 range: 5,
+                ticks: true,
                 items: [
                   { t: 'vec', to: [2, -1], color: 'a', label: 'a' },
                   { t: 'vec', from: [2, -1], to: [3, 2], color: 'b', dashed: true, label: 'b' },
@@ -752,8 +754,9 @@ export const module1: Module = {
                   { t: 'vec', to: [0, 1, 0], label: 'j', color: 'b' },
                   { t: 'vec', to: [0, 0, 1], label: 'k', color: 'c' },
                   { t: 'vec', to: [1, 2, 1.5], color: 'result' },
-                  { t: 'seg', from: [0, 0, 0], to: [1, 2, 0], dashed: true },
-                  { t: 'seg', from: [1, 2, 0], to: [1, 2, 1.5], dashed: true },
+                  { t: 'seg', from: [0, 0, 0], to: [1, 0, 0], dashed: true, label: '1' },
+                  { t: 'seg', from: [1, 0, 0], to: [1, 2, 0], dashed: true, label: '2' },
+                  { t: 'seg', from: [1, 2, 0], to: [1, 2, 1.5], dashed: true, label: '1.5' },
                 ],
               },
               options: [
