@@ -516,8 +516,8 @@ export const module3: Module = {
                 ticks: true,
                 items: [
                   { t: 'curve', f: 'sin(x)', color: 'a', label: 'sin x' },
-                  { t: 'dot', x: 'pi/2', y: 1, label: 'puncak 1' },
-                  { t: 'dot', x: '5*pi/2', y: 1, label: 'puncak 2' },
+                  { t: 'dot', x: 'pi/2', y: 1, label: 'x = π/2' },
+                  { t: 'dot', x: '5*pi/2', y: 1, label: 'x = 5π/2' },
                 ],
               },
               options: [

@@ -517,7 +517,7 @@ export const module2: Module = {
               figure: {
                 dim: 2,
                 xSpan: [-2, 6],
-                ySpan: [-1, 8],
+                ySpan: [-1, 7],
                 ticks: true,
                 items: [
                   { t: 'curve', f: '(x-2)^2+3', color: 'a' },
