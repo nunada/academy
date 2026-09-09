@@ -110,6 +110,15 @@ export default function ProjectPage() {
   const pos = items.findIndex((i) => i.id === project.id)
   const nextItem = pos >= 0 ? items[pos + 1] : undefined
 
+  /** A teacher is checking the material, not being tested on it — they may
+   *  mark a project done without its checks actually passing. */
+  async function skipProject() {
+    if (!project) return
+    const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: 0 })
+    setAwarded(xp)
+    setFinished(true)
+  }
+
   async function doRun() {
     if (!project) return
     setBusy(true)
@@ -375,9 +384,14 @@ export default function ProjectPage() {
               💡 {t('hint')} ({hintsShown}/{project.hints.length})
             </button>
           )}
-          {hintsShown >= project.hints.length && !showSolution && (
+          {(hintsShown >= project.hints.length || isTeacher) && !showSolution && (
             <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
               {isMath ? t('showWorking') : t('showSolution')}
+            </button>
+          )}
+          {isTeacher && (
+            <button className="btn ghost sm" onClick={() => void skipProject()}>
+              {t('skipStep')} →
             </button>
           )}
         </div>

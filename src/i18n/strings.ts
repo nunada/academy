@@ -143,6 +143,7 @@ export const ui = {
   check: { en: 'Check', id: 'Periksa' },
   previousStep: { en: 'Back', id: 'Kembali' },
   continueNext: { en: 'Continue', id: 'Lanjut' },
+  skipStep: { en: 'Skip', id: 'Lewati' },
   runCode: { en: 'Run', id: 'Jalankan' },
   runTests: { en: 'Run tests', id: 'Jalankan tes' },
   hint: { en: 'Hint', id: 'Petunjuk' },

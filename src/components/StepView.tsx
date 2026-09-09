@@ -24,6 +24,9 @@ interface Props {
   onWrong: () => void
   /** True when the learner has no hearts left and is not in practice mode. */
   blocked: boolean
+  /** A teacher previewing material, not playing it — every step gets a way
+   *  to reveal its answer, with no hint required first. */
+  isTeacher?: boolean
 }
 
 export default function StepView(props: Props) {
@@ -55,7 +58,7 @@ export default function StepView(props: Props) {
 
 /* ------------------------------------------------------------------ math */
 
-function MathStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'math' }> }) {
+function MathStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'math' }> }) {
   const { t, tc, lang } = useI18n()
   const solution = step.solution && resolveBi(step.solution, lang)
   const [values, setValues] = useState<string[]>(() => emptyValues(step))
@@ -98,7 +101,7 @@ function MathStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
             💡 {t('hint')} ({hintsShown}/{step.hints.length})
           </button>
         )}
-        {solution && hintsShown >= step.hints.length && !solved && !showWorking && (
+        {solution && (hintsShown >= step.hints.length || isTeacher) && !solved && !showWorking && (
           <button className="btn ghost sm" onClick={() => setShowWorking(true)}>
             {t('showWorking')}
           </button>
@@ -181,7 +184,7 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
 
 /* ------------------------------------------------------------------ quiz */
 
-function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'quiz' }> }) {
+function QuizStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'quiz' }> }) {
   const { t, tc } = useI18n()
   const code = codeText(step.code, tc)
   const [picked, setPicked] = useState<number | null>(null)
@@ -237,9 +240,16 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       )}
 
       {!solved && (
-        <button className="btn" style={{ marginTop: 14 }} onClick={check} disabled={picked === null || blocked}>
-          {t('check')}
-        </button>
+        <div className="row" style={{ marginTop: 14 }}>
+          <button className="btn" onClick={check} disabled={picked === null || blocked}>
+            {t('check')}
+          </button>
+          {isTeacher && !checked && (
+            <button className="btn ghost sm" onClick={() => { setPicked(step.answer); setChecked(true) }}>
+              {t('showSolution')}
+            </button>
+          )}
+        </div>
       )}
     </div>
   )
@@ -247,7 +257,7 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
 
 /* ------------------------------------------------------------------ fill */
 
-function FillStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'fill' }> }) {
+function FillStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'fill' }> }) {
   const { t, tc, lang } = useI18n()
   const template = resolveBi(step.template, lang)
   const blanks = resolveBi(step.blanks, lang)
@@ -312,14 +322,16 @@ function FillStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
       )}
 
       {!solved && (
-        <button
-          className="btn"
-          style={{ marginTop: 14 }}
-          onClick={check}
-          disabled={blocked || values.some((v) => !v.trim())}
-        >
-          {t('check')}
-        </button>
+        <div className="row" style={{ marginTop: 14 }}>
+          <button className="btn" onClick={check} disabled={blocked || values.some((v) => !v.trim())}>
+            {t('check')}
+          </button>
+          {isTeacher && !checked && (
+            <button className="btn ghost sm" onClick={() => { setValues([...blanks]); setChecked(true) }}>
+              {t('showSolution')}
+            </button>
+          )}
+        </div>
       )}
     </div>
   )
@@ -344,7 +356,7 @@ function shuffled(lines: string[], seed: string): number[] {
   return order
 }
 
-function OrderStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'order' }> }) {
+function OrderStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'order' }> }) {
   const { t, tc, lang } = useI18n()
   const lines = resolveBi(step.lines, lang)
   const [order, setOrder] = useState<number[]>(() => shuffled(lines, step.id))
@@ -401,9 +413,19 @@ function OrderStep({ step, solved, onSolved, onWrong, blocked }: Props & { step:
       )}
 
       {!solved && (
-        <button className="btn" style={{ marginTop: 14 }} onClick={check} disabled={blocked}>
-          {t('check')}
-        </button>
+        <div className="row" style={{ marginTop: 14 }}>
+          <button className="btn" onClick={check} disabled={blocked}>
+            {t('check')}
+          </button>
+          {isTeacher && !checked && (
+            <button
+              className="btn ghost sm"
+              onClick={() => { setOrder(lines.map((_, i) => i)); setChecked(true) }}
+            >
+              {t('showSolution')}
+            </button>
+          )}
+        </div>
       )}
     </div>
   )
@@ -411,7 +433,7 @@ function OrderStep({ step, solved, onSolved, onWrong, blocked }: Props & { step:
 
 /* ------------------------------------------------------------------ code */
 
-function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'code' }> }) {
+function CodeStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'code' }> }) {
   const { t, tc, lang } = useI18n()
   const starter = resolveBi(step.starter, lang)
   const tests = resolveBi(step.tests, lang)
@@ -525,7 +547,7 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
             💡 {t('hint')} ({hintsShown}/{step.hints.length})
           </button>
         )}
-        {hintsShown >= step.hints.length && !solved && !showSolution && (
+        {(hintsShown >= step.hints.length || isTeacher) && !solved && !showSolution && (
           <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
             {t('showSolution')}
           </button>
@@ -585,7 +607,7 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
 
 /* ------------------------------------------------------------------- web */
 
-function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'web' }> }) {
+function WebStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'web' }> }) {
   const { t, tc, lang } = useI18n()
   const starter = resolveBi(step.starter, lang)
   const tests = resolveBi(step.tests, lang)
@@ -657,7 +679,7 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
             💡 {t('hint')} ({hintsShown}/{step.hints.length})
           </button>
         )}
-        {hintsShown >= step.hints.length && !solved && !showSolution && (
+        {(hintsShown >= step.hints.length || isTeacher) && !solved && !showSolution && (
           <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
             {t('showSolution')}
           </button>
@@ -697,7 +719,7 @@ function WebStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
 
 /* ------------------------------------------------------------------- sql */
 
-function SqlStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'sql' }> }) {
+function SqlStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'sql' }> }) {
   const { t, tc, lang } = useI18n()
   const schema = resolveBi(step.schema, lang)
   const starter = resolveBi(step.starter, lang)
@@ -765,7 +787,7 @@ function SqlStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
             💡 {t('hint')} ({hintsShown}/{step.hints.length})
           </button>
         )}
-        {hintsShown >= step.hints.length && !solved && !showSolution && (
+        {(hintsShown >= step.hints.length || isTeacher) && !solved && !showSolution && (
           <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
             {t('showSolution')}
           </button>
@@ -812,7 +834,7 @@ function SqlStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
 
 /* -------------------------------------------------------------------- ts */
 
-function TsStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'ts' }> }) {
+function TsStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'ts' }> }) {
   const { t, tc, lang } = useI18n()
   const starter = resolveBi(step.starter, lang)
   const tests = resolveBi(step.tests, lang)
@@ -872,7 +894,7 @@ function TsStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Ex
             💡 {t('hint')} ({hintsShown}/{step.hints.length})
           </button>
         )}
-        {hintsShown >= step.hints.length && !solved && !showSolution && (
+        {(hintsShown >= step.hints.length || isTeacher) && !solved && !showSolution && (
           <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
             {t('showSolution')}
           </button>
@@ -920,7 +942,7 @@ function TsStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Ex
 
 /* ------------------------------------------------------------------- cpp */
 
-function CppStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'cpp' }> }) {
+function CppStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'cpp' }> }) {
   const { t, tc, lang } = useI18n()
   const starter = resolveBi(step.starter, lang)
   const tests = resolveBi(step.tests, lang)
@@ -1000,7 +1022,7 @@ function CppStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
             💡 {t('hint')} ({hintsShown}/{step.hints.length})
           </button>
         )}
-        {hintsShown >= step.hints.length && !solved && !showSolution && (
+        {(hintsShown >= step.hints.length || isTeacher) && !solved && !showSolution && (
           <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
             {t('showSolution')}
           </button>
@@ -1053,7 +1075,7 @@ function CppStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: E
 
 /* ------------------------------------------------------------------ game */
 
-function GameStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: Extract<Step, { kind: 'game' }> }) {
+function GameStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'game' }> }) {
   const { t, tc } = useI18n()
   const [code, setCode] = useState(step.starter)
   const [busy, setBusy] = useState(false)
@@ -1109,7 +1131,7 @@ function GameStep({ step, solved, onSolved, onWrong, blocked }: Props & { step: 
             💡 {t('hint')} ({hintsShown}/{step.hints.length})
           </button>
         )}
-        {hintsShown >= step.hints.length && !solved && !showSolution && (
+        {(hintsShown >= step.hints.length || isTeacher) && !solved && !showSolution && (
           <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
             {t('showSolution')}
           </button>

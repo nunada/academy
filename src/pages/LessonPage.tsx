@@ -83,6 +83,18 @@ export default function LessonPage() {
     if (left === 0) setShowHeartModal(true)
   }
 
+  /** A teacher may move on without actually answering — they are checking the
+   *  material, not being tested on it. Marks the step done either way, so the
+   *  step bar reads the same as it would for a learner who solved it. */
+  function skipStep() {
+    if (isLast) {
+      void handleSolved()
+      return
+    }
+    if (!stepSolved) void handleSolved()
+    setIndex((i) => i + 1)
+  }
+
   // Where the learner goes next, in course order.
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === lesson.id)
@@ -171,15 +183,16 @@ export default function LessonPage() {
           onSolved={() => void handleSolved()}
           onWrong={() => void handleWrong()}
           blocked={blocked}
+          isTeacher={isTeacher}
         />
 
         <div className="between" style={{ marginTop: 14 }}>
           <button className="btn ghost" onClick={() => setIndex((i) => i - 1)} disabled={index === 0}>
             ← {t('previousStep')}
           </button>
-          {!isLast && (
-            <button className="btn" onClick={() => setIndex((i) => i + 1)} disabled={!stepSolved}>
-              {t('continueNext')} →
+          {(!isLast || (isTeacher && !stepSolved)) && (
+            <button className="btn" onClick={skipStep} disabled={!stepSolved && !isTeacher}>
+              {stepSolved || !isTeacher ? t('continueNext') : t('skipStep')} →
             </button>
           )}
         </div>
