@@ -256,6 +256,23 @@ export const COURSES: CourseInfo[] = [
     lessons: 22,
     projects: 10,
   },
+  {
+    id: 'limit',
+    title: { en: 'Limits and Continuity', id: 'Limit dan Kekontinuan' },
+    tagline: {
+      en: 'What a function approaches rather than what it equals — limit laws, asymptotes, continuity, and the squeeze theorem.',
+      id: 'Apa yang didekati fungsi, bukan apa yang disamainya — hukum limit, asimtot, kekontinuan, dan teorema apit.',
+    },
+    icon: '🎯',
+    color: '#6b5b95',
+    level: { en: 'Intermediate', id: 'Menengah' },
+    language: 'math',
+    track: 'math',
+    requires: ['fungsi'],
+    available: true,
+    lessons: 20,
+    projects: 10,
+  },
 ]
 
 /** One dynamic import per course. Written out rather than built from the id so
@@ -275,6 +292,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'python-numpy': () => import('./python-numpy'),
   fungsi: () => import('./fungsi'),
   vektor: () => import('./vektor'),
+  limit: () => import('./limit'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes
