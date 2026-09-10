@@ -678,8 +678,8 @@ export const module1: Module = {
           id: 'vek-m1-s2-l3',
           title: { en: 'The Standard Unit Vectors', id: 'Vektor Satuan Baku' },
           goal: {
-            en: 'Move between component form and $\\hat{i}, \\hat{j}, \\hat{k}$ form without thinking about it.',
-            id: 'Berpindah antara bentuk komponen dan bentuk $\\hat{i}, \\hat{j}, \\hat{k}$ tanpa perlu berpikir lama.',
+            en: 'Move between component form and î, ĵ, k̂ form without thinking about it.',
+            id: 'Berpindah antara bentuk komponen dan bentuk î, ĵ, k̂ tanpa perlu berpikir lama.',
           },
           xp: 20,
           steps: [

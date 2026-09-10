@@ -153,8 +153,8 @@ export const module1: Module = {
           id: 'tur-m1-s1-l2',
           title: { en: 'The Definition of the Derivative', id: 'Definisi Turunan' },
           goal: {
-            en: 'State the limit definition of $f\'(a)$, and use it directly to find a tangent slope.',
-            id: 'Menyatakan definisi limit dari $f\'(a)$, dan memakainya langsung untuk mencari kemiringan garis singgung.',
+            en: 'State the limit definition of f\'(a), and use it directly to find a tangent slope.',
+            id: 'Menyatakan definisi limit dari f\'(a), dan memakainya langsung untuk mencari kemiringan garis singgung.',
           },
           xp: 20,
           steps: [

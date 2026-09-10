@@ -131,8 +131,8 @@ export const module5: Module = {
           id: 'fun-m5-s1-l2',
           title: { en: 'Finding and Drawing an Inverse', id: 'Menemukan dan Menggambar Invers' },
           goal: {
-            en: 'Produce the formula for $f^{-1}$, and know where its graph is without plotting it.',
-            id: 'Menghasilkan rumus $f^{-1}$, dan mengetahui letak grafiknya tanpa menggambarnya.',
+            en: 'Produce the formula for f⁻¹, and know where its graph is without plotting it.',
+            id: 'Menghasilkan rumus f⁻¹, dan mengetahui letak grafiknya tanpa menggambarnya.',
           },
           xp: 20,
           steps: [

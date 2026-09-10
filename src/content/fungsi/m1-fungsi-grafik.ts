@@ -533,8 +533,8 @@ export const module1: Module = {
           id: 'fun-m1-s2-l1',
           title: { en: 'Piecewise Functions and Absolute Value', id: 'Fungsi Sepotong-sepotong dan Nilai Mutlak' },
           goal: {
-            en: 'Evaluate a function given by different rules on different intervals, and see $|x|$ as one of them.',
-            id: 'Menghitung nilai fungsi yang aturannya berbeda pada selang berbeda, dan melihat $|x|$ sebagai salah satunya.',
+            en: 'Evaluate a function given by different rules on different intervals, and see |x| as one of them.',
+            id: 'Menghitung nilai fungsi yang aturannya berbeda pada selang berbeda, dan melihat |x| sebagai salah satunya.',
           },
           xp: 20,
           steps: [

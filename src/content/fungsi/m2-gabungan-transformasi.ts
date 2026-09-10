@@ -25,8 +25,8 @@ export const module2: Module = {
           id: 'fun-m2-s1-l1',
           title: { en: 'Sums, Products and Quotients', id: 'Jumlah, Hasil Kali, dan Hasil Bagi' },
           goal: {
-            en: 'Combine two functions with $+ - \\times \\div$ and say where the result is defined.',
-            id: 'Menggabungkan dua fungsi dengan $+ - \\times \\div$ dan menyebut di mana hasilnya terdefinisi.',
+            en: 'Combine two functions with +, −, ×, ÷ and say where the result is defined.',
+            id: 'Menggabungkan dua fungsi dengan +, −, ×, ÷ dan menyebut di mana hasilnya terdefinisi.',
           },
           xp: 20,
           steps: [

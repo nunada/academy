@@ -560,8 +560,8 @@ export const module3: Module = {
           id: 'fun-m3-s2-l2',
           title: { en: 'The General Sinusoid', id: 'Sinusoid Umum' },
           goal: {
-            en: 'Read amplitude, period, phase shift and midline out of $y = A\\sin(B(x - C)) + D$.',
-            id: 'Membaca amplitudo, periode, pergeseran fase, dan garis tengah dari $y = A\\sin(B(x - C)) + D$.',
+            en: 'Read amplitude, period, phase shift and midline out of y = A sin(B(x − C)) + D.',
+            id: 'Membaca amplitudo, periode, pergeseran fase, dan garis tengah dari y = A sin(B(x − C)) + D.',
           },
           xp: 20,
           steps: [

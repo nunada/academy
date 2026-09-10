@@ -238,7 +238,7 @@ export const module2: Module = {
     /* ------------------------------------- 2.2 techniques for 0/0 */
     {
       id: 'lim-m2-s2',
-      title: { en: 'Technique for the $\\frac{0}{0}$ Form', id: 'Teknik untuk Bentuk $\\frac{0}{0}$' },
+      title: { en: 'Technique for the 0/0 Form', id: 'Teknik untuk Bentuk 0/0' },
       summary: {
         en: 'Factor and cancel, or multiply by a conjugate, to get past a zero denominator that direct substitution cannot.',
         id: 'Faktorkan dan coret, atau kalikan dengan sekawan, untuk melewati penyebut nol yang tak bisa dilewati substitusi langsung.',
@@ -248,8 +248,8 @@ export const module2: Module = {
           id: 'lim-m2-s2-l1',
           title: { en: 'Factoring and Cancelling', id: 'Memfaktorkan dan Mencoret' },
           goal: {
-            en: 'Recognise the $\\frac{0}{0}$ form and clear it by factoring the numerator and denominator.',
-            id: 'Mengenali bentuk $\\frac{0}{0}$ dan menyelesaikannya dengan memfaktorkan pembilang dan penyebut.',
+            en: 'Recognise the 0/0 form and clear it by factoring the numerator and denominator.',
+            id: 'Mengenali bentuk 0/0 dan menyelesaikannya dengan memfaktorkan pembilang dan penyebut.',
           },
           xp: 20,
           steps: [
@@ -346,8 +346,8 @@ export const module2: Module = {
           id: 'lim-m2-s2-l2',
           title: { en: 'Rationalising', id: 'Merasionalkan' },
           goal: {
-            en: 'Clear a $\\frac{0}{0}$ that has a square root in it by multiplying through by a conjugate.',
-            id: 'Menyelesaikan $\\frac{0}{0}$ yang mengandung akar kuadrat dengan mengalikan dengan sekawan.',
+            en: 'Clear a 0/0 that has a square root in it by multiplying through by a conjugate.',
+            id: 'Menyelesaikan 0/0 yang mengandung akar kuadrat dengan mengalikan dengan sekawan.',
           },
           xp: 20,
           steps: [
@@ -420,7 +420,7 @@ export const module2: Module = {
       project: {
         id: 'lim-m2-s2-p',
         runtime: 'math',
-        title: { en: 'Clearing the $\\frac{0}{0}$ Form', id: 'Menyelesaikan Bentuk $\\frac{0}{0}$' },
+        title: { en: 'Clearing the 0/0 Form', id: 'Menyelesaikan Bentuk 0/0' },
         brief: {
           en: 'A factoring limit, a rationalising limit, and one where you decide which tool to use.',
           id: 'Satu limit pemfaktoran, satu limit perasionalan, dan satu yang alatnya kamu tentukan sendiri.',

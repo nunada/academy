@@ -275,8 +275,8 @@ export const module5: Module = {
           id: 'lim-m5-s2-l1',
           title: { en: 'Why sin(x)/x Approaches 1', id: 'Mengapa sin(x)/x Mendekati 1' },
           goal: {
-            en: 'State $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$, and see it as a squeeze theorem result rather than an algebra trick.',
-            id: 'Menyatakan $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$, dan melihatnya sebagai hasil teorema apit, bukan trik aljabar.',
+            en: 'State lim(x→0) sin(x)/x = 1, and see it as a squeeze theorem result rather than an algebra trick.',
+            id: 'Menyatakan lim(x→0) sin(x)/x = 1, dan melihatnya sebagai hasil teorema apit, bukan trik aljabar.',
           },
           xp: 20,
           steps: [
@@ -373,8 +373,8 @@ export const module5: Module = {
           id: 'lim-m5-s2-l2',
           title: { en: 'Consequences and Related Limits', id: 'Akibat dan Limit Terkait' },
           goal: {
-            en: 'Derive $\\frac{1-\\cos x}{x} \\to 0$ from the sine limit, and evaluate the whole family $\\frac{\\sin kx}{x}$.',
-            id: 'Menurunkan $\\frac{1-\\cos x}{x} \\to 0$ dari limit sinus, dan menghitung seluruh keluarga $\\frac{\\sin kx}{x}$.',
+            en: 'Derive (1 − cos x)/x → 0 from the sine limit, and evaluate the whole family sin(kx)/x.',
+            id: 'Menurunkan (1 − cos x)/x → 0 dari limit sinus, dan menghitung seluruh keluarga sin(kx)/x.',
           },
           xp: 20,
           steps: [

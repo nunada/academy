@@ -24,8 +24,8 @@ export const module3: Module = {
           id: 'vek-m3-s1-l1',
           title: { en: 'Multiplying into a Scalar', id: 'Mengalikan Menjadi Skalar' },
           goal: {
-            en: 'Compute $\\vec{a} \\cdot \\vec{b}$ from components and use its algebraic laws.',
-            id: 'Menghitung $\\vec{a} \\cdot \\vec{b}$ dari komponen dan memakai hukum aljabarnya.',
+            en: 'Compute a · b from components and use its algebraic laws.',
+            id: 'Menghitung a · b dari komponen dan memakai hukum aljabarnya.',
           },
           xp: 20,
           steps: [
@@ -135,8 +135,8 @@ export const module3: Module = {
           id: 'vek-m3-s1-l2',
           title: { en: 'The Angle Between', id: 'Sudut di Antaranya' },
           goal: {
-            en: 'Use $\\vec{a} \\cdot \\vec{b} = |\\vec{a}||\\vec{b}|\\cos\\theta$ to find an angle, and read the sign of a dot product.',
-            id: 'Memakai $\\vec{a} \\cdot \\vec{b} = |\\vec{a}||\\vec{b}|\\cos\\theta$ untuk mencari sudut, dan membaca tanda perkalian titik.',
+            en: 'Use a · b = |a||b| cos θ to find an angle, and read the sign of a dot product.',
+            id: 'Memakai a · b = |a||b| cos θ untuk mencari sudut, dan membaca tanda perkalian titik.',
           },
           xp: 20,
           steps: [

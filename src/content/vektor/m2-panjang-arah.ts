@@ -24,8 +24,8 @@ export const module2: Module = {
           id: 'vek-m2-s1-l1',
           title: { en: 'The Length of a Vector', id: 'Panjang Sebuah Vektor' },
           goal: {
-            en: 'Compute $|\\vec{a}|$ in the plane and in space.',
-            id: 'Menghitung $|\\vec{a}|$ di bidang dan di ruang.',
+            en: 'Compute |a| in the plane and in space.',
+            id: 'Menghitung |a| di bidang dan di ruang.',
           },
           xp: 20,
           steps: [

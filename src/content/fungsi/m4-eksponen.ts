@@ -10,8 +10,8 @@ export const module4: Module = {
   id: 'fun-m4',
   title: { en: 'Exponential Functions', id: 'Fungsi Eksponen' },
   summary: {
-    en: 'Constant ratios instead of constant differences: the laws, the graphs, the number $e$, and the growth and decay they describe.',
-    id: 'Perbandingan tetap alih-alih selisih tetap: hukumnya, grafiknya, bilangan $e$, serta pertumbuhan dan peluruhan yang dinyatakannya.',
+    en: 'Constant ratios instead of constant differences: the laws, the graphs, the number e, and the growth and decay they describe.',
+    id: 'Perbandingan tetap alih-alih selisih tetap: hukumnya, grafiknya, bilangan e, serta pertumbuhan dan peluruhan yang dinyatakannya.',
   },
   submodules: [
     /* ------------------------------------------- 4.1 exponentials and graphs */
@@ -19,16 +19,16 @@ export const module4: Module = {
       id: 'fun-m4-s1',
       title: { en: 'Exponentials and Their Graphs', id: 'Eksponen dan Grafiknya' },
       summary: {
-        en: 'The laws of exponents, what $a^x$ looks like, and where the number $e$ comes from.',
-        id: 'Hukum eksponen, rupa $a^x$, dan dari mana bilangan $e$ berasal.',
+        en: 'The laws of exponents, what a^x looks like, and where the number e comes from.',
+        id: 'Hukum eksponen, rupa a^x, dan dari mana bilangan e berasal.',
       },
       lessons: [
         {
           id: 'fun-m4-s1-l1',
           title: { en: 'The Laws, and the Shape', id: 'Hukumnya, dan Bentuknya' },
           goal: {
-            en: 'Use the five laws of exponents, and describe the graph of $a^x$ for any base.',
-            id: 'Memakai kelima hukum eksponen, dan menggambarkan grafik $a^x$ untuk sebarang basis.',
+            en: 'Use the five laws of exponents, and describe the graph of a^x for any base.',
+            id: 'Memakai kelima hukum eksponen, dan menggambarkan grafik a^x untuk sebarang basis.',
           },
           xp: 20,
           steps: [
@@ -148,8 +148,8 @@ export const module4: Module = {
           id: 'fun-m4-s1-l2',
           title: { en: 'Growth and Decay', id: 'Pertumbuhan dan Peluruhan' },
           goal: {
-            en: 'Build a model of the form $y_0 a^{t/T}$ from a doubling time or a half-life.',
-            id: 'Menyusun model berbentuk $y_0 a^{t/T}$ dari waktu penggandaan atau waktu paruh.',
+            en: 'Build a model of the form y0 · a^(t/T) from a doubling time or a half-life.',
+            id: 'Menyusun model berbentuk y0 · a^(t/T) dari waktu penggandaan atau waktu paruh.',
           },
           xp: 20,
           steps: [
@@ -273,10 +273,10 @@ export const module4: Module = {
         },
         {
           id: 'fun-m4-s1-l3',
-          title: { en: 'The Number $e$', id: 'Bilangan $e$' },
+          title: { en: 'The Number e', id: 'Bilangan e' },
           goal: {
-            en: 'Say where $e$ comes from, and why it is the base calculus prefers.',
-            id: 'Menyebut dari mana $e$ berasal, dan mengapa ia menjadi basis pilihan kalkulus.',
+            en: 'Say where e comes from, and why it is the base calculus prefers.',
+            id: 'Menyebut dari mana e berasal, dan mengapa ia menjadi basis pilihan kalkulus.',
           },
           xp: 20,
           steps: [

@@ -25,8 +25,8 @@ export const module1: Module = {
           id: 'lim-m1-s1-l1',
           title: { en: 'What a Limit Says', id: 'Apa yang Dikatakan Limit' },
           goal: {
-            en: 'Read $\\lim_{x \\to a} f(x) = L$ correctly, and see why it can talk about a point where $f$ is undefined.',
-            id: 'Membaca $\\lim_{x \\to a} f(x) = L$ dengan benar, dan melihat mengapa ia bisa berbicara tentang titik tempat $f$ tak terdefinisi.',
+            en: 'Read lim(x→a) f(x) = L correctly, and see why it can talk about a point where f is undefined.',
+            id: 'Membaca lim(x→a) f(x) = L dengan benar, dan melihat mengapa ia bisa berbicara tentang titik tempat f tak terdefinisi.',
           },
           xp: 20,
           steps: [
@@ -388,8 +388,8 @@ export const module1: Module = {
           id: 'lim-m1-s2-l2',
           title: { en: 'The Limit Ignores the Point Itself', id: 'Limit Mengabaikan Titik Itu Sendiri' },
           goal: {
-            en: 'Separate $\\lim_{x \\to a} f(x)$ from $f(a)$ completely, in every direction that separation can go.',
-            id: 'Memisahkan $\\lim_{x \\to a} f(x)$ dari $f(a)$ sepenuhnya, ke segala arah pemisahan itu bisa terjadi.',
+            en: 'Separate lim(x→a) f(x) from f(a) completely, in every direction that separation can go.',
+            id: 'Memisahkan lim(x→a) f(x) dari f(a) sepenuhnya, ke segala arah pemisahan itu bisa terjadi.',
           },
           xp: 20,
           steps: [

@@ -24,8 +24,8 @@ export const module4: Module = {
           id: 'vek-m4-s1-l1',
           title: { en: 'Computing a Cross Product', id: 'Menghitung Perkalian Silang' },
           goal: {
-            en: 'Expand the $3 \\times 3$ determinant that gives $\\vec{a} \\times \\vec{b}$.',
-            id: 'Menjabarkan determinan $3 \\times 3$ yang memberikan $\\vec{a} \\times \\vec{b}$.',
+            en: 'Expand the 3×3 determinant that gives a × b.',
+            id: 'Menjabarkan determinan 3×3 yang memberikan a × b.',
           },
           xp: 20,
           steps: [
@@ -138,8 +138,8 @@ export const module4: Module = {
           id: 'vek-m4-s1-l2',
           title: { en: 'What the Cross Product Is For', id: 'Untuk Apa Perkalian Silang' },
           goal: {
-            en: 'Use its direction, its anticommutativity, and $|\\vec{a} \\times \\vec{b}| = |\\vec{a}||\\vec{b}|\\sin\\theta$.',
-            id: 'Memakai arahnya, sifat antikomutatifnya, dan $|\\vec{a} \\times \\vec{b}| = |\\vec{a}||\\vec{b}|\\sin\\theta$.',
+            en: 'Use its direction, its anticommutativity, and |a × b| = |a||b| sin θ.',
+            id: 'Memakai arahnya, sifat antikomutatifnya, dan |a × b| = |a||b| sin θ.',
           },
           xp: 20,
           steps: [
@@ -504,8 +504,8 @@ export const module4: Module = {
           id: 'vek-m4-s2-l2',
           title: { en: 'The Triple Product and Volume', id: 'Hasil Kali Tripel dan Volume' },
           goal: {
-            en: 'Compute $\\vec{a} \\cdot (\\vec{b} \\times \\vec{c})$ and read a volume — or a coplanarity — from it.',
-            id: 'Menghitung $\\vec{a} \\cdot (\\vec{b} \\times \\vec{c})$ dan membaca volume — atau kesebidangan — darinya.',
+            en: 'Compute a · (b × c) and read a volume — or a coplanarity — from it.',
+            id: 'Menghitung a · (b × c) dan membaca volume — atau kesebidangan — darinya.',
           },
           xp: 20,
           steps: [

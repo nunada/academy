@@ -25,8 +25,8 @@ export const module3: Module = {
           id: 'lim-m3-s1-l1',
           title: { en: 'When a Limit Blows Up', id: 'Ketika Limit Meledak' },
           goal: {
-            en: 'Read $\\lim_{x \\to a} f(x) = \\infty$ correctly, as a description of behaviour rather than a value.',
-            id: 'Membaca $\\lim_{x \\to a} f(x) = \\infty$ dengan benar, sebagai gambaran perilaku, bukan sebuah nilai.',
+            en: 'Read lim(x→a) f(x) = ∞ correctly, as a description of behaviour rather than a value.',
+            id: 'Membaca lim(x→a) f(x) = ∞ dengan benar, sebagai gambaran perilaku, bukan sebuah nilai.',
           },
           xp: 20,
           steps: [
@@ -275,8 +275,8 @@ export const module3: Module = {
           id: 'lim-m3-s2-l1',
           title: { en: 'What Happens Far Out', id: 'Apa yang Terjadi Jauh di Sana' },
           goal: {
-            en: 'Evaluate $\\lim_{x \\to \\infty} f(x)$ for a rational function, and read off the horizontal asymptote it names.',
-            id: 'Menghitung $\\lim_{x \\to \\infty} f(x)$ untuk fungsi rasional, dan membaca asimtot datar yang dinamainya.',
+            en: 'Evaluate lim(x→∞) f(x) for a rational function, and read off the horizontal asymptote it names.',
+            id: 'Menghitung lim(x→∞) f(x) untuk fungsi rasional, dan membaca asimtot datar yang dinamainya.',
           },
           xp: 20,
           steps: [

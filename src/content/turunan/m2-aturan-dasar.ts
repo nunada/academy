@@ -25,8 +25,8 @@ export const module2: Module = {
           id: 'tur-m2-s1-l1',
           title: { en: 'The Power Rule', id: 'Aturan Pangkat' },
           goal: {
-            en: 'Differentiate $x^n$ for any real exponent n, including negative and fractional ones.',
-            id: 'Menurunkan $x^n$ untuk sebarang pangkat real n, termasuk yang negatif dan pecahan.',
+            en: 'Differentiate x^n for any real exponent n, including negative and fractional ones.',
+            id: 'Menurunkan x^n untuk sebarang pangkat real n, termasuk yang negatif dan pecahan.',
           },
           xp: 20,
           steps: [
