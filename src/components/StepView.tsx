@@ -235,7 +235,13 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
       {checked && (
         <div className={right ? 'verdict ok' : 'verdict no'}>
           <b>{right ? t('correct') : t('notQuite')}</b>
-          {right && <Rich text={tc(step.explain)} />}
+          {right ? (
+            <Rich text={tc(step.explain)} />
+          ) : (
+            <span className="small muted">
+              <Rich text={tc(step.explain)} />
+            </span>
+          )}
         </div>
       )}
 
@@ -408,7 +414,13 @@ function OrderStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Prop
       {checked && (
         <div className={right ? 'verdict ok' : 'verdict no'}>
           <b>{right ? t('correct') : t('notQuite')}</b>
-          {right && <Rich text={tc(step.explain)} />}
+          {right ? (
+            <Rich text={tc(step.explain)} />
+          ) : (
+            <span className="small muted">
+              <Rich text={tc(step.explain)} />
+            </span>
+          )}
         </div>
       )}
 
