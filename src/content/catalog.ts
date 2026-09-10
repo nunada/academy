@@ -294,8 +294,8 @@ export const COURSES: CourseInfo[] = [
     id: 'integral',
     title: { en: 'Integrals', id: 'Integral' },
     tagline: {
-      en: 'Antiderivatives, the area under a curve, and the theorem that shows they were always the same question.',
-      id: 'Antiturunan, luas di bawah kurva, dan teorema yang menunjukkan keduanya selalu pertanyaan yang sama.',
+      en: 'Antiderivatives, the area under a curve, and the theorem that shows they were always the same question — through arc length, work, moments, and differential equations.',
+      id: 'Antiturunan, luas di bawah kurva, dan teorema yang menunjukkan keduanya selalu pertanyaan yang sama — hingga panjang busur, usaha, momen, dan persamaan diferensial.',
     },
     icon: '∫',
     color: '#8a5a44',
@@ -304,8 +304,8 @@ export const COURSES: CourseInfo[] = [
     track: 'math',
     requires: ['turunan'],
     available: true,
-    lessons: 24,
-    projects: 12,
+    lessons: 36,
+    projects: 18,
   },
 ]
 
