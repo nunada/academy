@@ -57,15 +57,15 @@ export const module8: Module = {
                 id: 'Mengapa meregangkan pegas dari 0.2 m ke 0.3 m memerlukan usaha lebih besar daripada meregangkannya dari 0 m ke 0.1 m, meski keduanya regangan 0.1 m?',
               },
               options: [
-                { en: "Hooke's Law makes the force F(x) = kx larger at greater stretch, so the same distance costs more work when the spring is already stretched", id: 'Hukum Hooke membuat gaya F(x) = kx lebih besar pada regangan yang lebih jauh, sehingga jarak yang sama memerlukan usaha lebih besar ketika pegasnya sudah teregang' },
+                { en: "Hooke's Law makes the force $F(x) = kx$ larger at greater stretch, so the same distance costs more work when the spring is already stretched", id: "Hukum Hooke membuat gaya $F(x) = kx$ lebih besar pada regangan yang lebih jauh, sehingga jarak yang sama memerlukan usaha lebih besar ketika pegasnya sudah teregang" },
                 { en: 'It actually takes exactly the same work in both cases', id: 'Sebenarnya memerlukan usaha yang persis sama pada kedua kasus' },
                 { en: 'Work only depends on distance, never on force', id: 'Usaha hanya bergantung pada jarak, tak pernah pada gaya' },
                 { en: "Hooke's Law does not apply to a spring already under tension", id: 'Hukum Hooke tak berlaku untuk pegas yang sudah dalam tegangan' },
               ],
               answer: 0,
               explain: {
-                en: 'The integral of a larger function over the same width of interval always gives a larger result — and F(x) = kx is genuinely larger throughout [0.2, 0.3] than throughout [0, 0.1].',
-                id: 'Integral dari fungsi yang lebih besar pada lebar interval yang sama selalu memberi hasil yang lebih besar — dan F(x) = kx memang lebih besar sepanjang [0.2, 0.3] dibanding sepanjang [0, 0.1].',
+                en: 'The integral of a larger function over the same width of interval always gives a larger result — and $F(x) = kx$ is genuinely larger throughout $[0.2, 0.3]$ than throughout $[0, 0.1]$.',
+                id: 'Integral dari fungsi yang lebih besar pada lebar interval yang sama selalu memberi hasil yang lebih besar — dan $F(x) = kx$ memang lebih besar sepanjang $[0.2, 0.3]$ dibanding sepanjang $[0, 0.1]$.',
               },
             },
             {
@@ -73,8 +73,8 @@ export const module8: Module = {
               id: 'f1',
               math: true,
               prompt: {
-                en: 'Complete the work integral for a spring with k = 100 stretched from 0 to 0.2 m.',
-                id: 'Lengkapi integral usaha untuk pegas dengan k = 100 diregangkan dari 0 sampai 0.2 m.',
+                en: 'Complete the work integral for a spring with $k = 100$ stretched from 0 to 0.2 m.',
+                id: 'Lengkapi integral usaha untuk pegas dengan $k = 100$ diregangkan dari 0 sampai 0.2 m.',
               },
               template: 'W = \\int_0^{0.2} 100x\\,dx = \\Big[50x^2\\Big]_0^{0.2} = 50(___) = ___ \\text{ J}',
               blanks: ['0.04', '2'],
@@ -87,16 +87,16 @@ export const module8: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'A spring has k = 50 N/m. Find the work to stretch it from its natural length to 0.4 m.',
-                id: 'Sebuah pegas punya k = 50 N/m. Cari usaha untuk meregangkannya dari panjang alaminya sampai 0.4 m.',
+                en: 'A spring has $k = 50$ N/m. Find the work to stretch it from its natural length to 0.4 m.',
+                id: 'Sebuah pegas punya $k = 50$ N/m. Cari usaha untuk meregangkannya dari panjang alaminya sampai 0.4 m.',
               },
               blanks: [{ answer: 4 }],
               hints: [
-                { en: 'W = integral from 0 to 0.4 of 50x dx = 25x^2.', id: 'W = integral dari 0 sampai 0.4 dari 50x dx = 25x^2.' },
+                { en: '$W = \\int_0^{0.4} 50x\\,dx = 25x^2$.', id: '$W = \\int_0^{0.4} 50x\\,dx = 25x^2$.' },
               ],
               explain: {
-                en: '25(0.4)^2 = 25(0.16) = 4 J.',
-                id: '25(0.4)^2 = 25(0.16) = 4 J.',
+                en: '$25(0.4)^2 = 25(0.16) = 4$ J.',
+                id: '$25(0.4)^2 = 25(0.16) = 4$ J.',
               },
             },
           ],
@@ -162,24 +162,24 @@ export const module8: Module = {
                 '= 156{.}800 \\text{ N}',
               ],
               explain: {
-                en: 'Set up the integral with the width and rho·g in place, antidifferentiate, substitute the bounds, then multiply out.',
-                id: 'Susun integralnya dengan lebar dan rho·g terpasang, antiturunkan, substitusikan batasnya, baru kalikan.',
+                en: 'Set up the integral with the width and $\\rho g$ in place, antidifferentiate, substitute the bounds, then multiply out.',
+                id: 'Susun integralnya dengan lebar dan $\\rho g$ terpasang, antiturunkan, substitusikan batasnya, baru kalikan.',
               },
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Find the fluid force on a rectangular plate of width 4 m, submerged from depth 0 to 2 m. (Use rho·g = 9800.)',
-                id: 'Cari gaya fluida pada lempeng persegi panjang berlebar 4 m, terendam dari kedalaman 0 sampai 2 m. (Pakai rho·g = 9800.)',
+                en: 'Find the fluid force on a rectangular plate of width 4 m, submerged from depth 0 to 2 m. (Use $\\rho g = 9800$.)',
+                id: 'Cari gaya fluida pada lempeng persegi panjang berlebar 4 m, terendam dari kedalaman 0 sampai 2 m. (Pakai $\\rho g = 9800$.)',
               },
               blanks: [{ answer: 78400 }],
               hints: [
-                { en: 'F = 9800(4) integral from 0 to 2 of y dy.', id: 'F = 9800(4) integral dari 0 sampai 2 dari y dy.' },
+                { en: '$F = 9800(4)\\int_0^2 y\\,dy$.', id: '$F = 9800(4)\\int_0^2 y\\,dy$.' },
               ],
               explain: {
-                en: 'F = 39200[y^2/2] from 0 to 2 = 39200(2) = 78,400 N.',
-                id: 'F = 39200[y^2/2] dari 0 sampai 2 = 39200(2) = 78.400 N.',
+                en: '$F = 39200\\left[\\dfrac{y^2}{2}\\right]_0^2 = 39200(2) = 78{,}400$ N.',
+                id: '$F = 39200\\left[\\dfrac{y^2}{2}\\right]_0^2 = 39200(2) = 78{.}400$ N.',
               },
             },
           ],
@@ -194,8 +194,8 @@ export const module8: Module = {
           id: 'Satu soal pegas, dan dua soal gaya fluida.',
         },
         requirements: [
-          { en: "Hooke's Law gives F(x) = kx; find k first from the given force and stretch.", id: 'Hukum Hooke memberi F(x) = kx; cari k lebih dahulu dari gaya dan regangan yang diberikan.' },
-          { en: 'Fluid force integrates rho·g·y·w(y) over the depth the plate spans.', id: 'Gaya fluida mengintegralkan rho·g·y·w(y) pada kedalaman yang dijangkau lempengnya.' },
+          { en: "Hooke's Law gives $F(x) = kx$; find $k$ first from the given force and stretch.", id: 'Hukum Hooke memberi $F(x) = kx$; cari $k$ lebih dahulu dari gaya dan regangan yang diberikan.' },
+          { en: 'Fluid force integrates $\\rho g\\,y\\,w(y)$ over the depth the plate spans.', id: 'Gaya fluida mengintegralkan $\\rho g\\,y\\,w(y)$ pada kedalaman yang dijangkau lempengnya.' },
         ],
         tasks: [
           {
@@ -281,30 +281,30 @@ export const module8: Module = {
               id: 'f1',
               math: true,
               prompt: {
-                en: 'Complete the center of mass computation for a rod of constant density k on [a, b].',
-                id: 'Lengkapi penghitungan pusat massa batang berkerapatan konstan k pada [a, b].',
+                en: 'Complete the center of mass computation for a rod of constant density $k$ on $[a, b]$.',
+                id: 'Lengkapi penghitungan pusat massa batang berkerapatan konstan $k$ pada $[a, b]$.',
               },
               template: '\\bar{x} = \\dfrac{\\int_a^b x\\cdot k\\,dx}{\\int_a^b k\\,dx} = \\dfrac{k(b^2-a^2)/2}{k(b-a)} = \\dfrac{a+___}{___}',
               blanks: ['b', '2'],
               explain: {
-                en: '(b^2 - a^2)/(b - a) simplifies to (a + b), and dividing by the extra factor of 2 in the numerator leaves the plain average (a + b)/2.',
-                id: '(b^2 - a^2)/(b - a) menyederhana menjadi (a + b), dan membagi dengan faktor tambahan 2 di pembilang menyisakan rata-rata biasa (a + b)/2.',
+                en: '$(b^2 - a^2)/(b - a)$ simplifies to $(a + b)$, and dividing by the extra factor of 2 in the numerator leaves the plain average $(a + b)/2$.',
+                id: '$(b^2 - a^2)/(b - a)$ menyederhana menjadi $(a + b)$, dan membagi dengan faktor tambahan 2 di pembilang menyisakan rata-rata biasa $(a + b)/2$.',
               },
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Find the center of mass of a rod on [0, 3] with density delta(x) = 2x.',
-                id: 'Cari pusat massa batang pada [0, 3] dengan kerapatan delta(x) = 2x.',
+                en: 'Find the center of mass of a rod on $[0, 3]$ with density $\\delta(x) = 2x$.',
+                id: 'Cari pusat massa batang pada $[0, 3]$ dengan kerapatan $\\delta(x) = 2x$.',
               },
               blanks: [{ answer: 2 }],
               hints: [
-                { en: 'M = integral of 2x dx = x^2. M0 = integral of 2x^2 dx = (2/3)x^3.', id: 'M = integral dari 2x dx = x^2. M0 = integral dari 2x^2 dx = (2/3)x^3.' },
+                { en: '$M = \\int 2x\\,dx = x^2$. $M_0 = \\int 2x^2\\,dx = \\tfrac23 x^3$.', id: '$M = \\int 2x\\,dx = x^2$. $M_0 = \\int 2x^2\\,dx = \\tfrac23 x^3$.' },
               ],
               explain: {
-                en: 'M = 9, M0 = 18, xbar = 18/9 = 2.',
-                id: 'M = 9, M0 = 18, xbar = 18/9 = 2.',
+                en: '$M = 9$, $M_0 = 18$, $\\bar x = 18/9 = 2$.',
+                id: '$M = 9$, $M_0 = 18$, $\\bar x = 18/9 = 2$.',
               },
             },
           ],
@@ -337,8 +337,8 @@ export const module8: Module = {
                   { t: 'dot', x: 1.5, y: 1.2, color: 'b', label: '(1.5, 1.2)' },
                 ],
                 caption: {
-                  en: 'The region under y = x^2 on [0, 2], with its centroid marked at (1.5, 1.2) — pulled toward the taller, wider right side.',
-                  id: 'Daerah di bawah y = x^2 pada [0, 2], dengan sentroidnya ditandai di (1.5, 1.2) — tertarik ke sisi kanan yang lebih tinggi dan lebar.',
+                  en: 'The region under $y = x^2$ on $[0, 2]$, with its centroid marked at $(1.5, 1.2)$ — pulled toward the taller, wider right side.',
+                  id: 'Daerah di bawah $y = x^2$ pada $[0, 2]$, dengan sentroidnya ditandai di $(1.5, 1.2)$ — tertarik ke sisi kanan yang lebih tinggi dan lebar.',
                 },
               },
             },
@@ -355,12 +355,12 @@ export const module8: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'If a region is symmetric about the vertical line x = 3, what can be said about its centroid without computing any integral?',
-                id: 'Jika sebuah daerah simetris terhadap garis tegak x = 3, apa yang bisa dikatakan tentang sentroidnya tanpa menghitung integral apa pun?',
+                en: 'If a region is symmetric about the vertical line $x = 3$, what can be said about its centroid without computing any integral?',
+                id: 'Jika sebuah daerah simetris terhadap garis tegak $x = 3$, apa yang bisa dikatakan tentang sentroidnya tanpa menghitung integral apa pun?',
               },
               options: [
-                { en: 'Its x-coordinate must be exactly 3', id: 'Koordinat x-nya harus tepat 3' },
-                { en: 'Its y-coordinate must be exactly 3', id: 'Koordinat y-nya harus tepat 3' },
+                { en: 'Its $x$-coordinate must be exactly $3$', id: 'Koordinat $x$-nya harus tepat $3$' },
+                { en: 'Its $y$-coordinate must be exactly $3$', id: 'Koordinat $y$-nya harus tepat $3$' },
                 { en: 'Nothing can be said without computing both integrals', id: 'Tak ada yang bisa dikatakan tanpa menghitung kedua integral' },
                 { en: 'The region must have zero area', id: 'Daerahnya harus berluas nol' },
               ],
@@ -374,8 +374,8 @@ export const module8: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: {
-                en: 'Reading the figure above, why does the centroid sit above the region\'s geometric midpoint x = 1, at x = 1.5 instead?',
-                id: 'Dengan membaca gambar di atas, mengapa sentroidnya duduk di atas titik tengah geometris daerahnya x = 1, di x = 1.5 sebagai gantinya?',
+                en: 'Reading the figure above, why does the centroid sit above the region\'s geometric midpoint $x = 1$, at $x = 1.5$ instead?',
+                id: 'Dengan membaca gambar di atas, mengapa sentroidnya duduk di atas titik tengah geometris daerahnya $x = 1$, di $x = 1.5$ sebagai gantinya?',
               },
               figure: {
                 dim: 2,
@@ -396,24 +396,24 @@ export const module8: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'y = x^2 rises steeply, so the strips near x = 2 are far taller (and heavier) than the strips near x = 0 — an asymmetric region has no reason to balance at its plain geometric midpoint.',
-                id: 'y = x^2 naik dengan curam, sehingga jalur dekat x = 2 jauh lebih tinggi (dan lebih berat) dibanding jalur dekat x = 0 — daerah yang tak simetris tak punya alasan untuk seimbang di titik tengah geometris biasanya.',
+                en: '$y = x^2$ rises steeply, so the strips near $x = 2$ are far taller (and heavier) than the strips near $x = 0$ — an asymmetric region has no reason to balance at its plain geometric midpoint.',
+                id: '$y = x^2$ naik dengan curam, sehingga jalur dekat $x = 2$ jauh lebih tinggi (dan lebih berat) dibanding jalur dekat $x = 0$ — daerah yang tak simetris tak punya alasan untuk seimbang di titik tengah geometris biasanya.',
               },
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Find y-bar for the triangular region under y = 3x on [0, 2].',
-                id: 'Cari y-bar untuk daerah segitiga di bawah y = 3x pada [0, 2].',
+                en: 'Find $\\bar y$ for the triangular region under $y = 3x$ on $[0, 2]$.',
+                id: 'Cari $\\bar y$ untuk daerah segitiga di bawah $y = 3x$ pada $[0, 2]$.',
               },
               blanks: [{ label: '\\bar y =', answer: 2 }],
               hints: [
-                { en: 'A = integral of 3x dx = 6. The y-bar numerator is (1/2) integral of (3x)^2 dx.', id: 'A = integral dari 3x dx = 6. Pembilang y-bar adalah (1/2) integral dari (3x)^2 dx.' },
+                { en: '$A = \\int 3x\\,dx = 6$. The $\\bar y$ numerator is $\\tfrac12\\int (3x)^2\\,dx$.', id: '$A = \\int 3x\\,dx = 6$. Pembilang $\\bar y$ adalah $\\tfrac12\\int (3x)^2\\,dx$.' },
               ],
               explain: {
-                en: 'Numerator = (1/2)(9)(8/3) = 12. y-bar = 12/6 = 2.',
-                id: 'Pembilang = (1/2)(9)(8/3) = 12. y-bar = 12/6 = 2.',
+                en: 'Numerator $= \\tfrac12(9)(8/3) = 12$. $\\bar y = 12/6 = 2$.',
+                id: 'Pembilang $= \\tfrac12(9)(8/3) = 12$. $\\bar y = 12/6 = 2$.',
               },
             },
           ],
@@ -428,22 +428,22 @@ export const module8: Module = {
           id: 'Pusat massa sebuah batang, dan sentroid sebuah daerah, kedua koordinatnya.',
         },
         requirements: [
-          { en: 'x-bar is always the moment integral divided by the mass or area integral.', id: 'x-bar selalu integral momen dibagi integral massa atau luas.' },
-          { en: 'A region\'s y-bar uses (1/2) times the integral of f(x) squared as its numerator.', id: 'y-bar sebuah daerah memakai (1/2) dikali integral dari f(x) kuadrat sebagai pembilangnya.' },
+          { en: '$\\bar x$ is always the moment integral divided by the mass or area integral.', id: '$\\bar x$ selalu integral momen dibagi integral massa atau luas.' },
+          { en: 'A region\'s $\\bar y$ uses $\\tfrac12$ times the integral of $f(x)$ squared as its numerator.', id: '$\\bar y$ sebuah daerah memakai $\\tfrac12$ dikali integral dari $f(x)$ kuadrat sebagai pembilangnya.' },
         ],
         tasks: [
           {
-            prompt: { en: 'Find the center of mass of a rod on [0, 5] with density delta(x) = 2x + 3. (Round to two decimal places.)', id: 'Cari pusat massa batang pada [0, 5] dengan kerapatan delta(x) = 2x + 3. (Bulatkan ke dua desimal.)' },
+            prompt: { en: 'Find the center of mass of a rod on $[0, 5]$ with density $\\delta(x) = 2x + 3$. (Round to two decimal places.)', id: 'Cari pusat massa batang pada $[0, 5]$ dengan kerapatan $\\delta(x) = 2x + 3$. (Bulatkan ke dua desimal.)' },
             blanks: [{ answer: 3.02 }],
             solution: ['M=\\int_0^5(2x+3)dx = 25+15=40', 'M_0=\\int_0^5 x(2x+3)dx = \\tfrac{2(125)}{3}+\\tfrac{3(25)}{2} \\approx 83{,}33+37{,}5=120{,}83', '\\bar x = 120{,}83/40 \\approx 3{,}02'],
           },
           {
-            prompt: { en: 'Find x-bar for the region under y = sqrt(x) on [0, 4].', id: 'Cari x-bar untuk daerah di bawah y = sqrt(x) pada [0, 4].' },
+            prompt: { en: 'Find $\\bar x$ for the region under $y = \\sqrt{x}$ on $[0, 4]$.', id: 'Cari $\\bar x$ untuk daerah di bawah $y = \\sqrt{x}$ pada $[0, 4]$.' },
             blanks: [{ answer: 2.4 }],
             solution: ['A=\\tfrac23(4)^{1.5}=\\tfrac{16}{3}, \\quad \\int_0^4 x\\sqrt x\\,dx = \\tfrac25(4)^{2.5}=\\tfrac{64}{5}', '\\bar x = \\dfrac{64/5}{16/3} = 2{,}4'],
           },
           {
-            prompt: { en: 'Find y-bar for the same region under y = sqrt(x) on [0, 4].', id: 'Cari y-bar untuk daerah yang sama di bawah y = sqrt(x) pada [0, 4].' },
+            prompt: { en: 'Find $\\bar y$ for the same region under $y = \\sqrt{x}$ on $[0, 4]$.', id: 'Cari $\\bar y$ untuk daerah yang sama di bawah $y = \\sqrt{x}$ pada $[0, 4]$.' },
             blanks: [{ answer: 0.75 }],
             solution: ['\\text{numerator} = \\tfrac12\\int_0^4 x\\,dx = \\tfrac12(8)=4', '\\bar y = \\dfrac{4}{16/3} = 0{,}75'],
           },

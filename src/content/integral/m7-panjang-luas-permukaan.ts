@@ -53,19 +53,19 @@ export const module7: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'Why does the arc length formula reduce to the ordinary distance formula when f is a straight line?',
-                id: 'Mengapa rumus panjang busur menyusut menjadi rumus jarak biasa ketika f adalah garis lurus?',
+                en: 'Why does the arc length formula reduce to the ordinary distance formula when $f$ is a straight line?',
+                id: 'Mengapa rumus panjang busur menyusut menjadi rumus jarak biasa ketika $f$ adalah garis lurus?',
               },
               options: [
-                { en: "f'(x) is the constant slope, so sqrt(1+(f')^2) is a constant, and integrating a constant over the interval just multiplies it by the width", id: "f'(x) adalah kemiringan konstan, sehingga sqrt(1+(f')^2) adalah konstanta, dan mengintegralkan konstanta pada interval hanya mengalikannya dengan lebarnya" },
+                { en: "$f'(x)$ is the constant slope, so $\\sqrt{1+(f')^2}$ is a constant, and integrating a constant over the interval just multiplies it by the width", id: "$f'(x)$ adalah kemiringan konstan, sehingga $\\sqrt{1+(f')^2}$ adalah konstanta, dan mengintegralkan konstanta pada interval hanya mengalikannya dengan lebarnya" },
                 { en: 'Straight lines are not actually covered by the arc length formula', id: 'Garis lurus sebenarnya tak tercakup rumus panjang busur' },
                 { en: 'It is a coincidence specific to this one example', id: 'Ini kebetulan yang khusus untuk contoh ini saja' },
                 { en: 'The Pythagorean theorem does not apply to curves', id: 'Teorema Pythagoras tak berlaku untuk kurva' },
               ],
               answer: 0,
               explain: {
-                en: "A line's derivative never changes, so the square root term inside the integral is the same number everywhere — the integral of a constant over [a,b] is just that constant times (b-a), which is exactly the run times the secant factor that recovers the straight-line distance.",
-                id: 'Turunan garis tak pernah berubah, sehingga suku akar kuadrat di dalam integralnya adalah bilangan yang sama di mana-mana — integral konstanta pada [a,b] hanyalah konstanta itu dikali (b-a), yang persis merupakan jalan dikali faktor tali busur yang memulihkan jarak garis lurus.',
+                en: "A line's derivative never changes, so the square root term inside the integral is the same number everywhere — the integral of a constant over $[a,b]$ is just that constant times $(b-a)$, which is exactly the run times the secant factor that recovers the straight-line distance.",
+                id: 'Turunan garis tak pernah berubah, sehingga suku akar kuadrat di dalam integralnya adalah bilangan yang sama di mana-mana — integral konstanta pada $[a,b]$ hanyalah konstanta itu dikali $(b-a)$, yang persis merupakan jalan dikali faktor tali busur yang memulihkan jarak garis lurus.',
               },
             },
             {
@@ -73,30 +73,30 @@ export const module7: Module = {
               id: 'f1',
               math: true,
               prompt: {
-                en: 'Complete the arc length setup for f(x) = 2x + 1 on [0, 3].',
-                id: 'Lengkapi penyusunan panjang busur untuk f(x) = 2x + 1 pada [0, 3].',
+                en: 'Complete the arc length setup for $f(x) = 2x + 1$ on $[0, 3]$.',
+                id: 'Lengkapi penyusunan panjang busur untuk $f(x) = 2x + 1$ pada $[0, 3]$.',
               },
               template: 'L = \\int_0^3 \\sqrt{1+___^2}\\,dx = 3\\sqrt{___}',
               blanks: ['2', '5'],
               explain: {
-                en: "f'(x) = 2, and 1 + 2^2 = 5 sits under the square root, constant across the whole interval.",
-                id: "f'(x) = 2, dan 1 + 2^2 = 5 duduk di bawah akar kuadrat, konstan sepanjang interval.",
+                en: "$f'(x) = 2$, and $1 + 2^2 = 5$ sits under the square root, constant across the whole interval.",
+                id: "$f'(x) = 2$, dan $1 + 2^2 = 5$ duduk di bawah akar kuadrat, konstan sepanjang interval.",
               },
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Find the arc length of f(x) = x^3/6 + 1/(2x) on [2, 3], using the antiderivative x^3/6 - 1/(2x) found in the lesson.',
-                id: 'Cari panjang busur dari f(x) = x^3/6 + 1/(2x) pada [2, 3], memakai antiturunan x^3/6 - 1/(2x) yang ditemukan di pelajaran.',
+                en: 'Find the arc length of $f(x) = x^3/6 + 1/(2x)$ on $[2, 3]$, using the antiderivative $x^3/6 - 1/(2x)$ found in the lesson.',
+                id: 'Cari panjang busur dari $f(x) = x^3/6 + 1/(2x)$ pada $[2, 3]$, memakai antiturunan $x^3/6 - 1/(2x)$ yang ditemukan di pelajaran.',
               },
               blanks: [{ answer: 3.25 }],
               hints: [
-                { en: 'F(3) = 27/6 - 1/6, F(2) = 8/6 - 1/4.', id: 'F(3) = 27/6 - 1/6, F(2) = 8/6 - 1/4.' },
+                { en: '$F(3) = 27/6 - 1/6$, $F(2) = 8/6 - 1/4$.', id: '$F(3) = 27/6 - 1/6$, $F(2) = 8/6 - 1/4$.' },
               ],
               explain: {
-                en: 'F(3) = 13/3, F(2) = 13/12. F(3) - F(2) = 13/3 - 13/12 = 52/12 - 13/12 = 39/12 = 13/4 = 3.25.',
-                id: 'F(3) = 13/3, F(2) = 13/12. F(3) - F(2) = 13/3 - 13/12 = 52/12 - 13/12 = 39/12 = 13/4 = 3,25.',
+                en: '$F(3) = 13/3$, $F(2) = 13/12$. $F(3) - F(2) = 13/3 - 13/12 = 52/12 - 13/12 = 39/12 = 13/4 = 3.25$.',
+                id: '$F(3) = 13/3$, $F(2) = 13/12$. $F(3) - F(2) = 13/3 - 13/12 = 52/12 - 13/12 = 39/12 = 13/4 = 3{,}25$.',
               },
             },
           ],
@@ -125,8 +125,8 @@ export const module7: Module = {
                 ticks: true,
                 items: [{ t: 'curve', f: 'sqrt(9-x^2)', from: -3, to: 3, color: 'a' }],
                 caption: {
-                  en: 'The upper semicircle of radius 3 — its arc length by the formula is exactly 3π, matching half the circle\'s circumference.',
-                  id: 'Setengah lingkaran atas berjari-jari 3 — panjang busurnya menurut rumus persis 3π, cocok dengan setengah keliling lingkarannya.',
+                  en: 'The upper semicircle of radius 3 — its arc length by the formula is exactly $3\\pi$, matching half the circle\'s circumference.',
+                  id: 'Setengah lingkaran atas berjari-jari 3 — panjang busurnya menurut rumus persis $3\\pi$, cocok dengan setengah keliling lingkarannya.',
                 },
               },
             },
@@ -147,23 +147,23 @@ export const module7: Module = {
                 id: 'Apa yang memastikan rumus panjang busur memberi hasil yang benar untuk setengah lingkaran?',
               },
               options: [
-                { en: 'The integral evaluates to pi·r, exactly matching half the circumference formula from geometry', id: 'Integralnya bernilai pi·r, cocok persis dengan setengah rumus keliling dari geometri' },
+                { en: 'The integral evaluates to $\\pi r$, exactly matching half the circumference formula from geometry', id: 'Integralnya bernilai $\\pi r$, cocok persis dengan setengah rumus keliling dari geometri' },
                 { en: 'The integral cannot actually be evaluated in this case', id: 'Integralnya sebenarnya tak bisa dievaluasi dalam kasus ini' },
                 { en: 'Arc length formulas never apply to circles', id: 'Rumus panjang busur tak pernah berlaku untuk lingkaran' },
                 { en: 'It is simply assumed, without any check', id: 'Ini sekadar diasumsikan, tanpa pemeriksaan apa pun' },
               ],
               answer: 0,
               explain: {
-                en: 'The calculus result, pi·r, is exactly what the independent geometric formula (half of 2·pi·r) predicts — two completely different methods arriving at the same number is strong confirmation.',
-                id: 'Hasil kalkulusnya, pi·r, persis apa yang diprediksi rumus geometris yang independen (setengah dari 2·pi·r) — dua metode yang sama sekali berbeda sampai pada angka yang sama adalah konfirmasi yang kuat.',
+                en: 'The calculus result, $\\pi r$, is exactly what the independent geometric formula (half of $2\\pi r$) predicts — two completely different methods arriving at the same number is strong confirmation.',
+                id: 'Hasil kalkulusnya, $\\pi r$, persis apa yang diprediksi rumus geometris yang independen (setengah dari $2\\pi r$) — dua metode yang sama sekali berbeda sampai pada angka yang sama adalah konfirmasi yang kuat.',
               },
             },
             {
               kind: 'quiz',
               id: 'q2',
               prompt: {
-                en: 'Reading the figure above, why must the arc length of this semicircle equal exactly 3π?',
-                id: 'Dengan membaca gambar di atas, mengapa panjang busur setengah lingkaran ini harus tepat 3π?',
+                en: 'Reading the figure above, why must the arc length of this semicircle equal exactly $3\\pi$?',
+                id: 'Dengan membaca gambar di atas, mengapa panjang busur setengah lingkaran ini harus tepat $3\\pi$?',
               },
               figure: {
                 dim: 2,
@@ -173,31 +173,31 @@ export const module7: Module = {
                 items: [{ t: 'curve', f: 'sqrt(9-x^2)', from: -3, to: 3, color: 'a' }],
               },
               options: [
-                { en: 'The radius is 3, and a semicircle\'s arc is always half of 2πr', id: 'Jari-jarinya 3, dan busur setengah lingkaran selalu setengah dari 2πr' },
-                { en: 'The interval [-3, 3] has length exactly 3π', id: 'Interval [-3, 3] panjangnya tepat 3π' },
-                { en: 'π only appears because of a coincidence in this specific radius', id: 'π hanya muncul karena kebetulan pada jari-jari tertentu ini' },
-                { en: 'Arc length formulas always produce multiples of π', id: 'Rumus panjang busur selalu menghasilkan kelipatan π' },
+                { en: 'The radius is $3$, and a semicircle\'s arc is always half of $2\\pi r$', id: 'Jari-jarinya $3$, dan busur setengah lingkaran selalu setengah dari $2\\pi r$' },
+                { en: 'The interval $[-3, 3]$ has length exactly $3\\pi$', id: 'Interval $[-3, 3]$ panjangnya tepat $3\\pi$' },
+                { en: '$\\pi$ only appears because of a coincidence in this specific radius', id: '$\\pi$ hanya muncul karena kebetulan pada jari-jari tertentu ini' },
+                { en: 'Arc length formulas always produce multiples of $\\pi$', id: 'Rumus panjang busur selalu menghasilkan kelipatan $\\pi$' },
               ],
               answer: 0,
               explain: {
-                en: 'This curve is literally half a circle of radius 3, and geometry has always said a full circumference is 2πr — half of that, πr, is 3π here regardless of which method computes it.',
-                id: 'Kurva ini secara harfiah setengah lingkaran berjari-jari 3, dan geometri selalu menyatakan keliling penuh adalah 2πr — setengahnya, πr, adalah 3π di sini tak peduli metode mana yang menghitungnya.',
+                en: 'This curve is literally half a circle of radius $3$, and geometry has always said a full circumference is $2\\pi r$ — half of that, $\\pi r$, is $3\\pi$ here regardless of which method computes it.',
+                id: 'Kurva ini secara harfiah setengah lingkaran berjari-jari $3$, dan geometri selalu menyatakan keliling penuh adalah $2\\pi r$ — setengahnya, $\\pi r$, adalah $3\\pi$ di sini tak peduli metode mana yang menghitungnya.',
               },
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Find the arc length of the upper semicircle of radius 5, y = sqrt(25 - x^2), on [-5, 5].',
-                id: 'Cari panjang busur setengah lingkaran atas berjari-jari 5, y = sqrt(25 - x^2), pada [-5, 5].',
+                en: 'Find the arc length of the upper semicircle of radius 5, $y = \\sqrt{25 - x^2}$, on $[-5, 5]$.',
+                id: 'Cari panjang busur setengah lingkaran atas berjari-jari 5, $y = \\sqrt{25 - x^2}$, pada $[-5, 5]$.',
               },
               blanks: [{ answer: 5 * Math.PI }],
               hints: [
-                { en: 'The arc length of a semicircle of radius r is always pi times r.', id: 'Panjang busur setengah lingkaran berjari-jari r selalu pi dikali r.' },
+                { en: 'The arc length of a semicircle of radius $r$ is always $\\pi r$.', id: 'Panjang busur setengah lingkaran berjari-jari $r$ selalu $\\pi r$.' },
               ],
               explain: {
-                en: '5π ≈ 15.71.',
-                id: '5π ≈ 15.71.',
+                en: '$5\\pi \\approx 15.71$.',
+                id: '$5\\pi \\approx 15{,}71$.',
               },
             },
           ],
@@ -212,22 +212,22 @@ export const module7: Module = {
           id: 'Satu pemeriksaan garis lurus, satu kurva yang dikerjakan, dan satu busur lingkaran.',
         },
         requirements: [
-          { en: 'Set up sqrt(1 + (f prime)^2) first, then antidifferentiate.', id: 'Susun sqrt(1 + (f aksen)^2) lebih dahulu, baru antiturunkan.' },
-          { en: 'A semicircle of radius r always has arc length pi times r.', id: 'Setengah lingkaran berjari-jari r selalu punya panjang busur pi dikali r.' },
+          { en: 'Set up $\\sqrt{1 + (f\')^2}$ first, then antidifferentiate.', id: 'Susun $\\sqrt{1 + (f\')^2}$ lebih dahulu, baru antiturunkan.' },
+          { en: 'A semicircle of radius $r$ always has arc length $\\pi r$.', id: 'Setengah lingkaran berjari-jari $r$ selalu punya panjang busur $\\pi r$.' },
         ],
         tasks: [
           {
-            prompt: { en: 'Find the arc length of f(x) = 3x - 2 on [1, 4].', id: 'Cari panjang busur dari f(x) = 3x - 2 pada [1, 4].' },
+            prompt: { en: 'Find the arc length of $f(x) = 3x - 2$ on $[1, 4]$.', id: 'Cari panjang busur dari $f(x) = 3x - 2$ pada $[1, 4]$.' },
             blanks: [{ answer: 3 * Math.sqrt(10) }],
             solution: ["L=\\int_1^4\\sqrt{1+9}\\,dx = 3\\sqrt{10} \\approx 9{,}49"],
           },
           {
-            prompt: { en: 'Find the arc length of f(x) = x^3/6 + 1/(2x) on [1, 2], using F(x) = x^3/6 - 1/(2x).', id: 'Cari panjang busur dari f(x) = x^3/6 + 1/(2x) pada [1, 2], memakai F(x) = x^3/6 - 1/(2x).' },
+            prompt: { en: 'Find the arc length of $f(x) = x^3/6 + 1/(2x)$ on $[1, 2]$, using $F(x) = x^3/6 - 1/(2x)$.', id: 'Cari panjang busur dari $f(x) = x^3/6 + 1/(2x)$ pada $[1, 2]$, memakai $F(x) = x^3/6 - 1/(2x)$.' },
             blanks: [{ answer: 17 / 12 }],
             solution: ["F(2)=8/6-1/4=4/3-1/4=13/12, \\quad F(1)=1/6-1/2=-1/3", "L=13/12-(-1/3)=13/12+4/12=17/12 \\approx 1{,}42"],
           },
           {
-            prompt: { en: 'Find the arc length of the upper semicircle of radius 2, on [-2, 2].', id: 'Cari panjang busur setengah lingkaran atas berjari-jari 2, pada [-2, 2].' },
+            prompt: { en: 'Find the arc length of the upper semicircle of radius 2, on $[-2, 2]$.', id: 'Cari panjang busur setengah lingkaran atas berjari-jari 2, pada $[-2, 2]$.' },
             blanks: [{ answer: 2 * Math.PI }],
             solution: ['L = \\pi(2) = 2\\pi \\approx 6{,}28'],
           },
@@ -281,8 +281,8 @@ export const module7: Module = {
                 ticks: true,
                 items: [{ t: 'curve', f: 'sqrt(9-x^2)', from: -3, to: 3, color: 'a' }],
                 caption: {
-                  en: 'Rotating this radius-3 semicircle fully around the x-axis sweeps out a sphere — surface area 4π(3)² = 36π, computed here without ever needing the sphere formula as an assumption.',
-                  id: 'Memutar setengah lingkaran berjari-jari 3 ini sepenuhnya mengelilingi sumbu-x menyapu sebuah bola — luas permukaan 4π(3)² = 36π, dihitung di sini tanpa pernah memerlukan rumus bola sebagai asumsi.',
+                  en: 'Rotating this radius-3 semicircle fully around the x-axis sweeps out a sphere — surface area $4\\pi(3)^2 = 36\\pi$, computed here without ever needing the sphere formula as an assumption.',
+                  id: 'Memutar setengah lingkaran berjari-jari 3 ini sepenuhnya mengelilingi sumbu-x menyapu sebuah bola — luas permukaan $4\\pi(3)^2 = 36\\pi$, dihitung di sini tanpa pernah memerlukan rumus bola sebagai asumsi.',
                 },
               },
             },
@@ -294,15 +294,15 @@ export const module7: Module = {
                 id: 'Bagaimana rumus luas permukaan benda putar berkaitan dengan rumus panjang busur?',
               },
               options: [
-                { en: "It is the arc length integrand multiplied by 2πf(x), the circumference swept out at each point", id: "Ia adalah integrand panjang busur dikalikan 2πf(x), keliling yang disapu di tiap titik" },
+                { en: "It is the arc length integrand multiplied by $2\\pi f(x)$, the circumference swept out at each point", id: "Ia adalah integrand panjang busur dikalikan $2\\pi f(x)$, keliling yang disapu di tiap titik" },
                 { en: 'The two formulas are completely unrelated', id: 'Kedua rumus sama sekali tak berkaitan' },
                 { en: 'Surface area is always exactly double the arc length', id: 'Luas permukaan selalu tepat dua kali panjang busur' },
                 { en: 'It replaces the square root with a constant', id: 'Ia mengganti akar kuadratnya dengan konstanta' },
               ],
               answer: 0,
               explain: {
-                en: "Each infinitesimal arc-length piece, when rotated, sweeps out a thin ring whose area is that piece's length times the circumference at that point — 2πf(x) attached directly onto the same sqrt(1+(f')^2) term.",
-                id: "Tiap potongan panjang busur yang sangat kecil, ketika diputar, menyapu cincin tipis yang luasnya adalah panjang potongan itu dikali keliling di titik itu — 2πf(x) dipasang langsung pada suku sqrt(1+(f')^2) yang sama.",
+                en: "Each infinitesimal arc-length piece, when rotated, sweeps out a thin ring whose area is that piece's length times the circumference at that point — $2\\pi f(x)$ attached directly onto the same $\\sqrt{1+(f')^2}$ term.",
+                id: "Tiap potongan panjang busur yang sangat kecil, ketika diputar, menyapu cincin tipis yang luasnya adalah panjang potongan itu dikali keliling di titik itu — $2\\pi f(x)$ dipasang langsung pada suku $\\sqrt{1+(f')^2}$ yang sama.",
               },
             },
             {
@@ -340,11 +340,11 @@ export const module7: Module = {
               },
               blanks: [{ answer: 64 * Math.PI }],
               hints: [
-                { en: 'S = 4·pi·r^2.', id: 'S = 4·pi·r^2.' },
+                { en: '$S = 4\\pi r^2$.', id: '$S = 4\\pi r^2$.' },
               ],
               explain: {
-                en: '4π(16) = 64π ≈ 201.06.',
-                id: '4π(16) = 64π ≈ 201.06.',
+                en: '$4\\pi(16) = 64\\pi \\approx 201.06$.',
+                id: '$4\\pi(16) = 64\\pi \\approx 201{,}06$.',
               },
             },
           ],
@@ -380,19 +380,19 @@ export const module7: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: "What role does the cone's slant height l play in the surface area formula S = π r l?",
-                id: 'Apa peran garis pelukis kerucut l dalam rumus luas permukaan S = π r l?',
+                en: "What role does the cone's slant height $l$ play in the surface area formula $S = \\pi r l$?",
+                id: 'Apa peran garis pelukis kerucut $l$ dalam rumus luas permukaan $S = \\pi r l$?',
               },
               options: [
-                { en: 'It is the actual length of the rotated line, arising from sqrt(1+(f prime)^2) in the surface area integral', id: 'Ia adalah panjang sebenarnya dari garis yang diputar, muncul dari sqrt(1+(f aksen)^2) pada integral luas permukaan' },
-                { en: 'It is just another name for the height h', id: 'Hanya nama lain untuk tinggi h' },
+                { en: "It is the actual length of the rotated line, arising from $\\sqrt{1+(f')^2}$ in the surface area integral", id: "Ia adalah panjang sebenarnya dari garis yang diputar, muncul dari $\\sqrt{1+(f')^2}$ pada integral luas permukaan" },
+                { en: 'It is just another name for the height $h$', id: 'Hanya nama lain untuk tinggi $h$' },
                 { en: 'It has no geometric meaning at all', id: 'Sama sekali tak punya makna geometris' },
-                { en: 'It is always equal to the radius r', id: 'Selalu sama dengan jari-jari r' },
+                { en: 'It is always equal to the radius $r$', id: 'Selalu sama dengan jari-jari $r$' },
               ],
               answer: 0,
               explain: {
-                en: 'The slant height is exactly what the arc-length factor sqrt(1+(f prime)^2) measures for a straight line — the true length of the segment being swept, as opposed to h, which is only its horizontal projection.',
-                id: 'Garis pelukis persis apa yang diukur faktor panjang-busur sqrt(1+(f aksen)^2) untuk garis lurus — panjang sebenarnya segmen yang disapu, berbeda dari h, yang hanya proyeksi mendatarnya.',
+                en: "The slant height is exactly what the arc-length factor $\\sqrt{1+(f')^2}$ measures for a straight line — the true length of the segment being swept, as opposed to $h$, which is only its horizontal projection.",
+                id: "Garis pelukis persis apa yang diukur faktor panjang-busur $\\sqrt{1+(f')^2}$ untuk garis lurus — panjang sebenarnya segmen yang disapu, berbeda dari $h$, yang hanya proyeksi mendatarnya.",
               },
             },
             {
@@ -400,8 +400,8 @@ export const module7: Module = {
               id: 'o1',
               math: true,
               prompt: {
-                en: 'Order the steps that find the lateral surface area of a cone with r = 6, h = 8.',
-                id: 'Susun langkah yang mencari luas permukaan selimut kerucut dengan r = 6, h = 8.',
+                en: 'Order the steps that find the lateral surface area of a cone with $r = 6$, $h = 8$.',
+                id: 'Susun langkah yang mencari luas permukaan selimut kerucut dengan $r = 6$, $h = 8$.',
               },
               lines: [
                 'l = \\sqrt{h^2+r^2} = \\sqrt{64+36} = \\sqrt{100} = 10',
@@ -409,8 +409,8 @@ export const module7: Module = {
                 'S = \\pi(6)(10) = 60\\pi',
               ],
               explain: {
-                en: 'Find the slant height first from the Pythagorean theorem, then substitute both r and l into the formula, then multiply out.',
-                id: 'Cari garis pelukisnya lebih dahulu dari teorema Pythagoras, lalu substitusikan r dan l ke rumusnya, baru kalikan.',
+                en: 'Find the slant height first from the Pythagorean theorem, then substitute both $r$ and $l$ into the formula, then multiply out.',
+                id: 'Cari garis pelukisnya lebih dahulu dari teorema Pythagoras, lalu substitusikan $r$ dan $l$ ke rumusnya, baru kalikan.',
               },
             },
             {
@@ -422,11 +422,11 @@ export const module7: Module = {
               },
               blanks: [{ answer: 65 * Math.PI }],
               hints: [
-                { en: 'l = sqrt(144+25) = 13.', id: 'l = sqrt(144+25) = 13.' },
+                { en: '$l = \\sqrt{144+25} = 13$.', id: '$l = \\sqrt{144+25} = 13$.' },
               ],
               explain: {
-                en: 'S = π(5)(13) = 65π ≈ 204.20.',
-                id: 'S = π(5)(13) = 65π ≈ 204.20.',
+                en: '$S = \\pi(5)(13) = 65\\pi \\approx 204.20$.',
+                id: '$S = \\pi(5)(13) = 65\\pi \\approx 204{,}20$.',
               },
             },
           ],
@@ -441,7 +441,7 @@ export const module7: Module = {
           id: 'Sebuah bola, sebuah kerucut, dan satu luas permukaan dihitung langsung dari rumus integral.',
         },
         requirements: [
-          { en: 'A sphere\'s surface area is 4·pi·r^2, always.', id: 'Luas permukaan bola selalu 4·pi·r^2.' },
+          { en: 'A sphere\'s surface area is $4\\pi r^2$, always.', id: 'Luas permukaan bola selalu $4\\pi r^2$.' },
           { en: 'A cone\'s lateral surface area needs the slant height, not the height itself.', id: 'Luas permukaan selimut kerucut memerlukan garis pelukis, bukan tingginya sendiri.' },
         ],
         tasks: [
@@ -451,18 +451,18 @@ export const module7: Module = {
             solution: ['S = 4\\pi(36) = 144\\pi \\approx 452{,}39'],
           },
           {
-            prompt: { en: 'Find the lateral surface area of a cone with r = 9, h = 12 (a 9-12-15 triangle).', id: 'Cari luas permukaan selimut kerucut dengan r = 9, h = 12 (segitiga 9-12-15).' },
+            prompt: { en: 'Find the lateral surface area of a cone with $r = 9$, $h = 12$ (a 9-12-15 triangle).', id: 'Cari luas permukaan selimut kerucut dengan $r = 9$, $h = 12$ (segitiga 9-12-15).' },
             blanks: [{ answer: 135 * Math.PI }],
             solution: ['l=15, \\quad S=\\pi(9)(15)=135\\pi \\approx 424{,}12'],
           },
           {
-            prompt: { en: 'Find the surface area from rotating f(x) = 4x on [0, 2] about the x-axis (a cone: find r and h first, then use S = π r l).', id: 'Cari luas permukaan dari memutar f(x) = 4x pada [0, 2] mengelilingi sumbu-x (sebuah kerucut: cari r dan h lebih dahulu, baru pakai S = π r l).' },
+            prompt: { en: 'Find the surface area from rotating $f(x) = 4x$ on $[0, 2]$ about the x-axis (a cone: find $r$ and $h$ first, then use $S = \\pi r l$).', id: 'Cari luas permukaan dari memutar $f(x) = 4x$ pada $[0, 2]$ mengelilingi sumbu-x (sebuah kerucut: cari $r$ dan $h$ lebih dahulu, baru pakai $S = \\pi r l$).' },
             blanks: [{ answer: 16 * Math.sqrt(17) * Math.PI, tol: 0.5 }],
             solution: ['h=2, \\ r=f(2)=8, \\quad l=\\sqrt{4+64}=\\sqrt{68}=2\\sqrt{17}', 'S=\\pi(8)(2\\sqrt{17})=16\\sqrt{17}\\pi \\approx 207{,}17'],
           },
         ],
         hints: [
-          { en: 'Part 3: the height h is the x-interval\'s width, and the radius r is f evaluated at the far end, x = 2.', id: 'Butir 3: tinggi h adalah lebar interval x-nya, dan jari-jari r adalah f yang dievaluasi di ujung jauhnya, x = 2.' },
+          { en: 'Part 3: the height $h$ is the $x$-interval\'s width, and the radius $r$ is $f$ evaluated at the far end, $x = 2$.', id: 'Butir 3: tinggi $h$ adalah lebar interval $x$-nya, dan jari-jari $r$ adalah $f$ yang dievaluasi di ujung jauhnya, $x = 2$.' },
         ],
         xp: 50,
       },

@@ -63,8 +63,8 @@ export const module9: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'Separability is exactly the property of being rearrangeable into f(y)dy = g(x)dx, after which each side can be antidifferentiated on its own.',
-                id: 'Keterpisahan adalah persis sifat bisa ditata ulang menjadi f(y)dy = g(x)dx, setelah itu tiap ruas bisa diantiturunkan sendiri-sendiri.',
+                en: 'Separability is exactly the property of being rearrangeable into $f(y)\\,dy = g(x)\\,dx$, after which each side can be antidifferentiated on its own.',
+                id: 'Keterpisahan adalah persis sifat bisa ditata ulang menjadi $f(y)\\,dy = g(x)\\,dx$, setelah itu tiap ruas bisa diantiturunkan sendiri-sendiri.',
               },
             },
             {
@@ -72,30 +72,30 @@ export const module9: Module = {
               id: 'f1',
               math: true,
               prompt: {
-                en: 'Complete the separation step for dy/dx = 3x^2 y.',
-                id: 'Lengkapi langkah pemisahan untuk dy/dx = 3x^2 y.',
+                en: 'Complete the separation step for $\\dfrac{dy}{dx} = 3x^2 y$.',
+                id: 'Lengkapi langkah pemisahan untuk $\\dfrac{dy}{dx} = 3x^2 y$.',
               },
               template: '\\dfrac{dy}{y} = ___\\,dx',
               blanks: ['3x^2'],
               explain: {
-                en: 'Dividing both sides by y moves every y-term to the left, leaving 3x^2 alone on the right with dx.',
-                id: 'Membagi kedua ruas dengan y memindahkan setiap suku y ke kiri, menyisakan 3x^2 sendirian di kanan bersama dx.',
+                en: 'Dividing both sides by $y$ moves every $y$-term to the left, leaving $3x^2$ alone on the right with $dx$.',
+                id: 'Membagi kedua ruas dengan $y$ memindahkan setiap suku $y$ ke kiri, menyisakan $3x^2$ sendirian di kanan bersama $dx$.',
               },
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Solve dy/dx = 2xy with y(0) = 3, then evaluate y at x = 1.',
-                id: 'Selesaikan dy/dx = 2xy dengan y(0) = 3, lalu hitung y di x = 1.',
+                en: 'Solve $\\dfrac{dy}{dx} = 2xy$ with $y(0) = 3$, then evaluate $y$ at $x = 1$.',
+                id: 'Selesaikan $\\dfrac{dy}{dx} = 2xy$ dengan $y(0) = 3$, lalu hitung $y$ di $x = 1$.',
               },
               blanks: [{ label: 'y(1) =', answer: 3 * Math.E }],
               hints: [
-                { en: 'Separate: dy/y = 2x dx. Integrate: ln|y| = x^2 + C.', id: 'Pisahkan: dy/y = 2x dx. Integralkan: ln|y| = x^2 + C.' },
+                { en: 'Separate: $\\dfrac{dy}{y} = 2x\\,dx$. Integrate: $\\ln|y| = x^2 + C$.', id: 'Pisahkan: $\\dfrac{dy}{y} = 2x\\,dx$. Integralkan: $\\ln|y| = x^2 + C$.' },
               ],
               explain: {
-                en: 'y = Ae^(x^2), y(0)=3 gives A=3, so y=3e^(x^2). y(1) = 3e ≈ 8.15.',
-                id: 'y = Ae^(x^2), y(0)=3 memberi A=3, sehingga y=3e^(x^2). y(1) = 3e ≈ 8.15.',
+                en: '$y = Ae^{x^2}$, $y(0)=3$ gives $A=3$, so $y=3e^{x^2}$. $y(1) = 3e \\approx 8.15$.',
+                id: '$y = Ae^{x^2}$, $y(0)=3$ memberi $A=3$, sehingga $y=3e^{x^2}$. $y(1) = 3e \\approx 8{,}15$.',
               },
             },
           ],
@@ -133,8 +133,8 @@ export const module9: Module = {
                 ticks: true,
                 items: [{ t: 'curve', f: '1000*e^(0.05*x)', from: 0, to: 11, color: 'a' }],
                 caption: {
-                  en: 'P(t) = 1000e^(0.05t) — the solution to dP/dt = 0.05P, reaching about 1648.7 at t = 10.',
-                  id: 'P(t) = 1000e^(0.05t) — solusi dari dP/dt = 0.05P, mencapai sekitar 1648.7 di t = 10.',
+                  en: '$P(t) = 1000e^{0.05t}$ — the solution to $\\dfrac{dP}{dt} = 0.05P$, reaching about $1648.7$ at $t = 10$.',
+                  id: '$P(t) = 1000e^{0.05t}$ — solusi dari $\\dfrac{dP}{dt} = 0.05P$, mencapai sekitar $1648{,}7$ di $t = 10$.',
                 },
               },
             },
@@ -146,23 +146,23 @@ export const module9: Module = {
                 id: 'Persamaan diferensial apa yang menjadi terjemahan dari "laju perubahan P sebanding dengan P itu sendiri"?',
               },
               options: [
-                { en: 'dP/dt = kP', id: 'dP/dt = kP' },
-                { en: 'dP/dt = k', id: 'dP/dt = k' },
-                { en: 'dP/dt = kt', id: 'dP/dt = kt' },
-                { en: 'P = kt', id: 'P = kt' },
+                { en: '$\\dfrac{dP}{dt} = kP$', id: '$\\dfrac{dP}{dt} = kP$' },
+                { en: '$\\dfrac{dP}{dt} = k$', id: '$\\dfrac{dP}{dt} = k$' },
+                { en: '$\\dfrac{dP}{dt} = kt$', id: '$\\dfrac{dP}{dt} = kt$' },
+                { en: '$P = kt$', id: '$P = kt$' },
               ],
               answer: 0,
               explain: {
-                en: '"Proportional to P itself" means the rate equals a constant k times P, not a constant alone and not a function of t alone.',
-                id: '"Sebanding dengan P itu sendiri" berarti lajunya sama dengan konstanta k dikali P, bukan konstanta saja dan bukan fungsi dari t saja.',
+                en: '"Proportional to $P$ itself" means the rate equals a constant $k$ times $P$, not a constant alone and not a function of $t$ alone.',
+                id: '"Sebanding dengan $P$ itu sendiri" berarti lajunya sama dengan konstanta $k$ dikali $P$, bukan konstanta saja dan bukan fungsi dari $t$ saja.',
               },
             },
             {
               kind: 'quiz',
               id: 'q2',
               prompt: {
-                en: 'Reading the graph above of P(t) = 1000e^(0.05t), what is the value being approached at t = 10?',
-                id: 'Dengan membaca grafik P(t) = 1000e^(0.05t) di atas, nilai apa yang didekati di t = 10?',
+                en: 'Reading the graph above of $P(t) = 1000e^{0.05t}$, what is the value being approached at $t = 10$?',
+                id: 'Dengan membaca grafik $P(t) = 1000e^{0.05t}$ di atas, nilai apa yang didekati di $t = 10$?',
               },
               figure: {
                 dim: 2,
@@ -179,24 +179,24 @@ export const module9: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'The curve visibly reaches somewhat above 1600 by t = 10, matching the computed value of approximately 1648.7.',
-                id: 'Kurvanya tampak mencapai sedikit di atas 1600 pada t = 10, cocok dengan nilai terhitung sekitar 1648,7.',
+                en: 'The curve visibly reaches somewhat above 1600 by $t = 10$, matching the computed value of approximately $1648.7$.',
+                id: 'Kurvanya tampak mencapai sedikit di atas 1600 pada $t = 10$, cocok dengan nilai terhitung sekitar $1648{,}7$.',
               },
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'A population follows dP/dt = 0.03P with P(0) = 500. Find P(20).',
-                id: 'Sebuah populasi mengikuti dP/dt = 0.03P dengan P(0) = 500. Cari P(20).',
+                en: 'A population follows $\\dfrac{dP}{dt} = 0.03P$ with $P(0) = 500$. Find $P(20)$.',
+                id: 'Sebuah populasi mengikuti $\\dfrac{dP}{dt} = 0.03P$ dengan $P(0) = 500$. Cari $P(20)$.',
               },
               blanks: [{ answer: 500 * Math.exp(0.6) }],
               hints: [
-                { en: 'P(t) = 500e^(0.03t).', id: 'P(t) = 500e^(0.03t).' },
+                { en: '$P(t) = 500e^{0.03t}$.', id: '$P(t) = 500e^{0.03t}$.' },
               ],
               explain: {
-                en: 'P(20) = 500e^0.6 ≈ 911.06.',
-                id: 'P(20) = 500e^0.6 ≈ 911.06.',
+                en: '$P(20) = 500e^{0.6} \\approx 911.06$.',
+                id: '$P(20) = 500e^{0.6} \\approx 911{,}06$.',
               },
             },
           ],
@@ -212,27 +212,27 @@ export const module9: Module = {
         },
         requirements: [
           { en: 'Separate the variables completely before integrating either side.', id: 'Pisahkan peubahnya sepenuhnya sebelum mengintegralkan ruas mana pun.' },
-          { en: 'dy/dt = ky always solves to y = y0 · e^(kt).', id: 'dy/dt = ky selalu terselesaikan menjadi y = y0 · e^(kt).' },
+          { en: '$\\dfrac{dy}{dt} = ky$ always solves to $y = y_0 e^{kt}$.', id: '$\\dfrac{dy}{dt} = ky$ selalu terselesaikan menjadi $y = y_0 e^{kt}$.' },
         ],
         tasks: [
           {
-            prompt: { en: 'Solve dy/dx = 4x^3 y with y(0) = 1, then evaluate y at x = 1.', id: 'Selesaikan dy/dx = 4x^3 y dengan y(0) = 1, lalu hitung y di x = 1.' },
+            prompt: { en: 'Solve $\\dfrac{dy}{dx} = 4x^3 y$ with $y(0) = 1$, then evaluate $y$ at $x = 1$.', id: 'Selesaikan $\\dfrac{dy}{dx} = 4x^3 y$ dengan $y(0) = 1$, lalu hitung $y$ di $x = 1$.' },
             blanks: [{ answer: Math.E, tol: 0.01 }],
             solution: ['\\dfrac{dy}{y}=4x^3\\,dx \\Rightarrow \\ln|y|=x^4+C', 'y(0)=1 \\Rightarrow C=0, \\quad y=e^{x^4}, \\quad y(1)=e \\approx 2{,}72'],
           },
           {
-            prompt: { en: 'A radioactive sample follows dA/dt = -0.02A with A(0) = 200. Find A(30). (Round to two decimal places.)', id: 'Sampel radioaktif mengikuti dA/dt = -0.02A dengan A(0) = 200. Cari A(30). (Bulatkan ke dua desimal.)' },
+            prompt: { en: 'A radioactive sample follows $\\dfrac{dA}{dt} = -0.02A$ with $A(0) = 200$. Find $A(30)$. (Round to two decimal places.)', id: 'Sampel radioaktif mengikuti $\\dfrac{dA}{dt} = -0.02A$ dengan $A(0) = 200$. Cari $A(30)$. (Bulatkan ke dua desimal.)' },
             blanks: [{ answer: 200 * Math.exp(-0.6), tol: 0.5 }],
             solution: ['A(t)=200e^{-0.02t}, \\quad A(30)=200e^{-0.6} \\approx 109{,}76'],
           },
           {
-            prompt: { en: 'A population follows dP/dt = 0.04P with P(0) = 800. Find P(15). (Round to two decimal places.)', id: 'Sebuah populasi mengikuti dP/dt = 0.04P dengan P(0) = 800. Cari P(15). (Bulatkan ke dua desimal.)' },
+            prompt: { en: 'A population follows $\\dfrac{dP}{dt} = 0.04P$ with $P(0) = 800$. Find $P(15)$. (Round to two decimal places.)', id: 'Sebuah populasi mengikuti $\\dfrac{dP}{dt} = 0.04P$ dengan $P(0) = 800$. Cari $P(15)$. (Bulatkan ke dua desimal.)' },
             blanks: [{ answer: 800 * Math.exp(0.6), tol: 0.5 }],
             solution: ['P(t)=800e^{0.04t}, \\quad P(15)=800e^{0.6} \\approx 1457{,}70'],
           },
         ],
         hints: [
-          { en: 'A negative k in y0 · e^(kt) describes decay, not growth — the sign carries real meaning.', id: 'k negatif dalam y0 · e^(kt) mendeskripsikan peluruhan, bukan pertumbuhan — tandanya membawa makna sungguhan.' },
+          { en: 'A negative $k$ in $y_0 e^{kt}$ describes decay, not growth — the sign carries real meaning.', id: '$k$ negatif dalam $y_0 e^{kt}$ mendeskripsikan peluruhan, bukan pertumbuhan — tandanya membawa makna sungguhan.' },
         ],
         xp: 50,
       },
@@ -283,8 +283,8 @@ export const module9: Module = {
                   { t: 'curve', f: '(e^x-e^(-x))/2', from: -2, to: 2, color: 'b', label: 'sinh x' },
                 ],
                 caption: {
-                  en: 'cosh x (always ≥ 1, even) and sinh x (odd, passing through the origin) — built from e^x the way cos and sin are built from the circle.',
-                  id: 'cosh x (selalu ≥ 1, genap) dan sinh x (ganjil, melalui titik asal) — dibangun dari e^x sebagaimana cos dan sin dibangun dari lingkaran.',
+                  en: '$\\cosh x$ (always $\\geq 1$, even) and $\\sinh x$ (odd, passing through the origin) — built from $e^x$ the way $\\cos$ and $\\sin$ are built from the circle.',
+                  id: '$\\cosh x$ (selalu $\\geq 1$, genap) dan $\\sinh x$ (ganjil, melalui titik asal) — dibangun dari $e^x$ sebagaimana $\\cos$ dan $\\sin$ dibangun dari lingkaran.',
                 },
               },
             },
@@ -292,27 +292,27 @@ export const module9: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'Why is the hyperbolic identity cosh^2(x) - sinh^2(x) = 1 a subtraction, unlike the trig identity cos^2 + sin^2 = 1?',
-                id: 'Mengapa identitas hiperbolik cosh^2(x) - sinh^2(x) = 1 adalah pengurangan, tak seperti identitas trigonometri cos^2 + sin^2 = 1?',
+                en: 'Why is the hyperbolic identity $\\cosh^2(x) - \\sinh^2(x) = 1$ a subtraction, unlike the trig identity $\\cos^2 + \\sin^2 = 1$?',
+                id: 'Mengapa identitas hiperbolik $\\cosh^2(x) - \\sinh^2(x) = 1$ adalah pengurangan, tak seperti identitas trigonometri $\\cos^2 + \\sin^2 = 1$?',
               },
               options: [
-                { en: 'Expanding the definitions directly shows the e^(2x) and e^(-2x) terms only cancel when the squares are subtracted, not added', id: 'Menjabarkan definisinya langsung menunjukkan suku e^(2x) dan e^(-2x) hanya saling meniadakan ketika kuadratnya dikurangkan, bukan dijumlahkan' },
+                { en: 'Expanding the definitions directly shows the $e^{2x}$ and $e^{-2x}$ terms only cancel when the squares are subtracted, not added', id: 'Menjabarkan definisinya langsung menunjukkan suku $e^{2x}$ dan $e^{-2x}$ hanya saling meniadakan ketika kuadratnya dikurangkan, bukan dijumlahkan' },
                 { en: 'It is an arbitrary choice with no algebraic reason', id: 'Ini pilihan sebarang tanpa alasan aljabar' },
-                { en: 'cosh and sinh are actually equal to each other', id: 'cosh dan sinh sebenarnya sama satu sama lain' },
-                { en: 'The identity is actually cosh^2 + sinh^2 = 1 instead', id: 'Identitasnya sebenarnya cosh^2 + sinh^2 = 1' },
+                { en: '$\\cosh$ and $\\sinh$ are actually equal to each other', id: '$\\cosh$ dan $\\sinh$ sebenarnya sama satu sama lain' },
+                { en: 'The identity is actually $\\cosh^2 + \\sinh^2 = 1$ instead', id: 'Identitasnya sebenarnya $\\cosh^2 + \\sinh^2 = 1$' },
               ],
               answer: 0,
               explain: {
-                en: 'Expanding (e^x+e^-x)^2 and (e^x-e^-x)^2 and subtracting cancels the e^(2x) and e^(-2x) cross terms, leaving exactly 4 — dividing by the 4 from squaring 1/2 twice gives 1. Adding instead would double those terms rather than cancel them.',
-                id: 'Menjabarkan (e^x+e^-x)^2 dan (e^x-e^-x)^2 lalu mengurangkan meniadakan suku silang e^(2x) dan e^(-2x), menyisakan tepat 4 — membagi dengan 4 dari mengkuadratkan 1/2 dua kali memberi 1. Menjumlahkan sebagai gantinya justru akan menggandakan suku-suku itu, bukan meniadakannya.',
+                en: 'Expanding $(e^x+e^{-x})^2$ and $(e^x-e^{-x})^2$ and subtracting cancels the $e^{2x}$ and $e^{-2x}$ cross terms, leaving exactly $4$ — dividing by the $4$ from squaring $1/2$ twice gives $1$. Adding instead would double those terms rather than cancel them.',
+                id: 'Menjabarkan $(e^x+e^{-x})^2$ dan $(e^x-e^{-x})^2$ lalu mengurangkan meniadakan suku silang $e^{2x}$ dan $e^{-2x}$, menyisakan tepat $4$ — membagi dengan $4$ dari mengkuadratkan $1/2$ dua kali memberi $1$. Menjumlahkan sebagai gantinya justru akan menggandakan suku-suku itu, bukan meniadakannya.',
               },
             },
             {
               kind: 'quiz',
               id: 'q2',
               prompt: {
-                en: 'Reading the graph above, why is cosh x never less than 1?',
-                id: 'Dengan membaca grafik di atas, mengapa cosh x tak pernah kurang dari 1?',
+                en: 'Reading the graph above, why is $\\cosh x$ never less than $1$?',
+                id: 'Dengan membaca grafik di atas, mengapa $\\cosh x$ tak pernah kurang dari $1$?',
               },
               figure: {
                 dim: 2,
@@ -325,10 +325,10 @@ export const module9: Module = {
                 ],
               },
               options: [
-                { en: 'It is an average of e^x and e^(-x), both positive, and it reaches its minimum of exactly 1 at x = 0', id: 'Ia adalah rata-rata dari e^x dan e^(-x), keduanya positif, dan mencapai minimumnya tepat 1 di x = 0' },
+                { en: 'It is an average of $e^x$ and $e^{-x}$, both positive, and it reaches its minimum of exactly $1$ at $x = 0$', id: 'Ia adalah rata-rata dari $e^x$ dan $e^{-x}$, keduanya positif, dan mencapai minimumnya tepat $1$ di $x = 0$' },
                 { en: 'It happens to look that way in the figure but is not true in general', id: 'Kebetulan terlihat begitu pada gambar tetapi tak benar secara umum' },
-                { en: 'cosh x is actually identical to cos x', id: 'cosh x sebenarnya identik dengan cos x' },
-                { en: 'The graph shown is actually of sinh x', id: 'Grafik yang ditampilkan sebenarnya sinh x' },
+                { en: '$\\cosh x$ is actually identical to $\\cos x$', id: '$\\cosh x$ sebenarnya identik dengan $\\cos x$' },
+                { en: 'The graph shown is actually of $\\sinh x$', id: 'Grafik yang ditampilkan sebenarnya $\\sinh x$' },
               ],
               answer: 0,
               explain: {
@@ -340,19 +340,19 @@ export const module9: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Evaluate sinh(1) and cosh(1). (Round to four decimal places.)',
-                id: 'Hitung sinh(1) dan cosh(1). (Bulatkan ke empat desimal.)',
+                en: 'Evaluate $\\sinh(1)$ and $\\cosh(1)$. (Round to four decimal places.)',
+                id: 'Hitung $\\sinh(1)$ dan $\\cosh(1)$. (Bulatkan ke empat desimal.)',
               },
               blanks: [
                 { label: '\\sinh(1) =', answer: 1.1752, tol: 0.001 },
                 { label: '\\cosh(1) =', answer: 1.5431, tol: 0.001 },
               ],
               hints: [
-                { en: 'sinh(1) = (e - 1/e)/2, cosh(1) = (e + 1/e)/2.', id: 'sinh(1) = (e - 1/e)/2, cosh(1) = (e + 1/e)/2.' },
+                { en: '$\\sinh(1) = (e - 1/e)/2$, $\\cosh(1) = (e + 1/e)/2$.', id: '$\\sinh(1) = (e - 1/e)/2$, $\\cosh(1) = (e + 1/e)/2$.' },
               ],
               explain: {
-                en: 'sinh(1) ≈ 1.1752, cosh(1) ≈ 1.5431. Check: 1.5431^2 - 1.1752^2 ≈ 1.',
-                id: 'sinh(1) ≈ 1.1752, cosh(1) ≈ 1.5431. Periksa: 1.5431^2 - 1.1752^2 ≈ 1.',
+                en: '$\\sinh(1) \\approx 1.1752$, $\\cosh(1) \\approx 1.5431$. Check: $1.5431^2 - 1.1752^2 \\approx 1$.',
+                id: '$\\sinh(1) \\approx 1{,}1752$, $\\cosh(1) \\approx 1{,}5431$. Periksa: $1{,}5431^2 - 1{,}1752^2 \\approx 1$.',
               },
             },
           ],
@@ -408,8 +408,8 @@ export const module9: Module = {
               id: 'o1',
               math: true,
               prompt: {
-                en: 'Order the steps that evaluate the integral from 0 to ln(3) of sinh(x) dx.',
-                id: 'Susun langkah yang menghitung integral dari 0 sampai ln(3) dari sinh(x) dx.',
+                en: 'Order the steps that evaluate $\\int_0^{\\ln 3} \\sinh(x)\\,dx$.',
+                id: 'Susun langkah yang menghitung $\\int_0^{\\ln 3} \\sinh(x)\\,dx$.',
               },
               lines: [
                 '\\int_0^{\\ln 3} \\sinh x\\,dx = \\Big[\\cosh x\\Big]_0^{\\ln 3}',
@@ -417,24 +417,24 @@ export const module9: Module = {
                 '= \\dfrac{5}{3} - 1 = \\dfrac{2}{3}',
               ],
               explain: {
-                en: 'Write the antiderivative first, then evaluate cosh at the upper bound using e^(ln 3) = 3, then subtract cosh(0) = 1.',
-                id: 'Tulis antiturunannya lebih dahulu, lalu evaluasi cosh di batas atas memakai e^(ln 3) = 3, baru kurangkan cosh(0) = 1.',
+                en: 'Write the antiderivative first, then evaluate $\\cosh$ at the upper bound using $e^{\\ln 3} = 3$, then subtract $\\cosh(0) = 1$.',
+                id: 'Tulis antiturunannya lebih dahulu, lalu evaluasi $\\cosh$ di batas atas memakai $e^{\\ln 3} = 3$, baru kurangkan $\\cosh(0) = 1$.',
               },
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Evaluate the integral from 0 to ln(2) of sinh(x) dx.',
-                id: 'Hitung integral dari 0 sampai ln(2) dari sinh(x) dx.',
+                en: 'Evaluate $\\int_0^{\\ln 2} \\sinh(x)\\,dx$.',
+                id: 'Hitung $\\int_0^{\\ln 2} \\sinh(x)\\,dx$.',
               },
               blanks: [{ answer: 0.25 }],
               hints: [
-                { en: 'Antiderivative is cosh x. cosh(ln 2) = (2 + 0.5)/2.', id: 'Antiturunannya cosh x. cosh(ln 2) = (2 + 0.5)/2.' },
+                { en: 'Antiderivative is $\\cosh x$. $\\cosh(\\ln 2) = (2 + 0.5)/2$.', id: 'Antiturunannya $\\cosh x$. $\\cosh(\\ln 2) = (2 + 0.5)/2$.' },
               ],
               explain: {
-                en: 'cosh(ln 2) - cosh(0) = 1.25 - 1 = 0.25.',
-                id: 'cosh(ln 2) - cosh(0) = 1.25 - 1 = 0.25.',
+                en: '$\\cosh(\\ln 2) - \\cosh(0) = 1.25 - 1 = 0.25$.',
+                id: '$\\cosh(\\ln 2) - \\cosh(0) = 1{,}25 - 1 = 0{,}25$.',
               },
             },
           ],
@@ -449,22 +449,22 @@ export const module9: Module = {
           id: 'Satu pemeriksaan identitas, dan dua integral tentu fungsi hiperbolik.',
         },
         requirements: [
-          { en: 'cosh^2(x) - sinh^2(x) always equals 1, for any x.', id: 'cosh^2(x) - sinh^2(x) selalu sama dengan 1, untuk x mana pun.' },
-          { en: 'The antiderivative of cosh is sinh, and of sinh is cosh — with no sign change.', id: 'Antiturunan cosh adalah sinh, dan sinh adalah cosh — tanpa perubahan tanda.' },
+          { en: '$\\cosh^2(x) - \\sinh^2(x)$ always equals $1$, for any $x$.', id: '$\\cosh^2(x) - \\sinh^2(x)$ selalu sama dengan $1$, untuk $x$ mana pun.' },
+          { en: 'The antiderivative of $\\cosh$ is $\\sinh$, and of $\\sinh$ is $\\cosh$ — with no sign change.', id: 'Antiturunan $\\cosh$ adalah $\\sinh$, dan $\\sinh$ adalah $\\cosh$ — tanpa perubahan tanda.' },
         ],
         tasks: [
           {
-            prompt: { en: 'Given sinh(x) = 0.75, use the identity to find cosh(x). (Round to two decimal places.)', id: 'Diberikan sinh(x) = 0.75, pakai identitas untuk mencari cosh(x). (Bulatkan ke dua desimal.)' },
+            prompt: { en: 'Given $\\sinh(x) = 0.75$, use the identity to find $\\cosh(x)$. (Round to two decimal places.)', id: 'Diberikan $\\sinh(x) = 0.75$, pakai identitas untuk mencari $\\cosh(x)$. (Bulatkan ke dua desimal.)' },
             blanks: [{ answer: 1.25 }],
             solution: ['\\cosh^2 x = 1+0.75^2 = 1.5625, \\quad \\cosh x = \\sqrt{1.5625} = 1{,}25'],
           },
           {
-            prompt: { en: 'Evaluate the integral from 0 to 2 of cosh(x) dx. (Round to two decimal places.)', id: 'Hitung integral dari 0 sampai 2 dari cosh(x) dx. (Bulatkan ke dua desimal.)' },
+            prompt: { en: 'Evaluate $\\int_0^2 \\cosh(x)\\,dx$. (Round to two decimal places.)', id: 'Hitung $\\int_0^2 \\cosh(x)\\,dx$. (Bulatkan ke dua desimal.)' },
             blanks: [{ answer: 3.63, tol: 0.02 }],
             solution: ['\\Big[\\sinh x\\Big]_0^2 = \\sinh(2)-\\sinh(0) \\approx 3{,}6269-0 = 3{,}63'],
           },
           {
-            prompt: { en: 'Evaluate the integral from 0 to ln(3) of sinh(x) dx.', id: 'Hitung integral dari 0 sampai ln(3) dari sinh(x) dx.' },
+            prompt: { en: 'Evaluate $\\int_0^{\\ln 3} \\sinh(x)\\,dx$.', id: 'Hitung $\\int_0^{\\ln 3} \\sinh(x)\\,dx$.' },
             blanks: [{ answer: 2 / 3 }],
             solution: ['\\Big[\\cosh x\\Big]_0^{\\ln 3} = \\cosh(\\ln3)-1 = \\tfrac53-1=\\tfrac23 \\approx 0{,}67'],
           },

@@ -53,8 +53,8 @@ export const module6: Module = {
                   { t: 'dot', x: 3, y: 18, color: 'result', label: '(3, 18)' },
                 ],
                 caption: {
-                  en: 'On [-2, 3], f(x) = x^3 - 3x has a local maximum at (-1, 2) — but the absolute maximum on this interval is at the endpoint (3, 18), far taller and not a local extremum at all.',
-                  id: 'Pada [-2, 3], f(x) = x^3 - 3x punya maksimum lokal di (-1, 2) — tetapi maksimum mutlak pada interval ini ada di titik ujung (3, 18), jauh lebih tinggi dan sama sekali bukan ekstrem lokal.',
+                  en: 'On $[-2, 3]$, $f(x) = x^3 - 3x$ has a local maximum at $(-1, 2)$ — but the absolute maximum on this interval is at the endpoint $(3, 18)$, far taller and not a local extremum at all.',
+                  id: 'Pada $[-2, 3]$, $f(x) = x^3 - 3x$ punya maksimum lokal di $(-1, 2)$ — tetapi maksimum mutlak pada interval ini ada di titik ujung $(3, 18)$, jauh lebih tinggi dan sama sekali bukan ekstrem lokal.',
                 },
               },
             },
@@ -90,8 +90,8 @@ export const module6: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: {
-                en: 'Reading the figure above, why is the point (3, 18) an absolute maximum but not a local one?',
-                id: 'Dengan membaca gambar di atas, mengapa titik (3, 18) adalah maksimum mutlak tetapi bukan maksimum lokal?',
+                en: 'Reading the figure above, why is the point $(3, 18)$ an absolute maximum but not a local one?',
+                id: 'Dengan membaca gambar di atas, mengapa titik $(3, 18)$ adalah maksimum mutlak tetapi bukan maksimum lokal?',
               },
               figure: {
                 dim: 2,
@@ -120,19 +120,19 @@ export const module6: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'For f(x) = x^2 - 6x + 5, find the critical point and confirm it is a local minimum by evaluating f there.',
-                id: 'Untuk f(x) = x^2 - 6x + 5, cari titik kritisnya dan pastikan itu minimum lokal dengan menghitung f di situ.',
+                en: 'For $f(x) = x^2 - 6x + 5$, find the critical point and confirm it is a local minimum by evaluating $f$ there.',
+                id: 'Untuk $f(x) = x^2 - 6x + 5$, cari titik kritisnya dan pastikan itu minimum lokal dengan menghitung $f$ di situ.',
               },
               blanks: [
                 { label: 'x =', answer: 3 },
                 { label: 'f(x) =', answer: -4 },
               ],
               hints: [
-                { en: "f'(x) = 2x - 6, zero at x = 3.", id: "f'(x) = 2x - 6, nol di x = 3." },
+                { en: "$f'(x) = 2x - 6$, zero at $x = 3$.", id: "$f'(x) = 2x - 6$, nol di $x = 3$." },
               ],
               explain: {
-                en: 'The parabola opens upward, so its one critical point is automatically its minimum. f(3) = 9 - 18 + 5 = -4.',
-                id: 'Parabolanya membuka ke atas, sehingga satu titik kritisnya otomatis adalah minimumnya. f(3) = 9 - 18 + 5 = -4.',
+                en: 'The parabola opens upward, so its one critical point is automatically its minimum. $f(3) = 9 - 18 + 5 = -4$.',
+                id: 'Parabolanya membuka ke atas, sehingga satu titik kritisnya otomatis adalah minimumnya. $f(3) = 9 - 18 + 5 = -4$.',
               },
             },
           ],
@@ -188,8 +188,8 @@ export const module6: Module = {
               id: 'o1',
               math: true,
               prompt: {
-                en: 'Order the Closed Interval Method as applied to f(x) = x^2 - 2x on [0, 4].',
-                id: 'Susun Metode Selang Tertutup yang diterapkan pada f(x) = x^2 - 2x pada [0, 4].',
+                en: 'Order the Closed Interval Method as applied to $f(x) = x^2 - 2x$ on $[0, 4]$.',
+                id: 'Susun Metode Selang Tertutup yang diterapkan pada $f(x) = x^2 - 2x$ pada $[0, 4]$.',
               },
               lines: [
                 "f'(x) = 2x - 2 = 0 \\Rightarrow x = 1",
@@ -205,17 +205,17 @@ export const module6: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Find the absolute maximum of f(x) = x^3 - 12x on [0, 4].',
-                id: 'Cari maksimum mutlak dari f(x) = x^3 - 12x pada [0, 4].',
+                en: 'Find the absolute maximum of $f(x) = x^3 - 12x$ on $[0, 4]$.',
+                id: 'Cari maksimum mutlak dari $f(x) = x^3 - 12x$ pada $[0, 4]$.',
               },
               blanks: [{ answer: 16 }],
               hints: [
-                { en: "f'(x) = 3x^2 - 12 = 0 gives x = 2 (x = -2 is outside [0, 4]).", id: "f'(x) = 3x^2 - 12 = 0 memberi x = 2 (x = -2 di luar [0, 4])." },
-                { en: 'Evaluate f(0), f(2), and f(4).', id: 'Evaluasi f(0), f(2), dan f(4).' },
+                { en: "$f'(x) = 3x^2 - 12 = 0$ gives $x = 2$ ($x = -2$ is outside $[0, 4]$).", id: "$f'(x) = 3x^2 - 12 = 0$ memberi $x = 2$ ($x = -2$ di luar $[0, 4]$)." },
+                { en: 'Evaluate $f(0)$, $f(2)$, and $f(4)$.', id: 'Evaluasi $f(0)$, $f(2)$, dan $f(4)$.' },
               ],
               explain: {
-                en: 'f(0) = 0, f(2) = 8 - 24 = -16, f(4) = 64 - 48 = 16. The largest is 16, at the endpoint x = 4.',
-                id: 'f(0) = 0, f(2) = 8 - 24 = -16, f(4) = 64 - 48 = 16. Yang terbesar adalah 16, di titik ujung x = 4.',
+                en: '$f(0) = 0$, $f(2) = 8 - 24 = -16$, $f(4) = 64 - 48 = 16$. The largest is $16$, at the endpoint $x = 4$.',
+                id: '$f(0) = 0$, $f(2) = 8 - 24 = -16$, $f(4) = 64 - 48 = 16$. Yang terbesar adalah $16$, di titik ujung $x = 4$.',
               },
             },
           ],
@@ -235,17 +235,17 @@ export const module6: Module = {
         ],
         tasks: [
           {
-            prompt: { en: 'Find the absolute minimum of f(x) = x^2 - 4x + 6 on [0, 5].', id: 'Cari minimum mutlak dari f(x) = x^2 - 4x + 6 pada [0, 5].' },
+            prompt: { en: 'Find the absolute minimum of $f(x) = x^2 - 4x + 6$ on $[0, 5]$.', id: 'Cari minimum mutlak dari $f(x) = x^2 - 4x + 6$ pada $[0, 5]$.' },
             blanks: [{ answer: 2 }],
             solution: ["f'(x)=2x-4=0 \\Rightarrow x=2, \\quad f(0)=6,\\ f(2)=2,\\ f(5)=11 \\Rightarrow \\text{min} = 2"],
           },
           {
-            prompt: { en: 'Find the absolute maximum of f(x) = x^3 - 3x^2 on [-1, 3].', id: 'Cari maksimum mutlak dari f(x) = x^3 - 3x^2 pada [-1, 3].' },
+            prompt: { en: 'Find the absolute maximum of $f(x) = x^3 - 3x^2$ on $[-1, 3]$.', id: 'Cari maksimum mutlak dari $f(x) = x^3 - 3x^2$ pada $[-1, 3]$.' },
             blanks: [{ answer: 0 }],
             solution: ["f'(x)=3x^2-6x=0 \\Rightarrow x=0,2, \\quad f(-1)=-4,\\ f(0)=0,\\ f(2)=-4,\\ f(3)=0 \\Rightarrow \\text{max} = 0"],
           },
           {
-            prompt: { en: 'For f(x) = |x| on [-2, 2], f has a local (and absolute) minimum at x = 0, but f prime(0) does not exist. Does this contradict Fermat\'s Theorem? Type 1 for yes, 0 for no.', id: 'Untuk f(x) = |x| pada [-2, 2], f punya minimum lokal (dan mutlak) di x = 0, tetapi f aksen(0) tak ada. Apakah ini bertentangan dengan Teorema Fermat? Ketik 1 untuk ya, 0 untuk tidak.' },
+            prompt: { en: 'For $f(x) = |x|$ on $[-2, 2]$, $f$ has a local (and absolute) minimum at $x = 0$, but $f\'(0)$ does not exist. Does this contradict Fermat\'s Theorem? Type 1 for yes, 0 for no.', id: 'Untuk $f(x) = |x|$ pada $[-2, 2]$, $f$ punya minimum lokal (dan mutlak) di $x = 0$, tetapi $f\'(0)$ tak ada. Apakah ini bertentangan dengan Teorema Fermat? Ketik 1 untuk ya, 0 untuk tidak.' },
             blanks: [{ answer: 0 }],
             solution: ['\\text{Fermat requires } f\'(c) \\text{ to exist; it says nothing when the derivative is undefined, so there is no contradiction}'],
           },
@@ -293,8 +293,8 @@ export const module6: Module = {
                   { t: 'seg', from: [1.5, -0.75], to: [2.5, -0.75], color: 'b', dashed: true },
                 ],
                 caption: {
-                  en: 'f(x) = x^2 - 4x + 3 on [1, 3]: equal height 0 at both ends, and a horizontal tangent (dashed) exactly at x = 2 in between.',
-                  id: 'f(x) = x^2 - 4x + 3 pada [1, 3]: ketinggian yang sama, 0, di kedua ujung, dan garis singgung mendatar (putus-putus) tepat di x = 2 di antaranya.',
+                  en: '$f(x) = x^2 - 4x + 3$ on $[1, 3]$: equal height $0$ at both ends, and a horizontal tangent (dashed) exactly at $x = 2$ in between.',
+                  id: '$f(x) = x^2 - 4x + 3$ pada $[1, 3]$: ketinggian yang sama, $0$, di kedua ujung, dan garis singgung mendatar (putus-putus) tepat di $x = 2$ di antaranya.',
                 },
               },
             },
@@ -311,27 +311,27 @@ export const module6: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'Why does f(x) = |x| on [-1, 1] not contradict Rolle\'s Theorem, even though f(-1) = f(1) and no point has a zero derivative?',
-                id: 'Mengapa f(x) = |x| pada [-1, 1] tak bertentangan dengan Teorema Rolle, meski f(-1) = f(1) dan tak ada titik yang berturunan nol?',
+                en: 'Why does $f(x) = |x|$ on $[-1, 1]$ not contradict Rolle\'s Theorem, even though $f(-1) = f(1)$ and no point has a zero derivative?',
+                id: 'Mengapa $f(x) = |x|$ pada $[-1, 1]$ tak bertentangan dengan Teorema Rolle, meski $f(-1) = f(1)$ dan tak ada titik yang berturunan nol?',
               },
               options: [
-                { en: 'It fails the differentiability hypothesis at x = 0, so the theorem simply does not apply', id: 'Ia gagal memenuhi hipotesis keterdiferensialan di x = 0, sehingga teoremanya sekadar tak berlaku' },
+                { en: 'It fails the differentiability hypothesis at $x = 0$, so the theorem simply does not apply', id: 'Ia gagal memenuhi hipotesis keterdiferensialan di $x = 0$, sehingga teoremanya sekadar tak berlaku' },
                 { en: 'Rolle\'s Theorem is simply wrong in this case', id: 'Teorema Rolle sekadar salah dalam kasus ini' },
-                { en: 'f(-1) does not actually equal f(1)', id: 'f(-1) sebenarnya tak sama dengan f(1)' },
-                { en: '|x| is not continuous on [-1, 1]', id: '|x| tak kontinu pada [-1, 1]' },
+                { en: '$f(-1)$ does not actually equal $f(1)$', id: '$f(-1)$ sebenarnya tak sama dengan $f(1)$' },
+                { en: '$|x|$ is not continuous on $[-1, 1]$', id: '$|x|$ tak kontinu pada $[-1, 1]$' },
               ],
               answer: 0,
               explain: {
-                en: 'Rolle\'s Theorem requires differentiability on the entire open interval. |x| fails this at x = 0 (a corner), so the theorem\'s conclusion is not guaranteed — there is no contradiction, only a hypothesis that was never met.',
-                id: 'Teorema Rolle mensyaratkan keterdiferensialan pada seluruh interval terbuka. |x| gagal memenuhi ini di x = 0 (sebuah sudut), sehingga kesimpulan teoremanya tak dijamin — tak ada pertentangan, hanya hipotesis yang tak pernah terpenuhi.',
+                en: 'Rolle\'s Theorem requires differentiability on the entire open interval. $|x|$ fails this at $x = 0$ (a corner), so the theorem\'s conclusion is not guaranteed — there is no contradiction, only a hypothesis that was never met.',
+                id: 'Teorema Rolle mensyaratkan keterdiferensialan pada seluruh interval terbuka. $|x|$ gagal memenuhi ini di $x = 0$ (sebuah sudut), sehingga kesimpulan teoremanya tak dijamin — tak ada pertentangan, hanya hipotesis yang tak pernah terpenuhi.',
               },
             },
             {
               kind: 'quiz',
               id: 'q2',
               prompt: {
-                en: 'Reading the figure above, what two facts together guarantee the dashed horizontal tangent exists somewhere in (1, 3)?',
-                id: 'Dengan membaca gambar di atas, dua fakta apa yang bersama-sama menjamin garis singgung mendatar putus-putus itu ada di suatu tempat dalam (1, 3)?',
+                en: 'Reading the figure above, what two facts together guarantee the dashed horizontal tangent exists somewhere in $(1, 3)$?',
+                id: 'Dengan membaca gambar di atas, dua fakta apa yang bersama-sama menjamin garis singgung mendatar putus-putus itu ada di suatu tempat dalam $(1, 3)$?',
               },
               figure: {
                 dim: 2,
@@ -359,16 +359,16 @@ export const module6: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'For f(x) = x^2 - 6x + 8 on [2, 4] (check: f(2) = f(4) = 0), find the point c guaranteed by Rolle\'s Theorem.',
-                id: 'Untuk f(x) = x^2 - 6x + 8 pada [2, 4] (periksa: f(2) = f(4) = 0), cari titik c yang dijamin Teorema Rolle.',
+                en: 'For $f(x) = x^2 - 6x + 8$ on $[2, 4]$ (check: $f(2) = f(4) = 0$), find the point $c$ guaranteed by Rolle\'s Theorem.',
+                id: 'Untuk $f(x) = x^2 - 6x + 8$ pada $[2, 4]$ (periksa: $f(2) = f(4) = 0$), cari titik $c$ yang dijamin Teorema Rolle.',
               },
               blanks: [{ answer: 3 }],
               hints: [
-                { en: "f'(x) = 2x - 6.", id: "f'(x) = 2x - 6." },
+                { en: "$f'(x) = 2x - 6$.", id: "$f'(x) = 2x - 6$." },
               ],
               explain: {
-                en: '2x - 6 = 0 gives x = 3, which lies inside (2, 4).',
-                id: '2x - 6 = 0 memberi x = 3, yang berada di dalam (2, 4).',
+                en: '$2x - 6 = 0$ gives $x = 3$, which lies inside $(2, 4)$.',
+                id: '$2x - 6 = 0$ memberi $x = 3$, yang berada di dalam $(2, 4)$.',
               },
             },
           ],
@@ -415,8 +415,8 @@ export const module6: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'When f(a) = f(b), the average rate of change (f(b)-f(a))/(b-a) is exactly 0, and the Mean Value Theorem\'s conclusion f\'(c) = 0 is precisely Rolle\'s Theorem.',
-                id: 'Ketika f(a) = f(b), laju perubahan rata-rata (f(b)-f(a))/(b-a) tepat 0, dan kesimpulan Teorema Nilai Rata-rata f\'(c) = 0 persis Teorema Rolle.',
+                en: 'When $f(a) = f(b)$, the average rate of change $\\dfrac{f(b)-f(a)}{b-a}$ is exactly $0$, and the Mean Value Theorem\'s conclusion $f\'(c) = 0$ is precisely Rolle\'s Theorem.',
+                id: 'Ketika $f(a) = f(b)$, laju perubahan rata-rata $\\dfrac{f(b)-f(a)}{b-a}$ tepat $0$, dan kesimpulan Teorema Nilai Rata-rata $f\'(c) = 0$ persis Teorema Rolle.',
               },
             },
             {
@@ -424,30 +424,30 @@ export const module6: Module = {
               id: 'f1',
               math: true,
               prompt: {
-                en: 'Complete the proof that f prime = 0 everywhere implies f is constant.',
-                id: 'Lengkapi bukti bahwa f aksen = 0 di mana-mana mengakibatkan f konstan.',
+                en: 'Complete the proof that $f\' = 0$ everywhere implies $f$ is constant.',
+                id: 'Lengkapi bukti bahwa $f\' = 0$ di mana-mana mengakibatkan $f$ konstan.',
               },
               template: 'f(b)-f(a) = f\'(c)(b-a) = ___\\cdot(b-a) = ___ \\ \\Rightarrow \\ f(a)=f(b)',
               blanks: ['0', '0'],
               explain: {
-                en: 'Since f prime is 0 everywhere, f prime(c) is 0 too, so the whole product collapses to 0, forcing f(a) and f(b) to be equal.',
-                id: 'Karena f aksen adalah 0 di mana-mana, f aksen(c) juga 0, sehingga seluruh hasil kalinya runtuh menjadi 0, memaksa f(a) dan f(b) sama.',
+                en: 'Since $f\'$ is $0$ everywhere, $f\'(c)$ is $0$ too, so the whole product collapses to $0$, forcing $f(a)$ and $f(b)$ to be equal.',
+                id: 'Karena $f\'$ adalah $0$ di mana-mana, $f\'(c)$ juga $0$, sehingga seluruh hasil kalinya runtuh menjadi $0$, memaksa $f(a)$ dan $f(b)$ sama.',
               },
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'For f(x) = x^2 on [1, 4], find the value of c guaranteed by the Mean Value Theorem.',
-                id: 'Untuk f(x) = x^2 pada [1, 4], cari nilai c yang dijamin Teorema Nilai Rata-rata.',
+                en: 'For $f(x) = x^2$ on $[1, 4]$, find the value of $c$ guaranteed by the Mean Value Theorem.',
+                id: 'Untuk $f(x) = x^2$ pada $[1, 4]$, cari nilai $c$ yang dijamin Teorema Nilai Rata-rata.',
               },
               blanks: [{ answer: 2.5 }],
               hints: [
-                { en: 'Average rate = (f(4)-f(1))/(4-1) = 15/3 = 5. Solve 2c = 5.', id: 'Laju rata-rata = (f(4)-f(1))/(4-1) = 15/3 = 5. Selesaikan 2c = 5.' },
+                { en: 'Average rate $= \\dfrac{f(4)-f(1)}{4-1} = \\dfrac{15}{3} = 5$. Solve $2c = 5$.', id: 'Laju rata-rata $= \\dfrac{f(4)-f(1)}{4-1} = \\dfrac{15}{3} = 5$. Selesaikan $2c = 5$.' },
               ],
               explain: {
-                en: 'c = 5/2 = 2.5.',
-                id: 'c = 5/2 = 2.5.',
+                en: '$c = 5/2 = 2.5$.',
+                id: '$c = 5/2 = 2{,}5$.',
               },
             },
           ],
@@ -463,27 +463,27 @@ export const module6: Module = {
         },
         requirements: [
           { en: 'Rolle\'s Theorem needs equal heights at both endpoints; the Mean Value Theorem does not.', id: 'Teorema Rolle memerlukan ketinggian yang sama di kedua titik ujung; Teorema Nilai Rata-rata tidak.' },
-          { en: 'The guaranteed point always solves f prime(c) equals the average rate of change.', id: 'Titik yang dijamin selalu menyelesaikan f aksen(c) sama dengan laju perubahan rata-rata.' },
+          { en: 'The guaranteed point always solves $f\'(c)$ equals the average rate of change.', id: 'Titik yang dijamin selalu menyelesaikan $f\'(c)$ sama dengan laju perubahan rata-rata.' },
         ],
         tasks: [
           {
-            prompt: { en: 'For f(x) = x^2 - 4x on [0, 4] (check: f(0) = f(4) = 0), find the point c guaranteed by Rolle\'s Theorem.', id: 'Untuk f(x) = x^2 - 4x pada [0, 4] (periksa: f(0) = f(4) = 0), cari titik c yang dijamin Teorema Rolle.' },
+            prompt: { en: 'For $f(x) = x^2 - 4x$ on $[0, 4]$ (check: $f(0) = f(4) = 0$), find the point $c$ guaranteed by Rolle\'s Theorem.', id: 'Untuk $f(x) = x^2 - 4x$ pada $[0, 4]$ (periksa: $f(0) = f(4) = 0$), cari titik $c$ yang dijamin Teorema Rolle.' },
             blanks: [{ answer: 2 }],
             solution: ["f'(x)=2x-4=0 \\Rightarrow c=2"],
           },
           {
-            prompt: { en: 'For f(x) = x^3 on [0, 3], find the value of c guaranteed by the Mean Value Theorem. (Round to two decimal places.)', id: 'Untuk f(x) = x^3 pada [0, 3], cari nilai c yang dijamin Teorema Nilai Rata-rata. (Bulatkan ke dua desimal.)' },
+            prompt: { en: 'For $f(x) = x^3$ on $[0, 3]$, find the value of $c$ guaranteed by the Mean Value Theorem. (Round to two decimal places.)', id: 'Untuk $f(x) = x^3$ pada $[0, 3]$, cari nilai $c$ yang dijamin Teorema Nilai Rata-rata. (Bulatkan ke dua desimal.)' },
             blanks: [{ answer: 1.73 }],
             solution: ["\\text{avg rate} = 27/3 = 9, \\quad 3c^2=9 \\Rightarrow c=\\sqrt3 \\approx 1{,}73"],
           },
           {
-            prompt: { en: 'For f(x) = 1/x on [1, 4], find the value of c guaranteed by the Mean Value Theorem.', id: 'Untuk f(x) = 1/x pada [1, 4], cari nilai c yang dijamin Teorema Nilai Rata-rata.' },
+            prompt: { en: 'For $f(x) = 1/x$ on $[1, 4]$, find the value of $c$ guaranteed by the Mean Value Theorem.', id: 'Untuk $f(x) = 1/x$ pada $[1, 4]$, cari nilai $c$ yang dijamin Teorema Nilai Rata-rata.' },
             blanks: [{ answer: 2 }],
             solution: ["\\text{avg rate} = \\dfrac{1/4 - 1}{3} = -\\dfrac14, \\quad -\\dfrac{1}{c^2} = -\\dfrac14 \\Rightarrow c^2=4 \\Rightarrow c=2"],
           },
         ],
         hints: [
-          { en: 'Part 3: only the positive root of c^2 = 4 lies inside (1, 4).', id: 'Butir 3: hanya akar positif dari c^2 = 4 yang berada di dalam (1, 4).' },
+          { en: 'Part 3: only the positive root of $c^2 = 4$ lies inside $(1, 4)$.', id: 'Butir 3: hanya akar positif dari $c^2 = 4$ yang berada di dalam $(1, 4)$.' },
         ],
         xp: 50,
       },
