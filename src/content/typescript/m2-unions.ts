@@ -30,8 +30,8 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'The vertical bar means "or"', id: 'Garis tegak berarti "atau"' },
               body: {
-                en: '`string | number` is a **union**: the value is one of those, and TypeScript does not know which. So it lets you do only what is safe for *both* — the things every member of the union can do. Anything else has to wait until you have narrowed it down.',
-                id: '`string | number` adalah **union**: nilainya salah satu dari itu, dan TypeScript tidak tahu yang mana. Jadi ia hanya membolehkanmu melakukan yang aman bagi *keduanya* — hal-hal yang bisa dilakukan tiap anggota union-nya. Selain itu harus menunggu sampai kamu mempersempitnya.',
+                en: '`string | number` is a **union**: the value is one of those, and TypeScript does not know which. So it lets you do only what is safe for **both** — the things every member of the union can do. Anything else has to wait until you have narrowed it down.',
+                id: '`string | number` adalah **union**: nilainya salah satu dari itu, dan TypeScript tidak tahu yang mana. Jadi ia hanya membolehkanmu melakukan yang aman bagi **keduanya** — hal-hal yang bisa dilakukan tiap anggota union-nya. Selain itu harus menunggu sampai kamu mempersempitnya.',
               },
               code: {
                 en:

@@ -45,8 +45,8 @@ export const module4: Module = {
               id: 'c2',
               title: { en: 'Each call gets its own state', id: 'Tiap pemanggilan mendapat state-nya sendiri' },
               body: {
-                en: 'Calling the same hook in two components gives two independent pieces of state. A hook shares *logic*, never data — sharing data is what props and context are for.',
-                id: 'Memanggil hook yang sama di dua komponen memberi dua state yang saling bebas. Hook berbagi *logika*, bukan data — berbagi data adalah tugas props dan context.',
+                en: 'Calling the same hook in two components gives two independent pieces of state. A hook shares **logic**, never data — sharing data is what props and context are for.',
+                id: 'Memanggil hook yang sama di dua komponen memberi dua state yang saling bebas. Hook berbagi **logika**, bukan data — berbagi data adalah tugas props dan context.',
               },
               code: {
                 en: 'function Two() {\n  const a = useCounter();\n  const b = useCounter(10);\n\n  return (\n    <div>\n      <button onClick={a.increment}>{a.value}</button>\n      <button onClick={b.increment}>{b.value}</button>\n    </div>\n  );\n}',

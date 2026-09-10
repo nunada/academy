@@ -412,8 +412,8 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'A verdict for every item', id: 'Vonis untuk tiap butir' },
               body: {
-                en: 'A single total count is honest but not useful for reviewing — a student wants to know *which* answers were wrong, not just how many. The same zip loop, printing instead of counting, gives that.',
-                id: 'Satu hitungan total memang jujur tapi tak berguna untuk ditinjau — siswa ingin tahu *soal mana* yang salah, bukan cuma berapa banyak. Perulangan zip yang sama, mencetak alih-alih menghitung, memberikan itu.',
+                en: 'A single total count is honest but not useful for reviewing — a student wants to know **which** answers were wrong, not just how many. The same zip loop, printing instead of counting, gives that.',
+                id: 'Satu hitungan total memang jujur tapi tak berguna untuk ditinjau — siswa ingin tahu **soal mana** yang salah, bukan cuma berapa banyak. Perulangan zip yang sama, mencetak alih-alih menghitung, memberikan itu.',
               },
               code: {
                 en: 'key = [5, 12, 7]\nanswers = [5, 10, 7]\nfor k, a in zip(key, answers):\n    if k == a:\n        print("Correct")\n    else:\n        print("Wrong")',

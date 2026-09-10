@@ -163,8 +163,8 @@ export const module3: Module = {
                   { t: 'dot', x: 0.5, y: 0.866 },
                 ],
                 caption: {
-                  en: 'At $\\theta = \\tfrac{\\pi}{3}$ the point is $\\left(\\tfrac{1}{2}, \\tfrac{\\sqrt{3}}{2}\\right)$. The radius is 1, so the two legs of that right triangle *are* the cosine and the sine — and $\\cos^2\\theta + \\sin^2\\theta = 1$ is just Pythagoras on it.',
-                  id: 'Pada $\\theta = \\tfrac{\\pi}{3}$ titiknya adalah $\\left(\\tfrac{1}{2}, \\tfrac{\\sqrt{3}}{2}\\right)$. Jari-jarinya 1, jadi kedua sisi siku-siku segitiga itu *adalah* cosinus dan sinusnya — dan $\\cos^2\\theta + \\sin^2\\theta = 1$ tak lain adalah Pythagoras padanya.',
+                  en: 'At $\\theta = \\tfrac{\\pi}{3}$ the point is $\\left(\\tfrac{1}{2}, \\tfrac{\\sqrt{3}}{2}\\right)$. The radius is 1, so the two legs of that right triangle **are** the cosine and the sine — and $\\cos^2\\theta + \\sin^2\\theta = 1$ is just Pythagoras on it.',
+                  id: 'Pada $\\theta = \\tfrac{\\pi}{3}$ titiknya adalah $\\left(\\tfrac{1}{2}, \\tfrac{\\sqrt{3}}{2}\\right)$. Jari-jarinya 1, jadi kedua sisi siku-siku segitiga itu **adalah** cosinus dan sinusnya — dan $\\cos^2\\theta + \\sin^2\\theta = 1$ tak lain adalah Pythagoras padanya.',
                 },
               },
             },

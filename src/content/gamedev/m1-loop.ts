@@ -1202,7 +1202,7 @@ export const module1: Module = {
           ],
         },
         hints: [
-          { en: 'The starter still moves the position directly. The whole change is to move the *velocity* instead, and let the velocity move the position.', id: 'Kode awalnya masih menggerakkan posisinya langsung. Seluruh perubahannya adalah menggerakkan *kecepatannya*, lalu biarkan kecepatannya yang menggerakkan posisinya.' },
+          { en: 'The starter still moves the position directly. The whole change is to move the **velocity** instead, and let the velocity move the position.', id: 'Kode awalnya masih menggerakkan posisinya langsung. Seluruh perubahannya adalah menggerakkan **kecepatannya**, lalu biarkan kecepatannya yang menggerakkan posisinya.' },
           { en: 'The four steps in order, with nothing else between them: accelerate, drag, move, clamp. Two tests check exact numbers, so the order matters.', id: 'Keempat langkahnya berurutan, tanpa apa pun di antaranya: percepat, hambat, gerak, jepit. Dua tes memeriksa angka persisnya, jadi urutannya berarti.' },
           { en: 'Drag applies whether or not a key is held — that is what makes it coast to a stop.', id: 'Hambatannya berlaku baik ada tombol ditekan maupun tidak — itulah yang membuatnya meluncur sampai berhenti.' },
           { en: 'To zero the velocity at a wall, notice you clamped: if the clamped x is different from the x you calculated, you hit something.', id: 'Untuk menolkan kecepatan di dinding, perhatikan bahwa kamu menjepit: kalau x hasil jepitan berbeda dari x yang kamu hitung, berarti kamu menabrak sesuatu.' },

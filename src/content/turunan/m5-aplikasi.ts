@@ -43,8 +43,8 @@ export const module5: Module = {
               id: 'c2',
               title: { en: 'A four-step routine', id: 'Rutinitas empat langkah' },
               body: {
-                en: 'Every related-rates problem follows the same four steps:\n1. Write an equation relating the quantities — often geometry (area, volume, the Pythagorean theorem).\n2. Differentiate both sides with respect to $t$, using the chain rule on every quantity.\n3. Substitute the *specific instant*\'s known values only **after** differentiating — differentiating a specific number first would just give $0$.\n4. Solve for the unknown rate.\nA ladder $10$ m long leans against a wall; its base slides away at $\\frac{dx}{dt}=2$ m/s. How fast does the top slide down when the base is $6$ m from the wall? With $x^2+y^2=100$:\n$$2x\\frac{dx}{dt} + 2y\\frac{dy}{dt} = 0$$\nAt $x=6$: $y=\\sqrt{100-36}=8$. Substituting, $2(6)(2) + 2(8)\\frac{dy}{dt} = 0 \\Rightarrow \\frac{dy}{dt} = -\\frac{24}{16} = -1.5$ m/s (negative: the top is sliding *down*).',
-                id: 'Setiap soal laju terkait mengikuti empat langkah yang sama:\n1. Tulis persamaan yang mengaitkan besaran-besarannya — sering geometri (luas, volume, teorema Pythagoras).\n2. Turunkan kedua ruas terhadap $t$, memakai aturan rantai pada setiap besaran.\n3. Substitusikan nilai yang diketahui pada *saat tertentu* itu hanya **setelah** menurunkan — menurunkan sebuah angka tertentu lebih dahulu hanya akan memberi $0$.\n4. Selesaikan laju yang dicari.\nSebuah tangga sepanjang $10$ m bersandar pada dinding; ujung bawahnya bergeser menjauh dengan $\\frac{dx}{dt}=2$ m/detik. Seberapa cepat ujung atasnya turun ketika ujung bawah berjarak $6$ m dari dinding? Dengan $x^2+y^2=100$:\n$$2x\\frac{dx}{dt} + 2y\\frac{dy}{dt} = 0$$\nDi $x=6$: $y=\\sqrt{100-36}=8$. Substitusi memberi $2(6)(2) + 2(8)\\frac{dy}{dt} = 0 \\Rightarrow \\frac{dy}{dt} = -\\frac{24}{16} = -1.5$ m/detik (negatif: ujung atasnya sedang turun).',
+                en: 'Every related-rates problem follows the same four steps:\n1. Write an equation relating the quantities — often geometry (area, volume, the Pythagorean theorem).\n2. Differentiate both sides with respect to $t$, using the chain rule on every quantity.\n3. Substitute the **specific instant**\'s known values only **after** differentiating — differentiating a specific number first would just give $0$.\n4. Solve for the unknown rate.\nA ladder $10$ m long leans against a wall; its base slides away at $\\frac{dx}{dt}=2$ m/s. How fast does the top slide down when the base is $6$ m from the wall? With $x^2+y^2=100$:\n$$2x\\frac{dx}{dt} + 2y\\frac{dy}{dt} = 0$$\nAt $x=6$: $y=\\sqrt{100-36}=8$. Substituting, $2(6)(2) + 2(8)\\frac{dy}{dt} = 0 \\Rightarrow \\frac{dy}{dt} = -\\frac{24}{16} = -1.5$ m/s (negative: the top is sliding **down**).',
+                id: 'Setiap soal laju terkait mengikuti empat langkah yang sama:\n1. Tulis persamaan yang mengaitkan besaran-besarannya — sering geometri (luas, volume, teorema Pythagoras).\n2. Turunkan kedua ruas terhadap $t$, memakai aturan rantai pada setiap besaran.\n3. Substitusikan nilai yang diketahui pada **saat tertentu** itu hanya **setelah** menurunkan — menurunkan sebuah angka tertentu lebih dahulu hanya akan memberi $0$.\n4. Selesaikan laju yang dicari.\nSebuah tangga sepanjang $10$ m bersandar pada dinding; ujung bawahnya bergeser menjauh dengan $\\frac{dx}{dt}=2$ m/detik. Seberapa cepat ujung atasnya turun ketika ujung bawah berjarak $6$ m dari dinding? Dengan $x^2+y^2=100$:\n$$2x\\frac{dx}{dt} + 2y\\frac{dy}{dt} = 0$$\nDi $x=6$: $y=\\sqrt{100-36}=8$. Substitusi memberi $2(6)(2) + 2(8)\\frac{dy}{dt} = 0 \\Rightarrow \\frac{dy}{dt} = -\\frac{24}{16} = -1.5$ m/detik (negatif: ujung atasnya sedang turun).',
               },
             },
             {
@@ -62,8 +62,8 @@ export const module5: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'The whole point is differentiating the *general relationship* between the changing quantities. Plugging in numbers first freezes them, and the derivative of any constant is $0$ — the rate information would be destroyed before it could be used.',
-                id: 'Inti soalnya adalah menurunkan *hubungan umum* antara besaran yang berubah. Memasukkan angka lebih dahulu akan membekukannya, dan turunan konstanta mana pun adalah $0$ — informasi lajunya akan hancur sebelum sempat dipakai.',
+                en: 'The whole point is differentiating the **general relationship** between the changing quantities. Plugging in numbers first freezes them, and the derivative of any constant is $0$ — the rate information would be destroyed before it could be used.',
+                id: 'Inti soalnya adalah menurunkan **hubungan umum** antara besaran yang berubah. Memasukkan angka lebih dahulu akan membekukannya, dan turunan konstanta mana pun adalah $0$ — informasi lajunya akan hancur sebelum sempat dipakai.',
               },
             },
             {
@@ -156,8 +156,8 @@ export const module5: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'Linear approximation works near any point with a computable derivative — but it is only *useful* as a shortcut when $f(a)$ itself is easy to compute exactly, which is why a nearby perfect square is the natural choice here.',
-                id: 'Hampiran linear berlaku di dekat titik mana pun dengan turunan yang bisa dihitung — tetapi ia hanya *berguna* sebagai jalan pintas bila $f(a)$ sendiri mudah dihitung secara eksak, itulah sebabnya kuadrat sempurna terdekat adalah pilihan wajar di sini.',
+                en: 'Linear approximation works near any point with a computable derivative — but it is only **useful** as a shortcut when $f(a)$ itself is easy to compute exactly, which is why a nearby perfect square is the natural choice here.',
+                id: 'Hampiran linear berlaku di dekat titik mana pun dengan turunan yang bisa dihitung — tetapi ia hanya **berguna** sebagai jalan pintas bila $f(a)$ sendiri mudah dihitung secara eksak, itulah sebabnya kuadrat sempurna terdekat adalah pilihan wajar di sini.',
               },
             },
             {
@@ -278,8 +278,8 @@ export const module5: Module = {
               id: 'c1',
               title: { en: 'The sign of the slope is the sign of the derivative', id: 'Tanda kemiringan adalah tanda turunannya' },
               body: {
-                en: 'A positive slope means the curve is rising; a negative slope means it is falling. Since $f\'(x)$ *is* the slope at $x$:\n$$f\'(x) > 0 \\text{ on an interval} \\ \\Rightarrow \\ f \\text{ is increasing there}$$\n$$f\'(x) < 0 \\text{ on an interval} \\ \\Rightarrow \\ f \\text{ is decreasing there}$$\nA **critical point** is where $f\'(x)=0$ or is undefined — the only places the sign of $f\'$ *can* change, and therefore the only candidates for a peak or a valley.',
-                id: 'Kemiringan positif berarti kurvanya sedang naik; kemiringan negatif berarti sedang turun. Karena $f\'(x)$ *adalah* kemiringan di $x$:\n$$f\'(x) > 0 \\text{ pada suatu interval} \\ \\Rightarrow \\ f \\text{ sedang naik di situ}$$\n$$f\'(x) < 0 \\text{ pada suatu interval} \\ \\Rightarrow \\ f \\text{ sedang turun di situ}$$\n**Titik kritis** adalah tempat $f\'(x)=0$ atau tak terdefinisi — satu-satunya tempat tanda $f\'$ *bisa* berubah, dan karenanya satu-satunya kandidat untuk puncak atau lembah.',
+                en: 'A positive slope means the curve is rising; a negative slope means it is falling. Since $f\'(x)$ **is** the slope at $x$:\n$$f\'(x) > 0 \\text{ on an interval} \\ \\Rightarrow \\ f \\text{ is increasing there}$$\n$$f\'(x) < 0 \\text{ on an interval} \\ \\Rightarrow \\ f \\text{ is decreasing there}$$\nA **critical point** is where $f\'(x)=0$ or is undefined — the only places the sign of $f\'$ **can** change, and therefore the only candidates for a peak or a valley.',
+                id: 'Kemiringan positif berarti kurvanya sedang naik; kemiringan negatif berarti sedang turun. Karena $f\'(x)$ **adalah** kemiringan di $x$:\n$$f\'(x) > 0 \\text{ pada suatu interval} \\ \\Rightarrow \\ f \\text{ sedang naik di situ}$$\n$$f\'(x) < 0 \\text{ pada suatu interval} \\ \\Rightarrow \\ f \\text{ sedang turun di situ}$$\n**Titik kritis** adalah tempat $f\'(x)=0$ atau tak terdefinisi — satu-satunya tempat tanda $f\'$ **bisa** berubah, dan karenanya satu-satunya kandidat untuk puncak atau lembah.',
               },
             },
             {

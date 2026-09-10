@@ -287,8 +287,8 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Controlling decimal places', id: 'Mengatur angka desimal' },
               body: {
-                en: 'Add `:.2f` right before the closing brace and the value is shown with exactly that many decimal places — padded with zeros if it needs them. `round()` changes the *number*; `:.2f` only changes how it is *shown*.',
-                id: 'Tambahkan `:.2f` tepat sebelum kurung tutupnya, dan nilainya ditampilkan dengan tepat sejumlah angka desimal itu — ditambal nol kalau perlu. `round()` mengubah *angkanya*; `:.2f` hanya mengubah cara *menampilkannya*.',
+                en: 'Add `:.2f` right before the closing brace and the value is shown with exactly that many decimal places — padded with zeros if it needs them. `round()` changes the **number**; `:.2f` only changes how it is **shown**.',
+                id: 'Tambahkan `:.2f` tepat sebelum kurung tutupnya, dan nilainya ditampilkan dengan tepat sejumlah angka desimal itu — ditambal nol kalau perlu. `round()` mengubah **angkanya**; `:.2f` hanya mengubah cara **menampilkannya**.',
               },
               code: 'pi = 3.14159265\nprint(f"{pi:.2f}")\nprint(f"{pi:.4f}")',
               output: '3.14\n3.1416',
@@ -385,8 +385,8 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Name every quantity first', id: 'Beri nama tiap besaran dulu' },
               body: {
-                en: 'A formula reads best when every quantity has a name that matches the problem — `weight` and `height`, not `a` and `b`. `**` binds tighter than `/`, so `weight / height ** 2` divides by the *square* of `height`, exactly as intended.',
-                id: 'Formula paling enak dibaca kalau tiap besaran punya nama yang cocok dengan soalnya — `berat` dan `tinggi`, bukan `a` dan `b`. `**` mengikat lebih erat daripada `/`, jadi `berat / tinggi ** 2` membagi dengan *kuadrat* dari `tinggi`, persis seperti maksudnya.',
+                en: 'A formula reads best when every quantity has a name that matches the problem — `weight` and `height`, not `a` and `b`. `**` binds tighter than `/`, so `weight / height ** 2` divides by the **square** of `height`, exactly as intended.',
+                id: 'Formula paling enak dibaca kalau tiap besaran punya nama yang cocok dengan soalnya — `berat` dan `tinggi`, bukan `a` dan `b`. `**` mengikat lebih erat daripada `/`, jadi `berat / tinggi ** 2` membagi dengan **kuadrat** dari `tinggi`, persis seperti maksudnya.',
               },
               code: {
                 en: 'weight = 65\nheight = 1.7\nbmi = weight / height ** 2\nprint(round(bmi, 1))',

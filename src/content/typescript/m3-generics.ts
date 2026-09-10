@@ -76,8 +76,8 @@ export const module3: Module = {
               id: 'c3',
               title: { en: 'extends says what T must have', id: 'extends menyatakan apa yang harus dimiliki T' },
               body: {
-                en: 'A bare `T` could be anything, so you may do nothing with it. `T extends { id: number }` says T is *at least* that — so inside the function you may read `.id`, and outside it the caller still gets back their own full type, not the narrow one you constrained to.',
-                id: '`T` polos bisa apa saja, jadi kamu tak bisa berbuat apa pun dengannya. `T extends { id: number }` menyatakan T *sekurang-kurangnya* itu — jadi di dalam fungsinya kamu boleh membaca `.id`, dan di luar sana pemanggilnya tetap menerima tipe penuhnya sendiri, bukan tipe sempit yang kamu batasi tadi.',
+                en: 'A bare `T` could be anything, so you may do nothing with it. `T extends { id: number }` says T is **at least** that — so inside the function you may read `.id`, and outside it the caller still gets back their own full type, not the narrow one you constrained to.',
+                id: '`T` polos bisa apa saja, jadi kamu tak bisa berbuat apa pun dengannya. `T extends { id: number }` menyatakan T **sekurang-kurangnya** itu — jadi di dalam fungsinya kamu boleh membaca `.id`, dan di luar sana pemanggilnya tetap menerima tipe penuhnya sendiri, bukan tipe sempit yang kamu batasi tadi.',
               },
               code: {
                 en:
@@ -768,8 +768,8 @@ export const module3: Module = {
               id: 'c3',
               title: { en: 'This is why it beats a string', id: 'Inilah sebabnya ini mengalahkan string' },
               body: {
-                en: 'The same function written with `key: string` compiles, and gives back a value the caller has to guess about. The `keyof` version rejects a mistyped key at the call site *and* tells the caller exactly what came back. Two problems, one signature.',
-                id: 'Fungsi yang sama ditulis dengan `kunci: string` juga lolos kompilasi, dan mengembalikan nilai yang harus ditebak-tebak pemanggilnya. Versi `keyof` menolak kunci yang salah ketik tepat di tempat pemanggilannya *sekaligus* memberi tahu pemanggilnya persis apa yang kembali. Dua masalah, satu tanda tangan.',
+                en: 'The same function written with `key: string` compiles, and gives back a value the caller has to guess about. The `keyof` version rejects a mistyped key at the call site **and** tells the caller exactly what came back. Two problems, one signature.',
+                id: 'Fungsi yang sama ditulis dengan `kunci: string` juga lolos kompilasi, dan mengembalikan nilai yang harus ditebak-tebak pemanggilnya. Versi `keyof` menolak kunci yang salah ketik tepat di tempat pemanggilannya **sekaligus** memberi tahu pemanggilnya persis apa yang kembali. Dua masalah, satu tanda tangan.',
               },
               code: {
                 en:

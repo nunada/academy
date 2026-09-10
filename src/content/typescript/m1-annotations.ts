@@ -255,8 +255,8 @@ export const module1: Module = {
               id: 'c3',
               title: { en: 'A default is usually nicer', id: 'Nilai bawaan biasanya lebih enak' },
               body: {
-                en: 'Give the parameter a default and it becomes optional to the caller *and* stays a plain `number` inside the function — no `undefined` to handle at all. Reach for `?` only when "not given" genuinely means something different from any value you could default to.',
-                id: 'Beri parameternya nilai bawaan dan ia jadi opsional bagi pemanggil *sekaligus* tetap `number` biasa di dalam fungsinya — tak ada `undefined` yang perlu ditangani sama sekali. Pakai `?` hanya kalau "tidak diberikan" memang bermakna berbeda dari nilai bawaan mana pun.',
+                en: 'Give the parameter a default and it becomes optional to the caller **and** stays a plain `number` inside the function — no `undefined` to handle at all. Reach for `?` only when "not given" genuinely means something different from any value you could default to.',
+                id: 'Beri parameternya nilai bawaan dan ia jadi opsional bagi pemanggil **sekaligus** tetap `number` biasa di dalam fungsinya — tak ada `undefined` yang perlu ditangani sama sekali. Pakai `?` hanya kalau "tidak diberikan" memang bermakna berbeda dari nilai bawaan mana pun.',
               },
               code: {
                 en:
@@ -643,8 +643,8 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Missing is an error, extra is an error', id: 'Kurang itu galat, lebih juga galat' },
               body: {
-                en: 'Leave a property out and you get *missing property*. Add one that was never declared and you get an *excess property* error — TypeScript takes an object literal you wrote right there as a statement of intent, and assumes the extra key is a typo, which it very often is.',
-                id: 'Hilangkan satu properti dan kamu mendapat *properti yang hilang*. Tambahkan satu yang tak pernah dideklarasikan dan kamu mendapat galat *properti berlebih* — TypeScript menganggap objek literal yang baru kamu tulis di situ sebagai pernyataan niat, dan mengira kunci tambahannya salah ketik, dan itu memang sangat sering benar.',
+                en: 'Leave a property out and you get **missing property**. Add one that was never declared and you get an **excess property** error — TypeScript takes an object literal you wrote right there as a statement of intent, and assumes the extra key is a typo, which it very often is.',
+                id: 'Hilangkan satu properti dan kamu mendapat **properti yang hilang**. Tambahkan satu yang tak pernah dideklarasikan dan kamu mendapat galat **properti berlebih** — TypeScript menganggap objek literal yang baru kamu tulis di situ sebagai pernyataan niat, dan mengira kunci tambahannya salah ketik, dan itu memang sangat sering benar.',
               },
               code: {
                 en:

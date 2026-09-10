@@ -351,8 +351,8 @@ export const module3: Module = {
               id: 'c1',
               title: { en: 'A quarter circle inside a square', id: 'Seperempat lingkaran di dalam persegi' },
               body: {
-                en: 'Scatter points randomly inside a 1-by-1 square. A point `(x, y)` falls inside the quarter circle of radius 1 exactly when `x² + y² ≤ 1`. The quarter circle covers `π/4` of the square\'s area — so the *fraction* of points landing inside it estimates `π/4`, and multiplying that fraction by 4 estimates π itself.',
-                id: 'Sebarkan titik secara acak di dalam persegi 1 kali 1. Titik `(x, y)` jatuh di dalam seperempat lingkaran berjari-jari 1 tepat ketika `x² + y² ≤ 1`. Seperempat lingkarannya mencakup `π/4` dari luas perseginya — jadi *pecahan* titik yang mendarat di dalamnya menaksir `π/4`, dan mengalikan pecahan itu dengan 4 menaksir π itu sendiri.',
+                en: 'Scatter points randomly inside a 1-by-1 square. A point `(x, y)` falls inside the quarter circle of radius 1 exactly when `x² + y² ≤ 1`. The quarter circle covers `π/4` of the square\'s area — so the **fraction** of points landing inside it estimates `π/4`, and multiplying that fraction by 4 estimates π itself.',
+                id: 'Sebarkan titik secara acak di dalam persegi 1 kali 1. Titik `(x, y)` jatuh di dalam seperempat lingkaran berjari-jari 1 tepat ketika `x² + y² ≤ 1`. Seperempat lingkarannya mencakup `π/4` dari luas perseginya — jadi **pecahan** titik yang mendarat di dalamnya menaksir `π/4`, dan mengalikan pecahan itu dengan 4 menaksir π itu sendiri.',
               },
             },
             {

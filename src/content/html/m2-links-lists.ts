@@ -174,8 +174,8 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'Describe the purpose, not the file', id: 'Jelaskan maksudnya, bukan berkasnya' },
               body: {
-                en: 'Good alt text says what the picture *tells* you. "Sales chart rising from 20 to 80 across 2026" is useful; "image1.png" is not. A purely decorative image takes `alt=""`, which tells screen readers to skip it.',
-                id: 'Teks alt yang baik menyatakan apa yang *disampaikan* gambarnya. "Grafik penjualan naik dari 20 ke 80 sepanjang 2026" itu berguna; "gambar1.png" tidak. Gambar yang murni hiasan memakai `alt=""`, yang memberi tahu pembaca layar untuk melewatinya.',
+                en: 'Good alt text says what the picture **tells** you. "Sales chart rising from 20 to 80 across 2026" is useful; "image1.png" is not. A purely decorative image takes `alt=""`, which tells screen readers to skip it.',
+                id: 'Teks alt yang baik menyatakan apa yang **disampaikan** gambarnya. "Grafik penjualan naik dari 20 ke 80 sepanjang 2026" itu berguna; "gambar1.png" tidak. Gambar yang murni hiasan memakai `alt=""`, yang memberi tahu pembaca layar untuk melewatinya.',
               },
               code: {
                 en: '<img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'60\'%3E%3Crect width=\'120\' height=\'60\' fill=\'%233b82f6\'/%3E%3C/svg%3E" alt="Blue rectangle">',

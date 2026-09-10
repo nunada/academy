@@ -63,8 +63,8 @@ export const module4: Module = {
               id: 'c1',
               title: { en: 'INSERT names the columns and the values', id: 'INSERT menyebut kolom dan nilainya' },
               body: {
-                en: 'You *can* leave the column list out and give a value for every column in order. Do not: the statement then breaks silently the day the table gains a column. Name the columns, and only the ones you are filling — the rest take their `DEFAULT`.',
-                id: 'Kamu *boleh* menghilangkan daftar kolomnya dan memberi nilai untuk tiap kolom secara berurutan. Jangan: pernyataannya lalu rusak diam-diam pada hari tabelnya bertambah kolom. Sebut kolomnya, dan hanya yang kamu isi — sisanya mengambil `DEFAULT`-nya.',
+                en: 'You **can** leave the column list out and give a value for every column in order. Do not: the statement then breaks silently the day the table gains a column. Name the columns, and only the ones you are filling — the rest take their `DEFAULT`.',
+                id: 'Kamu **boleh** menghilangkan daftar kolomnya dan memberi nilai untuk tiap kolom secara berurutan. Jangan: pernyataannya lalu rusak diam-diam pada hari tabelnya bertambah kolom. Sebut kolomnya, dan hanya yang kamu isi — sisanya mengambil `DEFAULT`-nya.',
               },
               code: {
                 en:

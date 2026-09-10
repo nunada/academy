@@ -326,8 +326,8 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'if and else', id: 'if dan else' },
               body: {
-                en: 'The line ends with a colon, and everything indented under it belongs to that branch. Indentation is not decoration in Python — it *is* the grouping.',
-                id: 'Barisnya diakhiri titik dua, dan semua yang menjorok di bawahnya milik cabang itu. Indentasi bukan hiasan di Python — indentasi *adalah* pengelompokannya.',
+                en: 'The line ends with a colon, and everything indented under it belongs to that branch. Indentation is not decoration in Python — it **is** the grouping.',
+                id: 'Barisnya diakhiri titik dua, dan semua yang menjorok di bawahnya milik cabang itu. Indentasi bukan hiasan di Python — indentasi **adalah** pengelompokannya.',
               },
               code: {
                 en: 'score = 65\n\nif score >= 70:\n    print("Pass")\nelse:\n    print("Not passing")',

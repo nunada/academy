@@ -513,8 +513,8 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'text-align centres text, not boxes', id: 'text-align memusatkan teks, bukan kotak' },
               body: {
-                en: 'This is the single most common mix-up in CSS. `text-align: center` on a box centres the *words inside it*. The box itself stays exactly where it was, still full width.',
-                id: 'Ini kekeliruan paling umum dalam CSS. `text-align: center` pada sebuah kotak memusatkan *kata-kata di dalamnya*. Kotaknya sendiri tetap di tempatnya, tetap selebar penuh.',
+                en: 'This is the single most common mix-up in CSS. `text-align: center` on a box centres the **words inside it**. The box itself stays exactly where it was, still full width.',
+                id: 'Ini kekeliruan paling umum dalam CSS. `text-align: center` pada sebuah kotak memusatkan **kata-kata di dalamnya**. Kotaknya sendiri tetap di tempatnya, tetap selebar penuh.',
               },
               code: {
                 en: '<style>\n  .box { width: 200px; background: #fca5a5; text-align: center; }\n</style>\n\n<div class="box">Text centred, box still on the left.</div>',

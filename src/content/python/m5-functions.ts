@@ -29,8 +29,8 @@ export const module5: Module = {
               id: 'c1',
               title: { en: 'Defining is not running', id: 'Mendefinisikan bukan menjalankan' },
               body: {
-                en: '`def` only *describes* the work. Nothing happens until you call the name with brackets — and you may call it as often as you like.',
-                id: '`def` hanya *menjelaskan* pekerjaannya. Tidak ada yang terjadi sampai kamu memanggil namanya dengan kurung — dan kamu boleh memanggilnya sesering yang kamu mau.',
+                en: '`def` only **describes** the work. Nothing happens until you call the name with brackets — and you may call it as often as you like.',
+                id: '`def` hanya **menjelaskan** pekerjaannya. Tidak ada yang terjadi sampai kamu memanggil namanya dengan kurung — dan kamu boleh memanggilnya sesering yang kamu mau.',
               },
               code: {
                 en: 'def greet():\n    print("Hello!")\n\ngreet()\ngreet()',

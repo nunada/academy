@@ -121,8 +121,8 @@ export const module3: Module = {
               id: 'c2',
               title: { en: 'JOIN … ON puts them back together', id: 'JOIN … ON menyatukannya kembali' },
               body: {
-                en: '`JOIN` names the second table and `ON` says how a row in one lines up with a row in the other. The result has the columns of both. Rows with no partner on either side are simply not there — that is what makes it an *inner* join.',
-                id: '`JOIN` menyebut tabel keduanya dan `ON` menyatakan bagaimana satu baris di sini berpasangan dengan satu baris di sana. Hasilnya memuat kolom dari keduanya. Baris yang tak punya pasangan di salah satu sisi sekadar tidak ada — itulah yang membuatnya join *dalam*.',
+                en: '`JOIN` names the second table and `ON` says how a row in one lines up with a row in the other. The result has the columns of both. Rows with no partner on either side are simply not there — that is what makes it an **inner** join.',
+                id: '`JOIN` menyebut tabel keduanya dan `ON` menyatakan bagaimana satu baris di sini berpasangan dengan satu baris di sana. Hasilnya memuat kolom dari keduanya. Baris yang tak punya pasangan di salah satu sisi sekadar tidak ada — itulah yang membuatnya join **dalam**.',
               },
               code: {
                 en:
@@ -349,8 +349,8 @@ export const module3: Module = {
               id: 'c2',
               title: { en: 'Group the joined rows', id: 'Kelompokkan baris hasil gabungannya' },
               body: {
-                en: 'Once the tables are joined, everything from the last module still applies: the result is just rows, so `GROUP BY` buckets them and the aggregates run per bucket. Grouping by a column from *another* table is the normal way to write "per class" or "per teacher".',
-                id: 'Setelah tabelnya digabung, semua dari modul lalu tetap berlaku: hasilnya sekadar baris, jadi `GROUP BY` mengembernya dan agregatnya berjalan per ember. Mengelompokkan berdasarkan kolom dari tabel *lain* adalah cara biasa menulis "per kelas" atau "per guru".',
+                en: 'Once the tables are joined, everything from the last module still applies: the result is just rows, so `GROUP BY` buckets them and the aggregates run per bucket. Grouping by a column from **another** table is the normal way to write "per class" or "per teacher".',
+                id: 'Setelah tabelnya digabung, semua dari modul lalu tetap berlaku: hasilnya sekadar baris, jadi `GROUP BY` mengembernya dan agregatnya berjalan per ember. Mengelompokkan berdasarkan kolom dari tabel **lain** adalah cara biasa menulis "per kelas" atau "per guru".',
               },
               code: {
                 en:

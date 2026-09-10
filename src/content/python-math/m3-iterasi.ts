@@ -29,8 +29,8 @@ export const module3: Module = {
               id: 'c1',
               title: { en: 'for walks through a range', id: 'for berjalan menyusuri range' },
               body: {
-                en: '`range(5)` counts `0, 1, 2, 3, 4` — five values, starting at 0, stopping *before* 5. `for i in range(5):` runs the indented block once for each of them, with `i` holding the current one.',
-                id: '`range(5)` menghitung `0, 1, 2, 3, 4` — lima nilai, mulai dari 0, berhenti *sebelum* 5. `for i in range(5):` menjalankan blok yang menjorok satu kali untuk tiap nilainya, dengan `i` menyimpan nilai saat itu.',
+                en: '`range(5)` counts `0, 1, 2, 3, 4` — five values, starting at 0, stopping **before** 5. `for i in range(5):` runs the indented block once for each of them, with `i` holding the current one.',
+                id: '`range(5)` menghitung `0, 1, 2, 3, 4` — lima nilai, mulai dari 0, berhenti **sebelum** 5. `for i in range(5):` menjalankan blok yang menjorok satu kali untuk tiap nilainya, dengan `i` menyimpan nilai saat itu.',
               },
               code: 'for i in range(5):\n    print(i)',
               output: '0\n1\n2\n3\n4',
@@ -267,8 +267,8 @@ export const module3: Module = {
               id: 'c2',
               title: { en: 'Stopping on the value, not a counter', id: 'Berhenti pada nilainya, bukan pencacah' },
               body: {
-                en: 'A while loop does not need a counter at all — it can repeat until *the value itself* crosses a threshold. Here, halving stops as soon as x is no longer bigger than 1.',
-                id: 'Perulangan while sama sekali tak butuh pencacah — ia bisa mengulang sampai *nilainya sendiri* melewati sebuah ambang batas. Di sini, membagi dua berhenti begitu x tidak lagi lebih besar dari 1.',
+                en: 'A while loop does not need a counter at all — it can repeat until **the value itself** crosses a threshold. Here, halving stops as soon as x is no longer bigger than 1.',
+                id: 'Perulangan while sama sekali tak butuh pencacah — ia bisa mengulang sampai **nilainya sendiri** melewati sebuah ambang batas. Di sini, membagi dua berhenti begitu x tidak lagi lebih besar dari 1.',
               },
               code: 'x = 100\nwhile x > 1:\n    x = x / 2\nprint(round(x, 2))',
               output: '0.78',

@@ -292,8 +292,8 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'The graph is the set of pairs', id: 'Grafik adalah himpunan pasangannya' },
               body: {
-                en: 'The **graph** of $f$ is the set of points $(x, f(x))$ for every $x$ in the domain. So a graph is not a decoration attached to the formula — it *is* the function, drawn.\n\nThat gives the **vertical line test**: a curve in the plane is the graph of a function of $x$ exactly when no vertical line meets it more than once. A second meeting would be a second value of $y$ for one $x$, which the definition forbids.\n\nFrom the picture you can read: the **domain** as the shadow of the curve on the horizontal axis, the **range** as its shadow on the vertical axis, the **$y$-intercept** as $f(0)$, and the **$x$-intercepts** as the solutions of $f(x) = 0$.',
-                id: '**Grafik** dari $f$ adalah himpunan titik $(x, f(x))$ untuk setiap $x$ di domainnya. Jadi grafik bukan hiasan yang ditempelkan pada rumus — ia *adalah* fungsinya, digambar.\n\nDari situ lahir **uji garis tegak**: sebuah kurva di bidang merupakan grafik fungsi dari $x$ tepat ketika tak ada garis tegak yang memotongnya lebih dari sekali. Perpotongan kedua berarti ada nilai $y$ kedua untuk satu $x$, dan itu dilarang oleh definisinya.\n\nDari gambarnya kamu bisa membaca: **domain** sebagai bayangan kurva pada sumbu mendatar, **range** sebagai bayangannya pada sumbu tegak, **titik potong sumbu $y$** sebagai $f(0)$, dan **titik potong sumbu $x$** sebagai penyelesaian $f(x) = 0$.',
+                en: 'The **graph** of $f$ is the set of points $(x, f(x))$ for every $x$ in the domain. So a graph is not a decoration attached to the formula — it **is** the function, drawn.\n\nThat gives the **vertical line test**: a curve in the plane is the graph of a function of $x$ exactly when no vertical line meets it more than once. A second meeting would be a second value of $y$ for one $x$, which the definition forbids.\n\nFrom the picture you can read: the **domain** as the shadow of the curve on the horizontal axis, the **range** as its shadow on the vertical axis, the **$y$-intercept** as $f(0)$, and the **$x$-intercepts** as the solutions of $f(x) = 0$.',
+                id: '**Grafik** dari $f$ adalah himpunan titik $(x, f(x))$ untuk setiap $x$ di domainnya. Jadi grafik bukan hiasan yang ditempelkan pada rumus — ia **adalah** fungsinya, digambar.\n\nDari situ lahir **uji garis tegak**: sebuah kurva di bidang merupakan grafik fungsi dari $x$ tepat ketika tak ada garis tegak yang memotongnya lebih dari sekali. Perpotongan kedua berarti ada nilai $y$ kedua untuk satu $x$, dan itu dilarang oleh definisinya.\n\nDari gambarnya kamu bisa membaca: **domain** sebagai bayangan kurva pada sumbu mendatar, **range** sebagai bayangannya pada sumbu tegak, **titik potong sumbu $y$** sebagai $f(0)$, dan **titik potong sumbu $x$** sebagai penyelesaian $f(x) = 0$.',
               },
               figure: {
                 dim: 2,
@@ -1008,7 +1008,7 @@ export const module1: Module = {
                 { label: '\\lfloor -3 \\rfloor =', answer: -3 },
               ],
               hints: [
-                { en: 'For a negative non-integer, the floor is one *less* than truncating toward zero would give.', id: 'Untuk pecahan negatif, lantainya satu *lebih kecil* daripada memotong ke arah nol.' },
+                { en: 'For a negative non-integer, the floor is one **less** than truncating toward zero would give.', id: 'Untuk pecahan negatif, lantainya satu **lebih kecil** daripada memotong ke arah nol.' },
                 { en: 'An integer needs no rounding at all — it is already its own floor.', id: 'Bilangan bulat sama sekali tak perlu dibulatkan — ia sudah menjadi lantainya sendiri.' },
               ],
               solution: [
@@ -1082,8 +1082,8 @@ export const module1: Module = {
         ],
         hints: [
           {
-            en: 'Two equal values do not *prove* a function is even — but they are what you would check first, and $x^4 + x^2$ has only even powers.',
-            id: 'Dua nilai yang sama belum *membuktikan* sebuah fungsi genap — tetapi itulah yang pertama kali kamu periksa, dan $x^4 + x^2$ hanya berpangkat genap.',
+            en: 'Two equal values do not **prove** a function is even — but they are what you would check first, and $x^4 + x^2$ has only even powers.',
+            id: 'Dua nilai yang sama belum **membuktikan** sebuah fungsi genap — tetapi itulah yang pertama kali kamu periksa, dan $x^4 + x^2$ hanya berpangkat genap.',
           },
           {
             en: 'In part 3 the leading coefficient is 2, so remember the $2a$ in $-b/(2a)$.',
@@ -1279,8 +1279,8 @@ export const module1: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'The formula $2x\\sqrt{25-x^2}$ is perfectly defined on all of $[-5,5]$. It is the *rectangle* — not the formula — that needs a genuine width and height, which rules out $x \\leq 0$ and the endpoint $x=5$ where the height vanishes.',
-                id: 'Rumus $2x\\sqrt{25-x^2}$ terdefinisi sempurna pada seluruh $[-5,5]$. *Persegi panjangnyalah* — bukan rumusnya — yang memerlukan lebar dan tinggi yang sungguhan, yang menyingkirkan $x \\leq 0$ dan titik ujung $x=5$ tempat tingginya lenyap.',
+                en: 'The formula $2x\\sqrt{25-x^2}$ is perfectly defined on all of $[-5,5]$. It is the **rectangle** — not the formula — that needs a genuine width and height, which rules out $x \\leq 0$ and the endpoint $x=5$ where the height vanishes.',
+                id: 'Rumus $2x\\sqrt{25-x^2}$ terdefinisi sempurna pada seluruh $[-5,5]$. **Persegi panjangnyalah** — bukan rumusnya — yang memerlukan lebar dan tinggi yang sungguhan, yang menyingkirkan $x \\leq 0$ dan titik ujung $x=5$ tempat tingginya lenyap.',
               },
             },
             {

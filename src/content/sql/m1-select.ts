@@ -67,8 +67,8 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'A table is a grid with named columns', id: 'Tabel adalah kisi dengan kolom bernama' },
               body: {
-                en: 'A database keeps data in tables. Each **row** is one thing — one book — and each **column** is one fact about it, with a name and a type. SQL is how you ask that grid a question. You describe *what you want*; the database works out how to get it.',
-                id: 'Basis data menyimpan data dalam tabel. Tiap **baris** adalah satu benda — satu buku — dan tiap **kolom** adalah satu fakta tentangnya, punya nama dan tipe. SQL adalah caramu bertanya kepada kisi itu. Kamu menjelaskan *apa yang kamu mau*; basis datanya yang memikirkan cara mendapatkannya.',
+                en: 'A database keeps data in tables. Each **row** is one thing — one book — and each **column** is one fact about it, with a name and a type. SQL is how you ask that grid a question. You describe **what you want**; the database works out how to get it.',
+                id: 'Basis data menyimpan data dalam tabel. Tiap **baris** adalah satu benda — satu buku — dan tiap **kolom** adalah satu fakta tentangnya, punya nama dan tipe. SQL adalah caramu bertanya kepada kisi itu. Kamu menjelaskan **apa yang kamu mau**; basis datanya yang memikirkan cara mendapatkannya.',
               },
               code: SCHEMA,
             },
@@ -561,8 +561,8 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Rows have no order until you give them one', id: 'Baris tidak punya urutan sampai kamu memberinya' },
               body: {
-                en: 'A table is a *set* of rows. Without `ORDER BY`, the order you get is whatever was convenient for the database, and it may change between two runs of the same query. If the order matters, say so.',
-                id: 'Tabel adalah *himpunan* baris. Tanpa `ORDER BY`, urutan yang kamu terima adalah apa pun yang kebetulan mudah bagi basis datanya, dan itu bisa berubah antara dua kali menjalankan kueri yang sama. Kalau urutannya penting, katakanlah.',
+                en: 'A table is a **set** of rows. Without `ORDER BY`, the order you get is whatever was convenient for the database, and it may change between two runs of the same query. If the order matters, say so.',
+                id: 'Tabel adalah **himpunan** baris. Tanpa `ORDER BY`, urutan yang kamu terima adalah apa pun yang kebetulan mudah bagi basis datanya, dan itu bisa berubah antara dua kali menjalankan kueri yang sama. Kalau urutannya penting, katakanlah.',
               },
               code: { en: 'SELECT title, price FROM book ORDER BY price;', id: 'SELECT judul, harga FROM buku ORDER BY harga;' },
               output: {

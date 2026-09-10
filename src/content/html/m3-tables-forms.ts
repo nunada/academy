@@ -178,8 +178,8 @@ export const module3: Module = {
               id: 'c2',
               title: { en: 'One cell over several columns', id: 'Satu sel melintasi beberapa kolom' },
               body: {
-                en: '`colspan` makes a cell span columns, `rowspan` makes it span rows. The catch: a row with a spanning cell has *fewer* cells written, because one is doing two jobs.',
-                id: '`colspan` membuat sebuah sel melintasi kolom, `rowspan` melintasi baris. Jebakannya: baris dengan sel melintang punya *lebih sedikit* sel yang ditulis, karena satu sel mengerjakan dua tugas.',
+                en: '`colspan` makes a cell span columns, `rowspan` makes it span rows. The catch: a row with a spanning cell has **fewer** cells written, because one is doing two jobs.',
+                id: '`colspan` membuat sebuah sel melintasi kolom, `rowspan` melintasi baris. Jebakannya: baris dengan sel melintang punya **lebih sedikit** sel yang ditulis, karena satu sel mengerjakan dua tugas.',
               },
               code: {
                 en: '<table>\n  <tr><th>Name</th><th>Score</th></tr>\n  <tr><td>Ani</td><td>80</td></tr>\n  <tr><td colspan="2">Average: 80</td></tr>\n</table>',

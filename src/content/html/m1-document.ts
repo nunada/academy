@@ -154,8 +154,8 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Every page has the same bones', id: 'Setiap halaman bertulang sama' },
               body: {
-                en: 'A real page is not loose tags. `<!doctype html>` says which version, `<html>` wraps everything, `<head>` holds information *about* the page, and `<body>` holds what people actually see.',
-                id: 'Halaman sungguhan bukan tag yang berserak. `<!doctype html>` menyatakan versinya, `<html>` membungkus semuanya, `<head>` memuat keterangan *tentang* halamannya, dan `<body>` memuat yang benar-benar dilihat orang.',
+                en: 'A real page is not loose tags. `<!doctype html>` says which version, `<html>` wraps everything, `<head>` holds information **about** the page, and `<body>` holds what people actually see.',
+                id: 'Halaman sungguhan bukan tag yang berserak. `<!doctype html>` menyatakan versinya, `<html>` membungkus semuanya, `<head>` memuat keterangan **tentang** halamannya, dan `<body>` memuat yang benar-benar dilihat orang.',
               },
               code: {
                 en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>My Profile</title>\n  </head>\n  <body>\n    <h1>Hello</h1>\n  </body>\n</html>',

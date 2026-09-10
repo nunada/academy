@@ -375,8 +375,8 @@ export const module1: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'The whole point of having the derivative *function* is that plugging in a number is all that is left to do — the limit has already been done once, for every $x$ at the same time.',
-                id: 'Seluruh gunanya memiliki *fungsi* turunan adalah memasukkan sebuah bilangan sudah cukup — limitnya sudah dikerjakan sekali, untuk setiap $x$ pada saat yang sama.',
+                en: 'The whole point of having the derivative **function** is that plugging in a number is all that is left to do — the limit has already been done once, for every $x$ at the same time.',
+                id: 'Seluruh gunanya memiliki **fungsi** turunan adalah memasukkan sebuah bilangan sudah cukup — limitnya sudah dikerjakan sekali, untuk setiap $x$ pada saat yang sama.',
               },
             },
             {

@@ -40,8 +40,8 @@ export const module3: Module = {
               id: 'c2',
               title: { en: 'Start, stop, step', id: 'Mulai, berhenti, langkah' },
               body: {
-                en: '`range(start, stop)` begins where you say and stops *before* `stop`. A third number is the step size.',
-                id: '`range(start, stop)` mulai dari yang kamu sebut dan berhenti *sebelum* `stop`. Angka ketiga adalah besar langkahnya.',
+                en: '`range(start, stop)` begins where you say and stops **before** `stop`. A third number is the step size.',
+                id: '`range(start, stop)` mulai dari yang kamu sebut dan berhenti **sebelum** `stop`. Angka ketiga adalah besar langkahnya.',
               },
               code: 'for n in range(1, 4):\n    print(n)\n\nfor n in range(0, 10, 5):\n    print(n)',
               output: '1\n2\n3\n0\n5',
@@ -345,8 +345,8 @@ export const module3: Module = {
               id: 'c2',
               title: { en: 'continue skips one round', id: 'continue melewati satu putaran' },
               body: {
-                en: '`continue` jumps straight to the next round. The loop keeps going — only the rest of *this* round is skipped.',
-                id: '`continue` melompat langsung ke putaran berikutnya. Loop tetap berjalan — hanya sisa putaran *ini* yang dilewati.',
+                en: '`continue` jumps straight to the next round. The loop keeps going — only the rest of **this** round is skipped.',
+                id: '`continue` melompat langsung ke putaran berikutnya. Loop tetap berjalan — hanya sisa putaran **ini** yang dilewati.',
               },
               code: 'for n in range(1, 6):\n    if n % 2 == 0:\n        continue\n    print(n)',
               output: '1\n3\n5',
@@ -404,7 +404,7 @@ export const module3: Module = {
               ],
               hints: [
                 { en: '`while True:` loops forever — break is what ends it.', id: '`while True:` mengulang selamanya — break-lah yang mengakhirinya.' },
-                { en: 'Check for 0 *before* counting, or the 0 gets counted too.', id: 'Periksa 0 *sebelum* menghitung, atau 0 ikut terhitung.' },
+                { en: 'Check for 0 **before** counting, or the 0 gets counted too.', id: 'Periksa 0 **sebelum** menghitung, atau 0 ikut terhitung.' },
                 { en: 'if n == 0: break — then count += 1', id: 'if n == 0: break — lalu jumlah += 1' },
               ],
               solution: {

@@ -331,8 +331,8 @@ export const module4: Module = {
               id: 'c2',
               title: { en: 'And then the type comes from the value', id: 'Dan lalu tipenya datang dari nilainya' },
               body: {
-                en: '`typeof COLORS` is the type of that constant; indexing it with `number` gives the union of everything in it. So the literal union is *derived* from the array — one place to add a colour, and both the runtime list and the type follow.',
-                id: '`typeof WARNA` adalah tipe konstanta itu; mengindeksnya dengan `number` memberi union dari seluruh isinya. Jadi union literalnya *diturunkan* dari array-nya — satu tempat untuk menambah warna, dan daftar saat jalan maupun tipenya sama-sama ikut.',
+                en: '`typeof COLORS` is the type of that constant; indexing it with `number` gives the union of everything in it. So the literal union is **derived** from the array — one place to add a colour, and both the runtime list and the type follow.',
+                id: '`typeof WARNA` adalah tipe konstanta itu; mengindeksnya dengan `number` memberi union dari seluruh isinya. Jadi union literalnya **diturunkan** dari array-nya — satu tempat untuk menambah warna, dan daftar saat jalan maupun tipenya sama-sama ikut.',
               },
               code: {
                 en:

@@ -540,8 +540,8 @@ export const module9: Module = {
               id: 'c2',
               title: { en: 'Keep it beside the code, not inside it', id: 'Simpan di samping kode, bukan di dalamnya' },
               body: {
-                en: 'Put the secret in a separate file the program reads at startup, and keep that file out of version control. On a real server the same idea uses an environment variable, read with `os.environ`. The principle is identical: the code says *where* to find the key, never *what* it is.',
-                id: 'Taruh rahasianya di berkas terpisah yang dibaca program saat mulai, dan jauhkan berkas itu dari kendali versi. Di server sungguhan, gagasan yang sama memakai variabel lingkungan, dibaca dengan `os.environ`. Prinsipnya sama: kode menyebut *di mana* kuncinya, bukan *apa* isinya.',
+                en: 'Put the secret in a separate file the program reads at startup, and keep that file out of version control. On a real server the same idea uses an environment variable, read with `os.environ`. The principle is identical: the code says **where** to find the key, never **what** it is.',
+                id: 'Taruh rahasianya di berkas terpisah yang dibaca program saat mulai, dan jauhkan berkas itu dari kendali versi. Di server sungguhan, gagasan yang sama memakai variabel lingkungan, dibaca dengan `os.environ`. Prinsipnya sama: kode menyebut **di mana** kuncinya, bukan **apa** isinya.',
               },
               code: {
                 en: 'with open("key.txt", "w") as f:\n    f.write("nunada-rahasia-123\\n")\n\nwith open("key.txt") as f:\n    key = f.read().strip()\n\nprint(key[:6] + "...")',

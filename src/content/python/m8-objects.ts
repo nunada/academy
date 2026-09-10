@@ -522,8 +522,8 @@ export const module8: Module = {
               id: 'c2',
               title: { en: 'super() calls the parent version', id: 'super() memanggil versi induknya' },
               body: {
-                en: 'When the child needs everything the parent did *plus* something extra, call the parent with `super()` rather than copying its lines.',
-                id: 'Ketika anak butuh semua yang dilakukan induknya *ditambah* sesuatu, panggil induknya dengan `super()` alih-alih menyalin barisnya.',
+                en: 'When the child needs everything the parent did **plus** something extra, call the parent with `super()` rather than copying its lines.',
+                id: 'Ketika anak butuh semua yang dilakukan induknya **ditambah** sesuatu, panggil induknya dengan `super()` alih-alih menyalin barisnya.',
               },
               code: {
                 en: 'class Student:\n    def __init__(self, name):\n        self.name = name\n\nclass CollegeStudent(Student):\n    def __init__(self, name, student_id):\n        super().__init__(name)\n        self.student_id = student_id\n\nm = CollegeStudent("Ani", "2201")\nprint(m.name, m.student_id)',

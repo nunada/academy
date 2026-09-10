@@ -549,8 +549,8 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'The zero trap', id: 'Jebakan angka nol' },
               body: {
-                en: 'React ignores `false` but it *renders* `0`. So `{jumlah && <p>…</p>}` puts a bare `0` on the page when the count is zero. Compare explicitly — `{jumlah > 0 && …}` — and the problem never appears.',
-                id: 'React mengabaikan `false` tetapi ia *merender* `0`. Jadi `{jumlah && <p>…</p>}` menaruh angka `0` telanjang di halaman saat jumlahnya nol. Bandingkan secara eksplisit — `{jumlah > 0 && …}` — dan masalahnya tak pernah muncul.',
+                en: 'React ignores `false` but it **renders** `0`. So `{jumlah && <p>…</p>}` puts a bare `0` on the page when the count is zero. Compare explicitly — `{jumlah > 0 && …}` — and the problem never appears.',
+                id: 'React mengabaikan `false` tetapi ia **merender** `0`. Jadi `{jumlah && <p>…</p>}` menaruh angka `0` telanjang di halaman saat jumlahnya nol. Bandingkan secara eksplisit — `{jumlah > 0 && …}` — dan masalahnya tak pernah muncul.',
               },
               code: {
                 en: 'const count = 0;\n\n// puts a 0 on the page\n// {count && <p>Has content</p>}\n\n// correct\n// {count > 0 && <p>Has content</p>}',
@@ -562,8 +562,8 @@ export const module1: Module = {
               id: 'c3',
               title: { en: 'A ternary when there are two outcomes', id: 'Ternary saat ada dua kemungkinan' },
               body: {
-                en: '`&&` shows something or nothing. When you need one thing *or* another, use a ternary — it is an expression, so it fits inside JSX where an `if` would not.',
-                id: '`&&` menampilkan sesuatu atau tidak sama sekali. Ketika kamu butuh satu hal *atau* yang lain, pakai ternary — ia sebuah ekspresi, jadi muat di dalam JSX tempat `if` tidak muat.',
+                en: '`&&` shows something or nothing. When you need one thing **or** another, use a ternary — it is an expression, so it fits inside JSX where an `if` would not.',
+                id: '`&&` menampilkan sesuatu atau tidak sama sekali. Ketika kamu butuh satu hal **atau** yang lain, pakai ternary — ia sebuah ekspresi, jadi muat di dalam JSX tempat `if` tidak muat.',
               },
               code: {
                 en: 'function Status({ ready }) {\n  return <p>{ready ? "Ready" : "Coming soon"}</p>;\n}',
