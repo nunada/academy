@@ -159,13 +159,14 @@ export const module2: Module = {
                 xSpan: [-0.3, 2.5],
                 ySpan: [-0.5, 5.5],
                 ticks: true,
+                params: [{ name: 'n', min: 2, max: 40, step: 1, value: 4, label: 'n' }],
                 items: [
-                  { t: 'poly', pts: [[0, 0], [0, 1], [0.25, 1.0625], [0.5, 1.25], [0.75, 1.5625], [1, 2], [1.25, 2.5625], [1.5, 3.25], [1.75, 4.0625], [2, 5], [2, 0]], color: 'result' },
+                  { t: 'curve', f: '(floor(x*n/2)*(2/n))^2+1', from: 0, to: 1.999, color: 'result', label: 'staircase' },
                   { t: 'curve', f: 'x^2+1', from: 0, to: 2, color: 'a' },
                 ],
                 caption: {
-                  en: 'As the number of strips grows, the rectangles converge to this smooth shaded region — the exact area, and the value of the definite integral.',
-                  id: 'Ketika banyak jalurnya bertambah, persegi panjangnya konvergen ke daerah bayangan yang mulus ini — luas eksak, dan nilai integral tentunya.',
+                  en: 'Drag $n$ up: the left-endpoint staircase hugs the smooth curve tighter with every extra strip, converging to the exact area — the value of the definite integral.',
+                  id: 'Geser $n$ ke atas: tangga ujung-kiri merapat semakin ketat ke kurva yang mulus di setiap jalur tambahan, konvergen ke luas eksak — nilai integral tentunya.',
                 },
               },
             },
@@ -292,6 +293,22 @@ export const module2: Module = {
               body: {
                 en: 'Let $x$ be the *upper* limit of integration itself, giving an **accumulation function**:\n$$A(x) = \\int_a^x f(t)\\,dt$$\n$A(x)$ is the running total of signed area swept out from $a$ up to $x$ — a genuine function of $x$, since changing $x$ changes how much has accumulated. The **Fundamental Theorem of Calculus, Part 1** says its derivative is remarkably simple:\n$$\\frac{d}{dx}\\int_a^x f(t)\\,dt = f(x)$$\nDifferentiating an accumulation just gives back the rate that was being accumulated — the same relationship as position and velocity, generalised to any $f$ at all. For $A(x) = \\int_0^x t^2\\,dt$: $A\'(x) = x^2$, with no need to ever compute the integral itself.',
                 id: 'Misalkan $x$ sendiri adalah batas integrasi *atas*, memberi **fungsi akumulasi**:\n$$A(x) = \\int_a^x f(t)\\,dt$$\n$A(x)$ adalah total berjalan dari luas bertanda yang disapu dari $a$ sampai $x$ — fungsi $x$ yang sungguhan, sebab mengubah $x$ mengubah berapa banyak yang sudah terakumulasi. **Teorema Dasar Kalkulus, Bagian 1** menyatakan turunannya sangat sederhana:\n$$\\frac{d}{dx}\\int_a^x f(t)\\,dt = f(x)$$\nMenurunkan sebuah akumulasi hanya mengembalikan laju yang sedang diakumulasi — hubungan yang sama seperti posisi dan kecepatan, digeneralisasi ke $f$ apa pun. Untuk $A(x) = \\int_0^x t^2\\,dt$: $A\'(x) = x^2$, tanpa perlu pernah menghitung integralnya sendiri.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.5, 4],
+                ySpan: [-0.5, 4.5],
+                ticks: true,
+                params: [{ name: 'x0', min: 0.2, max: 3.5, step: 0.1, value: 2, label: 'x' }],
+                items: [
+                  { t: 'curve', f: 'x', from: 0, to: 4, color: 'a', label: 'f(t) = t' },
+                  { t: 'vline', x: 'x0', color: 'b', dashed: true },
+                  { t: 'dot', x: 'x0', y: 'x0', color: 'result', label: 'A(x)' },
+                ],
+                caption: {
+                  en: 'Drag $x$ right: the triangular area swept out from $0$ to $x$ under $f(t)=t$ keeps growing — that growing area *is* $A(x) = \\int_0^x t\\,dt = x^2/2$, plotted at nothing but the dashed line itself.',
+                  id: 'Geser $x$ ke kanan: luas segitiga yang disapu dari $0$ sampai $x$ di bawah $f(t)=t$ terus bertambah — luas yang bertambah itulah $A(x) = \\int_0^x t\\,dt = x^2/2$, terbaca tepat di garis putus-putusnya sendiri.',
+                },
               },
             },
             {

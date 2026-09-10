@@ -276,15 +276,19 @@ export const module6: Module = {
               figure: {
                 dim: 2,
                 xSpan: [-0.3, 4.5],
-                ySpan: [-0.5, 2.5],
+                ySpan: [-2.5, 2.5],
                 ticks: true,
+                params: [{ name: 'x0', min: 0.1, max: 4, step: 0.1, value: 2, label: 'x' }],
                 items: [
                   { t: 'curve', f: 'sqrt(x)', from: 0, to: 4, color: 'a' },
-                  { t: 'seg', from: [2, 0], to: [2, 1.414], color: 'result', dashed: true, label: 'f(2)' },
+                  { t: 'curve', f: '-sqrt(x)', from: 0, to: 4, color: 'a', dashed: true },
+                  { t: 'vline', x: 'x0', color: 'result', dashed: true },
+                  { t: 'dot', x: 'x0', y: 'sqrt(x0)', color: 'result', label: 'f(x)' },
+                  { t: 'dot', x: 'x0', y: '-sqrt(x0)', color: 'result' },
                 ],
                 caption: {
-                  en: '$y = \\sqrt{x}$ on $[0, 4]$ — rotating this curve about the $x$-axis sweeps a disk of radius $f(x)$ at every $x$, radius shown at $x = 2$.',
-                  id: '$y = \\sqrt{x}$ pada $[0, 4]$ — memutar kurva ini mengelilingi sumbu-$x$ menyapu sebuah cakram berjari-jari $f(x)$ di setiap $x$, jari-jarinya ditampilkan di $x = 2$.',
+                  en: 'Drag $x$: the dashed vertical segment is one slice\'s diameter, radius $f(x)$ on each side — rotate the whole region about the $x$-axis and every such slice sweeps out one circular disk of the solid.',
+                  id: 'Geser $x$: segmen tegak putus-putus adalah diameter satu irisan, berjari-jari $f(x)$ di tiap sisinya — putar seluruh daerahnya mengelilingi sumbu-$x$ dan tiap irisan seperti itu menyapu satu cakram lingkaran benda putarnya.',
                 },
               },
             },

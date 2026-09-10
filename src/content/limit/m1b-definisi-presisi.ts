@@ -50,6 +50,25 @@ export const moduleDef: Module = {
                 en: 'Prove $\\lim_{x\\to 2}(3x+1) = 7$. Given any $\\varepsilon>0$, a matching $\\delta$ must be found. Start from what must be shown and simplify toward $|x-2|$:\n$$|f(x)-7| = |(3x+1)-7| = |3x-6| = 3|x-2|$$\nSo $|f(x)-7|<\\varepsilon$ exactly when $3|x-2|<\\varepsilon$, i.e. $|x-2|<\\frac{\\varepsilon}{3}$. Taking $\\delta = \\frac{\\varepsilon}{3}$ works: if $0<|x-2|<\\delta$, then $|f(x)-7| = 3|x-2| < 3\\delta = 3\\cdot\\frac{\\varepsilon}{3} = \\varepsilon$. For a linear function, $\\delta$ always falls out of dividing $\\varepsilon$ by the slope\'s size — no interval-guessing needed, because the gap scales exactly in proportion.',
                 id: 'Buktikan $\\lim_{x\\to 2}(3x+1) = 7$. Diberikan $\\varepsilon>0$ mana pun, sebuah $\\delta$ yang cocok harus ditemukan. Mulai dari yang harus ditunjukkan dan sederhanakan menuju $|x-2|$:\n$$|f(x)-7| = |(3x+1)-7| = |3x-6| = 3|x-2|$$\nJadi $|f(x)-7|<\\varepsilon$ tepat ketika $3|x-2|<\\varepsilon$, yaitu $|x-2|<\\frac{\\varepsilon}{3}$. Mengambil $\\delta = \\frac{\\varepsilon}{3}$ berhasil: jika $0<|x-2|<\\delta$, maka $|f(x)-7| = 3|x-2| < 3\\delta = 3\\cdot\\frac{\\varepsilon}{3} = \\varepsilon$. Untuk fungsi linear, $\\delta$ selalu keluar dari membagi $\\varepsilon$ dengan besar kemiringannya — tak perlu menebak interval, sebab celahnya berskala tepat sebanding.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [0, 4],
+                ySpan: [0, 13],
+                ticks: true,
+                params: [{ name: 'eps', min: 0.5, max: 3, step: 0.25, value: 1.5, label: 'ε' }],
+                items: [
+                  { t: 'curve', f: '3*x+1', color: 'a' },
+                  { t: 'hline', y: '7+eps', color: 'muted', dashed: true },
+                  { t: 'hline', y: '7-eps', color: 'muted', dashed: true },
+                  { t: 'vline', x: '2+eps/3', color: 'b', dashed: true },
+                  { t: 'vline', x: '2-eps/3', color: 'b', dashed: true },
+                  { t: 'dot', x: 2, y: 7, color: 'result', label: '(2,7)' },
+                ],
+                caption: {
+                  en: 'Shrink $\\varepsilon$: the matching $\\delta=\\varepsilon/3$ shrinks right along with it, and the curve inside the vertical band never once escapes the horizontal one — try to break it and you can\'t.',
+                  id: 'Kecilkan $\\varepsilon$: $\\delta=\\varepsilon/3$ yang cocok ikut mengecil bersamanya, dan kurva di dalam pita tegaknya tak pernah sekali pun lolos dari pita mendatarnya — coba dobrak dan kamu tak akan bisa.',
+                },
+              },
             },
             {
               kind: 'quiz',
