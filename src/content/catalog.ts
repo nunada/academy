@@ -226,8 +226,8 @@ export const COURSES: CourseInfo[] = [
     id: 'fungsi',
     title: { en: 'Functions and Graphs', id: 'Fungsi dan Grafik' },
     tagline: {
-      en: 'Domain and range, composition and transformation, trigonometric, exponential, inverse and logarithmic functions.',
-      id: 'Domain dan range, komposisi dan transformasi, fungsi trigonometri, eksponen, invers, dan logaritma.',
+      en: 'Domain and range, building functions from descriptions, composition and transformation, trigonometric, exponential, inverse and logarithmic functions.',
+      id: 'Domain dan range, membangun fungsi dari deskripsi, komposisi dan transformasi, fungsi trigonometri, eksponen, invers, dan logaritma.',
     },
     icon: '📈',
     color: '#437649',
@@ -236,8 +236,8 @@ export const COURSES: CourseInfo[] = [
     track: 'math',
     requires: [],
     available: true,
-    lessons: 29,
-    projects: 10,
+    lessons: 32,
+    projects: 11,
   },
   {
     id: 'vektor',

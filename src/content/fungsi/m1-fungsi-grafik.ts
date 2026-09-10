@@ -10,8 +10,8 @@ export const module1: Module = {
   id: 'fun-m1',
   title: { en: 'Functions and Their Graphs', id: 'Fungsi dan Grafiknya' },
   summary: {
-    en: 'What a function is, where it is allowed to act, and everything its graph tells you at a glance.',
-    id: 'Apa itu fungsi, di mana ia boleh bekerja, dan segala yang langsung diberitahukan grafiknya.',
+    en: 'What a function is, where it is allowed to act, everything its graph tells you at a glance, and how to build one from a description.',
+    id: 'Apa itu fungsi, di mana ia boleh bekerja, segala yang langsung diberitahukan grafiknya, dan cara membangunnya dari sebuah deskripsi.',
   },
   submodules: [
     /* ------------------------------------------------ 1.1 domain and range */
@@ -871,6 +871,158 @@ export const module1: Module = {
             },
           ],
         },
+        {
+          id: 'fun-m1-s2-l4',
+          title: { en: 'The Greatest Integer (Floor) Function', id: 'Fungsi Bilangan Bulat Terbesar (Lantai)' },
+          goal: {
+            en: 'Evaluate the floor function at any real number, including negative non-integers, and read its step graph.',
+            id: 'Menghitung nilai fungsi lantai pada sembarang bilangan real, termasuk pecahan negatif, dan membaca grafik tangganya.',
+          },
+          xp: 20,
+          steps: [
+            {
+              kind: 'concept',
+              id: 'c1',
+              title: { en: 'The largest integer that still fits', id: 'Bilangan bulat terbesar yang masih muat' },
+              body: {
+                en: 'The **floor function**, written $\\lfloor x \\rfloor$, gives the largest integer less than or equal to $x$ — rounding down, always, never toward zero.\n\nFor a positive number this matches intuition: $\\lfloor 2.7 \\rfloor = 2$, and an integer is already its own floor: $\\lfloor 5 \\rfloor = 5$.\n\nFor a **negative** number, rounding down means moving further from zero, not closer to it: $\\lfloor -1.3 \\rfloor = -2$, since $-2$ is the largest integer that is still $\\leq -1.3$ — not $-1$, which is bigger than $-1.3$ and so does not qualify at all.',
+                id: '**Fungsi lantai**, ditulis $\\lfloor x \\rfloor$, memberi bilangan bulat terbesar yang kurang dari atau sama dengan $x$ — membulatkan ke bawah, selalu, tak pernah ke arah nol.\n\nUntuk bilangan positif ini sesuai intuisi: $\\lfloor 2.7 \\rfloor = 2$, dan bilangan bulat sudah menjadi lantainya sendiri: $\\lfloor 5 \\rfloor = 5$.\n\nUntuk bilangan **negatif**, membulatkan ke bawah berarti menjauh dari nol, bukan mendekatinya: $\\lfloor -1.3 \\rfloor = -2$, sebab $-2$ adalah bilangan bulat terbesar yang masih $\\leq -1.3$ — bukan $-1$, yang lebih besar dari $-1.3$ dan sama sekali tak memenuhi syarat.',
+              },
+            },
+            {
+              kind: 'concept',
+              id: 'c2',
+              title: { en: 'A staircase, not a ramp', id: 'Tangga, bukan tanjakan' },
+              body: {
+                en: 'On the interval $[k, k+1)$ — every $x$ from an integer $k$ up to, but not including, the next one — $\\lfloor x \\rfloor$ is constant and equal to $k$. Then it jumps up by exactly $1$ the instant $x$ reaches $k+1$.\n\nThe domain is every real number; the range is only the integers. The function is neither even nor odd, and it is discontinuous at every integer — the graph genuinely cannot be drawn without lifting the pencil there, unlike every continuous curve met so far.',
+                id: 'Pada selang $[k, k+1)$ — setiap $x$ dari bilangan bulat $k$ sampai, tetapi tidak termasuk, bilangan bulat berikutnya — $\\lfloor x \\rfloor$ konstan dan sama dengan $k$. Lalu ia melompat naik tepat $1$ persis saat $x$ mencapai $k+1$.\n\nDomainnya semua bilangan real; range-nya hanya bilangan bulat. Fungsinya bukan genap maupun ganjil, dan ia tak kontinu di setiap bilangan bulat — grafiknya sungguh tak bisa digambar tanpa mengangkat pena di situ, tak seperti setiap kurva kontinu yang ditemui sejauh ini.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 3.5],
+                ySpan: [-3, 3],
+                ticks: true,
+                items: [
+                  { t: 'seg', from: [-2, -2], to: [-1, -2], color: 'a' },
+                  { t: 'dot', x: -2, y: -2, color: 'a' },
+                  { t: 'dot', x: -1, y: -2, color: 'a', open: true },
+                  { t: 'seg', from: [-1, -1], to: [0, -1], color: 'a' },
+                  { t: 'dot', x: -1, y: -1, color: 'a' },
+                  { t: 'dot', x: 0, y: -1, color: 'a', open: true },
+                  { t: 'seg', from: [0, 0], to: [1, 0], color: 'a' },
+                  { t: 'dot', x: 0, y: 0, color: 'a' },
+                  { t: 'dot', x: 1, y: 0, color: 'a', open: true },
+                  { t: 'seg', from: [1, 1], to: [2, 1], color: 'a' },
+                  { t: 'dot', x: 1, y: 1, color: 'a' },
+                  { t: 'dot', x: 2, y: 1, color: 'a', open: true },
+                  { t: 'seg', from: [2, 2], to: [3, 2], color: 'a' },
+                  { t: 'dot', x: 2, y: 2, color: 'a' },
+                  { t: 'dot', x: 3, y: 2, color: 'a', open: true },
+                ],
+                caption: {
+                  en: 'Constant on each interval $[k, k+1)$, jumping up by $1$ at every integer — a filled dot where the step is taken, a hollow one where it is not.',
+                  id: 'Konstan pada tiap selang $[k, k+1)$, melompat naik $1$ di setiap bilangan bulat — titik penuh tempat tangganya dipijak, titik berlubang tempat ia tidak.',
+                },
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q1',
+              prompt: {
+                en: 'What is $\\lfloor -2.3 \\rfloor$?',
+                id: 'Berapakah $\\lfloor -2.3 \\rfloor$?',
+              },
+              options: [
+                { en: '$-2$', id: '$-2$' },
+                { en: '$-3$', id: '$-3$' },
+                { en: '$2$', id: '$2$' },
+                { en: '$3$', id: '$3$' },
+              ],
+              answer: 1,
+              explain: {
+                en: 'Rounding down for a negative number moves further from zero. $-3 \\leq -2.3$, but $-2 > -2.3$, so $-2$ fails to qualify at all — the floor is $-3$.',
+                id: 'Membulatkan ke bawah untuk bilangan negatif berarti menjauh dari nol. $-3 \\leq -2.3$, tetapi $-2 > -2.3$, sehingga $-2$ sama sekali tak memenuhi syarat — lantainya adalah $-3$.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Reading the step graph above, what is $\\lfloor -0.5 \\rfloor$?',
+                id: 'Dengan membaca grafik tangga di atas, berapakah $\\lfloor -0.5 \\rfloor$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 3.5],
+                ySpan: [-3, 3],
+                ticks: true,
+                items: [
+                  { t: 'seg', from: [-2, -2], to: [-1, -2], color: 'a' },
+                  { t: 'dot', x: -2, y: -2, color: 'a' },
+                  { t: 'dot', x: -1, y: -2, color: 'a', open: true },
+                  { t: 'seg', from: [-1, -1], to: [0, -1], color: 'a' },
+                  { t: 'dot', x: -1, y: -1, color: 'a' },
+                  { t: 'dot', x: 0, y: -1, color: 'a', open: true },
+                  { t: 'seg', from: [0, 0], to: [1, 0], color: 'a' },
+                  { t: 'dot', x: 0, y: 0, color: 'a' },
+                  { t: 'dot', x: 1, y: 0, color: 'a', open: true },
+                ],
+              },
+              options: [
+                { en: '$0$', id: '$0$' },
+                { en: '$-1$', id: '$-1$' },
+                { en: '$-2$', id: '$-2$' },
+                { en: '$0.5$', id: '$0{,}5$' },
+              ],
+              answer: 1,
+              explain: {
+                en: '$-0.5$ sits in the interval $[-1, 0)$, where the graph is flat at height $-1$ — the step has not reached $0$ yet, since that jump only happens exactly at $x = 0$.',
+                id: '$-0.5$ berada pada selang $[-1, 0)$, tempat grafiknya datar pada ketinggian $-1$ — tangganya belum mencapai $0$, sebab lompatan itu hanya terjadi tepat di $x = 0$.',
+              },
+            },
+            {
+              kind: 'fill',
+              id: 'f1',
+              math: true,
+              prompt: {
+                en: 'Complete both evaluations.',
+                id: 'Lengkapi kedua penghitungan ini.',
+              },
+              template: '\\lfloor 6.999 \\rfloor = ___ \\qquad \\lfloor -3 \\rfloor = ___',
+              blanks: ['6', '-3'],
+              explain: {
+                en: '$6.999$ has not reached $7$, so its floor is still $6$. And $-3$ is already an integer, so it is its own floor — nothing to round.',
+                id: '$6.999$ belum mencapai $7$, jadi lantainya masih $6$. Dan $-3$ sudah bilangan bulat, jadi ia menjadi lantainya sendiri — tak ada yang perlu dibulatkan.',
+              },
+            },
+            {
+              kind: 'math',
+              id: 'm1',
+              prompt: {
+                en: 'Evaluate each of these.',
+                id: 'Hitung tiap nilai berikut.',
+              },
+              blanks: [
+                { label: '\\lfloor 4.8 \\rfloor =', answer: 4 },
+                { label: '\\lfloor -0.5 \\rfloor =', answer: -1 },
+                { label: '\\lfloor -3 \\rfloor =', answer: -3 },
+              ],
+              hints: [
+                { en: 'For a negative non-integer, the floor is one *less* than truncating toward zero would give.', id: 'Untuk pecahan negatif, lantainya satu *lebih kecil* daripada memotong ke arah nol.' },
+                { en: 'An integer needs no rounding at all — it is already its own floor.', id: 'Bilangan bulat sama sekali tak perlu dibulatkan — ia sudah menjadi lantainya sendiri.' },
+              ],
+              solution: [
+                '\\lfloor 4.8 \\rfloor = 4',
+                '\\lfloor -0.5 \\rfloor = -1',
+                '\\lfloor -3 \\rfloor = -3',
+              ],
+              explain: {
+                en: 'Three different behaviours in one problem: rounding down normally, rounding down across zero, and an integer that needs no rounding at all.',
+                id: 'Tiga perilaku berbeda dalam satu soal: pembulatan ke bawah biasa, pembulatan ke bawah yang melintasi nol, dan bilangan bulat yang sama sekali tak perlu dibulatkan.',
+              },
+            },
+          ],
+        },
       ],
       project: {
         id: 'fun-m1-s2-p',
@@ -918,6 +1070,15 @@ export const module1: Module = {
             blanks: [{ answer: -2 }, { answer: -5 }],
             solution: ['x = \\tfrac{-8}{2(2)} = -2', 'f(-2) = 8 - 16 + 3 = -5'],
           },
+          {
+            prompt: {
+              en: 'For $h(x) = \\lfloor x \\rfloor$, evaluate $h(-1.2)$ and $h(2.9)$.',
+              id: 'Untuk $h(x) = \\lfloor x \\rfloor$, hitung $h(-1.2)$ dan $h(2.9)$.',
+            },
+            inline: true,
+            blanks: [{ answer: -2 }, { answer: 2 }],
+            solution: ['h(-1.2) = -2 \\quad (\\text{largest integer} \\leq -1.2)', 'h(2.9) = 2'],
+          },
         ],
         hints: [
           {
@@ -928,6 +1089,292 @@ export const module1: Module = {
             en: 'In part 3 the leading coefficient is 2, so remember the $2a$ in $-b/(2a)$.',
             id: 'Pada butir 3 koefisien utamanya 2, jadi jangan lupa $2a$ pada $-b/(2a)$.',
           },
+          {
+            en: 'Part 4: for a negative non-integer, the floor rounds further from zero, not toward it.',
+            id: 'Butir 4: untuk pecahan negatif, lantainya membulat menjauh dari nol, bukan mendekatinya.',
+          },
+        ],
+        xp: 50,
+      },
+    },
+
+    /* ---------------------------------------------- 1.3 building functions */
+    {
+      id: 'fun-m1-s3',
+      title: { en: 'Building Functions from Descriptions', id: 'Membangun Fungsi dari Deskripsi' },
+      summary: {
+        en: 'Turn a geometric setup into a function of one variable, state the domain the setup itself demands, and reuse the vertex trick to optimize it exactly.',
+        id: 'Mengubah situasi geometris menjadi fungsi satu peubah, menyatakan domain yang dituntut situasinya sendiri, dan memakai ulang trik titik balik untuk mengoptimalkannya secara eksak.',
+      },
+      lessons: [
+        {
+          id: 'fun-m1-s3-l1',
+          title: { en: 'Turning a Sentence into a Function', id: 'Mengubah Kalimat Menjadi Fungsi' },
+          goal: {
+            en: 'Name the unknowns, find the relationship linking them, and substitute to leave a function of one variable alone.',
+            id: 'Menamai besaran yang tak diketahui, mencari relasi yang menghubungkannya, dan mensubstitusikannya hingga tersisa fungsi satu peubah saja.',
+          },
+          xp: 20,
+          steps: [
+            {
+              kind: 'concept',
+              id: 'c1',
+              title: { en: 'One equation buys back one variable', id: 'Satu persamaan membeli kembali satu peubah' },
+              body: {
+                en: 'A problem described in words usually starts with **two** related unknowns, not one. The move that turns it into a function: name both, write down the equation that relates them, then use that equation to eliminate one.\n\nLet $P=(x,y)$ be a point on the curve $y=x^2-1$, and ask for its distance $d$ from the origin. Two unknowns, $x$ and $y$ — but one equation already connects them. The distance formula gives $d=\\sqrt{x^2+y^2}$, still in both variables, so substitute $y=x^2-1$ into it:\n$$d(x) = \\sqrt{x^2+(x^2-1)^2}$$\nOne substitution, and $d$ is now a function of $x$ alone. At $x=0$: $d(0)=\\sqrt{0+1}=1$. At $x=1$: $d(1)=\\sqrt{1+0}=1$ — two different points on the curve, the same distance from the origin.',
+                id: 'Soal yang dideskripsikan lewat kalimat biasanya bermula dengan **dua** besaran tak diketahui yang saling berkaitan, bukan satu. Langkah yang mengubahnya menjadi fungsi: namai keduanya, tulis persamaan yang menghubungkannya, lalu pakai persamaan itu untuk mengeliminasi satu.\n\nMisalkan $P=(x,y)$ adalah titik pada kurva $y=x^2-1$, dan tanyakan jaraknya $d$ dari titik asal. Dua besaran tak diketahui, $x$ dan $y$ — tetapi satu persamaan sudah menghubungkannya. Rumus jarak memberi $d=\\sqrt{x^2+y^2}$, masih dalam kedua peubah, jadi substitusikan $y=x^2-1$ ke dalamnya:\n$$d(x) = \\sqrt{x^2+(x^2-1)^2}$$\nSatu substitusi, dan $d$ kini fungsi dari $x$ saja. Di $x=0$: $d(0)=\\sqrt{0+1}=1$. Di $x=1$: $d(1)=\\sqrt{1+0}=1$ — dua titik berbeda pada kurvanya, jarak yang sama dari titik asal.',
+              },
+            },
+            {
+              kind: 'concept',
+              id: 'c2',
+              title: { en: 'Squaring away the root', id: 'Menghilangkan akar dengan mengkuadratkan' },
+              body: {
+                en: 'A square root is awkward to work with, and there is a shortcut: since $d \\geq 0$ always, $d$ is smallest exactly when $D=d^2$ is smallest — squaring never changes which input wins, only which expression is easier to handle.\n\nHere $D(x) = x^4-x^2+1$. Substituting $u=x^2$ turns this into the ordinary quadratic $D=u^2-u+1$, and Module 1\'s vertex formula finds its minimum immediately: $u=\\tfrac12$, giving $D=\\tfrac14-\\tfrac12+1=\\tfrac34$. Since $u=x^2=\\tfrac12$, $x=\\pm\\tfrac{1}{\\sqrt2}$, and the minimum distance is $d=\\sqrt{\\tfrac34}=\\tfrac{\\sqrt3}{2}\\approx 0.87$ — an exact answer, no calculus needed, because the substitution turned a quartic into a parabola in disguise.',
+                id: 'Akar kuadrat merepotkan untuk dikerjakan, dan ada jalan pintasnya: karena $d \\geq 0$ selalu, $d$ terkecil tepat ketika $D=d^2$ terkecil — mengkuadratkan tak pernah mengubah masukan mana yang menang, hanya ekspresi mana yang lebih mudah ditangani.\n\nDi sini $D(x) = x^4-x^2+1$. Mensubstitusikan $u=x^2$ mengubahnya menjadi kuadrat biasa $D=u^2-u+1$, dan rumus titik balik Modul 1 langsung menemukan minimumnya: $u=\\tfrac12$, memberi $D=\\tfrac14-\\tfrac12+1=\\tfrac34$. Karena $u=x^2=\\tfrac12$, $x=\\pm\\tfrac{1}{\\sqrt2}$, dan jarak minimumnya adalah $d=\\sqrt{\\tfrac34}=\\tfrac{\\sqrt3}{2}\\approx 0{,}87$ — jawaban eksak, tanpa kalkulus, sebab substitusinya mengubah kuartik menjadi parabola yang menyamar.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 2],
+                ySpan: [-0.5, 3],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x^4-x^2+1', color: 'a', label: 'D(x)' },
+                  { t: 'dot', x: 0.7071, y: 0.75, color: 'result', label: 'min' },
+                  { t: 'dot', x: -0.7071, y: 0.75, color: 'result' },
+                ],
+                caption: {
+                  en: 'The minimum of $D(x)=x^4-x^2+1$ sits at $x=\\pm\\tfrac{1}{\\sqrt2}\\approx\\pm0.71$, found exactly through the substitution $u=x^2$.',
+                  id: 'Minimum $D(x)=x^4-x^2+1$ berada di $x=\\pm\\tfrac{1}{\\sqrt2}\\approx\\pm0{,}71$, ditemukan secara eksak lewat substitusi $u=x^2$.',
+                },
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q1',
+              prompt: {
+                en: 'Why is it enough to minimize $D=d^2$ instead of $d$ itself?',
+                id: 'Mengapa cukup meminimumkan $D=d^2$ alih-alih $d$ itu sendiri?',
+              },
+              options: [
+                { en: 'Because $d \\geq 0$ always, squaring preserves the order of which value is smallest', id: 'Karena $d \\geq 0$ selalu, mengkuadratkan menjaga urutan nilai mana yang terkecil' },
+                { en: 'Because $D$ is always smaller than $d$', id: 'Karena $D$ selalu lebih kecil dari $d$' },
+                { en: 'It is only a coincidence that works this one time', id: 'Ini hanya kebetulan yang berhasil sekali ini saja' },
+                { en: 'Because $D$ is easier to graph, with no other reason', id: 'Karena $D$ lebih mudah digambar, tanpa alasan lain' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'Squaring is an increasing operation on non-negative numbers: if $0 \\leq d_1 < d_2$ then $d_1^2 < d_2^2$. Since distance is never negative, whichever $x$ makes $D$ smallest also makes $d$ smallest.',
+                id: 'Mengkuadratkan adalah operasi yang naik pada bilangan tak negatif: jika $0 \\leq d_1 < d_2$ maka $d_1^2 < d_2^2$. Karena jarak tak pernah negatif, $x$ mana pun yang membuat $D$ terkecil juga membuat $d$ terkecil.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Reading the graph above of $D(x)=x^4-x^2+1$, near what $x$-value does it reach its minimum?',
+                id: 'Dengan membaca grafik di atas dari $D(x)=x^4-x^2+1$, di sekitar nilai $x$ berapa ia mencapai minimumnya?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 2],
+                ySpan: [-0.5, 3],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x^4-x^2+1', color: 'a' },
+                  { t: 'dot', x: 0.7071, y: 0.75, color: 'result' },
+                  { t: 'dot', x: -0.7071, y: 0.75, color: 'result' },
+                ],
+              },
+              options: [
+                { en: '$x \\approx \\pm 0.71$', id: '$x \\approx \\pm 0{,}71$' },
+                { en: '$x = 0$', id: '$x = 0$' },
+                { en: '$x = 1$', id: '$x = 1$' },
+                { en: '$x = 2$', id: '$x = 2$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The two marked dots, at $x=\\pm\\tfrac{1}{\\sqrt2}\\approx\\pm0.71$, are exactly where the algebra placed the minimum — the picture and the substitution agree.',
+                id: 'Kedua titik yang ditandai, di $x=\\pm\\tfrac{1}{\\sqrt2}\\approx\\pm0{,}71$, persis tempat aljabar menaruh minimumnya — gambar dan substitusinya sepakat.',
+              },
+            },
+            {
+              kind: 'math',
+              id: 'm1',
+              prompt: {
+                en: 'A point $P=(x,y)$ lies on the curve $y = x^2 + 4$. Using $u=x^2$ on $D(x)=x^2+(x^2+4)^2$, find the minimum distance $d$ from $P$ to the origin.',
+                id: 'Titik $P=(x,y)$ berada pada kurva $y = x^2 + 4$. Memakai $u=x^2$ pada $D(x)=x^2+(x^2+4)^2$, cari jarak minimum $d$ dari $P$ ke titik asal.',
+              },
+              blanks: [{ label: 'd =', answer: 4 }],
+              hints: [
+                { en: 'Expanding gives $D = u^2+9u+16$ where $u=x^2$.', id: 'Menjabarkan memberi $D = u^2+9u+16$ dengan $u=x^2$.' },
+                { en: 'The vertex of $u^2+9u+16$ sits at $u=-4.5$ — but $u=x^2$ can never be negative, so the smallest $u$ actually allowed is $0$.', id: 'Titik balik $u^2+9u+16$ berada di $u=-4{,}5$ — tetapi $u=x^2$ tak pernah bisa negatif, jadi $u$ terkecil yang benar-benar diizinkan adalah $0$.' },
+              ],
+              solution: [
+                'D(u) = u^2+9u+16, \\quad u = x^2 \\geq 0',
+                '\\text{vertex at } u=-4.5 \\text{ is outside the allowed domain}',
+                '\\text{on } u\\geq 0, D \\text{ is increasing, so the minimum is at } u=0',
+                'D(0) = 16 \\Rightarrow d = \\sqrt{16} = 4',
+              ],
+              explain: {
+                en: 'The vertex formula wants $u=-4.5$, which is impossible since $u=x^2$. Because $D=u^2+9u+16$ is increasing for every $u \\geq 0$, the smallest value on the allowed domain sits right at its edge, $u=0$ — giving $D=16$ and $d=4$, exactly the curve\'s own lowest point, $(0,4)$.',
+                id: 'Rumus titik balik menginginkan $u=-4{,}5$, yang mustahil sebab $u=x^2$. Karena $D=u^2+9u+16$ naik untuk setiap $u \\geq 0$, nilai terkecil pada domain yang diizinkan berada tepat di tepinya, $u=0$ — memberi $D=16$ dan $d=4$, persis titik terendah kurvanya sendiri, $(0,4)$.',
+              },
+            },
+          ],
+        },
+        {
+          id: 'fun-m1-s3-l2',
+          title: { en: 'Domain from the Setup, and an Exact Maximum', id: 'Domain dari Situasinya, dan Maksimum Eksak' },
+          goal: {
+            en: 'State the domain a geometric setup itself demands, then reuse the vertex trick to maximize an area exactly.',
+            id: 'Menyatakan domain yang dituntut situasi geometrisnya sendiri, lalu memakai ulang trik titik balik untuk memaksimalkan luas secara eksak.',
+          },
+          xp: 20,
+          steps: [
+            {
+              kind: 'concept',
+              id: 'c1',
+              title: { en: 'The formula allows more than the picture does', id: 'Rumusnya mengizinkan lebih banyak daripada gambarnya' },
+              body: {
+                en: 'A rectangle sits symmetrically under the semicircle $y=\\sqrt{25-x^2}$: base $2x$ centred on the origin, height $y$, top corners on the curve. Its area is\n$$A(x) = 2x\\sqrt{25-x^2}$$\nThe formula itself only needs $25-x^2 \\geq 0$, i.e. $-5 \\leq x \\leq 5$ — but the **picture** demands more: a rectangle needs a positive width and a positive height, so $x>0$ strictly. The domain the situation allows is $0 < x < 5$, narrower than the formula\'s own natural domain from Module 1\'s Lesson 2. The setup can always demand more than the algebra alone would.',
+                id: 'Sebuah persegi panjang duduk simetris di bawah setengah lingkaran $y=\\sqrt{25-x^2}$: alasnya $2x$ berpusat di titik asal, tinggi $y$, kedua sudut atasnya pada kurvanya. Luasnya adalah\n$$A(x) = 2x\\sqrt{25-x^2}$$\nRumusnya sendiri hanya memerlukan $25-x^2 \\geq 0$, yaitu $-5 \\leq x \\leq 5$ — tetapi **gambarnya** menuntut lebih: persegi panjang memerlukan lebar dan tinggi yang positif, sehingga $x>0$ secara ketat. Domain yang diizinkan situasinya adalah $0 < x < 5$, lebih sempit dari domain alami rumusnya sendiri dari Pelajaran 2 Modul 1. Situasinya selalu bisa menuntut lebih daripada aljabar semata.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-6, 6],
+                ySpan: [-1, 6],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'sqrt(25-x^2)', from: -5, to: 5, color: 'a' },
+                  { t: 'poly', pts: [[-3, 0], [3, 0], [3, 4], [-3, 4]], color: 'result' },
+                ],
+                caption: {
+                  en: 'One rectangle in the family, at $x=3$: width $6$, height $y=\\sqrt{25-9}=4$ — a $3$-$4$-$5$ right triangle hiding in the corner.',
+                  id: 'Satu persegi panjang dalam keluarganya, di $x=3$: lebar $6$, tinggi $y=\\sqrt{25-9}=4$ — segitiga siku-siku $3$-$4$-$5$ bersembunyi di sudutnya.',
+                },
+              },
+            },
+            {
+              kind: 'concept',
+              id: 'c2',
+              title: { en: 'Maximizing without calculus, again', id: 'Memaksimalkan tanpa kalkulus, sekali lagi' },
+              body: {
+                en: 'The same squaring trick as last lesson removes the root: $A^2 = 4x^2(25-x^2) = -4x^4+100x^2$. Substituting $u=x^2$ gives $A^2=-4u^2+100u$ — a downward parabola in $u$, maximized at $u=\\dfrac{100}{2(4)}=12.5$.\n\nSo $x=\\sqrt{12.5}\\approx 3.54$, and $A^2 = -4(12.5)^2+100(12.5) = 625$, giving the exact maximum area $A=\\sqrt{625}=25$ — a clean whole number out of a problem that started with a square root, reached the same way as the distance problem: square it, substitute $u=x^2$, use the vertex formula.',
+                id: 'Trik mengkuadratkan yang sama seperti pelajaran sebelumnya menghilangkan akarnya: $A^2 = 4x^2(25-x^2) = -4x^4+100x^2$. Mensubstitusikan $u=x^2$ memberi $A^2=-4u^2+100u$ — parabola yang membuka ke bawah dalam $u$, maksimum di $u=\\dfrac{100}{2(4)}=12{,}5$.\n\nJadi $x=\\sqrt{12{,}5}\\approx 3{,}54$, dan $A^2 = -4(12{,}5)^2+100(12{,}5) = 625$, memberi luas maksimum eksak $A=\\sqrt{625}=25$ — bilangan bulat yang bersih dari soal yang bermula dengan akar kuadrat, dicapai dengan cara yang sama seperti soal jarak: kuadratkan, substitusikan $u=x^2$, pakai rumus titik balik.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q1',
+              prompt: {
+                en: 'Why is the allowed domain $0 < x < 5$ rather than the formula\'s own $-5 \\leq x \\leq 5$?',
+                id: 'Mengapa domain yang diizinkan adalah $0 < x < 5$, bukan $-5 \\leq x \\leq 5$ milik rumusnya sendiri?',
+              },
+              options: [
+                { en: 'A rectangle needs a strictly positive width and height, and the endpoints $x=0$ or $x=5$ collapse it to zero area', id: 'Persegi panjang memerlukan lebar dan tinggi yang tegas positif, dan titik ujung $x=0$ atau $x=5$ membuat luasnya runtuh menjadi nol' },
+                { en: 'The formula is only defined for $x>0$ to begin with', id: 'Rumusnya sendiri hanya terdefinisi untuk $x>0$ sejak awal' },
+                { en: 'It is an arbitrary restriction with no geometric reason', id: 'Ini pembatasan sebarang tanpa alasan geometris' },
+                { en: 'Negative $x$ would make the square root undefined', id: 'x negatif akan membuat akar kuadratnya tak terdefinisi' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The formula $2x\\sqrt{25-x^2}$ is perfectly defined on all of $[-5,5]$. It is the *rectangle* — not the formula — that needs a genuine width and height, which rules out $x \\leq 0$ and the endpoint $x=5$ where the height vanishes.',
+                id: 'Rumus $2x\\sqrt{25-x^2}$ terdefinisi sempurna pada seluruh $[-5,5]$. *Persegi panjangnyalah* — bukan rumusnya — yang memerlukan lebar dan tinggi yang sungguhan, yang menyingkirkan $x \\leq 0$ dan titik ujung $x=5$ tempat tingginya lenyap.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Reading the figure above, what happens to the rectangle\'s area as $x \\to 5$?',
+                id: 'Dengan membaca gambar di atas, apa yang terjadi pada luas persegi panjangnya saat $x \\to 5$?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-6, 6],
+                ySpan: [-1, 6],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'sqrt(25-x^2)', from: -5, to: 5, color: 'a' },
+                  { t: 'poly', pts: [[-3, 0], [3, 0], [3, 4], [-3, 4]], color: 'result' },
+                ],
+              },
+              options: [
+                { en: 'It shrinks to zero, since the curve meets the x-axis there and the height vanishes', id: 'Menyusut menuju nol, sebab kurvanya bertemu sumbu-x di situ dan tingginya lenyap' },
+                { en: 'It keeps growing without bound', id: 'Terus bertambah tanpa batas' },
+                { en: 'It stays exactly at the maximum found in the lesson', id: 'Tetap tepat di maksimum yang ditemukan pada pelajaran' },
+                { en: 'The rectangle turns into a triangle', id: 'Persegi panjangnya berubah menjadi segitiga' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'At $x=5$ the semicircle has come back down to the axis, so $y=\\sqrt{25-25}=0$ — a rectangle with zero height, hence zero area. The maximum happens somewhere in between, not at either extreme.',
+                id: 'Di $x=5$ setengah lingkarannya sudah kembali turun ke sumbunya, sehingga $y=\\sqrt{25-25}=0$ — persegi panjang dengan tinggi nol, jadi luasnya nol. Maksimumnya terjadi di suatu tempat di antaranya, bukan di salah satu ekstrem.',
+              },
+            },
+            {
+              kind: 'math',
+              id: 'm1',
+              prompt: {
+                en: 'A rectangle sits the same way under the semicircle $y=\\sqrt{16-x^2}$, with area $A(x)=2x\\sqrt{16-x^2}$. Using the same substitution, find the exact maximum area.',
+                id: 'Persegi panjang duduk dengan cara yang sama di bawah setengah lingkaran $y=\\sqrt{16-x^2}$, dengan luas $A(x)=2x\\sqrt{16-x^2}$. Memakai substitusi yang sama, cari luas maksimum eksak.',
+              },
+              blanks: [{ label: 'A_{max} =', answer: 16 }],
+              hints: [
+                { en: '$A^2 = -4u^2+64u$ where $u=x^2$; its vertex is at $u=\\dfrac{64}{8}=8$.', id: '$A^2 = -4u^2+64u$ dengan $u=x^2$; titik baliknya di $u=\\dfrac{64}{8}=8$.' },
+              ],
+              explain: {
+                en: '$A^2 = -4(8)^2+64(8) = 256$, so $A_{max}=\\sqrt{256}=16$ — and in general, a rectangle inscribed this way under a semicircle of radius $r$ has maximum area exactly $r^2$.',
+                id: '$A^2 = -4(8)^2+64(8) = 256$, sehingga $A_{maks}=\\sqrt{256}=16$ — dan secara umum, persegi panjang yang terpasang seperti ini di bawah setengah lingkaran berjari-jari $r$ punya luas maksimum tepat $r^2$.',
+              },
+            },
+          ],
+        },
+      ],
+      project: {
+        id: 'fun-m1-s3-p',
+        runtime: 'math',
+        title: { en: 'Modeling with One Variable', id: 'Memodelkan dengan Satu Peubah' },
+        brief: {
+          en: 'Building a function, stating the domain it demands, and finding an exact maximum.',
+          id: 'Membangun sebuah fungsi, menyatakan domain yang dituntutnya, dan mencari maksimum eksak.',
+        },
+        requirements: [
+          { en: 'Name both unknowns, find the equation linking them, then substitute to leave one variable.', id: 'Namai kedua besaran tak diketahuinya, cari persamaan yang menghubungkannya, lalu substitusikan hingga tersisa satu peubah.' },
+          { en: 'The picture can demand a narrower domain than the formula alone would allow.', id: 'Gambarnya bisa menuntut domain yang lebih sempit daripada yang diizinkan rumusnya semata.' },
+        ],
+        tasks: [
+          {
+            prompt: {
+              en: 'A point $P=(x,y)$ lies on $y=x^2-4$. Express $d(x)$, the distance from $P$ to the origin, then evaluate $d(2)$.',
+              id: 'Titik $P=(x,y)$ berada pada $y=x^2-4$. Nyatakan $d(x)$, jarak dari $P$ ke titik asal, lalu hitung $d(2)$.',
+            },
+            blanks: [{ answer: 2 }],
+            solution: ['d(x) = \\sqrt{x^2+(x^2-4)^2}', 'd(2) = \\sqrt{4+0} = 2'],
+          },
+          {
+            prompt: {
+              en: 'A rectangle sits symmetrically under the semicircle $y=\\sqrt{9-x^2}$, with area $A(x)=2x\\sqrt{9-x^2}$. What are the smallest and largest $x$ the picture allows?',
+              id: 'Persegi panjang duduk simetris di bawah setengah lingkaran $y=\\sqrt{9-x^2}$, dengan luas $A(x)=2x\\sqrt{9-x^2}$. Berapa $x$ terkecil dan terbesar yang diizinkan gambarnya?',
+            },
+            inline: true,
+            blanks: [{ answer: 0 }, { answer: 3 }],
+            solution: ['\\text{A rectangle needs } x>0 \\text{ and } y>0, \\text{ so } 0 < x < 3'],
+          },
+          {
+            prompt: {
+              en: 'For that same rectangle under $y=\\sqrt{9-x^2}$, find the exact maximum area.',
+              id: 'Untuk persegi panjang yang sama di bawah $y=\\sqrt{9-x^2}$, cari luas maksimum eksaknya.',
+            },
+            blanks: [{ answer: 9 }],
+            solution: [
+              'A^2 = -4u^2+36u, \\quad u=x^2, \\quad \\text{vertex at } u=\\dfrac{36}{8}=4.5',
+              'A^2 = -4(4.5)^2+36(4.5) = 81 \\Rightarrow A_{max} = 9',
+            ],
+          },
+        ],
+        hints: [
+          { en: 'Part 3 follows the same pattern as the lesson\'s own example — only the radius under the root has changed.', id: 'Butir 3 mengikuti pola yang sama seperti contoh pada pelajarannya sendiri — hanya jari-jari di bawah akarnya yang berubah.' },
         ],
         xp: 50,
       },
