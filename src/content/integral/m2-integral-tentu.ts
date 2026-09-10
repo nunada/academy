@@ -205,11 +205,11 @@ export const module2: Module = {
                 en: 'Complete the property used to split an integral at an interior point.',
                 id: 'Lengkapi sifat yang dipakai untuk memecah integral pada titik di dalamnya.',
               },
-              template: '\\int_1^5 f(x)\\,dx = \\int_1^{___} f(x)\\,dx + \\int_{___}^5 f(x)\\,dx',
-              blanks: ['3', '3'],
+              template: '\\int_1^5 f(x)\\,dx = \\int_1^c f(x)\\,dx + \\int_c^5 f(x)\\,dx, \\quad c = ___',
+              blanks: ['3'],
               explain: {
-                en: 'Any interior point works for the split — $3$ is one choice, and both blanks must use the same point for the pieces to reassemble correctly.',
-                id: 'Titik di dalamnya mana pun berlaku untuk pemecahannya — $3$ adalah salah satu pilihan, dan kedua kotak harus memakai titik yang sama agar bagian-bagiannya tersusun kembali dengan benar.',
+                en: 'Any interior point works for the split — $3$ is one choice, and the same $c$ has to appear as the upper bound of the first piece and the lower bound of the second for them to reassemble correctly.',
+                id: 'Titik di dalamnya mana pun berlaku untuk pemecahannya — $3$ adalah salah satu pilihan, dan $c$ yang sama harus muncul sebagai batas atas bagian pertama dan batas bawah bagian kedua agar keduanya tersusun kembali dengan benar.',
               },
             },
             {

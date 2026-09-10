@@ -544,7 +544,7 @@ export const module2: Module = {
                 en: 'The graph of $y = \\sqrt{x}$ is moved 4 right and 1 down. Complete the new formula.',
                 id: 'Grafik $y = \\sqrt{x}$ digeser 4 satuan ke kanan dan 1 satuan ke bawah. Lengkapi rumus barunya.',
               },
-              template: 'y = \\sqrt{x - ___} - ___',
+              template: 'y = \\sqrt{x-h} - k \\quad\\Rightarrow\\quad h = ___, \\ k = ___',
               blanks: ['4', '1'],
               explain: {
                 en: 'Right by 4 puts $-4$ inside; down by 1 puts $-1$ outside. The new graph starts at the point $(4, -1)$.',

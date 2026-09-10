@@ -113,7 +113,7 @@ export const module4: Module = {
                 en: 'Complete the double-angle antiderivative of $\\cos^2(x)$.',
                 id: 'Lengkapi antiturunan sudut ganda dari $\\cos^2(x)$.',
               },
-              template: '\\cos^2 x = \\dfrac{1+\\cos 2x}{2} \\ \\Rightarrow \\ \\int \\cos^2 x\\,dx = \\dfrac{x}{2} + \\dfrac{\\sin 2x}{___} + C',
+              template: '\\cos^2 x = \\dfrac{1+\\cos 2x}{2} \\ \\Rightarrow \\ \\int \\cos^2 x\\,dx = \\dfrac{x}{2} + \\sin(2x)/___ + C',
               blanks: ['4'],
               explain: {
                 en: 'Integrating $\\cos(2x)/2$ with respect to $x$ gives $\\sin(2x)/4$ — the inner derivative $2$ lands in the denominator.',
@@ -345,7 +345,7 @@ export const module4: Module = {
                 en: 'Decompose $\\dfrac{7x - 6}{(x-2)(x-1)}$ into partial fractions by finding $A$ and $B$.',
                 id: 'Uraikan $\\dfrac{7x - 6}{(x-2)(x-1)}$ menjadi pecahan parsial dengan mencari $A$ dan $B$.',
               },
-              template: '\\dfrac{7x-6}{(x-2)(x-1)} = \\dfrac{___}{x-2} + \\dfrac{___}{x-1}',
+              template: '\\dfrac{7x-6}{(x-2)(x-1)} = ___/(x-2) + ___/(x-1)',
               blanks: ['8', '-1'],
               explain: {
                 en: 'At $x=2$: $7(2)-6=8=A(1)$, so $A=8$. At $x=1$: $7(1)-6=1=B(-1)$, so $B=-1$.',

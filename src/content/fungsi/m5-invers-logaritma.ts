@@ -652,7 +652,7 @@ export const module5: Module = {
                 en: 'Combine into one logarithm.',
                 id: 'Gabungkan menjadi satu logaritma.',
               },
-              template: '2\\log x + \\log y = \\log\\left(x^{___} y\\right)',
+              template: '2\\log x + \\log y = \\log(x^2 y), \\quad \\text{exponent on } x = ___',
               blanks: ['2'],
               explain: {
                 en: 'The coefficient goes up as a power, then the sum becomes a product. Both laws, used in the direction that packs things together.',

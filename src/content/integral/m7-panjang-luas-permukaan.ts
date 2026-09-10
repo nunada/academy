@@ -76,7 +76,7 @@ export const module7: Module = {
                 en: 'Complete the arc length setup for $f(x) = 2x + 1$ on $[0, 3]$.',
                 id: 'Lengkapi penyusunan panjang busur untuk $f(x) = 2x + 1$ pada $[0, 3]$.',
               },
-              template: 'L = \\int_0^3 \\sqrt{1+___^2}\\,dx = 3\\sqrt{___}',
+              template: 'L = \\int_0^3 \\sqrt{1+(f\')^2}\\,dx, \\quad f\'(x) = ___, \\quad 1+(f\')^2 = ___',
               blanks: ['2', '5'],
               explain: {
                 en: "$f'(x) = 2$, and $1 + 2^2 = 5$ sits under the square root, constant across the whole interval.",

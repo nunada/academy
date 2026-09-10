@@ -284,7 +284,7 @@ export const module8: Module = {
                 en: 'Complete the center of mass computation for a rod of constant density $k$ on $[a, b]$.',
                 id: 'Lengkapi penghitungan pusat massa batang berkerapatan konstan $k$ pada $[a, b]$.',
               },
-              template: '\\bar{x} = \\dfrac{\\int_a^b x\\cdot k\\,dx}{\\int_a^b k\\,dx} = \\dfrac{k(b^2-a^2)/2}{k(b-a)} = \\dfrac{a+___}{___}',
+              template: '\\bar{x} = \\dfrac{\\int_a^b x\\cdot k\\,dx}{\\int_a^b k\\,dx} = \\dfrac{k(b^2-a^2)/2}{k(b-a)} = (a+___)/___',
               blanks: ['b', '2'],
               explain: {
                 en: '$(b^2 - a^2)/(b - a)$ simplifies to $(a + b)$, and dividing by the extra factor of 2 in the numerator leaves the plain average $(a + b)/2$.',

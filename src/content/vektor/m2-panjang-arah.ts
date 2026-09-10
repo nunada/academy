@@ -145,7 +145,7 @@ export const module2: Module = {
                 en: 'Complete the working for $|\\vec{a}|$ where $\\vec{a} = (3, -4)$.',
                 id: 'Lengkapi penyelesaian $|\\vec{a}|$ dengan $\\vec{a} = (3, -4)$.',
               },
-              template: '|\\vec{a}| = \\sqrt{3^2 + (-4)^2} = \\sqrt{___} = ___',
+              template: '|\\vec{a}| = \\sqrt{3^2 + (-4)^2}, \\quad 3^2+(-4)^2 = ___, \\quad |\\vec{a}| = ___',
               blanks: ['25', '5'],
               explain: {
                 en: '$9 + 16 = 25$, and $\\sqrt{25} = 5$. The minus sign disappears the moment the component is squared.',

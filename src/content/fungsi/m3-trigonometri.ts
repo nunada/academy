@@ -604,7 +604,7 @@ export const module3: Module = {
                 en: 'Complete the period of $y = 4\\cos(3x)$.',
                 id: 'Lengkapi periode dari $y = 4\\cos(3x)$.',
               },
-              template: { en: '\\text{period} = \\frac{2\\pi}{___}', id: '\\text{periode} = \\frac{2\\pi}{___}' },
+              template: { en: '\\text{period} = 2\\pi / ___', id: '\\text{periode} = 2\\pi / ___' },
               blanks: ['3'],
               explain: {
                 en: 'The period is $\\frac{2\\pi}{|B|} = \\frac{2\\pi}{3}$. The 4 out front changes the height, never the period.',

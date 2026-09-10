@@ -78,7 +78,7 @@ export const moduleDef: Module = {
                 en: 'Complete the delta-finding steps for the limit of $(2x - 1)$ as $x$ approaches $3$, which equals $5$.',
                 id: 'Lengkapi langkah pencarian delta untuk limit dari $(2x - 1)$ saat $x$ mendekati $3$, yang sama dengan $5$.',
               },
-              template: '|(2x-1)-5| = |2x-6| = ___|x-3| < \\varepsilon \\ \\Rightarrow \\ |x-3| < \\dfrac{\\varepsilon}{___}',
+              template: '|(2x-1)-5| = |2x-6| = ___|x-3| < \\varepsilon \\ \\Rightarrow \\ |x-3| < \\varepsilon/___',
               blanks: ['2', '2'],
               explain: {
                 en: 'Factoring $2x - 6$ gives $2|x-3|$, so the inequality $2|x-3| < \\varepsilon$ rearranges to $|x-3| < \\varepsilon/2$ — $\\delta$ is $\\varepsilon$ divided by the coefficient of $x$.',
@@ -286,7 +286,7 @@ export const moduleDef: Module = {
                 en: 'Complete the final step of the sum rule proof.',
                 id: 'Lengkapi langkah terakhir bukti hukum jumlah.',
               },
-              template: '|f(x)-L| + |g(x)-M| < \\dfrac{\\varepsilon}{___} + \\dfrac{\\varepsilon}{___} = \\varepsilon',
+              template: '|f(x)-L| + |g(x)-M| < \\varepsilon/___ + \\varepsilon/___ = \\varepsilon',
               blanks: ['2', '2'],
               explain: {
                 en: 'Each piece is held under $\\varepsilon/2$ by construction, and the two halves recombine to exactly $\\varepsilon$.',

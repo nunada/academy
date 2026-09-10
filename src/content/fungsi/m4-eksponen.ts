@@ -188,7 +188,7 @@ export const module4: Module = {
                 en: 'A culture of 500 doubles every 3 hours. Complete the value at $t = 12$.',
                 id: 'Sebuah biakan berjumlah 500 berlipat dua tiap 3 jam. Lengkapi nilainya pada $t = 12$.',
               },
-              template: 'y(12) = 500 \\cdot 2^{12/3} = 500 \\cdot 2^{___} = ___',
+              template: 'y(12) = 500\\cdot 2^{12/3}, \\quad \\text{exponent} = ___, \\quad y(12) = ___',
               blanks: ['4', '8000'],
               explain: {
                 en: 'Twelve hours is four doubling periods, and four doublings multiply by 16. The exponent counts periods, not hours.',

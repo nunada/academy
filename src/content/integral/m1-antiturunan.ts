@@ -206,7 +206,7 @@ export const module1: Module = {
                 en: 'Complete the antiderivative of $f(x) = x^{-4}$.',
                 id: 'Lengkapi antiturunan dari $f(x) = x^{-4}$.',
               },
-              template: '\\int x^{-4}\\,dx = \\dfrac{x^{-3}}{___} + ___',
+              template: '\\int x^{-4}\\,dx = x^{-3}/___ + ___',
               blanks: ['-3', 'C'],
               explain: {
                 en: 'Raise the exponent to $-3$, then divide by that same $-3$ — and never drop the $+C$, since the family is the whole answer.',

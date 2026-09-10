@@ -737,7 +737,7 @@ export const module4: Module = {
                 en: 'Complete the chain-rule derivative of $y = \\arcsin(3x)$.',
                 id: 'Lengkapi turunan aturan rantai dari $y = \\arcsin(3x)$.',
               },
-              template: 'y\' = \\dfrac{___}{\\sqrt{1-(3x)^2}} = \\dfrac{3}{\\sqrt{1-9x^2}}',
+              template: 'y\' = ___/\\sqrt{1-(3x)^2} = 3/\\sqrt{1-9x^2}',
               blanks: ['3'],
               explain: {
                 en: '$g(x) = 3x$ has derivative $3$, which sits on top exactly as the chain rule requires.',

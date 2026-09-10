@@ -94,7 +94,7 @@ export const module3: Module = {
                 en: 'Complete the substitution for $\\int 3x^2(x^3+4)^4\\,dx$.',
                 id: 'Lengkapi substitusi untuk $\\int 3x^2(x^3+4)^4\\,dx$.',
               },
-              template: 'u = x^3+4, \\quad du = ___\\,dx, \\quad \\int u^4\\,du = \\dfrac{u^___}{5} + C',
+              template: 'u = x^3+4, \\quad du = ___\\,dx, \\quad \\int u^4\\,du = u^___/5 + C',
               blanks: ['3x^2', '5'],
               explain: {
                 en: '$du = 3x^2\\,dx$ matches the leftover factor exactly, so no scaling is needed; the power rule then raises the exponent to $5$.',
