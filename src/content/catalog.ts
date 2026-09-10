@@ -273,6 +273,23 @@ export const COURSES: CourseInfo[] = [
     lessons: 20,
     projects: 10,
   },
+  {
+    id: 'turunan',
+    title: { en: 'Derivatives', id: 'Turunan' },
+    tagline: {
+      en: 'From secant to tangent, the rules that make differentiation mechanical, and what a derivative is actually for.',
+      id: 'Dari garis potong ke garis singgung, aturan yang membuat penurunan mekanis, dan untuk apa sebenarnya sebuah turunan.',
+    },
+    icon: '📉',
+    color: '#a0522d',
+    level: { en: 'Intermediate', id: 'Menengah' },
+    language: 'math',
+    track: 'math',
+    requires: ['limit'],
+    available: true,
+    lessons: 20,
+    projects: 10,
+  },
 ]
 
 /** One dynamic import per course. Written out rather than built from the id so
@@ -293,6 +310,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   fungsi: () => import('./fungsi'),
   vektor: () => import('./vektor'),
   limit: () => import('./limit'),
+  turunan: () => import('./turunan'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes
