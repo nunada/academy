@@ -563,5 +563,240 @@ export const module4: Module = {
         xp: 50,
       },
     },
+
+    /* ------------------------------------- 4.3 inverse trigonometric derivatives */
+    {
+      id: 'tur-m4-s3',
+      title: { en: 'Inverse Trigonometric Derivatives', id: 'Turunan Trigonometri Invers' },
+      summary: {
+        en: 'Differentiating arcsin, arccos, arctan, and arcsec by implicitly differentiating the trig relation each one inverts.',
+        id: 'Menurunkan arcsin, arccos, arctan, dan arcsec dengan menurunkan secara implisit relasi trigonometri yang dibalik masing-masing.',
+      },
+      lessons: [
+        {
+          id: 'tur-m4-s3-l1',
+          title: { en: 'Derivatives of arcsin x and arccos x', id: 'Turunan arcsin x dan arccos x' },
+          goal: {
+            en: 'Derive the derivative of arcsin x by implicitly differentiating its own defining relation, and get arccos x for free from a complementary-angle identity.',
+            id: 'Menurunkan turunan arcsin x dengan menurunkan secara implisit relasi pendefinisiannya sendiri, dan mendapatkan arccos x secara cuma-cuma dari identitas sudut komplementer.',
+          },
+          xp: 20,
+          steps: [
+            {
+              kind: 'concept',
+              id: 'c1',
+              title: { en: 'Same technique that produced 1/x for ln x', id: 'Teknik yang sama yang menghasilkan 1/x untuk ln x' },
+              body: {
+                en: 'Module 4.2 differentiated $\\ln x$ by writing $e^y=x$ and differentiating implicitly. $\\arcsin x$ inverts $\\sin$ the same way $\\ln x$ inverts $e^x$, so the same technique applies. Let $y=\\arcsin x$ for $x\\in[-1,1]$, so $\\sin y = x$ with $y\\in[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$. Differentiate both sides with respect to $x$:\n$$\\cos y \\cdot \\frac{dy}{dx} = 1 \\ \\Rightarrow \\ \\frac{dy}{dx} = \\frac{1}{\\cos y}$$\nThis needs to be rewritten in terms of $x$ alone. Since $\\cos y \\geq 0$ on $[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$, $\\cos y = \\sqrt{1-\\sin^2 y} = \\sqrt{1-x^2}$. So:\n$$\\frac{d}{dx}(\\arcsin x) = \\frac{1}{\\sqrt{1-x^2}}$$',
+                id: 'Modul 4.2 menurunkan $\\ln x$ dengan menulis $e^y=x$ dan menurunkannya secara implisit. $\\arcsin x$ membalik $\\sin$ dengan cara yang sama seperti $\\ln x$ membalik $e^x$, sehingga teknik yang sama berlaku. Misalkan $y=\\arcsin x$ untuk $x\\in[-1,1]$, sehingga $\\sin y = x$ dengan $y\\in[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$. Turunkan kedua ruas terhadap $x$:\n$$\\cos y \\cdot \\frac{dy}{dx} = 1 \\ \\Rightarrow \\ \\frac{dy}{dx} = \\frac{1}{\\cos y}$$\nIni perlu ditulis ulang dalam bentuk $x$ saja. Karena $\\cos y \\geq 0$ pada $[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$, $\\cos y = \\sqrt{1-\\sin^2 y} = \\sqrt{1-x^2}$. Jadi:\n$$\\frac{d}{dx}(\\arcsin x) = \\frac{1}{\\sqrt{1-x^2}}$$',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-1.5, 1.5],
+                ySpan: [-2, 2],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'asin(x)', from: -1, to: 1, color: 'a' },
+                  { t: 'seg', from: [-1, -1], to: [1, 1], color: 'b' },
+                ],
+                caption: {
+                  en: 'y = arcsin x with its tangent at x = 0, slope 1 — matching 1/sqrt(1-0^2) = 1 exactly.',
+                  id: 'y = arcsin x beserta garis singgungnya di x = 0, kemiringan 1 — cocok persis dengan 1/sqrt(1-0^2) = 1.',
+                },
+              },
+            },
+            {
+              kind: 'concept',
+              id: 'c2',
+              title: { en: 'arccos x, free from a complementary angle', id: 'arccos x, cuma-cuma dari sudut komplementer' },
+              body: {
+                en: 'Rather than repeating the whole derivation, the identity $\\arccos x = \\tfrac{\\pi}{2} - \\arcsin x$ (complementary angles: whatever angle has sine $x$, its complement has cosine $x$) gives $\\arccos x$\'s derivative for free:\n$$\\frac{d}{dx}(\\arccos x) = \\frac{d}{dx}\\left(\\frac{\\pi}{2}-\\arcsin x\\right) = -\\frac{1}{\\sqrt{1-x^2}}$$\nEvery complementary pair of inverse trig functions works this way: differentiate one from scratch, and the other one\'s derivative is just its negative, since a constant ($\\tfrac{\\pi}{2}$) contributes nothing under differentiation.',
+                id: 'Alih-alih mengulang seluruh penurunannya, identitas $\\arccos x = \\tfrac{\\pi}{2} - \\arcsin x$ (sudut komplementer: sudut apa pun yang sinusnya $x$, komplemennya bercosinus $x$) memberi turunan $\\arccos x$ secara cuma-cuma:\n$$\\frac{d}{dx}(\\arccos x) = \\frac{d}{dx}\\left(\\frac{\\pi}{2}-\\arcsin x\\right) = -\\frac{1}{\\sqrt{1-x^2}}$$\nSetiap pasangan komplementer fungsi trigonometri invers bekerja dengan cara ini: turunkan satu dari awal, dan turunan yang lain tinggal negatifnya, sebab konstanta ($\\tfrac{\\pi}{2}$) tak menyumbang apa pun di bawah penurunan.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q1',
+              prompt: {
+                en: 'Why is cos y rewritten as sqrt(1 - x^2) rather than left as cos y?',
+                id: 'Mengapa cos y ditulis ulang sebagai sqrt(1 - x^2), bukan dibiarkan sebagai cos y?',
+              },
+              options: [
+                { en: 'A derivative of a function of x should be expressed in terms of x, and sin y = x lets the Pythagorean identity make that substitution', id: 'Turunan fungsi dari x seharusnya dinyatakan dalam bentuk x, dan sin y = x membiarkan identitas Pythagoras membuat substitusi itu' },
+                { en: 'cos y is undefined whenever y = arcsin x', id: 'cos y tak terdefinisi setiap kali y = arcsin x' },
+                { en: 'It is purely a stylistic choice with no mathematical necessity', id: 'Ini murni pilihan gaya tanpa keharusan matematis' },
+                { en: 'sqrt(1-x^2) and cos y are not actually equal', id: 'sqrt(1-x^2) dan cos y sebenarnya tak sama' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The whole point of differentiating y = arcsin x is a formula for dy/dx in terms of x. Since sin y = x by definition, the Pythagorean identity converts cos y into an expression purely in x.',
+                id: 'Seluruh tujuan menurunkan y = arcsin x adalah rumus untuk dy/dx dalam bentuk x. Karena sin y = x menurut definisi, identitas Pythagoras mengubah cos y menjadi ekspresi murni dalam x.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: {
+                en: 'Reading the graph above of y = arcsin x with its tangent at x = 0, what is d/dx(arcsin x) at x = 0?',
+                id: 'Dengan membaca grafik y = arcsin x di atas beserta garis singgungnya di x = 0, berapakah d/dx(arcsin x) di x = 0?',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-1.5, 1.5],
+                ySpan: [-2, 2],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'asin(x)', from: -1, to: 1, color: 'a' },
+                  { t: 'seg', from: [-1, -1], to: [1, 1], color: 'b' },
+                ],
+              },
+              options: [
+                { en: '1', id: '1' },
+                { en: '0', id: '0' },
+                { en: '\\pi/2', id: '\\pi/2' },
+                { en: 'Undefined', id: 'Tak terdefinisi' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The tangent runs from (-1, -1) to (1, 1): slope 1, matching 1/sqrt(1-0^2) = 1.',
+                id: 'Garis singgungnya berjalan dari (-1, -1) ke (1, 1): kemiringan 1, cocok dengan 1/sqrt(1-0^2) = 1.',
+              },
+            },
+            {
+              kind: 'math',
+              id: 'm1',
+              prompt: {
+                en: 'Evaluate both derivatives at x = 0.5.',
+                id: 'Hitung kedua turunan di x = 0.5.',
+              },
+              blanks: [
+                { label: '\\tfrac{d}{dx}(\\arcsin x)\\Big|_{x=0.5} =', answer: 1 / Math.sqrt(0.75) },
+                { label: '\\tfrac{d}{dx}(\\arccos x)\\Big|_{x=0.5} =', answer: -1 / Math.sqrt(0.75) },
+              ],
+              hints: [
+                { en: '1 - 0.5^2 = 0.75.', id: '1 - 0.5^2 = 0.75.' },
+              ],
+              explain: {
+                en: '1/sqrt(0.75) ≈ 1.1547, and the arccos derivative is exactly its negative.',
+                id: '1/sqrt(0.75) ≈ 1.1547, dan turunan arccos adalah negatifnya persis.',
+              },
+            },
+          ],
+        },
+        {
+          id: 'tur-m4-s3-l2',
+          title: { en: 'Derivatives of arctan x and arcsec x', id: 'Turunan arctan x dan arcsec x' },
+          goal: {
+            en: 'Derive the derivative of arctan x the same way, and compose inverse trig derivatives with the chain rule.',
+            id: 'Menurunkan turunan arctan x dengan cara yang sama, dan menggabungkan turunan trigonometri invers dengan aturan rantai.',
+          },
+          xp: 20,
+          steps: [
+            {
+              kind: 'concept',
+              id: 'c1',
+              title: { en: 'The same three steps, on a different identity', id: 'Tiga langkah yang sama, pada identitas yang berbeda' },
+              body: {
+                en: 'Let $y=\\arctan x$, so $\\tan y = x$ with $y\\in(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2})$. Differentiate implicitly:\n$$\\sec^2 y \\cdot \\frac{dy}{dx} = 1 \\ \\Rightarrow \\ \\frac{dy}{dx} = \\frac{1}{\\sec^2 y}$$\nRewrite in terms of $x$ using $\\sec^2 y = 1+\\tan^2 y = 1+x^2$ (no domain restriction needed this time, since $\\sec^2 y$ is always positive):\n$$\\frac{d}{dx}(\\arctan x) = \\frac{1}{1+x^2}$$\nUnlike $\\arcsin x$, this derivative is defined for **every** real $x$ — matching the fact that $\\arctan x$ itself is defined on all of $\\mathbb{R}$, not just $[-1,1]$.',
+                id: 'Misalkan $y=\\arctan x$, sehingga $\\tan y = x$ dengan $y\\in(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2})$. Turunkan secara implisit:\n$$\\sec^2 y \\cdot \\frac{dy}{dx} = 1 \\ \\Rightarrow \\ \\frac{dy}{dx} = \\frac{1}{\\sec^2 y}$$\nTulis ulang dalam bentuk $x$ memakai $\\sec^2 y = 1+\\tan^2 y = 1+x^2$ (tak perlu batasan domain kali ini, sebab $\\sec^2 y$ selalu positif):\n$$\\frac{d}{dx}(\\arctan x) = \\frac{1}{1+x^2}$$\nBerbeda dari $\\arcsin x$, turunan ini terdefinisi untuk **setiap** $x$ real — cocok dengan fakta bahwa $\\arctan x$ sendiri terdefinisi di seluruh $\\mathbb{R}$, bukan hanya $[-1,1]$.',
+              },
+            },
+            {
+              kind: 'concept',
+              id: 'c2',
+              title: { en: 'Chaining an inverse trig derivative onto an inner function', id: 'Merangkaikan turunan trigonometri invers ke fungsi dalam' },
+              body: {
+                en: 'Composed with another function, the chain rule attaches exactly as it always has: $\\frac{d}{dx}\\big[\\arctan(g(x))\\big] = \\dfrac{g\'(x)}{1+g(x)^2}$, and $\\frac{d}{dx}\\big[\\arcsin(g(x))\\big] = \\dfrac{g\'(x)}{\\sqrt{1-g(x)^2}}$.\n\nFor $y=\\arctan(x^2)$: $g(x)=x^2$, $g\'(x)=2x$, so $y\' = \\dfrac{2x}{1+x^4}$. The remaining common inverse function, $\\text{arcsec}\\,x$ (defined for $|x|\\geq 1$), differentiates by the identical implicit method to\n$$\\frac{d}{dx}(\\operatorname{arcsec} x) = \\frac{1}{|x|\\sqrt{x^2-1}}$$\nThe $|x|$ is needed because $x=\\sec y$ can be negative while the square root itself must stay non-negative — one more place where the domain restriction on the inverse function\'s range has to be tracked carefully, exactly as it was for $\\arcsin$.',
+                id: 'Dikomposisikan dengan fungsi lain, aturan rantai terpasang persis seperti biasanya: $\\frac{d}{dx}\\big[\\arctan(g(x))\\big] = \\dfrac{g\'(x)}{1+g(x)^2}$, dan $\\frac{d}{dx}\\big[\\arcsin(g(x))\\big] = \\dfrac{g\'(x)}{\\sqrt{1-g(x)^2}}$.\n\nUntuk $y=\\arctan(x^2)$: $g(x)=x^2$, $g\'(x)=2x$, sehingga $y\' = \\dfrac{2x}{1+x^4}$. Fungsi invers umum yang tersisa, $\\operatorname{arcsec}\\,x$ (terdefinisi untuk $|x|\\geq 1$), diturunkan dengan metode implisit yang identik menjadi\n$$\\frac{d}{dx}(\\operatorname{arcsec} x) = \\frac{1}{|x|\\sqrt{x^2-1}}$$\n$|x|$ diperlukan sebab $x=\\sec y$ bisa negatif sementara akar kuadratnya sendiri harus tetap tak negatif — satu tempat lagi di mana batasan domain pada jangkauan fungsi inversnya harus dilacak dengan hati-hati, persis seperti pada $\\arcsin$.',
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'q1',
+              prompt: {
+                en: 'Why is the derivative of arctan x defined for every real x, unlike the derivative of arcsin x?',
+                id: 'Mengapa turunan arctan x terdefinisi untuk setiap x real, tak seperti turunan arcsin x?',
+              },
+              options: [
+                { en: '1 + x^2 is never zero or negative for any real x, while 1 - x^2 under a square root fails outside [-1, 1]', id: '1 + x^2 tak pernah nol atau negatif untuk x real mana pun, sedangkan 1 - x^2 di bawah akar kuadrat gagal di luar [-1, 1]' },
+                { en: 'arctan x is not actually differentiable anywhere', id: 'arctan x sebenarnya tak terdiferensialkan di mana pun' },
+                { en: 'The two derivatives are actually identical', id: 'Kedua turunannya sebenarnya identik' },
+                { en: 'It is an arbitrary difference with no underlying reason', id: 'Ini perbedaan sebarang tanpa alasan yang mendasarinya' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'The domain of a derivative is limited by where its formula makes sense. 1 + x^2 is always positive, so 1/(1+x^2) is defined everywhere, while sqrt(1-x^2) requires -1 <= x <= 1.',
+                id: 'Domain sebuah turunan dibatasi oleh tempat rumusnya masuk akal. 1 + x^2 selalu positif, sehingga 1/(1+x^2) terdefinisi di mana-mana, sedangkan sqrt(1-x^2) memerlukan -1 <= x <= 1.',
+              },
+            },
+            {
+              kind: 'fill',
+              id: 'f1',
+              math: true,
+              prompt: {
+                en: 'Complete the chain-rule derivative of y = arcsin(3x).',
+                id: 'Lengkapi turunan aturan rantai dari y = arcsin(3x).',
+              },
+              template: 'y\' = \\dfrac{___}{\\sqrt{1-(3x)^2}} = \\dfrac{3}{\\sqrt{1-9x^2}}',
+              blanks: ['3'],
+              explain: {
+                en: 'g(x) = 3x has derivative 3, which sits on top exactly as the chain rule requires.',
+                id: 'g(x) = 3x punya turunan 3, yang duduk di atas persis seperti yang disyaratkan aturan rantai.',
+              },
+            },
+            {
+              kind: 'math',
+              id: 'm1',
+              prompt: {
+                en: 'Differentiate y = arctan(x^2), then evaluate y prime at x = 1.',
+                id: 'Turunkan y = arctan(x^2), lalu hitung y aksen di x = 1.',
+              },
+              blanks: [{ label: "y'(1) =", answer: 1 }],
+              hints: [
+                { en: "y' = 2x/(1+x^4).", id: "y' = 2x/(1+x^4)." },
+              ],
+              explain: {
+                en: "y'(1) = 2(1)/(1+1) = 2/2 = 1.",
+                id: "y'(1) = 2(1)/(1+1) = 2/2 = 1.",
+              },
+            },
+          ],
+        },
+      ],
+      project: {
+        id: 'tur-m4-s3-p',
+        runtime: 'math',
+        title: { en: 'Inverse Trig Derivatives', id: 'Turunan Trigonometri Invers' },
+        brief: {
+          en: 'An arcsin evaluation, an arctan evaluation, and one chain-rule composition.',
+          id: 'Satu evaluasi arcsin, satu evaluasi arctan, dan satu komposisi aturan rantai.',
+        },
+        requirements: [
+          { en: 'Differentiate first, using the correct inverse trig rule, then substitute the given value.', id: 'Turunkan lebih dahulu, pakai aturan trigonometri invers yang tepat, baru substitusikan nilai yang diberikan.' },
+          { en: 'A composed inverse trig function needs the chain rule\'s extra factor on top.', id: 'Fungsi trigonometri invers yang dikomposisikan memerlukan faktor tambahan aturan rantai di atas.' },
+        ],
+        tasks: [
+          {
+            prompt: { en: 'Evaluate d/dx(arcsin x) at x = 0.', id: 'Hitung d/dx(arcsin x) di x = 0.' },
+            blanks: [{ answer: 1 }],
+            solution: ['\\tfrac{1}{\\sqrt{1-0^2}} = 1'],
+          },
+          {
+            prompt: { en: 'Evaluate d/dx(arctan x) at x = 2.', id: 'Hitung d/dx(arctan x) di x = 2.' },
+            blanks: [{ answer: 0.2 }],
+            solution: ['\\tfrac{1}{1+2^2} = \\tfrac15 = 0{,}2'],
+          },
+          {
+            prompt: { en: 'Differentiate y = arctan(2x), then evaluate y prime at x = 0.5.', id: 'Turunkan y = arctan(2x), lalu hitung y aksen di x = 0.5.' },
+            blanks: [{ answer: 1 }],
+            solution: ["y' = \\dfrac{2}{1+(2x)^2}, \\quad y'(0{,}5) = \\dfrac{2}{1+1} = 1"],
+          },
+        ],
+        hints: [
+          { en: 'Part 3 needs the chain rule\'s extra factor of 2 on top, from differentiating 2x.', id: 'Butir 3 memerlukan faktor tambahan aturan rantai berupa 2 di atas, dari menurunkan 2x.' },
+        ],
+        xp: 50,
+      },
+    },
   ],
 }
