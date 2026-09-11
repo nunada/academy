@@ -305,10 +305,10 @@ export const module2: Module = {
                 id: 'Apa domain dari $\\dfrac{x}{x^2 - 5x + 6}$?',
               },
               options: [
-                { en: '$\\{x \\mid x \\neq 2 \\text{ and } x \\neq 3\\}$', id: '$\\{x \\mid x \\neq 2 \\text{ dan } x \\neq 3\\}$' },
+                { en: '$\\{x \\vert x \\neq 2 \\text{ and } x \\neq 3\\}$', id: '$\\{x \\vert x \\neq 2 \\text{ dan } x \\neq 3\\}$' },
                 { en: 'All real numbers', id: 'Semua bilangan real' },
-                { en: '$\\{x \\mid x \\neq -2 \\text{ and } x \\neq -3\\}$', id: '$\\{x \\mid x \\neq -2 \\text{ dan } x \\neq -3\\}$' },
-                { en: '$\\{x \\mid x \\neq 0\\}$', id: '$\\{x \\mid x \\neq 0\\}$' },
+                { en: '$\\{x \\vert x \\neq -2 \\text{ and } x \\neq -3\\}$', id: '$\\{x \\vert x \\neq -2 \\text{ dan } x \\neq -3\\}$' },
+                { en: '$\\{x \\vert x \\neq 0\\}$', id: '$\\{x \\vert x \\neq 0\\}$' },
               ],
               answer: 0,
               explain: {

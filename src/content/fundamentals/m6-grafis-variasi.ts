@@ -34,8 +34,8 @@ export const module6: Module = {
               id: 'c1',
               title: { en: 'A solution is an x-intercept', id: 'Solusi adalah perpotongan-x' },
               body: {
-                en: 'To solve $3x-5=0$ graphically, graph $y=3x-5$ — every solution of the original equation is exactly an **$x$-intercept** of this graph, since that is precisely where $y=0$. The algebraic method gives an exact answer, $x=\\frac{5}{3}$; the graphical method gives a numerical read-off, useful whenever the algebra is hard or impossible.\n\nThe same idea handles inequalities: to solve $3x-5>0$, find where the graph of $y=3x-5$ sits **above** the $x$-axis.',
-                id: 'Untuk menyelesaikan $3x-5=0$ secara grafis, gambar $y=3x-5$ — setiap solusi persamaan aslinya persis **perpotongan-$x$** grafik ini, sebab itulah tempat $y=0$ persisnya. Metode aljabar memberi jawaban eksak, $x=\\frac{5}{3}$; metode grafis memberi pembacaan numerik, berguna kapan pun aljabarnya sulit atau mustahil.\n\nGagasan yang sama menangani pertidaksamaan: untuk menyelesaikan $3x-5>0$, cari tempat grafik $y=3x-5$ berada **di atas** sumbu-$x$.',
+                en: 'To solve $3x-5=0$ graphically, graph $y=3x-5$ — every solution of the original equation is exactly an $x$-**intercept** of this graph, since that is precisely where $y=0$. The algebraic method gives an exact answer, $x=\\frac{5}{3}$; the graphical method gives a numerical read-off, useful whenever the algebra is hard or impossible.\n\nThe same idea handles inequalities: to solve $3x-5>0$, find where the graph of $y=3x-5$ sits **above** the $x$-axis.',
+                id: 'Untuk menyelesaikan $3x-5=0$ secara grafis, gambar $y=3x-5$ — setiap solusi persamaan aslinya persis perpotongan-$x$ grafik ini, sebab itulah tempat $y=0$ persisnya. Metode aljabar memberi jawaban eksak, $x=\\frac{5}{3}$; metode grafis memberi pembacaan numerik, berguna kapan pun aljabarnya sulit atau mustahil.\n\nGagasan yang sama menangani pertidaksamaan: untuk menyelesaikan $3x-5>0$, cari tempat grafik $y=3x-5$ berada **di atas** sumbu-$x$.',
               },
             },
             {

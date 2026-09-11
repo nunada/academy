@@ -204,8 +204,8 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Union and intersection', id: 'Gabungan dan irisan' },
               body: {
-                en: 'A **set** is a collection of objects, its **elements**. Set-builder notation $\\{x \\mid \\text{condition on } x\\}$ names a set by the rule its elements satisfy, e.g. $\\{x \\mid x \\text{ is an integer and } 0 < x < 7\\} = \\{1,2,3,4,5,6\\}$.\n\nFor sets $S$ and $T$: the **union** $S \\cup T$ has everything in $S$ **or** $T$ (or both); the **intersection** $S \\cap T$ has only what is in **both**. If $S = \\{1,2,3,4,5\\}$ and $T = \\{4,5,6,7\\}$, then $S \\cup T = \\{1,2,3,4,5,6,7\\}$ and $S \\cap T = \\{4,5\\}$.',
-                id: '**Himpunan** adalah kumpulan objek, **anggota**-anggotanya. Notasi pembentuk himpunan $\\{x \\mid \\text{syarat pada } x\\}$ menamai himpunan lewat aturan yang dipenuhi anggotanya, mis. $\\{x \\mid x \\text{ bilangan bulat dan } 0 < x < 7\\} = \\{1,2,3,4,5,6\\}$.\n\nUntuk himpunan $S$ dan $T$: **gabungan** $S \\cup T$ berisi segala sesuatu di $S$ **atau** $T$ (atau keduanya); **irisan** $S \\cap T$ hanya berisi yang ada di **keduanya**. Jika $S = \\{1,2,3,4,5\\}$ dan $T = \\{4,5,6,7\\}$, maka $S \\cup T = \\{1,2,3,4,5,6,7\\}$ dan $S \\cap T = \\{4,5\\}$.',
+                en: 'A **set** is a collection of objects, its **elements**. Set-builder notation $\\{x \\vert \\text{condition on } x\\}$ names a set by the rule its elements satisfy, e.g. $\\{x \\vert x \\text{ is an integer and } 0 < x < 7\\} = \\{1,2,3,4,5,6\\}$.\n\nFor sets $S$ and $T$: the **union** $S \\cup T$ has everything in $S$ **or** $T$ (or both); the **intersection** $S \\cap T$ has only what is in **both**. If $S = \\{1,2,3,4,5\\}$ and $T = \\{4,5,6,7\\}$, then $S \\cup T = \\{1,2,3,4,5,6,7\\}$ and $S \\cap T = \\{4,5\\}$.',
+                id: '**Himpunan** adalah kumpulan objek, **anggota**-anggotanya. Notasi pembentuk himpunan $\\{x \\vert \\text{syarat pada } x\\}$ menamai himpunan lewat aturan yang dipenuhi anggotanya, mis. $\\{x \\vert x \\text{ bilangan bulat dan } 0 < x < 7\\} = \\{1,2,3,4,5,6\\}$.\n\nUntuk himpunan $S$ dan $T$: **gabungan** $S \\cup T$ berisi segala sesuatu di $S$ **atau** $T$ (atau keduanya); **irisan** $S \\cap T$ hanya berisi yang ada di **keduanya**. Jika $S = \\{1,2,3,4,5\\}$ dan $T = \\{4,5,6,7\\}$, maka $S \\cup T = \\{1,2,3,4,5,6,7\\}$ dan $S \\cap T = \\{4,5\\}$.',
               },
             },
             {
@@ -213,8 +213,8 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Intervals: two notations for the same set', id: 'Interval: dua notasi untuk himpunan yang sama' },
               body: {
-                en: 'An interval is a segment of the real line. Parentheses exclude an endpoint, brackets include it:\n$$(a,b) = \\{x \\mid a < x < b\\}, \\qquad [a,b] = \\{x \\mid a \\leq x \\leq b\\}$$\n$$[a,b) = \\{x \\mid a \\leq x < b\\}, \\qquad (a,\\infty) = \\{x \\mid a < x\\}$$\n$\\infty$ is not a number — $(a,\\infty)$ just says the interval has no right endpoint. To intersect or unite two intervals, sketch both on the real line and read off where they overlap or combine: $(-1,3) \\cap [2,7] = [2,3)$, while $(-1,3) \\cup [2,7] = (-1,7]$.',
-                id: 'Interval adalah segmen garis bilangan. Tanda kurung mengecualikan titik ujung, tanda siku menyertakannya:\n$$(a,b) = \\{x \\mid a < x < b\\}, \\qquad [a,b] = \\{x \\mid a \\leq x \\leq b\\}$$\n$$[a,b) = \\{x \\mid a \\leq x < b\\}, \\qquad (a,\\infty) = \\{x \\mid a < x\\}$$\n$\\infty$ bukan bilangan — $(a,\\infty)$ hanya menyatakan interval itu tak punya titik ujung kanan. Untuk mengirisi atau menggabungkan dua interval, sketsakan keduanya pada garis bilangan dan baca di mana keduanya tumpang tindih atau tergabung: $(-1,3) \\cap [2,7] = [2,3)$, sedangkan $(-1,3) \\cup [2,7] = (-1,7]$.',
+                en: 'An interval is a segment of the real line. Parentheses exclude an endpoint, brackets include it:\n$$(a,b) = \\{x \\vert a < x < b\\}, \\qquad [a,b] = \\{x \\vert a \\leq x \\leq b\\}$$\n$$[a,b) = \\{x \\vert a \\leq x < b\\}, \\qquad (a,\\infty) = \\{x \\vert a < x\\}$$\n$\\infty$ is not a number — $(a,\\infty)$ just says the interval has no right endpoint. To intersect or unite two intervals, sketch both on the real line and read off where they overlap or combine: $(-1,3) \\cap [2,7] = [2,3)$, while $(-1,3) \\cup [2,7] = (-1,7]$.',
+                id: 'Interval adalah segmen garis bilangan. Tanda kurung mengecualikan titik ujung, tanda siku menyertakannya:\n$$(a,b) = \\{x \\vert a < x < b\\}, \\qquad [a,b] = \\{x \\vert a \\leq x \\leq b\\}$$\n$$[a,b) = \\{x \\vert a \\leq x < b\\}, \\qquad (a,\\infty) = \\{x \\vert a < x\\}$$\n$\\infty$ bukan bilangan — $(a,\\infty)$ hanya menyatakan interval itu tak punya titik ujung kanan. Untuk mengirisi atau menggabungkan dua interval, sketsakan keduanya pada garis bilangan dan baca di mana keduanya tumpang tindih atau tergabung: $(-1,3) \\cap [2,7] = [2,3)$, sedangkan $(-1,3) \\cup [2,7] = (-1,7]$.',
               },
             },
             {
@@ -237,7 +237,7 @@ export const module1: Module = {
                 { en: '$[2, 3)$', id: '$[2, 3)$' },
                 { en: '$(-1, 7]$', id: '$(-1, 7]$' },
                 { en: '$(2, 3]$', id: '$(2, 3]$' },
-                { en: '$\\varnothing$', id: '$\\varnothing$' },
+                { en: '$\\emptyset$', id: '$\\emptyset$' },
               ],
               answer: 0,
               explain: {
@@ -546,8 +546,8 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'nth roots, and simplifying them', id: 'Akar ke-n, dan menyederhanakannya' },
               body: {
-                en: 'The **principal $n$th root** $\\sqrt[n]{a}$ is the number $b$ with $b^n = a$ (and $b \\geq 0$ when $n$ is even, since an even power is never negative). Roots combine like this:\n$$\\sqrt[n]{ab} = \\sqrt[n]{a}\\sqrt[n]{b}, \\qquad \\sqrt[n]{a^n} = a \\ \\text{(n odd)}, \\qquad \\sqrt[n]{a^n} = |a| \\ \\text{(n even)}$$\nTo simplify $\\sqrt{32}$, pull out the largest perfect square factor: $\\sqrt{32} = \\sqrt{16 \\cdot 2} = \\sqrt{16}\\sqrt{2} = 4\\sqrt{2}$. Like radicals combine the way like terms do: $2\\sqrt{3} + 5\\sqrt{3} = 7\\sqrt{3}$.',
-                id: '**Akar ke-$n$ utama** $\\sqrt[n]{a}$ adalah bilangan $b$ dengan $b^n = a$ (dan $b \\geq 0$ ketika $n$ genap, sebab pangkat genap tak pernah negatif). Akar-akar bergabung seperti ini:\n$$\\sqrt[n]{ab} = \\sqrt[n]{a}\\sqrt[n]{b}, \\qquad \\sqrt[n]{a^n} = a \\ \\text{(n ganjil)}, \\qquad \\sqrt[n]{a^n} = |a| \\ \\text{(n genap)}$$\nUntuk menyederhanakan $\\sqrt{32}$, keluarkan faktor kuadrat sempurna terbesar: $\\sqrt{32} = \\sqrt{16 \\cdot 2} = \\sqrt{16}\\sqrt{2} = 4\\sqrt{2}$. Akar sejenis bergabung seperti suku sejenis: $2\\sqrt{3} + 5\\sqrt{3} = 7\\sqrt{3}$.',
+                en: 'The **principal** $n$th root, $\\sqrt[n]{a}$, is the number $b$ with $b^n = a$ (and $b \\geq 0$ when $n$ is even, since an even power is never negative). Roots combine like this:\n$$\\sqrt[n]{ab} = \\sqrt[n]{a}\\sqrt[n]{b}, \\qquad \\sqrt[n]{a^n} = a \\ \\text{(n odd)}, \\qquad \\sqrt[n]{a^n} = |a| \\ \\text{(n even)}$$\nTo simplify $\\sqrt{32}$, pull out the largest perfect square factor: $\\sqrt{32} = \\sqrt{16 \\cdot 2} = \\sqrt{16}\\sqrt{2} = 4\\sqrt{2}$. Like radicals combine the way like terms do: $2\\sqrt{3} + 5\\sqrt{3} = 7\\sqrt{3}$.',
+                id: '**Utama** — akar ke-$n$, $\\sqrt[n]{a}$, adalah bilangan $b$ dengan $b^n = a$ (dan $b \\geq 0$ ketika $n$ genap, sebab pangkat genap tak pernah negatif). Akar-akar bergabung seperti ini:\n$$\\sqrt[n]{ab} = \\sqrt[n]{a}\\sqrt[n]{b}, \\qquad \\sqrt[n]{a^n} = a \\ \\text{(n ganjil)}, \\qquad \\sqrt[n]{a^n} = |a| \\ \\text{(n genap)}$$\nUntuk menyederhanakan $\\sqrt{32}$, keluarkan faktor kuadrat sempurna terbesar: $\\sqrt{32} = \\sqrt{16 \\cdot 2} = \\sqrt{16}\\sqrt{2} = 4\\sqrt{2}$. Akar sejenis bergabung seperti suku sejenis: $2\\sqrt{3} + 5\\sqrt{3} = 7\\sqrt{3}$.',
               },
             },
             {

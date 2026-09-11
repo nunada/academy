@@ -34,8 +34,8 @@ export const module4: Module = {
               id: 'c1',
               title: { en: 'The one rule that differs from equations', id: 'Satu aturan yang berbeda dari persamaan' },
               body: {
-                en: 'Every rule for equations carries over to inequalities — **except** one. Adding or subtracting the same quantity from both sides preserves the inequality, and so does multiplying by a **positive** quantity. But multiplying (or dividing) by a **negative** quantity **reverses** the direction:\n$$3 < 5 \\ \\xrightarrow{\\times(-2)} \\ -6 > -10$$\nFor $3x < 9x+4$: subtract $9x$ to get $-6x<4$, then divide by $-6$ — and flip the inequality — to get $x > -\\frac{2}{3}$.',
-                id: 'Setiap aturan untuk persamaan berlanjut ke pertidaksamaan — **kecuali** satu. Menambah atau mengurangi kuantitas yang sama pada kedua ruas mempertahankan pertidaksamaannya, begitu pula mengalikan dengan kuantitas **positif**. Tetapi mengalikan (atau membagi) dengan kuantitas **negatif** **membalik** arahnya:\n$$3 < 5 \\ \\xrightarrow{\\times(-2)} \\ -6 > -10$$\nUntuk $3x < 9x+4$: kurangi $9x$ untuk mendapat $-6x<4$, lalu bagi dengan $-6$ — dan balik pertidaksamaannya — untuk mendapat $x > -\\frac{2}{3}$.',
+                en: 'Every rule for equations carries over to inequalities — **except** one. Adding or subtracting the same quantity from both sides preserves the inequality, and so does multiplying by a **positive** quantity. But multiplying (or dividing) by a **negative** quantity **reverses** the direction: multiplying $3 < 5$ by $-2$ gives $-6 > -10$, not $-6 < -10$.\n\nFor $3x < 9x+4$: subtract $9x$ to get $-6x<4$, then divide by $-6$ — and flip the inequality — to get $x > -\\frac{2}{3}$.',
+                id: 'Setiap aturan untuk persamaan berlanjut ke pertidaksamaan — **kecuali** satu. Menambah atau mengurangi kuantitas yang sama pada kedua ruas mempertahankan pertidaksamaannya, begitu pula mengalikan dengan kuantitas **positif**. Tetapi mengalikan (atau membagi) dengan kuantitas **negatif** **membalik** arahnya: mengalikan $3 < 5$ dengan $-2$ memberi $-6 > -10$, bukan $-6 < -10$.\n\nUntuk $3x < 9x+4$: kurangi $9x$ untuk mendapat $-6x<4$, lalu bagi dengan $-6$ — dan balik pertidaksamaannya — untuk mendapat $x > -\\frac{2}{3}$.',
               },
             },
             {
@@ -43,8 +43,8 @@ export const module4: Module = {
               id: 'c2',
               title: { en: 'Compound inequalities', id: 'Pertidaksamaan gabungan' },
               body: {
-                en: 'A compound inequality like $4 \\leq 3x-2 < 13$ says both $4 \\leq 3x-2$ and $3x-2<13$ at once — solve it by doing the same operation to **all three** parts simultaneously:\n$$4 \\leq 3x-2 < 13 \\ \\xrightarrow{+2} \\ 6 \\leq 3x < 15 \\ \\xrightarrow{\\div3} \\ 2 \\leq x < 5$$\nThe solution is the interval $[2,5)$.',
-                id: 'Pertidaksamaan gabungan seperti $4 \\leq 3x-2 < 13$ menyatakan $4 \\leq 3x-2$ dan $3x-2<13$ sekaligus — selesaikan dengan melakukan operasi yang sama pada **ketiga** bagian secara bersamaan:\n$$4 \\leq 3x-2 < 13 \\ \\xrightarrow{+2} \\ 6 \\leq 3x < 15 \\ \\xrightarrow{\\div3} \\ 2 \\leq x < 5$$\nSolusinya adalah interval $[2,5)$.',
+                en: 'A compound inequality like $4 \\leq 3x-2 < 13$ says both $4 \\leq 3x-2$ and $3x-2<13$ at once — solve it by doing the same operation to **all three** parts simultaneously:\n$$4 \\leq 3x-2 < 13$$\nAdd $2$ to every part:\n$$6 \\leq 3x < 15$$\nDivide every part by $3$:\n$$2 \\leq x < 5$$\nThe solution is the interval $[2,5)$.',
+                id: 'Pertidaksamaan gabungan seperti $4 \\leq 3x-2 < 13$ menyatakan $4 \\leq 3x-2$ dan $3x-2<13$ sekaligus — selesaikan dengan melakukan operasi yang sama pada **ketiga** bagian secara bersamaan:\n$$4 \\leq 3x-2 < 13$$\nTambahkan $2$ ke setiap bagian:\n$$6 \\leq 3x < 15$$\nBagi setiap bagian dengan $3$:\n$$2 \\leq x < 5$$\nSolusinya adalah interval $[2,5)$.',
               },
             },
             {
