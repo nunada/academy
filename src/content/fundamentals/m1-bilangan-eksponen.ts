@@ -83,6 +83,10 @@ export const module1: Module = {
                 en: '$\\sqrt{16} = 4$ and $\\frac{22}{7}$ and $0.25$ are all ratios of integers (or terminating decimals, which are the same thing) — genuinely rational. $\\pi$ has a decimal expansion that never repeats, so it cannot be written as $\\frac{m}{n}$.',
                 id: '$\\sqrt{16} = 4$ dan $\\frac{22}{7}$ serta $0.25$ semuanya rasio bilangan bulat (atau desimal berhenti, yang sama saja) — sungguh rasional. $\\pi$ punya ekspansi desimal yang tak pernah berulang, sehingga tak bisa ditulis sebagai $\\frac{m}{n}$.',
               },
+              hint: {
+                en: 'Three of these four simplify to, or already are, a ratio of two integers. Which one has no such form, no matter how you search for it?',
+                id: 'Tiga dari empat pilihan ini bisa disederhanakan menjadi, atau memang sudah, rasio dua bilangan bulat. Yang mana yang tak punya bentuk itu, sekeras apa pun kamu mencarinya?',
+              },
             },
             {
               kind: 'quiz',
@@ -102,6 +106,10 @@ export const module1: Module = {
                 en: '$-4.9 - (-5) = 0.1$, a positive number, so $-5 < -4.9$ — on the real line, $-5$ sits to the left of $-4.9$ because it is **more** negative, even though $5 > 4.9$ as plain magnitudes.',
                 id: '$-4.9 - (-5) = 0.1$, bilangan positif, sehingga $-5 < -4.9$ — pada garis bilangan, $-5$ duduk di kiri $-4.9$ karena ia **lebih** negatif, meskipun $5 > 4.9$ sebagai besaran biasa.',
               },
+              hint: {
+                en: 'Don\'t compare the plain sizes of the numbers — plot each pair on the real line and see which one actually sits to the left.',
+                id: 'Jangan bandingkan besaran biasa bilangannya — plot tiap pasangan pada garis bilangan dan lihat mana yang sungguh duduk di kiri.',
+              },
             },
             {
               kind: 'fill',
@@ -116,6 +124,10 @@ export const module1: Module = {
               explain: {
                 en: '$0.375 = \\frac{375}{1000}$, and dividing top and bottom by $125$ gives $\\frac{3}{8}$ — a terminating decimal is always rational for exactly this reason.',
                 id: '$0.375 = \\frac{375}{1000}$, dan membagi pembilang serta penyebut dengan $125$ memberi $\\frac{3}{8}$ — desimal berhenti selalu rasional persis karena alasan ini.',
+              },
+              hint: {
+                en: 'A decimal with three places is that many thousandths. Write it that way first, then look for a common factor to cancel.',
+                id: 'Desimal dengan tiga tempat adalah perseribu sebanyak itu. Tulis begitu dulu, lalu cari faktor sekutu untuk dicoret.',
               },
             },
           ],
@@ -186,6 +198,10 @@ export const module1: Module = {
                 en: 'Multiplying a number by a sum and distributing that multiplication over each term is exactly the Distributive Property, $a(b+c)=ab+ac$. The other three are Commutative and Associative Properties, which rearrange or regroup rather than distribute.',
                 id: 'Mengalikan bilangan dengan sebuah jumlah dan menyebarkan perkaliannya ke tiap suku persis Sifat Distributif, $a(b+c)=ab+ac$. Tiga lainnya adalah Sifat Komutatif dan Asosiatif, yang menata ulang atau mengelompokkan ulang, bukan menyebarkan.',
               },
+              hint: {
+                en: 'Three of these just reorder or regroup the same terms. Only one actually multiplies a sum by something and spreads that multiplication across it.',
+                id: 'Tiga di antaranya cuma menata ulang atau mengelompokkan ulang suku yang sama. Hanya satu yang benar-benar mengalikan sebuah jumlah dengan sesuatu dan menyebarkan perkaliannya.',
+              },
             },
             {
               kind: 'fill',
@@ -200,6 +216,10 @@ export const module1: Module = {
               explain: {
                 en: 'The LCD of $36$ and $120$ is $360$; rewriting gives $\\frac{50}{360}+\\frac{21}{360}=\\frac{71}{360}$, exactly as worked out above.',
                 id: 'KPK dari $36$ dan $120$ adalah $360$; menulis ulang memberi $\\frac{50}{360}+\\frac{21}{360}=\\frac{71}{360}$, persis seperti yang dikerjakan di atas.',
+              },
+              hint: {
+                en: 'This is the exact pair of denominators worked out in the concept above — factor both into primes and find the LCD the same way.',
+                id: 'Ini persis pasangan penyebut yang dikerjakan pada konsep di atas — faktorkan keduanya menjadi bilangan prima dan cari KPK-nya dengan cara yang sama.',
               },
             },
             {
@@ -312,6 +332,10 @@ export const module1: Module = {
                 en: 'The overlap of $-1 < x < 3$ and $2 \\leq x \\leq 7$ is $2 \\leq x < 3$ — the lower bound $2$ is included (it comes from the closed interval), the upper bound $3$ is excluded (it comes from the open one), giving $[2,3)$.',
                 id: 'Tumpang tindih dari $-1 < x < 3$ dan $2 \\leq x \\leq 7$ adalah $2 \\leq x < 3$ — batas bawah $2$ disertakan (berasal dari interval tertutup), batas atas $3$ dikecualikan (berasal dari interval terbuka), memberi $[2,3)$.',
               },
+              hint: {
+                en: 'Sketch both intervals on the same real line, one above the other. The intersection is only where both are shaded — and check each endpoint separately for whether it\'s included.',
+                id: 'Sketsakan kedua interval pada garis bilangan yang sama, satu di atas yang lain. Irisannya hanya di tempat keduanya terarsir — dan periksa tiap titik ujung terpisah, apakah ia disertakan atau tidak.',
+              },
             },
             {
               kind: 'quiz',
@@ -331,6 +355,10 @@ export const module1: Module = {
                 en: 'Since $\\pi \\approx 3.14 > 3$, the quantity $3 - \\pi$ is negative, so $|3-\\pi| = -(3-\\pi) = \\pi - 3$ by the definition of absolute value.',
                 id: 'Karena $\\pi \\approx 3.14 > 3$, kuantitas $3 - \\pi$ negatif, sehingga $|3-\\pi| = -(3-\\pi) = \\pi - 3$ menurut definisi nilai mutlak.',
               },
+              hint: {
+                en: 'First decide whether $3 - \\pi$ is positive or negative — that tells you whether $|3-\\pi|$ equals $3-\\pi$ itself or its negation.',
+                id: 'Tentukan dulu apakah $3 - \\pi$ positif atau negatif — itu menentukan apakah $|3-\\pi|$ sama dengan $3-\\pi$ itu sendiri atau negasinya.',
+              },
             },
             {
               kind: 'fill',
@@ -345,6 +373,10 @@ export const module1: Module = {
               explain: {
                 en: '$|10-(-8)| = |18| = 18$.',
                 id: '$|10-(-8)| = |18| = 18$.',
+              },
+              hint: {
+                en: 'The template already gives you the subtraction to do — subtracting a negative flips a sign. Simplify inside the absolute value first.',
+                id: 'Templatenya sudah memberi pengurangan yang harus dilakukan — mengurangi bilangan negatif membalik tanda. Sederhanakan dulu di dalam nilai mutlaknya.',
               },
             },
             {
@@ -468,6 +500,10 @@ export const module1: Module = {
                 en: 'By Law 4, $(3x)^3 = 3^3 x^3 = 27x^3$ — every factor inside the parentheses, including the $3$, gets raised to the power.',
                 id: 'Menurut Hukum 4, $(3x)^3 = 3^3 x^3 = 27x^3$ — setiap faktor di dalam tanda kurung, termasuk $3$-nya, dipangkatkan.',
               },
+              hint: {
+                en: 'Law 4 says $(ab)^n = a^n b^n$ — the exponent applies to the $3$ just as much as to the $x$. Don\'t leave the $3$ unpowered.',
+                id: 'Hukum 4 menyatakan $(ab)^n = a^n b^n$ — eksponennya berlaku untuk $3$ sama seperti untuk $x$. Jangan biarkan $3$-nya tak terpangkatkan.',
+              },
             },
             {
               kind: 'quiz',
@@ -487,6 +523,10 @@ export const module1: Module = {
                 en: 'A negative exponent inverts the base: $\\left(\\frac{1}{2}\\right)^{-3} = \\left(\\frac{2}{1}\\right)^3 = 2^3 = 8$.',
                 id: 'Eksponen negatif membalik basisnya: $\\left(\\frac{1}{2}\\right)^{-3} = \\left(\\frac{2}{1}\\right)^3 = 2^3 = 8$.',
               },
+              hint: {
+                en: 'A negative exponent flips the base upside down before the positive power applies. What does $\\frac{1}{2}$ become once flipped?',
+                id: 'Eksponen negatif membalik basisnya sebelum pangkat positifnya berlaku. $\\frac{1}{2}$ menjadi apa setelah dibalik?',
+              },
             },
             {
               kind: 'fill',
@@ -501,6 +541,10 @@ export const module1: Module = {
               explain: {
                 en: 'Adding exponents of matching bases: $4+(-1)=3$ for $a$, and $2+3=5$ for $b$.',
                 id: 'Menjumlahkan eksponen basis yang sama: $4+(-1)=3$ untuk $a$, dan $2+3=5$ untuk $b$.',
+              },
+              hint: {
+                en: 'Law 1 says same-base factors add their exponents. Handle $a$\'s exponents and $b$\'s exponents as two separate additions.',
+                id: 'Hukum 1 menyatakan faktor berbasis sama menjumlahkan eksponennya. Tangani eksponen $a$ dan eksponen $b$ sebagai dua penjumlahan terpisah.',
               },
             },
             {
@@ -566,6 +610,10 @@ export const module1: Module = {
                 en: 'Scientific notation requires the mantissa to satisfy $1 \\leq a < 10$. $35.2$ is too big and $0.352$ is too small; $3.52^5$ isn\'t even the right form (it means $3.52$ raised to the 5th power, not times $10^5$).',
                 id: 'Notasi ilmiah mensyaratkan mantisanya memenuhi $1 \\leq a < 10$. $35.2$ terlalu besar dan $0.352$ terlalu kecil; $3.52^5$ bahkan bukan bentuk yang tepat (artinya $3.52$ dipangkatkan 5, bukan dikali $10^5$).',
               },
+              hint: {
+                en: 'Check the mantissa (the part before $\\times 10^n$) in each option against the rule $1 \\leq a < 10$. Three of them break it.',
+                id: 'Periksa mantisanya (bagian sebelum $\\times 10^n$) pada tiap pilihan terhadap aturan $1 \\leq a < 10$. Tiga di antaranya melanggarnya.',
+              },
             },
             {
               kind: 'fill',
@@ -580,6 +628,10 @@ export const module1: Module = {
               explain: {
                 en: 'Moving the decimal point from $56920.$ to between $5$ and $6$ takes $4$ places, so $n=4$.',
                 id: 'Memindahkan titik desimal dari $56920.$ ke antara $5$ dan $6$ butuh $4$ tempat, sehingga $n=4$.',
+              },
+              hint: {
+                en: 'Count how many places the decimal point has to move to land right after the first digit.',
+                id: 'Hitung berapa tempat titik desimal harus berpindah agar jatuh persis setelah digit pertama.',
               },
             },
             {
@@ -654,6 +706,10 @@ export const module1: Module = {
                 en: '$8^{2/3} = (\\sqrt[3]{8})^2 = 2^2 = 4$.',
                 id: '$8^{2/3} = (\\sqrt[3]{8})^2 = 2^2 = 4$.',
               },
+              hint: {
+                en: 'The denominator of the fractional exponent tells you which root to take first. Take that root of $8$, then apply the numerator as an ordinary power.',
+                id: 'Penyebut eksponen pecahannya menentukan akar mana yang diambil lebih dulu. Ambil akar itu dari $8$, lalu terapkan pembilangnya sebagai pangkat biasa.',
+              },
             },
             {
               kind: 'quiz',
@@ -673,6 +729,10 @@ export const module1: Module = {
                 en: 'The largest perfect-square factor of $32$ is $16$: $\\sqrt{32} = \\sqrt{16 \\cdot 2} = 4\\sqrt{2}$. $2\\sqrt{8}$ is numerically equal but not fully simplified, since $\\sqrt{8}$ itself still has a perfect-square factor.',
                 id: 'Faktor kuadrat sempurna terbesar dari $32$ adalah $16$: $\\sqrt{32} = \\sqrt{16 \\cdot 2} = 4\\sqrt{2}$. $2\\sqrt{8}$ secara numerik sama tetapi belum sepenuhnya sederhana, sebab $\\sqrt{8}$ sendiri masih punya faktor kuadrat sempurna.',
               },
+              hint: {
+                en: 'One of the wrong options is numerically equal to the right answer but not fully reduced — check whether the number left under the root still has a perfect-square factor.',
+                id: 'Salah satu pilihan salah secara numerik sama dengan jawaban benar tapi belum tereduksi penuh — periksa apakah bilangan yang tersisa di bawah akar masih punya faktor kuadrat sempurna.',
+              },
             },
             {
               kind: 'fill',
@@ -687,6 +747,10 @@ export const module1: Module = {
               explain: {
                 en: 'Multiplying numerator and denominator by $\\sqrt{3}$ gives $\\frac{2\\sqrt{3}}{3}$.',
                 id: 'Mengalikan pembilang dan penyebut dengan $\\sqrt{3}$ memberi $\\frac{2\\sqrt{3}}{3}$.',
+              },
+              hint: {
+                en: 'Multiply top and bottom by whatever makes the denominator a whole number — that same thing must then multiply the numerator too.',
+                id: 'Kalikan pembilang dan penyebut dengan sesuatu yang membuat penyebutnya bilangan bulat — hal yang sama itu harus juga mengalikan pembilangnya.',
               },
             },
             {

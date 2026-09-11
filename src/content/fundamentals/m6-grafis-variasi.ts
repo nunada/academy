@@ -82,6 +82,10 @@ export const module6: Module = {
                 en: 'At an intersection point, both graphs share the same $y$-value for that $x$ — exactly the condition $f(x)=g(x)$.',
                 id: 'Pada titik perpotongan, kedua grafik berbagi nilai-$y$ yang sama untuk $x$ itu — persis syarat $f(x)=g(x)$.',
               },
+              hint: {
+                en: 'Think about what has to be true of the two curves\' $(x,y)$ values at the exact spot where they cross.',
+                id: 'Pikirkan apa yang harus benar dari nilai $(x,y)$ kedua kurva persis di tempat keduanya berpotongan.',
+              },
             },
             {
               kind: 'quiz',
@@ -101,6 +105,10 @@ export const module6: Module = {
                 en: 'Tangency happens exactly when the discriminant $1+4k=0$, i.e. $k=-\\frac{1}{4}=-0.25$.',
                 id: 'Singgungan terjadi persis ketika diskriminan $1+4k=0$, yaitu $k=-\\frac{1}{4}=-0.25$.',
               },
+              hint: {
+                en: 'Tangency is the same event as the two intersection points merging into one — that happens exactly when the quadratic\'s discriminant is zero.',
+                id: 'Singgungan adalah peristiwa yang sama dengan kedua titik perpotongan menyatu menjadi satu — itu terjadi persis ketika diskriminan kuadratnya nol.',
+              },
             },
             {
               kind: 'fill',
@@ -115,6 +123,10 @@ export const module6: Module = {
               explain: {
                 en: 'Move everything to one side and graph the result as $y=2x^2-3$; the $x$-intercepts of this graph are the solutions of the original equation.',
                 id: 'Pindahkan semuanya ke satu ruas dan gambar hasilnya sebagai $y=2x^2-3$; perpotongan-$x$ grafik ini adalah solusi persamaan aslinya.',
+              },
+              hint: {
+                en: 'The equation is already in the form (something) $=0$ — that something, set equal to $y$, is the graph whose $x$-intercepts you want.',
+                id: 'Persamaannya sudah dalam bentuk (sesuatu) $=0$ — sesuatu itu, disamakan dengan $y$, adalah grafik yang perpotongan-$x$-nya kamu cari.',
               },
             },
             {
@@ -237,6 +249,10 @@ export const module6: Module = {
                 en: '$k=\\frac{20}{4}=5$, so $y=5(10)=50$.',
                 id: '$k=\\frac{20}{4}=5$, sehingga $y=5(10)=50$.',
               },
+              hint: {
+                en: 'Find $k$ from the given pair first ($y=kx$), then use that same $k$ to predict the new $y$.',
+                id: 'Cari $k$ dari pasangan yang diberikan dulu ($y=kx$), lalu pakai $k$ yang sama itu untuk memprediksi $y$ yang baru.',
+              },
             },
             {
               kind: 'quiz',
@@ -255,6 +271,10 @@ export const module6: Module = {
               explain: {
                 en: '$k=xy=3(8)=24$, so at $x=6$: $y=\\frac{24}{6}=4$ — doubling $x$ halved $y$, exactly as inverse variation predicts.',
                 id: '$k=xy=3(8)=24$, sehingga di $x=6$: $y=\\frac{24}{6}=4$ — menggandakan $x$ membelah dua $y$, persis seperti diprediksi variasi terbalik.',
+              },
+              hint: {
+                en: 'For inverse variation, $k=xy$ stays constant — find $k$ from the given pair, then divide it by the new $x$.',
+                id: 'Untuk variasi terbalik, $k=xy$ tetap konstan — cari $k$ dari pasangan yang diberikan, lalu bagi dengan $x$ yang baru.',
               },
             },
             {
@@ -276,6 +296,10 @@ export const module6: Module = {
               explain: {
                 en: '$k=\\frac{3240}{3}=1080$ — the same speed of sound as the worked example, just different numbers.',
                 id: '$k=\\frac{1020}{3}=340$ — cepat rambat bunyi yang sama seperti contoh yang dikerjakan, hanya angkanya berbeda.',
+              },
+              hint: {
+                en: 'The template already sets up $k=$ distance divided by time — just carry out the division.',
+                id: 'Templatenya sudah menyusun $k=$ jarak dibagi waktu — tinggal kerjakan pembagiannya.',
               },
             },
             {
@@ -341,6 +365,10 @@ export const module6: Module = {
                 en: '$z=kxy \\Rightarrow 60=k(4)(5)=20k \\Rightarrow k=3$.',
                 id: '$z=kxy \\Rightarrow 60=k(4)(5)=20k \\Rightarrow k=3$.',
               },
+              hint: {
+                en: 'Substitute the given $x$, $y$, and $z$ into $z=kxy$, then solve for $k$.',
+                id: 'Substitusikan $x$, $y$, dan $z$ yang diberikan ke $z=kxy$, lalu selesaikan untuk $k$.',
+              },
             },
             {
               kind: 'quiz',
@@ -360,6 +388,10 @@ export const module6: Module = {
                 en: 'Replacing $r$ with $3r$ gives $\\dfrac{1}{(3r)^2}=\\dfrac{1}{9r^2}$ — an inverse-square law shrinks by the square of the multiplier.',
                 id: 'Mengganti $r$ dengan $3r$ memberi $\\dfrac{1}{(3r)^2}=\\dfrac{1}{9r^2}$ — hukum kuadrat-terbalik mengecil sebesar kuadrat dari pengalinya.',
               },
+              hint: {
+                en: 'Substitute $3r$ for $r$ in the denominator and simplify $(3r)^2$ — remember the square applies to the $3$ as well.',
+                id: 'Substitusikan $3r$ untuk $r$ di penyebutnya dan sederhanakan $(3r)^2$ — ingat kuadratnya berlaku juga untuk $3$-nya.',
+              },
             },
             {
               kind: 'fill',
@@ -374,6 +406,10 @@ export const module6: Module = {
               explain: {
                 en: '$(2d)^2=4d^2$, so the new brightness is $\\frac{1}{4}$ of the original.',
                 id: '$(2d)^2=4d^2$, sehingga kecerahan barunya $\\frac{1}{4}$ dari semula.',
+              },
+              hint: {
+                en: 'This is the exact substitution worked out in the concept above — expand $(2d)^2$ and see how it compares to $d^2$.',
+                id: 'Ini persis substitusi yang dikerjakan pada konsep di atas — jabarkan $(2d)^2$ dan lihat perbandingannya dengan $d^2$.',
               },
             },
             {

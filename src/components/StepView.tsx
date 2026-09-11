@@ -239,7 +239,7 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
             <Rich text={tc(step.explain)} />
           ) : (
             <span className="small muted">
-              <Rich text={tc(step.explain)} />
+              {step.hint ? <Rich text={tc(step.hint)} /> : t('tryAgainHint')}
             </span>
           )}
         </div>
@@ -322,7 +322,7 @@ function FillStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
         <div className={right ? 'verdict ok' : 'verdict no'}>
           <b>{right ? t('correct') : t('notQuite')}</b>
           {right ? <Rich text={tc(step.explain)} /> : <span className="small muted">
-              <Rich text={tc(step.explain)} />
+              {step.hint ? <Rich text={tc(step.hint)} /> : t('tryAgainHint')}
             </span>}
         </div>
       )}
@@ -418,7 +418,7 @@ function OrderStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Prop
             <Rich text={tc(step.explain)} />
           ) : (
             <span className="small muted">
-              <Rich text={tc(step.explain)} />
+              {step.hint ? <Rich text={tc(step.hint)} /> : t('tryAgainHint')}
             </span>
           )}
         </div>

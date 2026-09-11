@@ -246,6 +246,9 @@ export type Step =
       options: Loc[]
       answer: number
       explain: Loc
+      /** Shown instead of `explain` on a wrong try — a nudge, not the answer.
+       *  Falls back to a generic try-again line when a step has none yet. */
+      hint?: Loc
     }
   | {
       kind: 'fill'
@@ -258,6 +261,9 @@ export type Step =
       template: Bi<string>
       blanks: Bi<string[]>
       explain: Loc
+      /** Shown instead of `explain` on a wrong try — a nudge, not the answer.
+       *  Falls back to a generic try-again line when a step has none yet. */
+      hint?: Loc
       /** The template is LaTeX, and the pieces around the blanks are set as
        *  a formula rather than as monospaced code. */
       math?: boolean
@@ -272,6 +278,9 @@ export type Step =
       /** Correct order. Shuffled for the learner. */
       lines: Bi<string[]>
       explain: Loc
+      /** Shown instead of `explain` on a wrong try — a nudge, not the answer.
+       *  Falls back to a generic try-again line when a step has none yet. */
+      hint?: Loc
       /** The lines are LaTeX — the steps of a derivation rather than of a
        *  program — and are set as formulas. */
       math?: boolean

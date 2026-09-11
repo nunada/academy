@@ -65,6 +65,10 @@ export const module4: Module = {
                 en: 'Dividing both sides by $-4$ (negative) reverses the inequality: $x > -3$.',
                 id: 'Membagi kedua ruas dengan $-4$ (negatif) membalik pertidaksamaannya: $x > -3$.',
               },
+              hint: {
+                en: 'You need to divide both sides by a negative number to isolate $x$ — remember what that does to the inequality\'s direction.',
+                id: 'Kamu perlu membagi kedua ruas dengan bilangan negatif untuk mengisolasi $x$ — ingat apa yang itu lakukan pada arah pertidaksamaannya.',
+              },
             },
             {
               kind: 'fill',
@@ -79,6 +83,10 @@ export const module4: Module = {
               explain: {
                 en: 'Adding $2$ then dividing by $3$ across all three parts gives $2 \\leq x < 5$, i.e. $[2,5)$.',
                 id: 'Menambah $2$ lalu membagi dengan $3$ pada ketiga bagian memberi $2 \\leq x < 5$, yaitu $[2,5)$.',
+              },
+              hint: {
+                en: 'This is the exact compound inequality worked out in the concept above — apply the same two operations to all three parts.',
+                id: 'Ini persis pertidaksamaan gabungan yang dikerjakan pada konsep di atas — terapkan dua operasi yang sama pada ketiga bagiannya.',
               },
             },
             {
@@ -144,6 +152,10 @@ export const module4: Module = {
                 en: 'Each factor is zero where it vanishes: $x-2=0$ at $x=2$, and $x+5=0$ at $x=-5$.',
                 id: 'Tiap faktor nol di tempat ia lenyap: $x-2=0$ di $x=2$, dan $x+5=0$ di $x=-5$.',
               },
+              hint: {
+                en: 'Set each factor equal to zero on its own and solve — those two values are the critical points.',
+                id: 'Setel tiap faktor sama dengan nol secara terpisah dan selesaikan — kedua nilai itulah titik kritisnya.',
+              },
             },
             {
               kind: 'quiz',
@@ -174,6 +186,10 @@ export const module4: Module = {
                 en: 'The parabola dips below the $x$-axis exactly between its two roots, $-1$ and $6$ — matching the sign diagram\'s result.',
                 id: 'Parabolanya menukik di bawah sumbu-$x$ persis di antara kedua akarnya, $-1$ dan $6$ — cocok dengan hasil diagram tandanya.',
               },
+              hint: {
+                en: 'Look at where the curve actually dips below the horizontal axis in the figure — the two marked dots are its boundary.',
+                id: 'Lihat di mana kurvanya sungguh menukik di bawah sumbu horizontal pada gambar — kedua titik yang ditandai adalah batasnya.',
+              },
             },
             {
               kind: 'fill',
@@ -188,6 +204,10 @@ export const module4: Module = {
               explain: {
                 en: 'Factoring gives $(x-6)(x+1)<0$, negative exactly between the roots: $(-1,6)$.',
                 id: 'Memfaktorkan memberi $(x-6)(x+1)<0$, negatif persis di antara akar-akarnya: $(-1,6)$.',
+              },
+              hint: {
+                en: 'This is the exact inequality worked out in the two concepts above — the sign diagram there already tells you where the product is negative.',
+                id: 'Ini persis pertidaksamaan yang dikerjakan pada kedua konsep di atas — diagram tanda di situ sudah memberi tahu di mana hasil kalinya negatif.',
               },
             },
             {
@@ -253,6 +273,10 @@ export const module4: Module = {
                 en: '$|x+3|>4$ means $x+3<-4$ or $x+3>4$, giving $x<-7$ or $x>1$.',
                 id: '$|x+3|>4$ berarti $x+3<-4$ atau $x+3>4$, memberi $x<-7$ atau $x>1$.',
               },
+              hint: {
+                en: 'A "greater than" absolute-value inequality splits into two separate cases, joined by "or" — not a single interval between two bounds.',
+                id: 'Pertidaksamaan nilai mutlak "lebih besar dari" terbagi menjadi dua kasus terpisah, digabung dengan "atau" — bukan satu interval di antara dua batas.',
+              },
             },
             {
               kind: 'fill',
@@ -267,6 +291,10 @@ export const module4: Module = {
               explain: {
                 en: '$-2<x-5<2 \\Rightarrow 3<x<7$, i.e. $(3,7)$.',
                 id: '$-2<x-5<2 \\Rightarrow 3<x<7$, yaitu $(3,7)$.',
+              },
+              hint: {
+                en: 'This is the exact example worked out in the concept above — rewrite $|x-5|<2$ as a compound inequality first.',
+                id: 'Ini persis contoh yang dikerjakan pada konsep di atas — tulis ulang $|x-5|<2$ sebagai pertidaksamaan gabungan dulu.',
               },
             },
             {

@@ -82,6 +82,10 @@ export const module5: Module = {
                 en: 'Negative $x$, positive $y$ is Quadrant II (upper left).',
                 id: '$x$ negatif, $y$ positif adalah Kuadran II (kiri atas).',
               },
+              hint: {
+                en: 'Check the sign of each coordinate separately, then match that pair of signs to a quadrant\'s position on the plane.',
+                id: 'Periksa tanda tiap koordinat secara terpisah, lalu cocokkan pasangan tanda itu dengan posisi kuadran pada bidang.',
+              },
             },
             {
               kind: 'quiz',
@@ -101,6 +105,10 @@ export const module5: Module = {
                 en: '$d(P,A)=\\sqrt{4^2+5^2}=\\sqrt{41}\\approx6.4$, while $d(Q,A)=\\sqrt{3^2+6^2}=\\sqrt{45}\\approx6.7$. $P$ is slightly closer.',
                 id: '$d(P,A)=\\sqrt{4^2+5^2}=\\sqrt{41}\\approx6.4$, sedangkan $d(Q,A)=\\sqrt{3^2+6^2}=\\sqrt{45}\\approx6.7$. $P$ sedikit lebih dekat.',
               },
+              hint: {
+                en: 'Apply the Distance Formula to both pairs — you don\'t even need to take the square root to compare, since the larger squared distance means the farther point.',
+                id: 'Terapkan Formula Jarak pada kedua pasangan — kamu bahkan tak perlu mengambil akar kuadratnya untuk membandingkan, sebab jarak terkuadratkan yang lebih besar berarti titik yang lebih jauh.',
+              },
             },
             {
               kind: 'fill',
@@ -115,6 +123,10 @@ export const module5: Module = {
               explain: {
                 en: 'Averaging each coordinate gives $M=(2,6)$.',
                 id: 'Merata-ratakan tiap koordinat memberi $M=(2,6)$.',
+              },
+              hint: {
+                en: 'This is the exact pair of points worked out in the concept above — just carry out the two averages shown in the template.',
+                id: 'Ini persis pasangan titik yang dikerjakan pada konsep di atas — tinggal kerjakan dua rata-rata yang ditunjukkan pada template.',
               },
             },
             {
@@ -196,6 +208,10 @@ export const module5: Module = {
                 en: 'Setting $y=0$: $x^2=2 \\Rightarrow x=\\pm\\sqrt2$.',
                 id: 'Menolkan $y$: $x^2=2 \\Rightarrow x=\\pm\\sqrt2$.',
               },
+              hint: {
+                en: 'An $x$-intercept is where the graph crosses the $x$-axis — set $y$ to zero and solve for $x$.',
+                id: 'Perpotongan-$x$ adalah tempat grafik memotong sumbu-$x$ — nolkan $y$ dan selesaikan untuk $x$.',
+              },
             },
             {
               kind: 'quiz',
@@ -215,6 +231,10 @@ export const module5: Module = {
                 en: '$(-x)^3-9(-x) = -x^3+9x = -(x^3-9x)$, so the new equation is $-y=-(x^3-9x)$, i.e. $y=x^3-9x$ — the same equation. Symmetric about the origin.',
                 id: '$(-x)^3-9(-x) = -x^3+9x = -(x^3-9x)$, sehingga persamaan barunya $-y=-(x^3-9x)$, yaitu $y=x^3-9x$ — persamaan yang sama. Simetris terhadap titik asal.',
               },
+              hint: {
+                en: 'Substitute $-x$ for every $x$ on the right side, simplify, and see whether the whole right side becomes the exact negative of what it was before.',
+                id: 'Substitusikan $-x$ untuk setiap $x$ di ruas kanan, sederhanakan, dan lihat apakah seluruh ruas kanan menjadi persis negatif dari sebelumnya.',
+              },
             },
             {
               kind: 'fill',
@@ -229,6 +249,10 @@ export const module5: Module = {
               explain: {
                 en: 'Setting $x=0$ gives $y=-2$.',
                 id: 'Menolkan $x$ memberi $y=-2$.',
+              },
+              hint: {
+                en: 'The template already sets $x$ to $0$ for you — just carry out the arithmetic.',
+                id: 'Templatenya sudah menolkan $x$ untukmu — tinggal kerjakan aritmetikanya.',
               },
             },
             {
@@ -309,6 +333,10 @@ export const module5: Module = {
                 en: 'The standard form is $(x-h)^2+(y-k)^2=r^2$ with $(h,k)=(-1,4)$ and $r=2$, giving $(x-(-1))^2+(y-4)^2=2^2$, i.e. $(x+1)^2+(y-4)^2=4$.',
                 id: 'Bentuk bakunya $(x-h)^2+(y-k)^2=r^2$ dengan $(h,k)=(-1,4)$ dan $r=2$, memberi $(x-(-1))^2+(y-4)^2=2^2$, yaitu $(x+1)^2+(y-4)^2=4$.',
               },
+              hint: {
+                en: 'Substitute $h=-1$, $k=4$, and $r=2$ directly into $(x-h)^2+(y-k)^2=r^2$ — watch the sign when subtracting a negative $h$.',
+                id: 'Substitusikan $h=-1$, $k=4$, dan $r=2$ langsung ke $(x-h)^2+(y-k)^2=r^2$ — perhatikan tandanya saat mengurangi $h$ yang negatif.',
+              },
             },
             {
               kind: 'fill',
@@ -323,6 +351,10 @@ export const module5: Module = {
               explain: {
                 en: 'Completing the square gives $(x-3)^2+(y+2)^2=16=4^2$, so $r=4$.',
                 id: 'Melengkapkan kuadrat memberi $(x-3)^2+(y+2)^2=16=4^2$, sehingga $r=4$.',
+              },
+              hint: {
+                en: 'This is the exact circle worked out in the concept above — the template already gives you the standard form; $r^2$ is the number on the right.',
+                id: 'Ini persis lingkaran yang dikerjakan pada konsep di atas — templatenya sudah memberi bentuk bakunya; $r^2$ adalah bilangan di ruas kanan.',
               },
             },
             {
@@ -448,6 +480,10 @@ export const module5: Module = {
                 en: '$m = \\dfrac{-7-5}{4-(-2)} = \\dfrac{-12}{6} = -2$.',
                 id: '$m = \\dfrac{-7-5}{4-(-2)} = \\dfrac{-12}{6} = -2$.',
               },
+              hint: {
+                en: 'Apply the slope formula directly — be careful with the double negative when subtracting the $x$-coordinates.',
+                id: 'Terapkan formula kemiringan langsung — hati-hati dengan tanda ganda saat mengurangi koordinat-$x$-nya.',
+              },
             },
             {
               kind: 'quiz',
@@ -467,6 +503,10 @@ export const module5: Module = {
                 en: 'The pivot point $(1,2)$ never moves — only the steepness changes, and a larger slope means a steeper line, approaching (but never reaching) vertical.',
                 id: 'Titik poros $(1,2)$ tak pernah bergeser — hanya kecuramannya yang berubah, dan kemiringan yang lebih besar berarti garis yang lebih curam, mendekati (tapi tak pernah mencapai) tegak.',
               },
+              hint: {
+                en: 'Look at the point-slope equation itself — which part of it involves $m$, and which part stays fixed no matter what $m$ is?',
+                id: 'Lihat persamaan titik-kemiringannya sendiri — bagian mana yang melibatkan $m$, dan bagian mana yang tetap tak peduli berapa pun $m$-nya?',
+              },
             },
             {
               kind: 'fill',
@@ -481,6 +521,10 @@ export const module5: Module = {
               explain: {
                 en: 'Multiplying by $2$ and rearranging: $2y-6=-(x-1) \\Rightarrow x+2y-7=0$.',
                 id: 'Mengalikan dengan $2$ dan menata ulang: $2y-6=-(x-1) \\Rightarrow x+2y-7=0$.',
+              },
+              hint: {
+                en: 'This is the exact line worked out in the concept above — clear the fraction by multiplying through by $2$, then move everything to one side.',
+                id: 'Ini persis garis yang dikerjakan pada konsep di atas — hilangkan pecahannya dengan mengalikan semua dengan $2$, lalu pindahkan semuanya ke satu ruas.',
               },
             },
             {
@@ -546,6 +590,10 @@ export const module5: Module = {
                 en: 'Perpendicular slopes are negative reciprocals: the reciprocal of $\\frac{3}{4}$ is $\\frac{4}{3}$, negated gives $-\\frac{4}{3}$.',
                 id: 'Kemiringan tegak lurus adalah kebalikan negatif: kebalikan dari $\\frac{3}{4}$ adalah $\\frac{4}{3}$, dinegasikan memberi $-\\frac{4}{3}$.',
               },
+              hint: {
+                en: 'Perpendicular slopes multiply to $-1$. Flip the fraction upside down, then negate it.',
+                id: 'Kemiringan tegak lurus jika dikalikan menghasilkan $-1$. Balik pecahannya, lalu negasikan.',
+              },
             },
             {
               kind: 'quiz',
@@ -565,6 +613,10 @@ export const module5: Module = {
                 en: 'Parallel lines share a slope. $y=5x+7$ has slope $5$, matching $y=5x-2$ exactly — only the $y$-intercept differs.',
                 id: 'Garis sejajar berbagi kemiringan yang sama. $y=5x+7$ berkemiringan $5$, cocok persis dengan $y=5x-2$ — hanya perpotongan-$y$-nya yang berbeda.',
               },
+              hint: {
+                en: 'Parallel means equal slope, not equal equation. Rewrite each option in slope-intercept form if needed, then compare only the slopes.',
+                id: 'Sejajar berarti kemiringan sama, bukan persamaan yang sama. Tulis ulang tiap pilihan dalam bentuk kemiringan-perpotongan jika perlu, lalu bandingkan hanya kemiringannya.',
+              },
             },
             {
               kind: 'fill',
@@ -579,6 +631,10 @@ export const module5: Module = {
               explain: {
                 en: 'Solving for $y$: $4y=-2x+8 \\Rightarrow y=-\\frac{1}{2}x+2$, so the $y$-intercept is $2$.',
                 id: 'Menyelesaikan untuk $y$: $4y=-2x+8 \\Rightarrow y=-\\frac{1}{2}x+2$, sehingga perpotongan-$y$-nya $2$.',
+              },
+              hint: {
+                en: 'This is the exact equation worked out in the concept above — isolate $y$ by moving everything else to the right side and dividing by $4$.',
+                id: 'Ini persis persamaan yang dikerjakan pada konsep di atas — isolasi $y$ dengan memindahkan semua yang lain ke ruas kanan dan membagi dengan $4$.',
               },
             },
             {

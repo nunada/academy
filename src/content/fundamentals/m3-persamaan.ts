@@ -82,6 +82,10 @@ export const module3: Module = {
                 en: 'Every term in $2x - \\frac{1}{3} = x + 7$ is either a constant or a constant multiple of $x$ — no squares, no roots of $x$, no $x$ in a denominator. The other three each break one of those conditions.',
                 id: 'Setiap suku dalam $2x - \\frac{1}{3} = x + 7$ adalah konstanta atau kelipatan konstanta dari $x$ — tak ada kuadrat, tak ada akar dari $x$, tak ada $x$ di penyebut. Tiga lainnya masing-masing melanggar salah satu syarat itu.',
               },
+              hint: {
+                en: 'Check each option against the definition: no $x^2$, no $\\sqrt{x}$, and no $x$ sitting in a denominator. Three of the four break one of these.',
+                id: 'Periksa tiap pilihan terhadap definisinya: tak ada $x^2$, tak ada $\\sqrt{x}$, dan tak ada $x$ yang duduk di penyebut. Tiga dari empat pilihan melanggar salah satunya.',
+              },
             },
             {
               kind: 'fill',
@@ -96,6 +100,10 @@ export const module3: Module = {
               explain: {
                 en: 'Subtracting $2x$ and $3$ from both sides gives $3x=15$, so $x=5$.',
                 id: 'Mengurangi $2x$ dan $3$ dari kedua ruas memberi $3x=15$, sehingga $x=5$.',
+              },
+              hint: {
+                en: 'Get every $x$-term on one side and every constant on the other, one step at a time.',
+                id: 'Kumpulkan setiap suku $x$ pada satu ruas dan setiap konstanta pada ruas lain, selangkah demi selangkah.',
               },
             },
             {
@@ -161,6 +169,10 @@ export const module3: Module = {
                 en: 'Half the coefficient of $x$ is $5$, and $5^2=25$: $x^2+10x+25=(x+5)^2$.',
                 id: 'Setengah koefisien $x$ adalah $5$, dan $5^2=25$: $x^2+10x+25=(x+5)^2$.',
               },
+              hint: {
+                en: 'Take half of the coefficient of $x$, then square that — not the coefficient itself.',
+                id: 'Ambil setengah dari koefisien $x$-nya, lalu kuadratkan itu — bukan koefisiennya sendiri.',
+              },
             },
             {
               kind: 'quiz',
@@ -180,6 +192,10 @@ export const module3: Module = {
                 en: '$x^2-5x-24=(x+3)(x-8)=0$, so $x=-3$ or $x=8$ — check: $(-3)^2-5(-3)-24=9+15-24=0$. ✓',
                 id: '$x^2-5x-24=(x+3)(x-8)=0$, sehingga $x=-3$ atau $x=8$ — periksa: $(-3)^2-5(-3)-24=9+15-24=0$. ✓',
               },
+              hint: {
+                en: 'Find two numbers that multiply to $-24$ and add to $-5$ — those become the factored binomials, and the Zero-Product Property does the rest.',
+                id: 'Cari dua bilangan yang dikalikan menjadi $-24$ dan dijumlahkan menjadi $-5$ — itu menjadi binomial terfaktornya, dan Sifat Hasil Kali Nol mengerjakan sisanya.',
+              },
             },
             {
               kind: 'fill',
@@ -194,6 +210,10 @@ export const module3: Module = {
               explain: {
                 en: 'Adding $16$ to both sides of $x^2+8x=-13$ gives $(x+4)^2=3$, so $x=-4\\pm\\sqrt{3}$.',
                 id: 'Menambahkan $16$ ke kedua ruas $x^2+8x=-13$ memberi $(x+4)^2=3$, sehingga $x=-4\\pm\\sqrt{3}$.',
+              },
+              hint: {
+                en: 'Move the constant to the right side first, then add the same completing-the-square number to both sides before reading off the right side.',
+                id: 'Pindahkan dulu konstantanya ke ruas kanan, lalu tambahkan bilangan pelengkap-kuadrat yang sama ke kedua ruas sebelum membaca ruas kanannya.',
               },
             },
             {
@@ -276,6 +296,10 @@ export const module3: Module = {
                 en: '$D = (-12)^2-4(4)(9) = 144-144=0$, so the equation has exactly one real solution — a repeated root.',
                 id: '$D = (-12)^2-4(4)(9) = 144-144=0$, sehingga persamaannya punya tepat satu solusi real — akar berulang.',
               },
+              hint: {
+                en: 'You don\'t need to solve the equation — just compute the discriminant $D=b^2-4ac$ and read its sign.',
+                id: 'Kamu tak perlu menyelesaikan persamaannya — cukup hitung diskriminan $D=b^2-4ac$ dan baca tandanya.',
+              },
             },
             {
               kind: 'quiz',
@@ -305,6 +329,10 @@ export const module3: Module = {
                 en: 'The two roots merge exactly when $D=16-4c=0$, i.e. $c=4$ — the parabola\'s vertex just touches the $x$-axis there, shown in the figure.',
                 id: 'Kedua akar menyatu persis ketika $D=16-4c=0$, yaitu $c=4$ — puncak parabolanya tepat menyentuh sumbu-$x$ di situ, ditunjukkan pada gambar.',
               },
+              hint: {
+                en: 'The two roots become one exactly when the discriminant of $x^2-4x+c$ hits zero — set $D=16-4c$ equal to $0$ and solve for $c$.',
+                id: 'Kedua akar menjadi satu persis ketika diskriminan dari $x^2-4x+c$ mencapai nol — setel $D=16-4c$ sama dengan $0$ dan selesaikan untuk $c$.',
+              },
             },
             {
               kind: 'fill',
@@ -319,6 +347,10 @@ export const module3: Module = {
               explain: {
                 en: '$D=16-40=-24 < 0$, so the equation has no real solution.',
                 id: '$D=16-40=-24 < 0$, sehingga persamaannya tak punya solusi real.',
+              },
+              hint: {
+                en: 'The template already sets up $D=(-4)^2-4(2)(5)$ — just carry out the arithmetic in order.',
+                id: 'Templatenya sudah menyusun $D=(-4)^2-4(2)(5)$ — tinggal kerjakan aritmetikanya berurutan.',
               },
             },
             {
@@ -430,6 +462,10 @@ export const module3: Module = {
                 en: 'Squaring loses information about sign — $(-1)^2=1^2$ even though $-1 \\neq 1$ — so a value can pass the squared equation while failing the original, which is exactly what makes checking mandatory.',
                 id: 'Mengkuadratkan kehilangan informasi tentang tanda — $(-1)^2=1^2$ meskipun $-1 \\neq 1$ — sehingga suatu nilai bisa lolos persamaan terkuadratkan tetapi gagal pada yang asli, yang persis membuat pemeriksaan itu wajib.',
               },
+              hint: {
+                en: 'Think about what squaring does to a true-but-negative statement like $-1 = 1$\'s two sides — does the squared version still tell them apart?',
+                id: 'Pikirkan apa yang dilakukan pengkuadratan pada pernyataan seperti dua ruas $-1 = 1$ — apakah versi terkuadratkan masih bisa membedakan keduanya?',
+              },
             },
             {
               kind: 'fill',
@@ -444,6 +480,10 @@ export const module3: Module = {
               explain: {
                 en: 'Clearing denominators gives $x=9$ or $x=-3$, but $x=-3$ is extraneous since it makes the original denominators zero. Only $x=9$ is valid.',
                 id: 'Menghilangkan penyebut memberi $x=9$ atau $x=-3$, tetapi $x=-3$ ekstraneus sebab membuat penyebut aslinya nol. Hanya $x=9$ yang sah.',
+              },
+              hint: {
+                en: 'This is the exact equation worked out in the concept above — clear the denominators, solve the quadratic, then reject whichever candidate breaks an original denominator.',
+                id: 'Ini persis persamaan yang dikerjakan pada konsep di atas — hilangkan penyebutnya, selesaikan kuadratnya, lalu tolak kandidat mana pun yang membuat penyebut aslinya nol.',
               },
             },
             {
@@ -509,6 +549,10 @@ export const module3: Module = {
                 en: 'Since $x^4=(x^2)^2$, setting $W=x^2$ turns the equation into $W^2-8W+8=0$, an ordinary quadratic in $W$.',
                 id: 'Karena $x^4=(x^2)^2$, memisalkan $W=x^2$ mengubah persamaannya menjadi $W^2-8W+8=0$, kuadrat biasa dalam $W$.',
               },
+              hint: {
+                en: 'Look for which power of $x$, once squared, gives you $x^4$ — that expression is the one worth substituting.',
+                id: 'Cari pangkat $x$ mana yang, setelah dikuadratkan, memberi $x^4$ — bentuk itulah yang layak disubstitusikan.',
+              },
             },
             {
               kind: 'fill',
@@ -523,6 +567,10 @@ export const module3: Module = {
               explain: {
                 en: 'Letting $W=x^{1/6}$ gives $W^2-W-2=(W-2)(W+1)=0$; rejecting the negative root $W=-1$ leaves $W=2$, so $x=2^6=64$.',
                 id: 'Memisalkan $W=x^{1/6}$ memberi $W^2-W-2=(W-2)(W+1)=0$; menolak akar negatif $W=-1$ menyisakan $W=2$, sehingga $x=2^6=64$.',
+              },
+              hint: {
+                en: 'This is the exact equation worked out in the concept above — substitute, solve the quadratic in $W$, reject the root an even root can\'t produce, then undo the substitution.',
+                id: 'Ini persis persamaan yang dikerjakan pada konsep di atas — substitusikan, selesaikan kuadrat dalam $W$, tolak akar yang tak mungkin dihasilkan akar genap, lalu batalkan substitusinya.',
               },
             },
             {
@@ -597,6 +645,10 @@ export const module3: Module = {
                 en: 'Powers of $i$ cycle every $4$: $i^{23}=i^{20}\\cdot i^3=(i^4)^5\\cdot i^3=1\\cdot(-i)=-i$, since $i^3=i^2\\cdot i=-i$.',
                 id: 'Pangkat dari $i$ berputar setiap $4$: $i^{23}=i^{20}\\cdot i^3=(i^4)^5\\cdot i^3=1\\cdot(-i)=-i$, sebab $i^3=i^2\\cdot i=-i$.',
               },
+              hint: {
+                en: 'Powers of $i$ repeat in a cycle of $4$ ($i, -1, -i, 1, \\ldots$). Divide $23$ by $4$ and see which point in the cycle the remainder lands on.',
+                id: 'Pangkat dari $i$ berulang dalam siklus $4$ ($i, -1, -i, 1, \\ldots$). Bagi $23$ dengan $4$ dan lihat sisa baginya jatuh di titik mana dalam siklus itu.',
+              },
             },
             {
               kind: 'quiz',
@@ -616,6 +668,10 @@ export const module3: Module = {
                 en: '$x^2=-9$, so $x=\\pm\\sqrt{-9}=\\pm3i$.',
                 id: '$x^2=-9$, sehingga $x=\\pm\\sqrt{-9}=\\pm3i$.',
               },
+              hint: {
+                en: 'Isolate $x^2$ first, then take the square root of both sides — remember $\\sqrt{\\text{negative}}$ converts to $i\\sqrt{\\text{positive}}$.',
+                id: 'Isolasi $x^2$ dulu, lalu ambil akar kuadrat kedua ruas — ingat $\\sqrt{\\text{negatif}}$ diubah menjadi $i\\sqrt{\\text{positif}}$.',
+              },
             },
             {
               kind: 'fill',
@@ -630,6 +686,10 @@ export const module3: Module = {
               explain: {
                 en: 'FOIL with $i^2=-1$: $12-6i+20i-10i^2 = 12+14i+10 = 22+14i$.',
                 id: 'FOIL dengan $i^2=-1$: $12-6i+20i-10i^2 = 12+14i+10 = 22+14i$.',
+              },
+              hint: {
+                en: 'This is the exact product worked out in the concept above — FOIL it out, then replace $i^2$ with $-1$ before combining terms.',
+                id: 'Ini persis hasil kali yang dikerjakan pada konsep di atas — FOIL dulu, lalu ganti $i^2$ dengan $-1$ sebelum menggabungkan suku.',
               },
             },
             {
@@ -740,6 +800,10 @@ export const module3: Module = {
                 en: 'Every other step depends on first naming, with a variable, the exact quantity the problem is asking you to find.',
                 id: 'Setiap langkah lain bergantung pada terlebih dahulu menamai, dengan sebuah variabel, kuantitas persis yang diminta soal untuk dicari.',
               },
+              hint: {
+                en: 'Three of the options skip straight to solving or guessing — think about what has to happen before you can even write an equation down.',
+                id: 'Tiga pilihan langsung lompat ke penyelesaian atau tebakan — pikirkan apa yang harus terjadi sebelum kamu bahkan bisa menuliskan sebuah persamaan.',
+              },
             },
             {
               kind: 'fill',
@@ -757,6 +821,10 @@ export const module3: Module = {
               explain: {
                 en: '$0.20x+75=115 \\Rightarrow 0.20x=40 \\Rightarrow x=200$ miles.',
                 id: '$200x+75{.}000=115{.}000 \\Rightarrow 200x=40{.}000 \\Rightarrow x=200$ km.',
+              },
+              hint: {
+                en: 'This follows the same four guidelines as the worked car-rental example above — the per-km rate times $x$, plus the fixed daily cost for the number of days, equals the total bill.',
+                id: 'Ini mengikuti empat pedoman yang sama seperti contoh sewa mobil yang dikerjakan di atas — laju per km dikali $x$, ditambah biaya harian tetap untuk jumlah harinya, sama dengan total tagihan.',
               },
             },
             {
@@ -822,6 +890,10 @@ export const module3: Module = {
                 en: 'Area is width times length: $w \\cdot (w+5) = 500$. The last option models perimeter, not area.',
                 id: 'Luas adalah lebar kali panjang: $w \\cdot (w+5) = 500$. Pilihan terakhir memodelkan keliling, bukan luas.',
               },
+              hint: {
+                en: 'Area of a rectangle is width times length — write the length in terms of $w$ first, then multiply.',
+                id: 'Luas persegi panjang adalah lebar kali panjang — tulis dulu panjangnya dalam bentuk $w$, baru kalikan.',
+              },
             },
             {
               kind: 'fill',
@@ -836,6 +908,10 @@ export const module3: Module = {
               explain: {
                 en: 'By the Quadratic Formula, $w=\\dfrac{-5+\\sqrt{25+2000}}{2}=\\dfrac{-5+\\sqrt{2025}}{2}=\\dfrac{-5+45}{2}=20$. (Note: $\\sqrt{2025}=45$ exactly, giving $w=20$ — round only if your intermediate steps used a decimal approximation.)',
                 id: 'Dengan Rumus Kuadrat, $w=\\dfrac{-5+\\sqrt{25+2000}}{2}=\\dfrac{-5+\\sqrt{2025}}{2}=\\dfrac{-5+45}{2}=20$. (Catatan: $\\sqrt{2025}=45$ persis, memberi $w=20$ — bulatkan hanya jika langkah antaramu memakai pendekatan desimal.)',
+              },
+              hint: {
+                en: 'Apply the Quadratic Formula to $w^2+5w-500=0$, and reject the negative root — a width can\'t be negative.',
+                id: 'Terapkan Rumus Kuadrat pada $w^2+5w-500=0$, dan tolak akar negatifnya — lebar tak bisa negatif.',
               },
             },
             {

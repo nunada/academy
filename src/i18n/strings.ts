@@ -151,6 +151,7 @@ export const ui = {
   showWorking: { en: 'Show the working', id: 'Lihat penyelesaian' },
   correct: { en: 'Correct!', id: 'Benar!' },
   notQuite: { en: 'Not quite.', id: 'Belum tepat.' },
+  tryAgainHint: { en: 'Look back at the worked example above and try again.', id: 'Lihat lagi contoh yang sudah dikerjakan di atas, lalu coba lagi.' },
   yourAnswer: { en: 'Your answer', id: 'Jawabanmu' },
   output: { en: 'Output', id: 'Keluaran' },
   expected: { en: 'Expected', id: 'Diharapkan' },

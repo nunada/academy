@@ -79,6 +79,10 @@ export const module2: Module = {
                 en: 'FOIL: $2x \\cdot x = 2x^2$, $2x \\cdot 4 = 8x$, $-3 \\cdot x = -3x$, $-3 \\cdot 4 = -12$. Combining the middle terms, $8x-3x=5x$, gives $2x^2+5x-12$.',
                 id: 'FOIL: $2x \\cdot x = 2x^2$, $2x \\cdot 4 = 8x$, $-3 \\cdot x = -3x$, $-3 \\cdot 4 = -12$. Menggabungkan suku tengah, $8x-3x=5x$, memberi $2x^2+5x-12$.',
               },
+              hint: {
+                en: 'Multiply out all four FOIL products separately before combining anything — a sign mistake on one of the middle terms is the usual trap.',
+                id: 'Kalikan keempat hasil kali FOIL secara terpisah dulu sebelum menggabungkan apa pun — kesalahan tanda pada salah satu suku tengah adalah jebakan yang biasa terjadi.',
+              },
             },
             {
               kind: 'quiz',
@@ -98,6 +102,10 @@ export const module2: Module = {
                 en: 'With $A=4x$, $B=1$: $(A-B)^2 = A^2-2AB+B^2 = 16x^2 - 8x + 1$.',
                 id: 'Dengan $A=4x$, $B=1$: $(A-B)^2 = A^2-2AB+B^2 = 16x^2 - 8x + 1$.',
               },
+              hint: {
+                en: 'Match this to $(A-B)^2=A^2-2AB+B^2$ with $A=4x$ and $B=1$ — don\'t forget the middle term.',
+                id: 'Cocokkan ini dengan $(A-B)^2=A^2-2AB+B^2$ dengan $A=4x$ dan $B=1$ — jangan lupakan suku tengahnya.',
+              },
             },
             {
               kind: 'fill',
@@ -112,6 +120,10 @@ export const module2: Module = {
               explain: {
                 en: 'The greatest common factor of $3x^2$ and $6x$ is $3x$: $3x^2+6x = 3x(x+2)$.',
                 id: 'Faktor persekutuan terbesar dari $3x^2$ dan $6x$ adalah $3x$: $3x^2+6x = 3x(x+2)$.',
+              },
+              hint: {
+                en: 'The template already tells you the factored form ends in $(x+2)$ — divide $3x^2+6x$ by $(x+2)$ to see what\'s left over, or find what both terms share.',
+                id: 'Templatenya sudah memberi tahu bentuk terfaktornya berakhir dengan $(x+2)$ — bagi $3x^2+6x$ dengan $(x+2)$ untuk melihat sisanya, atau cari apa yang dimiliki bersama kedua suku.',
               },
             },
             {
@@ -177,6 +189,10 @@ export const module2: Module = {
                 en: '$x^2-9 = x^2-3^2$ is a difference of squares: $(x-3)(x+3)$.',
                 id: '$x^2-9 = x^2-3^2$ adalah selisih kuadrat: $(x-3)(x+3)$.',
               },
+              hint: {
+                en: 'Write $9$ as a perfect square — this matches one of the special factoring formulas exactly.',
+                id: 'Tulis $9$ sebagai kuadrat sempurna — ini cocok persis dengan salah satu rumus faktorisasi khusus.',
+              },
             },
             {
               kind: 'quiz',
@@ -196,6 +212,10 @@ export const module2: Module = {
                 en: 'For $x^2+8x+16$: the outer terms are $x^2$ and $16$, with square roots $x$ and $4$, and $2 \\cdot x \\cdot 4 = 8x$ matches the middle term exactly. So $x^2+8x+16=(x+4)^2$. None of the others satisfy this test.',
                 id: 'Untuk $x^2+8x+16$: suku luarnya $x^2$ dan $16$, dengan akar kuadrat $x$ dan $4$, dan $2 \\cdot x \\cdot 4 = 8x$ cocok persis dengan suku tengahnya. Jadi $x^2+8x+16=(x+4)^2$. Tak satu pun yang lain memenuhi uji ini.',
               },
+              hint: {
+                en: 'For each option, take the square root of the last term and check whether twice that, times $x$, actually equals the middle term.',
+                id: 'Untuk tiap pilihan, ambil akar kuadrat dari suku terakhirnya dan periksa apakah dua kali itu, dikali $x$, benar-benar sama dengan suku tengahnya.',
+              },
             },
             {
               kind: 'fill',
@@ -210,6 +230,10 @@ export const module2: Module = {
               explain: {
                 en: 'Trying factor pairs of $6$ and $-5$ that give a middle term of $7x$ leads to $(3x+5)(2x-1)$ — check: $6x^2-3x+10x-5=6x^2+7x-5$.',
                 id: 'Mencoba pasangan faktor dari $6$ dan $-5$ yang memberi suku tengah $7x$ menghasilkan $(3x+5)(2x-1)$ — periksa: $6x^2-3x+10x-5=6x^2+7x-5$.',
+              },
+              hint: {
+                en: 'This is the exact trinomial worked out in the concept above — the same factor pairs of $6$ and $-5$ apply here.',
+                id: 'Ini persis trinomial yang dikerjakan pada konsep di atas — pasangan faktor $6$ dan $-5$ yang sama berlaku di sini.',
               },
             },
             {
@@ -345,6 +369,10 @@ export const module2: Module = {
                 en: 'Factoring $x^2-5x+6=(x-2)(x-3)$ shows the denominator is zero exactly at $x=2$ and $x=3$, so those are excluded.',
                 id: 'Memfaktorkan $x^2-5x+6=(x-2)(x-3)$ menunjukkan penyebutnya nol persis di $x=2$ dan $x=3$, sehingga keduanya dikecualikan.',
               },
+              hint: {
+                en: 'Factor the denominator first — the domain excludes whatever value of $x$ makes each factor zero.',
+                id: 'Faktorkan dulu penyebutnya — domainnya mengecualikan nilai $x$ mana pun yang membuat tiap faktor nol.',
+              },
             },
             {
               kind: 'quiz',
@@ -364,6 +392,10 @@ export const module2: Module = {
                 en: 'Factoring gives $\\dfrac{(x-1)(x+1)}{(x-1)(x+2)}$; the common factor $(x-1)$ cancels, leaving $\\dfrac{x+1}{x+2}$.',
                 id: 'Memfaktorkan memberi $\\dfrac{(x-1)(x+1)}{(x-1)(x+2)}$; faktor persekutuan $(x-1)$ dicoret, menyisakan $\\dfrac{x+1}{x+2}$.',
               },
+              hint: {
+                en: 'Factor both the top and the bottom completely first — only then does the common factor become visible to cancel.',
+                id: 'Faktorkan dulu atas dan bawahnya selengkapnya — barulah faktor persekutuannya terlihat untuk dicoret.',
+              },
             },
             {
               kind: 'fill',
@@ -378,6 +410,10 @@ export const module2: Module = {
               explain: {
                 en: 'As worked out above, this simplifies to $\\dfrac{x+1}{x+2}$.',
                 id: 'Seperti dikerjakan di atas, ini menyederhana menjadi $\\dfrac{x+1}{x+2}$.',
+              },
+              hint: {
+                en: 'This is the exact expression factored in the concept above and in the quiz just before — the same cancellation applies.',
+                id: 'Ini persis bentuk yang difaktorkan pada konsep di atas dan pada kuis sebelumnya — pencoretan yang sama berlaku.',
               },
             },
             {
@@ -443,6 +479,10 @@ export const module2: Module = {
                 en: 'The LCD is $(x-1)(x+1)=x^2-1$: $\\dfrac{x+1}{x^2-1}+\\dfrac{x-1}{x^2-1} = \\dfrac{(x+1)+(x-1)}{x^2-1} = \\dfrac{2x}{x^2-1}$.',
                 id: 'KPK-nya $(x-1)(x+1)=x^2-1$: $\\dfrac{x+1}{x^2-1}+\\dfrac{x-1}{x^2-1} = \\dfrac{(x+1)+(x-1)}{x^2-1} = \\dfrac{2x}{x^2-1}$.',
               },
+              hint: {
+                en: 'The LCD of $(x-1)$ and $(x+1)$ is their product. Rewrite both fractions over that common denominator before adding the numerators.',
+                id: 'KPK dari $(x-1)$ dan $(x+1)$ adalah hasil kalinya. Tulis ulang kedua pecahan atas penyebut sekutu itu sebelum menjumlahkan pembilangnya.',
+              },
             },
             {
               kind: 'fill',
@@ -457,6 +497,10 @@ export const module2: Module = {
               explain: {
                 en: 'As shown above, the combined fraction is $\\dfrac{2x}{x^2-1}$.',
                 id: 'Seperti ditunjukkan di atas, pecahan gabungannya adalah $\\dfrac{2x}{x^2-1}$.',
+              },
+              hint: {
+                en: 'This is the exact pair of fractions just combined in the quiz above — the same LCD applies here.',
+                id: 'Ini persis pasangan pecahan yang baru saja digabungkan pada kuis di atas — KPK yang sama berlaku di sini.',
               },
             },
             {
