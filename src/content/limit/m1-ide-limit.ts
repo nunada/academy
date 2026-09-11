@@ -378,8 +378,8 @@ export const module1: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Not every limit fails. By contrast, evaluate $\\displaystyle\\lim_{x \\to 3} \\frac{x^2 - 4x + 3}{x - 3}$ — an ordinary limit that exists, using the factoring trick from the last lesson.',
-                id: 'Tak semua limit gagal. Sebagai perbandingan, hitung $\\displaystyle\\lim_{x \\to 3} \\frac{x^2 - 4x + 3}{x - 3}$ — limit biasa yang ada, dengan trik pemfaktoran dari pelajaran sebelumnya.',
+                en: 'Not every limit fails. By contrast, evaluate $\\lim_{x \\to 3} \\frac{x^2 - 4x + 3}{x - 3}$ — an ordinary limit that exists, using the factoring trick from the last lesson.',
+                id: 'Tak semua limit gagal. Sebagai perbandingan, hitung $\\lim_{x \\to 3} \\frac{x^2 - 4x + 3}{x - 3}$ — limit biasa yang ada, dengan trik pemfaktoran dari pelajaran sebelumnya.',
               },
               blanks: [{ label: '\\lim_{x \\to 3} \\tfrac{x^2-4x+3}{x-3} =', answer: 2 }],
               hints: [
@@ -536,8 +536,8 @@ export const module1: Module = {
           },
           {
             prompt: {
-              en: 'Evaluate $\\displaystyle\\lim_{x \\to -2} \\frac{x^2 - 4}{x + 2}$.',
-              id: 'Hitung $\\displaystyle\\lim_{x \\to -2} \\frac{x^2 - 4}{x + 2}$.',
+              en: 'Evaluate $\\lim_{x \\to -2} \\frac{x^2 - 4}{x + 2}$.',
+              id: 'Hitung $\\lim_{x \\to -2} \\frac{x^2 - 4}{x + 2}$.',
             },
             blanks: [{ answer: -4 }],
             solution: ['\\dfrac{(x-2)(x+2)}{x+2} = x - 2 \\to -4 \\text{ as } x \\to -2'],

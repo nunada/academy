@@ -122,8 +122,8 @@ export const module5: Module = {
               id: 'c2',
               title: { en: 'Estimating a square root without a calculator', id: 'Menaksir akar kuadrat tanpa kalkulator' },
               body: {
-                en: 'Estimate $\\sqrt{4.1}$ using $f(x)=\\sqrt x$ at $a=4$ (a perfect square, chosen precisely because $f(4)=2$ is exact and easy). $f\'(x) = \\dfrac{1}{2\\sqrt x}$, so $f\'(4) = \\dfrac14$.\n$$L(4.1) = f(4) + f\'(4)(4.1-4) = 2 + \\tfrac14(0.1) = 2.025$$\nThe true value is $\\sqrt{4.1} \\approx 2.0248...$ — the approximation is accurate to three decimal places, from nothing but a value and a slope.',
-                id: 'Taksir $\\sqrt{4.1}$ memakai $f(x)=\\sqrt x$ di $a=4$ (kuadrat sempurna, dipilih persis karena $f(4)=2$ eksak dan mudah). $f\'(x) = \\dfrac{1}{2\\sqrt x}$, sehingga $f\'(4) = \\dfrac14$.\n$$L(4.1) = f(4) + f\'(4)(4.1-4) = 2 + \\tfrac14(0.1) = 2.025$$\nNilai sebenarnya adalah $\\sqrt{4.1} \\approx 2.0248...$ — hampirannya akurat hingga tiga desimal, hanya dari sebuah nilai dan sebuah kemiringan.',
+                en: 'Estimate $\\sqrt{4.1}$ using $f(x)=\\sqrt x$ at $a=4$ (a perfect square, chosen precisely because $f(4)=2$ is exact and easy). $f\'(x) = \\dfrac{1}{2\\sqrt x}$, so $f\'(4) = \\dfrac{1}{4}$.\n$$L(4.1) = f(4) + f\'(4)(4.1-4) = 2 + \\tfrac{1}{4}(0.1) = 2.025$$\nThe true value is $\\sqrt{4.1} \\approx 2.0248...$ — the approximation is accurate to three decimal places, from nothing but a value and a slope.',
+                id: 'Taksir $\\sqrt{4.1}$ memakai $f(x)=\\sqrt x$ di $a=4$ (kuadrat sempurna, dipilih persis karena $f(4)=2$ eksak dan mudah). $f\'(x) = \\dfrac{1}{2\\sqrt x}$, sehingga $f\'(4) = \\dfrac{1}{4}$.\n$$L(4.1) = f(4) + f\'(4)(4.1-4) = 2 + \\tfrac{1}{4}(0.1) = 2.025$$\nNilai sebenarnya adalah $\\sqrt{4.1} \\approx 2.0248...$ — hampirannya akurat hingga tiga desimal, hanya dari sebuah nilai dan sebuah kemiringan.',
               },
               figure: {
                 dim: 2,
@@ -199,7 +199,7 @@ export const module5: Module = {
               },
               blanks: [{ label: '\\sqrt[3]{8.24} \\approx', answer: 2.02 }],
               hints: [
-                { en: '$f\'(x) = \\frac13 x^{-2/3}$, so $f\'(8) = \\frac{1}{12}$.', id: '$f\'(x) = \\frac13 x^{-2/3}$, sehingga $f\'(8) = \\frac{1}{12}$.' },
+                { en: '$f\'(x) = \\frac{1}{3} x^{-2/3}$, so $f\'(8) = \\frac{1}{12}$.', id: '$f\'(x) = \\frac{1}{3} x^{-2/3}$, sehingga $f\'(8) = \\frac{1}{12}$.' },
                 { en: '$L(8.24) = 2 + \\frac{1}{12}(0.24)$.', id: '$L(8.24) = 2 + \\frac{1}{12}(0.24)$.' },
               ],
               explain: {
@@ -225,8 +225,8 @@ export const module5: Module = {
         tasks: [
           {
             prompt: {
-              en: 'A spherical balloon\'s volume $V=\\frac43\\pi r^3$ grows at $\\frac{dV}{dt}=100$ cm³/s. Find $\\frac{dr}{dt}$ when $r=5$ cm. (Round to 3 decimals.)',
-              id: 'Volume balon berbentuk bola $V=\\frac43\\pi r^3$ bertambah dengan $\\frac{dV}{dt}=100$ cm³/detik. Cari $\\frac{dr}{dt}$ ketika $r=5$ cm. (Bulatkan ke 3 desimal.)',
+              en: 'A spherical balloon\'s volume $V=\\frac{4}{3}\\pi r^3$ grows at $\\frac{dV}{dt}=100$ cm³/s. Find $\\frac{dr}{dt}$ when $r=5$ cm. (Round to 3 decimals.)',
+              id: 'Volume balon berbentuk bola $V=\\frac{4}{3}\\pi r^3$ bertambah dengan $\\frac{dV}{dt}=100$ cm³/detik. Cari $\\frac{dr}{dt}$ ketika $r=5$ cm. (Bulatkan ke 3 desimal.)',
             },
             blanks: [{ answer: 0.318 }],
             solution: ['\\frac{dV}{dt}=4\\pi r^2\\frac{dr}{dt} \\Rightarrow \\frac{dr}{dt} = \\frac{100}{4\\pi(25)} = \\frac{1}{\\pi} \\approx 0{,}318'],
@@ -245,7 +245,7 @@ export const module5: Module = {
               id: 'Pakai hampiran linear dengan $f(x)=\\sqrt x$ di $a=9$ untuk menaksir $\\sqrt{9.3}$.',
             },
             blanks: [{ answer: 3.05 }],
-            solution: ['f\'(9)=\\tfrac16, \\quad L(9.3) = 3 + \\tfrac16(0.3) = 3.05'],
+            solution: ['f\'(9)=\\tfrac{1}{6}, \\quad L(9.3) = 3 + \\tfrac{1}{6}(0.3) = 3.05'],
           },
         ],
         hints: [
@@ -416,8 +416,8 @@ export const module5: Module = {
               id: 'c1',
               title: { en: 'The derivative of the derivative', id: 'Turunan dari turunan' },
               body: {
-                en: 'Just as $f\'$ describes how $f$ itself changes, the **second derivative** $f\'\'=(f\')\'$ describes how $f\'$ changes — whether the slope itself is increasing or decreasing.\n$$f\'\'(x) > 0 \\ \\Rightarrow \\ f \\text{ is concave up (shaped like a cup } \\smile\\text{)}$$\n$$f\'\'(x) < 0 \\ \\Rightarrow \\ f \\text{ is concave down (shaped like a cap } \\frown\\text{)}$$\nA point where concavity switches is an **inflection point**.',
-                id: 'Sebagaimana $f\'$ menggambarkan bagaimana $f$ sendiri berubah, **turunan kedua** $f\'\'=(f\')\'$ menggambarkan bagaimana $f\'$ berubah — apakah kemiringannya sendiri sedang bertambah atau berkurang.\n$$f\'\'(x) > 0 \\ \\Rightarrow \\ f \\text{ cekung ke atas (berbentuk mangkuk } \\smile\\text{)}$$\n$$f\'\'(x) < 0 \\ \\Rightarrow \\ f \\text{ cekung ke bawah (berbentuk kubah } \\frown\\text{)}$$\nTitik tempat kecekungan berpindah disebut **titik belok**.',
+                en: 'Just as $f\'$ describes how $f$ itself changes, the **second derivative** $f\'\'=(f\')\'$ describes how $f\'$ changes — whether the slope itself is increasing or decreasing.\n$$f\'\'(x) > 0 \\ \\Rightarrow \\ f \\text{ is concave up (shaped like a cup } ⌣\\text{)}$$\n$$f\'\'(x) < 0 \\ \\Rightarrow \\ f \\text{ is concave down (shaped like a cap } ⌢\\text{)}$$\nA point where concavity switches is an **inflection point**.',
+                id: 'Sebagaimana $f\'$ menggambarkan bagaimana $f$ sendiri berubah, **turunan kedua** $f\'\'=(f\')\'$ menggambarkan bagaimana $f\'$ berubah — apakah kemiringannya sendiri sedang bertambah atau berkurang.\n$$f\'\'(x) > 0 \\ \\Rightarrow \\ f \\text{ cekung ke atas (berbentuk mangkuk } ⌣\\text{)}$$\n$$f\'\'(x) < 0 \\ \\Rightarrow \\ f \\text{ cekung ke bawah (berbentuk kubah } ⌢\\text{)}$$\nTitik tempat kecekungan berpindah disebut **titik belok**.',
               },
             },
             {

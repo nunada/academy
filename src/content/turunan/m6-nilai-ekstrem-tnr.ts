@@ -479,7 +479,7 @@ export const module6: Module = {
           {
             prompt: { en: 'For $f(x) = 1/x$ on $[1, 4]$, find the value of $c$ guaranteed by the Mean Value Theorem.', id: 'Untuk $f(x) = 1/x$ pada $[1, 4]$, cari nilai $c$ yang dijamin Teorema Nilai Rata-rata.' },
             blanks: [{ answer: 2 }],
-            solution: ["\\text{avg rate} = \\dfrac{1/4 - 1}{3} = -\\dfrac14, \\quad -\\dfrac{1}{c^2} = -\\dfrac14 \\Rightarrow c^2=4 \\Rightarrow c=2"],
+            solution: ["\\text{avg rate} = \\dfrac{1/4 - 1}{3} = -\\dfrac{1}{4}, \\quad -\\dfrac{1}{c^2} = -\\dfrac{1}{4} \\Rightarrow c^2=4 \\Rightarrow c=2"],
           },
         ],
         hints: [

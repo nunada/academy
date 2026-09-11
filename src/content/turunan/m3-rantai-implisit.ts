@@ -157,8 +157,8 @@ export const module3: Module = {
               id: 'c2',
               title: { en: 'A root as the outer layer', id: 'Akar sebagai lapisan luar' },
               body: {
-                en: 'A square root composed with something is still just the power $\\tfrac12$ on the outside. For $y = \\sqrt{5x+1} = (5x+1)^{1/2}$:\n$$y\' = \\tfrac12(5x+1)^{-1/2}\\cdot 5 = \\frac{5}{2\\sqrt{5x+1}}$$\nSame recipe as always — outer power rule, inner derivative multiplied on — just with a fractional exponent doing the outer work instead of a whole number.',
-                id: 'Akar kuadrat yang dikomposisikan dengan sesuatu tetap sekadar pangkat $\\tfrac12$ di luarnya. Untuk $y = \\sqrt{5x+1} = (5x+1)^{1/2}$:\n$$y\' = \\tfrac12(5x+1)^{-1/2}\\cdot 5 = \\frac{5}{2\\sqrt{5x+1}}$$\nResep yang sama seperti biasa — aturan pangkat di luar, turunan dalam dikalikan — hanya dengan pangkat pecahan yang mengerjakan bagian luarnya, alih-alih bilangan bulat.',
+                en: 'A square root composed with something is still just the power $\\tfrac{1}{2}$ on the outside. For $y = \\sqrt{5x+1} = (5x+1)^{1/2}$:\n$$y\' = \\tfrac{1}{2}(5x+1)^{-1/2}\\cdot 5 = \\frac{5}{2\\sqrt{5x+1}}$$\nSame recipe as always — outer power rule, inner derivative multiplied on — just with a fractional exponent doing the outer work instead of a whole number.',
+                id: 'Akar kuadrat yang dikomposisikan dengan sesuatu tetap sekadar pangkat $\\tfrac{1}{2}$ di luarnya. Untuk $y = \\sqrt{5x+1} = (5x+1)^{1/2}$:\n$$y\' = \\tfrac{1}{2}(5x+1)^{-1/2}\\cdot 5 = \\frac{5}{2\\sqrt{5x+1}}$$\nResep yang sama seperti biasa — aturan pangkat di luar, turunan dalam dikalikan — hanya dengan pangkat pecahan yang mengerjakan bagian luarnya, alih-alih bilangan bulat.',
               },
             },
             {
@@ -253,7 +253,7 @@ export const module3: Module = {
           {
             prompt: { en: 'Differentiate $y = \\sqrt{4x+9}$.', id: 'Turunkan $y = \\sqrt{4x+9}$.' },
             blanks: [{ formula: '2/sqrt(4*x+9)', domain: [1, 4] }],
-            solution: ['y\' = \\tfrac12(4x+9)^{-1/2}\\cdot 4 = \\dfrac{2}{\\sqrt{4x+9}}'],
+            solution: ['y\' = \\tfrac{1}{2}(4x+9)^{-1/2}\\cdot 4 = \\dfrac{2}{\\sqrt{4x+9}}'],
           },
           {
             prompt: {

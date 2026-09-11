@@ -222,7 +222,7 @@ export const module7: Module = {
           {
             prompt: { en: 'Evaluate $\\lim_{x\\to 0}\\dfrac{1 - \\cos x}{x^2}$.', id: 'Hitung $\\lim_{x\\to 0}\\dfrac{1 - \\cos x}{x^2}$.' },
             blanks: [{ answer: 0.5 }],
-            solution: ["\\lim \\dfrac{\\sin x}{2x} = \\lim\\dfrac{\\cos x}{2} = \\dfrac12"],
+            solution: ["\\lim \\dfrac{\\sin x}{2x} = \\lim\\dfrac{\\cos x}{2} = \\dfrac{1}{2}"],
           },
           {
             prompt: { en: 'Evaluate $\\lim_{x\\to 1}\\dfrac{\\ln x}{x - 1}$.', id: 'Hitung $\\lim_{x\\to 1}\\dfrac{\\ln x}{x - 1}$.' },
@@ -494,7 +494,7 @@ export const module7: Module = {
           {
             prompt: { en: 'Use one step of Newton\'s Method on $f(x) = x^2 - 10$, starting at $x_0 = 3$, to find $x_1$.', id: 'Pakai satu langkah Metode Newton pada $f(x) = x^2 - 10$, mulai dari $x_0 = 3$, untuk mencari $x_1$.' },
             blanks: [{ answer: 19 / 6, tol: 0.001 }],
-            solution: ["x_1 = 3 - \\dfrac{9-10}{6} = 3+\\dfrac16 = \\dfrac{19}{6} \\approx 3{,}1667"],
+            solution: ["x_1 = 3 - \\dfrac{9-10}{6} = 3+\\dfrac{1}{6} = \\dfrac{19}{6} \\approx 3{,}1667"],
           },
           {
             prompt: { en: 'Continuing from $x_1 = 19/6$, use one more step of Newton\'s Method on the same $f(x) = x^2 - 10$ to find $x_2$. (Round to four decimal places.)', id: 'Melanjutkan dari $x_1 = 19/6$, pakai satu langkah lagi Metode Newton pada $f(x) = x^2 - 10$ yang sama untuk mencari $x_2$. (Bulatkan ke empat desimal.)' },

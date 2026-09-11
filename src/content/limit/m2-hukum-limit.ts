@@ -328,8 +328,8 @@ export const module2: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Evaluate $\\displaystyle\\lim_{x \\to -1} \\frac{x^2 + 4x + 3}{x + 1}$ by factoring.',
-                id: 'Hitung $\\displaystyle\\lim_{x \\to -1} \\frac{x^2 + 4x + 3}{x + 1}$ dengan memfaktorkan.',
+                en: 'Evaluate $\\lim_{x \\to -1} \\frac{x^2 + 4x + 3}{x + 1}$ by factoring.',
+                id: 'Hitung $\\lim_{x \\to -1} \\frac{x^2 + 4x + 3}{x + 1}$ dengan memfaktorkan.',
               },
               blanks: [{ label: '\\lim_{x \\to -1} \\tfrac{x^2+4x+3}{x+1} =', answer: 2 }],
               hints: [
@@ -402,8 +402,8 @@ export const module2: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Evaluate $\\displaystyle\\lim_{x \\to 0} \\frac{\\sqrt{x+9}-3}{x}$.',
-                id: 'Hitung $\\displaystyle\\lim_{x \\to 0} \\frac{\\sqrt{x+9}-3}{x}$.',
+                en: 'Evaluate $\\lim_{x \\to 0} \\frac{\\sqrt{x+9}-3}{x}$.',
+                id: 'Hitung $\\lim_{x \\to 0} \\frac{\\sqrt{x+9}-3}{x}$.',
               },
               blanks: [{ answer: 1 / 6 }],
               hints: [
@@ -432,16 +432,16 @@ export const module2: Module = {
         tasks: [
           {
             prompt: {
-              en: 'Evaluate $\\displaystyle\\lim_{x \\to 2} \\frac{x^2 - x - 2}{x - 2}$.',
-              id: 'Hitung $\\displaystyle\\lim_{x \\to 2} \\frac{x^2 - x - 2}{x - 2}$.',
+              en: 'Evaluate $\\lim_{x \\to 2} \\frac{x^2 - x - 2}{x - 2}$.',
+              id: 'Hitung $\\lim_{x \\to 2} \\frac{x^2 - x - 2}{x - 2}$.',
             },
             blanks: [{ answer: 3 }],
             solution: ['x^2-x-2 = (x-2)(x+1) \\Rightarrow \\lim_{x \\to 2}(x+1) = 3'],
           },
           {
             prompt: {
-              en: 'Evaluate $\\displaystyle\\lim_{x \\to 0} \\frac{\\sqrt{x+1}-1}{x}$.',
-              id: 'Hitung $\\displaystyle\\lim_{x \\to 0} \\frac{\\sqrt{x+1}-1}{x}$.',
+              en: 'Evaluate $\\lim_{x \\to 0} \\frac{\\sqrt{x+1}-1}{x}$.',
+              id: 'Hitung $\\lim_{x \\to 0} \\frac{\\sqrt{x+1}-1}{x}$.',
             },
             blanks: [{ answer: 0.5 }],
             solution: [
@@ -450,8 +450,8 @@ export const module2: Module = {
           },
           {
             prompt: {
-              en: 'Evaluate $\\displaystyle\\lim_{x \\to 3} \\frac{x^2 - 9}{x^2 - x - 6}$.',
-              id: 'Hitung $\\displaystyle\\lim_{x \\to 3} \\frac{x^2 - 9}{x^2 - x - 6}$.',
+              en: 'Evaluate $\\lim_{x \\to 3} \\frac{x^2 - 9}{x^2 - x - 6}$.',
+              id: 'Hitung $\\lim_{x \\to 3} \\frac{x^2 - 9}{x^2 - x - 6}$.',
             },
             blanks: [{ answer: 1.2 }],
             solution: [

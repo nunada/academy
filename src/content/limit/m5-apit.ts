@@ -357,8 +357,8 @@ export const module5: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Use $\\lim_{u \\to 0} \\dfrac{\\sin u}{u} = 1$ with $u = 3x$ to evaluate $\\displaystyle\\lim_{x \\to 0} \\frac{\\sin 3x}{3x}$.',
-                id: 'Pakai $\\lim_{u \\to 0} \\dfrac{\\sin u}{u} = 1$ dengan $u = 3x$ untuk menghitung $\\displaystyle\\lim_{x \\to 0} \\frac{\\sin 3x}{3x}$.',
+                en: 'Use $\\lim_{u \\to 0} \\dfrac{\\sin u}{u} = 1$ with $u = 3x$ to evaluate $\\lim_{x \\to 0} \\frac{\\sin 3x}{3x}$.',
+                id: 'Pakai $\\lim_{u \\to 0} \\dfrac{\\sin u}{u} = 1$ dengan $u = 3x$ untuk menghitung $\\lim_{x \\to 0} \\frac{\\sin 3x}{3x}$.',
               },
               blanks: [{ answer: 1 }],
               hints: [{ en: 'As $x \\to 0$, $u = 3x \\to 0$ too — it is the exact same special limit, just relabelled.', id: 'Saat $x \\to 0$, $u = 3x \\to 0$ juga — ini limit istimewa yang persis sama, hanya diberi label ulang.' }],

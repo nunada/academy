@@ -697,8 +697,8 @@ export const module4: Module = {
               id: 'c1',
               title: { en: 'The same three steps, on a different identity', id: 'Tiga langkah yang sama, pada identitas yang berbeda' },
               body: {
-                en: 'Let $y=\\arctan x$, so $\\tan y = x$ with $y\\in(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2})$. Differentiate implicitly:\n$$\\sec^2 y \\cdot \\frac{dy}{dx} = 1 \\ \\Rightarrow \\ \\frac{dy}{dx} = \\frac{1}{\\sec^2 y}$$\nRewrite in terms of $x$ using $\\sec^2 y = 1+\\tan^2 y = 1+x^2$ (no domain restriction needed this time, since $\\sec^2 y$ is always positive):\n$$\\frac{d}{dx}(\\arctan x) = \\frac{1}{1+x^2}$$\nUnlike $\\arcsin x$, this derivative is defined for **every** real $x$ — matching the fact that $\\arctan x$ itself is defined on all of $\\mathbb{R}$, not just $[-1,1]$.',
-                id: 'Misalkan $y=\\arctan x$, sehingga $\\tan y = x$ dengan $y\\in(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2})$. Turunkan secara implisit:\n$$\\sec^2 y \\cdot \\frac{dy}{dx} = 1 \\ \\Rightarrow \\ \\frac{dy}{dx} = \\frac{1}{\\sec^2 y}$$\nTulis ulang dalam bentuk $x$ memakai $\\sec^2 y = 1+\\tan^2 y = 1+x^2$ (tak perlu batasan domain kali ini, sebab $\\sec^2 y$ selalu positif):\n$$\\frac{d}{dx}(\\arctan x) = \\frac{1}{1+x^2}$$\nBerbeda dari $\\arcsin x$, turunan ini terdefinisi untuk **setiap** $x$ real — cocok dengan fakta bahwa $\\arctan x$ sendiri terdefinisi di seluruh $\\mathbb{R}$, bukan hanya $[-1,1]$.',
+                en: 'Let $y=\\arctan x$, so $\\tan y = x$ with $y\\in(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2})$. Differentiate implicitly:\n$$\\sec^2 y \\cdot \\frac{dy}{dx} = 1 \\ \\Rightarrow \\ \\frac{dy}{dx} = \\frac{1}{\\sec^2 y}$$\nRewrite in terms of $x$ using $\\sec^2 y = 1+\\tan^2 y = 1+x^2$ (no domain restriction needed this time, since $\\sec^2 y$ is always positive):\n$$\\frac{d}{dx}(\\arctan x) = \\frac{1}{1+x^2}$$\nUnlike $\\arcsin x$, this derivative is defined for **every** real $x$ — matching the fact that $\\arctan x$ itself is defined on all of $ℝ$, not just $[-1,1]$.',
+                id: 'Misalkan $y=\\arctan x$, sehingga $\\tan y = x$ dengan $y\\in(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2})$. Turunkan secara implisit:\n$$\\sec^2 y \\cdot \\frac{dy}{dx} = 1 \\ \\Rightarrow \\ \\frac{dy}{dx} = \\frac{1}{\\sec^2 y}$$\nTulis ulang dalam bentuk $x$ memakai $\\sec^2 y = 1+\\tan^2 y = 1+x^2$ (tak perlu batasan domain kali ini, sebab $\\sec^2 y$ selalu positif):\n$$\\frac{d}{dx}(\\arctan x) = \\frac{1}{1+x^2}$$\nBerbeda dari $\\arcsin x$, turunan ini terdefinisi untuk **setiap** $x$ real — cocok dengan fakta bahwa $\\arctan x$ sendiri terdefinisi di seluruh $ℝ$, bukan hanya $[-1,1]$.',
               },
             },
             {
@@ -784,7 +784,7 @@ export const module4: Module = {
           {
             prompt: { en: 'Evaluate $\\dfrac{d}{dx}(\\arctan x)$ at $x = 2$.', id: 'Hitung $\\dfrac{d}{dx}(\\arctan x)$ di $x = 2$.' },
             blanks: [{ answer: 0.2 }],
-            solution: ['\\tfrac{1}{1+2^2} = \\tfrac15 = 0{,}2'],
+            solution: ['\\tfrac{1}{1+2^2} = \\tfrac{1}{5} = 0{,}2'],
           },
           {
             prompt: { en: 'Differentiate $y = \\arctan(2x)$, then evaluate $y\'$ at $x = 0.5$.', id: 'Turunkan $y = \\arctan(2x)$, lalu hitung $y\'$ di $x = 0.5$.' },

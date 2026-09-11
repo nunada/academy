@@ -102,8 +102,8 @@ export const module3: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Not every limit involves infinity. For contrast, evaluate $\\displaystyle\\lim_{x \\to 5} \\frac{x^2-25}{x-5}$ — an ordinary finite limit, using Module 2\'s factoring technique.',
-                id: 'Tak semua limit melibatkan tak hingga. Sebagai perbandingan, hitung $\\displaystyle\\lim_{x \\to 5} \\frac{x^2-25}{x-5}$ — limit berhingga biasa, dengan teknik pemfaktoran Modul 2.',
+                en: 'Not every limit involves infinity. For contrast, evaluate $\\lim_{x \\to 5} \\frac{x^2-25}{x-5}$ — an ordinary finite limit, using Module 2\'s factoring technique.',
+                id: 'Tak semua limit melibatkan tak hingga. Sebagai perbandingan, hitung $\\lim_{x \\to 5} \\frac{x^2-25}{x-5}$ — limit berhingga biasa, dengan teknik pemfaktoran Modul 2.',
               },
               blanks: [{ answer: 10 }],
               hints: [{ en: '$x^2-25 = (x-5)(x+5)$.', id: '$x^2-25 = (x-5)(x+5)$.' }],
@@ -355,8 +355,8 @@ export const module3: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Evaluate $\\displaystyle\\lim_{x \\to \\infty} \\frac{3x+5}{x-2}$ by dividing every term by $x$.',
-                id: 'Hitung $\\displaystyle\\lim_{x \\to \\infty} \\frac{3x+5}{x-2}$ dengan membagi tiap suku dengan $x$.',
+                en: 'Evaluate $\\lim_{x \\to \\infty} \\frac{3x+5}{x-2}$ by dividing every term by $x$.',
+                id: 'Hitung $\\lim_{x \\to \\infty} \\frac{3x+5}{x-2}$ dengan membagi tiap suku dengan $x$.',
               },
               blanks: [{ answer: 3 }],
               hints: [
@@ -429,8 +429,8 @@ export const module3: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Use degrees alone to evaluate $\\displaystyle\\lim_{x \\to \\infty} \\frac{4x^2 - 1}{2x^2 + 7}$.',
-                id: 'Pakai derajat saja untuk menghitung $\\displaystyle\\lim_{x \\to \\infty} \\frac{4x^2 - 1}{2x^2 + 7}$.',
+                en: 'Use degrees alone to evaluate $\\lim_{x \\to \\infty} \\frac{4x^2 - 1}{2x^2 + 7}$.',
+                id: 'Pakai derajat saja untuk menghitung $\\lim_{x \\to \\infty} \\frac{4x^2 - 1}{2x^2 + 7}$.',
               },
               blanks: [{ answer: 2 }],
               hints: [
