@@ -709,8 +709,8 @@ export const module3: Module = {
               id: 'c1',
               title: { en: 'Four guidelines', id: 'Empat pedoman' },
               body: {
-                en: 'Turning words into an equation always follows the same four steps: **identify the variable** (the quantity the question actually asks for), **translate to algebra** (express every quantity mentioned in terms of that variable), **set up the model** (find the sentence in the problem that becomes the equation), and **solve, and check** that the answer makes sense in the real-world context.\n\nA car rental costs \\$30/day plus 15¢/mile; a 2-day rental bills \\$108. Let $x$ = miles driven. Mileage cost is $0.15x$, daily cost is $2(30)=60$. The model: $0.15x+60=108$, so $x=320$ miles.',
-                id: 'Mengubah kata-kata menjadi persamaan selalu mengikuti empat langkah yang sama: **identifikasi variabelnya** (kuantitas yang sungguh ditanyakan soalnya), **terjemahkan ke aljabar** (nyatakan setiap kuantitas yang disebut dalam bentuk variabel itu), **susun modelnya** (temukan kalimat dalam soal yang menjadi persamaannya), dan **selesaikan, dan periksa** apakah jawabannya masuk akal dalam konteks dunia nyata.\n\nSewa mobil berharga \\$30/hari plus 15¢/mil; sewa 2 hari menagih \\$108. Misalkan $x$ = mil yang ditempuh. Biaya jarak adalah $0.15x$, biaya harian adalah $2(30)=60$. Modelnya: $0.15x+60=108$, sehingga $x=320$ mil.',
+                en: 'Turning words into an equation always follows the same four steps: **identify the variable** (the quantity the question actually asks for), **translate to algebra** (express every quantity mentioned in terms of that variable), **set up the model** (find the sentence in the problem that becomes the equation), and **solve, and check** that the answer makes sense in the real-world context.\n\nA car rental costs ﹩30/day plus 15¢/mile; a 2-day rental bills ﹩108. Let $x$ = miles driven. Mileage cost is $0.15x$, daily cost is $2(30)=60$. The model: $0.15x+60=108$, so $x=320$ miles.',
+                id: 'Mengubah kata-kata menjadi persamaan selalu mengikuti empat langkah yang sama: **identifikasi variabelnya** (kuantitas yang sungguh ditanyakan soalnya), **terjemahkan ke aljabar** (nyatakan setiap kuantitas yang disebut dalam bentuk variabel itu), **susun modelnya** (temukan kalimat dalam soal yang menjadi persamaannya), dan **selesaikan, dan periksa** apakah jawabannya masuk akal dalam konteks dunia nyata.\n\nSewa mobil berharga Rp300.000/hari plus Rp1.500/mil; sewa 2 hari menagih Rp1.080.000. Misalkan $x$ = mil yang ditempuh. Biaya jarak adalah $1500x$, biaya harian adalah $2(300{.}000)=600{.}000$. Modelnya: $1500x+600{.}000=1{.}080{.}000$, sehingga $x=320$ mil.',
               },
             },
             {
@@ -718,8 +718,8 @@ export const module3: Module = {
               id: 'c2',
               title: { en: 'Interest problems', id: 'Soal bunga' },
               body: {
-                en: 'Simple interest is $I=Prt$ ($P$ principal, $r$ annual rate as a decimal, $t$ years). If \\$100,000 is split between two accounts paying $6\\%$ and $4.5\\%$, totaling \\$5025 interest per year: let $x$ = amount at $6\\%$, so $100{,}000-x$ is at $4.5\\%$.\n$$0.06x + 0.045(100{,}000-x) = 5025$$\n$$0.06x+4500-0.045x = 5025 \\ \\Rightarrow \\ 0.015x=525 \\ \\Rightarrow \\ x=35{,}000$$\nSo \\$35,000 is invested at $6\\%$ and \\$65,000 at $4.5\\%$.',
-                id: 'Bunga sederhana adalah $I=Prt$ ($P$ pokok, $r$ laju tahunan sebagai desimal, $t$ tahun). Jika \\$100.000 dibagi ke dua rekening berbunga $6\\%$ dan $4.5\\%$, totalnya \\$5025 bunga per tahun: misalkan $x$ = jumlah pada $6\\%$, sehingga $100{.}000-x$ pada $4.5\\%$.\n$$0.06x + 0.045(100{.}000-x) = 5025$$\n$$0.06x+4500-0.045x = 5025 \\ \\Rightarrow \\ 0.015x=525 \\ \\Rightarrow \\ x=35{.}000$$\nJadi \\$35.000 diinvestasikan pada $6\\%$ dan \\$65.000 pada $4.5\\%$.',
+                en: 'Simple interest is $I=Prt$ ($P$ principal, $r$ annual rate as a decimal, $t$ years). If ﹩100,000 is split between two accounts paying $6\\%$ and $4.5\\%$, totaling ﹩5025 interest per year: let $x$ = amount at $6\\%$, so $100{,}000-x$ is at $4.5\\%$.\n$$0.06x + 0.045(100{,}000-x) = 5025$$\n$$0.06x+4500-0.045x = 5025 \\ \\Rightarrow \\ 0.015x=525 \\ \\Rightarrow \\ x=35{,}000$$\nSo ﹩35,000 is invested at $6\\%$ and ﹩65,000 at $4.5\\%$.',
+                id: 'Bunga sederhana adalah $I=Prt$ ($P$ pokok, $r$ laju tahunan sebagai desimal, $t$ tahun). Jika Rp100.000.000 dibagi ke dua rekening berbunga $6\\%$ dan $4.5\\%$, totalnya Rp5.025.000 bunga per tahun: misalkan $x$ = jumlah pada $6\\%$, sehingga $100{.}000{.}000-x$ pada $4.5\\%$.\n$$0.06x + 0.045(100{.}000{.}000-x) = 5{.}025{.}000$$\n$$0.06x+4{.}500{.}000-0.045x = 5{.}025{.}000 \\ \\Rightarrow \\ 0.015x=525{.}000 \\ \\Rightarrow \\ x=35{.}000{.}000$$\nJadi Rp35.000.000 diinvestasikan pada $6\\%$ dan Rp65.000.000 pada $4.5\\%$.',
               },
             },
             {
@@ -746,22 +746,25 @@ export const module3: Module = {
               id: 'f1',
               math: true,
               prompt: {
-                en: 'A rental charges \\$25/day plus 20¢/mile. A 3-day rental bills \\$115. Set up and solve for miles driven $x$.',
-                id: 'Sebuah sewa membebankan \\$25/hari plus 20¢/mil. Sewa 3 hari menagih \\$115. Susun dan selesaikan untuk mil yang ditempuh $x$.',
+                en: 'A rental charges ﹩25/day plus 20¢/mile. A 3-day rental bills ﹩115. Set up and solve for miles driven $x$.',
+                id: 'Sebuah sewa membebankan Rp25.000/hari plus Rp200/mil. Sewa 3 hari menagih Rp115.000. Susun dan selesaikan untuk mil yang ditempuh $x$.',
               },
-              template: '0.20x + 3(25) = 115 \\ \\Rightarrow \\ x = ___',
+              template: {
+                en: '0.20x + 3(25) = 115 \\ \\Rightarrow \\ x = ___',
+                id: '200x + 3(25{.}000) = 115{.}000 \\ \\Rightarrow \\ x = ___',
+              },
               blanks: ['200'],
               explain: {
                 en: '$0.20x+75=115 \\Rightarrow 0.20x=40 \\Rightarrow x=200$ miles.',
-                id: '$0.20x+75=115 \\Rightarrow 0.20x=40 \\Rightarrow x=200$ mil.',
+                id: '$200x+75{.}000=115{.}000 \\Rightarrow 200x=40{.}000 \\Rightarrow x=200$ mil.',
               },
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: '\\$50,000 is split between accounts paying $5\\%$ and $3\\%$, earning \\$2100 total interest per year. Find the amount invested at $5\\%$.',
-                id: '\\$50.000 dibagi ke rekening berbunga $5\\%$ dan $3\\%$, menghasilkan total \\$2100 bunga per tahun. Cari jumlah yang diinvestasikan pada $5\\%$.',
+                en: '﹩50,000 is split between accounts paying $5\\%$ and $3\\%$, earning ﹩2100 total interest per year. Find the amount invested at $5\\%$.',
+                id: 'Rp50.000 dibagi ke rekening berbunga $5\\%$ dan $3\\%$, menghasilkan total Rp2.100 bunga per tahun. Cari jumlah yang diinvestasikan pada $5\\%$.',
               },
               blanks: [{ answer: 30000 }],
               hints: [
@@ -867,7 +870,7 @@ export const module3: Module = {
         ],
         tasks: [
           {
-            prompt: { en: '\\$20,000 is split between accounts at $7\\%$ and $4\\%$, earning \\$1160 per year. Find the amount at $7\\%$.', id: '\\$20.000 dibagi ke rekening berbunga $7\\%$ dan $4\\%$, menghasilkan \\$1160 per tahun. Cari jumlah pada $7\\%$.' },
+            prompt: { en: '﹩20,000 is split between accounts at $7\\%$ and $4\\%$, earning ﹩1160 per year. Find the amount at $7\\%$.', id: 'Rp20.000 dibagi ke rekening berbunga $7\\%$ dan $4\\%$, menghasilkan Rp1.160 per tahun. Cari jumlah pada $7\\%$.' },
             blanks: [{ answer: 12000 }],
             solution: ['0.07x+0.04(20{,}000-x)=1160 \\Rightarrow 0.03x=360 \\Rightarrow x=12{,}000'],
           },

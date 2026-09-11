@@ -231,8 +231,8 @@ export const module4: Module = {
               id: 'c2',
               title: { en: 'Modeling a comparison', id: 'Memodelkan sebuah perbandingan' },
               body: {
-                en: 'Company A charges \\$19/day + \\$0.40/mile; Company B charges \\$68/day + \\$0.26/mile. For a one-day rental, when is B cheaper?\n$$68 + 0.26x < 19 + 0.40x$$\n$$49 < 0.14x \\ \\Rightarrow \\ x > 350$$\nB is cheaper only once you drive more than $350$ miles — exactly the same four modeling guidelines from the equations module, just ending in an inequality instead of an equation.',
-                id: 'Perusahaan A membebankan \\$19/hari + \\$0.40/mil; Perusahaan B membebankan \\$68/hari + \\$0.26/mil. Untuk sewa satu hari, kapan B lebih murah?\n$$68 + 0.26x < 19 + 0.40x$$\n$$49 < 0.14x \\ \\Rightarrow \\ x > 350$$\nB hanya lebih murah begitu kamu menempuh lebih dari $350$ mil — persis empat pedoman pemodelan yang sama dari modul persamaan, hanya berakhir pada pertidaksamaan alih-alih persamaan.',
+                en: 'Company A charges ﹩19/day + ﹩0.40/mile; Company B charges ﹩68/day + ﹩0.26/mile. For a one-day rental, when is B cheaper?\n$$68 + 0.26x < 19 + 0.40x$$\n$$49 < 0.14x \\ \\Rightarrow \\ x > 350$$\nB is cheaper only once you drive more than $350$ miles — exactly the same four modeling guidelines from the equations module, just ending in an inequality instead of an equation.',
+                id: 'Perusahaan A membebankan Rp190.000/hari + Rp4.000/mil; Perusahaan B membebankan Rp680.000/hari + Rp2.600/mil. Untuk sewa satu hari, kapan B lebih murah?\n$$680{.}000 + 2600x < 190{.}000 + 4000x$$\n$$490{.}000 < 1400x \\ \\Rightarrow \\ x > 350$$\nB hanya lebih murah begitu kamu menempuh lebih dari $350$ mil — persis empat pedoman pemodelan yang sama dari modul persamaan, hanya berakhir pada pertidaksamaan alih-alih persamaan.',
               },
             },
             {
@@ -273,16 +273,16 @@ export const module4: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Company C charges \\$25/day + \\$0.30/mile; Company D charges \\$55/day + \\$0.18/mile. For a one-day rental, beyond how many miles is D cheaper?',
-                id: 'Perusahaan C membebankan \\$25/hari + \\$0.30/mil; Perusahaan D membebankan \\$55/hari + \\$0.18/mil. Untuk sewa satu hari, lewat berapa mil D lebih murah?',
+                en: 'Company C charges ﹩25/day + ﹩0.30/mile; Company D charges ﹩55/day + ﹩0.18/mile. For a one-day rental, beyond how many miles is D cheaper?',
+                id: 'Perusahaan C membebankan Rp250.000/hari + Rp3.000/mil; Perusahaan D membebankan Rp550.000/hari + Rp1.800/mil. Untuk sewa satu hari, lewat berapa mil D lebih murah?',
               },
               blanks: [{ answer: 250 }],
               hints: [
-                { en: 'Set up $55+0.18x < 25+0.30x$ and solve for $x$.', id: 'Susun $55+0.18x < 25+0.30x$ dan selesaikan untuk $x$.' },
+                { en: 'Set up $55+0.18x < 25+0.30x$ and solve for $x$.', id: 'Susun $550{.}000+1800x < 250{.}000+3000x$ dan selesaikan untuk $x$.' },
               ],
               explain: {
                 en: '$30<0.12x \\Rightarrow x>250$ miles.',
-                id: '$30<0.12x \\Rightarrow x>250$ mil.',
+                id: '$300{.}000<1200x \\Rightarrow x>250$ mil.',
               },
             },
           ],
@@ -311,9 +311,12 @@ export const module4: Module = {
             solution: ['x^2-3x-10>0 \\Rightarrow (x-5)(x+2)>0 \\Rightarrow x<-2 \\text{ or } x>5'],
           },
           {
-            prompt: { en: 'Company E: \\$15/day + \\$0.45/mile. Company F: \\$45/day + \\$0.20/mile. Beyond how many miles is F cheaper for a one-day rental?', id: 'Perusahaan E: \\$15/hari + \\$0.45/mil. Perusahaan F: \\$45/hari + \\$0.20/mil. Lewat berapa mil F lebih murah untuk sewa satu hari?' },
+            prompt: { en: 'Company E: ﹩15/day + ﹩0.45/mile. Company F: ﹩45/day + ﹩0.20/mile. Beyond how many miles is F cheaper for a one-day rental?', id: 'Perusahaan E: Rp150.000/hari + Rp4.500/mil. Perusahaan F: Rp450.000/hari + Rp2.000/mil. Lewat berapa mil F lebih murah untuk sewa satu hari?' },
             blanks: [{ answer: 120 }],
-            solution: ['45+0.20x<15+0.45x \\Rightarrow 30<0.25x \\Rightarrow x>120'],
+            solution: {
+              en: ['45+0.20x<15+0.45x \\Rightarrow 30<0.25x \\Rightarrow x>120'],
+              id: ['450{.}000+2000x<150{.}000+4500x \\Rightarrow 300{.}000<2500x \\Rightarrow x>120'],
+            },
           },
         ],
         hints: [
