@@ -710,7 +710,7 @@ export const module3: Module = {
               title: { en: 'Four guidelines', id: 'Empat pedoman' },
               body: {
                 en: 'Turning words into an equation always follows the same four steps: **identify the variable** (the quantity the question actually asks for), **translate to algebra** (express every quantity mentioned in terms of that variable), **set up the model** (find the sentence in the problem that becomes the equation), and **solve, and check** that the answer makes sense in the real-world context.\n\nA car rental costs ﹩30/day plus 15¢/mile; a 2-day rental bills ﹩108. Let $x$ = miles driven. Mileage cost is $0.15x$, daily cost is $2(30)=60$. The model: $0.15x+60=108$, so $x=320$ miles.',
-                id: 'Mengubah kata-kata menjadi persamaan selalu mengikuti empat langkah yang sama: **identifikasi variabelnya** (kuantitas yang sungguh ditanyakan soalnya), **terjemahkan ke aljabar** (nyatakan setiap kuantitas yang disebut dalam bentuk variabel itu), **susun modelnya** (temukan kalimat dalam soal yang menjadi persamaannya), dan **selesaikan, dan periksa** apakah jawabannya masuk akal dalam konteks dunia nyata.\n\nSewa mobil berharga Rp300.000/hari plus Rp1.500/mil; sewa 2 hari menagih Rp1.080.000. Misalkan $x$ = mil yang ditempuh. Biaya jarak adalah $1500x$, biaya harian adalah $2(300{.}000)=600{.}000$. Modelnya: $1500x+600{.}000=1{.}080{.}000$, sehingga $x=320$ mil.',
+                id: 'Mengubah kata-kata menjadi persamaan selalu mengikuti empat langkah yang sama: **identifikasi variabelnya** (kuantitas yang sungguh ditanyakan soalnya), **terjemahkan ke aljabar** (nyatakan setiap kuantitas yang disebut dalam bentuk variabel itu), **susun modelnya** (temukan kalimat dalam soal yang menjadi persamaannya), dan **selesaikan, dan periksa** apakah jawabannya masuk akal dalam konteks dunia nyata.\n\nSewa mobil berharga Rp300.000/hari plus Rp1.500/km; sewa 2 hari menagih Rp1.080.000. Misalkan $x$ = km yang ditempuh. Biaya jarak adalah $1500x$, biaya harian adalah $2(300{.}000)=600{.}000$. Modelnya: $1500x+600{.}000=1{.}080{.}000$, sehingga $x=320$ km.',
               },
             },
             {
@@ -747,7 +747,7 @@ export const module3: Module = {
               math: true,
               prompt: {
                 en: 'A rental charges ﹩25/day plus 20¢/mile. A 3-day rental bills ﹩115. Set up and solve for miles driven $x$.',
-                id: 'Sebuah sewa membebankan Rp25.000/hari plus Rp200/mil. Sewa 3 hari menagih Rp115.000. Susun dan selesaikan untuk mil yang ditempuh $x$.',
+                id: 'Sebuah sewa membebankan Rp25.000/hari plus Rp200/km. Sewa 3 hari menagih Rp115.000. Susun dan selesaikan untuk km yang ditempuh $x$.',
               },
               template: {
                 en: '0.20x + 3(25) = 115 \\ \\Rightarrow \\ x = ___',
@@ -756,7 +756,7 @@ export const module3: Module = {
               blanks: ['200'],
               explain: {
                 en: '$0.20x+75=115 \\Rightarrow 0.20x=40 \\Rightarrow x=200$ miles.',
-                id: '$200x+75{.}000=115{.}000 \\Rightarrow 200x=40{.}000 \\Rightarrow x=200$ mil.',
+                id: '$200x+75{.}000=115{.}000 \\Rightarrow 200x=40{.}000 \\Rightarrow x=200$ km.',
               },
             },
             {
@@ -792,7 +792,7 @@ export const module3: Module = {
               title: { en: 'A garden with a walkway', id: 'Taman dengan jalan setapak' },
               body: {
                 en: 'A square garden has a $3$-ft walkway around its outer edge; the **entire** area (garden plus walkway) is $18{,}000\\text{ ft}^2$. Let $x$ = the side of the planted area. The entire square then has side $x+6$ (the walkway adds $3$ ft on **each** side):\n$$(x+6)^2 = 18{,}000 \\ \\Rightarrow \\ x+6 = \\sqrt{18{,}000} \\ \\Rightarrow \\ x = \\sqrt{18{,}000}-6 \\approx 128 \\text{ ft}$$\nA rectangular lot $8$ ft longer than it is wide, with area $2900 \\text{ ft}^2$: let $w$ = width, so length is $w+8$:\n$$w(w+8)=2900 \\ \\Rightarrow \\ w^2+8w-2900=0 \\ \\Rightarrow \\ (w-50)(w+58)=0$$\nOnly the positive root makes sense: $w=50$ ft, length $58$ ft.',
-                id: 'Taman berbentuk persegi punya jalan setapak $3$ kaki di sekeliling tepi luarnya; luas **seluruhnya** (taman plus jalan setapak) adalah $18{.}000\\text{ ft}^2$. Misalkan $x$ = sisi area yang ditanami. Seluruh persegi itu lalu bersisi $x+6$ (jalan setapak menambah $3$ kaki di **setiap** sisi):\n$$(x+6)^2 = 18{.}000 \\ \\Rightarrow \\ x+6 = \\sqrt{18{.}000} \\ \\Rightarrow \\ x = \\sqrt{18{.}000}-6 \\approx 128 \\text{ ft}$$\nLahan persegi panjang $8$ kaki lebih panjang dari lebarnya, dengan luas $2900 \\text{ ft}^2$: misalkan $w$ = lebar, sehingga panjangnya $w+8$:\n$$w(w+8)=2900 \\ \\Rightarrow \\ w^2+8w-2900=0 \\ \\Rightarrow \\ (w-50)(w+58)=0$$\nHanya akar positif yang masuk akal: $w=50$ kaki, panjang $58$ kaki.',
+                id: 'Taman berbentuk persegi punya jalan setapak $1$ m di sekeliling tepi luarnya; luas **seluruhnya** (taman plus jalan setapak) adalah $400\\text{ m}^2$. Misalkan $x$ = sisi area yang ditanami. Seluruh persegi itu lalu bersisi $x+2$ (jalan setapak menambah $1$ m di **setiap** sisi):\n$$(x+2)^2 = 400 \\ \\Rightarrow \\ x+2 = \\sqrt{400} \\ \\Rightarrow \\ x = \\sqrt{400}-2 = 18 \\text{ m}$$\nLahan persegi panjang $8$ m lebih panjang dari lebarnya, dengan luas $240 \\text{ m}^2$: misalkan $w$ = lebar, sehingga panjangnya $w+8$:\n$$w(w+8)=240 \\ \\Rightarrow \\ w^2+8w-240=0 \\ \\Rightarrow \\ (w-12)(w+20)=0$$\nHanya akar positif yang masuk akal: $w=12$ m, panjang $20$ m.',
               },
             },
             {
@@ -801,7 +801,7 @@ export const module3: Module = {
               title: { en: 'Similar triangles', id: 'Segitiga sebangun' },
               body: {
                 en: 'For similar triangles, the ratios of corresponding sides are equal. A person $6$ ft tall casts a $3.5$-ft shadow next to a building whose shadow is $28$ ft. Letting $h$ = building height, the small and large triangles give:\n$$\\frac{h}{28} = \\frac{6}{3.5} \\ \\Rightarrow \\ h = \\frac{6 \\cdot 28}{3.5} = 48 \\text{ ft}$$',
-                id: 'Untuk segitiga sebangun, rasio sisi-sisi yang bersesuaian sama. Seseorang setinggi $6$ kaki membuat bayangan $3.5$ kaki di samping gedung yang bayangannya $28$ kaki. Misalkan $h$ = tinggi gedung, segitiga kecil dan besar memberi:\n$$\\frac{h}{28} = \\frac{6}{3.5} \\ \\Rightarrow \\ h = \\frac{6 \\cdot 28}{3.5} = 48 \\text{ ft}$$',
+                id: 'Untuk segitiga sebangun, rasio sisi-sisi yang bersesuaian sama. Seseorang setinggi $1.6$ m membuat bayangan $1$ m di samping gedung yang bayangannya $25$ m. Misalkan $h$ = tinggi gedung, segitiga kecil dan besar memberi:\n$$\\frac{h}{25} = \\frac{1.6}{1} \\ \\Rightarrow \\ h = \\frac{1.6 \\cdot 25}{1} = 40 \\text{ m}$$',
               },
             },
             {
@@ -809,7 +809,7 @@ export const module3: Module = {
               id: 'q1',
               prompt: {
                 en: 'A rectangular lot is $5$ ft longer than it is wide, with area $500 \\text{ ft}^2$. Which equation models this, with $w$ = width?',
-                id: 'Lahan persegi panjang $5$ kaki lebih panjang dari lebarnya, dengan luas $500 \\text{ ft}^2$. Persamaan mana yang memodelkan ini, dengan $w$ = lebar?',
+                id: 'Lahan persegi panjang $5$ m lebih panjang dari lebarnya, dengan luas $500 \\text{ m}^2$. Persamaan mana yang memodelkan ini, dengan $w$ = lebar?',
               },
               options: [
                 { en: '$w(w+5) = 500$', id: '$w(w+5) = 500$' },
@@ -843,15 +843,15 @@ export const module3: Module = {
               id: 'm1',
               prompt: {
                 en: 'A person $5.5$ ft tall casts a $4$-ft shadow beside a building with a $32$-ft shadow. Find the building\'s height. (Round to one decimal place.)',
-                id: 'Seseorang setinggi $5.5$ kaki membuat bayangan $4$ kaki di samping gedung berbayangan $32$ kaki. Cari tinggi gedungnya. (Bulatkan ke satu desimal.)',
+                id: 'Seseorang setinggi $1.6$ m membuat bayangan $2$ m di samping gedung berbayangan $55$ m. Cari tinggi gedungnya.',
               },
               blanks: [{ answer: 44, tol: 0.1 }],
               hints: [
-                { en: '$\\dfrac{h}{32} = \\dfrac{5.5}{4}$.', id: '$\\dfrac{h}{32} = \\dfrac{5.5}{4}$.' },
+                { en: '$\\dfrac{h}{32} = \\dfrac{5.5}{4}$.', id: '$\\dfrac{h}{55} = \\dfrac{1.6}{2}$.' },
               ],
               explain: {
                 en: '$h = \\dfrac{5.5 \\cdot 32}{4} = 44$ ft.',
-                id: '$h = \\dfrac{5.5 \\cdot 32}{4} = 44$ ft.',
+                id: '$h = \\dfrac{1.6 \\cdot 55}{2} = 44$ m.',
               },
             },
           ],
@@ -875,14 +875,17 @@ export const module3: Module = {
             solution: ['0.07x+0.04(20{,}000-x)=1160 \\Rightarrow 0.03x=360 \\Rightarrow x=12{,}000'],
           },
           {
-            prompt: { en: 'A rectangular lot is $3$ ft longer than it is wide, with area $154 \\text{ ft}^2$. Find the width.', id: 'Lahan persegi panjang $3$ kaki lebih panjang dari lebarnya, dengan luas $154 \\text{ ft}^2$. Cari lebarnya.' },
+            prompt: { en: 'A rectangular lot is $3$ ft longer than it is wide, with area $154 \\text{ ft}^2$. Find the width.', id: 'Lahan persegi panjang $3$ m lebih panjang dari lebarnya, dengan luas $154 \\text{ m}^2$. Cari lebarnya.' },
             blanks: [{ answer: 11 }],
             solution: ['w(w+3)=154 \\Rightarrow w^2+3w-154=0 \\Rightarrow (w-11)(w+14)=0 \\Rightarrow w=11'],
           },
           {
-            prompt: { en: 'A $6$-ft person casts a $4$-ft shadow beside a tower with a $50$-ft shadow. Find the tower\'s height.', id: 'Orang setinggi $6$ kaki membuat bayangan $4$ kaki di samping menara berbayangan $50$ kaki. Cari tinggi menaranya.' },
+            prompt: { en: 'A $6$-ft person casts a $4$-ft shadow beside a tower with a $50$-ft shadow. Find the tower\'s height.', id: 'Orang setinggi $1.5$ m membuat bayangan $1$ m di samping menara berbayangan $50$ m. Cari tinggi menaranya.' },
             blanks: [{ answer: 75 }],
-            solution: ['\\dfrac{h}{50}=\\dfrac{6}{4} \\Rightarrow h=75 \\text{ ft}'],
+            solution: {
+              en: ['\\dfrac{h}{50}=\\dfrac{6}{4} \\Rightarrow h=75 \\text{ ft}'],
+              id: ['\\dfrac{h}{50}=\\dfrac{1.5}{1} \\Rightarrow h=75 \\text{ m}'],
+            },
           },
         ],
         hints: [

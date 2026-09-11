@@ -195,7 +195,7 @@ export const module6: Module = {
               title: { en: 'Direct variation: a constant multiple', id: 'Variasi langsung: kelipatan konstan' },
               body: {
                 en: '$y$ **varies directly** as $x$ (or is **proportional** to $x$) when $y=kx$ for a fixed **constant of proportionality** $k$ — the graph is a line through the origin with slope $k$.\n\nThunder from a storm $5400$ ft away takes $5$ s to arrive; distance $d$ varies directly with time $t$: $d=kt \\Rightarrow 5400=k(5) \\Rightarrow k=1080$ (roughly the speed of sound, in ft/s). At $t=8$ s: $d=1080(8)=8640$ ft.',
-                id: '$y$ **bervariasi langsung** terhadap $x$ (atau **sebanding** dengan $x$) ketika $y=kx$ untuk **konstanta proporsionalitas** $k$ yang tetap — grafiknya garis melalui titik asal berkemiringan $k$.\n\nGuntur dari badai sejauh $5400$ kaki butuh $5$ detik untuk tiba; jarak $d$ bervariasi langsung terhadap waktu $t$: $d=kt \\Rightarrow 5400=k(5) \\Rightarrow k=1080$ (kira-kira cepat rambat bunyi, dalam kaki/detik). Di $t=8$ detik: $d=1080(8)=8640$ kaki.',
+                id: '$y$ **bervariasi langsung** terhadap $x$ (atau **sebanding** dengan $x$) ketika $y=kx$ untuk **konstanta proporsionalitas** $k$ yang tetap — grafiknya garis melalui titik asal berkemiringan $k$.\n\nGuntur dari badai sejauh $1700$ m butuh $5$ detik untuk tiba; jarak $d$ bervariasi langsung terhadap waktu $t$: $d=kt \\Rightarrow 1700=k(5) \\Rightarrow k=340$ (kira-kira cepat rambat bunyi, dalam m/detik). Di $t=8$ detik: $d=340(8)=2720$ m.',
               },
             },
             {
@@ -263,13 +263,19 @@ export const module6: Module = {
               math: true,
               prompt: {
                 en: 'Thunder from a storm $3240$ ft away takes $3$ s to arrive. Find the constant of proportionality $k$ in $d = kt$.',
-                id: 'Guntur dari badai sejauh $3240$ kaki butuh $3$ detik untuk tiba. Cari konstanta proporsionalitas $k$ pada $d = kt$.',
+                id: 'Guntur dari badai sejauh $1020$ m butuh $3$ detik untuk tiba. Cari konstanta proporsionalitas $k$ pada $d = kt$.',
               },
-              template: 'k = \\dfrac{3240}{3} = ___',
-              blanks: ['1080'],
+              template: {
+                en: 'k = \\dfrac{3240}{3} = ___',
+                id: 'k = \\dfrac{1020}{3} = ___',
+              },
+              blanks: {
+                en: ['1080'],
+                id: ['340'],
+              },
               explain: {
                 en: '$k=\\frac{3240}{3}=1080$ — the same speed of sound as the worked example, just different numbers.',
-                id: '$k=\\frac{3240}{3}=1080$ — cepat rambat bunyi yang sama seperti contoh yang dikerjakan, hanya angkanya berbeda.',
+                id: '$k=\\frac{1020}{3}=340$ — cepat rambat bunyi yang sama seperti contoh yang dikerjakan, hanya angkanya berbeda.',
               },
             },
             {
