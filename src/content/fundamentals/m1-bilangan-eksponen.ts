@@ -43,8 +43,26 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Decimals tell rational from irrational', id: 'Desimal membedakan rasional dari irasional' },
               body: {
-                en: 'Every real number has a decimal expansion, and the pattern of that expansion reveals which kind it is. A **rational** number\'s decimal always **repeats** (or terminates, which is repeating $0$s): $\\frac{1}{2} = 0.5\\overline{0}$, $\\frac{2}{3} = 0.\\overline{6}$, $\\frac{9}{7} = 1.\\overline{285714}$. An **irrational** number\'s decimal **never repeats**: $\\sqrt{2} = 1.414213562\\ldots$, $\\pi = 3.141592653\\ldots$\n\nOn the **real line**, positive numbers sit to the right of the origin $0$ and negative numbers to the left, each at a distance equal to its value. We say $a < b$ (\\"$a$ is less than $b$\\") exactly when $b - a$ is positive — equivalently, when $a$ sits to the left of $b$.',
-                id: 'Setiap bilangan real punya ekspansi desimal, dan pola ekspansinya mengungkap jenisnya. Desimal bilangan **rasional** selalu **berulang** (atau berhenti, yang sama dengan berulang $0$): $\\frac{1}{2} = 0.5\\overline{0}$, $\\frac{2}{3} = 0.\\overline{6}$, $\\frac{9}{7} = 1.\\overline{285714}$. Desimal bilangan **irasional** **tak pernah berulang**: $\\sqrt{2} = 1.414213562\\ldots$, $\\pi = 3.141592653\\ldots$\n\nPada **garis bilangan**, bilangan positif duduk di kanan titik asal $0$ dan bilangan negatif di kiri, masing-masing sejauh nilainya. Kita tulis $a < b$ (\\"$a$ kurang dari $b$\\") persis ketika $b - a$ positif — setara dengan, ketika $a$ duduk di kiri $b$.',
+                en: 'Every real number has a decimal expansion, and the pattern of that expansion reveals which kind it is. A **rational** number\'s decimal always **repeats** (or terminates, which is repeating $0$s): $\\frac{1}{2} = 0.5\\overline{0}$, $\\frac{2}{3} = 0.\\overline{6}$, $\\frac{9}{7} = 1.\\overline{285714}$. An **irrational** number\'s decimal **never repeats**: $\\sqrt{2} = 1.414213562\\ldots$, $\\pi = 3.141592653\\ldots$\n\nOn the **real line**, positive numbers sit to the right of the origin $0$ and negative numbers to the left, each at a distance equal to its value. We say $a < b$ ("$a$ is less than $b$") exactly when $b - a$ is positive — equivalently, when $a$ sits to the left of $b$.',
+                id: 'Setiap bilangan real punya ekspansi desimal, dan pola ekspansinya mengungkap jenisnya. Desimal bilangan **rasional** selalu **berulang** (atau berhenti, yang sama dengan berulang $0$): $\\frac{1}{2} = 0.5\\overline{0}$, $\\frac{2}{3} = 0.\\overline{6}$, $\\frac{9}{7} = 1.\\overline{285714}$. Desimal bilangan **irasional** **tak pernah berulang**: $\\sqrt{2} = 1.414213562\\ldots$, $\\pi = 3.141592653\\ldots$\n\nPada **garis bilangan**, bilangan positif duduk di kanan titik asal $0$ dan bilangan negatif di kiri, masing-masing sejauh nilainya. Kita tulis $a < b$ ("$a$ kurang dari $b$") persis ketika $b - a$ positif — setara dengan, ketika $a$ duduk di kiri $b$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 4],
+                ySpan: [-1, 1],
+                items: [
+                  { t: 'seg', from: [-3, 0], to: [4, 0], color: 'muted' },
+                  { t: 'dot', x: -2, y: 0, color: 'a', label: '-2' },
+                  { t: 'dot', x: -0.5, y: 0, color: 'a', label: '-1/2' },
+                  { t: 'dot', x: 0, y: 0, color: 'muted', label: '0' },
+                  { t: 'dot', x: 1, y: 0, color: 'a', label: '1' },
+                  { t: 'dot', x: 1.4142135623730951, y: 0, color: 'result', label: '√2' },
+                  { t: 'dot', x: 3.141592653589793, y: 0, color: 'result', label: 'π' },
+                ],
+                caption: {
+                  en: 'The rational numbers $-2, -\\frac{1}{2}, 0, 1$ and the irrational numbers $\\sqrt{2}, \\pi$ sit side by side on the same line, with no visual difference — only the decimal expansion tells them apart.',
+                  id: 'Bilangan rasional $-2, -\\frac{1}{2}, 0, 1$ dan bilangan irasional $\\sqrt{2}, \\pi$ duduk berdampingan pada garis yang sama, tanpa perbedaan visual — hanya ekspansi desimalnya yang membedakan.',
+                },
               },
             },
             {
@@ -118,6 +136,18 @@ export const module1: Module = {
               body: {
                 en: 'Three properties justify every rearrangement you make in an algebraic expression. For any real numbers $a, b, c$:\n$$a + b = b + a, \\qquad ab = ba \\qquad \\text{(Commutative — order doesn\'t matter)}$$\n$$(a+b)+c = a+(b+c), \\qquad (ab)c = a(bc) \\qquad \\text{(Associative — grouping doesn\'t matter)}$$\n$$a(b+c) = ab + ac \\qquad \\text{(Distributive — multiply a sum by distributing over it)}$$\nThe Distributive Property is the one that does real work: $2(x+3) = 2x + 6$, and reversed, it is exactly what **factoring** does.',
                 id: 'Tiga sifat membenarkan setiap penataan ulang yang kamu lakukan pada bentuk aljabar. Untuk sebarang bilangan real $a, b, c$:\n$$a + b = b + a, \\qquad ab = ba \\qquad \\text{(Komutatif — urutan tak penting)}$$\n$$(a+b)+c = a+(b+c), \\qquad (ab)c = a(bc) \\qquad \\text{(Asosiatif — pengelompokan tak penting)}$$\n$$a(b+c) = ab + ac \\qquad \\text{(Distributif — mengalikan jumlah dengan menyebarkannya)}$$\nSifat Distributif yang benar-benar bekerja: $2(x+3) = 2x + 6$, dan dibalik, ini persis yang dilakukan **pemfaktoran**.',
+              },
+              figure: {
+                dim: 2,
+                range: 5,
+                items: [
+                  { t: 'poly', pts: [[-4, -1], [-1, -1], [-1, 1], [-4, 1]], color: 'a', label: '2·3 = 6' },
+                  { t: 'poly', pts: [[-1, -1], [4, -1], [4, 1], [-1, 1]], color: 'b', label: '2·5 = 10' },
+                ],
+                caption: {
+                  en: 'A $2$-by-$8$ rectangle, split into a $2$-by-$3$ piece and a $2$-by-$5$ piece: the whole area $2(3+5)$ equals the sum of the parts, $2\\cdot3+2\\cdot5$.',
+                  id: 'Persegi panjang $2$ kali $8$, dibagi menjadi bagian $2$ kali $3$ dan $2$ kali $5$: luas keseluruhan $2(3+5)$ sama dengan jumlah bagian-bagiannya, $2\\cdot3+2\\cdot5$.',
+                },
               },
             },
             {
@@ -216,6 +246,28 @@ export const module1: Module = {
                 en: 'An interval is a segment of the real line. Parentheses exclude an endpoint, brackets include it:\n$$(a,b) = \\{x \\vert a < x < b\\}, \\qquad [a,b] = \\{x \\vert a \\leq x \\leq b\\}$$\n$$[a,b) = \\{x \\vert a \\leq x < b\\}, \\qquad (a,\\infty) = \\{x \\vert a < x\\}$$\n$\\infty$ is not a number — $(a,\\infty)$ just says the interval has no right endpoint. To intersect or unite two intervals, sketch both on the real line and read off where they overlap or combine: $(-1,3) \\cap [2,7] = [2,3)$, while $(-1,3) \\cup [2,7] = (-1,7]$.',
                 id: 'Interval adalah segmen garis bilangan. Tanda kurung mengecualikan titik ujung, tanda siku menyertakannya:\n$$(a,b) = \\{x \\vert a < x < b\\}, \\qquad [a,b] = \\{x \\vert a \\leq x \\leq b\\}$$\n$$[a,b) = \\{x \\vert a \\leq x < b\\}, \\qquad (a,\\infty) = \\{x \\vert a < x\\}$$\n$\\infty$ bukan bilangan — $(a,\\infty)$ hanya menyatakan interval itu tak punya titik ujung kanan. Untuk mengirisi atau menggabungkan dua interval, sketsakan keduanya pada garis bilangan dan baca di mana keduanya tumpang tindih atau tergabung: $(-1,3) \\cap [2,7] = [2,3)$, sedangkan $(-1,3) \\cup [2,7] = (-1,7]$.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 8],
+                ySpan: [-2, 2],
+                items: [
+                  { t: 'vline', x: 2, color: 'muted', dashed: true },
+                  { t: 'vline', x: 3, color: 'muted', dashed: true },
+                  { t: 'seg', from: [-1, 1], to: [3, 1], color: 'a' },
+                  { t: 'dot', x: -1, y: 1, color: 'a', open: true, label: '-1' },
+                  { t: 'dot', x: 3, y: 1, color: 'a', open: true, label: '3' },
+                  { t: 'seg', from: [2, 0], to: [7, 0], color: 'b' },
+                  { t: 'dot', x: 2, y: 0, color: 'b', label: '2' },
+                  { t: 'dot', x: 7, y: 0, color: 'b', label: '7' },
+                  { t: 'seg', from: [2, -1], to: [3, -1], color: 'result' },
+                  { t: 'dot', x: 2, y: -1, color: 'result', label: '2' },
+                  { t: 'dot', x: 3, y: -1, color: 'result', open: true, label: '3' },
+                ],
+                caption: {
+                  en: 'Top row: $(-1,3)$. Middle row: $[2,7]$. Bottom row: the intersection $[2,3)$ — solid only where both rows above are solid, and open at $3$ since the top row is open there.',
+                  id: 'Baris atas: $(-1,3)$. Baris tengah: $[2,7]$. Baris bawah: irisannya $[2,3)$ — padat hanya di tempat kedua baris di atasnya padat, dan terbuka di $3$ sebab baris atas terbuka di situ.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -224,6 +276,22 @@ export const module1: Module = {
               body: {
                 en: '$|a|$ is the distance from $a$ to $0$, so it is never negative: $|a| = a$ if $a \\geq 0$, and $|a| = -a$ if $a < 0$. For instance $|3| = 3$ and $|-3| = -(-3) = 3$.\n\nThis extends to the **distance between two points** on the real line:\n$$d(a,b) = |b - a|$$\nSo the distance between $2$ and $8$ is $d(2,8) = |8-2| = 6$, and between $-2$ and $8$ it is $|8-(-2)| = 10$ — subtraction inside the absolute value handles either order, since $|b-a|=|a-b|$.',
                 id: '$|a|$ adalah jarak dari $a$ ke $0$, sehingga tak pernah negatif: $|a| = a$ jika $a \\geq 0$, dan $|a| = -a$ jika $a < 0$. Misalnya $|3| = 3$ dan $|-3| = -(-3) = 3$.\n\nIni meluas menjadi **jarak antara dua titik** pada garis bilangan:\n$$d(a,b) = |b - a|$$\nJadi jarak antara $2$ dan $8$ adalah $d(2,8) = |8-2| = 6$, dan antara $-2$ dan $8$ adalah $|8-(-2)| = 10$ — pengurangan di dalam nilai mutlak menangani urutan mana pun, sebab $|b-a|=|a-b|$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 10],
+                ySpan: [-1, 2],
+                items: [
+                  { t: 'seg', from: [-2, 1], to: [8, 1], color: 'result', label: 'd = 10' },
+                  { t: 'vline', x: -2, color: 'muted', dashed: true },
+                  { t: 'vline', x: 8, color: 'muted', dashed: true },
+                  { t: 'dot', x: -2, y: 0, color: 'a', label: '-2' },
+                  { t: 'dot', x: 8, y: 0, color: 'a', label: '8' },
+                ],
+                caption: {
+                  en: 'The distance between $-2$ and $8$ is $10$ units, regardless of which one is subtracted from which.',
+                  id: 'Jarak antara $-2$ dan $8$ adalah $10$ satuan, tak peduli mana yang dikurangkan dari mana.',
+                },
               },
             },
             {

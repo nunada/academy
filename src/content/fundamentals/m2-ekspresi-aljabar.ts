@@ -46,6 +46,20 @@ export const module2: Module = {
                 en: 'Multiplying two binomials distributes each term of one over the other — **F**irst, **O**uter, **I**nner, **L**ast:\n$$(a+b)(c+d) = ac+ad+bc+bd$$\nCertain products recur often enough to memorize, for any expressions $A, B$:\n$$(A+B)(A-B)=A^2-B^2, \\qquad (A+B)^2=A^2+2AB+B^2, \\qquad (A-B)^2=A^2-2AB+B^2$$\nFor example, $(3x-5)^2 = (3x)^2-2(3x)(5)+5^2 = 9x^2-30x+25$ — substituting $A=3x, B=5$ into the square-of-a-difference formula.',
                 id: 'Mengalikan dua binomial menyebarkan tiap suku dari satu atas yang lain — **F**irst (pertama), **O**uter (luar), **I**nner (dalam), **L**ast (terakhir):\n$$(a+b)(c+d) = ac+ad+bc+bd$$\nHasil kali tertentu cukup sering muncul untuk dihafal, untuk sebarang bentuk $A, B$:\n$$(A+B)(A-B)=A^2-B^2, \\qquad (A+B)^2=A^2+2AB+B^2, \\qquad (A-B)^2=A^2-2AB+B^2$$\nMisalnya, $(3x-5)^2 = (3x)^2-2(3x)(5)+5^2 = 9x^2-30x+25$ — mensubstitusikan $A=3x, B=5$ ke rumus kuadrat selisih.',
               },
+              figure: {
+                dim: 2,
+                range: 3,
+                items: [
+                  { t: 'poly', pts: [[-2.5, -2.5], [0.5, -2.5], [0.5, 1.5], [-2.5, 1.5]], color: 'a', label: '3·4=12' },
+                  { t: 'poly', pts: [[0.5, -2.5], [2.5, -2.5], [2.5, 1.5], [0.5, 1.5]], color: 'b', label: '2·4=8' },
+                  { t: 'poly', pts: [[-2.5, 1.5], [0.5, 1.5], [0.5, 2.5], [-2.5, 2.5]], color: 'b', label: '3·1=3' },
+                  { t: 'poly', pts: [[0.5, 1.5], [2.5, 1.5], [2.5, 2.5], [0.5, 2.5]], color: 'c', label: '2·1=2' },
+                ],
+                caption: {
+                  en: 'FOIL is just the area of a $(3+2)$-by-$(4+1)$ rectangle, split into its four pieces: $(3+2)(4+1) = 12+8+3+2 = 25 = 5\\times5$.',
+                  id: 'FOIL hanyalah luas persegi panjang $(3+2)$ kali $(4+1)$, dibagi menjadi empat bagiannya: $(3+2)(4+1) = 12+8+3+2 = 25 = 5\\times5$.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -277,6 +291,22 @@ export const module2: Module = {
               body: {
                 en: 'A **rational expression** is a quotient of two polynomials. Its domain is every real number **except** those that make the denominator $0$. For $\\dfrac{x}{x^2-5x+6}$, factor the denominator first: $x^2-5x+6=(x-2)(x-3)$, so the domain excludes $x=2$ and $x=3$.\n\nAn expression with a root has an extra restriction: $\\sqrt{x}$ needs $x \\geq 0$ on top of any denominator condition.',
                 id: '**Pecahan aljabar** adalah hasil bagi dua polinomial. Domainnya adalah setiap bilangan real **kecuali** yang membuat penyebutnya $0$. Untuk $\\dfrac{x}{x^2-5x+6}$, faktorkan dulu penyebutnya: $x^2-5x+6=(x-2)(x-3)$, sehingga domainnya mengecualikan $x=2$ dan $x=3$.\n\nBentuk dengan akar punya syarat tambahan: $\\sqrt{x}$ perlu $x \\geq 0$ selain syarat penyebut mana pun.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-1, 6],
+                ySpan: [-1, 1],
+                items: [
+                  { t: 'seg', from: [-1, 0], to: [1.85, 0], color: 'result' },
+                  { t: 'seg', from: [2.15, 0], to: [2.85, 0], color: 'result' },
+                  { t: 'seg', from: [3.15, 0], to: [6, 0], color: 'result' },
+                  { t: 'dot', x: 2, y: 0, color: 'muted', open: true, label: '2' },
+                  { t: 'dot', x: 3, y: 0, color: 'muted', open: true, label: '3' },
+                ],
+                caption: {
+                  en: 'The domain of $\\dfrac{x}{x^2-5x+6}$ — every real number except the two open gaps at $x=2$ and $x=3$.',
+                  id: 'Domain dari $\\dfrac{x}{x^2-5x+6}$ — setiap bilangan real kecuali dua celah terbuka di $x=2$ dan $x=3$.',
+                },
               },
             },
             {

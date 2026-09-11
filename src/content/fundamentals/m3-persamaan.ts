@@ -47,6 +47,22 @@ export const module3: Module = {
                 en: 'A **formula** relates several variables, and you can solve for any one of them by treating the others as if they were numbers. Newton\'s Law of Gravity, $F = G\\dfrac{mM}{r^2}$, solved for $M$:\n$$F = \\left(\\frac{Gm}{r^2}\\right)M \\quad \\Rightarrow \\quad M = \\frac{Fr^2}{Gm}$$\nThe box\'s surface area $A = 2l w + 2wh + 2l h$ solved for $w$ requires collecting **both** $w$-terms first: $A - 2l h = (2l+2h)w$, so $w = \\dfrac{A-2l h}{2l+2h}$.',
                 id: '**Formula** mengaitkan beberapa variabel, dan kamu bisa menyelesaikan untuk salah satunya dengan memperlakukan yang lain seolah bilangan. Hukum Gravitasi Newton, $F = G\\dfrac{mM}{r^2}$, diselesaikan untuk $M$:\n$$F = \\left(\\frac{Gm}{r^2}\\right)M \\quad \\Rightarrow \\quad M = \\frac{Fr^2}{Gm}$$\nLuas permukaan kotak $A = 2l w + 2wh + 2l h$ diselesaikan untuk $w$ memerlukan mengumpulkan **kedua** suku $w$ terlebih dahulu: $A - 2l h = (2l+2h)w$, sehingga $w = \\dfrac{A-2l h}{2l+2h}$.',
               },
+              figure: {
+                dim: 3,
+                range: 4,
+                interactive: true,
+                view: [30, 20],
+                items: [
+                  { t: 'box', a: [3, 0, 0], b: [0, 2, 0], c: [0, 0, 1.5] },
+                  { t: 'vec', to: [3, 0, 0], label: 'l', color: 'a' },
+                  { t: 'vec', to: [0, 2, 0], label: 'w', color: 'b' },
+                  { t: 'vec', to: [0, 0, 1.5], label: 'h', color: 'c' },
+                ],
+                caption: {
+                  en: 'A box with length $l$, width $w$, and height $h$: its surface area $A=2lw+2wh+2lh$ is twice each of the three faces meeting at this corner.',
+                  id: 'Sebuah kotak dengan panjang $l$, lebar $w$, dan tinggi $h$: luas permukaannya $A=2lw+2wh+2lh$ adalah dua kali tiap tiga bidang yang bertemu di sudut ini.',
+                },
+              },
             },
             {
               kind: 'quiz',
