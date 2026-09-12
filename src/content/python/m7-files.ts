@@ -90,6 +90,10 @@ export const module7: Module = {
                 en: 'Mode "w" truncates the file before writing. Use "a" to append instead.',
                 id: 'Mode "w" mengosongkan berkas sebelum menulis. Pakai "a" bila ingin menambahkan.',
               },
+              hint: {
+                en: "Recall what mode \"w\" does to a file's existing contents the moment it's opened, before any writing happens.",
+                id: 'Ingat apa yang dilakukan mode "w" terhadap isi berkas yang sudah ada, tepat saat berkas dibuka, sebelum penulisan terjadi.',
+              },
             },
             {
               kind: 'fill',
@@ -106,6 +110,10 @@ export const module7: Module = {
               explain: {
                 en: 'with handles the closing; "w" opens the file for writing.',
                 id: 'with mengurus penutupannya; "w" membuka berkas untuk ditulis.',
+              },
+              hint: {
+                en: 'The first blank is the keyword that opens a file and closes it automatically when the block ends; the second blank is the mode letter for writing.',
+                id: 'Bagian kosong pertama adalah kata kunci yang membuka berkas dan menutupnya otomatis saat blok berakhir; bagian kosong kedua adalah huruf mode untuk menulis.',
               },
             },
             {
@@ -222,6 +230,10 @@ export const module7: Module = {
                 en: 'readlines() returns a list with one item per line, each still carrying its newline.',
                 id: 'readlines() mengembalikan list berisi satu item per baris, masing-masing masih membawa baris barunya.',
               },
+              hint: {
+                en: 'Think about what readlines() actually returns — one thing for the whole file, or one item per line?',
+                id: 'Pikirkan apa yang sebenarnya dikembalikan readlines() — satu hal untuk seluruh berkas, atau satu item per baris?',
+              },
             },
             {
               kind: 'order',
@@ -237,6 +249,10 @@ export const module7: Module = {
               explain: {
                 en: 'The counter is created before the file is opened and printed after the block closes it.',
                 id: 'Pencacahnya dibuat sebelum berkas dibuka dan dicetak setelah bloknya menutup berkas.',
+              },
+              hint: {
+                en: 'The counter needs a starting value before the loop can add to it, and the file has to be open before you can loop over its lines.',
+                id: 'Pencacahnya butuh nilai awal sebelum loop bisa menambahkannya, dan berkasnya harus dibuka dulu sebelum kamu bisa mengulang barisnya.',
               },
             },
             {
@@ -425,6 +441,10 @@ export const module7: Module = {
                 en: 'split cuts at every separator, so two commas in a row produce an empty string between them.',
                 id: 'split memotong di tiap pemisah, jadi dua koma berurutan menghasilkan string kosong di antaranya.',
               },
+              hint: {
+                en: 'Walk through the string character by character and mark every place a comma sits — each comma creates a cut, even one right next to another comma.',
+                id: 'Telusuri string-nya karakter demi karakter dan tandai tiap tempat ada koma — tiap koma membuat potongan, bahkan yang berdekatan dengan koma lain.',
+              },
             },
             {
               kind: 'fill',
@@ -441,6 +461,10 @@ export const module7: Module = {
               explain: {
                 en: 'split gives a list of text; int turns the middle field into a number.',
                 id: 'split memberi list berisi teks; int mengubah kolom tengahnya menjadi angka.',
+              },
+              hint: {
+                en: 'The first blank is the string method that cuts text on a separator; the second blank is the function that turns the resulting text field into a real number.',
+                id: 'Bagian kosong pertama adalah metode string yang memotong teks pada pemisah; bagian kosong kedua adalah fungsi yang mengubah kolom teks hasilnya menjadi angka sungguhan.',
               },
             },
             {
@@ -546,6 +570,10 @@ export const module7: Module = {
               explain: {
                 en: 'Unpacking demands an exact match. Three values and two names raises ValueError.',
                 id: 'Pembongkaran menuntut jumlah yang tepat sama. Tiga nilai dan dua nama memunculkan ValueError.',
+              },
+              hint: {
+                en: 'Count how many pieces `.split(",")` actually produces from `"Ani,80,extra"`, and compare that to how many names sit on the left of the `=`.',
+                id: 'Hitung berapa potongan yang sebenarnya dihasilkan `.split(",")` dari `"Ani,80,extra"`, lalu bandingkan dengan jumlah nama di sisi kiri `=`.',
               },
             },
             {

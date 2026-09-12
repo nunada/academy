@@ -64,6 +64,10 @@ export const module1: Module = {
                 en: 'Subtraction works elementwise too: 10-1, 20-2, 30-3.',
                 id: 'Pengurangan juga bekerja elementwise: 10-1, 20-2, 30-3.',
               },
+              hint: {
+                en: 'Subtraction works elementwise, just like addition did — subtract each pair of matching positions, not add them.',
+                id: 'Pengurangan bekerja elementwise, sama seperti penjumlahan tadi — kurangi tiap pasangan posisi yang cocok, bukan menjumlahkannya.',
+              },
             },
             {
               kind: 'fill',
@@ -78,6 +82,10 @@ export const module1: Module = {
                 en: 'Multiplying by a single number scales every element the same way.',
                 id: 'Mengalikan dengan satu angka menskalakan tiap unsur dengan cara yang sama.',
               },
+              hint: {
+                en: 'Doubling every element means scaling the whole array by a single number — which arithmetic operator spreads across every position like that?',
+                id: 'Menggandakan tiap unsur berarti menskalakan seluruh array dengan satu angka — operator aritmetika mana yang menjangkau tiap posisi seperti itu?',
+              },
             },
             {
               kind: 'order',
@@ -90,6 +98,10 @@ export const module1: Module = {
               explain: {
                 en: 'Both arrays have to exist before they can be added together.',
                 id: 'Kedua arraynya harus ada dulu sebelum bisa dijumlahkan.',
+              },
+              hint: {
+                en: 'numpy has to be imported before `np.array` can be used, and both arrays need to exist before they can be added together.',
+                id: 'numpy harus diimpor dulu sebelum `np.array` bisa dipakai, dan kedua arraynya harus ada dulu sebelum bisa dijumlahkan.',
               },
             },
             {
@@ -159,6 +171,10 @@ export const module1: Module = {
                 en: 'Index 2 through 4, not including 4 — that is the elements at positions 2 and 3: 30 and 40.',
                 id: 'Indeks 2 sampai 4, tidak termasuk 4 — itu unsur pada posisi 2 dan 3: 30 dan 40.',
               },
+              hint: {
+                en: 'Slicing stops right before the second index — list out which positions 2 and 3 actually hold, not position 4.',
+                id: 'Slicing berhenti tepat sebelum indeks keduanya — daftar unsur apa yang sebenarnya ada di posisi 2 dan 3, bukan posisi 4.',
+              },
             },
             {
               kind: 'fill',
@@ -173,6 +189,10 @@ export const module1: Module = {
                 en: 'Leaving the right side of the colon empty means "through the end of the array".',
                 id: 'Mengosongkan sisi kanan titik dua berarti "sampai akhir array".',
               },
+              hint: {
+                en: 'You want everything from index 2 onward — what punctuation marks a slice, and what happens when you leave one side of it empty?',
+                id: 'Kamu ingin semuanya dari indeks 2 dan seterusnya — tanda baca apa yang menandai slice, dan apa yang terjadi bila salah satu sisinya dikosongkan?',
+              },
             },
             {
               kind: 'order',
@@ -185,6 +205,10 @@ export const module1: Module = {
               explain: {
                 en: 'A negative start with an empty end reaches from that far back to the very end.',
                 id: 'Awalan negatif dengan akhiran kosong menjangkau dari sejauh itu ke belakang sampai ke ujung.',
+              },
+              hint: {
+                en: 'The array has to exist before you can slice into it, and the import has to come before `np.array` is used at all.',
+                id: 'Array-nya harus ada dulu sebelum bisa di-slice, dan impornya harus datang sebelum `np.array` dipakai sama sekali.',
               },
             },
             {
@@ -293,6 +317,10 @@ export const module1: Module = {
                 en: '2*3 + 0*0 = 6 — two vectors pointing the same way always give a positive dot product.',
                 id: '2*3 + 0*0 = 6 — dua vektor yang mengarah sama selalu menghasilkan dot product positif.',
               },
+              hint: {
+                en: "Multiply each matching pair of components first, then add those products together — don't stop after just one pair.",
+                id: 'Kalikan dulu tiap pasangan komponen yang cocok, lalu jumlahkan hasil perkaliannya — jangan berhenti di satu pasangan saja.',
+              },
             },
             {
               kind: 'fill',
@@ -307,6 +335,10 @@ export const module1: Module = {
                 en: 'np.dot is the function that multiplies and sums in one step.',
                 id: 'np.dot adalah fungsi yang mengalikan dan menjumlahkan dalam satu langkah.',
               },
+              hint: {
+                en: 'You need the numpy function that both multiplies matching elements and adds up the results in one call.',
+                id: 'Kamu butuh fungsi numpy yang sekaligus mengalikan unsur yang cocok dan menjumlahkan hasilnya dalam satu pemanggilan.',
+              },
             },
             {
               kind: 'order',
@@ -319,6 +351,10 @@ export const module1: Module = {
               explain: {
                 en: 'Both arrays have to exist before np.dot can combine them.',
                 id: 'Kedua arraynya harus ada dulu sebelum np.dot bisa menggabungkannya.',
+              },
+              hint: {
+                en: 'Both arrays need to exist before `np.dot` can combine them, and numpy itself has to be imported first.',
+                id: 'Kedua arraynya harus ada dulu sebelum `np.dot` bisa menggabungkannya, dan numpy sendiri harus diimpor lebih dulu.',
               },
             },
             {
@@ -385,6 +421,10 @@ export const module1: Module = {
                 en: 'sqrt(5² + 12²) is sqrt(169), which is 13 — the 5-12-13 triangle.',
                 id: 'sqrt(5² + 12²) adalah sqrt(169), yaitu 13 — segitiga 5-12-13.',
               },
+              hint: {
+                en: 'Square each component, add the squares together, then think about which operation undoes squaring to recover the length.',
+                id: 'Kuadratkan tiap komponen, jumlahkan hasil kuadratnya, lalu pikirkan operasi apa yang membalik pengkuadratan untuk mendapatkan panjangnya.',
+              },
             },
             {
               kind: 'fill',
@@ -399,6 +439,10 @@ export const module1: Module = {
                 en: 'norm is the function under np.linalg that measures a vector\'s length.',
                 id: 'norm adalah fungsi di bawah np.linalg yang mengukur panjang sebuah vektor.',
               },
+              hint: {
+                en: "You want the function living under `np.linalg` whose whole job is measuring a vector's length.",
+                id: 'Kamu butuh fungsi yang berada di bawah `np.linalg` yang tugasnya mengukur panjang sebuah vektor.',
+              },
             },
             {
               kind: 'order',
@@ -411,6 +455,10 @@ export const module1: Module = {
               explain: {
                 en: 'norm works on a vector of any length, not only 2D ones.',
                 id: 'norm bekerja pada vektor sepanjang apa pun, tak hanya yang 2D.',
+              },
+              hint: {
+                en: 'The array must exist before its length can be measured, and the import has to come before any numpy call.',
+                id: 'Array-nya harus ada dulu sebelum panjangnya bisa diukur, dan impornya harus datang sebelum pemanggilan numpy apa pun.',
               },
             },
             {

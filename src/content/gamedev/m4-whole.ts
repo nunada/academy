@@ -87,6 +87,10 @@ export const module4: Module = {
                 en: 'A function that can only see one number can only get that one number wrong.',
                 id: 'Fungsi yang hanya bisa melihat satu angka hanya bisa salah pada satu angka itu.',
               },
+              hint: {
+                en: 'Think about how many things could possibly go wrong inside a function whose only visible input is a single number.',
+                id: 'Pikirkan berapa banyak hal yang bisa saja salah di dalam sebuah fungsi yang satu-satunya masukan yang terlihat adalah satu angka.',
+              },
             },
             {
               kind: 'game',
@@ -390,6 +394,10 @@ export const module4: Module = {
                 en: 'Anything that is only for the player to see belongs where the seeing happens.',
                 id: 'Apa pun yang hanya untuk dilihat pemain, tempatnya di tempat melihat itu terjadi.',
               },
+              hint: {
+                en: 'Think about what else in the game reads the positions stored in the state, and what would happen to those readers if the positions themselves started wobbling.',
+                id: 'Pikirkan apa lagi dalam game yang membaca posisi yang disimpan di keadaannya, dan apa yang akan terjadi pada pembaca itu kalau posisinya sendiri yang mulai bergoyang.',
+              },
             },
             {
               kind: 'order',
@@ -409,6 +417,10 @@ export const module4: Module = {
               explain: {
                 en: 'Work the offset out once, then add it as you build each command.',
                 id: 'Hitung pergeserannya sekali, lalu tambahkan saat kamu membangun tiap perintahnya.',
+              },
+              hint: {
+                en: 'The offset has to be computed before it can be added into any drawing command, and the list collecting those commands has to exist before anything is appended to it.',
+                id: 'Pergeserannya harus dihitung sebelum bisa ditambahkan ke perintah gambar mana pun, dan daftar yang menampung perintah itu harus ada sebelum apa pun ditambahkan ke dalamnya.',
               },
             },
             {

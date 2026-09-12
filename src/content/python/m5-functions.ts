@@ -68,6 +68,10 @@ export const module5: Module = {
                 en: 'Defining a function stores it. It runs only when called: hello()',
                 id: 'Mendefinisikan fungsi hanya menyimpannya. Ia jalan hanya saat dipanggil: halo()',
               },
+              hint: {
+                en: "`def` only defines the function — check whether anything in this code actually calls `hello()`.",
+                id: '`def` hanya mendefinisikan fungsinya — periksa apakah ada bagian kode ini yang benar-benar memanggil `halo()`.',
+              },
             },
             {
               kind: 'fill',
@@ -81,6 +85,10 @@ export const module5: Module = {
               explain: {
                 en: 'def introduces the definition; the bare name with brackets calls it.',
                 id: 'def memperkenalkan definisinya; nama polos dengan kurung memanggilnya.',
+              },
+              hint: {
+                en: 'The first blank is the keyword that starts every function definition; the second blank is just the name being called, with no keyword in front of it.',
+                id: 'Bagian kosong pertama adalah kata kunci yang mengawali setiap definisi fungsi; bagian kosong kedua cukup nama yang dipanggil, tanpa kata kunci di depannya.',
               },
             },
             {
@@ -170,6 +178,10 @@ export const module5: Module = {
                 en: 'The function prints 5 but returns nothing, so x is None. This is the classic print-instead-of-return mistake.',
                 id: 'Fungsinya mencetak 5 tapi tidak mengembalikan apa pun, jadi x bernilai None. Ini kesalahan klasik print-alih-alih-return.',
               },
+              hint: {
+                en: "The function prints its result but never uses `return` — think about what a function hands back to its caller when nothing is returned explicitly.",
+                id: 'Fungsinya mencetak hasilnya tapi tidak pernah memakai `return` — pikirkan apa yang dikembalikan sebuah fungsi ke pemanggilnya bila tidak me-return apa pun secara eksplisit.',
+              },
             },
             {
               kind: 'order',
@@ -185,6 +197,10 @@ export const module5: Module = {
               explain: {
                 en: 'The definition must come before the call, and the result is captured into a variable.',
                 id: 'Definisi harus mendahului pemanggilan, dan hasilnya ditampung ke sebuah variabel.',
+              },
+              hint: {
+                en: "A function has to be fully defined before anything can call it, and the variable holding its answer must exist before the final print can show it.",
+                id: 'Fungsi harus didefinisikan sepenuhnya sebelum ada yang bisa memanggilnya, dan variabel yang menyimpan hasilnya harus ada sebelum cetakan akhir bisa menampilkannya.',
               },
             },
             {
@@ -350,6 +366,10 @@ export const module5: Module = {
                 en: 'b falls back to its default of 10, so the result is 5 + 10.',
                 id: 'b memakai nilai bawaannya, 10, jadi hasilnya 5 + 10.',
               },
+              hint: {
+                en: "Only one argument is passed at the call — think about what value `b` takes when the caller doesn't supply one.",
+                id: 'Hanya satu argumen yang diberikan saat memanggil — pikirkan nilai apa yang dipakai `b` saat pemanggil tidak menyediakannya.',
+              },
             },
             {
               kind: 'code',
@@ -441,6 +461,10 @@ export const module5: Module = {
               explain: {
                 en: 'x lives only inside f. To get it out, return it.',
                 id: 'x hanya hidup di dalam f. Untuk mengeluarkannya, kembalikan dengan return.',
+              },
+              hint: {
+                en: "`x` is created inside `f`'s own local scope — think about whether a name defined inside a function is visible to code outside it once the function ends.",
+                id: '`x` dibuat di dalam scope lokal milik `f` sendiri — pikirkan apakah nama yang didefinisikan di dalam fungsi terlihat oleh kode di luarnya setelah fungsi berakhir.',
               },
             },
             {

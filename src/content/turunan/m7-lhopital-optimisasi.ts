@@ -66,6 +66,10 @@ export const module7: Module = {
                 en: "L'Hôpital's Rule specifically resolves the 0/0 and infinity/infinity indeterminate forms. Applying it to a limit that is not actually indeterminate — say, one where direct substitution already gives a clean answer — would silently produce a wrong result.",
                 id: "Aturan L'Hôpital secara khusus menyelesaikan bentuk tak tentu 0/0 dan tak hingga/tak hingga. Menerapkannya pada limit yang sebenarnya bukan tak tentu — misalnya, yang substitusi langsungnya sudah memberi jawaban bersih — akan diam-diam menghasilkan jawaban yang salah.",
               },
+              hint: {
+                en: "Imagine differentiating top and bottom of a limit that direct substitution already answers cleanly. Would that new quotient's limit still have to agree with the original one?",
+                id: "Bayangkan menurunkan atas dan bawah dari sebuah limit yang substitusi langsungnya sudah memberi jawaban bersih. Apakah limit hasil bagi baru itu masih harus cocok dengan yang aslinya?",
+              },
             },
             {
               kind: 'quiz',
@@ -84,6 +88,10 @@ export const module7: Module = {
               explain: {
                 en: "The chain of dependency runs one way only: squeeze theorem, then the derivative of $\\sin x$, then L'Hôpital's Rule reusing that derivative. Nothing here assumes the $\\sin(x)/x$ limit in order to prove itself.",
                 id: "Rantai ketergantungannya berjalan satu arah saja: teorema apit, lalu turunan $\\sin x$, lalu Aturan L'Hôpital memakai ulang turunan itu. Tak ada di sini yang mengasumsikan limit $\\sin(x)/x$ untuk membuktikan dirinya sendiri.",
+              },
+              hint: {
+                en: "Trace the dependency backward: what technique proved $\\frac{d}{dx}(\\sin x)=\\cos x$ in the first place, long before L'Hôpital's Rule ever needed to use that derivative?",
+                id: "Telusuri ketergantungannya ke belakang: teknik apa yang membuktikan $\\frac{d}{dx}(\\sin x)=\\cos x$ sejak awal, jauh sebelum Aturan L'Hôpital pernah perlu memakai turunan itu?",
               },
             },
             {
@@ -160,6 +168,10 @@ export const module7: Module = {
                 en: "The rule's hypothesis is specifically a ratio of two functions each tending to 0, or each tending to infinity. An exponent is neither, so the expression must first be converted — via a logarithm — into a product, and from there into a quotient.",
                 id: "Hipotesis aturannya secara khusus adalah rasio dua fungsi yang masing-masing menuju 0, atau masing-masing menuju tak hingga. Sebuah pangkat bukan keduanya, sehingga ekspresinya harus dikonversi lebih dahulu — lewat logaritma — menjadi hasil kali, dan dari situ menjadi hasil bagi.",
               },
+              hint: {
+                en: "Check the exact shape the rule's hypothesis demands — a ratio of two functions. Is $x^x$, as literally written, a ratio of anything at all?",
+                id: "Periksa bentuk persis yang disyaratkan hipotesis aturannya — rasio dua fungsi. Apakah $x^x$, seperti yang tertulis apa adanya, sebuah rasio dari apa pun?",
+              },
             },
             {
               kind: 'quiz',
@@ -185,6 +197,10 @@ export const module7: Module = {
               explain: {
                 en: 'The curve visibly dips down and levels off near height 1 as x approaches 0 from the right — matching the log-based computation exactly.',
                 id: 'Kurvanya tampak menurun lalu melandai dekat ketinggian 1 saat x mendekati 0 dari kanan — cocok persis dengan penghitungan berbasis log.',
+              },
+              hint: {
+                en: 'Trace the curve with your eye as $x$ gets smaller and smaller from the right — what height does it appear to be settling toward, rather than climbing away from or diving below?',
+                id: 'Telusuri kurvanya dengan mata saat $x$ makin kecil dari kanan — ketinggian apa yang tampak diendapinya, alih-alih menanjak menjauh atau menukik ke bawah?',
               },
             },
             {
@@ -312,6 +328,10 @@ export const module7: Module = {
                 en: 'Every optimization problem starts as a word problem with more than one unknown quantity. Using the given constraint to eliminate one variable is what turns it into something the closed interval method can actually be applied to.',
                 id: 'Setiap soal optimisasi dimulai sebagai soal cerita dengan lebih dari satu besaran yang tak diketahui. Memakai kendala yang diberikan untuk mengeliminasi satu peubah itulah yang mengubahnya menjadi sesuatu yang benar-benar bisa diterapkan metode selang tertutup.',
               },
+              hint: {
+                en: 'A word problem like this one usually names more than one unknown quantity. What has to happen to that situation before Module 6\'s single-variable closed interval method can even be applied?',
+                id: 'Soal cerita seperti ini biasanya menyebut lebih dari satu besaran yang tak diketahui. Apa yang harus terjadi pada situasi itu sebelum metode selang tertutup satu peubah Modul 6 bahkan bisa diterapkan?',
+              },
             },
             {
               kind: 'quiz',
@@ -340,6 +360,10 @@ export const module7: Module = {
               explain: {
                 en: 'At $x = 0$, the width perpendicular to the river vanishes; at $x = 50$, the constraint $2x + y = 100$ forces $y = 0$, the parallel side vanishing instead. Either way, a degenerate rectangle encloses no area at all.',
                 id: 'Di $x = 0$, lebar tegak lurus sungai lenyap; di $x = 50$, kendala $2x + y = 100$ memaksa $y = 0$, sisi sejajarnya yang lenyap sebagai gantinya. Bagaimanapun, persegi panjang yang merosot tak melingkupi luas sama sekali.',
+              },
+              hint: {
+                en: 'A rectangle has two side lengths, $x$ and $100-2x$. Check what happens to each of those two lengths separately at $x=0$ and at $x=50$.',
+                id: 'Persegi panjang punya dua panjang sisi, $x$ dan $100-2x$. Periksa apa yang terjadi pada masing-masing dari dua panjang itu secara terpisah di $x=0$ dan di $x=50$.',
               },
             },
             {
@@ -422,6 +446,10 @@ export const module7: Module = {
                 en: "The formula $x_n - f(x_n)/f'(x_n)$ is exactly the $x$-intercept of the tangent line at $(x_n, f(x_n))$ — the line's own zero standing in for the curve's harder-to-find zero.",
                 id: "Rumus $x_n - f(x_n)/f'(x_n)$ persis titik potong sumbu-$x$ dari garis singgung di $(x_n, f(x_n))$ — nol garis itu sendiri menggantikan nol kurva yang lebih sulit dicari.",
               },
+              hint: {
+                en: "Write out the tangent line's own equation at $(x_n, f(x_n))$ and set it equal to zero to solve for where it crosses the axis — compare what you get to the formula given in the concept above.",
+                id: "Tuliskan persamaan garis singgung sendiri di $(x_n, f(x_n))$ dan samakan dengan nol untuk mencari tempat ia memotong sumbu — bandingkan hasilnya dengan rumus yang diberikan pada konsep di atas.",
+              },
             },
             {
               kind: 'quiz',
@@ -452,6 +480,10 @@ export const module7: Module = {
               explain: {
                 en: 'The dashed tangent line at $(1, -1)$ crosses the $x$-axis at $x = 1.5$ — not the true root itself, but a step closer to it, ready to become the next tangent point.',
                 id: 'Garis singgung putus-putus di $(1, -1)$ memotong sumbu-$x$ di $x = 1.5$ — bukan akar sebenarnya, tetapi selangkah lebih dekat ke situ, siap menjadi titik singgung berikutnya.',
+              },
+              hint: {
+                en: 'Follow the dashed tangent line from where it starts, at the point above $x_0=1$, down to wherever it meets the horizontal axis — that meeting point is what $x_1$ names.',
+                id: 'Ikuti garis singgung putus-putus dari tempat ia berawal, di titik atas $x_0=1$, turun sampai ke tempat ia bertemu sumbu mendatar — titik pertemuan itulah yang dinamai $x_1$.',
               },
             },
             {

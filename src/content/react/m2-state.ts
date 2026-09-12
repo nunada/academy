@@ -86,6 +86,10 @@ export const module2: Module = {
                 en: 'The array destructuring `const [x, setX]` is why you get to pick both names.',
                 id: 'Pembongkaran array `const [x, setX]` itulah sebabnya kamu bebas memilih kedua namanya.',
               },
+              hint: {
+                en: 'Think about the destructuring syntax you write when calling useState — square brackets rather than curly braces — and what that syntax implies about the shape being unpacked.',
+                id: 'Pikirkan sintaks pembongkaran yang kamu tulis saat memanggil useState — kurung siku, bukan kurung kurawal — dan apa yang diisyaratkan sintaks itu tentang bentuk yang dibongkar.',
+              },
             },
             {
               kind: 'fill',
@@ -99,6 +103,10 @@ export const module2: Module = {
               explain: {
                 en: 'The argument is the starting value, used on the first render only.',
                 id: 'Argumennya adalah nilai awal, dipakai hanya pada render pertama.',
+              },
+              hint: {
+                en: 'One blank is the hook\'s name, and the other is the starting value the prompt already told you — think about which position an argument to a function call occupies.',
+                id: 'Satu titik kosong adalah nama hook-nya, dan satu lagi adalah nilai awal yang sudah disebutkan prompt-nya — pikirkan posisi mana yang ditempati argumen sebuah pemanggilan fungsi.',
               },
             },
             {
@@ -236,6 +244,10 @@ export const module2: Module = {
               explain: {
                 en: 'Both computed the same value from the same snapshot. `setN((v) => v + 1)` twice adds two.',
                 id: 'Keduanya menghitung nilai sama dari potret yang sama. `setN((v) => v + 1)` dua kali menambah dua.',
+              },
+              hint: {
+                en: 'Think about whether `n` inside this one render ever changes between the two calls, given that a state update does not apply until the next render.',
+                id: 'Pikirkan apakah `n` di dalam satu render ini pernah berubah di antara kedua pemanggilan, mengingat pembaruan state tidak berlaku sampai render berikutnya.',
               },
             },
             {
@@ -462,6 +474,10 @@ export const module2: Module = {
                 en: 'React re-renders the input back to the state value after each keystroke, so without onChange the state never moves.',
                 id: 'React merender ulang input-nya ke nilai state setelah tiap ketukan, jadi tanpa onChange state-nya tak pernah bergerak.',
               },
+              hint: {
+                en: 'Think about what React does to an input\'s displayed value on every render when that value is bound to a piece of state that never gets updated.',
+                id: 'Pikirkan apa yang dilakukan React terhadap nilai tampilan input pada tiap render ketika nilai itu terikat ke state yang tak pernah diperbarui.',
+              },
             },
             {
               kind: 'web',
@@ -585,6 +601,10 @@ export const module2: Module = {
               explain: {
                 en: 'One owner, passed down. Two owners means two truths, and they will disagree.',
                 id: 'Satu pemilik, dioper ke bawah. Dua pemilik berarti dua kebenaran, dan keduanya akan berselisih.',
+              },
+              hint: {
+                en: 'Think about what happens to two separate copies of the same value the moment only one of them changes.',
+                id: 'Pikirkan apa yang terjadi pada dua salinan terpisah dari nilai yang sama begitu hanya salah satunya yang berubah.',
               },
             },
             {

@@ -132,6 +132,10 @@ export const module2: Module = {
                 en: 'COUNT(*) counts rows; COUNT(coupon) counts the rows where that column is not NULL.',
                 id: 'COUNT(*) menghitung baris; COUNT(kupon) menghitung baris yang kolom itu bukan NULL.',
               },
+              hint: {
+                en: 'One of these counts every row regardless of content; the other only counts rows where that particular column is not empty — work out which is which.',
+                id: 'Salah satu dari ini menghitung setiap baris apa pun isinya; yang lain hanya menghitung baris yang kolom tertentunya tidak kosong — cari tahu mana yang mana.',
+              },
             },
             {
               kind: 'fill',
@@ -148,6 +152,10 @@ export const module2: Module = {
               explain: {
                 en: 'MIN and MAX read a column across every row and keep one value each.',
                 id: 'MIN dan MAX membaca satu kolom di seluruh baris dan menyimpan satu nilai masing-masing.',
+              },
+              hint: {
+                en: 'You need the smallest value in a column, and separately the largest — two aggregate functions built exactly for that pair of jobs.',
+                id: 'Kamu butuh nilai terkecil dalam sebuah kolom, dan secara terpisah yang terbesar — dua fungsi agregat yang memang dibangun untuk pasangan tugas itu.',
               },
             },
             {
@@ -270,6 +278,10 @@ export const module2: Module = {
                 en: 'DISTINCT collapses the repeats first, and only then does COUNT do its counting.',
                 id: 'DISTINCT meringkas pengulangannya dulu, dan baru setelah itu COUNT menghitung.',
               },
+              hint: {
+                en: 'DISTINCT removes repeated customer names before COUNT ever runs — think about how many different names are left to count, not how many orders there were.',
+                id: 'DISTINCT membuang nama pelanggan yang berulang sebelum COUNT berjalan — pikirkan berapa nama berbeda yang tersisa untuk dihitung, bukan berapa pesanan yang ada.',
+              },
             },
             {
               kind: 'order',
@@ -285,6 +297,10 @@ export const module2: Module = {
               explain: {
                 en: 'The WHERE narrows the rows; the aggregate then works on what is left.',
                 id: 'WHERE mempersempit barisnya; agregatnya lalu bekerja pada yang tersisa.',
+              },
+              hint: {
+                en: 'The row filter has to narrow things down before the aggregate can compute anything over what is left, and clause names always appear in one fixed sequence.',
+                id: 'Penyaring barisnya harus mempersempit dulu sebelum agregatnya bisa menghitung apa pun dari sisanya, dan nama klausanya selalu muncul dalam satu urutan tetap.',
               },
             },
             {
@@ -547,6 +563,10 @@ export const module2: Module = {
                 en: 'One row per bucket, and GROUP BY kota makes one bucket per distinct city.',
                 id: 'Satu baris per ember, dan GROUP BY kota membuat satu ember per kota yang berbeda.',
               },
+              hint: {
+                en: 'Count how many distinct city values GROUP BY would form buckets for, since that is what decides how many rows come back.',
+                id: 'Hitung berapa nilai kota berbeda yang akan dibentuk GROUP BY menjadi ember-ember, karena itu yang menentukan berapa baris kembali.',
+              },
             },
             {
               kind: 'sql',
@@ -711,6 +731,10 @@ export const module2: Module = {
                 en: 'An average only exists once the rows are grouped, and HAVING is the clause that runs after that.',
                 id: 'Rata-rata baru ada setelah barisnya dikelompokkan, dan HAVING adalah klausa yang berjalan sesudah itu.',
               },
+              hint: {
+                en: 'Think about whether an average even exists yet at the point WHERE runs, versus the point where the rows have already been bucketed.',
+                id: 'Pikirkan apakah sebuah rata-rata sudah ada pada saat WHERE berjalan, dibandingkan pada saat barisnya sudah dikelompokkan ke dalam embernya.',
+              },
             },
             {
               kind: 'fill',
@@ -727,6 +751,10 @@ export const module2: Module = {
               explain: {
                 en: 'GROUP BY builds one bucket per product; HAVING then discards the small ones.',
                 id: 'GROUP BY membangun satu ember per produk; HAVING lalu membuang yang kecil.',
+              },
+              hint: {
+                en: 'You first need to bucket the rows by product, and then a second clause to keep only the buckets whose count clears the threshold.',
+                id: 'Kamu perlu mengelompokkan barisnya berdasarkan produk lebih dulu, lalu klausa kedua untuk menyisakan hanya ember yang jumlahnya melewati ambang batas.',
               },
             },
             {

@@ -116,6 +116,10 @@ export const module3: Module = {
                 en: 'T was inferred as `boolean` from the argument, and the return type was written in terms of T.',
                 id: 'T disimpulkan sebagai `boolean` dari argumennya, dan tipe kembaliannya ditulis dalam bentuk T.',
               },
+              hint: {
+                en: 'Look at what array was actually passed in, and work out what T gets inferred as from that — then apply the function\'s declared return type in terms of T.',
+                id: 'Lihat array apa yang sungguh dikirim, dan cari tahu T disimpulkan sebagai apa dari situ — lalu terapkan tipe kembalian fungsinya dalam bentuk T.',
+              },
             },
             {
               kind: 'fill',
@@ -132,6 +136,10 @@ export const module3: Module = {
               explain: {
                 en: 'Declare the parameter once in the angle brackets, then use it wherever the type belongs.',
                 id: 'Deklarasikan parameternya sekali di dalam kurung sudut, lalu pakai di mana pun tipenya berada.',
+              },
+              hint: {
+                en: 'A generic type parameter is introduced once, right after the function name, in angle brackets — after that, use the same name everywhere an element\'s type appears in the signature.',
+                id: 'Parameter tipe generik diperkenalkan sekali, tepat setelah nama fungsinya, dalam kurung sudut — setelah itu, pakai nama yang sama di mana pun tipe elemennya muncul pada tanda tangan fungsinya.',
               },
             },
             {
@@ -351,6 +359,10 @@ export const module3: Module = {
               explain: {
                 en: 'Only properties every member has are available before narrowing — here that is just `ok`, which is exactly the one you are meant to check.',
                 id: 'Hanya properti yang dimiliki tiap anggota yang tersedia sebelum penyempitan — di sini hanya `ok`, dan justru itulah yang memang harus kamu periksa.',
+              },
+              hint: {
+                en: 'Look at the union\'s two members and list which properties are common to both — `data` belongs to only one of them, before anything has narrowed which one `h` actually is.',
+                id: 'Lihat kedua anggota union-nya dan daftar properti mana yang dimiliki keduanya — `data` hanya milik salah satunya, sebelum ada apa pun yang mempersempit `h` sebenarnya yang mana.',
               },
             },
             {
@@ -804,6 +816,10 @@ export const module3: Module = {
                 en: 'K was inferred as the literal `"year"`, so `T[K]` is the type at exactly that key.',
                 id: 'K disimpulkan sebagai literal `"tahun"`, jadi `T[K]` adalah tipe pada persis kunci itu.',
               },
+              hint: {
+                en: 'Figure out what K gets inferred as from the actual key string passed in, then look up what type sits at that specific property of `p`.',
+                id: 'Cari tahu K disimpulkan sebagai apa dari string kunci yang sungguh dikirim, lalu lihat tipe apa yang ada di properti spesifik itu pada `p`.',
+              },
             },
             {
               kind: 'ts',
@@ -1027,6 +1043,10 @@ export const module3: Module = {
                 en: 'Omit removes the property entirely. Making it optional would be `Partial<Pick<User, "id">>` joined back on — a different thing.',
                 id: 'Omit membuang propertinya sama sekali. Membuatnya opsional berarti `Partial<Pick<Pengguna, "id">>` digabung kembali — hal yang berbeda.',
               },
+              hint: {
+                en: 'Re-read what Omit was just described as doing to the property you name — does it keep that property in some weakened form, or does it disappear altogether?',
+                id: 'Baca ulang apa yang baru saja dijelaskan dilakukan Omit pada properti yang kamu sebut — apakah ia menyimpan properti itu dalam bentuk yang dilemahkan, atau ia lenyap sepenuhnya?',
+              },
             },
             {
               kind: 'fill',
@@ -1043,6 +1063,10 @@ export const module3: Module = {
               explain: {
                 en: 'Partial makes everything optional; Pick keeps only what you list.',
                 id: 'Partial membuat semuanya opsional; Pick menyimpan hanya yang kamu sebut.',
+              },
+              hint: {
+                en: 'One of the built-ins from this lesson makes every property optional without naming any of them; the other keeps only the properties you explicitly name.',
+                id: 'Salah satu tipe bawaan dari pelajaran ini membuat tiap properti opsional tanpa menyebut satu pun namanya; yang lain menyimpan hanya properti yang kamu sebut secara eksplisit.',
               },
             },
             {

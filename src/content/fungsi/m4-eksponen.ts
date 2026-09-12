@@ -84,6 +84,10 @@ export const module4: Module = {
                 en: '$3^{-2} = \\tfrac{1}{9}$ — small, but positive. A negative exponent gives a reciprocal, never a negative value, so the range is $(0, \\infty)$ and $y = 0$ is an asymptote it never reaches.',
                 id: '$3^{-2} = \\tfrac{1}{9}$ — kecil, tetapi positif. Pangkat negatif memberi kebalikan, tak pernah nilai negatif, jadi range-nya $(0, \\infty)$ dan $y = 0$ adalah asimtot yang tak pernah dicapainya.',
               },
+              hint: {
+                en: 'Try a negative exponent, like $3^{-2}$, and ask yourself whether a reciprocal of a positive number can ever come out negative or zero.',
+                id: 'Coba pangkat negatif, seperti $3^{-2}$, dan tanyakan pada dirimu apakah kebalikan dari bilangan positif bisa pernah menjadi negatif atau nol.',
+              },
             },
             {
               kind: 'quiz',
@@ -112,6 +116,10 @@ export const module4: Module = {
               explain: {
                 en: 'The base $\\tfrac{1}{2}$ is between 0 and 1, so its graph decreases — curve B. Curve A climbs, matching a base greater than 1.',
                 id: 'Basisnya $\\tfrac{1}{2}$ berada antara 0 dan 1, jadi grafiknya turun — kurva B. Kurva A menanjak, sesuai dengan basis lebih dari 1.',
+              },
+              hint: {
+                en: 'Is the base $\\tfrac{1}{2}$ above or below 1? That alone tells you whether the graph should be climbing or falling as $x$ increases.',
+                id: 'Apakah basis $\\tfrac{1}{2}$ berada di atas atau di bawah 1? Itu saja sudah memberitahumu apakah grafiknya seharusnya menanjak atau menurun saat $x$ bertambah.',
               },
             },
             {
@@ -194,6 +202,10 @@ export const module4: Module = {
                 en: 'Twelve hours is four doubling periods, and four doublings multiply by 16. The exponent counts periods, not hours.',
                 id: 'Dua belas jam adalah empat periode penggandaan, dan empat kali penggandaan berarti dikalikan 16. Pangkatnya menghitung periode, bukan jam.',
               },
+              hint: {
+                en: 'The exponent $t/T$ counts how many doubling periods have passed, not how many hours — divide 12 by the doubling time first, then raise 2 to that count and multiply by 500.',
+                id: 'Pangkat $t/T$ menghitung berapa banyak periode penggandaan yang sudah berlalu, bukan berapa jam — bagi 12 dengan waktu penggandaannya dulu, lalu pangkatkan 2 dengan hitungan itu dan kalikan dengan 500.',
+              },
             },
             {
               kind: 'quiz',
@@ -212,6 +224,10 @@ export const module4: Module = {
               explain: {
                 en: 'Three half-lives halve it three times: $\\tfrac{1}{2} \\to \\tfrac{1}{4} \\to \\tfrac{1}{8}$. Halving repeatedly never reaches zero — which is exactly the horizontal asymptote, seen from the physics side.',
                 id: 'Tiga waktu paruh membagi duanya tiga kali: $\\tfrac{1}{2} \\to \\tfrac{1}{4} \\to \\tfrac{1}{8}$. Membagi dua berulang kali tak pernah mencapai nol — dan itulah persis asimtot mendatarnya, dilihat dari sisi fisikanya.',
+              },
+              hint: {
+                en: 'How many half-lives fit into 60 years? Halve the starting amount that many times, one halving at a time, and see what fraction survives.',
+                id: 'Berapa banyak waktu paruh yang muat dalam 60 tahun? Bagi dua jumlah awalnya sebanyak itu, satu pembagian pada satu waktu, dan lihat bagian mana yang bertahan.',
               },
             },
             {
@@ -241,6 +257,10 @@ export const module4: Module = {
               explain: {
                 en: '$t = 4$ is two periods of 2, so $y = 300 \\cdot 3^2 = 300 \\cdot 9 = 2700$ — the marked point.',
                 id: '$t = 4$ adalah dua periode selama 2, jadi $y = 300 \\cdot 3^2 = 300 \\cdot 9 = 2700$ — titik yang ditandai.',
+              },
+              hint: {
+                en: 'Work out $t/2$ for $t = 4$ first — that tells you how many times to multiply by 3, starting from 300.',
+                id: 'Hitung dulu $t/2$ untuk $t = 4$ — itu memberitahumu berapa kali harus mengalikan dengan 3, mulai dari 300.',
               },
             },
             {
@@ -323,6 +343,10 @@ export const module4: Module = {
                 en: '$2^{10} = 1024$ against $10^2 = 100$. The exponential wins, and this is with a base of only 2 — with the exponent going up, no power function ever keeps up for long.',
                 id: '$2^{10} = 1024$ melawan $10^2 = 100$. Eksponennya menang, dan itu dengan basis yang hanya 2 — begitu pangkatnya naik, tak ada fungsi pangkat yang bisa mengimbanginya lama-lama.',
               },
+              hint: {
+                en: 'Actually compute both: $2$ multiplied by itself ten times, against $10$ multiplied by itself twice. The gap is bigger than it first looks.',
+                id: 'Hitung sungguhan keduanya: $2$ dikalikan dirinya sepuluh kali, melawan $10$ dikalikan dirinya dua kali. Selisihnya lebih besar daripada yang tampak sekilas.',
+              },
             },
             {
               kind: 'quiz',
@@ -352,6 +376,10 @@ export const module4: Module = {
               explain: {
                 en: 'Since $2 < e < 3$, the graph of $e^x$ always sits between $2^x$ and $3^x$ for $x > 0$ — curve B, the middle one.',
                 id: 'Karena $2 < e < 3$, grafik $e^x$ selalu berada di antara $2^x$ dan $3^x$ untuk $x > 0$ — kurva B, yang di tengah.',
+              },
+              hint: {
+                en: 'Where does $e \\approx 2{,}718$ sit compared to 2 and 3? A larger base makes a steeper curve for $x > 0$.',
+                id: 'Di mana posisi $e \\approx 2{,}718$ dibandingkan dengan 2 dan 3? Basis yang lebih besar membuat kurva yang lebih curam untuk $x > 0$.',
               },
             },
             {
@@ -506,6 +534,10 @@ export const module4: Module = {
                 en: 'Each extra split adds less than the one before, and the total settles on $Pe^{rt}$. Continuous compounding is a ceiling, not an escape.',
                 id: 'Tiap pembagian tambahan menyumbang lebih sedikit daripada sebelumnya, dan totalnya mengendap pada $Pe^{rt}$. Pemajemukan sinambung adalah langit-langit, bukan jalan keluar.',
               },
+              hint: {
+                en: 'Recall how $\\left(1+\\tfrac{1}{n}\\right)^n$ behaved as $n$ grew in the concept above — it kept climbing, but the gains shrank and it settled on one particular number.',
+                id: 'Ingat bagaimana $\\left(1+\\tfrac{1}{n}\\right)^n$ berperilaku saat $n$ membesar pada konsep di atas — ia terus naik, tetapi kenaikannya menyusut dan mengendap pada satu bilangan tertentu.',
+              },
             },
             {
               kind: 'quiz',
@@ -534,6 +566,10 @@ export const module4: Module = {
               explain: {
                 en: 'Simple interest adds the same fixed 60 every year — a straight line. Compounding grows the base itself, so the amount added gets bigger every year, which is what bends curve A upward.',
                 id: 'Bunga tunggal menambahkan 60 yang tetap tiap tahun — garis lurus. Pemajemukan membesarkan modalnya sendiri, sehingga jumlah yang ditambahkan makin besar tiap tahun, dan itulah yang membuat kurva A melengkung ke atas.',
+              },
+              hint: {
+                en: 'A fixed amount added every year traces out one particular kind of shape — think about which of the two curves keeps the same steepness throughout.',
+                id: 'Jumlah tetap yang ditambahkan tiap tahun membentuk satu jenis kurva tertentu — pikirkan kurva mana dari keduanya yang mempertahankan kecuraman yang sama sepanjang waktu.',
               },
             },
             {
@@ -615,6 +651,10 @@ export const module4: Module = {
                 en: 'The half-life is a property of the isotope, not of the amount. The big sample loses far more grams per hour, but the same **fraction** — and fractions are what the exponential law is about.',
                 id: 'Waktu paruh adalah sifat isotopnya, bukan sifat jumlahnya. Sampel besar kehilangan jauh lebih banyak gram per jam, tetapi dengan **bagian** yang sama — dan bagianlah yang dibicarakan hukum eksponen.',
               },
+              hint: {
+                en: 'Ask what the half-life formula $Q_0(\\tfrac{1}{2})^{t/T}$ actually depends on — does $T$ change if you plug in a different $Q_0$?',
+                id: 'Tanyakan apa sebenarnya yang menjadi gantungan rumus waktu paruh $Q_0(\\tfrac{1}{2})^{t/T}$ — apakah $T$ berubah bila kamu memasukkan $Q_0$ yang berbeda?',
+              },
             },
             {
               kind: 'quiz',
@@ -643,6 +683,10 @@ export const module4: Module = {
               explain: {
                 en: '24 days is three half-lives: $160 \\to 80 \\to 40 \\to 20$ — the marked point.',
                 id: '24 hari adalah tiga waktu paruh: $160 \\to 80 \\to 40 \\to 20$ — titik yang ditandai.',
+              },
+              hint: {
+                en: 'How many 8-day half-lives fit into 24 days? Halve the starting 160 mg that many times, one step at a time.',
+                id: 'Berapa banyak waktu paruh 8 hari yang muat dalam 24 hari? Bagi dua 160 mg awalnya sebanyak itu, satu langkah pada satu waktu.',
               },
             },
             {

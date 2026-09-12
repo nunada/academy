@@ -82,6 +82,10 @@ export const module4: Module = {
                 en: 'These are exactly the squeeze-theorem limits the last course proved. Everything else in the derivation is algebra — the angle-sum identity and regrouping.',
                 id: 'Inilah persis limit teorema apit yang dibuktikan kursus sebelumnya. Selebihnya dalam penurunan itu hanyalah aljabar — identitas jumlah sudut dan pengelompokan ulang.',
               },
+              hint: {
+                en: 'After regrouping the expanded difference quotient around $\\sin x$ and $\\cos x$, two specific limits are left over. What technique from the Limits course proved exactly those two?',
+                id: 'Setelah mengelompokkan ulang hasil bagi selisih yang dijabarkan di sekitar $\\sin x$ dan $\\cos x$, tersisa dua limit tertentu. Teknik apa dari kursus Limit yang membuktikan persis kedua limit itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -110,6 +114,10 @@ export const module4: Module = {
               explain: {
                 en: 'The tangent line at the origin runs from $(-1,-1)$ to $(1,1)$: slope $1$, matching $\\cos(0)=1$.',
                 id: 'Garis singgung di titik asal berjalan dari $(-1,-1)$ ke $(1,1)$: kemiringan $1$, cocok dengan $\\cos(0)=1$.',
+              },
+              hint: {
+                en: 'Read the two endpoints the drawn tangent line passes through and compute rise over run — no trig evaluation needed for this reading.',
+                id: 'Baca kedua titik ujung yang dilalui garis singgung yang digambar dan hitung kenaikan per jarak — tak perlu evaluasi trigonometri untuk pembacaan ini.',
               },
             },
             {
@@ -193,6 +201,10 @@ export const module4: Module = {
                 en: 'The general rule is $a^x\\ln a$. Since $\\ln e = 1$ by definition of the natural logarithm, the factor multiplying $e^x$ is exactly $1$ — the only base where the extra factor vanishes entirely.',
                 id: 'Aturan umumnya $a^x\\ln a$. Karena $\\ln e = 1$ menurut definisi logaritma natural, faktor pengali $e^x$-nya persis $1$ — satu-satunya basis tempat faktor tambahannya lenyap sepenuhnya.',
               },
+              hint: {
+                en: 'The general rule multiplies $a^x$ by $\\ln a$. What value does $\\ln a$ have to take for that extra factor to disappear, and which of the two bases actually gives that value?',
+                id: 'Aturan umumnya mengalikan $a^x$ dengan $\\ln a$. Nilai apa yang harus dimiliki $\\ln a$ agar faktor tambahan itu lenyap, dan basis mana dari keduanya yang benar-benar memberi nilai itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -221,6 +233,10 @@ export const module4: Module = {
               explain: {
                 en: 'The tangent runs from $(-1,0)$ to $(1,2)$: slope $= \\dfrac{2-0}{1-(-1)} = 1$, matching $e^0=1$.',
                 id: 'Garis singgungnya berjalan dari $(-1,0)$ ke $(1,2)$: kemiringan $= \\dfrac{2-0}{1-(-1)} = 1$, cocok dengan $e^0=1$.',
+              },
+              hint: {
+                en: 'Read the two endpoints the drawn tangent line passes through, then compute rise over run.',
+                id: 'Baca kedua titik ujung yang dilalui garis singgung yang digambar, lalu hitung kenaikan per jarak.',
               },
             },
             {
@@ -350,6 +366,10 @@ export const module4: Module = {
                 en: '$\\ln x$ is not a power of $x$, so the power rule does not apply directly — it is defined as an inverse, and implicit differentiation on $e^y=x$ is exactly the tool built for that.',
                 id: '$\\ln x$ bukan pangkat dari $x$, jadi aturan pangkat tak berlaku langsung — ia didefinisikan sebagai invers, dan turunan implisit pada $e^y=x$ persis alat yang dibangun untuk itu.',
               },
+              hint: {
+                en: 'Think about how $\\ln x$ is actually defined — as some power of $x$, or as the inverse of a different function entirely — and which technique from Module 3 is built for that second situation.',
+                id: 'Pikirkan bagaimana $\\ln x$ sebenarnya didefinisikan — sebagai suatu pangkat dari $x$, atau sebagai invers dari fungsi lain sama sekali — dan teknik apa dari Modul 3 yang dibangun untuk situasi kedua itu.',
+              },
             },
             {
               kind: 'quiz',
@@ -378,6 +398,10 @@ export const module4: Module = {
               explain: {
                 en: 'The tangent runs from $(0,-1)$ to $(2,1)$: slope $= \\dfrac{1-(-1)}{2-0} = 1$, matching $\\dfrac1x$ at $x=1$.',
                 id: 'Garis singgungnya berjalan dari $(0,-1)$ ke $(2,1)$: kemiringan $= \\dfrac{1-(-1)}{2-0} = 1$, cocok dengan $\\dfrac1x$ di $x=1$.',
+              },
+              hint: {
+                en: 'Read the two endpoints the drawn tangent line passes through, then compute rise over run.',
+                id: 'Baca kedua titik ujung yang dilalui garis singgung yang digambar, lalu hitung kenaikan per jarak.',
               },
             },
             {
@@ -460,6 +484,10 @@ export const module4: Module = {
                 en: 'The power rule needs a fixed exponent; $a^x\\ln a$ needs a fixed base. $x^x$ has neither fixed, so no existing rule reaches it directly — but $\\ln(x^x) = x\\ln x$ turns it into an ordinary product, which every rule so far can handle.',
                 id: 'Aturan pangkat memerlukan pangkat yang tetap; $a^x\\ln a$ memerlukan basis yang tetap. $x^x$ tak punya salah satu yang tetap, jadi tak ada aturan yang ada bisa mencapainya langsung — tetapi $\\ln(x^x) = x\\ln x$ mengubahnya menjadi hasil kali biasa, yang bisa ditangani setiap aturan sejauh ini.',
               },
+              hint: {
+                en: 'Check $x^x$ against what the power rule needs (a fixed exponent) and what $a^x\\ln a$ needs (a fixed base). Does either requirement actually hold here?',
+                id: 'Periksa $x^x$ terhadap apa yang dibutuhkan aturan pangkat (pangkat tetap) dan apa yang dibutuhkan $a^x\\ln a$ (basis tetap). Apakah salah satu syarat itu benar-benar terpenuhi di sini?',
+              },
             },
             {
               kind: 'quiz',
@@ -488,6 +516,10 @@ export const module4: Module = {
               explain: {
                 en: 'The tangent runs from $(0,0)$ to $(2,2)$: slope $1$, matching $x^x(\\ln x+1)$ at $x=1$, which is $1(0+1)=1$.',
                 id: 'Garis singgungnya berjalan dari $(0,0)$ ke $(2,2)$: kemiringan $1$, cocok dengan $x^x(\\ln x+1)$ di $x=1$, yaitu $1(0+1)=1$.',
+              },
+              hint: {
+                en: 'Read the two endpoints the drawn tangent line passes through and compute rise over run.',
+                id: 'Baca kedua titik ujung yang dilalui garis singgung yang digambar dan hitung kenaikan per jarak.',
               },
             },
             {
@@ -632,6 +664,10 @@ export const module4: Module = {
                 en: 'The whole point of differentiating $y = \\arcsin x$ is a formula for $\\dfrac{dy}{dx}$ in terms of $x$. Since $\\sin y = x$ by definition, the Pythagorean identity converts $\\cos y$ into an expression purely in $x$.',
                 id: 'Seluruh tujuan menurunkan $y = \\arcsin x$ adalah rumus untuk $\\dfrac{dy}{dx}$ dalam bentuk $x$. Karena $\\sin y = x$ menurut definisi, identitas Pythagoras mengubah $\\cos y$ menjadi ekspresi murni dalam $x$.',
               },
+              hint: {
+                en: 'A derivative of a function of $x$ needs to end up expressed purely in $x$. What equation from the setup connects $\\sin y$ to $x$, and how does a Pythagorean identity turn that into something for $\\cos y$?',
+                id: 'Turunan fungsi dari $x$ harus berakhir dinyatakan murni dalam $x$. Persamaan apa dari penyusunannya yang menghubungkan $\\sin y$ dengan $x$, dan bagaimana identitas Pythagoras mengubahnya menjadi sesuatu untuk $\\cos y$?',
+              },
             },
             {
               kind: 'quiz',
@@ -660,6 +696,10 @@ export const module4: Module = {
               explain: {
                 en: 'The tangent runs from $(-1, -1)$ to $(1, 1)$: slope $1$, matching $1/\\sqrt{1-0^2} = 1$.',
                 id: 'Garis singgungnya berjalan dari $(-1, -1)$ ke $(1, 1)$: kemiringan $1$, cocok dengan $1/\\sqrt{1-0^2} = 1$.',
+              },
+              hint: {
+                en: 'Read the two endpoints the drawn tangent line passes through, then compute rise over run.',
+                id: 'Baca kedua titik ujung yang dilalui garis singgung yang digambar, lalu hitung kenaikan per jarak.',
               },
             },
             {
@@ -728,6 +768,10 @@ export const module4: Module = {
                 en: 'The domain of a derivative is limited by where its formula makes sense. $1 + x^2$ is always positive, so $\\dfrac{1}{1+x^2}$ is defined everywhere, while $\\sqrt{1-x^2}$ requires $-1 \\leq x \\leq 1$.',
                 id: 'Domain sebuah turunan dibatasi oleh tempat rumusnya masuk akal. $1 + x^2$ selalu positif, sehingga $\\dfrac{1}{1+x^2}$ terdefinisi di mana-mana, sedangkan $\\sqrt{1-x^2}$ memerlukan $-1 \\leq x \\leq 1$.',
               },
+              hint: {
+                en: 'Compare the two denominators, $1+x^2$ and $\\sqrt{1-x^2}$. For which values of $x$ does each one actually stay defined — and non-negative under the root?',
+                id: 'Bandingkan kedua penyebutnya, $1+x^2$ dan $\\sqrt{1-x^2}$. Untuk nilai $x$ mana masing-masing tetap terdefinisi — dan tak negatif di bawah akarnya?',
+              },
             },
             {
               kind: 'fill',
@@ -742,6 +786,10 @@ export const module4: Module = {
               explain: {
                 en: '$g(x) = 3x$ has derivative $3$, which sits on top exactly as the chain rule requires.',
                 id: '$g(x) = 3x$ punya turunan $3$, yang duduk di atas persis seperti yang disyaratkan aturan rantai.',
+              },
+              hint: {
+                en: 'The blank is the derivative of the inner function $3x$ on its own, sitting on top exactly where the chain rule\'s pattern puts it.',
+                id: 'Kotaknya adalah turunan dari fungsi dalam $3x$ sendiri, duduk di atas persis di tempat pola aturan rantai meletakkannya.',
               },
             },
             {

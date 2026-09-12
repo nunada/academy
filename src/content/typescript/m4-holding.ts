@@ -130,6 +130,10 @@ export const module4: Module = {
                 en: 'They accept the same values. They differ entirely in what you are allowed to do afterwards.',
                 id: 'Keduanya menerima nilai yang sama. Bedanya sepenuhnya pada apa yang boleh kamu lakukan sesudahnya.',
               },
+              hint: {
+                en: 'Both parameters accept anything coming in — the difference shows up only once you try to do something with `a` or `u` without checking what it actually is first.',
+                id: 'Kedua parameter menerima apa pun yang masuk — bedanya baru muncul begitu kamu mencoba melakukan sesuatu dengan `a` atau `u` tanpa memeriksa dulu ia sebenarnya apa.',
+              },
             },
             {
               kind: 'ts',
@@ -413,6 +417,10 @@ export const module4: Module = {
                 en: 'That is the whole benefit: the list the type was derived from cannot quietly grow behind the type\'s back.',
                 id: 'Itulah seluruh keuntungannya: daftar tempat tipenya diturunkan tak bisa diam-diam tumbuh di belakang punggung tipenya.',
               },
+              hint: {
+                en: 'Think back to what `as const` was just described as doing to an array — what does that do to which methods remain available on it?',
+                id: 'Ingat kembali apa yang baru saja dijelaskan dilakukan `as const` pada sebuah array — apa efeknya pada method mana yang masih tersedia di sana?',
+              },
             },
             {
               kind: 'order',
@@ -440,6 +448,10 @@ export const module4: Module = {
               explain: {
                 en: 'The value comes first, because the type is read off it — not the other way round.',
                 id: 'Nilainya lebih dulu, karena tipenya dibaca darinya — bukan sebaliknya.',
+              },
+              hint: {
+                en: 'A type derived with `typeof` has to have something to read from — think about which of these lines could not possibly type-check until an earlier one has already run.',
+                id: 'Tipe yang diturunkan dengan `typeof` harus punya sesuatu untuk dibaca — pikirkan baris mana yang sama sekali tak bisa lolos pemeriksaan tipe sampai baris sebelumnya sudah berjalan.',
               },
             },
             {

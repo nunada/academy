@@ -88,6 +88,10 @@ export const module3: Module = {
                 en: 'innerHTML would parse and run it. textContent puts the characters on the page and nothing else.',
                 id: 'innerHTML akan mengurai dan menjalankannya. textContent menaruh karakternya di halaman dan tidak lebih.',
               },
+              hint: {
+                en: 'Think about which of these two treats whatever it is given as plain characters to display, and which one parses it looking for tags to run.',
+                id: 'Pikirkan mana dari keduanya yang memperlakukan apa pun yang diberikan sebagai karakter biasa untuk ditampilkan, dan mana yang mengurainya mencari tag untuk dijalankan.',
+              },
             },
             {
               kind: 'web',
@@ -210,6 +214,10 @@ export const module3: Module = {
               explain: {
                 en: 'Creating and placing are two separate steps. Forgetting the second is a very quiet bug.',
                 id: 'Membuat dan menempatkan adalah dua langkah terpisah. Melupakan yang kedua adalah bug yang sangat senyap.',
+              },
+              hint: {
+                en: 'Remember that creating a node and placing it on the page are two separate steps — think about what a node that only exists in memory can show up as.',
+                id: 'Ingat bahwa membuat simpul dan menempatkannya di halaman adalah dua langkah terpisah — pikirkan simpul yang hanya ada di memori bisa muncul sebagai apa.',
               },
             },
             {
@@ -421,6 +429,10 @@ export const module3: Module = {
                 en: 'Drop the brackets. You are handing over the function, not its result.',
                 id: 'Hilangkan kurungnya. Kamu menyerahkan fungsinya, bukan hasilnya.',
               },
+              hint: {
+                en: 'Think about what the parentheses after a function name do the instant that line runs, versus what addEventListener actually needs to be handed.',
+                id: 'Pikirkan apa yang dilakukan tanda kurung setelah nama fungsi begitu baris itu dijalankan, dibandingkan apa yang sebenarnya perlu diserahkan ke addEventListener.',
+              },
             },
             {
               kind: 'web',
@@ -542,6 +554,10 @@ export const module3: Module = {
               explain: {
                 en: 'A reload starts the script from scratch, so everything it had in memory is gone.',
                 id: 'Muat ulang memulai skripnya dari awal, jadi semua yang ada di memorinya lenyap.',
+              },
+              hint: {
+                en: 'Think about what a form\'s default behaviour does to the page, and to any variables the script was holding, the moment it fires unchecked.',
+                id: 'Pikirkan apa yang dilakukan perilaku bawaan formulir terhadap halaman, dan terhadap variabel apa pun yang sedang dipegang skripnya, begitu perilaku itu terjadi tanpa dicegah.',
               },
             },
             {

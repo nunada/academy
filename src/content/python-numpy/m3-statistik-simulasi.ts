@@ -63,6 +63,10 @@ export const module3: Module = {
                 en: 'With three sorted values, the median is simply the one in the middle: 80.',
                 id: 'Dengan tiga nilai terurut, mediannya sekadar yang di tengah: 80.',
               },
+              hint: {
+                en: 'Sort the three values first, then pick out the one sitting exactly in the middle — not the first or the last.',
+                id: 'Urutkan dulu ketiga nilainya, lalu ambil yang berada tepat di tengah — bukan yang pertama atau terakhir.',
+              },
             },
             {
               kind: 'fill',
@@ -77,6 +81,10 @@ export const module3: Module = {
                 en: 'mean is the function under np.array that computes the average directly.',
                 id: 'mean adalah fungsi di bawah np yang langsung menghitung rata-rata.',
               },
+              hint: {
+                en: "You want the np function whose entire job is computing the average of an array's elements.",
+                id: 'Kamu butuh fungsi np yang tugasnya menghitung rata-rata dari unsur-unsur array.',
+              },
             },
             {
               kind: 'order',
@@ -89,6 +97,10 @@ export const module3: Module = {
               explain: {
                 en: 'The array has to exist before either statistic can be computed from it.',
                 id: 'Arraynya harus ada dulu sebelum statistik mana pun bisa dihitung darinya.',
+              },
+              hint: {
+                en: 'The array has to exist before either statistic can be computed from it, and numpy needs importing first.',
+                id: 'Arraynya harus ada dulu sebelum statistik mana pun bisa dihitung darinya, dan numpy perlu diimpor lebih dulu.',
               },
             },
             {
@@ -158,6 +170,10 @@ export const module3: Module = {
                 en: 'The mean of four equal values is that same value — nothing is strictly greater than it, so the count is 0.',
                 id: 'Rata-rata dari empat nilai yang sama adalah nilai itu sendiri — tak ada yang secara tegas lebih besar darinya, jadi hitungannya 0.',
               },
+              hint: {
+                en: 'Work out what the mean of four identical values actually equals, then ask whether any single value can be strictly greater than that.',
+                id: 'Hitung dulu berapa sebenarnya rata-rata dari empat nilai yang identik, lalu tanyakan apakah ada satu nilai pun yang secara tegas lebih besar dari itu.',
+              },
             },
             {
               kind: 'fill',
@@ -172,6 +188,10 @@ export const module3: Module = {
                 en: '"Below" is the < comparison, the mirror image of the > used for "above".',
                 id: '"Di bawah" adalah perbandingan <, kebalikan dari > yang dipakai untuk "di atas".',
               },
+              hint: {
+                en: '"Below" the mean is the mirror image of "above" — which comparison operator points the other way from `>`?',
+                id: '"Di bawah" rata-rata adalah kebalikan dari "di atas" — operator perbandingan mana yang mengarah sebaliknya dari `>`?',
+              },
             },
             {
               kind: 'order',
@@ -184,6 +204,10 @@ export const module3: Module = {
               explain: {
                 en: 'rata has to be computed first — the comparison needs something to compare against.',
                 id: 'rata harus dihitung dulu — perbandingannya butuh sesuatu untuk dibandingkan.',
+              },
+              hint: {
+                en: '`rata` has to be computed before the comparison can use it — the comparison needs something to compare against.',
+                id: '`rata` harus dihitung dulu sebelum perbandingannya bisa memakainya — perbandingannya butuh sesuatu untuk dibandingkan.',
               },
             },
             {
@@ -292,6 +316,10 @@ export const module3: Module = {
                 en: 'random() always draws from 0 up to (but not including) 1 — every other range comes from scaling that afterward.',
                 id: 'random() selalu mengambil dari 0 sampai (tapi tidak termasuk) 1 — rentang lain mana pun datang dari menskalakannya sesudahnya.',
               },
+              hint: {
+                en: 'Recall what range the earlier examples said this function always draws from, before any scaling is applied.',
+                id: 'Ingat rentang apa yang dikatakan contoh sebelumnya selalu diambil fungsi ini, sebelum penskalaan apa pun diterapkan.',
+              },
             },
             {
               kind: 'fill',
@@ -306,6 +334,10 @@ export const module3: Module = {
                 en: 'np.random.random(n) is the call that draws n values in one step.',
                 id: 'np.random.random(n) adalah pemanggilan yang mengambil n nilai dalam satu langkah.',
               },
+              hint: {
+                en: "You want the specific np.random function that draws n values between 0 and 1 in one call — its name matches the module it's under.",
+                id: 'Kamu butuh fungsi np.random tertentu yang mengambil n nilai antara 0 dan 1 dalam satu pemanggilan — namanya sama dengan modul tempatnya berada.',
+              },
             },
             {
               kind: 'order',
@@ -318,6 +350,10 @@ export const module3: Module = {
               explain: {
                 en: 'The seed has to be set before the first draw for the sequence to be reproducible.',
                 id: 'Seed-nya harus ditetapkan sebelum pengambilan pertama supaya urutannya bisa diulang.',
+              },
+              hint: {
+                en: 'The seed has to be set before the first random draw for the sequence to be reproducible.',
+                id: 'Seed-nya harus ditetapkan sebelum pengambilan acak pertama supaya urutannya bisa diulang.',
               },
             },
             {
@@ -384,6 +420,10 @@ export const module3: Module = {
                 en: 'It estimates π — roughly, since 8 points is a tiny sample. More points means a steadily better estimate.',
                 id: 'Ia menaksir π — secara kasar, karena 8 titik adalah sampel yang sangat kecil. Lebih banyak titik berarti taksiran yang terus membaik.',
               },
+              hint: {
+                en: 'Think about whether a sample of only 8 points could ever give an exact value of a constant like π, or just a rough approximation.',
+                id: 'Pikirkan apakah sampel hanya 8 titik bisa memberi nilai eksak sebuah konstanta seperti π, atau hanya taksiran kasar.',
+              },
             },
             {
               kind: 'fill',
@@ -397,6 +437,10 @@ export const module3: Module = {
               explain: {
                 en: 'Inside or exactly on the circle\'s edge is <= 1 for the squared distance from the origin.',
                 id: 'Di dalam atau tepat di tepi lingkarannya adalah <= 1 untuk jarak terkuadrat dari titik asal.',
+              },
+              hint: {
+                en: "A point counts as inside the circle when its squared distance from the origin doesn't exceed the radius squared — which comparison allows equality too?",
+                id: 'Titik dianggap di dalam lingkaran ketika jarak terkuadratnya dari titik asal tidak melebihi kuadrat jari-jarinya — perbandingan mana yang juga mengizinkan kesetaraan?',
               },
             },
             {
@@ -417,6 +461,10 @@ export const module3: Module = {
               explain: {
                 en: 'Both coordinate arrays have to be drawn before the inside/outside check can compare them.',
                 id: 'Kedua array koordinatnya harus diambil dulu sebelum pemeriksaan di-dalam/di-luar bisa membandingkannya.',
+              },
+              hint: {
+                en: 'Both coordinate arrays have to be drawn before the inside/outside check can compare them, and that check has to exist before it can be summed.',
+                id: 'Kedua array koordinatnya harus diambil dulu sebelum pemeriksaan di-dalam/di-luar bisa membandingkannya, dan pemeriksaan itu harus ada sebelum bisa dijumlahkan.',
               },
             },
             {

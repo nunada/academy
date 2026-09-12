@@ -101,6 +101,10 @@ export const module1: Module = {
                 en: '(0, 0) is the top left corner, so y counts downwards from there.',
                 id: '(0, 0) adalah sudut kiri atas, jadi y menghitung ke bawah dari sana.',
               },
+              hint: {
+                en: 'Recall which corner is (0, 0), and which way y counts starting from there.',
+                id: 'Ingat sudut mana yang menjadi (0, 0), dan ke arah mana y dihitung mulai dari sana.',
+              },
             },
             {
               kind: 'fill',
@@ -114,6 +118,10 @@ export const module1: Module = {
               explain: {
                 en: 'Half of 320 across, half of 240 down.',
                 id: 'Separuh dari 320 melintang, separuh dari 240 menurun.',
+              },
+              hint: {
+                en: 'The field\'s width and height were both given a couple of screens back — the centre sits at exactly half of each.',
+                id: 'Lebar dan tinggi lapangan sudah disebutkan beberapa layar sebelumnya — titik tengahnya persis separuh dari masing-masing.',
               },
             },
             {
@@ -260,6 +268,10 @@ export const module1: Module = {
                 en: 'That is the whole point of dt: fewer frames means a bigger dt each time, and the distance per second stays the same.',
                 id: 'Itulah seluruh gunanya dt: bingkai yang lebih sedikit berarti dt yang lebih besar tiap kali, dan jarak per detiknya tetap sama.',
               },
+              hint: {
+                en: 'Work out what dt itself becomes when there are half as many frames per second, then multiply that new dt by the fixed speed.',
+                id: 'Cari tahu apa yang terjadi pada dt itu sendiri saat jumlah bingkai per detik jadi separuhnya, lalu kalikan dt baru itu dengan kecepatan tetapnya.',
+              },
             },
             {
               kind: 'order',
@@ -277,6 +289,10 @@ export const module1: Module = {
               explain: {
                 en: 'Read out of the old state, work out the new numbers, then build the new dictionary.',
                 id: 'Baca dari keadaan lamanya, hitung angka barunya, lalu bangun dictionary barunya.',
+              },
+              hint: {
+                en: 'The new x and y both need to be read out of the old state before they can be computed, and the return statement needs both computed values to already exist.',
+                id: 'x dan y yang baru sama-sama perlu dibaca dari keadaan lama sebelum bisa dihitung, dan pernyataan return butuh kedua nilai hasil hitungan itu sudah ada lebih dulu.',
               },
             },
             {
@@ -685,6 +701,10 @@ export const module1: Module = {
                 en: 'Both ifs run, so the two amounts are added and subtracted from the same number.',
                 id: 'Kedua if-nya berjalan, jadi kedua jumlahnya ditambahkan dan dikurangkan dari angka yang sama.',
               },
+              hint: {
+                en: 'Both if blocks run regardless of each other — work out what happens when the same amount is added to x and then subtracted from it.',
+                id: 'Kedua blok if tetap berjalan tanpa peduli satu sama lain — cari tahu apa yang terjadi bila jumlah yang sama ditambahkan ke x lalu dikurangkan darinya.',
+              },
             },
             {
               kind: 'fill',
@@ -698,6 +718,10 @@ export const module1: Module = {
               explain: {
                 en: '`keys` is a set, so `in` is how you ask whether something is in it.',
                 id: '`keys` adalah sebuah set, jadi `in` adalah cara menanyakan apakah sesuatu ada di dalamnya.',
+              },
+              hint: {
+                en: 'keys is a set — what keyword tests whether something belongs to a set, and what value marks a flag as switched on?',
+                id: 'keys adalah sebuah set — kata kunci apa yang menguji apakah sesuatu ada dalam sebuah set, dan nilai apa yang menandai sebuah flag sebagai aktif?',
               },
             },
             {
@@ -861,6 +885,10 @@ export const module1: Module = {
               explain: {
                 en: 'The position is the left edge of the square, so the last place it fits is 320 minus its width.',
                 id: 'Posisinya adalah tepi kiri kotaknya, jadi tempat terakhir ia muat adalah 320 dikurangi lebarnya.',
+              },
+              hint: {
+                en: 'x marks the square\'s left corner, not its right edge — think about how much room the square itself still takes up beyond that corner.',
+                id: 'x menandai sudut kiri kotaknya, bukan tepi kanannya — pikirkan berapa banyak ruang yang masih dipakai kotaknya sendiri di luar sudut itu.',
               },
             },
             {

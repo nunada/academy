@@ -88,6 +88,10 @@ export const moduleDef: Module = {
                 en: 'A single successful epsilon-delta pair only answers one challenge. The definition demands a method that produces a working delta for every epsilon whatsoever — that universality is what closes off every possible objection at once.',
                 id: 'Satu pasangan epsilon-delta yang berhasil hanya menjawab satu tantangan. Definisinya menuntut sebuah metode yang menghasilkan delta yang berhasil untuk epsilon apa pun — universalitas itulah yang menutup setiap kemungkinan keberatan sekaligus.',
               },
+              hint: {
+                en: 'Re-read the "for every epsilon" phrase in the definition above — what would be missing if it instead said "for epsilon equal to 1"?',
+                id: 'Baca ulang frasa "untuk setiap epsilon" pada definisi di atas — apa yang akan hilang bila dikatakan "untuk epsilon sama dengan 1"?',
+              },
             },
             {
               kind: 'fill',
@@ -102,6 +106,10 @@ export const moduleDef: Module = {
               explain: {
                 en: 'Factoring $2x - 6$ gives $2|x-3|$, so the inequality $2|x-3| < \\varepsilon$ rearranges to $|x-3| < \\varepsilon/2$ — $\\delta$ is $\\varepsilon$ divided by the coefficient of $x$.',
                 id: 'Memfaktorkan $2x - 6$ memberi $2|x-3|$, sehingga pertidaksamaan $2|x-3| < \\varepsilon$ ditata ulang menjadi $|x-3| < \\varepsilon/2$ — $\\delta$ adalah $\\varepsilon$ dibagi koefisien $x$-nya.',
+              },
+              hint: {
+                en: 'Factor $2x - 6$ so that $|x - 3|$ appears on its own — what number is left multiplying it?',
+                id: 'Faktorkan $2x - 6$ sehingga $|x - 3|$ muncul sendirian — bilangan apa yang tersisa mengalikannya?',
               },
             },
             {
@@ -167,6 +175,10 @@ export const moduleDef: Module = {
                 en: 'A symmetric window (c - delta, c + delta) reaches equally far on both sides. If delta matched the farther edge, the window would overshoot the nearer edge, including x-values where the epsilon-inequality was never shown to hold.',
                 id: 'Jendela simetris (c - delta, c + delta) menjangkau sama jauh di kedua sisi. Jika delta cocok dengan tepi yang lebih jauh, jendelanya akan melampaui tepi yang lebih dekat, memasukkan nilai x yang tak pernah ditunjukkan memenuhi pertidaksamaan epsilonnya.',
               },
+              hint: {
+                en: 'A symmetric window around $c$ reaches the same distance on both sides. If that shared distance were set to the farther edge, what would happen on the side with the nearer edge?',
+                id: 'Jendela simetris di sekitar $c$ menjangkau jarak yang sama di kedua sisi. Bila jarak bersama itu diatur sesuai tepi yang lebih jauh, apa yang terjadi pada sisi dengan tepi yang lebih dekat?',
+              },
             },
             {
               kind: 'order',
@@ -185,6 +197,10 @@ export const moduleDef: Module = {
               explain: {
                 en: 'Solve the epsilon-inequality for an interval first, then measure from c to each edge, then take the smaller distance as delta.',
                 id: 'Selesaikan pertidaksamaan epsilonnya untuk sebuah interval lebih dahulu, lalu ukur dari c ke tiap tepinya, baru ambil jarak yang lebih kecil sebagai delta.',
+              },
+              hint: {
+                en: 'Two of these lines are instructions (what to do next) and two are the results of doing it. A result naming the interval\'s edges has to follow the instruction that solves for that interval, and the same pattern holds for the distance step.',
+                id: 'Dua dari baris ini adalah instruksi (apa yang harus dilakukan selanjutnya) dan dua lagi adalah hasil dari melakukannya. Hasil yang menyebut tepi-tepi intervalnya harus mengikuti instruksi yang menyelesaikan interval itu, dan pola yang sama berlaku untuk langkah jaraknya.',
               },
             },
             {
@@ -296,6 +312,10 @@ export const moduleDef: Module = {
                 en: 'The triangle inequality bounds the total error by the sum of the two individual errors. Keeping each individual error under $\\varepsilon/2$ makes that sum come out under $\\varepsilon$ exactly — using $\\varepsilon$ for each would only guarantee a bound of $2\\varepsilon$.',
                 id: 'Pertidaksamaan segitiga membatasi total galat dengan jumlah kedua galat individunya. Menjaga tiap galat individu di bawah $\\varepsilon/2$ membuat jumlah itu keluar tepat di bawah $\\varepsilon$ — memakai $\\varepsilon$ untuk masing-masing hanya akan menjamin batas $2\\varepsilon$.',
               },
+              hint: {
+                en: 'The triangle inequality adds the two individual errors together. What total would you get by adding two things each kept under $\\varepsilon/2$, versus two things each kept under $\\varepsilon$?',
+                id: 'Pertidaksamaan segitiga menjumlahkan kedua galat individunya. Total apa yang kamu dapat dari menjumlahkan dua hal yang masing-masing dijaga di bawah $\\varepsilon/2$, dibandingkan dengan dua hal yang masing-masing di bawah $\\varepsilon$?',
+              },
             },
             {
               kind: 'fill',
@@ -310,6 +330,10 @@ export const moduleDef: Module = {
               explain: {
                 en: 'Each piece is held under $\\varepsilon/2$ by construction, and the two halves recombine to exactly $\\varepsilon$.',
                 id: 'Tiap bagian dijaga di bawah $\\varepsilon/2$ menurut konstruksinya, dan kedua setengahnya bergabung kembali menjadi tepat $\\varepsilon$.',
+              },
+              hint: {
+                en: 'Each of $|f(x)-L|$ and $|g(x)-M|$ was arranged in the concept above to be held under the same fraction of $\\varepsilon$ — what fraction, and what do two of them add up to?',
+                id: 'Baik $|f(x)-L|$ maupun $|g(x)-M|$ diatur pada konsep di atas agar dijaga di bawah pecahan yang sama dari $\\varepsilon$ — pecahan berapa, dan berapa jumlah keduanya?',
               },
             },
             {
@@ -391,6 +415,10 @@ export const moduleDef: Module = {
                 en: 'Proving needs a working $\\delta$ for every $\\varepsilon$; disproving is the logical negation, so exhibiting just one $\\varepsilon$ that defeats every $\\delta$ is sufficient to break the universal claim.',
                 id: 'Membuktikan memerlukan $\\delta$ yang berhasil untuk setiap $\\varepsilon$; menyangkal adalah negasi logisnya, sehingga menunjukkan hanya satu $\\varepsilon$ yang mengalahkan setiap $\\delta$ sudah cukup untuk mematahkan klaim universalnya.',
               },
+              hint: {
+                en: 'Proving needed the claim to hold for every epsilon. What is the logical opposite of "holds for every epsilon" — does breaking that require checking all of them, or finding just one that fails?',
+                id: 'Membuktikan mengharuskan klaimnya berlaku untuk setiap epsilon. Apa lawan logis dari "berlaku untuk setiap epsilon" — apakah mematahkannya memerlukan memeriksa semuanya, atau cukup menemukan satu yang gagal?',
+              },
             },
             {
               kind: 'quiz',
@@ -421,6 +449,10 @@ export const moduleDef: Module = {
               explain: {
                 en: 'No matter how small a $\\delta$-window is drawn around $x = 1$, it always contains points just to the right where $f(x)$ is near $3$ — a distance of about $1$ from the claimed limit of $2$, which is well outside the $0.4$ tolerance.',
                 id: 'Tak peduli seberapa kecil jendela-$\\delta$ digambar di sekitar $x = 1$, ia selalu memuat titik tepat di kanan tempat $f(x)$ dekat $3$ — berjarak sekitar $1$ dari limit yang diklaim, $2$, yang jauh di luar toleransi $0.4$.',
+              },
+              hint: {
+                en: 'Look at what height the right-hand branch sits at just past $x = 1$, and measure how far that height is from the claimed limit of $2$ — compare that distance to $0.4$.',
+                id: 'Perhatikan ketinggian tempat cabang kanan berada tepat setelah $x = 1$, dan ukur seberapa jauh ketinggian itu dari limit yang diklaim, $2$ — bandingkan jarak itu dengan $0.4$.',
               },
             },
             {

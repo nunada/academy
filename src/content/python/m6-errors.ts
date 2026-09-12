@@ -80,6 +80,10 @@ export const module6: Module = {
                 en: '"7" converts fine, so nothing is raised and except is skipped entirely.',
                 id: '"7" berhasil dikonversi, jadi tidak ada error dan except dilewati sepenuhnya.',
               },
+              hint: {
+                en: 'Check whether converting the text "7" actually raises anything — if nothing fails, does the except clause ever run?',
+                id: 'Periksa apakah mengonversi teks "7" benar-benar memunculkan error — jika tidak ada yang gagal, apakah klausa except akan berjalan?',
+              },
             },
             {
               kind: 'fill',
@@ -96,6 +100,10 @@ export const module6: Module = {
               explain: {
                 en: 'try wraps the risky line; except names the failure it will handle.',
                 id: 'try membungkus baris berisiko; except menyebut kegagalan yang akan ditanganinya.',
+              },
+              hint: {
+                en: 'The first blank marks the block that might fail; the second blank names the failure it stands ready to catch.',
+                id: 'Bagian kosong pertama menandai blok yang mungkin gagal; bagian kosong kedua menyebut kegagalan yang siap ditangkapnya.',
               },
             },
             {
@@ -207,6 +215,10 @@ export const module6: Module = {
                 en: 'A missing key raises KeyError, so the ValueError clause does not match and only one branch runs.',
                 id: 'Kunci yang tidak ada memunculkan KeyError, jadi klausa ValueError tidak cocok dan hanya satu cabang yang jalan.',
               },
+              hint: {
+                en: 'Think about which specific error type a missing dictionary key actually raises, then see which except clause is named to match it.',
+                id: 'Pikirkan jenis error spesifik apa yang sebenarnya muncul saat kunci dictionary tidak ada, lalu lihat klausa except mana yang namanya cocok dengan itu.',
+              },
             },
             {
               kind: 'order',
@@ -234,6 +246,10 @@ export const module6: Module = {
               explain: {
                 en: 'The risky access sits inside try; the handler names IndexError because that is what a list raises.',
                 id: 'Akses berisikonya ada di dalam try; penanganannya menyebut IndexError karena itulah yang dimunculkan list.',
+              },
+              hint: {
+                en: "The list has to exist before anything can index into it, and the `except` naming the failure has to follow directly after the block it's guarding.",
+                id: 'List-nya harus ada dulu sebelum ada yang bisa mengindeksnya, dan `except` yang menyebut kegagalannya harus mengikuti langsung setelah blok yang dijaganya.',
               },
             },
             {
@@ -407,6 +423,10 @@ export const module6: Module = {
                 en: 'break would leave with no usable value. continue starts the next round, which asks again.',
                 id: 'break akan keluar tanpa nilai yang bisa dipakai. continue memulai putaran berikutnya, yang bertanya lagi.',
               },
+              hint: {
+                en: "Think about what happens to the loop's next round in each case — does it try to read input again, or does it stop entirely?",
+                id: 'Pikirkan apa yang terjadi pada putaran loop berikutnya di masing-masing kasus — apakah loop mencoba membaca input lagi, atau berhenti sepenuhnya?',
+              },
             },
             {
               kind: 'code',
@@ -509,6 +529,10 @@ export const module6: Module = {
                 en: 'The first call prints 5. The second raises, so the rest of the try block is abandoned and except runs.',
                 id: 'Pemanggilan pertama mencetak 5. Yang kedua memunculkan error, jadi sisa blok try ditinggalkan dan except yang jalan.',
               },
+              hint: {
+                en: 'The first call inside try succeeds normally — then think about what happens to the rest of the try block once the second call raises.',
+                id: 'Pemanggilan pertama di dalam try berhasil secara normal — lalu pikirkan apa yang terjadi pada sisa blok try begitu pemanggilan kedua memunculkan error.',
+              },
             },
             {
               kind: 'fill',
@@ -522,6 +546,10 @@ export const module6: Module = {
               explain: {
                 en: 'raise creates the error; the caller decides whether to catch it.',
                 id: 'raise memunculkan error-nya; pemanggil yang memutuskan apakah menangkapnya.',
+              },
+              hint: {
+                en: 'You need the keyword that triggers an error yourself, rather than the keyword that catches one someone else triggered.',
+                id: 'Kamu butuh kata kunci yang memicu error sendiri, bukan kata kunci yang menangkap error yang dipicu pihak lain.',
               },
             },
             {

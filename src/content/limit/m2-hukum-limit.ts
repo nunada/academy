@@ -71,6 +71,10 @@ export const module2: Module = {
                 en: 'Direct substitution needs the denominator to be non-zero at $x=2$. Only $x - 5$ survives that check at $x = 2$ — the other three all vanish at $x = 2$, which is exactly the $\\frac{0}{0}$ situation this module is about to fix.',
                 id: 'Substitusi langsung memerlukan penyebutnya tak nol di $x=2$. Hanya $x - 5$ yang lolos pemeriksaan itu di $x = 2$ — tiga lainnya semuanya nol di $x = 2$, dan itulah persis situasi $\\frac{0}{0}$ yang akan segera diperbaiki modul ini.',
               },
+              hint: {
+                en: 'Substitute $x = 2$ into each denominator alone, before touching the numerator — direct substitution only works where that denominator survives as non-zero.',
+                id: 'Substitusikan $x = 2$ ke tiap penyebutnya saja, sebelum menyentuh pembilangnya — substitusi langsung hanya bekerja di tempat penyebutnya lolos sebagai tak nol.',
+              },
             },
             {
               kind: 'fill',
@@ -85,6 +89,10 @@ export const module2: Module = {
               explain: {
                 en: '$18 - 15 + 1 = 4$. A polynomial never needs anything more than this.',
                 id: '$18 - 15 + 1 = 4$. Polinom tak pernah butuh apa pun lebih dari ini.',
+              },
+              hint: {
+                en: 'The three numbers $18$, $-15$ and $1$ are already computed for you — just combine them in order.',
+                id: 'Ketiga bilangan $18$, $-15$, dan $1$ sudah dihitung untukmu — tinggal gabungkan berurutan.',
               },
             },
             {
@@ -153,6 +161,10 @@ export const module2: Module = {
                 en: 'The quotient law explicitly requires $M \\neq 0$. With $M = 0$ it simply does not apply — the true answer could be a finite number, an infinite limit, or no limit at all, and finding out takes a different technique, not this law.',
                 id: 'Hukum hasil bagi secara tegas memerlukan $M \\neq 0$. Dengan $M = 0$ ia sekadar tak berlaku — jawaban sebenarnya bisa berupa bilangan berhingga, limit tak hingga, atau tak ada limit sama sekali, dan mengetahuinya memerlukan teknik yang berbeda, bukan hukum ini.',
               },
+              hint: {
+                en: 'Re-read the proviso attached to the quotient law in the concept above — what exactly does it require of $M$, and is that requirement met here?',
+                id: 'Baca ulang syarat yang menyertai hukum hasil bagi pada konsep di atas — apa persisnya yang disyaratkan untuk $M$, dan apakah syarat itu terpenuhi di sini?',
+              },
             },
             {
               kind: 'order',
@@ -171,6 +183,10 @@ export const module2: Module = {
               explain: {
                 en: 'Split by the sum law, evaluate each piece by direct substitution, then add the two numbers back together. Splitting is only the first step — the pieces still have to be finished and recombined.',
                 id: 'Pecah dengan hukum jumlah, hitung tiap bagiannya dengan substitusi langsung, lalu jumlahkan kembali kedua bilangannya. Pemecahan hanyalah langkah pertama — bagian-bagiannya masih harus diselesaikan dan digabung kembali.',
+              },
+              hint: {
+                en: 'Two of these lines evaluate one piece each on its own; the other two only make sense once both pieces already have numbers. Which pair has to come first?',
+                id: 'Dua dari baris ini masing-masing menghitung satu bagian sendiri; dua lainnya baru masuk akal setelah kedua bagian sudah punya bilangan. Pasangan mana yang harus lebih dulu?',
               },
             },
             {
@@ -294,6 +310,10 @@ export const module2: Module = {
                 en: '$\\frac{0}{0}$ is a signal to factor, not a final answer. $x^2 - 16 = (x-4)(x+4)$, and the shared $(x-4)$ cancels, revealing $x + 4 \\to 8$.',
                 id: '$\\frac{0}{0}$ adalah sinyal untuk memfaktorkan, bukan jawaban akhir. $x^2 - 16 = (x-4)(x+4)$, dan $(x-4)$ yang sama tercoret, menampakkan $x + 4 \\to 8$.',
               },
+              hint: {
+                en: 'A $\\frac{0}{0}$ result at $x = 4$ means $(x - 4)$ is a hidden common factor in both the numerator and the denominator — what does the concept above say to do once you\'ve found one?',
+                id: 'Hasil $\\frac{0}{0}$ di $x = 4$ berarti $(x - 4)$ adalah faktor sekutu tersembunyi baik di pembilang maupun penyebut — apa kata konsep di atas untuk dilakukan setelah kamu menemukannya?',
+              },
             },
             {
               kind: 'quiz',
@@ -322,6 +342,10 @@ export const module2: Module = {
               explain: {
                 en: 'The line the curve traces heads straight for the hollow point at height $6$ as $x \\to 3$ from either side.',
                 id: 'Garis yang ditelusuri kurvanya menuju tepat ke titik kosong pada tinggi $6$ saat $x \\to 3$ dari sisi mana pun.',
+              },
+              hint: {
+                en: 'Ignore the hollow dot itself and just follow the drawn curve from both sides toward $x = 3$ — what height does it approach?',
+                id: 'Abaikan titik kosongnya sendiri dan ikuti saja kurva yang digambar dari kedua sisi menuju $x = 3$ — ketinggian berapa yang didekatinya?',
               },
             },
             {
@@ -378,6 +402,10 @@ export const module2: Module = {
                 en: 'The conjugate flips the sign between the two terms, leaving the root itself alone: $\\sqrt{x+9}+3$. Multiplying $(\\sqrt{x+9}-3)(\\sqrt{x+9}+3)$ gives $(x+9) - 9 = x$, a difference of squares with the root gone.',
                 id: 'Sekawan membalik tanda di antara kedua sukunya, membiarkan akarnya sendiri tetap: $\\sqrt{x+9}+3$. Mengalikan $(\\sqrt{x+9}-3)(\\sqrt{x+9}+3)$ memberi $(x+9) - 9 = x$, selisih kuadrat dengan akarnya lenyap.',
               },
+              hint: {
+                en: 'A conjugate keeps both terms the same but flips the sign between them — apply that rule to $\\sqrt{x+9} - 3$ without changing anything else.',
+                id: 'Sekawan mempertahankan kedua sukunya tetapi membalik tanda di antara keduanya — terapkan aturan itu pada $\\sqrt{x+9} - 3$ tanpa mengubah apa pun yang lain.',
+              },
             },
             {
               kind: 'order',
@@ -396,6 +424,10 @@ export const module2: Module = {
               explain: {
                 en: 'Multiply by the conjugate, simplify the numerator to a plain $x$, cancel it against the $x$ already downstairs, then substitute into what remains — the root has done its damage and gone.',
                 id: 'Kalikan dengan sekawan, sederhanakan pembilangnya menjadi $x$ biasa, coret dengan $x$ yang sudah ada di bawah, lalu substitusikan ke sisanya — akarnya sudah selesai bekerja dan lenyap.',
+              },
+              hint: {
+                en: 'Each line depends on simplifying what the line before it produced — the multiplication has to happen before there is anything to cancel, and cancelling has to happen before a final substitution makes sense.',
+                id: 'Tiap baris bergantung pada penyederhanaan dari apa yang dihasilkan baris sebelumnya — perkaliannya harus terjadi sebelum ada yang bisa dicoret, dan pencoretannya harus terjadi sebelum substitusi akhir masuk akal.',
               },
             },
             {

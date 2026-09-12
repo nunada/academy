@@ -113,6 +113,10 @@ export const module1: Module = {
                 en: 'A string plus a number is legal JavaScript and TypeScript allows it. Assigning a string to a `number` is not.',
                 id: 'String ditambah angka itu JavaScript yang sah dan TypeScript membolehkannya. Menugaskan string ke `number` tidak.',
               },
+              hint: {
+                en: 'Remember that + between a string and a number is legal JavaScript TypeScript allows through — the compiler only objects when a value\'s declared type is contradicted directly.',
+                id: 'Ingat bahwa + antara string dan angka adalah JavaScript sah yang dibolehkan TypeScript — kompilernya hanya keberatan saat tipe yang dideklarasikan sebuah nilai langsung dilanggar.',
+              },
             },
             {
               kind: 'fill',
@@ -129,6 +133,10 @@ export const module1: Module = {
               explain: {
                 en: 'The parameter is the part TypeScript cannot infer; the return type it could, but writing it makes the function state its own contract.',
                 id: 'Parameternya bagian yang tak bisa disimpulkan TypeScript; tipe kembaliannya sebenarnya bisa, tetapi menuliskannya membuat fungsinya menyatakan kontraknya sendiri.',
+              },
+              hint: {
+                en: 'Both blanks describe the same kind of value here — think about what type a number being doubled has to be, going in and coming back out.',
+                id: 'Kedua titik kosong menjelaskan jenis nilai yang sama di sini — pikirkan tipe apa yang harus dimiliki sebuah angka yang digandakan, saat masuk maupun saat keluar.',
               },
             },
             {
@@ -295,6 +303,10 @@ export const module1: Module = {
                 en: 'That is exactly what the `?` bought you: the compiler will not let you use it as a string until you have checked.',
                 id: 'Persis itulah yang dibeli tanda `?`: kompilernya tak akan membiarkanmu memakainya sebagai string sebelum kamu memeriksanya.',
               },
+              hint: {
+                en: 'Think about what the `?` on a parameter adds to its type on top of the type you wrote.',
+                id: 'Pikirkan apa yang ditambahkan tanda `?` pada sebuah parameter ke tipenya, di atas tipe yang kamu tulis.',
+              },
             },
             {
               kind: 'order',
@@ -318,6 +330,10 @@ export const module1: Module = {
               explain: {
                 en: 'A defaulted parameter has to come after the required ones — there would be no way to skip it otherwise.',
                 id: 'Parameter bernilai bawaan harus ditulis setelah yang wajib — kalau tidak, tak ada cara melewatinya.',
+              },
+              hint: {
+                en: 'Think about which line has to declare the parameters before the body can refer to them, and what always has to close a function last.',
+                id: 'Pikirkan baris mana yang harus mendeklarasikan parameternya sebelum badan fungsinya bisa merujuknya, dan apa yang selalu harus menutup sebuah fungsi paling akhir.',
               },
             },
             {
@@ -704,6 +720,10 @@ export const module1: Module = {
                 en: 'It would be NaN at runtime, which is exactly the bug the compiler is stopping before it happens.',
                 id: 'Ia akan jadi NaN saat dijalankan, dan persis itulah kutu yang dicegah kompilernya sebelum terjadi.',
               },
+              hint: {
+                en: 'Think about what the `?` on an interface property does to its type when you read it, and what arithmetic on that extra possibility would produce if left unchecked.',
+                id: 'Pikirkan apa yang dilakukan tanda `?` pada properti interface terhadap tipenya saat dibaca, dan apa yang dihasilkan operasi aritmetika atas kemungkinan tambahan itu bila tak diperiksa.',
+              },
             },
             {
               kind: 'fill',
@@ -720,6 +740,10 @@ export const module1: Module = {
               explain: {
                 en: 'The ? goes on the property name, before the colon.',
                 id: 'Tanda ? ditulis pada nama propertinya, sebelum titik dua.',
+              },
+              hint: {
+                en: 'A name is text, so its type matches what you\'d annotate any string with. For the second blank, think about which single character makes a property optional rather than required.',
+                id: 'Nama itu teks, jadi tipenya cocok dengan apa yang kamu pakai untuk memberi keterangan string mana pun. Untuk titik kosong kedua, pikirkan satu karakter apa yang membuat properti jadi opsional, bukan wajib.',
               },
             },
             {
@@ -927,6 +951,10 @@ export const module1: Module = {
               explain: {
                 en: 'A tuple pins the length; an array does not. Three numbers are fine as a `number[]` and wrong as a two-element tuple.',
                 id: 'Tuple mematok panjangnya; array tidak. Tiga angka baik-baik saja sebagai `number[]` dan salah sebagai tuple dua elemen.',
+              },
+              hint: {
+                en: 'Count the elements in each literal against the type it is assigned to — one of these types cares about the count, and one does not.',
+                id: 'Hitung elemen di tiap literal terhadap tipe yang ditugaskan kepadanya — salah satu tipe ini peduli pada jumlahnya, dan satu lagi tidak.',
               },
             },
             {

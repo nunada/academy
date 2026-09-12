@@ -71,6 +71,10 @@ export const module4: Module = {
                 en: '$f(2)$ is defined (condition 1), the limit exists (condition 2), and they agree, both equal to $5$ (condition 3). All three hold, so $f$ is continuous at $2$ — nothing more is needed.',
                 id: '$f(2)$ terdefinisi (syarat 1), limitnya ada (syarat 2), dan keduanya sepakat, sama-sama $5$ (syarat 3). Ketiganya berlaku, jadi $f$ kontinu di $2$ — tak ada yang lebih diperlukan.',
               },
+              hint: {
+                en: 'Check the given facts against all three conditions in the concept above, one at a time — is there anything left over that hasn\'t already been stated?',
+                id: 'Periksa fakta yang diberikan terhadap ketiga syarat pada konsep di atas, satu per satu — apakah ada sesuatu yang tersisa yang belum dinyatakan?',
+              },
             },
             {
               kind: 'quiz',
@@ -99,6 +103,10 @@ export const module4: Module = {
               explain: {
                 en: 'The dot is filled and sits exactly on the curve — $f(4)=2$ is defined, the limit is $2$, and they match. No pen-lifting required.',
                 id: 'Titiknya penuh dan berada persis pada kurvanya — $f(4)=2$ terdefinisi, limitnya $2$, dan keduanya cocok. Tak perlu mengangkat pena sama sekali.',
+              },
+              hint: {
+                en: 'Look at whether the marked dot is filled or hollow, and whether it sits exactly on the curve or somewhere else — that tells you about all three conditions at once.',
+                id: 'Lihat apakah titik yang ditandai itu penuh atau berongga, dan apakah ia berada persis pada kurvanya atau di tempat lain — itu memberi tahu ketiga syaratnya sekaligus.',
               },
             },
             {
@@ -173,7 +181,12 @@ export const module4: Module = {
                 en: 'Condition 2 itself is broken — the limit does not exist at all, regardless of what $f(a)$ is set to. Only a removable discontinuity, where the limit already exists, can be patched by redefining one point.',
                 id: 'Syarat 2 sendiri sudah rusak — limitnya sama sekali tak ada, apa pun nilai $f(a)$ ditetapkan. Hanya diskontinuitas yang bisa dihapus, tempat limitnya sudah ada, yang bisa ditambal dengan mendefinisikan ulang satu titik.',
               },
+              hint: {
+                en: 'Ask whether condition 2 (the limit existing) is actually satisfied here at all — if it isn\'t, think about what redefining a single value could and couldn\'t possibly fix.',
+                id: 'Tanyakan apakah syarat 2 (limitnya ada) sungguh terpenuhi di sini — kalau tidak, pikirkan apa yang bisa dan tak bisa diperbaiki dengan mendefinisikan ulang satu nilai.',
+              },
             },
+
             {
               kind: 'quiz',
               id: 'q2',
@@ -202,6 +215,10 @@ export const module4: Module = {
                 en: 'Both sides run off without bound — one to $+\\infty$, the other to $-\\infty$. Condition 2 fails because there is no finite limit at all, which is precisely what makes it infinite rather than removable or a jump.',
                 id: 'Kedua sisi lari tanpa batas — yang satu ke $+\\infty$, yang lain ke $-\\infty$. Syarat 2 gagal sebab sama sekali tak ada limit berhingga, dan itulah persis yang membuatnya tak hingga, bukan bisa dihapus atau lompatan.',
               },
+              hint: {
+                en: 'Look at the graph on both sides of the dashed vertical line — do the curve\'s two branches settle toward finite heights, or do they run off without bound?',
+                id: 'Lihat grafiknya di kedua sisi garis tegak putus-putus — apakah kedua cabang kurvanya mereda menuju ketinggian berhingga, atau justru lari tanpa batas?',
+              },
             },
             {
               kind: 'order',
@@ -220,6 +237,10 @@ export const module4: Module = {
               explain: {
                 en: 'Check the limit first, then the value at the point, then decide which condition broke — the pattern that names every discontinuity in this lesson.',
                 id: 'Periksa limitnya dahulu, lalu nilai di titik itu, lalu putuskan syarat mana yang rusak — pola yang menamai setiap diskontinuitas dalam pelajaran ini.',
+              },
+              hint: {
+                en: 'The classification can only be named after you know which of the two facts (the limit, and the value at the point) has already been established — think about what has to be computed before a conclusion can be drawn.',
+                id: 'Golongannya baru bisa dinamai setelah kamu tahu fakta mana dari keduanya (limitnya, dan nilai di titik itu) yang sudah ditetapkan — pikirkan apa yang harus dihitung dulu sebelum kesimpulan bisa ditarik.',
               },
             },
             {
@@ -337,6 +358,10 @@ export const module4: Module = {
                 en: 'A rational function is continuous everywhere except at the zeros of its denominator. Here that is just $x=4$, an infinite discontinuity; everywhere else, all three conditions hold.',
                 id: 'Fungsi rasional kontinu di mana pun kecuali di akar-akar penyebutnya. Di sini itu hanya $x=4$, sebuah diskontinuitas tak hingga; di tempat lain, ketiga syaratnya berlaku.',
               },
+              hint: {
+                en: 'Find exactly where the denominator vanishes — that single point is the only place a rational function can fail to be continuous.',
+                id: 'Cari persis di mana penyebutnya lenyap — titik tunggal itu satu-satunya tempat fungsi rasional bisa gagal kontinu.',
+              },
             },
             {
               kind: 'fill',
@@ -351,6 +376,10 @@ export const module4: Module = {
               explain: {
                 en: 'A square root is continuous on its whole natural domain, which for $\\sqrt{x-5}$ starts at $x=5$.',
                 id: 'Akar kuadrat kontinu di seluruh domain alaminya, yang untuk $\\sqrt{x-5}$ bermula di $x=5$.',
+              },
+              hint: {
+                en: 'A square root needs a nonnegative quantity underneath it — find where $x - 5$ first becomes $0$ or positive.',
+                id: 'Akar kuadrat butuh kuantitas taknegatif di bawahnya — cari di mana $x - 5$ pertama kali menjadi $0$ atau positif.',
               },
             },
             {
@@ -423,6 +452,10 @@ export const module4: Module = {
                 en: '$0$ lies between $-3$ and $2$, and $f$ is continuous, so the IVT guarantees a root exists somewhere in $(1,5)$ — though it says nothing about exactly where.',
                 id: '$0$ terletak antara $-3$ dan $2$, dan $f$ kontinu, jadi TNA menjamin sebuah akar ada di suatu tempat dalam $(1,5)$ — meski tak mengatakan apa pun tentang letak persisnya.',
               },
+              hint: {
+                en: 'Check whether $0$ sits between $f(1)$ and $f(5)$ — the IVT promises the function passes through every value in that range, but never says at which exact point.',
+                id: 'Periksa apakah $0$ berada di antara $f(1)$ dan $f(5)$ — TNA menjanjikan fungsinya melewati setiap nilai dalam rentang itu, tetapi tak pernah mengatakan di titik persis mana.',
+              },
             },
             {
               kind: 'quiz',
@@ -441,6 +474,10 @@ export const module4: Module = {
               explain: {
                 en: 'A jump discontinuity is exactly a place a graph skips a whole range of values without passing through them. Continuity is what rules that out and makes the guarantee honest.',
                 id: 'Diskontinuitas lompatan persis tempat grafik melompati seluruh rentang nilai tanpa melewatinya. Kekontinuanlah yang menyingkirkan itu dan membuat jaminannya jujur.',
+              },
+              hint: {
+                en: 'Think back to what a jump discontinuity does to the values a function actually passes through — could a value strictly between $f(a)$ and $f(b)$ end up skipped entirely?',
+                id: 'Ingat kembali apa yang dilakukan diskontinuitas lompatan pada nilai-nilai yang sungguh dilewati sebuah fungsi — bisakah suatu nilai yang tepat berada di antara $f(a)$ dan $f(b)$ malah terlewati sama sekali?',
               },
             },
             {

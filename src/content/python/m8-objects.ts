@@ -87,6 +87,10 @@ export const module8: Module = {
                 en: 'x and y are separate objects. x kept the value it was created with.',
                 id: 'x dan y adalah objek terpisah. x menyimpan nilai yang diberikan saat ia dibuat.',
               },
+              hint: {
+                en: 'x and y are separate objects created with different arguments — check which value specifically went into x, not into y.',
+                id: 'x dan y adalah objek terpisah yang dibuat dengan argumen berbeda — periksa nilai mana yang masuk ke x secara khusus, bukan ke y.',
+              },
             },
             {
               kind: 'fill',
@@ -103,6 +107,10 @@ export const module8: Module = {
               explain: {
                 en: '__init__ is the method Python calls on creation; self is the object being filled in.',
                 id: '__init__ adalah method yang dipanggil Python saat pembuatan; self adalah objek yang sedang diisi.',
+              },
+              hint: {
+                en: 'The first blank is the special method name Python calls automatically when an object is created; the second blank refers to the object itself inside that method.',
+                id: 'Bagian kosong pertama adalah nama method khusus yang dipanggil Python secara otomatis saat objek dibuat; bagian kosong kedua merujuk ke objek itu sendiri di dalam method tersebut.',
               },
             },
             {
@@ -210,6 +218,10 @@ export const module8: Module = {
                 en: 'Each call changes the same object, so the two increments both stick.',
                 id: 'Tiap pemanggilan mengubah objek yang sama, jadi kedua penambahan itu tersimpan.',
               },
+              hint: {
+                en: 'Both calls act on the very same object `h` — track what happens to `self.n` across both calls, not just one of them.',
+                id: 'Kedua pemanggilan bekerja pada objek `h` yang sama persis — lacak apa yang terjadi pada `self.n` di kedua pemanggilan, bukan hanya salah satunya.',
+              },
             },
             {
               kind: 'order',
@@ -241,6 +253,10 @@ export const module8: Module = {
               explain: {
                 en: '__init__ stores the values; __str__ is a second method at the same indentation, reading them back.',
                 id: '__init__ menyimpan nilainya; __str__ adalah method kedua pada indentasi yang sama, yang membacanya kembali.',
+              },
+              hint: {
+                en: "Both methods belong to the same class body at the same indentation, and the attributes `__str__` reads have to already be stored by `__init__` before it can use them.",
+                id: 'Kedua method itu milik body class yang sama pada indentasi yang sama, dan atribut yang dibaca `__str__` harus sudah disimpan oleh `__init__` sebelum bisa dipakai.',
               },
             },
             {
@@ -441,6 +457,10 @@ export const module8: Module = {
                 en: 'The condition keeps only B, and the part before `for` decides that names are collected, not objects.',
                 id: 'Kondisinya hanya menyisakan B, dan bagian sebelum `for` menentukan bahwa yang dikumpulkan adalah namanya, bukan objeknya.',
               },
+              hint: {
+                en: "Check each product's price against the condition first, then look at what's actually collected before `for` — the object, the name, or the price?",
+                id: 'Periksa dulu harga tiap produk terhadap kondisinya, lalu lihat apa yang sebenarnya dikumpulkan sebelum `for` — objeknya, namanya, atau harganya?',
+              },
             },
             {
               kind: 'code',
@@ -550,6 +570,10 @@ export const module8: Module = {
                 en: 'B defines nothing of its own, so it uses the parent method unchanged.',
                 id: 'B tidak mendefinisikan apa pun sendiri, jadi ia memakai method induknya apa adanya.',
               },
+              hint: {
+                en: "B doesn't define its own version of the method — think about where Python looks next when a class body has nothing but `pass`.",
+                id: 'B tidak mendefinisikan versi method-nya sendiri — pikirkan ke mana Python mencari selanjutnya saat body class-nya hanya berisi `pass`.',
+              },
             },
             {
               kind: 'fill',
@@ -566,6 +590,10 @@ export const module8: Module = {
               explain: {
                 en: 'The brackets name the parent; super() reaches it without repeating its code.',
                 id: 'Kurungnya menyebut induknya; super() menjangkaunya tanpa mengulang kodenya.',
+              },
+              hint: {
+                en: "The first blank is the class being inherited from, written in parentheses after the new class's name; the second blank is how you call that parent's own `__init__` without rewriting it.",
+                id: 'Bagian kosong pertama adalah class yang diwarisi, ditulis dalam kurung setelah nama class barunya; bagian kosong kedua adalah cara memanggil `__init__` milik induknya tanpa menulis ulang.',
               },
             },
             {

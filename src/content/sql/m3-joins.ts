@@ -190,6 +190,10 @@ export const module3: Module = {
                 en: 'An inner join keeps only rows that matched. Silently losing a row this way is one of the most common bugs in SQL.',
                 id: 'Join dalam hanya menyimpan baris yang berpasangan. Kehilangan baris diam-diam seperti ini salah satu kutu paling umum di SQL.',
               },
+              hint: {
+                en: 'An inner join only keeps rows where both sides found a match — think about what happens to the row for the student with no class_id to match against.',
+                id: 'Join dalam hanya menyimpan baris yang kedua sisinya menemukan pasangan — pikirkan apa yang terjadi pada baris siswa yang tak punya class_id untuk dipasangkan.',
+              },
             },
             {
               kind: 'fill',
@@ -206,6 +210,10 @@ export const module3: Module = {
               explain: {
                 en: 'JOIN names the other table; ON gives the rule that pairs the rows.',
                 id: 'JOIN menyebut tabel satunya; ON memberi aturan yang memasangkan barisnya.',
+              },
+              hint: {
+                en: 'One keyword names the table you are bringing in, and a different one states the rule that pairs up its rows with the first table\'s.',
+                id: 'Satu kata kunci menyebut tabel yang kamu tambahkan, dan kata kunci lain menyatakan aturan yang memasangkan barisnya dengan tabel pertama.',
               },
             },
             {
@@ -386,6 +394,10 @@ export const module3: Module = {
                 en: 'The grouping never sees it: the inner joins dropped it long before GROUP BY ran. The next submodule is about fixing exactly this.',
                 id: 'Pengelompokannya tak pernah melihatnya: join dalamnya sudah membuangnya jauh sebelum GROUP BY berjalan. Submodul berikutnya membahas persis perbaikan ini.',
               },
+              hint: {
+                en: 'Trace class X-C through each JOIN in turn and see at which step it would need a matching row that simply does not exist.',
+                id: 'Telusuri kelas X-C lewat tiap JOIN satu per satu dan lihat di langkah mana ia akan butuh baris pasangan yang sebenarnya tidak ada.',
+              },
             },
             {
               kind: 'order',
@@ -413,6 +425,10 @@ export const module3: Module = {
               explain: {
                 en: 'FROM and its joins first, then grouping, then the sort — the order never varies.',
                 id: 'FROM dan join-nya dulu, lalu pengelompokan, lalu pengurutan — urutannya tak pernah berubah.',
+              },
+              hint: {
+                en: 'The rows have to be joined together and labeled by subject before there is anything for GROUP BY to bucket or ORDER BY to sort.',
+                id: 'Barisnya harus sudah digabung dan diberi label mata pelajaran sebelum ada sesuatu yang bisa diember GROUP BY atau diurutkan ORDER BY.',
               },
             },
             {
@@ -754,6 +770,10 @@ export const module3: Module = {
                 { en: '0 — a LEFT JOIN needs a WHERE', id: '0 — LEFT JOIN butuh WHERE' },
               ],
               answer: 0,
+              hint: {
+                en: 'Remember which side of a LEFT JOIN is guaranteed to keep every one of its rows, matched or not.',
+                id: 'Ingat sisi mana dari LEFT JOIN yang dijamin menyimpan semua barisnya, berpasangan atau tidak.',
+              },
               explain: {
                 en: 'The left table is `student`, so every student survives — with NULLs where the class would have been.',
                 id: 'Tabel kirinya adalah `siswa`, jadi tiap siswa selamat — dengan NULL di tempat kelasnya seharusnya berada.',
@@ -955,6 +975,10 @@ export const module3: Module = {
               explain: {
                 en: 'The inner query mentions nothing from the outer one, so its answer is the same every time and is computed once.',
                 id: 'Kueri dalamnya tak menyebut apa pun dari kueri luarnya, jadi jawabannya sama setiap saat dan dihitung sekali.',
+              },
+              hint: {
+                en: 'Check whether the inner SELECT references anything from the outer query\'s current row — does its result actually change from row to row, or could it be worked out just once?',
+                id: 'Periksa apakah SELECT bagian dalamnya menyebut sesuatu dari baris kueri luarnya saat ini — apakah hasilnya sungguh berubah dari baris ke baris, atau bisakah ia dihitung cukup sekali saja?',
               },
             },
             {

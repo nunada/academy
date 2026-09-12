@@ -62,6 +62,10 @@ export const module1: Module = {
                 en: '17 fits into 5 three whole times (15), with 2 left over.',
                 id: '17 memuat 5 sebanyak tiga kali penuh (15), sisanya 2.',
               },
+              hint: {
+                en: 'Work out `a // b` and `a % b` separately — floor division only ever gives a whole number, never a decimal.',
+                id: 'Kerjakan `a // b` dan `a % b` secara terpisah — bagi bulat selalu memberi bilangan bulat, tak pernah desimal.',
+              },
             },
             {
               kind: 'fill',
@@ -79,6 +83,10 @@ export const module1: Module = {
                 en: 'Area is length times width — the same formula as on paper.',
                 id: 'Luas adalah panjang kali lebar — formula yang sama seperti di atas kertas.',
               },
+              hint: {
+                en: 'Which arithmetic operator turns two side lengths into an area — the same one you would use on paper?',
+                id: 'Operator aritmetika mana yang mengubah dua panjang sisi menjadi luas — sama seperti yang kamu pakai di atas kertas?',
+              },
             },
             {
               kind: 'order',
@@ -94,6 +102,10 @@ export const module1: Module = {
               explain: {
                 en: 'The parentheses matter here: without them, `/ 3` would only divide `c`.',
                 id: 'Kurungnya penting di sini: tanpanya, `/ 3` hanya akan membagi `c`.',
+              },
+              hint: {
+                en: 'The three values need to exist before they can be combined, and the combining line itself has to run before the printing line.',
+                id: 'Ketiga nilainya perlu ada dulu sebelum bisa digabungkan, dan baris penggabungan itu sendiri harus berjalan sebelum baris pencetakan.',
               },
             },
             {
@@ -162,6 +174,10 @@ export const module1: Module = {
                 en: 'Down means more negative: floor(-4.2) is -5, not -4. Ceiling still rounds up, to -4.',
                 id: 'Ke bawah berarti lebih negatif: floor(-4.2) adalah -5, bukan -4. Ceiling tetap membulatkan ke atas, ke -4.',
               },
+              hint: {
+                en: '`floor` always moves toward negative infinity and `ceil` always moves toward positive infinity — think about what "down" means once the number is already negative.',
+                id: '`floor` selalu bergerak ke arah negatif takhingga dan `ceil` selalu ke arah positif takhingga — pikirkan apa arti "ke bawah" saat bilangannya sudah negatif.',
+              },
             },
             {
               kind: 'fill',
@@ -179,6 +195,10 @@ export const module1: Module = {
                 en: 'round() takes the value first, then how many decimal places.',
                 id: 'round() mengambil nilainya lebih dulu, lalu berapa angka desimalnya.',
               },
+              hint: {
+                en: 'You need a function that takes a value and a number of decimal places — which built-in have you just seen do exactly that?',
+                id: 'Kamu butuh fungsi yang menerima sebuah nilai dan jumlah angka desimal — fungsi bawaan mana yang baru saja kamu lihat melakukan persis itu?',
+              },
             },
             {
               kind: 'order',
@@ -194,6 +214,10 @@ export const module1: Module = {
               explain: {
                 en: 'import has to come before math is used, and the formula reads left to right just like the name.',
                 id: 'import harus datang sebelum math dipakai, dan formulanya dibaca kiri ke kanan seperti namanya.',
+              },
+              hint: {
+                en: 'One line has to run before `math.pi` can be referenced at all, and the formula must be fully computed before it can be rounded.',
+                id: 'Satu baris harus berjalan lebih dulu sebelum `math.pi` bisa dipakai sama sekali, dan formulanya harus selesai dihitung dulu sebelum bisa dibulatkan.',
               },
             },
             {
@@ -312,6 +336,10 @@ export const module1: Module = {
                 en: 'Whatever is inside { } is evaluated first — here, 7 * 2 — and only the result is shown.',
                 id: 'Apa pun yang ada di dalam { } dievaluasi lebih dulu — di sini, 7 * 2 — dan hanya hasilnya yang ditampilkan.',
               },
+              hint: {
+                en: 'Decide what the code inside the curly braces evaluates to before printing happens — is it the raw expression, or the result of running it?',
+                id: 'Tentukan dulu kode di dalam kurung kurawal itu dievaluasi menjadi apa sebelum pencetakan terjadi — apakah ekspresi mentahnya, atau hasil dari menjalankannya?',
+              },
             },
             {
               kind: 'fill',
@@ -329,6 +357,10 @@ export const module1: Module = {
                 en: 'The format spec goes right after the expression, still inside the braces.',
                 id: 'Spesifikasi formatnya diletakkan tepat setelah ekspresinya, masih di dalam kurung kurawal.',
               },
+              hint: {
+                en: 'You need a format spec that fixes the number of decimal places shown — think about where it sits relative to the expression, but still inside the braces.',
+                id: 'Kamu butuh spesifikasi format yang menetapkan jumlah angka desimal yang ditampilkan — pikirkan letaknya relatif terhadap ekspresinya, tapi tetap di dalam kurung kurawal.',
+              },
             },
             {
               kind: 'order',
@@ -344,6 +376,10 @@ export const module1: Module = {
               explain: {
                 en: ':.1f rounds and shows one decimal place, all in one step.',
                 id: ':.1f membulatkan dan menampilkan satu angka desimal, sekaligus.',
+              },
+              hint: {
+                en: 'The variable needs a value before the print line can reference it inside the f-string.',
+                id: 'Variabelnya perlu diberi nilai dulu sebelum baris print bisa merujuknya di dalam f-string.',
               },
             },
             {
@@ -427,6 +463,10 @@ export const module1: Module = {
                 en: 'Multiplication first: b * c is 12, then a + 12 is 14.',
                 id: 'Kali dulu: b * c adalah 12, lalu a + 12 adalah 14.',
               },
+              hint: {
+                en: 'Apply the usual order of operations here — which operation happens before the addition does?',
+                id: 'Terapkan urutan operasi seperti biasa di sini — operasi mana yang terjadi sebelum penjumlahannya?',
+              },
             },
             {
               kind: 'fill',
@@ -444,6 +484,10 @@ export const module1: Module = {
                 en: 'The discount amount is computed first inside the parentheses, then subtracted.',
                 id: 'Besaran diskonnya dihitung dulu di dalam kurung, baru dikurangkan.',
               },
+              hint: {
+                en: 'A discount takes an amount away from the original price — which operator expresses "taken away"?',
+                id: 'Diskon itu mengurangi harga aslinya dengan suatu jumlah — operator mana yang menyatakan "dikurangi"?',
+              },
             },
             {
               kind: 'order',
@@ -459,6 +503,10 @@ export const module1: Module = {
               explain: {
                 en: 'Without the parentheses, 2 * p + l would only double p.',
                 id: 'Tanpa kurungnya, 2 * p + l hanya akan menggandakan p.',
+              },
+              hint: {
+                en: '`p` and `l` both need to exist before they can be combined, and the parenthesized sum has to be built before it can be doubled.',
+                id: '`p` dan `l` perlu ada dulu sebelum bisa digabungkan, dan jumlah dalam kurung itu harus dibentuk dulu sebelum bisa digandakan.',
               },
             },
             {

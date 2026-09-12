@@ -84,6 +84,10 @@ export const module4: Module = {
                 en: 'Each call runs its own useState, so each component has its own value.',
                 id: 'Tiap pemanggilan menjalankan useState-nya sendiri, jadi tiap komponen punya nilainya sendiri.',
               },
+              hint: {
+                en: 'Think about what actually gets duplicated when a function is called twice — the code that runs, or the useState call each execution makes on its own.',
+                id: 'Pikirkan apa yang sebenarnya digandakan saat sebuah fungsi dipanggil dua kali — kodenya yang berjalan, atau pemanggilan useState yang dilakukan sendiri-sendiri tiap eksekusi.',
+              },
             },
             {
               kind: 'web',
@@ -207,6 +211,10 @@ export const module4: Module = {
               explain: {
                 en: 'Lifting it higher would re-render the whole list on every keystroke, for nothing.',
                 id: 'Mengangkatnya lebih tinggi akan merender ulang seluruh daftar di tiap ketukan tombol, sia-sia.',
+              },
+              hint: {
+                en: 'Think about what would have to re-render on every keystroke if this state lived higher up than the one component that actually needs it.',
+                id: 'Pikirkan apa yang harus ikut render ulang di tiap ketukan tombol jika state ini tinggal lebih tinggi daripada satu komponen yang benar-benar membutuhkannya.',
               },
             },
             {

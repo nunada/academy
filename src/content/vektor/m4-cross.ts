@@ -65,6 +65,10 @@ export const module4: Module = {
                 en: 'The determinant has three columns and produces three components, so both the input and the output are three-dimensional. In the plane there is no direction left over to point in.',
                 id: 'Determinannya berkolom tiga dan menghasilkan tiga komponen, jadi masukan dan keluarannya sama-sama berdimensi tiga. Di bidang tak tersisa arah untuk ditunjuk.',
               },
+              hint: {
+                en: 'Count how many entries expanding that determinant actually produces, and notice how many columns of components it needs to begin with.',
+                id: 'Hitung berapa banyak entri yang dihasilkan dari menjabarkan determinan itu, dan perhatikan berapa kolom komponen yang dibutuhkannya sejak awal.',
+              },
             },
             {
               kind: 'quiz',
@@ -93,6 +97,10 @@ export const module4: Module = {
                 en: '$\\vec{a} \\times \\vec{b} = (0 \\cdot 0 - 0 \\cdot 2,\\ 0 \\cdot 0 - 3 \\cdot 0,\\ 3 \\cdot 2 - 0 \\cdot 0) = (0, 0, 6)$ — perpendicular to both, pointing straight up out of the plane they lie in.',
                 id: '$\\vec{a} \\times \\vec{b} = (0 \\cdot 0 - 0 \\cdot 2,\\ 0 \\cdot 0 - 3 \\cdot 0,\\ 3 \\cdot 2 - 0 \\cdot 0) = (0, 0, 6)$ — tegak lurus terhadap keduanya, menunjuk lurus ke atas keluar dari bidang tempat keduanya berada.',
               },
+              hint: {
+                en: 'Expand each of the three components using the cover-a-column trick. With so many zeros among $\\vec{a}$ and $\\vec{b}$\'s entries, most of the six products drop out immediately.',
+                id: 'Jabarkan tiap dari tiga komponennya dengan trik tutup-satu-kolom. Dengan begitu banyak nol di antara entri $\\vec{a}$ dan $\\vec{b}$, sebagian besar dari enam hasil kalinya langsung lenyap.',
+              },
             },
             {
               kind: 'fill',
@@ -108,6 +116,10 @@ export const module4: Module = {
               explain: {
                 en: '$12 - 15 = -3$, $12 - 6 = 6$, $5 - 8 = -3$. Notice the middle slot is written $a_3b_1 - a_1b_3$, which already has the minus sign folded into it.',
                 id: '$12 - 15 = -3$, $12 - 6 = 6$, $5 - 8 = -3$. Perhatikan slot tengahnya ditulis $a_3b_1 - a_1b_3$, yang tanda minusnya sudah terlipat di dalamnya.',
+              },
+              hint: {
+                en: 'Each slot is one multiplication, one more multiplication, then a subtraction — carry each of the three out separately and watch for a negative result.',
+                id: 'Tiap slot berisi satu perkalian, satu perkalian lagi, lalu satu pengurangan — kerjakan ketiganya secara terpisah dan waspadai hasil yang negatif.',
               },
             },
             {
@@ -201,6 +213,10 @@ export const module4: Module = {
                 en: 'The magnitudes are non-zero, so $\\sin\\theta = 0$, which means $\\theta = 0°$ or $180°$ — the same line either way. A zero **dot** product is the one that means perpendicular.',
                 id: 'Besar kedua vektornya tak nol, jadi $\\sin\\theta = 0$, yang berarti $\\theta = 0°$ atau $180°$ — sama-sama pada satu garis. Perkalian **titik** yang bernilai nol itulah yang berarti tegak lurus.',
               },
+              hint: {
+                en: 'Since the magnitudes here are non-zero, it must be the $\\sin\\theta$ factor in $|\\vec{u}\\times\\vec{v}|$ that vanished. What angle makes a sine equal to zero, and what does that say about the two directions?',
+                id: 'Karena besar keduanya di sini tak nol, faktor $\\sin\\theta$ pada $|\\vec{u}\\times\\vec{v}|$-lah yang pasti lenyap. Sudut berapa yang membuat sinus sama dengan nol, dan apa artinya bagi kedua arahnya?',
+              },
             },
             {
               kind: 'quiz',
@@ -231,6 +247,10 @@ export const module4: Module = {
                 en: 'Curl the fingers of your right hand from $\\vec{a}$ (along $x$) toward $\\vec{b}$ (along $y$); your thumb points up the $+z$ axis — the arrow labeled "up".',
                 id: 'Lengkungkan jari tangan kananmu dari $\\vec{a}$ (sepanjang $x$) menuju $\\vec{b}$ (sepanjang $y$); ibu jarimu menunjuk ke sumbu $+z$ — anak panah berlabel "up".',
               },
+              hint: {
+                en: 'Physically curl your right hand\'s fingers starting at $\\vec{a}$ and sweeping toward $\\vec{b}$ — the direction your thumb ends up pointing is the answer, not something to guess between two options.',
+                id: 'Lengkungkan sungguhan jari tangan kananmu, mulai dari $\\vec{a}$ menyapu menuju $\\vec{b}$ — arah ibu jarimu berakhir menunjuk itulah jawabannya, bukan sesuatu yang ditebak di antara dua pilihan.',
+              },
             },
             {
               kind: 'order',
@@ -249,6 +269,10 @@ export const module4: Module = {
               explain: {
                 en: 'Set up the determinant, expand it, then take the magnitude of the vector you got. The length comes last — there is no shortcut that skips the components.',
                 id: 'Susun determinannya, jabarkan, lalu ambil besar dari vektor yang diperoleh. Panjangnya datang terakhir — tak ada jalan pintas yang melewati komponennya.',
+              },
+              hint: {
+                en: 'You cannot take the magnitude of a vector that hasn\'t been produced yet — the determinant has to be expanded into three actual components before there is anything to square and add.',
+                id: 'Kamu tak bisa mengambil besar sebuah vektor yang belum dihasilkan — determinannya harus dijabarkan menjadi tiga komponen nyata dahulu sebelum ada yang bisa dikuadratkan dan dijumlahkan.',
               },
             },
             {
@@ -408,6 +432,10 @@ export const module4: Module = {
                 en: 'Both vectors must leave the **same** corner, so that they are two sides of the triangle meeting there. (As it happens $\\vec{AB} \\times \\vec{BC}$ gives the same magnitude, but the reasoning behind it is harder to see.) The half is what turns a parallelogram into a triangle.',
                 id: 'Kedua vektornya harus berangkat dari titik sudut yang **sama**, agar keduanya menjadi dua sisi segitiga yang bertemu di situ. (Kebetulan $\\vec{AB} \\times \\vec{BC}$ memberi besar yang sama, tetapi alasannya lebih sulit dilihat.) Pembagian dua itulah yang mengubah jajargenjang menjadi segitiga.',
               },
+              hint: {
+                en: 'Picture the parallelogram construction from the concept above: both edge vectors leave the same starting point. Which pair of options shares a common tail at one vertex?',
+                id: 'Bayangkan susunan jajargenjang dari konsep di atas: kedua vektor sisinya berangkat dari titik awal yang sama. Pasangan pilihan mana yang berpangkal sama di satu titik sudut?',
+              },
             },
             {
               kind: 'quiz',
@@ -435,6 +463,10 @@ export const module4: Module = {
               explain: {
                 en: 'Treating both as vectors in the $xy$-plane, $|\\vec{a} \\times \\vec{b}| = |4(3) - 0(1)| = 12$ — base $4$ times height $3$, since $\\vec{b}$ rises exactly 3 above the line of $\\vec{a}$.',
                 id: 'Memperlakukan keduanya sebagai vektor pada bidang $xy$, $|\\vec{a} \\times \\vec{b}| = |4(3) - 0(1)| = 12$ — alas $4$ kali tinggi $3$, sebab $\\vec{b}$ naik tepat 3 di atas garis $\\vec{a}$.',
+              },
+              hint: {
+                en: 'Treat these as vectors in the plane and use the shortcut $2\\times2$ determinant: multiply the diagonal pair of components and subtract the other diagonal pair.',
+                id: 'Perlakukan ini sebagai vektor pada bidang dan pakai jalan pintas determinan $2\\times2$: kalikan pasangan komponen diagonal, lalu kurangkan pasangan diagonal yang lain.',
               },
             },
             {
@@ -576,6 +608,10 @@ export const module4: Module = {
                 en: 'A zero volume means the box has collapsed flat, which is exactly what it means for three vectors to be coplanar. Mutually perpendicular vectors would give the **largest** volume for their lengths, not zero.',
                 id: 'Volume nol berarti baloknya sudah gepeng, dan itu persis makna tiga vektor yang sebidang. Vektor yang saling tegak lurus justru memberi volume **terbesar** untuk panjang yang sama, bukan nol.',
               },
+              hint: {
+                en: 'The triple product\'s absolute value is a volume. What shape does a three-dimensional box become once its volume shrinks all the way to zero?',
+                id: 'Nilai mutlak hasil kali tripelnya adalah sebuah volume. Bentuk apa yang menjadi sebuah balok tiga dimensi ketika volumenya menyusut sampai nol?',
+              },
             },
             {
               kind: 'quiz',
@@ -605,6 +641,10 @@ export const module4: Module = {
                 en: 'All three vectors have a zero $z$-component, so they all lie in the same plane and the "box" they span is flat: zero volume, and $\\vec{a} \\cdot (\\vec{b} \\times \\vec{c}) = 0$ — the coplanarity test from the concept above, seen directly in a picture.',
                 id: 'Ketiga vektornya sama-sama berkomponen $z$ nol, jadi ketiganya berada pada bidang yang sama dan "balok" yang dibentangkannya gepeng: volumenya nol, dan $\\vec{a} \\cdot (\\vec{b} \\times \\vec{c}) = 0$ — uji kesebidangan dari konsep di atas, terlihat langsung pada gambar.',
               },
+              hint: {
+                en: 'The prompt already tells you the three vectors lie flat in one plane. What must that force the volume of the box they span to be?',
+                id: 'Soalnya sudah memberitahukan bahwa ketiga vektornya terletak datar pada satu bidang. Apa yang harus dipaksakan hal itu pada volume balok yang mereka bentangkan?',
+              },
             },
             {
               kind: 'order',
@@ -623,6 +663,10 @@ export const module4: Module = {
               explain: {
                 en: 'Cross first, dot second. Doing it the other way round is not a different route to the answer — it is not defined at all.',
                 id: 'Silangkan dahulu, titikkan kemudian. Membaliknya bukan jalan lain menuju jawaban — bentuk itu memang tak terdefinisi.',
+              },
+              hint: {
+                en: 'The dot in $\\vec{a} \\cdot (\\vec{b} \\times \\vec{c})$ needs an actual vector on its right to dot with — and that vector only exists once the cross product inside the parentheses has been expanded.',
+                id: 'Titik pada $\\vec{a} \\cdot (\\vec{b} \\times \\vec{c})$ butuh vektor nyata di kanannya untuk dititikkan — dan vektor itu baru ada setelah perkalian silang di dalam kurung dijabarkan.',
               },
             },
             {

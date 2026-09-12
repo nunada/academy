@@ -68,6 +68,10 @@ export const module2: Module = {
                 en: 'Reseeding with the same number resets the sequence back to its start every time — the first draw after seed(1) is always the same draw.',
                 id: 'Men-seed ulang dengan angka yang sama menata ulang urutannya kembali ke awal tiap kali — pengambilan pertama setelah seed(1) selalu pengambilan yang sama.',
               },
+              hint: {
+                en: 'Think about what `random.seed(n)` actually does each time it is called — does it remember where the sequence left off, or does it reset it?',
+                id: 'Pikirkan apa yang sebenarnya dilakukan `random.seed(n)` tiap kali dipanggil — apakah ia mengingat di mana urutannya berhenti, atau menata ulang ke awal?',
+              },
             },
             {
               kind: 'fill',
@@ -84,6 +88,10 @@ export const module2: Module = {
               explain: {
                 en: 'range(5) walks 0 through 4 — five passes through the loop body.',
                 id: 'range(5) berjalan dari 0 sampai 4 — lima putaran melalui isi perulangannya.',
+              },
+              hint: {
+                en: "Count how many times the loop needs to run, then recall how range's single argument relates to that count.",
+                id: 'Hitung berapa kali perulangannya perlu berjalan, lalu ingat bagaimana satu argumen range berhubungan dengan hitungan itu.',
               },
             },
             {
@@ -116,6 +124,10 @@ export const module2: Module = {
               explain: {
                 en: 'The empty list has to exist before the loop appends to it.',
                 id: 'List kosongnya harus ada sebelum perulangannya menambahkan ke situ.',
+              },
+              hint: {
+                en: 'The list that collects results has to be created before the loop can append anything into it, and the seed has to be set before any random draw.',
+                id: 'List yang mengumpulkan hasil harus dibuat dulu sebelum perulangannya bisa menambahkan apa pun ke situ, dan seed-nya harus ditetapkan dulu sebelum pengambilan acak mana pun.',
               },
             },
             {
@@ -187,6 +199,10 @@ export const module2: Module = {
                 en: 'A for loop over an empty sequence simply has nothing to iterate — the body is skipped entirely, same as any other empty list.',
                 id: 'Perulangan for atas urutan kosong sekadar tak punya apa pun untuk diulang — isinya dilewati sepenuhnya, sama seperti list kosong lainnya.',
               },
+              hint: {
+                en: 'Think about what a for loop does when the thing after `in` has zero items to hand out — does it wait, error, or simply have nothing to do?',
+                id: 'Pikirkan apa yang dilakukan perulangan for saat yang ada setelah `in` tak punya unsur untuk dibagikan — apakah ia menunggu, error, atau sekadar tak punya apa-apa untuk dikerjakan?',
+              },
             },
             {
               kind: 'fill',
@@ -207,6 +223,10 @@ export const module2: Module = {
                 en: 'The two names on the left of "in" match the two items in each tuple, in order.',
                 id: 'Kedua nama di sebelah kiri "in" cocok dengan kedua unsur tiap tuple-nya, berurutan.',
               },
+              hint: {
+                en: 'Each tuple in the list holds two things — look at what the first name, `problem`, already captures, then think about what name would capture the other half.',
+                id: 'Tiap tuple di list-nya menyimpan dua hal — lihat apa yang sudah ditangkap nama pertama, `soal`, lalu pikirkan nama apa yang akan menangkap bagian lainnya.',
+              },
             },
             {
               kind: 'order',
@@ -222,6 +242,10 @@ export const module2: Module = {
               explain: {
                 en: 'problem is unpacked but simply unused here — Python does not require using every name a loop unpacks.',
                 id: 'soal tetap dibongkar tapi sekadar tak dipakai di sini — Python tak mewajibkan tiap nama yang dibongkar perulangan harus dipakai.',
+              },
+              hint: {
+                en: 'The pairs list has to exist before the loop can unpack anything from it, and both names in the unpacking have to be there even if only one gets used.',
+                id: 'List paket harus ada dulu sebelum perulangannya bisa membongkar apa pun darinya, dan kedua nama dalam pembongkarannya harus tetap ada meski hanya satu yang dipakai.',
               },
             },
             {
@@ -340,6 +364,10 @@ export const module2: Module = {
                 en: 'zip pairs items up only as far as the shorter sequence goes, then simply stops — no error, no filling in gaps.',
                 id: 'zip memasangkan unsurnya hanya sejauh urutan yang lebih pendek, lalu sekadar berhenti — tanpa galat, tanpa mengisi kekosongan.',
               },
+              hint: {
+                en: 'Think about how zip decides when to stop pairing items — does it need both lists to be the same length, or does it just work with what overlaps?',
+                id: 'Pikirkan bagaimana zip memutuskan kapan berhenti memasangkan unsur — apakah ia butuh kedua list sama panjang, atau ia sekadar bekerja dengan yang tumpang tindih?',
+              },
             },
             {
               kind: 'fill',
@@ -357,6 +385,10 @@ export const module2: Module = {
                 en: '!= is "not equal" — the mirror image of the == check from the concept above.',
                 id: '!= artinya "tidak sama" — kebalikan dari pemeriksaan == pada konsep di atas.',
               },
+              hint: {
+                en: 'You are counting the pairs that do NOT match this time — which comparison operator means the opposite of equality?',
+                id: 'Kamu sedang menghitung pasangan yang TIDAK cocok kali ini — operator perbandingan mana yang berarti kebalikan dari kesetaraan?',
+              },
             },
             {
               kind: 'order',
@@ -372,6 +404,10 @@ export const module2: Module = {
               explain: {
                 en: 'Division has to happen before multiplying by 100, exactly as the concept above did it.',
                 id: 'Pembagiannya harus terjadi sebelum dikalikan 100, persis seperti pada konsep di atas.',
+              },
+              hint: {
+                en: 'correct and total need values before any arithmetic on them, and the whole score expression has to be computed before it can be rounded and printed.',
+                id: 'benar dan total perlu punya nilai dulu sebelum aritmetika apa pun padanya, dan seluruh ekspresi skornya harus dihitung dulu sebelum bisa dibulatkan dan dicetak.',
               },
             },
             {
@@ -453,6 +489,10 @@ export const module2: Module = {
                 en: 'Hard-coding 3 would silently give the wrong score the moment the worksheet has a different number of problems.',
                 id: 'Mengeraskan angka 3 akan diam-diam memberi skor yang salah begitu lembar kerjanya punya jumlah soal yang berbeda.',
               },
+              hint: {
+                en: 'Ask what would happen to this exact line if the worksheet had 5 problems instead of 3, under each option.',
+                id: 'Tanyakan apa yang terjadi pada baris ini persis kalau lembar kerjanya punya 5 soal, bukan 3, di bawah tiap pilihan.',
+              },
             },
             {
               kind: 'fill',
@@ -469,6 +509,10 @@ export const module2: Module = {
               explain: {
                 en: 'A fraction becomes a percentage by multiplying by 100.',
                 id: 'Pecahan menjadi persentase dengan mengalikannya dengan 100.',
+              },
+              hint: {
+                en: 'A fraction between 0 and 1 needs to become a number like 66.7 — which operation scales it up like that?',
+                id: 'Pecahan antara 0 dan 1 perlu diubah jadi angka seperti 66,7 — operasi mana yang membesarkannya seperti itu?',
               },
             },
             {
@@ -501,6 +545,10 @@ export const module2: Module = {
               explain: {
                 en: 'Same shape as the lesson\'s first concept — the if/else decides which word to print.',
                 id: 'Bentuknya sama seperti konsep pertama pelajaran ini — if/else menentukan kata mana yang dicetak.',
+              },
+              hint: {
+                en: 'The two lists need to exist before zip can walk them together, and the if/else only decides what to print after each pair has already been compared.',
+                id: 'Kedua list-nya perlu ada dulu sebelum zip bisa menyusurinya bersamaan, dan if/else-nya baru menentukan apa yang dicetak setelah tiap pasangan sudah dibandingkan.',
               },
             },
             {

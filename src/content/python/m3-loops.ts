@@ -62,6 +62,10 @@ export const module3: Module = {
                 en: 'range(3) produces 0, 1, 2 — three values, so the body runs three times.',
                 id: 'range(3) menghasilkan 0, 1, 2 — tiga nilai, jadi badan loop jalan tiga kali.',
               },
+              hint: {
+                en: 'Count how many values range(3) actually produces before assuming it matches the number 3 itself.',
+                id: 'Hitung berapa nilai yang sebenarnya dihasilkan range(3) sebelum menganggapnya sama dengan angka 3 itu sendiri.',
+              },
             },
             {
               kind: 'fill',
@@ -75,6 +79,10 @@ export const module3: Module = {
               explain: {
                 en: 'The stop value is never reached, so 6 is needed to include 5.',
                 id: 'Nilai stop tidak pernah tercapai, jadi 6 dibutuhkan agar 5 ikut tercetak.',
+              },
+              hint: {
+                en: "Remember that range's stop value is never included in the output — what does that mean for the number just past 5?",
+                id: 'Ingat bahwa nilai stop pada range tidak pernah ikut tercetak — apa artinya itu untuk angka tepat setelah 5?',
               },
             },
             {
@@ -146,6 +154,10 @@ export const module3: Module = {
                 en: '1 × 1 × 2 × 3 = 6. A multiplying accumulator must start at 1, not 0.',
                 id: '1 × 1 × 2 × 3 = 6. Akumulator perkalian harus dimulai dari 1, bukan 0.',
               },
+              hint: {
+                en: "List out the values `i` actually takes from `range(1, 4)`, then multiply them one at a time starting from result's initial value.",
+                id: 'Tuliskan nilai-nilai `i` yang sebenarnya diambil dari `range(1, 4)`, lalu kalikan satu per satu mulai dari nilai awal `hasil`.',
+              },
             },
             {
               kind: 'order',
@@ -158,6 +170,10 @@ export const module3: Module = {
               explain: {
                 en: 'The accumulator is created before the loop and printed after it ends.',
                 id: 'Akumulator dibuat sebelum loop dan dicetak setelah loop selesai.',
+              },
+              hint: {
+                en: '`total` needs a starting value before anything can be added to it, and the print has to happen only once the loop has finished changing it.',
+                id: '`total` butuh nilai awal sebelum ada yang bisa ditambahkan kepadanya, dan cetakannya harus terjadi hanya setelah loop selesai mengubahnya.',
               },
             },
             {
@@ -282,6 +298,10 @@ export const module3: Module = {
                 en: 'i takes the values 0, 1, 2 at the check, so the body runs three times and prints 1, 2, 3.',
                 id: 'i bernilai 0, 1, 2 saat diperiksa, jadi badan loop jalan tiga kali dan mencetak 1, 2, 3.',
               },
+              hint: {
+                en: 'List the value of `i` at each moment the `while` condition gets checked — that is a different point in the loop from where it gets printed.',
+                id: 'Daftar nilai `i` pada setiap saat kondisi `while` diperiksa — itu titik yang berbeda dari saat ia dicetak.',
+              },
             },
             {
               kind: 'fill',
@@ -295,6 +315,10 @@ export const module3: Module = {
               explain: {
                 en: 'The condition stops at 0, and n must shrink each round or the loop never ends.',
                 id: 'Kondisi berhenti di 0, dan n harus mengecil tiap putaran atau loop tak pernah berakhir.',
+              },
+              hint: {
+                en: 'The loop needs to keep running while n is still positive, and n has to move toward 0 each round or it never stops.',
+                id: 'Loop perlu terus berjalan selama n masih positif, dan n harus bergerak menuju 0 tiap putaran atau ia tak pernah berhenti.',
               },
             },
             {
@@ -367,6 +391,10 @@ export const module3: Module = {
                 en: 'At i = 2 the loop stops entirely, so only 0 and 1 were printed.',
                 id: 'Saat i = 2 loop berhenti total, jadi hanya 0 dan 1 yang tercetak.',
               },
+              hint: {
+                en: '`break` stops the loop the instant it runs — think about whether `print(i)` even gets reached in the round where i equals 2.',
+                id: '`break` menghentikan loop tepat saat ia dijalankan — pikirkan apakah `print(i)` sempat dijalankan pada putaran ketika i bernilai 2.',
+              },
             },
             {
               kind: 'quiz',
@@ -385,6 +413,10 @@ export const module3: Module = {
               explain: {
                 en: 'Only the round where i is 2 is skipped; the loop finishes the rest.',
                 id: 'Hanya putaran ketika i bernilai 2 yang dilewati; loop menyelesaikan sisanya.',
+              },
+              hint: {
+                en: '`continue` only skips the rest of the current round — think about whether the loop keeps going afterward or stops entirely the way `break` did.',
+                id: '`continue` hanya melewati sisa putaran saat itu — pikirkan apakah loop tetap berjalan sesudahnya atau berhenti total seperti `break` sebelumnya.',
               },
             },
             {

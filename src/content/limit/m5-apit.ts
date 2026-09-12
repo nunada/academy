@@ -72,6 +72,10 @@ export const module5: Module = {
                 en: '$\\sin(1/x)$ has no limit of its own as $x \\to 0$ — it keeps oscillating. There is nothing to "plug in", which is exactly why a squeeze, rather than algebra, is needed.',
                 id: '$\\sin(1/x)$ sendiri tak punya limit saat $x \\to 0$ — ia terus berosilasi. Tak ada apa pun untuk "dimasukkan", dan itulah sebabnya diperlukan penjepitan, bukan aljabar.',
               },
+              hint: {
+                en: 'Think about what happens to $\\frac{1}{x}$, and hence to $\\sin(1/x)$, as $x$ creeps toward $0$ — does it settle toward one value the way substitution would need?',
+                id: 'Pikirkan apa yang terjadi pada $\\frac{1}{x}$, dan karenanya pada $\\sin(1/x)$, saat $x$ merayap menuju $0$ — apakah ia mereda menuju satu nilai seperti yang dibutuhkan substitusi?',
+              },
             },
             {
               kind: 'quiz',
@@ -101,6 +105,10 @@ export const module5: Module = {
               explain: {
                 en: 'Both dashed walls pinch to $0$ as $x \\to 0$, and the wiggly curve is trapped between them the whole way — it has no choice but to be squeezed to $0$ too.',
                 id: 'Kedua dinding putus-putus mengerucut ke $0$ saat $x \\to 0$, dan kurva yang berkelok terjepit di antaranya sepanjang jalan — ia tak punya pilihan selain ikut terjepit ke $0$.',
+              },
+              hint: {
+                en: 'Watch where the two dashed walls meet as $x$ approaches $0$ in the figure — whatever height that is, the wiggly curve trapped between them has no room to be anywhere else.',
+                id: 'Amati di mana kedua dinding putus-putus itu bertemu saat $x$ mendekati $0$ pada gambar — berapa pun tingginya itu, kurva berkelok yang terjepit di antaranya tak punya ruang untuk berada di tempat lain.',
               },
             },
             {
@@ -170,6 +178,10 @@ export const module5: Module = {
                 en: 'Both bounds go to $0$ as $x \\to 0$, so the squeeze theorem pins $f$\'s limit to $0$ too — no need to know anything else about $f$.',
                 id: 'Kedua batasnya menuju $0$ saat $x \\to 0$, jadi teorema apit memaku limit $f$ juga ke $0$ — tak perlu mengetahui apa pun lagi tentang $f$.',
               },
+              hint: {
+                en: 'Work out where the lower wall $-x^2$ and the upper wall $x^2$ both head as $x \\to 0$ — the three-check recipe from the concept above applies directly.',
+                id: 'Cari tahu ke mana dinding bawah $-x^2$ dan dinding atas $x^2$ sama-sama menuju saat $x \\to 0$ — resep tiga pemeriksaan dari konsep di atas berlaku langsung.',
+              },
             },
             {
               kind: 'quiz',
@@ -198,6 +210,10 @@ export const module5: Module = {
               explain: {
                 en: 'Both walls pinch together at height $3$ as $x \\to 0$, so anything trapped between them is forced to the same height, whatever its own formula happens to be.',
                 id: 'Kedua dindingnya mengerucut bersama pada tinggi $3$ saat $x \\to 0$, jadi apa pun yang terjepit di antaranya dipaksa ke tinggi yang sama, apa pun rumusnya sendiri.',
+              },
+              hint: {
+                en: 'Read off the height where the two dashed curves meet as $x \\to 0$ in the figure — that shared height is the only place a trapped function could possibly end up.',
+                id: 'Baca ketinggian tempat kedua kurva putus-putus bertemu saat $x \\to 0$ pada gambar — ketinggian bersama itu satu-satunya tempat fungsi yang terjepit bisa berakhir.',
               },
             },
             {
@@ -322,6 +338,10 @@ export const module5: Module = {
                 en: 'Factoring rescues $\\frac{0}{0}$ only when a polynomial factor is shared top and bottom. $\\sin x$ is not a polynomial, so there is nothing of that kind to find — a geometric squeeze is what actually proves this one.',
                 id: 'Pemfaktoran menyelamatkan $\\frac{0}{0}$ hanya ketika ada faktor polinom yang sama di atas dan bawah. $\\sin x$ bukan polinom, jadi tak ada yang semacam itu untuk ditemukan — penjepitan geometrislah yang sebenarnya membuktikan limit ini.',
               },
+              hint: {
+                en: 'Ask whether $\\sin x$ can be written with an algebraic factor of $x$ multiplied out of it, the way a polynomial can — that\'s exactly what factoring needs to work.',
+                id: 'Tanyakan apakah $\\sin x$ bisa ditulis dengan faktor aljabar $x$ yang bisa dikeluarkan darinya, seperti halnya polinom — itu persis yang dibutuhkan pemfaktoran agar berhasil.',
+              },
             },
             {
               kind: 'quiz',
@@ -351,6 +371,10 @@ export const module5: Module = {
               explain: {
                 en: 'The curve heads for the hollow point at height $1$ from both directions — the function being undefined right at $x=0$ has no bearing on where its limit points, exactly as Module 1 established.',
                 id: 'Kurvanya menuju titik kosong pada tinggi $1$ dari kedua arah — fungsinya yang tak terdefinisi tepat di $x=0$ tak berpengaruh pada ke mana limitnya menunjuk, persis seperti yang ditetapkan Modul 1.',
+              },
+              hint: {
+                en: 'Look at the height the curve heads toward from both sides of the hollow point — remember from Module 1 that the function being undefined right at that point doesn\'t affect what the limit is.',
+                id: 'Lihat ketinggian yang dituju kurvanya dari kedua sisi titik kosong itu — ingat dari Modul 1 bahwa fungsinya yang tak terdefinisi tepat di titik itu tak memengaruhi apa limitnya.',
               },
             },
             {
@@ -419,6 +443,10 @@ export const module5: Module = {
                 en: 'This matches the family $\\lim_{x\\to 0}\\frac{\\sin kx}{x} = k$ with $k=7$ directly.',
                 id: 'Ini persis cocok dengan keluarga $\\lim_{x\\to 0}\\frac{\\sin kx}{x} = k$ dengan $k=7$.',
               },
+              hint: {
+                en: 'Match this against the general pattern $\\lim_{x\\to 0}\\frac{\\sin kx}{x} = k$ from the concept above — identify what $k$ is here.',
+                id: 'Cocokkan ini dengan pola umum $\\lim_{x\\to 0}\\frac{\\sin kx}{x} = k$ dari konsep di atas — kenali berapa $k$-nya di sini.',
+              },
             },
             {
               kind: 'quiz',
@@ -447,6 +475,10 @@ export const module5: Module = {
               explain: {
                 en: 'Both sides flatten toward the hollow point at height $0$.',
                 id: 'Kedua sisi memipih menuju titik kosong pada tinggi $0$.',
+              },
+              hint: {
+                en: 'Read off the height the curve flattens toward from both sides of the hollow point in the figure.',
+                id: 'Baca ketinggian yang didekati kurvanya dari kedua sisi titik kosong pada gambar.',
               },
             },
             {

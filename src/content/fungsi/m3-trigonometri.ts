@@ -68,6 +68,10 @@ export const module3: Module = {
                 en: '$\\frac{3\\pi}{4} \\cdot \\frac{180}{\\pi} = \\frac{3 \\cdot 180}{4} = 135$. A quick check: $\\pi$ is $180^\\circ$, so three quarters of it must be three quarters of $180$.',
                 id: '$\\frac{3\\pi}{4} \\cdot \\frac{180}{\\pi} = \\frac{3 \\cdot 180}{4} = 135$. Pemeriksaan cepat: $\\pi$ adalah $180^\\circ$, jadi tiga perempatnya pasti tiga perempat dari $180$.',
               },
+              hint: {
+                en: 'Since $\\pi$ radians is $180^\\circ$, think of $\\tfrac{3\\pi}{4}$ as three quarters of $\\pi$ — what is three quarters of $180$?',
+                id: 'Karena $\\pi$ radian adalah $180^\\circ$, pikirkan $\\tfrac{3\\pi}{4}$ sebagai tiga perempat dari $\\pi$ — berapa tiga perempat dari $180$?',
+              },
             },
             {
               kind: 'quiz',
@@ -97,6 +101,10 @@ export const module3: Module = {
               explain: {
                 en: 'A full turn is $2\\pi$ radians, and the marked angle is a quarter of a full turn: $\\tfrac{1}{4}(2\\pi) = \\tfrac{\\pi}{2}$.',
                 id: 'Satu putaran penuh adalah $2\\pi$ radian, dan sudut yang ditandai adalah seperempat putaran penuh: $\\tfrac{1}{4}(2\\pi) = \\tfrac{\\pi}{2}$.',
+              },
+              hint: {
+                en: 'A full turn around the circle is $2\\pi$ radians. The marked sweep is one quarter of that full turn.',
+                id: 'Satu putaran penuh mengelilingi lingkaran adalah $2\\pi$ radian. Sapuan yang ditandai adalah seperempat dari putaran penuh itu.',
               },
             },
             {
@@ -195,6 +203,10 @@ export const module3: Module = {
                 en: 'Second quadrant: $x < 0$, $y > 0$. So $\\cos\\theta < 0$, $\\sin\\theta > 0$, and their ratio is negative. Only sine (and its reciprocal cosecant) survives positive there.',
                 id: 'Kuadran kedua: $x < 0$, $y > 0$. Jadi $\\cos\\theta < 0$, $\\sin\\theta > 0$, dan perbandingan keduanya negatif. Hanya sinus (dan kebalikannya, cosecan) yang tetap positif di situ.',
               },
+              hint: {
+                en: 'In the second quadrant, is the $x$-coordinate positive or negative, and the $y$-coordinate? Work out the sign of cosine and sine separately before combining them for tangent.',
+                id: 'Di kuadran kedua, apakah koordinat $x$-nya positif atau negatif, dan koordinat $y$-nya? Tentukan tanda cosinus dan sinus secara terpisah sebelum menggabungkannya untuk tangen.',
+              },
             },
             {
               kind: 'quiz',
@@ -222,6 +234,10 @@ export const module3: Module = {
               explain: {
                 en: '$P$ sits to the left of the $y$-axis and above the $x$-axis: negative first coordinate, positive second. Since $\\cos\\theta$ is the first coordinate and $\\sin\\theta$ the second, that is $\\cos\\theta < 0$ and $\\sin\\theta > 0$.',
                 id: '$P$ berada di sebelah kiri sumbu $y$ dan di atas sumbu $x$: koordinat pertamanya negatif, koordinat keduanya positif. Karena $\\cos\\theta$ adalah koordinat pertama dan $\\sin\\theta$ koordinat kedua, itu berarti $\\cos\\theta < 0$ dan $\\sin\\theta > 0$.',
+              },
+              hint: {
+                en: 'Look at which side of the $y$-axis $P$ sits on, and which side of the $x$-axis — those two facts are exactly the signs of $\\cos\\theta$ and $\\sin\\theta$.',
+                id: 'Perhatikan $P$ berada di sisi mana dari sumbu $y$, dan sisi mana dari sumbu $x$ — kedua fakta itu persis tanda dari $\\cos\\theta$ dan $\\sin\\theta$.',
               },
             },
             {
@@ -307,6 +323,10 @@ export const module3: Module = {
                 en: 'Pythagoras says the sum of the squared legs equals the squared hypotenuse: $\\cos^2\\theta + \\sin^2\\theta = 1^2 = 1$.',
                 id: 'Pythagoras menyatakan jumlah kuadrat sisi siku-sikunya sama dengan kuadrat hipotenusanya: $\\cos^2\\theta + \\sin^2\\theta = 1^2 = 1$.',
               },
+              hint: {
+                en: 'Recall the Pythagorean theorem in its ordinary form, leg squared plus leg squared equals hypotenuse squared, then substitute what each side of this triangle actually is.',
+                id: 'Ingat kembali teorema Pythagoras dalam bentuk biasanya, sisi siku-siku kuadrat ditambah sisi siku-siku kuadrat sama dengan hipotenusa kuadrat, lalu substitusikan apa sebenarnya tiap sisi segitiga ini.',
+              },
             },
             {
               kind: 'order',
@@ -333,6 +353,10 @@ export const module3: Module = {
               explain: {
                 en: 'The identity only ever gives the square, so it gives two candidates. The quadrant is what chooses between them — and it is the step people leave out.',
                 id: 'Identitasnya hanya pernah memberi kuadratnya, jadi ia memberi dua calon. Kuadrannyalah yang memilih di antara keduanya — dan justru langkah itulah yang sering ditinggalkan.',
+              },
+              hint: {
+                en: 'The Pythagorean identity only ever produces a squared value, which has two possible square roots — a later line has to decide between the plus and the minus using information the identity itself does not contain. Which line supplies that missing information?',
+                id: 'Identitas Pythagoras hanya pernah menghasilkan nilai kuadrat, yang punya dua kemungkinan akar — sebuah baris berikutnya harus memutuskan antara plus dan minus memakai informasi yang tak dimiliki identitasnya sendiri. Baris mana yang menyediakan informasi yang hilang itu?',
               },
             },
             {
@@ -501,6 +525,10 @@ export const module3: Module = {
                 en: '$\\sin(-x) = -\\sin x$ is the origin symmetry; $\\cos(-x) = \\cos x$ is the $y$-axis one. On the circle this is just reflecting the point across the horizontal axis: the first coordinate is unchanged, the second changes sign.',
                 id: '$\\sin(-x) = -\\sin x$ adalah kesimetrian titik asal; $\\cos(-x) = \\cos x$ adalah kesimetrian sumbu $y$. Pada lingkaran, ini tak lain mencerminkan titiknya terhadap sumbu mendatar: koordinat pertamanya tetap, koordinat keduanya berganti tanda.',
               },
+              hint: {
+                en: 'Recall what "odd" and "even" mean for symmetry in general — one type folds about the vertical axis, the other rotates about the origin. Match each type to the correct function.',
+                id: 'Ingat kembali apa arti "ganjil" dan "genap" untuk kesimetrian secara umum — satu jenis melipat pada sumbu tegak, jenis lain memutar pada titik asal. Cocokkan tiap jenis dengan fungsi yang tepat.',
+              },
             },
             {
               kind: 'quiz',
@@ -530,6 +558,10 @@ export const module3: Module = {
               explain: {
                 en: 'The distance between two consecutive matching peaks is exactly one period: $\\tfrac{5\\pi}{2} - \\tfrac{\\pi}{2} = 2\\pi$.',
                 id: 'Jarak antara dua puncak berurutan yang sepadan persis satu periode: $\\tfrac{5\\pi}{2} - \\tfrac{\\pi}{2} = 2\\pi$.',
+              },
+              hint: {
+                en: 'The period is the horizontal distance between two consecutive matching peaks — subtract the two marked $x$-values.',
+                id: 'Periodenya adalah jarak mendatar antara dua puncak berurutan yang sepadan — kurangkan kedua nilai $x$ yang ditandai.',
               },
             },
             {
@@ -610,6 +642,10 @@ export const module3: Module = {
                 en: 'The period is $\\frac{2\\pi}{|B|} = \\frac{2\\pi}{3}$. The 4 out front changes the height, never the period.',
                 id: 'Periodenya $\\frac{2\\pi}{|B|} = \\frac{2\\pi}{3}$. Angka 4 di depan mengubah tingginya, tak pernah periodenya.',
               },
+              hint: {
+                en: 'The period formula is $2\\pi$ divided by the number multiplying $x$ inside the cosine — the 4 out front plays no role here at all.',
+                id: 'Rumus periodenya adalah $2\\pi$ dibagi bilangan yang mengalikan $x$ di dalam cosinusnya — angka 4 di depan sama sekali tak berperan di sini.',
+              },
             },
             {
               kind: 'quiz',
@@ -628,6 +664,10 @@ export const module3: Module = {
               explain: {
                 en: 'Midline 5, amplitude $|-2| = 2$, so $[5-2, 5+2] = [3, 7]$. The minus sign flips the wave but does not move the band it lives in — the highest and lowest values are the same either way.',
                 id: 'Garis tengah 5, amplitudo $|-2| = 2$, jadi $[5-2, 5+2] = [3, 7]$. Tanda minusnya membalik gelombangnya tetapi tidak memindahkan pita tempatnya berada — nilai tertinggi dan terendahnya sama saja.',
+              },
+              hint: {
+                en: 'Find the midline $D$ and the amplitude $|A|$ separately, then the wave reaches from $D - |A|$ to $D + |A|$ — the minus sign in front only flips the wave, it does not move the band.',
+                id: 'Cari garis tengah $D$ dan amplitudo $|A|$ secara terpisah, lalu gelombangnya mencapai dari $D - |A|$ sampai $D + |A|$ — tanda minus di depan hanya membalik gelombangnya, tidak memindahkan pitanya.',
               },
             },
             {
@@ -657,6 +697,10 @@ export const module3: Module = {
               explain: {
                 en: 'The midline sits at $-1$ and the amplitude is $2$, so the wave reaches from $-1 - 2 = -3$ up to $-1 + 2 = 1$.',
                 id: 'Garis tengahnya berada di $-1$ dan amplitudonya $2$, jadi gelombangnya mencapai dari $-1 - 2 = -3$ sampai $-1 + 2 = 1$.',
+              },
+              hint: {
+                en: 'The dashed line marks the midline; the amplitude tells you how far above and below it the wave swings. Use both together to find the top and bottom of the band.',
+                id: 'Garis putus-putusnya menandai garis tengah; amplitudonya memberitahumu seberapa jauh gelombangnya berayun di atas dan di bawahnya. Pakai keduanya bersama untuk mencari puncak dan dasar pitanya.',
               },
             },
             {
@@ -748,6 +792,10 @@ export const module3: Module = {
                 en: '$\\sec x = 1/\\cos x$, so it fails exactly where cosine is zero — the same places tangent fails, since they share the denominator.',
                 id: '$\\sec x = 1/\\cos x$, jadi ia gagal persis di tempat cosinusnya nol — tempat yang sama dengan kegagalan tangen, sebab keduanya berbagi penyebut.',
               },
+              hint: {
+                en: 'Write $\\sec x$ as a fraction with $\\cos x$ in the denominator, then ask where that denominator becomes zero.',
+                id: 'Tulis $\\sec x$ sebagai pecahan dengan $\\cos x$ di penyebutnya, lalu tanyakan di mana penyebutnya menjadi nol.',
+              },
             },
             {
               kind: 'quiz',
@@ -778,6 +826,10 @@ export const module3: Module = {
               explain: {
                 en: '$\\csc x = 1/\\sin x$ fails wherever $\\sin x = 0$ — at every multiple of $\\pi$, exactly the dashed lines in the drawing.',
                 id: '$\\csc x = 1/\\sin x$ gagal di mana pun $\\sin x = 0$ — di setiap kelipatan $\\pi$, persis garis putus-putus pada gambar.',
+              },
+              hint: {
+                en: 'The dashed lines are already drawn on the graph — just read off which $x$-values they sit at, and notice the pattern between them.',
+                id: 'Garis putus-putusnya sudah tergambar di grafiknya — baca saja pada nilai $x$ berapa garis-garis itu berada, dan perhatikan polanya.',
               },
             },
             {

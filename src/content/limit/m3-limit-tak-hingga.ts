@@ -71,6 +71,10 @@ export const module3: Module = {
                 en: '$\\infty$ is not a number the limit equals — the limit still fails to exist in the ordinary sense. Writing $=\\infty$ is a description of the particular way it fails: unbounded growth, not a jump or an oscillation.',
                 id: '$\\infty$ bukan bilangan yang disamai limitnya — limitnya tetap gagal ada dalam pengertian biasa. Menulis $=\\infty$ adalah gambaran cara khusus ia gagal: pertumbuhan tak terbatas, bukan lompatan atau osilasi.',
               },
+              hint: {
+                en: 'Re-read the concept above carefully — does it call $\\infty$ a value the limit reaches, or a description of a particular way the limit can fail to exist?',
+                id: 'Baca ulang konsep di atas dengan cermat — apakah ia menyebut $\\infty$ sebagai nilai yang dicapai limitnya, atau sebagai gambaran cara tertentu limitnya bisa gagal ada?',
+              },
             },
             {
               kind: 'quiz',
@@ -96,6 +100,10 @@ export const module3: Module = {
               explain: {
                 en: 'Approaching $0$ from the right ($x > 0$), the curve rockets straight up, past every bound. That one-sided limit is $\\infty$ — the left-hand side, by contrast, plunges to $-\\infty$, which is why the full two-sided limit has no such clean description.',
                 id: 'Mendekati $0$ dari kanan ($x > 0$), kurvanya melesat lurus ke atas, melewati batas apa pun. Limit sepihak itu adalah $\\infty$ — sisi kiri, sebaliknya, terjun ke $-\\infty$, dan itu sebabnya limit dua sisinya tak punya keterangan sebersih itu.',
+              },
+              hint: {
+                en: 'The plus sign restricts you to $x > 0$ only — cover up the left half of the picture and watch just the right branch as it nears $x = 0$.',
+                id: 'Tanda plus membatasimu hanya pada $x > 0$ — tutupi separuh kiri gambarnya dan amati hanya cabang kanan saat mendekati $x = 0$.',
               },
             },
             {
@@ -164,6 +172,10 @@ export const module3: Module = {
                 en: '$f(x) = \\dfrac{x-3}{(x-3)(x+3)} = \\dfrac{1}{x+3}$ for $x \\neq 3$ — the $x=3$ zero cancels, a removable hole, not an asymptote. Only $x=-3$ survives as a genuine vertical asymptote, where the (now-simplified) denominator vanishes but the numerator does not.',
                 id: '$f(x) = \\dfrac{x-3}{(x-3)(x+3)} = \\dfrac{1}{x+3}$ untuk $x \\neq 3$ — akar $x=3$ tercoret, sebuah lubang yang bisa dihapus, bukan asimtot. Hanya $x=-3$ yang bertahan sebagai asimtot tegak sejati, tempat penyebut (yang sudah disederhanakan) lenyap tetapi pembilangnya tidak.',
               },
+              hint: {
+                en: 'Factor the denominator $x^2 - 9$ fully and see whether either factor cancels against the numerator $x - 3$ — a cancelling zero is a hole, not an asymptote.',
+                id: 'Faktorkan penyebut $x^2 - 9$ sepenuhnya dan lihat apakah salah satu faktornya tercoret dengan pembilang $x - 3$ — akar yang tercoret adalah lubang, bukan asimtot.',
+              },
             },
             {
               kind: 'quiz',
@@ -192,6 +204,10 @@ export const module3: Module = {
               explain: {
                 en: 'Approaching the asymptote from the left ($x < 2$), the curve dives downward without bound.',
                 id: 'Mendekati asimtotnya dari kiri ($x < 2$), kurvanya terjun ke bawah tanpa batas.',
+              },
+              hint: {
+                en: 'Trace the curve in the figure as $x$ creeps toward $2$ from the left side only, and watch which direction it heads.',
+                id: 'Telusuri kurvanya pada gambar saat $x$ merayap menuju $2$ hanya dari sisi kiri, dan amati ke arah mana ia menuju.',
               },
             },
             {
@@ -321,6 +337,10 @@ export const module3: Module = {
                 en: 'A fixed numerator over a power of $x$ that is racing to infinity shrinks toward $0$ — the whole basis of the divide-by-the-highest-power trick.',
                 id: 'Pembilang tetap dibagi pangkat $x$ yang melesat menuju tak hingga menyusut menuju $0$ — itulah seluruh dasar trik membagi dengan pangkat tertinggi.',
               },
+              hint: {
+                en: 'The numerator stays fixed at $7$ while the denominator $x^3$ grows without bound — think about what a fixed number divided by something growing enormous approaches.',
+                id: 'Pembilangnya tetap $7$ sementara penyebutnya $x^3$ tumbuh tanpa batas — pikirkan bilangan tetap dibagi sesuatu yang membesar tanpa batas mendekati apa.',
+              },
             },
             {
               kind: 'quiz',
@@ -349,6 +369,10 @@ export const module3: Module = {
               explain: {
                 en: 'Far to either side, the curve flattens toward the dashed line $y=2$ and never leaves it — that dashed line is the horizontal asymptote.',
                 id: 'Jauh ke sisi mana pun, kurvanya memipih menuju garis putus-putus $y=2$ dan tak pernah meninggalkannya — garis putus-putus itulah asimtot datarnya.',
+              },
+              hint: {
+                en: 'A horizontal asymptote is the height the curve flattens toward far to either side — read that height directly off the dashed line in the figure, and notice one of the options names a vertical line instead.',
+                id: 'Asimtot datar adalah ketinggian yang didekati kurvanya jauh ke sisi mana pun — baca ketinggian itu langsung dari garis putus-putus pada gambar, dan perhatikan salah satu pilihan justru menyebut garis tegak.',
               },
             },
             {
@@ -405,6 +429,10 @@ export const module3: Module = {
                 en: 'The bottom has the higher degree ($3 > 2$), so it grows faster and crushes the fraction to $0$.',
                 id: 'Penyebutnya berderajat lebih tinggi ($3 > 2$), jadi ia tumbuh lebih cepat dan menggencet pecahannya menjadi $0$.',
               },
+              hint: {
+                en: 'Compare the degree of the numerator against the degree of the denominator — the three-case rule from the concept above tells you exactly which of the three outcomes applies here.',
+                id: 'Bandingkan derajat pembilangnya dengan derajat penyebutnya — aturan tiga kasus dari konsep di atas memberi tahu persis hasil mana dari ketiganya yang berlaku di sini.',
+              },
             },
             {
               kind: 'quiz',
@@ -423,6 +451,10 @@ export const module3: Module = {
               explain: {
                 en: 'The top has the higher degree ($3 > 2$), so it wins and the fraction races off to infinity rather than settling toward any horizontal line.',
                 id: 'Pembilangnya berderajat lebih tinggi ($3 > 2$), jadi ia menang dan pecahannya melesat menuju tak hingga alih-alih mereda menuju garis datar mana pun.',
+              },
+              hint: {
+                en: 'Compare the degree of the numerator against the degree of the denominator here — which of the three cases from the concept above does this pairing fall into?',
+                id: 'Bandingkan derajat pembilangnya dengan derajat penyebutnya di sini — pasangan ini jatuh ke kasus mana dari ketiga kasus pada konsep di atas?',
               },
             },
             {

@@ -64,6 +64,10 @@ export const module1: Module = {
                 en: 'Seeded, the sequence is fixed — running this exact code always prints 10.',
                 id: 'Dengan seed, urutannya tetap — menjalankan kode persis ini selalu mencetak 10.',
               },
+              hint: {
+                en: "This is not a guess — Python's `random` module is deterministic once seeded, so this exact seed and this exact call always produce the exact same result. Rule out the option that denies that.",
+                id: 'Ini bukan tebakan — modul `random` Python deterministik begitu di-seed, jadi seed persis ini dan pemanggilan persis ini selalu menghasilkan hasil yang sama persis. Singkirkan pilihan yang menyangkal itu.',
+              },
             },
             {
               kind: 'fill',
@@ -77,6 +81,10 @@ export const module1: Module = {
               explain: {
                 en: 'random.seed(7) fixes the sequence that follows it.',
                 id: 'random.seed(7) menetapkan urutan yang mengikutinya.',
+              },
+              hint: {
+                en: 'Which function under `random` resets its sequence so it becomes reproducible, rather than drawing a value itself?',
+                id: 'Fungsi mana di bawah `random` yang menata ulang urutannya supaya bisa diulang, alih-alih mengambil sebuah nilai itu sendiri?',
               },
             },
             {
@@ -93,6 +101,10 @@ export const module1: Module = {
               explain: {
                 en: 'Seeding after the draw would do nothing for that draw — order matters.',
                 id: 'Men-seed setelah pengambilan tidak berpengaruh pada pengambilan itu — urutan penting.',
+              },
+              hint: {
+                en: 'The generator has to be seeded before the value is drawn for the seed to affect that draw, and the draw itself must finish before its value can be printed.',
+                id: 'Generatornya harus di-seed sebelum nilainya diambil supaya seed itu berpengaruh pada pengambilan itu, dan pengambilannya sendiri harus selesai dulu sebelum nilainya bisa dicetak.',
               },
             },
             {
@@ -169,6 +181,10 @@ export const module1: Module = {
                 en: 'Seeded with 7, this exact sequence of calls always lands on "blue".',
                 id: 'Dengan seed 7, urutan pemanggilan persis ini selalu jatuh pada "biru".',
               },
+              hint: {
+                en: 'Same idea as before — a seeded call to `random.choice` on this exact list always returns the same one item; this is not a guess, it is fixed behavior.',
+                id: 'Ide yang sama seperti sebelumnya — pemanggilan `random.choice` yang di-seed pada list persis ini selalu mengembalikan unsur yang sama; ini bukan tebakan, melainkan perilaku yang tetap.',
+              },
             },
             {
               kind: 'fill',
@@ -186,6 +202,10 @@ export const module1: Module = {
                 en: 'choice picks one item; shuffle would reorder the whole list instead.',
                 id: 'choice memilih satu unsur; shuffle sebaliknya mengacak seluruh urutan list-nya.',
               },
+              hint: {
+                en: 'You need to pick a single item out of the list, not rearrange the whole thing — which random function does just picking?',
+                id: 'Kamu perlu memilih satu unsur saja dari list-nya, bukan mengacak seluruh urutannya — fungsi random mana yang hanya memilih?',
+              },
             },
             {
               kind: 'order',
@@ -201,6 +221,10 @@ export const module1: Module = {
               explain: {
                 en: 'shuffle changes names itself — there is nothing to assign the result to.',
                 id: 'shuffle mengubah nama itu sendiri — tak ada hasil yang perlu ditugaskan ke mana pun.',
+              },
+              hint: {
+                en: 'The list needs to exist and the generator needs to be seeded before shuffle can act on it, and shuffle does not hand back a value to store anywhere.',
+                id: 'List-nya perlu ada dan generatornya perlu di-seed dulu sebelum shuffle bisa bekerja padanya, dan shuffle tidak mengembalikan nilai apa pun untuk disimpan di mana pun.',
               },
             },
             {

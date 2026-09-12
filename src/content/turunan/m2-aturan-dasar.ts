@@ -80,6 +80,10 @@ export const module2: Module = {
                 en: 'Bring the $5$ down as a coefficient, then drop the exponent by one: $5x^{5-1} = 5x^4$.',
                 id: 'Turunkan $5$-nya menjadi koefisien, lalu kurangi pangkatnya satu: $5x^{5-1} = 5x^4$.',
               },
+              hint: {
+                en: 'The power rule is two steps: the exponent becomes a coefficient in front, and the exponent itself drops by exactly one.',
+                id: 'Aturan pangkat adalah dua langkah: eksponennya menjadi koefisien di depan, dan eksponennya sendiri berkurang tepat satu.',
+              },
             },
             {
               kind: 'quiz',
@@ -108,6 +112,10 @@ export const module2: Module = {
               explain: {
                 en: 'Read the height of the $f\'$ curve at $x=-1$: it sits at $3$, since $3(-1)^2 = 3$. Squaring means $f\'$ is never negative, even where $f$ itself is.',
                 id: 'Baca tinggi kurva $f\'$ di $x=-1$: berada di $3$, sebab $3(-1)^2 = 3$. Pengkuadratan membuat $f\'$ tak pernah negatif, sekalipun $f$ sendiri negatif di situ.',
+              },
+              hint: {
+                en: 'The tangent slope at any $x$ is exactly the height of the $f\'$ curve there — no separate computation needed, just read it off the graph at $x=-1$.',
+                id: 'Kemiringan garis singgung di $x$ mana pun persis tinggi kurva $f\'$ di situ — tak perlu penghitungan terpisah, tinggal baca dari grafiknya di $x=-1$.',
               },
             },
             {
@@ -191,6 +199,10 @@ export const module2: Module = {
                 en: 'Term by term: $2x^3 \\to 6x^2$, $5x \\to 5$, and the constant $-6 \\to 0$ and disappears entirely.',
                 id: 'Suku demi suku: $2x^3 \\to 6x^2$, $5x \\to 5$, dan konstanta $-6 \\to 0$ lalu lenyap sepenuhnya.',
               },
+              hint: {
+                en: 'Differentiate each of the three terms separately using the power rule, and pay special attention to what a lone constant term becomes.',
+                id: 'Turunkan masing-masing dari tiga sukunya secara terpisah memakai aturan pangkat, dan perhatikan khusus apa yang terjadi pada suku konstanta tunggal.',
+              },
             },
             {
               kind: 'quiz',
@@ -219,6 +231,10 @@ export const module2: Module = {
               explain: {
                 en: 'The green curve $f\'$ dips below the axis exactly on $(0,2)$ — that is precisely where $f$ is decreasing.',
                 id: 'Kurva hijau $f\'$ turun di bawah sumbu persis pada $(0,2)$ — dan itulah persis tempat $f$ menurun.',
+              },
+              hint: {
+                en: 'Look for the interval where the $f\'$ curve itself sits below the horizontal axis — a negative derivative is exactly where the original function is sloping downward.',
+                id: 'Cari selang tempat kurva $f\'$ sendiri berada di bawah sumbu mendatar — turunan yang negatif persis tempat fungsi aslinya melandai turun.',
               },
             },
             {
@@ -342,6 +358,10 @@ export const module2: Module = {
                 en: 'The counterexample $f=g=x$ rules out the other three: only $f\'g+fg\' = 1\\cdot x + x\\cdot 1 = 2x$ matches the true derivative of $x^2$.',
                 id: 'Contoh penyangkal $f=g=x$ menyingkirkan ketiga lainnya: hanya $f\'g+fg\' = 1\\cdot x + x\\cdot 1 = 2x$ yang cocok dengan turunan sejati $x^2$.',
               },
+              hint: {
+                en: 'Test each formula against $f=g=x$, whose product is $x^2$ with a known derivative. Which option actually reproduces that known answer?',
+                id: 'Uji tiap rumus terhadap $f=g=x$, yang hasil kalinya $x^2$ dengan turunan yang sudah diketahui. Pilihan mana yang benar-benar menghasilkan jawaban yang sudah diketahui itu?',
+              },
             },
             {
               kind: 'fill',
@@ -356,6 +376,10 @@ export const module2: Module = {
               explain: {
                 en: '$f\' = 3$ and $g\' = 2x$ — each factor differentiated on its own, then slotted into the pattern.',
                 id: '$f\' = 3$ dan $g\' = 2x$ — tiap faktor diturunkan sendiri-sendiri, lalu dimasukkan ke dalam polanya.',
+              },
+              hint: {
+                en: 'Each blank is just the derivative of one factor, computed on its own — differentiate $3x$ for the first blank and $x^2+1$ for the second.',
+                id: 'Tiap kotak hanyalah turunan satu faktor, dihitung sendiri-sendiri — turunkan $3x$ untuk kotak pertama dan $x^2+1$ untuk kotak kedua.',
               },
             },
             {
@@ -424,6 +448,10 @@ export const module2: Module = {
                 en: 'The product rule adds its two pieces, and addition does not care about order. The quotient rule subtracts them, and subtraction very much does.',
                 id: 'Aturan hasil kali menjumlahkan kedua bagiannya, dan penjumlahan tak peduli urutan. Aturan hasil bagi menguranginya, dan pengurangan sangat peduli.',
               },
+              hint: {
+                en: 'Compare the operation joining the two pieces in each formula — one rule adds them together, the other doesn\'t. Which of those two operations changes its result when you swap the order?',
+                id: 'Bandingkan operasi yang menggabungkan kedua bagian pada tiap rumus — satu aturan menjumlahkannya, yang lain tidak. Operasi mana dari keduanya yang hasilnya berubah bila urutannya ditukar?',
+              },
             },
             {
               kind: 'order',
@@ -442,6 +470,10 @@ export const module2: Module = {
               explain: {
                 en: 'Identify $f, g$ and their derivatives first, slot them into the pattern, then simplify the numerator only — the denominator is left as $(g)^2$, never expanded.',
                 id: 'Kenali $f, g$ dan turunannya dahulu, masukkan ke dalam polanya, lalu sederhanakan hanya pembilangnya — penyebutnya dibiarkan sebagai $(g)^2$, tak pernah dijabarkan.',
+              },
+              hint: {
+                en: 'You need $f$, $g$ and their derivatives identified before anything can be slotted into the quotient rule\'s pattern, and that expression has to exist before its numerator can be simplified.',
+                id: 'Kamu butuh $f$, $g$, dan turunannya dikenali dahulu sebelum apa pun bisa dimasukkan ke dalam pola aturan hasil bagi, dan bentuk itu harus ada dulu sebelum pembilangnya bisa disederhanakan.',
               },
             },
             {

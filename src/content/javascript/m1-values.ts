@@ -77,6 +77,10 @@ export const module1: Module = {
                 en: 'That error is the point of const: it catches an accidental reassignment while you are writing, not in production.',
                 id: 'Error itulah gunanya const: ia menangkap penetapan ulang yang tak disengaja saat kamu menulis, bukan nanti saat sudah rilis.',
               },
+              hint: {
+                en: 'Think about what const promises the moment you declare it, and what JavaScript is designed to do the instant that promise is broken.',
+                id: 'Pikirkan apa yang dijanjikan const begitu dideklarasikan, dan apa yang dirancang JavaScript untuk lakukan begitu janji itu dilanggar.',
+              },
             },
             {
               kind: 'fill',
@@ -90,6 +94,10 @@ export const module1: Module = {
               explain: {
                 en: 'const for a fixed value; console.log to see it.',
                 id: 'const untuk nilai tetap; console.log untuk melihatnya.',
+              },
+              hint: {
+                en: 'One blank is the keyword for a value that will never be reassigned, and the other is the console method you have already been using to show a value.',
+                id: 'Satu titik kosong adalah kata kunci untuk nilai yang tak akan pernah ditetapkan ulang, dan satu lagi adalah metode console yang sudah kamu pakai untuk menampilkan nilai.',
               },
             },
             {
@@ -205,6 +213,10 @@ export const module1: Module = {
                 en: 'With a string on one side, + joins rather than adds. Number("5") + 2 would give 7.',
                 id: 'Dengan string di satu sisi, + menyambung alih-alih menjumlah. Number("5") + 2 akan memberi 7.',
               },
+              hint: {
+                en: 'Check which type sits on each side of the +, and remember what + does the moment a string is involved instead of two numbers.',
+                id: 'Periksa tipe apa yang berada di kedua sisi +, dan ingat apa yang dilakukan + begitu ada string yang terlibat, bukan dua angka.',
+              },
             },
             {
               kind: 'order',
@@ -217,6 +229,10 @@ export const module1: Module = {
               explain: {
                 en: 'A name must exist before it is used, so the two values come first.',
                 id: 'Sebuah nama harus ada sebelum dipakai, jadi kedua nilainya lebih dulu.',
+              },
+              hint: {
+                en: 'A name has to exist before any line that reads its value — check which line is the first one that actually needs both a and b at once.',
+                id: 'Sebuah nama harus ada sebelum baris mana pun yang membaca nilainya — periksa baris mana yang pertama kali benar-benar membutuhkan a dan b sekaligus.',
               },
             },
             {
@@ -431,6 +447,10 @@ export const module1: Module = {
                 en: 'This is exactly the trap: writing `if (stock > 0)` says what you mean, and would behave the same here but not for -1.',
                 id: 'Inilah jebakannya: menulis `if (stok > 0)` menyatakan maksudmu, dan di sini hasilnya sama tetapi tidak untuk -1.',
               },
+              hint: {
+                en: 'Remember which values count as falsy inside an if condition, and check whether the number in this example is one of them.',
+                id: 'Ingat nilai mana saja yang dianggap falsy di dalam kondisi if, dan periksa apakah angka pada contoh ini termasuk salah satunya.',
+              },
             },
             {
               kind: 'fill',
@@ -444,6 +464,10 @@ export const module1: Module = {
               explain: {
                 en: '&& needs both sides true; || would pass on either one.',
                 id: '&& butuh kedua sisi benar; || akan lolos dengan salah satu saja.',
+              },
+              hint: {
+                en: 'The prompt asks for both conditions to hold at once — think about which logical operator demands that, rather than being satisfied by just one.',
+                id: 'Prompt-nya meminta kedua kondisi terpenuhi sekaligus — pikirkan operator logika mana yang menuntut itu, bukan yang puas dengan salah satu saja.',
               },
             },
             {
@@ -556,6 +580,10 @@ export const module1: Module = {
               explain: {
                 en: 'The condition uses <=, so 5 still runs. With < it would stop at 4.',
                 id: 'Kondisinya memakai <=, jadi 5 masih dijalankan. Dengan < ia akan berhenti di 4.',
+              },
+              hint: {
+                en: 'Look closely at the comparison operator in the loop\'s condition, and whether it includes the boundary value or stops just short of it.',
+                id: 'Perhatikan baik-baik operator perbandingan pada kondisi loopnya, dan apakah ia menyertakan nilai batasnya atau berhenti tepat sebelum itu.',
               },
             },
             {

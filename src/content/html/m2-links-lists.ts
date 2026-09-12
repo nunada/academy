@@ -85,6 +85,10 @@ export const module2: Module = {
                 en: 'href is for links; src is for things the browser loads into the page, like an image.',
                 id: 'href untuk tautan; src untuk hal yang dimuat peramban ke dalam halaman, seperti gambar.',
               },
+              hint: {
+                en: 'Think about the difference between an attribute that tells the browser where to navigate, and one that tells it what resource to load into the page.',
+                id: 'Pikirkan bedanya atribut yang memberi tahu peramban ke mana harus bernavigasi, dan atribut yang memberi tahu sumber daya apa yang harus dimuat ke halaman.',
+              },
             },
             {
               kind: 'fill',
@@ -98,6 +102,10 @@ export const module2: Module = {
               explain: {
                 en: 'href carries the address, and the element closes with </a>.',
                 id: 'href membawa alamatnya, dan elemennya ditutup dengan </a>.',
+              },
+              hint: {
+                en: 'One blank names the attribute that carries a link\'s address, and the other is what a closing tag needs right before repeating the element\'s name.',
+                id: 'Satu titik kosong adalah nama atribut yang membawa alamat tautan, dan satunya lagi adalah yang dibutuhkan tag penutup tepat sebelum mengulang nama elemennya.',
               },
             },
             {
@@ -200,6 +208,10 @@ export const module2: Module = {
               explain: {
                 en: 'An empty alt means "nothing to announce". A missing alt makes the reader announce the filename instead.',
                 id: 'alt kosong berarti "tidak ada yang perlu disebut". alt yang hilang membuat pembaca layar menyebutkan nama berkasnya.',
+              },
+              hint: {
+                en: 'There is a difference between telling a screen reader "nothing to announce here" and giving it no instruction at all — think about which option actually achieves the first, rather than just looking similar to it.',
+                id: 'Ada beda antara memberi tahu pembaca layar "tidak ada yang perlu disebut di sini" dan sama sekali tidak memberi instruksi — pikirkan pilihan mana yang benar-benar mencapai yang pertama, bukan sekadar tampak serupa.',
               },
             },
             {
@@ -400,6 +412,10 @@ export const module2: Module = {
                 en: 'Doing step 3 before step 1 breaks the guide, so the list is ordered.',
                 id: 'Mengerjakan langkah 3 sebelum langkah 1 merusak panduannya, jadi daftarnya berurut.',
               },
+              hint: {
+                en: 'Ask yourself whether swapping two of the steps around would still leave the guide working — that tells you whether sequence is part of the meaning here.',
+                id: 'Tanyakan pada dirimu apakah menukar dua langkah tetap membuat panduannya berfungsi — itu menentukan apakah urutan adalah bagian dari maknanya di sini.',
+              },
             },
             {
               kind: 'order',
@@ -412,6 +428,10 @@ export const module2: Module = {
               explain: {
                 en: 'The inner list opens after the outer item\'s text and closes before that item does.',
                 id: 'Daftar dalamnya dibuka setelah teks item luarnya dan ditutup sebelum item itu ditutup.',
+              },
+              hint: {
+                en: 'The inner list has to sit somewhere between the outer item\'s text starting and that same item finishing — think about what must already be open before the inner list can begin, and what must still be open when it ends.',
+                id: 'Daftar dalamnya harus berada di antara mulainya teks item luar dan selesainya item itu sendiri — pikirkan apa yang harus sudah terbuka sebelum daftar dalam bisa dimulai, dan apa yang masih harus terbuka saat daftar itu berakhir.',
               },
             },
             {
@@ -505,6 +525,10 @@ export const module2: Module = {
               explain: {
                 en: 'Links and everything else go inside an li, not beside it.',
                 id: 'Tautan dan yang lain diletakkan di dalam li, bukan di sebelahnya.',
+              },
+              hint: {
+                en: 'Think about what wraps a link or any other content inside a list — is it placed directly under the list, or does something sit between the list and its content?',
+                id: 'Pikirkan apa yang membungkus tautan atau konten lain di dalam daftar — apakah diletakkan langsung di bawah daftar, atau ada sesuatu di antara daftar dan isinya?',
               },
             },
             {

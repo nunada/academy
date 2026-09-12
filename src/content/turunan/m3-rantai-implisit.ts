@@ -82,6 +82,10 @@ export const module3: Module = {
                 en: 'The inner function is whatever sits inside the parentheses being raised to a power, $x^3+2$, and its own derivative is $3x^2$ by the power and sum rules.',
                 id: 'Fungsi dalamnya adalah apa pun yang berada di dalam kurung yang dipangkatkan, $x^3+2$, dan turunannya sendiri $3x^2$ menurut aturan pangkat dan jumlah.',
               },
+              hint: {
+                en: 'Identify what is actually being raised to the 4th power — that\'s the inner function — then differentiate just that piece on its own with the power and sum rules.',
+                id: 'Kenali apa yang sebenarnya dipangkatkan 4 — itulah fungsi dalamnya — lalu turunkan bagian itu saja secara terpisah dengan aturan pangkat dan jumlah.',
+              },
             },
             {
               kind: 'quiz',
@@ -111,6 +115,10 @@ export const module3: Module = {
               explain: {
                 en: 'The tangent line runs from $(0,-5)$ to $(2,7)$: slope $= \\dfrac{7-(-5)}{2-0} = \\dfrac{12}{2} = 6$, matching $6(2(1)-1)^2 = 6$ from the chain rule.',
                 id: 'Garis singgungnya berjalan dari $(0,-5)$ ke $(2,7)$: kemiringan $= \\dfrac{7-(-5)}{2-0} = \\dfrac{12}{2} = 6$, cocok dengan $6(2(1)-1)^2 = 6$ dari aturan rantai.',
+              },
+              hint: {
+                en: 'Pick two points the drawn tangent line clearly passes through and compute rise over run between them — no calculus needed for this reading.',
+                id: 'Pilih dua titik yang jelas dilalui garis singgung yang digambar dan hitung kenaikan per jarak di antara keduanya — tak perlu kalkulus untuk pembacaan ini.',
               },
             },
             {
@@ -179,6 +187,10 @@ export const module3: Module = {
                 en: 'The chain rule always works from the outside in: differentiate the outermost layer first, leaving its argument alone, then multiply by the derivative of what is inside — repeating that same move for each layer still remaining.',
                 id: 'Aturan rantai selalu bekerja dari luar ke dalam: turunkan lapisan terluar dahulu, biarkan argumennya, lalu kalikan dengan turunan dari yang di dalamnya — mengulangi gerakan yang sama untuk tiap lapis yang masih tersisa.',
               },
+              hint: {
+                en: 'Look at $\\big((x+1)^2+3\\big)^4$ and identify which operation is applied last when building up the expression from $x$ — that\'s the layer sitting furthest out.',
+                id: 'Perhatikan $\\big((x+1)^2+3\\big)^4$ dan kenali operasi mana yang diterapkan terakhir saat menyusun bentuk itu dari $x$ — itulah lapisan yang paling luar.',
+              },
             },
             {
               kind: 'quiz',
@@ -208,6 +220,10 @@ export const module3: Module = {
               explain: {
                 en: 'The tangent line runs from $(1,-3)$ to $(3,5)$: slope $= \\dfrac{5-(-3)}{3-1} = \\dfrac{8}{2} = 4$, matching $4(2-1)^3 = 4$ from the chain rule.',
                 id: 'Garis singgungnya berjalan dari $(1,-3)$ ke $(3,5)$: kemiringan $= \\dfrac{5-(-3)}{3-1} = \\dfrac{8}{2} = 4$, cocok dengan $4(2-1)^3 = 4$ dari aturan rantai.',
+              },
+              hint: {
+                en: 'Read two points the drawn line clearly passes through, then compute rise over run — the same reading you\'ve done for other tangent-line graphs.',
+                id: 'Baca dua titik yang jelas dilalui garis yang digambar, lalu hitung kenaikan per jarak — pembacaan yang sama seperti grafik garis singgung lainnya.',
               },
             },
             {
@@ -338,6 +354,10 @@ export const module3: Module = {
                 en: '$y$ is standing in for some unknown function of $x$, so $y^3$ is a composition — exactly $\\big(g(x)\\big)^3$ — and the chain rule always attaches the inner derivative, here written $\\frac{dy}{dx}$ since there is no explicit formula to differentiate.',
                 id: '$y$ mewakili suatu fungsi tak diketahui dari $x$, jadi $y^3$ adalah komposisi — persis $\\big(g(x)\\big)^3$ — dan aturan rantai selalu menempelkan turunan dalamnya, di sini ditulis $\\frac{dy}{dx}$ sebab tak ada rumus eksplisit untuk diturunkan.',
               },
+              hint: {
+                en: 'Think about what $y$ actually represents in this equation — a fixed constant, or some unknown function of $x$ — and what that means for differentiating a power of it.',
+                id: 'Pikirkan apa yang sebenarnya diwakili $y$ dalam persamaan ini — konstanta tetap, atau suatu fungsi tak diketahui dari $x$ — dan apa artinya itu bagi menurunkan pangkat darinya.',
+              },
             },
             {
               kind: 'quiz',
@@ -368,6 +388,10 @@ export const module3: Module = {
               explain: {
                 en: 'The tangent runs from $(-1,7)$ to $(7,1)$: slope $= \\dfrac{1-7}{7-(-1)} = \\dfrac{-6}{8} = -0{,}75$, matching $-\\dfrac{3}{4}$ from $\\dfrac{dy}{dx}=-\\dfrac{x}{y}$ at $(3,4)$.',
                 id: 'Garis singgungnya berjalan dari $(-1,7)$ ke $(7,1)$: kemiringan $= \\dfrac{1-7}{7-(-1)} = \\dfrac{-6}{8} = -0{,}75$, cocok dengan $-\\dfrac{3}{4}$ dari $\\dfrac{dy}{dx}=-\\dfrac{x}{y}$ di $(3,4)$.',
+              },
+              hint: {
+                en: 'Pick the two endpoints the drawn tangent line clearly passes through and compute rise over run between them.',
+                id: 'Pilih kedua titik ujung yang jelas dilalui garis singgung yang digambar dan hitung kenaikan per jarak di antara keduanya.',
               },
             },
             {
@@ -448,6 +472,10 @@ export const module3: Module = {
                 en: '$xy$ is a product of two things that both change with $x$ — the plain $x$, and $y$ standing in for a function of $x$. $x^2$ needs only the power rule; $y^3$ needs only the chain rule; a bare constant needs neither.',
                 id: '$xy$ adalah hasil kali dua hal yang sama-sama berubah terhadap $x$ — $x$ biasa, dan $y$ yang mewakili fungsi dari $x$. $x^2$ hanya perlu aturan pangkat; $y^3$ hanya perlu aturan rantai; konstanta polos tak perlu keduanya.',
               },
+              hint: {
+                en: 'The product rule is only needed when two things that both depend on $x$ are multiplied together in the same term. Which option actually mixes $x$ and $y$ that way?',
+                id: 'Aturan hasil kali hanya diperlukan ketika dua hal yang sama-sama bergantung pada $x$ dikalikan bersama dalam suku yang sama. Pilihan mana yang benar-benar mencampur $x$ dan $y$ seperti itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -477,6 +505,10 @@ export const module3: Module = {
               explain: {
                 en: 'The tangent runs from $(0,6)$ to $(4,0)$: slope $= \\dfrac{0-6}{4-0} = -1{,}5$, matching $-\\dfrac{y}{x} = -\\dfrac{3}{2}$ at $(2,3)$.',
                 id: 'Garis singgungnya berjalan dari $(0,6)$ ke $(4,0)$: kemiringan $= \\dfrac{0-6}{4-0} = -1{,}5$, cocok dengan $-\\dfrac{y}{x} = -\\dfrac{3}{2}$ di $(2,3)$.',
+              },
+              hint: {
+                en: 'Read the two endpoints of the drawn tangent line off the picture and compute rise over run between them.',
+                id: 'Baca kedua titik ujung garis singgung yang digambar dari gambarnya dan hitung kenaikan per jarak di antara keduanya.',
               },
             },
             {

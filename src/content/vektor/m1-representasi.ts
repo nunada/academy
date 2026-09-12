@@ -80,6 +80,10 @@ export const module1: Module = {
                 en: 'Only the second one names a direction. Speed is the magnitude of velocity — the scalar left over once the direction is thrown away.',
                 id: 'Hanya yang kedua menyebut arah. Kelajuan adalah besar dari kecepatan — skalar yang tersisa setelah arahnya dibuang.',
               },
+              hint: {
+                en: 'A vector needs a magnitude *and* a direction stated together. Check each option for whether it actually names a "which way", not just a "how much".',
+                id: 'Vektor perlu besar *dan* arah yang disebut bersamaan. Periksa tiap pilihan, apakah ia benar-benar menyebut "ke mana", bukan cuma "seberapa banyak".',
+              },
             },
             {
               kind: 'quiz',
@@ -98,6 +102,10 @@ export const module1: Module = {
               explain: {
                 en: 'Magnitude and direction agree, so they are the same vector. This is what "free vector" means: an arrow may be slid anywhere as long as its length and direction are kept.',
                 id: 'Besar dan arahnya cocok, jadi keduanya vektor yang sama. Inilah makna "vektor bebas": anak panah boleh digeser ke mana saja asalkan panjang dan arahnya dijaga.',
+              },
+              hint: {
+                en: 'Two vectors are the same exactly when their length and direction agree — location on the page is not one of the ingredients. What do these two arrows share?',
+                id: 'Dua vektor sama tepat ketika panjang dan arahnya cocok — letak di halaman bukan salah satu unsurnya. Apa yang dimiliki bersama oleh kedua anak panah ini?',
               },
             },
             {
@@ -125,6 +133,10 @@ export const module1: Module = {
               explain: {
                 en: 'Both are 3 across and 2 up, whatever point they start from. Where a vector happens to be drawn does not matter — only its magnitude and direction do.',
                 id: 'Keduanya 3 ke kanan dan 2 ke atas, dari titik pangkal mana pun. Di mana sebuah vektor kebetulan digambar tidak menjadi soal — hanya besar dan arahnya yang menentukan.',
+              },
+              hint: {
+                en: 'Ignore where each arrow starts. Trace how far across and how far up each one travels from its own tail to its own head, and compare those two counts.',
+                id: 'Abaikan di mana tiap anak panah berpangkal. Telusuri sejauh apa ke kanan dan sejauh apa ke atas masing-masing berjalan dari pangkal ke ujungnya sendiri, lalu bandingkan keduanya.',
               },
             },
             {
@@ -232,6 +244,10 @@ export const module1: Module = {
                 en: 'Terminal minus initial in each slot: $5 - 2 = 3$ and $3 - (-1) = 4$. Subtracting a negative adds.',
                 id: 'Ujung dikurangi pangkal pada tiap slot: $5 - 2 = 3$ dan $3 - (-1) = 4$. Mengurangi bilangan negatif berarti menambah.',
               },
+              hint: {
+                en: 'The template already sets up both subtractions for you. Watch the second slot carefully — subtracting a negative number does not shrink the result.',
+                id: 'Templatenya sudah menyiapkan kedua pengurangan itu untukmu. Perhatikan slot kedua baik-baik — mengurangi bilangan negatif tidak membuat hasilnya mengecil.',
+              },
             },
             {
               kind: 'quiz',
@@ -250,6 +266,10 @@ export const module1: Module = {
               explain: {
                 en: 'A position vector starts at the origin, so its components and the coordinates of its terminal point are the same three numbers.',
                 id: 'Vektor posisi berpangkal di titik asal, jadi komponennya dan koordinat titik ujungnya adalah tiga bilangan yang sama.',
+              },
+              hint: {
+                en: 'Recall where a position vector\'s tail always sits. What does that force about the relationship between its components and where its head lands?',
+                id: 'Ingat di mana pangkal vektor posisi selalu berada. Apa yang dipaksakan hal itu pada hubungan antara komponennya dan tempat ujungnya mendarat?',
               },
             },
             {
@@ -279,6 +299,10 @@ export const module1: Module = {
               explain: {
                 en: 'The dashed path goes 4 across and 2 down — components $(4, -2)$, the coordinates of the point the arrow reaches.',
                 id: 'Jalur putus-putusnya berjalan 4 ke kanan dan 2 ke bawah — komponennya $(4, -2)$, koordinat titik yang dicapai anak panahnya.',
+              },
+              hint: {
+                en: 'Follow the dashed path one leg at a time: how far does the first leg go across, and does the second leg rise or fall, and by how much?',
+                id: 'Ikuti jalur putus-putusnya selangkah demi selangkah: sejauh apa langkah pertama ke kanan, dan apakah langkah kedua naik atau turun, dan berapa jauh?',
               },
             },
             {
@@ -468,6 +492,10 @@ export const module1: Module = {
                 en: 'This is the triangle rule itself: go from $A$ to $B$, then from $B$ to $C$, and you have gone from $A$ to $C$. In components, $(B - A) + (C - B) = C - A$.',
                 id: 'Inilah aturan segitiga itu sendiri: dari $A$ ke $B$, lalu dari $B$ ke $C$, berarti kamu telah berpindah dari $A$ ke $C$. Dalam komponen, $(B - A) + (C - B) = C - A$.',
               },
+              hint: {
+                en: 'Write each arrow as terminal minus initial in terms of $A$, $B$, $C$, then add the two expressions and see which point cancels out.',
+                id: 'Tulis tiap anak panah sebagai ujung dikurangi pangkal dalam $A$, $B$, $C$, lalu jumlahkan kedua bentuk itu dan lihat titik mana yang saling meniadakan.',
+              },
             },
             {
               kind: 'quiz',
@@ -496,6 +524,10 @@ export const module1: Module = {
               explain: {
                 en: 'The solid unlabeled arrow runs from the origin to $(3, 2)$ — the tip of the dashed copy of $\\vec{b}$, which starts where $\\vec{a}$ ends. That is $(2,-1) + (1,3) = (3,2)$.',
                 id: 'Anak panah penuh yang tak berlabel berjalan dari titik asal ke $(3, 2)$ — ujung salinan putus-putus $\\vec{b}$, yang berangkat dari tempat $\\vec{a}$ berakhir. Itulah $(2,-1) + (1,3) = (3,2)$.',
+              },
+              hint: {
+                en: 'The sum is the unlabeled solid arrow, from the origin to wherever the dashed copy of $\\vec{b}$ ends up. Read that endpoint straight off the grid.',
+                id: 'Jumlahnya adalah anak panah penuh tak berlabel, dari titik asal sampai ke tempat salinan putus-putus $\\vec{b}$ berakhir. Baca titik ujung itu langsung dari kisinya.',
               },
             },
             {
@@ -604,6 +636,10 @@ export const module1: Module = {
                 en: '$(2, -6, 4) = 2(1, -3, 2)$, so the two are scalar multiples of each other. In the others the ratio is not the same in every slot.',
                 id: '$(2, -6, 4) = 2(1, -3, 2)$, jadi keduanya saling kelipatan skalar. Pada pilihan lain perbandingannya tidak sama di setiap slot.',
               },
+              hint: {
+                en: 'Parallel means one vector is some scalar $k$ times the other. Divide each option\'s components by $(2,-6,4)$\'s matching components — is $k$ the same in all three slots?',
+                id: 'Sejajar berarti satu vektor adalah suatu skalar $k$ kali vektor lain. Bagi komponen tiap pilihan dengan komponen $(2,-6,4)$ yang bersesuaian — apakah $k$-nya sama di ketiga slot?',
+              },
             },
             {
               kind: 'quiz',
@@ -633,6 +669,10 @@ export const module1: Module = {
                 en: '$-2\\vec{a}$ reverses direction and doubles the length: $(1,2)$ becomes $(-2,-4)$, arrow C. Arrow A is $2\\vec{a}$ (same direction, doubled); arrow B is $-\\vec{a}$ (reversed, same length).',
                 id: '$-2\\vec{a}$ membalik arah dan menggandakan panjangnya: $(1,2)$ menjadi $(-2,-4)$, anak panah C. Anak panah A adalah $2\\vec{a}$ (arah sama, digandakan); anak panah B adalah $-\\vec{a}$ (dibalik, panjang sama).',
               },
+              hint: {
+                en: 'The scalar $-2$ does two separate things to $\\vec{a}$: it flips the direction *and* doubles the length. Check each labeled arrow against both requirements at once, not just one.',
+                id: 'Skalar $-2$ melakukan dua hal terpisah pada $\\vec{a}$: membalik arah *dan* menggandakan panjang. Periksa tiap anak panah berlabel terhadap kedua syarat sekaligus, bukan cuma satu.',
+              },
             },
             {
               kind: 'fill',
@@ -647,6 +687,10 @@ export const module1: Module = {
               explain: {
                 en: 'Every slot doubles: $2 \\cdot 3 = 6$, $2 \\cdot (-1) = -2$, $2 \\cdot 2 = 4$.',
                 id: 'Setiap slot digandakan: $2 \\cdot 3 = 6$, $2 \\cdot (-1) = -2$, $2 \\cdot 2 = 4$.',
+              },
+              hint: {
+                en: 'Multiply every one of the three components by 2 on its own — including the middle one, where the sign has to stay as it is.',
+                id: 'Kalikan masing-masing dari tiga komponennya dengan 2 secara terpisah — termasuk yang tengah, yang tandanya harus tetap seperti semula.',
               },
             },
             {
@@ -737,6 +781,10 @@ export const module1: Module = {
                 en: 'There is no $\\hat{i}$ term, so the first component is 0. The $\\hat{j}$ coefficient goes in the second slot and the $\\hat{k}$ coefficient in the third.',
                 id: 'Tidak ada suku $\\hat{i}$, jadi komponen pertamanya 0. Koefisien $\\hat{j}$ masuk ke slot kedua dan koefisien $\\hat{k}$ ke slot ketiga.',
               },
+              hint: {
+                en: 'There\'s no $\\hat{i}$ term written at all — decide what that means for the first slot before you place the $\\hat{j}$ and $\\hat{k}$ coefficients into their own slots.',
+                id: 'Tak ada suku $\\hat{i}$ yang tertulis sama sekali — tentukan dulu apa artinya bagi slot pertama sebelum menempatkan koefisien $\\hat{j}$ dan $\\hat{k}$ ke slotnya masing-masing.',
+              },
             },
             {
               kind: 'quiz',
@@ -770,6 +818,10 @@ export const module1: Module = {
                 en: 'The dashed path goes 1 across ($\\hat{i}$), 2 along ($\\hat{j}$), then $1{,}5$ up ($\\hat{k}$) — components $(1, 2, 1{,}5)$, that is $\\hat{i} + 2\\hat{j} + 1{,}5\\hat{k}$.',
                 id: 'Jalur putus-putusnya berjalan 1 mendatar ($\\hat{i}$), 2 memanjang ($\\hat{j}$), lalu $1{,}5$ ke atas ($\\hat{k}$) — komponennya $(1, 2, 1{,}5)$, yaitu $\\hat{i} + 2\\hat{j} + 1{,}5\\hat{k}$.',
               },
+              hint: {
+                en: 'The prompt tells you the order the path is walked: across, then along, then up. Match each of those three legs to $\\hat{i}$, $\\hat{j}$, $\\hat{k}$ in that same order.',
+                id: 'Soalnya menyebut urutan jalur itu ditelusuri: mendatar, lalu memanjang, lalu ke atas. Cocokkan tiap dari tiga langkah itu dengan $\\hat{i}$, $\\hat{j}$, $\\hat{k}$ dalam urutan yang sama.',
+              },
             },
             {
               kind: 'order',
@@ -788,6 +840,10 @@ export const module1: Module = {
               explain: {
                 en: 'Read the two vectors into components, scale, add slot by slot, and put the answer back into whichever notation the question used.',
                 id: 'Baca kedua vektor menjadi komponen, kalikan dengan skalarnya, jumlahkan slot demi slot, lalu kembalikan jawabannya ke notasi yang dipakai soal.',
+              },
+              hint: {
+                en: 'You cannot scale $\\vec{b}$ by 2 before it is in component form, and you cannot add the scaled $\\vec{b}$ to $\\vec{a}$ before that scaling is done — each line needs a result from the one before it.',
+                id: 'Kamu tak bisa mengalikan $\\vec{b}$ dengan 2 sebelum ia dalam bentuk komponen, dan tak bisa menjumlahkan $\\vec{b}$ yang sudah dikalikan itu dengan $\\vec{a}$ sebelum perkalian itu selesai — tiap baris butuh hasil dari baris sebelumnya.',
               },
             },
             {

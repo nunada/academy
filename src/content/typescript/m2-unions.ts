@@ -110,6 +110,10 @@ export const module2: Module = {
                 en: 'Every `Direction` is a string, so widening is fine. Going back the other way is not: a `string` could hold anything.',
                 id: 'Tiap `Arah` adalah string, jadi melebar itu boleh. Kembali ke arah sebaliknya tidak: `string` bisa berisi apa saja.',
               },
+              hint: {
+                en: 'Look at which assignment goes from the narrower literal-union type to the wider `string` type, and which one goes the other way round.',
+                id: 'Lihat penugasan mana yang berjalan dari tipe union-literal yang lebih sempit ke tipe `string` yang lebih lebar, dan mana yang berjalan sebaliknya.',
+              },
             },
             {
               kind: 'fill',
@@ -126,6 +130,10 @@ export const module2: Module = {
               explain: {
                 en: 'The bar separates the members of a union, the same way it reads in English: this or this or this.',
                 id: 'Garis tegaknya memisahkan anggota union-nya, sama seperti bacaannya: ini atau ini atau ini.',
+              },
+              hint: {
+                en: 'Both blanks are the same character — the one that joins the members of a union type, read aloud as "or".',
+                id: 'Kedua titik kosongnya adalah karakter yang sama — yang menyambungkan anggota tipe union, dibaca sebagai "atau".',
               },
             },
             {
@@ -325,6 +333,10 @@ export const module2: Module = {
                 en: 'Narrowing lasts exactly as long as the branch that proved it. Step outside and you know less again.',
                 id: 'Penyempitannya bertahan tepat selama cabang yang membuktikannya. Melangkah keluar dan kamu tahu lebih sedikit lagi.',
               },
+              hint: {
+                en: 'The `typeof x === "string"` check only proved something inside the block it guards — think about what `x`\'s type reverts to the moment you step past that block\'s closing brace.',
+                id: 'Pemeriksaan `typeof x === "string"` hanya membuktikan sesuatu di dalam blok yang dijaganya — pikirkan tipe `x` kembali menjadi apa begitu kamu melewati tanda kurung kurawal penutup blok itu.',
+              },
             },
             {
               kind: 'order',
@@ -354,6 +366,10 @@ export const module2: Module = {
               explain: {
                 en: 'Both branches say `.length`, but they mean different things — and the compiler had to be shown which before it allowed either.',
                 id: 'Kedua cabangnya menulis `.length`, tetapi maknanya berbeda — dan kompilernya harus ditunjukkan yang mana sebelum membolehkan keduanya.',
+              },
+              hint: {
+                en: 'The function signature and its opening brace have to exist before anything inside can run, and the narrowing check has to come before the code that relies on it — think about what has to open before its own body, and what has to close last.',
+                id: 'Tanda tangan fungsi dan kurung kurawal pembukanya harus ada sebelum apa pun di dalamnya bisa berjalan, dan pemeriksaan penyempitannya harus datang sebelum kode yang mengandalkannya — pikirkan apa yang harus dibuka sebelum isinya sendiri, dan apa yang harus ditutup paling akhir.',
               },
             },
             {
@@ -778,6 +794,10 @@ export const module2: Module = {
                 en: 'Narrowing works by elimination. If both members say `kind: string`, a comparison eliminates neither.',
                 id: 'Penyempitan bekerja dengan menyingkirkan. Kalau kedua anggotanya menyebut `jenis: string`, sebuah perbandingan tak menyingkirkan satu pun.',
               },
+              hint: {
+                en: 'Think about what a comparison like `s.kind === "circle"` needs to be able to rule the other members out — does it work the same way if every member\'s tag has the same wide type?',
+                id: 'Pikirkan apa yang dibutuhkan perbandingan seperti `b.jenis === "lingkaran"` agar bisa menyingkirkan anggota lain — apakah itu bekerja sama kalau tanda tiap anggota bertipe lebar yang sama?',
+              },
             },
             {
               kind: 'ts',
@@ -993,6 +1013,10 @@ export const module2: Module = {
                 en: '`??` only reacts to null and undefined. `||` reacts to anything falsy, and 0 is falsy — which is why a quantity of zero so often turns into one.',
                 id: '`??` hanya bereaksi pada null dan undefined. `||` bereaksi pada apa pun yang falsy, dan 0 itu falsy — dan itulah sebabnya jumlah nol begitu sering berubah jadi satu.',
               },
+              hint: {
+                en: 'One operator only falls back on null or undefined; the other falls back on anything JavaScript treats as falsy. Where does the number 0 fall in each case?',
+                id: 'Satu operator hanya memakai cadangan pada null atau undefined; yang lain memakai cadangan pada apa pun yang dianggap falsy oleh JavaScript. Angka 0 jatuh ke mana pada tiap kasus?',
+              },
             },
             {
               kind: 'fill',
@@ -1009,6 +1033,10 @@ export const module2: Module = {
               explain: {
                 en: 'The optional chain stops the walk; the nullish coalescing supplies what to use instead.',
                 id: 'Rantai opsionalnya menghentikan penelusuran; operator penggabung nullish-nya menyediakan penggantinya.',
+              },
+              hint: {
+                en: 'The first blank needs the character that safely stops a property chain when something along it might be missing; the second needs the operator from two concepts ago that supplies a fallback only for null or undefined.',
+                id: 'Titik kosong pertama butuh karakter yang menghentikan rantai properti dengan aman ketika sesuatu di sepanjangnya mungkin tak ada; yang kedua butuh operator dari dua konsep lalu yang menyediakan cadangan hanya untuk null atau undefined.',
               },
             },
             {

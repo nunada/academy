@@ -68,6 +68,10 @@ export const module4: Module = {
                 en: 'Index 1 is the second item, because counting starts at 0.',
                 id: 'Indeks 1 adalah item kedua, karena penghitungan dimulai dari 0.',
               },
+              hint: {
+                en: 'Remember that indexing starts at 0 — position 1 is not the first item in the list.',
+                id: 'Ingat, pengindeksan dimulai dari 0 — posisi 1 bukan item pertama dalam list.',
+              },
             },
             {
               kind: 'quiz',
@@ -84,6 +88,10 @@ export const module4: Module = {
               explain: {
                 en: 'Three items occupy positions 0, 1, and 2. Position 3 does not exist.',
                 id: 'Tiga item menempati posisi 0, 1, dan 2. Posisi 3 tidak ada.',
+              },
+              hint: {
+                en: 'Count how many valid positions a 3-item list actually has, and check whether position 3 is one of them.',
+                id: 'Hitung berapa posisi valid yang sebenarnya dimiliki list berisi 3 item, lalu periksa apakah posisi 3 termasuk di dalamnya.',
               },
             },
             {
@@ -168,6 +176,10 @@ export const module4: Module = {
                 en: 'append adds one item, so the length grows from 2 to 3.',
                 id: 'append menambah satu item, jadi panjangnya bertambah dari 2 ke 3.',
               },
+              hint: {
+                en: 'append() changes how many items are in the list — think about what len() actually measures.',
+                id: 'append() mengubah jumlah item dalam list — pikirkan apa yang sebenarnya diukur oleh len().',
+              },
             },
             {
               kind: 'order',
@@ -183,6 +195,10 @@ export const module4: Module = {
               explain: {
                 en: 'Start from an empty list, append inside the loop, print once at the end.',
                 id: 'Mulai dari list kosong, append di dalam loop, cetak sekali di akhir.',
+              },
+              hint: {
+                en: 'The list needs to exist before anything can be appended to it, and the loop must finish adding every square before the final print runs.',
+                id: 'List-nya harus ada dulu sebelum ada yang bisa di-append ke dalamnya, dan loop harus selesai menambahkan tiap kuadrat sebelum cetakan akhir dijalankan.',
               },
             },
             {
@@ -333,6 +349,10 @@ export const module4: Module = {
                 en: 'The key "b" is looked up and its value, 2, comes back.',
                 id: 'Kunci "b" dicari dan nilainya, 2, dikembalikan.',
               },
+              hint: {
+                en: 'A dictionary lookup with `["b"]` hands back the value stored under that key, not the key itself — check which one prints.',
+                id: 'Pencarian dictionary dengan `["b"]` mengembalikan nilai yang tersimpan di kunci itu, bukan kuncinya sendiri — periksa mana yang tercetak.',
+              },
             },
             {
               kind: 'fill',
@@ -349,6 +369,10 @@ export const module4: Module = {
               explain: {
                 en: 'Assigning to a key that does not exist yet creates it.',
                 id: 'Menetapkan nilai ke kunci yang belum ada akan membuatnya.',
+              },
+              hint: {
+                en: "The blank is the key you're creating — look at what the final print() line looks up to see what that key's name must be, quotes included.",
+                id: 'Bagian kosong itu adalah kunci yang kamu buat — lihat apa yang dicari oleh print() di baris akhir untuk tahu nama kunci itu, termasuk tanda kutipnya.',
               },
             },
             {
@@ -440,6 +464,10 @@ export const module4: Module = {
               explain: {
                 en: 'Looping a dictionary yields its keys. Use .items() or .values() for the values.',
                 id: 'Mengulang dictionary menghasilkan kuncinya. Pakai .items() atau .values() untuk nilainya.',
+              },
+              hint: {
+                en: "Looping a dictionary directly, without `.items()` or `.values()`, hands you one particular part of each entry — which part is that?",
+                id: 'Mengulang dictionary secara langsung, tanpa `.items()` atau `.values()`, memberimu satu bagian tertentu dari tiap entri — bagian mana itu?',
               },
             },
             {

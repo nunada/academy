@@ -118,6 +118,10 @@ export const module5: Module = {
                 en: 'Pygame Zero wraps pygame itself; the other three are independent libraries with their own foundations.',
                 id: 'Pygame Zero membungkus pygame itu sendiri; tiga lainnya adalah pustaka mandiri dengan fondasinya sendiri.',
               },
+              hint: {
+                en: "Recall which of these four tools was described as removing pygame's manual setup rather than being an independent foundation of its own.",
+                id: 'Ingat kembali di antara keempat perkakas ini, mana yang dijelaskan sebagai penghilang persiapan manual pygame, bukan fondasi mandiri sendiri.',
+              },
             },
             {
               kind: 'fill',
@@ -135,6 +139,10 @@ export const module5: Module = {
                 en: 'turtle is the one built into Python itself, aimed squarely at teaching geometry.',
                 id: 'turtle adalah yang sudah ada di dalam Python sendiri, ditujukan langsung untuk mengajarkan geometri.',
               },
+              hint: {
+                en: 'Which tool from this lesson comes built into Python itself and was described as aimed squarely at teaching geometry to younger students?',
+                id: 'Perkakas mana dari pelajaran ini yang sudah ada di dalam Python sendiri dan dijelaskan ditujukan langsung untuk mengajarkan geometri ke siswa yang lebih muda?',
+              },
             },
             {
               kind: 'order',
@@ -150,6 +158,10 @@ export const module5: Module = {
               explain: {
                 en: 'Kivy is the one built for one codebase running on desktop and mobile alike.',
                 id: 'Kivy adalah yang dibangun untuk satu basis kode yang berjalan di desktop maupun ponsel sekaligus.',
+              },
+              hint: {
+                en: 'The dictionary needs to exist before a key can be assigned into it, and that assignment has to happen before the same key can be printed back.',
+                id: 'Dictionary-nya perlu ada dulu sebelum sebuah key bisa ditugaskan ke dalamnya, dan penugasannya harus terjadi dulu sebelum key yang sama bisa dicetak kembali.',
               },
             },
             {
@@ -343,6 +355,10 @@ export const module5: Module = {
                 en: 'SymPy only ever produces symbols and text — nothing platform-specific to render, so nothing stops it running anywhere Python does.',
                 id: 'SymPy hanya pernah menghasilkan simbol dan teks — tak ada yang khas platform untuk dirender, jadi tak ada yang menghalanginya berjalan di mana pun Python berjalan.',
               },
+              hint: {
+                en: 'Ask which of these four needs a window, image, or renderer to do its job, and which one only ever manipulates symbols and text.',
+                id: 'Tanyakan yang mana dari keempat ini butuh jendela, gambar, atau perender untuk bekerja, dan yang mana yang hanya pernah mengolah simbol dan teks.',
+              },
             },
             {
               kind: 'fill',
@@ -360,6 +376,10 @@ export const module5: Module = {
                 en: 'VPython is the one built specifically for navigable 3D physics scenes.',
                 id: 'VPython adalah yang dibangun khusus untuk adegan fisika 3D yang bisa dijelajahi.',
               },
+              hint: {
+                en: 'Which tool from this lesson was described as built specifically for visualizing vectors, forces, and motion as a 3D scene?',
+                id: 'Perkakas mana dari pelajaran ini yang dijelaskan dibangun khusus untuk memvisualisasikan vektor, gaya, dan gerak sebagai adegan 3D?',
+              },
             },
             {
               kind: 'order',
@@ -375,6 +395,10 @@ export const module5: Module = {
               explain: {
                 en: 'Streamlit is the one built to turn a script into a web app with minimal extra code.',
                 id: 'Streamlit adalah yang dibangun untuk mengubah skrip jadi aplikasi web dengan kode tambahan minimal.',
+              },
+              hint: {
+                en: 'The dictionary needs to exist before a key-value pair can be assigned into it, and that assignment has to happen before the same key can be read back with print.',
+                id: 'Dictionary-nya perlu ada dulu sebelum pasangan key-nilai bisa ditugaskan ke dalamnya, dan penugasan itu harus terjadi dulu sebelum key yang sama bisa dibaca kembali dengan print.',
               },
             },
             {

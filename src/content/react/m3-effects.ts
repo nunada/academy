@@ -75,6 +75,10 @@ export const module3: Module = {
                 en: '`children` is a normal prop with a reserved name, filled in by JSX.',
                 id: '`children` adalah prop biasa dengan nama khusus, diisi oleh JSX.',
               },
+              hint: {
+                en: 'Think about what name JSX reserves specifically for the content placed between a component\'s opening and closing tags.',
+                id: 'Pikirkan nama apa yang dikhususkan JSX untuk isi yang diletakkan di antara tag pembuka dan penutup sebuah komponen.',
+              },
             },
             {
               kind: 'web',
@@ -186,6 +190,10 @@ export const module3: Module = {
               explain: {
                 en: 'If you can give the piece an honest name, it is probably its own component. If the name would be `Part2`, it is not.',
                 id: 'Kalau kamu bisa memberi bagian itu nama yang jujur, ia mungkin memang komponen tersendiri. Kalau namanya terpaksa `Bagian2`, berarti bukan.',
+              },
+              hint: {
+                en: 'Think about whether the reason to split is about size, or about whether a piece of markup can be given an honest, specific name of its own.',
+                id: 'Pikirkan apakah alasan memecah komponen soal ukuran, atau soal apakah sepotong markup bisa diberi nama yang jujur dan spesifik untuk dirinya sendiri.',
               },
             },
             {
@@ -423,6 +431,10 @@ export const module3: Module = {
                 en: 'It is one expression. A synced state can only ever be equal or wrong.',
                 id: 'Itu satu ekspresi saja. State yang disinkronkan paling banter hanya sama — atau salah.',
               },
+              hint: {
+                en: 'Think about whether a value that can be computed directly from existing state needs its own separate state at all.',
+                id: 'Pikirkan apakah sebuah nilai yang bisa dihitung langsung dari state yang sudah ada butuh state terpisah miliknya sendiri.',
+              },
             },
             {
               kind: 'web',
@@ -560,6 +572,10 @@ export const module3: Module = {
                 en: 'Every render runs the effect, which sets state, which renders. The array is what stops it.',
                 id: 'Tiap render menjalankan efeknya, yang menyetel state, yang merender lagi. Array itulah yang menghentikannya.',
               },
+              hint: {
+                en: 'Trace the cycle step by step: the effect runs after every render, and think about what setting state inside it triggers next.',
+                id: 'Telusuri siklusnya langkah demi langkah: efeknya berjalan setelah tiap render, dan pikirkan apa yang dipicu oleh penyetelan state di dalamnya sesudah itu.',
+              },
             },
             {
               kind: 'fill',
@@ -573,6 +589,10 @@ export const module3: Module = {
               explain: {
                 en: 'The returned function is the cleanup; the empty array means "after the first render only".',
                 id: 'Fungsi yang dikembalikan adalah pembersihannya; array kosong berarti "hanya setelah render pertama".',
+              },
+              hint: {
+                en: 'One blank is what an effect uses to hand React its cleanup function, and the other is the dependency list that means "only after the very first render".',
+                id: 'Satu titik kosong adalah yang dipakai efek untuk menyerahkan fungsi pembersihannya ke React, dan satu lagi adalah daftar dependensi yang berarti "hanya setelah render pertama".',
               },
             },
             {

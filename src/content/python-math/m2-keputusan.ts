@@ -65,6 +65,10 @@ export const module2: Module = {
                 en: 'Python compares the values, not the types — 10 and 10.0 are equal.',
                 id: 'Python membandingkan nilainya, bukan tipenya — 10 dan 10.0 sama.',
               },
+              hint: {
+                en: 'Ask whether `==` cares about a value being written as a whole number versus a decimal, or only about the value itself.',
+                id: 'Tanyakan apakah `==` peduli pada penulisan bilangan bulat versus desimal, atau hanya pada nilainya saja.',
+              },
             },
             {
               kind: 'fill',
@@ -82,6 +86,10 @@ export const module2: Module = {
                 en: '"At least" includes the boundary, so it is >=, not >.',
                 id: '"Minimal" mencakup batasnya sendiri, jadi >=, bukan >.',
               },
+              hint: {
+                en: 'Someone exactly 17 should count as allowed — does a strict `>` let that boundary case through?',
+                id: 'Seseorang yang tepat berumur 17 seharusnya dianggap boleh — apakah `>` yang tegas meloloskan kasus batas itu?',
+              },
             },
             {
               kind: 'order',
@@ -97,6 +105,10 @@ export const module2: Module = {
               explain: {
                 en: '== asks a question; = stores an answer. They are never interchangeable.',
                 id: '== bertanya; = menyimpan jawaban. Keduanya tak pernah bisa saling gantikan.',
+              },
+              hint: {
+                en: 'x and y need values before they can be compared, and the comparison itself needs to happen before its result can be printed.',
+                id: 'x dan y perlu punya nilai dulu sebelum bisa dibandingkan, dan perbandingannya sendiri perlu terjadi sebelum hasilnya bisa dicetak.',
               },
             },
             {
@@ -174,6 +186,10 @@ export const module2: Module = {
                 en: 'Neither > 0 nor < 0 is True for zero, so control falls through to else.',
                 id: 'Baik > 0 maupun < 0 tidak True untuk nol, jadi jatuh ke else.',
               },
+              hint: {
+                en: 'Check each condition against x = 0 in order, top to bottom — does either the if or the elif actually hold for zero?',
+                id: 'Periksa tiap kondisi terhadap x = 0 secara berurutan, dari atas ke bawah — apakah if atau elif-nya benar-benar terpenuhi untuk nol?',
+              },
             },
             {
               kind: 'fill',
@@ -191,6 +207,10 @@ export const module2: Module = {
                 en: 'Comparing needs ==; a single = would try to assign, which is not allowed here.',
                 id: 'Membandingkan butuh ==; = tunggal akan mencoba menugaskan, yang tidak diperbolehkan di sini.',
               },
+              hint: {
+                en: 'You are asking a question here, not storing an answer — which symbol means "is equal to" rather than "becomes"?',
+                id: 'Kamu sedang bertanya di sini, bukan menyimpan jawaban — simbol mana yang berarti "sama dengan", bukan "menjadi"?',
+              },
             },
             {
               kind: 'order',
@@ -206,6 +226,10 @@ export const module2: Module = {
               explain: {
                 en: 'Same shape as the concept above, with y in place of x.',
                 id: 'Bentuknya sama seperti pada konsep di atas, dengan y menggantikan x.',
+              },
+              hint: {
+                en: 'y needs a value before any condition can test it, and each `elif`/`else` only makes sense right after the `if` chain it belongs to — think about the structure, not which branch wins.',
+                id: 'y perlu punya nilai dulu sebelum kondisi mana pun bisa mengujinya, dan tiap `elif`/`else` hanya masuk akal tepat setelah rantai `if` yang menjadi miliknya — pikirkan strukturnya, bukan cabang mana yang menang.',
               },
             },
             {
@@ -341,6 +365,10 @@ export const module2: Module = {
                 en: 'b > 20 is False, so the and fails; but a > 0 alone is enough for the or.',
                 id: 'b > 20 bernilai False, jadi and-nya gagal; tapi a > 0 saja sudah cukup untuk or-nya.',
               },
+              hint: {
+                en: 'Evaluate each side of the `and` separately, then each side of the `or` separately — `and` needs both sides true, `or` needs only one.',
+                id: 'Evaluasi tiap sisi `and` secara terpisah, lalu tiap sisi `or` secara terpisah — `and` butuh kedua sisi benar, `or` cukup salah satu.',
+              },
             },
             {
               kind: 'fill',
@@ -358,6 +386,10 @@ export const module2: Module = {
                 en: 'Both conditions must hold for a true multiple of 15.',
                 id: 'Kedua kondisi harus terpenuhi untuk benar-benar kelipatan 15.',
               },
+              hint: {
+                en: 'A true multiple of 15 needs both divisibility checks to hold at the same time — which connector requires both sides to be true?',
+                id: 'Kelipatan 15 yang sebenarnya butuh kedua pemeriksaan pembagian terpenuhi sekaligus — konektor mana yang mensyaratkan kedua sisinya benar?',
+              },
             },
             {
               kind: 'order',
@@ -373,6 +405,10 @@ export const module2: Module = {
               explain: {
                 en: 'Either extreme alone is enough to make it invalid — that is what or means here.',
                 id: 'Salah satu ujungnya saja sudah cukup membuatnya tidak sah — itulah arti or di sini.',
+              },
+              hint: {
+                en: 'score needs a value before it can be tested, and the combined condition has to be fully built before its result can be printed.',
+                id: 'score perlu punya nilai dulu sebelum bisa diuji, dan kondisi gabungannya harus selesai dibentuk dulu sebelum hasilnya bisa dicetak.',
               },
             },
             {
@@ -451,6 +487,10 @@ export const module2: Module = {
                 en: '2 is not negative but is under 5, so the middle branch runs: 2 ** 2 is 4.',
                 id: '2 tidak negatif tapi di bawah 5, jadi cabang tengah yang jalan: 2 ** 2 adalah 4.',
               },
+              hint: {
+                en: 'Walk x = 2 through the chain from the top: check the first condition, then the next, and see which branch it actually lands in before computing anything.',
+                id: 'Telusuri x = 2 melalui rantainya dari atas: periksa kondisi pertama, lalu berikutnya, dan lihat cabang mana yang sebenarnya dimasuki sebelum menghitung apa pun.',
+              },
             },
             {
               kind: 'fill',
@@ -467,6 +507,10 @@ export const module2: Module = {
               explain: {
                 en: 'The same boundary as the worked example: strictly less than 5 for the middle branch.',
                 id: 'Batasnya sama seperti pada contoh: kurang dari 5 secara tegas untuk cabang tengah.',
+              },
+              hint: {
+                en: 'Look back at the worked example just above — the middle branch\'s boundary condition takes the same shape here.',
+                id: 'Lihat kembali contoh yang baru dikerjakan di atas — kondisi batas cabang tengahnya berbentuk sama di sini.',
               },
             },
             {
@@ -505,6 +549,10 @@ export const module2: Module = {
               explain: {
                 en: 'Each threshold is checked in order, from highest to lowest.',
                 id: 'Tiap ambang batas diperiksa berurutan, dari tertinggi ke terendah.',
+              },
+              hint: {
+                en: 'score needs a value before any threshold can be checked, and each `elif` only makes sense right after the condition before it in the same chain.',
+                id: 'score perlu punya nilai dulu sebelum ambang batas mana pun bisa diperiksa, dan tiap `elif` hanya masuk akal tepat setelah kondisi sebelumnya dalam rantai yang sama.',
               },
             },
             {

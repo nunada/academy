@@ -87,6 +87,10 @@ export const module2: Module = {
                 en: '`a["x"] + a["w"] > b["x"]` is `10 > 10`, which is false. Strict comparisons mean an edge is not an overlap.',
                 id: '`a["x"] + a["w"] > b["x"]` menjadi `10 > 10`, yang salah. Perbandingan ketat berarti sebuah tepi bukanlah tumpang tindih.',
               },
+              hint: {
+                en: 'Plug these exact numbers into the a["x"] + a["w"] > b["x"] comparison and check whether it comes out strictly true or not.',
+                id: 'Masukkan angka ini ke dalam perbandingan a["x"] + a["w"] > b["x"] dan periksa apakah hasilnya benar secara ketat atau tidak.',
+              },
             },
             {
               kind: 'fill',
@@ -100,6 +104,10 @@ export const module2: Module = {
               explain: {
                 en: 'A starts before B ends, and A ends after B starts.',
                 id: 'A mulai sebelum B berakhir, dan A berakhir setelah B mulai.',
+              },
+              hint: {
+                en: 'Think about what it means for A to start before B ends, and separately for A to end after B starts — each idea needs its own direction of comparison.',
+                id: 'Pikirkan apa artinya A mulai sebelum B berakhir, dan secara terpisah A berakhir setelah B mulai — masing-masing butuh arah perbandingan sendiri.',
               },
             },
             {
@@ -338,6 +346,10 @@ export const module2: Module = {
                 en: '`10 < 5 + 5` is false. As with boxes, a strict comparison means touching is not overlapping.',
                 id: '`10 < 5 + 5` itu salah. Seperti pada kotak, perbandingan ketat berarti bersentuhan bukanlah bertumpang tindih.',
               },
+              hint: {
+                en: 'Compare the actual distance between the centres to the sum of the two radii, using the same strict inequality style as the box test.',
+                id: 'Bandingkan jarak sebenarnya antara pusatnya dengan jumlah kedua jari-jarinya, memakai gaya pertidaksamaan ketat yang sama seperti uji kotak.',
+              },
             },
             {
               kind: 'order',
@@ -356,6 +368,10 @@ export const module2: Module = {
               explain: {
                 en: 'The import first, then the helper, then the thing that uses it.',
                 id: 'Import-nya dulu, lalu pembantunya, lalu yang memakainya.',
+              },
+              hint: {
+                en: 'A function can only call a helper that already exists above it, and that helper in turn needs the library it calls already imported before it runs.',
+                id: 'Sebuah fungsi hanya bisa memanggil pembantu yang sudah ada di atasnya, dan pembantu itu sendiri butuh pustaka yang dipanggilnya sudah diimpor sebelum ia berjalan.',
               },
             },
             {
@@ -770,6 +786,10 @@ export const module2: Module = {
                 en: 'The difference from the centre is zero, so zero times the speed is zero. The edges are where the steering lives.',
                 id: 'Selisih dari pusatnya nol, jadi nol dikali kecepatannya adalah nol. Tepinya-lah tempat pengarahannya berada.',
               },
+              hint: {
+                en: 'Work out what the offset fraction equals when the hit point is exactly at the centre, then see what that fraction times the speed constant gives.',
+                id: 'Cari tahu berapa pecahan offset-nya ketika titik kenanya persis di pusat, lalu lihat hasil pecahan itu dikali konstanta kecepatannya.',
+              },
             },
             {
               kind: 'game',
@@ -1007,6 +1027,10 @@ export const module2: Module = {
               explain: {
                 en: 'The condition is "zero or below", so leaving it at zero means it is still true next frame — and you get a wall of blocks in about a second.',
                 id: 'Kondisinya "nol atau kurang", jadi meninggalkannya di nol berarti ia masih benar di bingkai berikutnya — dan kamu mendapat tembok balok dalam sekitar sedetik.',
+              },
+              hint: {
+                en: 'Think about what the very next frame\'s check "remaining <= 0" would do if remaining were left at exactly 0.',
+                id: 'Pikirkan apa yang akan dilakukan pemeriksaan "remaining <= 0" di bingkai berikutnya jika remaining dibiarkan tepat di 0.',
               },
             },
             {

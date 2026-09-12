@@ -81,6 +81,10 @@ export const module6: Module = {
                 en: 'Between two intersection points, one function stays consistently on top; past an intersection, the two curves can swap places, which would silently turn a signed area calculation into nonsense if the wrong bounds were used.',
                 id: 'Di antara dua titik potong, satu fungsi tetap konsisten di atas; melewati titik potong, kedua kurva bisa bertukar tempat, yang secara diam-diam akan mengubah penghitungan luas bertanda menjadi tak masuk akal bila batas yang salah dipakai.',
               },
+              hint: {
+                en: 'Think about what happens past an intersection point — could the identity of which function is "on top" possibly flip there, and what would that do to a fixed top-minus-bottom formula?',
+                id: 'Pikirkan apa yang terjadi melewati titik potong — bisakah identitas fungsi mana yang "di atas" berubah di situ, dan apa yang akan terjadi pada rumus tetap atas-dikurangi-bawah?',
+              },
             },
             {
               kind: 'quiz',
@@ -110,6 +114,10 @@ export const module6: Module = {
               explain: {
                 en: 'The straight line rises faster than the parabola for every $x$ strictly between $0$ and $1$, staying on top across the whole shaded lens.',
                 id: 'Garis lurusnya naik lebih cepat dari parabolanya untuk setiap $x$ yang benar-benar di antara $0$ dan $1$, tetap di atas sepanjang seluruh lensa bayangan.',
+              },
+              hint: {
+                en: 'Pick a value strictly between $0$ and $1$, like $x = 0.5$, and evaluate both $x$ and $x^2$ there directly — which output is larger?',
+                id: 'Pilih nilai yang benar-benar di antara $0$ dan $1$, seperti $x = 0.5$, dan evaluasi $x$ dan $x^2$ langsung di situ — hasil mana yang lebih besar?',
               },
             },
             {
@@ -176,6 +184,10 @@ export const module6: Module = {
                 en: 'Integrating $v(t)$ directly lets a backward stretch subtract from a forward one, giving net displacement. To add distances instead, the negative stretch must be negated first — which only works if it is isolated in its own integral.',
                 id: 'Mengintegralkan $v(t)$ langsung membiarkan bagian mundur mengurangi bagian maju, memberi perpindahan neto. Untuk menjumlahkan jarak sebagai gantinya, bagian negatifnya harus dinegasikan lebih dahulu — yang hanya berhasil bila diisolasi dalam integralnya sendiri.',
               },
+              hint: {
+                en: 'Think about what taking an absolute value does to a function on the stretch where it is negative, and whether that change can be applied while the negative and positive stretches are still combined in one integral.',
+                id: 'Pikirkan apa yang dilakukan nilai mutlak pada fungsi di bagian yang negatif, dan apakah perubahan itu bisa diterapkan selama bagian negatif dan positif masih digabung dalam satu integral.',
+              },
             },
             {
               kind: 'fill',
@@ -190,6 +202,10 @@ export const module6: Module = {
               explain: {
                 en: 'On $[0, 2]$, $v$ is negative, so $|v(t)| = -(t^2-4) = 4-t^2$. On $[2, 3]$, $v$ is already non-negative, so $|v(t)| = v(t)$ unchanged.',
                 id: 'Pada $[0, 2]$, $v$ negatif, sehingga $|v(t)| = -(t^2-4) = 4-t^2$. Pada $[2, 3]$, $v$ sudah tak negatif, sehingga $|v(t)| = v(t)$ tanpa perubahan.',
+              },
+              hint: {
+                en: 'On $[0, 2]$, check the sign of $v(t) = t^2-4$ there, then recall what taking $|v(t)|$ does to an expression that comes out negative.',
+                id: 'Pada $[0, 2]$, periksa tanda $v(t) = t^2-4$ di situ, lalu ingat apa yang dilakukan $|v(t)|$ pada ekspresi yang hasilnya negatif.',
               },
             },
             {
@@ -319,6 +335,10 @@ export const module6: Module = {
                 en: 'The area of an annulus (a ring) is the outer circle\'s area minus the inner circle\'s area — each computed as $\\pi$ times its own radius squared, then subtracted. Squaring the difference of the radii instead computes something else entirely.',
                 id: 'Luas anulus (sebuah cincin) adalah luas lingkaran luar dikurangi luas lingkaran dalam — masing-masing dihitung sebagai $\\pi$ dikali kuadrat jari-jarinya sendiri, baru dikurangkan. Mengkuadratkan selisih jari-jarinya malah menghitung sesuatu yang sama sekali berbeda.',
               },
+              hint: {
+                en: 'Write out the area of an annulus as the outer circle\'s area minus the inner circle\'s area, each using the standard circle-area formula — compare that to squaring the difference of the two radii directly.',
+                id: 'Tulis luas anulus sebagai luas lingkaran luar dikurangi luas lingkaran dalam, masing-masing memakai rumus luas lingkaran standar — bandingkan itu dengan mengkuadratkan selisih kedua jari-jarinya langsung.',
+              },
             },
             {
               kind: 'quiz',
@@ -347,6 +367,10 @@ export const module6: Module = {
               explain: {
                 en: 'Its length is $f(2) = \\sqrt{2}$ — exactly the radius of the circular disk that sweeping the curve at $x = 2$ around the $x$-axis produces.',
                 id: 'Panjangnya adalah $f(2) = \\sqrt{2}$ — persis jari-jari cakram lingkaran yang dihasilkan menyapu kurva di $x = 2$ mengelilingi sumbu-$x$.',
+              },
+              hint: {
+                en: 'The segment runs from the x-axis up to the curve at $x = 2$ — think about what that vertical distance becomes once the whole picture is spun around the x-axis.',
+                id: 'Segmennya berjalan dari sumbu-x sampai ke kurva di $x = 2$ — pikirkan jarak tegak itu menjadi apa begitu seluruh gambarnya diputar mengelilingi sumbu-x.',
               },
             },
             {
@@ -412,6 +436,10 @@ export const module6: Module = {
                 en: 'Disks and washers around the $y$-axis need everything rewritten in terms of $y$. Shells let the strip stay described by $x$ and its height $f(x)$, which is often the more convenient direction to work in.',
                 id: 'Cakram dan cincin mengelilingi sumbu-$y$ memerlukan segalanya ditulis ulang dalam bentuk $y$. Kulit membiarkan jalurnya tetap dideskripsikan oleh $x$ dan tingginya $f(x)$, yang sering menjadi arah yang lebih nyaman untuk dikerjakan.',
               },
+              hint: {
+                en: 'Disks and washers around the $y$-axis need the boundary curve rewritten as $x$ in terms of $y$ — think about which variable a shell\'s radius and height stay expressed in instead.',
+                id: 'Cakram dan cincin mengelilingi sumbu-$y$ memerlukan kurva batasnya ditulis ulang sebagai $x$ dalam bentuk $y$ — pikirkan peubah mana yang tetap dipakai jari-jari dan tinggi kulit sebagai gantinya.',
+              },
             },
             {
               kind: 'order',
@@ -430,6 +458,10 @@ export const module6: Module = {
               explain: {
                 en: 'Set up the shell integral with radius $x$ and height $f(x)$, simplify the integrand, antidifferentiate, then evaluate at the bounds.',
                 id: 'Susun integral kulit dengan jari-jari $x$ dan tinggi $f(x)$, sederhanakan integrandnya, antiturunkan, lalu evaluasi pada batasnya.',
+              },
+              hint: {
+                en: 'You can\'t antidifferentiate until the radius and height have actually been multiplied together into a single power of $x$ — and you can\'t plug in the bounds until that antiderivative has been found.',
+                id: 'Kamu tak bisa mengantiturunkan sebelum jari-jari dan tingginya benar-benar dikalikan menjadi satu pangkat $x$ — dan kamu tak bisa memasukkan batasnya sebelum antiturunan itu ditemukan.',
               },
             },
             {

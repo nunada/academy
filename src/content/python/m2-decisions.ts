@@ -68,6 +68,10 @@ export const module2: Module = {
                 en: 'The number 3 and the text "3" are different types, so they are not equal.',
                 id: 'Angka 3 dan teks "3" bertipe berbeda, jadi tidak sama.',
               },
+              hint: {
+                en: 'Check whether the number 3 and the text "3" count as the same type before they get compared for equality.',
+                id: 'Periksa apakah angka 3 dan teks "3" dianggap bertipe sama sebelum dibandingkan kesetaraannya.',
+              },
             },
             {
               kind: 'fill',
@@ -81,6 +85,10 @@ export const module2: Module = {
               explain: {
                 en: '"At least 17" includes 17 itself, so use >= rather than >.',
                 id: '"Minimal 17" termasuk 17 itu sendiri, jadi pakai >= bukan >.',
+              },
+              hint: {
+                en: '"At least" a value includes that value itself — which comparison operator treats the boundary itself as true?',
+                id: '"Minimal" suatu nilai berarti nilai itu sendiri termasuk di dalamnya — operator perbandingan mana yang menganggap batasnya sendiri sebagai true?',
               },
             },
             {
@@ -168,6 +176,10 @@ export const module2: Module = {
                 en: '`and` needs both sides True; the second one is False.',
                 id: '`and` butuh kedua sisi True; sisi kedua bernilai False.',
               },
+              hint: {
+                en: '`and` only comes out True when neither side is False — check each variable on its own before combining them.',
+                id: '`and` hanya bernilai True bila tak satu pun sisinya False — periksa dulu nilai tiap variabel secara terpisah sebelum menggabungkannya.',
+              },
             },
             {
               kind: 'quiz',
@@ -186,6 +198,10 @@ export const module2: Module = {
               explain: {
                 en: 'A number cannot be both below 1 and above 10, so `and` would never be True.',
                 id: 'Sebuah angka tak mungkin sekaligus di bawah 1 dan di atas 10, jadi `and` tak akan pernah True.',
+              },
+              hint: {
+                en: "Ask whether a single number could ever satisfy both halves of an `and` at once — if it can't, that option describes nothing.",
+                id: 'Tanyakan apakah sebuah angka bisa memenuhi kedua sisi `and` sekaligus — kalau tidak bisa, opsi itu tidak menggambarkan apa pun.',
               },
             },
             {
@@ -368,6 +384,10 @@ export const module2: Module = {
                 en: '10 is not greater than 10, so else runs. The last line is outside the if, so it always runs.',
                 id: '10 tidak lebih besar dari 10, jadi else yang jalan. Baris terakhir di luar if, jadi selalu jalan.',
               },
+              hint: {
+                en: 'Check carefully whether `x > 10` counts an equal value as greater — and notice which print() line sits outside the if/else entirely.',
+                id: 'Periksa dengan teliti apakah `x > 10` menganggap nilai yang sama sebagai lebih besar — dan perhatikan baris print() mana yang berada di luar if/else sepenuhnya.',
+              },
             },
             {
               kind: 'order',
@@ -383,6 +403,10 @@ export const module2: Module = {
               explain: {
                 en: 'The condition comes first; the indented line under it is what happens when it is True.',
                 id: 'Kondisi lebih dulu; baris menjorok di bawahnya adalah yang terjadi bila kondisi True.',
+              },
+              hint: {
+                en: '`age` has to be assigned before the `if` line can test it, and each indented print() has to directly follow the header line it belongs under.',
+                id: '`age` harus ditetapkan sebelum baris `if` bisa mengujinya, dan tiap print() yang menjorok harus langsung mengikuti baris header yang menaunginya.',
               },
             },
             {
@@ -469,6 +493,10 @@ export const module2: Module = {
                 en: 'The first condition is False, the second is True, and only one branch ever runs.',
                 id: 'Kondisi pertama False, kedua True, dan hanya satu cabang yang dijalankan.',
               },
+              hint: {
+                en: 'Walk down the chain in order — is 70 greater than 70? If not, move to the next condition before deciding nothing matched.',
+                id: 'Telusuri rantainya secara berurutan — apakah 70 lebih besar dari 70? Kalau tidak, lanjut ke kondisi berikutnya sebelum menyimpulkan tidak ada yang cocok.',
+              },
             },
             {
               kind: 'fill',
@@ -485,6 +513,10 @@ export const module2: Module = {
               explain: {
                 en: 'elif adds another condition; else is the catch-all with no condition.',
                 id: 'elif menambah kondisi lain; else adalah penampung terakhir tanpa kondisi.',
+              },
+              hint: {
+                en: 'The first blank needs another condition tried after the first `if` fails; the second blank needs the branch that runs when nothing else matched, with no condition at all.',
+                id: 'Bagian kosong pertama butuh kondisi lain yang dicoba setelah `if` pertama gagal; bagian kosong kedua butuh cabang yang berjalan saat tak ada yang cocok, tanpa kondisi sama sekali.',
               },
             },
             {

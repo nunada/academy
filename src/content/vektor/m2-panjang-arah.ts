@@ -108,6 +108,10 @@ export const module2: Module = {
                 en: 'Every component is squared before it is added, so the number under the root can never be negative, and the root itself is taken to be non-negative. A length that came out negative would be a length of nothing.',
                 id: 'Setiap komponen dikuadratkan sebelum dijumlahkan, jadi bilangan di bawah akarnya tak pernah negatif, dan akarnya sendiri diambil yang tak negatif. Panjang yang keluar negatif tidaklah berarti apa-apa.',
               },
+              hint: {
+                en: 'Think about the very first thing that happens to a component in the formula — it gets squared. What happens to a negative sign under a square?',
+                id: 'Pikirkan hal pertama yang terjadi pada sebuah komponen dalam rumusnya — ia dikuadratkan. Apa yang terjadi pada tanda negatif ketika dikuadratkan?',
+              },
             },
             {
               kind: 'quiz',
@@ -136,6 +140,10 @@ export const module2: Module = {
                 en: '$|\\vec{a}| = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10$ — the legs $6$, $8$ and hypotenuse $10$ are a scaled-up copy of the $3$-$4$-$5$ triple.',
                 id: '$|\\vec{a}| = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10$ — sisi $6$, $8$, dan sisi miring $10$ adalah tripel $3$-$4$-$5$ yang diperbesar.',
               },
+              hint: {
+                en: 'Square each marked leg, add the two squares, then take the square root — and notice the sum lands on a perfect square.',
+                id: 'Kuadratkan tiap sisi siku-siku yang ditandai, jumlahkan kedua kuadratnya, lalu akarkan — dan perhatikan jumlahnya jatuh pada kuadrat sempurna.',
+              },
             },
             {
               kind: 'fill',
@@ -150,6 +158,10 @@ export const module2: Module = {
               explain: {
                 en: '$9 + 16 = 25$, and $\\sqrt{25} = 5$. The minus sign disappears the moment the component is squared.',
                 id: '$9 + 16 = 25$, dan $\\sqrt{25} = 5$. Tanda minusnya lenyap begitu komponennya dikuadratkan.',
+              },
+              hint: {
+                en: 'Square $3$ and square $-4$ separately first — a negative number squared still comes out positive — then add the two results before taking the root.',
+                id: 'Kuadratkan $3$ dan kuadratkan $-4$ secara terpisah dulu — bilangan negatif yang dikuadratkan tetap menghasilkan bilangan positif — lalu jumlahkan kedua hasilnya sebelum diakarkan.',
               },
             },
             {
@@ -223,6 +235,10 @@ export const module2: Module = {
                 en: '$|-3\\vec{a}| = |-3|\\,|\\vec{a}| = 3 \\cdot 4 = 12$. The minus sign turns the vector around; it does not shorten it, and a length is never negative.',
                 id: '$|-3\\vec{a}| = |-3|\\,|\\vec{a}| = 3 \\cdot 4 = 12$. Tanda minusnya membalik arah vektornya; ia tidak memendekkannya, dan panjang tak pernah negatif.',
               },
+              hint: {
+                en: 'Use $|k\\vec{a}| = |k|\\,|\\vec{a}|$ — first turn $-3$ into its absolute value, then multiply by the given $|\\vec{a}|$.',
+                id: 'Pakai $|k\\vec{a}| = |k|\\,|\\vec{a}|$ — ubah dulu $-3$ menjadi nilai mutlaknya, lalu kalikan dengan $|\\vec{a}|$ yang diberikan.',
+              },
             },
             {
               kind: 'quiz',
@@ -253,6 +269,10 @@ export const module2: Module = {
                 en: 'The legs $4$ and $3$ give $d(A,B) = \\sqrt{4^2 + 3^2} = \\sqrt{25} = 5$ — the familiar $3$-$4$-$5$ triple, this time drawn as the gap between two points rather than as a vector from the origin.',
                 id: 'Sisi $4$ dan $3$ memberi $d(A,B) = \\sqrt{4^2 + 3^2} = \\sqrt{25} = 5$ — tripel $3$-$4$-$5$ yang sudah dikenal, kali ini digambar sebagai jarak dua titik, bukan sebagai vektor dari titik asal.',
               },
+              hint: {
+                en: 'The two dashed legs are the horizontal and vertical gap between $A$ and $B$ — treat them exactly like the legs of any other right triangle you\'ve measured so far.',
+                id: 'Kedua sisi putus-putus itu adalah jarak mendatar dan tegak antara $A$ dan $B$ — perlakukan sama seperti sisi siku-siku segitiga lain yang sudah kamu ukur sejauh ini.',
+              },
             },
             {
               kind: 'order',
@@ -271,6 +291,10 @@ export const module2: Module = {
               explain: {
                 en: 'Build the vector, square its components, add, take the root. Every distance problem in this course is these four lines.',
                 id: 'Susun vektornya, kuadratkan komponennya, jumlahkan, akarkan. Setiap soal jarak dalam kursus ini adalah empat baris ini.',
+              },
+              hint: {
+                en: 'You cannot square the components of $\\vec{AB}$ before those components actually exist — and they only exist once you\'ve subtracted the points coordinate by coordinate.',
+                id: 'Kamu tak bisa mengkuadratkan komponen $\\vec{AB}$ sebelum komponen itu benar-benar ada — dan itu baru ada setelah kamu mengurangkan titiknya koordinat demi koordinat.',
               },
             },
             {
@@ -406,6 +430,10 @@ export const module2: Module = {
                 en: '$|(0, -1, 0)| = \\sqrt{0 + 1 + 0} = 1$. The first has length $\\sqrt{3}$, the third has length $\\sqrt{3}/2$, and the zero vector has length 0.',
                 id: '$|(0, -1, 0)| = \\sqrt{0 + 1 + 0} = 1$. Yang pertama panjangnya $\\sqrt{3}$, yang ketiga panjangnya $\\sqrt{3}/2$, dan vektor nol panjangnya 0.',
               },
+              hint: {
+                en: 'A unit vector is defined by one property only — its magnitude equals exactly 1. Compute $|\\vec{a}|$ for each option and check that property.',
+                id: 'Vektor satuan didefinisikan oleh satu sifat saja — besarnya persis 1. Hitung $|\\vec{a}|$ untuk tiap pilihan dan periksa sifat itu.',
+              },
             },
             {
               kind: 'quiz',
@@ -434,6 +462,10 @@ export const module2: Module = {
                 en: '$\\hat{a}$ must have length 1 **and** point the same way as $\\vec{a}$, which points straight down. $X$ does both; $Y$ has length 1 but points the wrong way.',
                 id: '$\\hat{a}$ harus berpanjang 1 **dan** searah dengan $\\vec{a}$, yang mengarah lurus ke bawah. $X$ memenuhi keduanya; $Y$ panjangnya 1 tetapi arahnya salah.',
               },
+              hint: {
+                en: 'A unit vector of $\\vec{a}$ has to pass two separate tests: length 1, and the same direction as $\\vec{a}$. Look carefully at which way each candidate arrow points before you check its length.',
+                id: 'Vektor satuan dari $\\vec{a}$ harus lolos dua ujian terpisah: panjang 1, dan searah dengan $\\vec{a}$. Perhatikan baik-baik ke mana arah tiap anak panah calon sebelum memeriksa panjangnya.',
+              },
             },
             {
               kind: 'fill',
@@ -448,6 +480,10 @@ export const module2: Module = {
               explain: {
                 en: '$3/5 = 0.6$ and $-4/5 = -0.8$. As a check, $0.6^2 + 0.8^2 = 0.36 + 0.64 = 1$.',
                 id: '$3/5 = 0{,}6$ dan $-4/5 = -0{,}8$. Sebagai pemeriksaan, $0{,}6^2 + 0{,}8^2 = 0{,}36 + 0{,}64 = 1$.',
+              },
+              hint: {
+                en: 'The magnitude $5$ is already given to you — just divide each of $3$ and $-4$ by it, one slot at a time.',
+                id: 'Besarnya, yaitu $5$, sudah diberikan — tinggal bagi masing-masing $3$ dan $-4$ dengannya, satu slot setiap kali.',
               },
             },
             {
@@ -544,6 +580,10 @@ export const module2: Module = {
                 en: '$0.36 + 0.64 = 1$, and it always will: the direction cosines are the components of a unit vector, so their squares add to 1 whatever the original length was.',
                 id: '$0{,}36 + 0{,}64 = 1$, dan akan selalu begitu: cosinus arah adalah komponen sebuah vektor satuan, jadi jumlah kuadratnya 1 berapa pun panjang vektor aslinya.',
               },
+              hint: {
+                en: 'Direction cosines are just the components of $\\hat{a}$, a vector of length 1. What must the sum of the squares of any unit vector\'s components equal?',
+                id: 'Cosinus arah tak lain adalah komponen $\\hat{a}$, sebuah vektor yang panjangnya 1. Berapa seharusnya jumlah kuadrat komponen sebarang vektor satuan?',
+              },
             },
             {
               kind: 'quiz',
@@ -571,6 +611,10 @@ export const module2: Module = {
               explain: {
                 en: '$|\\vec{a}| = \\sqrt{16+9} = 5$, and $\\cos\\alpha = a_1/|\\vec{a}| = 4/5$ — the first component of $\\vec{a}$ over its length.',
                 id: '$|\\vec{a}| = \\sqrt{16+9} = 5$, dan $\\cos\\alpha = a_1/|\\vec{a}| = 4/5$ — komponen pertama $\\vec{a}$ dibagi panjangnya.',
+              },
+              hint: {
+                en: 'Find $|\\vec{a}|$ first from its components, then $\\cos\\alpha$ is just the $x$-component divided by that length.',
+                id: 'Cari $|\\vec{a}|$ dulu dari komponennya, lalu $\\cos\\alpha$ tinggal komponen $x$ dibagi panjang itu.',
               },
             },
             {

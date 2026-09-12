@@ -68,6 +68,10 @@ export const module1: Module = {
                 en: '$y^2 = x$ gives two values of $y$ for every positive $x$ — at $x = 4$ both $y = 2$ and $y = -2$ satisfy it. The constant rule is a perfectly good function: every input gets exactly one output, and it happens to be the same one.',
                 id: '$y^2 = x$ memberi dua nilai $y$ untuk setiap $x$ positif — pada $x = 4$ baik $y = 2$ maupun $y = -2$ memenuhinya. Aturan konstan justru fungsi yang sah: setiap masukan mendapat tepat satu keluaran, kebetulan keluaran yang sama.',
               },
+              hint: {
+                en: 'For each rule, pick one specific $x$ and ask how many values of $y$ actually satisfy it. Three of the four force exactly one answer no matter what $x$ you try.',
+                id: 'Untuk tiap aturan, pilih satu $x$ tertentu dan tanyakan ada berapa nilai $y$ yang memenuhinya. Tiga dari empat aturan selalu memaksa tepat satu jawaban, berapa pun $x$-nya.',
+              },
             },
             {
               kind: 'quiz',
@@ -102,6 +106,10 @@ export const module1: Module = {
                 en: '$f(4) = 4^2 - 3(4) = 16 - 12 = 4$, the same worked example as above. Forgetting the $-3x$ term gives 16 instead.',
                 id: '$f(4) = 4^2 - 3(4) = 16 - 12 = 4$, contoh yang sama seperti di atas. Melupakan suku $-3x$ memberi 16.',
               },
+              hint: {
+                en: 'The dot on the graph sits at the marked height directly above $x = 4$ — but check that against the formula itself: square the input first, then subtract three times it.',
+                id: 'Titik pada grafiknya berada tepat pada ketinggian yang ditandai di atas $x = 4$ — tetapi cocokkan dengan rumusnya sendiri: kuadratkan dulu masukannya, baru kurangi tiga kalinya.',
+              },
             },
             {
               kind: 'fill',
@@ -116,6 +124,10 @@ export const module1: Module = {
               explain: {
                 en: '$4 - 6 = -2$. A function may perfectly well return a negative value at a positive input.',
                 id: '$4 - 6 = -2$. Fungsi boleh saja menghasilkan nilai negatif pada masukan yang positif.',
+              },
+              hint: {
+                en: 'You are subtracting a bigger number from a smaller one — which direction on the number line does that push the result?',
+                id: 'Kamu mengurangkan bilangan yang lebih besar dari yang lebih kecil — ke arah mana hasilnya terdorong pada garis bilangan?',
               },
             },
             {
@@ -207,6 +219,10 @@ export const module1: Module = {
                 en: 'You need $9 - x^2 \\geq 0$, that is $x^2 \\leq 9$, which is $-3 \\leq x \\leq 3$. Squaring makes both ends matter: $x = -4$ fails just as $x = 4$ does.',
                 id: 'Diperlukan $9 - x^2 \\geq 0$, yaitu $x^2 \\leq 9$, yang berarti $-3 \\leq x \\leq 3$. Pengkuadratan membuat kedua ujungnya berpengaruh: $x = -4$ gagal sama seperti $x = 4$.',
               },
+              hint: {
+                en: 'A square root needs what is underneath it to be at least zero. Write down $9 - x^2 \\geq 0$ and think about which $x$ make $x^2$ too big for that to hold, on both sides of zero.',
+                id: 'Akar kuadrat memerlukan isinya sekurang-kurangnya nol. Tulis $9 - x^2 \\geq 0$ dan pikirkan $x$ mana yang membuat $x^2$ terlalu besar untuk itu, di kedua sisi nol.',
+              },
             },
             {
               kind: 'quiz',
@@ -239,6 +255,10 @@ export const module1: Module = {
               explain: {
                 en: 'The curve starts exactly where the drawing shows it starting, at $x = -2$, and never stops — matching $x + 2 \\geq 0 \\Leftrightarrow x \\geq -2$.',
                 id: 'Kurvanya bermula persis di tempat gambar menunjukkannya bermula, di $x = -2$, dan tak pernah berhenti — sesuai dengan $x + 2 \\geq 0 \\Leftrightarrow x \\geq -2$.',
+              },
+              hint: {
+                en: 'Look at exactly where the drawn curve starts and which direction it keeps going. Then check that against solving $x + 2 \\geq 0$.',
+                id: 'Perhatikan persis di mana kurvanya bermula dan ke arah mana ia terus berlanjut. Cocokkan itu dengan menyelesaikan $x + 2 \\geq 0$.',
               },
             },
             {
@@ -329,6 +349,10 @@ export const module1: Module = {
                 en: 'The range is read off the **vertical** axis: lowest output to highest output, $[-3, 4]$. The $x$ values $[-2, 5]$ are the domain — swapping the two is the most common slip here.',
                 id: 'Range dibaca dari sumbu **tegak**: dari keluaran terendah sampai tertinggi, $[-3, 4]$. Nilai $x$ yaitu $[-2, 5]$ adalah domainnya — menukar keduanya adalah kekeliruan yang paling sering terjadi di sini.',
               },
+              hint: {
+                en: 'Range comes from the heights the graph reaches, not the horizontal stretch it runs along. Re-read the description and separate which numbers describe up-down and which describe left-right.',
+                id: 'Range berasal dari ketinggian yang dicapai grafiknya, bukan rentang mendatar yang dilaluinya. Baca ulang keterangannya dan pisahkan bilangan mana yang menggambarkan naik-turun dan mana yang kiri-kanan.',
+              },
             },
             {
               kind: 'quiz',
@@ -358,6 +382,10 @@ export const module1: Module = {
                 en: 'The lowest point is $0$, at the marked dot; the highest points are the two ends, each at height $|{-2}-1| = |4-1| = 3$. So the range is $[0, 3]$ — $[-2, 4]$ is the domain, not the range.',
                 id: 'Titik terendahnya $0$, di titik yang ditandai; titik tertingginya kedua ujung, masing-masing setinggi $|{-2}-1| = |4-1| = 3$. Jadi range-nya $[0, 3]$ — $[-2, 4]$ adalah domain, bukan range.',
               },
+              hint: {
+                en: 'Trace only the curve\'s height across the picture, ignoring the horizontal axis. What is the lowest point it touches, and how high do the two ends reach?',
+                id: 'Telusuri hanya ketinggian kurvanya pada gambar, abaikan sumbu mendatar. Berapa titik terendah yang disentuhnya, dan setinggi apa kedua ujungnya?',
+              },
             },
             {
               kind: 'order',
@@ -384,6 +412,10 @@ export const module1: Module = {
               explain: {
                 en: 'Set $x = 0$ for the vertical intercept and $y = 0$ for the horizontal ones. There is at most one of the first — a function has only one value at zero — but there may be several of the second.',
                 id: 'Nolkan $x$ untuk titik potong sumbu tegak dan nolkan $y$ untuk yang mendatar. Yang pertama paling banyak satu — fungsi hanya punya satu nilai di nol — sedangkan yang kedua bisa beberapa.',
+              },
+              hint: {
+                en: 'Two of these lines are computations and two are announcements of a point. An announcement can only come after the computation that produces the number it names — which line hands the y-intercept its number, and which hands the x-intercepts theirs?',
+                id: 'Dua dari baris ini adalah perhitungan dan dua lagi adalah pengumuman sebuah titik. Pengumuman hanya bisa muncul setelah perhitungan yang menghasilkan bilangan yang disebutnya — baris mana yang memberi bilangan untuk titik potong sumbu $y$, dan mana untuk titik potong sumbu $x$?',
               },
             },
             {
@@ -590,6 +622,10 @@ export const module1: Module = {
                 en: 'The second line carries $x \\geq 1$, so $x = 1$ belongs to it and $f(1) = 1^2 = 1$. If both lines had claimed $x = 1$ with different values, the rule would not be a function at all.',
                 id: 'Baris kedua membawa syarat $x \\geq 1$, jadi $x = 1$ menjadi miliknya dan $f(1) = 1^2 = 1$. Kalau kedua baris sama-sama mengklaim $x = 1$ dengan nilai berbeda, aturannya justru bukan fungsi.',
               },
+              hint: {
+                en: 'Look at the two inequality signs closely — one is strict ($<$) and one includes equality ($\\geq$). Which line actually owns the boundary point $x = 1$?',
+                id: 'Perhatikan baik-baik kedua tanda pertidaksamaannya — satu tegas ($<$) dan satu memuat kesamaan ($\\geq$). Baris mana yang sebenarnya memiliki titik batas $x = 1$?',
+              },
             },
             {
               kind: 'quiz',
@@ -620,6 +656,10 @@ export const module1: Module = {
               explain: {
                 en: 'The boundary $x = 0$ belongs to the bottom rule, because of the $\\geq$ — shown by the filled dot at $(0, 3)$. The hollow dot at $(0, 2)$ is the value the top rule would have given, but is not taken.',
                 id: 'Batas $x = 0$ menjadi milik aturan bawah, karena tanda $\\geq$-nya — ditunjukkan oleh titik penuh di $(0, 3)$. Titik kosong di $(0, 2)$ adalah nilai yang akan diberikan aturan atas, tetapi tidak diambil.',
+              },
+              hint: {
+                en: 'Look at the graph right at $x = 0$: one dot there is filled in and one is hollow. The filled dot is the value actually taken.',
+                id: 'Perhatikan grafiknya tepat di $x = 0$: satu titik di situ penuh dan satu kosong. Titik yang penuh adalah nilai yang sungguh diambil.',
               },
             },
             {
@@ -692,6 +732,10 @@ export const module1: Module = {
                 en: 'Both powers are even, so both minus signs vanish and $f(-x) = f(x)$: the function is even.',
                 id: 'Kedua pangkatnya genap, jadi kedua tanda minusnya lenyap dan $f(-x) = f(x)$: fungsinya genap.',
               },
+              hint: {
+                en: 'A negative number raised to an even power comes out positive. Apply that to both $(-x)^4$ and $(-x)^2$ before you decide what coefficient is left in front of $x^2$.',
+                id: 'Bilangan negatif dipangkatkan genap hasilnya positif. Terapkan itu pada $(-x)^4$ maupun $(-x)^2$ sebelum menentukan koefisien apa yang tersisa di depan $x^2$.',
+              },
             },
             {
               kind: 'quiz',
@@ -710,6 +754,10 @@ export const module1: Module = {
               explain: {
                 en: '$h(-x) = -x^3 - 2x = -(x^3 + 2x) = -h(x)$. Every power is odd, so every term changes sign together — which is exactly what being odd means.',
                 id: '$h(-x) = -x^3 - 2x = -(x^3 + 2x) = -h(x)$. Setiap pangkatnya ganjil, jadi semua sukunya berganti tanda bersama-sama — dan itu persis makna ganjil.',
+              },
+              hint: {
+                en: 'Substitute $-x$ into $h$ and simplify completely, then compare the result to $h(x)$ and separately to $-h(x)$ — only one of those two comparisons will match.',
+                id: 'Substitusikan $-x$ ke $h$ dan sederhanakan sepenuhnya, lalu bandingkan hasilnya dengan $h(x)$ dan secara terpisah dengan $-h(x)$ — hanya satu dari kedua perbandingan itu yang cocok.',
               },
             },
             {
@@ -736,6 +784,10 @@ export const module1: Module = {
               explain: {
                 en: 'Fold the page along the vertical axis and the two halves land on each other — exactly the visual test for an even function.',
                 id: 'Lipat halamannya pada sumbu tegak dan kedua belahannya berimpit — persis uji visual untuk fungsi genap.',
+              },
+              hint: {
+                en: 'Imagine two different moves on the picture: folding it along the vertical axis, and spinning it a half-turn around the origin. Which one leaves this particular curve looking exactly the same?',
+                id: 'Bayangkan dua gerakan berbeda pada gambarnya: melipatnya pada sumbu tegak, dan memutarnya setengah putaran mengelilingi titik asal. Yang mana yang membuat kurva ini tampak persis sama?',
               },
             },
             {
@@ -818,6 +870,10 @@ export const module1: Module = {
                 en: 'It is the parabola $x^2$ moved four to the right, so its turning point is at $x = 4$: downhill before it, uphill after. That "moved four to the right" is the whole of Module 2.',
                 id: 'Ia adalah parabola $x^2$ yang digeser empat satuan ke kanan, jadi titik baliknya di $x = 4$: menurun sebelum itu, menanjak sesudahnya. "Digeser empat ke kanan" itulah seluruh isi Modul 2.',
               },
+              hint: {
+                en: 'This is $x^2$ shifted horizontally. Work out where its turning point has moved to, then recall which side of a parabola\'s turning point goes downhill.',
+                id: 'Ini adalah $x^2$ yang digeser mendatar. Cari tahu titik baliknya berpindah ke mana, lalu ingat sisi mana dari titik balik parabola yang menurun.',
+              },
             },
             {
               kind: 'quiz',
@@ -846,6 +902,10 @@ export const module1: Module = {
               explain: {
                 en: 'Reading left to right, the curve climbs uphill until the marked peak at $x = 2$, then falls — so it increases on $(-\\infty, 2]$.',
                 id: 'Dibaca dari kiri ke kanan, kurvanya menanjak sampai puncak yang ditandai di $x = 2$, lalu turun — jadi ia naik pada $(-\\infty, 2]$.',
+              },
+              hint: {
+                en: 'Read the picture left to right and find the one $x$-value where the curve stops climbing and starts falling. Increasing means everything on the uphill side of that point.',
+                id: 'Baca gambarnya dari kiri ke kanan dan temukan satu nilai $x$ tempat kurvanya berhenti menanjak lalu mulai turun. Naik berarti semua yang berada di sisi tanjakan dari titik itu.',
               },
             },
             {
@@ -943,6 +1003,10 @@ export const module1: Module = {
                 en: 'Rounding down for a negative number moves further from zero. $-3 \\leq -2.3$, but $-2 > -2.3$, so $-2$ fails to qualify at all — the floor is $-3$.',
                 id: 'Membulatkan ke bawah untuk bilangan negatif berarti menjauh dari nol. $-3 \\leq -2.3$, tetapi $-2 > -2.3$, sehingga $-2$ sama sekali tak memenuhi syarat — lantainya adalah $-3$.',
               },
+              hint: {
+                en: 'List the two integers that sit just above and just below $-2.3$ on the number line, then ask which of those two is still less than or equal to $-2.3$.',
+                id: 'Sebutkan dua bilangan bulat yang berada tepat di atas dan di bawah $-2{,}3$ pada garis bilangan, lalu tanyakan mana dari keduanya yang masih kurang dari atau sama dengan $-2{,}3$.',
+              },
             },
             {
               kind: 'quiz',
@@ -979,6 +1043,10 @@ export const module1: Module = {
                 en: '$-0.5$ sits in the interval $[-1, 0)$, where the graph is flat at height $-1$ — the step has not reached $0$ yet, since that jump only happens exactly at $x = 0$.',
                 id: '$-0.5$ berada pada selang $[-1, 0)$, tempat grafiknya datar pada ketinggian $-1$ — tangganya belum mencapai $0$, sebab lompatan itu hanya terjadi tepat di $x = 0$.',
               },
+              hint: {
+                en: 'Find which flat step of the staircase covers $x = -0.5$, remembering that each step runs from an integer $k$ up to, but not including, $k+1$.',
+                id: 'Temukan anak tangga mana yang datar dan mencakup $x = -0{,}5$, ingat tiap anak tangga berjalan dari bilangan bulat $k$ sampai, tetapi tidak termasuk, $k+1$.',
+              },
             },
             {
               kind: 'fill',
@@ -993,6 +1061,10 @@ export const module1: Module = {
               explain: {
                 en: '$6.999$ has not reached $7$, so its floor is still $6$. And $-3$ is already an integer, so it is its own floor — nothing to round.',
                 id: '$6.999$ belum mencapai $7$, jadi lantainya masih $6$. Dan $-3$ sudah bilangan bulat, jadi ia menjadi lantainya sendiri — tak ada yang perlu dibulatkan.',
+              },
+              hint: {
+                en: '$6.999$ is sitting just under the next whole number — which integer is it still trapped below? And a number that is already an integer needs no rounding at all.',
+                id: '$6{,}999$ berada tepat di bawah bilangan bulat berikutnya — bilangan bulat mana yang masih menjadi batas atasnya? Dan bilangan yang sudah bulat sama sekali tak perlu dibulatkan.',
               },
             },
             {
@@ -1167,6 +1239,10 @@ export const module1: Module = {
                 en: 'Squaring is an increasing operation on non-negative numbers: if $0 \\leq d_1 < d_2$ then $d_1^2 < d_2^2$. Since distance is never negative, whichever $x$ makes $D$ smallest also makes $d$ smallest.',
                 id: 'Mengkuadratkan adalah operasi yang naik pada bilangan tak negatif: jika $0 \\leq d_1 < d_2$ maka $d_1^2 < d_2^2$. Karena jarak tak pernah negatif, $x$ mana pun yang membuat $D$ terkecil juga membuat $d$ terkecil.',
               },
+              hint: {
+                en: 'Squaring preserves order among non-negative numbers — if one distance is smaller than another, its square stays smaller too. What does that fact let you get away with?',
+                id: 'Mengkuadratkan menjaga urutan di antara bilangan tak negatif — jika satu jarak lebih kecil dari yang lain, kuadratnya juga tetap lebih kecil. Apa yang bisa kamu manfaatkan dari fakta itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -1196,6 +1272,10 @@ export const module1: Module = {
               explain: {
                 en: 'The two marked dots, at $x=\\pm\\tfrac{1}{\\sqrt2}\\approx\\pm0.71$, are exactly where the algebra placed the minimum — the picture and the substitution agree.',
                 id: 'Kedua titik yang ditandai, di $x=\\pm\\tfrac{1}{\\sqrt2}\\approx\\pm0{,}71$, persis tempat aljabar menaruh minimumnya — gambar dan substitusinya sepakat.',
+              },
+              hint: {
+                en: 'Read the horizontal position of the two marked dots directly off the picture, rather than recomputing anything.',
+                id: 'Baca posisi mendatar kedua titik yang ditandai langsung dari gambarnya, tanpa perlu menghitung ulang apa pun.',
               },
             },
             {
@@ -1282,6 +1362,10 @@ export const module1: Module = {
                 en: 'The formula $2x\\sqrt{25-x^2}$ is perfectly defined on all of $[-5,5]$. It is the **rectangle** — not the formula — that needs a genuine width and height, which rules out $x \\leq 0$ and the endpoint $x=5$ where the height vanishes.',
                 id: 'Rumus $2x\\sqrt{25-x^2}$ terdefinisi sempurna pada seluruh $[-5,5]$. **Persegi panjangnyalah** — bukan rumusnya — yang memerlukan lebar dan tinggi yang sungguhan, yang menyingkirkan $x \\leq 0$ dan titik ujung $x=5$ tempat tingginya lenyap.',
               },
+              hint: {
+                en: 'Check what happens to the rectangle\'s width or its height at each endpoint of the formula\'s own domain, $x=-5$, $x=0$ and $x=5$ — does a genuine rectangle survive there?',
+                id: 'Periksa apa yang terjadi pada lebar atau tinggi persegi panjangnya di tiap ujung domain alami rumusnya, $x=-5$, $x=0$, dan $x=5$ — apakah persegi panjang yang sungguhan masih bertahan di situ?',
+              },
             },
             {
               kind: 'quiz',
@@ -1310,6 +1394,10 @@ export const module1: Module = {
               explain: {
                 en: 'At $x=5$ the semicircle has come back down to the axis, so $y=\\sqrt{25-25}=0$ — a rectangle with zero height, hence zero area. The maximum happens somewhere in between, not at either extreme.',
                 id: 'Di $x=5$ setengah lingkarannya sudah kembali turun ke sumbunya, sehingga $y=\\sqrt{25-25}=0$ — persegi panjang dengan tinggi nol, jadi luasnya nol. Maksimumnya terjadi di suatu tempat di antaranya, bukan di salah satu ekstrem.',
+              },
+              hint: {
+                en: 'Evaluate the height $y=\\sqrt{25-x^2}$ as $x$ gets close to $5$ — what does that do to the rectangle\'s shape, and so to its area?',
+                id: 'Hitung tinggi $y=\\sqrt{25-x^2}$ saat $x$ mendekati $5$ — apa yang terjadi pada bentuk persegi panjangnya, dan karenanya pada luasnya?',
               },
             },
             {

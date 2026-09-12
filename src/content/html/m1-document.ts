@@ -83,6 +83,10 @@ export const module1: Module = {
                 en: 'A closing tag repeats the name with a forward slash in front of it.',
                 id: 'Tag penutup mengulang namanya dengan garis miring di depannya.',
               },
+              hint: {
+                en: 'HTML never uses a backslash, and self-closing syntax with a trailing slash does not apply to a paragraph — think about where the forward slash belongs relative to the tag name.',
+                id: 'HTML tidak pernah memakai garis miring terbalik, dan sintaks menutup-sendiri dengan garis miring di akhir tidak berlaku untuk paragraf — pikirkan di mana garis miring maju semestinya diletakkan relatif terhadap nama tag.',
+              },
             },
             {
               kind: 'fill',
@@ -99,6 +103,10 @@ export const module1: Module = {
               explain: {
                 en: 'A tag always ends with `>`, and the opening tag names the element.',
                 id: 'Sebuah tag selalu diakhiri `>`, dan tag pembuka menyebut nama elemennya.',
+              },
+              hint: {
+                en: 'Look at what is incomplete in each tag — one is missing the bracket that finishes it, the other is missing a name that must match its own closing tag later in the line.',
+                id: 'Perhatikan apa yang belum lengkap pada tiap tag — satu masih butuh kurung yang mengakhirinya, satu lagi butuh nama yang harus cocok dengan tag penutupnya di baris yang sama.',
               },
             },
             {
@@ -208,6 +216,10 @@ export const module1: Module = {
                 en: 'head describes the page; body is the page.',
                 id: 'head menjelaskan halamannya; body adalah halamannya.',
               },
+              hint: {
+                en: 'Think about which part of the document holds information *about* the page, and which part holds what a visitor actually sees rendered.',
+                id: 'Pikirkan bagian dokumen mana yang memuat keterangan *tentang* halaman, dan bagian mana yang memuat apa yang benar-benar dilihat pengunjung.',
+              },
             },
             {
               kind: 'order',
@@ -243,6 +255,10 @@ export const module1: Module = {
               explain: {
                 en: 'The doctype comes first, head before body, and every element closes in the reverse order it opened.',
                 id: 'Doctype lebih dulu, head sebelum body, dan tiap elemen ditutup dengan urutan terbalik dari pembukaannya.',
+              },
+              hint: {
+                en: 'Think about which line has to exist before any of the others can make sense, and how the closing tags must mirror the opening ones in reverse.',
+                id: 'Pikirkan baris mana yang harus ada lebih dulu agar baris lain masuk akal, dan bagaimana tag penutup harus mencerminkan tag pembuka dengan urutan terbalik.',
               },
             },
             {
@@ -445,6 +461,10 @@ export const module1: Module = {
                 en: 'Levels step down one at a time. Another h2 would start a sibling section, not a subsection.',
                 id: 'Jenjangnya turun satu per satu. h2 lagi akan memulai bagian sejajar, bukan subbagian.',
               },
+              hint: {
+                en: 'Heading levels only ever change by one step when you go one level deeper — think about how much the number should shift, not what a sibling section would use.',
+                id: 'Jenjang judul hanya berubah satu langkah ketika kamu masuk satu tingkat lebih dalam — pikirkan seberapa besar pergeseran angkanya, bukan apa yang dipakai bagian sejajar.',
+              },
             },
             {
               kind: 'web',
@@ -565,6 +585,10 @@ export const module1: Module = {
                 en: 'em carries the meaning "stressed". i only slants the letters.',
                 id: 'em membawa makna "ditekankan". i hanya memiringkan hurufnya.',
               },
+              hint: {
+                en: 'One of these tags only changes how the letters look, and the others have nothing to do with spoken emphasis — think about which one actually carries the meaning "said with stress".',
+                id: 'Salah satu tag ini hanya mengubah tampilan hurufnya, dan yang lain tidak berkaitan dengan penekanan saat diucapkan — pikirkan tag mana yang benar-benar membawa makna "diucapkan dengan tekanan".',
+              },
             },
             {
               kind: 'fill',
@@ -581,6 +605,10 @@ export const module1: Module = {
               explain: {
                 en: '&lt; is the escape for a literal less-than sign, so the browser does not read it as a tag.',
                 id: '&lt; adalah bentuk lolos untuk tanda kurang-dari harfiah, agar peramban tidak membacanya sebagai tag.',
+              },
+              hint: {
+                en: 'The line already shows the entity for `>` further along — the one for `<` follows the same naming pattern, just for the opposite bracket.',
+                id: 'Barisnya sudah menunjukkan entity untuk `>` di bagian selanjutnya — entity untuk `<` mengikuti pola penamaan yang sama, hanya untuk kurung yang berlawanan.',
               },
             },
             {

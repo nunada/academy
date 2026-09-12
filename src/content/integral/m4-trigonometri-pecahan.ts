@@ -78,6 +78,10 @@ export const module4: Module = {
                 en: 'Peeling off one factor leaves an even power, which the Pythagorean identity converts entirely into cosine — exactly what a $u = \\cos x$ substitution needs.',
                 id: 'Melepaskan satu faktor menyisakan pangkat genap, yang diubah identitas Pythagoras sepenuhnya menjadi cosinus — persis yang diperlukan substitusi $u = \\cos x$.',
               },
+              hint: {
+                en: 'Think about what made $\\sin^3 x$ work in the concept above — an odd exponent always leaves exactly one factor unaccounted for once the rest is rewritten with the Pythagorean identity. What role does that leftover factor end up playing?',
+                id: 'Pikirkan apa yang membuat $\\sin^3 x$ berhasil pada konsep di atas — pangkat ganjil selalu menyisakan tepat satu faktor yang belum terpakai setelah sisanya ditulis ulang dengan identitas Pythagoras. Peran apa yang akhirnya dimainkan faktor sisa itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -104,6 +108,10 @@ export const module4: Module = {
                 en: 'The technique hinges entirely on the exponent\'s parity, not on any visual feature of the graph — an odd exponent is what guarantees a leftover factor for the substitution.',
                 id: 'Tekniknya bergantung sepenuhnya pada paritas pangkatnya, bukan pada fitur visual grafiknya — pangkat ganjil itulah yang menjamin faktor sisa untuk substitusinya.',
               },
+              hint: {
+                en: 'The technique\'s justification has nothing to do with the shape of the curve itself — look instead at the exponent $3$ and think about what makes a whole number odd rather than even.',
+                id: 'Alasan tekniknya sama sekali tak berkaitan dengan bentuk kurvanya sendiri — lihat sebaliknya pada pangkat $3$ dan pikirkan apa yang membuat suatu bilangan bulat ganjil, bukan genap.',
+              },
             },
             {
               kind: 'fill',
@@ -118,6 +126,10 @@ export const module4: Module = {
               explain: {
                 en: 'Integrating $\\cos(2x)/2$ with respect to $x$ gives $\\sin(2x)/4$ — the inner derivative $2$ lands in the denominator.',
                 id: 'Mengintegralkan $\\cos(2x)/2$ terhadap $x$ memberi $\\sin(2x)/4$ — turunan dalamnya $2$ mendarat di penyebut.',
+              },
+              hint: {
+                en: 'Integrate $\\frac{\\cos 2x}{2}$ with respect to $x$ using u-substitution on the inner $2x$ — the inner function\'s own derivative ends up joining the $2$ already sitting in the denominator.',
+                id: 'Integralkan $\\frac{\\cos 2x}{2}$ terhadap $x$ memakai substitusi u pada $2x$ di dalamnya — turunan dari fungsi dalamnya berakhir bergabung dengan $2$ yang sudah ada di penyebut.',
               },
             },
             {
@@ -197,6 +209,10 @@ export const module4: Module = {
                 en: '$\\sin^2 + \\cos^2 = 1$ rearranges to $1 - \\sin^2(\\theta) = \\cos^2(\\theta)$, which is exactly what $a^2 - a^2\\sin^2(\\theta)$ becomes after factoring out $a^2$ — a perfect square under the root, for any $a$.',
                 id: '$\\sin^2 + \\cos^2 = 1$ ditata ulang menjadi $1 - \\sin^2(\\theta) = \\cos^2(\\theta)$, persis yang menjadi $a^2 - a^2\\sin^2(\\theta)$ setelah memfaktorkan $a^2$ — kuadrat sempurna di bawah akar, untuk $a$ berapa pun.',
               },
+              hint: {
+                en: 'Substitute $x = a\\sin\\theta$ into $a^2 - x^2$ and factor out $a^2$ — which identity turns what is left inside the parentheses into a perfect square?',
+                id: 'Substitusikan $x = a\\sin\\theta$ ke $a^2 - x^2$ dan faktorkan $a^2$-nya — identitas mana yang mengubah sisa di dalam kurungnya menjadi kuadrat sempurna?',
+              },
             },
             {
               kind: 'quiz',
@@ -225,6 +241,10 @@ export const module4: Module = {
               explain: {
                 en: '$y = \\sqrt{4 - x^2}$ traces the upper half of the circle $x^2 + y^2 = 4$, so this region is precisely a quarter-disk of radius $2$ — its area was always going to match $\\frac{1}{4}\\pi(2^2) = \\pi$.',
                 id: '$y = \\sqrt{4 - x^2}$ menjejaki separuh atas lingkaran $x^2 + y^2 = 4$, sehingga daerah ini persis seperempat cakram berjari-jari $2$ — luasnya memang akan cocok dengan $\\frac{1}{4}\\pi(2^2) = \\pi$.',
+              },
+              hint: {
+                en: 'Compare the equation $y=\\sqrt{4-x^2}$ to the equation of a circle centered at the origin — what shape does that curve actually trace, and what fraction of it is shaded here?',
+                id: 'Bandingkan persamaan $y=\\sqrt{4-x^2}$ dengan persamaan lingkaran berpusat di titik asal — bentuk apa yang sebenarnya dijejaki kurva itu, dan berapa bagian darinya yang diarsir di sini?',
               },
             },
             {
@@ -336,6 +356,10 @@ export const module4: Module = {
                 en: 'The factor $(x - 1)$ multiplying $B$ becomes zero exactly when $x = 1$, wiping out that whole term and leaving an equation in $A$ alone.',
                 id: 'Faktor $(x - 1)$ yang mengalikan $B$ menjadi nol tepat ketika $x = 1$, menghapus seluruh suku itu dan menyisakan persamaan dalam $A$ saja.',
               },
+              hint: {
+                en: 'Plug $x = 1$ into the factor multiplying $B$, namely $(x-1)$, before worrying about anything else in the equation — what does that factor become?',
+                id: 'Masukkan $x = 1$ ke faktor yang mengalikan $B$, yaitu $(x-1)$, sebelum mengkhawatirkan hal lain dalam persamaannya — faktor itu menjadi apa?',
+              },
             },
             {
               kind: 'fill',
@@ -350,6 +374,10 @@ export const module4: Module = {
               explain: {
                 en: 'At $x=2$: $7(2)-6=8=A(1)$, so $A=8$. At $x=1$: $7(1)-6=1=B(-1)$, so $B=-1$.',
                 id: 'Di $x=2$: $7(2)-6=8=A(1)$, sehingga $A=8$. Di $x=1$: $7(1)-6=1=B(-1)$, sehingga $B=-1$.',
+              },
+              hint: {
+                en: 'Clear the denominators to get $7x-6 = A(x-1)+B(x-2)$, then substitute each root of the original denominator in turn — each choice makes one of the two terms vanish.',
+                id: 'Hilangkan penyebutnya untuk mendapat $7x-6 = A(x-1)+B(x-2)$, lalu substitusikan tiap akar penyebut aslinya satu per satu — tiap pilihan membuat salah satu dari kedua sukunya lenyap.',
               },
             },
             {
@@ -418,6 +446,10 @@ export const module4: Module = {
                 en: '$k/(x - r)$ is exactly Module 1\'s exceptional power-rule case, just shifted — its antiderivative is $k \\cdot \\ln|x - r| + C$.',
                 id: '$k/(x - r)$ persis kasus pengecualian aturan pangkat Modul 1, hanya digeser — antiturunannya adalah $k \\cdot \\ln|x - r| + C$.',
               },
+              hint: {
+                en: 'Look at the general shape each partial fraction takes, $k/(x-r)$ — which antiderivative rule from Module 1 handles exactly that shape, just shifted horizontally?',
+                id: 'Lihat bentuk umum yang diambil tiap pecahan parsial, $k/(x-r)$ — aturan antiturunan mana dari Modul 1 yang menangani persis bentuk itu, hanya digeser mendatar?',
+              },
             },
             {
               kind: 'order',
@@ -435,6 +467,10 @@ export const module4: Module = {
               explain: {
                 en: 'Write the decomposition first, then integrate term by term, then simplify to the final logarithmic form.',
                 id: 'Tulis penguraiannya lebih dahulu, lalu integralkan suku demi suku, baru sederhanakan menjadi bentuk logaritma akhir.',
+              },
+              hint: {
+                en: 'You can\'t integrate term by term until the fraction has actually been split into separate pieces — and you can\'t write the final logarithmic form until each piece has been integrated on its own.',
+                id: 'Kamu tak bisa mengintegralkan suku demi suku sebelum pecahannya benar-benar dipecah menjadi bagian terpisah — dan kamu tak bisa menulis bentuk logaritma akhir sebelum tiap bagian diintegralkan sendiri-sendiri.',
               },
             },
             {

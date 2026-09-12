@@ -81,6 +81,10 @@ export const module1: Module = {
                 en: 'The derivative of any constant is $0$, so adding a different constant to $F$ never changes $F\'$. Reversing the derivative can only recover $F$ up to that lost constant.',
                 id: 'Turunan konstanta apa pun adalah $0$, jadi menambahkan konstanta berbeda ke $F$ tak pernah mengubah $F\'$. Membalik turunan hanya bisa memulihkan $F$ hingga konstanta yang hilang itu.',
               },
+              hint: {
+                en: 'Think about what happens to a constant term the moment you differentiate it — could running that step backwards ever tell you which constant used to be there?',
+                id: 'Pikirkan apa yang terjadi pada suku konstanta begitu ia diturunkan — bisakah menjalankan langkah itu terbalik pernah memberitahumu konstanta mana yang dulu ada di sana?',
+              },
             },
             {
               kind: 'quiz',
@@ -111,6 +115,10 @@ export const module1: Module = {
                 en: 'At any given $x$, the three curves rise or fall at exactly the same rate — vertical translates share a slope everywhere, which is what "same derivative" looks like.',
                 id: 'Pada $x$ tertentu mana pun, ketiga kurva naik atau turun dengan laju yang persis sama — translasi vertikal berbagi kemiringan di mana-mana, dan itulah rupa "turunan yang sama".',
               },
+              hint: {
+                en: 'These three curves are vertical translates of one another. Shifting a curve straight up or down changes its height at every point — but does it change how steeply it is rising there?',
+                id: 'Ketiga kurva ini adalah translasi vertikal satu sama lain. Menggeser kurva lurus ke atas atau bawah mengubah tingginya di setiap titik — tapi apakah itu mengubah seberapa curam ia naik di sana?',
+              },
             },
             {
               kind: 'quiz',
@@ -129,6 +137,10 @@ export const module1: Module = {
               explain: {
                 en: 'Differentiating $x^4 + 7$ gives $4x^3$ exactly — the $+7$ vanishes and the exponent rule matches. Differentiating $12x^2$ gives $24x$, not $f$. Differentiating $4x^4$ gives $16x^3$.',
                 id: 'Menurunkan $x^4 + 7$ memberi $4x^3$ persis — $+7$-nya lenyap dan aturan eksponennya cocok. Menurunkan $12x^2$ memberi $24x$, bukan $f$. Menurunkan $4x^4$ memberi $16x^3$.',
+              },
+              hint: {
+                en: 'Differentiate each of the four candidates in turn and compare the result to $f(x) = 4x^3$ — the coefficient in front of $x^4$ matters just as much as the exponent.',
+                id: 'Turunkan tiap dari keempat kandidat secara berurutan dan bandingkan hasilnya dengan $f(x) = 4x^3$ — koefisien di depan $x^4$ sama pentingnya dengan pangkatnya.',
               },
             },
             {
@@ -197,6 +209,10 @@ export const module1: Module = {
                 en: 'Substituting $n = -1$ into $(n+1)$ puts a $0$ in the denominator. $1/x$ does have an antiderivative — $\\ln|x|$ — it just is not the one the power-rule formula produces.',
                 id: 'Mensubstitusikan $n = -1$ ke $(n+1)$ meletakkan $0$ di penyebut. $1/x$ memang punya antiturunan — $\\ln|x|$ — hanya saja bukan yang dihasilkan rumus aturan pangkat.',
               },
+              hint: {
+                en: 'Look at what the formula $\\frac{x^{n+1}}{n+1}$ literally asks you to do once $n = -1$ is plugged into its denominator, before worrying about whether $1/x$ has an antiderivative at all.',
+                id: 'Lihat apa yang secara harfiah diminta rumus $\\frac{x^{n+1}}{n+1}$ begitu $n = -1$ dimasukkan ke penyebutnya, sebelum mengkhawatirkan apakah $1/x$ punya antiturunan sama sekali.',
+              },
             },
             {
               kind: 'fill',
@@ -211,6 +227,10 @@ export const module1: Module = {
               explain: {
                 en: 'Raise the exponent to $-3$, then divide by that same $-3$ — and never drop the $+C$, since the family is the whole answer.',
                 id: 'Naikkan pangkatnya menjadi $-3$, lalu bagi dengan $-3$ yang sama itu — dan jangan pernah membuang $+C$, sebab keluarganya adalah jawaban lengkapnya.',
+              },
+              hint: {
+                en: 'Apply the power rule mechanically: raise $-4$ by one, then divide by that same new exponent. And recall what every indefinite integral needs at the very end, no matter the exponent.',
+                id: 'Terapkan aturan pangkat secara mekanis: naikkan $-4$ satu, lalu bagi dengan pangkat baru yang sama itu. Dan ingat apa yang selalu dibutuhkan setiap integral tak tentu di akhir, berapa pun pangkatnya.',
               },
             },
             {
@@ -229,6 +249,10 @@ export const module1: Module = {
               explain: {
                 en: 'Rewrite the root as a fractional exponent first, then apply the power rule mechanically, then simplify the resulting fraction.',
                 id: 'Tulis ulang akarnya sebagai pangkat pecahan lebih dahulu, lalu terapkan aturan pangkat secara mekanis, baru sederhanakan pecahan yang dihasilkan.',
+              },
+              hint: {
+                en: 'You cannot simplify a fraction like $3/2$ in the denominator until the power rule has actually produced it — and the power rule cannot apply to a square root until it is written as a fractional exponent first.',
+                id: 'Kamu tak bisa menyederhanakan pecahan seperti $3/2$ di penyebut sebelum aturan pangkat benar-benar menghasilkannya — dan aturan pangkat tak bisa diterapkan pada akar kuadrat sebelum ditulis sebagai pangkat pecahan lebih dahulu.',
               },
             },
             {
@@ -341,6 +365,10 @@ export const module1: Module = {
                 en: 'Differentiating $-\\cos x$ gives $-(-\\sin x) = \\sin x$, exactly $f$. The minus sign is easy to drop by accident — check by differentiating whenever in doubt.',
                 id: 'Menurunkan $-\\cos x$ memberi $-(-\\sin x) = \\sin x$, persis $f$. Tanda minusnya mudah terlewat secara tak sengaja — periksa dengan menurunkan setiap kali ragu.',
               },
+              hint: {
+                en: 'Differentiate each option and see which one lands back on $\\sin x$ — pay close attention to what happens to the sign when you differentiate a negative cosine.',
+                id: 'Turunkan tiap pilihan dan lihat mana yang kembali menjadi $\\sin x$ — perhatikan baik-baik apa yang terjadi pada tandanya saat menurunkan minus cosinus.',
+              },
             },
             {
               kind: 'quiz',
@@ -360,6 +388,10 @@ export const module1: Module = {
                 en: '$e^x$ is its own derivative and, by the same fact read the other way, its own antiderivative.',
                 id: '$e^x$ adalah turunannya sendiri dan, dengan fakta yang sama dibaca sebaliknya, antiturunannya sendiri.',
               },
+              hint: {
+                en: 'Only one of these four functions has a derivative that is literally itself — which one did the Derivatives course single out for exactly that property?',
+                id: 'Hanya satu dari keempat fungsi ini yang turunannya persis dirinya sendiri — yang mana yang ditonjolkan Kursus Turunan justru karena sifat itu?',
+              },
             },
             {
               kind: 'fill',
@@ -374,6 +406,10 @@ export const module1: Module = {
               explain: {
                 en: 'Term by term: $6x^2$ gives $2x^3$, and $-4\\sin x$ gives $-4 \\cdot (-\\cos x) = 4\\cos x$.',
                 id: 'Suku demi suku: $6x^2$ memberi $2x^3$, dan $-4\\sin x$ memberi $-4 \\cdot (-\\cos x) = 4\\cos x$.',
+              },
+              hint: {
+                en: 'Antidifferentiate the two terms separately: apply the power rule to $6x^2$, and recall what happens to both the function and its coefficient when $-4\\sin x$ is reversed.',
+                id: 'Antiturunkan kedua sukunya secara terpisah: terapkan aturan pangkat pada $6x^2$, dan ingat apa yang terjadi pada fungsi maupun koefisiennya ketika $-4\\sin x$ dibalik.',
               },
             },
             {
@@ -455,6 +491,10 @@ export const module1: Module = {
                 en: 'Antidifferentiating alone gives a whole family $F(x) + C$. The initial condition is one point that family must pass through, which forces a specific $C$.',
                 id: 'Mengantiturunkan saja memberi seluruh keluarga $F(x) + C$. Syarat awalnya adalah satu titik yang harus dilalui keluarga itu, yang memaksa $C$ tertentu.',
               },
+              hint: {
+                en: 'Antidifferentiating alone already gives you a whole family $F(x) + C$ — think about what a single known point on that family\'s graph would let you pin down that the family by itself cannot.',
+                id: 'Mengantiturunkan saja sudah memberimu seluruh keluarga $F(x) + C$ — pikirkan apa yang bisa ditentukan oleh satu titik yang diketahui pada grafik keluarga itu, yang tak bisa ditentukan keluarga itu sendiri.',
+              },
             },
             {
               kind: 'quiz',
@@ -485,6 +525,10 @@ export const module1: Module = {
               explain: {
                 en: 'Only one member of the family passes through any given point — that is the solid curve, $x^3 + 4$. Both dashed curves miss $(1, 5)$ entirely.',
                 id: 'Hanya satu anggota keluarga yang melalui titik tertentu mana pun — itulah kurva solidnya, $x^3 + 4$. Kedua kurva putus-putus sama sekali tak melalui $(1, 5)$.',
+              },
+              hint: {
+                en: 'Plug $x = 1$ into each of the three curves\' equations and check which output actually lands on height $5$ — only the family member through that exact point qualifies.',
+                id: 'Masukkan $x = 1$ ke persamaan ketiga kurva dan periksa mana yang hasilnya benar-benar mendarat di ketinggian $5$ — hanya anggota keluarga yang melalui titik itu persis yang memenuhi.',
               },
             },
             {

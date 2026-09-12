@@ -84,6 +84,10 @@ export const module4: Module = {
                 en: 'The first call logs 5. The second throws, so the rest of the try is abandoned and catch runs.',
                 id: 'Pemanggilan pertama menampilkan 5. Yang kedua melempar, jadi sisa try ditinggalkan dan catch yang jalan.',
               },
+              hint: {
+                en: 'Trace what happens the instant the second call throws — think about whether the try block keeps running past that point or jumps straight to catch.',
+                id: 'Telusuri apa yang terjadi begitu pemanggilan kedua melempar — pikirkan apakah blok try tetap berjalan melewati titik itu atau langsung melompat ke catch.',
+              },
             },
             {
               kind: 'fill',
@@ -97,6 +101,10 @@ export const module4: Module = {
               explain: {
                 en: 'throw raises it; the caller decides whether to catch.',
                 id: 'throw memunculkannya; pemanggil yang memutuskan apakah menangkapnya.',
+              },
+              hint: {
+                en: 'Think about the keyword that raises an error and hands the decision of catching it up to whoever called this function.',
+                id: 'Pikirkan kata kunci yang memunculkan sebuah error dan menyerahkan keputusan menangkapnya kepada siapa pun yang memanggil fungsi ini.',
               },
             },
             {
@@ -229,6 +237,10 @@ export const module4: Module = {
               explain: {
                 en: '0 is falsy, so || replaces it with 50. ?? only steps in for null and undefined.',
                 id: '0 termasuk falsy, jadi || menggantinya dengan 50. ?? hanya turun tangan untuk null dan undefined.',
+              },
+              hint: {
+                en: 'Remember which operator only reacts to null and undefined, and which one reacts to every falsy value — then check which category 0 falls into.',
+                id: 'Ingat operator mana yang hanya bereaksi terhadap null dan undefined, dan mana yang bereaksi terhadap semua nilai falsy — lalu periksa 0 termasuk kategori yang mana.',
               },
             },
             {

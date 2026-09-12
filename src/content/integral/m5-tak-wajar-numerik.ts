@@ -81,6 +81,10 @@ export const module5: Module = {
                 en: 'Convergence is decided entirely by whether that defining limit exists as a finite number — $1/x^2$ does, $1/x$ does not, even though both are perfectly ordinary functions with elementary antiderivatives.',
                 id: 'Konvergensi ditentukan sepenuhnya oleh apakah limit pendefinisiannya ada sebagai bilangan hingga — $1/x^2$ begitu, $1/x$ tidak, meski keduanya fungsi biasa dengan antiturunan elementer.',
               },
+              hint: {
+                en: 'Go back to the definition itself: $\\int_a^\\infty f(x)\\,dx$ is defined as a limit as $t \\to \\infty$ of an ordinary integral — what property of that limit\'s value is the entire question hinging on?',
+                id: 'Kembali ke definisinya sendiri: $\\int_a^\\infty f(x)\\,dx$ didefinisikan sebagai limit saat $t \\to \\infty$ dari sebuah integral biasa — sifat apa dari nilai limit itu yang menjadi inti seluruh pertanyaannya?',
+              },
             },
             {
               kind: 'quiz',
@@ -99,6 +103,10 @@ export const module5: Module = {
               explain: {
                 en: '$1/x^3$ has $p = 3 > 1$, so it converges. $1/\\sqrt{x} = x^{-1/2}$ has $p = 1/2 < 1$ — even though it shrinks toward zero, it does so too slowly, and its integral diverges just as $1/x$ did.',
                 id: '$1/x^3$ punya $p = 3 > 1$, sehingga konvergen. $1/\\sqrt{x} = x^{-1/2}$ punya $p = 1/2 < 1$ — meski menyusut menuju nol, ia melakukannya terlalu lambat, dan integralnya divergen persis seperti $1/x$.',
+              },
+              hint: {
+                en: 'Write each integrand as $x^{-p}$ and compare its exponent $p$ to the threshold the concept above established for $\\int_1^\\infty x^{-p}\\,dx$.',
+                id: 'Tulis tiap integrand sebagai $x^{-p}$ dan bandingkan pangkatnya $p$ dengan ambang batas yang ditetapkan konsep di atas untuk $\\int_1^\\infty x^{-p}\\,dx$.',
               },
             },
             {
@@ -178,6 +186,10 @@ export const module5: Module = {
                 en: '$1/x$ blows up as $x$ approaches $0$ from the right, exactly at the left endpoint of the interval — the integrand itself is the source of the impropriety, not the length of the interval.',
                 id: '$1/x$ meledak ketika $x$ mendekati $0$ dari kanan, persis di titik ujung kiri intervalnya — integrandnya sendirilah sumber ketakwajarannya, bukan panjang intervalnya.',
               },
+              hint: {
+                en: 'Check the integrand at the interval\'s left endpoint, $x = 0$, before worrying about the interval\'s length — is $1/x$ even defined there?',
+                id: 'Periksa integrandnya di titik ujung kiri intervalnya, $x = 0$, sebelum mengkhawatirkan panjang intervalnya — apakah $1/x$ bahkan terdefinisi di situ?',
+              },
             },
             {
               kind: 'quiz',
@@ -206,6 +218,10 @@ export const module5: Module = {
               explain: {
                 en: 'The curve shoots upward as $x$ shrinks toward $0$ — a vertical asymptote — yet the area it encloses with the axis converges to the finite value $2$.',
                 id: 'Kurvanya melesat ke atas ketika $x$ menyusut menuju $0$ — sebuah asimtot tegak — namun luas yang dilingkupinya dengan sumbu tetap konvergen ke nilai hingga $2$.',
+              },
+              hint: {
+                en: 'Trace the plotted curve from $x = 1$ back toward $x = 0$ — does its height stay bounded, or does it keep climbing? Then think about whether an unbounded height necessarily forces an unbounded area.',
+                id: 'Telusuri kurva yang digambar dari $x = 1$ mundur menuju $x = 0$ — apakah tingginya tetap terbatas, atau terus naik? Lalu pikirkan apakah tinggi yang tak terbatas mesti memaksa luas yang tak terbatas.',
               },
             },
             {
@@ -334,6 +350,10 @@ export const module5: Module = {
                 en: 'Every interior $x$-value is the right end of one trapezoid and the left end of the next, so its height appears in two separate trapezoid-area terms — which collapses to a factor of $2$ when the sum is collected.',
                 id: 'Tiap nilai $x$ di dalamnya adalah ujung kanan satu trapesium dan ujung kiri trapesium berikutnya, sehingga tingginya muncul di dua suku luas trapesium yang terpisah — yang menyusut menjadi faktor $2$ ketika jumlahnya dikumpulkan.',
               },
+              hint: {
+                en: 'Pick one interior grid point and ask: how many separate trapezoids in the sum actually touch that point\'s height?',
+                id: 'Pilih satu titik kisi di dalamnya dan tanyakan: berapa banyak trapesium terpisah dalam jumlahnya yang sungguh menyentuh tinggi titik itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -365,6 +385,10 @@ export const module5: Module = {
               explain: {
                 en: 'A flat top locks in one height for the whole strip; a slanted top interpolates between the two endpoint heights, following the curve\'s own rise instead of ignoring it.',
                 id: 'Puncak datar mengunci satu tinggi untuk seluruh jalur; puncak miring menginterpolasi antara kedua tinggi titik ujungnya, mengikuti kenaikan kurva itu sendiri alih-alih mengabaikannya.',
+              },
+              hint: {
+                en: 'Compare what a flat top does across a strip to what a slanted top does — which one actually changes height the way the curve itself changes height along that strip?',
+                id: 'Bandingkan apa yang dilakukan puncak datar sepanjang jalur dengan apa yang dilakukan puncak miring — yang mana yang sungguh berubah tinggi seperti kurvanya sendiri berubah tinggi sepanjang jalur itu?',
               },
             },
             {
@@ -430,6 +454,10 @@ export const module5: Module = {
                 en: 'Simpson\'s Rule works by approximating the integrand with a parabola on each pair of strips — when the integrand already is a parabola, that approximation is not an approximation at all, but an exact match.',
                 id: 'Aturan Simpson bekerja dengan menghampiri integrandnya memakai parabola pada tiap sepasang jalur — ketika integrandnya sudah sebuah parabola, hampiran itu bukan hampiran sama sekali, melainkan kecocokan eksak.',
               },
+              hint: {
+                en: 'Think about what shape Simpson\'s Rule fits through each group of points, and what shape a quadratic function\'s own graph already is.',
+                id: 'Pikirkan bentuk apa yang dipasangkan Aturan Simpson melalui tiap kelompok titik, dan bentuk apa yang sudah dimiliki grafik fungsi kuadrat itu sendiri.',
+              },
             },
             {
               kind: 'fill',
@@ -444,6 +472,10 @@ export const module5: Module = {
               explain: {
                 en: 'The pattern always alternates $4, 2, 4, 2, \\ldots, 4$ between the two endpoints, regardless of how many strips there are (as long as $n$ is even).',
                 id: 'Polanya selalu berselang-seling $4, 2, 4, 2, \\ldots, 4$ di antara kedua titik ujungnya, tak peduli berapa banyak jalurnya (selama $n$ genap).',
+              },
+              hint: {
+                en: 'The concept above states the alternating pattern explicitly for any even $n$ — line up the seven points here against that same repeating sequence, position by position.',
+                id: 'Konsep di atas menyatakan pola berselang-selingnya secara eksplisit untuk $n$ genap mana pun — sejajarkan ketujuh titik di sini dengan urutan berulang yang sama itu, posisi demi posisi.',
               },
             },
             {

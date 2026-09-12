@@ -73,6 +73,10 @@ export const module4: Module = {
                 en: 'multiply(6, 7) runs a=6, b=7, returns a*b, which cout then prints: 42.',
                 id: 'kali(6, 7) berjalan dengan a=6, b=7, mengembalikan a*b, yang lalu dicetak cout: 42.',
               },
+              hint: {
+                en: 'Trace which values a and b take when multiply is called, then apply the operation the function body actually performs.',
+                id: 'Telusuri nilai apa yang diterima a dan b saat kali dipanggil, lalu terapkan operasi yang benar-benar dilakukan tubuh fungsinya.',
+              },
             },
             {
               kind: 'fill',
@@ -89,6 +93,10 @@ export const module4: Module = {
               explain: {
                 en: 'return hands back a value and exits the function right there.',
                 id: 'return menyerahkan sebuah nilai dan langsung keluar dari fungsi di situ juga.',
+              },
+              hint: {
+                en: 'You need to hand a value back out of the function immediately when the condition holds — what keyword does that?',
+                id: 'Kamu perlu menyerahkan sebuah nilai keluar dari fungsi seketika saat kondisinya terpenuhi — kata kunci apa yang melakukan itu?',
               },
             },
             {
@@ -163,6 +171,10 @@ export const module4: Module = {
                 en: 'void is the return type for a function that acts but does not compute a value to hand back.',
                 id: 'void adalah tipe kembalian untuk fungsi yang bertindak tapi tidak menghitung nilai untuk diserahkan kembali.',
               },
+              hint: {
+                en: 'Think about the return type that means "nothing to hand back," rather than a whole number or some other value.',
+                id: 'Pikirkan tipe kembalian yang berarti "tidak ada yang diserahkan kembali", bukan bilangan bulat atau nilai lainnya.',
+              },
             },
             {
               kind: 'fill',
@@ -179,6 +191,10 @@ export const module4: Module = {
               explain: {
                 en: 'void is the return type for a function with no result.',
                 id: 'void adalah tipe kembalian untuk fungsi tanpa hasil.',
+              },
+              hint: {
+                en: 'This function never computes a value to hand back — which return type matches that?',
+                id: 'Fungsi ini tak pernah menghitung nilai untuk diserahkan kembali — tipe kembalian mana yang cocok untuk itu?',
               },
             },
             {
@@ -257,6 +273,10 @@ export const module4: Module = {
                 en: 'The array parameter reaches the caller\'s own boxes, so arr[i]++ inside increment really increments values[0] too.',
                 id: 'Parameter array menjangkau kotak milik pemanggil sendiri, jadi arr[i]++ di dalam naikkan benar-benar menaikkan nilai[0] juga.',
               },
+              hint: {
+                en: 'Recall what makes an array parameter different from a plain int parameter when the function writes to one of its elements.',
+                id: 'Ingat apa yang membuat parameter array berbeda dari parameter int biasa ketika fungsinya menulis ke salah satu elemennya.',
+              },
             },
             {
               kind: 'fill',
@@ -273,6 +293,10 @@ export const module4: Module = {
               explain: {
                 en: 'An array parameter always needs a companion telling the function how many elements to look at.',
                 id: 'Parameter array selalu butuh pendamping yang memberi tahu fungsi berapa elemen yang harus dilihat.',
+              },
+              hint: {
+                en: 'The loop condition inside this function already refers to a name that has to be declared as the second parameter — what is it called there?',
+                id: 'Kondisi perulangan di dalam fungsi ini sudah merujuk ke sebuah nama yang harus dideklarasikan sebagai parameter kedua — apa namanya di sana?',
               },
             },
             {
@@ -388,6 +412,10 @@ export const module4: Module = {
                 en: '*p reads x (3), adds 7, and writes the result back through p — which is the same box as x.',
                 id: '*p membaca x (3), menambah 7, dan menulis hasilnya kembali lewat p — yang merupakan kotak yang sama dengan x.',
               },
+              hint: {
+                en: 'Work out what value *p reads before the assignment, add what the expression adds, then remember *p writes back to the exact same box as x.',
+                id: 'Cari tahu nilai apa yang dibaca *p sebelum penetapan, tambahkan apa yang ditambahkan ekspresinya, lalu ingat *p menulis kembali ke kotak yang persis sama dengan x.',
+              },
             },
             {
               kind: 'fill',
@@ -401,6 +429,10 @@ export const module4: Module = {
               explain: {
                 en: '& takes the address of a variable — exactly what a pointer needs to hold.',
                 id: '& mengambil alamat sebuah variabel — persis yang dibutuhkan sebuah pointer untuk disimpan.',
+              },
+              hint: {
+                en: 'A pointer needs the address of a, not the value of a itself — which operator produces an address?',
+                id: 'Pointer butuh alamat dari a, bukan nilai a itu sendiri — operator mana yang menghasilkan alamat?',
               },
             },
             {
@@ -474,6 +506,10 @@ export const module4: Module = {
                 en: 'Swapping the copies inside the function does nothing to the originals sitting in main.',
                 id: 'Menukar salinan di dalam fungsi tidak berpengaruh apa pun pada yang asli yang duduk di main.',
               },
+              hint: {
+                en: 'Think about what an int parameter actually holds compared to the variable the caller passed in.',
+                id: 'Pikirkan apa yang sebenarnya disimpan parameter int dibandingkan variabel yang dioper pemanggil.',
+              },
             },
             {
               kind: 'fill',
@@ -490,6 +526,10 @@ export const module4: Module = {
               explain: {
                 en: 'swap expects addresses, so both arguments need &.',
                 id: 'tukar mengharapkan alamat, jadi kedua argumennya butuh &.',
+              },
+              hint: {
+                en: 'swap\'s parameters were declared as pointers in the earlier example — what do you need to pass instead of the plain variables themselves?',
+                id: 'Parameter tukar dideklarasikan sebagai pointer di contoh sebelumnya — apa yang perlu kamu oper, bukan variabelnya sendiri?',
               },
             },
             {
@@ -568,6 +608,10 @@ export const module4: Module = {
                 en: 'p[2] is the third element (counting from 0), same as values[2]: 5.',
                 id: 'p[2] adalah elemen ketiga (dihitung dari 0), sama seperti nilai[2]: 5.',
               },
+              hint: {
+                en: 'Count elements from the start of the array the same way you would with arr[i], keeping in mind the index is zero-based.',
+                id: 'Hitung elemen dari awal array dengan cara yang sama seperti arr[i], ingat indeksnya dimulai dari nol.',
+              },
             },
             {
               kind: 'fill',
@@ -587,6 +631,10 @@ export const module4: Module = {
               explain: {
                 en: 'An array name alone already is the address of its first element.',
                 id: 'Nama array saja sudah merupakan alamat elemen pertamanya.',
+              },
+              hint: {
+                en: 'What does an array\'s own name evaluate to when used by itself, without any brackets after it?',
+                id: 'Apa nilai dari nama array itu sendiri ketika dipakai sendirian, tanpa kurung siku apa pun setelahnya?',
               },
             },
             {

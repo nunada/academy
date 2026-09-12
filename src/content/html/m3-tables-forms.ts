@@ -85,6 +85,10 @@ export const module3: Module = {
                 en: 'tr means "table row". Each of the 3 rows then holds 4 cells.',
                 id: 'tr berarti "baris tabel". Tiap dari 3 baris itu lalu memuat 4 sel.',
               },
+              hint: {
+                en: 'tr stands for table row — think about whether the question is asking about rows themselves or about the cells inside each one.',
+                id: 'tr adalah singkatan dari table row — pikirkan apakah pertanyaannya menanyakan barisnya sendiri atau sel-sel di dalam tiap baris.',
+              },
             },
             {
               kind: 'fill',
@@ -98,6 +102,10 @@ export const module3: Module = {
               explain: {
                 en: 'Header cells use th at both ends; td is for ordinary data.',
                 id: 'Sel header memakai th di kedua ujungnya; td untuk data biasa.',
+              },
+              hint: {
+                en: 'This row is meant to be the header row — think about which tag name marks a header cell rather than an ordinary data cell, and what a closing tag needs right before repeating that name.',
+                id: 'Baris ini dimaksudkan sebagai baris header — pikirkan nama tag mana yang menandai sel header, bukan sel data biasa, dan apa yang dibutuhkan tag penutup sebelum mengulang nama itu.',
               },
             },
             {
@@ -204,6 +212,10 @@ export const module3: Module = {
               explain: {
                 en: 'The spanning cell fills two columns, so only one more cell is needed for the third.',
                 id: 'Sel melintangnya mengisi dua kolom, jadi cukup satu sel lagi untuk kolom ketiga.',
+              },
+              hint: {
+                en: 'Figure out how many of the three columns the spanning cell already covers on its own, then think about how many remain to be filled by ordinary cells.',
+                id: 'Cari tahu berapa dari tiga kolom yang sudah dicakup sendiri oleh sel yang melintang itu, lalu pikirkan berapa yang tersisa untuk diisi sel biasa.',
               },
             },
             {
@@ -421,6 +433,10 @@ export const module3: Module = {
                 en: '`for` points at an `id`. name matters when the form is sent, not for the label.',
                 id: '`for` menunjuk sebuah `id`. name berperan saat formulir dikirim, bukan untuk labelnya.',
               },
+              hint: {
+                en: 'The `for` attribute holds a value that must match something written on the input itself — think about which of the input\'s attributes is meant to be a unique identifier rather than data to submit.',
+                id: 'Atribut `for` memuat nilai yang harus cocok dengan sesuatu yang ditulis pada input itu sendiri — pikirkan atribut input mana yang dimaksudkan sebagai pengenal unik, bukan data yang dikirim.',
+              },
             },
             {
               kind: 'fill',
@@ -434,6 +450,10 @@ export const module3: Module = {
               explain: {
                 en: 'for on the label must match id on the input, exactly.',
                 id: 'for pada label harus sama persis dengan id pada input.',
+              },
+              hint: {
+                en: 'The label and the input each need a different attribute name to form the connection between them — one belongs on the label, the other on the input it points to.',
+                id: 'Label dan input masing-masing butuh nama atribut yang berbeda untuk membentuk hubungan di antara keduanya — satu ada di label, satu lagi ada di input yang ditunjuknya.',
               },
             },
             {
@@ -557,6 +577,10 @@ export const module3: Module = {
               explain: {
                 en: 'The shared name makes the group. Sharing an id would be invalid — an id must be unique.',
                 id: 'name yang sama membentuk grupnya. Berbagi id justru tidak sah — id harus unik.',
+              },
+              hint: {
+                en: 'Think about which attribute is meant to define a group of controls, versus the one that must stay unique across the whole page.',
+                id: 'Pikirkan atribut mana yang dimaksudkan untuk mendefinisikan sebuah grup kontrol, dibandingkan atribut yang harus tetap unik di seluruh halaman.',
               },
             },
             {

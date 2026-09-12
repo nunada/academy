@@ -70,6 +70,10 @@ export const module1: Module = {
                 en: 'Each endl ends its own line, and statements run in the order written.',
                 id: 'Setiap endl mengakhiri barisnya sendiri, dan pernyataan dijalankan sesuai urutan penulisan.',
               },
+              hint: {
+                en: 'Look at how many endl there are and where each one falls — that decides how many lines you get and in what order the statements run.',
+                id: 'Perhatikan ada berapa endl dan di mana masing-masing muncul — itu yang menentukan jumlah baris dan urutan pernyataannya dijalankan.',
+              },
             },
             {
               kind: 'fill',
@@ -86,6 +90,10 @@ export const module1: Module = {
               explain: {
                 en: 'cout is the output stream every printed line starts from.',
                 id: 'cout adalah aliran keluaran yang menjadi awal setiap baris yang dicetak.',
+              },
+              hint: {
+                en: 'Every line that prints to the screen starts with the same output stream you have been using in every example so far.',
+                id: 'Setiap baris yang mencetak ke layar dimulai dengan aliran keluaran yang sama yang sudah kamu pakai di setiap contoh sejauh ini.',
               },
             },
             {
@@ -177,6 +185,10 @@ export const module1: Module = {
                 en: 'The first line is commented out, so it never compiles into anything.',
                 id: 'Baris pertama dijadikan komentar, jadi tidak pernah dikompilasi menjadi apa pun.',
               },
+              hint: {
+                en: 'Check which of these two lines starts with //  — that prefix changes whether the compiler sees the line as code at all.',
+                id: 'Periksa baris mana dari keduanya yang diawali //  — awalan itu menentukan apakah kompiler menganggapnya sebagai kode sama sekali.',
+              },
             },
             {
               kind: 'quiz',
@@ -196,6 +208,10 @@ export const module1: Module = {
               explain: {
                 en: 'Every statement needs a closing ;. Without it the next line looks like part of the same statement.',
                 id: 'Setiap pernyataan butuh ; penutup. Tanpanya, baris berikutnya terlihat seperti bagian dari pernyataan yang sama.',
+              },
+              hint: {
+                en: 'Compare this line to every working example you have seen — what character does every one of them end with that this one does not?',
+                id: 'Bandingkan baris ini dengan setiap contoh yang berhasil yang sudah kamu lihat — karakter apa yang selalu ada di akhir setiap contoh itu tapi tidak ada di sini?',
               },
             },
             {
@@ -353,6 +369,10 @@ export const module1: Module = {
                 en: 'cout prints a bool as 0 or 1 by default, not as the word.',
                 id: 'cout mencetak bool sebagai 0 atau 1 secara bawaan, bukan sebagai kata.',
               },
+              hint: {
+                en: 'Recall how `bool passed` was displayed by cout back in the earlier example — did it show as a word or as a digit?',
+                id: 'Ingat kembali bagaimana `bool lulus` ditampilkan oleh cout pada contoh sebelumnya — apakah tampil sebagai kata atau sebagai angka?',
+              },
             },
             {
               kind: 'fill',
@@ -369,6 +389,10 @@ export const module1: Module = {
               explain: {
                 en: 'int declares a whole-number variable.',
                 id: 'int mendeklarasikan variabel bilangan bulat.',
+              },
+              hint: {
+                en: 'Which of the four types covered in this lesson is meant for numbers with no decimal point?',
+                id: 'Dari empat tipe yang dibahas di pelajaran ini, mana yang cocok untuk angka tanpa titik desimal?',
               },
             },
             {
@@ -443,6 +467,10 @@ export const module1: Module = {
                 en: '10 divided by 4 is 2 remainder 2, and % keeps only the remainder.',
                 id: '10 dibagi 4 hasilnya 2 sisa 2, dan % hanya menyimpan sisanya.',
               },
+              hint: {
+                en: 'The % operator is not about dividing evenly — think about what is left over after you take out as many whole groups as fit.',
+                id: 'Operator % bukan soal membagi rata — pikirkan apa yang tersisa setelah kamu mengambil sebanyak mungkin kelompok utuh yang muat.',
+              },
             },
             {
               kind: 'order',
@@ -460,6 +488,10 @@ export const module1: Module = {
               explain: {
                 en: 'A variable must exist before it is used, so the declarations come first.',
                 id: 'Variabel harus ada sebelum dipakai, jadi deklarasinya lebih dulu.',
+              },
+              hint: {
+                en: 'Before total can be computed from a and b, both of those variables need values already — and total itself must exist before anything can print it.',
+                id: 'Sebelum total bisa dihitung dari a dan b, kedua variabel itu perlu sudah punya nilai — dan total sendiri harus ada sebelum bisa dicetak.',
               },
             },
             {
@@ -538,6 +570,10 @@ export const module1: Module = {
                 en: 'a becomes 5, b becomes 3, and a * b is 15.',
                 id: 'a menjadi 5, b menjadi 3, dan a * b adalah 15.',
               },
+              hint: {
+                en: 'Figure out what value each variable actually receives when cin reads the two typed numbers in order, then multiply those two values.',
+                id: 'Cari tahu nilai apa yang benar-benar diterima tiap variabel saat cin membaca dua angka yang diketik secara berurutan, lalu kalikan kedua nilai itu.',
+              },
             },
             {
               kind: 'fill',
@@ -551,6 +587,10 @@ export const module1: Module = {
               explain: {
                 en: '>> is how cin reads a value into a variable.',
                 id: '>> adalah cara cin membaca nilai ke sebuah variabel.',
+              },
+              hint: {
+                en: 'This is the reading counterpart to the << you use for printing — which arrows point the other way?',
+                id: 'Ini adalah pasangan pembacaan dari << yang kamu pakai untuk mencetak — tanda panah mana yang menunjuk arah sebaliknya?',
               },
             },
             {

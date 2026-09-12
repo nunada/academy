@@ -65,6 +65,10 @@ export const module5: Module = {
                 en: 'The whole point is differentiating the **general relationship** between the changing quantities. Plugging in numbers first freezes them, and the derivative of any constant is $0$ — the rate information would be destroyed before it could be used.',
                 id: 'Inti soalnya adalah menurunkan **hubungan umum** antara besaran yang berubah. Memasukkan angka lebih dahulu akan membekukannya, dan turunan konstanta mana pun adalah $0$ — informasi lajunya akan hancur sebelum sempat dipakai.',
               },
+              hint: {
+                en: 'Imagine substituting the specific number in first, before differentiating anything. What does a fixed, specific number differentiate to?',
+                id: 'Bayangkan mensubstitusikan angka tertentu itu lebih dulu, sebelum menurunkan apa pun. Angka tetap dan tertentu diturunkan menjadi apa?',
+              },
             },
             {
               kind: 'fill',
@@ -79,6 +83,10 @@ export const module5: Module = {
               explain: {
                 en: 'The right side of $x^2+y^2=100$ is a fixed constant, so its derivative is $0$ — that is exactly why the differentiated equation has nothing on the right.',
                 id: 'Ruas kanan $x^2+y^2=100$ adalah konstanta tetap, sehingga turunannya $0$ — itulah persisnya sebabnya persamaan yang diturunkan tak punya apa-apa di ruas kanan.',
+              },
+              hint: {
+                en: 'The first blank is the ladder length squared, straight from the setup; the second follows from what a constant differentiates to. The last two are then just substitution and arithmetic.',
+                id: 'Kotak pertama adalah kuadrat panjang tangganya, langsung dari penyusunannya; kotak kedua mengikuti apa yang dihasilkan turunan sebuah konstanta. Dua kotak terakhir lalu tinggal substitusi dan aritmetika.',
               },
             },
             {
@@ -159,6 +167,10 @@ export const module5: Module = {
                 en: 'Linear approximation works near any point with a computable derivative — but it is only **useful** as a shortcut when $f(a)$ itself is easy to compute exactly, which is why a nearby perfect square is the natural choice here.',
                 id: 'Hampiran linear berlaku di dekat titik mana pun dengan turunan yang bisa dihitung — tetapi ia hanya **berguna** sebagai jalan pintas bila $f(a)$ sendiri mudah dihitung secara eksak, itulah sebabnya kuadrat sempurna terdekat adalah pilihan wajar di sini.',
               },
+              hint: {
+                en: 'The formula $L(x) = f(a) + f\'(a)(x-a)$ needs $f(a)$ itself as a starting value. What quality of a nearby number would make that starting value easy to get exactly, with no approximation needed there?',
+                id: 'Rumus $L(x) = f(a) + f\'(a)(x-a)$ memerlukan $f(a)$ sendiri sebagai nilai awal. Sifat apa dari suatu bilangan dekat yang membuat nilai awal itu mudah didapat secara eksak, tanpa perlu hampiran di situ?',
+              },
             },
             {
               kind: 'quiz',
@@ -188,6 +200,10 @@ export const module5: Module = {
               explain: {
                 en: 'They meet exactly at $(4,2)$ by construction, and visibly diverge only gradually further away — the whole basis for using the line as a nearby stand-in for the curve.',
                 id: 'Keduanya bertemu tepat di $(4,2)$ menurut konstruksinya, dan tampak menjauh hanya secara bertahap lebih jauh dari itu — inilah seluruh dasar memakai garisnya sebagai pengganti dekat untuk kurvanya.',
+              },
+              hint: {
+                en: 'Look right at the marked point first, then trace outward in both directions — does the gap between curve and line stay zero, or does it open up gradually?',
+                id: 'Lihat dulu tepat pada titik yang ditandai, lalu telusuri ke kedua arah — apakah celah antara kurva dan garisnya tetap nol, atau terbuka secara bertahap?',
               },
             },
             {
@@ -324,6 +340,10 @@ export const module5: Module = {
                 en: 'A maximum is where increasing turns into decreasing — the slope goes from positive (rising) to negative (falling), which is exactly the sign switch that flags a peak.',
                 id: 'Maksimum adalah tempat naik berubah menjadi turun — kemiringannya berubah dari positif (naik) menjadi negatif (turun), persis pergantian tanda yang menandai puncak.',
               },
+              hint: {
+                en: 'At a peak, the curve stops rising and starts falling right after. What does that switch mean for the sign of the slope just before the peak compared to just after it?',
+                id: 'Di sebuah puncak, kurvanya berhenti naik dan mulai turun tepat setelahnya. Apa arti pergantian itu bagi tanda kemiringan tepat sebelum puncak dibandingkan tepat sesudahnya?',
+              },
             },
             {
               kind: 'quiz',
@@ -354,6 +374,10 @@ export const module5: Module = {
                 en: 'Past $x=1$ (the local minimum), the curve visibly rises without turning back — increasing, matching $f\'(x)>0$ there.',
                 id: 'Setelah $x=1$ (minimum lokal), kurvanya tampak naik terus tanpa berbalik — sedang naik, cocok dengan $f\'(x)>0$ di situ.',
               },
+              hint: {
+                en: 'Look past the second marked point on the curve — does it keep climbing from there on, or does it turn back down at some point?',
+                id: 'Lihat setelah titik kedua yang ditandai pada kurva — apakah ia terus menanjak dari situ, atau berbalik turun pada suatu titik?',
+              },
             },
             {
               kind: 'order',
@@ -379,6 +403,10 @@ export const module5: Module = {
               explain: {
                 en: 'Critical points first (they are the only places a switch can happen), then intervals between them, then a sign test in each, then the conclusion.',
                 id: 'Titik kritis lebih dahulu (satu-satunya tempat pergantian bisa terjadi), lalu interval di antaranya, lalu uji tanda di masing-masing, baru kesimpulannya.',
+              },
+              hint: {
+                en: 'You need the critical points located before they can be used to split the domain into intervals, and those intervals have to exist before there is anywhere to test a sign.',
+                id: 'Kamu butuh titik kritis yang sudah ditemukan sebelum bisa dipakai membagi domain menjadi interval, dan interval itu harus ada dulu sebelum ada tempat untuk menguji tanda.',
               },
             },
             {
@@ -461,6 +489,10 @@ export const module5: Module = {
                 en: 'Concave down at a point where the slope is momentarily zero means the curve caps over — a peak, i.e. a local maximum. That is exactly the second derivative test.',
                 id: 'Cekung ke bawah pada titik tempat kemiringannya sesaat nol berarti kurvanya melengkung menutup — sebuah puncak, yaitu maksimum lokal. Itulah persis uji turunan kedua.',
               },
+              hint: {
+                en: 'A negative second derivative means the curve is shaped like a dome, capping over. At a point where the slope is momentarily flat, what kind of point does capping over actually make?',
+                id: 'Turunan kedua yang negatif berarti kurvanya berbentuk kubah, melengkung menutup. Pada titik tempat kemiringannya sesaat datar, jenis titik apa yang sebenarnya dibuat oleh lengkungan menutup itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -489,6 +521,10 @@ export const module5: Module = {
               explain: {
                 en: 'Just left of the inflection point, near the local max at $x=-1$, the curve caps over — concave down, matching $f\'\'(x)=6x<0$ for $x<0$.',
                 id: 'Tepat di kiri titik beloknya, dekat maksimum lokal di $x=-1$, kurvanya melengkung menutup — cekung ke bawah, cocok dengan $f\'\'(x)=6x<0$ untuk $x<0$.',
+              },
+              hint: {
+                en: 'Look at the bend of the curve just to the left of the marked point — does it curve like the inside of a bowl, or like the top of a dome?',
+                id: 'Perhatikan lengkungan kurvanya tepat di sebelah kiri titik yang ditandai — apakah melengkung seperti bagian dalam mangkuk, atau seperti puncak kubah?',
               },
             },
             {

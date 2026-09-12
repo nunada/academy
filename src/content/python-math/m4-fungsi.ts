@@ -71,6 +71,10 @@ export const module4: Module = {
                 en: 'double(7) is 14 and double(3) is 6 — 14 + 6 is 20.',
                 id: 'kali_dua(7) adalah 14 dan kali_dua(3) adalah 6 — 14 + 6 adalah 20.',
               },
+              hint: {
+                en: 'Call the function on each argument separately first, then add those two results together — do not add before calling.',
+                id: 'Panggil fungsinya pada tiap argumen secara terpisah dulu, baru jumlahkan kedua hasilnya — jangan menjumlahkan sebelum memanggil.',
+              },
             },
             {
               kind: 'fill',
@@ -88,6 +92,10 @@ export const module4: Module = {
                 en: 'Cubing is raising to the power of 3.',
                 id: 'Memangkatkan tiga berarti dipangkatkan 3.',
               },
+              hint: {
+                en: 'Cubing means raising to a power — which operator in Python raises one number to another?',
+                id: 'Memangkatkan tiga berarti menaikkan ke suatu pangkat — operator mana di Python yang memangkatkan satu bilangan ke bilangan lain?',
+              },
             },
             {
               kind: 'order',
@@ -103,6 +111,10 @@ export const module4: Module = {
               explain: {
                 en: 'The def line and its indented body have to stay together, before any call to it.',
                 id: 'Baris def dan isinya yang menjorok harus tetap bersama, sebelum ada pemanggilan padanya.',
+              },
+              hint: {
+                en: 'The function has to be fully defined — its header and every indented line under it — before the line that calls it can run.',
+                id: 'Fungsinya harus didefinisikan lengkap — headernya dan semua baris menjorok di bawahnya — sebelum baris yang memanggilnya bisa berjalan.',
               },
             },
             {
@@ -180,6 +192,10 @@ export const module4: Module = {
                 en: 'p, l, t match 2, 3, 4 in order; 2 * 3 * 4 is 24.',
                 id: 'p, l, t cocok dengan 2, 3, 4 berurutan; 2 * 3 * 4 adalah 24.',
               },
+              hint: {
+                en: 'Match each argument to its parameter by position, in the order they are written, then multiply all three.',
+                id: 'Cocokkan tiap argumen dengan parameternya berdasarkan posisi, sesuai urutan penulisannya, lalu kalikan ketiganya.',
+              },
             },
             {
               kind: 'fill',
@@ -197,6 +213,10 @@ export const module4: Module = {
                 en: 'Both legs are squared before being added, the same as the concept from module 1.',
                 id: 'Kedua sisinya dikuadratkan sebelum dijumlahkan, sama seperti konsep dari modul 1.',
               },
+              hint: {
+                en: 'Both legs need to go through the same operation before they are added under the square root — look at how `b` is already being handled.',
+                id: 'Kedua sisinya perlu melalui operasi yang sama sebelum dijumlahkan di bawah akar — lihat bagaimana `b` sudah diperlakukan.',
+              },
             },
             {
               kind: 'order',
@@ -212,6 +232,10 @@ export const module4: Module = {
               explain: {
                 en: 'The same BMI formula from module 1, now wrapped as a function that can be called with anyone\'s numbers.',
                 id: 'Formula BMI yang sama dari modul 1, kini dibungkus sebagai fungsi yang bisa dipanggil dengan angka siapa saja.',
+              },
+              hint: {
+                en: 'The function needs to be defined before it is called, and the call itself needs to finish before round() can work on its result.',
+                id: 'Fungsinya perlu didefinisikan dulu sebelum dipanggil, dan pemanggilannya sendiri perlu selesai dulu sebelum round() bisa bekerja pada hasilnya.',
               },
             },
             {
@@ -337,6 +361,10 @@ export const module4: Module = {
                 en: '4! is 4 × 3 × 2 × 1, which is 24.',
                 id: '4! adalah 4 × 3 × 2 × 1, yaitu 24.',
               },
+              hint: {
+                en: 'Unwind the recursive calls one level at a time, the way the worked example did for factorial(3) — write out each multiplication before combining them.',
+                id: 'Urai pemanggilan rekursifnya selangkah demi selangkah, seperti contoh yang dikerjakan untuk faktorial(3) — tuliskan tiap perkalian sebelum menggabungkannya.',
+              },
             },
             {
               kind: 'fill',
@@ -354,6 +382,10 @@ export const module4: Module = {
                 en: 'The recursion has to stop somewhere, and 0! = 1 is that stopping point.',
                 id: 'Rekursinya harus berhenti di suatu titik, dan 0! = 1 adalah titik berhentinya.',
               },
+              hint: {
+                en: 'Every recursive function needs a stopping value where it returns directly instead of calling itself again — which value of n is that here?',
+                id: 'Tiap fungsi rekursif butuh nilai berhenti tempat ia mengembalikan langsung alih-alih memanggil dirinya lagi — nilai n mana itu di sini?',
+              },
             },
             {
               kind: 'order',
@@ -369,6 +401,10 @@ export const module4: Module = {
               explain: {
                 en: 'Same shape as factorial: a base case at 0, and a step that shrinks n by one.',
                 id: 'Bentuknya sama seperti faktorial: kasus dasar di 0, dan langkah yang mengecilkan n satu-satu.',
+              },
+              hint: {
+                en: 'The base-case check has to come before the recursive line in the function body, and the whole function has to be defined before the final call to it.',
+                id: 'Pemeriksaan kasus dasar harus datang sebelum baris rekursifnya di dalam badan fungsi, dan seluruh fungsinya harus selesai didefinisikan dulu sebelum pemanggilan terakhirnya.',
               },
             },
             {
@@ -442,6 +478,10 @@ export const module4: Module = {
                 en: 'The sequence continues 0,1,1,2,3,5,8,13 — fib(7) is 13.',
                 id: 'Deretnya berlanjut 0,1,1,2,3,5,8,13 — fib(7) adalah 13.',
               },
+              hint: {
+                en: 'Extend the sequence from the worked examples one more step by adding the previous two terms — do not recompute from scratch.',
+                id: 'Perpanjang deret dari contoh yang sudah dikerjakan satu langkah lagi dengan menjumlahkan dua suku sebelumnya — jangan menghitung ulang dari awal.',
+              },
             },
             {
               kind: 'fill',
@@ -455,6 +495,10 @@ export const module4: Module = {
               explain: {
                 en: 'n <= 1 covers both base cases, 0 and 1, in a single condition.',
                 id: 'n <= 1 mencakup kedua kasus dasarnya, 0 dan 1, dalam satu kondisi.',
+              },
+              hint: {
+                en: 'This function has two separate base cases to cover, 0 and 1 — which single comparison catches both of them at once?',
+                id: 'Fungsi ini punya dua kasus dasar terpisah untuk dicakup, 0 dan 1 — perbandingan tunggal mana yang menangkap keduanya sekaligus?',
               },
             },
             {
@@ -475,6 +519,10 @@ export const module4: Module = {
               explain: {
                 en: 'The function is defined once, then called five times from the loop.',
                 id: 'Fungsinya didefinisikan sekali, lalu dipanggil lima kali dari perulangannya.',
+              },
+              hint: {
+                en: 'The function must be completely defined, base case and recursive step included, before the loop that calls it can run at all.',
+                id: 'Fungsinya harus didefinisikan lengkap, kasus dasar dan langkah rekursifnya termasuk, sebelum perulangan yang memanggilnya bisa berjalan sama sekali.',
               },
             },
             {

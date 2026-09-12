@@ -81,6 +81,10 @@ export const module2: Module = {
                 en: 'The denominator $g$ is zero at $x = -2$. The zeros of $f$ at $\\pm 1$ are harmless — a quotient is allowed to be zero, just not undefined.',
                 id: 'Penyebutnya $g$ bernilai nol di $x = -2$. Akar-akar $f$ di $\\pm 1$ tidak berbahaya — hasil bagi boleh bernilai nol, yang tidak boleh adalah tak terdefinisi.',
               },
+              hint: {
+                en: 'A quotient forbids only the value that makes its denominator zero — check where $g(x) = x + 2$ vanishes, not where $f$ does.',
+                id: 'Hasil bagi hanya melarang nilai yang membuat penyebutnya nol — periksa di mana $g(x) = x + 2$ menjadi nol, bukan di mana $f$-nya.',
+              },
             },
             {
               kind: 'quiz',
@@ -109,6 +113,10 @@ export const module2: Module = {
               explain: {
                 en: '$g$ has no value at $x = 2$ — the graph runs off in both directions there instead. $f$ is defined everywhere, so the sum inherits exactly $g$\'s one missing point.',
                 id: '$g$ tak punya nilai di $x = 2$ — grafiknya justru lari ke dua arah di situ. $f$ terdefinisi di mana-mana, jadi jumlahnya mewarisi persis satu titik yang hilang dari $g$.',
+              },
+              hint: {
+                en: 'A sum is defined only where both pieces are. Look at the graph of $g$ for the one $x$-value it never reaches, since $f(x) = x$ has no such gap of its own.',
+                id: 'Sebuah jumlah hanya terdefinisi di tempat kedua bagiannya terdefinisi. Lihat grafik $g$ untuk satu nilai $x$ yang tak pernah dicapainya, sebab $f(x) = x$ tak punya celah semacam itu.',
               },
             },
             {
@@ -198,6 +206,10 @@ export const module2: Module = {
                 en: 'Inside first: $f$ turns 9 into 3, and only then does $g$ add one. Adding first would have given $g(9) = 10$ and then $\\sqrt{10}$ — a different question entirely.',
                 id: 'Yang di dalam dulu: $f$ mengubah 9 menjadi 3, dan barulah $g$ menambah satu. Menambah lebih dulu akan memberi $g(9) = 10$ lalu $\\sqrt{10}$ — pertanyaan yang sama sekali berbeda.',
               },
+              hint: {
+                en: '$(g \\circ f)$ means $g$ after $f$ — so whichever line applies the square root to plain 9 has to come before whichever line adds one to that result.',
+                id: '$(g \\circ f)$ berarti $g$ setelah $f$ — jadi baris yang mengenakan akar kuadrat pada 9 polos harus lebih dulu daripada baris yang menambah satu pada hasilnya.',
+              },
             },
             {
               kind: 'quiz',
@@ -226,6 +238,10 @@ export const module2: Module = {
               explain: {
                 en: '$f(g(x)) = f(x-1) = (x-1)^2$ — curve A, with its lowest point at $x = 1$. $g(f(x)) = g(x^2) = x^2 - 1$ is curve B, dipping to $-1$ at $x = 0$.',
                 id: '$f(g(x)) = f(x-1) = (x-1)^2$ — kurva A, dengan titik terendah di $x = 1$. $g(f(x)) = g(x^2) = x^2 - 1$ adalah kurva B, turun sampai $-1$ di $x = 0$.',
+              },
+              hint: {
+                en: 'For $f \\circ g$, $g$ acts first: subtract 1, then square that result. Write out what that produces as a formula in $x$ and match it to one of the two curves.',
+                id: 'Untuk $f \\circ g$, $g$ bekerja lebih dulu: kurangi 1, lalu kuadratkan hasilnya. Tulis apa yang dihasilkan itu sebagai rumus dalam $x$ dan cocokkan dengan salah satu kurvanya.',
               },
             },
             {
@@ -307,6 +323,10 @@ export const module2: Module = {
                 en: 'On a calculator you would key in $x^2 + 4$ and then press the reciprocal. The last option is technically correct and completely useless — it has not taken anything apart.',
                 id: 'Di kalkulator kamu akan mengetik $x^2 + 4$ lalu menekan tombol kebalikan. Pilihan terakhir secara teknis benar dan sama sekali tak berguna — ia belum menguraikan apa pun.',
               },
+              hint: {
+                en: 'Imagine punching this into a calculator one button at a time. Whatever you would compute first is the inner function $g$; everything you do to that result afterward is $f$.',
+                id: 'Bayangkan mengetikkan ini ke kalkulator satu tombol demi satu tombol. Apa pun yang kamu hitung lebih dulu adalah fungsi dalam $g$; segala yang kamu kenakan pada hasilnya sesudah itu adalah $f$.',
+              },
             },
             {
               kind: 'quiz',
@@ -335,6 +355,10 @@ export const module2: Module = {
               explain: {
                 en: 'The curve ends at the marked dot and runs leftward forever — matching $5 - x \\geq 0 \\Leftrightarrow x \\leq 5$. This is $h = f \\circ g$ for $f(x) = \\sqrt{x}$, $g(x) = 5 - x$, the same pair the mini project uses.',
                 id: 'Kurvanya berakhir di titik yang ditandai dan berlanjut ke kiri selamanya — sesuai dengan $5 - x \\geq 0 \\Leftrightarrow x \\leq 5$. Ini adalah $h = f \\circ g$ untuk $f(x) = \\sqrt{x}$, $g(x) = 5 - x$, pasangan yang sama dengan yang dipakai mini proyek.',
+              },
+              hint: {
+                en: 'Look at exactly where the drawn curve ends and which direction it keeps going, then match that to solving $5 - x \\geq 0$.',
+                id: 'Perhatikan persis di mana kurvanya berakhir dan ke arah mana ia terus berlanjut, lalu cocokkan itu dengan menyelesaikan $5 - x \\geq 0$.',
               },
             },
             {
@@ -506,6 +530,10 @@ export const module2: Module = {
                 en: 'Write it as $(x - (-2))^2 + (-5)$: the inside says $h = -2$, so two to the **left**, and the outside says down five. The vertical number keeps its sign; the horizontal one flips.',
                 id: 'Tulis sebagai $(x - (-2))^2 + (-5)$: bagian dalam memberi $h = -2$, jadi dua satuan ke **kiri**, dan bagian luar memberi turun lima. Bilangan tegaknya mempertahankan tanda; bilangan mendatarnya berbalik.',
               },
+              hint: {
+                en: 'Rewrite $x + 2$ as $x - (-2)$ so it matches the pattern $f(x - h)$ exactly — then remember the outside number keeps its sign, but the inside one moves the opposite way from what it seems to say.',
+                id: 'Tulis ulang $x + 2$ sebagai $x - (-2)$ agar persis mengikuti pola $f(x - h)$ — lalu ingat bilangan di luar mempertahankan tandanya, tetapi yang di dalam bergerak ke arah yang berlawanan dari yang tampak.',
+              },
             },
             {
               kind: 'quiz',
@@ -535,6 +563,10 @@ export const module2: Module = {
                 en: 'The marked point is where the curve turns, and that is the whole definition of a vertex: $(2, 3)$, read straight off the drawing.',
                 id: 'Titik yang ditandai adalah tempat kurvanya berbalik, dan itulah seluruh definisi puncak: $(2, 3)$, dibaca langsung dari gambarnya.',
               },
+              hint: {
+                en: 'The vertex is just the point where the curve turns — read its coordinates straight off the marked dot, no formula needed.',
+                id: 'Puncaknya sekadar titik tempat kurvanya berbalik — baca koordinatnya langsung dari titik yang ditandai, tanpa perlu rumus.',
+              },
             },
             {
               kind: 'fill',
@@ -549,6 +581,10 @@ export const module2: Module = {
               explain: {
                 en: 'Right by 4 puts $-4$ inside; down by 1 puts $-1$ outside. The new graph starts at the point $(4, -1)$.',
                 id: 'Ke kanan 4 menaruh $-4$ di dalam; ke bawah 1 menaruh $-1$ di luar. Grafik barunya bermula di titik $(4, -1)$.',
+              },
+              hint: {
+                en: 'A rightward shift goes inside the function as a subtraction; a downward shift goes outside as a subtraction. Match each stated direction to its number.',
+                id: 'Pergeseran ke kanan masuk ke dalam fungsi sebagai pengurangan; pergeseran ke bawah masuk di luar sebagai pengurangan. Cocokkan tiap arah yang disebutkan dengan bilangannya.',
               },
             },
             {
@@ -626,6 +662,10 @@ export const module2: Module = {
                 en: 'Reflecting left-to-right is a horizontal change, so it happens **inside**. The minus outside would flip it top-to-bottom instead. Note that an even function is unchanged by $f(-x)$ — that is precisely what even means.',
                 id: 'Mencerminkan kiri-kanan adalah perubahan mendatar, jadi ia terjadi **di dalam**. Minus di luar justru membaliknya atas-bawah. Perhatikan bahwa fungsi genap tidak berubah oleh $f(-x)$ — dan itu persis makna genap.',
               },
+              hint: {
+                en: 'A left-right flip is a horizontal change — ask yourself whether horizontal changes belong inside the function\'s brackets or outside them.',
+                id: 'Pembalikan kiri-kanan adalah perubahan mendatar — tanyakan pada dirimu apakah perubahan mendatar berada di dalam kurung fungsinya atau di luarnya.',
+              },
             },
             {
               kind: 'quiz',
@@ -654,6 +694,10 @@ export const module2: Module = {
               explain: {
                 en: 'The curve opens downward, so it was reflected across the $x$-axis — a negative $a$. It is also narrower than $x^2$, not wider, so $|a| > 1$: together, $a = -2$.',
                 id: 'Kurvanya terbuka ke bawah, jadi ia dicerminkan terhadap sumbu $x$ — $a$ negatif. Ia juga lebih sempit daripada $x^2$, bukan lebih lebar, jadi $|a| > 1$: jadi $a = -2$.',
+              },
+              hint: {
+                en: 'Two things changed from the dashed curve: which way it opens, and how narrow it is. Each tells you something separate about the sign and the size of $a$ in $y = ax^2$.',
+                id: 'Dua hal berubah dari kurva putus-putusnya: ke arah mana ia terbuka, dan seberapa sempit ia. Masing-masing memberitahumu sesuatu yang terpisah tentang tanda dan besar $a$ pada $y = ax^2$.',
               },
             },
             {
@@ -744,6 +788,10 @@ export const module2: Module = {
                 en: 'Inside before outside, and among the outside changes, multiplication before addition — the same precedence arithmetic always had. The starting point $(0,0)$ ends at $(-1, 3)$.',
                 id: 'Yang di dalam sebelum yang di luar, dan di antara perubahan luar, perkalian sebelum penjumlahan — urutan yang memang selalu berlaku dalam aritmetika. Titik awalnya $(0,0)$ berakhir di $(-1, 3)$.',
               },
+              hint: {
+                en: 'Two of these lines change what happens inside the square root, and two change what happens to the whole expression afterward. The inside pair has to be settled before the outside pair can act on it — and among the outside pair, think about the usual precedence between multiplying and adding.',
+                id: 'Dua dari baris ini mengubah apa yang terjadi di dalam akar kuadrat, dan dua lagi mengubah apa yang terjadi pada seluruh ekspresi sesudahnya. Pasangan dalam harus selesai dulu sebelum pasangan luar bisa bekerja padanya — dan di antara pasangan luar, pikirkan urutan biasa antara mengalikan dan menjumlahkan.',
+              },
             },
             {
               kind: 'quiz',
@@ -772,6 +820,10 @@ export const module2: Module = {
               explain: {
                 en: 'The corner sits at $(-1, 2)$, so $h = -1$ and $k = 2$; the V opens downward, so $a$ is negative. Only $y = -|x+1|+2$ has all three.',
                 id: 'Sudutnya berada di $(-1, 2)$, jadi $h = -1$ dan $k = 2$; huruf V-nya terbuka ke bawah, jadi $a$ negatif. Hanya $y = -|x+1|+2$ yang memenuhi ketiganya.',
+              },
+              hint: {
+                en: 'Read three separate things off the picture: where the corner sits horizontally, where it sits vertically, and which way the V opens. Each option needs to match all three.',
+                id: 'Baca tiga hal terpisah dari gambarnya: di mana sudutnya secara mendatar, di mana secara tegak, dan ke arah mana huruf V-nya terbuka. Tiap pilihan harus cocok dengan ketiganya.',
               },
             },
             {

@@ -151,6 +151,10 @@ export const module1: Module = {
                 en: 'SELECT chooses columns, not rows. Naming one column still returns every row.',
                 id: 'SELECT memilih kolom, bukan baris. Menyebut satu kolom tetap mengembalikan seluruh baris.',
               },
+              hint: {
+                en: 'SELECT controls which columns appear in the result — think about what it does or does not do to the number of rows.',
+                id: 'SELECT mengendalikan kolom mana yang muncul di hasil — pikirkan apa yang dilakukan atau tidak dilakukannya terhadap jumlah barisnya.',
+              },
             },
             {
               kind: 'fill',
@@ -167,6 +171,10 @@ export const module1: Module = {
               explain: {
                 en: 'AS renames a column in the result; FROM says which table to read.',
                 id: 'AS mengganti nama kolom di hasilnya; FROM menyebut tabel mana yang dibaca.',
+              },
+              hint: {
+                en: 'One keyword relabels a column in the result, and a different one says which table to read from — match each blank to its job.',
+                id: 'Satu kata kunci melabeli ulang kolom di hasilnya, dan kata kunci lain menyebut tabel mana yang dibaca — cocokkan tiap kekosongan dengan tugasnya.',
               },
             },
             {
@@ -328,6 +336,10 @@ export const module1: Module = {
                 en: 'Both conditions must hold. Perahu Kertas is cheap but has 0 stock; Pulang has 0 too. Laskar Pelangi (85000, 12) and Negeri 5 Menara (92000, 7) pass both.',
                 id: 'Kedua kondisinya harus benar. Perahu Kertas murah tapi stoknya 0; Pulang juga 0. Laskar Pelangi (85000, 12) dan Negeri 5 Menara (92000, 7) lolos keduanya.',
               },
+              hint: {
+                en: 'Check each book\'s price and stock against both conditions separately — a row only survives if it passes every part of the AND, not just one.',
+                id: 'Periksa harga dan stok tiap buku terhadap kedua kondisinya secara terpisah — sebuah baris hanya bertahan bila lolos semua bagian AND, bukan cuma salah satu.',
+              },
             },
             {
               kind: 'order',
@@ -343,6 +355,10 @@ export const module1: Module = {
               explain: {
                 en: 'SELECT, FROM, WHERE, ORDER BY — always that order, whatever order you thought of them in.',
                 id: 'SELECT, FROM, WHERE, ORDER BY — selalu urutan itu, dalam urutan apa pun kamu memikirkannya.',
+              },
+              hint: {
+                en: 'SQL always expects its clauses in the same fixed order, no matter which one you thought of first while framing the question.',
+                id: 'SQL selalu mengharapkan klausanya dalam urutan tetap yang sama, tak peduli klausa mana yang kamu pikirkan lebih dulu saat menyusun pertanyaannya.',
               },
             },
             {
@@ -627,6 +643,10 @@ export const module1: Module = {
                 en: 'It happens to look stable on a tiny table, which is exactly what makes the habit dangerous later.',
                 id: 'Ia kebetulan tampak stabil pada tabel mungil, dan justru itulah yang membuat kebiasaan ini berbahaya nanti.',
               },
+              hint: {
+                en: 'Without something that fixes the row order, ask yourself what decides which three rows the database happens to hand back first.',
+                id: 'Tanpa sesuatu yang menetapkan urutan barisnya, tanyakan pada dirimu apa yang menentukan tiga baris mana yang kebetulan diberikan basis datanya lebih dulu.',
+              },
             },
             {
               kind: 'fill',
@@ -643,6 +663,10 @@ export const module1: Module = {
               explain: {
                 en: 'DESC makes the biggest year first; LIMIT then cuts the list to three.',
                 id: 'DESC menaruh tahun terbesar di depan; LIMIT lalu memotong daftarnya jadi tiga.',
+              },
+              hint: {
+                en: 'You need to reverse the usual sort direction for "newest first", and then a separate keyword to keep only a handful of rows after sorting.',
+                id: 'Kamu perlu membalik arah pengurutan biasa untuk "terbaru dulu", lalu kata kunci terpisah untuk menyisakan hanya beberapa baris setelah diurutkan.',
               },
             },
             {
@@ -785,6 +809,10 @@ export const module1: Module = {
                 en: 'A pattern wrapped in % on both sides is a "contains" test, and it is very easy to make too loose.',
                 id: 'Pola yang diapit % di kedua sisi adalah uji "mengandung", dan sangat mudah dibuat terlalu longgar.',
               },
+              hint: {
+                en: 'Go through each of the six titles and check whether the letter a shows up anywhere in it at all, not just at the start or end.',
+                id: 'Telusuri keenam judulnya dan periksa apakah huruf a muncul di mana pun di dalamnya, bukan cuma di awal atau akhir.',
+              },
             },
             {
               kind: 'order',
@@ -800,6 +828,10 @@ export const module1: Module = {
               explain: {
                 en: 'The clause order never changes, however you thought of the question.',
                 id: 'Urutan klausanya tidak pernah berubah, bagaimanapun kamu memikirkan pertanyaannya.',
+              },
+              hint: {
+                en: 'The same fixed clause order from earlier still applies here, whatever the filter and the sort happen to be about this time.',
+                id: 'Urutan klausa tetap yang sama seperti sebelumnya tetap berlaku di sini, apa pun yang dibicarakan filter dan pengurutannya kali ini.',
               },
             },
             {

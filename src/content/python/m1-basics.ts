@@ -66,6 +66,10 @@ export const module1: Module = {
                 en: 'Each print() ends its own line, and lines run in the order written.',
                 id: 'Setiap print() mengakhiri barisnya sendiri, dan baris dijalankan sesuai urutan penulisan.',
               },
+              hint: {
+                en: 'Think about whether print() keeps writing on the same line or starts a fresh one each time — and in what order the two calls appear.',
+                id: 'Pikirkan apakah print() melanjutkan di baris yang sama atau memulai baris baru setiap kali — dan perhatikan urutan kedua pemanggilannya.',
+              },
             },
             {
               kind: 'fill',
@@ -79,6 +83,10 @@ export const module1: Module = {
               explain: {
                 en: 'print is the built-in function that writes to the screen.',
                 id: 'print adalah fungsi bawaan yang menulis ke layar.',
+              },
+              hint: {
+                en: "What's the name of the built-in function you've already used to make text appear on screen?",
+                id: 'Apa nama fungsi bawaan yang sudah kamu pakai untuk menampilkan teks di layar?',
               },
             },
             {
@@ -164,6 +172,10 @@ export const module1: Module = {
                 en: 'The first line is commented out, so it never runs.',
                 id: 'Baris pertama dijadikan komentar, jadi tidak pernah dijalankan.',
               },
+              hint: {
+                en: 'Check what Python does with a line that starts with `#` — does it get skipped or executed?',
+                id: 'Perhatikan apa yang dilakukan Python pada baris yang diawali `#` — apakah dilewati atau dijalankan?',
+              },
             },
             {
               kind: 'quiz',
@@ -180,6 +192,10 @@ export const module1: Module = {
               explain: {
                 en: 'Every ( needs a matching ). Python reports this as a SyntaxError.',
                 id: 'Setiap ( butuh pasangan ). Python melaporkannya sebagai SyntaxError.',
+              },
+              hint: {
+                en: 'Count the opening and closing brackets in the line — do they match up?',
+                id: 'Hitung tanda kurung buka dan tutup pada baris itu — apakah jumlahnya sama?',
               },
             },
             {
@@ -312,6 +328,10 @@ export const module1: Module = {
                 en: 'Assigning again replaces the old value. The variable holds the latest one.',
                 id: 'Menetapkan ulang mengganti nilai lama. Variabel menyimpan nilai terakhir.',
               },
+              hint: {
+                en: "Assigning a new value to a variable that already has one doesn't keep the old value around — think about what `=` does the second time it runs.",
+                id: 'Menetapkan nilai baru ke variabel yang sudah punya nilai tidak menyimpan nilai lamanya — pikirkan apa yang dilakukan `=` saat dijalankan untuk kedua kalinya.',
+              },
             },
             {
               kind: 'fill',
@@ -325,6 +345,10 @@ export const module1: Module = {
               explain: {
                 en: '= assigns; printing the name prints the stored value.',
                 id: '= menetapkan nilai; mencetak namanya berarti mencetak nilai yang tersimpan.',
+              },
+              hint: {
+                en: 'The first blank needs the symbol that stores a value into a name; the second blank needs the name you just gave it, not a new word.',
+                id: 'Bagian kosong pertama butuh simbol yang menyimpan nilai ke sebuah nama; bagian kosong kedua butuh nama yang baru saja kamu berikan, bukan kata baru.',
               },
             },
             {
@@ -418,6 +442,10 @@ export const module1: Module = {
                 en: '10 divided by 4 is 2 remainder 2, and % keeps the remainder.',
                 id: '10 dibagi 4 hasilnya 2 sisa 2, dan % mengambil sisanya.',
               },
+              hint: {
+                en: "Work out how many whole times 4 fits into 10, then look at what's left over — that leftover is what `%` gives you.",
+                id: 'Hitung berapa kali 4 pas masuk secara utuh ke dalam 10, lalu lihat sisanya — sisa itulah yang diberikan `%`.',
+              },
             },
             {
               kind: 'order',
@@ -430,6 +458,10 @@ export const module1: Module = {
               explain: {
                 en: 'A variable must exist before it is used, so the assignments come first.',
                 id: 'Variabel harus ada sebelum dipakai, jadi penetapan nilainya lebih dulu.',
+              },
+              hint: {
+                en: '`total` is built out of `a` and `b`, and the printed line reads `total` — think about what has to already exist before each of those lines can run.',
+                id: '`total` dibentuk dari `a` dan `b`, dan baris cetak membaca `total` — pikirkan apa yang harus sudah ada lebih dulu sebelum tiap baris itu bisa dijalankan.',
               },
             },
             {
@@ -517,6 +549,10 @@ export const module1: Module = {
                 en: 'n is the text "5". Multiplying text by 2 repeats it.',
                 id: 'n berisi teks "5". Mengalikan teks dengan 2 berarti mengulanginya.',
               },
+              hint: {
+                en: 'input() never hands back a number, no matter what the user typed — think about what multiplying a piece of text by 2 does.',
+                id: 'input() tidak pernah mengembalikan angka, apa pun yang diketik pengguna — pikirkan apa yang terjadi saat teks dikalikan 2.',
+              },
             },
             {
               kind: 'fill',
@@ -530,6 +566,10 @@ export const module1: Module = {
               explain: {
                 en: 'int() turns the text into a whole number.',
                 id: 'int() mengubah teks menjadi bilangan bulat.',
+              },
+              hint: {
+                en: 'You need the conversion function that turns text into a whole number rather than a decimal.',
+                id: 'Kamu butuh fungsi konversi yang mengubah teks menjadi bilangan bulat, bukan desimal.',
               },
             },
             {

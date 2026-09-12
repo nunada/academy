@@ -89,6 +89,10 @@ export const module2: Module = {
                 en: 'The multiplication happens, but nothing returns it. `return n * 2;` is what was meant.',
                 id: 'Perkaliannya terjadi, tetapi tak ada yang mengembalikannya. `return n * 2;` itulah yang dimaksud.',
               },
+              hint: {
+                en: 'The multiplication happens, but think about whether a value inside a function reaches the caller just by being computed, or whether something specific has to hand it back.',
+                id: 'Perkaliannya terjadi, tapi pikirkan apakah sebuah nilai di dalam fungsi sampai ke pemanggil hanya karena dihitung, atau perlu sesuatu yang khusus untuk menyerahkannya kembali.',
+              },
             },
             {
               kind: 'fill',
@@ -102,6 +106,10 @@ export const module2: Module = {
               explain: {
                 en: 'Without return the caller receives undefined.',
                 id: 'Tanpa return, pemanggilnya menerima undefined.',
+              },
+              hint: {
+                en: 'Think about the one keyword that hands a computed value back out of a function to whoever called it.',
+                id: 'Pikirkan satu kata kunci yang menyerahkan nilai yang telah dihitung keluar dari fungsi ke siapa pun yang memanggilnya.',
               },
             },
             {
@@ -224,6 +232,10 @@ export const module2: Module = {
               explain: {
                 en: 'Without the default, b would be undefined and 5 + undefined is NaN.',
                 id: 'Tanpa nilai bawaannya, b akan undefined dan 5 + undefined menghasilkan NaN.',
+              },
+              hint: {
+                en: 'Think about what value b takes on when the caller leaves it out, given that the parameter has a fallback written into the signature.',
+                id: 'Pikirkan nilai apa yang diambil b ketika pemanggilnya tidak memberikannya, mengingat parameter itu punya nilai cadangan yang tertulis di tanda tangannya.',
               },
             },
             {
@@ -445,6 +457,10 @@ export const module2: Module = {
                 en: '`a = [4]` would throw. Changing what the array holds does not.',
                 id: '`a = [4]` akan error. Mengubah isi array-nya tidak.',
               },
+              hint: {
+                en: 'Think about exactly what const locks down — the name pointing at the array, or the contents living inside it.',
+                id: 'Pikirkan apa persisnya yang dikunci const — nama yang menunjuk ke array itu, atau isi yang ada di dalamnya.',
+              },
             },
             {
               kind: 'fill',
@@ -458,6 +474,10 @@ export const module2: Module = {
               explain: {
                 en: 'A dot reaches a property by name. Brackets are for arrays, and for a key held in a variable.',
                 id: 'Titik menjangkau properti berdasarkan namanya. Kurung siku untuk array, dan untuk kunci yang tersimpan dalam variabel.',
+              },
+              hint: {
+                en: 'Think about the punctuation that reaches into an object by a fixed property name, as opposed to the syntax arrays use for a position.',
+                id: 'Pikirkan tanda baca yang dipakai untuk menjangkau object berdasarkan nama properti tetap, dibandingkan sintaks yang dipakai array untuk sebuah posisi.',
               },
             },
             {
@@ -583,6 +603,10 @@ export const module2: Module = {
                 en: 'filter narrows to those who passed; map then turns each record into just its name.',
                 id: 'filter menyaring yang lulus; map lalu mengubah tiap catatan menjadi namanya saja.',
               },
+              hint: {
+                en: 'Think about which step needs the score to make its decision, and whether that step has to happen before or after the records are reduced to just names.',
+                id: 'Pikirkan langkah mana yang membutuhkan nilai untuk membuat keputusannya, dan apakah langkah itu harus terjadi sebelum atau sesudah catatannya diringkas menjadi nama saja.',
+              },
             },
             {
               kind: 'order',
@@ -610,6 +634,10 @@ export const module2: Module = {
               explain: {
                 en: 'Narrow first, then transform. Mapping first would throw away the score you still need.',
                 id: 'Saring dulu, baru ubah. Mengubah lebih dulu akan membuang nilai yang justru masih kamu butuhkan.',
+              },
+              hint: {
+                en: 'Each `.filter`/`.map` call needs the array it is chained from to already have a name, and the finished chain needs to be bound to its own name before it can be logged.',
+                id: 'Tiap panggilan `.filter`/`.map` butuh array yang dirantainya sudah punya nama lebih dulu, dan rantai yang sudah selesai butuh terikat ke namanya sendiri sebelum bisa ditampilkan.',
               },
             },
             {

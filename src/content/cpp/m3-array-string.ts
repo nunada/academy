@@ -68,6 +68,10 @@ export const module3: Module = {
                 en: 'Counting from 0: arr[0]=10, arr[1]=20, arr[2]=30, arr[3]=40.',
                 id: 'Menghitung dari 0: arr[0]=10, arr[1]=20, arr[2]=30, arr[3]=40.',
               },
+              hint: {
+                en: 'Indexing starts at 0, so count carefully how many steps arr[2] is from the front of the list.',
+                id: 'Pengindeksan dimulai dari 0, jadi hitung dengan cermat berapa langkah arr[2] dari depan daftar.',
+              },
             },
             {
               kind: 'fill',
@@ -81,6 +85,10 @@ export const module3: Module = {
               explain: {
                 en: 'Braces list the values in order, one per box.',
                 id: 'Kurung kurawal menyebutkan nilainya berurutan, satu per kotak.',
+              },
+              hint: {
+                en: 'How do you list several values together when declaring an array, in the same order the type promises them?',
+                id: 'Bagaimana caramu menyebutkan beberapa nilai sekaligus saat mendeklarasikan sebuah array, sesuai urutan yang dijanjikan tipenya?',
               },
             },
             {
@@ -156,6 +164,10 @@ export const module3: Module = {
                 en: 'Starting from 0 would wrongly say the largest of {-5,-2,-8} is 0 — a value that is not even in the array.',
                 id: 'Memulai dari 0 akan salah menyimpulkan yang terbesar dari {-5,-2,-8} adalah 0 — nilai yang bahkan tidak ada di array itu.',
               },
+              hint: {
+                en: 'Think about what would happen if you started largest at 0 but every actual value in the array were negative.',
+                id: 'Pikirkan apa yang terjadi jika terbesar dimulai dari 0, padahal setiap nilai sebenarnya di array itu negatif.',
+              },
             },
             {
               kind: 'order',
@@ -183,6 +195,10 @@ export const module3: Module = {
               explain: {
                 en: 'total must exist and start at 0 before the loop adds to it, and the average is only computed once the sum is complete.',
                 id: 'total harus ada dan dimulai dari 0 sebelum perulangan menambahkannya, dan rata-ratanya baru dihitung setelah jumlahnya lengkap.',
+              },
+              hint: {
+                en: 'A running sum has to be created and start at zero before any loop can add to it, and the average can only be computed once every element has already been added in.',
+                id: 'Sebuah jumlah berjalan harus dibuat dan dimulai dari nol sebelum perulangan mana pun bisa menambahkannya, dan rata-ratanya baru bisa dihitung setelah semua elemen selesai ditambahkan.',
               },
             },
             {
@@ -252,6 +268,10 @@ export const module3: Module = {
                 en: 'Row 1 (the second row, counting from 0) is {7, 8}, and column 0 of it is 7.',
                 id: 'Baris 1 (baris kedua, dihitung dari 0) adalah {7, 8}, dan kolom 0-nya adalah 7.',
               },
+              hint: {
+                en: 'The row index comes first — find which row is index 1, then look at its first column.',
+                id: 'Indeks baris datang lebih dulu — temukan baris mana yang berindeks 1, lalu lihat kolom pertamanya.',
+              },
             },
             {
               kind: 'fill',
@@ -265,6 +285,10 @@ export const module3: Module = {
               explain: {
                 en: 'The row index comes first: m[2][1].',
                 id: 'Indeks baris datang lebih dulu: m[2][1].',
+              },
+              hint: {
+                en: 'A 2D array needs two indices, and the one already shown here is the second (column) index — what belongs right after m?',
+                id: 'Array 2D butuh dua indeks, dan yang sudah tertulis di sini adalah indeks kedua (kolom) — apa yang seharusnya ada tepat setelah m?',
               },
             },
             {
@@ -405,6 +429,10 @@ export const module3: Module = {
                 en: 'cin >> stops reading at the first space, so only the first word ends up in nama.',
                 id: 'cin >> berhenti membaca di spasi pertama, jadi hanya kata pertama yang masuk ke nama.',
               },
+              hint: {
+                en: 'Recall exactly where cin\'s word-reading stops when it meets whitespace in the typed input.',
+                id: 'Ingat kembali persis di mana pembacaan kata oleh cin berhenti ketika bertemu spasi pada input yang diketik.',
+              },
             },
             {
               kind: 'fill',
@@ -421,6 +449,10 @@ export const module3: Module = {
               explain: {
                 en: 'The number in brackets is how many characters the array can hold.',
                 id: 'Angka di dalam kurung siku adalah berapa banyak karakter yang bisa ditampung array-nya.',
+              },
+              hint: {
+                en: 'The array needs a capacity written with the same bracket notation you have already seen on other arrays in this course.',
+                id: 'Array-nya butuh kapasitas yang ditulis dengan notasi kurung siku yang sama seperti yang sudah kamu lihat pada array lain di kursus ini.',
               },
             },
             {
@@ -505,6 +537,10 @@ export const module3: Module = {
                 en: '"Reading" is 7 characters, " C++" adds 4 more, and strlen counts the result: 11.',
                 id: '"Belajar" adalah 7 karakter, " C++" menambahkan 4 lagi, dan strlen menghitung hasilnya: 11.',
               },
+              hint: {
+                en: 'Count the characters in the original text, then count the characters being appended (including the leading space), and add the two together.',
+                id: 'Hitung karakter pada teks aslinya, lalu hitung karakter yang ditambahkan (termasuk spasi di depannya), lalu jumlahkan keduanya.',
+              },
             },
             {
               kind: 'fill',
@@ -521,6 +557,10 @@ export const module3: Module = {
               explain: {
                 en: 'strcpy(dest, src) copies src into dest.',
                 id: 'strcpy(tujuan, sumber) menyalin sumber ke tujuan.',
+              },
+              hint: {
+                en: 'Of the two <cstring> functions from this lesson, which one overwrites a char array with new content instead of adding onto what is already there?',
+                id: 'Dari dua fungsi <cstring> yang dibahas di pelajaran ini, mana yang menimpa array char dengan konten baru, bukan menambahkannya ke yang sudah ada?',
               },
             },
             {

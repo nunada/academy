@@ -70,6 +70,10 @@ export const module4: Module = {
                 en: '"in" only asks whether the one name is a member of the set — extra members held alongside it change nothing.',
                 id: '"in" hanya bertanya apakah satu nama itu anggota dari set-nya — anggota lain yang ikut ditekan tak mengubah apa pun.',
               },
+              hint: {
+                en: 'Think about what `in` checks on a set — does it care how many other things are also in the set, or only about the one name you asked for?',
+                id: 'Pikirkan apa yang diperiksa `in` pada sebuah set — apakah ia peduli berapa banyak hal lain yang juga ada di set-nya, atau hanya soal satu nama yang kamu tanyakan?',
+              },
             },
             {
               kind: 'fill',
@@ -83,6 +87,10 @@ export const module4: Module = {
               explain: {
                 en: 'min keeps the smaller of the two — exactly a ceiling.',
                 id: 'min menjaga yang lebih kecil dari keduanya — persis sebuah batas atas.',
+              },
+              hint: {
+                en: 'You need whichever of the two numbers is smaller, to enforce a ceiling — which built-in function returns the smaller of its arguments?',
+                id: 'Kamu butuh mana pun di antara dua angka yang lebih kecil, untuk menerapkan batas atas — fungsi bawaan mana yang mengembalikan yang lebih kecil dari argumennya?',
               },
             },
             {
@@ -102,6 +110,10 @@ export const module4: Module = {
               explain: {
                 en: '"up" moves y toward 0 on this canvas — the floor still has to be checked with max.',
                 id: '"atas" menggerakkan y menuju 0 pada kanvas ini — batas bawahnya tetap harus diperiksa dengan max.',
+              },
+              hint: {
+                en: 'The dict copy has to happen before the key can be modified on it, and the floor check has to wrap around the whole updated expression, not stand alone.',
+                id: 'Salinan dict-nya harus terjadi dulu sebelum key-nya bisa diubah, dan pemeriksaan batas bawahnya harus membungkus seluruh ekspresi yang diperbarui, bukan berdiri sendiri.',
               },
             },
             {
@@ -190,6 +202,10 @@ export const module4: Module = {
                 en: 'i < numerator is i < 0, which is never true for i starting at 0 — no segment qualifies.',
                 id: 'i < pembilang adalah i < 0, yang tak pernah benar untuk i yang mulai dari 0 — tak ada segmen yang memenuhi.',
               },
+              hint: {
+                en: 'Substitute numerator = 0 into the condition `i < numerator` and check whether any non-negative index can ever satisfy it.',
+                id: 'Substitusikan numerator = 0 ke kondisi `i < numerator` dan periksa apakah ada indeks non-negatif yang bisa memenuhinya.',
+              },
             },
             {
               kind: 'fill',
@@ -203,6 +219,10 @@ export const module4: Module = {
               explain: {
                 en: 'Segments 0, 1, and 2 are the first three — indices strictly less than numerator.',
                 id: 'Segmen 0, 1, dan 2 adalah tiga yang pertama — indeks yang secara tegas kurang dari pembilang.',
+              },
+              hint: {
+                en: "A segment counts as filled when its index falls among the first `numerator` of them — which comparison captures 'strictly before the boundary'?",
+                id: 'Sebuah segmen dianggap terisi kalau indeksnya termasuk di antara `numerator` yang pertama — perbandingan mana yang menangkap "sebelum batasnya secara tegas"?',
               },
             },
             {
@@ -221,6 +241,10 @@ export const module4: Module = {
               explain: {
                 en: 'The empty list has to exist before the loop can append to it, same as every other loop-building exercise so far.',
                 id: 'List kosongnya harus ada sebelum perulangannya bisa menambahkan ke situ, sama seperti tiap latihan membangun-lewat-perulangan sejauh ini.',
+              },
+              hint: {
+                en: 'The list needs to be created before the loop can append segments into it, one per pass.',
+                id: 'List-nya perlu dibuat dulu sebelum perulangannya bisa menambahkan segmen ke situ, satu tiap putaran.',
               },
             },
             {
@@ -382,6 +406,10 @@ export const module4: Module = {
                 en: 'screen_x = 160 + 0*20 = 160 and screen_y = 120 - 0*20 = 120 for ANY line through the origin — the +160 and 120 in the formula are exactly what places math (0,0) at the screen\'s middle.',
                 id: 'screen_x = 160 + 0*20 = 160 dan screen_y = 120 - 0*20 = 120 untuk garis MANA PUN yang melalui titik asal — +160 dan 120 pada formulanya itulah yang menaruh (0,0) matematis di tengah layar.',
               },
+              hint: {
+                en: 'Look at what happens to the conversion formulas specifically when x and y are both zero, regardless of what m and c are.',
+                id: 'Lihat apa yang terjadi pada formula konversinya secara khusus saat x dan y sama-sama nol, terlepas dari berapa pun m dan c-nya.',
+              },
             },
             {
               kind: 'fill',
@@ -396,6 +424,10 @@ export const module4: Module = {
                 en: 'Subtracting is what flips math\'s "up is positive" into the screen\'s "down is positive".',
                 id: 'Mengurangi itulah yang membalik "atas itu positif" ala matematika menjadi "bawah itu positif" ala layar.',
               },
+              hint: {
+                en: 'Math treats up as positive but the screen treats down as positive — which operator flips that relationship in the formula?',
+                id: 'Matematika memperlakukan atas sebagai positif tapi layar memperlakukan bawah sebagai positif — operator mana yang membalik hubungan itu dalam formulanya?',
+              },
             },
             {
               kind: 'order',
@@ -408,6 +440,10 @@ export const module4: Module = {
               explain: {
                 en: 'Both coordinates have to be converted before they can be paired into one screen point.',
                 id: 'Kedua koordinatnya harus dikonversi dulu sebelum bisa dipasangkan jadi satu titik layar.',
+              },
+              hint: {
+                en: 'Both screen coordinates need to be computed on their own before they can be bundled together into one point.',
+                id: 'Kedua koordinat layarnya perlu dihitung sendiri-sendiri dulu sebelum bisa digabungkan jadi satu titik.',
               },
             },
             {
@@ -499,6 +535,10 @@ export const module4: Module = {
                 en: '"left" subtracts 0.5 — 2 minus 0.5 is 1.5.',
                 id: '"kiri" mengurangi 0.5 — 2 dikurangi 0.5 adalah 1.5.',
               },
+              hint: {
+                en: "Apply the update rule for \"left\" directly to the starting value of m, the same way the concept code does it.",
+                id: 'Terapkan aturan pembaruan untuk "kiri" langsung ke nilai awal m, dengan cara yang sama seperti kode konsepnya.',
+              },
             },
             {
               kind: 'fill',
@@ -512,6 +552,10 @@ export const module4: Module = {
               explain: {
                 en: 'Decreasing is what "left" does, matching how it lowers x elsewhere in this course.',
                 id: 'Mengurangi adalah yang dilakukan "kiri", selaras dengan bagaimana ia menurunkan x di tempat lain di kursus ini.',
+              },
+              hint: {
+                en: 'You are checking for the key that should trigger a decrease — which key name does that by this course\'s convention?',
+                id: 'Kamu sedang memeriksa tombol yang seharusnya memicu pengurangan — nama tombol mana yang melakukan itu menurut konvensi kursus ini?',
               },
             },
             {
@@ -533,6 +577,10 @@ export const module4: Module = {
               explain: {
                 en: 'Same shape as the m version, with a different key pair and a different step size.',
                 id: 'Bentuknya sama seperti versi m, dengan pasangan tombol dan besar langkah yang berbeda.',
+              },
+              hint: {
+                en: 'The dict has to be copied before either key\'s branch can modify a field on it, and each `if` stands independently, the same shape as the m/right/left version.',
+                id: 'Dict-nya harus disalin dulu sebelum cabang tombol mana pun bisa mengubah field di dalamnya, dan tiap `if` berdiri independen, bentuk yang sama seperti versi m/kanan/kiri.',
               },
             },
             {

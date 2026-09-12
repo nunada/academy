@@ -62,6 +62,10 @@ export const module3: Module = {
                 en: 'The third number in range is the step — count by 2s, stopping before 10.',
                 id: 'Angka ketiga di range adalah langkahnya — hitung per 2, berhenti sebelum 10.',
               },
+              hint: {
+                en: '`range` takes a start, a stop, and a step — trace what each of the three arguments controls here before listing the values.',
+                id: '`range` punya start, stop, dan step — telusuri apa yang dikendalikan tiap satu dari tiga argumen ini sebelum mendaftar nilainya.',
+              },
             },
             {
               kind: 'fill',
@@ -76,6 +80,10 @@ export const module3: Module = {
                 en: 'To include 10, the stop value has to be one past it.',
                 id: 'Untuk mencakup 10, batas akhirnya harus satu lebih dari itu.',
               },
+              hint: {
+                en: '`range` stops one before its second argument — what does that mean for whether the number 10 itself gets included?',
+                id: '`range` berhenti satu sebelum argumen keduanya — apa artinya itu untuk apakah angka 10 sendiri ikut tercakup?',
+              },
             },
             {
               kind: 'order',
@@ -88,6 +96,10 @@ export const module3: Module = {
               explain: {
                 en: 'i counts 1 through 10; multiplying each by 3 gives the table.',
                 id: 'i menghitung 1 sampai 10; mengalikan tiap nilainya dengan 3 menghasilkan tabelnya.',
+              },
+              hint: {
+                en: 'The range has to be set up before the loop can use it, and the multiplication inside needs `i` to already hold a value on each pass.',
+                id: 'range-nya harus disiapkan dulu sebelum perulangan bisa memakainya, dan perkalian di dalamnya butuh `i` sudah punya nilai di tiap putaran.',
               },
             },
             {
@@ -154,6 +166,10 @@ export const module3: Module = {
                 en: 'The loop visits 2, 4, 6 — their sum is 12.',
                 id: 'Perulangannya melewati 2, 4, 6 — jumlahnya 12.',
               },
+              hint: {
+                en: 'List out exactly which values of i the loop visits with that range, then add them one at a time the way `total += i` does.',
+                id: 'Daftar dulu persis nilai i mana saja yang dilewati perulangan dengan range itu, lalu jumlahkan satu per satu seperti yang dilakukan `total += i`.',
+              },
             },
             {
               kind: 'fill',
@@ -171,6 +187,10 @@ export const module3: Module = {
                 en: 'A product accumulator starts at 1 (not 0) and multiplies on each pass.',
                 id: 'Akumulator hasil kali mulai dari 1 (bukan 0) dan mengalikan di tiap putaran.',
               },
+              hint: {
+                en: 'You are building a product, not a sum — which compound assignment operator multiplies the accumulator by i instead of adding to it?',
+                id: 'Kamu sedang membangun hasil kali, bukan jumlah — operator penugasan gabungan mana yang mengalikan akumulatornya dengan i, bukan menambahkannya?',
+              },
             },
             {
               kind: 'order',
@@ -183,6 +203,10 @@ export const module3: Module = {
               explain: {
                 en: 'An if inside the loop decides which terms get added at all.',
                 id: 'if di dalam perulangan menentukan suku mana saja yang benar-benar ditambahkan.',
+              },
+              hint: {
+                en: 'total needs to start at zero before the loop begins, and the addition inside can only happen after the if-check on that same pass decides it should.',
+                id: 'total perlu mulai dari nol sebelum perulangannya dimulai, dan penambahan di dalamnya baru bisa terjadi setelah pemeriksaan if pada putaran yang sama memutuskan begitu.',
               },
             },
             {
@@ -289,6 +313,10 @@ export const module3: Module = {
                 en: '20 → 10 → 5 → 2.5 → 1.25 → 0.625 — five halvings before it drops to 1 or under.',
                 id: '20 → 10 → 5 → 2.5 → 1.25 → 0.625 — lima kali dibagi dua sebelum turun ke 1 atau kurang.',
               },
+              hint: {
+                en: 'Trace the value of x through each halving by hand, one step at a time, and count the steps until it is no longer above 1 — do not skip ahead.',
+                id: 'Telusuri nilai x lewat tiap pembagian dua secara manual, selangkah demi selangkah, dan hitung langkahnya sampai tak lagi di atas 1 — jangan melompat.',
+              },
             },
             {
               kind: 'fill',
@@ -302,6 +330,10 @@ export const module3: Module = {
               explain: {
                 en: 'The loop should keep going while the total is still at or under 50.',
                 id: 'Perulangannya harus terus jalan selama totalnya masih di atau di bawah 50.',
+              },
+              hint: {
+                en: 'The loop needs to keep running while the total has not yet passed 50 — which comparison still counts the boundary value itself as inside?',
+                id: 'Perulangannya perlu terus berjalan selama totalnya belum melewati 50 — perbandingan mana yang tetap menganggap nilai batasnya sendiri masih termasuk?',
               },
             },
             {
@@ -318,6 +350,10 @@ export const module3: Module = {
               explain: {
                 en: 'The final print sits outside the loop, at the outer indentation — it runs once, after i reaches 0.',
                 id: 'Print terakhirnya ada di luar perulangan, pada indentasi luar — ia berjalan sekali, setelah i mencapai 0.',
+              },
+              hint: {
+                en: 'i needs a value before the while condition can check it, and one line here belongs outside the loop\'s indentation entirely — think about what should happen only once, at the very end.',
+                id: 'i perlu punya nilai dulu sebelum kondisi while bisa memeriksanya, dan satu baris di sini sama sekali berada di luar indentasi perulangan — pikirkan apa yang seharusnya terjadi hanya sekali, di akhir.',
               },
             },
             {
@@ -395,6 +431,10 @@ export const module3: Module = {
                 en: '(8 + 16/8) / 2 is (8 + 2) / 2, which is 5.0.',
                 id: '(8 + 16/8) / 2 adalah (8 + 2) / 2, yaitu 5.0.',
               },
+              hint: {
+                en: 'Substitute n = 16 and guess = 8 straight into the update formula and work through the arithmetic in order — parentheses first.',
+                id: 'Substitusikan n = 16 dan tebak = 8 langsung ke rumus pembaruannya dan kerjakan aritmetikanya berurutan — kurung dulu.',
+              },
             },
             {
               kind: 'fill',
@@ -411,6 +451,10 @@ export const module3: Module = {
               explain: {
                 en: 'The average of two numbers is their sum divided by 2.',
                 id: 'Rata-rata dua bilangan adalah jumlahnya dibagi 2.',
+              },
+              hint: {
+                en: 'This line is supposed to compute the average of two quantities — which operation turns a sum into an average?',
+                id: 'Baris ini seharusnya menghitung rata-rata dua besaran — operasi apa yang mengubah jumlah menjadi rata-rata?',
               },
             },
             {
@@ -439,6 +483,10 @@ export const module3: Module = {
               explain: {
                 en: 'Same shape as the concept above, with a starting guess of 1.0 instead of n / 2 — Newton\'s method does not need a particular starting point, only a nonzero one.',
                 id: 'Bentuknya sama seperti pada konsep di atas, dengan tebakan awal 1.0 alih-alih n / 2 — metode Newton tidak butuh titik awal tertentu, hanya yang bukan nol.',
+              },
+              hint: {
+                en: 'guess needs a starting value before the while condition can test it, and the update line only ever runs as the body of that same loop — think about what must exist before each check.',
+                id: 'tebak perlu punya nilai awal sebelum kondisi while bisa mengujinya, dan baris pembaruannya hanya berjalan sebagai isi dari perulangan yang sama — pikirkan apa yang harus ada sebelum tiap pemeriksaan.',
               },
             },
             {

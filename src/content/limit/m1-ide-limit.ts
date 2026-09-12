@@ -82,6 +82,10 @@ export const module1: Module = {
                 en: 'The limit describes only the approach, so $\\lim_{x \\to 3} f(x) = 7$ follows directly. Whether $f(3)$ also equals $7$, equals something else, or does not exist is a completely separate question — the limit alone cannot answer it.',
                 id: 'Limit hanya menggambarkan pendekatannya, jadi $\\lim_{x \\to 3} f(x) = 7$ langsung mengikuti. Apakah $f(3)$ juga sama dengan $7$, berbeda, atau bahkan tak ada, adalah pertanyaan yang sama sekali terpisah — limit saja tak bisa menjawabnya.',
               },
+              hint: {
+                en: 'The description only ever talks about values near 3, never about $x = 3$ itself. Which of the four options claims something about the point itself rather than the approach?',
+                id: 'Keterangannya hanya pernah membicarakan nilai-nilai dekat 3, tak pernah tentang $x = 3$ itu sendiri. Pilihan mana dari keempatnya yang mengklaim sesuatu tentang titik itu sendiri, bukan pendekatannya?',
+              },
             },
             {
               kind: 'quiz',
@@ -110,6 +114,10 @@ export const module1: Module = {
               explain: {
                 en: 'The hole says $f(1)$ is undefined — but the limit only cares where the curve is heading, and from both sides it heads for height $2$.',
                 id: 'Lubangnya mengatakan $f(1)$ tak terdefinisi — tetapi limit hanya peduli ke mana kurvanya menuju, dan dari kedua sisi ia menuju tinggi $2$.',
+              },
+              hint: {
+                en: 'Ignore the hollow dot itself and just follow the curve on both sides as it approaches $x = 1$ — what height is it heading toward?',
+                id: 'Abaikan titik kosongnya sendiri dan ikuti saja kurvanya dari kedua sisi saat mendekati $x = 1$ — tinggi berapa yang ditujunya?',
               },
             },
             {
@@ -188,6 +196,10 @@ export const module1: Module = {
                 en: 'The two-sided limit needs the one-sided limits to agree. They do not — $3 \\neq 5$ — so there is no single value the function is approaching, and the limit does not exist. It is never the average of the two.',
                 id: 'Limit dua sisi memerlukan kedua limit sepihaknya sepakat. Keduanya tidak — $3 \\neq 5$ — jadi tak ada satu nilai pun yang didekati fungsinya, dan limitnya tidak ada. Ia tak pernah menjadi rata-rata keduanya.',
               },
+              hint: {
+                en: 'Recall the exact condition stated in the concept above for when a two-sided limit exists — does it require the one-sided limits to agree, or just to both exist?',
+                id: 'Ingat kembali syarat persis yang dinyatakan pada konsep di atas untuk kapan limit dua sisi ada — apakah itu mensyaratkan kedua limit sepihaknya sepakat, atau sekadar keduanya ada?',
+              },
             },
             {
               kind: 'quiz',
@@ -218,6 +230,10 @@ export const module1: Module = {
               explain: {
                 en: 'The right-hand limit looks only at $x > 1$, where the curve is the upper branch heading for height $3$ as $x \\to 1^+$.',
                 id: 'Limit kanan hanya memandang $x > 1$, tempat kurvanya adalah cabang atas yang menuju tinggi $3$ saat $x \\to 1^+$.',
+              },
+              hint: {
+                en: 'The plus sign means approaching from values greater than 1 only — cover up everything to the left of $x = 1$ in the picture and see where the remaining branch heads.',
+                id: 'Tanda plus berarti mendekat hanya dari nilai yang lebih besar dari 1 — tutupi semua yang di sebelah kiri $x = 1$ pada gambar dan lihat ke mana cabang yang tersisa menuju.',
               },
             },
             {
@@ -347,6 +363,10 @@ export const module1: Module = {
                 en: 'It is bounded (never leaves $[-1,1]$) and one-sided limits are not even in play here — it simply never narrows in on a single height. That is oscillation, the third way.',
                 id: 'Ia terbatas (tak pernah keluar dari $[-1,1]$) dan limit sepihak bahkan tak relevan di sini — ia sekadar tak pernah merapat ke satu ketinggian. Itulah osilasi, cara yang ketiga.',
               },
+              hint: {
+                en: 'This function never runs off to infinity, and the description says nothing about the two sides disagreeing — so which of the three named failures from the concept above is left?',
+                id: 'Fungsi ini tak pernah lari ke tak hingga, dan keterangannya tak menyebut kedua sisinya tidak sepakat — jadi dari tiga kegagalan yang disebutkan pada konsep di atas, mana yang tersisa?',
+              },
             },
             {
               kind: 'quiz',
@@ -372,6 +392,10 @@ export const module1: Module = {
               explain: {
                 en: 'From the left the curve plunges toward $-\\infty$; from the right it rockets toward $+\\infty$. Both sides run away — just in opposite directions — so there is no number, finite or otherwise, that both sides are closing in on.',
                 id: 'Dari kiri kurvanya terjun menuju $-\\infty$; dari kanan ia melesat menuju $+\\infty$. Kedua sisi lari — hanya berlawanan arah — jadi tak ada bilangan, berhingga atau tidak, yang didekati kedua sisi itu.',
+              },
+              hint: {
+                en: 'Look separately at what the curve does approaching from the left of $0$ and from the right of $0$ in the picture — does either side settle near a finite height?',
+                id: 'Perhatikan secara terpisah apa yang dilakukan kurvanya saat mendekat dari kiri $0$ dan dari kanan $0$ pada gambar — apakah salah satu sisinya mereda mendekati ketinggian berhingga?',
               },
             },
             {
@@ -443,6 +467,10 @@ export const module1: Module = {
                 en: 'The hollow dot at $(1,2)$ is where the limit points; the filled dot at $(1,5)$ is the function\'s actual, separately-declared value. Disagreeing is perfectly legal — the limit was never obligated to match it.',
                 id: 'Titik kosong di $(1,2)$ adalah arah tunjuk limitnya; titik penuh di $(1,5)$ adalah nilai fungsi yang sebenarnya, dideklarasikan terpisah. Tidak sepakat itu sah-sah saja — limitnya tak pernah wajib mencocokkannya.',
               },
+              hint: {
+                en: 'Two different dots are marked at $x = 1$ — one hollow, one filled. The limit reads off the curve\'s natural approach; $f(1)$ reads off whichever dot is actually filled in.',
+                id: 'Dua titik berbeda ditandai di $x = 1$ — satu kosong, satu penuh. Limitnya dibaca dari arah alami kurvanya; $f(1)$ dibaca dari titik mana yang sungguh terisi penuh.',
+              },
             },
             {
               kind: 'quiz',
@@ -472,6 +500,10 @@ export const module1: Module = {
               explain: {
                 en: 'The curve itself — the hollow point — heads for height $4$. The filled dot at $(2,7)$ is $f(2)$, a separate fact the limit does not consult.',
                 id: 'Kurvanya sendiri — titik kosong — menuju tinggi $4$. Titik penuh di $(2,7)$ adalah $f(2)$, fakta terpisah yang tak dikonsultasikan limitnya.',
+              },
+              hint: {
+                en: 'A limit is about the curve\'s own approach, not about a separately declared point value. Which of the two marked dots actually lies on the drawn curve?',
+                id: 'Limit adalah tentang arah pendekatan kurvanya sendiri, bukan tentang nilai titik yang dideklarasikan terpisah. Titik mana dari keduanya yang sungguh terletak pada kurva yang digambar?',
               },
             },
             {

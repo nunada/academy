@@ -131,6 +131,10 @@ export const module4: Module = {
                 en: 'That is what DEFAULT is for: a column you did not mention still gets a sensible value, and NOT NULL stays satisfied.',
                 id: 'Itulah gunanya DEFAULT: kolom yang tak kamu sebut tetap mendapat nilai yang masuk akal, dan NOT NULL tetap terpenuhi.',
               },
+              hint: {
+                en: 'The `stock` column is not named in this INSERT at all — look at what the CREATE TABLE says happens to a column you leave out.',
+                id: 'Kolom `stok` sama sekali tak disebut dalam INSERT ini — lihat apa yang dikatakan CREATE TABLE terjadi pada kolom yang kamu lewatkan.',
+              },
             },
             {
               kind: 'fill',
@@ -147,6 +151,10 @@ export const module4: Module = {
               explain: {
                 en: 'INSERT INTO names the table and its columns; VALUES gives the row, in the same order.',
                 id: 'INSERT INTO menyebut tabel dan kolomnya; VALUES memberi barisnya, dalam urutan yang sama.',
+              },
+              hint: {
+                en: 'One keyword pairs with "INTO" to name the table and columns; a different keyword introduces the actual row of data.',
+                id: 'Satu kata kunci berpasangan dengan "INTO" untuk menyebut tabel dan kolomnya; kata kunci lain memperkenalkan baris datanya.',
               },
             },
             {
@@ -336,6 +344,10 @@ export const module4: Module = {
                 en: 'No WHERE means no filter, and no filter means every row. The database does exactly what you asked.',
                 id: 'Tanpa WHERE berarti tanpa penyaring, dan tanpa penyaring berarti semua baris. Basis datanya melakukan persis yang kamu minta.',
               },
+              hint: {
+                en: 'Notice this statement has no WHERE clause at all — think about what a missing WHERE means for how many rows are affected.',
+                id: 'Perhatikan pernyataan ini sama sekali tak punya klausa WHERE — pikirkan apa arti WHERE yang hilang bagi berapa banyak baris yang terpengaruh.',
+              },
             },
             {
               kind: 'order',
@@ -363,6 +375,10 @@ export const module4: Module = {
               explain: {
                 en: 'Look at the rows, open a transaction, make the change, check it, and only then make it final.',
                 id: 'Lihat barisnya, buka transaksi, lakukan perubahannya, periksa, dan baru setelah itu jadikan final.',
+              },
+              hint: {
+                en: 'Think about the safety habit described just above: you look before you leap, and you keep the door open to back out until you have confirmed the result.',
+                id: 'Pikirkan kebiasaan aman yang dijelaskan tepat di atas: kamu melihat dulu sebelum melangkah, dan kamu menjaga pintu tetap terbuka untuk mundur sampai kamu memastikan hasilnya.',
               },
             },
             {

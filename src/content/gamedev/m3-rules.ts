@@ -81,6 +81,10 @@ export const module3: Module = {
                 en: 'Removing the block on contact fixes it too — but the timer is what you want the moment anything can touch you twice.',
                 id: 'Membuang baloknya saat bersentuhan juga memperbaikinya — tetapi pewaktunya yang kamu butuhkan begitu ada apa pun yang bisa menyentuhmu dua kali.',
               },
+              hint: {
+                en: 'Think about how many frames a block typically keeps overlapping the player, and what a bare "lives - 1" would do on every single one of them.',
+                id: 'Pikirkan berapa bingkai biasanya sebuah balok tetap bertumpang tindih dengan pemain, dan apa yang akan dilakukan "lives - 1" polos di setiap satu bingkai itu.',
+              },
             },
             {
               kind: 'fill',
@@ -94,6 +98,10 @@ export const module3: Module = {
               explain: {
                 en: 'Subtract the elapsed time, and floor it at zero so it settles instead of running away downwards.',
                 id: 'Kurangi waktu yang berlalu, dan beri lantai nol agar ia berhenti alih-alih terus lari ke bawah.',
+              },
+              hint: {
+                en: 'You need to subtract the elapsed time and also stop the result from dropping below zero — one function name and one arithmetic operator handle those two jobs.',
+                id: 'Kamu perlu mengurangi waktu yang berlalu sekaligus mencegah hasilnya turun di bawah nol — satu nama fungsi dan satu operator aritmetika mengerjakan dua hal itu.',
               },
             },
             {
@@ -349,6 +357,10 @@ export const module3: Module = {
                 en: '0.9 minus 0.25 is 0.65, and 0.65 divided by 0.02 is 32.5.',
                 id: '0,9 dikurangi 0,25 adalah 0,65, dan 0,65 dibagi 0,02 adalah 32,5.',
               },
+              hint: {
+                en: 'Work out at what time value 0.9 - time * 0.02 would equal the 0.25 floor, since that is the point where max stops picking the shrinking side.',
+                id: 'Cari tahu pada nilai waktu berapa 0.9 - time * 0.02 sama dengan lantai 0.25, karena itulah titik saat max berhenti memilih sisi yang mengecil.',
+              },
             },
             {
               kind: 'order',
@@ -367,6 +379,10 @@ export const module3: Module = {
               explain: {
                 en: 'The clock advances first, so the interval you set is the one for the moment you are in.',
                 id: 'Jamnya maju lebih dulu, jadi selang yang kamu setel adalah selang untuk saat yang sedang kamu jalani.',
+              },
+              hint: {
+                en: 'spawn_delay needs the clock\'s value for this exact moment, so think about which line has to update the clock before that function gets called.',
+                id: 'spawn_delay butuh nilai jam untuk saat ini persis, jadi pikirkan baris mana yang harus memperbarui jamnya sebelum fungsi itu dipanggil.',
               },
             },
             {
@@ -1020,6 +1036,10 @@ export const module3: Module = {
                 en: 'A snapshot cannot tell you about a change. Remembering last frame is the only way to see an edge.',
                 id: 'Potret sesaat tak bisa memberitahumu tentang perubahan. Mengingat bingkai lalu adalah satu-satunya cara melihat sebuah tepi.',
               },
+              hint: {
+                en: 'Ask whether "space is down" stays true for as long as the finger rests on the key, and what a start-the-game check would do on every single frame that it is true.',
+                id: 'Tanyakan apakah "spasi sedang ditekan" tetap benar selama jari bertahan di tombolnya, dan apa yang akan dilakukan pemeriksaan mulai-permainan di setiap bingkai selama itu benar.',
+              },
             },
             {
               kind: 'game',
@@ -1311,6 +1331,10 @@ export const module3: Module = {
                 en: '5 // 5 is 1, plus one is 2. The first level covers scores 0 to 4.',
                 id: '5 // 5 adalah 1, ditambah satu jadi 2. Tingkat pertama mencakup skor 0 sampai 4.',
               },
+              hint: {
+                en: 'Compute the floor division of 5 by 5 first, then add the one the formula adds afterward.',
+                id: 'Hitung dulu pembagian bulat 5 dibagi 5, lalu tambahkan satu yang ditambahkan formulanya sesudahnya.',
+              },
             },
             {
               kind: 'fill',
@@ -1324,6 +1348,10 @@ export const module3: Module = {
               explain: {
                 en: 'Floor division throws the remainder away, which is exactly what a level band is.',
                 id: 'Pembagian bulat membuang sisanya, dan persis itulah yang dimaksud rentang tingkat.',
+              },
+              hint: {
+                en: 'The level count starts from one, and the point band itself needs the same "throw the remainder away" operator you have used for level bands before.',
+                id: 'Hitungan tingkatnya mulai dari satu, dan rentang poinnya sendiri butuh operator "buang sisanya" yang sama yang sudah kamu pakai untuk rentang tingkat sebelumnya.',
               },
             },
             {

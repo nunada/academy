@@ -85,6 +85,10 @@ export const module6: Module = {
                 en: 'Approaching from the right forces the derivative to be at most zero, and approaching from the left forces it to be at least zero — the only way to satisfy both is for it to equal exactly zero.',
                 id: 'Mendekat dari kanan memaksa turunannya paling banyak nol, dan mendekat dari kiri memaksanya paling sedikit nol — satu-satunya cara memenuhi keduanya adalah bila ia sama dengan tepat nol.',
               },
+              hint: {
+                en: 'Follow the two one-sided limit arguments in the proof sketch: one forces $f\'(c)\\leq 0$, the other forces $f\'(c)\\geq 0$. What single value can satisfy both inequalities at once?',
+                id: 'Ikuti kedua argumen limit sepihak pada sketsa buktinya: yang satu memaksa $f\'(c)\\leq 0$, yang lain memaksa $f\'(c)\\geq 0$. Nilai tunggal apa yang bisa memenuhi kedua ketaksamaan itu sekaligus?',
+              },
             },
             {
               kind: 'quiz',
@@ -114,6 +118,10 @@ export const module6: Module = {
               explain: {
                 en: 'A local extremum requires the function to turn around nearby — rise then fall, or fall then rise. At an endpoint the curve is simply cut off, with no "nearby on both sides" to compare against, so it can be an absolute extremum without being a local one.',
                 id: 'Ekstrem lokal mensyaratkan fungsinya berbalik di dekatnya — naik lalu turun, atau turun lalu naik. Di titik ujung kurvanya sekadar terpotong, tanpa "dekatnya di kedua sisi" untuk dibandingkan, sehingga ia bisa menjadi ekstrem mutlak tanpa menjadi ekstrem lokal.',
+              },
+              hint: {
+                en: 'A local extremum needs points on both sides to compare against. Does the graph actually continue on both sides of $x=3$, or does it stop there?',
+                id: 'Ekstrem lokal butuh titik di kedua sisi untuk dibandingkan. Apakah grafiknya benar-benar berlanjut di kedua sisi $x=3$, atau ia berhenti di situ?',
               },
             },
             {
@@ -182,6 +190,10 @@ export const module6: Module = {
                 en: 'The method\'s entire safety comes from checking every candidate. Skipping an endpoint on the assumption it "can\'t win" is exactly the kind of guess the second worked example showed to be unreliable — x = 0 looked like a plausible candidate but the real maximum was at x = 5.',
                 id: 'Seluruh keamanan metode ini berasal dari memeriksa setiap kandidat. Melewatkan titik ujung dengan asumsi ia "tak mungkin menang" persis jenis tebakan yang ditunjukkan tak dapat diandalkan oleh contoh kedua — x = 0 terlihat seperti kandidat yang masuk akal tetapi maksimum sebenarnya ada di x = 5.',
               },
+              hint: {
+                en: 'Recall the second worked example above, where one endpoint looked unlikely to be the winner. What actually happened when both endpoints were evaluated anyway?',
+                id: 'Ingat contoh kedua yang dikerjakan di atas, tempat satu titik ujung tampak tak mungkin menang. Apa yang sebenarnya terjadi ketika kedua titik ujung tetap dievaluasi?',
+              },
             },
             {
               kind: 'order',
@@ -199,6 +211,10 @@ export const module6: Module = {
               explain: {
                 en: 'Find the critical point first, then evaluate f at that point and at both endpoints, then compare all three values to name the winners.',
                 id: 'Cari titik kritisnya lebih dahulu, lalu evaluasi f di titik itu dan di kedua titik ujungnya, baru bandingkan ketiga nilainya untuk menyebutkan pemenangnya.',
+              },
+              hint: {
+                en: 'You need to know which x-value is critical before you know what to evaluate f at, and you need every one of those f-values in hand before there is anything to compare.',
+                id: 'Kamu perlu tahu nilai x mana yang kritis sebelum tahu di mana harus mengevaluasi f, dan kamu perlu setiap nilai f itu sudah tersedia sebelum ada yang bisa dibandingkan.',
               },
             },
             {
@@ -325,6 +341,10 @@ export const module6: Module = {
                 en: 'Rolle\'s Theorem requires differentiability on the entire open interval. $|x|$ fails this at $x = 0$ (a corner), so the theorem\'s conclusion is not guaranteed — there is no contradiction, only a hypothesis that was never met.',
                 id: 'Teorema Rolle mensyaratkan keterdiferensialan pada seluruh interval terbuka. $|x|$ gagal memenuhi ini di $x = 0$ (sebuah sudut), sehingga kesimpulan teoremanya tak dijamin — tak ada pertentangan, hanya hipotesis yang tak pernah terpenuhi.',
               },
+              hint: {
+                en: 'Check $|x|$ against Rolle\'s three hypotheses one at a time — continuity, differentiability on the whole open interval, and equal endpoint heights. Does every single one actually hold at $x=0$?',
+                id: 'Periksa $|x|$ terhadap ketiga hipotesis Rolle satu demi satu — kekontinuan, keterdiferensialan pada seluruh interval terbuka, dan ketinggian titik ujung yang sama. Apakah setiap satu itu benar-benar berlaku di $x=0$?',
+              },
             },
             {
               kind: 'quiz',
@@ -353,6 +373,10 @@ export const module6: Module = {
               explain: {
                 en: 'Rolle\'s Theorem needs exactly continuity, differentiability throughout the open interval, and equal endpoint values — nothing about the specific shape of the curve, its sign, or the interval\'s length matters.',
                 id: 'Teorema Rolle hanya memerlukan kekontinuan, keterdiferensialan di seluruh interval terbuka, dan nilai titik ujung yang sama — tak ada yang penting soal bentuk spesifik kurvanya, tandanya, atau panjang intervalnya.',
+              },
+              hint: {
+                en: 'Rolle\'s Theorem lists exactly three hypotheses. Which of the four options actually names two of those three, rather than some incidental detail of this particular picture?',
+                id: 'Teorema Rolle menyebutkan persis tiga hipotesis. Pilihan mana dari empat yang benar-benar menyebut dua dari tiga hipotesis itu, bukan detail kebetulan dari gambar khusus ini?',
               },
             },
             {
@@ -418,6 +442,10 @@ export const module6: Module = {
                 en: 'When $f(a) = f(b)$, the average rate of change $\\dfrac{f(b)-f(a)}{b-a}$ is exactly $0$, and the Mean Value Theorem\'s conclusion $f\'(c) = 0$ is precisely Rolle\'s Theorem.',
                 id: 'Ketika $f(a) = f(b)$, laju perubahan rata-rata $\\dfrac{f(b)-f(a)}{b-a}$ tepat $0$, dan kesimpulan Teorema Nilai Rata-rata $f\'(c) = 0$ persis Teorema Rolle.',
               },
+              hint: {
+                en: 'Write out the average rate of change $\\frac{f(b)-f(a)}{b-a}$ in the Mean Value Theorem\'s conclusion, then ask what that expression becomes in the special case $f(a)=f(b)$.',
+                id: 'Tuliskan laju perubahan rata-rata $\\frac{f(b)-f(a)}{b-a}$ pada kesimpulan Teorema Nilai Rata-rata, lalu tanyakan bentuk itu menjadi apa pada kasus khusus $f(a)=f(b)$.',
+              },
             },
             {
               kind: 'fill',
@@ -432,6 +460,10 @@ export const module6: Module = {
               explain: {
                 en: 'Since $f\'$ is $0$ everywhere, $f\'(c)$ is $0$ too, so the whole product collapses to $0$, forcing $f(a)$ and $f(b)$ to be equal.',
                 id: 'Karena $f\'$ adalah $0$ di mana-mana, $f\'(c)$ juga $0$, sehingga seluruh hasil kalinya runtuh menjadi $0$, memaksa $f(a)$ dan $f(b)$ sama.',
+              },
+              hint: {
+                en: 'The proof\'s hypothesis is that $f\'$ is zero everywhere. What value must $f\'(c)$ take under that hypothesis, and what does multiplying by that value do to the whole product?',
+                id: 'Hipotesis buktinya adalah $f\'$ nol di mana-mana. Nilai apa yang harus dimiliki $f\'(c)$ menurut hipotesis itu, dan apa yang dilakukan perkalian dengan nilai itu terhadap seluruh hasil kalinya?',
               },
             },
             {

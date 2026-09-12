@@ -72,6 +72,10 @@ export const module2: Module = {
                 en: 'x > 10 is false, but x > 3 is true, and that branch runs before small is even checked.',
                 id: 'x > 10 salah, tapi x > 3 benar, dan cabang itu berjalan sebelum kecil sempat diperiksa.',
               },
+              hint: {
+                en: 'Check x against each condition in the order they are written — the first one that holds is the branch that runs, no matter what would happen further down.',
+                id: 'Periksa x terhadap tiap kondisi sesuai urutan penulisannya — kondisi pertama yang benar itulah cabang yang berjalan, apa pun yang akan terjadi di bawahnya.',
+              },
             },
             {
               kind: 'fill',
@@ -88,6 +92,10 @@ export const module2: Module = {
               explain: {
                 en: 'else covers every case the if did not.',
                 id: 'else menutupi setiap kasus yang tidak ditangani if.',
+              },
+              hint: {
+                en: 'What keyword captures every case the if did not already handle?',
+                id: 'Kata kunci apa yang menangkap setiap kasus yang belum ditangani oleh if?',
               },
             },
             {
@@ -168,6 +176,10 @@ export const module2: Module = {
                 en: '15 is divisible by both 3 and 5, so at least one side of || is true — the result prints as 1.',
                 id: '15 habis dibagi 3 maupun 5, jadi setidaknya satu sisi || benar — hasilnya dicetak sebagai 1.',
               },
+              hint: {
+                en: 'Check each side of the || separately for n = 15, then remember that || only needs one side to be true — and recall how cout displays a bool.',
+                id: 'Periksa masing-masing sisi || secara terpisah untuk n = 15, lalu ingat bahwa || hanya butuh satu sisi benar — dan ingat bagaimana cout menampilkan bool.',
+              },
             },
             {
               kind: 'fill',
@@ -181,6 +193,10 @@ export const module2: Module = {
               explain: {
                 en: 'Both sides must hold at once, so && is the right operator.',
                 id: 'Kedua sisi harus terpenuhi sekaligus, jadi && adalah operator yang tepat.',
+              },
+              hint: {
+                en: 'Both edges of the range need to hold at the same time for a value to count as valid — which logical operator requires both sides to be true?',
+                id: 'Kedua batas rentang harus terpenuhi sekaligus agar sebuah nilai dianggap valid — operator logika mana yang mensyaratkan kedua sisi benar?',
               },
             },
             {
@@ -269,6 +285,10 @@ export const module2: Module = {
                 en: 'case 1 has no break, so it falls through into case 2 and prints that too, stopping only at that break.',
                 id: 'case 1 tidak punya break, jadi ia jatuh ke case 2 dan ikut mencetaknya, baru berhenti di break itu.',
               },
+              hint: {
+                en: 'Trace execution starting at case 1, and keep going down through every case that has no break in between, until you finally hit one that does.',
+                id: 'Telusuri eksekusi mulai dari case 1, dan terus turun melewati setiap case yang tak punya break di antaranya, sampai kamu akhirnya menemukan satu yang punya.',
+              },
             },
             {
               kind: 'fill',
@@ -285,6 +305,10 @@ export const module2: Module = {
               explain: {
                 en: 'break; ends the current case instead of falling through.',
                 id: 'break; mengakhiri case saat ini alih-alih jatuh ke bawah.',
+              },
+              hint: {
+                en: 'What single keyword ends a case immediately instead of letting it fall into the next one?',
+                id: 'Kata kunci tunggal apa yang mengakhiri sebuah case seketika, alih-alih membiarkannya jatuh ke case berikutnya?',
               },
             },
             {
@@ -411,6 +435,10 @@ export const module2: Module = {
                 en: 'i starts at 0 and the loop stops the moment i is no longer < 5, so it runs for i = 0,1,2,3,4.',
                 id: 'i dimulai dari 0 dan perulangan berhenti begitu i tidak lagi < 5, jadi ia berjalan untuk i = 0,1,2,3,4.',
               },
+              hint: {
+                en: 'List out the values i takes before the condition i < 5 finally turns false, and count them.',
+                id: 'Daftar nilai-nilai yang diambil i sebelum kondisi i < 5 akhirnya menjadi salah, lalu hitung jumlahnya.',
+              },
             },
             {
               kind: 'fill',
@@ -424,6 +452,10 @@ export const module2: Module = {
               explain: {
                 en: 'i-- decreases i by one each round, matching the count-down.',
                 id: 'i-- mengurangi i satu setiap putaran, sesuai hitungan mundur.',
+              },
+              hint: {
+                en: 'Counting down means i needs to shrink after every round — which update operator moves it in that direction?',
+                id: 'Menghitung mundur berarti i harus mengecil setiap putaran — operator update mana yang menggerakkannya ke arah itu?',
               },
             },
             {
@@ -495,6 +527,10 @@ export const module2: Module = {
                 en: 'do-while always runs its block before checking, so it runs once even though i < 5 is already false.',
                 id: 'do-while selalu menjalankan bloknya sebelum memeriksa, jadi ia berjalan sekali walau i < 5 sudah salah sejak awal.',
               },
+              hint: {
+                en: 'Remember which part of a do-while runs unconditionally before the condition is even looked at.',
+                id: 'Ingat bagian mana dari do-while yang berjalan tanpa syarat sebelum kondisinya bahkan diperiksa.',
+              },
             },
             {
               kind: 'fill',
@@ -508,6 +544,10 @@ export const module2: Module = {
               explain: {
                 en: 'The loop must stop once x reaches or passes 100, so the condition is x < 100.',
                 id: 'Perulangan harus berhenti begitu x mencapai atau melewati 100, jadi kondisinya x < 100.',
+              },
+              hint: {
+                en: 'The loop needs to keep going only while x is still under the limit — which comparison expresses "still below"?',
+                id: 'Perulangan harus terus berjalan hanya selama x masih di bawah batas — perbandingan mana yang menyatakan "masih di bawah"?',
               },
             },
             {
@@ -584,6 +624,10 @@ export const module2: Module = {
                 en: 'break only ever leaves the loop it is directly written inside — here, the inner one. The outer loop moves on to its next i.',
                 id: 'break hanya pernah keluar dari perulangan tempat ia langsung ditulis — di sini, yang dalam. Perulangan luar tetap lanjut ke i berikutnya.',
               },
+              hint: {
+                en: 'A break only affects the loop whose braces it is written directly inside — figure out which of the two loops that is here.',
+                id: 'break hanya memengaruhi perulangan yang kurung kurawalnya langsung membungkusnya — cari tahu perulangan mana dari keduanya itu di sini.',
+              },
             },
             {
               kind: 'order',
@@ -601,6 +645,10 @@ export const module2: Module = {
               explain: {
                 en: 'The check and its continue must come before the print, or the print would run for every number.',
                 id: 'Pemeriksaan beserta continue-nya harus lebih dulu dari cetaknya, atau cetaknya akan berjalan untuk setiap angka.',
+              },
+              hint: {
+                en: 'The decision to skip a number has to happen before that number would get printed, and that decision needs the loop counter to already exist.',
+                id: 'Keputusan untuk melewati sebuah angka harus terjadi sebelum angka itu sempat dicetak, dan keputusan itu butuh penghitung perulangan yang sudah ada.',
               },
             },
             {

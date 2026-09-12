@@ -85,6 +85,10 @@ export const module1: Module = {
                 en: 'JSX compiles to JavaScript objects, and `class` cannot be a plain property name there without care. The rendered HTML still gets a normal `class`.',
                 id: 'JSX dikompilasi menjadi object JavaScript, dan `class` tak bisa jadi nama properti biasa di situ tanpa kerepotan. HTML hasilnya tetap mendapat `class` biasa.',
               },
+              hint: {
+                en: 'Think about what JSX compiles into — plain JavaScript objects — and whether a reserved word is available there as an ordinary property name.',
+                id: 'Pikirkan JSX dikompilasi menjadi apa — object JavaScript biasa — dan apakah kata kunci yang sudah dipakai bahasa itu bisa jadi nama properti biasa di situ.',
+              },
             },
             {
               kind: 'fill',
@@ -98,6 +102,10 @@ export const module1: Module = {
               explain: {
                 en: 'Braces switch back into JavaScript. Without them you would get the literal text "name".',
                 id: 'Kurung kurawal mengembalikanmu ke JavaScript. Tanpa itu kamu mendapat teks harfiah "nama".',
+              },
+              hint: {
+                en: 'Think about what punctuation switches JSX back into JavaScript mode, so a variable\'s value is evaluated rather than printed as literal letters.',
+                id: 'Pikirkan tanda baca apa yang mengembalikan JSX ke mode JavaScript, agar nilai sebuah variabel dihitung, bukan dicetak sebagai huruf harfiah.',
               },
             },
             {
@@ -224,6 +232,10 @@ export const module1: Module = {
                 en: 'Capitalise it. This is the single most common silent failure in React.',
                 id: 'Kapitalkan namanya. Ini kegagalan senyap paling umum di React.',
               },
+              hint: {
+                en: 'Think about how JSX decides whether a tag name refers to your own component or to a built-in HTML element, and which letter case each relies on.',
+                id: 'Pikirkan bagaimana JSX memutuskan apakah nama tag merujuk komponenmu sendiri atau elemen HTML bawaan, dan huruf besar-kecil mana yang jadi patokannya.',
+              },
             },
             {
               kind: 'order',
@@ -248,6 +260,10 @@ export const module1: Module = {
               explain: {
                 en: 'The component must be defined before it is rendered, and the prop is passed as an attribute.',
                 id: 'Komponennya harus didefinisikan sebelum dirender, dan prop-nya dioper sebagai atribut.',
+              },
+              hint: {
+                en: 'A component has to be defined somewhere before the line that renders it can refer to its name.',
+                id: 'Sebuah komponen harus didefinisikan lebih dulu di suatu tempat sebelum baris yang merendernya bisa merujuk ke namanya.',
               },
             },
             {
@@ -460,6 +476,10 @@ export const module1: Module = {
                 en: 'After a shift, index 0 names a different item than before, and React reuses the wrong element — typing in a list of inputs is where this bites.',
                 id: 'Setelah bergeser, indeks 0 menamai item yang berbeda dari sebelumnya, dan React memakai ulang elemen yang keliru — mengetik di daftar berisi input adalah tempat ini menggigit.',
               },
+              hint: {
+                en: 'Think about what a position-based label still refers to after an item is inserted or removed somewhere earlier in the list.',
+                id: 'Pikirkan apa yang masih dirujuk oleh label berbasis posisi setelah sebuah item disisipkan atau dihapus di suatu tempat lebih awal dalam daftar.',
+              },
             },
             {
               kind: 'web',
@@ -587,6 +607,10 @@ export const module1: Module = {
               explain: {
                 en: 'length is 0, and React renders the number 0. Write `message.length > 0 &&` instead.',
                 id: 'length bernilai 0, dan React merender angka 0. Tulis `pesan.length > 0 &&` sebagai gantinya.',
+              },
+              hint: {
+                en: 'Remember the one number React treats differently from other falsy values when it sits on the left of &&, and check what an empty string\'s `.length` equals.',
+                id: 'Ingat satu angka yang diperlakukan berbeda oleh React dari nilai falsy lainnya saat berada di kiri &&, lalu periksa berapa nilai `.length` dari string kosong.',
               },
             },
             {

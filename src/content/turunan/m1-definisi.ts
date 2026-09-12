@@ -99,6 +99,10 @@ export const module1: Module = {
                 en: 'The secant needs two distinct points, so it is genuinely undefined exactly at $B=A$ — but as $B$ gets arbitrarily close without reaching it, the secants close in on one particular line: the tangent. This is a limit in exactly the sense of the previous course.',
                 id: 'Tali busur memerlukan dua titik yang berbeda, jadi ia memang tak terdefinisi tepat di $B=A$ — tetapi saat $B$ mendekat sedekat apa pun tanpa mencapainya, tali busurnya merapat ke satu garis tertentu: garis singgung. Ini limit persis dalam pengertian kursus sebelumnya.',
               },
+              hint: {
+                en: 'Think about what happens to the secant\'s slope specifically as $B$ gets arbitrarily close to $A$ without reaching it — not what happens to the line\'s position in general.',
+                id: 'Pikirkan apa yang terjadi khususnya pada kemiringan tali busur saat $B$ mendekat sedekat apa pun ke $A$ tanpa mencapainya — bukan apa yang terjadi pada posisi garisnya secara umum.',
+              },
             },
             {
               kind: 'quiz',
@@ -129,6 +133,10 @@ export const module1: Module = {
               explain: {
                 en: 'Reading the two marked points, $A(1,1)$ and $B(4,16)$: slope $= \\dfrac{16-1}{4-1} = \\dfrac{15}{3} = 5$.',
                 id: 'Membaca kedua titik yang ditandai, $A(1,1)$ dan $B(4,16)$: kemiringan $= \\dfrac{16-1}{4-1} = \\dfrac{15}{3} = 5$.',
+              },
+              hint: {
+                en: 'Read the coordinates of $A$ and $B$ straight off the graph, then apply rise over run between them — this is nothing more than a secant slope.',
+                id: 'Baca koordinat $A$ dan $B$ langsung dari grafiknya, lalu terapkan kenaikan per jarak di antara keduanya — ini tak lain kemiringan tali busur.',
               },
             },
             {
@@ -209,6 +217,10 @@ export const module1: Module = {
                 en: 'The denominator must be $h$ itself, not the fixed point $2$, and $h$ must actually go to $0$ in a limit — a single small $h$ only ever gives an approximation, one more secant, not the tangent itself.',
                 id: 'Penyebutnya harus $h$ itu sendiri, bukan titik tetap $2$, dan $h$ harus sungguh-sungguh menuju $0$ dalam sebuah limit — satu $h$ kecil saja hanya pernah memberi hampiran, satu tali busur lagi, bukan garis singgungnya sendiri.',
               },
+              hint: {
+                en: 'Check each option against two separate requirements: is the denominator the shrinking gap itself, and does that gap actually approach zero in a limit rather than sit fixed?',
+                id: 'Periksa tiap pilihan terhadap dua syarat terpisah: apakah penyebutnya adalah celah yang menyusut itu sendiri, dan apakah celah itu sungguh menuju nol dalam sebuah limit, bukan tetap diam?',
+              },
             },
             {
               kind: 'quiz',
@@ -238,6 +250,10 @@ export const module1: Module = {
               explain: {
                 en: 'The tangent line rises from $(1,3)$ to $(5,15)$: slope $= \\dfrac{15-3}{5-1} = \\dfrac{12}{4} = 6$.',
                 id: 'Garis singgungnya naik dari $(1,3)$ ke $(5,15)$: kemiringan $= \\dfrac{15-3}{5-1} = \\dfrac{12}{4} = 6$.',
+              },
+              hint: {
+                en: 'Pick two points the drawn line clearly passes through and compute rise over run between them, exactly as you would for any straight line.',
+                id: 'Pilih dua titik yang jelas dilalui garis yang digambar dan hitung kenaikan per jarak di antara keduanya, persis seperti garis lurus mana pun.',
               },
             },
             {
@@ -378,6 +394,10 @@ export const module1: Module = {
                 en: 'The whole point of having the derivative **function** is that plugging in a number is all that is left to do — the limit has already been done once, for every $x$ at the same time.',
                 id: 'Seluruh gunanya memiliki **fungsi** turunan adalah memasukkan sebuah bilangan sudah cukup — limitnya sudah dikerjakan sekali, untuk setiap $x$ pada saat yang sama.',
               },
+              hint: {
+                en: 'You already have a formula that works for every $x$ at once — think about what is actually left to do with a formula once you have it, versus what deriving it from scratch would require.',
+                id: 'Kamu sudah punya rumus yang berlaku untuk setiap $x$ sekaligus — pikirkan apa yang sebenarnya masih perlu dilakukan dengan sebuah rumus setelah kamu memilikinya, dibanding menurunkannya dari awal.',
+              },
             },
             {
               kind: 'quiz',
@@ -406,6 +426,10 @@ export const module1: Module = {
               explain: {
                 en: 'The line $f\'(x)=2x$ sits below the axis exactly where $x<0$ — matching where the parabola is sloping downward.',
                 id: 'Garis $f\'(x)=2x$ berada di bawah sumbu persis tempat $x<0$ — cocok dengan tempat parabolanya melandai turun.',
+              },
+              hint: {
+                en: 'Find the interval where the line labeled $f\'$ dips below the horizontal axis, and check that it matches where the parabola itself is heading downward.',
+                id: 'Cari selang tempat garis berlabel $f\'$ turun di bawah sumbu mendatar, dan periksa apakah cocok dengan tempat parabolanya sendiri menurun.',
               },
             },
             {
@@ -488,6 +512,10 @@ export const module1: Module = {
                 en: '$f$ is perfectly continuous at $0$ — the failure is entirely about the derivative, not continuity. The corner makes the two one-sided difference quotients disagree, so the two-sided limit does not exist.',
                 id: '$f$ kontinu sempurna di $0$ — kegagalannya sepenuhnya tentang turunan, bukan kekontinuan. Sudutnya membuat kedua hasil bagi selisih sepihak tak sepakat, jadi limit dua sisinya tak ada.',
               },
+              hint: {
+                en: 'Work out the difference-quotient limit approaching from the left and separately from the right. Do the two one-sided results actually agree?',
+                id: 'Kerjakan limit hasil bagi selisih dari sisi kiri dan secara terpisah dari sisi kanan. Apakah kedua hasil sepihak itu benar-benar sepakat?',
+              },
             },
             {
               kind: 'quiz',
@@ -513,6 +541,10 @@ export const module1: Module = {
               explain: {
                 en: 'The V-shape is exactly a corner: the left arm suggests slope $-1$, the right arm suggests slope $1$, and a genuine tangent line would have to pick one — which the picture refuses to let it do.',
                 id: 'Bentuk V-nya persis sebuah sudut: lengan kirinya menyarankan kemiringan $-1$, lengan kanannya menyarankan kemiringan $1$, dan garis singgung sejati harus memilih salah satu — dan gambarnya menolak membiarkan itu terjadi.',
+              },
+              hint: {
+                en: 'A genuine tangent line has to commit to one single slope. Look at the two arms of the V near $x=0$ — do they suggest the same slope, or two different ones?',
+                id: 'Garis singgung sejati harus berkomitmen pada satu kemiringan tunggal. Perhatikan kedua lengan bentuk V dekat $x=0$ — apakah keduanya menyarankan kemiringan yang sama, atau dua yang berbeda?',
               },
             },
             {

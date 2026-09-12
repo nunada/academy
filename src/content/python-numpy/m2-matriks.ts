@@ -67,6 +67,10 @@ export const module2: Module = {
                 en: 'Transposing always swaps the row and column counts — the shape flips.',
                 id: 'Transposisi selalu menukar jumlah baris dan kolom — bentuknya berbalik.',
               },
+              hint: {
+                en: "Transposing always swaps which count was rows and which was columns — don't assume the shape stays the same.",
+                id: 'Transposisi selalu menukar mana yang tadinya baris dan mana yang kolom — jangan asumsikan bentuknya tetap sama.',
+              },
             },
             {
               kind: 'fill',
@@ -81,6 +85,10 @@ export const module2: Module = {
                 en: '.T is the attribute (no parentheses) that flips rows and columns.',
                 id: '.T adalah atribut (tanpa kurung) yang membalik baris dan kolom.',
               },
+              hint: {
+                en: 'This is a single-letter attribute, not a function call — no parentheses needed.',
+                id: 'Ini atribut satu huruf, bukan pemanggilan fungsi — tidak perlu tanda kurung.',
+              },
             },
             {
               kind: 'order',
@@ -93,6 +101,10 @@ export const module2: Module = {
               explain: {
                 en: 'The matrix has to exist before .T can flip it.',
                 id: 'Matriksnya harus ada dulu sebelum .T bisa membaliknya.',
+              },
+              hint: {
+                en: 'The matrix has to be built before `.T` can flip it, and numpy needs importing before `np.array` is called.',
+                id: 'Matriksnya harus dibangun dulu sebelum `.T` bisa membaliknya, dan numpy perlu diimpor sebelum `np.array` dipanggil.',
               },
             },
             {
@@ -161,6 +173,10 @@ export const module2: Module = {
                 en: 'Row 1 gives 0*1 + (-1)*0 = 0; row 2 gives 1*1 + 0*0 = 1 — this particular matrix rotates a point 90°.',
                 id: 'Baris 1 memberi 0*1 + (-1)*0 = 0; baris 2 memberi 1*1 + 0*0 = 1 — matriks khusus ini memutar titik 90°.',
               },
+              hint: {
+                en: 'Work out each row of the matrix dotted with the vector separately — row 1 gives the first output number, row 2 gives the second.',
+                id: 'Hitung tiap baris matriks yang di-dot dengan vektornya secara terpisah — baris 1 memberi angka keluaran pertama, baris 2 memberi yang kedua.',
+              },
             },
             {
               kind: 'fill',
@@ -175,6 +191,10 @@ export const module2: Module = {
                 en: '@ is the operator for real matrix (or matrix-vector) multiplication.',
                 id: '@ adalah operator untuk perkalian matriks (atau matriks-vektor) sungguhan.',
               },
+              hint: {
+                en: 'This is real matrix multiplication, not elementwise — which operator did the earlier examples use for that, distinct from `*`?',
+                id: 'Ini perkalian matriks sungguhan, bukan elementwise — operator apa yang dipakai contoh sebelumnya untuk itu, berbeda dari `*`?',
+              },
             },
             {
               kind: 'order',
@@ -187,6 +207,10 @@ export const module2: Module = {
               explain: {
                 en: 'This particular matrix flips the y-coordinate, leaving x untouched — a reflection over the x-axis.',
                 id: 'Matriks khusus ini membalik koordinat y, membiarkan x tak tersentuh — pencerminan terhadap sumbu x.',
+              },
+              hint: {
+                en: 'Both the matrix and the vector have to exist before `@` can combine them, and the import comes before either.',
+                id: 'Baik matriks maupun vektornya harus ada dulu sebelum `@` bisa menggabungkannya, dan impornya datang sebelum keduanya.',
               },
             },
             {
@@ -294,6 +318,10 @@ export const module2: Module = {
                 en: 'Each row of A holds one equation\'s coefficients, in the same order as the matching entry in b.',
                 id: 'Tiap baris A menyimpan koefisien satu persamaan, dalam urutan yang sama seperti entri yang cocok di b.',
               },
+              hint: {
+                en: "Match each row of A to one equation's coefficients in order, then check whether the matching entry in b is that same equation's right-hand side.",
+                id: 'Cocokkan tiap baris A dengan koefisien satu persamaan secara berurutan, lalu periksa apakah entri yang cocok di b adalah ruas kanan persamaan yang sama.',
+              },
             },
             {
               kind: 'fill',
@@ -308,6 +336,10 @@ export const module2: Module = {
                 en: 'solve is the function under np.linalg that answers a system of equations directly.',
                 id: 'solve adalah fungsi di bawah np.linalg yang langsung menjawab sistem persamaan.',
               },
+              hint: {
+                en: 'You want the np.linalg function whose entire job is answering a system of equations directly, given the coefficient matrix and the right-hand sides.',
+                id: 'Kamu butuh fungsi np.linalg yang tugasnya langsung menjawab sistem persamaan, diberikan matriks koefisien dan ruas kanannya.',
+              },
             },
             {
               kind: 'order',
@@ -320,6 +352,10 @@ export const module2: Module = {
               explain: {
                 en: 'A and b both have to exist before solve can use them together.',
                 id: 'A dan b harus ada dulu keduanya sebelum solve bisa memakainya bersama.',
+              },
+              hint: {
+                en: 'Both A and b have to exist before `solve` can use them together, and the import comes first.',
+                id: 'Baik A maupun b harus ada dulu sebelum `solve` bisa memakainya bersama, dan impornya datang lebih dulu.',
               },
             },
             {
@@ -389,6 +425,10 @@ export const module2: Module = {
                 en: 'A @ x is [5, 10], and 10 is not close to 11 by any sensible tolerance — allclose correctly says False.',
                 id: 'A @ x adalah [5, 10], dan 10 tidak dekat dengan 11 dengan toleransi wajar mana pun — allclose dengan benar mengatakan False.',
               },
+              hint: {
+                en: 'Compute A @ x yourself first, then compare that result to the given b entry by entry — are they actually close?',
+                id: 'Hitung dulu A @ x sendiri, lalu bandingkan hasilnya dengan b yang diberikan satu per satu — apakah keduanya benar-benar dekat?',
+              },
             },
             {
               kind: 'fill',
@@ -402,6 +442,10 @@ export const module2: Module = {
               explain: {
                 en: 'allclose is the tolerant comparison built for exactly this kind of check.',
                 id: 'allclose adalah perbandingan toleran yang dibangun persis untuk pemeriksaan semacam ini.',
+              },
+              hint: {
+                en: 'You need the numpy function built specifically to compare two arrays while allowing a small floating-point difference.',
+                id: 'Kamu butuh fungsi numpy yang dibangun khusus untuk membandingkan dua array sambil mengizinkan selisih titik-mengambang kecil.',
               },
             },
             {
@@ -421,6 +465,10 @@ export const module2: Module = {
               explain: {
                 en: 'x has to be solved for before it can be checked — the verification always comes last.',
                 id: 'x harus diselesaikan dulu sebelum bisa diperiksa — verifikasinya selalu datang terakhir.',
+              },
+              hint: {
+                en: 'x has to be solved for before it can be checked against b, and A and b both need to exist before solve runs.',
+                id: 'x harus diselesaikan dulu sebelum bisa diperiksa terhadap b, dan A serta b harus ada dulu sebelum solve dijalankan.',
               },
             },
             {

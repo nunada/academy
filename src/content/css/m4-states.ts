@@ -88,6 +88,10 @@ export const module4: Module = {
                 en: 'Tab moves focus, not the pointer. Without a :focus rule there is no visible feedback at all.',
                 id: 'Tab memindahkan fokus, bukan penunjuk. Tanpa aturan :focus, tidak ada umpan balik yang terlihat sama sekali.',
               },
+              hint: {
+                en: 'Think about what triggers when someone moves between links with the Tab key rather than a mouse, and whether that trigger is the same one this rule reacts to.',
+                id: 'Pikirkan apa yang terpicu saat seseorang berpindah antar tautan dengan tombol Tab, bukan tetikus, dan apakah pemicu itu sama dengan yang direspons aturan ini.',
+              },
             },
             {
               kind: 'web',
@@ -218,6 +222,10 @@ export const module4: Module = {
               explain: {
                 en: 'Put it on :hover and the element eases in but snaps back the moment the pointer leaves.',
                 id: 'Taruh di :hover dan elemennya meluncur masuk tapi meloncat kembali begitu penunjuknya pergi.',
+              },
+              hint: {
+                en: 'Think about what happens on the way back to the resting state if the animation instruction only exists on the state being left.',
+                id: 'Pikirkan apa yang terjadi saat kembali ke keadaan diam jika instruksi animasinya hanya ada pada keadaan yang sedang ditinggalkan.',
               },
             },
             {

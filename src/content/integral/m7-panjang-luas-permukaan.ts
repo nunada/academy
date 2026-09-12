@@ -67,6 +67,10 @@ export const module7: Module = {
                 en: "A line's derivative never changes, so the square root term inside the integral is the same number everywhere — the integral of a constant over $[a,b]$ is just that constant times $(b-a)$, which is exactly the run times the secant factor that recovers the straight-line distance.",
                 id: 'Turunan garis tak pernah berubah, sehingga suku akar kuadrat di dalam integralnya adalah bilangan yang sama di mana-mana — integral konstanta pada $[a,b]$ hanyalah konstanta itu dikali $(b-a)$, yang persis merupakan jalan dikali faktor tali busur yang memulihkan jarak garis lurus.',
               },
+              hint: {
+                en: "A line's derivative $f'(x)$ never changes across the interval — think about what happens when you integrate a quantity that stays exactly the same number the whole way.",
+                id: 'Turunan garis $f\'(x)$ tak pernah berubah sepanjang intervalnya — pikirkan apa yang terjadi saat kamu mengintegralkan besaran yang tetap persis bilangan yang sama sepanjang jalan.',
+              },
             },
             {
               kind: 'fill',
@@ -81,6 +85,10 @@ export const module7: Module = {
               explain: {
                 en: "$f'(x) = 2$, and $1 + 2^2 = 5$ sits under the square root, constant across the whole interval.",
                 id: "$f'(x) = 2$, dan $1 + 2^2 = 5$ duduk di bawah akar kuadrat, konstan sepanjang interval.",
+              },
+              hint: {
+                en: "Differentiate $f(x) = 2x + 1$ first to fill the first blank, then square that result and add $1$ for the second.",
+                id: 'Turunkan $f(x) = 2x + 1$ lebih dahulu untuk mengisi kekosongan pertama, lalu kuadratkan hasilnya dan tambah $1$ untuk kekosongan kedua.',
               },
             },
             {
@@ -157,6 +165,10 @@ export const module7: Module = {
                 en: 'The calculus result, $\\pi r$, is exactly what the independent geometric formula (half of $2\\pi r$) predicts — two completely different methods arriving at the same number is strong confirmation.',
                 id: 'Hasil kalkulusnya, $\\pi r$, persis apa yang diprediksi rumus geometris yang independen (setengah dari $2\\pi r$) — dua metode yang sama sekali berbeda sampai pada angka yang sama adalah konfirmasi yang kuat.',
               },
+              hint: {
+                en: 'The concept above computed the arc length integral one way, using calculus — think about what independent formula from plain geometry it was then compared against.',
+                id: 'Konsep di atas menghitung integral panjang busurnya dengan satu cara, memakai kalkulus — pikirkan rumus independen apa dari geometri biasa yang kemudian dibandingkan dengannya.',
+              },
             },
             {
               kind: 'quiz',
@@ -182,6 +194,10 @@ export const module7: Module = {
               explain: {
                 en: 'This curve is literally half a circle of radius $3$, and geometry has always said a full circumference is $2\\pi r$ — half of that, $\\pi r$, is $3\\pi$ here regardless of which method computes it.',
                 id: 'Kurva ini secara harfiah setengah lingkaran berjari-jari $3$, dan geometri selalu menyatakan keliling penuh adalah $2\\pi r$ — setengahnya, $\\pi r$, adalah $3\\pi$ di sini tak peduli metode mana yang menghitungnya.',
+              },
+              hint: {
+                en: "Read the radius directly off the curve's equation, $\\sqrt{9-x^2}$, and recall what fraction of a full circle's circumference a semicircle's arc always is.",
+                id: 'Baca jari-jarinya langsung dari persamaan kurvanya, $\\sqrt{9-x^2}$, dan ingat berapa bagian dari keliling lingkaran penuh yang selalu menjadi busur setengah lingkaran.',
               },
             },
             {
@@ -304,6 +320,10 @@ export const module7: Module = {
                 en: "Each infinitesimal arc-length piece, when rotated, sweeps out a thin ring whose area is that piece's length times the circumference at that point — $2\\pi f(x)$ attached directly onto the same $\\sqrt{1+(f')^2}$ term.",
                 id: "Tiap potongan panjang busur yang sangat kecil, ketika diputar, menyapu cincin tipis yang luasnya adalah panjang potongan itu dikali keliling di titik itu — $2\\pi f(x)$ dipasang langsung pada suku $\\sqrt{1+(f')^2}$ yang sama.",
               },
+              hint: {
+                en: "Compare the two integrands side by side — the surface area formula's integrand still has the same square root inside it as arc length's. What extra factor has been multiplied onto it?",
+                id: 'Bandingkan kedua integrand berdampingan — integrand luas permukaan masih punya akar kuadrat yang sama di dalamnya seperti panjang busur. Faktor tambahan apa yang telah dikalikan padanya?',
+              },
             },
             {
               kind: 'quiz',
@@ -329,6 +349,10 @@ export const module7: Module = {
               explain: {
                 en: 'A semicircle rotated a full turn around its diameter sweeps out exactly a sphere of the same radius — the shape a semicircle is famous for producing.',
                 id: 'Setengah lingkaran yang diputar satu putaran penuh mengelilingi diameternya menyapu tepat sebuah bola dengan jari-jari yang sama — bentuk yang terkenal dihasilkan oleh setengah lingkaran.',
+              },
+              hint: {
+                en: 'Picture spinning this half-disk boundary all the way around the x-axis, its diameter — what three-dimensional shape does a semicircle famously trace out when it does a full turn?',
+                id: 'Bayangkan memutar batas setengah cakram ini sepenuhnya mengelilingi sumbu-x, diameternya — bentuk tiga dimensi apa yang terkenal dijejaki setengah lingkaran ketika berputar satu putaran penuh?',
               },
             },
             {
@@ -394,6 +418,10 @@ export const module7: Module = {
                 en: "The slant height is exactly what the arc-length factor $\\sqrt{1+(f')^2}$ measures for a straight line — the true length of the segment being swept, as opposed to $h$, which is only its horizontal projection.",
                 id: "Garis pelukis persis apa yang diukur faktor panjang-busur $\\sqrt{1+(f')^2}$ untuk garis lurus — panjang sebenarnya segmen yang disapu, berbeda dari $h$, yang hanya proyeksi mendatarnya.",
               },
+              hint: {
+                en: "Trace back to where $l$ came from in the derivation above — it replaced $\\sqrt{1+(f')^2}$ for this particular line. What does that square-root factor measure for a straight segment, as opposed to just its horizontal run $h$?",
+                id: 'Telusuri dari mana $l$ berasal pada penurunan di atas — ia menggantikan $\\sqrt{1+(f\')^2}$ untuk garis khusus ini. Apa yang diukur faktor akar kuadrat itu untuk sebuah segmen lurus, berbeda dari sekadar jalan mendatarnya $h$?',
+              },
             },
             {
               kind: 'order',
@@ -411,6 +439,10 @@ export const module7: Module = {
               explain: {
                 en: 'Find the slant height first from the Pythagorean theorem, then substitute both $r$ and $l$ into the formula, then multiply out.',
                 id: 'Cari garis pelukisnya lebih dahulu dari teorema Pythagoras, lalu substitusikan $r$ dan $l$ ke rumusnya, baru kalikan.',
+              },
+              hint: {
+                en: "You can't substitute a numeric value for $l$ into the formula until the Pythagorean theorem has actually produced one — and you can't multiply out a final number until both $r$ and $l$ have been substituted in.",
+                id: 'Kamu tak bisa mensubstitusikan nilai numerik untuk $l$ ke rumusnya sebelum teorema Pythagoras benar-benar menghasilkannya — dan kamu tak bisa mengalikan hasil akhirnya sebelum $r$ dan $l$ keduanya disubstitusikan.',
               },
             },
             {

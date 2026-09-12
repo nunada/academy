@@ -67,6 +67,10 @@ export const module8: Module = {
                 en: 'The integral of a larger function over the same width of interval always gives a larger result — and $F(x) = kx$ is genuinely larger throughout $[0.2, 0.3]$ than throughout $[0, 0.1]$.',
                 id: 'Integral dari fungsi yang lebih besar pada lebar interval yang sama selalu memberi hasil yang lebih besar — dan $F(x) = kx$ memang lebih besar sepanjang $[0.2, 0.3]$ dibanding sepanjang $[0, 0.1]$.',
               },
+              hint: {
+                en: 'Compare the value of $F(x) = kx$ across the two intervals directly — is the spring pushing back with the same force throughout $[0.2, 0.3]$ as it does throughout $[0, 0.1]$?',
+                id: 'Bandingkan nilai $F(x) = kx$ pada kedua interval secara langsung — apakah pegasnya melawan dengan gaya yang sama sepanjang $[0.2, 0.3]$ seperti sepanjang $[0, 0.1]$?',
+              },
             },
             {
               kind: 'fill',
@@ -81,6 +85,10 @@ export const module8: Module = {
               explain: {
                 en: '0.2 squared is 0.04, and 50 times 0.04 is 2.',
                 id: '0.2 dikuadratkan adalah 0.04, dan 50 kali 0.04 adalah 2.',
+              },
+              hint: {
+                en: 'Substitute the upper bound $x = 0.2$ into $50x^2$ one operation at a time — square it first for the first blank, then multiply by $50$ for the second.',
+                id: 'Substitusikan batas atas $x = 0.2$ ke $50x^2$ satu operasi setiap kali — kuadratkan lebih dahulu untuk kekosongan pertama, lalu kalikan dengan $50$ untuk kekosongan kedua.',
               },
             },
             {
@@ -146,6 +154,10 @@ export const module8: Module = {
                 en: 'A single pressure-times-area calculation would only be valid if pressure were the same everywhere on the plate. Since pressure genuinely depends on depth, each thin strip needs its own pressure, and integrating adds all those strips up correctly.',
                 id: 'Penghitungan tekanan-kali-luas tunggal hanya sah bila tekanannya sama di mana-mana pada lempengnya. Karena tekanan memang bergantung pada kedalaman, tiap jalur tipis memerlukan tekanannya sendiri, dan mengintegralkan menjumlahkan semua jalur itu dengan benar.',
               },
+              hint: {
+                en: "Compare the pressure $\\rho g y$ at the plate's shallowest strip to the pressure at its deepest strip — are they the same number?",
+                id: 'Bandingkan tekanan $\\rho g y$ pada jalur terdangkal lempeng dengan tekanan pada jalur terdalamnya — apakah keduanya bilangan yang sama?',
+              },
             },
             {
               kind: 'order',
@@ -164,6 +176,10 @@ export const module8: Module = {
               explain: {
                 en: 'Set up the integral with the width and $\\rho g$ in place, antidifferentiate, substitute the bounds, then multiply out.',
                 id: 'Susun integralnya dengan lebar dan $\\rho g$ terpasang, antiturunkan, substitusikan batasnya, baru kalikan.',
+              },
+              hint: {
+                en: "You can't substitute a numeric bound into an antiderivative until that antiderivative has actually been found — and you can't reach a final number until both bounds have been plugged in and subtracted.",
+                id: 'Kamu tak bisa mensubstitusikan batas numerik ke antiturunan sebelum antiturunan itu benar-benar ditemukan — dan kamu tak bisa mendapat angka akhir sebelum kedua batasnya dimasukkan dan dikurangkan.',
               },
             },
             {
@@ -275,6 +291,10 @@ export const module8: Module = {
                 en: 'The center of mass is a mass-weighted average of position. When more mass sits toward one end, that end has proportionally more influence on the average, pulling the balance point toward it.',
                 id: 'Pusat massa adalah rata-rata posisi yang dibobot massa. Ketika lebih banyak massa duduk ke satu ujung, ujung itu punya pengaruh yang proporsional lebih besar pada rata-ratanya, menarik titik keseimbangannya ke arah situ.',
               },
+              hint: {
+                en: 'Think of the moment integral $\\int x\\,\\delta(x)\\,dx$ as a weighted average of position — which end\'s positions get multiplied by the larger weights here?',
+                id: 'Bayangkan integral momen $\\int x\\,\\delta(x)\\,dx$ sebagai rata-rata posisi yang dibobot — posisi di ujung mana yang dikalikan bobot lebih besar di sini?',
+              },
             },
             {
               kind: 'fill',
@@ -289,6 +309,10 @@ export const module8: Module = {
               explain: {
                 en: '$(b^2 - a^2)/(b - a)$ simplifies to $(a + b)$, and dividing by the extra factor of 2 in the numerator leaves the plain average $(a + b)/2$.',
                 id: '$(b^2 - a^2)/(b - a)$ menyederhana menjadi $(a + b)$, dan membagi dengan faktor tambahan 2 di pembilang menyisakan rata-rata biasa $(a + b)/2$.',
+              },
+              hint: {
+                en: "Factor $b^2 - a^2$ as a difference of squares and cancel the common $(b-a)$ factor top and bottom — what's left over, alongside the existing $a$ and the denominator's own $2$?",
+                id: 'Faktorkan $b^2 - a^2$ sebagai selisih kuadrat dan coret faktor $(b-a)$ yang sama di atas dan bawah — apa yang tersisa, berdampingan dengan $a$ yang sudah ada dan $2$ di penyebutnya sendiri?',
               },
             },
             {
@@ -369,6 +393,10 @@ export const module8: Module = {
                 en: 'A shape symmetric about a vertical line balances perfectly across that line, so its horizontal balance point — the x-coordinate of the centroid — must sit exactly on it.',
                 id: 'Bentuk yang simetris terhadap garis tegak seimbang sempurna melintasi garis itu, sehingga titik keseimbangan mendatarnya — koordinat x sentroidnya — harus duduk tepat di situ.',
               },
+              hint: {
+                en: 'A shape that balances perfectly across a vertical line has no reason to tip toward either side of it — where must its horizontal balance point sit relative to that line?',
+                id: 'Bentuk yang seimbang sempurna melintasi garis tegak tak punya alasan untuk condong ke salah satu sisinya — di mana harus duduk titik keseimbangan mendatarnya relatif terhadap garis itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -398,6 +426,10 @@ export const module8: Module = {
               explain: {
                 en: '$y = x^2$ rises steeply, so the strips near $x = 2$ are far taller (and heavier) than the strips near $x = 0$ — an asymmetric region has no reason to balance at its plain geometric midpoint.',
                 id: '$y = x^2$ naik dengan curam, sehingga jalur dekat $x = 2$ jauh lebih tinggi (dan lebih berat) dibanding jalur dekat $x = 0$ — daerah yang tak simetris tak punya alasan untuk seimbang di titik tengah geometris biasanya.',
+              },
+              hint: {
+                en: 'Compare the height of the region (and so its area) near $x = 0$ to its height near $x = 2$ — which side is contributing more weight to the balance point?',
+                id: 'Bandingkan tinggi daerahnya (dan karenanya luasnya) dekat $x = 0$ dengan tingginya dekat $x = 2$ — sisi mana yang menyumbang bobot lebih besar pada titik keseimbangannya?',
               },
             },
             {

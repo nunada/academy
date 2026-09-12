@@ -102,6 +102,10 @@ export const module9: Module = {
                 en: '401 is about identity. A wrong address gives 404, and a malformed body gives 400.',
                 id: '401 soal identitas. Alamat yang salah memberi 404, dan isi yang cacat memberi 400.',
               },
+              hint: {
+                en: 'Match the status code to what the earlier examples said 401 specifically means, as opposed to 404 or 400.',
+                id: 'Cocokkan kode statusnya dengan apa yang dikatakan contoh sebelumnya tentang arti 401 secara spesifik, dibanding 404 atau 400.',
+              },
             },
             {
               kind: 'fill',
@@ -118,6 +122,10 @@ export const module9: Module = {
               explain: {
                 en: 'Authorization is the standard header name; Bearer says the value is a token.',
                 id: 'Authorization adalah nama header yang baku; Bearer menyatakan bahwa nilainya berupa token.',
+              },
+              hint: {
+                en: "This is the standard header name services expect credentials under — not a made-up word, so check the earlier examples for the exact spelling.",
+                id: 'Ini nama header baku yang diharapkan layanan untuk membawa kredensial — bukan kata sembarangan, jadi periksa contoh sebelumnya untuk ejaan tepatnya.',
               },
             },
             {
@@ -225,6 +233,10 @@ export const module9: Module = {
                 en: 'A failure body has a different shape. That is exactly why the status is checked first.',
                 id: 'Isi respons yang gagal berbentuk berbeda. Justru itulah sebabnya statusnya diperiksa lebih dulu.',
               },
+              hint: {
+                en: "Recall that a failed response's body has a different shape than a successful one — think about which key it actually carries instead of `data`.",
+                id: 'Ingat bahwa isi respons yang gagal punya bentuk berbeda dari yang berhasil — pikirkan kunci apa yang sebenarnya dibawanya, bukan `data`.',
+              },
             },
             {
               kind: 'order',
@@ -254,6 +266,10 @@ export const module9: Module = {
               explain: {
                 en: 'Import, build the header, send, check, and only then read the body.',
                 id: 'Impor, bangun header, kirim, periksa, dan baru setelah itu baca isinya.',
+              },
+              hint: {
+                en: "The header has to be built before it can be passed into the request, and the response needs checking with `.ok` before its body gets read.",
+                id: 'Header-nya harus dibangun dulu sebelum bisa dioper ke permintaan, dan responsnya perlu diperiksa dengan `.ok` sebelum isinya dibaca.',
               },
             },
             {
@@ -456,6 +472,10 @@ export const module9: Module = {
                 en: 'GET only reads. Sending the same GET twice should give the same answer and leave no trace.',
                 id: 'GET hanya membaca. Mengirim GET yang sama dua kali seharusnya memberi jawaban sama dan tidak meninggalkan jejak.',
               },
+              hint: {
+                en: 'Think back to what each verb is meant to do to the server — one is described as asking, the other as changing.',
+                id: 'Ingat kembali apa yang seharusnya dilakukan tiap kata kerja terhadap server — satu dideskripsikan sebagai bertanya, yang lain sebagai mengubah.',
+              },
             },
             {
               kind: 'code',
@@ -583,6 +603,10 @@ export const module9: Module = {
               explain: {
                 en: 'Git keeps the history, and a public key may already be copied. Only revoking it actually ends the exposure.',
                 id: 'Git menyimpan riwayatnya, dan kunci yang sudah publik mungkin telanjur disalin. Hanya pencabutan yang benar-benar mengakhiri paparannya.',
+              },
+              hint: {
+                en: "Think about whether removing the line in a new commit actually erases it from Git's history, or from anyone who already saw it.",
+                id: 'Pikirkan apakah menghapus barisnya lewat commit baru benar-benar menghilangkannya dari riwayat Git, atau dari siapa pun yang sudah sempat melihatnya.',
               },
             },
             {

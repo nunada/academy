@@ -85,6 +85,10 @@ export const module2: Module = {
                 en: 'Padding is inside the background. Margin would push the whole coloured box away instead.',
                 id: 'Padding berada di dalam latar. Margin justru akan mendorong seluruh kotak berwarnanya menjauh.',
               },
+              hint: {
+                en: 'Think about which of these lives between the content and the border, versus the one that lives entirely outside the border.',
+                id: 'Pikirkan mana di antara ini yang berada di antara isi dan border, dibandingkan yang berada sepenuhnya di luar border.',
+              },
             },
             {
               kind: 'fill',
@@ -98,6 +102,10 @@ export const module2: Module = {
               explain: {
                 en: 'The middle value is the style — solid, dashed, dotted, and so on.',
                 id: 'Nilai tengahnya adalah gayanya — solid, dashed, dotted, dan seterusnya.',
+              },
+              hint: {
+                en: 'The prompt already named the border style it wants — this blank sits in the middle position of the shorthand, exactly where a border\'s style belongs.',
+                id: 'Prompt-nya sudah menyebutkan gaya border yang diinginkan — titik kosong ini berada di posisi tengah singkatannya, tepat di tempat gaya border seharusnya ditulis.',
               },
             },
             {
@@ -224,6 +232,10 @@ export const module2: Module = {
               explain: {
                 en: '200 + 10 + 10 + 5 + 5. Padding and border are counted on both sides.',
                 id: '200 + 10 + 10 + 5 + 5. Padding dan border dihitung di kedua sisi.',
+              },
+              hint: {
+                en: 'With the default box-sizing, padding and border are added on top of the width — on both sides. Count each one twice before adding it to the base width.',
+                id: 'Dengan box-sizing bawaan, padding dan border ditambahkan di atas width — pada kedua sisinya. Hitung masing-masing dua kali sebelum menambahkannya ke width dasar.',
               },
             },
             {
@@ -442,6 +454,10 @@ export const module2: Module = {
                 en: 'An inline box is as wide as its content. Switch it to inline-block or block first.',
                 id: 'Kotak inline hanya selebar isinya. Ubah dulu ke inline-block atau block.',
               },
+              hint: {
+                en: 'Think about the default flow behaviour of an element like span, and which box-related properties simply do not apply under that behaviour.',
+                id: 'Pikirkan perilaku alir bawaan elemen seperti span, dan properti terkait kotak mana yang memang tidak berlaku pada perilaku itu.',
+              },
             },
             {
               kind: 'web',
@@ -553,6 +569,10 @@ export const module2: Module = {
               explain: {
                 en: 'A block already fills its parent. Auto margins can only centre a box narrower than the space available.',
                 id: 'Sebuah block sudah memenuhi induknya. Margin auto hanya bisa memusatkan kotak yang lebih sempit dari ruang yang ada.',
+              },
+              hint: {
+                en: 'Auto margins split whatever space is left over between the box and its parent — think about what has to be set first for there to be any leftover space at all.',
+                id: 'Margin auto membagi sisa ruang antara kotak dan induknya — pikirkan apa yang harus ditentukan lebih dulu agar ada sisa ruang sama sekali.',
               },
             },
             {

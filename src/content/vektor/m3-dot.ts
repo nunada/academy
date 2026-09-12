@@ -65,6 +65,10 @@ export const module3: Module = {
                 en: 'Three products are computed and then added into a single number. The vector perpendicular to both is the cross product, which is Module 4.',
                 id: 'Tiga hasil kali dihitung lalu dijumlahkan menjadi satu bilangan. Vektor yang tegak lurus keduanya adalah perkalian silang, yang dibahas pada Modul 4.',
               },
+              hint: {
+                en: 'Look at how $\\vec{a} \\cdot \\vec{b}$ is actually built: three products, then added together into one number. Does that process ever leave behind a direction?',
+                id: 'Perhatikan bagaimana $\\vec{a} \\cdot \\vec{b}$ sebenarnya disusun: tiga hasil kali, lalu dijumlahkan menjadi satu bilangan. Apakah proses itu pernah menyisakan sebuah arah?',
+              },
             },
             {
               kind: 'quiz',
@@ -93,6 +97,10 @@ export const module3: Module = {
                 en: 'Reading $\\vec{a} = (3, 2)$ and $\\vec{b} = (-1, 4)$ off the grid: $\\vec{a} \\cdot \\vec{b} = (3)(-1) + (2)(4) = -3 + 8 = 5$.',
                 id: 'Membaca $\\vec{a} = (3, 2)$ dan $\\vec{b} = (-1, 4)$ dari kisinya: $\\vec{a} \\cdot \\vec{b} = (3)(-1) + (2)(4) = -3 + 8 = 5$.',
               },
+              hint: {
+                en: 'Read both vectors\' components off the grid first, then multiply matching slots and add both products together — don\'t stop after just one.',
+                id: 'Baca dulu komponen kedua vektor dari kisinya, lalu kalikan slot yang bersesuaian dan jumlahkan kedua hasil kalinya — jangan berhenti setelah satu saja.',
+              },
             },
             {
               kind: 'fill',
@@ -107,6 +115,10 @@ export const module3: Module = {
               explain: {
                 en: 'Two of the three products are negative, and $8 - 5 - 6 = -3$. A negative dot product is perfectly ordinary — the next lesson says what it means.',
                 id: 'Dua dari tiga hasil kalinya negatif, dan $8 - 5 - 6 = -3$. Perkalian titik yang negatif itu biasa saja — pelajaran berikutnya menjelaskan artinya.',
+              },
+              hint: {
+                en: 'The three products are already worked out for you in the template — just carry out the subtraction left to right, the way it\'s written.',
+                id: 'Ketiga hasil kalinya sudah dikerjakan dalam templatenya — tinggal lakukan pengurangan dari kiri ke kanan, sesuai yang tertulis.',
               },
             },
             {
@@ -195,6 +207,10 @@ export const module3: Module = {
                 en: 'The magnitudes are positive, so a negative dot product forces $\\cos\\theta < 0$, which means $90° < \\theta \\leq 180°$. The magnitudes would only be needed to pin down the exact angle.',
                 id: 'Besar kedua vektornya positif, jadi perkalian titik yang negatif memaksa $\\cos\\theta < 0$, yang berarti $90° < \\theta \\leq 180°$. Besarnya baru diperlukan untuk menentukan sudut tepatnya.',
               },
+              hint: {
+                en: 'In $\\vec{a} \\cdot \\vec{b} = |\\vec{a}||\\vec{b}|\\cos\\theta$, both magnitudes are always positive. So what sign must $\\cos\\theta$ have here, and which range of angles gives that sign?',
+                id: 'Pada $\\vec{a} \\cdot \\vec{b} = |\\vec{a}||\\vec{b}|\\cos\\theta$, kedua besarnya selalu positif. Jadi tanda apa yang harus dimiliki $\\cos\\theta$ di sini, dan rentang sudut mana yang memberi tanda itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -222,6 +238,10 @@ export const module3: Module = {
                 en: 'The angle between $\\vec{a}$ and $\\vec{b}$ is clearly more than $90°$ in the drawing, so $\\cos\\theta < 0$ and therefore $\\vec{a} \\cdot \\vec{b} < 0$ — the sign read straight off the geometry.',
                 id: 'Sudut antara $\\vec{a}$ dan $\\vec{b}$ jelas lebih dari $90°$ pada gambarnya, jadi $\\cos\\theta < 0$ dan karenanya $\\vec{a} \\cdot \\vec{b} < 0$ — tandanya dibaca langsung dari geometrinya.',
               },
+              hint: {
+                en: 'You don\'t need any arithmetic here — just estimate the angle between the two arrows by eye. Is it clearly under 90°, right at 90°, or clearly over?',
+                id: 'Kamu tak perlu berhitung di sini — cukup perkirakan sudut antara kedua anak panah dengan mata. Apakah jelas di bawah 90°, tepat 90°, atau jelas di atasnya?',
+              },
             },
             {
               kind: 'order',
@@ -240,6 +260,10 @@ export const module3: Module = {
               explain: {
                 en: 'Dot product, then the two magnitudes, then the quotient, then the inverse cosine. The order never changes, whatever the vectors are.',
                 id: 'Perkalian titik, lalu kedua besarnya, lalu hasil baginya, lalu invers cosinusnya. Urutannya tak pernah berubah, apa pun vektornya.',
+              },
+              hint: {
+                en: 'You need the dot product and both magnitudes already in hand before you can form the fraction for $\\cos\\theta$ — and you need that fraction before an inverse cosine means anything.',
+                id: 'Kamu butuh perkalian titik dan kedua besarnya sudah tersedia sebelum bisa menyusun pecahan untuk $\\cos\\theta$ — dan kamu butuh pecahan itu sebelum invers cosinus punya arti.',
               },
             },
             {
@@ -392,6 +416,10 @@ export const module3: Module = {
                 en: '$2 - 4 + 2 = 0$, so they are perpendicular. Having the same magnitude, which they do, says nothing at all about the angle.',
                 id: '$2 - 4 + 2 = 0$, jadi keduanya tegak lurus. Besarnya yang kebetulan sama sama sekali tidak berbicara tentang sudutnya.',
               },
+              hint: {
+                en: 'The only test for perpendicularity is whether the dot product comes out to exactly zero — compute it term by term rather than comparing anything else about the two vectors.',
+                id: 'Satu-satunya uji ketegaklurusan adalah apakah perkalian titiknya persis nol — hitung suku demi suku, bukan membandingkan hal lain dari kedua vektornya.',
+              },
             },
             {
               kind: 'quiz',
@@ -420,6 +448,10 @@ export const module3: Module = {
                 en: '$\\vec{a} \\cdot \\vec{b} = (4)(-1) + (1)(3) = -1 \\neq 0$, so they are not exactly perpendicular, however close the picture looks. Only an exact zero counts — which is the whole reason to compute rather than eyeball.',
                 id: '$\\vec{a} \\cdot \\vec{b} = (4)(-1) + (1)(3) = -1 \\neq 0$, jadi keduanya tidak persis tegak lurus, sedekat apa pun gambarnya tampak. Hanya nol yang tepat yang berlaku — dan itulah sebabnya harus dihitung, bukan sekadar dikira-kira.',
               },
+              hint: {
+                en: 'Looking close to a right angle is not the same as being one. Read the components off the grid and compute the dot product exactly — is it exactly zero?',
+                id: 'Tampak mendekati sudut siku-siku tidak sama dengan benar-benar siku-siku. Baca komponennya dari kisi dan hitung perkalian titiknya secara persis — apakah persis nol?',
+              },
             },
             {
               kind: 'fill',
@@ -434,6 +466,10 @@ export const module3: Module = {
               explain: {
                 en: '$2 - 2k = 0$ gives $k = 1$. Substituting back, $(2, 1, -1) \\cdot (3, -2, 4) = 6 - 2 - 4 = 0$.',
                 id: '$2 - 2k = 0$ memberi $k = 1$. Disubstitusikan kembali, $(2, 1, -1) \\cdot (3, -2, 4) = 6 - 2 - 4 = 0$.',
+              },
+              hint: {
+                en: 'The template has already reduced this to a one-step linear equation in $k$ — isolate it the same way you would with any equation of that shape.',
+                id: 'Templatenya sudah menyederhanakan ini menjadi persamaan linear satu langkah dalam $k$ — selesaikan dengan cara yang sama seperti persamaan berbentuk itu pada umumnya.',
               },
             },
             {
@@ -526,6 +562,10 @@ export const module3: Module = {
                 en: 'The numerator $\\vec{a} \\cdot \\vec{b}$ is 0, so the whole projection is the zero vector. Geometrically: shine the light along $\\vec{a}$ and its shadow on a perpendicular line is a single point.',
                 id: 'Pembilangnya $\\vec{a} \\cdot \\vec{b}$ bernilai 0, jadi seluruh proyeksinya adalah vektor nol. Secara geometris: sorotkan cahaya sepanjang $\\vec{a}$ dan bayangannya pada garis yang tegak lurus hanyalah satu titik.',
               },
+              hint: {
+                en: 'Look at the numerator of the projection formula — it is $\\vec{a} \\cdot \\vec{b}$. What does perpendicularity force that quantity to be?',
+                id: 'Perhatikan pembilang rumus proyeksinya — yaitu $\\vec{a} \\cdot \\vec{b}$. Apa yang dipaksakan ketegaklurusan pada besaran itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -555,6 +595,10 @@ export const module3: Module = {
                 en: "The marked shadow sits at $x = -2$, on the opposite side of the origin from where $\\vec{b}$ points — exactly the obtuse-angle case from the concept above, so $\\text{comp}_{\\vec{b}}\\,\\vec{a}$ is negative.",
                 id: 'Bayangan yang ditandai berada di $x = -2$, di seberang titik asal dari arah $\\vec{b}$ — persis kasus sudut tumpul pada konsep di atas, jadi $\\text{comp}_{\\vec{b}}\\,\\vec{a}$ negatif.',
               },
+              hint: {
+                en: 'Look at which side of the origin the marked shadow point falls on, compared with the direction $\\vec{b}$ itself points — the same side, or the opposite one?',
+                id: 'Perhatikan di sisi mana titik bayangan yang ditandai jatuh terhadap titik asal, dibandingkan arah $\\vec{b}$ sendiri — sisi yang sama, atau sisi seberang?',
+              },
             },
             {
               kind: 'order',
@@ -573,6 +617,10 @@ export const module3: Module = {
               explain: {
                 en: 'Dot product on top, squared magnitude underneath, then multiply the whole fraction through $\\vec{b}$. Never normalise $\\vec{b}$ separately — the squared form saves you the root.',
                 id: 'Perkalian titik di atas, kuadrat besarnya di bawah, lalu kalikan seluruh pecahannya dengan $\\vec{b}$. Jangan menormalkan $\\vec{b}$ secara terpisah — bentuk kuadratnya menghemat satu langkah akar.',
+              },
+              hint: {
+                en: 'You need both the dot product and $|\\vec{b}|^2$ computed before you can form the scaling fraction, and that fraction has to exist before it can be multiplied through $\\vec{b}$.',
+                id: 'Kamu butuh perkalian titik dan $|\\vec{b}|^2$ sudah terhitung sebelum bisa menyusun pecahan pengalinya, dan pecahan itu harus ada dulu sebelum dikalikan dengan $\\vec{b}$.',
               },
             },
             {
@@ -656,6 +704,10 @@ export const module3: Module = {
                 en: '$\\theta = 90°$, so $\\cos\\theta = 0$ and $W = 0$. Getting tired is about the muscles holding the load, not about work in this sense.',
                 id: '$\\theta = 90°$, sehingga $\\cos\\theta = 0$ dan $W = 0$. Rasa lelah berkaitan dengan otot yang menahan beban, bukan dengan usaha dalam pengertian ini.',
               },
+              hint: {
+                en: 'What angle does a vertical push make with a horizontal walk, and what does $\\cos\\theta$ equal at that particular angle?',
+                id: 'Sudut apa yang dibentuk dorongan vertikal dengan langkah mendatar, dan berapa $\\cos\\theta$ pada sudut khusus itu?',
+              },
             },
             {
               kind: 'quiz',
@@ -682,6 +734,10 @@ export const module3: Module = {
               explain: {
                 en: '$\\vec{F}$ points generally backward and to the side relative to $\\vec{d}$ — the angle between them exceeds $90°$, so $\\cos\\theta < 0$ and $W < 0$, exactly like friction opposing motion.',
                 id: '$\\vec{F}$ mengarah umumnya ke belakang dan menyamping terhadap $\\vec{d}$ — sudut di antaranya melebihi $90°$, jadi $\\cos\\theta < 0$ dan $W < 0$, persis seperti gesekan yang melawan gerak.',
+              },
+              hint: {
+                en: 'Estimate the angle between $\\vec{F}$ and $\\vec{d}$ from the picture. Is $\\vec{F}$ pointing generally with the displacement, across it, or against it?',
+                id: 'Perkirakan sudut antara $\\vec{F}$ dan $\\vec{d}$ dari gambarnya. Apakah $\\vec{F}$ mengarah umumnya searah perpindahan, melintang, atau melawannya?',
               },
             },
             {

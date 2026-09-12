@@ -70,6 +70,10 @@ export const module3: Module = {
                 en: 'y grows downward on this canvas — "below" always means a larger y, never a smaller one.',
                 id: 'y bertambah ke bawah pada kanvas ini — "di bawah" selalu berarti y yang lebih besar, tak pernah lebih kecil.',
               },
+              hint: {
+                en: 'Recall which direction y increases on this canvas — does moving further down the screen mean a bigger y value or a smaller one?',
+                id: 'Ingat ke arah mana y bertambah di kanvas ini — apakah bergerak lebih ke bawah layar berarti nilai y yang lebih besar atau lebih kecil?',
+              },
             },
             {
               kind: 'fill',
@@ -85,6 +89,10 @@ export const module3: Module = {
                 en: 'A label that reads from state updates itself if the state ever changes — a fixed string never would.',
                 id: 'Label yang membaca dari keadaan memperbarui dirinya sendiri kalau keadaannya pernah berubah — string tetap tak akan pernah begitu.',
               },
+              hint: {
+                en: 'The text needs to come from the state dictionary, not be typed out as a literal string — how do you look up a value by its key in a dict?',
+                id: 'Teksnya perlu berasal dari dictionary keadaan, bukan diketik sebagai string literal — bagaimana caramu mencari nilai lewat kuncinya di sebuah dict?',
+              },
             },
             {
               kind: 'order',
@@ -97,6 +105,10 @@ export const module3: Module = {
               explain: {
                 en: 'Nothing moves, so the next state is exactly the current one.',
                 id: 'Tak ada yang bergerak, jadi keadaan berikutnya persis keadaan saat ini.',
+              },
+              hint: {
+                en: "The function header has to exist before its body can be indented under it — there's really only one way these two lines can stack.",
+                id: 'Header fungsinya harus ada dulu sebelum badannya bisa menjorok di bawahnya — sebenarnya hanya ada satu cara kedua baris ini bisa disusun.',
               },
             },
             {
@@ -189,6 +201,10 @@ export const module3: Module = {
                 en: 'The bottom leg runs sideways only: x grows by base, y stays 180.',
                 id: 'Sisi alasnya hanya berjalan mendatar: x bertambah sebesar base, y tetap 180.',
               },
+              hint: {
+                en: 'The bottom leg only moves horizontally — figure out which coordinate changes and which one stays fixed at its starting value.',
+                id: 'Sisi alasnya hanya bergerak mendatar — cari tahu koordinat mana yang berubah dan mana yang tetap di nilai awalnya.',
+              },
             },
             {
               kind: 'fill',
@@ -203,6 +219,10 @@ export const module3: Module = {
               explain: {
                 en: 'Up means a smaller y, so the leg\'s far end subtracts height rather than adding it.',
                 id: 'Naik berarti y yang lebih kecil, jadi ujung sisinya mengurangi height, bukan menambahkannya.',
+              },
+              hint: {
+                en: 'This leg needs to go up the screen, and you already know which direction makes y smaller — which operator moves it that way?',
+                id: 'Sisi ini perlu naik di layar, dan kamu sudah tahu arah mana yang membuat y lebih kecil — operator mana yang menggerakkannya ke arah itu?',
               },
             },
             {
@@ -221,6 +241,10 @@ export const module3: Module = {
               explain: {
                 en: 'The two corners have to be worked out before a line can connect them.',
                 id: 'Kedua sudutnya harus dihitung dulu sebelum sebuah garis bisa menghubungkannya.',
+              },
+              hint: {
+                en: 'Both endpoints of the hypotenuse have to be computed as their own points before a line command can reference their coordinates.',
+                id: 'Kedua ujung sisi miringnya harus dihitung dulu sebagai titik tersendiri sebelum perintah line bisa merujuk koordinatnya.',
               },
             },
             {
@@ -370,6 +394,10 @@ export const module3: Module = {
                 en: '20 + 3 * 40 is 140 — index 3 is the fourth tick, since counting starts at 0.',
                 id: '20 + 3 * 40 adalah 140 — indeks 3 adalah goresan keempat, karena hitungannya dimulai dari 0.',
               },
+              hint: {
+                en: "Careful with the indexing — the first tick is index 0, so work out which index corresponds to 'the 4th' before plugging it into the formula.",
+                id: 'Hati-hati dengan indeksnya — goresan pertama adalah indeks 0, jadi cari tahu indeks mana yang berarti "ke-4" sebelum memasukkannya ke formulanya.',
+              },
             },
             {
               kind: 'fill',
@@ -383,6 +411,10 @@ export const module3: Module = {
               explain: {
                 en: 'Each step away from the start multiplies the tick spacing by how many steps have passed.',
                 id: 'Tiap langkah menjauh dari awal mengalikan jarak goresannya dengan berapa langkah yang sudah berlalu.',
+              },
+              hint: {
+                en: 'The distance from the start grows with how many steps you have taken — which operator scales the spacing by the step count?',
+                id: 'Jaraknya dari awal bertambah sesuai berapa langkah yang sudah dilalui — operator mana yang mengalikan spasinya dengan jumlah langkah itu?',
               },
             },
             {
@@ -401,6 +433,10 @@ export const module3: Module = {
               explain: {
                 en: 'The axis has to already be in the list before the loop starts appending ticks to the same list.',
                 id: 'Sumbunya harus sudah ada di list sebelum perulangannya mulai menambahkan goresan ke list yang sama.',
+              },
+              hint: {
+                en: 'The list needs its first item — the axis — before the loop can start appending anything else to that same list.',
+                id: 'List-nya perlu unsur pertamanya — sumbunya — dulu sebelum perulangannya bisa mulai menambahkan apa pun lagi ke list yang sama.',
               },
             },
             {
@@ -494,6 +530,10 @@ export const module3: Module = {
                 en: '20 + 0 * 40 is just 20 — the same x the axis itself starts from.',
                 id: '20 + 0 * 40 sekadar 20 — x yang sama tempat sumbunya sendiri dimulai.',
               },
+              hint: {
+                en: 'Plug value = 0 straight into the formula and see what multiplying by zero does to the second term.',
+                id: 'Masukkan value = 0 langsung ke formulanya dan lihat apa yang dilakukan perkalian dengan nol pada suku keduanya.',
+              },
             },
             {
               kind: 'fill',
@@ -508,6 +548,10 @@ export const module3: Module = {
                 en: 'Each unit of value is 40 pixels of x — the same spacing the ticks use.',
                 id: 'Tiap satu satuan nilai adalah 40 piksel x — spasi yang sama seperti yang dipakai goresan skala.',
               },
+              hint: {
+                en: 'Each unit of value needs to become 40 pixels of x — which operator scales a value by a fixed amount per unit?',
+                id: 'Tiap satu satuan nilai perlu diubah jadi 40 piksel x — operator mana yang mengalikan sebuah nilai dengan jumlah tetap per satuan?',
+              },
             },
             {
               kind: 'order',
@@ -520,6 +564,10 @@ export const module3: Module = {
               explain: {
                 en: 'x has to be computed from value before it can be used to place the circle.',
                 id: 'x harus dihitung dari value dulu sebelum bisa dipakai untuk menempatkan lingkarannya.',
+              },
+              hint: {
+                en: 'x has to be computed from value before the circle can be placed using it.',
+                id: 'x harus dihitung dari value dulu sebelum lingkarannya bisa ditempatkan memakai nilai itu.',
               },
             },
             {

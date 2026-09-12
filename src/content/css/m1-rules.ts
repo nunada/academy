@@ -87,6 +87,10 @@ export const module1: Module = {
                 en: 'h1 is the selector, color the property, teal the value.',
                 id: 'h1 adalah selektornya, color propertinya, teal nilainya.',
               },
+              hint: {
+                en: 'A rule has three roles: what it targets, what aspect it changes, and what it changes that aspect to — think about which option names an aspect being changed rather than a target or a result.',
+                id: 'Sebuah aturan punya tiga peran: apa yang dibidik, aspek apa yang diubah, dan aspek itu diubah menjadi apa — pikirkan pilihan mana yang menyebut aspek yang diubah, bukan target atau hasilnya.',
+              },
             },
             {
               kind: 'fill',
@@ -97,6 +101,10 @@ export const module1: Module = {
               explain: {
                 en: 'A colon separates property from value; a semicolon ends the declaration.',
                 id: 'Titik dua memisahkan properti dari nilai; titik koma mengakhiri deklarasinya.',
+              },
+              hint: {
+                en: 'Think about what punctuation separates a property from its value, and what punctuation has to close off the whole declaration.',
+                id: 'Pikirkan tanda baca apa yang memisahkan properti dari nilainya, dan tanda baca apa yang harus mengakhiri seluruh deklarasinya.',
               },
             },
             {
@@ -219,6 +227,10 @@ export const module1: Module = {
               explain: {
                 en: 'A space is "descendant of". The comma version means both, and reversing it looks for a footer inside a link.',
                 id: 'Spasi berarti "keturunan dari". Versi komanya berarti keduanya, dan membaliknya berarti mencari footer di dalam tautan.',
+              },
+              hint: {
+                en: 'Think about what a plain space between two selectors means compared to a comma, and which order the two parts should be written in for "inside".',
+                id: 'Pikirkan apa arti spasi polos di antara dua selektor dibandingkan koma, dan urutan penulisan mana yang tepat untuk makna "di dalam".',
               },
             },
             {
@@ -431,6 +443,10 @@ export const module1: Module = {
                 en: 'A unitless value is a multiplier, so headings and body text each get spacing that suits them.',
                 id: 'Nilai tanpa satuan adalah pengali, jadi judul dan teks isi masing-masing mendapat jarak yang sesuai.',
               },
+              hint: {
+                en: 'Think about what happens to a heading\'s line spacing versus a paragraph\'s when both share the same rule but have different font sizes — does a fixed pixel value adapt to that difference?',
+                id: 'Pikirkan apa yang terjadi pada jarak antarbaris judul dibandingkan paragraf ketika keduanya memakai aturan yang sama tapi ukuran fontnya berbeda — apakah nilai piksel tetap bisa menyesuaikan perbedaan itu?',
+              },
             },
             {
               kind: 'web',
@@ -541,6 +557,10 @@ export const module1: Module = {
                 en: 'The pairs are red, green, blue. ff is the maximum, 00 the minimum.',
                 id: 'Pasangannya berturut-turut merah, hijau, biru. ff nilai maksimum, 00 minimum.',
               },
+              hint: {
+                en: 'Remember the channel order the three pairs represent, then check which pair is at its maximum value and which are at their minimum in this hex code.',
+                id: 'Ingat urutan kanal yang diwakili ketiga pasangan itu, lalu periksa pasangan mana yang berada di nilai maksimum dan mana yang di nilai minimum pada kode heks ini.',
+              },
             },
             {
               kind: 'fill',
@@ -554,6 +574,10 @@ export const module1: Module = {
               explain: {
                 en: 'The third pair is the blue channel, and ff is its maximum.',
                 id: 'Pasangan ketiga adalah kanal biru, dan ff adalah nilai maksimumnya.',
+              },
+              hint: {
+                en: 'You need the maximum possible value for this channel — the same maximum you would use for full red or full green in the other two positions.',
+                id: 'Kamu butuh nilai maksimum yang mungkin untuk kanal ini — nilai maksimum yang sama seperti yang dipakai untuk merah penuh atau hijau penuh di dua posisi lainnya.',
               },
             },
             {

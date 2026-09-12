@@ -83,6 +83,10 @@ export const module2: Module = {
                 en: 'On an increasing function, the left endpoint of every strip gives the smallest value the function takes there, so every rectangle sits entirely under the curve — the sum can only fall short.',
                 id: 'Pada fungsi yang sedang naik, ujung kiri tiap jalur memberi nilai terkecil yang diambil fungsi di situ, sehingga tiap persegi panjang seluruhnya berada di bawah kurva — jumlahnya hanya bisa kurang.',
               },
+              hint: {
+                en: 'For an increasing function, compare the value of $f$ at a strip\'s left endpoint to its value anywhere else on that same strip — which one is smallest?',
+                id: 'Untuk fungsi yang sedang naik, bandingkan nilai $f$ di ujung kiri suatu jalur dengan nilainya di mana pun pada jalur yang sama — yang mana yang paling kecil?',
+              },
             },
             {
               kind: 'quiz',
@@ -114,6 +118,10 @@ export const module2: Module = {
               explain: {
                 en: 'The left endpoint of that strip is $x = 1$, and $f(1) = 1^2 + 1 = 2$ — matching the third rectangle\'s visible height.',
                 id: 'Ujung kiri jalur itu adalah $x = 1$, dan $f(1) = 1^2 + 1 = 2$ — cocok dengan tinggi persegi panjang ketiga yang tampak.',
+              },
+              hint: {
+                en: 'The left-endpoint rectangle on this strip uses the function\'s height at $x = 1$, not at $x = 1.5$ — evaluate $f(1)$ yourself for $f(x) = x^2+1$ rather than reading a height off the taller side of the strip.',
+                id: 'Persegi panjang ujung-kiri pada jalur ini memakai tinggi fungsi di $x = 1$, bukan di $x = 1.5$ — evaluasi sendiri $f(1)$ untuk $f(x) = x^2+1$ alih-alih membaca tinggi dari sisi jalur yang lebih tinggi.',
               },
             },
             {
@@ -197,6 +205,10 @@ export const module2: Module = {
                 en: 'Every rectangle has negative height there, so the Riemann sum comes out negative — the magnitude is the raw area, but the sign is negative because the region sits below the axis.',
                 id: 'Tiap persegi panjang bertinggi negatif di situ, sehingga jumlah Riemannya keluar negatif — besarnya adalah luas mentahnya, tetapi tandanya negatif sebab daerahnya berada di bawah sumbu.',
               },
+              hint: {
+                en: 'Think about the height of each rectangle when $f$ is negative there, and what a negative height does to a sum that is otherwise built the same way as when $f$ is positive.',
+                id: 'Pikirkan tinggi tiap persegi panjang ketika $f$ negatif di situ, dan apa yang dilakukan tinggi negatif itu pada jumlah yang sebetulnya dibangun dengan cara sama seperti saat $f$ positif.',
+              },
             },
             {
               kind: 'fill',
@@ -211,6 +223,10 @@ export const module2: Module = {
               explain: {
                 en: 'Any interior point works for the split — $3$ is one choice, and the same $c$ has to appear as the upper bound of the first piece and the lower bound of the second for them to reassemble correctly.',
                 id: 'Titik di dalamnya mana pun berlaku untuk pemecahannya — $3$ adalah salah satu pilihan, dan $c$ yang sama harus muncul sebagai batas atas bagian pertama dan batas bawah bagian kedua agar keduanya tersusun kembali dengan benar.',
+              },
+              hint: {
+                en: 'Any point strictly between the two original bounds works here, as long as it plays both roles at once: the upper bound of the first piece and the lower bound of the second.',
+                id: 'Titik mana pun yang berada tepat di antara kedua batas aslinya berlaku di sini, asalkan ia berperan ganda sekaligus: batas atas bagian pertama dan batas bawah bagian kedua.',
               },
             },
             {
@@ -338,6 +354,10 @@ export const module2: Module = {
                 en: 'FTC Part 1 says the derivative of an accumulation is just the integrand evaluated at $x$ — no need to antidifferentiate first.',
                 id: 'TDK Bagian 1 menyatakan turunan sebuah akumulasi hanyalah integrandnya yang dievaluasi di $x$ — tak perlu mengantiturunkan lebih dahulu.',
               },
+              hint: {
+                en: 'FTC Part 1 says you don\'t need to antidifferentiate at all here — look at what the theorem says happens to the integrand itself when you differentiate an accumulation with a plain-$x$ upper bound.',
+                id: 'TDK Bagian 1 mengatakan kamu sama sekali tak perlu mengantiturunkan di sini — lihat apa yang menurut teorema itu terjadi pada integrand itu sendiri saat kamu menurunkan akumulasi dengan batas atas $x$ biasa.',
+              },
             },
             {
               kind: 'quiz',
@@ -356,6 +376,10 @@ export const module2: Module = {
               explain: {
                 en: 'The upper bound $x^3$ is a function of $x$, so the chain rule attaches its own derivative, $3x^2$, as a multiplying factor: $\\frac{d}{dx} = \\cos(x^3) \\cdot 3x^2$.',
                 id: 'Batas atasnya $x^3$ adalah fungsi dari $x$, sehingga aturan rantai memasang turunannya sendiri, $3x^2$, sebagai faktor pengali: $\\frac{d}{dx} = \\cos(x^3) \\cdot 3x^2$.',
+              },
+              hint: {
+                en: 'This bound is $x^3$, a function of $x$ rather than plain $x$ — recall from the concept above which extra derivative the chain rule tacks on whenever that happens.',
+                id: 'Batas ini adalah $x^3$, fungsi dari $x$ bukan $x$ biasa — ingat dari konsep di atas turunan tambahan apa yang dipasang aturan rantai setiap kali itu terjadi.',
               },
             },
             {
@@ -435,6 +459,10 @@ export const module2: Module = {
                 en: '$(F(b) + C) - (F(a) + C) = F(b) - F(a)$: the two $C$ terms are identical and subtract away, so any antiderivative — including the simplest one with $C = 0$ — gives the same final number.',
                 id: '$(F(b) + C) - (F(a) + C) = F(b) - F(a)$: kedua suku $C$-nya identik dan saling menghilang lewat pengurangan, sehingga antiturunan mana pun — termasuk yang paling sederhana dengan $C = 0$ — memberi bilangan akhir yang sama.',
               },
+              hint: {
+                en: 'Write out $F(b) + C$ and $F(a) + C$ separately, then subtract one from the other — what happens to the two $C$ terms?',
+                id: 'Tulis $F(b) + C$ dan $F(a) + C$ secara terpisah, lalu kurangkan satu dari yang lain — apa yang terjadi pada kedua suku $C$ itu?',
+              },
             },
             {
               kind: 'order',
@@ -453,6 +481,10 @@ export const module2: Module = {
               explain: {
                 en: 'Antidifferentiate first (an antiderivative of $2x$ is $x^2$), write the evaluation bracket, substitute both bounds, then subtract.',
                 id: 'Antiturunkan lebih dahulu (antiturunan dari $2x$ adalah $x^2$), tulis kurung evaluasinya, substitusikan kedua batasnya, lalu kurangkan.',
+              },
+              hint: {
+                en: 'You can\'t substitute the bounds into anything until you\'ve first found an antiderivative of $2x$ to substitute into — and you can\'t subtract two numbers until both bounds have actually been plugged in.',
+                id: 'Kamu tak bisa mensubstitusikan batasnya ke mana pun sebelum lebih dahulu menemukan antiturunan dari $2x$ untuk disubstitusikan — dan kamu tak bisa mengurangkan dua bilangan sebelum kedua batasnya benar-benar dimasukkan.',
               },
             },
             {

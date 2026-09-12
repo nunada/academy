@@ -66,6 +66,10 @@ export const module9: Module = {
                 en: 'Separability is exactly the property of being rearrangeable into $f(y)\\,dy = g(x)\\,dx$, after which each side can be antidifferentiated on its own.',
                 id: 'Keterpisahan adalah persis sifat bisa ditata ulang menjadi $f(y)\\,dy = g(x)\\,dx$, setelah itu tiap ruas bisa diantiturunkan sendiri-sendiri.',
               },
+              hint: {
+                en: 'Think about what needs to happen algebraically to the equation before each side can be antidifferentiated completely on its own, with no leftover mixing of the two variables.',
+                id: 'Pikirkan apa yang perlu terjadi secara aljabar pada persamaannya sebelum tiap ruas bisa diantiturunkan sepenuhnya sendiri-sendiri, tanpa sisa percampuran kedua peubahnya.',
+              },
             },
             {
               kind: 'fill',
@@ -80,6 +84,10 @@ export const module9: Module = {
               explain: {
                 en: 'Dividing both sides by $y$ moves every $y$-term to the left, leaving $3x^2$ alone on the right with $dx$.',
                 id: 'Membagi kedua ruas dengan $y$ memindahkan setiap suku $y$ ke kiri, menyisakan $3x^2$ sendirian di kanan bersama $dx$.',
+              },
+              hint: {
+                en: "Divide both sides of $\\dfrac{dy}{dx} = 3x^2 y$ by $y$ to move every $y$-term to the left — what is left standing alone on the right?",
+                id: 'Bagi kedua ruas $\\dfrac{dy}{dx} = 3x^2 y$ dengan $y$ untuk memindahkan setiap suku $y$ ke kiri — apa yang tersisa sendirian di kanan?',
               },
             },
             {
@@ -156,6 +164,10 @@ export const module9: Module = {
                 en: '"Proportional to $P$ itself" means the rate equals a constant $k$ times $P$, not a constant alone and not a function of $t$ alone.',
                 id: '"Sebanding dengan $P$ itu sendiri" berarti lajunya sama dengan konstanta $k$ dikali $P$, bukan konstanta saja dan bukan fungsi dari $t$ saja.',
               },
+              hint: {
+                en: '"Proportional to" always means a constant times the quantity — read the phrase word by word and match each part to a piece of the equation.',
+                id: '"Sebanding dengan" selalu berarti sebuah konstanta dikali besarannya — baca frasanya kata demi kata dan cocokkan tiap bagian dengan bagian persamaannya.',
+              },
             },
             {
               kind: 'quiz',
@@ -181,6 +193,10 @@ export const module9: Module = {
               explain: {
                 en: 'The curve visibly reaches somewhat above 1600 by $t = 10$, matching the computed value of approximately $1648.7$.',
                 id: 'Kurvanya tampak mencapai sedikit di atas 1600 pada $t = 10$, cocok dengan nilai terhitung sekitar $1648{,}7$.',
+              },
+              hint: {
+                en: 'This is the exact same $P(t)$ example already worked out numerically in the concept above — look back at what $P(10)$ came out to be there.',
+                id: 'Ini persis contoh $P(t)$ yang sama yang sudah dikerjakan secara numerik pada konsep di atas — lihat kembali apa yang dihasilkan $P(10)$ di situ.',
               },
             },
             {
@@ -306,6 +322,10 @@ export const module9: Module = {
                 en: 'Expanding $(e^x+e^{-x})^2$ and $(e^x-e^{-x})^2$ and subtracting cancels the $e^{2x}$ and $e^{-2x}$ cross terms, leaving exactly $4$ — dividing by the $4$ from squaring $1/2$ twice gives $1$. Adding instead would double those terms rather than cancel them.',
                 id: 'Menjabarkan $(e^x+e^{-x})^2$ dan $(e^x-e^{-x})^2$ lalu mengurangkan meniadakan suku silang $e^{2x}$ dan $e^{-2x}$, menyisakan tepat $4$ — membagi dengan $4$ dari mengkuadratkan $1/2$ dua kali memberi $1$. Menjumlahkan sebagai gantinya justru akan menggandakan suku-suku itu, bukan meniadakannya.',
               },
+              hint: {
+                en: 'Expand $(e^x+e^{-x})^2$ and $(e^x-e^{-x})^2$ separately and track the middle cross term in each — does adding or subtracting the two expansions make that cross term disappear?',
+                id: 'Jabarkan $(e^x+e^{-x})^2$ dan $(e^x-e^{-x})^2$ secara terpisah dan lacak suku silang di tengah masing-masing — apakah menjumlahkan atau mengurangkan kedua jabaran itu yang membuat suku silangnya lenyap?',
+              },
             },
             {
               kind: 'quiz',
@@ -334,6 +354,10 @@ export const module9: Module = {
               explain: {
                 en: 'The curve dips to its lowest point exactly at the origin, at height 1, then rises symmetrically on both sides — the visible U-shape of an even function built from two positive exponentials.',
                 id: 'Kurvanya menukik ke titik terendahnya persis di titik asal, pada ketinggian 1, lalu naik secara simetris di kedua sisi — bentuk U yang tampak dari fungsi genap yang dibangun dari dua eksponen positif.',
+              },
+              hint: {
+                en: '$\\cosh x$ averages $e^x$ and $e^{-x}$ together — think about what the smallest possible value of that average could be, and where on the graph it occurs.',
+                id: '$\\cosh x$ merata-ratakan $e^x$ dan $e^{-x}$ — pikirkan nilai terkecil yang mungkin dari rata-rata itu, dan di mana pada grafik itu terjadi.',
               },
             },
             {
@@ -402,6 +426,10 @@ export const module9: Module = {
                 en: 'sin/cos need four derivatives to return to the start because of the alternating minus signs; sinh/cosh return after just two, since differentiating either one gives the other with no sign change at all.',
                 id: 'sin/cos memerlukan empat turunan untuk kembali ke awal karena tanda minus yang berselang-seling; sinh/cosh kembali hanya setelah dua, sebab menurunkan salah satunya memberi yang lain tanpa perubahan tanda sama sekali.',
               },
+              hint: {
+                en: 'Count how many times you have to differentiate $\\cos x$ before it returns to $\\cos x$ again, then do the same count for $\\cosh x$ — and watch whether a minus sign ever shows up along the way for either one.',
+                id: 'Hitung berapa kali kamu harus menurunkan $\\cos x$ sebelum kembali menjadi $\\cos x$ lagi, lalu lakukan hitungan yang sama untuk $\\cosh x$ — dan perhatikan apakah tanda minus pernah muncul di sepanjang jalan untuk keduanya.',
+              },
             },
             {
               kind: 'order',
@@ -419,6 +447,10 @@ export const module9: Module = {
               explain: {
                 en: 'Write the antiderivative first, then evaluate $\\cosh$ at the upper bound using $e^{\\ln 3} = 3$, then subtract $\\cosh(0) = 1$.',
                 id: 'Tulis antiturunannya lebih dahulu, lalu evaluasi $\\cosh$ di batas atas memakai $e^{\\ln 3} = 3$, baru kurangkan $\\cosh(0) = 1$.',
+              },
+              hint: {
+                en: "You can't evaluate $\\cosh$ at the upper bound until the antiderivative has actually been written down — and you can't subtract $\\cosh(0)$ until that upper-bound value has been worked out numerically.",
+                id: 'Kamu tak bisa mengevaluasi $\\cosh$ di batas atas sebelum antiturunannya benar-benar dituliskan — dan kamu tak bisa mengurangkan $\\cosh(0)$ sebelum nilai batas atas itu dikerjakan secara numerik.',
               },
             },
             {

@@ -75,6 +75,10 @@ export const module5: Module = {
                 en: '$x^3$ is increasing everywhere, so it never repeats a value. The other three all take the same value at two different inputs — cosine does it infinitely often, being periodic.',
                 id: '$x^3$ naik di mana-mana, jadi ia tak pernah mengulang satu nilai pun. Tiga lainnya sama-sama mencapai nilai yang sama pada dua masukan berbeda — cosinus bahkan melakukannya tak berhingga kali, karena periodik.',
               },
+              hint: {
+                en: 'Try a positive input and its negative for each rule — does the function ever produce the same output from two different inputs?',
+                id: 'Coba satu masukan positif dan negatifnya untuk tiap aturan — apakah fungsinya pernah menghasilkan keluaran yang sama dari dua masukan berbeda?',
+              },
             },
             {
               kind: 'quiz',
@@ -103,6 +107,10 @@ export const module5: Module = {
               explain: {
                 en: 'The dashed line meets the curve three times, so three different inputs share the output 1. A cubic is not automatically one-to-one — this one is not, even though $x^3$ itself is.',
                 id: 'Garis putus-putusnya memotong kurvanya tiga kali, jadi tiga masukan berbeda berbagi keluaran 1. Fungsi kubik tidak otomatis satu-satu — yang ini tidak, sekalipun $x^3$ sendiri satu-satu.',
+              },
+              hint: {
+                en: 'Count how many times the dashed horizontal line actually touches the curve in the picture, and recall what the horizontal line test says about that count.',
+                id: 'Hitung berapa kali garis mendatar putus-putus itu sungguh menyentuh kurvanya pada gambar, dan ingat kembali apa kata uji garis mendatar tentang jumlah itu.',
               },
             },
             {
@@ -189,6 +197,10 @@ export const module5: Module = {
                 en: 'Swap first, then solve. Solving before swapping gives you $f$ again, rearranged — a step that feels like progress and is not.',
                 id: 'Tukar dulu, baru selesaikan. Menyelesaikan sebelum menukar hanya memberimu $f$ lagi dalam susunan berbeda — langkah yang terasa seperti kemajuan padahal bukan.',
               },
+              hint: {
+                en: 'One of these lines still has $y$ playing the role of the original output; another has already traded the roles of $x$ and $y$. The trade has to happen before you can isolate $y$ as the new formula.',
+                id: 'Salah satu dari baris ini masih memiliki $y$ berperan sebagai keluaran aslinya; baris lain sudah menukar peran $x$ dan $y$. Pertukaran itu harus terjadi sebelum kamu bisa mengisolasi $y$ sebagai rumus barunya.',
+              },
             },
             {
               kind: 'quiz',
@@ -217,6 +229,10 @@ export const module5: Module = {
               explain: {
                 en: 'Swapping $x$ and $y$ is exactly what inverting does: if $(a, b)$ is on $f$, then $(b, a)$ is on $f^{-1}$. So $(2, 7)$ on $f$ means $(7, 2)$ on $f^{-1}$.',
                 id: 'Menukar $x$ dan $y$ persis apa yang dilakukan pembalikan: bila $(a, b)$ terletak pada $f$, maka $(b, a)$ terletak pada $f^{-1}$. Jadi $(2, 7)$ pada $f$ berarti $(7, 2)$ pada $f^{-1}$.',
+              },
+              hint: {
+                en: 'Inverting a function swaps the roles of its coordinates. What happens to the marked point $(2, 7)$ when you swap its two numbers?',
+                id: 'Membalik fungsi menukar peran koordinatnya. Apa yang terjadi pada titik yang ditandai $(2, 7)$ bila kedua bilangannya ditukar?',
               },
             },
             {
@@ -305,6 +321,10 @@ export const module5: Module = {
                 en: 'Sine never exceeds 1, so no angle has a sine of 2 and there is nothing for arcsine to return. Its domain is exactly the range of sine, $[-1, 1]$ — the general rule about inverses, in a particular case.',
                 id: 'Sinus tak pernah melebihi 1, jadi tak ada sudut yang sinusnya 2 dan tak ada yang bisa dikembalikan arcsinus. Domainnya persis range sinus, $[-1, 1]$ — aturan umum tentang invers, dalam satu kasus tertentu.',
               },
+              hint: {
+                en: 'The domain of an inverse function is the range of the original. What is the largest value ordinary sine ever reaches?',
+                id: 'Domain fungsi invers adalah range fungsi aslinya. Berapa nilai terbesar yang pernah dicapai sinus biasa?',
+              },
             },
             {
               kind: 'quiz',
@@ -334,6 +354,10 @@ export const module5: Module = {
               explain: {
                 en: 'The arcsine and arccosine curves both stop dead at $x = \\pm 1$, in the drawing exactly where their domain ends. Arctangent keeps going in both directions, flattening toward its asymptotes but never stopping — matching its domain of every real number.',
                 id: 'Kurva arcsinus dan arccosinus sama-sama berhenti tepat di $x = \\pm 1$, dalam gambar persis di tempat domainnya berakhir. Arctangen terus berlanjut ke dua arah, memipih menuju asimtotnya tetapi tak pernah berhenti — sesuai domainnya yang seluruh bilangan real.',
+              },
+              hint: {
+                en: 'Look at the two curves that end abruptly at a vertical edge, versus the one that keeps extending in both directions without ever stopping.',
+                id: 'Perhatikan kedua kurva yang berhenti tiba-tiba di tepi tegak, dibandingkan dengan yang terus memanjang ke dua arah tanpa pernah berhenti.',
               },
             },
             {
@@ -493,6 +517,10 @@ export const module5: Module = {
                 en: 'The base of the logarithm is the base of the power. The value of the logarithm is the exponent — that is the whole of the definition, read across.',
                 id: 'Basis logaritmanya adalah basis pangkatnya. Nilai logaritmanya adalah pangkatnya — dan itulah seluruh definisinya, dibaca menyeberang.',
               },
+              hint: {
+                en: 'The definition $\\log_a x = y \\iff a^y = x$ tells you exactly which number in $\\log_3 81 = 4$ becomes the base of the power, and which becomes the exponent.',
+                id: 'Definisi $\\log_a x = y \\iff a^y = x$ memberitahumu persis bilangan mana pada $\\log_3 81 = 4$ yang menjadi basis pangkatnya, dan mana yang menjadi pangkatnya.',
+              },
             },
             {
               kind: 'quiz',
@@ -511,6 +539,10 @@ export const module5: Module = {
               explain: {
                 en: 'The inside must be strictly positive: $x - 2 > 0$. Not $\\geq$ — $\\ln 0$ is undefined, which is the vertical asymptote showing up as a domain restriction.',
                 id: 'Bagian dalamnya harus positif tegas: $x - 2 > 0$. Bukan $\\geq$ — $\\ln 0$ tak terdefinisi, dan itulah asimtot tegaknya yang menampakkan diri sebagai pembatasan domain.',
+              },
+              hint: {
+                en: 'A logarithm needs its argument to be strictly positive, never zero or negative. Set up that inequality for $x - 2$ and solve it.',
+                id: 'Logaritma memerlukan argumennya positif tegas, tak pernah nol atau negatif. Susun pertidaksamaan itu untuk $x - 2$ dan selesaikan.',
               },
             },
             {
@@ -540,6 +572,10 @@ export const module5: Module = {
               explain: {
                 en: 'The marked point is $(8, \\log_2 8)$, and $2^3 = 8$, so the value read off the curve is $3$.',
                 id: 'Titik yang ditandai adalah $(8, \\log_2 8)$, dan $2^3 = 8$, jadi nilai yang dibaca dari kurvanya adalah $3$.',
+              },
+              hint: {
+                en: 'The marked point sits at $x = 8$, so its height is $\\log_2 8$ — ask what power of 2 gives 8.',
+                id: 'Titik yang ditandai berada di $x = 8$, jadi tingginya adalah $\\log_2 8$ — tanyakan pangkat berapa dari 2 yang menghasilkan 8.',
               },
             },
             {
@@ -614,6 +650,10 @@ export const module5: Module = {
                 en: 'A sum inside a logarithm cannot be split at all. Test it: $\\log(1 + 9) = \\log 10 = 1$, but $\\log 1 + \\log 9 \\approx 0{,}95$. One counterexample settles it.',
                 id: 'Penjumlahan di dalam logaritma sama sekali tak bisa dipecah. Ujilah: $\\log(1 + 9) = \\log 10 = 1$, sedangkan $\\log 1 + \\log 9 \\approx 0{,}95$. Satu contoh penyangkal sudah cukup.',
               },
+              hint: {
+                en: 'Three of the four options match a law from the concept above exactly — product, power, or quotient. The remaining one involves an operation the laws never mention doing anything special with.',
+                id: 'Tiga dari empat pilihan cocok persis dengan salah satu hukum pada konsep di atas — hasil kali, pangkat, atau hasil bagi. Yang tersisa melibatkan operasi yang tak pernah disebut hukumnya melakukan apa pun yang istimewa.',
+              },
             },
             {
               kind: 'quiz',
@@ -643,6 +683,10 @@ export const module5: Module = {
                 en: 'By the product law, $\\ln(2x) = \\ln 2 + \\ln x$ — a constant added **outside** the function, which Module 2 taught is a vertical shift, here by $\\ln 2 \\approx 0{,}69$.',
                 id: 'Menurut hukum hasil kali, $\\ln(2x) = \\ln 2 + \\ln x$ — konstanta yang ditambahkan **di luar** fungsi, dan Modul 2 mengajarkan itu adalah pergeseran tegak, di sini sejauh $\\ln 2 \\approx 0{,}69$.',
               },
+              hint: {
+                en: 'Use the product law to split $\\ln(2x)$ into two pieces — one of them is just a plain number added outside $\\ln x$. Where does Module 2 say an outside addition moves a graph?',
+                id: 'Pakai hukum hasil kali untuk memecah $\\ln(2x)$ menjadi dua bagian — salah satunya cuma bilangan biasa yang ditambahkan di luar $\\ln x$. Di mana Modul 2 mengatakan penambahan di luar memindahkan grafik?',
+              },
             },
             {
               kind: 'fill',
@@ -657,6 +701,10 @@ export const module5: Module = {
               explain: {
                 en: 'The coefficient goes up as a power, then the sum becomes a product. Both laws, used in the direction that packs things together.',
                 id: 'Koefisiennya naik menjadi pangkat, lalu penjumlahannya menjadi perkalian. Kedua hukumnya, dipakai ke arah yang memadatkan.',
+              },
+              hint: {
+                en: 'The power law works in reverse too: a coefficient in front of a logarithm can become an exponent inside it. Which term in $2\\log x$ has the coefficient?',
+                id: 'Hukum pangkat juga berlaku terbalik: koefisien di depan logaritma bisa menjadi pangkat di dalamnya. Suku mana pada $2\\log x$ yang punya koefisien itu?',
               },
             },
             {
@@ -725,6 +773,10 @@ export const module5: Module = {
                 en: 'Isolate the power before you take any logarithm. Taking $\\ln$ of $5 \\cdot 2^x$ first is legal but gives you an extra term to carry for no reason.',
                 id: 'Pisahkan bentuk pangkatnya sebelum mengambil logaritma apa pun. Mengambil $\\ln$ dari $5 \\cdot 2^x$ lebih dulu memang sah tetapi memberi satu suku tambahan yang harus dibawa tanpa alasan.',
               },
+              hint: {
+                en: 'One of these lines gets $2^x$ alone on one side by dividing away the 5 — that has to happen before a logarithm is taken of anything.',
+                id: 'Salah satu baris ini membuat $2^x$ sendirian di satu ruas dengan membagi habis angka 5-nya — itu harus terjadi sebelum logaritma diambil dari apa pun.',
+              },
             },
             {
               kind: 'quiz',
@@ -743,6 +795,10 @@ export const module5: Module = {
               explain: {
                 en: '$x = -2$ would need $\\log_2(-2)$, which does not exist. Combining the logarithms into one hid the domain condition, and it has to be put back by checking. Such an answer is called extraneous.',
                 id: '$x = -2$ akan memerlukan $\\log_2(-2)$, yang tak ada. Menggabungkan kedua logaritmanya menjadi satu menyembunyikan syarat domainnya, dan syarat itu harus dikembalikan lewat pemeriksaan. Jawaban semacam itu disebut penyelesaian palsu.',
+              },
+              hint: {
+                en: 'Substitute each candidate back into the original equation, term by term, and check whether every logarithm in it actually has a positive argument.',
+                id: 'Substitusikan tiap calon kembali ke persamaan aslinya, suku demi suku, dan periksa apakah setiap logaritma di dalamnya sungguh punya argumen yang positif.',
               },
             },
             {
@@ -772,6 +828,10 @@ export const module5: Module = {
               explain: {
                 en: '$3^2 = 9$ and $3^3 = 27$, and 20 sits between them, so the curve crosses the dashed line somewhere between $x = 2$ and $x = 3$ — matching the worked answer $x \\approx 2{,}73$ above.',
                 id: '$3^2 = 9$ dan $3^3 = 27$, dan 20 berada di antara keduanya, jadi kurvanya memotong garis putus-putus di suatu tempat antara $x = 2$ dan $x = 3$ — sesuai jawaban yang dikerjakan di atas, $x \\approx 2{,}73$.',
+              },
+              hint: {
+                en: 'Compute $3^x$ at a few whole numbers near where you expect the curve to cross the dashed line at $y = 20$, and see which two consecutive results straddle 20.',
+                id: 'Hitung $3^x$ pada beberapa bilangan bulat di sekitar tempat kurvanya diperkirakan memotong garis putus-putus di $y = 20$, dan lihat dua hasil berurutan mana yang mengapit 20.',
               },
             },
             {

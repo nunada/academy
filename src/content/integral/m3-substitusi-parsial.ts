@@ -66,6 +66,10 @@ export const module3: Module = {
                 en: 'That exact shape — outer function of $g(x)$, times $g\'(x)$ — is what the chain rule produces going forward, so it is what u-substitution can undo going backward.',
                 id: 'Bentuk persis itu — fungsi luar dari $g(x)$, dikali $g\'(x)$ — adalah yang dihasilkan aturan rantai maju, sehingga itulah yang bisa dibalikkan substitusi u.',
               },
+              hint: {
+                en: 'Look back at the chain-rule shape from the concept above — what relationship does an inner expression\'s own derivative need to have with the rest of the integrand for this technique to apply?',
+                id: 'Lihat kembali bentuk aturan rantai pada konsep di atas — hubungan apa yang perlu dimiliki turunan sebuah ekspresi dalam dengan sisa integrandnya agar teknik ini berlaku?',
+              },
             },
             {
               kind: 'quiz',
@@ -85,6 +89,10 @@ export const module3: Module = {
                 en: '$x^2$ is the inner function, and its derivative $2x$ is (up to the constant $2$) exactly the leftover factor $x$ — the signature shape of a chain-rule integral.',
                 id: '$x^2$ adalah fungsi dalamnya, dan turunannya $2x$ adalah (hingga konstanta $2$) persis faktor sisa $x$ — bentuk khas integral aturan rantai.',
               },
+              hint: {
+                en: 'Pick the inner expression whose own derivative is, up to a constant, exactly the factor left over in the integrand — check each option by differentiating it and comparing to what remains.',
+                id: 'Pilih ekspresi dalam yang turunannya sendiri, hingga sebuah konstanta, persis faktor yang tersisa di integrandnya — periksa tiap pilihan dengan menurunkannya dan bandingkan dengan yang tersisa.',
+              },
             },
             {
               kind: 'fill',
@@ -99,6 +107,10 @@ export const module3: Module = {
               explain: {
                 en: '$du = 3x^2\\,dx$ matches the leftover factor exactly, so no scaling is needed; the power rule then raises the exponent to $5$.',
                 id: '$du = 3x^2\\,dx$ cocok persis dengan faktor sisanya, sehingga tak perlu penskalaan; aturan pangkat lalu menaikkan pangkatnya menjadi $5$.',
+              },
+              hint: {
+                en: 'Differentiate the expression you set $u$ equal to, to find what $du$ must be — then apply the power rule to $u^4$ exactly the way Module 1 did.',
+                id: 'Turunkan ekspresi yang kamu tetapkan sebagai $u$, untuk mencari apa yang harus menjadi $du$ — lalu terapkan aturan pangkat pada $u^4$ persis seperti yang dilakukan Modul 1.',
               },
             },
             {
@@ -179,6 +191,10 @@ export const module3: Module = {
                 en: 'The bounds are $x$-values; once the integral is entirely rewritten in $u$, they must become the matching $u$-values (or the answer must be translated back to $x$ before the bounds are used).',
                 id: 'Batasnya adalah nilai-nilai $x$; begitu integralnya seluruhnya ditulis ulang dalam $u$, batasnya harus menjadi nilai $u$ yang bersesuaian (atau jawabannya harus diterjemahkan kembali ke $x$ sebelum batasnya dipakai).',
               },
+              hint: {
+                en: 'The bounds were written as $x$-values before any substitution happened — think about what would go wrong if you plugged those same numbers into a formula that is now entirely in terms of $u$.',
+                id: 'Batasnya ditulis sebagai nilai $x$ sebelum substitusi terjadi — pikirkan apa yang akan salah jika kamu memasukkan angka yang sama itu ke rumus yang kini seluruhnya dalam bentuk $u$.',
+              },
             },
             {
               kind: 'quiz',
@@ -207,6 +223,10 @@ export const module3: Module = {
               explain: {
                 en: 'The worked example switched to $u = x^2+1$ and translated the bounds to $u = 1$ and $u = 2$, never returning to $x$ at all.',
                 id: 'Contoh yang dikerjakan beralih ke $u = x^2+1$ dan menerjemahkan batasnya menjadi $u = 1$ dan $u = 2$, tak pernah kembali ke $x$ sama sekali.',
+              },
+              hint: {
+                en: 'Look back at how the bounds $0$ and $1$ were handled in the worked example above — were they kept as $x$-values, or translated to match a different variable?',
+                id: 'Lihat kembali bagaimana batas $0$ dan $1$ ditangani pada contoh yang dikerjakan di atas — apakah dibiarkan sebagai nilai $x$, atau diterjemahkan agar sesuai peubah lain?',
               },
             },
             {
@@ -318,6 +338,10 @@ export const module3: Module = {
                 en: 'Integrating both sides of the product rule $\\frac{d}{dx}[uv] = u\'v + uv\'$ and rearranging produces exactly the integration by parts formula.',
                 id: 'Mengintegralkan kedua ruas aturan hasil kali $\\frac{d}{dx}[uv] = u\'v + uv\'$ dan menata ulangnya menghasilkan persis rumus integral parsial.',
               },
+              hint: {
+                en: 'Look at the formula\'s shape, $\\int u\\,dv = uv - \\int v\\,du$ — it fell straight out of integrating both sides of the rule for differentiating a product of two functions.',
+                id: 'Lihat bentuk rumusnya, $\\int u\\,dv = uv - \\int v\\,du$ — ia langsung keluar dari mengintegralkan kedua ruas aturan penurunan hasil kali dua fungsi.',
+              },
             },
             {
               kind: 'quiz',
@@ -337,6 +361,10 @@ export const module3: Module = {
                 en: '$\\ln(x)$ has no elementary antiderivative found by inspection but differentiates to the simple $1/x$ — exactly the shrink integration by parts needs. $x$, meanwhile, integrates easily to $x^2/2$.',
                 id: '$\\ln(x)$ tak punya antiturunan elementer yang mudah ditemukan tetapi menurun menjadi $1/x$ yang sederhana — persis penyusutan yang diperlukan integral parsial. $x$, sementara itu, mudah diintegralkan menjadi $x^2/2$.',
               },
+              hint: {
+                en: 'Differentiate each candidate for $u$ and compare: which one becomes noticeably simpler, and which one just turns into a different power of $x$?',
+                id: 'Turunkan tiap kandidat $u$ dan bandingkan: mana yang menjadi jelas lebih sederhana, dan mana yang hanya berubah menjadi pangkat $x$ yang lain?',
+              },
             },
             {
               kind: 'fill',
@@ -351,6 +379,10 @@ export const module3: Module = {
               explain: {
                 en: '$v = -\\cos x$, since that is the antiderivative of $\\sin x$. The final answer always keeps the $+C$ — an indefinite integral is a whole family.',
                 id: '$v = -\\cos x$, sebab itulah antiturunan dari $\\sin x$. Jawaban akhirnya selalu menyimpan $+C$ — integral tak tentu adalah seluruh keluarga.',
+              },
+              hint: {
+                en: 'Recall which sign shows up when you antidifferentiate $\\sin x$ — and remember what every indefinite integral needs tacked on at the very end, whatever the sign turns out to be.',
+                id: 'Ingat tanda apa yang muncul saat mengantiturunkan $\\sin x$ — dan ingat apa yang perlu ditambahkan di akhir setiap integral tak tentu, apa pun tandanya nanti.',
               },
             },
             {
@@ -416,6 +448,10 @@ export const module3: Module = {
                 en: '$x^2 e^x$ shrinks with each pass because differentiating the polynomial factor lowers its degree. $e^x\\sin(x)$ cycles between sine and cosine under differentiation and integration, so two passes bring back the starting integral rather than something new.',
                 id: '$x^2 e^x$ menyusut dengan tiap putaran sebab menurunkan faktor polinomnya menurunkan derajatnya. $e^x\\sin(x)$ berputar antara sinus dan cosinus di bawah penurunan dan pengintegralan, sehingga dua putaran mengembalikan integral awalnya alih-alih sesuatu yang baru.',
               },
+              hint: {
+                en: 'Track what happens to the polynomial factor in $x^2e^x$ under repeated differentiation, versus what happens to $\\sin x$ and $\\cos x$ under the same treatment — does one of them ever stop cycling back?',
+                id: 'Lacak apa yang terjadi pada faktor polinom di $x^2e^x$ di bawah penurunan berulang, dibanding apa yang terjadi pada $\\sin x$ dan $\\cos x$ dengan perlakuan yang sama — apakah salah satunya pernah berhenti berputar kembali?',
+              },
             },
             {
               kind: 'order',
@@ -433,6 +469,10 @@ export const module3: Module = {
               explain: {
                 en: 'Two passes of integration by parts bring the original integral $I$ back on the right; move it to the left, halve, and the answer falls out.',
                 id: 'Dua putaran integral parsial mengembalikan integral asli $I$ di ruas kanan; pindahkan ke kiri, bagi dua, dan jawabannya keluar.',
+              },
+              hint: {
+                en: 'You can\'t isolate $I$ on one side until the equation actually has $-I$ sitting on the other side to move over — and you can\'t write $I$ alone until the two $I$ terms have been combined into one.',
+                id: 'Kamu tak bisa mengisolasi $I$ di satu ruas sebelum persamaannya benar-benar punya $-I$ di ruas lain untuk dipindahkan — dan kamu tak bisa menulis $I$ sendirian sebelum kedua suku $I$ digabungkan menjadi satu.',
               },
             },
             {

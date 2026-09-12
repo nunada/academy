@@ -84,6 +84,10 @@ export const module5: Module = {
                 en: 'A direction vector may be replaced by any non-zero multiple of itself. $(1,-2,3)$, $(-2,4,-6)$ and $(4,-8,12)$ are all multiples of $(2,-4,6)$; $(1,0,2)$ is not — it happens to be the position vector of the starting point, which is a different thing entirely.',
                 id: 'Vektor arah boleh diganti dengan kelipatan tak nol mana pun dari dirinya. $(1,-2,3)$, $(-2,4,-6)$, dan $(4,-8,12)$ semuanya kelipatan $(2,-4,6)$; $(1,0,2)$ tidak — kebetulan ia vektor posisi titik pangkalnya, dan itu hal yang sama sekali berbeda.',
               },
+              hint: {
+                en: 'Check each option against $(2,-4,6)$ — is it a scalar multiple of it? One of the four options is actually something else entirely from the line\'s equation, not a direction at all.',
+                id: 'Periksa tiap pilihan terhadap $(2,-4,6)$ — apakah ia kelipatan skalarnya? Satu dari empat pilihan sebenarnya adalah bagian lain dari persamaan garisnya, bukan sebuah arah sama sekali.',
+              },
             },
             {
               kind: 'quiz',
@@ -114,6 +118,10 @@ export const module5: Module = {
                 en: '$2\\vec{v} = 2(2, 1, -1) = (4, 2, -2)$, exactly $P$. So $t = 2$ walks two copies of $\\vec{v}$ from $\\vec{r_0}$ to reach it.',
                 id: '$2\\vec{v} = 2(2, 1, -1) = (4, 2, -2)$, persis $P$. Jadi $t = 2$ berjalan dua kali $\\vec{v}$ dari $\\vec{r_0}$ untuk mencapainya.',
               },
+              hint: {
+                en: 'Divide $P$\'s first component by $\\vec{v}$\'s first component — that ratio tells you how many copies of $\\vec{v}$ are needed. Then check it against the other two slots.',
+                id: 'Bagi komponen pertama $P$ dengan komponen pertama $\\vec{v}$ — rasio itu memberitahu berapa banyak $\\vec{v}$ yang dibutuhkan. Lalu periksa terhadap dua slot lainnya.',
+              },
             },
             {
               kind: 'fill',
@@ -131,6 +139,10 @@ export const module5: Module = {
               explain: {
                 en: '$1 + 6 = 7$, the middle coordinate never moves because its direction component is 0, and $4 - 2 = 2$. A zero component means the line is level in that coordinate.',
                 id: '$1 + 6 = 7$, koordinat tengahnya tak pernah bergerak karena komponen arahnya 0, dan $4 - 2 = 2$. Komponen nol berarti garisnya datar pada koordinat itu.',
+              },
+              hint: {
+                en: 'Substitute $t = 2$ into each of the three expressions on its own — pay attention to what a $0t$ term does to the middle one.',
+                id: 'Substitusikan $t = 2$ ke masing-masing dari tiga bentuknya secara terpisah — perhatikan apa yang dilakukan suku $0t$ pada yang tengah.',
               },
             },
             {
@@ -199,6 +211,10 @@ export const module5: Module = {
                 en: 'The denominators are the direction components. The numerators give a point on the line, $(3, -1, 0)$ — note the sign flip, since $y + 1$ is $y - (-1)$. And $(-2, 5, -4)$ would also be a valid direction, just not the only one.',
                 id: 'Penyebutnya adalah komponen arahnya. Pembilangnya memberi sebuah titik pada garis, $(3, -1, 0)$ — perhatikan tandanya berbalik, sebab $y + 1$ adalah $y - (-1)$. Dan $(-2, 5, -4)$ juga arah yang sah, hanya saja bukan satu-satunya.',
               },
+              hint: {
+                en: 'In symmetric form it is what sits under each fraction, not on top, that names the direction vector.',
+                id: 'Pada bentuk simetrik, yang menamai vektor arah adalah apa yang ada di bawah tiap pecahan, bukan di atasnya.',
+              },
             },
             {
               kind: 'quiz',
@@ -229,6 +245,10 @@ export const module5: Module = {
                 en: '$R = (2, 1, 1)$ has a $z$-coordinate that $P$ and $Q$ (both $z = 0$) do not share, so $R$ is actually off the line — but from this near-overhead angle that offset is hard to see. This is exactly why the algebraic check, solving for $t$ in each coordinate, matters more than any one picture.',
                 id: '$R = (2, 1, 1)$ mempunyai koordinat $z$ yang tidak dimiliki $P$ dan $Q$ (keduanya $z = 0$), jadi $R$ sebenarnya berada di luar garis — tetapi dari sudut pandang yang hampir dari atas ini, selisih itu sulit terlihat. Inilah sebabnya pemeriksaan aljabar, menyelesaikan $t$ pada tiap koordinat, lebih dapat diandalkan daripada satu gambar mana pun.',
               },
+              hint: {
+                en: 'A single fixed viewing angle can hide a gap that only shows up along the depth of the screen. What kind of check would settle the question for certain, rather than by eye?',
+                id: 'Satu sudut pandang tetap bisa menyembunyikan celah yang hanya terlihat sepanjang kedalaman layar. Pemeriksaan seperti apa yang bisa memastikan jawabannya, bukan sekadar dengan mata?',
+              },
             },
             {
               kind: 'order',
@@ -247,6 +267,10 @@ export const module5: Module = {
               explain: {
                 en: 'Direction, then the parametric form, then solve one coordinate for $t$, then check the other two against it. Solving all three independently is the usual mistake — the point is that they must agree.',
                 id: 'Arahnya, lalu bentuk parametriknya, lalu selesaikan satu koordinat untuk $t$, lalu periksa dua sisanya terhadapnya. Menyelesaikan ketiganya sendiri-sendiri adalah kesalahan yang lazim — intinya justru ketiganya harus sepakat.',
+              },
+              hint: {
+                en: 'You need the direction vector before you can write the parametric form, and you need one solved value of $t$ in hand before there is anything to check the remaining two coordinates against.',
+                id: 'Kamu butuh vektor arahnya sebelum bisa menulis bentuk parametriknya, dan kamu butuh satu nilai $t$ yang sudah diselesaikan sebelum ada sesuatu untuk memeriksa dua koordinat yang tersisa.',
               },
             },
             {
@@ -435,6 +459,10 @@ export const module5: Module = {
                 en: 'The coefficients are the normal, signs included; the constant 7 has nothing to do with the direction — it only slides the plane along that normal.',
                 id: 'Koefisiennya adalah normalnya, lengkap dengan tandanya; konstanta 7 tak berhubungan dengan arahnya — ia hanya menggeser bidangnya sepanjang normal itu.',
               },
+              hint: {
+                en: 'Look at what multiplies $x$, $y$, and $z$ in the equation — that\'s the normal, signs and all. The number on the right of the equals sign plays a different role entirely.',
+                id: 'Perhatikan apa yang mengalikan $x$, $y$, dan $z$ dalam persamaannya — itulah normalnya, lengkap dengan tandanya. Bilangan di kanan tanda sama dengan berperan sama sekali berbeda.',
+              },
             },
             {
               kind: 'quiz',
@@ -474,6 +502,10 @@ export const module5: Module = {
                 en: 'A normal must stand perpendicular to the plane, not lie inside it. $\\vec{u}$ is drawn lying flat in the plane itself, one of the displacements the definition tests against; $\\vec{n}$ stands at a right angle to all of them.',
                 id: 'Normal harus berdiri tegak lurus terhadap bidangnya, bukan berbaring di dalamnya. $\\vec{u}$ digambar terbaring rata di dalam bidang itu sendiri, salah satu perpindahan yang diuji oleh definisinya; $\\vec{n}$ berdiri tegak lurus terhadap semuanya.',
               },
+              hint: {
+                en: 'Look at which of the two arrows stays flat inside the shaded plane, and which one stands away from it. Only one of those two roles belongs to a normal vector.',
+                id: 'Perhatikan anak panah mana yang tetap datar di dalam bidang yang diarsir, dan mana yang berdiri menjauh darinya. Hanya satu dari dua peran itu yang menjadi vektor normal.',
+              },
             },
             {
               kind: 'fill',
@@ -488,6 +520,10 @@ export const module5: Module = {
               explain: {
                 en: '$8 - 2 - 15 = -9$, so the plane is $4x + 2y - 5z = -9$. A negative constant is nothing unusual — it just means the plane passes on the far side of the origin.',
                 id: '$8 - 2 - 15 = -9$, jadi bidangnya adalah $4x + 2y - 5z = -9$. Konstanta negatif bukan hal aneh — ia hanya berarti bidangnya melewati sisi seberang titik asal.',
+              },
+              hint: {
+                en: 'The three products are already spelled out for you — just carry out the subtraction left to right and watch how the signs stack up.',
+                id: 'Ketiga hasil kalinya sudah dijabarkan untukmu — tinggal lakukan pengurangan dari kiri ke kanan dan perhatikan bagaimana tandanya bertumpuk.',
               },
             },
             {
@@ -596,6 +632,10 @@ export const module5: Module = {
                 en: '$\\vec{n_2} = (-4, 2, -6) = -2(2, -1, 3) = -2\\vec{n_1}$, so the normals are parallel and so are the planes. They are not the same plane: the constants do not scale by $-2$, since $-2 \\cdot 5 = -10 \\neq 1$.',
                 id: '$\\vec{n_2} = (-4, 2, -6) = -2(2, -1, 3) = -2\\vec{n_1}$, jadi normalnya sejajar dan bidangnya pun sejajar. Keduanya bukan bidang yang sama: konstantanya tidak berskala $-2$, sebab $-2 \\cdot 5 = -10 \\neq 1$.',
               },
+              hint: {
+                en: 'Read off the two normal vectors from the coefficients first. Is one a scalar multiple of the other? Check that before you even look at the constants on the right.',
+                id: 'Baca dulu kedua vektor normalnya dari koefisiennya. Apakah yang satu kelipatan skalar dari yang lain? Periksa itu sebelum bahkan melihat konstanta di ruas kanan.',
+              },
             },
             {
               kind: 'quiz',
@@ -624,6 +664,10 @@ export const module5: Module = {
                 en: 'Neither arrow is a scalar multiple of the other, so the planes are not parallel; and they do not meet at a right angle either. These are the same two normals from the worked example above, $\\vec{n_1} \\cdot \\vec{n_2} = 4 \\neq 0$, giving an angle of about $63{,}6°$ — neither special case.',
                 id: 'Tak satu pun anak panah merupakan kelipatan skalar dari yang lain, jadi bidangnya tidak sejajar; keduanya juga tidak bertemu pada sudut siku-siku. Inilah dua normal yang sama dari contoh yang dikerjakan di atas, $\\vec{n_1} \\cdot \\vec{n_2} = 4 \\neq 0$, memberi sudut sekitar $63{,}6°$ — bukan salah satu kasus khusus.',
               },
+              hint: {
+                en: 'Test both special cases explicitly on the components shown: is one vector a multiple of the other, and separately, does their dot product come out to zero?',
+                id: 'Uji kedua kasus khusus itu secara eksplisit pada komponen yang ditunjukkan: apakah satu vektor kelipatan yang lain, dan secara terpisah, apakah perkalian titiknya menjadi nol?',
+              },
             },
             {
               kind: 'order',
@@ -642,6 +686,10 @@ export const module5: Module = {
               explain: {
                 en: 'Read the normal off the coefficients, substitute the point into the left-hand side, subtract the constant, divide by $|\\vec{n}|$. Forgetting to subtract $d$ is the usual slip.',
                 id: 'Baca normalnya dari koefisiennya, substitusikan titiknya ke ruas kiri, kurangi konstantanya, lalu bagi dengan $|\\vec{n}|$. Lupa mengurangi $d$ adalah kekeliruan yang lazim.',
+              },
+              hint: {
+                en: 'You need $|\\vec{n}|$ and the substituted left-hand-side value both worked out before you can build the numerator that still has $d$ subtracted from it, and only then can you divide.',
+                id: 'Kamu butuh $|\\vec{n}|$ dan nilai ruas kiri yang sudah disubstitusi, keduanya dikerjakan dulu sebelum bisa menyusun pembilang yang masih harus dikurangi $d$, dan baru setelah itu bisa membagi.',
               },
             },
             {

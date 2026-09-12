@@ -66,6 +66,10 @@ export const module4: Module = {
                 en: 'main is for what is unique to this page. A menu shared by every page is not.',
                 id: 'main untuk yang khas halaman ini. Menu yang dipakai semua halaman bukan termasuk.',
               },
+              hint: {
+                en: 'Think about what main is reserved for — content unique to this one page — and whether a menu repeated on every page qualifies.',
+                id: 'Pikirkan untuk apa main dikhususkan — isi yang khas untuk halaman ini saja — dan apakah menu yang berulang di setiap halaman termasuk di dalamnya.',
+              },
             },
             {
               kind: 'order',
@@ -75,6 +79,10 @@ export const module4: Module = {
               explain: {
                 en: 'They follow reading order: masthead, navigation, the page itself, closing matter.',
                 id: 'Urutannya mengikuti alur baca: kepala halaman, navigasi, isi halaman itu sendiri, lalu penutup.',
+              },
+              hint: {
+                en: 'Think about which region a visitor meets first when the page loads, and which one only makes sense once everything else has already appeared.',
+                id: 'Pikirkan bagian mana yang pertama kali ditemui pengunjung saat halaman dimuat, dan bagian mana yang baru masuk akal setelah semua yang lain sudah muncul.',
               },
             },
             {
@@ -203,6 +211,10 @@ export const module4: Module = {
               explain: {
                 en: 'Standing alone is exactly what article means.',
                 id: 'Berdiri sendiri persis itulah arti article.',
+              },
+              hint: {
+                en: 'Think about which of these elements is specifically defined by being able to stand on its own, versus one that only makes sense as part of something bigger.',
+                id: 'Pikirkan elemen mana yang secara khusus didefinisikan karena bisa berdiri sendiri, dibandingkan yang hanya masuk akal sebagai bagian dari sesuatu yang lebih besar.',
               },
             },
             {

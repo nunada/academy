@@ -89,6 +89,10 @@ export const module3: Module = {
                 en: 'Flex is a property of the parent. The children are arranged by it, and need no rule of their own.',
                 id: 'Flex adalah properti induknya. Anak-anaknya ditata olehnya, dan tidak butuh aturan sendiri.',
               },
+              hint: {
+                en: 'Think about whether it is the children who need to know how to line up, or the thing surrounding them that decides how to arrange them.',
+                id: 'Pikirkan apakah anak-anaknya yang perlu tahu cara berbaris, atau justru yang mengelilingi mereka yang memutuskan cara penataannya.',
+              },
             },
             {
               kind: 'fill',
@@ -102,6 +106,10 @@ export const module3: Module = {
               explain: {
                 en: 'flex-direction picks the axis; gap spaces the items along it.',
                 id: 'flex-direction memilih sumbunya; gap memberi jarak sepanjang sumbu itu.',
+              },
+              hint: {
+                en: 'One property name decides which axis the items stack along, and the other is the property that puts space only between items, not around them.',
+                id: 'Satu nama properti menentukan sumbu mana yang dipakai untuk menumpuk item, dan satunya lagi adalah properti yang menaruh jarak hanya di antara item, bukan di sekelilingnya.',
               },
             },
             {
@@ -238,6 +246,10 @@ export const module3: Module = {
               explain: {
                 en: 'space-between puts all the free space between the items, pushing the outer ones to the edges.',
                 id: 'space-between menaruh semua ruang sisa di antara item, mendorong yang terluar ke tepi.',
+              },
+              hint: {
+                en: 'Think about which property works along the row\'s main direction, and which value describes putting empty space between items rather than around or before them.',
+                id: 'Pikirkan properti mana yang bekerja sepanjang arah utama barisnya, dan nilai mana yang menggambarkan menaruh ruang kosong di antara item, bukan di sekeliling atau sebelum mereka.',
               },
             },
             {
@@ -453,6 +465,10 @@ export const module3: Module = {
                 en: 'The first number is how many tracks, the second what each one is.',
                 id: 'Angka pertama adalah berapa jalur, yang kedua adalah ukuran tiap jalurnya.',
               },
+              hint: {
+                en: 'grid-template-columns always describes columns, no matter what shorthand you use inside it — think about what the two arguments inside repeat() each control.',
+                id: 'grid-template-columns selalu menjelaskan kolom, apa pun singkatan yang kamu pakai di dalamnya — pikirkan apa yang dikendalikan oleh masing-masing dari dua argumen di dalam repeat().',
+              },
             },
             {
               kind: 'web',
@@ -574,6 +590,10 @@ export const module3: Module = {
               explain: {
                 en: 'The container defines the tracks; a child says how many of them it wants.',
                 id: 'Wadahnya menetapkan jalurnya; seorang anak menyatakan berapa jalur yang ia inginkan.',
+              },
+              hint: {
+                en: 'Think about which side of the relationship declares how many tracks exist, and which side asks for more than one of them.',
+                id: 'Pikirkan pihak mana dalam hubungan ini yang menetapkan berapa banyak jalur yang ada, dan pihak mana yang meminta lebih dari satu jalur untuk dirinya.',
               },
             },
             {
