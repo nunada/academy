@@ -119,8 +119,8 @@ export const module1: Module = {
                 en: 'Write the terminating decimal $0.375$ as a fraction in lowest terms.',
                 id: 'Tulis desimal berhenti $0.375$ sebagai pecahan dalam bentuk paling sederhana.',
               },
-              template: '0.375 = ___',
-              blanks: ['3/8'],
+              template: '0.375 = ___ / ___',
+              blanks: ['3', '8'],
               explain: {
                 en: '$0.375 = \\frac{375}{1000}$, and dividing top and bottom by $125$ gives $\\frac{3}{8}$ — a terminating decimal is always rational for exactly this reason.',
                 id: '$0.375 = \\frac{375}{1000}$, dan membagi pembilang serta penyebut dengan $125$ memberi $\\frac{3}{8}$ — desimal berhenti selalu rasional persis karena alasan ini.',
