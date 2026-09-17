@@ -64,6 +64,23 @@ export const module2: Module = {
                 en: 'Using the **right** endpoint of each strip instead — $x = 0.5, 1, 1.5, 2$, heights $1.25, 2, 3.25, 5$ — gives the **right Riemann sum**:\n$$R_4 = 0.5(1.25 + 2 + 3.25 + 5) = 0.5(11.5) = 5.75$$\nSince $f$ is increasing, left rectangles sit entirely under the curve (an underestimate) and right rectangles entirely over it (an overestimate) — the true area is trapped between $3.75$ and $5.75$.\n\nThe **midpoint sum** uses the middle of each strip — $x = 0.25, 0.75, 1.25, 1.75$, heights $1.0625, 1.5625, 2.5625, 4.0625$:\n$$M_4 = 0.5(1.0625 + 1.5625 + 2.5625 + 4.0625) = 0.5(9.25) = 4.625$$\nletting each rectangle overshoot on one side and undershoot on the other, which is why the midpoint sum usually lands closer to the true value than either one-sided sum.',
                 id: 'Memakai ujung **kanan** tiap jalur sebagai gantinya — $x = 0.5, 1, 1.5, 2$, tinggi $1.25, 2, 3.25, 5$ — memberi **jumlah Riemann kanan**:\n$$R_4 = 0.5(1.25 + 2 + 3.25 + 5) = 0.5(11.5) = 5.75$$\nKarena $f$ sedang naik, persegi panjang kiri seluruhnya berada di bawah kurva (sebuah taksiran kurang) dan persegi panjang kanan seluruhnya di atasnya (sebuah taksiran lebih) — luas sebenarnya terjebak di antara $3.75$ dan $5.75$.\n\n**Jumlah titik tengah** memakai tengah tiap jalur — $x = 0.25, 0.75, 1.25, 1.75$, tinggi $1.0625, 1.5625, 2.5625, 4.0625$:\n$$M_4 = 0.5(1.0625 + 1.5625 + 2.5625 + 4.0625) = 0.5(9.25) = 4.625$$\nmembiarkan tiap persegi panjang lebih di satu sisi dan kurang di sisi lain, itulah sebabnya jumlah titik tengah biasanya mendarat lebih dekat ke nilai sebenarnya dibanding jumlah satu sisi mana pun.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 2.5],
+                ySpan: [-0.5, 5.5],
+                ticks: true,
+                items: [
+                  { t: 'poly', pts: [[0, 0], [0.5, 0], [0.5, 1.25], [0, 1.25]], color: 'muted' },
+                  { t: 'poly', pts: [[0.5, 0], [1, 0], [1, 2], [0.5, 2]], color: 'muted' },
+                  { t: 'poly', pts: [[1, 0], [1.5, 0], [1.5, 3.25], [1, 3.25]], color: 'muted' },
+                  { t: 'poly', pts: [[1.5, 0], [2, 0], [2, 5], [1.5, 5]], color: 'muted' },
+                  { t: 'curve', f: 'x^2+1', from: 0, to: 2, color: 'a' },
+                ],
+                caption: {
+                  en: 'The same curve, now with four right-endpoint rectangles — each sits above the curve across its strip, giving the overestimate $R_4 = 5.75$, in contrast to the left sum\'s underestimate $L_4 = 3.75$.',
+                  id: 'Kurva yang sama, kini dengan empat persegi panjang ujung-kanan — tiap persegi panjang berada di atas kurva sepanjang jalurnya, memberi taksiran lebih $R_4 = 5.75$, berkebalikan dengan taksiran kurang $L_4 = 3.75$ dari jumlah kiri.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -185,6 +202,21 @@ export const module2: Module = {
               body: {
                 en: 'A handful of facts fall straight out of summing rectangles:\n$$\\int_a^b \\big(f(x) \\pm g(x)\\big)\\,dx = \\int_a^b f(x)\\,dx \\pm \\int_a^b g(x)\\,dx, \\qquad \\int_a^b k\\,f(x)\\,dx = k\\int_a^b f(x)\\,dx$$\n$$\\int_a^b f(x)\\,dx = \\int_a^c f(x)\\,dx + \\int_c^b f(x)\\,dx \\quad (a < c < b), \\qquad \\int_a^a f(x)\\,dx = 0$$\nAnd when $f$ dips below the axis, the rectangles there have negative height, so that stretch subtracts from the total rather than adding to it — a definite integral measures **signed** area, not raw area. Reversing the bounds flips the sign: $\\int_b^a f(x)\\,dx = -\\int_a^b f(x)\\,dx$.',
                 id: 'Segenggam fakta langsung keluar dari menjumlahkan persegi panjang:\n$$\\int_a^b \\big(f(x) \\pm g(x)\\big)\\,dx = \\int_a^b f(x)\\,dx \\pm \\int_a^b g(x)\\,dx, \\qquad \\int_a^b k\\,f(x)\\,dx = k\\int_a^b f(x)\\,dx$$\n$$\\int_a^b f(x)\\,dx = \\int_a^c f(x)\\,dx + \\int_c^b f(x)\\,dx \\quad (a < c < b), \\qquad \\int_a^a f(x)\\,dx = 0$$\nDan ketika $f$ turun di bawah sumbu, persegi panjang di situ bertinggi negatif, sehingga bagian itu mengurangi totalnya alih-alih menambahkannya — integral tentu mengukur luas **bertanda**, bukan luas mentah. Membalik batasnya membalik tandanya: $\\int_b^a f(x)\\,dx = -\\int_a^b f(x)\\,dx$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 3.3],
+                ySpan: [-1.5, 2.5],
+                ticks: true,
+                items: [
+                  { t: 'poly', pts: [[0, 0], [0, -1], [1, 0]], color: 'muted' },
+                  { t: 'poly', pts: [[1, 0], [3, 2], [3, 0]], color: 'result' },
+                  { t: 'curve', f: 'x-1', from: 0, to: 3, color: 'a' },
+                ],
+                caption: {
+                  en: 'For $f(x) = x - 1$: the stretch below the axis (shaded muted, $[0,1]$) subtracts from the total, and the stretch above (shaded, $[1,3]$) adds to it — the definite integral is this signed sum, not two separate raw areas.',
+                  id: 'Untuk $f(x) = x - 1$: bagian di bawah sumbu (bayangan muted, $[0,1]$) mengurangi totalnya, dan bagian di atas (bayangan, $[1,3]$) menambahkannya — integral tentu adalah jumlah bertanda ini, bukan dua luas mentah yang terpisah.',
+                },
               },
             },
             {
@@ -334,6 +366,22 @@ export const module2: Module = {
               body: {
                 en: 'When the upper bound is a function of $x$ rather than $x$ itself, the chain rule attaches exactly as it did throughout the Derivatives course:\n$$\\frac{d}{dx}\\int_a^{g(x)} f(t)\\,dt = f\\big(g(x)\\big)\\cdot g\'(x)$$\nFor $A(x) = \\int_0^{x^2} \\sin t\\,dt$: the outer function is "integrate up to here", the inner is $g(x) = x^2$. So $A\'(x) = \\sin(x^2)\\cdot 2x$ — evaluate the integrand at the bound, then multiply by the bound\'s own derivative.',
                 id: 'Ketika batas atasnya adalah fungsi dari $x$, bukan $x$ itu sendiri, aturan rantai terpasang persis seperti sepanjang kursus Turunan:\n$$\\frac{d}{dx}\\int_a^{g(x)} f(t)\\,dt = f\\big(g(x)\\big)\\cdot g\'(x)$$\nUntuk $A(x) = \\int_0^{x^2} \\sin t\\,dt$: fungsi luarnya adalah "integralkan sampai di sini", fungsi dalamnya $g(x) = x^2$. Jadi $A\'(x) = \\sin(x^2)\\cdot 2x$ — evaluasi integrandnya pada batasnya, lalu kalikan dengan turunan batas itu sendiri.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 3.3],
+                ySpan: [-1.3, 1.6],
+                ticks: true,
+                params: [{ name: 'x0', min: 0.2, max: 1.7, step: 0.1, value: 1, label: 'x' }],
+                items: [
+                  { t: 'curve', f: 'sin(x)', from: 0, to: 3.2, color: 'a', label: 'sin(t)' },
+                  { t: 'vline', x: 'x0^2', color: 'b', dashed: true, label: 'bound = x²' },
+                  { t: 'dot', x: 'x0^2', y: 'sin(x0^2)', color: 'result' },
+                ],
+                caption: {
+                  en: 'Drag $x$: the accumulation now stops at $x^2$, not $x$ itself — the bound races ahead quadratically, which is exactly the extra factor $2x$ the chain rule multiplies in.',
+                  id: 'Geser $x$: akumulasinya kini berhenti di $x^2$, bukan $x$ itu sendiri — batasnya melaju secara kuadratik, persis faktor tambahan $2x$ yang dikalikan aturan rantai.',
+                },
               },
             },
             {

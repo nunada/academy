@@ -188,6 +188,26 @@ export const module3: Module = {
                 en: 'Both magnitudes are positive, so the sign of $\\vec{a} \\cdot \\vec{b}$ is the sign of $\\cos\\theta$ — and that alone classifies the angle:\n\n**positive** — $\\theta < 90°$, an acute angle, the vectors broadly agree\n**zero** — $\\theta = 90°$, they are perpendicular\n**negative** — $\\theta > 90°$, an obtuse angle, they broadly oppose\n\nSo you can tell whether two vectors point the same general way without computing a single square root.',
                 id: 'Kedua besarnya positif, jadi tanda $\\vec{a} \\cdot \\vec{b}$ adalah tanda $\\cos\\theta$ — dan itu saja sudah menggolongkan sudutnya:\n\n**positif** — $\\theta < 90°$, sudut lancip, kedua vektor secara umum searah\n**nol** — $\\theta = 90°$, keduanya tegak lurus\n**negatif** — $\\theta > 90°$, sudut tumpul, keduanya secara umum berlawanan\n\nJadi kamu bisa tahu apakah dua vektor mengarah ke sisi yang sama tanpa menghitung satu akar pun.',
               },
+              figure: {
+                dim: 2,
+                range: 6,
+                items: [
+                  { t: 'vec', to: [5, 0], label: 'b', color: 'muted' },
+                  { t: 'vec', to: [3, 3], label: 'a₁', color: 'a' },
+                  { t: 'vec', to: [0, 4], label: 'a₂', color: 'b' },
+                  { t: 'vec', to: [-3, 3], label: 'a₃', color: 'c' },
+                  { t: 'right', at: [0, 0], from: [5, 0], to: [0, 4] },
+                ],
+                readouts: [
+                  { label: 'a₁·b (lancip) =', n: { dot: [[3, 3], [5, 0]] } },
+                  { label: 'a₂·b (siku) =', n: { dot: [[0, 4], [5, 0]] } },
+                  { label: 'a₃·b (tumpul) =', n: { dot: [[-3, 3], [5, 0]] } },
+                ],
+                caption: {
+                  en: 'Three vectors measured against the same $\\vec{b}$: acute gives a positive dot product, a right angle gives exactly zero, obtuse gives negative — the sign alone sorts them.',
+                  id: 'Tiga vektor diukur terhadap $\\vec{b}$ yang sama: lancip memberi perkalian titik positif, siku-siku memberi tepat nol, tumpul memberi negatif — tandanya saja sudah menggolongkannya.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -385,16 +405,18 @@ export const module3: Module = {
               },
               figure: {
                 dim: 2,
-                range: 4,
+                range: 5,
+                interactive: true,
+                vars: { a: [3, 1], b: [-1, 3] },
                 items: [
-                  { t: 'vec', to: [3, 1], label: 'a', color: 'a' },
-                  { t: 'vec', to: [-1, 3], label: 'b', color: 'b' },
-                  { t: 'right', from: [3, 1], to: [-1, 3] },
+                  { t: 'vec', to: { of: 'a' }, label: 'a', color: 'a', drag: 'a' },
+                  { t: 'vec', to: { of: 'b' }, label: 'b', color: 'b', drag: 'b' },
+                  { t: 'right', from: { of: 'a' }, to: { of: 'b' } },
                 ],
-                readouts: [{ label: 'a·b = 3(-1) + 1(3) =', n: { dot: [[3, 1], [-1, 3]] }, dp: 0 }],
+                readouts: [{ label: 'a·b =', n: { dot: [{ of: 'a' }, { of: 'b' }] } }],
                 caption: {
-                  en: 'Two vectors at a right angle, and their dot product is zero. Note that neither is horizontal or vertical — perpendicularity has nothing to do with the axes.',
-                  id: 'Dua vektor yang membentuk sudut siku-siku, dan perkalian titiknya nol. Perhatikan tak satu pun mendatar atau tegak — ketegaklurusan tak ada hubungannya dengan sumbu.',
+                  en: 'Drag either arrow. The little marker at the origin is a perfect square only while the two are truly perpendicular — the moment $\\vec{a}\\cdot\\vec{b}$ drifts from zero, it stretches into a slanted shape.',
+                  id: 'Seret salah satu anak panahnya. Penanda kecil di titik asal berbentuk persegi sempurna hanya selama keduanya benar-benar tegak lurus — begitu $\\vec{a}\\cdot\\vec{b}$ bergeser dari nol, ia meregang menjadi bentuk yang miring.',
                 },
               },
             },

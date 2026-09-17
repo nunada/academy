@@ -192,6 +192,24 @@ export const module5: Module = {
                 en: 'Given two points $P$ and $Q$ on a line, the direction is the vector between them:\n$$\\vec{v} = \\vec{PQ} = Q - P$$\nand either point serves as $\\vec{r_0}$. So\n$$\\vec{r} = P + t(Q - P)$$\nThis is the same "terminal minus initial" from Module 1, now doing structural work. Note that $t = 0$ lands on $P$ and $t = 1$ lands on $Q$, so the values between 0 and 1 trace the **segment** $PQ$ and everything outside them extends the line beyond.',
                 id: 'Diberikan dua titik $P$ dan $Q$ pada sebuah garis, arahnya adalah vektor di antara keduanya:\n$$\\vec{v} = \\vec{PQ} = Q - P$$\ndan salah satu titiknya boleh dipakai sebagai $\\vec{r_0}$. Jadi\n$$\\vec{r} = P + t(Q - P)$$\nIni "ujung dikurangi pangkal" yang sama dari Modul 1, kini bekerja secara struktural. Perhatikan $t = 0$ jatuh di $P$ dan $t = 1$ jatuh di $Q$, sehingga nilai antara 0 dan 1 menelusuri **ruas** $PQ$ dan nilai di luarnya memperpanjang garisnya.',
               },
+              figure: {
+                dim: 3,
+                range: 7,
+                interactive: true,
+                view: [55, 20],
+                items: [
+                  { t: 'seg', from: [-5, -2.8, 2.8], to: [-2, -1, 1], color: 'muted', dashed: true },
+                  { t: 'seg', from: [-2, -1, 1], to: [3, 2, -2], color: 'result' },
+                  { t: 'seg', from: [3, 2, -2], to: [6, 3.8, -3.8], color: 'muted', dashed: true },
+                  { t: 'point', at: [-2, -1, 1], label: 'P' },
+                  { t: 'point', at: [3, 2, -2], label: 'Q' },
+                  { t: 'vec', from: [-2, -1, 1], to: [3, 2, -2], label: 'v = Q - P', color: 'a' },
+                ],
+                caption: {
+                  en: 'The solid segment is $t$ between 0 and 1 — the walk from $P$ to $Q$ itself. The dashed parts are the same line, $t$ outside that range, running on in both directions.',
+                  id: 'Ruas garis penuhnya adalah $t$ antara 0 dan 1 — perjalanan dari $P$ ke $Q$ itu sendiri. Bagian putus-putusnya adalah garis yang sama, $t$ di luar rentang itu, berjalan terus ke kedua arah.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -612,6 +630,25 @@ export const module5: Module = {
               body: {
                 en: 'The angle between two planes is the angle between their normal vectors:\n$$\\cos\\theta = \\frac{|\\vec{n_1} \\cdot \\vec{n_2}|}{|\\vec{n_1}|\\,|\\vec{n_2}|}$$\nThe bars in the numerator are a convention: two planes make two supplementary angles where they cross, and taking the absolute value reports the acute one.\n\nTwo useful special cases fall straight out. The planes are **parallel** when their normals are parallel, and **perpendicular** when $\\vec{n_1} \\cdot \\vec{n_2} = 0$.',
                 id: 'Sudut antara dua bidang adalah sudut antara vektor normalnya:\n$$\\cos\\theta = \\frac{|\\vec{n_1} \\cdot \\vec{n_2}|}{|\\vec{n_1}|\\,|\\vec{n_2}|}$$\nGaris mutlak pada pembilangnya adalah kesepakatan: dua bidang membentuk dua sudut yang saling berpelurus di tempat perpotongannya, dan mengambil nilai mutlaknya melaporkan yang lancip.\n\nDua kasus khusus yang berguna langsung mengikuti. Kedua bidang **sejajar** bila normalnya sejajar, dan **tegak lurus** bila $\\vec{n_1} \\cdot \\vec{n_2} = 0$.',
+              },
+              figure: {
+                dim: 3,
+                range: 4,
+                interactive: true,
+                view: [40, 25],
+                items: [
+                  { t: 'vec', to: [2, -1, 2], label: 'n₁', color: 'a' },
+                  { t: 'vec', to: [1, 2, 2], label: 'n₂', color: 'b' },
+                  { t: 'angle', from: [2, -1, 2], to: [1, 2, 2], label: 'θ' },
+                ],
+                readouts: [
+                  { label: 'n₁·n₂ =', n: { dot: [[2, -1, 2], [1, 2, 2]] } },
+                  { label: 'θ =', n: { angle: [[2, -1, 2], [1, 2, 2]] } },
+                ],
+                caption: {
+                  en: 'Turn the scene to see the angle between the two normals face on — it is exactly the angle between the planes they belong to, the same pair from the worked example below.',
+                  id: 'Putar gambarnya untuk melihat sudut antara kedua normal itu dari depan — itulah persis sudut antara bidang-bidang yang dimilikinya, pasangan yang sama dari contoh yang dikerjakan di bawah.',
+                },
               },
             },
             {

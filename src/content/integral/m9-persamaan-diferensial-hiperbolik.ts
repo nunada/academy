@@ -38,6 +38,21 @@ export const module9: Module = {
                 en: 'Every equation solved so far named a value: solve for $x$. A **differential equation** names a **derivative** instead: $\\frac{dy}{dx}=xy$ describes a whole family of functions whose rate of change is tied to both $x$ and the function\'s own current value $y$. When the equation can be arranged so all the $y$\'s (with $dy$) sit on one side and all the $x$\'s (with $dx$) sit on the other, it is **separable**:\n$$\\frac{dy}{dx}=xy \\ \\Rightarrow \\ \\frac{dy}{y} = x\\,dx$$\nIntegrating both sides independently — each is now an ordinary antiderivative problem from Module 1:\n$$\\int \\frac{dy}{y} = \\int x\\,dx \\ \\Rightarrow \\ \\ln|y| = \\frac{x^2}{2}+C$$',
                 id: 'Setiap persamaan yang diselesaikan sejauh ini menamai sebuah nilai: selesaikan untuk $x$. **Persamaan diferensial** sebagai gantinya menamai sebuah **turunan**: $\\frac{dy}{dx}=xy$ mendeskripsikan seluruh keluarga fungsi yang laju perubahannya terkait dengan $x$ maupun nilai fungsinya sendiri saat ini, $y$. Ketika persamaannya bisa disusun sehingga semua $y$ (dengan $dy$) duduk di satu ruas dan semua $x$ (dengan $dx$) duduk di ruas lain, ia **terpisah**:\n$$\\frac{dy}{dx}=xy \\ \\Rightarrow \\ \\frac{dy}{y} = x\\,dx$$\nMengintegralkan kedua ruas secara bebas — masing-masing kini soal antiturunan biasa dari Modul 1:\n$$\\int \\frac{dy}{y} = \\int x\\,dx \\ \\Rightarrow \\ \\ln|y| = \\frac{x^2}{2}+C$$',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-2.2, 2.2],
+                ySpan: [-16, 16],
+                ticks: true,
+                params: [{ name: 'a', min: -2, max: 2, step: 0.5, value: 1, label: 'A' }],
+                items: [
+                  { t: 'curve', f: 'a*e^(x^2/2)', from: -2, to: 2, color: 'result' },
+                  { t: 'hline', y: 0, color: 'muted' },
+                ],
+                caption: {
+                  en: 'Drag $A$: every value traces a different member of the solution family $y=Ae^{x^2/2}$ — the differential equation $\\frac{dy}{dx}=xy$ alone does not pick one; only an initial condition does.',
+                  id: 'Geser $A$: tiap nilai menjejaki anggota keluarga solusi $y=Ae^{x^2/2}$ yang berbeda — persamaan diferensial $\\frac{dy}{dx}=xy$ sendiri tak memilih satu; hanya syarat awal yang memilihnya.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -46,6 +61,22 @@ export const module9: Module = {
               body: {
                 en: 'Exponentiating both sides undoes the logarithm: $|y|=e^{x^2/2+C} = e^C e^{x^2/2}$. Since $e^C$ is just some positive constant, rename it $A$: $y=Ae^{x^2/2}$ (allowing $A$ to be any real number absorbs the sign that $|y|$ left ambiguous). This is the **general solution** — a whole family, just like Module 1\'s antiderivatives.\n\nAn initial condition $y(0)=2$ pins down $A$ exactly like it pinned down $C$ back then: $2 = Ae^0 = A$, so $y=2e^{x^2/2}$. At $x=2$: $y=2e^2\\approx 14.78$.',
                 id: 'Mengeksponenkan kedua ruas membalik logaritmanya: $|y|=e^{x^2/2+C} = e^C e^{x^2/2}$. Karena $e^C$ hanyalah suatu konstanta positif, namai ulang $A$: $y=Ae^{x^2/2}$ (mengizinkan $A$ bilangan real apa pun menyerap tanda yang ditinggalkan $|y|$ secara ambigu). Ini adalah **solusi umum** — seluruh keluarga, persis seperti antiturunan Modul 1.\n\nSyarat awal $y(0)=2$ menentukan $A$ persis seperti menentukan $C$ dahulu: $2 = Ae^0 = A$, sehingga $y=2e^{x^2/2}$. Di $x=2$: $y=2e^2\\approx 14{,}78$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 2.3],
+                ySpan: [-1, 16],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '2*e^(x^2/2)', from: 0, to: 2, color: 'a' },
+                  { t: 'vline', x: 2, color: 'muted', dashed: true },
+                  { t: 'dot', x: 0, y: 2, color: 'result', label: 'y(0)=2' },
+                  { t: 'dot', x: 2, y: 14.78, color: 'result', label: 'y(2)≈14.78' },
+                ],
+                caption: {
+                  en: 'The one member of the family picked out by $y(0)=2$ — plugging in the initial condition selects this single curve out of the whole family $y=Ae^{x^2/2}$ from the concept above.',
+                  id: 'Satu-satunya anggota keluarga yang dipilih oleh $y(0)=2$ — memasukkan syarat awal memilih kurva tunggal ini dari seluruh keluarga $y=Ae^{x^2/2}$ pada konsep di atas.',
+                },
               },
             },
             {
@@ -124,6 +155,21 @@ export const module9: Module = {
               body: {
                 en: 'The Functions course simply stated that population growth and radioactive decay follow $y=y_0a^t$. Here is where that model actually comes from. "The rate of change of a quantity is proportional to the quantity itself" translates directly into a differential equation:\n$$\\frac{dy}{dt} = ky$$\nThis is exactly the separable equation from the last lesson\'s pattern, with $x$ renamed $t$: $\\frac{dy}{y}=k\\,dt \\Rightarrow \\ln|y|=kt+C \\Rightarrow y=Ae^{kt}$. An initial condition $y(0)=y_0$ gives $A=y_0$ immediately:\n$$y = y_0 e^{kt}$$\n$k>0$ gives growth, $k<0$ gives decay — one equation, one solution method, covering both directions.',
                 id: 'Kursus Fungsi hanya menyatakan pertumbuhan populasi dan peluruhan radioaktif mengikuti $y=y_0a^t$. Di sinilah model itu sebenarnya berasal. "Laju perubahan sebuah besaran sebanding dengan besaran itu sendiri" diterjemahkan langsung menjadi persamaan diferensial:\n$$\\frac{dy}{dt} = ky$$\nIni persis persamaan terpisah dari pola pelajaran sebelumnya, dengan $x$ dinamai ulang $t$: $\\frac{dy}{y}=k\\,dt \\Rightarrow \\ln|y|=kt+C \\Rightarrow y=Ae^{kt}$. Syarat awal $y(0)=y_0$ langsung memberi $A=y_0$:\n$$y = y_0 e^{kt}$$\n$k>0$ memberi pertumbuhan, $k<0$ memberi peluruhan — satu persamaan, satu metode penyelesaian, mencakup kedua arah.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 5.3],
+                ySpan: [-0.2, 6],
+                ticks: true,
+                params: [{ name: 'k', min: -0.6, max: 0.6, step: 0.05, value: 0.3, label: 'k' }],
+                items: [
+                  { t: 'curve', f: 'e^(k*x)', from: 0, to: 5, color: 'a' },
+                  { t: 'hline', y: 1, color: 'muted', dashed: true },
+                ],
+                caption: {
+                  en: 'Drag $k$: the same equation $\\frac{dy}{dt}=ky$ (here with $y_0=1$) produces growth when $k>0$, decay when $k<0$, and a flat constant solution right at $k=0$.',
+                  id: 'Geser $k$: persamaan yang sama $\\frac{dy}{dt}=ky$ (di sini dengan $y_0=1$) menghasilkan pertumbuhan ketika $k>0$, peluruhan ketika $k<0$, dan solusi konstan datar tepat di $k=0$.',
+                },
               },
             },
             {
@@ -280,6 +326,21 @@ export const module9: Module = {
                 en: 'Any function can be split into an even piece and an odd piece — the Functions course used exactly this idea. Applied to $e^x$:\n$$\\cosh x = \\frac{e^x+e^{-x}}{2} \\ (\\text{even}), \\qquad \\sinh x = \\frac{e^x-e^{-x}}{2} \\ (\\text{odd})$$\nread "hyperbolic cosine" and "hyperbolic sine". Adding them back recovers $e^x$ exactly: $\\cosh x+\\sinh x = e^x$. At $x=0$: $\\cosh 0 = \\frac{1+1}{2}=1$, $\\sinh 0=\\frac{1-1}{2}=0$ — matching $\\cos 0=1$ and $\\sin 0=0$, the first hint these are genuine counterparts to the circular functions.',
                 id: 'Fungsi apa pun bisa dipecah menjadi bagian genap dan bagian ganjil — kursus Fungsi memakai persis gagasan ini. Diterapkan pada $e^x$:\n$$\\cosh x = \\frac{e^x+e^{-x}}{2} \\ (\\text{genap}), \\qquad \\sinh x = \\frac{e^x-e^{-x}}{2} \\ (\\text{ganjil})$$\ndibaca "cosinus hiperbolik" dan "sinus hiperbolik". Menjumlahkannya kembali memulihkan $e^x$ persis: $\\cosh x+\\sinh x = e^x$. Di $x=0$: $\\cosh 0 = \\frac{1+1}{2}=1$, $\\sinh 0=\\frac{1-1}{2}=0$ — cocok dengan $\\cos 0=1$ dan $\\sin 0=0$, petunjuk pertama bahwa ini padanan sungguhan dari fungsi sirkular.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 2],
+                ySpan: [-1, 6],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'e^x', from: -2, to: 1.9, color: 'muted', dashed: true, label: 'e^x' },
+                  { t: 'curve', f: 'e^(-x)', from: -1.9, to: 2, color: 'muted', dashed: true, label: 'e^(-x)' },
+                  { t: 'curve', f: '(e^x+e^(-x))/2', from: -2, to: 2, color: 'a', label: 'cosh x' },
+                ],
+                caption: {
+                  en: '$\\cosh x$ (solid) is the average of $e^x$ and $e^{-x}$ (dashed) at every point — the even half of $e^x$, sitting exactly halfway between the two dashed curves.',
+                  id: '$\\cosh x$ (solid) adalah rata-rata $e^x$ dan $e^{-x}$ (putus-putus) di tiap titik — separuh genap dari $e^x$, duduk persis di tengah-tengah kedua kurva putus-putus itu.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -398,6 +459,21 @@ export const module9: Module = {
                 en: 'Differentiating the definitions directly, using $\\frac{d}{dx}(e^{-x})=-e^{-x}$ from the chain rule:\n$$\\frac{d}{dx}(\\sinh x) = \\frac{d}{dx}\\left(\\frac{e^x-e^{-x}}{2}\\right) = \\frac{e^x-(-e^{-x})}{2} = \\frac{e^x+e^{-x}}{2} = \\cosh x$$\n$$\\frac{d}{dx}(\\cosh x) = \\frac{d}{dx}\\left(\\frac{e^x+e^{-x}}{2}\\right) = \\frac{e^x-e^{-x}}{2} = \\sinh x$$\nUnlike $\\frac{d}{dx}(\\cos x)=-\\sin x$, there is **no minus sign** here — differentiating $\\cosh x$ gives back $\\sinh x$ directly, and differentiating that gives back $\\cosh x$ again. Two derivatives return to the start instead of trigonometry\'s four-step cycle.',
                 id: 'Menurunkan definisinya langsung, memakai $\\frac{d}{dx}(e^{-x})=-e^{-x}$ dari aturan rantai:\n$$\\frac{d}{dx}(\\sinh x) = \\frac{d}{dx}\\left(\\frac{e^x-e^{-x}}{2}\\right) = \\frac{e^x-(-e^{-x})}{2} = \\frac{e^x+e^{-x}}{2} = \\cosh x$$\n$$\\frac{d}{dx}(\\cosh x) = \\frac{d}{dx}\\left(\\frac{e^x+e^{-x}}{2}\\right) = \\frac{e^x-e^{-x}}{2} = \\sinh x$$\nTak seperti $\\frac{d}{dx}(\\cos x)=-\\sin x$, **tak ada tanda minus** di sini — menurunkan $\\cosh x$ langsung mengembalikan $\\sinh x$, dan menurunkan itu mengembalikan $\\cosh x$ lagi. Dua turunan kembali ke awal, bukan siklus empat langkah trigonometri.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 2.3],
+                ySpan: [-0.5, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '(e^x-e^(-x))/2', from: 0, to: 2, color: 'b', label: 'sinh x' },
+                  { t: 'seg', from: [0.5, 0.4036], to: [1.5, 1.9468], color: 'result', label: 'slope=cosh(1)' },
+                  { t: 'dot', x: 1, y: 1.1752, color: 'result' },
+                ],
+                caption: {
+                  en: 'The tangent line to $\\sinh x$ at $x=1$ has slope exactly $\\cosh(1)\\approx 1.5431$ — the derivative rule read directly off the graph, with no sign flip needed to get there.',
+                  id: 'Garis singgung ke $\\sinh x$ di $x=1$ punya kemiringan persis $\\cosh(1)\\approx 1{,}5431$ — aturan turunan yang dibaca langsung dari grafik, tanpa perlu pembalikan tanda untuk sampai di situ.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -406,6 +482,20 @@ export const module9: Module = {
               body: {
                 en: 'Read backward, exactly as every derivative rule in this course eventually was:\n$$\\int \\cosh x\\,dx = \\sinh x + C, \\qquad \\int \\sinh x\\,dx = \\cosh x + C$$\nFor $\\int_0^1 \\cosh x\\,dx$: antiderivative $\\sinh x$, so the integral is $\\sinh(1)-\\sinh(0) = 1.1752-0=1.1752$. For $\\int_0^{\\ln 2}\\sinh x\\,dx$: antiderivative $\\cosh x$, so it is $\\cosh(\\ln 2)-\\cosh(0)$. Since $\\cosh(\\ln 2)=\\frac{e^{\\ln2}+e^{-\\ln2}}{2}=\\frac{2+0.5}{2}=1.25$, the integral equals $1.25-1=0.25$ — an exact, clean value, because $\\ln 2$ was chosen precisely to make $e^{\\ln 2}=2$ come out simply.',
                 id: 'Dibaca terbalik, persis seperti setiap aturan turunan dalam kursus ini akhirnya diperlakukan:\n$$\\int \\cosh x\\,dx = \\sinh x + C, \\qquad \\int \\sinh x\\,dx = \\cosh x + C$$\nUntuk $\\int_0^1 \\cosh x\\,dx$: antiturunannya $\\sinh x$, sehingga integralnya $\\sinh(1)-\\sinh(0) = 1.1752-0=1.1752$. Untuk $\\int_0^{\\ln 2}\\sinh x\\,dx$: antiturunannya $\\cosh x$, sehingga hasilnya $\\cosh(\\ln 2)-\\cosh(0)$. Karena $\\cosh(\\ln 2)=\\frac{e^{\\ln2}+e^{-\\ln2}}{2}=\\frac{2+0.5}{2}=1.25$, integralnya sama dengan $1.25-1=0.25$ — nilai yang eksak dan bersih, sebab $\\ln 2$ dipilih persis agar $e^{\\ln 2}=2$ keluar sederhana.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 1.5],
+                ySpan: [-0.3, 2],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '(e^x+e^(-x))/2', from: -0.3, to: 1.3, color: 'a', label: 'cosh x' },
+                  { t: 'poly', pts: [[0, 0], [1, 0], [1, 1.5431], [0.75, 1.2947], [0.5, 1.1276], [0.25, 1.0314], [0, 1]], color: 'result' },
+                ],
+                caption: {
+                  en: 'The shaded area under $\\cosh x$ from $0$ to $1$ equals the antiderivative\'s change, $\\sinh(1)-\\sinh(0) = 1.1752$ — reading the integral as the same area-under-a-curve idea from Module 2.',
+                  id: 'Daerah berbayang di bawah $\\cosh x$ dari $0$ sampai $1$ sama dengan perubahan antiturunannya, $\\sinh(1)-\\sinh(0) = 1{,}1752$ — membaca integral sebagai gagasan luas-di-bawah-kurva yang sama dari Modul 2.',
+                },
               },
             },
             {

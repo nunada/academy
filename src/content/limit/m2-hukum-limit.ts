@@ -282,13 +282,15 @@ export const module2: Module = {
                 xSpan: [-1, 6],
                 ySpan: [-1, 10],
                 ticks: true,
+                params: [{ name: 'd', min: -2, max: 2, step: 0.1, value: 1.2, label: 'x−3' }],
                 items: [
                   { t: 'curve', f: '(x^2-9)/(x-3)', color: 'a' },
                   { t: 'dot', x: 3, y: 6, open: true, color: 'a' },
+                  { t: 'dot', x: '3+d', y: '((3+d)^2-9)/((3+d)-3)', color: 'b', label: 'x' },
                 ],
                 caption: {
-                  en: 'After cancelling, the curve is just the line $y = x+3$ — with a hole exactly at the $x$ that made the original denominator zero. The limit is the height of that hole.',
-                  id: 'Setelah mencoret, kurvanya sekadar garis $y = x+3$ — dengan lubang tepat di $x$ yang membuat penyebut aslinya nol. Limitnya adalah tinggi lubang itu.',
+                  en: 'Drag $x-3$ toward $0$ — the moving point slides along the line straight into the hole. After cancelling, the curve is just $y = x+3$ with a hole exactly where the original denominator vanished; the limit is that hole\'s height.',
+                  id: 'Geser $x-3$ menuju $0$ — titik yang bergerak meluncur sepanjang garis tepat menuju lubangnya. Setelah mencoret, kurvanya sekadar $y = x+3$ dengan lubang tepat di tempat penyebut aslinya lenyap; limitnya adalah tinggi lubang itu.',
                 },
               },
             },
@@ -382,6 +384,23 @@ export const module2: Module = {
               body: {
                 en: 'Try $\\lim_{x \\to 0} \\dfrac{\\sqrt{x+4}-2}{x}$: substitution gives $\\dfrac{0}{0}$, but there is no common factor sitting in plain sight — a square root is in the way. Multiply top and bottom by the **conjugate** of the root, $\\sqrt{x+4}+2$, which is $1$ in disguise and changes nothing:\n$$\\frac{\\sqrt{x+4}-2}{x} \\cdot \\frac{\\sqrt{x+4}+2}{\\sqrt{x+4}+2} = \\frac{(x+4) - 4}{x\\left(\\sqrt{x+4}+2\\right)} = \\frac{x}{x\\left(\\sqrt{x+4}+2\\right)}$$\nThe difference of squares in the numerator kills the root, leaving an $x$ that now cancels with the $x$ downstairs:\n$$= \\frac{1}{\\sqrt{x+4}+2} \\ \\to \\ \\frac{1}{4} \\text{ as } x \\to 0$$\nSame idea as factoring — clear a hidden common factor — carried out with a different tool because a root does not factor the ordinary way.',
                 id: 'Coba $\\lim_{x \\to 0} \\dfrac{\\sqrt{x+4}-2}{x}$: substitusi memberi $\\dfrac{0}{0}$, tetapi tak ada faktor sekutu yang tampak jelas — sebuah akar menghalangi. Kalikan pembilang dan penyebut dengan **sekawan** akarnya, $\\sqrt{x+4}+2$, yang tak lain adalah $1$ yang menyamar dan tak mengubah apa pun:\n$$\\frac{\\sqrt{x+4}-2}{x} \\cdot \\frac{\\sqrt{x+4}+2}{\\sqrt{x+4}+2} = \\frac{(x+4) - 4}{x\\left(\\sqrt{x+4}+2\\right)} = \\frac{x}{x\\left(\\sqrt{x+4}+2\\right)}$$\nSelisih kuadrat pada pembilang membunuh akarnya, menyisakan $x$ yang kini tercoret dengan $x$ di bawahnya:\n$$= \\frac{1}{\\sqrt{x+4}+2} \\ \\to \\ \\frac{1}{4} \\text{ saat } x \\to 0$$\nGagasan yang sama seperti pemfaktoran — menyingkirkan faktor sekutu tersembunyi — dijalankan dengan alat berbeda karena akar tak difaktorkan dengan cara biasa.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 6],
+                ySpan: [-0.5, 1],
+                ticks: true,
+                params: [{ name: 'd', min: 0.1, max: 2.5, step: 0.1, value: 1.5, label: 'x' }],
+                items: [
+                  { t: 'curve', f: '(sqrt(x+4)-2)/x', color: 'a' },
+                  { t: 'dot', x: 0, y: 0.25, open: true, color: 'a' },
+                  { t: 'dot', x: 'd', y: '(sqrt(d+4)-2)/d', color: 'b', label: 'x' },
+                  { t: 'dot', x: '-d', y: '(sqrt(-d+4)-2)/(-d)', color: 'c', label: 'x' },
+                ],
+                caption: {
+                  en: 'Drag $x$ toward $0$ from either side — both moving points slide along the curve straight into the hollow point at height $\\tfrac{1}{4}$, exactly the limit the conjugate trick produces.',
+                  id: 'Geser $x$ menuju $0$ dari sisi mana pun — kedua titik yang bergerak meluncur sepanjang kurva tepat menuju titik kosong pada tinggi $\\tfrac{1}{4}$, persis limit yang dihasilkan trik sekawan.',
+                },
               },
             },
             {

@@ -161,6 +161,20 @@ export const module2: Module = {
                 en: 'Since $(x+r)(x+s) = x^2+(r+s)x+rs$, factoring $x^2+bx+c$ means finding $r, s$ with $r+s=b$ **and** $rs=c$. For $x^2+7x+12$: we need two numbers that multiply to $12$ and add to $7$ — that\'s $3$ and $4$, so\n$$x^2+7x+12 = (x+3)(x+4)$$\nWhen the leading coefficient isn\'t $1$, as in $6x^2+7x-5$, look for $(px+r)(qx+s)$ with $pq=6$, $rs=-5$, $ps+qr=7$ — trial and error with the factor pairs of $6$ and $-5$ gives\n$$6x^2+7x-5 = (3x+5)(2x-1)$$',
                 id: 'Karena $(x+r)(x+s) = x^2+(r+s)x+rs$, memfaktorkan $x^2+bx+c$ berarti mencari $r, s$ dengan $r+s=b$ **dan** $rs=c$. Untuk $x^2+7x+12$: kita perlu dua bilangan yang dikalikan menjadi $12$ dan dijumlahkan menjadi $7$ — itu $3$ dan $4$, sehingga\n$$x^2+7x+12 = (x+3)(x+4)$$\nKetika koefisien utamanya bukan $1$, seperti pada $6x^2+7x-5$, cari $(px+r)(qx+s)$ dengan $pq=6$, $rs=-5$, $ps+qr=7$ — coba-coba dengan pasangan faktor dari $6$ dan $-5$ memberi\n$$6x^2+7x-5 = (3x+5)(2x-1)$$',
               },
+              figure: {
+                dim: 2,
+                range: 3,
+                items: [
+                  { t: 'poly', pts: [[-2.5, -2.5], [0.5, -2.5], [0.5, 1.5], [-2.5, 1.5]], color: 'a', label: 'x²' },
+                  { t: 'poly', pts: [[0.5, -2.5], [2.5, -2.5], [2.5, 1.5], [0.5, 1.5]], color: 'b', label: '4x' },
+                  { t: 'poly', pts: [[-2.5, 1.5], [0.5, 1.5], [0.5, 2.5], [-2.5, 2.5]], color: 'b', label: '3x' },
+                  { t: 'poly', pts: [[0.5, 1.5], [2.5, 1.5], [2.5, 2.5], [0.5, 2.5]], color: 'c', label: '12' },
+                ],
+                caption: {
+                  en: 'Factoring $x^2+7x+12=(x+3)(x+4)$ reverses FOIL: a rectangle of width $(x+4)$ and height $(x+3)$ splits into exactly the same four pieces — $x^2$, $4x$, $3x$, $12$ — that FOIL would expand it back into.',
+                  id: 'Memfaktorkan $x^2+7x+12=(x+3)(x+4)$ membalik FOIL: persegi panjang berukuran lebar $(x+4)$ dan tinggi $(x+3)$ terbagi menjadi persis empat bagian yang sama — $x^2$, $4x$, $3x$, $12$ — yang akan dijabarkan FOIL kembali menjadi bentuk semula.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -169,6 +183,20 @@ export const module2: Module = {
               body: {
                 en: 'These are the special product formulas read backward:\n$$A^2-B^2=(A+B)(A-B) \\quad \\text{(difference of squares)}$$\n$$A^2\\pm2AB+B^2=(A\\pm B)^2 \\quad \\text{(perfect square)}$$\n$$A^3-B^3=(A-B)(A^2+AB+B^2), \\qquad A^3+B^3=(A+B)(A^2-AB+B^2)$$\nA trinomial is a perfect square exactly when its middle term is $\\pm 2$ times the product of the square roots of the outer terms: $x^2+6x+9=(x+3)^2$ since $2 \\cdot x \\cdot 3 = 6x$ matches. And $27x^3-1 = (3x)^3-1^3 = (3x-1)(9x^2+3x+1)$.',
                 id: 'Ini adalah rumus hasil kali khusus yang dibaca terbalik:\n$$A^2-B^2=(A+B)(A-B) \\quad \\text{(selisih kuadrat)}$$\n$$A^2\\pm2AB+B^2=(A\\pm B)^2 \\quad \\text{(kuadrat sempurna)}$$\n$$A^3-B^3=(A-B)(A^2+AB+B^2), \\qquad A^3+B^3=(A+B)(A^2-AB+B^2)$$\nSebuah trinomial adalah kuadrat sempurna persis ketika suku tengahnya $\\pm 2$ kali hasil kali akar kuadrat suku-suku luarnya: $x^2+6x+9=(x+3)^2$ sebab $2 \\cdot x \\cdot 3 = 6x$ cocok. Dan $27x^3-1 = (3x)^3-1^3 = (3x-1)(9x^2+3x+1)$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-1, 15],
+                ySpan: [-1, 6],
+                items: [
+                  { t: 'poly', pts: [[0, 0], [5, 0], [5, 3], [3, 3], [3, 5], [0, 5]], color: 'a', label: 'A²−B²' },
+                  { t: 'seg', from: [3, 3], to: [3, 0], color: 'muted', dashed: true },
+                  { t: 'poly', pts: [[8, 0], [15, 0], [15, 3], [8, 3]], color: 'result', label: '(A+B)(A−B)' },
+                ],
+                caption: {
+                  en: 'For $A=5$, $B=2$: the L-shaped square-with-a-corner-removed (left) and the plain rectangle (right) have the same area, $21$ — the geometric picture behind $A^2-B^2=(A+B)(A-B)$.',
+                  id: 'Untuk $A=5$, $B=2$: persegi berbentuk L dengan sudut terpotong (kiri) dan persegi panjang biasa (kanan) punya luas yang sama, $21$ — gambaran geometris di balik $A^2-B^2=(A+B)(A-B)$.',
+                },
               },
             },
             {

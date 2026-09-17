@@ -44,10 +44,11 @@ export const module4: Module = {
                 xSpan: [-6.5, 6.5],
                 ySpan: [-1.5, 1.5],
                 ticks: true,
-                items: [{ t: 'curve', f: 'sin(x)^3', color: 'a' }],
+                params: [{ name: 'n', min: 1, max: 6, step: 1, value: 3, label: 'n' }],
+                items: [{ t: 'curve', f: 'sin(x)^n', color: 'a' }],
                 caption: {
-                  en: '$y = \\sin^3(x)$ — an odd power, always solvable by peeling off one factor of sine.',
-                  id: '$y = \\sin^3(x)$ — pangkat ganjil, selalu bisa diselesaikan dengan melepaskan satu faktor sinus.',
+                  en: 'Drag $n$: odd powers dip below the axis and always leave one factor of sine to peel off; even powers stay non-negative everywhere and need the double-angle identity instead.',
+                  id: 'Geser $n$: pangkat ganjil turun di bawah sumbu dan selalu menyisakan satu faktor sinus untuk dilepaskan; pangkat genap tetap tak negatif di mana-mana dan memerlukan identitas sudut ganda sebagai gantinya.',
                 },
               },
             },
@@ -166,6 +167,23 @@ export const module4: Module = {
               body: {
                 en: '$\\sqrt{a^2-x^2}$ resists ordinary substitution — nothing inside is a matching derivative of anything else. But setting $x = a\\sin\\theta$ makes the Pythagorean identity clear the root completely:\n$$\\sqrt{a^2-x^2} = \\sqrt{a^2-a^2\\sin^2\\theta} = \\sqrt{a^2(1-\\sin^2\\theta)} = \\sqrt{a^2\\cos^2\\theta} = a\\cos\\theta$$\n(taking $\\cos\\theta \\geq 0$, valid for $\\theta \\in [-\\pi/2, \\pi/2]$). With $dx = a\\cos\\theta\\,d\\theta$, an integral built entirely from $x$ and the root becomes an integral entirely in $\\theta$ — exactly the powers-of-sine-and-cosine territory of the last lesson.',
                 id: '$\\sqrt{a^2-x^2}$ menolak substitusi biasa — tak ada yang di dalamnya cocok sebagai turunan dari sesuatu yang lain. Tetapi menetapkan $x = a\\sin\\theta$ membuat identitas Pythagoras menghilangkan akarnya sepenuhnya:\n$$\\sqrt{a^2-x^2} = \\sqrt{a^2-a^2\\sin^2\\theta} = \\sqrt{a^2(1-\\sin^2\\theta)} = \\sqrt{a^2\\cos^2\\theta} = a\\cos\\theta$$\n(mengambil $\\cos\\theta \\geq 0$, berlaku untuk $\\theta \\in [-\\pi/2, \\pi/2]$). Dengan $dx = a\\cos\\theta\\,d\\theta$, integral yang seluruhnya dibangun dari $x$ dan akarnya menjadi integral yang seluruhnya dalam $\\theta$ — persis wilayah pangkat sinus-dan-cosinus pada pelajaran sebelumnya.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 2.2],
+                ySpan: [-0.3, 1.6],
+                ticks: false,
+                items: [
+                  { t: 'seg', from: [0, 0], to: [1.732, 0], color: 'a', label: '√(a²−x²)' },
+                  { t: 'seg', from: [1.732, 0], to: [1.732, 1], color: 'b', label: 'x' },
+                  { t: 'seg', from: [0, 0], to: [1.732, 1], color: 'result', label: 'a' },
+                  { t: 'right', at: [1.732, 0], from: [0, 0], to: [1.732, 1] },
+                  { t: 'angle', from: [1.732, 0], to: [1.732, 1], label: 'θ' },
+                ],
+                caption: {
+                  en: 'The reference triangle behind $x = a\\sin\\theta$: opposite over hypotenuse is $x/a = \\sin\\theta$, and the adjacent leg is exactly the root, $\\sqrt{a^2-x^2} = a\\cos\\theta$.',
+                  id: 'Segitiga referensi di balik $x = a\\sin\\theta$: depan atas miring adalah $x/a = \\sin\\theta$, dan sisi sampingnya persis akarnya, $\\sqrt{a^2-x^2} = a\\cos\\theta$.',
+                },
               },
             },
             {

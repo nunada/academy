@@ -39,6 +39,23 @@ export const module7: Module = {
                 en: 'The same idea that built the definite integral in Module 2 — slice, approximate, sum, take a limit — measures a curve\'s length too. Slice $[a,b]$ into $n$ tiny strips of width $\\Delta x$. Across one strip, the curve rises by roughly $\\Delta y \\approx f\'(x)\\,\\Delta x$, and since the strip is so narrow the curve there looks like a straight secant, its length is given by the Pythagorean theorem:\n$$\\sqrt{(\\Delta x)^2+(\\Delta y)^2} = \\sqrt{1+\\left(\\frac{\\Delta y}{\\Delta x}\\right)^2}\\,\\Delta x \\approx \\sqrt{1+\\big(f\'(x)\\big)^2}\\,\\Delta x$$\nSumming every strip and taking the limit as $n\\to\\infty$ turns the sum into a definite integral — the **arc length formula**:\n$$L = \\int_a^b \\sqrt{1+\\big(f\'(x)\\big)^2}\\,dx$$',
                 id: 'Gagasan yang sama yang membangun integral tentu pada Modul 2 — iris, hampiri, jumlahkan, ambil limit — mengukur panjang kurva juga. Iris $[a,b]$ menjadi $n$ jalur tipis berlebar $\\Delta x$. Sepanjang satu jalur, kurvanya naik kira-kira $\\Delta y \\approx f\'(x)\\,\\Delta x$, dan karena jalurnya sangat sempit kurva di situ terlihat seperti tali busur lurus, panjangnya diberikan oleh teorema Pythagoras:\n$$\\sqrt{(\\Delta x)^2+(\\Delta y)^2} = \\sqrt{1+\\left(\\frac{\\Delta y}{\\Delta x}\\right)^2}\\,\\Delta x \\approx \\sqrt{1+\\big(f\'(x)\\big)^2}\\,\\Delta x$$\nMenjumlahkan setiap jalur dan mengambil limit ketika $n\\to\\infty$ mengubah jumlahnya menjadi integral tentu — **rumus panjang busur**:\n$$L = \\int_a^b \\sqrt{1+\\big(f\'(x)\\big)^2}\\,dx$$',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 3.3],
+                ySpan: [-0.3, 2],
+                ticks: false,
+                items: [
+                  { t: 'curve', f: 'x^2/4', from: 0, to: 3, color: 'a' },
+                  { t: 'seg', from: [1.4, 0.49], to: [2.3, 0.49], color: 'muted', dashed: true, label: 'Δx' },
+                  { t: 'seg', from: [2.3, 0.49], to: [2.3, 1.3225], color: 'muted', dashed: true, label: 'Δy' },
+                  { t: 'seg', from: [1.4, 0.49], to: [2.3, 1.3225], color: 'result', label: 'secant' },
+                  { t: 'right', at: [2.3, 0.49], from: [1.4, 0.49], to: [2.3, 1.3225] },
+                ],
+                caption: {
+                  en: 'Zoomed into one narrow strip, the curve is indistinguishable from its own secant — a right triangle with legs $\\Delta x$ and $\\Delta y$, hypotenuse $\\sqrt{(\\Delta x)^2+(\\Delta y)^2}$, which is exactly the piece of arc length being summed.',
+                  id: 'Diperbesar pada satu jalur sempit, kurvanya tak terbedakan dari tali busurnya sendiri — sebuah segitiga siku-siku dengan sisi $\\Delta x$ dan $\\Delta y$, sisi miring $\\sqrt{(\\Delta x)^2+(\\Delta y)^2}$, yang persis merupakan potongan panjang busur yang sedang dijumlahkan.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -47,6 +64,24 @@ export const module7: Module = {
               body: {
                 en: 'For $f(x)=2x+1$ on $[0,3]$: $f\'(x)=2$, so $L=\\int_0^3\\sqrt{1+4}\\,dx = 3\\sqrt5$ — exactly the straight-line distance $\\sqrt{3^2+6^2}=\\sqrt{45}=3\\sqrt5$ from the Pythagorean theorem directly. The formula reduces to plain geometry when the curve already is a line.\n\nFor a genuinely curved example, $f(x)=\\frac{x^3}{6}+\\frac{1}{2x}$ on $[1,3]$: $f\'(x)=\\frac{x^2}{2}-\\frac{1}{2x^2}$, and squaring plus adding $1$ collapses to a perfect square (the cross terms cancel to $-\\tfrac12$ each time): $1+(f\')^2 = \\left(\\frac{x^2}{2}+\\frac{1}{2x^2}\\right)^2$. So:\n$$L = \\int_1^3 \\left(\\frac{x^2}{2}+\\frac{1}{2x^2}\\right)dx = \\left[\\frac{x^3}{6}-\\frac{1}{2x}\\right]_1^3 = \\left(4.5-\\frac16\\right)-\\left(\\frac16-0.5\\right) = \\frac{14}{3} \\approx 4.667$$\nMost arc length integrands do not simplify this cleanly — this function was built specifically so the square root would resolve.',
                 id: 'Untuk $f(x)=2x+1$ pada $[0,3]$: $f\'(x)=2$, sehingga $L=\\int_0^3\\sqrt{1+4}\\,dx = 3\\sqrt5$ — persis jarak garis lurus $\\sqrt{3^2+6^2}=\\sqrt{45}=3\\sqrt5$ dari teorema Pythagoras langsung. Rumusnya menyusut menjadi geometri biasa ketika kurvanya memang sebuah garis.\n\nUntuk contoh yang sungguh melengkung, $f(x)=\\frac{x^3}{6}+\\frac{1}{2x}$ pada $[1,3]$: $f\'(x)=\\frac{x^2}{2}-\\frac{1}{2x^2}$, dan mengkuadratkan lalu menambah $1$ menyusut menjadi kuadrat sempurna (suku silangnya saling meniadakan menjadi $-\\tfrac12$ setiap kali): $1+(f\')^2 = \\left(\\frac{x^2}{2}+\\frac{1}{2x^2}\\right)^2$. Jadi:\n$$L = \\int_1^3 \\left(\\frac{x^2}{2}+\\frac{1}{2x^2}\\right)dx = \\left[\\frac{x^3}{6}-\\frac{1}{2x}\\right]_1^3 = \\left(4.5-\\frac16\\right)-\\left(\\frac16-0.5\\right) = \\frac{14}{3} \\approx 4.667$$\nKebanyakan integrand panjang busur tak menyederhana sebersih ini — fungsi ini dibangun khusus agar akar kuadratnya terselesaikan.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.5, 3.5],
+                ySpan: [-0.5, 7.5],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '2*x+1', from: 0, to: 3, color: 'a' },
+                  { t: 'seg', from: [0, 1], to: [3, 1], color: 'muted', dashed: true, label: 'Δx=3' },
+                  { t: 'seg', from: [3, 1], to: [3, 7], color: 'muted', dashed: true, label: 'Δy=6' },
+                  { t: 'right', at: [3, 1], from: [0, 1], to: [3, 7] },
+                  { t: 'dot', x: '0', y: '1', color: 'result' },
+                  { t: 'dot', x: '3', y: '7', color: 'result' },
+                ],
+                caption: {
+                  en: 'For the straight line $f(x)=2x+1$, the arc length integral reduces to the plain right-triangle distance — legs $3$ and $6$, hypotenuse $\\sqrt{9+36}=3\\sqrt5$, matching the calculus answer exactly.',
+                  id: 'Untuk garis lurus $f(x)=2x+1$, integral panjang busurnya menyusut menjadi jarak segitiga siku-siku biasa — sisi $3$ dan $6$, sisi miring $\\sqrt{9+36}=3\\sqrt5$, cocok persis dengan jawaban kalkulusnya.',
+                },
               },
             },
             {
@@ -131,10 +166,15 @@ export const module7: Module = {
                 xSpan: [-3.5, 3.5],
                 ySpan: [-1, 4],
                 ticks: true,
-                items: [{ t: 'curve', f: 'sqrt(9-x^2)', from: -3, to: 3, color: 'a' }],
+                params: [{ name: 'theta', min: 0, max: 3.14159, step: 0.05, value: 1, label: 'θ' }],
+                items: [
+                  { t: 'curve', f: 'sqrt(9-x^2)', from: -3, to: 3, color: 'a' },
+                  { t: 'dot', x: '3*cos(theta)', y: '3*sin(theta)', color: 'result', label: 'P' },
+                  { t: 'vline', x: '3*cos(theta)', color: 'muted', dashed: true },
+                ],
                 caption: {
-                  en: 'The upper semicircle of radius 3 — its arc length by the formula is exactly $3\\pi$, matching half the circle\'s circumference.',
-                  id: 'Setengah lingkaran atas berjari-jari 3 — panjang busurnya menurut rumus persis $3\\pi$, cocok dengan setengah keliling lingkarannya.',
+                  en: 'Drag $\\theta$: point $P=(3\\cos\\theta, 3\\sin\\theta)$ traces the arc from $(3,0)$ to $(-3,0)$ as $\\theta$ runs $0$ to $\\pi$ — the arc length swept so far grows continuously, reaching the full $3\\pi$ once $\\theta=\\pi$.',
+                  id: 'Geser $\\theta$: titik $P=(3\\cos\\theta, 3\\sin\\theta)$ menjejaki busur dari $(3,0)$ ke $(-3,0)$ ketika $\\theta$ berjalan dari $0$ sampai $\\pi$ — panjang busur yang sudah disapu bertambah terus-menerus, mencapai penuh $3\\pi$ begitu $\\theta=\\pi$.',
                 },
               },
             },
@@ -145,6 +185,20 @@ export const module7: Module = {
               body: {
                 en: 'Not every arc length integral resolves this cleanly. The arc length of an ellipse, or of $f(x)=\\sin x$ over most intervals, produces an integrand with no elementary antiderivative at all — not because of a missing technique, but because none exists, in the same sense Module 5 discussed for $e^{-x^2}$. In exactly those cases, Module 5\'s numerical methods (the Trapezoidal Rule, Simpson\'s Rule) are not a fallback for the lazy — they are the only route to a number at all.',
                 id: 'Tak semua integral panjang busur menyelesaikan sebersih ini. Panjang busur elips, atau dari $f(x)=\\sin x$ pada kebanyakan interval, menghasilkan integrand yang sama sekali tak punya antiturunan elementer — bukan karena teknik yang hilang, melainkan karena memang tak ada, dalam pengertian yang sama seperti yang dibahas Modul 5 untuk $e^{-x^2}$. Justru dalam kasus semacam itu, metode numerik Modul 5 (Aturan Trapesium, Aturan Simpson) bukan jalan pintas bagi yang malas — melainkan satu-satunya jalan menuju sebuah angka sama sekali.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3.5, 3.5],
+                ySpan: [-1, 3.5],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'sqrt(9-x^2)', from: -3, to: 3, color: 'muted', dashed: true, label: 'circle' },
+                  { t: 'curve', f: '2*sqrt(1-x^2/9)', from: -3, to: 3, color: 'a', label: 'ellipse' },
+                ],
+                caption: {
+                  en: 'The dashed circle\'s arc length integrates cleanly to $\\pi r$; the solid ellipse arc — only slightly flattened — has no elementary antiderivative at all, and needs Module 5\'s numerical methods instead.',
+                  id: 'Panjang busur lingkaran putus-putus terintegral bersih menjadi $\\pi r$; busur elips yang utuh — hanya sedikit lebih pipih — sama sekali tak punya antiturunan elementer, dan memerlukan metode numerik Modul 5 sebagai gantinya.',
+                },
               },
             },
             {
@@ -281,6 +335,20 @@ export const module7: Module = {
                 en: 'Rotating $y=f(x)$ about the $x$-axis, each tiny arc-length piece $dL = \\sqrt{1+(f\')^2}\\,dx$ sweeps out a thin ring (a truncated cone) of radius $f(x)$ and width $dL$. Its surface area is circumference times width, $2\\pi f(x)\\,dL$. Summing over the whole curve gives the **surface area of revolution**:\n$$S = \\int_a^b 2\\pi f(x)\\sqrt{1+\\big(f\'(x)\\big)^2}\\,dx$$\nEvery surface area problem is, structurally, an arc length problem with an extra $2\\pi f(x)$ folded in — the same square root, wrapped in a circumference.',
                 id: 'Memutar $y=f(x)$ mengelilingi sumbu-$x$, tiap potongan panjang busur kecil $dL = \\sqrt{1+(f\')^2}\\,dx$ menyapu cincin tipis (kerucut terpotong) berjari-jari $f(x)$ dan lebar $dL$. Luas permukaannya adalah keliling dikali lebar, $2\\pi f(x)\\,dL$. Menjumlahkan pada seluruh kurva memberi **luas permukaan benda putar**:\n$$S = \\int_a^b 2\\pi f(x)\\sqrt{1+\\big(f\'(x)\\big)^2}\\,dx$$\nSetiap soal luas permukaan, secara struktural, adalah soal panjang busur dengan tambahan $2\\pi f(x)$ yang dilipat masuk — akar kuadrat yang sama, dibungkus dalam sebuah keliling.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 3.5],
+                ySpan: [-0.3, 2.3],
+                ticks: false,
+                items: [
+                  { t: 'curve', f: '0.3*x^2+0.5', from: 0.5, to: 3, color: 'a' },
+                  { t: 'poly', pts: [[1.5, 0], [2.1, 0], [2.1, 1.823], [1.5, 1.175]], color: 'result', label: 'dL' },
+                ],
+                caption: {
+                  en: 'One thin band of the curve, nearly straight across its width — its slant length is the arc-length element $dL$, and revolving it about the $x$-axis sweeps out one thin ring of radius $f(x)$ and width $dL$.',
+                  id: 'Satu jalur tipis dari kurvanya, hampir lurus sepanjang lebarnya — panjang miringnya adalah elemen panjang busur $dL$, dan memutarnya mengelilingi sumbu-$x$ menyapu satu cincin tipis berjari-jari $f(x)$ dan lebar $dL$.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -389,6 +457,22 @@ export const module7: Module = {
               body: {
                 en: 'Rotate $f(x)=\\frac{r}{h}x$ on $[0,h]$ about the $x$-axis — a line from the origin to $(h,r)$, sweeping out a cone of base radius $r$ and height $h$. Here $f\'(x)=\\frac{r}{h}$ is constant, so $\\sqrt{1+(f\')^2} = \\sqrt{1+\\frac{r^2}{h^2}} = \\frac{\\sqrt{h^2+r^2}}{h} = \\frac{l}{h}$, where $l=\\sqrt{h^2+r^2}$ is the cone\'s **slant height** — the actual length of the slanted line from apex to rim.\n$$S = \\int_0^h 2\\pi\\cdot\\frac{r}{h}x\\cdot\\frac{l}{h}\\,dx = \\frac{2\\pi rl}{h^2}\\int_0^h x\\,dx = \\frac{2\\pi rl}{h^2}\\cdot\\frac{h^2}{2} = \\pi r l$$',
                 id: 'Putar $f(x)=\\frac{r}{h}x$ pada $[0,h]$ mengelilingi sumbu-$x$ — garis dari titik asal ke $(h,r)$, menyapu kerucut dengan jari-jari alas $r$ dan tinggi $h$. Di sini $f\'(x)=\\frac{r}{h}$ konstan, sehingga $\\sqrt{1+(f\')^2} = \\sqrt{1+\\frac{r^2}{h^2}} = \\frac{\\sqrt{h^2+r^2}}{h} = \\frac{l}{h}$, dengan $l=\\sqrt{h^2+r^2}$ adalah **garis pelukis** kerucutnya — panjang sebenarnya dari garis miring dari puncak ke tepi.\n$$S = \\int_0^h 2\\pi\\cdot\\frac{r}{h}x\\cdot\\frac{l}{h}\\,dx = \\frac{2\\pi rl}{h^2}\\int_0^h x\\,dx = \\frac{2\\pi rl}{h^2}\\cdot\\frac{h^2}{2} = \\pi r l$$',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.5, 4.7],
+                ySpan: [-0.5, 3.7],
+                ticks: false,
+                items: [
+                  { t: 'seg', from: [0, 0], to: [4, 0], color: 'muted', dashed: true, label: 'h' },
+                  { t: 'seg', from: [4, 0], to: [4, 3], color: 'b', label: 'r' },
+                  { t: 'seg', from: [0, 0], to: [4, 3], color: 'result', label: 'l' },
+                  { t: 'right', at: [4, 0], from: [0, 0], to: [4, 3] },
+                ],
+                caption: {
+                  en: 'The slanted line from the origin to $(h,r)=(4,3)$, rotated about the $x$-axis, sweeps out a cone — the slant height $l=5$ (a 3-4-5 triangle) is the true length the surface-area formula needs, not $h$ alone.',
+                  id: 'Garis miring dari titik asal ke $(h,r)=(4,3)$, diputar mengelilingi sumbu-$x$, menyapu sebuah kerucut — garis pelukis $l=5$ (segitiga 3-4-5) adalah panjang sebenarnya yang diperlukan rumus luas permukaan, bukan $h$ saja.',
+                },
               },
             },
             {

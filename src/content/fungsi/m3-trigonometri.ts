@@ -40,6 +40,21 @@ export const module3: Module = {
                 en: 'Put an angle at the centre of a circle of radius $r$ and let it cut off an arc of length $s$. The angle **in radians** is\n$$\\theta = \\frac{s}{r}$$\nA length divided by a length: radians are a pure number, with no unit attached. That is why they are the measure calculus uses — you can add $\\theta$ to an ordinary number and it means something.\n\nOne full turn is an arc of $2\\pi r$ around a radius of $r$, so a full turn is $2\\pi$ radians. Half a turn gives the conversion everything else follows from:\n$$180^\\circ = \\pi \\text{ rad}$$\nSo multiply by $\\pi/180$ to go from degrees to radians, and by $180/\\pi$ to come back.',
                 id: 'Letakkan sebuah sudut di pusat lingkaran berjari-jari $r$ dan biarkan ia memotong busur sepanjang $s$. Besar sudut **dalam radian** adalah\n$$\\theta = \\frac{s}{r}$$\nPanjang dibagi panjang: radian adalah bilangan murni, tanpa satuan yang menempel. Itulah sebabnya radian menjadi ukuran yang dipakai kalkulus — kamu bisa menjumlahkan $\\theta$ dengan bilangan biasa dan hasilnya bermakna.\n\nSatu putaran penuh adalah busur sepanjang $2\\pi r$ pada jari-jari $r$, jadi satu putaran penuh adalah $2\\pi$ radian. Setengah putaran memberi konversi yang menjadi dasar segalanya:\n$$180^\\circ = \\pi \\text{ rad}$$\nJadi kalikan dengan $\\pi/180$ untuk mengubah derajat menjadi radian, dan dengan $180/\\pi$ untuk kembali.',
               },
+              figure: {
+                dim: 2,
+                range: 2.6,
+                items: [
+                  { t: 'curve', f: 'sqrt(4-x^2)', from: -2, to: 2, color: 'muted' },
+                  { t: 'curve', f: '-sqrt(4-x^2)', from: -2, to: 2, color: 'muted' },
+                  { t: 'vec', to: [2, 0], color: 'a', label: 'r' },
+                  { t: 'vec', to: [1.08, 1.68], color: 'a', label: 'r' },
+                  { t: 'angle', from: [2, 0], to: [1.08, 1.68], label: 'θ' },
+                ],
+                caption: {
+                  en: 'The angle $\\theta$ at the centre cuts off the arc $s$ between the two radii. Their ratio $s/r$ is what a radian measures — and it never depends on how big the circle is.',
+                  id: 'Sudut $\\theta$ di pusat memotong busur $s$ di antara kedua jari-jarinya. Perbandingan $s/r$ itulah yang diukur oleh radian — dan tak pernah bergantung pada seberapa besar lingkarannya.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -48,6 +63,32 @@ export const module3: Module = {
               body: {
                 en: 'Rearranging the definition gives the arc length directly, and the sector area follows:\n$$s = r\\theta, \\qquad L = \\tfrac{1}{2}r^2\\theta$$\nBoth are wrong in degrees. In degrees the same two formulas need a factor of $\\pi/180$ carried through every line — exactly the sort of constant that vanishes once you switch units and never comes back.\n\nThe angles worth knowing by heart:\n$$30^\\circ = \\tfrac{\\pi}{6}, \\quad 45^\\circ = \\tfrac{\\pi}{4}, \\quad 60^\\circ = \\tfrac{\\pi}{3}, \\quad 90^\\circ = \\tfrac{\\pi}{2}$$',
                 id: 'Menyusun ulang definisinya langsung memberi panjang busurnya, dan luas juringnya menyusul:\n$$s = r\\theta, \\qquad L = \\tfrac{1}{2}r^2\\theta$$\nKeduanya salah bila memakai derajat. Dalam derajat, kedua rumus yang sama memerlukan faktor $\\pi/180$ yang harus dibawa di setiap baris — persis jenis konstanta yang lenyap begitu satuannya diganti dan tak pernah kembali.\n\nSudut-sudut yang layak dihafal:\n$$30^\\circ = \\tfrac{\\pi}{6}, \\quad 45^\\circ = \\tfrac{\\pi}{4}, \\quad 60^\\circ = \\tfrac{\\pi}{3}, \\quad 90^\\circ = \\tfrac{\\pi}{2}$$',
+              },
+              figure: {
+                dim: 2,
+                range: 2.6,
+                items: [
+                  {
+                    t: 'poly',
+                    pts: [
+                      [0, 0],
+                      [2, 0],
+                      [1.938, 0.495],
+                      [1.755, 0.959],
+                      [1.463, 1.363],
+                      [1.081, 1.683],
+                    ],
+                    color: 'result',
+                    label: 'L',
+                  },
+                  { t: 'seg', from: [0, 0], to: [2, 0], color: 'a', label: 'r' },
+                  { t: 'seg', from: [0, 0], to: [1.081, 1.683], color: 'a', label: 'r' },
+                  { t: 'angle', from: [2, 0], to: [1.081, 1.683], label: 'θ' },
+                ],
+                caption: {
+                  en: 'The shaded sector has arc length $s = r\\theta$ around its curved edge and area $L = \\tfrac{1}{2}r^2\\theta$ inside it — both exact only because $\\theta$ is in radians.',
+                  id: 'Juring yang diarsir mempunyai panjang busur $s = r\\theta$ di sisi lengkungnya dan luas $L = \\tfrac{1}{2}r^2\\theta$ di dalamnya — keduanya eksak hanya karena $\\theta$ dalam radian.',
+                },
               },
             },
             {
@@ -161,18 +202,17 @@ export const module3: Module = {
                 ySpan: [-1.4, 1.4],
                 ticks: true,
                 height: 340,
+                params: [{ name: 'theta', min: 0, max: 6.28, step: 0.05, value: 1.047, label: 'θ' }],
                 items: [
                   { t: 'curve', f: 'sqrt(1-x^2)', from: -1, to: 1, color: 'muted' },
                   { t: 'curve', f: '-sqrt(1-x^2)', from: -1, to: 1, color: 'muted' },
-                  { t: 'seg', from: [0.5, 0], to: [0.5, 0.866], color: 'b', label: 'sin θ' },
-                  { t: 'seg', from: [0, 0], to: [0.5, 0], color: 'c', label: 'cos θ' },
-                  { t: 'vec', to: [0.5, 0.866], color: 'a', label: '1' },
-                  { t: 'angle', from: [1, 0], to: [0.5, 0.866], label: 'θ' },
-                  { t: 'dot', x: 0.5, y: 0.866 },
+                  { t: 'vline', x: 'cos(theta)', color: 'c', dashed: true, label: 'cos θ' },
+                  { t: 'hline', y: 'sin(theta)', color: 'b', dashed: true, label: 'sin θ' },
+                  { t: 'dot', x: 'cos(theta)', y: 'sin(theta)', color: 'a', label: 'P' },
                 ],
                 caption: {
-                  en: 'At $\\theta = \\tfrac{\\pi}{3}$ the point is $\\left(\\tfrac{1}{2}, \\tfrac{\\sqrt{3}}{2}\\right)$. The radius is 1, so the two legs of that right triangle **are** the cosine and the sine — and $\\cos^2\\theta + \\sin^2\\theta = 1$ is just Pythagoras on it.',
-                  id: 'Pada $\\theta = \\tfrac{\\pi}{3}$ titiknya adalah $\\left(\\tfrac{1}{2}, \\tfrac{\\sqrt{3}}{2}\\right)$. Jari-jarinya 1, jadi kedua sisi siku-siku segitiga itu **adalah** cosinus dan sinusnya — dan $\\cos^2\\theta + \\sin^2\\theta = 1$ tak lain adalah Pythagoras padanya.',
+                  en: 'Move $\\theta$ and watch $P = (\\cos\\theta, \\sin\\theta)$ travel around the circle. The dashed lines are its two coordinates — the radius is always 1, so $\\cos^2\\theta + \\sin^2\\theta = 1$ is just Pythagoras on the triangle they make.',
+                  id: 'Geser $\\theta$ dan lihat $P = (\\cos\\theta, \\sin\\theta)$ berjalan mengelilingi lingkaran. Garis putus-putusnya adalah kedua koordinatnya — jari-jarinya selalu 1, sehingga $\\cos^2\\theta + \\sin^2\\theta = 1$ tak lain adalah Pythagoras pada segitiga yang dibentuknya.',
                 },
               },
             },

@@ -49,16 +49,22 @@ export const module1: Module = {
               figure: {
                 dim: 2,
                 range: 5,
+                interactive: true,
+                vars: { a: [3, 2] },
                 items: [
                   { t: 'point', at: [-4, -2], label: 'A' },
                   { t: 'point', at: [-1, 1], label: 'B' },
-                  { t: 'vec', from: [-4, -2], to: [-1, 1], label: 'AB', color: 'a' },
-                  { t: 'vec', from: [1, -2], to: [4, 1], label: 'a', color: 'a' },
-                  { t: 'vec', from: [4, -3], to: [1, -3], label: '-a', color: 'b' },
+                  { t: 'vec', from: [-4, -2], to: [-1, 1], label: 'AB', color: 'muted', dashed: true },
+                  { t: 'vec', to: { of: 'a' }, label: 'a', color: 'a', drag: 'a' },
+                  { t: 'vec', to: { scale: -1, v: { of: 'a' } }, label: '-a', color: 'b' },
+                ],
+                readouts: [
+                  { label: 'a =', v: { of: 'a' }, dp: 1 },
+                  { label: '-a =', v: { scale: -1, v: { of: 'a' } }, dp: 1 },
                 ],
                 caption: {
-                  en: 'The same vector twice: an arrow named by its endpoints, and the identical arrow slid to the right and named $\\vec{a}$. Both are 3 across and 3 up, so both are the same vector. Below it, $-\\vec{a}$ — the same length, the other way.',
-                  id: 'Vektor yang sama, dua kali: satu anak panah dinamai lewat ujung-ujungnya, dan anak panah yang persis sama digeser ke kanan lalu dinamai $\\vec{a}$. Keduanya 3 ke kanan dan 3 ke atas, jadi keduanya vektor yang sama. Di bawahnya $-\\vec{a}$ — sama panjang, arah sebaliknya.',
+                  en: 'The dashed arrow from $A$ to $B$ is one particular vector, drawn where it happens to sit. Drag $\\vec{a}$ below it and watch $-\\vec{a}$ mirror every move — always the same length, always pointing the other way.',
+                  id: 'Anak panah putus-putus dari $A$ ke $B$ adalah satu vektor tertentu, digambar di tempat ia kebetulan berada. Seret $\\vec{a}$ di bawahnya dan lihat $-\\vec{a}$ mencerminkan setiap gerakan — selalu sama panjang, selalu menunjuk arah sebaliknya.',
                 },
               },
             },

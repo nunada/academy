@@ -150,6 +150,20 @@ export const module3: Module = {
                 en: 'When a quadratic doesn\'t factor nicely, **complete the square**: add $\\left(\\frac{b}{2}\\right)^2$ to turn $x^2+bx$ into a perfect square $\\left(x+\\frac{b}{2}\\right)^2$. For $x^2+8x+13=0$:\n$$x^2+8x=-13 \\ \\Rightarrow \\ x^2+8x+16=-13+16 \\ \\Rightarrow \\ (x+4)^2=3 \\ \\Rightarrow \\ x=-4\\pm\\sqrt{3}$$\nIf the leading coefficient isn\'t $1$, factor it out of the $x$-terms first, before completing the square inside.',
                 id: 'Ketika kuadrat tak bisa difaktorkan dengan rapi, **lengkapkan kuadrat**: tambahkan $\\left(\\frac{b}{2}\\right)^2$ untuk mengubah $x^2+bx$ menjadi kuadrat sempurna $\\left(x+\\frac{b}{2}\\right)^2$. Untuk $x^2+8x+13=0$:\n$$x^2+8x=-13 \\ \\Rightarrow \\ x^2+8x+16=-13+16 \\ \\Rightarrow \\ (x+4)^2=3 \\ \\Rightarrow \\ x=-4\\pm\\sqrt{3}$$\nJika koefisien utamanya bukan $1$, keluarkan dulu dari suku-suku $x$ sebelum melengkapkan kuadrat di dalamnya.',
               },
+              figure: {
+                dim: 2,
+                range: 4,
+                items: [
+                  { t: 'poly', pts: [[-3.5, -3.5], [-0.5, -3.5], [-0.5, -0.5], [-3.5, -0.5]], color: 'a', label: 'x²' },
+                  { t: 'poly', pts: [[-0.5, -3.5], [3.5, -3.5], [3.5, -0.5], [-0.5, -0.5]], color: 'b', label: '4x' },
+                  { t: 'poly', pts: [[-3.5, -0.5], [-0.5, -0.5], [-0.5, 3.5], [-3.5, 3.5]], color: 'b', label: '4x' },
+                  { t: 'poly', pts: [[-0.5, -0.5], [3.5, -0.5], [3.5, 3.5], [-0.5, 3.5]], color: 'result', label: '16' },
+                ],
+                caption: {
+                  en: 'Completing the square on $x^2+8x$: split the $8x$ strip into two matching $4x$ strips flanking the $x^2$ block, then add the missing $4\\times4=16$ corner to complete a full $(x+4)^2$ square.',
+                  id: 'Melengkapkan kuadrat pada $x^2+8x$: bagi jalur $8x$ menjadi dua jalur $4x$ yang sama besar mengapit blok $x^2$, lalu tambahkan sudut $4\\times4=16$ yang hilang untuk melengkapi persegi penuh $(x+4)^2$.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -608,6 +622,25 @@ export const module3: Module = {
                 en: '$x^2=-1$ has no real solution, since a square is never negative. Define $i = \\sqrt{-1}$, so $i^2=-1$. A **complex number** is $a+bi$ with $a, b$ real — $a$ the real part, $b$ the imaginary part. Complex numbers add, subtract, and multiply exactly like binomials, using $i^2=-1$ wherever it appears:\n$$(3+5i)+(4-2i) = 7+3i, \\qquad (3+5i)-(4-2i) = -1+7i$$\n$$(3+5i)(4-2i) = 12-6i+20i-10i^2 = 12+14i+10 = 22+14i$$',
                 id: '$x^2=-1$ tak punya solusi real, sebab kuadrat tak pernah negatif. Definisikan $i = \\sqrt{-1}$, sehingga $i^2=-1$. **Bilangan kompleks** adalah $a+bi$ dengan $a, b$ real — $a$ bagian real, $b$ bagian imajiner. Bilangan kompleks dijumlahkan, dikurangkan, dan dikalikan persis seperti binomial, memakai $i^2=-1$ di mana pun ia muncul:\n$$(3+5i)+(4-2i) = 7+3i, \\qquad (3+5i)-(4-2i) = -1+7i$$\n$$(3+5i)(4-2i) = 12-6i+20i-10i^2 = 12+14i+10 = 22+14i$$',
               },
+              figure: {
+                dim: 2,
+                range: 6,
+                interactive: true,
+                vars: { z: [3, 5] },
+                items: [
+                  { t: 'seg', from: [0, 0], to: [3, 0], color: 'muted', dashed: true },
+                  { t: 'seg', from: [3, 0], to: { of: 'z' }, color: 'muted', dashed: true },
+                  { t: 'vec', to: { of: 'z' }, label: 'z', color: 'a', drag: 'z' },
+                ],
+                readouts: [
+                  { label: 'Re(z) =', n: { dot: [{ of: 'z' }, [1, 0]] } },
+                  { label: 'Im(z) =', n: { dot: [{ of: 'z' }, [0, 1]] } },
+                ],
+                caption: {
+                  en: 'Drag the point. A complex number $a+bi$ is just the point $(a,b)$ in the plane — its real part is the horizontal coordinate, its imaginary part the vertical one.',
+                  id: 'Seret titiknya. Bilangan kompleks $a+bi$ hanyalah titik $(a,b)$ pada bidang — bagian realnya koordinat mendatar, bagian imajinernya koordinat tegak.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -617,6 +650,19 @@ export const module3: Module = {
                 en: 'The **conjugate** of $a+bi$ is $\\overline{a+bi}=a-bi$, and $(a+bi)(a-bi)=a^2+b^2$ is always a nonnegative real — which is exactly what clears $i$ from a denominator:\n$$\\frac{3+5i}{1+2i} \\cdot \\frac{1-2i}{1-2i} = \\frac{13-i}{5} = \\frac{13}{5}-\\frac{1}{5}i$$\nFor $r<0$, the principal square root is $\\sqrt{r}=i\\sqrt{|r|}$, e.g. $\\sqrt{-16}=4i$. Always convert $\\sqrt{\\text{negative}}$ to $i\\sqrt{\\text{positive}}$ **before** multiplying two such roots — $\\sqrt{-2}\\cdot\\sqrt{-3} \\neq \\sqrt{6}$; it equals $i\\sqrt2 \\cdot i\\sqrt3 = i^2\\sqrt6 = -\\sqrt6$.',
                 id: '**Konjugat** dari $a+bi$ adalah $\\overline{a+bi}=a-bi$, dan $(a+bi)(a-bi)=a^2+b^2$ selalu bilangan real taknegatif — yang persis menghilangkan $i$ dari penyebut:\n$$\\frac{3+5i}{1+2i} \\cdot \\frac{1-2i}{1-2i} = \\frac{13-i}{5} = \\frac{13}{5}-\\frac{1}{5}i$$\nUntuk $r<0$, akar kuadrat utamanya adalah $\\sqrt{r}=i\\sqrt{|r|}$, mis. $\\sqrt{-16}=4i$. Selalu ubah $\\sqrt{\\text{negatif}}$ menjadi $i\\sqrt{\\text{positif}}$ **sebelum** mengalikan dua akar semacam itu — $\\sqrt{-2}\\cdot\\sqrt{-3} \\neq \\sqrt{6}$; nilainya $i\\sqrt2 \\cdot i\\sqrt3 = i^2\\sqrt6 = -\\sqrt6$.',
               },
+              figure: {
+                dim: 2,
+                range: 6,
+                items: [
+                  { t: 'seg', from: [3, 5], to: [3, -5], color: 'muted', dashed: true },
+                  { t: 'dot', x: 3, y: 5, color: 'a', label: '3+5i' },
+                  { t: 'dot', x: 3, y: -5, color: 'b', label: '3-5i' },
+                ],
+                caption: {
+                  en: 'A number and its conjugate are mirror images across the horizontal (real) axis — same real part, opposite sign on the imaginary part.',
+                  id: 'Suatu bilangan dan konjugatnya adalah bayangan cermin melintasi sumbu mendatar (real) — bagian real sama, tanda bagian imajiner berlawanan.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -625,6 +671,19 @@ export const module3: Module = {
               body: {
                 en: 'When $D=b^2-4ac<0$, the Quadratic Formula still works — it just produces complex solutions, always a conjugate pair since $\\pm\\sqrt{D}$ splits into $\\pm i\\sqrt{|D|}$.\n\nFor $x^2+4x+5=0$: $D=16-20=-4$, so\n$$x = \\frac{-4\\pm\\sqrt{-4}}{2} = \\frac{-4\\pm2i}{2} = -2\\pm i$$\nEvery quadratic equation has a solution once complex numbers are allowed — real if $D\\geq0$, complex if $D<0$.',
                 id: 'Ketika $D=b^2-4ac<0$, Rumus Kuadrat tetap berlaku — ia hanya menghasilkan solusi kompleks, selalu sepasang konjugat sebab $\\pm\\sqrt{D}$ terbagi menjadi $\\pm i\\sqrt{|D|}$.\n\nUntuk $x^2+4x+5=0$: $D=16-20=-4$, sehingga\n$$x = \\frac{-4\\pm\\sqrt{-4}}{2} = \\frac{-4\\pm2i}{2} = -2\\pm i$$\nSetiap persamaan kuadrat punya solusi begitu bilangan kompleks diizinkan — real jika $D\\geq0$, kompleks jika $D<0$.',
+              },
+              figure: {
+                dim: 2,
+                range: 4,
+                items: [
+                  { t: 'seg', from: [-2, 1], to: [-2, -1], color: 'muted', dashed: true },
+                  { t: 'dot', x: -2, y: 1, color: 'a', label: '-2+i' },
+                  { t: 'dot', x: -2, y: -1, color: 'b', label: '-2-i' },
+                ],
+                caption: {
+                  en: 'The two complex solutions of $x^2+4x+5=0$, plotted as $(-2,1)$ and $(-2,-1)$ in the complex plane — a conjugate pair, mirror images across the real axis, exactly as the $\\pm$ in the formula guarantees.',
+                  id: 'Kedua solusi kompleks dari $x^2+4x+5=0$, digambar sebagai $(-2,1)$ dan $(-2,-1)$ pada bidang kompleks — pasangan konjugat, bayangan cermin melintasi sumbu real, persis seperti yang dijamin tanda $\\pm$ pada rumusnya.',
+                },
               },
             },
             {
@@ -862,6 +921,18 @@ export const module3: Module = {
                 en: 'A square garden has a $3$-ft walkway around its outer edge; the **entire** area (garden plus walkway) is $18{,}000\\text{ ft}^2$. Let $x$ = the side of the planted area. The entire square then has side $x+6$ (the walkway adds $3$ ft on **each** side):\n$$(x+6)^2 = 18{,}000 \\ \\Rightarrow \\ x+6 = \\sqrt{18{,}000} \\ \\Rightarrow \\ x = \\sqrt{18{,}000}-6 \\approx 128 \\text{ ft}$$\nA rectangular lot $8$ ft longer than it is wide, with area $2900 \\text{ ft}^2$: let $w$ = width, so length is $w+8$:\n$$w(w+8)=2900 \\ \\Rightarrow \\ w^2+8w-2900=0 \\ \\Rightarrow \\ (w-50)(w+58)=0$$\nOnly the positive root makes sense: $w=50$ ft, length $58$ ft.',
                 id: 'Taman berbentuk persegi punya jalan setapak $1$ m di sekeliling tepi luarnya; luas **seluruhnya** (taman plus jalan setapak) adalah $400\\text{ m}^2$. Misalkan $x$ = sisi area yang ditanami. Seluruh persegi itu lalu bersisi $x+2$ (jalan setapak menambah $1$ m di **setiap** sisi):\n$$(x+2)^2 = 400 \\ \\Rightarrow \\ x+2 = \\sqrt{400} \\ \\Rightarrow \\ x = \\sqrt{400}-2 = 18 \\text{ m}$$\nLahan persegi panjang $8$ m lebih panjang dari lebarnya, dengan luas $240 \\text{ m}^2$: misalkan $w$ = lebar, sehingga panjangnya $w+8$:\n$$w(w+8)=240 \\ \\Rightarrow \\ w^2+8w-240=0 \\ \\Rightarrow \\ (w-12)(w+20)=0$$\nHanya akar positif yang masuk akal: $w=12$ m, panjang $20$ m.',
               },
+              figure: {
+                dim: 2,
+                range: 4,
+                items: [
+                  { t: 'poly', pts: [[-3, -3], [3, -3], [3, 3], [-3, 3]], color: 'a' },
+                  { t: 'poly', pts: [[-2, -2], [2, -2], [2, 2], [-2, 2]], color: 'b', label: 'x' },
+                ],
+                caption: {
+                  en: 'The planted square (side $x$) sits inside a larger square that includes the walkway on every side — the shaded band between the two outlines is the walkway itself.',
+                  id: 'Persegi yang ditanami (sisi $x$) berada di dalam persegi yang lebih besar yang menyertakan jalan setapak di setiap sisi — pita terarsir di antara kedua garis luar itu adalah jalan setapaknya sendiri.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -870,6 +941,24 @@ export const module3: Module = {
               body: {
                 en: 'For similar triangles, the ratios of corresponding sides are equal. A person $6$ ft tall casts a $3.5$-ft shadow next to a building whose shadow is $28$ ft. Letting $h$ = building height, the small and large triangles give:\n$$\\frac{h}{28} = \\frac{6}{3.5} \\ \\Rightarrow \\ h = \\frac{6 \\cdot 28}{3.5} = 48 \\text{ ft}$$',
                 id: 'Untuk segitiga sebangun, rasio sisi-sisi yang bersesuaian sama. Seseorang setinggi $1.6$ m membuat bayangan $1$ m di samping gedung yang bayangannya $25$ m. Misalkan $h$ = tinggi gedung, segitiga kecil dan besar memberi:\n$$\\frac{h}{25} = \\frac{1.6}{1} \\ \\Rightarrow \\ h = \\frac{1.6 \\cdot 25}{1} = 40 \\text{ m}$$',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-1, 8],
+                ySpan: [-1, 8],
+                items: [
+                  { t: 'seg', from: [-0.5, 0], to: [7.5, 0], color: 'muted' },
+                  { t: 'seg', from: [0, 0], to: [0, 2], color: 'a', label: 'p' },
+                  { t: 'seg', from: [0, 2], to: [1, 0], color: 'a', dashed: true },
+                  { t: 'right', at: [0, 0], from: [0, 2], to: [1, 0] },
+                  { t: 'seg', from: [4, 0], to: [4, 6], color: 'b', label: 'h' },
+                  { t: 'seg', from: [4, 6], to: [7, 0], color: 'b', dashed: true },
+                  { t: 'right', at: [4, 0], from: [4, 6], to: [5, 0] },
+                ],
+                caption: {
+                  en: 'Two similar right triangles: the sun\'s rays are parallel, so the shadow-triangles have matching angles, and corresponding sides share the same ratio — height over shadow length is identical for the person and the building.',
+                  id: 'Dua segitiga siku-siku sebangun: sinar mataharinya sejajar, sehingga segitiga bayangannya punya sudut yang bersesuaian, dan sisi-sisi yang bersesuaian berbagi rasio yang sama — tinggi per panjang bayangan sama persis untuk orang dan gedungnya.',
+                },
               },
             },
             {

@@ -207,6 +207,24 @@ export const module2: Module = {
                 en: 'The distance from $A$ to $B$ is simply $|\\vec{AB}|$ — build the vector between the points, then measure it:\n$$d(A, B) = |\\vec{AB}| = \\sqrt{(b_1 - a_1)^2 + (b_2 - a_2)^2 + (b_3 - a_3)^2}$$\nThe order of the points does not matter here, even though it very much matters for $\\vec{AB}$: $\\vec{BA}$ is the negative of $\\vec{AB}$, and the two have the same length.',
                 id: 'Jarak dari $A$ ke $B$ hanyalah $|\\vec{AB}|$ — susun vektor antara kedua titiknya, lalu ukur:\n$$d(A, B) = |\\vec{AB}| = \\sqrt{(b_1 - a_1)^2 + (b_2 - a_2)^2 + (b_3 - a_3)^2}$$\nUrutan titiknya tidak berpengaruh di sini, meskipun sangat berpengaruh untuk $\\vec{AB}$: $\\vec{BA}$ adalah negatif dari $\\vec{AB}$, dan keduanya panjangnya sama.',
               },
+              figure: {
+                dim: 2,
+                range: 6,
+                interactive: true,
+                vars: { A: [-3, -1], B: [2, 3] },
+                items: [
+                  { t: 'vec', to: { of: 'A' }, label: 'A', color: 'a', dashed: true, drag: 'A' },
+                  { t: 'vec', to: { of: 'B' }, label: 'B', color: 'b', dashed: true, drag: 'B' },
+                  { t: 'seg', from: { of: 'A' }, to: { of: 'B' }, color: 'result' },
+                ],
+                readouts: [
+                  { label: 'd(A, B) = |B - A| =', n: { norm: { diff: [{ of: 'B' }, { of: 'A' }] } } },
+                ],
+                caption: {
+                  en: 'Drag either point. The solid segment between them is the distance — build $\\vec{AB}$ in your head and measure it, and swapping which point you call $A$ never changes the number.',
+                  id: 'Seret salah satu titiknya. Ruas garis penuh di antara keduanya adalah jaraknya — bayangkan $\\vec{AB}$ dan ukur, dan menukar mana yang disebut $A$ tak pernah mengubah bilangannya.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -215,6 +233,27 @@ export const module2: Module = {
               body: {
                 en: 'Scaling a vector scales its length by the **absolute value** of the scalar:\n$$|k\\vec{a}| = |k|\\,|\\vec{a}|$$\nThe bars do different work on each side — around $k$ they mean absolute value, around $\\vec{a}$ they mean norm — but the idea is the same measurement in both places. So $|-3\\vec{a}| = 3|\\vec{a}|$: reversing a vector cannot shorten it.\n\nAnd the **triangle inequality**:\n$$|\\vec{a} + \\vec{b}| \\leq |\\vec{a}| + |\\vec{b}|$$\nGoing by way of $\\vec{b}$ is never shorter than going straight there, with equality only when the two point the same way.',
                 id: 'Mengalikan vektor dengan skalar mengalikan panjangnya dengan **nilai mutlak** skalar itu:\n$$|k\\vec{a}| = |k|\\,|\\vec{a}|$$\nKedua pasang garisnya bekerja berbeda — di sekitar $k$ berarti nilai mutlak, di sekitar $\\vec{a}$ berarti norma — tetapi gagasannya pengukuran yang sama di kedua tempat. Jadi $|-3\\vec{a}| = 3|\\vec{a}|$: membalik arah vektor tak bisa memendekkannya.\n\nDan **ketaksamaan segitiga**:\n$$|\\vec{a} + \\vec{b}| \\leq |\\vec{a}| + |\\vec{b}|$$\nLewat $\\vec{b}$ tak pernah lebih pendek daripada langsung menuju tujuan, dan sama panjang hanya bila keduanya searah.',
+              },
+              figure: {
+                dim: 2,
+                range: 6,
+                interactive: true,
+                vars: { a: [4, 1], b: [1, 3] },
+                items: [
+                  { t: 'vec', from: { of: 'a' }, to: { sum: [{ of: 'a' }, { of: 'b' }] }, color: 'b', dashed: true },
+                  { t: 'vec', to: { of: 'a' }, label: 'a', color: 'a', drag: 'a' },
+                  { t: 'vec', to: { of: 'b' }, label: 'b', color: 'b', drag: 'b' },
+                  { t: 'vec', to: { sum: [{ of: 'a' }, { of: 'b' }] }, label: 'a + b', color: 'result' },
+                ],
+                readouts: [
+                  { label: '|a| =', n: { norm: { of: 'a' } } },
+                  { label: '|b| =', n: { norm: { of: 'b' } } },
+                  { label: '|a + b| =', n: { norm: { sum: [{ of: 'a' }, { of: 'b' }] } } },
+                ],
+                caption: {
+                  en: 'Drag either arrow and compare the last number to the sum of the first two: the straight path is never longer than the walk via $\\vec{b}$. Line the two arrows up and the two sides become equal.',
+                  id: 'Seret salah satu anak panahnya dan bandingkan bilangan terakhir dengan jumlah dua bilangan pertama: jalur lurus tak pernah lebih panjang daripada berjalan lewat $\\vec{b}$. Sejajarkan kedua anak panahnya dan kedua ruas menjadi sama.',
+                },
               },
             },
             {
@@ -527,6 +566,25 @@ export const module2: Module = {
               body: {
                 en: 'Normalising throws the length away. Multiplying by a new one puts a different length back:\n$$\\vec{v} = L\\,\\hat{a} = \\frac{L}{|\\vec{a}|}\\,\\vec{a}$$\nis the vector of length $L$ in the direction of $\\vec{a}$. Read the other way, every vector is its own length times its own direction, $\\vec{a} = |\\vec{a}|\\,\\hat{a}$ — which is the whole point of separating the two.',
                 id: 'Normalisasi membuang panjangnya. Mengalikan dengan panjang baru mengembalikan panjang yang berbeda:\n$$\\vec{v} = L\\,\\hat{a} = \\frac{L}{|\\vec{a}|}\\,\\vec{a}$$\nadalah vektor sepanjang $L$ yang searah dengan $\\vec{a}$. Dibaca sebaliknya, setiap vektor adalah panjangnya sendiri dikali arahnya sendiri, $\\vec{a} = |\\vec{a}|\\,\\hat{a}$ — dan justru itulah gunanya memisahkan keduanya.',
+              },
+              figure: {
+                dim: 2,
+                range: 6,
+                interactive: true,
+                vars: { a: [3, -2] },
+                items: [
+                  { t: 'vec', to: { of: 'a' }, label: 'a', color: 'a', drag: 'a' },
+                  { t: 'vec', to: { scale: 5, v: { unit: { of: 'a' } } }, label: 'v', color: 'result' },
+                ],
+                readouts: [
+                  { label: '|a| =', n: { norm: { of: 'a' } } },
+                  { label: 'â =', v: { unit: { of: 'a' } }, dp: 2 },
+                  { label: 'v = 5â =', v: { scale: 5, v: { unit: { of: 'a' } } }, dp: 1 },
+                ],
+                caption: {
+                  en: 'Drag $\\vec{a}$ anywhere. The green arrow $\\vec{v}$ always points the same way and always has length 5, whatever $\\vec{a}$ was — that is normalising and rescaling done in one move.',
+                  id: 'Seret $\\vec{a}$ ke mana pun. Anak panah hijau $\\vec{v}$ selalu searah dan selalu panjangnya 5, apa pun $\\vec{a}$-nya — itulah normalisasi dan penskalaan ulang dilakukan sekaligus.',
+                },
               },
             },
             {

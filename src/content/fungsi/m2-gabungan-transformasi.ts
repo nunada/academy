@@ -175,16 +175,17 @@ export const module2: Module = {
               },
               figure: {
                 dim: 2,
-                xSpan: [-2, 6],
-                ySpan: [-1, 4],
+                xSpan: [-4, 6],
+                ySpan: [-1, 5],
                 ticks: true,
+                params: [{ name: 'c', min: 0, max: 4, step: 0.5, value: 1 }],
                 items: [
-                  { t: 'curve', f: 'sqrt(x+1)', from: -1, color: 'a', label: '√(x+1)' },
-                  { t: 'curve', f: 'sqrt(x)+1', from: 0, color: 'b', label: '√x + 1' },
+                  { t: 'curve', f: 'sqrt(x+c)', from: -4, color: 'a', label: '√(x+c)' },
+                  { t: 'curve', f: 'sqrt(x)+c', from: 0, color: 'b', label: '√x + c' },
                 ],
                 caption: {
-                  en: 'Same two functions, opposite order. One starts at $x = -1$ on the axis; the other starts at $x = 0$, one unit up.',
-                  id: 'Dua fungsi yang sama, urutan terbalik. Yang satu mulai di $x = -1$ pada sumbu; yang lain mulai di $x = 0$, satu satuan di atasnya.',
+                  en: 'Move $c$ with $g(x) = x + c$. Same two functions, opposite order — one always starts on the axis at $x = -c$; the other always starts at $x = 0$, $c$ units up.',
+                  id: 'Geser $c$ dengan $g(x) = x + c$. Dua fungsi yang sama, urutan terbalik — yang satu selalu mulai pada sumbu di $x = -c$; yang lain selalu mulai di $x = 0$, $c$ satuan di atasnya.',
                 },
               },
             },
@@ -294,6 +295,21 @@ export const module2: Module = {
               body: {
                 en: 'For $f(g(x))$ to make sense, two things must hold: $x$ has to be in the domain of $g$, **and** $g(x)$ has to be in the domain of $f$.\n\nWith $f(x) = \\sqrt{x}$ and $g(x) = x - 3$: $g$ accepts everything, but $f$ needs a non-negative input, so we need $x - 3 \\geq 0$, that is $x \\geq 3$.\n\nSimplifying first is what goes wrong here. $(\\sqrt{x})^2$ tidies to $x$, which looks defined everywhere — but the composite still needs $x \\geq 0$, because the inner square root had to happen. Find the domain before you simplify, never after.',
                 id: 'Agar $f(g(x))$ bermakna, dua hal harus berlaku: $x$ harus berada di domain $g$, **dan** $g(x)$ harus berada di domain $f$.\n\nDengan $f(x) = \\sqrt{x}$ dan $g(x) = x - 3$: $g$ menerima apa saja, tetapi $f$ memerlukan masukan tak negatif, jadi diperlukan $x - 3 \\geq 0$, yaitu $x \\geq 3$.\n\nMenyederhanakan lebih dulu adalah tempat kekeliruan terjadi. $(\\sqrt{x})^2$ menjadi rapi sebagai $x$, yang tampak terdefinisi di mana-mana — tetapi komposisinya tetap memerlukan $x \\geq 0$, sebab akar di dalamnya tetap harus terjadi. Tentukan domainnya sebelum menyederhanakan, jangan sesudahnya.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 8],
+                ySpan: [-1, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x-3', color: 'muted', dashed: true, label: 'g(x) = x−3' },
+                  { t: 'curve', f: 'sqrt(x-3)', from: 3, color: 'a', label: '(f∘g)(x)' },
+                  { t: 'dot', x: 3, y: 0, color: 'a' },
+                ],
+                caption: {
+                  en: 'The inner $g$ (dashed) is happy everywhere, but the composite $f \\circ g$ only starts where $g(x) \\geq 0$ — at $x = 3$.',
+                  id: 'Fungsi dalam $g$ (putus-putus) terdefinisi di mana-mana, tetapi komposisi $f \\circ g$ baru bermula di tempat $g(x) \\geq 0$ — di $x = 3$.',
+                },
               },
             },
             {

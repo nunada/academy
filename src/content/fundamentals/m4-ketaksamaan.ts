@@ -37,6 +37,20 @@ export const module4: Module = {
                 en: 'Every rule for equations carries over to inequalities — **except** one. Adding or subtracting the same quantity from both sides preserves the inequality, and so does multiplying by a **positive** quantity. But multiplying (or dividing) by a **negative** quantity **reverses** the direction: multiplying $3 < 5$ by $-2$ gives $-6 > -10$, not $-6 < -10$.\n\nFor $3x < 9x+4$: subtract $9x$ to get $-6x<4$, then divide by $-6$ — and flip the inequality — to get $x > -\\frac{2}{3}$.',
                 id: 'Setiap aturan untuk persamaan berlanjut ke pertidaksamaan — **kecuali** satu. Menambah atau mengurangi kuantitas yang sama pada kedua ruas mempertahankan pertidaksamaannya, begitu pula mengalikan dengan kuantitas **positif**. Tetapi mengalikan (atau membagi) dengan kuantitas **negatif** **membalik** arahnya: mengalikan $3 < 5$ dengan $-2$ memberi $-6 > -10$, bukan $-6 < -10$.\n\nUntuk $3x < 9x+4$: kurangi $9x$ untuk mendapat $-6x<4$, lalu bagi dengan $-6$ — dan balik pertidaksamaannya — untuk mendapat $x > -\\frac{2}{3}$.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 3],
+                ySpan: [-1, 1],
+                items: [
+                  { t: 'seg', from: [-3, 0], to: [3, 0], color: 'muted' },
+                  { t: 'dot', x: -0.6667, y: 0, color: 'result', open: true, label: '-2/3' },
+                  { t: 'seg', from: [-0.6667, 0.3], to: [3, 0.3], color: 'result' },
+                ],
+                caption: {
+                  en: 'The solution of $3x<9x+4$: $x>-\\frac{2}{3}$, an open ray to the right — open at $-\\frac{2}{3}$ since that boundary itself is excluded.',
+                  id: 'Solusi dari $3x<9x+4$: $x>-\\frac{2}{3}$, sinar terbuka ke kanan — terbuka di $-\\frac{2}{3}$ sebab batas itu sendiri dikecualikan.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -45,6 +59,21 @@ export const module4: Module = {
               body: {
                 en: 'A compound inequality like $4 \\leq 3x-2 < 13$ says both $4 \\leq 3x-2$ and $3x-2<13$ at once — solve it by doing the same operation to **all three** parts simultaneously:\n$$4 \\leq 3x-2 < 13$$\nAdd $2$ to every part:\n$$6 \\leq 3x < 15$$\nDivide every part by $3$:\n$$2 \\leq x < 5$$\nThe solution is the interval $[2,5)$.',
                 id: 'Pertidaksamaan gabungan seperti $4 \\leq 3x-2 < 13$ menyatakan $4 \\leq 3x-2$ dan $3x-2<13$ sekaligus — selesaikan dengan melakukan operasi yang sama pada **ketiga** bagian secara bersamaan:\n$$4 \\leq 3x-2 < 13$$\nTambahkan $2$ ke setiap bagian:\n$$6 \\leq 3x < 15$$\nBagi setiap bagian dengan $3$:\n$$2 \\leq x < 5$$\nSolusinya adalah interval $[2,5)$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [0, 7],
+                ySpan: [-1, 1],
+                items: [
+                  { t: 'seg', from: [0, 0], to: [7, 0], color: 'muted' },
+                  { t: 'seg', from: [2, 0.3], to: [5, 0.3], color: 'result' },
+                  { t: 'dot', x: 2, y: 0.3, color: 'result', label: '2' },
+                  { t: 'dot', x: 5, y: 0.3, color: 'result', open: true, label: '5' },
+                ],
+                caption: {
+                  en: 'The solution $[2,5)$: closed (included) at $2$, open (excluded) at $5$.',
+                  id: 'Solusinya $[2,5)$: tertutup (disertakan) di $2$, terbuka (dikecualikan) di $5$.',
+                },
               },
             },
             {
@@ -124,6 +153,22 @@ export const module4: Module = {
                 en: 'A quadratic (or other nonlinear) inequality can\'t be isolated the way a linear one can — instead, move every term to one side, leaving $0$ on the other; **factor** the nonzero side; find the numbers where each factor is zero, which split the real line into **intervals**; pick a **test value** in each interval to find the sign of each factor there, and hence the sign of the whole product; and finally read off the intervals where the inequality holds, checking whether the endpoints themselves qualify.\n\nFor $x^2 < 5x+6$: rewrite as $x^2-5x-6<0$, factor as $(x-6)(x+1)<0$. The factors are zero at $x=-1$ and $x=6$.',
                 id: 'Pertidaksamaan kuadrat (atau nonlinear lain) tak bisa diisolasi seperti pertidaksamaan linear — sebagai gantinya, pindahkan setiap suku ke satu ruas, menyisakan $0$ di ruas lain; **faktorkan** ruas taknolnya; cari bilangan di mana tiap faktor bernilai nol, yang membagi garis bilangan menjadi **interval**; pilih **nilai uji** pada tiap interval untuk mencari tanda tiap faktor di situ, dan karenanya tanda keseluruhan hasil kalinya; dan akhirnya baca interval di mana pertidaksamaannya berlaku, periksa apakah titik ujungnya sendiri memenuhi.\n\nUntuk $x^2 < 5x+6$: tulis ulang sebagai $x^2-5x-6<0$, faktorkan sebagai $(x-6)(x+1)<0$. Faktor-faktornya nol di $x=-1$ dan $x=6$.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 9],
+                ySpan: [-1, 1],
+                items: [
+                  { t: 'seg', from: [-4, 0], to: [9, 0], color: 'muted' },
+                  { t: 'vline', x: -1, color: 'muted', dashed: true },
+                  { t: 'vline', x: 6, color: 'muted', dashed: true },
+                  { t: 'dot', x: -1, y: 0, color: 'result', open: true, label: '-1' },
+                  { t: 'dot', x: 6, y: 0, color: 'result', open: true, label: '6' },
+                ],
+                caption: {
+                  en: 'The critical points $-1$ and $6$, where each factor of $(x-6)(x+1)$ is zero, split the real line into three intervals to test separately.',
+                  id: 'Titik kritis $-1$ dan $6$, tempat tiap faktor dari $(x-6)(x+1)$ bernilai nol, membagi garis bilangan menjadi tiga interval untuk diuji terpisah.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -132,6 +177,26 @@ export const module4: Module = {
               body: {
                 en: 'The critical points $-1$ and $6$ split the line into three intervals. Pick one test value from each and check the sign of $(x-6)(x+1)$ there:\n$$x=-2: \\ (-)(-) = + \\qquad x=0: \\ (-)(+) = - \\qquad x=7: \\ (+)(+) = +$$\nSo the sign is $+$ on $(-\\infty,-1)$, $-$ on $(-1,6)$, and $+$ on $(6,\\infty)$ — a factor never changes sign inside one of these intervals, so a single test point speaks for the whole interval. We want where the product is **negative**: the solution is $(-1,6)$.',
                 id: 'Titik kritis $-1$ dan $6$ membagi garisnya menjadi tiga interval. Ambil satu nilai uji dari tiap interval dan periksa tanda $(x-6)(x+1)$ di situ:\n$$x=-2: \\ (-)(-) = + \\qquad x=0: \\ (-)(+) = - \\qquad x=7: \\ (+)(+) = +$$\nJadi tandanya $+$ pada $(-\\infty,-1)$, $-$ pada $(-1,6)$, dan $+$ pada $(6,\\infty)$ — sebuah faktor tak pernah berganti tanda di dalam salah satu interval ini, sehingga satu titik uji mewakili seluruh intervalnya. Kita ingin di mana hasil kalinya **negatif**: solusinya $(-1,6)$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 9],
+                ySpan: [-2, 2],
+                items: [
+                  { t: 'seg', from: [-4, 0], to: [9, 0], color: 'muted' },
+                  { t: 'vline', x: -1, color: 'muted', dashed: true },
+                  { t: 'vline', x: 6, color: 'muted', dashed: true },
+                  { t: 'dot', x: -1, y: 0, color: 'muted', open: true, label: '-1' },
+                  { t: 'dot', x: 6, y: 0, color: 'muted', open: true, label: '6' },
+                  { t: 'dot', x: -2, y: 0.7, color: 'a', label: '+' },
+                  { t: 'dot', x: 2.5, y: 0.7, color: 'b', label: '−' },
+                  { t: 'dot', x: 7, y: 0.7, color: 'a', label: '+' },
+                  { t: 'seg', from: [-1, -0.8], to: [6, -0.8], color: 'result' },
+                ],
+                caption: {
+                  en: 'The sign of $(x-6)(x+1)$ on each interval, from the test values $x=-2,0,7$: positive, negative, positive. The solution of $(x-6)(x+1)<0$ is exactly the negative middle interval, marked below: $(-1,6)$.',
+                  id: 'Tanda dari $(x-6)(x+1)$ pada tiap interval, dari nilai uji $x=-2,0,7$: positif, negatif, positif. Solusi dari $(x-6)(x+1)<0$ persis interval tengah yang negatif, ditandai di bawah: $(-1,6)$.',
+                },
               },
             },
             {
@@ -245,6 +310,24 @@ export const module4: Module = {
                 en: 'For $c>0$:\n$$|x| < c \\iff -c<x<c, \\qquad |x| > c \\iff x<-c \\text{ or } x>c$$\nThese follow directly from $|x|$ being a distance from $0$: "closer than $c$" is between $-c$ and $c$; "farther than $c$" is beyond either end. Solving $|x-5|<2$: this says $-2<x-5<2$, so $3<x<7$ — the interval $(3,7)$.',
                 id: 'Untuk $c>0$:\n$$|x| < c \\iff -c<x<c, \\qquad |x| > c \\iff x<-c \\text{ atau } x>c$$\nIni mengikuti langsung dari $|x|$ sebagai jarak dari $0$: "lebih dekat dari $c$" berarti di antara $-c$ dan $c$; "lebih jauh dari $c$" berarti melewati salah satu ujung. Menyelesaikan $|x-5|<2$: ini berarti $-2<x-5<2$, sehingga $3<x<7$ — interval $(3,7)$.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [0, 10],
+                ySpan: [-1, 1],
+                params: [{ name: 'c', min: 0.5, max: 4, step: 0.5, value: 2, label: 'c' }],
+                items: [
+                  { t: 'seg', from: [0, 0], to: [10, 0], color: 'muted' },
+                  { t: 'dot', x: 5, y: 0, color: 'muted', label: '5' },
+                  { t: 'vline', x: '5-c', color: 'result', dashed: true },
+                  { t: 'vline', x: '5+c', color: 'result', dashed: true },
+                  { t: 'dot', x: '5-c', y: 0.3, color: 'result', open: true },
+                  { t: 'dot', x: '5+c', y: 0.3, color: 'result', open: true },
+                ],
+                caption: {
+                  en: 'Drag the slider to change $c$: $|x-5|<c$ always says $x$ is within $c$ units of $5$ — the open interval $(5-c,5+c)$, symmetric about $5$ and open at both ends.',
+                  id: 'Geser penggesernya untuk mengubah $c$: $|x-5|<c$ selalu berarti $x$ berjarak kurang dari $c$ satuan dari $5$ — interval terbuka $(5-c,5+c)$, simetris terhadap $5$ dan terbuka di kedua ujung.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -253,6 +336,21 @@ export const module4: Module = {
               body: {
                 en: 'Company A charges ﹩19/day + ﹩0.40/mile; Company B charges ﹩68/day + ﹩0.26/mile. For a one-day rental, when is B cheaper?\n$$68 + 0.26x < 19 + 0.40x$$\n$$49 < 0.14x \\ \\Rightarrow \\ x > 350$$\nB is cheaper only once you drive more than $350$ miles — exactly the same four modeling guidelines from the equations module, just ending in an inequality instead of an equation.',
                 id: 'Perusahaan A membebankan Rp190.000/hari + Rp4.000/km; Perusahaan B membebankan Rp680.000/hari + Rp2.600/km. Untuk sewa satu hari, kapan B lebih murah?\n$$680{.}000 + 2600x < 190{.}000 + 4000x$$\n$$490{.}000 < 1400x \\ \\Rightarrow \\ x > 350$$\nB hanya lebih murah begitu kamu menempuh lebih dari $350$ km — persis empat pedoman pemodelan yang sama dari modul persamaan, hanya berakhir pada pertidaksamaan alih-alih persamaan.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [0, 600],
+                ySpan: [0, 300],
+                params: [{ name: 'rateb', min: 0.10, max: 0.39, step: 0.01, value: 0.26, label: 'rate B' }],
+                items: [
+                  { t: 'curve', f: '19+0.40*x', color: 'a', label: 'A' },
+                  { t: 'curve', f: '68+rateb*x', color: 'b', label: 'B' },
+                  { t: 'vline', x: '(68-19)/(0.40-rateb)', color: 'muted', dashed: true },
+                ],
+                caption: {
+                  en: 'Drag the slider to change Company B\'s per-mile rate and watch the break-even point move: Company A\'s line starts lower but climbs faster, so past the crossing (the dashed line) B\'s cost runs below A\'s.',
+                  id: 'Geser penggesernya untuk mengubah tarif per-mil Perusahaan B dan lihat titik impasnya berpindah: garis Perusahaan A dimulai lebih rendah tetapi naik lebih cepat, sehingga melewati perpotongannya (garis putus-putus) biaya B berada di bawah A.',
+                },
               },
             },
             {

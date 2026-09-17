@@ -37,6 +37,24 @@ export const module1: Module = {
                 en: 'The **natural numbers** are $1, 2, 3, \\ldots$ The **integers** add their negatives and $0$: $\\ldots, -2, -1, 0, 1, 2, \\ldots$ A **rational number** is any ratio of integers $\\frac{m}{n}$ with $n \\neq 0$ — this covers $\\frac{1}{2}$, $46$ (as $\\frac{46}{1}$), and $0.17$ (as $\\frac{17}{100}$). Division by $0$ is always undefined: $\\frac{3}{0}$ and $\\frac{0}{0}$ are simply not numbers.\n\nSome real numbers — $\\sqrt{2}$, $\\pi$, $\\sqrt[3]{5}$ — cannot be written as a ratio of integers at all. These are **irrational**. Every real number is either rational or irrational, never both.',
                 id: '**Bilangan asli** adalah $1, 2, 3, \\ldots$ **Bilangan bulat** menambahkan negatifnya dan $0$: $\\ldots, -2, -1, 0, 1, 2, \\ldots$ **Bilangan rasional** adalah rasio bilangan bulat mana pun $\\frac{m}{n}$ dengan $n \\neq 0$ — ini mencakup $\\frac{1}{2}$, $46$ (sebagai $\\frac{46}{1}$), dan $0.17$ (sebagai $\\frac{17}{100}$). Pembagian dengan $0$ selalu tak terdefinisi: $\\frac{3}{0}$ dan $\\frac{0}{0}$ sederhananya bukan bilangan.\n\nBeberapa bilangan real — $\\sqrt{2}$, $\\pi$, $\\sqrt[3]{5}$ — sama sekali tak bisa ditulis sebagai rasio bilangan bulat. Ini disebut **irasional**. Setiap bilangan real pasti rasional atau irasional, tak pernah keduanya.',
               },
+              figure: {
+                dim: 2,
+                range: 5,
+                items: [
+                  { t: 'poly', pts: [[-4, -4], [4, -4], [4, 4], [-4, 4]], color: 'muted' },
+                  { t: 'poly', pts: [[-3, -3], [3, -3], [3, 3], [-3, 3]], color: 'c' },
+                  { t: 'poly', pts: [[-2, -2], [2, -2], [2, 2], [-2, 2]], color: 'b' },
+                  { t: 'poly', pts: [[-1, -1], [1, -1], [1, 1], [-1, 1]], color: 'a' },
+                  { t: 'point', at: [3.4, 3.4], label: 'R', color: 'muted' },
+                  { t: 'point', at: [2.4, 2.4], label: 'Q', color: 'c' },
+                  { t: 'point', at: [1.4, 1.4], label: 'Z', color: 'b' },
+                  { t: 'point', at: [0, 0], label: 'N', color: 'a' },
+                ],
+                caption: {
+                  en: 'Each number system sits inside the next: every natural number $N$ is an integer $Z$, every integer is rational $Q$, and every rational number is real $R$ — four nested collections, smallest to largest.',
+                  id: 'Setiap sistem bilangan berada di dalam yang berikutnya: setiap bilangan asli $N$ adalah bilangan bulat $Z$, setiap bilangan bulat adalah rasional $Q$, dan setiap bilangan rasional adalah real $R$ — empat himpunan bersarang, dari terkecil ke terbesar.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -256,6 +274,29 @@ export const module1: Module = {
               body: {
                 en: 'A **set** is a collection of objects, its **elements**. Set-builder notation $\\{x \\vert \\text{condition on } x\\}$ names a set by the rule its elements satisfy, e.g. $\\{x \\vert x \\text{ is an integer and } 0 < x < 7\\} = \\{1,2,3,4,5,6\\}$.\n\nFor sets $S$ and $T$: the **union** $S \\cup T$ has everything in $S$ **or** $T$ (or both); the **intersection** $S \\cap T$ has only what is in **both**. If $S = \\{1,2,3,4,5\\}$ and $T = \\{4,5,6,7\\}$, then $S \\cup T = \\{1,2,3,4,5,6,7\\}$ and $S \\cap T = \\{4,5\\}$.',
                 id: '**Himpunan** adalah kumpulan objek, **anggota**-anggotanya. Notasi pembentuk himpunan $\\{x \\vert \\text{syarat pada } x\\}$ menamai himpunan lewat aturan yang dipenuhi anggotanya, mis. $\\{x \\vert x \\text{ bilangan bulat dan } 0 < x < 7\\} = \\{1,2,3,4,5,6\\}$.\n\nUntuk himpunan $S$ dan $T$: **gabungan** $S \\cup T$ berisi segala sesuatu di $S$ **atau** $T$ (atau keduanya); **irisan** $S \\cap T$ hanya berisi yang ada di **keduanya**. Jika $S = \\{1,2,3,4,5\\}$ dan $T = \\{4,5,6,7\\}$, maka $S \\cup T = \\{1,2,3,4,5,6,7\\}$ dan $S \\cap T = \\{4,5\\}$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [0, 8],
+                ySpan: [-1, 3],
+                ticks: true,
+                items: [
+                  { t: 'dot', x: 1, y: 2, color: 'a', label: 'S' },
+                  { t: 'dot', x: 2, y: 2, color: 'a' },
+                  { t: 'dot', x: 3, y: 2, color: 'a' },
+                  { t: 'dot', x: 4, y: 2, color: 'a' },
+                  { t: 'dot', x: 5, y: 2, color: 'a' },
+                  { t: 'dot', x: 4, y: 1, color: 'b', label: 'T' },
+                  { t: 'dot', x: 5, y: 1, color: 'b' },
+                  { t: 'dot', x: 6, y: 1, color: 'b' },
+                  { t: 'dot', x: 7, y: 1, color: 'b' },
+                  { t: 'dot', x: 4, y: 0, color: 'result', label: 'S∩T' },
+                  { t: 'dot', x: 5, y: 0, color: 'result' },
+                ],
+                caption: {
+                  en: 'Each dot is an element. Top row: $S=\\{1,2,3,4,5\\}$. Middle row: $T=\\{4,5,6,7\\}$. Bottom row: the intersection $S \\cap T=\\{4,5\\}$ — only the elements common to both. The union $S \\cup T$ is every dot in the top two rows combined, without double-counting the shared ones: $\\{1,2,3,4,5,6,7\\}$.',
+                  id: 'Tiap titik adalah anggota. Baris atas: $S=\\{1,2,3,4,5\\}$. Baris tengah: $T=\\{4,5,6,7\\}$. Baris bawah: irisannya $S \\cap T=\\{4,5\\}$ — hanya anggota yang ada di keduanya. Gabungan $S \\cup T$ adalah semua titik pada dua baris atas digabung, tanpa menghitung dua kali yang sama: $\\{1,2,3,4,5,6,7\\}$.',
+                },
               },
             },
             {

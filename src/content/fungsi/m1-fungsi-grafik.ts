@@ -200,6 +200,23 @@ export const module1: Module = {
                 en: 'Interval notation is the usual shorthand. A square bracket includes the endpoint, a round one excludes it, and infinity always gets a round one because it is not a number you can reach.\n$$[4, \\infty) \\text{ means } x \\geq 4$$\n$$(-\\infty, 3) \\cup (3, \\infty) \\text{ means every } x \\text{ except } 3$$\nWhen a formula has both kinds of trouble, both conditions must hold at once. For $\\dfrac{\\sqrt{x-1}}{x-5}$ you need $x \\geq 1$ **and** $x \\neq 5$, so the domain is $[1, 5) \\cup (5, \\infty)$.',
                 id: 'Notasi selang adalah cara ringkas yang lazim. Kurung siku memuat titik ujungnya, kurung biasa tidak, dan tak hingga selalu memakai kurung biasa karena ia bukan bilangan yang bisa dicapai.\n$$[4, \\infty) \\text{ berarti } x \\geq 4$$\n$$(-\\infty, 3) \\cup (3, \\infty) \\text{ berarti setiap } x \\text{ kecuali } 3$$\nBila sebuah rumus mengandung kedua jenis masalah, kedua syaratnya harus berlaku bersamaan. Untuk $\\dfrac{\\sqrt{x-1}}{x-5}$ diperlukan $x \\geq 1$ **dan** $x \\neq 5$, sehingga domainnya $[1, 5) \\cup (5, \\infty)$.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 9],
+                ySpan: [-1, 1],
+                ticks: false,
+                items: [
+                  { t: 'seg', from: [4, 0.4], to: [8.5, 0.4], color: 'a' },
+                  { t: 'dot', x: 4, y: 0.4, color: 'a', label: '[4,∞)' },
+                  { t: 'seg', from: [-1.5, -0.4], to: [2.85, -0.4], color: 'b' },
+                  { t: 'seg', from: [3.15, -0.4], to: [8.5, -0.4], color: 'b' },
+                  { t: 'dot', x: 3, y: -0.4, color: 'b', open: true, label: '≠3' },
+                ],
+                caption: {
+                  en: 'Top: $[4,\\infty)$ — a filled dot because $4$ is included, the line running forever right. Bottom: every $x$ except $3$ — a hollow dot for the one point removed, with the two remaining pieces on either side.',
+                  id: 'Atas: $[4,\\infty)$ — titik penuh karena $4$ termasuk, garisnya berlanjut selamanya ke kanan. Bawah: semua $x$ kecuali $3$ — titik kosong untuk satu titik yang dibuang, dengan dua bagian yang tersisa di kedua sisinya.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -320,14 +337,15 @@ export const module1: Module = {
                 xSpan: [-4, 4],
                 ySpan: [-4, 4],
                 ticks: true,
+                params: [{ name: 'x0', min: -4, max: 4, step: 0.1, value: 1.5 }],
                 items: [
                   { t: 'curve', f: 'sqrt(9-x^2)', from: -3, to: 3, color: 'a', label: 'setengah atas' },
                   { t: 'curve', f: '-sqrt(9-x^2)', from: -3, to: 3, color: 'muted', dashed: true, label: 'setengah bawah' },
-                  { t: 'vline', x: 1.5, color: 'b' },
+                  { t: 'vline', x: 'x0', color: 'b' },
                 ],
                 caption: {
-                  en: 'The whole circle fails the test — the vertical line meets it twice. The solid upper half passes, and it is the graph of $y = \\sqrt{9 - x^2}$: domain $[-3, 3]$, range $[0, 3]$.',
-                  id: 'Lingkaran utuh tidak lolos uji — garis tegaknya memotong dua kali. Setengah bagian atas yang digambar penuh lolos, dan itulah grafik $y = \\sqrt{9 - x^2}$: domain $[-3, 3]$, range $[0, 3]$.',
+                  en: 'Move $x_0$ across the picture. Between $-3$ and $3$ the line meets the whole circle twice — it fails the test — but it only ever meets the solid upper half once: that is the graph of $y = \\sqrt{9 - x^2}$, domain $[-3, 3]$, range $[0, 3]$.',
+                  id: 'Geser $x_0$ ke seluruh gambar. Antara $-3$ dan $3$ garisnya memotong lingkaran penuh dua kali — gagal uji — tetapi ia hanya pernah memotong setengah bagian atas yang digambar penuh sekali: itulah grafik $y = \\sqrt{9 - x^2}$, domain $[-3, 3]$, range $[0, 3]$.',
                 },
               },
             },
@@ -603,6 +621,21 @@ export const module1: Module = {
                 en: '$|x|$ means the distance from $x$ to zero, which is exactly\n$$|x| = \\begin{cases} x, & x \\geq 0 \\\\ -x, & x < 0 \\end{cases}$$\nSo $|-7| = -(-7) = 7$. The minus sign in the second line does not make the answer negative; it makes it positive, because $x$ was already negative.\n\nIts graph is a V with the corner at the origin. Every absolute-value graph in this course is that V, moved and stretched.',
                 id: '$|x|$ berarti jarak dari $x$ ke nol, yang persis sama dengan\n$$|x| = \\begin{cases} x, & x \\geq 0 \\\\ -x, & x < 0 \\end{cases}$$\nJadi $|-7| = -(-7) = 7$. Tanda minus pada baris kedua tidak membuat jawabannya negatif; justru membuatnya positif, karena $x$-nya memang sudah negatif.\n\nGrafiknya berupa huruf V dengan sudut di titik asal. Setiap grafik nilai mutlak dalam kursus ini adalah V itu, yang digeser dan diregangkan.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 4],
+                ySpan: [-1, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x', from: 0, to: 4, color: 'a', label: 'x, x ≥ 0' },
+                  { t: 'curve', f: '-x', from: -4, to: 0, color: 'b', label: '-x, x < 0' },
+                  { t: 'dot', x: 0, y: 0, label: 'sudut' },
+                ],
+                caption: {
+                  en: 'Two rays meeting at the origin, each the mirror of the other. The right half is the line $y = x$; the left half is $y = -x$, which is what flips it positive.',
+                  id: 'Dua sinar bertemu di titik asal, masing-masing bayangan cermin yang lain. Belahan kanan adalah garis $y = x$; belahan kiri adalah $y = -x$, dan itulah yang membuatnya positif.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -830,16 +863,17 @@ export const module1: Module = {
               figure: {
                 dim: 2,
                 xSpan: [-3, 3],
-                ySpan: [-4, 4],
+                ySpan: [-6, 6],
                 ticks: true,
+                params: [{ name: 'a', min: 0, max: 6, step: 0.5, value: 3 }],
                 items: [
-                  { t: 'curve', f: 'x^3-3*x', color: 'a', label: 'x³ − 3x' },
-                  { t: 'dot', x: -1, y: 2, label: 'puncak' },
-                  { t: 'dot', x: 1, y: -2, label: 'lembah' },
+                  { t: 'curve', f: 'x^3-a*x', color: 'a', label: 'x³ − ax' },
+                  { t: 'dot', x: '-sqrt(a/3)', y: '(2*a/3)*sqrt(a/3)', label: 'puncak' },
+                  { t: 'dot', x: 'sqrt(a/3)', y: '-(2*a/3)*sqrt(a/3)', label: 'lembah' },
                 ],
                 caption: {
-                  en: 'Uphill until $x = -1$, downhill from there to $x = 1$, uphill again after. The two marked points are where it turns.',
-                  id: 'Menanjak sampai $x = -1$, menurun dari situ sampai $x = 1$, lalu menanjak lagi. Dua titik yang ditandai adalah tempat ia berbalik.',
+                  en: 'Move $a$. Uphill, then downhill between the two marked points, then uphill again — and at $a = 0$ the two points collapse together and the curve never turns at all.',
+                  id: 'Geser $a$. Menanjak, lalu menurun di antara kedua titik yang ditandai, lalu menanjak lagi — dan pada $a = 0$ kedua titik itu berimpit dan kurvanya sama sekali tak pernah berbalik.',
                 },
               },
             },
@@ -850,6 +884,23 @@ export const module1: Module = {
               body: {
                 en: '**Linear**: $f(x) = mx + b$. A straight line, slope $m$.\n**Power**: $f(x) = x^a$. Whole $a$ gives parabolas and cubics; $a = -1$ gives $1/x$; $a = \\tfrac{1}{2}$ gives $\\sqrt{x}$.\n**Polynomial**: a sum of whole-number powers, $a_nx^n + \\ldots + a_0$. Defined for every real number, always.\n**Rational**: one polynomial over another, $p(x)/q(x)$. Defined wherever $q(x) \\neq 0$ — which is where domain trouble starts.\n**Algebraic**: anything built from polynomials with $+ - \\times \\div$ and roots.\n\nEverything past that point is called **transcendental**, and this course meets three of them: trigonometric, exponential, and logarithmic. They take up the next four modules.',
                 id: '**Linear**: $f(x) = mx + b$. Berupa garis lurus, dengan kemiringan $m$.\n**Pangkat**: $f(x) = x^a$. $a$ bilangan bulat memberi parabola dan kurva pangkat tiga; $a = -1$ memberi $1/x$; $a = \\tfrac{1}{2}$ memberi $\\sqrt{x}$.\n**Polinom**: jumlahan pangkat bilangan bulat, $a_nx^n + \\ldots + a_0$. Selalu terdefinisi untuk setiap bilangan real.\n**Rasional**: satu polinom dibagi polinom lain, $p(x)/q(x)$. Terdefinisi di mana pun $q(x) \\neq 0$ — dan di situlah masalah domain bermula.\n**Aljabar**: apa pun yang dibangun dari polinom dengan $+ - \\times \\div$ dan akar.\n\nSemua yang di luar itu disebut **transenden**, dan kursus ini menemui tiga di antaranya: trigonometri, eksponen, dan logaritma. Ketiganya mengisi empat modul berikutnya.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-5, 5],
+                ySpan: [-5, 5],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '0.6*x+1', color: 'a', label: 'linear' },
+                  { t: 'curve', f: 'x^2', color: 'b', label: 'pangkat / polinom' },
+                  { t: 'curve', f: '1/x', from: 0.2, to: 5, color: 'c', label: 'rasional 1/x' },
+                  { t: 'curve', f: '1/x', from: -5, to: -0.2, color: 'c' },
+                  { t: 'curve', f: 'sqrt(x+4)', from: -4, color: 'result', label: 'aljabar √x' },
+                ],
+                caption: {
+                  en: 'Four families, four silhouettes: a straight line, a parabola, a curve split by an asymptote, and one that only starts partway. Learning to recognize the shape is most of learning the family.',
+                  id: 'Empat keluarga, empat siluet: garis lurus, parabola, kurva yang terbelah oleh asimtot, dan satu yang baru bermula di tengah jalan. Mengenali bentuknya adalah sebagian besar dari mengenali keluarganya.',
+                },
               },
             },
             {
@@ -1195,6 +1246,24 @@ export const module1: Module = {
               body: {
                 en: 'A problem described in words usually starts with **two** related unknowns, not one. The move that turns it into a function: name both, write down the equation that relates them, then use that equation to eliminate one.\n\nLet $P=(x,y)$ be a point on the curve $y=x^2-1$, and ask for its distance $d$ from the origin. Two unknowns, $x$ and $y$ — but one equation already connects them. The distance formula gives $d=\\sqrt{x^2+y^2}$, still in both variables, so substitute $y=x^2-1$ into it:\n$$d(x) = \\sqrt{x^2+(x^2-1)^2}$$\nOne substitution, and $d$ is now a function of $x$ alone. At $x=0$: $d(0)=\\sqrt{0+1}=1$. At $x=1$: $d(1)=\\sqrt{1+0}=1$ — two different points on the curve, the same distance from the origin.',
                 id: 'Soal yang dideskripsikan lewat kalimat biasanya bermula dengan **dua** besaran tak diketahui yang saling berkaitan, bukan satu. Langkah yang mengubahnya menjadi fungsi: namai keduanya, tulis persamaan yang menghubungkannya, lalu pakai persamaan itu untuk mengeliminasi satu.\n\nMisalkan $P=(x,y)$ adalah titik pada kurva $y=x^2-1$, dan tanyakan jaraknya $d$ dari titik asal. Dua besaran tak diketahui, $x$ dan $y$ — tetapi satu persamaan sudah menghubungkannya. Rumus jarak memberi $d=\\sqrt{x^2+y^2}$, masih dalam kedua peubah, jadi substitusikan $y=x^2-1$ ke dalamnya:\n$$d(x) = \\sqrt{x^2+(x^2-1)^2}$$\nSatu substitusi, dan $d$ kini fungsi dari $x$ saja. Di $x=0$: $d(0)=\\sqrt{0+1}=1$. Di $x=1$: $d(1)=\\sqrt{1+0}=1$ — dua titik berbeda pada kurvanya, jarak yang sama dari titik asal.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2.5, 2.5],
+                ySpan: [-2, 4],
+                ticks: true,
+                interactive: true,
+                vars: { P: [1, 0] },
+                items: [
+                  { t: 'curve', f: 'x^2-1', color: 'a', label: 'y = x²−1' },
+                  { t: 'point', at: [0, 0], label: 'asal' },
+                  { t: 'vec', from: [0, 0], to: { of: 'P' }, drag: 'P', color: 'result', label: 'P' },
+                ],
+                readouts: [{ label: 'd', n: { norm: { of: 'P' } }, dp: 2 }],
+                caption: {
+                  en: 'Drag $P$ and watch $d$, its distance from the origin, change below. Land it on the curve to match the worked example.',
+                  id: 'Seret $P$ dan lihat $d$, jaraknya dari titik asal, berubah di bawah. Tempatkan tepat pada kurva untuk mencocokkan contoh yang dikerjakan.',
+                },
               },
             },
             {

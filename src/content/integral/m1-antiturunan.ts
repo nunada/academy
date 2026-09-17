@@ -43,14 +43,15 @@ export const module1: Module = {
                 xSpan: [-3, 3],
                 ySpan: [-2, 10],
                 ticks: true,
+                params: [{ name: 'c', min: -5, max: 5, step: 0.5, value: 0, label: 'C' }],
                 items: [
-                  { t: 'curve', f: 'x^2+3', color: 'a' },
-                  { t: 'curve', f: 'x^2', color: 'b' },
-                  { t: 'curve', f: 'x^2-3', color: 'c' },
+                  { t: 'curve', f: 'x^2+3', color: 'muted', dashed: true },
+                  { t: 'curve', f: 'x^2-3', color: 'muted', dashed: true },
+                  { t: 'curve', f: 'x^2+c', color: 'a' },
                 ],
                 caption: {
-                  en: 'Three antiderivatives of $f(x) = 2x$, stacked directly on top of one another — same shape, same slope at every $x$, different height.',
-                  id: 'Tiga antiturunan dari $f(x) = 2x$, bertumpuk tepat satu di atas yang lain — bentuk sama, kemiringan sama di setiap $x$, tinggi berbeda.',
+                  en: 'Drag $C$: the curve slides straight up or down while its shape and its slope at every $x$ stay identical to the two dashed reference members — that sliding is the entire content of the $+C$ in a family of antiderivatives.',
+                  id: 'Geser $C$: kurvanya bergeser lurus ke atas atau bawah sementara bentuk dan kemiringannya di setiap $x$ tetap identik dengan kedua kurva referensi putus-putus — pergeseran itulah seluruh isi dari $+C$ dalam keluarga antiturunan.',
                 },
               },
             },
@@ -189,6 +190,21 @@ export const module1: Module = {
               body: {
                 en: 'The rule needs no modification for negative or fractional $n$: $\\int x^{-3}\\,dx = \\frac{x^{-2}}{-2} + C = -\\frac{1}{2x^2} + C$, and $\\int \\sqrt{x}\\,dx = \\int x^{1/2}\\,dx = \\frac{x^{3/2}}{3/2} + C = \\frac{2}{3}x^{3/2} + C$.\n\nBut $n = -1$ divides by zero in the formula, so $\\int x^{-1}\\,dx = \\int \\frac{1}{x}\\,dx$ needs a different answer entirely. The Derivatives course proved $\\frac{d}{dx}(\\ln x) = \\frac{1}{x}$ — running that backwards directly gives\n$$\\int \\frac{1}{x}\\,dx = \\ln|x| + C$$\nThe absolute value matters: $\\frac{1}{x}$ is defined for negative $x$ too, and $\\ln|x|$ is what stays defined there (plain $\\ln x$ is not).',
                 id: 'Aturannya tak perlu diubah untuk $n$ negatif atau pecahan: $\\int x^{-3}\\,dx = \\frac{x^{-2}}{-2} + C = -\\frac{1}{2x^2} + C$, dan $\\int \\sqrt{x}\\,dx = \\int x^{1/2}\\,dx = \\frac{x^{3/2}}{3/2} + C = \\frac{2}{3}x^{3/2} + C$.\n\nTetapi $n = -1$ membagi dengan nol pada rumusnya, sehingga $\\int x^{-1}\\,dx = \\int \\frac{1}{x}\\,dx$ memerlukan jawaban yang sama sekali berbeda. Kursus Turunan membuktikan $\\frac{d}{dx}(\\ln x) = \\frac{1}{x}$ — menjalankannya terbalik langsung memberi\n$$\\int \\frac{1}{x}\\,dx = \\ln|x| + C$$\nNilai mutlaknya penting: $\\frac{1}{x}$ terdefinisi untuk $x$ negatif juga, dan $\\ln|x|$ itulah yang tetap terdefinisi di sana (sekadar $\\ln x$ tidak).',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-3.3, 3.3],
+                ySpan: [-4, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '1/x', from: 0.15, to: 3, color: 'a', label: '1/x' },
+                  { t: 'curve', f: '1/x', from: -3, to: -0.15, color: 'a' },
+                  { t: 'vline', x: 0, color: 'muted', dashed: true },
+                ],
+                caption: {
+                  en: '$y=1/x$ has two symmetric branches, one for $x>0$ and one for $x<0$ — $\\ln|x|$ stays defined on both, which is exactly why the absolute value cannot be dropped.',
+                  id: '$y=1/x$ punya dua cabang simetris, satu untuk $x>0$ dan satu untuk $x<0$ — $\\ln|x|$ tetap terdefinisi pada keduanya, persis sebabnya nilai mutlaknya tak bisa dihilangkan.',
+                },
               },
             },
             {
@@ -471,6 +487,17 @@ export const module1: Module = {
               body: {
                 en: 'The Derivatives course established $v(t) = s\'(t)$ and $a(t) = v\'(t)$ — velocity is the derivative of position, acceleration the derivative of velocity. Antidifferentiation runs both arrows backwards: given acceleration and an initial velocity, recover velocity; given that velocity and an initial position, recover position.\n\nFor constant acceleration $a(t) = -10$ (gravity, in simplified units) with $v(0) = 20$ and $s(0) = 0$: $v(t) = \\int -10\\,dt = -10t + C_1$, and $v(0) = C_1 = 20$, so $v(t) = -10t + 20$. Then $s(t) = \\int (-10t + 20)\\,dt = -5t^2 + 20t + C_2$, and $s(0) = C_2 = 0$, so $s(t) = -5t^2 + 20t$ — two initial value problems, solved one after the other.',
                 id: 'Kursus Turunan menetapkan $v(t) = s\'(t)$ dan $a(t) = v\'(t)$ — kecepatan adalah turunan posisi, percepatan turunan kecepatan. Antiturunan menjalankan kedua panah itu terbalik: diberikan percepatan dan kecepatan awal, pulihkan kecepatan; diberikan kecepatan itu dan posisi awal, pulihkan posisi.\n\nUntuk percepatan konstan $a(t) = -10$ (gravitasi, dalam satuan yang disederhanakan) dengan $v(0) = 20$ dan $s(0) = 0$: $v(t) = \\int -10\\,dt = -10t + C_1$, dan $v(0) = C_1 = 20$, sehingga $v(t) = -10t + 20$. Lalu $s(t) = \\int (-10t + 20)\\,dt = -5t^2 + 20t + C_2$, dan $s(0) = C_2 = 0$, sehingga $s(t) = -5t^2 + 20t$ — dua soal nilai awal, diselesaikan satu demi satu.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.5, 4.5],
+                ySpan: [-5, 25],
+                ticks: true,
+                items: [{ t: 'curve', f: '-5*x^2+20*x', from: 0, to: 4, color: 'a' }],
+                caption: {
+                  en: 'Position over time for $a(t) = -10$, $v(0) = 20$, $s(0) = 0$ — the object rises, peaks, and returns to height $0$ at $t = 4$, tracing $s(t) = -5t^2 + 20t$ from two chained initial value problems.',
+                  id: 'Posisi terhadap waktu untuk $a(t) = -10$, $v(0) = 20$, $s(0) = 0$ — bendanya naik, mencapai puncak, lalu kembali ke tinggi $0$ di $t = 4$, menjejaki $s(t) = -5t^2 + 20t$ dari dua soal nilai awal yang dirangkai.',
+                },
               },
             },
             {

@@ -129,6 +129,21 @@ export const module7: Module = {
                 en: "$\\lim_{x\\to 0^+} x\\ln x$ is a $0\\cdot\\infty$ form — neither $\\frac{0}{0}$ nor $\\frac{\\infty}{\\infty}$ as written, so L'Hôpital's Rule cannot apply directly. Rewriting $x$ as $\\frac{1}{1/x}$ converts it into a genuine $\\frac{\\infty}{\\infty}$ form:\n$$\\lim_{x\\to 0^+} x\\ln x = \\lim_{x\\to 0^+}\\frac{\\ln x}{1/x} = \\lim_{x\\to 0^+}\\frac{1/x}{-1/x^2} = \\lim_{x\\to 0^+}(-x) = 0$$\nThe same trick handles $\\infty-\\infty$ forms by combining the two pieces into a single fraction first (usually over a common denominator), which almost always reveals a $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$ form underneath.",
                 id: "$\\lim_{x\\to 0^+} x\\ln x$ adalah bentuk $0\\cdot\\infty$ — bukan $\\frac{0}{0}$ atau $\\frac{\\infty}{\\infty}$ seperti yang tertulis, sehingga Aturan L'Hôpital tak bisa langsung diterapkan. Menulis ulang $x$ sebagai $\\frac{1}{1/x}$ mengubahnya menjadi bentuk $\\frac{\\infty}{\\infty}$ yang sungguhan:\n$$\\lim_{x\\to 0^+} x\\ln x = \\lim_{x\\to 0^+}\\frac{\\ln x}{1/x} = \\lim_{x\\to 0^+}\\frac{1/x}{-1/x^2} = \\lim_{x\\to 0^+}(-x) = 0$$\nTrik yang sama menangani bentuk $\\infty-\\infty$ dengan menggabungkan kedua bagiannya menjadi satu pecahan lebih dahulu (biasanya dengan penyebut sekutu), yang hampir selalu mengungkap bentuk $\\frac{0}{0}$ atau $\\frac{\\infty}{\\infty}$ di baliknya.",
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.2, 3],
+                ySpan: [-1, 2],
+                ticks: true,
+                params: [{ name: 'x0', min: 0.02, max: 2.5, step: 0.02, value: 1 }],
+                items: [
+                  { t: 'curve', f: 'x*ln(x)', from: 0.01, to: 3, color: 'a' },
+                  { t: 'dot', x: 'x0', y: 'x0*ln(x0)', color: 'result', label: 'P' },
+                ],
+                caption: {
+                  en: 'Slide $x_0$ toward $0$ from the right: even though $\\ln x_0$ plunges toward $-\\infty$, $P$ visibly settles back to height $0$ — the $0\\cdot\\infty$ tug-of-war that the rewritten limit resolves exactly.',
+                  id: 'Geser $x_0$ menuju $0$ dari kanan: meski $\\ln x_0$ menukik menuju $-\\infty$, $P$ tampak mengendap kembali ke ketinggian $0$ — tarik-menarik $0\\cdot\\infty$ yang diselesaikan persis oleh limit yang ditulis ulang.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -143,10 +158,14 @@ export const module7: Module = {
                 xSpan: [-0.2, 3],
                 ySpan: [-0.5, 5],
                 ticks: true,
-                items: [{ t: 'curve', f: 'x^x', from: 0.02, to: 3, color: 'a' }],
+                params: [{ name: 'x0', min: 0.02, max: 2.5, step: 0.02, value: 1 }],
+                items: [
+                  { t: 'curve', f: 'x^x', from: 0.02, to: 3, color: 'a' },
+                  { t: 'dot', x: 'x0', y: 'x0^x0', color: 'result', label: 'P' },
+                ],
                 caption: {
-                  en: '$y = x^x$ — as $x$ shrinks toward $0$ from the right, the curve visibly settles toward height $1$, exactly as the log-based limit computation predicts.',
-                  id: '$y = x^x$ — saat $x$ menyusut menuju $0$ dari kanan, kurvanya tampak mengendap menuju ketinggian $1$, persis seperti yang diprediksi penghitungan limit berbasis log.',
+                  en: 'Slide $x_0$ toward $0$ from the right: $P$ dips down then rises back to settle at height $1$, exactly as the log-based limit computation predicts.',
+                  id: 'Geser $x_0$ menuju $0$ dari kanan: $P$ menurun lalu naik kembali dan mengendap di ketinggian $1$, persis seperti yang diprediksi penghitungan limit berbasis log.',
                 },
               },
             },

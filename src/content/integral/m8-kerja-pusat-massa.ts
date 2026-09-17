@@ -39,6 +39,20 @@ export const module8: Module = {
                 en: 'Physics defines work simply as $W=F\\cdot d$ — but only when the force $F$ stays constant over the whole distance $d$. A spring resists more the further it stretches, so its force is a function $F(x)$, not a constant. Slice the stretch $[a,b]$ into tiny pieces $\\Delta x$; across one piece, $F(x)$ barely changes, so the work done there is approximately $F(x)\\,\\Delta x$. Summing every piece and taking the limit turns the sum into an integral:\n$$W = \\int_a^b F(x)\\,dx$$\nWork is a Riemann sum in exactly the same way area was in Module 2 — only the quantity being summed has changed.',
                 id: 'Fisika mendefinisikan usaha sederhananya sebagai $W=F\\cdot d$ — tetapi hanya ketika gaya $F$ tetap konstan sepanjang jarak $d$. Pegas melawan lebih kuat semakin jauh ia meregang, sehingga gayanya adalah fungsi $F(x)$, bukan konstanta. Iris regangan $[a,b]$ menjadi bagian kecil $\\Delta x$; sepanjang satu bagian, $F(x)$ nyaris tak berubah, sehingga usaha yang dilakukan di situ kira-kira $F(x)\\,\\Delta x$. Menjumlahkan setiap bagian dan mengambil limitnya mengubah jumlahnya menjadi integral:\n$$W = \\int_a^b F(x)\\,dx$$\nUsaha adalah jumlah Riemann dengan cara yang persis sama seperti luas pada Modul 2 — hanya besaran yang dijumlahkan yang berubah.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 3.5],
+                ySpan: [-0.3, 3.3],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '0.5*x^2+1', from: 0, to: 3, color: 'a', label: 'F(x)' },
+                  { t: 'poly', pts: [[1.6, 0], [2.1, 0], [2.1, 2.205], [1.6, 2.28]], color: 'result' },
+                ],
+                caption: {
+                  en: 'One thin strip of width $\\Delta x$, where the force is nearly constant — its area $F(x)\\,\\Delta x$ approximates the work done crossing that piece; summing every strip and shrinking $\\Delta x$ gives the work integral.',
+                  id: 'Satu jalur tipis berlebar $\\Delta x$, tempat gayanya nyaris konstan — luasnya $F(x)\\,\\Delta x$ menghampiri usaha yang dilakukan melewati bagian itu; menjumlahkan semua jalur dan mengecilkan $\\Delta x$ memberi integral usaha.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -47,6 +61,21 @@ export const module8: Module = {
               body: {
                 en: "**Hooke's Law** says a spring's resistance is proportional to how far it is stretched from its natural length: $F(x)=kx$, where $k$ is the spring constant. A spring that needs $10$ N of force to hold it stretched $0.1$ m has $k=\\frac{10}{0.1}=100$ N/m. The work to stretch it from its natural length to $0.2$ m:\n$$W = \\int_0^{0.2} 100x\\,dx = \\Big[50x^2\\Big]_0^{0.2} = 50(0.04) = 2 \\text{ J}$$\nStretching it further, from $0.2$ m to $0.3$ m, costs *more* work for the *same* $0.1$ m of additional stretch — $W=\\int_{0.2}^{0.3}100x\\,dx = 50(0.09-0.04) = 2.5$ J — because the spring is already resisting harder by the time that second stretch begins.",
                 id: '**Hukum Hooke** menyatakan perlawanan pegas sebanding dengan seberapa jauh ia diregangkan dari panjang alaminya: $F(x)=kx$, dengan $k$ adalah konstanta pegas. Pegas yang memerlukan gaya $10$ N untuk menahannya teregang $0.1$ m punya $k=\\frac{10}{0.1}=100$ N/m. Usaha untuk meregangkannya dari panjang alaminya sampai $0.2$ m:\n$$W = \\int_0^{0.2} 100x\\,dx = \\Big[50x^2\\Big]_0^{0.2} = 50(0.04) = 2 \\text{ J}$$\nMeregangkannya lebih jauh, dari $0.2$ m sampai $0.3$ m, memerlukan usaha yang **lebih besar** untuk regangan tambahan $0.1$ m yang **sama** — $W=\\int_{0.2}^{0.3}100x\\,dx = 50(0.09-0.04) = 2.5$ J — sebab pegasnya sudah melawan lebih keras pada saat regangan kedua itu dimulai.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.03, 0.35],
+                ySpan: [-2, 32],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '100*x', from: 0, to: 0.3, color: 'a', label: 'F(x)=100x' },
+                  { t: 'poly', pts: [[0, 0], [0.2, 0], [0.2, 20]], color: 'b', label: '2 J' },
+                  { t: 'poly', pts: [[0.2, 0], [0.3, 0], [0.3, 30], [0.2, 20]], color: 'result', label: '2.5 J' },
+                ],
+                caption: {
+                  en: 'Work is the area under $F(x)=100x$ — the first $0.1$ m of stretch is a triangle (area $2$ J), but the next $0.1$ m is a taller trapezoid (area $2.5$ J): same width, more area, because the spring is already resisting harder.',
+                  id: 'Usaha adalah luas di bawah $F(x)=100x$ — regangan $0.1$ m pertama adalah segitiga (luas $2$ J), tetapi $0.1$ m berikutnya adalah trapesium yang lebih tinggi (luas $2.5$ J): lebar sama, luas lebih besar, sebab pegasnya sudah melawan lebih keras.',
+                },
               },
             },
             {
@@ -126,6 +155,20 @@ export const module8: Module = {
                 en: 'Fluid pressure at depth $y$ is $\\rho g y$ ($\\rho$ the fluid density, $g$ gravitational acceleration) — deeper water presses harder. On a vertical plate of width $w(y)$ at depth $y$, the force on a thin horizontal strip of height $dy$ is pressure times area, $\\rho g y \\cdot w(y)\\,dy$. Summing over the whole plate:\n$$F = \\int_a^b \\rho g\\, y\\, w(y)\\,dy$$\nFor water, $\\rho g \\approx 9800$ N/m³. A rectangular plate of constant width $3$ m, submerged with its top edge at depth $2$ m and bottom edge at depth $5$ m:\n$$F = \\int_2^5 9800(3)y\\,dy = 29400\\left[\\frac{y^2}{2}\\right]_2^5 = 29400\\left(\\frac{25-4}{2}\\right) = 29400(10.5) = 308{,}700 \\text{ N}$$',
                 id: 'Tekanan fluida di kedalaman $y$ adalah $\\rho g y$ ($\\rho$ kerapatan fluida, $g$ percepatan gravitasi) — air yang lebih dalam menekan lebih kuat. Pada lempeng tegak berlebar $w(y)$ di kedalaman $y$, gaya pada jalur mendatar tipis bertinggi $dy$ adalah tekanan dikali luas, $\\rho g y \\cdot w(y)\\,dy$. Menjumlahkan pada seluruh lempeng:\n$$F = \\int_a^b \\rho g\\, y\\, w(y)\\,dy$$\nUntuk air, $\\rho g \\approx 9800$ N/m³. Lempeng persegi panjang berlebar tetap $3$ m, terendam dengan tepi atasnya di kedalaman $2$ m dan tepi bawahnya di kedalaman $5$ m:\n$$F = \\int_2^5 9800(3)y\\,dy = 29400\\left[\\frac{y^2}{2}\\right]_2^5 = 29400\\left(\\frac{25-4}{2}\\right) = 29400(10.5) = 308{.}700 \\text{ N}$$',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.4, 6],
+                ySpan: [-3000, 55000],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '9800*x', from: 0, to: 6, color: 'a', label: 'pressure = ρgy' },
+                  { t: 'poly', pts: [[2, 0], [5, 0], [5, 49000], [2, 19600]], color: 'result' },
+                ],
+                caption: {
+                  en: 'Pressure $\\rho g y$ grows linearly with depth $y$ — the shaded strip from depth $2$ to $5$ is the pressure integral for the plate; multiplying by its (constant) width gives the total fluid force.',
+                  id: 'Tekanan $\\rho g y$ bertambah linear dengan kedalaman $y$ — jalur berbayang dari kedalaman $2$ sampai $5$ adalah integral tekanan untuk lempengnya; mengalikannya dengan lebar (tetap) memberi total gaya fluida.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -134,6 +177,20 @@ export const module8: Module = {
               body: {
                 en: 'For a plate of width $2$ m with its top edge right at the surface ($a=0$) down to depth $4$ m:\n$$F = \\int_0^4 9800(2)y\\,dy = 19600\\left[\\frac{y^2}{2}\\right]_0^4 = 19600(8) = 156{,}800 \\text{ N}$$\nThe entire problem lives in choosing the right bounds and width function — once those are set up correctly from the physical picture, the integral itself is routine. This is the same lesson optimization problems taught in the Derivatives course: the translation from a physical setup into a function is the genuinely hard step.',
                 id: 'Untuk lempeng berlebar $2$ m dengan tepi atasnya tepat di permukaan ($a=0$) sampai kedalaman $4$ m:\n$$F = \\int_0^4 9800(2)y\\,dy = 19600\\left[\\frac{y^2}{2}\\right]_0^4 = 19600(8) = 156{.}800 \\text{ N}$$\nSeluruh soalnya terletak pada memilih batas dan fungsi lebar yang tepat — begitu itu disusun dengan benar dari gambaran fisiknya, integralnya sendiri rutin. Ini pelajaran yang sama yang diajarkan soal optimisasi di kursus Turunan: penerjemahan dari susunan fisik menjadi fungsi adalah langkah yang sungguh sulit.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.4, 6],
+                ySpan: [-3000, 55000],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '9800*x', from: 0, to: 6, color: 'a', label: 'pressure = ρgy' },
+                  { t: 'poly', pts: [[0, 0], [4, 0], [4, 39200]], color: 'result' },
+                ],
+                caption: {
+                  en: 'This time the plate starts right at the surface ($a=0$) — the shaded pressure region is a plain triangle, not a trapezoid, because there is no depth below the surface to skip over.',
+                  id: 'Kali ini lempengnya mulai tepat di permukaan ($a=0$) — daerah tekanan berbayang adalah segitiga biasa, bukan trapesium, sebab tak ada kedalaman di bawah permukaan yang dilewati.',
+                },
               },
             },
             {
@@ -263,6 +320,24 @@ export const module8: Module = {
                 en: 'For a rod along $[a,b]$ with density $\\delta(x)$ (mass per unit length), the total mass is $M=\\int_a^b \\delta(x)\\,dx$. The **moment** about the origin, $M_0=\\int_a^b x\\,\\delta(x)\\,dx$, weighs each piece\'s position by its mass. The **center of mass** is the balance point:\n$$\\bar{x} = \\frac{M_0}{M} = \\frac{\\int_a^b x\\,\\delta(x)\\,dx}{\\int_a^b \\delta(x)\\,dx}$$\nFor $\\delta(x)=x+1$ on $[0,4]$ (denser toward the right end): $M=\\int_0^4(x+1)\\,dx = 8+4=12$. $M_0=\\int_0^4 x(x+1)\\,dx = \\left[\\frac{x^3}{3}+\\frac{x^2}{2}\\right]_0^4 = \\frac{64}{3}+8=\\frac{88}{3}$. So $\\bar{x}=\\frac{88/3}{12}=\\frac{22}{9}\\approx 2.44$ — right of the geometric midpoint $2$, exactly as expected since the rod is heavier on that side.',
                 id: 'Untuk batang sepanjang $[a,b]$ dengan kerapatan $\\delta(x)$ (massa per satuan panjang), total massanya adalah $M=\\int_a^b \\delta(x)\\,dx$. **Momen** terhadap titik asal, $M_0=\\int_a^b x\\,\\delta(x)\\,dx$, membobot posisi tiap bagian dengan massanya. **Pusat massa** adalah titik keseimbangannya:\n$$\\bar{x} = \\frac{M_0}{M} = \\frac{\\int_a^b x\\,\\delta(x)\\,dx}{\\int_a^b \\delta(x)\\,dx}$$\nUntuk $\\delta(x)=x+1$ pada $[0,4]$ (lebih rapat ke ujung kanan): $M=\\int_0^4(x+1)\\,dx = 8+4=12$. $M_0=\\int_0^4 x(x+1)\\,dx = \\left[\\frac{x^3}{3}+\\frac{x^2}{2}\\right]_0^4 = \\frac{64}{3}+8=\\frac{88}{3}$. Jadi $\\bar{x}=\\frac{88/3}{12}=\\frac{22}{9}\\approx 2.44$ — di kanan titik tengah geometris $2$, persis seperti yang diharapkan sebab batangnya lebih berat di sisi itu.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.5, 4.5],
+                ySpan: [-0.8, 5.5],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x+1', from: 0, to: 4, color: 'a', label: 'δ(x)=x+1' },
+                  { t: 'seg', from: [0, 0], to: [4, 0], color: 'muted' },
+                  { t: 'vline', x: 2, color: 'muted', dashed: true },
+                  { t: 'dot', x: 2, y: 0, color: 'muted', label: 'midpoint = 2', open: true },
+                  { t: 'vline', x: 2.444, color: 'result', dashed: true },
+                  { t: 'dot', x: 2.444, y: 0, color: 'result', label: 'x̄ ≈ 2.44' },
+                ],
+                caption: {
+                  en: 'The rod along $[0,4]$ (heavy line on the axis), with density growing as $\\delta(x)=x+1$ — the mass-weighted balance point $\\bar x \\approx 2.44$ sits right of the plain geometric midpoint $x=2$, pulled by the heavier right end.',
+                  id: 'Batang sepanjang $[0,4]$ (garis tebal pada sumbu), dengan kerapatan bertumbuh sebagai $\\delta(x)=x+1$ — titik keseimbangan berbobot $\\bar x \\approx 2{,}44$ duduk di kanan titik tengah geometris $x=2$, ditarik ujung kanan yang lebih berat.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -271,6 +346,21 @@ export const module8: Module = {
               body: {
                 en: '$\\bar{x}$ is structurally identical to an average, just weighted continuously by $\\delta(x)$ instead of by equal counts — the same idea as a weighted average grade, where an exam worth more counts for more. Since $\\delta(x)=x+1$ grows toward $x=4$, the pieces near $x=4$ pull the balance point rightward more than the light pieces near $x=0$ pull it left, landing $\\bar{x}$ past the plain midpoint. A rod with **constant** density has $\\delta(x)=k$ for some constant $k$, and the formula reduces to exactly the geometric midpoint $\\frac{a+b}{2}$ — uniform weighting recovers the ordinary average.',
                 id: '$\\bar{x}$ secara struktural identik dengan sebuah rata-rata, hanya dibobot secara sinambung oleh $\\delta(x)$ alih-alih dengan jumlah yang sama — gagasan yang sama seperti nilai rata-rata berbobot, tempat ujian yang bobotnya lebih besar dihitung lebih banyak. Karena $\\delta(x)=x+1$ bertumbuh menuju $x=4$, bagian-bagian dekat $x=4$ menarik titik keseimbangannya ke kanan lebih kuat dibanding bagian ringan dekat $x=0$ menariknya ke kiri, mendaratkan $\\bar{x}$ melewati titik tengah biasa. Batang dengan kerapatan **konstan** punya $\\delta(x)=k$ untuk suatu konstanta $k$, dan rumusnya menyusut menjadi persis titik tengah geometris $\\frac{a+b}{2}$ — pembobotan yang seragam memulihkan rata-rata biasa.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.5, 4.5],
+                ySpan: [-0.8, 2.5],
+                ticks: true,
+                items: [
+                  { t: 'hline', y: 1, color: 'a', dashed: true, label: 'δ(x)=k' },
+                  { t: 'seg', from: [0, 0], to: [4, 0], color: 'muted' },
+                  { t: 'dot', x: 2, y: 0, color: 'result', label: 'x̄ = midpoint' },
+                ],
+                caption: {
+                  en: 'With constant density, every piece of the rod pulls equally in both directions — the weighted balance point lands exactly on the plain geometric midpoint, no lean at all.',
+                  id: 'Dengan kerapatan konstan, tiap bagian batang menarik sama kuat ke kedua arah — titik keseimbangan berbobotnya mendarat tepat di titik tengah geometris, tanpa condong sama sekali.',
+                },
               },
             },
             {
@@ -355,14 +445,15 @@ export const module8: Module = {
                 xSpan: [-0.5, 2.5],
                 ySpan: [-0.5, 4.5],
                 ticks: true,
+                params: [{ name: 'b', min: 0.5, max: 2, step: 0.1, value: 2, label: 'b' }],
                 items: [
-                  { t: 'poly', pts: [[0, 0], [0.5, 0.25], [1, 1], [1.5, 2.25], [2, 4], [2, 0]], color: 'result' },
                   { t: 'curve', f: 'x^2', from: 0, to: 2, color: 'a' },
-                  { t: 'dot', x: 1.5, y: 1.2, color: 'b', label: '(1.5, 1.2)' },
+                  { t: 'vline', x: 'b', color: 'muted', dashed: true, label: 'x=b' },
+                  { t: 'dot', x: '3*b/4', y: '3*b^2/10', color: 'result', label: 'centroid' },
                 ],
                 caption: {
-                  en: 'The region under $y = x^2$ on $[0, 2]$, with its centroid marked at $(1.5, 1.2)$ — pulled toward the taller, wider right side.',
-                  id: 'Daerah di bawah $y = x^2$ pada $[0, 2]$, dengan sentroidnya ditandai di $(1.5, 1.2)$ — tertarik ke sisi kanan yang lebih tinggi dan lebar.',
+                  en: 'Drag $b$: as the right edge of the region under $y=x^2$ on $[0,b]$ slides, the centroid $\\big(\\tfrac{3b}{4}, \\tfrac{3b^2}{10}\\big)$ moves with it — at $b=2$ it lands at exactly $(1.5, 1.2)$, always pulled toward the taller, wider side.',
+                  id: 'Geser $b$: ketika tepi kanan daerah di bawah $y=x^2$ pada $[0,b]$ bergeser, sentroidnya $\\big(\\tfrac{3b}{4}, \\tfrac{3b^2}{10}\\big)$ ikut bergerak — pada $b=2$ ia mendarat tepat di $(1.5, 1.2)$, selalu tertarik ke sisi yang lebih tinggi dan lebar.',
                 },
               },
             },
@@ -373,6 +464,21 @@ export const module8: Module = {
               body: {
                 en: 'If a region is symmetric about a vertical line $x=c$, its centroid must lie on that line — $\\bar{x}=c$ exactly, with no integration needed for that coordinate. A semicircular region under $y=\\sqrt{r^2-x^2}$ is symmetric about $x=0$, so $\\bar{x}=0$ is immediate, and only $\\bar{y}$ genuinely requires a computation. Checking for symmetry first can cut the work for a centroid problem in half — the same habit of looking before computing that paid off throughout the Derivatives course.',
                 id: 'Jika sebuah daerah simetris terhadap garis tegak $x=c$, sentroidnya harus terletak pada garis itu — $\\bar{x}=c$ persis, tanpa perlu integral untuk koordinat itu. Daerah setengah lingkaran di bawah $y=\\sqrt{r^2-x^2}$ simetris terhadap $x=0$, sehingga $\\bar{x}=0$ langsung diketahui, dan hanya $\\bar{y}$ yang sungguh memerlukan penghitungan. Memeriksa simetri lebih dahulu bisa memotong separuh pekerjaan soal sentroid — kebiasaan melihat sebelum menghitung yang sama yang terbayar sepanjang kursus Turunan.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-2.5, 2.5],
+                ySpan: [-0.5, 3],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'sqrt(4-x^2)', from: -2, to: 2, color: 'a' },
+                  { t: 'vline', x: 0, color: 'result', dashed: true, label: 'axis of symmetry' },
+                  { t: 'dot', x: 0, y: 0.85, color: 'result', label: 'x̄=0, ȳ=?' },
+                ],
+                caption: {
+                  en: 'This semicircle is symmetric about $x=0$, so its centroid must sit somewhere on that dashed line — $\\bar x = 0$ is free, and only $\\bar y$ still needs an integral.',
+                  id: 'Setengah lingkaran ini simetris terhadap $x=0$, sehingga sentroidnya harus duduk di suatu tempat pada garis putus-putus itu — $\\bar x = 0$ diperoleh cuma-cuma, dan hanya $\\bar y$ yang masih memerlukan integral.',
+                },
               },
             },
             {

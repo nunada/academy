@@ -37,6 +37,20 @@ export const module6: Module = {
                 en: 'To solve $3x-5=0$ graphically, graph $y=3x-5$ — every solution of the original equation is exactly an $x$-**intercept** of this graph, since that is precisely where $y=0$. The algebraic method gives an exact answer, $x=\\frac{5}{3}$; the graphical method gives a numerical read-off, useful whenever the algebra is hard or impossible.\n\nThe same idea handles inequalities: to solve $3x-5>0$, find where the graph of $y=3x-5$ sits **above** the $x$-axis.',
                 id: 'Untuk menyelesaikan $3x-5=0$ secara grafis, gambar $y=3x-5$ — setiap solusi persamaan aslinya persis perpotongan-$x$ grafik ini, sebab itulah tempat $y=0$ persisnya. Metode aljabar memberi jawaban eksak, $x=\\frac{5}{3}$; metode grafis memberi pembacaan numerik, berguna kapan pun aljabarnya sulit atau mustahil.\n\nGagasan yang sama menangani pertidaksamaan: untuk menyelesaikan $3x-5>0$, cari tempat grafik $y=3x-5$ berada **di atas** sumbu-$x$.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-1, 4],
+                ySpan: [-6, 6],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '3*x-5', color: 'a' },
+                  { t: 'dot', x: 1.6667, y: 0, color: 'result', label: '5/3' },
+                ],
+                caption: {
+                  en: 'The graph of $y=3x-5$ crosses the $x$-axis at $x=\\frac{5}{3}$ — exactly the algebraic solution of $3x-5=0$. Where the line runs above the axis is the solution of $3x-5>0$.',
+                  id: 'Grafik $y=3x-5$ memotong sumbu-$x$ di $x=\\frac{5}{3}$ — persis solusi aljabar dari $3x-5=0$. Tempat garisnya berada di atas sumbu adalah solusi dari $3x-5>0$.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -209,6 +223,20 @@ export const module6: Module = {
                 en: '$y$ **varies directly** as $x$ (or is **proportional** to $x$) when $y=kx$ for a fixed **constant of proportionality** $k$ — the graph is a line through the origin with slope $k$.\n\nThunder from a storm $5400$ ft away takes $5$ s to arrive; distance $d$ varies directly with time $t$: $d=kt \\Rightarrow 5400=k(5) \\Rightarrow k=1080$ (roughly the speed of sound, in ft/s). At $t=8$ s: $d=1080(8)=8640$ ft.',
                 id: '$y$ **bervariasi langsung** terhadap $x$ (atau **sebanding** dengan $x$) ketika $y=kx$ untuk **konstanta proporsionalitas** $k$ yang tetap — grafiknya garis melalui titik asal berkemiringan $k$.\n\nGuntur dari badai sejauh $1700$ m butuh $5$ detik untuk tiba; jarak $d$ bervariasi langsung terhadap waktu $t$: $d=kt \\Rightarrow 1700=k(5) \\Rightarrow k=340$ (kira-kira cepat rambat bunyi, dalam m/detik). Di $t=8$ detik: $d=340(8)=2720$ m.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [0, 6],
+                ySpan: [0, 9],
+                ticks: true,
+                params: [{ name: 'k', min: 0.5, max: 3, step: 0.25, value: 1.5, label: 'k' }],
+                items: [
+                  { t: 'curve', f: 'k*x', color: 'a' },
+                ],
+                caption: {
+                  en: 'Drag the slider to change $k$: direct variation $y=kx$ always graphs as a line through the origin, and $k$ is exactly its slope.',
+                  id: 'Geser penggesernya untuk mengubah $k$: variasi langsung $y=kx$ selalu tergambar sebagai garis melalui titik asal, dan $k$ persis kemiringannya.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -336,6 +364,18 @@ export const module6: Module = {
               body: {
                 en: '$z$ **varies jointly** as $x$ and $y$ when $z=kxy$; variation types combine freely, direct with some variables and inverse with others in the same formula.\n\nThe apparent brightness $B$ of a light source is directly proportional to its luminosity $L$ and inversely proportional to the **square** of the distance $d$:\n$$B = k\\frac{L}{d^2}$$\nThis **inverse-square law** pattern also describes gravity — Newton\'s Law, $F=G\\dfrac{m_1m_2}{r^2}$, is $F$ jointly proportional to $m_1$ and $m_2$, inversely proportional to $r^2$.',
                 id: '$z$ **bervariasi gabungan** terhadap $x$ dan $y$ ketika $z=kxy$; jenis-jenis variasi bergabung secara bebas, langsung untuk sebagian variabel dan terbalik untuk yang lain dalam formula yang sama.\n\nKecerahan tampak $B$ dari sumber cahaya berbanding langsung dengan luminositasnya $L$ dan berbanding terbalik dengan **kuadrat** jaraknya $d$:\n$$B = k\\frac{L}{d^2}$$\nPola **hukum kuadrat-terbalik** ini juga mendeskripsikan gravitasi — Hukum Newton, $F=G\\dfrac{m_1m_2}{r^2}$, adalah $F$ berbanding gabungan dengan $m_1$ dan $m_2$, berbanding terbalik dengan $r^2$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [0.2, 4],
+                ySpan: [0, 10],
+                ticks: true,
+                params: [{ name: 'l', min: 0.5, max: 3, step: 0.5, value: 1, label: 'L' }],
+                items: [{ t: 'curve', f: 'l/x^2', color: 'a' }],
+                caption: {
+                  en: 'Drag the slider to change $L$ in $B=L/d^2$ (with $k=1$): an inverse-**square** law falls off far faster than plain inverse variation — doubling $d$ cuts $B$ to a **quarter**, not a half.',
+                  id: 'Geser penggesernya untuk mengubah $L$ pada $B=L/d^2$ (dengan $k=1$): hukum kuadrat-terbalik meluruh jauh lebih cepat daripada variasi terbalik biasa — menggandakan $d$ memotong $B$ menjadi **seperempat**, bukan setengah.',
+                },
               },
             },
             {

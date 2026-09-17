@@ -62,6 +62,21 @@ export const module5: Module = {
                 en: 'Change only the exponent: $\\int_1^\\infty \\frac{1}{x}\\,dx$.\n$$\\lim_{t\\to\\infty}\\int_1^t x^{-1}\\,dx = \\lim_{t\\to\\infty}\\Big[\\ln x\\Big]_1^t = \\lim_{t\\to\\infty}\\big(\\ln t - 0\\big) = \\infty$$\n$\\ln t$ grows without bound, however slowly, so the limit does not exist as a finite number — the integral **diverges**. $\\frac{1}{x^2}$ and $\\frac{1}{x}$ look almost identical far out, and both tend to $0$, but $\\frac{1}{x}$ does not shrink **fast enough** for its infinite tail to enclose a finite area. This single contrast is the seed of the general fact that $\\int_1^\\infty x^{-p}\\,dx$ converges exactly when $p>1$.',
                 id: 'Ubah hanya pangkatnya: $\\int_1^\\infty \\frac{1}{x}\\,dx$.\n$$\\lim_{t\\to\\infty}\\int_1^t x^{-1}\\,dx = \\lim_{t\\to\\infty}\\Big[\\ln x\\Big]_1^t = \\lim_{t\\to\\infty}\\big(\\ln t - 0\\big) = \\infty$$\n$\\ln t$ bertambah tanpa batas, betapapun lambatnya, sehingga limitnya tak ada sebagai bilangan hingga — integralnya **divergen**. $\\frac{1}{x^2}$ dan $\\frac{1}{x}$ terlihat hampir identik jauh di sana, dan keduanya menuju $0$, tetapi $\\frac{1}{x}$ tak menyusut **cukup cepat** agar ekor tak hingganya melingkupi luas yang hingga. Kontras tunggal ini adalah benih dari fakta umum bahwa $\\int_1^\\infty x^{-p}\\,dx$ konvergen tepat ketika $p>1$.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [0.5, 8],
+                ySpan: [-0.2, 2.2],
+                ticks: true,
+                params: [{ name: 'p', min: 0.2, max: 3, step: 0.1, value: 1, label: 'p' }],
+                items: [
+                  { t: 'curve', f: '1/x', from: 0.5, to: 8, color: 'muted', dashed: true, label: '1/x' },
+                  { t: 'curve', f: 'x^(-p)', from: 0.5, to: 8, color: 'a' },
+                ],
+                caption: {
+                  en: 'Drag $p$ above $1$ and the tail of $x^{-p}$ thins fast enough for $\\int_1^\\infty x^{-p}\\,dx$ to converge; drag it to $1$ or below and it never thins enough — that single threshold is the whole $p$-test.',
+                  id: 'Geser $p$ di atas $1$ dan ekor $x^{-p}$ menipis cukup cepat agar $\\int_1^\\infty x^{-p}\\,dx$ konvergen; geser ke $1$ atau di bawahnya dan ekornya tak pernah cukup menipis — ambang tunggal itulah seluruh isi uji-$p$.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -166,6 +181,21 @@ export const module5: Module = {
               body: {
                 en: 'Just as $\\int_1^\\infty \\frac{1}{x}\\,dx$ diverged while $\\int_1^\\infty \\frac{1}{x^2}\\,dx$ converged, the discontinuous version shows the opposite pattern: $\\int_0^1 \\frac{1}{x}\\,dx$ diverges —\n$$\\lim_{t\\to 0^+}\\Big[\\ln x\\Big]_t^1 = \\lim_{t\\to 0^+}\\big(0 - \\ln t\\big) = 0 - (-\\infty) = \\infty$$\nsince $\\ln t \\to -\\infty$ as $t \\to 0^+$. But $\\int_0^1 \\frac{1}{\\sqrt{x}}\\,dx$ converges, as just shown. Near a vertical asymptote a **smaller** exponent on $x$ in the denominator is the one that survives — the roles of "fast" and "slow" flip when the blow-up happens at a finite point instead of at infinity.',
                 id: 'Persis seperti $\\int_1^\\infty \\frac{1}{x}\\,dx$ divergen sedangkan $\\int_1^\\infty \\frac{1}{x^2}\\,dx$ konvergen, versi diskontinunya menunjukkan pola yang berkebalikan: $\\int_0^1 \\frac{1}{x}\\,dx$ divergen —\n$$\\lim_{t\\to 0^+}\\Big[\\ln x\\Big]_t^1 = \\lim_{t\\to 0^+}\\big(0 - \\ln t\\big) = 0 - (-\\infty) = \\infty$$\nsebab $\\ln t \\to -\\infty$ ketika $t \\to 0^+$. Tetapi $\\int_0^1 \\frac{1}{\\sqrt{x}}\\,dx$ konvergen, seperti baru saja ditunjukkan. Di dekat asimtot tegak, pangkat $x$ di penyebut yang **lebih kecil** itulah yang bertahan — peran "cepat" dan "lambat" terbalik ketika ledakannya terjadi di titik hingga, bukan di tak hingga.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.1, 1.3],
+                ySpan: [-0.2, 4.5],
+                ticks: true,
+                params: [{ name: 'p', min: 0.1, max: 3, step: 0.1, value: 1, label: 'p' }],
+                items: [
+                  { t: 'curve', f: '1/x', from: 0.05, to: 1.2, color: 'muted', dashed: true, label: '1/x' },
+                  { t: 'curve', f: 'x^(-p)', from: 0.05, to: 1.2, color: 'a' },
+                ],
+                caption: {
+                  en: 'Near a vertical asymptote the threshold flips: drag $p$ below $1$ and $\\int_0^1 x^{-p}\\,dx$ converges; drag it to $1$ or above and the blow-up near $x=0$ is too severe to enclose a finite area.',
+                  id: 'Di dekat asimtot tegak, ambangnya terbalik: geser $p$ di bawah $1$ dan $\\int_0^1 x^{-p}\\,dx$ konvergen; geser ke $1$ atau di atasnya dan ledakan dekat $x=0$ terlalu parah untuk melingkupi luas yang hingga.',
+                },
               },
             },
             {
@@ -426,6 +456,23 @@ export const module5: Module = {
                 en: 'A trapezoid\'s straight top is still a rough match for a curved function. **Simpson\'s Rule** fits a **parabola** through each group of three consecutive points instead — curved segments approximating a curve, rather than straight ones. For an even $n$:\n$$S_n = \\frac{\\Delta x}{3}\\Big[f(x_0) + 4f(x_1) + 2f(x_2) + 4f(x_3) + \\cdots + 4f(x_{n-1}) + f(x_n)\\Big]$$\nThe coefficient pattern $1,4,2,4,2,\\ldots,4,1$ alternates because odd-indexed points sit at the peak of each fitted parabola (weighted $4$) and even-indexed interior points are shared between two parabolas (weighted $2$), just as trapezoid endpoints were shared before.',
                 id: 'Puncak lurus trapesium masih hanya kecocokan kasar untuk fungsi yang melengkung. **Aturan Simpson** memasangkan sebuah **parabola** melalui tiap kelompok tiga titik berurutan sebagai gantinya — segmen melengkung yang menghampiri kurva, bukan yang lurus. Untuk $n$ genap:\n$$S_n = \\frac{\\Delta x}{3}\\Big[f(x_0) + 4f(x_1) + 2f(x_2) + 4f(x_3) + \\cdots + 4f(x_{n-1}) + f(x_n)\\Big]$$\nPola koefisien $1,4,2,4,2,\\ldots,4,1$ berselang-seling sebab titik berindeks ganjil duduk di puncak tiap parabola yang dipasangkan (berbobot $4$) dan titik di dalamnya berindeks genap dipakai bersama dua parabola (berbobot $2$), persis seperti titik ujung trapesium dipakai bersama sebelumnya.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 2.5],
+                ySpan: [-0.3, 2],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'sqrt(x)', from: 0, to: 2, color: 'a', label: '√x' },
+                  { t: 'curve', f: '-0.2929*x^2+1.2929*x', from: 0, to: 2, color: 'result', dashed: true, label: 'parabola' },
+                  { t: 'dot', x: 0, y: 0, color: 'result' },
+                  { t: 'dot', x: 1, y: 1, color: 'result' },
+                  { t: 'dot', x: 2, y: '1.4142', color: 'result' },
+                ],
+                caption: {
+                  en: 'Simpson\'s Rule fits this dashed parabola exactly through the three marked heights of $\\sqrt{x}$ at $x = 0, 1, 2$ — it hugs the true curve far more closely than a straight trapezoid top would across the same pair of strips.',
+                  id: 'Aturan Simpson memasangkan parabola putus-putus ini persis melalui ketiga tinggi $\\sqrt{x}$ yang ditandai di $x = 0, 1, 2$ — ia merapat ke kurva sebenarnya jauh lebih dekat dibanding yang bisa dicapai puncak trapesium lurus pada sepasang jalur yang sama.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -434,6 +481,24 @@ export const module5: Module = {
               body: {
                 en: 'Apply $S_4$ to the same running example, $f(x)=x^2+1$ on $[0,2]$, heights $1, 1.25, 2, 3.25, 5$:\n$$S_4 = \\frac{0.5}{3}\\big[1 + 4(1.25) + 2(2) + 4(3.25) + 5\\big] = \\frac{0.5}{3}\\big[1+5+4+13+5\\big] = \\frac{0.5}{3}(28) = \\frac{14}{3}$$\nExactly $\\frac{14}{3}$ — the true value, with no error at all. This is not a coincidence: fitting a parabola through points of a function that already **is** a parabola reproduces it perfectly, which is why Simpson\'s Rule is exact for every polynomial of degree $3$ or less, and startlingly accurate for smooth functions in general.',
                 id: 'Terapkan $S_4$ pada contoh berjalan yang sama, $f(x)=x^2+1$ pada $[0,2]$, tinggi $1, 1.25, 2, 3.25, 5$:\n$$S_4 = \\frac{0.5}{3}\\big[1 + 4(1.25) + 2(2) + 4(3.25) + 5\\big] = \\frac{0.5}{3}\\big[1+5+4+13+5\\big] = \\frac{0.5}{3}(28) = \\frac{14}{3}$$\nTepat $\\frac{14}{3}$ — nilai sebenarnya, tanpa galat sama sekali. Ini bukan kebetulan: memasangkan parabola melalui titik-titik fungsi yang sendiri sudah **sebuah** parabola mereproduksinya dengan sempurna, itulah sebabnya Aturan Simpson eksak untuk setiap polinom berderajat $3$ atau kurang, dan sangat akurat untuk fungsi mulus pada umumnya.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 2.3],
+                ySpan: [-0.5, 5.5],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x^2+1', from: 0, to: 2, color: 'a', label: 'f(x)=x²+1' },
+                  { t: 'dot', x: 0, y: 1, color: 'result' },
+                  { t: 'dot', x: 0.5, y: 1.25, color: 'result' },
+                  { t: 'dot', x: 1, y: 2, color: 'result' },
+                  { t: 'dot', x: 1.5, y: 3.25, color: 'result' },
+                  { t: 'dot', x: 2, y: 5, color: 'result' },
+                ],
+                caption: {
+                  en: 'All five sample points used for $S_4$ lie exactly on $f(x)=x^2+1$ itself — Simpson\'s fitted parabola has nothing left to approximate, so it reproduces the curve with zero error.',
+                  id: 'Kelima titik sampel yang dipakai untuk $S_4$ terletak persis pada $f(x)=x^2+1$ itu sendiri — parabola yang dipasangkan Simpson tak punya apa pun lagi untuk dihampiri, sehingga ia mereproduksi kurvanya tanpa galat sama sekali.',
+                },
               },
             },
             {

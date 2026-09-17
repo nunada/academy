@@ -194,6 +194,25 @@ export const module4: Module = {
                 en: 'Where the dot product carries a cosine, the cross product carries a sine:\n$$|\\vec{a} \\times \\vec{b}| = |\\vec{a}|\\,|\\vec{b}|\\sin\\theta$$\nwith $0° \\leq \\theta \\leq 180°$, so the sine — and hence the length — is never negative.\n\nThe consequence is the mirror image of the one for the dot product: the cross product vanishes when the vectors are **parallel** ($\\sin 0° = 0$), and is largest when they are perpendicular. In particular $\\vec{a} \\times \\vec{a} = \\vec{0}$ for every $\\vec{a}$.\n\nSo the two products answer opposite questions. $\\vec{a} \\cdot \\vec{b} = 0$ means perpendicular; $\\vec{a} \\times \\vec{b} = \\vec{0}$ means parallel.',
                 id: 'Bila perkalian titik membawa cosinus, perkalian silang membawa sinus:\n$$|\\vec{a} \\times \\vec{b}| = |\\vec{a}|\\,|\\vec{b}|\\sin\\theta$$\ndengan $0° \\leq \\theta \\leq 180°$, sehingga sinusnya — dan karenanya panjangnya — tak pernah negatif.\n\nAkibatnya merupakan bayangan cermin dari perkalian titik: perkalian silang lenyap ketika kedua vektor **sejajar** ($\\sin 0° = 0$), dan terbesar ketika keduanya tegak lurus. Khususnya $\\vec{a} \\times \\vec{a} = \\vec{0}$ untuk setiap $\\vec{a}$.\n\nJadi kedua perkalian itu menjawab pertanyaan yang berlawanan. $\\vec{a} \\cdot \\vec{b} = 0$ berarti tegak lurus; $\\vec{a} \\times \\vec{b} = \\vec{0}$ berarti sejajar.',
               },
+              figure: {
+                dim: 2,
+                range: 6,
+                interactive: true,
+                vars: { a: [4, 1], b: [1, 3.5] },
+                items: [
+                  { t: 'angle', from: { of: 'a' }, to: { of: 'b' }, label: 'θ' },
+                  { t: 'vec', to: { of: 'a' }, label: 'a', color: 'a', drag: 'a' },
+                  { t: 'vec', to: { of: 'b' }, label: 'b', color: 'b', drag: 'b' },
+                ],
+                readouts: [
+                  { label: '|a×b| =', n: { area: [{ of: 'a' }, { of: 'b' }] } },
+                  { label: 'θ =', n: { angle: [{ of: 'a' }, { of: 'b' }] } },
+                ],
+                caption: {
+                  en: 'Drag the two arrows. The cross product grows as the angle opens towards 90° and shrinks back to zero the moment the two line up — the mirror image of how the dot product behaved.',
+                  id: 'Seret kedua anak panahnya. Perkalian silangnya membesar seiring sudutnya melebar menuju 90° dan menyusut kembali ke nol tepat ketika keduanya sejajar — bayangan cermin dari perilaku perkalian titik.',
+                },
+              },
             },
             {
               kind: 'quiz',

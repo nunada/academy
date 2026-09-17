@@ -37,6 +37,21 @@ export const module5: Module = {
                 en: 'Two perpendicular number lines, the $x$-axis and $y$-axis, meeting at the **origin** $(0,0)$, turn the plane into a grid. Every point gets a unique **ordered pair** $(a,b)$: $a$ is the $x$-coordinate (how far right, or left if negative), $b$ is the $y$-coordinate (how far up, or down if negative). The axes split the plane into four **quadrants**, numbered I through IV counterclockwise starting from the upper right.',
                 id: 'Dua garis bilangan tegak lurus, sumbu-$x$ dan sumbu-$y$, bertemu di **titik asal** $(0,0)$, mengubah bidang menjadi kisi-kisi. Setiap titik mendapat **pasangan terurut** $(a,b)$ yang unik: $a$ adalah koordinat-$x$ (seberapa jauh ke kanan, atau ke kiri jika negatif), $b$ adalah koordinat-$y$ (seberapa jauh ke atas, atau ke bawah jika negatif). Sumbu-sumbunya membagi bidang menjadi empat **kuadran**, dinomori I sampai IV berlawanan arah jarum jam mulai dari kanan atas.',
               },
+              figure: {
+                dim: 2,
+                range: 5,
+                ticks: true,
+                items: [
+                  { t: 'dot', x: 3, y: 3, color: 'a', label: 'I' },
+                  { t: 'dot', x: -3, y: 3, color: 'b', label: 'II' },
+                  { t: 'dot', x: -3, y: -3, color: 'c', label: 'III' },
+                  { t: 'dot', x: 3, y: -3, color: 'result', label: 'IV' },
+                ],
+                caption: {
+                  en: 'A point in each of the four quadrants, numbered counterclockwise from the upper right.',
+                  id: 'Sebuah titik pada tiap empat kuadran, dinomori berlawanan arah jarum jam mulai dari kanan atas.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -51,16 +66,21 @@ export const module5: Module = {
                 xSpan: [-3, 7],
                 ySpan: [-1, 12],
                 ticks: true,
+                interactive: true,
                 vars: { A: [-1, 2], B: [5, 10] },
                 items: [
-                  { t: 'point', at: { of: 'A' }, label: 'A' },
-                  { t: 'point', at: { of: 'B' }, label: 'B' },
                   { t: 'seg', from: { of: 'A' }, to: { of: 'B' }, color: 'a' },
-                  { t: 'dot', x: 2, y: 6, color: 'result', label: 'M' },
+                  { t: 'vec', to: { of: 'A' }, label: 'A', color: 'a', dashed: true, drag: 'A' },
+                  { t: 'vec', to: { of: 'B' }, label: 'B', color: 'b', dashed: true, drag: 'B' },
+                  { t: 'point', at: { scale: 0.5, v: { sum: [{ of: 'A' }, { of: 'B' }] } }, label: 'M', color: 'result' },
+                ],
+                readouts: [
+                  { label: 'M =', v: { scale: 0.5, v: { sum: [{ of: 'A' }, { of: 'B' }] } }, dp: 1 },
+                  { label: 'd(A,B) =', n: { norm: { diff: [{ of: 'B' }, { of: 'A' }] } }, dp: 1 },
                 ],
                 caption: {
-                  en: '$M(2,6)$ is the midpoint of segment $AB$, exactly halfway along it.',
-                  id: '$M(2,6)$ adalah titik tengah ruas $AB$, persis di tengah-tengahnya.',
+                  en: 'Drag $A$ or $B$. $M$ is always their midpoint, and the readout below is the distance $d(A,B)$ — both update live as the points move.',
+                  id: 'Seret $A$ atau $B$. $M$ selalu titik tengah keduanya, dan pembacaan di bawah adalah jarak $d(A,B)$ — keduanya diperbarui langsung saat titik-titiknya berpindah.',
                 },
               },
             },
@@ -189,6 +209,23 @@ export const module5: Module = {
                 en: 'Test symmetry algebraically, by substituting and checking if the equation is unchanged: for the $x$-**axis**, replace $y$ with $-y$ — unchanged means the graph flips onto itself top-to-bottom; for the $y$-**axis**, replace $x$ with $-x$ — unchanged means left-right symmetry; for the **origin**, replace both — unchanged means $180°$ rotational symmetry.\n\nFor $y=x^2$: replacing $x$ with $-x$ gives $y=(-x)^2=x^2$, unchanged — symmetric about the $y$-axis. For $x=y^2$: replacing $y$ with $-y$ gives $x=(-y)^2=y^2$, unchanged — symmetric about the $x$-axis instead.',
                 id: 'Uji simetri secara aljabar, dengan mensubstitusi dan memeriksa apakah persamaannya tak berubah: untuk sumbu-$x$, ganti $y$ dengan $-y$ — tak berubah berarti grafiknya membalik ke dirinya sendiri atas-bawah; untuk sumbu-$y$, ganti $x$ dengan $-x$ — tak berubah berarti simetri kiri-kanan; untuk **titik asal**, ganti keduanya — tak berubah berarti simetri rotasi $180°$.\n\nUntuk $y=x^2$: mengganti $x$ dengan $-x$ memberi $y=(-x)^2=x^2$, tak berubah — simetris terhadap sumbu-$y$. Untuk $x=y^2$: mengganti $y$ dengan $-y$ memberi $x=(-y)^2=y^2$, tak berubah — simetris terhadap sumbu-$x$ sebagai gantinya.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 4],
+                ySpan: [-1, 8],
+                ticks: true,
+                params: [{ name: 'a', min: 0.5, max: 3.5, step: 0.5, value: 2, label: 'a' }],
+                items: [
+                  { t: 'curve', f: 'x^2', color: 'a' },
+                  { t: 'vline', x: 0, color: 'muted', dashed: true },
+                  { t: 'dot', x: 'a', y: 'a^2', color: 'result' },
+                  { t: 'dot', x: '-a', y: 'a^2', color: 'result' },
+                ],
+                caption: {
+                  en: 'Drag the slider to slide $a$: the point $(a,a^2)$ and its mirror image $(-a,a^2)$ always both lie on $y=x^2$ — the whole curve is symmetric about the $y$-axis, not just one pair of points.',
+                  id: 'Geser penggesernya untuk menggeser $a$: titik $(a,a^2)$ dan bayangan cerminnya $(-a,a^2)$ selalu sama-sama berada pada $y=x^2$ — seluruh kurvanya simetris terhadap sumbu-$y$, bukan hanya sepasang titik.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -314,6 +351,21 @@ export const module5: Module = {
                 en: 'A circle with center $(3,-2)$ and radius $4$ has equation $(x-3)^2+(y+2)^2=16$. Expanding it produces the **general form**: $x^2-6x+9+y^2+4y+4=16$, i.e. $x^2+y^2-6x+4y-3=0$ — no perfect squares visible.\n\nGiven only the general form, **complete the square** on the $x$-terms and the $y$-terms separately to recover the standard form:\n$$(x^2-6x)+(y^2+4y)=3 \\ \\Rightarrow \\ (x^2-6x+9)+(y^2+4y+4)=3+9+4 \\ \\Rightarrow \\ (x-3)^2+(y+2)^2=16$$\nwhich is exactly the circle we started with: center $(3,-2)$, radius $4$.',
                 id: 'Lingkaran berpusat $(3,-2)$ dan berjari-jari $4$ berpersamaan $(x-3)^2+(y+2)^2=16$. Menjabarkannya menghasilkan **bentuk umum**: $x^2-6x+9+y^2+4y+4=16$, yaitu $x^2+y^2-6x+4y-3=0$ — tak ada kuadrat sempurna yang terlihat.\n\nDiberikan hanya bentuk umumnya, **lengkapkan kuadrat** pada suku-$x$ dan suku-$y$ secara terpisah untuk mendapatkan kembali bentuk bakunya:\n$$(x^2-6x)+(y^2+4y)=3 \\ \\Rightarrow \\ (x^2-6x+9)+(y^2+4y+4)=3+9+4 \\ \\Rightarrow \\ (x-3)^2+(y+2)^2=16$$\nyang persis lingkaran yang kita mulai: pusat $(3,-2)$, jari-jari $4$.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-3, 9],
+                ySpan: [-8, 4],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '-2+sqrt(16-(x-3)^2)', color: 'a' },
+                  { t: 'curve', f: '-2-sqrt(16-(x-3)^2)', color: 'a' },
+                  { t: 'point', at: [3, -2], label: 'C', color: 'result' },
+                ],
+                caption: {
+                  en: 'The circle $(x-3)^2+(y+2)^2=16$: center $(3,-2)$, radius $4$ — recovered from the general form by completing the square.',
+                  id: 'Lingkaran $(x-3)^2+(y+2)^2=16$: pusat $(3,-2)$, jari-jari $4$ — didapatkan kembali dari bentuk umumnya dengan melengkapkan kuadrat.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -436,6 +488,23 @@ export const module5: Module = {
               body: {
                 en: 'The **slope** of the line through $(x_1,y_1)$ and $(x_2,y_2)$ is the ratio of rise to run:\n$$m = \\frac{y_2-y_1}{x_2-x_1}$$\nPositive slope climbs left to right; negative slope falls; a horizontal line has slope $0$; a vertical line has **no** slope (the run is $0$, and division by $0$ is undefined). Through $(2,1)$ and $(8,5)$: $m=\\dfrac{5-1}{8-2}=\\dfrac{4}{6}=\\dfrac{2}{3}$ — for every $3$ units right, the line rises $2$.',
                 id: '**Kemiringan** garis melalui $(x_1,y_1)$ dan $(x_2,y_2)$ adalah rasio naik terhadap datar:\n$$m = \\frac{y_2-y_1}{x_2-x_1}$$\nKemiringan positif menanjak dari kiri ke kanan; kemiringan negatif menurun; garis mendatar berkemiringan $0$; garis tegak **tak punya** kemiringan (datarnya $0$, dan pembagian dengan $0$ tak terdefinisi). Melalui $(2,1)$ dan $(8,5)$: $m=\\dfrac{5-1}{8-2}=\\dfrac{4}{6}=\\dfrac{2}{3}$ — untuk setiap $3$ satuan ke kanan, garisnya naik $2$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [0, 10],
+                ySpan: [-1, 7],
+                ticks: true,
+                items: [
+                  { t: 'seg', from: [2, 1], to: [8, 5], color: 'a' },
+                  { t: 'seg', from: [2, 1], to: [8, 1], color: 'muted', dashed: true, label: 'run=6' },
+                  { t: 'seg', from: [8, 1], to: [8, 5], color: 'muted', dashed: true, label: 'rise=4' },
+                  { t: 'point', at: [2, 1], label: '(2,1)' },
+                  { t: 'point', at: [8, 5], label: '(8,5)' },
+                ],
+                caption: {
+                  en: 'Slope is rise over run: from $(2,1)$ to $(8,5)$, the line rises $4$ while running $6$, giving $m=\\frac{4}{6}=\\frac{2}{3}$.',
+                  id: 'Kemiringan adalah naik per datar: dari $(2,1)$ ke $(8,5)$, garisnya naik $4$ sambil mendatar $6$, memberi $m=\\frac{4}{6}=\\frac{2}{3}$.',
+                },
               },
             },
             {
@@ -562,6 +631,22 @@ export const module5: Module = {
                 en: 'Solving the point-slope form for a line through $(0,b)$ gives the **slope-intercept form**:\n$$y = mx + b$$\nreading off $m$ and $b$ directly. For $4y+2x-8=0$: solving for $y$ gives $y=-\\frac{1}{2}x+2$, so $m=-\\frac{1}{2}$ and $b=2$.\n\nEvery line, including vertical ones ($x=a$, no slope), is the graph of a **general linear equation** $Ax+By+C=0$ with $A, B$ not both $0$.',
                 id: 'Menyelesaikan bentuk titik-kemiringan untuk garis melalui $(0,b)$ memberi **bentuk kemiringan-perpotongan**:\n$$y = mx + b$$\nlangsung membaca $m$ dan $b$. Untuk $4y+2x-8=0$: menyelesaikan untuk $y$ memberi $y=-\\frac{1}{2}x+2$, sehingga $m=-\\frac{1}{2}$ dan $b=2$.\n\nSetiap garis, termasuk yang tegak ($x=a$, tanpa kemiringan), adalah grafik dari **persamaan linear umum** $Ax+By+C=0$ dengan $A, B$ tak keduanya $0$.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-2, 6],
+                ySpan: [-2, 6],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '-0.5*x+2', color: 'a' },
+                  { t: 'dot', x: 0, y: 2, color: 'result', label: 'b' },
+                  { t: 'seg', from: [0, 2], to: [2, 2], color: 'muted', dashed: true },
+                  { t: 'seg', from: [2, 2], to: [2, 1], color: 'muted', dashed: true },
+                ],
+                caption: {
+                  en: 'The line $y=-\\frac12x+2$: the $y$-intercept $b=2$ is read straight off where it crosses the axis, and the slope $-\\frac12$ is rise over run — down $1$ for every $2$ across.',
+                  id: 'Garis $y=-\\frac12x+2$: perpotongan-$y$ $b=2$ dibaca langsung dari tempat memotong sumbunya, dan kemiringan $-\\frac12$ adalah naik per datar — turun $1$ untuk setiap $2$ ke kanan.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -570,6 +655,21 @@ export const module5: Module = {
               body: {
                 en: 'Two nonvertical lines are **parallel** exactly when their slopes are equal, and **perpendicular** exactly when their slopes are negative reciprocals: $m_1 m_2 = -1$.\n\nA line parallel to $4x-6y+5=0$ (slope $\\frac{2}{3}$) through $(5,-2)$: same slope $\\frac{2}{3}$, giving $y+2=\\frac{2}{3}(x-5)$, i.e. $2x-3y-16=0$. A line perpendicular to $y=2x+1$ (slope $2$) through $(4,3)$: slope $-\\frac{1}{2}$, giving $y=-\\frac{1}{2}x+5$.',
                 id: 'Dua garis tak tegak **sejajar** persis ketika kemiringannya sama, dan **tegak lurus** persis ketika kemiringannya kebalikan negatif: $m_1 m_2 = -1$.\n\nGaris sejajar dengan $4x-6y+5=0$ (kemiringan $\\frac{2}{3}$) melalui $(5,-2)$: kemiringan sama $\\frac{2}{3}$, memberi $y+2=\\frac{2}{3}(x-5)$, yaitu $2x-3y-16=0$. Garis tegak lurus dengan $y=2x+1$ (kemiringan $2$) melalui $(4,3)$: kemiringan $-\\frac{1}{2}$, memberi $y=-\\frac{1}{2}x+5$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 8],
+                ySpan: [-4, 10],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '2*x+1', color: 'a', label: 'y=2x+1' },
+                  { t: 'curve', f: '-0.5*x+5', color: 'b', label: 'y=-x/2+5' },
+                  { t: 'right', at: [1.6, 4.2], from: [2.6, 6.2], to: [0.6, 4.7] },
+                ],
+                caption: {
+                  en: 'The two lines meet at a right angle because their slopes, $2$ and $-\\frac12$, are negative reciprocals: $2 \\times \\left(-\\frac12\\right) = -1$.',
+                  id: 'Kedua garis bertemu tegak lurus sebab kemiringannya, $2$ dan $-\\frac12$, adalah kebalikan negatif: $2 \\times \\left(-\\frac12\\right) = -1$.',
+                },
               },
             },
             {

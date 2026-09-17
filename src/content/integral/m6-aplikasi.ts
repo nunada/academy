@@ -62,6 +62,21 @@ export const module6: Module = {
                 en: 'A problem rarely hands over the bounds directly — they come from solving $f(x)=g(x)$. For $f(x)=2x-x^2$ and $g(x)=x^2$: $2x-x^2=x^2 \\Rightarrow 2x=2x^2 \\Rightarrow x=0$ or $x=1$. Checking $x=0.5$: $f(0.5)=0.75$, $g(0.5)=0.25$, so $f$ is on top across $(0,1)$.\n$$A = \\int_0^1 \\big((2x-x^2)-x^2\\big)\\,dx = \\int_0^1 (2x-2x^2)\\,dx = \\left[x^2-\\frac{2x^3}{3}\\right]_0^1 = 1-\\frac{2}{3} = \\frac{1}{3}$$\nEvery area-between-curves problem is really three steps: solve for the intersections, check which function is on top between them, then integrate the difference.',
                 id: 'Sebuah soal jarang menyerahkan batasnya secara langsung — batasnya datang dari menyelesaikan $f(x)=g(x)$. Untuk $f(x)=2x-x^2$ dan $g(x)=x^2$: $2x-x^2=x^2 \\Rightarrow 2x=2x^2 \\Rightarrow x=0$ atau $x=1$. Memeriksa $x=0.5$: $f(0.5)=0.75$, $g(0.5)=0.25$, sehingga $f$ berada di atas sepanjang $(0,1)$.\n$$A = \\int_0^1 \\big((2x-x^2)-x^2\\big)\\,dx = \\int_0^1 (2x-2x^2)\\,dx = \\left[x^2-\\frac{2x^3}{3}\\right]_0^1 = 1-\\frac{2}{3} = \\frac{1}{3}$$\nSetiap soal luas-di-antara-kurva sebenarnya tiga langkah: selesaikan titik potongnya, periksa fungsi mana yang di atas di antaranya, lalu integralkan selisihnya.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 1.4],
+                ySpan: [-0.3, 1.3],
+                ticks: true,
+                items: [
+                  { t: 'poly', pts: [[0, 0], [0.25, 0.4375], [0.5, 0.75], [0.75, 0.9375], [1, 1], [0.75, 0.5625], [0.5, 0.25], [0.25, 0.0625], [0, 0]], color: 'result' },
+                  { t: 'curve', f: '2*x-x^2', from: 0, to: 1, color: 'a' },
+                  { t: 'curve', f: 'x^2', from: 0, to: 1, color: 'b' },
+                ],
+                caption: {
+                  en: 'The region trapped between $y = 2x - x^2$ and $y = x^2$ on $[0, 1]$ — area $1/3$, found the same three-step way as the lens shape above.',
+                  id: 'Daerah yang terjebak di antara $y = 2x - x^2$ dan $y = x^2$ pada $[0, 1]$ — luas $1/3$, ditemukan dengan tiga langkah yang sama seperti bentuk lensa di atas.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -164,6 +179,21 @@ export const module6: Module = {
               body: {
                 en: 'For velocity $v(t) = t^2-4$ on $[0,3]$: $v(t)=0$ at $t=2$, negative before and positive after — the particle moves backward, then forward. Plain integration gives **displacement**, the net change in position:\n$$\\int_0^3 (t^2-4)\\,dt = \\left[\\frac{t^3}{3}-4t\\right]_0^3 = (9-12)-0 = -3$$\nBut **total distance travelled** must count backward motion as positive distance too, which means integrating $|v(t)|$ — splitting at $t=2$ where the sign changes:\n$$\\int_0^2 \\big(4-t^2\\big)\\,dt + \\int_2^3 \\big(t^2-4\\big)\\,dt = \\frac{16}{3} + \\frac{7}{3} = \\frac{23}{3} \\approx 7.67$$\nThe particle ends up $3$ units behind where it started, having actually travelled $\\frac{23}{3}$ units to get there.',
                 id: 'Untuk kecepatan $v(t) = t^2-4$ pada $[0,3]$: $v(t)=0$ di $t=2$, negatif sebelumnya dan positif sesudahnya — partikelnya bergerak mundur, lalu maju. Integrasi biasa memberi **perpindahan**, perubahan neto posisi:\n$$\\int_0^3 (t^2-4)\\,dt = \\left[\\frac{t^3}{3}-4t\\right]_0^3 = (9-12)-0 = -3$$\nTetapi **total jarak yang ditempuh** harus menghitung gerak mundur sebagai jarak positif juga, yang berarti mengintegralkan $|v(t)|$ — memecah di $t=2$ tempat tandanya berganti:\n$$\\int_0^2 \\big(4-t^2\\big)\\,dt + \\int_2^3 \\big(t^2-4\\big)\\,dt = \\frac{16}{3} + \\frac{7}{3} = \\frac{23}{3} \\approx 7.67$$\nPartikelnya berakhir $3$ satuan di belakang tempat ia mulai, meski sebenarnya sudah menempuh $\\frac{23}{3}$ satuan untuk sampai di situ.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.3, 3.3],
+                ySpan: [-4.5, 5.5],
+                ticks: true,
+                items: [
+                  { t: 'poly', pts: [[0, 0], [0, -4], [0.5, -3.75], [1, -3], [1.5, -1.75], [2, 0]], color: 'b' },
+                  { t: 'poly', pts: [[2, 0], [2.25, 1.0625], [2.5, 2.25], [2.75, 3.5625], [3, 5], [3, 0]], color: 'result' },
+                  { t: 'curve', f: 'x^2-4', from: 0, to: 3, color: 'a', label: 'v(t)' },
+                ],
+                caption: {
+                  en: 'Below the axis ($t \\in [0,2]$, shaded muted): the particle moves backward — that lobe subtracts from displacement but still counts as positive distance. Above the axis ($t \\in [2,3]$, shaded): it moves forward.',
+                  id: 'Di bawah sumbu ($t \\in [0,2]$, bayangan muted): partikelnya bergerak mundur — cuping itu mengurangi perpindahan tetapi tetap dihitung sebagai jarak positif. Di atas sumbu ($t \\in [2,3]$, bayangan): ia bergerak maju.',
+                },
               },
             },
             {
@@ -316,6 +346,24 @@ export const module6: Module = {
                 en: 'Rotating the region **between** two curves $f(x) \\geq g(x)$ leaves a hole down the middle — every slice is a **washer**, an annulus with outer radius $f(x)$ and inner radius $g(x)$:\n$$V = \\int_a^b \\pi\\Big(\\big[f(x)\\big]^2 - \\big[g(x)\\big]^2\\Big)\\,dx$$\nFor the region between $y=x$ (outer, on top) and $y=x^2$ (inner) on $[0,1]$, rotated about the $x$-axis:\n$$V = \\pi\\int_0^1 \\big(x^2 - x^4\\big)\\,dx = \\pi\\left[\\frac{x^3}{3}-\\frac{x^5}{5}\\right]_0^1 = \\pi\\left(\\frac{1}{3}-\\frac{1}{5}\\right) = \\frac{2\\pi}{15} \\approx 0.42$$\nSquaring both radii before subtracting is essential — subtracting the radii first and squaring the difference is a different (wrong) quantity entirely.',
                 id: 'Memutar daerah **di antara** dua kurva $f(x) \\geq g(x)$ menyisakan lubang di tengahnya — tiap irisan adalah sebuah **cincin**, sebuah anulus dengan jari-jari luar $f(x)$ dan jari-jari dalam $g(x)$:\n$$V = \\int_a^b \\pi\\Big(\\big[f(x)\\big]^2 - \\big[g(x)\\big]^2\\Big)\\,dx$$\nUntuk daerah di antara $y=x$ (luar, di atas) dan $y=x^2$ (dalam) pada $[0,1]$, diputar mengelilingi sumbu-$x$:\n$$V = \\pi\\int_0^1 \\big(x^2 - x^4\\big)\\,dx = \\pi\\left[\\frac{x^3}{3}-\\frac{x^5}{5}\\right]_0^1 = \\pi\\left(\\frac{1}{3}-\\frac{1}{5}\\right) = \\frac{2\\pi}{15} \\approx 0.42$$\nMengkuadratkan kedua jari-jari sebelum mengurangkan sangatlah penting — mengurangkan jari-jarinya lebih dahulu lalu mengkuadratkan selisihnya adalah besaran yang sama sekali berbeda (dan salah).',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.2, 1.3],
+                ySpan: [-0.2, 1.3],
+                ticks: true,
+                params: [{ name: 'x0', min: 0.05, max: 0.95, step: 0.05, value: 0.6, label: 'x' }],
+                items: [
+                  { t: 'curve', f: 'x', from: 0, to: 1, color: 'a', label: 'f(x)=x' },
+                  { t: 'curve', f: 'x^2', from: 0, to: 1, color: 'b', label: 'g(x)=x²' },
+                  { t: 'vline', x: 'x0', color: 'muted', dashed: true },
+                  { t: 'dot', x: 'x0', y: 'x0', color: 'result', label: 'outer' },
+                  { t: 'dot', x: 'x0', y: 'x0^2', color: 'result', label: 'inner' },
+                ],
+                caption: {
+                  en: 'Drag $x$: the washer at that slice has outer radius $f(x)$ (upper dot) and inner radius $g(x)$ (lower dot) — rotate the whole lens region about the $x$-axis and every such vertical gap sweeps out one annulus of the solid.',
+                  id: 'Geser $x$: cincin pada irisan itu punya jari-jari luar $f(x)$ (titik atas) dan jari-jari dalam $g(x)$ (titik bawah) — putar seluruh daerah lensanya mengelilingi sumbu-$x$ dan tiap celah tegak seperti itu menyapu satu anulus benda putarnya.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -408,6 +456,23 @@ export const module6: Module = {
                 en: 'Rotating a region about the $y$-axis with disks would need $x$ solved as a function of $y$ — not always convenient. Instead, keep $x$ as the variable and picture a thin vertical strip at position $x$, height $f(x)$, thickness $dx$, spun around the $y$-axis: it sweeps out a thin cylindrical **shell** of radius $x$, height $f(x)$, whose surface area unrolls to $2\\pi x \\cdot f(x)$, giving volume $2\\pi x f(x)\\,dx$. Summing over all strips gives the **shell method**:\n$$V = \\int_a^b 2\\pi x\\,f(x)\\,dx$$\nFor $y=x^2$ on $[0,2]$, rotated about the $y$-axis:\n$$V = \\int_0^2 2\\pi x \\cdot x^2\\,dx = 2\\pi\\int_0^2 x^3\\,dx = 2\\pi\\left[\\frac{x^4}{4}\\right]_0^2 = 2\\pi(4) = 8\\pi$$',
                 id: 'Memutar sebuah daerah mengelilingi sumbu-$y$ dengan cakram akan memerlukan $x$ diselesaikan sebagai fungsi dari $y$ — tak selalu mudah. Sebagai gantinya, pertahankan $x$ sebagai peubahnya dan bayangkan sebuah jalur tegak tipis di posisi $x$, tinggi $f(x)$, tebal $dx$, diputar mengelilingi sumbu-$y$: ia menyapu sebuah **kulit** silinder tipis berjari-jari $x$, tinggi $f(x)$, yang luas permukaannya tergulung menjadi $2\\pi x \\cdot f(x)$, memberi volume $2\\pi x f(x)\\,dx$. Menjumlahkan seluruh jalurnya memberi **metode kulit**:\n$$V = \\int_a^b 2\\pi x\\,f(x)\\,dx$$\nUntuk $y=x^2$ pada $[0,2]$, diputar mengelilingi sumbu-$y$:\n$$V = \\int_0^2 2\\pi x \\cdot x^2\\,dx = 2\\pi\\int_0^2 x^3\\,dx = 2\\pi\\left[\\frac{x^4}{4}\\right]_0^2 = 2\\pi(4) = 8\\pi$$',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.5, 2.6],
+                ySpan: [-0.8, 4.5],
+                ticks: true,
+                params: [{ name: 'x0', min: 0.1, max: 2, step: 0.1, value: 1.4, label: 'x' }],
+                items: [
+                  { t: 'curve', f: 'x^2', from: 0, to: 2, color: 'a', label: 'f(x)=x²' },
+                  { t: 'vline', x: 'x0', color: 'result', dashed: true },
+                  { t: 'dot', x: 'x0', y: '0', color: 'result', label: 'radius x' },
+                  { t: 'dot', x: 'x0', y: 'x0^2', color: 'result', label: 'height f(x)' },
+                ],
+                caption: {
+                  en: 'Drag $x$: the dashed vertical segment is one representative strip, at radius $x$ and reaching height $f(x)$ — spun around the $y$-axis, that strip becomes a thin cylindrical shell of radius $x$ and height $f(x)$.',
+                  id: 'Geser $x$: segmen tegak putus-putus adalah satu jalur perwakilan, pada jari-jari $x$ dan mencapai tinggi $f(x)$ — diputar mengelilingi sumbu-$y$, jalur itu menjadi kulit silinder tipis berjari-jari $x$ dan tinggi $f(x)$.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -416,6 +481,24 @@ export const module6: Module = {
               body: {
                 en: 'The same solid can be built with washers instead, using $y$ as the variable: solving $y=x^2$ for $x$ gives $x=\\sqrt{y}$, and for $y$ from $0$ to $4$, the solid runs from the axis out to $x=2$ (outer radius $2$, constant) with a "hole" carved out from $0$ to $\\sqrt{y}$ (inner radius $\\sqrt{y}$):\n$$V = \\int_0^4 \\pi\\Big(2^2 - \\big(\\sqrt{y}\\big)^2\\Big)\\,dy = \\pi\\int_0^4 (4-y)\\,dy = \\pi\\left[4y-\\frac{y^2}{2}\\right]_0^4 = \\pi(16-8) = 8\\pi$$\nExactly matching the shell computation. Shells avoided ever solving for $x$ in terms of $y$ — the two methods reach the identical solid from opposite directions, and either is valid; shells are simply less bookkeeping whenever inverting the function is awkward.',
                 id: 'Benda yang sama bisa dibangun dengan cincin sebagai gantinya, memakai $y$ sebagai peubahnya: menyelesaikan $y=x^2$ untuk $x$ memberi $x=\\sqrt{y}$, dan untuk $y$ dari $0$ sampai $4$, bendanya berjalan dari sumbunya keluar sampai $x=2$ (jari-jari luar $2$, tetap) dengan sebuah "lubang" yang terukir dari $0$ sampai $\\sqrt{y}$ (jari-jari dalam $\\sqrt{y}$):\n$$V = \\int_0^4 \\pi\\Big(2^2 - \\big(\\sqrt{y}\\big)^2\\Big)\\,dy = \\pi\\int_0^4 (4-y)\\,dy = \\pi\\left[4y-\\frac{y^2}{2}\\right]_0^4 = \\pi(16-8) = 8\\pi$$\nPersis cocok dengan penghitungan kulitnya. Kulit menghindari harus menyelesaikan $x$ dalam bentuk $y$ sama sekali — kedua metode mencapai benda yang identik dari arah yang berlawanan, dan keduanya sah; kulit sekadar lebih sedikit pembukuan setiap kali membalik fungsinya merepotkan.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.5, 2.8],
+                ySpan: [-0.5, 4.6],
+                ticks: true,
+                params: [{ name: 'y0', min: 0.2, max: 3.8, step: 0.2, value: 2, label: 'y' }],
+                items: [
+                  { t: 'curve', f: 'x^2', from: 0, to: 2, color: 'a', label: 'x=√y' },
+                  { t: 'vline', x: '2', color: 'b', dashed: true, label: 'outer x=2' },
+                  { t: 'hline', y: 'y0', color: 'muted', dashed: true },
+                  { t: 'dot', x: 'sqrt(y0)', y: 'y0', color: 'result', label: 'inner' },
+                  { t: 'dot', x: '2', y: 'y0', color: 'result', label: 'outer' },
+                ],
+                caption: {
+                  en: 'Drag $y$: the same solid sliced horizontally instead — outer radius always $2$, inner radius $\\sqrt{y}$ from the curve. Spun about the $y$-axis, each such gap sweeps out the identical washer.',
+                  id: 'Geser $y$: benda yang sama diiris mendatar sebagai gantinya — jari-jari luar selalu $2$, jari-jari dalam $\\sqrt{y}$ dari kurvanya. Diputar mengelilingi sumbu-$y$, tiap celah seperti itu menyapu cincin yang identik.',
+                },
               },
             },
             {

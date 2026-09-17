@@ -171,6 +171,22 @@ export const module6: Module = {
                 en: 'From the same example, $f(-2)=-2$ and $f(1)=-2$ tie for the absolute minimum — the method does not care which candidate "looks like" the answer, it simply compares every value. A second example, $f(x)=x^2-4x+1$ on $[0,5]$: $f\'(x)=2x-4=0$ gives $x=2$. Evaluating: $f(0)=1$, $f(2)=-3$, $f(5)=6$. The absolute minimum is $-3$ at the critical point $x=2$, but the absolute **maximum** is $6$ at the endpoint $x=5$ — not at $x=0$, even though both are endpoints. Nothing about which endpoint wins can be guessed without evaluating both.',
                 id: 'Dari contoh yang sama, $f(-2)=-2$ dan $f(1)=-2$ seri untuk minimum mutlak — metodenya tak peduli kandidat mana yang "terlihat seperti" jawabannya, ia sekadar membandingkan setiap nilai. Contoh kedua, $f(x)=x^2-4x+1$ pada $[0,5]$: $f\'(x)=2x-4=0$ memberi $x=2$. Mengevaluasi: $f(0)=1$, $f(2)=-3$, $f(5)=6$. Minimum mutlaknya adalah $-3$ di titik kritis $x=2$, tetapi **maksimum** mutlaknya adalah $6$ di titik ujung $x=5$ — bukan di $x=0$, meski keduanya titik ujung. Tak ada yang bisa ditebak soal titik ujung mana yang menang tanpa mengevaluasi keduanya.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-0.5, 5.5],
+                ySpan: [-4, 7],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: 'x^2-4*x+1', from: 0, to: 5, color: 'a' },
+                  { t: 'dot', x: 0, y: 1, color: 'b', label: '(0, 1)' },
+                  { t: 'dot', x: 2, y: -3, color: 'c', label: '(2, -3)' },
+                  { t: 'dot', x: 5, y: 6, color: 'result', label: '(5, 6)' },
+                ],
+                caption: {
+                  en: 'Three candidates, one comparison: the critical point $(2,-3)$ wins the minimum, but between the two endpoints it is $(5,6)$ — not $(0,1)$ — that wins the maximum, precisely because every value was actually checked.',
+                  id: 'Tiga kandidat, satu perbandingan: titik kritis $(2,-3)$ memenangkan minimumnya, tetapi di antara kedua titik ujung, $(5,6)$ — bukan $(0,1)$ — yang memenangkan maksimumnya, persis sebab setiap nilai benar-benar diperiksa.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -304,13 +320,15 @@ export const module6: Module = {
                 xSpan: [0.5, 3.5],
                 ySpan: [-1.5, 0.5],
                 ticks: true,
+                params: [{ name: 'x0', min: 1.05, max: 2.95, step: 0.05, value: 1.3 }],
                 items: [
                   { t: 'curve', f: 'x^2-4*x+3', from: 1, to: 3, color: 'a' },
-                  { t: 'seg', from: [1.5, -0.75], to: [2.5, -0.75], color: 'b', dashed: true },
+                  { t: 'curve', f: '(x0^2-4*x0+3)+(2*x0-4)*(x-x0)', color: 'b', dashed: true, label: 'tangent' },
+                  { t: 'dot', x: 'x0', y: 'x0^2-4*x0+3', color: 'b', label: 'P' },
                 ],
                 caption: {
-                  en: '$f(x) = x^2 - 4x + 3$ on $[1, 3]$: equal height $0$ at both ends, and a horizontal tangent (dashed) exactly at $x = 2$ in between.',
-                  id: '$f(x) = x^2 - 4x + 3$ pada $[1, 3]$: ketinggian yang sama, $0$, di kedua ujung, dan garis singgung mendatar (putus-putus) tepat di $x = 2$ di antaranya.',
+                  en: 'Slide $P$ between the equal-height endpoints: the tangent tilts one way, then the other, and is exactly horizontal only at $x=2$ — the flat spot Rolle\'s Theorem guarantees must exist somewhere in between.',
+                  id: 'Geser $P$ di antara kedua titik ujung yang setinggi: garis singgungnya miring ke satu arah, lalu ke arah lain, dan persis mendatar hanya di $x=2$ — tempat datar yang dijamin ada oleh Teorema Rolle di suatu tempat di antaranya.',
                 },
               },
             },
@@ -413,6 +431,23 @@ export const module6: Module = {
               body: {
                 en: 'Rolle\'s Theorem required $f(a)=f(b)$ — a flat secant line. The **Mean Value Theorem** drops that restriction: if $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then for **some** $c$ in $(a,b)$,\n$$f\'(c) = \\frac{f(b)-f(a)}{b-a}$$\nGeometrically, the tangent at $c$ is parallel to the secant line through the endpoints — somewhere, the instantaneous rate of change must equal the average rate of change over the whole interval. Rolle\'s Theorem is the special case where that average happens to be zero.\n\nFor $f(x)=x^3$ on $[0,2]$: average rate $= \\frac{f(2)-f(0)}{2-0} = \\frac{8-0}{2} = 4$. Setting $f\'(c)=3c^2=4$ gives $c = \\sqrt{4/3} \\approx 1.1547$, which lies inside $(0,2)$.',
                 id: 'Teorema Rolle mensyaratkan $f(a)=f(b)$ — garis tali busur yang datar. **Teorema Nilai Rata-rata** melepaskan batasan itu: jika $f$ kontinu pada $[a,b]$ dan terdiferensialkan pada $(a,b)$, maka untuk **suatu** $c$ di $(a,b)$,\n$$f\'(c) = \\frac{f(b)-f(a)}{b-a}$$\nSecara geometris, garis singgung di $c$ sejajar dengan garis tali busur melalui titik ujungnya — di suatu tempat, laju perubahan sesaat harus sama dengan laju perubahan rata-rata pada seluruh interval. Teorema Rolle adalah kasus khusus tempat rata-rata itu kebetulan nol.\n\nUntuk $f(x)=x^3$ pada $[0,2]$: laju rata-rata $= \\frac{f(2)-f(0)}{2-0} = \\frac{8-0}{2} = 4$. Menetapkan $f\'(c)=3c^2=4$ memberi $c = \\sqrt{4/3} \\approx 1.1547$, yang berada di dalam $(0,2)$.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-0.5, 2.5],
+                ySpan: [-1, 9],
+                ticks: true,
+                params: [{ name: 'x0', min: 0.05, max: 1.95, step: 0.05, value: 0.6 }],
+                items: [
+                  { t: 'curve', f: 'x^3', color: 'a' },
+                  { t: 'seg', from: [0, 0], to: [2, 8], color: 'muted', dashed: true, label: 'secant' },
+                  { t: 'curve', f: 'x0^3+3*x0^2*(x-x0)', color: 'b', dashed: true, label: 'tangent' },
+                  { t: 'dot', x: 'x0', y: 'x0^3', color: 'b', label: 'c' },
+                ],
+                caption: {
+                  en: 'Slide $c$ until the dashed tangent runs exactly parallel to the secant through the endpoints — that alignment happens right at $c=\\sqrt{4/3}\\approx 1.1547$, the point the Mean Value Theorem guarantees must exist.',
+                  id: 'Geser $c$ sampai garis singgung putus-putus persis sejajar dengan tali busur melalui titik ujungnya — kesejajaran itu terjadi tepat di $c=\\sqrt{4/3}\\approx 1{,}1547$, titik yang dijamin ada oleh Teorema Nilai Rata-rata.',
+                },
               },
             },
             {
