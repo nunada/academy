@@ -953,7 +953,8 @@ th .sortable.on::after { content: ' ↓'; }
   gap: 6px;
   margin-top: 12px;
 }
-.graphrow { display: flex; align-items: center; gap: 8px; }
+.graphrow { display: flex; flex-direction: column; gap: 2px; }
+.graphrowline { display: flex; align-items: center; gap: 8px; }
 .graphswatch {
   width: 12px;
   height: 12px;
@@ -971,6 +972,10 @@ th .sortable.on::after { content: ' ↓'; }
   font-family: var(--mono);
 }
 .graphinput:focus-visible { outline: 2px solid var(--brand); outline-offset: 1px; }
+/* The tidied-up read of a row's own expression — set a little apart from
+   the input that produced it, so the two are clearly the same thing said
+   two ways rather than two different pieces of information. */
+.graphpreview { padding-left: 20px; color: var(--muted); }
 
 .figsliders {
   display: grid;

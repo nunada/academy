@@ -13,8 +13,10 @@ import { FigureView } from './Figure'
 import type { FigColor, FigItem } from '../lib/figure'
 import { evaluateAt, MATH_FUNCS } from '../lib/expr'
 import { freeVariables, substitute, traceImplicit } from '../lib/implicit'
+import { toLatex } from '../lib/toLatex'
 import { useI18n } from '../i18n'
 import type { Loc } from '../content/types'
+import { Tex } from './ui'
 
 const SIZE = 460
 const PAD = 26
@@ -262,9 +264,6 @@ export function GraphBoard() {
   const paramsForEval = Object.fromEntries(usedParams.map((n) => [n, paramValues[n] ?? PARAM_DEFAULT]))
 
   const items: FigItem[] = []
-  const midX = (xSpan[0] + xSpan[1]) / 2
-  const midY = (ySpan[0] + ySpan[1]) / 2
-  const invalid = new Set<string>()
   for (const row of rows) {
     if (!row.on || row.expr.trim() === '') continue
     const eq = splitEquation(row.expr)
@@ -272,12 +271,9 @@ export function GraphBoard() {
       const lhs = substitute(eq.lhs, paramsForEval)
       const rhs = substitute(eq.rhs, paramsForEval)
       for (const [from, to] of traceImplicit(lhs, rhs, xSpan, ySpan)) items.push({ t: 'seg', from, to, color: row.color })
-      const g = evaluateAt(lhs, { x: midX, y: midY }) - evaluateAt(rhs, { x: midX, y: midY })
-      if (!Number.isFinite(g)) invalid.add(row.id)
     } else {
       const f = substitute(row.expr, paramsForEval)
       items.push({ t: 'curve', f, color: row.color })
-      if (!Number.isFinite(evaluateAt(f, { x: midX }))) invalid.add(row.id)
       if (hoverX !== null) {
         const y = evaluateAt(f, { x: hoverX })
         if (Number.isFinite(y)) items.push({ t: 'dot', x: hoverX, y, color: row.color })
@@ -343,33 +339,55 @@ export function GraphBoard() {
       )}
 
       <div className="graphrows">
-        {rows.map((row) => (
-          <div className="graphrow" key={row.id}>
-            <span className="graphswatch" style={{ background: `var(--fig-${row.color})` }} />
-            <input
-              ref={(el) => {
-                inputs.current[row.id] = el
-              }}
-              className="graphinput"
-              type="text"
-              value={row.expr}
-              placeholder="sin(x)  or  x^2+y^2=9"
-              spellCheck={false}
-              onChange={(e) => setExpr(row.id, e.target.value)}
-              onFocus={() => {
-                setFocusedId(row.id)
-                setActiveId(row.id)
-              }}
-              onBlur={() => setFocusedId((id) => (id === row.id ? null : id))}
-            />
-            <button className="btn ghost sm" onClick={() => removeRow(row.id)} aria-label={tc({ en: 'Remove', id: 'Hapus' })}>
-              ✕
-            </button>
-            {invalid.has(row.id) && focusedId !== row.id && (
-              <span className="small muted">{tc({ en: 'Check this expression.', id: 'Periksa ekspresi ini.' })}</span>
-            )}
-          </div>
-        ))}
+        {rows.map((row) => {
+          const eq = splitEquation(row.expr)
+          const latex = eq
+            ? (() => {
+                const l = toLatex(eq.lhs, KNOWN_FUNCS)
+                const r = toLatex(eq.rhs, KNOWN_FUNCS)
+                return l !== null && r !== null ? `${l} = ${r}` : null
+              })()
+            : (() => {
+                const f = toLatex(row.expr, KNOWN_FUNCS)
+                return f !== null ? `y = ${f}` : null
+              })()
+          return (
+            <div className="graphrow" key={row.id}>
+              <div className="graphrowline">
+                <span className="graphswatch" style={{ background: `var(--fig-${row.color})` }} />
+                <input
+                  ref={(el) => {
+                    inputs.current[row.id] = el
+                  }}
+                  className="graphinput"
+                  type="text"
+                  value={row.expr}
+                  placeholder="sin(x)  or  x^2+y^2=9"
+                  spellCheck={false}
+                  onChange={(e) => setExpr(row.id, e.target.value)}
+                  onFocus={() => {
+                    setFocusedId(row.id)
+                    setActiveId(row.id)
+                  }}
+                  onBlur={() => setFocusedId((id) => (id === row.id ? null : id))}
+                />
+                <button className="btn ghost sm" onClick={() => removeRow(row.id)} aria-label={tc({ en: 'Remove', id: 'Hapus' })}>
+                  ✕
+                </button>
+              </div>
+              {latex !== null ? (
+                <div className="graphpreview">
+                  <Tex src={latex} />
+                </div>
+              ) : (
+                row.expr.trim() !== '' &&
+                focusedId !== row.id && (
+                  <span className="small muted">{tc({ en: 'Check this expression.', id: 'Periksa ekspresi ini.' })}</span>
+                )
+              )}
+            </div>
+          )
+        })}
       </div>
 
       <button className="btn ghost sm" onClick={addRow} disabled={rows.length >= MAX_ROWS}>
