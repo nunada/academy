@@ -11,7 +11,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { FigureView } from './Figure'
 import type { FigColor, FigItem } from '../lib/figure'
-import { evaluateAt } from '../lib/expr'
+import { evaluateAt, MATH_FUNCS } from '../lib/expr'
+import { freeVariables, substitute, traceImplicit } from '../lib/implicit'
 import { useI18n } from '../i18n'
 
 const SIZE = 460
@@ -20,10 +21,23 @@ const COLORS: FigColor[] = ['a', 'b', 'c', 'result', 'muted']
 const MAX_ROWS = 6
 const DEFAULT_SPAN: [number, number] = [-10, 10]
 const STORE_KEY = 'nunada.playground.graph.v1'
+const PARAM_DEFAULT = 1
+const PARAM_RANGE: [number, number] = [-10, 10]
+const KNOWN_FUNCS = new Set(Object.keys(MATH_FUNCS))
 // Same short list MathBoard's own palette offers — the characters a keyboard
-// makes awkward, not a second alphabet — plus quick trig buttons, since a
-// graph board's whole point is functions like these.
-const KEYS = ['x', '√', 'π', '^', '/', '(', ')', 'sin(', 'cos(', 'tan(']
+// makes awkward, not a second alphabet — plus quick trig buttons and `=`,
+// since a row can be a plain function or an implicit equation like a circle.
+const KEYS = ['x', '=', '√', 'π', '^', '/', '(', ')', 'sin(', 'cos(', 'tan(']
+
+/** A row is an implicit equation the moment it has an `=` — everything
+ *  before is `lhs`, everything after is `rhs`, and the curve drawn is
+ *  wherever they're equal (see `traceImplicit`). No `=` at all means the
+ *  ordinary `y = f(x)` a `curve` item already knows how to draw. */
+function splitEquation(expr: string): { lhs: string; rhs: string } | null {
+  const at = expr.indexOf('=')
+  if (at < 0) return null
+  return { lhs: expr.slice(0, at), rhs: expr.slice(at + 1) }
+}
 
 interface Row {
   id: string
@@ -36,6 +50,7 @@ interface Saved {
   rows: { expr: string; color: FigColor; on: boolean }[]
   xSpan: [number, number]
   ySpan: [number, number]
+  params?: Record<string, number>
 }
 
 let nextId = 1
@@ -59,6 +74,7 @@ export function GraphBoard() {
   )
   const [xSpan, setXSpan] = useState<[number, number]>(saved?.xSpan ?? DEFAULT_SPAN)
   const [ySpan, setYSpan] = useState<[number, number]>(saved?.ySpan ?? DEFAULT_SPAN)
+  const [paramValues, setParamValues] = useState<Record<string, number>>(saved?.params ?? {})
   const [hoverX, setHoverX] = useState<number | null>(null)
   const [focusedId, setFocusedId] = useState<string | null>(null)
   // Which row a keyboard-button press lands in. Unlike `focusedId` (used only
@@ -81,12 +97,12 @@ export function GraphBoard() {
 
   useEffect(() => {
     try {
-      const toSave: Saved = { rows: rows.map(({ expr, color, on }) => ({ expr, color, on })), xSpan, ySpan }
+      const toSave: Saved = { rows: rows.map(({ expr, color, on }) => ({ expr, color, on })), xSpan, ySpan, params: paramValues }
       localStorage.setItem(STORE_KEY, JSON.stringify(toSave))
     } catch {
       // A full or blocked store is not a reason to stop working.
     }
-  }, [rows, xSpan, ySpan])
+  }, [rows, xSpan, ySpan, paramValues])
 
   const mountRef = useRef<HTMLDivElement>(null)
   const drag = useRef<{ x: number; y: number; xSpan: [number, number]; ySpan: [number, number] } | null>(null)
@@ -180,16 +196,37 @@ export function GraphBoard() {
     setExpr(id, row.expr.slice(0, at) + sym + row.expr.slice(to))
   }
 
+  // Every free identifier across every row, in the order first seen — each
+  // one gets a slider. `x`/`y` are always excluded (see `implicit.ts`).
+  const usedParams: string[] = []
+  for (const row of rows) {
+    const eq = splitEquation(row.expr)
+    const names = eq ? [...freeVariables(eq.lhs, KNOWN_FUNCS), ...freeVariables(eq.rhs, KNOWN_FUNCS)] : freeVariables(row.expr, KNOWN_FUNCS)
+    for (const n of names) if (!usedParams.includes(n)) usedParams.push(n)
+  }
+  const paramsForEval = Object.fromEntries(usedParams.map((n) => [n, paramValues[n] ?? PARAM_DEFAULT]))
+
   const items: FigItem[] = []
   const midX = (xSpan[0] + xSpan[1]) / 2
+  const midY = (ySpan[0] + ySpan[1]) / 2
   const invalid = new Set<string>()
   for (const row of rows) {
     if (!row.on || row.expr.trim() === '') continue
-    items.push({ t: 'curve', f: row.expr, color: row.color })
-    if (!Number.isFinite(evaluateAt(row.expr, { x: midX }))) invalid.add(row.id)
-    if (hoverX !== null) {
-      const y = evaluateAt(row.expr, { x: hoverX })
-      if (Number.isFinite(y)) items.push({ t: 'dot', x: hoverX, y, color: row.color })
+    const eq = splitEquation(row.expr)
+    if (eq) {
+      const lhs = substitute(eq.lhs, paramsForEval)
+      const rhs = substitute(eq.rhs, paramsForEval)
+      for (const [from, to] of traceImplicit(lhs, rhs, xSpan, ySpan)) items.push({ t: 'seg', from, to, color: row.color })
+      const g = evaluateAt(lhs, { x: midX, y: midY }) - evaluateAt(rhs, { x: midX, y: midY })
+      if (!Number.isFinite(g)) invalid.add(row.id)
+    } else {
+      const f = substitute(row.expr, paramsForEval)
+      items.push({ t: 'curve', f, color: row.color })
+      if (!Number.isFinite(evaluateAt(f, { x: midX }))) invalid.add(row.id)
+      if (hoverX !== null) {
+        const y = evaluateAt(f, { x: hoverX })
+        if (Number.isFinite(y)) items.push({ t: 'dot', x: hoverX, y, color: row.color })
+      }
     }
   }
 
@@ -214,9 +251,32 @@ export function GraphBoard() {
           {tc({ en: 'Reset view', id: 'Setel ulang tampilan' })}
         </button>
         <span className="small muted">
-          {tc({ en: 'Drag to pan. Scroll to zoom.', id: 'Seret untuk menggeser. Gulir untuk memperbesar.' })}
+          {tc({
+            en: 'Drag to pan. Scroll to zoom. An equation with = draws a circle, an ellipse, anything implicit.',
+            id: 'Seret untuk menggeser. Gulir untuk memperbesar. Persamaan dengan = menggambar lingkaran, elips, atau bentuk implisit lainnya.',
+          })}
         </span>
       </div>
+
+      {usedParams.length > 0 && (
+        <div className="figsliders">
+          {usedParams.map((name) => (
+            <label className="figslider" key={name}>
+              <span>
+                <i>{name}</i> = {(paramValues[name] ?? PARAM_DEFAULT).toFixed(2).replace(/\.?0+$/, '') || '0'}
+              </span>
+              <input
+                type="range"
+                min={PARAM_RANGE[0]}
+                max={PARAM_RANGE[1]}
+                step={0.1}
+                value={paramValues[name] ?? PARAM_DEFAULT}
+                onChange={(e) => setParamValues((p) => ({ ...p, [name]: Number(e.target.value) }))}
+              />
+            </label>
+          ))}
+        </div>
+      )}
 
       <div className="graphrows">
         {rows.map((row) => (
@@ -229,7 +289,7 @@ export function GraphBoard() {
               className="graphinput"
               type="text"
               value={row.expr}
-              placeholder="sin(x)"
+              placeholder="sin(x)  or  x^2+y^2=9"
               spellCheck={false}
               onChange={(e) => setExpr(row.id, e.target.value)}
               onFocus={() => {
