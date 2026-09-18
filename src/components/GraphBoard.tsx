@@ -14,6 +14,7 @@ import type { FigColor, FigItem } from '../lib/figure'
 import { evaluateAt, MATH_FUNCS } from '../lib/expr'
 import { freeVariables, substitute, traceImplicit } from '../lib/implicit'
 import { useI18n } from '../i18n'
+import type { Loc } from '../content/types'
 
 const SIZE = 460
 const PAD = 26
@@ -28,6 +29,53 @@ const KNOWN_FUNCS = new Set(Object.keys(MATH_FUNCS))
 // makes awkward, not a second alphabet — plus quick trig buttons and `=`,
 // since a row can be a plain function or an implicit equation like a circle.
 const KEYS = ['x', '=', '√', 'π', '^', '/', '(', ')', 'sin(', 'cos(', 'tan(']
+
+interface Template {
+  id: string
+  label: Loc
+  rows: { expr: string; color: FigColor }[]
+  params: Record<string, number>
+}
+
+/** The common parent-function families, each written with the letters a
+ *  precalculus course already uses for them (`a`/`h`/`k` for a transformed
+ *  shape, `m`/`b` for a line, `r` for a radius) — so a slider's name is
+ *  never a surprise to anyone who has met the family before. Picking one
+ *  replaces every row, the same way choosing a template does everywhere
+ *  else in the Playground. */
+const TEMPLATES: Template[] = [
+  { id: 'line', label: { en: 'Line', id: 'Garis' }, rows: [{ expr: 'm*x+b', color: 'a' }], params: { m: 1, b: 0 } },
+  {
+    id: 'parabola',
+    label: { en: 'Parabola', id: 'Parabola' },
+    rows: [{ expr: 'a*(x-h)^2+k', color: 'a' }],
+    params: { a: 1, h: 2, k: -3 },
+  },
+  {
+    id: 'circle',
+    label: { en: 'Circle', id: 'Lingkaran' },
+    rows: [{ expr: '(x-a)^2+(y-b)^2=r^2', color: 'a' }],
+    params: { a: 0, b: 0, r: 3 },
+  },
+  {
+    id: 'ellipse',
+    label: { en: 'Ellipse', id: 'Elips' },
+    rows: [{ expr: '(x-h)^2/a^2+(y-k)^2/b^2=1', color: 'a' }],
+    params: { a: 4, b: 2, h: 0, k: 0 },
+  },
+  {
+    id: 'sine',
+    label: { en: 'Sine wave', id: 'Gelombang sinus' },
+    rows: [{ expr: 'a*sin(b*(x-h))+k', color: 'a' }],
+    params: { a: 1, b: 1, h: 0, k: 0 },
+  },
+  {
+    id: 'abs',
+    label: { en: 'Absolute value', id: 'Nilai mutlak' },
+    rows: [{ expr: 'a*abs(x-h)+k', color: 'a' }],
+    params: { a: 1, h: 0, k: 0 },
+  },
+]
 
 /** A row is an implicit equation the moment it has an `=` — everything
  *  before is `lhs`, everything after is `rhs`, and the curve drawn is
@@ -66,7 +114,7 @@ function load(): Saved | null {
 }
 
 export function GraphBoard() {
-  const { tc } = useI18n()
+  const { t, tc } = useI18n()
   const saved = useMemo(load, [])
 
   const [rows, setRows] = useState<Row[]>(
@@ -182,6 +230,13 @@ export function GraphBoard() {
   const removeRow = (id: string) => setRows((rs) => rs.filter((r) => r.id !== id))
   const setExpr = (id: string, expr: string) => setRows((rs) => rs.map((r) => (r.id === id ? { ...r, expr } : r)))
 
+  const applyTemplate = (tpl: Template) => {
+    setRows(tpl.rows.map((r) => ({ ...r, id: freshId(), on: true })))
+    setParamValues(tpl.params)
+    setXSpan(DEFAULT_SPAN)
+    setYSpan(DEFAULT_SPAN)
+  }
+
   /** Insert at the caret of the last-active row, not at the end — fixing the
    *  middle of an expression shouldn't send the symbol somewhere else. */
   function insert(sym: string) {
@@ -234,6 +289,15 @@ export function GraphBoard() {
 
   return (
     <div className="card graphboard">
+      <div className="row" style={{ marginBottom: 10 }}>
+        <span className="small muted">{t('templates')}:</span>
+        {TEMPLATES.map((tpl) => (
+          <button className="btn ghost sm" key={tpl.id} onClick={() => applyTemplate(tpl)}>
+            {tc(tpl.label)}
+          </button>
+        ))}
+      </div>
+
       <div
         ref={mountRef}
         onPointerDown={onPointerDown}
