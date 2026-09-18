@@ -20,6 +20,10 @@ const COLORS: FigColor[] = ['a', 'b', 'c', 'result', 'muted']
 const MAX_ROWS = 6
 const DEFAULT_SPAN: [number, number] = [-10, 10]
 const STORE_KEY = 'nunada.playground.graph.v1'
+// Same short list MathBoard's own palette offers — the characters a keyboard
+// makes awkward, not a second alphabet — plus quick trig buttons, since a
+// graph board's whole point is functions like these.
+const KEYS = ['x', '√', 'π', '^', '/', '(', ')', 'sin(', 'cos(', 'tan(']
 
 interface Row {
   id: string
@@ -57,6 +61,23 @@ export function GraphBoard() {
   const [ySpan, setYSpan] = useState<[number, number]>(saved?.ySpan ?? DEFAULT_SPAN)
   const [hoverX, setHoverX] = useState<number | null>(null)
   const [focusedId, setFocusedId] = useState<string | null>(null)
+  // Which row a keyboard-button press lands in. Unlike `focusedId` (used only
+  // to hide the invalid-expression hint while typing), this must NOT clear on
+  // blur — clicking a button steals focus from the input, so the last row the
+  // learner was actually in has to be remembered rather than asked for.
+  const [activeId, setActiveId] = useState<string | null>(null)
+  const inputs = useRef<Record<string, HTMLInputElement | null>>({})
+  const caret = useRef<{ id: string; at: number } | null>(null)
+
+  useEffect(() => {
+    const want = caret.current
+    if (!want) return
+    caret.current = null
+    const el = inputs.current[want.id]
+    if (!el) return
+    el.focus()
+    el.setSelectionRange(want.at, want.at)
+  })
 
   useEffect(() => {
     try {
@@ -145,6 +166,20 @@ export function GraphBoard() {
   const removeRow = (id: string) => setRows((rs) => rs.filter((r) => r.id !== id))
   const setExpr = (id: string, expr: string) => setRows((rs) => rs.map((r) => (r.id === id ? { ...r, expr } : r)))
 
+  /** Insert at the caret of the last-active row, not at the end — fixing the
+   *  middle of an expression shouldn't send the symbol somewhere else. */
+  function insert(sym: string) {
+    const id = activeId ?? rows[0]?.id
+    if (!id) return
+    const row = rows.find((r) => r.id === id)
+    if (!row) return
+    const el = inputs.current[id]
+    const at = el?.selectionStart ?? row.expr.length
+    const to = el?.selectionEnd ?? at
+    caret.current = { id, at: at + sym.length }
+    setExpr(id, row.expr.slice(0, at) + sym + row.expr.slice(to))
+  }
+
   const items: FigItem[] = []
   const midX = (xSpan[0] + xSpan[1]) / 2
   const invalid = new Set<string>()
@@ -188,13 +223,19 @@ export function GraphBoard() {
           <div className="graphrow" key={row.id}>
             <span className="graphswatch" style={{ background: `var(--fig-${row.color})` }} />
             <input
+              ref={(el) => {
+                inputs.current[row.id] = el
+              }}
               className="graphinput"
               type="text"
               value={row.expr}
               placeholder="sin(x)"
               spellCheck={false}
               onChange={(e) => setExpr(row.id, e.target.value)}
-              onFocus={() => setFocusedId(row.id)}
+              onFocus={() => {
+                setFocusedId(row.id)
+                setActiveId(row.id)
+              }}
               onBlur={() => setFocusedId((id) => (id === row.id ? null : id))}
             />
             <button className="btn ghost sm" onClick={() => removeRow(row.id)} aria-label={tc({ en: 'Remove', id: 'Hapus' })}>
@@ -210,6 +251,20 @@ export function GraphBoard() {
       <button className="btn ghost sm" onClick={addRow} disabled={rows.length >= MAX_ROWS}>
         + {tc({ en: 'Add function', id: 'Tambah fungsi' })}
       </button>
+
+      <div className="mathkeys">
+        {KEYS.map((k) => (
+          <button
+            type="button"
+            key={k}
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => insert(k)}
+            aria-label={tc({ en: `insert ${k}`, id: `sisipkan ${k}` })}
+          >
+            {k}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
