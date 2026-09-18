@@ -50,7 +50,11 @@ export function Rich({ text }: { text: string }) {
           )
         }
         if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
-          return <strong key={i}>{part.slice(2, -2)}</strong>
+          return (
+            <strong key={i}>
+              <Rich text={part.slice(2, -2)} />
+            </strong>
+          )
         }
         return <span key={i}>{part}</span>
       })}

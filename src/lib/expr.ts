@@ -124,9 +124,11 @@ function parseUnary(s: S): number {
 
 /** A run of letters may be one name or several stuck together — `2ax` is a
  *  product, not a variable called `ax`. Take the longest prefix that is
- *  actually known and leave the rest for the implied-multiplication rule. */
+ *  actually known and leave the rest for the implied-multiplication rule.
+ *  A digit may follow the first letter (`x0`, `t1`) — never lead, so a
+ *  literal like `2ax` still starts parsing as the number `2`. */
 function readName(s: S): string {
-  const word = /^[a-zπ]+/.exec(s.src.slice(s.i))
+  const word = /^[a-zπ][a-z0-9π]*/.exec(s.src.slice(s.i))
   if (!word) return ''
   let name = word[0]
   while (name.length > 1) {
