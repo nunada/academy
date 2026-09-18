@@ -222,6 +222,21 @@ export const module2: Module = {
                 en: 'Spread the old object, then override the field you are changing. The result is a different object, which is what tells React something happened.',
                 id: 'Sebar object lamanya, lalu timpa bidang yang sedang kamu ubah. Hasilnya object yang berbeda, dan itulah yang memberi tahu React bahwa sesuatu terjadi.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 8],
+                items: [
+                  { t: 'poly', pts: [[0.3, 2], [4, 2], [4, 6], [0.3, 6]], color: 'muted', label: 'old profile', labelAt: [2.15, 6.6] },
+                  { t: 'poly', pts: [[6, 2], [9.7, 2], [9.7, 6], [6, 6]], color: 'a', label: 'new profile', labelAt: [7.85, 6.6] },
+                  { t: 'vec', from: [4.1, 4], to: [5.9, 4], color: 'a', label: 'setProfile' },
+                ],
+                caption: {
+                  en: 'The old object is left untouched. A separate new object is built with the spread, and the setter replaces one with the other — React never sees an object edited in place.',
+                  id: 'Object lamanya dibiarkan tak tersentuh. Object baru yang terpisah dibangun dengan operator sebar, dan setter-nya mengganti yang lama dengan yang baru — React tak pernah melihat object yang diubah di tempat.',
+                },
+              },
               code: {
                 en: 'setProfile({ ...profile, name: "Budi" });',
                 id: 'setProfil({ ...profil, nama: "Budi" });',
@@ -565,6 +580,23 @@ export const module2: Module = {
               body: {
                 en: 'A child cannot change its parent\'s state directly, and cannot pass anything upward. What it can do is call a function the parent gave it — so the parent stays in charge of its own data.',
                 id: 'Sebuah anak tidak bisa mengubah state induknya secara langsung, dan tidak bisa mengoper apa pun ke atas. Yang bisa ia lakukan adalah memanggil fungsi yang diberikan induknya — sehingga induknya tetap memegang kendali atas datanya sendiri.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[3, 6.5], [7, 6.5], [7, 9], [3, 9]], color: 'muted', label: 'Parent' },
+                  { t: 'poly', pts: [[3.5, 1], [6.5, 1], [6.5, 3], [3.5, 3]], color: 'a', label: 'Button' },
+                  { t: 'seg', from: [5, 6.5], to: [5, 3], color: 'muted' },
+                  { t: 'vec', from: [4.2, 6.3], to: [4.2, 3.2], color: 'a', label: 'props: onAdd' },
+                  { t: 'vec', from: [5.8, 3.2], to: [5.8, 6.3], color: 'b', label: 'calls onAdd()', dashed: true },
+                ],
+                caption: {
+                  en: 'The parent hands a function down through props. The child only ever calls it — it never touches the parent\'s state directly, and nothing is passed back up except through that call.',
+                  id: 'Induknya menyerahkan sebuah fungsi ke bawah lewat props. Anaknya hanya memanggilnya — ia tak pernah menyentuh state induknya secara langsung, dan tak ada yang dioper kembali ke atas kecuali lewat panggilan itu.',
+                },
               },
               code: {
                 en: 'function Button({ onAdd }) {\n  return <button onClick={onAdd}>Add</button>;\n}\n\nfunction Parent() {\n  const [n, setN] = React.useState(0);\n\n  return (\n    <div>\n      <p id="count">{n}</p>\n      <Button onAdd={() => setN(n + 1)} />\n    </div>\n  );\n}',

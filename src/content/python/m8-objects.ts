@@ -62,6 +62,25 @@ export const module8: Module = {
                 en: 'Two objects from the same class are entirely separate. Changing one leaves the other untouched — that separation is the whole point.',
                 id: 'Dua objek dari class yang sama benar-benar terpisah. Mengubah satu tidak menyentuh yang lain — pemisahan itulah inti seluruhnya.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 6],
+                items: [
+                  { t: 'poly', pts: [[0.5, 0.8], [4.5, 0.8], [4.5, 5.2], [0.5, 5.2]], color: 'a', label: 'a', labelAt: [2.5, 4.85] },
+                  { t: 'poly', pts: [[0.9, 3.0], [4.1, 3.0], [4.1, 4.3], [0.9, 4.3]], color: 'b', label: 'name: "Ani"' },
+                  { t: 'poly', pts: [[0.9, 1.2], [4.1, 1.2], [4.1, 2.5], [0.9, 2.5]], color: 'result', label: 'score: 90' },
+                  { t: 'poly', pts: [[5.5, 0.8], [9.5, 0.8], [9.5, 5.2], [5.5, 5.2]], color: 'a', label: 'b', labelAt: [7.5, 4.85] },
+                  { t: 'poly', pts: [[5.9, 3.0], [9.1, 3.0], [9.1, 4.3], [5.9, 4.3]], color: 'b', label: 'name: "Budi"' },
+                  { t: 'poly', pts: [[5.9, 1.2], [9.1, 1.2], [9.1, 2.5], [5.9, 2.5]], color: 'muted', label: 'score: 65' },
+                ],
+                caption: {
+                  en: 'a and b are separate objects with separate boxes — changing a.score to 90 never touches b, which still holds 65.',
+                  id: 'a dan b adalah objek terpisah dengan kotak terpisah — mengubah a.score menjadi 90 tak pernah menyentuh b, yang tetap menyimpan 65.',
+                },
+                height: 280,
+              },
               code: {
                 en: 'a = Student("Ani", 80)\nb = Student("Budi", 65)\na.score = 90\nprint(a.score)\nprint(b.score)',
                 id: 'a = Siswa("Ani", 80)\nb = Siswa("Budi", 65)\na.nilai = 90\nprint(a.nilai)\nprint(b.nilai)',

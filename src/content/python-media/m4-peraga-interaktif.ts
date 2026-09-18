@@ -180,6 +180,22 @@ export const module4: Module = {
                 en: 'The same loop draws every segment; only the colour changes, chosen by a small if/else based on the index. The result is a bar where exactly `numerator` out of `denominator` segments stand out.',
                 id: 'Perulangan yang sama menggambar tiap segmen; hanya warnanya yang berubah, dipilih lewat if/else kecil berdasarkan indeksnya. Hasilnya batang yang tepat `pembilang` dari `penyebut` segmennya menonjol.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [30, 130],
+                ySpan: [140, 90],
+                items: [
+                  { t: 'poly', pts: [[40, 100], [58, 100], [58, 130], [40, 130]], color: 'a' },
+                  { t: 'poly', pts: [[60, 100], [78, 100], [78, 130], [60, 130]], color: 'a' },
+                  { t: 'poly', pts: [[80, 100], [98, 100], [98, 130], [80, 130]], color: 'muted' },
+                  { t: 'poly', pts: [[100, 100], [118, 100], [118, 130], [100, 130]], color: 'muted' },
+                ],
+                caption: {
+                  en: 'numerator = 2, denominator = 4 — the first two segments are coloured in, the other two stay grey, exactly as the loop\'s if/else decides for each index i.',
+                  id: 'pembilang = 2, penyebut = 4 — dua segmen pertama diwarnai, dua lainnya tetap abu-abu, persis seperti yang diputuskan if/else perulangannya untuk tiap indeks i.',
+                },
+              },
               code:
                 'def draw(state):\n    numerator, denominator = state["numerator"], state["denominator"]\n    commands = []\n    for i in range(denominator):\n        color = "#437649" if i < numerator else "#e5e5e5"\n        commands.append({"shape": "box", "x": 40 + i * 20, "y": 100, "w": 18, "h": 30, "color": color})\n    return commands\n\nresult = draw({"numerator": 2, "denominator": 4})\nprint(len(result))\nprint([p["color"] for p in result])',
               output: "4\n['#437649', '#437649', '#e5e5e5', '#e5e5e5']",
@@ -382,6 +398,23 @@ export const module4: Module = {
               body: {
                 en: 'For `f(x) = m*x + c`, sampling just three x values and drawing a `line` between each consecutive pair already looks like a straight line — a straight function needs no more points than that to be exact.',
                 id: 'Untuk `f(x) = m*x + c`, mencuplik tiga nilai x saja dan menggambar `line` antar tiap pasangan berurutan sudah terlihat seperti garis lurus — fungsi linear tak butuh titik lebih dari itu untuk tepat.',
+              },
+              figure: {
+                dim: 2,
+                ticks: true,
+                xSpan: [-4, 4],
+                ySpan: [-4, 4],
+                items: [
+                  { t: 'point', at: [-3, -3], color: 'a' },
+                  { t: 'point', at: [0, 0], color: 'a' },
+                  { t: 'point', at: [3, 3], color: 'a' },
+                  { t: 'seg', from: [-3, -3], to: [0, 0], color: 'result' },
+                  { t: 'seg', from: [0, 0], to: [3, 3], color: 'result' },
+                ],
+                caption: {
+                  en: 'In math coordinates, f(x) = x (m = 1, c = 0) samples x = −3, 0, 3 and connects them — a straight line needs no more points than that. The code then converts each of these into screen coordinates before drawing.',
+                  id: 'Dalam koordinat matematis, f(x) = x (m = 1, c = 0) mencuplik x = −3, 0, 3 dan menghubungkannya — garis lurus tak butuh titik lebih dari itu. Kodenya kemudian mengubah tiap titik ini menjadi koordinat layar sebelum menggambarnya.',
+                },
               },
               code:
                 'def draw(state):\n    m, c = state["m"], state["c"]\n    points_x = [-3, 0, 3]\n    points = []\n    for x in points_x:\n        y = m * x + c\n        points.append((160 + x * 20, 120 - y * 20))\n    commands = []\n    for i in range(len(points) - 1):\n        x1, y1 = points[i]\n        x2, y2 = points[i + 1]\n        commands.append({"shape": "line", "x1": x1, "y1": y1, "x2": x2, "y2": y2, "thickness": 2})\n    return commands\n\nprint(draw({"m": 1, "c": 0}))',

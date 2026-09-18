@@ -602,6 +602,28 @@ export const module2: Module = {
                 en: 'Nesting one `for` inside another is how a grid — rows and columns — gets visited. The inner loop finishes completely for every single round of the outer one.',
                 id: 'Menyarangkan satu `for` di dalam yang lain adalah cara sebuah kisi — baris dan kolom — dikunjungi. Perulangan dalam selesai sepenuhnya untuk setiap satu putaran perulangan luar.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                height: 280,
+                items: [
+                  { t: 'poly', pts: [[0.2, 6.4], [3.2, 6.4], [3.2, 9.4], [0.2, 9.4]], color: 'a', label: '1' },
+                  { t: 'poly', pts: [[3.3, 6.4], [6.3, 6.4], [6.3, 9.4], [3.3, 9.4]], color: 'a', label: '2' },
+                  { t: 'poly', pts: [[6.4, 6.4], [9.4, 6.4], [9.4, 9.4], [6.4, 9.4]], color: 'a', label: '3' },
+                  { t: 'poly', pts: [[0.2, 3.3], [3.2, 3.3], [3.2, 6.3], [0.2, 6.3]], color: 'b', label: '2' },
+                  { t: 'poly', pts: [[3.3, 3.3], [6.3, 3.3], [6.3, 6.3], [3.3, 6.3]], color: 'b', label: '4' },
+                  { t: 'poly', pts: [[6.4, 3.3], [9.4, 3.3], [9.4, 6.3], [6.4, 6.3]], color: 'b', label: '6' },
+                  { t: 'poly', pts: [[0.2, 0.2], [3.2, 0.2], [3.2, 3.2], [0.2, 3.2]], color: 'c', label: '3' },
+                  { t: 'poly', pts: [[3.3, 0.2], [6.3, 0.2], [6.3, 3.2], [3.3, 3.2]], color: 'c', label: '6' },
+                  { t: 'poly', pts: [[6.4, 0.2], [9.4, 0.2], [9.4, 3.2], [6.4, 3.2]], color: 'c', label: '9' },
+                ],
+                caption: {
+                  en: 'Each color is one full pass of the outer loop — for row = 1 the inner loop runs col = 1, 2, 3 completely before row ever becomes 2, filling the grid one row at a time.',
+                  id: 'Setiap warna adalah satu putaran penuh perulangan luar — untuk baris = 1, perulangan dalam berjalan kolom = 1, 2, 3 sepenuhnya sebelum baris pernah menjadi 2, mengisi kisi satu baris setiap kalinya.',
+                },
+              },
               code: {
                 en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int row = 1; row <= 3; row++) {\n        for (int col = 1; col <= 3; col++) {\n            cout << row * col << " ";\n        }\n        cout << endl;\n    }\n    return 0;\n}',
                 id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int baris = 1; baris <= 3; baris++) {\n        for (int kolom = 1; kolom <= 3; kolom++) {\n            cout << baris * kolom << " ";\n        }\n        cout << endl;\n    }\n    return 0;\n}',

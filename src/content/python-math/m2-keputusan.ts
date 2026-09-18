@@ -161,6 +161,22 @@ export const module2: Module = {
                 en: 'A number is positive, negative, or exactly zero — three outcomes need `elif` between `if` and `else`. Python checks each condition in order and stops at the first one that is `True`.',
                 id: 'Sebuah bilangan itu positif, negatif, atau tepat nol — tiga hasil butuh `elif` di antara `if` dan `else`. Python memeriksa tiap kondisi berurutan dan berhenti di yang pertama bernilai `True`.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-1, 7],
+                ySpan: [-1, 5],
+                ticks: true,
+                items: [
+                  { t: 'poly', pts: [[0, 0], [6, 0], [2, 4]], color: 'a' },
+                  { t: 'point', at: [0, 0], label: 'A' },
+                  { t: 'point', at: [6, 0], label: 'B' },
+                  { t: 'point', at: [2, 4], label: 'C' },
+                ],
+                caption: {
+                  en: 'Sorting a shape into a category is the same elif shape as sorting a number: check a condition, branch, and stop at the first one that fits — the idea the project ahead asks for.',
+                  id: 'Menggolongkan sebuah bangun ke kategori memakai bentuk elif yang sama seperti menggolongkan bilangan: periksa satu kondisi, bercabang, dan berhenti di yang pertama cocok — ide yang diminta proyek berikutnya.',
+                },
+              },
               code: {
                 en: 'x = -4\nif x > 0:\n    print("Positive")\nelif x < 0:\n    print("Negative")\nelse:\n    print("Zero")',
                 id: 'x = -4\nif x > 0:\n    print("Positif")\nelif x < 0:\n    print("Negatif")\nelse:\n    print("Nol")',
@@ -448,6 +464,25 @@ export const module2: Module = {
                 en: 'A piecewise function is just an elif chain where each branch computes the value a different way. Here: `-x` when `x` is negative, `x**2` when it is under 5, and 25 otherwise.',
                 id: 'Fungsi sepotong-sepotong hanyalah rantai elif yang tiap cabangnya menghitung nilai dengan cara berbeda. Di sini: `-x` kalau `x` negatif, `x**2` kalau di bawah 5, dan 25 selain itu.',
               },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 8],
+                ySpan: [-1, 26],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '-x', from: -4, to: 0, color: 'a', label: '-x' },
+                  { t: 'curve', f: 'x^2', from: 0, to: 5, color: 'b', label: 'x²' },
+                  { t: 'curve', f: '25', from: 5, to: 8, color: 'result', label: '25' },
+                  { t: 'dot', x: 0, y: 0, open: true, color: 'a' },
+                  { t: 'dot', x: 0, y: 0, color: 'b' },
+                  { t: 'dot', x: 5, y: 25, open: true, color: 'b' },
+                  { t: 'dot', x: 5, y: 25, color: 'result' },
+                ],
+                caption: {
+                  en: 'Three branches, three pieces of the same graph: `x < 0` draws the falling line, `x < 5` draws the rising curve, and everything past 5 is flat at 25 — an open dot is where a piece stops short, a filled dot is where the next one takes over.',
+                  id: 'Tiga cabang, tiga potongan dari grafik yang sama: `x < 0` menggambar garis menurun, `x < 5` menggambar kurva menaik, dan segala sesuatu setelah 5 datar di 25 — titik kosong menandai potongan yang berhenti, titik terisi menandai potongan berikutnya yang mengambil alih.',
+                },
+              },
               code: {
                 en: 'x = 7\nif x < 0:\n    result = -x\nelif x < 5:\n    result = x ** 2\nelse:\n    result = 25\nprint(result)',
                 id: 'x = 7\nif x < 0:\n    hasil = -x\nelif x < 5:\n    hasil = x ** 2\nelse:\n    hasil = 25\nprint(hasil)',
@@ -461,6 +496,26 @@ export const module2: Module = {
               body: {
                 en: 'Change only `x` and a different branch runs. `-3` is negative, so it takes the first branch: `-(-3)` is `3`.',
                 id: 'Ubah hanya `x` dan cabang yang berbeda yang berjalan. `-3` negatif, jadi mengambil cabang pertama: `-(-3)` adalah `3`.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-4, 8],
+                ySpan: [-1, 26],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '-x', from: -4, to: 0, color: 'a', label: '-x' },
+                  { t: 'curve', f: 'x^2', from: 0, to: 5, color: 'b', label: 'x²' },
+                  { t: 'curve', f: '25', from: 5, to: 8, color: 'result', label: '25' },
+                  { t: 'dot', x: 0, y: 0, open: true, color: 'a' },
+                  { t: 'dot', x: 0, y: 0, color: 'b' },
+                  { t: 'dot', x: 5, y: 25, open: true, color: 'b' },
+                  { t: 'dot', x: 5, y: 25, color: 'result' },
+                  { t: 'dot', x: -3, y: 3, color: 'result', label: 'x = -3' },
+                ],
+                caption: {
+                  en: 'x = -3 falls on the falling-line piece, where the rule is -x — read the graph there and the answer, 3, is just the height of the marked point.',
+                  id: 'x = -3 jatuh pada potongan garis menurun, tempat aturannya -x — baca grafiknya di sana dan jawabannya, 3, tak lain adalah tinggi titik yang ditandai.',
+                },
               },
               code: {
                 en: 'x = -3\nif x < 0:\n    result = -x\nelif x < 5:\n    result = x ** 2\nelse:\n    result = 25\nprint(result)',

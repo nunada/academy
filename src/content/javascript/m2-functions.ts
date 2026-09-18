@@ -197,6 +197,24 @@ export const module2: Module = {
                 en: 'A name declared inside a function disappears when it ends. That isolation is a feature: two functions can both use `i` without ever colliding. A `{ ... }` block does the same for `let` and `const`.',
                 id: 'Nama yang dideklarasikan di dalam fungsi lenyap saat fungsi itu berakhir. Keterpisahan itu justru keunggulan: dua fungsi bisa sama-sama memakai `i` tanpa pernah bentrok. Blok `{ ... }` melakukan hal sama untuk `let` dan `const`.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 8],
+                items: [
+                  { t: 'poly', pts: [[0.4, 0.6], [4.6, 0.6], [4.6, 6.8], [0.4, 6.8]], color: 'a', label: 'compute()' },
+                  { t: 'poly', pts: [[1.1, 3.2], [3.9, 3.2], [3.9, 4.6], [1.1, 4.6]], color: 'result', label: 'total' },
+                  { t: 'poly', pts: [[5.4, 0.6], [9.6, 0.6], [9.6, 6.8], [5.4, 6.8]], color: 'b', label: 'other()' },
+                  { t: 'poly', pts: [[6.1, 3.2], [8.9, 3.2], [8.9, 4.6], [6.1, 4.6]], color: 'result', label: 'total' },
+                  { t: 'point', at: [5, 7.5], label: 'outside: undefined', color: 'muted' },
+                ],
+                caption: {
+                  en: "Each function's box has its own `total`, invisible to the other and gone once the call ends — outside both boxes, that name never existed.",
+                  id: 'Kotak tiap fungsi punya `total`-nya sendiri, tak terlihat oleh yang lain dan lenyap begitu pemanggilannya berakhir — di luar kedua kotak itu, nama tersebut tak pernah ada.',
+                },
+                height: 260,
+              },
               code: {
                 en: 'function compute() {\n  const total = 99;\n  return total;\n}\n\nconsole.log(compute());\nconsole.log(typeof total);',
                 id: 'function hitung() {\n  const total = 99;\n  return total;\n}\n\nconsole.log(hitung());\nconsole.log(typeof total);',
@@ -407,6 +425,25 @@ export const module2: Module = {
                 en: 'Square brackets, positions from 0, and `length` for how many. `push` adds to the end. Note that an array held in a `const` can still be changed — `const` fixes the name, not the contents.',
                 id: 'Kurung siku, posisi mulai dari 0, dan `length` untuk jumlahnya. `push` menambah di ujung. Perhatikan: array dalam `const` tetap bisa diubah — `const` mengunci namanya, bukan isinya.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 5],
+                items: [
+                  { t: 'poly', pts: [[0.6, 2], [3.0, 2], [3.0, 4], [0.6, 4]], color: 'a', label: '80' },
+                  { t: 'poly', pts: [[3.3, 2], [5.7, 2], [5.7, 4], [3.3, 4]], color: 'a', label: '95' },
+                  { t: 'poly', pts: [[6.0, 2], [8.4, 2], [8.4, 4], [6.0, 4]], color: 'a', label: '70' },
+                  { t: 'point', at: [1.5, 1.3], label: '0', color: 'muted' },
+                  { t: 'point', at: [4.2, 1.3], label: '1', color: 'muted' },
+                  { t: 'point', at: [6.9, 1.3], label: '2', color: 'muted' },
+                ],
+                caption: {
+                  en: 'An array is a fixed row of boxes. Each one is reached only by its position — 0, 1, 2 — never by a name.',
+                  id: 'Array adalah deretan kotak yang tetap. Tiap kotak dijangkau hanya lewat posisinya — 0, 1, 2 — bukan lewat nama.',
+                },
+                height: 260,
+              },
               code: {
                 en: 'const scores = [80, 95, 70];\n\nconsole.log(scores[0]);\nconsole.log(scores.length);\n\nscores.push(60);\nconsole.log(scores);',
                 id: 'const nilai = [80, 95, 70];\n\nconsole.log(nilai[0]);\nconsole.log(nilai.length);\n\nnilai.push(60);\nconsole.log(nilai);',
@@ -421,6 +458,21 @@ export const module2: Module = {
                 en: 'An array says "the third one"; an object says "the one called name". Reach in with a dot. Asking for a key that is not there gives `undefined` rather than an error.',
                 id: 'Array berkata "yang ketiga"; object berkata "yang bernama nama". Jangkau isinya dengan titik. Meminta kunci yang tidak ada memberi `undefined`, bukan error.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 5],
+                items: [
+                  { t: 'poly', pts: [[0.8, 2.7], [4.2, 2.7], [4.2, 4.4], [0.8, 4.4]], color: 'b', label: 'name: "Ani"' },
+                  { t: 'poly', pts: [[5.5, 0.6], [8.9, 0.6], [8.9, 2.3], [5.5, 2.3]], color: 'b', label: 'score: 88' },
+                ],
+                caption: {
+                  en: "An object's boxes carry names, not positions, and sit in no particular order — there is no \"first\" property, only `name` and `score`.",
+                  id: 'Kotak sebuah object membawa nama, bukan posisi, dan tak ada urutan tertentu — tak ada properti "pertama", hanya `name` dan `score`.',
+                },
+                height: 260,
+              },
               code: {
                 en: 'const student = { name: "Ani", score: 88 };\n\nconsole.log(student.name);\nconsole.log(student.city);\n\nstudent.city = "Surabaya";\nconsole.log(student.city);',
                 id: 'const siswa = { nama: "Ani", nilai: 88 };\n\nconsole.log(siswa.nama);\nconsole.log(siswa.kota);\n\nsiswa.kota = "Surabaya";\nconsole.log(siswa.kota);',
@@ -434,6 +486,26 @@ export const module2: Module = {
               body: {
                 en: 'An array of objects is the shape most real data arrives in — a list of records. Everything you know about looping applies to it unchanged.',
                 id: 'Array berisi object adalah bentuk yang paling sering dipakai data nyata — sebuah daftar catatan. Semua yang kamu tahu tentang perulangan berlaku apa adanya di sini.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 8],
+                items: [
+                  { t: 'poly', pts: [[0.3, 0.3], [9.7, 0.3], [9.7, 7.7], [0.3, 7.7]], color: 'muted', label: 'students', labelAt: [5, 7.3] },
+                  { t: 'poly', pts: [[0.9, 0.9], [4.6, 0.9], [4.6, 6.6], [0.9, 6.6]], color: 'b', label: '0' },
+                  { t: 'poly', pts: [[5.4, 0.9], [9.1, 0.9], [9.1, 6.6], [5.4, 6.6]], color: 'b', label: '1' },
+                  { t: 'poly', pts: [[1.3, 4.4], [4.2, 4.4], [4.2, 5.9], [1.3, 5.9]], color: 'a', label: 'name: "Ani"' },
+                  { t: 'poly', pts: [[1.3, 1.6], [4.2, 1.6], [4.2, 3.1], [1.3, 3.1]], color: 'a', label: 'score: 88' },
+                  { t: 'poly', pts: [[5.8, 4.4], [8.7, 4.4], [8.7, 5.9], [5.8, 5.9]], color: 'a', label: 'name: "Budi"' },
+                  { t: 'poly', pts: [[5.8, 1.6], [8.7, 1.6], [8.7, 3.1], [5.8, 3.1]], color: 'a', label: 'score: 65' },
+                ],
+                caption: {
+                  en: 'Two shapes nest at once: the outer array picks a record by position — 0, 1 — then a dot reaches inside that record by name.',
+                  id: 'Dua bentuk bersarang sekaligus: array luar memilih catatan lewat posisi — 0, 1 — lalu titik menjangkau ke dalam catatan itu lewat nama.',
+                },
+                height: 280,
               },
               code: {
                 en: 'const students = [\n  { name: "Ani", score: 88 },\n  { name: "Budi", score: 65 },\n];\n\nfor (const s of students) {\n  console.log(`${s.name}: ${s.score}`);\n}',
@@ -551,6 +623,28 @@ export const module2: Module = {
                 en: '`map` runs your function on every item and collects what it returns. The result always has the same length as the original — that is the promise of `map`.',
                 id: '`map` menjalankan fungsimu pada tiap item dan mengumpulkan apa yang dikembalikannya. Hasilnya selalu sepanjang aslinya — itulah janji `map`.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 6],
+                items: [
+                  { t: 'poly', pts: [[0.4, 4.2], [2.6, 4.2], [2.6, 5.4], [0.4, 5.4]], color: 'a', label: '80' },
+                  { t: 'poly', pts: [[3.9, 4.2], [6.1, 4.2], [6.1, 5.4], [3.9, 5.4]], color: 'a', label: '95' },
+                  { t: 'poly', pts: [[7.4, 4.2], [9.6, 4.2], [9.6, 5.4], [7.4, 5.4]], color: 'a', label: '70' },
+                  { t: 'poly', pts: [[0.4, 0.6], [2.6, 0.6], [2.6, 1.8], [0.4, 1.8]], color: 'result', label: '85' },
+                  { t: 'poly', pts: [[3.9, 0.6], [6.1, 0.6], [6.1, 1.8], [3.9, 1.8]], color: 'result', label: '100' },
+                  { t: 'poly', pts: [[7.4, 0.6], [9.6, 0.6], [9.6, 1.8], [7.4, 1.8]], color: 'result', label: '75' },
+                  { t: 'vec', from: [1.5, 4.2], to: [1.5, 1.8], color: 'muted' },
+                  { t: 'vec', from: [5, 4.2], to: [5, 1.8], color: 'muted' },
+                  { t: 'vec', from: [8.5, 4.2], to: [8.5, 1.8], color: 'muted' },
+                ],
+                caption: {
+                  en: 'Every box moves straight down into a new value at the same position — three in, three out, none dropped.',
+                  id: 'Tiap kotak turun lurus menjadi nilai baru di posisi yang sama — tiga masuk, tiga keluar, tak ada yang hilang.',
+                },
+                height: 260,
+              },
               code: {
                 en: 'const scores = [80, 95, 70];\nconst raised = scores.map((n) => n + 5);\n\nconsole.log(raised);\nconsole.log(scores);',
                 id: 'const nilai = [80, 95, 70];\nconst naik = nilai.map((n) => n + 5);\n\nconsole.log(naik);\nconsole.log(nilai);',
@@ -565,6 +659,29 @@ export const module2: Module = {
                 en: '`filter` keeps the items for which your function returns true. The items themselves are untouched — only how many survive changes.',
                 id: '`filter` menyimpan item yang membuat fungsimu mengembalikan true. Itemnya sendiri tak tersentuh — hanya berapa yang bertahan yang berubah.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 6],
+                items: [
+                  { t: 'poly', pts: [[0.2, 4.2], [2.1, 4.2], [2.1, 5.4], [0.2, 5.4]], color: 'a', label: '80' },
+                  { t: 'poly', pts: [[3, 4.2], [4.9, 4.2], [4.9, 5.4], [3, 5.4]], color: 'a', label: '95' },
+                  { t: 'poly', pts: [[5.8, 4.2], [7.7, 4.2], [7.7, 5.4], [5.8, 5.4]], color: 'a', label: '70' },
+                  { t: 'poly', pts: [[8.6, 4.2], [9.9, 4.2], [9.9, 5.4], [8.6, 5.4]], color: 'muted', label: '45' },
+                  { t: 'poly', pts: [[0.2, 0.6], [2.1, 0.6], [2.1, 1.8], [0.2, 1.8]], color: 'result', label: '80' },
+                  { t: 'poly', pts: [[3, 0.6], [4.9, 0.6], [4.9, 1.8], [3, 1.8]], color: 'result', label: '95' },
+                  { t: 'poly', pts: [[5.8, 0.6], [7.7, 0.6], [7.7, 1.8], [5.8, 1.8]], color: 'result', label: '70' },
+                  { t: 'vec', from: [1.15, 4.2], to: [1.15, 1.8], color: 'muted' },
+                  { t: 'vec', from: [3.95, 4.2], to: [3.95, 1.8], color: 'muted' },
+                  { t: 'vec', from: [6.75, 4.2], to: [6.75, 1.8], color: 'muted' },
+                ],
+                caption: {
+                  en: '45 fails the test and has nowhere to go — the rest pass straight through unchanged, just fewer of them.',
+                  id: '45 gagal uji dan tak punya tempat tujuan — sisanya lolos begitu saja tanpa berubah, hanya jumlahnya yang berkurang.',
+                },
+                height: 260,
+              },
               code: {
                 en: 'const scores = [80, 95, 70, 45];\nconst passed = scores.filter((n) => n >= 70);\n\nconsole.log(passed);\nconsole.log(passed.length);',
                 id: 'const nilai = [80, 95, 70, 45];\nconst lulus = nilai.filter((n) => n >= 70);\n\nconsole.log(lulus);\nconsole.log(lulus.length);',
@@ -578,6 +695,26 @@ export const module2: Module = {
               body: {
                 en: '`reduce` folds a list down to a single value. The first argument is what has been accumulated so far, the second is the current item, and the number at the end is where it starts.',
                 id: '`reduce` melipat sebuah daftar menjadi satu nilai. Argumen pertamanya adalah yang sudah terkumpul, kedua adalah item saat ini, dan angka di akhirnya adalah titik mulainya.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 6],
+                items: [
+                  { t: 'poly', pts: [[0.4, 4.2], [2.6, 4.2], [2.6, 5.4], [0.4, 5.4]], color: 'a', label: '80' },
+                  { t: 'poly', pts: [[3.9, 4.2], [6.1, 4.2], [6.1, 5.4], [3.9, 5.4]], color: 'a', label: '95' },
+                  { t: 'poly', pts: [[7.4, 4.2], [9.6, 4.2], [9.6, 5.4], [7.4, 5.4]], color: 'a', label: '70' },
+                  { t: 'poly', pts: [[3.5, 0.6], [6.5, 0.6], [6.5, 1.8], [3.5, 1.8]], color: 'result', label: '245' },
+                  { t: 'vec', from: [1.5, 4.2], to: [4.6, 1.8], color: 'muted' },
+                  { t: 'vec', from: [5, 4.2], to: [5, 1.8], color: 'muted' },
+                  { t: 'vec', from: [8.5, 4.2], to: [5.4, 1.8], color: 'muted' },
+                ],
+                caption: {
+                  en: 'Every box folds into the same single result — the boxes disappear, only the running total remains.',
+                  id: 'Setiap kotak melipat menjadi satu hasil yang sama — kotaknya lenyap, hanya total berjalan yang tersisa.',
+                },
+                height: 260,
               },
               code: {
                 en: 'const scores = [80, 95, 70];\nconst total = scores.reduce((sum, n) => sum + n, 0);\n\nconsole.log(total);\nconsole.log(total / scores.length);',

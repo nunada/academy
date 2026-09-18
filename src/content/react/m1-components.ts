@@ -196,6 +196,21 @@ export const module1: Module = {
                 en: 'Attributes on your component arrive as one object. Destructuring it in the signature keeps the body readable, and makes the inputs visible at a glance.',
                 id: 'Atribut pada komponenmu tiba sebagai satu object. Membongkarnya di tanda tangan fungsi menjaga badannya tetap terbaca, dan membuat masukannya terlihat sekilas.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 8],
+                items: [
+                  { t: 'poly', pts: [[4, 2], [9.5, 2], [9.5, 6], [4, 6]], color: 'muted', label: 'Greeting' },
+                  { t: 'vec', from: [0.3, 5], to: [4, 5], color: 'a', label: 'name' },
+                  { t: 'vec', from: [0.3, 2.5], to: [4, 2.5], color: 'b', label: 'age' },
+                ],
+                caption: {
+                  en: 'Props arrive from outside and flow into the component — the component only reads them; it never sends anything back out through props.',
+                  id: 'Props tiba dari luar dan mengalir masuk ke dalam komponen — komponennya hanya membacanya; ia tak pernah mengirim apa pun kembali lewat props.',
+                },
+              },
               code: {
                 en: 'function Greeting({ name, age }) {\n  return (\n    <p>\n      {name}, {age} years old\n    </p>\n  );\n}\n\nReactDOM.createRoot(document.querySelector("#root")).render(<Greeting name="Ani" age={17} />);',
                 id: 'function Sapaan({ nama, umur }) {\n  return (\n    <p>\n      {nama}, {umur} tahun\n    </p>\n  );\n}\n\nReactDOM.createRoot(document.querySelector("#root")).render(<Sapaan nama="Ani" umur={17} />);',
@@ -452,6 +467,25 @@ export const module1: Module = {
               body: {
                 en: 'When the list changes, React compares the new elements to the old ones. `key` is how it recognises an item it has seen before, so it can move it rather than rebuild it. Use something stable from the data — an id. The array index works only while nothing is ever inserted, removed or reordered.',
                 id: 'Saat daftarnya berubah, React membandingkan elemen baru dengan yang lama. `key` adalah caranya mengenali item yang pernah ia lihat, sehingga ia bisa memindahkannya alih-alih membangunnya ulang. Pakai sesuatu yang stabil dari datanya — sebuah id. Indeks array hanya aman selama tidak pernah ada penyisipan, penghapusan, atau penyusunan ulang.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[0.3, 7], [3, 7], [3, 9], [0.3, 9]], color: 'a', label: 'Ani · key 1' },
+                  { t: 'poly', pts: [[3.5, 7], [6.2, 7], [6.2, 9], [3.5, 9]], color: 'b', label: 'Budi · key 2' },
+                  { t: 'poly', pts: [[6.7, 7], [9.5, 7], [9.5, 9], [6.7, 9]], color: 'a', label: 'Citra · key 3' },
+                  { t: 'poly', pts: [[0.3, 1], [3, 1], [3, 3], [0.3, 3]], color: 'a', label: 'Ani · key 1' },
+                  { t: 'poly', pts: [[3.5, 1], [6.2, 1], [6.2, 3], [3.5, 3]], color: 'a', label: 'Citra · key 3' },
+                  { t: 'seg', from: [1.65, 7], to: [1.65, 3], color: 'a', dashed: true },
+                  { t: 'seg', from: [8.1, 7], to: [4.85, 3], color: 'a', dashed: true },
+                ],
+                caption: {
+                  en: 'Budi (key 2) is removed. React matches what remains by key, not by slot — Citra moves from the third position into the second, and React recognises it as the same element and moves it rather than rebuilding it.',
+                  id: 'Budi (key 2) dihapus. React mencocokkan yang tersisa berdasarkan key, bukan posisi — Citra pindah dari posisi ketiga ke posisi kedua, dan React mengenalinya sebagai elemen yang sama lalu memindahkannya, bukan membangunnya ulang.',
+                },
               },
               code: {
                 en: 'const students = [\n  { id: 1, name: "Ani" },\n  { id: 2, name: "Budi" },\n];\n\nconst list = students.map((s) => <li key={s.id}>{s.name}</li>);',

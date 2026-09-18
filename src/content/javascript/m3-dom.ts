@@ -164,6 +164,22 @@ export const module3: Module = {
                 en: 'Three steps every time: `createElement` makes the node, you set what it holds, then `append` puts it somewhere. Until it is appended it exists but is nowhere.',
                 id: 'Tiga langkah setiap kali: `createElement` membuat simpulnya, kamu mengisi isinya, lalu `append` menaruhnya di suatu tempat. Sebelum ditempelkan, ia ada tetapi tak berada di mana pun.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 8],
+                items: [
+                  { t: 'poly', pts: [[3, 5], [8.5, 5], [8.5, 7.4], [3, 7.4]], color: 'muted', label: 'ul#list' },
+                  { t: 'poly', pts: [[0.5, 0.6], [5, 0.6], [5, 2.6], [0.5, 2.6]], color: 'a', label: 'li "First item"' },
+                  { t: 'vec', from: [2.75, 2.6], to: [5.5, 5], color: 'a', dashed: true, label: 'append' },
+                ],
+                caption: {
+                  en: 'createElement makes the li box on its own, attached to nothing. append is the one step that moves it inside ul#list.',
+                  id: 'createElement membuat kotak li itu sendirian, tak menempel ke mana pun. append adalah satu-satunya langkah yang memindahkannya ke dalam ul#list.',
+                },
+                height: 280,
+              },
               code: {
                 en: '<ul id="list"></ul>\n\n<script>\n  const li = document.createElement("li");\n  li.textContent = "First item";\n  document.querySelector("#list").append(li);\n</script>',
                 id: '<ul id="daftar"></ul>\n\n<script>\n  const li = document.createElement("li");\n  li.textContent = "Item pertama";\n  document.querySelector("#daftar").append(li);\n</script>',
@@ -404,6 +420,24 @@ export const module3: Module = {
               body: {
                 en: 'A counter declared inside the handler resets on every click. Declare it outside, where it survives between calls — the handler then reads and updates the same variable each time.',
                 id: 'Pencacah yang dideklarasikan di dalam penangannya akan direset setiap klik. Deklarasikan di luar, tempat ia bertahan antar-pemanggilan — penangannya lalu membaca dan memperbarui variabel yang sama setiap kali.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 8],
+                items: [
+                  { t: 'poly', pts: [[0.5, 0.5], [9.5, 0.5], [9.5, 7.5], [0.5, 7.5]], color: 'muted', label: 'script scope', labelAt: [5, 7.1] },
+                  { t: 'poly', pts: [[1.2, 1.2], [4, 1.2], [4, 2.6], [1.2, 2.6]], color: 'result', label: 'count' },
+                  { t: 'poly', pts: [[5.5, 3.6], [9, 3.6], [9, 6.4], [5.5, 6.4]], color: 'a', label: 'click handler' },
+                  { t: 'seg', from: [5.5, 3.9], to: [4, 2.2], color: 'a', label: 'count += 1' },
+                  { t: 'vec', from: [9.7, 7.4], to: [7.25, 6.4], color: 'muted', dashed: true, label: 'click' },
+                ],
+                caption: {
+                  en: 'count lives outside the handler, so it survives between calls — each click re-enters the same handler box and reaches into the same persistent count.',
+                  id: 'count hidup di luar penangannya, sehingga bertahan antar-pemanggilan — tiap klik masuk lagi ke kotak penangan yang sama dan menjangkau count yang sama pula.',
+                },
+                height: 280,
               },
               code: {
                 en: '<button id="add">+1</button>\n<p id="number">0</p>\n\n<script>\n  let count = 0;\n  const number = document.querySelector("#number");\n\n  document.querySelector("#add").addEventListener("click", () => {\n    count += 1;\n    number.textContent = count;\n  });\n</script>',

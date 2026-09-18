@@ -440,6 +440,22 @@ export const module5: Module = {
                 en: 'A variable created inside a function disappears when the function ends. That isolation is a feature — two functions can both use `i` without ever colliding.',
                 id: 'Variabel yang dibuat di dalam fungsi lenyap saat fungsi berakhir. Keterpisahan itu justru keunggulan — dua fungsi bisa sama-sama memakai `i` tanpa pernah bentrok.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 8],
+                items: [
+                  { t: 'poly', pts: [[1, 0.8], [9, 0.8], [9, 5.2], [1, 5.2]], color: 'a', label: 'calculate()', labelAt: [5, 4.85] },
+                  { t: 'poly', pts: [[3, 1.2], [7, 1.2], [7, 2.5], [3, 2.5]], color: 'result', label: 'total = 99' },
+                  { t: 'point', at: [5, 7.6], label: 'outside: NameError', color: 'muted' },
+                ],
+                caption: {
+                  en: 'total lives only inside calculate()\'s box — the moment the function ends, it is gone. Outside, that name never existed.',
+                  id: 'total hanya hidup di dalam kotak calculate() — begitu fungsinya berakhir, ia lenyap. Di luar, nama itu tak pernah ada.',
+                },
+                height: 260,
+              },
               code: {
                 en: 'def calculate():\n    total = 99\n    return total\n\nprint(calculate())\nprint("total" in dir())',
                 id: 'def hitung():\n    total = 99\n    return total\n\nprint(hitung())\nprint("total" in dir())',

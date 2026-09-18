@@ -382,6 +382,22 @@ export const module4: Module = {
                 en: 'A variable is a value sitting in memory, and `&nama` asks for the address it sits at rather than the value itself. A pointer variable, declared with a `*` after its type, is built to hold exactly that kind of address.',
                 id: 'Variabel adalah sebuah nilai yang duduk di memori, dan `&nama` meminta alamat tempatnya duduk, bukan nilainya sendiri. Variabel pointer, dideklarasikan dengan `*` setelah tipenya, dibangun untuk menyimpan persis alamat semacam itu.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 13],
+                ySpan: [0, 7],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[1, 5.3], [5, 5.3], [5, 6.4], [1, 6.4]], color: 'muted', label: 'int' },
+                  { t: 'poly', pts: [[1, 1.5], [5, 1.5], [5, 4.7], [1, 4.7]], color: 'a', label: 'a = 5' },
+                  { t: 'seg', from: [5.3, 3.1], to: [9, 3.1], color: 'b', dashed: true, label: '&a = 0x1004' },
+                ],
+                caption: {
+                  en: 'a is a box sitting somewhere in memory; &a does not read its value, it reads the address of that spot — the number a pointer is built to hold.',
+                  id: 'a adalah kotak yang duduk di suatu tempat di memori; &a tidak membaca nilainya, melainkan alamat tempat itu — angka yang memang dibangun untuk disimpan sebuah pointer.',
+                },
+              },
               code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 5;\n    int *p = &a;\n    cout << *p << endl;\n    return 0;\n}',
               output: '5',
             },
@@ -392,6 +408,22 @@ export const module4: Module = {
               body: {
                 en: 'The same `*` that declares a pointer also dereferences one — used on an existing pointer, `*p` means "the value at the address p holds". Assign to `*p` and you are not changing p, you are reaching through it to change a.',
                 id: '`*` yang sama yang mendeklarasikan pointer juga men-dereferensikannya — dipakai pada pointer yang sudah ada, `*p` berarti "nilai di alamat yang disimpan p". Tetapkan nilai ke `*p` dan kamu bukan mengubah p, kamu menjangkau lewatnya untuk mengubah a.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 13],
+                ySpan: [0, 7],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[1, 1], [5, 1], [5, 4], [1, 4]], color: 'a', label: 'a = 10' },
+                  { t: 'poly', pts: [[8, 1], [12, 1], [12, 4], [8, 4]], color: 'b', label: 'p' },
+                  { t: 'vec', from: [10, 4.3], to: [3, 4.3], color: 'result', label: '*p' },
+                ],
+                caption: {
+                  en: 'p\'s box holds the address of a — the arrow is that address made visible. *p follows the arrow and reaches a itself, so *p = 10 changes a, not p.',
+                  id: 'Kotak p menyimpan alamat a — panahnya adalah alamat itu yang dibuat terlihat. *p mengikuti panah itu dan menjangkau a itu sendiri, jadi *p = 10 mengubah a, bukan p.',
+                },
               },
               code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 5;\n    int *p = &a;\n    *p = 10;\n    cout << a << endl;\n    return 0;\n}',
               output: '10',
@@ -467,6 +499,25 @@ export const module4: Module = {
                 en: 'A function normally works on copies of what it is handed — changing a parameter inside the function never reaches the caller\'s own variable. This is easy to see by trying to swap two numbers the plain way, and watching it fail.',
                 id: 'Sebuah fungsi biasanya bekerja pada salinan dari apa yang diberikan padanya — mengubah parameter di dalam fungsi tak pernah menjangkau variabel milik pemanggil sendiri. Ini mudah dilihat dengan mencoba menukar dua angka dengan cara biasa, dan menyaksikannya gagal.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 13],
+                ySpan: [0, 9],
+                height: 280,
+                items: [
+                  { t: 'poly', pts: [[1, 6], [5, 6], [5, 8.2], [1, 8.2]], color: 'muted', label: 'x = 5 (main)' },
+                  { t: 'poly', pts: [[7, 6], [11, 6], [11, 8.2], [7, 8.2]], color: 'muted', label: 'y = 10 (main)' },
+                  { t: 'poly', pts: [[1, 1], [5, 1], [5, 3.2], [1, 3.2]], color: 'a', label: 'a (copy)' },
+                  { t: 'poly', pts: [[7, 1], [11, 1], [11, 3.2], [7, 3.2]], color: 'b', label: 'b (copy)' },
+                  { t: 'seg', from: [3, 6], to: [3, 3.2], color: 'muted', dashed: true, label: 'copied in' },
+                  { t: 'seg', from: [9, 6], to: [9, 3.2], color: 'muted', dashed: true, label: 'copied in' },
+                ],
+                caption: {
+                  en: 'failedSwap\'s a and b are filled once, at the call, then cut loose from x and y — swapping the copies below never travels back up to main\'s own boxes.',
+                  id: 'a dan b milik gagalTukar diisi sekali, saat pemanggilan, lalu terlepas dari x dan y — menukar salinan di bawah tak pernah menjalar kembali ke kotak milik main sendiri.',
+                },
+              },
               code: {
                 en: '#include <iostream>\nusing namespace std;\n\nvoid failedSwap(int a, int b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n\nint main() {\n    int x = 5, y = 10;\n    failedSwap(x, y);\n    cout << x << " " << y << endl;\n    return 0;\n}',
                 id: '#include <iostream>\nusing namespace std;\n\nvoid gagalTukar(int a, int b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n\nint main() {\n    int x = 5, y = 10;\n    gagalTukar(x, y);\n    cout << x << " " << y << endl;\n    return 0;\n}',
@@ -480,6 +531,25 @@ export const module4: Module = {
               body: {
                 en: 'Hand the function the addresses instead, with `int *a`, and `*a` inside it reaches straight back to the caller\'s variable. Now the swap actually happens where it is supposed to.',
                 id: 'Berikan fungsinya alamat-alamatnya, dengan `int *a`, dan `*a` di dalamnya menjangkau langsung balik ke variabel milik pemanggil. Kini pertukarannya benar-benar terjadi di tempat yang seharusnya.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 13],
+                ySpan: [0, 9],
+                height: 280,
+                items: [
+                  { t: 'poly', pts: [[1, 6], [5, 6], [5, 8.2], [1, 8.2]], color: 'muted', label: 'x = 5 (main)' },
+                  { t: 'poly', pts: [[7, 6], [11, 6], [11, 8.2], [7, 8.2]], color: 'muted', label: 'y = 10 (main)' },
+                  { t: 'poly', pts: [[1, 1], [5, 1], [5, 3.2], [1, 3.2]], color: 'a', label: 'a (points at x)' },
+                  { t: 'poly', pts: [[7, 1], [11, 1], [11, 3.2], [7, 3.2]], color: 'b', label: 'b (points at y)' },
+                  { t: 'vec', from: [3, 3.2], to: [3, 6], color: 'result', label: '*a' },
+                  { t: 'vec', from: [9, 3.2], to: [9, 6], color: 'result', label: '*b' },
+                ],
+                caption: {
+                  en: 'This time a and b are pointers, so the arrows stay live after the call — *a and *b reach straight up to main\'s own x and y, and swap really swaps them.',
+                  id: 'Kali ini a dan b adalah pointer, sehingga panahnya tetap hidup setelah pemanggilan — *a dan *b menjangkau langsung ke x dan y milik main sendiri, dan tukar benar-benar menukarnya.',
+                },
               },
               code: {
                 en: '#include <iostream>\nusing namespace std;\n\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\n\nint main() {\n    int x = 5, y = 10;\n    swap(&x, &y);\n    cout << x << " " << y << endl;\n    return 0;\n}',
@@ -568,6 +638,29 @@ export const module4: Module = {
               body: {
                 en: 'This is why `int arr[]` and `int *arr` work identically as a function parameter — both hold the address of the array\'s first element, and `arr[i]` means the same thing either way.',
                 id: 'Inilah sebabnya `int arr[]` dan `int *arr` bekerja sama persis sebagai parameter fungsi — keduanya menyimpan alamat elemen pertama array-nya, dan `arr[i]` berarti hal yang sama pada keduanya.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 16],
+                ySpan: [0, 8],
+                height: 280,
+                items: [
+                  { t: 'poly', pts: [[1, 5], [4.2, 5], [4.2, 7], [1, 7]], color: 'b', label: 'arr' },
+                  { t: 'poly', pts: [[5, 1.2], [7.2, 1.2], [7.2, 3.7], [5, 3.7]], color: 'a', label: '2' },
+                  { t: 'poly', pts: [[7.5, 1.2], [9.7, 1.2], [9.7, 3.7], [7.5, 3.7]], color: 'a', label: '4' },
+                  { t: 'poly', pts: [[10, 1.2], [12.2, 1.2], [12.2, 3.7], [10, 3.7]], color: 'a', label: '6' },
+                  { t: 'poly', pts: [[12.5, 1.2], [14.7, 1.2], [14.7, 3.7], [12.5, 3.7]], color: 'a', label: '8' },
+                  { t: 'poly', pts: [[5, 0.2], [7.2, 0.2], [7.2, 1], [5, 1]], color: 'muted', label: '[0]' },
+                  { t: 'poly', pts: [[7.5, 0.2], [9.7, 0.2], [9.7, 1], [7.5, 1]], color: 'muted', label: '[1]' },
+                  { t: 'poly', pts: [[10, 0.2], [12.2, 0.2], [12.2, 1], [10, 1]], color: 'muted', label: '[2]' },
+                  { t: 'poly', pts: [[12.5, 0.2], [14.7, 0.2], [14.7, 1], [12.5, 1]], color: 'muted', label: '[3]' },
+                  { t: 'vec', from: [2.5, 5], to: [6.1, 3.7], color: 'result', label: 'arr[0]' },
+                ],
+                caption: {
+                  en: 'arr never carries the array around — it holds only the address of the first box, values[0]; arr[i] steps that many boxes further along the same row.',
+                  id: 'arr tak pernah membawa array itu sekeliling — ia hanya menyimpan alamat kotak pertama, nilai[0]; arr[i] melangkah sejauh itu ke kotak lebih jauh di baris yang sama.',
+                },
               },
               code: {
                 en: '#include <iostream>\nusing namespace std;\n\nint sum(int *arr, int n) {\n    int total = 0;\n    for (int i = 0; i < n; i++) {\n        total += arr[i];\n    }\n    return total;\n}\n\nint main() {\n    int values[4] = {2, 4, 6, 8};\n    cout << sum(values, 4) << endl;\n    return 0;\n}',

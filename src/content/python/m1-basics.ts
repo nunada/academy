@@ -306,6 +306,22 @@ export const module1: Module = {
                 en: 'Three types cover most beginner work: `str` for text (in quotes), `int` for whole numbers, `float` for decimals. Quotes are what make it text — `"7"` is not the number 7.',
                 id: 'Tiga tipe menutupi hampir semua pekerjaan pemula: `str` untuk teks (dalam kutip), `int` untuk bilangan bulat, `float` untuk desimal. Tanda kutiplah yang membuatnya teks — `"7"` bukan angka 7.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 5],
+                items: [
+                  { t: 'poly', pts: [[0.4, 1], [3.2, 1], [3.2, 3.5], [0.4, 3.5]], color: 'a', label: 'name = "Ani"' },
+                  { t: 'poly', pts: [[3.6, 1], [6.4, 1], [6.4, 3.5], [3.6, 3.5]], color: 'b', label: 'age = 17' },
+                  { t: 'poly', pts: [[6.8, 1], [9.6, 1], [9.6, 3.5], [6.8, 3.5]], color: 'result', label: 'height = 1.62' },
+                ],
+                caption: {
+                  en: 'Three boxes, three different kinds of value inside — str, int, float — but each name still just points at one value.',
+                  id: 'Tiga kotak, tiga jenis nilai berbeda di dalamnya — str, int, float — tetapi tiap nama tetap hanya menunjuk ke satu nilai.',
+                },
+                height: 240,
+              },
               code: {
                 en: 'name = "Ani"      # str\nage = 17          # int\nheight = 1.62     # float\nprint(name, age, height)',
                 id: 'nama = "Ani"      # str\numur = 17         # int\ntinggi = 1.62     # float\nprint(nama, umur, tinggi)',
@@ -526,6 +542,22 @@ export const module1: Module = {
               body: {
                 en: 'Wrap the input in `int()` for a whole number or `float()` for a decimal, and the maths behaves.',
                 id: 'Bungkus input dengan `int()` untuk bilangan bulat atau `float()` untuk desimal, maka hitungannya benar.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 6],
+                items: [
+                  { t: 'poly', pts: [[0.5, 2], [4.5, 2], [4.5, 4], [0.5, 4]], color: 'muted', label: 'input() -> "20" (str)' },
+                  { t: 'vec', from: [4.7, 3], to: [5.7, 3], color: 'a' },
+                  { t: 'poly', pts: [[5.9, 2], [9.5, 2], [9.5, 4], [5.9, 4]], color: 'result', label: 'int(...) -> 20 (int)' },
+                ],
+                caption: {
+                  en: 'int() converts the text "20" into the number 20 — same value, different type, and now `+ 1` does real arithmetic.',
+                  id: 'int() mengonversi teks "20" menjadi angka 20 — nilai sama, tipe berbeda, dan sekarang `+ 1` benar-benar menghitung.',
+                },
+                height: 220,
               },
               code: { en: 'age = int(input("Age: "))\nprint(age + 1)', id: 'umur = int(input("Umur: "))\nprint(umur + 1)' },
               output: { en: 'Age: 20\n21', id: 'Umur: 20\n21' },

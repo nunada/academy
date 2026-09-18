@@ -35,6 +35,23 @@ export const module2: Module = {
                 en: 'A matrix is a list of lists — each inner list is one row. `np.array([[1, 2], [3, 4]])` makes a 2-by-2 matrix, and it prints with one row per line, brackets nested to show the structure.',
                 id: 'Matriks adalah list berisi list — tiap list dalamnya satu baris. `np.array([[1, 2], [3, 4]])` membuat matriks 2 kali 2, dan dicetak dengan satu baris per baris teks, kurungnya bersarang menunjukkan strukturnya.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 4],
+                ySpan: [0, 4],
+                height: 220,
+                items: [
+                  { t: 'poly', pts: [[0, 2], [2, 2], [2, 4], [0, 4]], color: 'a', label: '1' },
+                  { t: 'poly', pts: [[2, 2], [4, 2], [4, 4], [2, 4]], color: 'a', label: '2' },
+                  { t: 'poly', pts: [[0, 0], [2, 0], [2, 2], [0, 2]], color: 'b', label: '3' },
+                  { t: 'poly', pts: [[2, 0], [4, 0], [4, 2], [2, 2]], color: 'b', label: '4' },
+                ],
+                caption: {
+                  en: 'Two rows of the list, two boxes each — the top row [1, 2] and the bottom row [3, 4], exactly as np.array([[1, 2], [3, 4]]) was written.',
+                  id: 'Dua baris dari list, dua kotak masing-masing — baris atas [1, 2] dan baris bawah [3, 4], persis seperti np.array([[1, 2], [3, 4]]) dituliskan.',
+                },
+              },
               code: 'import numpy as np\nA = np.array([[1, 2], [3, 4]])\nprint(A)',
               output: '[[1 2]\n [3 4]]',
             },
@@ -45,6 +62,33 @@ export const module2: Module = {
               body: {
                 en: '`.T` transposes a matrix — every row becomes a column, and every column becomes a row. A 2-by-3 matrix transposes into a 3-by-2 one.',
                 id: '`.T` mentransposisikan matriks — tiap baris menjadi kolom, dan tiap kolom menjadi baris. Matriks 2 kali 3 bertransposisi menjadi 3 kali 2.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 9],
+                ySpan: [0, 4],
+                height: 240,
+                items: [
+                  // A, 2 rows by 3 columns — colored by column so the swap below is visible.
+                  { t: 'poly', pts: [[0, 2], [1, 2], [1, 3], [0, 3]], color: 'a', label: '1' },
+                  { t: 'poly', pts: [[1, 2], [2, 2], [2, 3], [1, 3]], color: 'b', label: '2' },
+                  { t: 'poly', pts: [[2, 2], [3, 2], [3, 3], [2, 3]], color: 'c', label: '3' },
+                  { t: 'poly', pts: [[0, 1], [1, 1], [1, 2], [0, 2]], color: 'a', label: '4' },
+                  { t: 'poly', pts: [[1, 1], [2, 1], [2, 2], [1, 2]], color: 'b', label: '5' },
+                  { t: 'poly', pts: [[2, 1], [3, 1], [3, 2], [2, 2]], color: 'c', label: '6' },
+                  // A.T, 3 rows by 2 columns — each of A's columns is now one row.
+                  { t: 'poly', pts: [[6, 2], [7, 2], [7, 3], [6, 3]], color: 'a', label: '1' },
+                  { t: 'poly', pts: [[7, 2], [8, 2], [8, 3], [7, 3]], color: 'a', label: '4' },
+                  { t: 'poly', pts: [[6, 1], [7, 1], [7, 2], [6, 2]], color: 'b', label: '2' },
+                  { t: 'poly', pts: [[7, 1], [8, 1], [8, 2], [7, 2]], color: 'b', label: '5' },
+                  { t: 'poly', pts: [[6, 0], [7, 0], [7, 1], [6, 1]], color: 'c', label: '3' },
+                  { t: 'poly', pts: [[7, 0], [8, 0], [8, 1], [7, 1]], color: 'c', label: '6' },
+                ],
+                caption: {
+                  en: 'A on the left, A.T on the right. Each color was one column of A — in A.T that same column has become a row, laid out sideways.',
+                  id: 'A di kiri, A.T di kanan. Tiap warna dulunya satu kolom A — pada A.T kolom yang sama itu telah menjadi baris, terbaring menyamping.',
+                },
               },
               code: 'import numpy as np\nA = np.array([[1, 2, 3], [4, 5, 6]])\nprint(A.T)',
               output: '[[1 4]\n [2 5]\n [3 6]]',
@@ -151,6 +195,26 @@ export const module2: Module = {
               body: {
                 en: '`[[2, 0], [0, 2]]` doubles both coordinates of any point it is applied to — a scaling transformation. The matrix\'s numbers decide exactly what happens to a point; changing them changes the transformation.',
                 id: '`[[2, 0], [0, 2]]` menggandakan kedua koordinat titik mana pun yang dikenainya — transformasi penskalaan. Angka-angka pada matriksnya menentukan persis apa yang terjadi pada sebuah titik; mengubahnya mengubah transformasinya.',
+              },
+              figure: {
+                dim: 2,
+                range: 6,
+                ticks: true,
+                items: [
+                  { t: 'point', at: [1, 1], label: 'P', color: 'a' },
+                  { t: 'point', at: [2, 1], label: 'Q', color: 'a' },
+                  { t: 'point', at: [1, 2], label: 'R', color: 'a' },
+                  { t: 'point', at: [2, 2], label: "P'", color: 'result' },
+                  { t: 'point', at: [4, 2], label: "Q'", color: 'result' },
+                  { t: 'point', at: [2, 4], label: "R'", color: 'result' },
+                  { t: 'seg', from: [1, 1], to: [2, 2], color: 'muted', dashed: true },
+                  { t: 'seg', from: [2, 1], to: [4, 2], color: 'muted', dashed: true },
+                  { t: 'seg', from: [1, 2], to: [2, 4], color: 'muted', dashed: true },
+                ],
+                caption: {
+                  en: 'Three points before the transform (blue) and after A @ v with A = [[2, 0], [0, 2]] (green) — every point moves straight outward from the origin, twice as far.',
+                  id: 'Tiga titik sebelum transformasi (biru) dan sesudah A @ v dengan A = [[2, 0], [0, 2]] (hijau) — tiap titik bergerak lurus menjauhi titik asal, dua kali lebih jauh.',
+                },
               },
               code: 'import numpy as np\nA = np.array([[2, 0], [0, 2]])\nv = np.array([3, 4])\nprint(A @ v)',
               output: '[6 8]',
@@ -285,6 +349,21 @@ export const module2: Module = {
               body: {
                 en: '`2x + y = 5` and `x + 3y = 10` become a matrix of coefficients and a vector of right-hand sides: `A = [[2, 1], [1, 3]]`, `b = [5, 10]`. `np.linalg.solve(A, b)` finds `x` and `y` directly — no substitution, no elimination by hand.',
                 id: '`2x + y = 5` dan `x + 3y = 10` menjadi matriks koefisien dan vektor ruas kanan: `A = [[2, 1], [1, 3]]`, `b = [5, 10]`. `np.linalg.solve(A, b)` langsung mencari `x` dan `y` — tanpa substitusi, tanpa eliminasi manual.',
+              },
+              figure: {
+                dim: 2,
+                xSpan: [-1, 6],
+                ySpan: [-1, 6],
+                ticks: true,
+                items: [
+                  { t: 'curve', f: '5-2*x', color: 'a', label: '2x+y=5' },
+                  { t: 'curve', f: '(10-x)/3', color: 'b', label: 'x+3y=10' },
+                  { t: 'dot', x: 1, y: 3, color: 'result', label: '(1, 3)' },
+                ],
+                caption: {
+                  en: 'Each equation is a line; np.linalg.solve finds exactly the one point both lines agree on — where they cross.',
+                  id: 'Tiap persamaan adalah sebuah garis; np.linalg.solve mencari tepat satu titik yang disepakati kedua garis — tempat keduanya berpotongan.',
+                },
               },
               code: 'import numpy as np\nA = np.array([[2, 1], [1, 3]])\nb = np.array([5, 10])\nhasil = np.linalg.solve(A, b)\nprint(hasil)',
               output: '[1. 3.]',

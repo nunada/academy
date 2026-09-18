@@ -735,6 +735,22 @@ export const module3: Module = {
                 en: 'For `{ name: string; age: number }`, `keyof` that type is `"name" | "age"` — a literal union, worked out from the shape rather than typed out again. Rename a property and the union follows; nothing gets left behind.',
                 id: 'Untuk `{ nama: string; umur: number }`, `keyof` dari tipe itu adalah `"nama" | "umur"` — union literal, dihitung dari bentuknya alih-alih diketik ulang. Ganti nama sebuah properti dan union-nya ikut; tak ada yang tertinggal.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 14],
+                ySpan: [0, 5],
+                items: [
+                  { t: 'poly', pts: [[0.5, 1], [6, 1], [6, 4], [0.5, 4]], color: 'a', label: 'name: string; age: number' },
+                  { t: 'vec', from: [6, 2.5], to: [8.7, 2.5], color: 'result', label: 'keyof' },
+                  { t: 'poly', pts: [[9, 2.9], [10.7, 2.9], [10.7, 4], [9, 4]], color: 'b', label: '"name"' },
+                  { t: 'poly', pts: [[11, 2.9], [12.7, 2.9], [12.7, 4], [11, 4]], color: 'c', label: '"age"' },
+                ],
+                caption: {
+                  en: 'keyof Person reaches into the box and pulls out just the field names, as their own small union — one box per key, nothing else.',
+                  id: 'keyof Orang menjangkau ke dalam kotak dan menarik keluar hanya nama-nama field-nya, sebagai union kecil tersendiri — satu kotak per kunci, tak ada yang lain.',
+                },
+              },
               code: {
                 en:
                   'interface Person { name: string; age: number }\n\n' +

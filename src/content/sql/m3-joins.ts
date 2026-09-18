@@ -124,6 +124,33 @@ export const module3: Module = {
                 en: '`JOIN` names the second table and `ON` says how a row in one lines up with a row in the other. The result has the columns of both. Rows with no partner on either side are simply not there — that is what makes it an **inner** join.',
                 id: '`JOIN` menyebut tabel keduanya dan `ON` menyatakan bagaimana satu baris di sini berpasangan dengan satu baris di sana. Hasilnya memuat kolom dari keduanya. Baris yang tak punya pasangan di salah satu sisi sekadar tidak ada — itulah yang membuatnya join **dalam**.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 15],
+                ySpan: [0, 8],
+                height: 240,
+                items: [
+                  { t: 'poly', pts: [[0, 6.4], [3.5, 6.4], [3.5, 7.6], [0, 7.6]], color: 'muted', label: 'name' },
+                  { t: 'poly', pts: [[3.5, 6.4], [6, 6.4], [6, 7.6], [3.5, 7.6]], color: 'muted', label: 'class_id' },
+                  { t: 'poly', pts: [[0, 3.6], [3.5, 3.6], [3.5, 5.6], [0, 5.6]], color: 'a', label: 'Adi' },
+                  { t: 'poly', pts: [[3.5, 3.6], [6, 3.6], [6, 5.6], [3.5, 5.6]], color: 'a', label: '1' },
+                  { t: 'poly', pts: [[0, 1.0], [3.5, 1.0], [3.5, 3.0], [0, 3.0]], color: 'b', label: 'Candra' },
+                  { t: 'poly', pts: [[3.5, 1.0], [6, 1.0], [6, 3.0], [3.5, 3.0]], color: 'b', label: '2' },
+                  { t: 'poly', pts: [[9, 6.4], [11, 6.4], [11, 7.6], [9, 7.6]], color: 'muted', label: 'id' },
+                  { t: 'poly', pts: [[11, 6.4], [14.5, 6.4], [14.5, 7.6], [11, 7.6]], color: 'muted', label: 'class' },
+                  { t: 'poly', pts: [[9, 3.6], [11, 3.6], [11, 5.6], [9, 5.6]], color: 'a', label: '1' },
+                  { t: 'poly', pts: [[11, 3.6], [14.5, 3.6], [14.5, 5.6], [11, 5.6]], color: 'a', label: 'X-A' },
+                  { t: 'poly', pts: [[9, 1.0], [11, 1.0], [11, 3.0], [9, 3.0]], color: 'b', label: '2' },
+                  { t: 'poly', pts: [[11, 1.0], [14.5, 1.0], [14.5, 3.0], [11, 3.0]], color: 'b', label: 'X-B' },
+                  { t: 'seg', from: [6, 4.6], to: [9, 4.6], color: 'a' },
+                  { t: 'seg', from: [6, 2.0], to: [9, 2.0], color: 'b' },
+                ],
+                caption: {
+                  en: 'ON lines up a value in one table\'s key column with the matching value in the other\'s — here, `class_id` on the left with `id` on the right.',
+                  id: 'ON menjajarkan sebuah nilai di kolom kunci tabel yang satu dengan nilai yang cocok di tabel lainnya — di sini, `class_id` di kiri dengan `id` di kanan.',
+                },
+              },
               code: {
                 en:
                   'SELECT student.name, class.name, class.teacher\n' +
@@ -705,6 +732,32 @@ export const module3: Module = {
               body: {
                 en: 'A `LEFT JOIN` returns every row of the left table whether or not it found a partner. When there is no partner, the right table\'s columns come back as `NULL`. Nothing is lost — and "zero" becomes something you can see rather than something that vanished.',
                 id: '`LEFT JOIN` mengembalikan tiap baris tabel kiri, berpasangan atau tidak. Ketika tak ada pasangan, kolom tabel kanannya kembali sebagai `NULL`. Tak ada yang hilang — dan "nol" jadi sesuatu yang bisa kamu lihat, bukan sesuatu yang lenyap.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 15],
+                ySpan: [0, 8],
+                height: 240,
+                items: [
+                  { t: 'poly', pts: [[0, 6.4], [2, 6.4], [2, 7.6], [0, 7.6]], color: 'muted', label: 'id' },
+                  { t: 'poly', pts: [[2, 6.4], [6, 6.4], [6, 7.6], [2, 7.6]], color: 'muted', label: 'class' },
+                  { t: 'poly', pts: [[0, 3.6], [2, 3.6], [2, 5.6], [0, 5.6]], color: 'a', label: '1' },
+                  { t: 'poly', pts: [[2, 3.6], [6, 3.6], [6, 5.6], [2, 5.6]], color: 'a', label: 'X-A' },
+                  { t: 'poly', pts: [[0, 1.0], [2, 1.0], [2, 3.0], [0, 3.0]], color: 'muted', label: '3' },
+                  { t: 'poly', pts: [[2, 1.0], [6, 1.0], [6, 3.0], [2, 3.0]], color: 'muted', label: 'X-C' },
+                  { t: 'poly', pts: [[9, 6.4], [12.5, 6.4], [12.5, 7.6], [9, 7.6]], color: 'muted', label: 'student' },
+                  { t: 'poly', pts: [[12.5, 6.4], [14.5, 6.4], [14.5, 7.6], [12.5, 7.6]], color: 'muted', label: 'class_id' },
+                  { t: 'poly', pts: [[9, 3.6], [12.5, 3.6], [12.5, 5.6], [9, 5.6]], color: 'a', label: 'Adi' },
+                  { t: 'poly', pts: [[12.5, 3.6], [14.5, 3.6], [14.5, 5.6], [12.5, 5.6]], color: 'a', label: '1' },
+                  { t: 'poly', pts: [[9, 1.0], [12.5, 1.0], [12.5, 3.0], [9, 3.0]], color: 'muted', label: '(none)' },
+                  { t: 'poly', pts: [[12.5, 1.0], [14.5, 1.0], [14.5, 3.0], [12.5, 3.0]], color: 'muted', label: 'NULL' },
+                  { t: 'seg', from: [6, 4.6], to: [9, 4.6], color: 'a' },
+                ],
+                caption: {
+                  en: 'X-A found a student, so a matching line joins the two rows. X-C found none — it still gets a row on the right, but empty, with no line to draw.',
+                  id: 'X-A menemukan seorang siswa, jadi ada garis yang menghubungkan kedua barisnya. X-C tak menemukan siapa pun — ia tetap dapat baris di kanan, tapi kosong, tanpa garis yang bisa digambar.',
+                },
               },
               code: {
                 en: 'SELECT k.name AS class, s.name AS student\nFROM class k\nLEFT JOIN student s ON s.class_id = k.id;',

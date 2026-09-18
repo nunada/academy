@@ -76,6 +76,24 @@ export const module1: Module = {
                 en: 'The field is 320 across and 240 down, with `(0, 0)` at the **top left**. So `y` grows downwards — a smaller `y` is higher on the screen. Every graphics system does this, and it catches everybody once.',
                 id: 'Lapangannya 320 melintang dan 240 menurun, dengan `(0, 0)` di **kiri atas**. Jadi `y` bertambah ke bawah — `y` yang lebih kecil berarti lebih tinggi di layar. Tiap sistem grafis melakukan ini, dan ia menjebak semua orang sekali.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 320],
+                ySpan: [240, 0],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[0, 0], [320, 0], [320, 240], [0, 240]], color: 'muted', label: '320 x 240', labelAt: [160, 120] },
+                  { t: 'vec', from: [0, 0], to: [80, 0], color: 'a', label: 'x' },
+                  { t: 'vec', from: [0, 0], to: [0, 80], color: 'b', label: 'y' },
+                  { t: 'point', at: [0, 0], label: '(0, 0)' },
+                  { t: 'point', at: [320, 240], label: '(320, 240)' },
+                ],
+                caption: {
+                  en: 'x still grows to the right, but y grows DOWN the screen — the y arrow points toward the bottom because that is where a bigger y lands. (0, 0) is the top left corner; (320, 240) is the bottom right.',
+                  id: 'x tetap bertambah ke kanan, tetapi y bertambah ke BAWAH layar — panah y menunjuk ke bawah karena di sanalah y yang lebih besar berada. (0, 0) adalah sudut kiri atas; (320, 240) adalah sudut kanan bawah.',
+                },
+              },
               code:
                 '(0, 0) ---------------- (320, 0)\n' +
                 '  |                        |\n' +

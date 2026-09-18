@@ -336,6 +336,23 @@ export const module4: Module = {
                 en: '`factorial(3)` calls `factorial(2)`, which calls `factorial(1)`, which calls `factorial(0)` — that last one hits the base case and returns 1 without calling anything further. Then each waiting call multiplies and returns: 1, then 1, then 2, then 6.',
                 id: '`faktorial(3)` memanggil `faktorial(2)`, yang memanggil `faktorial(1)`, yang memanggil `faktorial(0)` — yang terakhir itu mencapai kasus dasar dan mengembalikan 1 tanpa memanggil apa pun lagi. Lalu tiap pemanggilan yang menunggu mengalikan dan mengembalikan: 1, lalu 1, lalu 2, lalu 6.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                height: 320,
+                items: [
+                  { t: 'poly', pts: [[2, 0.5], [8, 0.5], [8, 2], [2, 2]], color: 'muted', label: 'factorial(0) -> 1' },
+                  { t: 'poly', pts: [[2, 2.3], [8, 2.3], [8, 3.8], [2, 3.8]], color: 'a', label: 'factorial(1) -> 1*1' },
+                  { t: 'poly', pts: [[2, 4.1], [8, 4.1], [8, 5.6], [2, 5.6]], color: 'a', label: 'factorial(2) -> 2*1' },
+                  { t: 'poly', pts: [[2, 5.9], [8, 5.9], [8, 7.4], [2, 7.4]], color: 'result', label: 'factorial(3) -> 3*2' },
+                ],
+                caption: {
+                  en: 'Each call waits on the one below it — factorial(0) is the only one that returns without calling anything, and the answer climbs back up as each waiting call finishes its multiplication.',
+                  id: 'Tiap pemanggilan menunggu yang di bawahnya — faktorial(0) satu-satunya yang mengembalikan tanpa memanggil apa pun, dan jawabannya naik kembali seiring tiap pemanggilan yang menunggu menyelesaikan perkaliannya.',
+                },
+              },
               code: {
                 en: 'def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(3))\nprint(factorial(0))',
                 id: 'def faktorial(n):\n    if n == 0:\n        return 1\n    return n * faktorial(n - 1)\n\nprint(faktorial(3))\nprint(faktorial(0))',
@@ -447,6 +464,28 @@ export const module4: Module = {
               body: {
                 en: 'Each Fibonacci number is the sum of the two before it — so this function calls itself **twice**. It needs a base case for both `0` and `1`, which `n <= 1` covers in one condition.',
                 id: 'Tiap bilangan Fibonacci adalah jumlah dua bilangan sebelumnya — jadi fungsi ini memanggil dirinya sendiri **dua kali**. Ia butuh kasus dasar untuk `0` maupun `1`, yang dicakup `n <= 1` dalam satu kondisi.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 12],
+                ySpan: [0, 10],
+                height: 300,
+                items: [
+                  { t: 'poly', pts: [[4.5, 7.5], [7.5, 7.5], [7.5, 9], [4.5, 9]], color: 'result', label: 'fib(3)' },
+                  { t: 'poly', pts: [[1, 4.5], [4, 4.5], [4, 6], [1, 6]], color: 'a', label: 'fib(2)' },
+                  { t: 'poly', pts: [[8, 4.5], [11, 4.5], [11, 6], [8, 6]], color: 'muted', label: 'fib(1) -> 1' },
+                  { t: 'poly', pts: [[0, 1.5], [2.5, 1.5], [2.5, 3], [0, 3]], color: 'muted', label: 'fib(1) -> 1' },
+                  { t: 'poly', pts: [[3, 1.5], [5.5, 1.5], [5.5, 3], [3, 3]], color: 'muted', label: 'fib(0) -> 0' },
+                  { t: 'seg', from: [6, 7.5], to: [2.5, 6], color: 'muted' },
+                  { t: 'seg', from: [6, 7.5], to: [9.5, 6], color: 'muted' },
+                  { t: 'seg', from: [2.5, 4.5], to: [1.25, 3], color: 'muted' },
+                  { t: 'seg', from: [2.5, 4.5], to: [4.25, 3], color: 'muted' },
+                ],
+                caption: {
+                  en: 'fib(n - 1) + fib(n - 2) is two calls, not one — so the calls branch into a tree instead of stacking straight down, here shown for the smaller case fib(3). Every branch still ends at a base case, fib(1) or fib(0).',
+                  id: 'fib(n - 1) + fib(n - 2) adalah dua pemanggilan, bukan satu — jadi pemanggilannya bercabang menjadi pohon, bukan bertumpuk lurus ke bawah, di sini ditunjukkan untuk kasus lebih kecil fib(3). Tiap cabang tetap berakhir di kasus dasar, fib(1) atau fib(0).',
+                },
               },
               code: 'def fib(n):\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nprint(fib(6))',
               output: '8',

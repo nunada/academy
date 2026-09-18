@@ -71,6 +71,28 @@ export const module1: Module = {
                 id: 'Basis data menyimpan data dalam tabel. Tiap **baris** adalah satu benda — satu buku — dan tiap **kolom** adalah satu fakta tentangnya, punya nama dan tipe. SQL adalah caramu bertanya kepada kisi itu. Kamu menjelaskan **apa yang kamu mau**; basis datanya yang memikirkan cara mendapatkannya.',
               },
               code: SCHEMA,
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 12],
+                ySpan: [0, 6],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[0, 4], [4, 4], [4, 6], [0, 6]], color: 'muted', label: 'title' },
+                  { t: 'poly', pts: [[4, 4], [8, 4], [8, 6], [4, 6]], color: 'muted', label: 'author' },
+                  { t: 'poly', pts: [[8, 4], [12, 4], [12, 6], [8, 6]], color: 'muted', label: 'price' },
+                  { t: 'poly', pts: [[0, 2], [4, 2], [4, 4], [0, 4]], color: 'a', label: 'Laskar Pelangi' },
+                  { t: 'poly', pts: [[4, 2], [8, 2], [8, 4], [4, 4]], color: 'a', label: 'Andrea Hirata' },
+                  { t: 'poly', pts: [[8, 2], [12, 2], [12, 4], [8, 4]], color: 'a', label: '85000' },
+                  { t: 'poly', pts: [[0, 0], [4, 0], [4, 2], [0, 2]], color: 'b', label: 'Bumi Manusia' },
+                  { t: 'poly', pts: [[4, 0], [8, 0], [8, 2], [4, 2]], color: 'b', label: 'Pramoedya' },
+                  { t: 'poly', pts: [[8, 0], [12, 0], [12, 2], [8, 2]], color: 'b', label: '110000' },
+                ],
+                caption: {
+                  en: 'The top row names the columns; every row underneath is one book, with one value in each column — that grid is the whole table.',
+                  id: 'Baris teratas menyebut nama kolomnya; tiap baris di bawahnya adalah satu buku, dengan satu nilai di tiap kolom — kisi itulah seluruh tabelnya.',
+                },
+              },
             },
             {
               kind: 'concept',

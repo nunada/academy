@@ -47,6 +47,20 @@ export const module3: Module = {
                 en: 'draw() can return more than one command — a `box` and a `text` together make a labeled shape. The label reads its numbers straight from the state, the same way the box does.',
                 id: 'draw() bisa mengembalikan lebih dari satu perintah — `box` dan `text` bersamaan membuat bentuk berlabel. Labelnya membaca angkanya langsung dari keadaan, sama seperti kotaknya.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [85, 175],
+                ySpan: [135, 70],
+                items: [
+                  { t: 'poly', pts: [[100, 80], [160, 80], [160, 110], [100, 110]], color: 'a', label: 'box' },
+                  { t: 'poly', pts: [[97, 112], [163, 112], [163, 126], [97, 126]], color: 'muted', label: 'text' },
+                ],
+                caption: {
+                  en: 'The box sits at (100, 80), 60 wide and 30 tall. The label is a separate command placed just below it, at y = 115 — a bigger y than the box\'s own bottom edge, since y grows downward on this canvas.',
+                  id: 'Kotaknya berada di (100, 80), lebar 60 dan tinggi 30. Labelnya adalah perintah terpisah yang ditempatkan tepat di bawahnya, pada y = 115 — y yang lebih besar daripada tepi bawah kotaknya sendiri, karena y bertambah ke bawah di kanvas ini.',
+                },
+              },
               code:
                 'def start():\n    return {"width": 60, "height": 30}\n\ndef draw(state):\n    return [\n        {"shape": "box", "x": 100, "y": 80, "w": state["width"], "h": state["height"], "color": "#437649"},\n        {"shape": "text", "x": 100, "y": 115, "text": f"{state[\'width\']} x {state[\'height\']}", "size": 12, "color": "#24463d"},\n    ]\n\nprint(draw(start()))',
               output:
@@ -177,6 +191,24 @@ export const module3: Module = {
               body: {
                 en: 'Pick one corner as the origin `(x, y)`, then the other two follow from the leg lengths: `(x + base, y)` along the bottom, `(x, y - height)` straight up — up, so its y is smaller, not larger.',
                 id: 'Pilih satu sudut sebagai titik asal `(x, y)`, lalu kedua sudut lain mengikuti dari panjang kedua sisi siku: `(x + base, y)` di sepanjang alas, `(x, y - height)` tegak ke atas — ke atas, jadi y-nya lebih kecil, bukan lebih besar.',
+              },
+              figure: {
+                dim: 2,
+                ticks: true,
+                xSpan: [-1, 5],
+                ySpan: [-1, 4],
+                items: [
+                  { t: 'point', at: [0, 0], label: '(x, y)' },
+                  { t: 'point', at: [4, 0], label: '(x + base, y)' },
+                  { t: 'point', at: [0, 3], label: '(x, y − height)' },
+                  { t: 'seg', from: [0, 0], to: [4, 0], color: 'a' },
+                  { t: 'seg', from: [0, 0], to: [0, 3], color: 'b' },
+                  { t: 'seg', from: [4, 0], to: [0, 3], color: 'result', label: 'hypotenuse' },
+                ],
+                caption: {
+                  en: 'One corner is the origin; the other two follow from the leg lengths — base along one direction, height along the other. On the actual canvas y grows downward, so "up" there means subtracting from y rather than adding — but it is the same triangle either way.',
+                  id: 'Satu sudut adalah titik asal; kedua sudut lain mengikuti dari panjang kedua sisi siku — base ke satu arah, height ke arah lainnya. Di kanvas sungguhan y bertambah ke bawah, jadi "ke atas" di sana berarti mengurangi y, bukan menambahkannya — tapi bentuk segitiganya tetap sama.',
+                },
               },
               code:
                 'def draw(state):\n    x, y = 60, 180\n    base, height = state["base"], state["height"]\n    return [\n        {"shape": "line", "x1": x, "y1": y, "x2": x + base, "y2": y, "thickness": 2},\n        {"shape": "line", "x1": x, "y1": y, "x2": x, "y2": y - height, "thickness": 2},\n        {"shape": "line", "x1": x + base, "y1": y, "x2": x, "y2": y - height, "thickness": 2},\n    ]\n\nprint(draw({"base": 90, "height": 60}))',
@@ -372,6 +404,26 @@ export const module3: Module = {
                 en: 'With the axis at `y = 120` running from `x = 20` to `x = 300`, seven evenly spaced ticks — one every 40 pixels — come from a single `for` loop over `range(7)`, each tick\'s `x` computed from its index.',
                 id: 'Dengan sumbu di `y = 120` membentang dari `x = 20` sampai `x = 300`, tujuh goresan berjarak sama — satu tiap 40 piksel — datang dari satu perulangan `for` atas `range(7)`, `x` tiap goresan dihitung dari indeksnya.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 320],
+                ySpan: [140, 100],
+                items: [
+                  { t: 'seg', from: [20, 120], to: [300, 120], color: 'a' },
+                  { t: 'seg', from: [20, 115], to: [20, 125], color: 'muted' },
+                  { t: 'seg', from: [60, 115], to: [60, 125], color: 'muted' },
+                  { t: 'seg', from: [100, 115], to: [100, 125], color: 'muted' },
+                  { t: 'seg', from: [140, 115], to: [140, 125], color: 'muted' },
+                  { t: 'seg', from: [180, 115], to: [180, 125], color: 'muted' },
+                  { t: 'seg', from: [220, 115], to: [220, 125], color: 'muted' },
+                  { t: 'seg', from: [260, 115], to: [260, 125], color: 'muted' },
+                ],
+                caption: {
+                  en: 'The axis runs from x = 20 to x = 300 at y = 120. Seven ticks, one every 40 pixels starting at x = 20, are the seven short vertical segments crossing it — exactly what the loop over range(7) builds.',
+                  id: 'Sumbunya membentang dari x = 20 sampai x = 300 pada y = 120. Tujuh goresan, satu tiap 40 piksel dimulai dari x = 20, adalah tujuh ruas garis tegak pendek yang memotongnya — persis yang dibangun perulangan atas range(7).',
+                },
+              },
               code:
                 'def draw(state):\n    commands = [{"shape": "line", "x1": 20, "y1": 120, "x2": 300, "y2": 120, "thickness": 2}]\n    for i in range(7):\n        x = 20 + i * 40\n        commands.append({"shape": "line", "x1": x, "y1": 115, "x2": x, "y2": 125, "thickness": 1})\n    return commands\n\nprint(len(draw({})))',
               output: '8',
@@ -498,6 +550,20 @@ export const module3: Module = {
               body: {
                 en: 'Marking the value 3 means converting 3 into an x coordinate first — the same spacing formula as a tick: `x = 20 + value * 40`. A `circle` at that x, sitting right on the axis, is the mark.',
                 id: 'Menandai nilai 3 berarti mengubah 3 jadi koordinat x lebih dulu — formula spasi yang sama seperti goresan skala: `x = 20 + value * 40`. `circle` pada x itu, tepat di atas sumbunya, adalah tandanya.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 320],
+                ySpan: [140, 95],
+                items: [
+                  { t: 'seg', from: [20, 120], to: [300, 120], color: 'muted' },
+                  { t: 'point', at: [140, 120], label: '3', color: 'result' },
+                ],
+                caption: {
+                  en: 'The value 3 becomes x = 20 + 3 × 40 = 140 — the same spacing formula the ticks use. The marked point sits right on the axis at that x.',
+                  id: 'Nilai 3 menjadi x = 20 + 3 × 40 = 140 — formula spasi yang sama seperti yang dipakai goresan skala. Titik yang ditandai berada tepat di atas sumbu pada x itu.',
+                },
               },
               code:
                 'def draw(state):\n    value = state["value"]\n    x = 20 + value * 40\n    return [{"shape": "circle", "x": x, "y": 120, "r": 6, "color": "#ef8f70"}]\n\nprint(draw({"value": 3}))',

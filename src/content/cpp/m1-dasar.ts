@@ -318,6 +318,21 @@ export const module1: Module = {
                 en: 'Unlike some languages, C++ asks you to say up front what kind of value a variable will hold. Write the type, then the name, then `=` and the value. Once declared, the name alone reads the value back.',
                 id: 'Tidak seperti sebagian bahasa lain, C++ memintamu menyatakan sejak awal jenis nilai apa yang akan disimpan sebuah variabel. Tulis tipenya, lalu namanya, lalu `=` dan nilainya. Setelah dideklarasikan, namanya saja sudah membaca nilainya kembali.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 7],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[3, 5.3], [7, 5.3], [7, 6.4], [3, 6.4]], color: 'muted', label: 'int' },
+                  { t: 'poly', pts: [[3, 1.5], [7, 1.5], [7, 4.7], [3, 4.7]], color: 'a', label: 'age = 17' },
+                ],
+                caption: {
+                  en: 'The tag on top names the type of box this is; the box underneath is the storage itself, declared once as int age = 17 and read back afterward just by writing age.',
+                  id: 'Label di atas menyatakan jenis kotak ini; kotak di bawahnya adalah penyimpanannya sendiri, dideklarasikan sekali sebagai int age = 17 dan dibaca kembali setelahnya cukup dengan menulis age.',
+                },
+              },
               code: {
                 en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int age = 17;\n    cout << age << endl;\n    return 0;\n}',
                 id: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur = 17;\n    cout << umur << endl;\n    return 0;\n}',
@@ -331,6 +346,27 @@ export const module1: Module = {
               body: {
                 en: '`int` is a whole number, `double` is a number with a decimal point, `char` is a single character in single quotes, `bool` is true or false. This course has no `std::string`, so text stays as `char` arrays for now — you will meet those in Module 3.',
                 id: '`int` adalah bilangan bulat, `double` adalah bilangan dengan titik desimal, `char` adalah satu karakter dalam kutip tunggal, `bool` adalah true atau false. Kursus ini belum punya `std::string`, jadi teks untuk sementara memakai array `char` — kamu akan mempelajarinya di Modul 3.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 20],
+                ySpan: [0, 7],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[0.5, 5], [4.5, 5], [4.5, 6.2], [0.5, 6.2]], color: 'muted', label: 'int' },
+                  { t: 'poly', pts: [[0.5, 1.5], [4.5, 1.5], [4.5, 4.5], [0.5, 4.5]], color: 'a', label: 'age = 17' },
+                  { t: 'poly', pts: [[5.5, 5], [9.5, 5], [9.5, 6.2], [5.5, 6.2]], color: 'muted', label: 'double' },
+                  { t: 'poly', pts: [[5.5, 1.5], [9.5, 1.5], [9.5, 4.5], [5.5, 4.5]], color: 'b', label: 'height = 1.62' },
+                  { t: 'poly', pts: [[10.5, 5], [14.5, 5], [14.5, 6.2], [10.5, 6.2]], color: 'muted', label: 'char' },
+                  { t: 'poly', pts: [[10.5, 1.5], [14.5, 1.5], [14.5, 4.5], [10.5, 4.5]], color: 'c', labelAt: [12.5, 3], label: "initial = 'A'" },
+                  { t: 'poly', pts: [[15.5, 5], [19.5, 5], [19.5, 6.2], [15.5, 6.2]], color: 'muted', label: 'bool' },
+                  { t: 'poly', pts: [[15.5, 1.5], [19.5, 1.5], [19.5, 4.5], [15.5, 4.5]], color: 'result', label: 'passed = true' },
+                ],
+                caption: {
+                  en: 'Four independent boxes, each carrying its own type tag — the type decides what can go inside, and nothing here forces them to be the same size or kind.',
+                  id: 'Empat kotak yang saling bebas, masing-masing membawa label tipenya sendiri — tipenya menentukan apa yang boleh ada di dalamnya, dan tak ada yang memaksanya berukuran atau berjenis sama.',
+                },
               },
               code: {
                 en:

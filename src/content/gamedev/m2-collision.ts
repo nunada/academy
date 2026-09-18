@@ -32,6 +32,22 @@ export const module2: Module = {
                 en: 'Two rectangles miss each other when one is entirely left of the other, or entirely right, or entirely above, or entirely below. Four simple cases. They overlap exactly when **none** of those four is true — which is much easier to get right than trying to enumerate the ways they can touch.',
                 id: 'Dua persegi panjang saling luput ketika yang satu sepenuhnya di kiri yang lain, atau sepenuhnya di kanan, atau sepenuhnya di atas, atau sepenuhnya di bawah. Empat kasus sederhana. Keduanya bertumpang tindih tepat ketika **tak satu pun** dari keempatnya benar — dan itu jauh lebih mudah dibuat benar daripada mencoba mendaftar segala cara mereka bisa bersentuhan.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 320],
+                ySpan: [240, 0],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[40, 60], [140, 60], [140, 160], [40, 160]], color: 'a', label: 'A' },
+                  { t: 'poly', pts: [[100, 110], [200, 110], [200, 210], [100, 210]], color: 'b', label: 'B' },
+                  { t: 'poly', pts: [[230, 30], [300, 30], [300, 90], [230, 90]], color: 'muted', label: 'C' },
+                ],
+                caption: {
+                  en: 'A and B overlap — their x-ranges and their y-ranges both overlap. C misses both of them: it is entirely to the right of A and entirely above B (a smaller y here, so higher on the field), so one of the four "miss" cases is already true.',
+                  id: 'A dan B tumpang tindih — rentang x dan rentang y-nya sama-sama tumpang tindih. C meleset dari keduanya: ia sepenuhnya di kanan A dan sepenuhnya di atas B (y-nya lebih kecil di sini, jadi lebih tinggi di lapangan), jadi satu dari empat kasus "meleset" itu sudah benar.',
+                },
+              },
               code:
                 'a entirely left of b   ->  a.x + a.w <= b.x\n' +
                 'a entirely right of b  ->  a.x       >= b.x + b.w\n' +
@@ -289,6 +305,32 @@ export const module2: Module = {
               body: {
                 en: 'Two circles overlap when the distance between their centres is less than the sum of their radii. One comparison, no cases, and it works at any angle — which is why round hitboxes are so common even in games drawn entirely out of squares.',
                 id: 'Dua lingkaran bertumpang tindih ketika jarak antara pusatnya kurang dari jumlah jari-jarinya. Satu perbandingan, tanpa kasus, dan berlaku di sudut mana pun — dan itulah sebabnya kotak tabrak bundar begitu umum bahkan di game yang seluruhnya digambar dari persegi.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [-40, 95],
+                ySpan: [-40, 115],
+                height: 260,
+                items: [
+                  {
+                    t: 'poly',
+                    pts: [[30, 0], [26, 15], [15, 26], [0, 30], [-15, 26], [-26, 15], [-30, 0], [-26, -15], [-15, -26], [0, -30], [15, -26], [26, -15]],
+                    color: 'a',
+                    label: 'a',
+                  },
+                  {
+                    t: 'poly',
+                    pts: [[85, 80], [82, 93], [73, 102], [60, 105], [48, 102], [38, 93], [35, 80], [38, 68], [48, 58], [60, 55], [73, 58], [82, 68]],
+                    color: 'b',
+                    label: 'b',
+                  },
+                  { t: 'seg', from: [0, 0], to: [60, 80], color: 'result', label: 'distance = 100' },
+                ],
+                caption: {
+                  en: 'The straight line between the two centres is exactly what `distance` computes — here it comes to 100. `touches` overlaps them the moment that number drops below `a["r"] + b["r"]`.',
+                  id: 'Garis lurus antara kedua pusatnya adalah persis yang dihitung `distance` — di sini hasilnya 100. `touches` menganggap keduanya bertumpang tindih begitu angka itu turun di bawah `a["r"] + b["r"]`.',
+                },
               },
               code:
                 'import math\n\n' +
@@ -967,6 +1009,25 @@ export const module2: Module = {
               body: {
                 en: 'One falling block is `{"x": …, "y": …}`. Twenty of them is a list of those. Nothing else changes: you move each one the same way you moved the single one, and everything you learned about `dt` applies unchanged.',
                 id: 'Satu balok jatuh adalah `{"x": …, "y": …}`. Dua puluh di antaranya adalah daftar berisi itu. Tak ada lagi yang berubah: kamu menggerakkan tiap satu dengan cara yang sama seperti menggerakkan yang tunggal, dan semua yang kamu pelajari tentang `dt` berlaku tanpa perubahan.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 15],
+                ySpan: [0, 7],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[0.5, 2], [2.9, 2], [2.9, 5], [0.5, 5]], color: 'a', label: '(40, 10)' },
+                  { t: 'poly', pts: [[3.2, 2], [5.6, 2], [5.6, 5], [3.2, 5]], color: 'a', label: '(160, 90)' },
+                  { t: 'poly', pts: [[5.9, 2], [8.3, 2], [8.3, 5], [5.9, 5]], color: 'muted', label: '(280, 230)' },
+                  { t: 'poly', pts: [[0.5, 0.6], [2.9, 0.6], [2.9, 1.5], [0.5, 1.5]], color: 'muted', label: 'blocks[0]' },
+                  { t: 'poly', pts: [[3.2, 0.6], [5.6, 0.6], [5.6, 1.5], [3.2, 1.5]], color: 'muted', label: 'blocks[1]' },
+                  { t: 'poly', pts: [[5.9, 0.6], [8.3, 0.6], [8.3, 1.5], [5.9, 1.5]], color: 'muted', label: 'blocks[2]' },
+                ],
+                caption: {
+                  en: '`blocks` is a list of dictionaries — `blocks[0]` is `{"x": 40, "y": 10}`, `blocks[1]` is `{"x": 160, "y": 90}`, and so on. `blocks[2]` is nearly at the bottom of the field and about to be dropped from the list.',
+                  id: '`blocks` adalah daftar dictionary — `blocks[0]` adalah `{"x": 40, "y": 10}`, `blocks[1]` adalah `{"x": 160, "y": 90}`, dan seterusnya. `blocks[2]` hampir mencapai dasar lapangan dan akan segera dibuang dari daftarnya.',
+                },
               },
               code:
                 'blocks = [\n' +

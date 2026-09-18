@@ -285,6 +285,25 @@ export const module1: Module = {
                 en: '`np.dot(a, b)` multiplies each pair of elements and adds the results together into one number — `1*4 + 2*5 + 3*6`. It is the single most useful number two vectors can produce together.',
                 id: '`np.dot(a, b)` mengalikan tiap pasang unsur dan menjumlahkan hasilnya jadi satu angka — `1*4 + 2*5 + 3*6`. Itulah satu angka paling berguna yang bisa dihasilkan dua vektor bersama.',
               },
+              figure: {
+                dim: 2,
+                range: 5,
+                interactive: true,
+                vars: { a: [3, 2], b: [1, 3] },
+                items: [
+                  { t: 'vec', to: { of: 'a' }, label: 'a', color: 'a', drag: 'a' },
+                  { t: 'vec', to: { of: 'b' }, label: 'b', color: 'b', drag: 'b' },
+                ],
+                readouts: [
+                  { label: 'a =', v: { of: 'a' }, dp: 0 },
+                  { label: 'b =', v: { of: 'b' }, dp: 0 },
+                  { label: 'np.dot(a, b) =', n: { dot: [{ of: 'a' }, { of: 'b' }] } },
+                ],
+                caption: {
+                  en: 'Drag either arrow. The number underneath is always the sum of matching-component products — the same number np.dot computes.',
+                  id: 'Seret salah satu anak panahnya. Angka di bawahnya selalu jumlah hasil kali komponen yang bersesuaian — angka yang sama yang dihitung np.dot.',
+                },
+              },
               code: 'import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.dot(a, b))',
               output: '32',
             },
@@ -295,6 +314,22 @@ export const module1: Module = {
               body: {
                 en: 'The dot product of two perpendicular vectors is always exactly 0 — no matter their length, only their direction relative to each other matters.',
                 id: 'Dot product dari dua vektor yang tegak lurus selalu tepat 0 — panjangnya tak berpengaruh, hanya arahnya satu sama lain yang menentukan.',
+              },
+              figure: {
+                dim: 2,
+                range: 5,
+                interactive: true,
+                vars: { a: [3, 1], b: [-1, 3] },
+                items: [
+                  { t: 'vec', to: { of: 'a' }, label: 'a', color: 'a', drag: 'a' },
+                  { t: 'vec', to: { of: 'b' }, label: 'b', color: 'b', drag: 'b' },
+                  { t: 'right', from: { of: 'a' }, to: { of: 'b' } },
+                ],
+                readouts: [{ label: 'np.dot(a, b) =', n: { dot: [{ of: 'a' }, { of: 'b' }] } }],
+                caption: {
+                  en: 'Drag either arrow. The little square at the origin is a true right angle only while np.dot(a, b) reads exactly 0 — nudge one vector and both change together.',
+                  id: 'Seret salah satu anak panahnya. Kotak kecil di titik asal adalah sudut siku-siku sungguhan hanya selama np.dot(a, b) terbaca tepat 0 — geser salah satu vektornya dan keduanya berubah bersamaan.',
+                },
               },
               code: 'import numpy as np\na = np.array([1, 0])\nb = np.array([0, 1])\nprint(np.dot(a, b))',
               output: '0',
@@ -392,6 +427,23 @@ export const module1: Module = {
                 en: '`np.linalg.norm(a)` computes a vector\'s length — the straight-line distance from the origin to the point it represents. For `[3, 4]` that is the familiar 3-4-5 triangle: exactly 5.',
                 id: '`np.linalg.norm(a)` menghitung panjang sebuah vektor — jarak garis lurus dari titik asal ke titik yang diwakilinya. Untuk `[3, 4]` itu segitiga 3-4-5 yang dikenal: tepat 5.',
               },
+              figure: {
+                dim: 2,
+                range: 5,
+                ticks: true,
+                interactive: true,
+                vars: { a: [3, 4] },
+                items: [
+                  { t: 'seg', from: [0, 0], to: [3, 0], color: 'muted', dashed: true },
+                  { t: 'seg', from: [3, 0], to: { of: 'a' }, color: 'muted', dashed: true },
+                  { t: 'vec', to: { of: 'a' }, label: 'a', color: 'a', drag: 'a' },
+                ],
+                readouts: [{ label: 'np.linalg.norm(a) =', n: { norm: { of: 'a' } }, dp: 2 }],
+                caption: {
+                  en: 'Drag the head of a. The dashed legs are its two components, and np.linalg.norm is exactly the length of the hypotenuse they form — the same 3-4-5 triangle giving 5.',
+                  id: 'Seret ujung a. Sisi putus-putus adalah kedua komponennya, dan np.linalg.norm persis panjang sisi miring yang dibentuknya — segitiga 3-4-5 yang sama yang memberi 5.',
+                },
+              },
               code: 'import numpy as np\na = np.array([3, 4])\nprint(np.linalg.norm(a))',
               output: '5.0',
             },
@@ -402,6 +454,24 @@ export const module1: Module = {
               body: {
                 en: 'A vector divided by its own norm keeps its direction but always has length exactly 1 — a **unit vector**. Useful whenever only the direction matters, not how far it reaches.',
                 id: 'Vektor yang dibagi dengan normanya sendiri tetap mempertahankan arahnya tapi selalu berpanjang tepat 1 — **vektor satuan**. Berguna kapan pun hanya arahnya yang penting, bukan seberapa jauh ia menjangkau.',
+              },
+              figure: {
+                dim: 2,
+                range: 5,
+                interactive: true,
+                vars: { a: [3, 4] },
+                items: [
+                  { t: 'vec', to: { of: 'a' }, label: 'a', color: 'a', drag: 'a' },
+                  { t: 'vec', to: { unit: { of: 'a' } }, label: 'unit', color: 'result' },
+                ],
+                readouts: [
+                  { label: 'np.linalg.norm(a) =', n: { norm: { of: 'a' } }, dp: 2 },
+                  { label: 'np.linalg.norm(unit) =', n: { norm: { unit: { of: 'a' } } }, dp: 2 },
+                ],
+                caption: {
+                  en: 'Drag a anywhere and its unit vector keeps pointing the same way, but its readout never moves off exactly 1 — dividing by np.linalg.norm strips away the length and keeps only the direction.',
+                  id: 'Seret a ke mana saja dan vektor satuannya tetap menunjuk arah yang sama, tapi angkanya tak pernah bergeser dari tepat 1 — membagi dengan np.linalg.norm menghapus panjangnya dan hanya menyisakan arahnya.',
+                },
               },
               code: 'import numpy as np\na = np.array([3.0, 4.0])\nunit = a / np.linalg.norm(a)\nprint(unit)',
               output: '[0.6 0.8]',

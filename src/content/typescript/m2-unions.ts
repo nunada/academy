@@ -56,6 +56,21 @@ export const module2: Module = {
                 en: 'The type `"small"` contains exactly one value: the string `"small"`. On its own that is useless; as a union it is one of the most useful things in the language. `"small" | "medium" | "large"` is a set of allowed strings, checked at every call, spelled correctly or not at all.',
                 id: 'Tipe `"kecil"` memuat tepat satu nilai: string `"kecil"`. Sendirian itu tak berguna; sebagai union ia salah satu hal paling berguna di bahasanya. `"kecil" | "sedang" | "besar"` adalah himpunan string yang diizinkan, diperiksa di tiap pemanggilan, dieja benar atau tidak sama sekali.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 9],
+                ySpan: [0, 4],
+                items: [
+                  { t: 'poly', pts: [[0.5, 1], [3, 1], [3, 3], [0.5, 3]], color: 'a', label: '"small"' },
+                  { t: 'poly', pts: [[3.5, 1], [6, 1], [6, 3], [3.5, 3]], color: 'b', label: '"medium"' },
+                  { t: 'poly', pts: [[6.5, 1], [9, 1], [9, 3], [6.5, 3]], color: 'c', label: '"large"' },
+                ],
+                caption: {
+                  en: 'Size = "small" | "medium" | "large" is exactly three boxes — nothing else is ever a Size, and "giant" simply is not one of them.',
+                  id: 'Ukuran = "kecil" | "sedang" | "besar" persis tiga kotak — tak ada yang lain pernah jadi Ukuran, dan "raksasa" sekadar bukan salah satunya.',
+                },
+              },
               code: {
                 en:
                   'type Size = "small" | "medium" | "large";\n\n' +
@@ -277,6 +292,21 @@ export const module2: Module = {
               body: {
                 en: 'Comparing against one member of a literal union narrows it too, and so does an early `return`: after `if (s === "small") return ...`, the compiler knows that below that line `s` can only be `"medium" | "large"`. It keeps track as you go.',
                 id: 'Membandingkan dengan salah satu anggota union literal juga mempersempitnya, begitu pula `return` lebih awal: setelah `if (u === "kecil") return ...`, kompilernya tahu bahwa di bawah baris itu `u` hanya bisa `"sedang" | "besar"`. Ia terus mencatat sambil jalan.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 9],
+                ySpan: [0, 4],
+                items: [
+                  { t: 'poly', pts: [[0.5, 1], [3, 1], [3, 3], [0.5, 3]], color: 'muted', label: '"small"' },
+                  { t: 'poly', pts: [[3.5, 1], [6, 1], [6, 3], [3.5, 3]], color: 'result', label: '"medium"' },
+                  { t: 'poly', pts: [[6.5, 1], [9, 1], [9, 3], [6.5, 3]], color: 'result', label: '"large"' },
+                ],
+                caption: {
+                  en: 'Once `s === "small"` has returned, only two boxes are still in play — the compiler crosses "small" off and tracks exactly `"medium" | "large"` for the rest of the function.',
+                  id: 'Begitu `u === "kecil"` sudah return, hanya dua kotak yang masih berlaku — kompilernya mencoret "kecil" dan melacak persis `"sedang" | "besar"` untuk sisa fungsinya.',
+                },
               },
               code: {
                 en:
@@ -704,6 +734,20 @@ export const module2: Module = {
               body: {
                 en: 'A union of object shapes is hard to narrow — `typeof` says `"object"` for all of them. So give each member a property whose type is a distinct literal. Checking that one property tells the compiler exactly which member you are holding, and every other property of that member becomes available.',
                 id: 'Union berisi bentuk objek sulit dipersempit — `typeof` menyebut `"object"` untuk semuanya. Maka beri tiap anggota sebuah properti yang tipenya literal berbeda. Memeriksa satu properti itu memberi tahu kompilernya persis anggota mana yang sedang kamu pegang, dan tiap properti lain milik anggota itu jadi tersedia.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 4],
+                items: [
+                  { t: 'poly', pts: [[0.5, 1], [4.5, 1], [4.5, 3], [0.5, 3]], color: 'a', label: 'kind: "circle"' },
+                  { t: 'poly', pts: [[5.5, 1], [9.5, 1], [9.5, 3], [5.5, 3]], color: 'b', label: 'kind: "square"' },
+                ],
+                caption: {
+                  en: 'Shape is two separate boxes, each carrying its own `kind` — check that one field and you know instantly which box, and which other fields, you are holding.',
+                  id: 'Bentuk adalah dua kotak terpisah, masing-masing membawa `jenis`-nya sendiri — periksa satu field itu dan kamu langsung tahu kotak mana, dan field lain apa, yang sedang kamu pegang.',
+                },
               },
               code: {
                 en:

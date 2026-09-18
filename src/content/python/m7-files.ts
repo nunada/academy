@@ -408,6 +408,27 @@ export const module7: Module = {
                 en: 'A line like `Ani,17,Surabaya` is a row with three fields. `.split(",")` returns them as a list, and the pieces are always text — convert what should be a number.',
                 id: 'Baris seperti `Ani,17,Surabaya` adalah satu baris data dengan tiga kolom. `.split(",")` mengembalikannya sebagai list, dan potongannya selalu berupa teks — konversi yang seharusnya angka.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 9],
+                items: [
+                  { t: 'poly', pts: [[1, 6.5], [9, 6.5], [9, 8.5], [1, 8.5]], color: 'muted', label: '"Ani,17,Surabaya"' },
+                  { t: 'vec', from: [5, 6.3], to: [5, 5.3], color: 'a', label: 'split(",")' },
+                  { t: 'poly', pts: [[0.6, 2.8], [3.0, 2.8], [3.0, 4.8], [0.6, 4.8]], color: 'a', label: '"Ani"' },
+                  { t: 'poly', pts: [[3.3, 2.8], [5.7, 2.8], [5.7, 4.8], [3.3, 4.8]], color: 'a', label: '"17"' },
+                  { t: 'poly', pts: [[6.0, 2.8], [8.4, 2.8], [8.4, 4.8], [6.0, 4.8]], color: 'a', label: '"Surabaya"' },
+                  { t: 'point', at: [1.8, 2.1], label: '0', color: 'muted' },
+                  { t: 'point', at: [4.5, 2.1], label: '1', color: 'muted' },
+                  { t: 'point', at: [7.2, 2.1], label: '2', color: 'muted' },
+                ],
+                caption: {
+                  en: 'split(",") cuts one long string into a list of three separate pieces, each still text — int(parts[1]) is what turns "17" into a real number.',
+                  id: 'split(",") memotong satu string panjang menjadi list berisi tiga potongan terpisah, masing-masing masih berupa teks — int(bagian[1]) itulah yang mengubah "17" menjadi angka sungguhan.',
+                },
+                height: 320,
+              },
               code: {
                 en: 'row = "Ani,17,Surabaya"\nparts = row.split(",")\nprint(parts)\nprint(parts[0])\nprint(int(parts[1]) + 1)',
                 id: 'baris = "Ani,17,Surabaya"\nbagian = baris.split(",")\nprint(bagian)\nprint(bagian[0])\nprint(int(bagian[1]) + 1)',
@@ -529,6 +550,26 @@ export const module7: Module = {
               body: {
                 en: 'The whole pattern is three moves: loop the file, split each line, append the result. What you get is a list of dictionaries — the shape most real data arrives in.',
                 id: 'Seluruh polanya cuma tiga langkah: ulangi berkasnya, pecah tiap baris, tambahkan hasilnya. Yang kamu dapat adalah list berisi dictionary — bentuk yang paling sering dipakai data nyata.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 8],
+                items: [
+                  { t: 'poly', pts: [[0.3, 0.3], [9.7, 0.3], [9.7, 7.7], [0.3, 7.7]], color: 'muted', label: 'data', labelAt: [5, 7.3] },
+                  { t: 'poly', pts: [[0.9, 0.9], [4.6, 0.9], [4.6, 6.6], [0.9, 6.6]], color: 'b', label: '0' },
+                  { t: 'poly', pts: [[5.4, 0.9], [9.1, 0.9], [9.1, 6.6], [5.4, 6.6]], color: 'b', label: '1' },
+                  { t: 'poly', pts: [[1.3, 4.4], [4.2, 4.4], [4.2, 5.9], [1.3, 5.9]], color: 'a', label: 'name: "Ani"' },
+                  { t: 'poly', pts: [[1.3, 1.6], [4.2, 1.6], [4.2, 3.1], [1.3, 3.1]], color: 'a', label: 'score: 80' },
+                  { t: 'poly', pts: [[5.8, 4.4], [8.7, 4.4], [8.7, 5.9], [5.8, 5.9]], color: 'a', label: 'name: "Budi"' },
+                  { t: 'poly', pts: [[5.8, 1.6], [8.7, 1.6], [8.7, 3.1], [5.8, 3.1]], color: 'a', label: 'score: 65' },
+                ],
+                caption: {
+                  en: 'Two shapes nest at once: the outer list picks a dictionary by position — 0, 1 — then a key reaches inside that dictionary by name.',
+                  id: 'Dua bentuk bersarang sekaligus: list luar memilih dictionary lewat posisi — 0, 1 — lalu kunci menjangkau ke dalam dictionary itu lewat nama.',
+                },
+                height: 280,
               },
               code: {
                 en: 'with open("students.txt", "w") as f:\n    f.write("Ani,80\\nBudi,65\\n")\n\ndata = []\nwith open("students.txt") as f:\n    for line in f:\n        name, score = line.strip().split(",")\n        data.append({"name": name, "score": int(score)})\n\nprint(data)',

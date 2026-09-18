@@ -39,6 +39,20 @@ export const module3: Module = {
                 en: 'A component used with an opening and closing tag receives everything between them as the prop `children`. That is what lets you write a wrapper once and put anything at all inside it.',
                 id: 'Komponen yang dipakai dengan tag pembuka dan penutup menerima semua yang ada di antaranya sebagai prop `children`. Itulah yang membuatmu bisa menulis pembungkus sekali dan mengisinya dengan apa pun.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[0.5, 1], [9.5, 1], [9.5, 9], [0.5, 9]], color: 'muted', label: 'Card', labelAt: [1.6, 8.3] },
+                  { t: 'poly', pts: [[2, 3], [8, 3], [8, 6.5], [2, 6.5]], color: 'a', label: 'children', labelAt: [3.2, 5.75] },
+                ],
+                caption: {
+                  en: 'Whatever is written between `<Card>` and `</Card>` is not lost — it arrives inside `Card` as the prop `children`, nested wherever the wrapper places it.',
+                  id: 'Apa pun yang dituliskan di antara `<Kartu>` dan `</Kartu>` tidak hilang — ia tiba di dalam `Kartu` sebagai prop `children`, bersarang di mana pun pembungkusnya menaruhnya.',
+                },
+              },
               code: {
                 en: 'function Card({ children }) {\n  return <div className="card">{children}</div>;\n}\n\nReactDOM.createRoot(document.querySelector("#root")).render(\n  <Card>\n    <h2>Title</h2>\n    <p>Any content</p>\n  </Card>\n);',
                 id: 'function Kartu({ children }) {\n  return <div className="kartu">{children}</div>;\n}\n\nReactDOM.createRoot(document.querySelector("#root")).render(\n  <Kartu>\n    <h2>Judul</h2>\n    <p>Isi apa pun</p>\n  </Kartu>\n);',

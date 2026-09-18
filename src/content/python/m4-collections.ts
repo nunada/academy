@@ -32,6 +32,25 @@ export const module4: Module = {
                 en: 'Ten scores do not need ten variables. A list holds them in order, and `len()` says how many there are.',
                 id: 'Sepuluh nilai tidak butuh sepuluh variabel. List menyimpannya berurutan, dan `len()` memberi tahu jumlahnya.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 5],
+                items: [
+                  { t: 'poly', pts: [[0.6, 2], [3.0, 2], [3.0, 4], [0.6, 4]], color: 'a', label: '80' },
+                  { t: 'poly', pts: [[3.3, 2], [5.7, 2], [5.7, 4], [3.3, 4]], color: 'a', label: '95' },
+                  { t: 'poly', pts: [[6.0, 2], [8.4, 2], [8.4, 4], [6.0, 4]], color: 'a', label: '70' },
+                  { t: 'point', at: [1.8, 1.3], label: '0', color: 'muted' },
+                  { t: 'point', at: [4.5, 1.3], label: '1', color: 'muted' },
+                  { t: 'point', at: [7.2, 1.3], label: '2', color: 'muted' },
+                ],
+                caption: {
+                  en: 'A list is a row of boxes, each reached only by its position — 0, 1, 2 — never by a name.',
+                  id: 'List adalah deretan kotak, tiap kotak dijangkau hanya lewat posisinya — 0, 1, 2 — bukan lewat nama.',
+                },
+                height: 240,
+              },
               code: {
                 en: 'scores = [80, 95, 70]\nprint(scores)\nprint(len(scores))',
                 id: 'nilai = [80, 95, 70]\nprint(nilai)\nprint(len(nilai))',
@@ -45,6 +64,28 @@ export const module4: Module = {
               body: {
                 en: 'The first item is `[0]`. Negative numbers count from the end, so `[-1]` is always the last item — handy when you do not know the length.',
                 id: 'Item pertama adalah `[0]`. Angka negatif menghitung dari belakang, jadi `[-1]` selalu item terakhir — berguna saat kamu tak tahu panjangnya.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 7],
+                items: [
+                  { t: 'poly', pts: [[0.6, 2.5], [3.0, 2.5], [3.0, 4.5], [0.6, 4.5]], color: 'a', label: 'apple' },
+                  { t: 'poly', pts: [[3.3, 2.5], [5.7, 2.5], [5.7, 4.5], [3.3, 4.5]], color: 'a', label: 'mango' },
+                  { t: 'poly', pts: [[6.0, 2.5], [8.4, 2.5], [8.4, 4.5], [6.0, 4.5]], color: 'a', label: 'orange' },
+                  { t: 'point', at: [1.8, 1.8], label: '0', color: 'muted' },
+                  { t: 'point', at: [4.5, 1.8], label: '1', color: 'muted' },
+                  { t: 'point', at: [7.2, 1.8], label: '2', color: 'muted' },
+                  { t: 'point', at: [1.8, 5.2], label: '-3', color: 'result' },
+                  { t: 'point', at: [4.5, 5.2], label: '-2', color: 'result' },
+                  { t: 'point', at: [7.2, 5.2], label: '-1', color: 'result' },
+                ],
+                caption: {
+                  en: 'Every box has two addresses: count from the front (0, 1, 2) or from the back (-3, -2, -1) — `[-1]` always lands on the last one.',
+                  id: 'Tiap kotak punya dua alamat: hitung dari depan (0, 1, 2) atau dari belakang (-3, -2, -1) — `[-1]` selalu jatuh di kotak terakhir.',
+                },
+                height: 280,
               },
               code: {
                 en: 'fruits = ["apple", "mango", "orange"]\nprint(fruits[0])\nprint(fruits[-1])\nfruits[1] = "banana"\nprint(fruits)',
@@ -153,6 +194,23 @@ export const module4: Module = {
               body: {
                 en: '`append()` adds one item to the end. For totals and extremes Python already has `sum()`, `max()`, `min()` — no loop needed.',
                 id: '`append()` menambah satu item di akhir. Untuk total dan nilai ekstrem, Python sudah punya `sum()`, `max()`, `min()` — tanpa perlu loop.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 5],
+                items: [
+                  { t: 'poly', pts: [[0.6, 2], [3.0, 2], [3.0, 4], [0.6, 4]], color: 'a', label: '80' },
+                  { t: 'poly', pts: [[3.3, 2], [5.7, 2], [5.7, 4], [3.3, 4]], color: 'a', label: '95' },
+                  { t: 'poly', pts: [[6.0, 2], [8.4, 2], [8.4, 4], [6.0, 4]], color: 'result', label: '70' },
+                  { t: 'vec', from: [9.3, 3], to: [8.6, 3], color: 'result', label: 'append(70)' },
+                ],
+                caption: {
+                  en: 'append() adds one box at the end — the list grows by exactly one, and everything before it stays put.',
+                  id: 'append() menambah satu kotak di ujung — list bertambah tepat satu, dan semua sebelum itu tidak berubah.',
+                },
+                height: 240,
               },
               code: {
                 en: 'scores = [80, 95]\nscores.append(70)\nprint(scores)\nprint(sum(scores))\nprint(max(scores))',
@@ -309,6 +367,25 @@ export const module4: Module = {
               body: {
                 en: 'A list says "the third one". A dictionary says "the one called name". Curly braces, and each entry is `key: value`.',
                 id: 'List berkata "yang ketiga". Dictionary berkata "yang bernama nama". Pakai kurung kurawal, dan tiap entri berbentuk `kunci: nilai`.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 9],
+                items: [
+                  { t: 'poly', pts: [[0.5, 6.5], [4, 6.5], [4, 8.5], [0.5, 8.5]], color: 'b', label: '"name"' },
+                  { t: 'poly', pts: [[4.5, 6.5], [8, 6.5], [8, 8.5], [4.5, 8.5]], color: 'a', label: '"Ani"' },
+                  { t: 'poly', pts: [[0.5, 3.5], [4, 3.5], [4, 5.5], [0.5, 5.5]], color: 'b', label: '"age"' },
+                  { t: 'poly', pts: [[4.5, 3.5], [8, 3.5], [8, 5.5], [4.5, 5.5]], color: 'a', label: '17' },
+                  { t: 'poly', pts: [[0.5, 0.5], [4, 0.5], [4, 2.5], [0.5, 2.5]], color: 'muted', label: '"grade"' },
+                  { t: 'poly', pts: [[4.5, 0.5], [8, 0.5], [8, 2.5], [4.5, 2.5]], color: 'result', label: '11' },
+                ],
+                caption: {
+                  en: 'Each entry is a key box paired with a value box — "name" always points at "Ani", never at a position. The bottom row is what `student["grade"] = 11` adds.',
+                  id: 'Tiap entri adalah kotak kunci berpasangan dengan kotak nilai — "name" selalu menunjuk ke "Ani", bukan ke posisi. Baris bawah adalah yang ditambahkan `student["grade"] = 11`.',
+                },
+                height: 320,
               },
               code: {
                 en: 'student = {"name": "Ani", "age": 17}\nprint(student["name"])\nstudent["grade"] = 11\nprint(student)',
