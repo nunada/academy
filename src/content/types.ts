@@ -3,6 +3,7 @@
  *  and rendered in whichever language the learner picked. */
 
 import type { Figure } from '../lib/figure'
+import type { Solid3D } from '../lib/solid3d'
 
 export type Lang = 'en' | 'id'
 
@@ -225,6 +226,11 @@ export type Step =
       /** A drawing, shown between the prose and any sample code. Some of the
        *  ideas in this app are geometry, and geometry is faster looked at. */
       figure?: Figure
+      /** A solid of revolution — a real 3D shape, for the one kind of
+       *  geometry `figure` genuinely can't show. Shown after `figure`, so a
+       *  step can pair the 2D cross-section (the algebra) with the solid
+       *  itself (the intuition). */
+      solid3d?: Solid3D
       /** A plain string when the snippet is language-neutral code with no
        *  prose in it; `Loc` only where a comment or string literal needs
        *  translating, so most snippets don't carry a redundant duplicate. */

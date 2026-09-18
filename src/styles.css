@@ -856,6 +856,23 @@ th .sortable.on::after { content: ' ↓'; }
 .figsvg.grab { cursor: grab; }
 .figsvg.grab:active { cursor: grabbing; }
 
+/* A solid of revolution's own canvas — same frame as .figsvg, but sized by
+   width rather than a fixed square, since a lathe scene isn't. */
+.fig3d {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin-inline: auto;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  touch-action: none;
+  overflow: hidden;
+  cursor: grab;
+}
+.fig3d:active { cursor: grabbing; }
+.fig3d canvas { display: block; width: 100%; height: 100%; }
+
 .figgrid { stroke: var(--fig-grid); stroke-width: 1; }
 .figaxis { stroke: var(--fig-muted); stroke-width: 1.2; }
 /* Nama sumbu adalah variabel, jadi miring — dengan huruf yang sama. */

@@ -337,6 +337,17 @@ export const module6: Module = {
                   id: 'Geser $x$: segmen tegak putus-putus adalah diameter satu irisan, berjari-jari $f(x)$ di tiap sisinya — putar seluruh daerahnya mengelilingi sumbu-$x$ dan tiap irisan seperti itu menyapu satu cakram lingkaran benda putarnya.',
                 },
               },
+              solid3d: {
+                outer: 'sqrt(x)',
+                from: 0,
+                to: 4,
+                axis: 'x',
+                color: 'a',
+                caption: {
+                  en: 'The actual solid — a wedge left open so its stack of disks stays visible. Every cross-section, at every $x$, is exactly the circle the 2D figure above only draws the radius of.',
+                  id: 'Benda sesungguhnya — sebuah irisan dibiarkan terbuka agar tumpukan cakramnya tetap terlihat. Tiap penampang, di setiap $x$, persis lingkaran yang di gambar 2D di atas cuma digambar jari-jarinya.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -362,6 +373,18 @@ export const module6: Module = {
                 caption: {
                   en: 'Drag $x$: the washer at that slice has outer radius $f(x)$ (upper dot) and inner radius $g(x)$ (lower dot) — rotate the whole lens region about the $x$-axis and every such vertical gap sweeps out one annulus of the solid.',
                   id: 'Geser $x$: cincin pada irisan itu punya jari-jari luar $f(x)$ (titik atas) dan jari-jari dalam $g(x)$ (titik bawah) — putar seluruh daerah lensanya mengelilingi sumbu-$x$ dan tiap celah tegak seperti itu menyapu satu anulus benda putarnya.',
+                },
+              },
+              solid3d: {
+                outer: 'x',
+                inner: 'x^2',
+                from: 0,
+                to: 1,
+                axis: 'x',
+                color: 'b',
+                caption: {
+                  en: 'The hole down the middle is real, not a drawing trick — drag the reveal slider closed and the annular rings stack into a tapered tube.',
+                  id: 'Lubang di tengahnya sungguhan, bukan trik gambar — tutup penggeser bukaannya dan cincin-cincin anularnya bertumpuk menjadi tabung meruncing.',
                 },
               },
             },
@@ -473,6 +496,18 @@ export const module6: Module = {
                   id: 'Geser $x$: segmen tegak putus-putus adalah satu jalur perwakilan, pada jari-jari $x$ dan mencapai tinggi $f(x)$ — diputar mengelilingi sumbu-$y$, jalur itu menjadi kulit silinder tipis berjari-jari $x$ dan tinggi $f(x)$.',
                 },
               },
+              solid3d: {
+                outer: '2',
+                inner: 'sqrt(x)',
+                from: 0,
+                to: 4,
+                axis: 'y',
+                color: 'a',
+                caption: {
+                  en: 'The solid the shells actually stack into — note it does NOT touch the central axis above $y=0$: every shell only fills from its own radius outward, leaving exactly the hole the washer check on the next step finds directly.',
+                  id: 'Benda yang sesungguhnya ditumpuk oleh kulit-kulitnya — perhatikan ia TIDAK menyentuh sumbu tengah di atas $y=0$: tiap kulit hanya mengisi dari jari-jarinya sendiri ke luar, tepat menyisakan lubang yang ditemukan langsung oleh pemeriksaan cincin di langkah berikutnya.',
+                },
+              },
             },
             {
               kind: 'concept',
@@ -498,6 +533,18 @@ export const module6: Module = {
                 caption: {
                   en: 'Drag $y$: the same solid sliced horizontally instead — outer radius always $2$, inner radius $\\sqrt{y}$ from the curve. Spun about the $y$-axis, each such gap sweeps out the identical washer.',
                   id: 'Geser $y$: benda yang sama diiris mendatar sebagai gantinya — jari-jari luar selalu $2$, jari-jari dalam $\\sqrt{y}$ dari kurvanya. Diputar mengelilingi sumbu-$y$, tiap celah seperti itu menyapu cincin yang identik.',
+                },
+              },
+              solid3d: {
+                outer: '2',
+                inner: 'sqrt(x)',
+                from: 0,
+                to: 4,
+                axis: 'y',
+                color: 'b',
+                caption: {
+                  en: 'The identical solid as the previous step — shells and washers-in-$y$ are two ways of slicing the very same shape, and this is what both were computing the volume of.',
+                  id: 'Benda yang identik dengan langkah sebelumnya — kulit dan cincin-dalam-$y$ adalah dua cara mengiris bentuk yang persis sama, dan inilah benda yang volumenya dihitung oleh keduanya.',
                 },
               },
             },

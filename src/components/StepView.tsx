@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { lazy, Suspense, useMemo, useState } from 'react'
 import type { Loc, Step } from '../content/types'
 import { resolveBi } from '../content/types'
 import { useI18n } from '../i18n'
@@ -11,6 +11,8 @@ import { CodeBlock, CodeEditor, LivePreview, Output, Rich, Terminal, Tex, TexLin
 import { MathBoard, MathInputNote, emptyValues, markTask } from './MathBoard'
 import { evalAnswer, isRight } from '../lib/answer'
 import { FigureView } from './Figure'
+// Three.js is heavy and only a handful of steps use it — load it only when one does.
+const Solid3DView = lazy(() => import('./Solid3DView').then((m) => ({ default: m.Solid3DView })))
 import { ResultList, fromPython, fromWeb, fromSql, fromTs, fromCpp } from './results'
 import { ResultTable } from './ResultTable'
 import { CompileReport } from './CompileReport'
@@ -155,6 +157,11 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
         <Rich text={tc(step.body)} />
       </p>
       {step.figure && <FigureView figure={step.figure} />}
+      {step.solid3d && (
+        <Suspense fallback={<div className="fig3d" style={{ height: step.solid3d.height ?? 380 }} />}>
+          <Solid3DView solid={step.solid3d} />
+        </Suspense>
+      )}
       {code && (
         <>
           <div className="io-label">{t('worked')}</div>

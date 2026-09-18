@@ -369,6 +369,18 @@ export const module7: Module = {
                   id: 'Memutar setengah lingkaran berjari-jari 3 ini sepenuhnya mengelilingi sumbu-x menyapu sebuah bola — luas permukaan $4\\pi(3)^2 = 36\\pi$, dihitung di sini tanpa pernah memerlukan rumus bola sebagai asumsi.',
                 },
               },
+              solid3d: {
+                outer: 'sqrt(9-x^2)',
+                from: -3,
+                to: 3,
+                axis: 'x',
+                sweep: 300,
+                color: 'a',
+                caption: {
+                  en: 'The semicircle comes to a point at both ends on its own — no cap needed — which is exactly what makes it close into a full sphere rather than a barrel.',
+                  id: 'Setengah lingkarannya sendiri sudah meruncing ke titik di kedua ujungnya — tanpa perlu penutup — dan persis itulah yang membuatnya menutup menjadi bola utuh, bukan tong.',
+                },
+              },
             },
             {
               kind: 'quiz',
@@ -472,6 +484,17 @@ export const module7: Module = {
                 caption: {
                   en: 'The slanted line from the origin to $(h,r)=(4,3)$, rotated about the $x$-axis, sweeps out a cone — the slant height $l=5$ (a 3-4-5 triangle) is the true length the surface-area formula needs, not $h$ alone.',
                   id: 'Garis miring dari titik asal ke $(h,r)=(4,3)$, diputar mengelilingi sumbu-$x$, menyapu sebuah kerucut — garis pelukis $l=5$ (segitiga 3-4-5) adalah panjang sebenarnya yang diperlukan rumus luas permukaan, bukan $h$ saja.',
+                },
+              },
+              solid3d: {
+                outer: '(3/4)*x',
+                from: 0,
+                to: 4,
+                axis: 'x',
+                color: 'result',
+                caption: {
+                  en: 'The cone the slanted line actually sweeps — the slant $l$ from the figure above is the length running up its own surface, from the apex to the rim.',
+                  id: 'Kerucut yang sungguh disapu oleh garis miringnya — garis pelukis $l$ dari gambar di atas adalah panjang yang berjalan sepanjang permukaannya sendiri, dari puncak ke tepi.',
                 },
               },
             },
