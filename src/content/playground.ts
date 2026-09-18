@@ -7,7 +7,7 @@
 
 import type { Bi, Loc } from './types'
 
-export type ModeId = 'python' | 'web' | 'javascript' | 'react' | 'sql' | 'typescript' | 'cpp' | 'game'
+export type ModeId = 'python' | 'web' | 'javascript' | 'react' | 'sql' | 'typescript' | 'cpp' | 'game' | 'graph'
 
 export interface Templat {
   id: string
@@ -1260,6 +1260,7 @@ export const MODES: Mode[] = [
   { id: 'typescript', label: { en: 'TypeScript', id: 'TypeScript' }, icon: '🧩', editorLabel: 'TypeScript', templat: TYPESCRIPT },
   { id: 'cpp', label: { en: 'C++', id: 'C++' }, icon: '➕', editorLabel: 'C++', templat: CPP },
   { id: 'game', label: { en: 'Game', id: 'Game' }, icon: '🎮', editorLabel: 'Python', templat: GAME },
+  { id: 'graph', label: { en: 'Graph', id: 'Grafik' }, icon: '📈', editorLabel: '', templat: [] },
 ]
 
 export const modeById = (id: string): Mode => MODES.find((m) => m.id === id) ?? MODES[0]

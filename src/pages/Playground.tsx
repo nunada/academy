@@ -19,6 +19,7 @@ import { CodeBlock, CodeEditor, LivePreview, Output, Terminal } from '../compone
 import { ResultTable } from '../components/ResultTable'
 import { CompileReport } from '../components/CompileReport'
 import { GamePreview } from '../components/GamePreview'
+import { GraphBoard } from '../components/GraphBoard'
 
 const SIMPAN = 'nunada.playground.v1'
 
@@ -56,7 +57,7 @@ export default function Playground() {
   const [busy, setBusy] = useState(false)
 
   const mode = modeById(modeId)
-  const source = kode[modeId] ?? resolveBi(mode.templat[0].code, lang)
+  const source = kode[modeId] ?? (mode.templat[0] ? resolveBi(mode.templat[0].code, lang) : '')
 
   // Keep the scratch space across reloads. One write per edit is plenty here —
   // this is a few kilobytes of text, not a document store.
@@ -186,15 +187,20 @@ export default function Playground() {
         ))}
       </div>
 
-      <div className="row" style={{ marginBottom: 12 }}>
-        <span className="small muted">{t('templates')}:</span>
-        {mode.templat.map((tpl) => (
-          <button className="btn ghost sm" key={tpl.id} onClick={() => pakaiTemplat(tpl.id)}>
-            {tc(tpl.label)}
-          </button>
-        ))}
-      </div>
+      {mode.templat.length > 0 && (
+        <div className="row" style={{ marginBottom: 12 }}>
+          <span className="small muted">{t('templates')}:</span>
+          {mode.templat.map((tpl) => (
+            <button className="btn ghost sm" key={tpl.id} onClick={() => pakaiTemplat(tpl.id)}>
+              {tc(tpl.label)}
+            </button>
+          ))}
+        </div>
+      )}
 
+      {modeId === 'graph' ? (
+        <GraphBoard />
+      ) : (
       <div className="grid two">
         <div className="card">
           <div className="io-label">
@@ -309,6 +315,7 @@ export default function Playground() {
           {modeId === 'game' && <GamePreview code={source} runNonce={nonce} />}
         </div>
       </div>
+      )}
     </main>
   )
 }
