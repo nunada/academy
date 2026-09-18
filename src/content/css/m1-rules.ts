@@ -190,6 +190,21 @@ export const module1: Module = {
                 en: '`nav a` means "every link inside a nav" — the space is a descendant combinator, not decoration. Writing `nav, a` with a comma means something completely different: navs **and** links.',
                 id: '`nav a` berarti "setiap tautan di dalam nav" — spasinya adalah kombinator keturunan, bukan hiasan. Menulis `nav, a` dengan koma berarti sesuatu yang sama sekali lain: nav **dan** tautan.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[0, 0], [10, 0], [10, 10], [0, 10]], color: 'muted', label: 'nav', labelAt: [5, 0.6] },
+                  { t: 'poly', pts: [[1.5, 1.5], [8.5, 1.5], [8.5, 8.5], [1.5, 8.5]], color: 'b', label: 'div', labelAt: [5, 2.1] },
+                  { t: 'poly', pts: [[3.5, 3.5], [6.5, 3.5], [6.5, 6.5], [3.5, 6.5]], color: 'result', label: 'a' },
+                ],
+                caption: {
+                  en: '`nav a` reaches the innermost box no matter how many layers sit between them — the space means "descendant, at any depth", not "direct child".',
+                  id: '`nav a` menjangkau kotak paling dalam, tak peduli berapa banyak lapisan di antaranya — spasi berarti "keturunan, di kedalaman berapa pun", bukan "anak langsung".',
+                },
+              },
               code: {
                 en: '<style>\n  nav a { color: orange; }\n</style>\n\n<nav><a href="#">Inside nav</a></nav>\n<a href="#">Outside nav</a>',
                 id: '<style>\n  nav a { color: orange; }\n</style>\n\n<nav><a href="#">Di dalam nav</a></nav>\n<a href="#">Di luar nav</a>',
@@ -203,6 +218,21 @@ export const module1: Module = {
               body: {
                 en: 'The more specific selector wins: id beats class, class beats element. Only when specificity ties does the later rule win. Fighting this with `!important` is a habit worth never starting.',
                 id: 'Selektor yang lebih spesifik menang: id mengalahkan class, class mengalahkan elemen. Hanya ketika kespesifikannya seri, aturan yang belakangan menang. Melawan ini dengan `!important` adalah kebiasaan yang sebaiknya tak pernah dimulai.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[0.5, 7], [9.5, 7], [9.5, 8.5], [0.5, 8.5]], color: 'result', label: '#id — highest' },
+                  { t: 'poly', pts: [[0.5, 4.5], [7, 4.5], [7, 6], [0.5, 6]], color: 'b', label: '.class' },
+                  { t: 'poly', pts: [[0.5, 2], [4.5, 2], [4.5, 3.5], [0.5, 3.5]], color: 'a', label: 'p (element)' },
+                ],
+                caption: {
+                  en: 'Specificity ranks selectors, not the order they are written in: an id always outweighs a class, and a class always outweighs a plain element — the longer bar always wins.',
+                  id: 'Kespesifikan mengurutkan selektor, bukan urutan penulisannya: id selalu mengalahkan class, dan class selalu mengalahkan elemen polos — batang yang lebih panjang selalu menang.',
+                },
               },
               code: {
                 en: '<style>\n  p { color: gray; }\n  .blue { color: blue; }\n  #one { color: red; }\n</style>\n\n<p id="one" class="blue">Red — id wins.</p>\n<p class="blue">Blue — class beats p.</p>',

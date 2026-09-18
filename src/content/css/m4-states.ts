@@ -203,6 +203,27 @@ export const module4: Module = {
                 en: 'Most sites are read on a phone. Style the narrow case as the default, then use `min-width` to add complexity as the screen grows. The result is simpler CSS and a faster small-screen page.',
                 id: 'Sebagian besar situs dibaca di ponsel. Beri gaya kasus sempit sebagai bawaannya, lalu pakai `min-width` untuk menambah kerumitan seiring layarnya membesar. Hasilnya CSS yang lebih sederhana dan halaman layar kecil yang lebih cepat.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'seg', from: [0.5, 1], to: [9.5, 1], color: 'muted', label: 'screen width' },
+                  { t: 'point', at: [5, 1], color: 'result', label: '700px' },
+                  { t: 'poly', pts: [[1.8, 6.3], [3.2, 6.3], [3.2, 8], [1.8, 8]], color: 'a' },
+                  { t: 'poly', pts: [[1.8, 4.5], [3.2, 4.5], [3.2, 6.1], [1.8, 6.1]], color: 'a' },
+                  { t: 'seg', from: [1.5, 8.4], to: [3.5, 8.4], color: 'a', label: 'default: 1 column' },
+                  { t: 'poly', pts: [[6, 5.5], [6.9, 5.5], [6.9, 8], [6, 8]], color: 'b' },
+                  { t: 'poly', pts: [[7.05, 5.5], [7.95, 5.5], [7.95, 8], [7.05, 8]], color: 'b' },
+                  { t: 'poly', pts: [[8.1, 5.5], [9, 5.5], [9, 8], [8.1, 8]], color: 'b' },
+                  { t: 'seg', from: [6, 8.4], to: [9, 8.4], color: 'b', label: 'min-width: 700px — 3 columns' },
+                ],
+                caption: {
+                  en: 'Below 700px is the default: a single column, styled with no media query at all. At 700px the min-width query switches in and adds the three-column layout — complexity is added as the screen grows, not removed as it shrinks.',
+                  id: 'Di bawah 700px adalah bawaannya: satu kolom, tanpa media query sama sekali. Pada 700px, query min-width menyala dan menambahkan tata letak tiga kolom — kerumitan ditambahkan seiring layarnya membesar, bukan dihilangkan saat mengecil.',
+                },
+              },
               code: {
                 en: '<style>\n  .grid { display: grid; grid-template-columns: 1fr; gap: 8px; }\n\n  @media (min-width: 700px) {\n    .grid { grid-template-columns: repeat(3, 1fr); }\n  }\n</style>',
                 id: '<style>\n  .kisi { display: grid; grid-template-columns: 1fr; gap: 8px; }\n\n  @media (min-width: 700px) {\n    .kisi { grid-template-columns: repeat(3, 1fr); }\n  }\n</style>',

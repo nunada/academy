@@ -33,6 +33,22 @@ export const module2: Module = {
                 en: 'The content sits in the middle. **Padding** is space between the content and the border. **Border** is the line itself. **Margin** is space outside, pushing other elements away. Padding is inside the background; margin is not.',
                 id: 'Isinya ada di tengah. **Padding** adalah ruang antara isi dan border. **Border** adalah garisnya sendiri. **Margin** adalah ruang di luar, yang mendorong elemen lain menjauh. Padding berada di dalam latar; margin tidak.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[0, 0], [10, 0], [10, 10], [0, 10]], color: 'muted', label: 'margin', labelAt: [5, 0.55] },
+                  { t: 'poly', pts: [[1, 1], [9, 1], [9, 9], [1, 9]], color: 'b', label: 'border', labelAt: [5, 1.5] },
+                  { t: 'poly', pts: [[1.8, 1.8], [8.2, 1.8], [8.2, 8.2], [1.8, 8.2]], color: 'a', label: 'padding', labelAt: [5, 2.55] },
+                  { t: 'poly', pts: [[3, 3], [7, 3], [7, 7], [3, 7]], color: 'result', label: 'content' },
+                ],
+                caption: {
+                  en: 'From the middle out: content, then padding, then border, then margin — each band is a separate layer, and the diagram is a cutaway of the same nested box the preview below renders.',
+                  id: 'Dari tengah ke luar: content, lalu padding, lalu border, lalu margin — tiap lapis adalah lapisan terpisah, dan diagramnya adalah potongan dari kotak bersarang yang sama dengan pratinjau di bawah.',
+                },
+              },
               code: {
                 en: '<style>\n  .box {\n    background: lightblue;\n    padding: 20px;\n    border: 4px solid navy;\n    margin: 24px;\n  }\n</style>\n\n<div class="box">Notice: the blue background covers the padding, not the margin.</div>',
                 id: '<style>\n  .kotak {\n    background: lightblue;\n    padding: 20px;\n    border: 4px solid navy;\n    margin: 24px;\n  }\n</style>\n\n<div class="kotak">Perhatikan: latar birunya mencakup padding, bukan margin.</div>',
@@ -46,6 +62,23 @@ export const module2: Module = {
               body: {
                 en: '`padding: 10px` sets all four sides. Two values are vertical then horizontal — `padding: 10px 20px`. Four values run clockwise from the top. You can also name one side: `padding-left`.',
                 id: '`padding: 10px` menyetel keempat sisi. Dua nilai berarti vertikal lalu horizontal — `padding: 10px 20px`. Empat nilai berjalan searah jarum jam mulai dari atas. Kamu juga bisa menyebut satu sisi saja: `padding-left`.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[0, 7.5], [10, 7.5], [10, 10], [0, 10]], color: 'a', label: 'top' },
+                  { t: 'poly', pts: [[0, 0], [10, 0], [10, 2.5], [0, 2.5]], color: 'a', label: 'bottom' },
+                  { t: 'poly', pts: [[0, 2.5], [2.5, 2.5], [2.5, 7.5], [0, 7.5]], color: 'b', label: 'left' },
+                  { t: 'poly', pts: [[7.5, 2.5], [10, 2.5], [10, 7.5], [7.5, 7.5]], color: 'b', label: 'right' },
+                  { t: 'poly', pts: [[2.5, 2.5], [7.5, 2.5], [7.5, 7.5], [2.5, 7.5]], color: 'result', label: 'content' },
+                ],
+                caption: {
+                  en: 'The shorthand still sets four independent sides — `padding: 8px 32px` gives top and bottom one value, left and right another, the same way this diagram treats each side as its own band.',
+                  id: 'Singkatan itu tetap menyetel empat sisi yang independen — `padding: 8px 32px` memberi atas dan bawah satu nilai, kiri dan kanan nilai lainnya, sama seperti diagram ini memperlakukan tiap sisi sebagai pita tersendiri.',
+                },
               },
               code: {
                 en: '<style>\n  .a { padding: 8px 32px; background: #fde68a; }\n  .b { padding-left: 48px; background: #bbf7d0; }\n</style>\n\n<p class="a">Narrow top-bottom, wide left-right.</p>\n<p class="b">Only the left is indented.</p>',
@@ -181,6 +214,22 @@ export const module2: Module = {
                 en: 'By default `width: 300px` sizes the **content**, and padding and border are added on top. Give that box 20px of padding and a 2px border and it occupies 344px. This surprises everyone once.',
                 id: 'Secara bawaan `width: 300px` mengatur **isinya**, dan padding serta border ditambahkan di atasnya. Beri kotak itu padding 20px dan border 2px, maka ia memakan 344px. Ini mengejutkan semua orang, sekali.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[1, 0.5], [9, 0.5], [9, 7.5], [1, 7.5]], color: 'a', label: 'padding + border', labelAt: [5, 0.95] },
+                  { t: 'poly', pts: [[3, 2.5], [7, 2.5], [7, 5.5], [3, 5.5]], color: 'result', label: 'width: 300px' },
+                  { t: 'seg', from: [3, 8.3], to: [7, 8.3], color: 'result', label: '300px' },
+                  { t: 'seg', from: [1, 9.3], to: [9, 9.3], color: 'a', label: '344px total' },
+                ],
+                caption: {
+                  en: 'The content box measures 300px; the browser then adds padding and border on top, so the box actually drawn on the page is wider — 344px, not 300.',
+                  id: 'Kotak isinya berukuran 300px; peramban lalu menambahkan padding dan border di atasnya, sehingga kotak yang sungguh digambar di halaman lebih lebar — 344px, bukan 300.',
+                },
+              },
               code: {
                 en: '<style>\n  .default {\n    width: 300px;\n    padding: 20px;\n    border: 2px solid navy;\n    background: #dbeafe;\n  }\n</style>\n\n<div class="default">Content width 300px, total 344px.</div>',
                 id: '<style>\n  .bawaan {\n    width: 300px;\n    padding: 20px;\n    border: 2px solid navy;\n    background: #dbeafe;\n  }\n</style>\n\n<div class="bawaan">Lebar isi 300px, total 344px.</div>',
@@ -194,6 +243,21 @@ export const module2: Module = {
               body: {
                 en: '`box-sizing: border-box` tells the browser to include padding and border **inside** the number you gave. Most projects set it once for everything and never think about it again.',
                 id: '`box-sizing: border-box` menyuruh peramban memasukkan padding dan border **ke dalam** angka yang kamu beri. Sebagian besar proyek menyetelnya sekali untuk semuanya dan tak pernah memikirkannya lagi.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[1, 0.5], [9, 0.5], [9, 7.5], [1, 7.5]], color: 'result', label: 'width: 300px = total', labelAt: [5, 0.95] },
+                  { t: 'poly', pts: [[3, 2.5], [7, 2.5], [7, 5.5], [3, 5.5]], color: 'a', label: 'content (shrinks to fit)' },
+                  { t: 'seg', from: [1, 9.3], to: [9, 9.3], color: 'result', label: '300px total' },
+                ],
+                caption: {
+                  en: 'With border-box, the number you write is the whole box. Padding and border now eat into that same footprint instead of adding to it, so the content shrinks but the total stays exactly 300px.',
+                  id: 'Dengan border-box, angka yang kamu tulis adalah kotak secara keseluruhan. Padding dan border kini memakan ruang di dalam jejak yang sama, bukan menambah di luarnya, sehingga isinya menyusut tapi totalnya tetap tepat 300px.',
+                },
               },
               code: {
                 en: '<style>\n  * { box-sizing: border-box; }\n  .tidy {\n    width: 300px;\n    padding: 20px;\n    border: 2px solid navy;\n    background: #dcfce7;\n  }\n</style>\n\n<div class="tidy">Total exactly 300px.</div>',

@@ -165,6 +165,25 @@ export const module1: Module = {
                 en: 'A real page is not loose tags. `<!doctype html>` says which version, `<html>` wraps everything, `<head>` holds information **about** the page, and `<body>` holds what people actually see.',
                 id: 'Halaman sungguhan bukan tag yang berserak. `<!doctype html>` menyatakan versinya, `<html>` membungkus semuanya, `<head>` memuat keterangan **tentang** halamannya, dan `<body>` memuat yang benar-benar dilihat orang.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[3.9, 7.6], [6.1, 7.6], [6.1, 8.8], [3.9, 8.8]], color: 'muted', label: 'html' },
+                  { t: 'poly', pts: [[0.9, 4.4], [3.1, 4.4], [3.1, 5.6], [0.9, 5.6]], color: 'a', label: 'head' },
+                  { t: 'poly', pts: [[6.9, 4.4], [9.1, 4.4], [9.1, 5.6], [6.9, 5.6]], color: 'a', label: 'body' },
+                  { t: 'poly', pts: [[6.9, 1.2], [9.1, 1.2], [9.1, 2.4], [6.9, 2.4]], color: 'b', label: 'h1' },
+                  { t: 'seg', from: [5, 7.6], to: [2, 5.6], color: 'muted' },
+                  { t: 'seg', from: [5, 7.6], to: [8, 5.6], color: 'muted' },
+                  { t: 'seg', from: [8, 4.4], to: [8, 2.4], color: 'muted' },
+                ],
+                caption: {
+                  en: '`html` wraps the whole document; `head` and `body` sit inside it as its two children. Everything visible on the page, like this `h1`, nests inside `body`.',
+                  id: '`html` membungkus seluruh dokumen; `head` dan `body` ada di dalamnya sebagai dua anaknya. Semua yang tampak di halaman, seperti `h1` ini, bersarang di dalam `body`.',
+                },
+              },
               code: {
                 en: '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <title>My Profile</title>\n  </head>\n  <body>\n    <h1>Hello</h1>\n  </body>\n</html>',
                 id: '<!doctype html>\n<html lang="id">\n  <head>\n    <meta charset="utf-8">\n    <title>Profil Saya</title>\n  </head>\n  <body>\n    <h1>Halo</h1>\n  </body>\n</html>',
@@ -191,6 +210,22 @@ export const module1: Module = {
               body: {
                 en: 'Elements sit inside one another like boxes. The one opened last must close first. Crossing them — `<b><i>text</b></i>` — is invalid, and browsers repair it in ways you did not ask for.',
                 id: 'Elemen bersarang satu di dalam lainnya seperti kotak. Yang dibuka terakhir harus ditutup pertama. Menyilangkannya — `<b><i>teks</b></i>` — tidak sah, dan peramban memperbaikinya dengan cara yang tidak kamu minta.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[0.3, 1], [4.5, 1], [4.5, 9], [0.3, 9]], color: 'muted', label: 'p', labelAt: [2.4, 8.3] },
+                  { t: 'poly', pts: [[1.1, 2.2], [3.7, 2.2], [3.7, 5.8], [1.1, 5.8]], color: 'a', label: 'strong' },
+                  { t: 'poly', pts: [[5.5, 1.5], [8.7, 1.5], [8.7, 6], [5.5, 6]], color: 'b', label: 'b', labelAt: [6.1, 2.2] },
+                  { t: 'poly', pts: [[6.7, 3.5], [9.9, 3.5], [9.9, 8], [6.7, 8]], color: 'a', label: 'i', labelAt: [9.3, 7.3] },
+                ],
+                caption: {
+                  en: 'Left: `<strong>` opens after `<p>` and closes before it — nested cleanly, one box entirely inside the other. Right: `<b>` opens, then `<i>` opens, then `<b>` closes before `<i>` does — the boxes cross, and neither one contains the other.',
+                  id: 'Kiri: `<strong>` dibuka setelah `<p>` dan ditutup sebelum `<p>` — bersarang rapi, satu kotak sepenuhnya di dalam kotak lain. Kanan: `<b>` dibuka, lalu `<i>` dibuka, lalu `<b>` ditutup sebelum `<i>` — kotaknya bersilangan, dan tak satu pun mengandung yang lain.',
+                },
               },
               code: {
                 en: '<body>\n  <h1>Correct</h1>\n  <p>This <strong>bold</strong> text is inside a paragraph.</p>\n</body>',

@@ -252,7 +252,10 @@ export function FigureView({ figure }: { figure: Figure }) {
   /* -------------------------------------------------------------- drawing */
 
   const axes: React.ReactNode[] = []
-  if (dim === 2) {
+  if (figure.axes === false) {
+    // A schematic diagram, not a graph — the canvas still has xSpan/ySpan
+    // for layout, but no grid or axis line should be drawn across it.
+  } else if (dim === 2) {
     const stepX = niceStep(xSpan[1] - xSpan[0])
     const stepY = niceStep(ySpan[1] - ySpan[0])
     // Where the axes actually sit: on the origin when it is in view, and
@@ -437,10 +440,12 @@ export function FigureView({ figure }: { figure: Figure }) {
       case 'poly': {
         const pts = item.pts.map((p) => px(at(p)))
         label(
-          [
-            pts.reduce((s, p) => s + p[0], 0) / pts.length,
-            pts.reduce((s, p) => s + p[1], 0) / pts.length,
-          ],
+          item.labelAt
+            ? px(at(item.labelAt))
+            : [
+                pts.reduce((s, p) => s + p[0], 0) / pts.length,
+                pts.reduce((s, p) => s + p[1], 0) / pts.length,
+              ],
           item.label,
           stroke(item.color ?? 'result'),
         )

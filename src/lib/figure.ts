@@ -58,8 +58,12 @@ export type FigItem =
   /** A plain line, for construction: a height, an edge, a projection drop. */
   | { t: 'seg'; from: VecRef; to: VecRef; label?: string; color?: FigColor; dashed?: boolean }
   | { t: 'point'; at: VecRef; label?: string; color?: FigColor }
-  /** A filled outline — a parallelogram, a triangle, a patch of a plane. */
-  | { t: 'poly'; pts: VecRef[]; label?: string; color?: FigColor }
+  /** A filled outline — a parallelogram, a triangle, a patch of a plane, one
+   *  band of a nested-rectangle diagram. `label` sits at the shape's own
+   *  centroid by default; give `labelAt` when several polys share a centroid
+   *  (concentric bands, e.g. a box model's margin/border/padding/content)
+   *  and each needs its name inside its own visible ring instead. */
+  | { t: 'poly'; pts: VecRef[]; label?: string; labelAt?: VecRef; color?: FigColor }
   /** An arc between two directions, drawn at `at` (the origin by default). */
   | { t: 'angle'; at?: VecRef; from: VecRef; to: VecRef; label?: string }
   /** The square that marks a right angle. */
@@ -129,6 +133,12 @@ export interface Figure {
   /** Draw the numbers on the axes. Off by default: a vector figure is read by
    *  its arrows, and the ticks are clutter there. */
   ticks?: boolean
+  /** Draw the coordinate axes and grid at all. On by default. Off for a
+   *  schematic diagram (a box model, a DOM tree, a memory layout) that uses
+   *  the same drawing primitives — poly, seg, vec, point — but isn't a graph
+   *  and shouldn't look like one; `xSpan`/`ySpan` still set the canvas, just
+   *  without any axis line or grid drawn across it. */
+  axes?: boolean
   /** Sliders, for a figure that shows a family rather than one drawing. */
   params?: FigParam[]
   items: FigItem[]

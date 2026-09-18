@@ -33,6 +33,23 @@ export const module3: Module = {
                 en: '`<table>` holds `<tr>` rows, and each row holds `<td>` cells. You never write columns — columns are what you get when every row has its cells in the same order.',
                 id: '`<table>` memuat baris `<tr>`, dan tiap baris memuat sel `<td>`. Kamu tidak pernah menulis kolom — kolom muncul dengan sendirinya saat tiap baris menaruh selnya dalam urutan sama.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                height: 280,
+                items: [
+                  { t: 'poly', pts: [[1, 5], [5, 5], [5, 7], [1, 7]], color: 'a', label: 'Ani' },
+                  { t: 'poly', pts: [[5, 5], [9, 5], [9, 7], [5, 7]], color: 'a', label: '80' },
+                  { t: 'poly', pts: [[1, 3], [5, 3], [5, 5], [1, 5]], color: 'b', label: 'Budi' },
+                  { t: 'poly', pts: [[5, 3], [9, 3], [9, 5], [5, 5]], color: 'b', label: '65' },
+                ],
+                caption: {
+                  en: 'Two `<tr>` rows, each holding two `<td>` cells. No column was ever written — the second cell of each row lines up simply because every row puts it in the same position.',
+                  id: 'Dua baris `<tr>`, masing-masing memuat dua sel `<td>`. Tidak ada kolom yang pernah ditulis — sel kedua tiap baris berjajar karena tiap baris menaruhnya di posisi yang sama.',
+                },
+              },
               code: {
                 en: '<table>\n  <tr>\n    <td>Ani</td>\n    <td>80</td>\n  </tr>\n  <tr>\n    <td>Budi</td>\n    <td>65</td>\n  </tr>\n</table>',
                 id: '<table>\n  <tr>\n    <td>Ani</td>\n    <td>80</td>\n  </tr>\n  <tr>\n    <td>Budi</td>\n    <td>65</td>\n  </tr>\n</table>',
@@ -188,6 +205,23 @@ export const module3: Module = {
               body: {
                 en: '`colspan` makes a cell span columns, `rowspan` makes it span rows. The catch: a row with a spanning cell has **fewer** cells written, because one is doing two jobs.',
                 id: '`colspan` membuat sebuah sel melintasi kolom, `rowspan` melintasi baris. Jebakannya: baris dengan sel melintang punya **lebih sedikit** sel yang ditulis, karena satu sel mengerjakan dua tugas.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[1, 6], [5, 6], [5, 8], [1, 8]], color: 'muted', label: 'Name' },
+                  { t: 'poly', pts: [[5, 6], [9, 6], [9, 8], [5, 8]], color: 'muted', label: 'Score' },
+                  { t: 'poly', pts: [[1, 4], [5, 4], [5, 6], [1, 6]], color: 'a', label: 'Ani' },
+                  { t: 'poly', pts: [[5, 4], [9, 4], [9, 6], [5, 6]], color: 'a', label: '80' },
+                  { t: 'poly', pts: [[1, 2], [9, 2], [9, 4], [1, 4]], color: 'result', label: 'Average: 80' },
+                ],
+                caption: {
+                  en: 'The bottom row has just one `<td>`, but `colspan="2"` stretches it across both columns — so the row still spans two columns\' width even though it wrote only one cell.',
+                  id: 'Baris paling bawah hanya punya satu `<td>`, tapi `colspan="2"` melebarkannya melintasi kedua kolom — jadi barisnya tetap selebar dua kolom meski hanya menulis satu sel.',
+                },
               },
               code: {
                 en: '<table>\n  <tr><th>Name</th><th>Score</th></tr>\n  <tr><td>Ani</td><td>80</td></tr>\n  <tr><td colspan="2">Average: 80</td></tr>\n</table>',

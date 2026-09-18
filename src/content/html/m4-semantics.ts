@@ -32,6 +32,27 @@ export const module4: Module = {
                 en: '`<header>` is the top matter, `<nav>` the navigation, `<main>` the unique content of this page, `<footer>` the closing matter. A screen-reader user can jump straight to `main` and skip the menu they have already heard on every other page.',
                 id: '`<header>` adalah bagian atas, `<nav>` navigasinya, `<main>` isi khas halaman ini, `<footer>` bagian penutup. Pengguna pembaca layar bisa melompat langsung ke `main` dan melewati menu yang sudah mereka dengar di setiap halaman lain.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                height: 340,
+                items: [
+                  { t: 'seg', from: [0.5, 0.5], to: [9.5, 0.5], color: 'muted' },
+                  { t: 'seg', from: [9.5, 0.5], to: [9.5, 9.5], color: 'muted' },
+                  { t: 'seg', from: [9.5, 9.5], to: [0.5, 9.5], color: 'muted' },
+                  { t: 'seg', from: [0.5, 9.5], to: [0.5, 0.5], color: 'muted' },
+                  { t: 'poly', pts: [[1, 7.8], [9, 7.8], [9, 9], [1, 9]], color: 'a', label: 'header' },
+                  { t: 'poly', pts: [[1, 6.3], [9, 6.3], [9, 7.5], [1, 7.5]], color: 'a', label: 'nav' },
+                  { t: 'poly', pts: [[1, 1.6], [9, 1.6], [9, 6], [1, 6]], color: 'result', label: 'main' },
+                  { t: 'poly', pts: [[1, 0.7], [9, 0.7], [9, 1.3], [1, 1.3]], color: 'a', label: 'footer' },
+                ],
+                caption: {
+                  en: 'The four landmarks stack in reading order: `header` at the top, `nav` just below it, one tall `main` filling the middle, `footer` at the bottom. All four are siblings — none is nested inside another.',
+                  id: 'Keempat penanda bertumpuk mengikuti urutan baca: `header` di atas, `nav` tepat di bawahnya, satu `main` tinggi mengisi bagian tengah, `footer` di bawah. Keempatnya bersaudara — tidak ada yang bersarang di dalam yang lain.',
+                },
+              },
               code: {
                 en: '<header>\n  <h1>Nunada Academy</h1>\n</header>\n<nav>\n  <ul><li><a href="index.html">Home</a></li></ul>\n</nav>\n<main>\n  <p>The main content of this page.</p>\n</main>\n<footer>\n  <p>&copy; 2026 Nunada</p>\n</footer>',
                 id: '<header>\n  <h1>Nunada Academy</h1>\n</header>\n<nav>\n  <ul><li><a href="index.html">Beranda</a></li></ul>\n</nav>\n<main>\n  <p>Isi utama halaman ini.</p>\n</main>\n<footer>\n  <p>&copy; 2026 Nunada</p>\n</footer>',

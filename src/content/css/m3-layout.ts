@@ -37,6 +37,23 @@ export const module3: Module = {
                 en: 'This is the idea to hold on to: you do not tell the boxes to line up, you tell their **container** to arrange them. `display: flex` turns every direct child into a row.',
                 id: 'Inilah gagasan yang perlu dipegang: kamu tidak menyuruh kotak-kotaknya berbaris, kamu menyuruh **wadahnya** menata mereka. `display: flex` mengubah setiap anak langsung menjadi satu baris.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[0.3, 2.5], [9.7, 2.5], [9.7, 7.5], [0.3, 7.5]], color: 'muted', label: 'container: display: flex', labelAt: [5, 8] },
+                  { t: 'poly', pts: [[1, 3.3], [3.4, 3.3], [3.4, 6.7], [1, 6.7]], color: 'a', label: '1' },
+                  { t: 'poly', pts: [[3.9, 3.3], [6.3, 3.3], [6.3, 6.7], [3.9, 6.7]], color: 'a', label: '2' },
+                  { t: 'poly', pts: [[6.8, 3.3], [9.2, 3.3], [9.2, 6.7], [6.8, 6.7]], color: 'a', label: '3' },
+                ],
+                caption: {
+                  en: 'display: flex on the container turns its direct children into a row automatically — no rule is needed on the children themselves.',
+                  id: 'display: flex pada wadahnya mengubah anak-anak langsungnya menjadi satu baris secara otomatis — tidak ada aturan yang dibutuhkan pada anak-anaknya sendiri.',
+                },
+              },
               code: {
                 en: '<style>\n  .row { display: flex; }\n  .row div { background: #bfdbfe; padding: 12px; }\n</style>\n\n<div class="row">\n  <div>One</div>\n  <div>Two</div>\n  <div>Three</div>\n</div>',
                 id: '<style>\n  .baris { display: flex; }\n  .baris div { background: #bfdbfe; padding: 12px; }\n</style>\n\n<div class="baris">\n  <div>Satu</div>\n  <div>Dua</div>\n  <div>Tiga</div>\n</div>',
@@ -51,6 +68,22 @@ export const module3: Module = {
                 en: '`gap` puts space **between** items and nowhere else — no leftover margin on the first or last one, nothing to clean up. Before `gap` existed this took a surprising amount of work.',
                 id: '`gap` menaruh jarak **di antara** item dan tidak di tempat lain — tak ada sisa margin di item pertama atau terakhir, tak ada yang perlu dibereskan. Sebelum `gap` ada, ini butuh kerja yang mengejutkan banyaknya.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[0.5, 3], [4.5, 3], [4.5, 7], [0.5, 7]], color: 'a', label: 'item 1' },
+                  { t: 'poly', pts: [[5.1, 3], [9.5, 3], [9.5, 7], [5.1, 7]], color: 'a', label: 'item 2' },
+                  { t: 'seg', from: [4.5, 5], to: [5.1, 5], color: 'result', label: 'gap' },
+                ],
+                caption: {
+                  en: 'gap puts space only between item 1 and item 2 — nothing is added before the first item or after the last, unlike margin which you would have to cancel on the outer edges.',
+                  id: 'gap menaruh jarak hanya di antara item 1 dan item 2 — tak ada yang ditambahkan sebelum item pertama atau sesudah yang terakhir, tidak seperti margin yang harus dibatalkan di tepi luarnya.',
+                },
+              },
               code: {
                 en: '<style>\n  .row { display: flex; gap: 16px; }\n  .row div { background: #bbf7d0; padding: 12px; }\n</style>\n\n<div class="row">\n  <div>One</div>\n  <div>Two</div>\n</div>',
                 id: '<style>\n  .baris { display: flex; gap: 16px; }\n  .baris div { background: #bbf7d0; padding: 12px; }\n</style>\n\n<div class="baris">\n  <div>Satu</div>\n  <div>Dua</div>\n</div>',
@@ -64,6 +97,21 @@ export const module3: Module = {
               body: {
                 en: '`flex-direction: column` turns the same container into a vertical stack. Everything else you learn about flex then applies down the page instead of across it.',
                 id: '`flex-direction: column` mengubah wadah yang sama menjadi tumpukan vertikal. Semua yang kamu pelajari tentang flex lalu berlaku ke bawah halaman, bukan melintanginya.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[3, 5.5], [7, 5.5], [7, 9], [3, 9]], color: 'a', label: 'top' },
+                  { t: 'poly', pts: [[3, 1], [7, 1], [7, 4.5], [3, 4.5]], color: 'a', label: 'bottom' },
+                  { t: 'seg', from: [5, 4.5], to: [5, 5.5], color: 'result', label: 'gap' },
+                ],
+                caption: {
+                  en: 'flex-direction: column keeps the same container, but now the main axis runs top to bottom — the items stack instead of lining up side by side.',
+                  id: 'flex-direction: column tetap memakai wadah yang sama, tetapi kini sumbu utamanya berjalan dari atas ke bawah — item-itemnya bertumpuk, bukan berjajar.',
+                },
               },
               code: {
                 en: '<style>\n  .stack { display: flex; flex-direction: column; gap: 8px; }\n  .stack div { background: #fde68a; padding: 8px; }\n</style>\n\n<div class="stack">\n  <div>Top</div>\n  <div>Bottom</div>\n</div>',
@@ -195,6 +243,22 @@ export const module3: Module = {
                 en: 'In a row, `justify-content` moves items horizontally: `flex-start`, `center`, `flex-end`, `space-between`, `space-around`. In a column it moves them vertically — the property follows the axis, not the screen.',
                 id: 'Pada baris, `justify-content` memindahkan item secara horizontal: `flex-start`, `center`, `flex-end`, `space-between`, `space-around`. Pada kolom ia memindahkannya vertikal — propertinya mengikuti sumbu, bukan layar.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[0.3, 3], [9.7, 3], [9.7, 7], [0.3, 7]], color: 'muted', label: 'justify-content: space-between', labelAt: [5, 7.4] },
+                  { t: 'poly', pts: [[0.3, 3], [2.7, 3], [2.7, 7], [0.3, 7]], color: 'a', label: 'left' },
+                  { t: 'poly', pts: [[7.3, 3], [9.7, 3], [9.7, 7], [7.3, 7]], color: 'a', label: 'right' },
+                ],
+                caption: {
+                  en: 'justify-content: space-between pushes the first item flush left and the last flush right, then splits the leftover width evenly between them — along whichever axis is the main one.',
+                  id: 'justify-content: space-between mendorong item pertama rapat ke kiri dan yang terakhir rapat ke kanan, lalu membagi rata sisa lebarnya di antara keduanya — sepanjang sumbu mana pun yang menjadi sumbu utama.',
+                },
+              },
               code: {
                 en: '<style>\n  .bar {\n    display: flex;\n    justify-content: space-between;\n    background: #e2e8f0;\n    padding: 8px;\n  }\n</style>\n\n<div class="bar">\n  <div>Left</div>\n  <div>Right</div>\n</div>',
                 id: '<style>\n  .bar {\n    display: flex;\n    justify-content: space-between;\n    background: #e2e8f0;\n    padding: 8px;\n  }\n</style>\n\n<div class="bar">\n  <div>Kiri</div>\n  <div>Kanan</div>\n</div>',
@@ -208,6 +272,21 @@ export const module3: Module = {
               body: {
                 en: '`align-items` handles the other axis. In a row that is vertical, so `align-items: center` lines up items of different heights along their middles — the fix for a logo and a menu that refuse to sit level.',
                 id: '`align-items` mengurus sumbu satunya. Pada baris, itu berarti vertikal, jadi `align-items: center` menyejajarkan item yang tingginya berbeda pada bagian tengahnya — obat untuk logo dan menu yang enggan sejajar.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[0.5, 2], [9.5, 2], [9.5, 8], [0.5, 8]], color: 'muted', label: 'align-items: center', labelAt: [5, 8.4] },
+                  { t: 'poly', pts: [[1, 2.5], [4, 2.5], [4, 7.5], [1, 7.5]], color: 'a', label: 'logo' },
+                  { t: 'poly', pts: [[5, 4], [8, 4], [8, 6], [5, 6]], color: 'a', label: 'menu' },
+                ],
+                caption: {
+                  en: 'align-items: center lines up items of different heights along their shared middle — the logo and the menu both sit centred on the same horizontal line even though the logo is taller.',
+                  id: 'align-items: center menyejajarkan item yang tingginya berbeda pada garis tengah yang sama — logo dan menunya sama-sama terpusat pada garis horizontal yang sama meski logonya lebih tinggi.',
+                },
               },
               code: {
                 en: '<style>\n  .bar {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    background: #e2e8f0;\n  }\n  .big { font-size: 28px; }\n</style>\n\n<div class="bar">\n  <div class="big">Logo</div>\n  <div>Menu</div>\n</div>',
@@ -430,6 +509,29 @@ export const module3: Module = {
                 en: 'Flex arranges along one axis and wraps when it must. Grid lets you declare the columns up front and drop items into them. For a gallery of equal cards, grid says what you mean.',
                 id: 'Flex menata sepanjang satu sumbu dan membungkus bila terpaksa. Grid membuatmu menetapkan kolomnya di depan lalu menjatuhkan item ke dalamnya. Untuk galeri kartu yang seragam, grid menyatakan maksudmu.',
               },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                items: [
+                  { t: 'poly', pts: [[0.3, 4], [1.5, 4], [1.5, 6], [0.3, 6]], color: 'a', label: '1' },
+                  { t: 'poly', pts: [[1.7, 4], [2.9, 4], [2.9, 6], [1.7, 6]], color: 'a', label: '2' },
+                  { t: 'poly', pts: [[3.1, 4], [4.3, 4], [4.3, 6], [3.1, 6]], color: 'a', label: '3' },
+                  { t: 'seg', from: [0.3, 3.3], to: [4.3, 3.3], color: 'a', label: 'flex: one line' },
+                  { t: 'poly', pts: [[5.5, 6.3], [6.7, 6.3], [6.7, 7.5], [5.5, 7.5]], color: 'b', label: '1' },
+                  { t: 'poly', pts: [[6.9, 6.3], [8.1, 6.3], [8.1, 7.5], [6.9, 7.5]], color: 'b', label: '2' },
+                  { t: 'poly', pts: [[8.3, 6.3], [9.5, 6.3], [9.5, 7.5], [8.3, 7.5]], color: 'b', label: '3' },
+                  { t: 'poly', pts: [[5.5, 4.7], [6.7, 4.7], [6.7, 5.9], [5.5, 5.9]], color: 'b', label: '4' },
+                  { t: 'poly', pts: [[6.9, 4.7], [8.1, 4.7], [8.1, 5.9], [6.9, 5.9]], color: 'b', label: '5' },
+                  { t: 'poly', pts: [[8.3, 4.7], [9.5, 4.7], [9.5, 5.9], [8.3, 5.9]], color: 'b', label: '6' },
+                  { t: 'seg', from: [5.5, 4], to: [9.5, 4], color: 'b', label: 'grid: rows and columns' },
+                ],
+                caption: {
+                  en: 'Flex arranges items along one line, wrapping only if it must. Grid declares rows and columns up front, so items land in a table from the start.',
+                  id: 'Flex menata item sepanjang satu garis, membungkus hanya bila terpaksa. Grid menetapkan baris dan kolom di depan, sehingga item langsung jatuh ke dalam tabel sejak awal.',
+                },
+              },
               code: {
                 en: '<style>\n  .grid {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr;\n    gap: 12px;\n  }\n  .grid div { background: #bae6fd; padding: 16px; }\n</style>\n\n<div class="grid">\n  <div>1</div><div>2</div><div>3</div>\n  <div>4</div><div>5</div><div>6</div>\n</div>',
                 id: '<style>\n  .kisi {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr;\n    gap: 12px;\n  }\n  .kisi div { background: #bae6fd; padding: 16px; }\n</style>\n\n<div class="kisi">\n  <div>1</div><div>2</div><div>3</div>\n  <div>4</div><div>5</div><div>6</div>\n</div>',
@@ -443,6 +545,21 @@ export const module3: Module = {
               body: {
                 en: '`1fr 1fr 1fr` splits the free space three ways. `2fr 1fr` makes the first column twice the second. `repeat(3, 1fr)` is shorthand for the first — same thing, less typing.',
                 id: '`1fr 1fr 1fr` membagi ruang sisa jadi tiga. `2fr 1fr` membuat kolom pertama dua kali kolom kedua. `repeat(3, 1fr)` adalah singkatan dari yang pertama — hal sama, tulisannya lebih pendek.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[0.3, 3], [6.4, 3], [6.4, 7], [0.3, 7]], color: 'a', label: 'wide: 2fr' },
+                  { t: 'poly', pts: [[6.7, 3], [9.7, 3], [9.7, 7], [6.7, 7]], color: 'b', label: 'narrow: 1fr' },
+                ],
+                caption: {
+                  en: '2fr 1fr splits the leftover space two-to-one — the first column ends up twice as wide as the second, whatever the container\'s actual width.',
+                  id: '2fr 1fr membagi ruang sisa dengan rasio dua banding satu — kolom pertama jadi dua kali lebar kolom kedua, berapa pun lebar wadahnya yang sebenarnya.',
+                },
               },
               code: {
                 en: '<style>\n  .grid {\n    display: grid;\n    grid-template-columns: 2fr 1fr;\n    gap: 12px;\n  }\n  .grid div { background: #ddd6fe; padding: 16px; }\n</style>\n\n<div class="grid">\n  <div>wide</div><div>narrow</div>\n</div>',
@@ -552,6 +669,21 @@ export const module3: Module = {
               body: {
                 en: '`grid-column: span 2` on a child makes it stretch across two tracks. This is the one place a grid child gets a rule of its own — everything else stays on the container.',
                 id: '`grid-column: span 2` pada sebuah anak membuatnya melintasi dua jalur. Inilah satu-satunya tempat anak grid mendapat aturannya sendiri — sisanya tetap di wadahnya.',
+              },
+              figure: {
+                dim: 2,
+                axes: false,
+                xSpan: [0, 10],
+                ySpan: [0, 10],
+                height: 260,
+                items: [
+                  { t: 'poly', pts: [[0.3, 3], [6.4, 3], [6.4, 7], [0.3, 7]], color: 'result', label: 'span 2' },
+                  { t: 'poly', pts: [[6.7, 3], [9.7, 3], [9.7, 7], [6.7, 7]], color: 'a', label: '1' },
+                ],
+                caption: {
+                  en: 'grid-column: span 2 stretches the first cell across two tracks, so it takes the space of two ordinary cells while the third keeps to one — the child asks for extra tracks, the parent still owns the grid.',
+                  id: 'grid-column: span 2 merentangkan sel pertama melintasi dua jalur, sehingga ia mengambil ruang dua sel biasa sementara yang ketiga tetap satu — anaknya meminta jalur tambahan, wadahnya tetap yang menguasai kisinya.',
+                },
               },
               code: {
                 en: '<style>\n  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }\n  .grid div { background: #fed7aa; padding: 12px; }\n  .wide { grid-column: span 2; }\n</style>\n\n<div class="grid">\n  <div class="wide">spans two</div>\n  <div>one</div>\n  <div>one</div>\n</div>',
