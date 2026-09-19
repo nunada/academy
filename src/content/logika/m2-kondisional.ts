@@ -220,18 +220,18 @@ export const module2: Module = {
               },
               lines: {
                 en: [
-                  '\\begin{array} p & q & p \\Rightarrow q & q \\Rightarrow p & (p \\Rightarrow q) \\land (q \\Rightarrow p)',
-                  'B & B & B & B & B',
-                  'B & S & S & B & S',
-                  'S & B & B & S & S',
-                  'S & S & B & B & B',
+                  '\\begin{array} p & q & p \\Rightarrow q & q \\Rightarrow p & (p \\Rightarrow q) \\land (q \\Rightarrow p) \\end{array}',
+                  '\\begin{array} B & B & B & B & B \\end{array}',
+                  '\\begin{array} B & S & S & B & S \\end{array}',
+                  '\\begin{array} S & B & B & S & S \\end{array}',
+                  '\\begin{array} S & S & B & B & B \\end{array}',
                 ],
                 id: [
-                  '\\begin{array} p & q & p \\Rightarrow q & q \\Rightarrow p & (p \\Rightarrow q) \\land (q \\Rightarrow p)',
-                  'B & B & B & B & B',
-                  'B & S & S & B & S',
-                  'S & B & B & S & S',
-                  'S & S & B & B & B',
+                  '\\begin{array} p & q & p \\Rightarrow q & q \\Rightarrow p & (p \\Rightarrow q) \\land (q \\Rightarrow p) \\end{array}',
+                  '\\begin{array} B & B & B & B & B \\end{array}',
+                  '\\begin{array} B & S & S & B & S \\end{array}',
+                  '\\begin{array} S & B & B & S & S \\end{array}',
+                  '\\begin{array} S & S & B & B & B \\end{array}',
                 ],
               },
               explain: {
@@ -272,38 +272,38 @@ export const module2: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Answer truth values as 1 (true) or 0 (false).', id: 'Jawab nilai kebenaran dengan 1 (benar) atau 0 (salah).' },
+          { en: 'Evaluate every listed statement before counting how many are true.', id: 'Nilai setiap pernyataan yang tercantum sebelum menghitung berapa banyak yang benar.' },
         ],
         tasks: [
           {
             prompt: {
-              en: '$p$: "$2$ is negative" (false). $q$: "$2$ is prime" (true). Evaluate $p \\Rightarrow q$.',
-              id: '$p$: "$2$ negatif" (salah). $q$: "$2$ prima" (benar). Tentukan nilai $p \\Rightarrow q$.',
+              en: '$p$: "$2$ is negative" (false). $q$: "$2$ is prime" (true). $r$: "$2$ is odd" (false). Of the three conditionals $p \\Rightarrow q$, $p \\Rightarrow r$, $q \\Rightarrow r$, how many are true?',
+              id: '$p$: "$2$ negatif" (salah). $q$: "$2$ prima" (benar). $r$: "$2$ ganjil" (salah). Dari tiga kondisional $p \\Rightarrow q$, $p \\Rightarrow r$, $q \\Rightarrow r$, berapa banyak yang benar?',
             },
-            blanks: [{ label: 'p \\Rightarrow q =', answer: 1 }],
-            solution: ['Hipotesisnya salah, jadi kondisionalnya benar secara hampa, apa pun nilai $q$.'],
+            blanks: [{ answer: 2 }],
+            solution: ['p \\Rightarrow q: \\text{ hipotesis salah — benar secara hampa.}', 'p \\Rightarrow r: \\text{ hipotesis salah — benar secara hampa.}', 'q \\Rightarrow r: \\text{ hipotesis benar, konklusi salah — salah.}', '\\text{Jadi dua dari tiga kondisional itu benar.}'],
           },
           {
             prompt: {
-              en: '$p$: "$16$ is a perfect square" (true). $q$: "$16$ is odd" (false). Evaluate $p \\Rightarrow q$.',
-              id: '$p$: "$16$ bilangan kuadrat" (benar). $q$: "$16$ ganjil" (salah). Tentukan nilai $p \\Rightarrow q$.',
+              en: '$p$: "$16$ is a perfect square" (true). $q$: "$16$ is odd" (false). $r$: "$16$ is a multiple of $3$" (false). Of the three conditionals $p \\Rightarrow q$, $p \\Rightarrow r$, $q \\Rightarrow r$, how many are true?',
+              id: '$p$: "$16$ bilangan kuadrat" (benar). $q$: "$16$ ganjil" (salah). $r$: "$16$ kelipatan $3$" (salah). Dari tiga kondisional $p \\Rightarrow q$, $p \\Rightarrow r$, $q \\Rightarrow r$, berapa banyak yang benar?',
             },
-            blanks: [{ label: 'p \\Rightarrow q =', answer: 0 }],
-            solution: ['Hipotesisnya benar tetapi konklusinya salah — satu-satunya kasus kondisionalnya salah.'],
+            blanks: [{ answer: 1 }],
+            solution: ['p \\Rightarrow q: \\text{ hipotesis benar, konklusi salah — salah.}', 'p \\Rightarrow r: \\text{ hipotesis benar, konklusi salah — salah.}', 'q \\Rightarrow r: \\text{ hipotesis salah — benar secara hampa.}', '\\text{Jadi hanya satu dari tiga kondisional itu benar.}'],
           },
           {
             prompt: {
-              en: '$p$: "$6 \\times 2 = 12$" and $q$: "$12 \\div 2 = 6$". Evaluate $p \\Leftrightarrow q$.',
-              id: '$p$: "$6 \\times 2 = 12$" dan $q$: "$12 \\div 2 = 6$". Tentukan nilai $p \\Leftrightarrow q$.',
+              en: '$p$: "$6 \\times 2 = 12$" (true). $q$: "$12 \\div 2 = 6$" (true). $r$: "$12$ is odd" (false). Of the three biconditionals $p \\Leftrightarrow q$, $p \\Leftrightarrow r$, $q \\Leftrightarrow r$, how many are true?',
+              id: '$p$: "$6 \\times 2 = 12$" (benar). $q$: "$12 \\div 2 = 6$" (benar). $r$: "$12$ ganjil" (salah). Dari tiga bikondisional $p \\Leftrightarrow q$, $p \\Leftrightarrow r$, $q \\Leftrightarrow r$, berapa banyak yang benar?',
             },
-            blanks: [{ label: 'p \\Leftrightarrow q =', answer: 1 }],
-            solution: ['Kedua pernyataan benar, jadi keduanya sepakat dan $p \\Leftrightarrow q$ benar.'],
+            blanks: [{ answer: 1 }],
+            solution: ['p \\Leftrightarrow q: \\text{ keduanya benar, sepakat — benar.}', 'p \\Leftrightarrow r: \\text{ satu benar satu salah, tak sepakat — salah.}', 'q \\Leftrightarrow r: \\text{ satu benar satu salah, tak sepakat — salah.}', '\\text{Jadi hanya satu dari tiga bikondisional itu benar.}'],
           },
         ],
         hints: [
           {
-            en: 'Whenever the hypothesis of a conditional is false, you already know the answer without even looking at the conclusion.',
-            id: 'Setiap kali hipotesis sebuah kondisional salah, kamu sudah tahu jawabannya tanpa perlu melihat konklusinya.',
+            en: 'Settle p, q, and r on their own first. Then evaluate each of the three compound statements one at a time before counting.',
+            id: 'Tentukan dulu p, q, dan r sendiri-sendiri. Lalu nilai ketiga pernyataan majemuknya satu per satu sebelum menghitungnya.',
           },
         ],
         xp: 50,
@@ -655,38 +655,38 @@ export const module2: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Answer truth values as 1 (true) or 0 (false).', id: 'Jawab nilai kebenaran dengan 1 (benar) atau 0 (salah).' },
+          { en: 'Evaluate every listed statement before counting how many are true.', id: 'Nilai setiap pernyataan yang tercantum sebelum menghitung berapa banyak yang benar.' },
         ],
         tasks: [
           {
             prompt: {
-              en: 'The conditional "if $n$ is a multiple of 9, then $n$ is a multiple of 3" is true. Its contrapositive must also be true. Confirm this for $n = 5$: is "$5$ is not a multiple of 3, so $5$ is not a multiple of 9" true?',
-              id: 'Kondisional "jika $n$ kelipatan 9, maka $n$ kelipatan 3" benar. Kontraposisinya pasti juga benar. Konfirmasikan untuk $n = 5$: apakah "$5$ bukan kelipatan 3, jadi $5$ bukan kelipatan 9" benar?',
+              en: 'For $n = 4$: $p$: "$n$ is a multiple of 6" (false). $q$: "$n$ is even" (true). Of the original $p \\Rightarrow q$, its converse $q \\Rightarrow p$, and its contrapositive $\\neg q \\Rightarrow \\neg p$, how many come out true?',
+              id: 'Untuk $n = 4$: $p$: "$n$ kelipatan 6" (salah). $q$: "$n$ genap" (benar). Dari $p \\Rightarrow q$ aslinya, konversnya $q \\Rightarrow p$, dan kontraposisinya $\\neg q \\Rightarrow \\neg p$, berapa banyak yang benar?',
+            },
+            blanks: [{ answer: 2 }],
+            solution: ['p \\Rightarrow q: \\text{ hipotesis salah — benar secara hampa.}', 'q \\Rightarrow p: \\text{ hipotesis benar, konklusi salah — salah.}', '\\neg q \\Rightarrow \\neg p: \\neg q\\text{ salah — benar secara hampa.}', '\\text{Jadi dua dari tiga pernyataan itu benar; hanya konversnya yang salah.}'],
+          },
+          {
+            prompt: {
+              en: '$p$: "$3$ is even" (false). $q$: "$3$ is negative" (false). $r$: "$3$ is odd" (true). Of $\\neg(p \\lor q)$, $\\neg(p \\lor r)$, $\\neg(q \\lor r)$, how many are true?',
+              id: '$p$: "$3$ genap" (salah). $q$: "$3$ negatif" (salah). $r$: "$3$ ganjil" (benar). Dari $\\neg(p \\lor q)$, $\\neg(p \\lor r)$, $\\neg(q \\lor r)$, berapa banyak yang benar?',
             },
             blanks: [{ answer: 1 }],
-            solution: ['$5$ memang bukan kelipatan 3 dan bukan pula kelipatan 9, jadi kontraposisinya benar untuk $n=5$, sebagaimana dijamin oleh ekuivalensinya dengan yang asli.'],
+            solution: ['\\neg(p \\lor q): p \\lor q\\text{ salah, jadi negasinya benar.}', '\\neg(p \\lor r): p \\lor r\\text{ benar (}r\\text{ benar), jadi negasinya salah.}', '\\neg(q \\lor r): q \\lor r\\text{ benar (}r\\text{ benar), jadi negasinya salah.}', '\\text{Jadi hanya satu dari ketiganya benar.}'],
           },
           {
             prompt: {
-              en: 'Evaluate $\\neg(p \\lor q)$ for $p$: "$3$ is even" (false) and $q$: "$3$ is negative" (false).',
-              id: 'Tentukan nilai $\\neg(p \\lor q)$ untuk $p$: "$3$ genap" (salah) dan $q$: "$3$ negatif" (salah).',
+              en: 'With $p$ false, $q$ true, $r$ true, and reading each expression by the usual convention, how many of $p \\lor \\neg q \\land r$, $\\neg p \\land q \\lor r$, $p \\land q \\lor \\neg r$ come out true?',
+              id: 'Dengan $p$ salah, $q$ benar, $r$ benar, dan membaca tiap ungkapan menurut kesepakatan yang biasa, berapa banyak dari $p \\lor \\neg q \\land r$, $\\neg p \\land q \\lor r$, $p \\land q \\lor \\neg r$ yang benar?',
             },
-            blanks: [{ label: '\\neg(p \\lor q) =', answer: 1 }],
-            solution: ['$p \\lor q$ salah (keduanya salah), jadi negasinya $\\neg(p \\lor q)$ benar — cocok dengan $\\neg p \\land \\neg q$, yang juga benar karena keduanya benar.'],
-          },
-          {
-            prompt: {
-              en: 'Reading $p \\lor \\neg q \\land r$ by convention groups it as $p \\lor (\\neg q \\land r)$. With $p$ false, $q$ true, $r$ true, evaluate it.',
-              id: 'Membaca $p \\lor \\neg q \\land r$ menurut kesepakatan mengelompokkannya menjadi $p \\lor (\\neg q \\land r)$. Dengan $p$ salah, $q$ benar, $r$ benar, tentukan nilainya.',
-            },
-            blanks: [{ label: 'p \\lor (\\neg q \\land r) =', answer: 0 }],
-            solution: ['$\\neg q$ salah, jadi $\\neg q \\land r$ salah; $p$ juga salah; disjungsi dua bagian yang salah tetap salah.'],
+            blanks: [{ answer: 1 }],
+            solution: ['p \\lor \\neg q \\land r \\equiv p \\lor (\\neg q \\land r): \\neg q\\text{ salah, jadi seluruhnya salah.}', '\\neg p \\land q \\lor r \\equiv (\\neg p \\land q) \\lor r: \\neg p \\land q\\text{ benar, jadi seluruhnya benar.}', 'p \\land q \\lor \\neg r \\equiv (p \\land q) \\lor \\neg r: p \\land q\\text{ salah (}p\\text{ salah) dan }\\neg r\\text{ salah, jadi seluruhnya salah.}', '\\text{Jadi hanya satu dari ketiganya benar.}'],
           },
         ],
         hints: [
           {
-            en: 'Work each expression from the inside out: negate first, then combine with the tighter-binding connective, and only then the looser one.',
-            id: 'Kerjakan tiap ungkapan dari dalam ke luar: ingkar dulu, lalu gabungkan dengan penghubung yang lebih erat ikatannya, baru yang lebih lemah.',
+            en: 'Work each expression from the inside out: negate first, then combine with the tighter-binding connective, and only then the looser one — then count.',
+            id: 'Kerjakan tiap ungkapan dari dalam ke luar: ingkar dulu, lalu gabungkan dengan penghubung yang lebih erat ikatannya, baru yang lebih lemah — lalu hitung.',
           },
         ],
         xp: 50,

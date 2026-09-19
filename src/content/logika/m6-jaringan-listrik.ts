@@ -339,24 +339,24 @@ export const module6: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Answer 1 for "lights up" / true, 0 for "stays dark" / false.', id: 'Jawab 1 untuk "menyala" / benar, 0 untuk "tetap padam" / salah.' },
+          { en: 'Check every combination listed before answering — the count is what is graded, not a single yes/no.', id: 'Periksa setiap kombinasi yang tercantum sebelum menjawab — yang dinilai adalah banyaknya, bukan satu ya/tidak.' },
         ],
         tasks: [
           {
             prompt: {
-              en: 'A circuit is wired as $p \\land (q \\lor r)$. With $p$ closed, $q$ open, $r$ closed, does the lamp light up?',
-              id: 'Sebuah rangkaian dikawatkan sebagai $p \\land (q \\lor r)$. Dengan $p$ tertutup, $q$ terbuka, $r$ tertutup, apakah lampunya menyala?',
+              en: 'A circuit is wired as $p \\land (q \\lor r)$. Check these four switch combinations, in order: (closed, open, closed), (open, closed, closed), (closed, closed, open), (open, open, closed) for $(p, q, r)$. In how many of them does the lamp light up?',
+              id: 'Sebuah rangkaian dikawatkan sebagai $p \\land (q \\lor r)$. Periksa keempat kombinasi saklar ini, secara berurutan: (tertutup, terbuka, tertutup), (terbuka, tertutup, tertutup), (tertutup, tertutup, terbuka), (terbuka, terbuka, tertutup) untuk $(p, q, r)$. Pada berapa banyak di antaranya lampunya menyala?',
             },
-            blanks: [{ answer: 1 }],
-            solution: ['$q \\lor r$ benar ($r$ tertutup), dan $p$ tertutup, jadi $p \\land (q \\lor r)$ benar — lampunya menyala.'],
+            blanks: [{ answer: 2 }],
+            solution: ['(B,S,B): q \\lor r = B, \\; p \\land (q \\lor r) = B — \\text{menyala.}', '(S,B,B): p = S, \\text{ jadi seluruhnya salah — tak menyala.}', '(B,B,S): q \\lor r = B, \\; p \\land (q \\lor r) = B — \\text{menyala.}', '(S,S,B): p = S — \\text{tak menyala.}', '\\text{Jadi }2\\text{ dari }4\\text{ kombinasi menyalakan lampunya.}'],
           },
           {
             prompt: {
-              en: 'Same wiring, $p \\land (q \\lor r)$. With $p$ open, $q$ closed, $r$ closed, does the lamp light up?',
-              id: 'Pengawatan yang sama, $p \\land (q \\lor r)$. Dengan $p$ terbuka, $q$ tertutup, $r$ tertutup, apakah lampunya menyala?',
+              en: 'A circuit is wired as $(p \\lor q) \\land r$. Check these four combinations for $(p, q, r)$: (closed, closed, closed), (closed, open, closed), (open, closed, closed), (open, open, closed). In how many of them does the lamp light up?',
+              id: 'Sebuah rangkaian dikawatkan sebagai $(p \\lor q) \\land r$. Periksa keempat kombinasi ini untuk $(p, q, r)$: (tertutup, tertutup, tertutup), (tertutup, terbuka, tertutup), (terbuka, tertutup, tertutup), (terbuka, terbuka, tertutup). Pada berapa banyak di antaranya lampunya menyala?',
             },
-            blanks: [{ answer: 0 }],
-            solution: ['$p$ terbuka sudah cukup mematahkan seluruh konjungsinya, apa pun keadaan $q$ dan $r$ — lampunya tetap padam.'],
+            blanks: [{ answer: 3 }],
+            solution: ['\\text{Pada ketiga kombinasi pertama, }r\\text{ tertutup dan setidaknya satu dari }p, q\\text{ tertutup, jadi }(p \\lor q) \\land r\\text{ benar — menyala.}', '\\text{Pada kombinasi keempat, }p\\text{ dan }q\\text{ sama-sama terbuka, jadi }p \\lor q\\text{ salah — tak menyala.}', '\\text{Jadi }3\\text{ dari }4\\text{ kombinasi menyalakan lampunya.}'],
           },
           {
             prompt: {
@@ -364,13 +364,13 @@ export const module6: Module = {
               id: 'Rangkaian untuk $(p \\land r) \\lor (q \\land r)$ memakai 4 saklar sebagaimana ditulis. Bentuk ekivalennya $(p \\lor q) \\land r$ butuh berapa saklar?',
             },
             blanks: [{ answer: 3 }],
-            solution: ['Bentuk ekivalennya hanya butuh satu $p$, satu $q$, satu $r$ — tiga saklar.'],
+            solution: ['\\text{Bentuk ekivalennya hanya butuh satu }p\\text{, satu }q\\text{, satu }r\\text{ — tiga saklar.}'],
           },
         ],
         hints: [
           {
-            en: 'Evaluate the inner parenthesised part first in each case, exactly the way you would evaluate any compound statement.',
-            id: 'Tentukan dulu bagian dalam tanda kurung pada tiap kasus, persis seperti caramu menilai pernyataan majemuk apa pun.',
+            en: 'Evaluate the inner parenthesised part first for each combination, exactly the way you would evaluate any compound statement, then count how many combinations lit the lamp.',
+            id: 'Tentukan dulu bagian dalam tanda kurung untuk tiap kombinasi, persis seperti caramu menilai pernyataan majemuk apa pun, lalu hitung berapa banyak kombinasi yang menyalakan lampunya.',
           },
         ],
         xp: 50,

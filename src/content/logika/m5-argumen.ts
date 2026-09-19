@@ -389,38 +389,38 @@ export const module5: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Answer truth values or yes/no as 1 or 0.', id: 'Jawab nilai kebenaran atau ya/tidak dengan 1 atau 0.' },
+          { en: 'Check every case listed before answering — the count is what is graded, not a single yes/no.', id: 'Periksa setiap kasus yang tercantum sebelum menjawab — yang dinilai adalah banyaknya, bukan satu ya/tidak.' },
         ],
         tasks: [
           {
             prompt: {
-              en: '"If $n$ is a multiple of 15, then $n$ is a multiple of 5. $n$ is not a multiple of 5." By Modus Tollens, evaluate the conclusion: "$n$ is not a multiple of 15."',
-              id: '"Jika $n$ kelipatan 15, maka $n$ kelipatan 5. $n$ bukan kelipatan 5." Menurut Modus Tollens, tentukan nilai konklusinya: "$n$ bukan kelipatan 15."',
+              en: 'Using "if $n$ is a multiple of 15, then $n$ is a multiple of 5", Modus Tollens applies to a value of $n$ exactly when $n$ is not a multiple of 5. For how many of $n = 8, 9, 10, 12$ does Modus Tollens apply?',
+              id: 'Dengan "jika $n$ kelipatan 15, maka $n$ kelipatan 5", Modus Tollens berlaku untuk suatu nilai $n$ tepat ketika $n$ bukan kelipatan 5. Untuk berapa banyak dari $n = 8, 9, 10, 12$ Modus Tollens berlaku?',
             },
-            blanks: [{ answer: 1 }],
-            solution: ['Modus Tollens menjamin $\\neg p$: $n$ bukan kelipatan 15 — pernyataan itu benar.'],
+            blanks: [{ answer: 3 }],
+            solution: ['\\text{Kelipatan 5 di antara }8, 9, 10, 12\\text{ hanya }10\\text{, jadi }\\neg q\\text{ berlaku untuk }8, 9, 12 — \\text{tiga nilai.}'],
           },
           {
             prompt: {
-              en: 'Testing "$p \\Rightarrow q$, $\\neg p$, $\\therefore \\neg q$" (denying the antecedent) for $p$ false, $q$ true: are both premises true in this row?',
-              id: 'Menguji "$p \\Rightarrow q$, $\\neg p$, $\\therefore \\neg q$" (mengingkar antesenden) untuk $p$ salah, $q$ benar: apakah kedua premisnya benar pada baris ini?',
+              en: 'Testing the invalid form "$p \\Rightarrow q$, $\\neg p$, $\\therefore \\neg q$" (denying the antecedent) across all $4$ rows of $p$ and $q$: in how many rows are both premises ($p \\Rightarrow q$ and $\\neg p$) true?',
+              id: 'Menguji bentuk yang tidak sah "$p \\Rightarrow q$, $\\neg p$, $\\therefore \\neg q$" (mengingkar antesenden) pada keempat baris $p$ dan $q$: pada berapa banyak baris kedua premisnya ($p \\Rightarrow q$ dan $\\neg p$) benar?',
             },
-            blanks: [{ answer: 1 }],
-            solution: ['$p \\Rightarrow q$ benar (hipotesis salah) dan $\\neg p$ benar ($p$ salah) — keduanya benar.'],
+            blanks: [{ answer: 2 }],
+            solution: ['p=B: \\neg p\\text{ salah, jadi baris ini gugur, apa pun }p \\Rightarrow q.', 'p=S, q=B: p \\Rightarrow q\\text{ benar secara hampa, dan }\\neg p\\text{ benar — kedua premis benar.}', 'p=S, q=S: p \\Rightarrow q\\text{ benar secara hampa, dan }\\neg p\\text{ benar — kedua premis benar.}', '\\text{Jadi }2\\text{ dari }4\\text{ baris punya kedua premis benar.}'],
           },
           {
             prompt: {
-              en: 'Same row as above. Is the conclusion $\\neg q$ true? Does this row make the argument invalid? (Answer 1 for "yes, invalid".)',
-              id: 'Baris yang sama seperti di atas. Apakah konklusi $\\neg q$ benar? Apakah baris ini membuat argumennya tidak sah? (Jawab 1 untuk "ya, tidak sah".)',
+              en: 'Of those $2$ rows found above, how many are genuine counterexamples — that is, have the conclusion $\\neg q$ come out false?',
+              id: 'Dari kedua baris yang ditemukan di atas, berapa banyak yang benar-benar contoh penyangkal — yakni, konklusi $\\neg q$-nya bernilai salah?',
             },
             blanks: [{ answer: 1 }],
-            solution: ['$q$ benar, jadi $\\neg q$ salah — dengan kedua premis benar dan konklusi salah, baris ini contoh penyangkal, dan argumennya tidak sah.'],
+            solution: ['p=S, q=B: q\\text{ benar, jadi }\\neg q\\text{ salah — ini contoh penyangkal.}', 'p=S, q=S: q\\text{ salah, jadi }\\neg q\\text{ benar — ini bukan contoh penyangkal.}', '\\text{Jadi hanya }1\\text{ dari }2\\text{ baris itu benar-benar contoh penyangkal — tetapi satu saja sudah cukup membuat bentuk argumennya tidak sah.}'],
           },
         ],
         hints: [
           {
-            en: 'For the last two parts: settle every premise first, then compare against the conclusion in that same row.',
-            id: 'Untuk dua butir terakhir: tentukan dulu setiap premis, lalu bandingkan dengan konklusi pada baris yang sama.',
+            en: 'For the last two parts: build the little 4-row table for p and q, settle every premise on each row first, then compare against the conclusion in that same row before counting.',
+            id: 'Untuk dua butir terakhir: bangun tabel kecil 4 baris untuk p dan q, tentukan dulu setiap premis pada tiap baris, lalu bandingkan dengan konklusi pada baris yang sama sebelum menghitungnya.',
           },
         ],
         xp: 50,
@@ -667,7 +667,7 @@ export const module5: Module = {
               id: 'Untuk membuktikan "jika $3n + 1$ genap, maka $n$ ganjil" lewat kontraposisi, kamu justru membuktikan "jika $n$ genap, maka $3n+1$ ganjil". Periksa untuk $n = 4$: berapakah $3n + 1$?',
             },
             blanks: [{ label: '3n + 1 =', answer: 13 }],
-            solution: ['$3(4) + 1 = 13$, yang ganjil — konsisten dengan kontraposisinya.'],
+            solution: ['3(4) + 1 = 13\\text{, yang ganjil — konsisten dengan kontraposisinya.}'],
           },
           {
             prompt: {
@@ -675,7 +675,7 @@ export const module5: Module = {
               id: 'Dari "$\\forall x \\in \\mathbb{Z}, \\; x^3 \\text{ bertanda sama dengan } x$" dan $x = -2$, instansiasi universal memberi klaim tentang $(-2)^3$. Berapakah $(-2)^3$?',
             },
             blanks: [{ label: '(-2)^3 =', answer: -8 }],
-            solution: ['$(-2)^3 = -8$, negatif seperti $-2$ sendiri — sesuai dengan yang diklaim.'],
+            solution: ['(-2)^3 = -8\\text{, negatif seperti }-2\\text{ sendiri — sesuai dengan yang diklaim.}'],
           },
           {
             prompt: {
@@ -683,7 +683,7 @@ export const module5: Module = {
               id: 'Pembuktian dengan kontradiksi untuk "$\\sqrt{3}$ irasional" mengandaikan $\\sqrt{3} = \\frac{a}{b}$ dalam bentuk paling sederhana, dan menurunkan bahwa $3$ membagi $a$, jadi $a = 3k$. Disubstitusi, $3b^2 = 9k^2$, jadi $b^2 = 3k^2$ — berarti $3$ juga membagi $b$. Ini bertentangan dengan "bentuk paling sederhana" karena $a$ dan $b$ akan berbagi faktor persekutuan apa?',
             },
             blanks: [{ answer: 3 }],
-            solution: ['Keduanya habis dibagi 3, bertentangan dengan pengandaian bahwa $a/b$ sudah paling sederhana.'],
+            solution: ['\\text{Keduanya habis dibagi 3, bertentangan dengan pengandaian bahwa }a/b\\text{ sudah paling sederhana.}'],
           },
         ],
         hints: [
@@ -961,7 +961,7 @@ export const module5: Module = {
               id: 'Untuk $P(n)$: "$1 + 3 + 5 + \\cdots + (2n-1) = n^2$", periksa basis induksi $n=1$: ruas kirinya $1$. Berapakah $n^2$ untuk $n=1$?',
             },
             blanks: [{ answer: 1 }],
-            solution: ['$1^2 = 1$, cocok dengan ruas kiri.'],
+            solution: ['1^2 = 1\\text{, cocok dengan ruas kiri.}'],
           },
           {
             prompt: {
@@ -977,7 +977,7 @@ export const module5: Module = {
               id: 'Untuk $P(n)$: "$4^n - 1$ habis dibagi $3$", periksa basis induksinya: berapakah $4^1 - 1$?',
             },
             blanks: [{ answer: 3 }],
-            solution: ['$4^1 - 1 = 3$, habis dibagi 3 — basis induksinya berlaku.'],
+            solution: ['4^1 - 1 = 3\\text{, habis dibagi 3 — basis induksinya berlaku.}'],
           },
         ],
         hints: [

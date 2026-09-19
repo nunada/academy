@@ -380,16 +380,16 @@ export const module1: Module = {
             },
             blanks: [{ answer: 2 }],
             solution: [
-              'Kalimat 1 dan 4 adalah pernyataan (benar keduanya); kalimat 2 kalimat terbuka, kalimat 3 perintah.',
+              '\\text{Kalimat 1 dan 4 adalah pernyataan (benar keduanya); kalimat 2 kalimat terbuka, kalimat 3 perintah.}',
             ],
           },
           {
             prompt: {
-              en: 'In "$V = \\frac{4}{3}\\pi r^3$, the volume of a sphere of radius $r$", is $\\pi$ a variable, a constant, or a parameter? Answer 1 for constant, 0 for variable or parameter.',
-              id: 'Pada "$V = \\frac{4}{3}\\pi r^3$, volume bola berjari-jari $r$", apakah $\\pi$ variabel, konstanta, atau parameter? Jawab 1 untuk konstanta, 0 untuk variabel atau parameter.',
+              en: 'In "$ax^2 + bx + c = 0$, solve for $x$", how many parameters appear in the equation?',
+              id: 'Pada "$ax^2 + bx + c = 0$, carilah $x$", berapa banyak parameter yang muncul dalam persamaan itu?',
             },
-            blanks: [{ answer: 1 }],
-            solution: ['$\\pi$ punya satu nilai tetap yang tak pernah berubah, di persamaan mana pun ia muncul — itulah konstanta.'],
+            blanks: [{ answer: 3 }],
+            solution: ['a, b, c\\text{ adalah parameter (tetap untuk satu persamaan, berbeda dari satu persamaan ke persamaan lain); }x\\text{ adalah variabel yang dicari — tiga parameter seluruhnya.}'],
           },
           {
             prompt: {
@@ -397,7 +397,7 @@ export const module1: Module = {
               id: 'Kalimat terbuka "$x$ faktor dari $18$" bersemesta $\\{1, 2, \\ldots, 9\\}$. Berapa banyak anggota himpunan penyelesaiannya?',
             },
             blanks: [{ answer: 5 }],
-            solution: ['Faktor dari 18 yang berada di dalam semesta $\\{1,\\ldots,9\\}$ adalah 1, 2, 3, 6, 9 — lima anggota.'],
+            solution: ['\\text{Faktor dari 18 yang berada di dalam semesta }\\{1,\\ldots,9\\}\\text{ adalah 1, 2, 3, 6, 9 — lima anggota.}'],
           },
         ],
         hints: [
@@ -502,14 +502,14 @@ export const module1: Module = {
               },
               lines: {
                 en: [
-                  '\\begin{array} p & \\neg p & \\neg(\\neg p)',
-                  'B & S & B',
-                  'S & B & S',
+                  '\\begin{array} p & \\neg p & \\neg(\\neg p) \\end{array}',
+                  '\\begin{array} B & S & B \\end{array}',
+                  '\\begin{array} S & B & S \\end{array}',
                 ],
                 id: [
-                  '\\begin{array} p & \\neg p & \\neg(\\neg p)',
-                  'B & S & B',
-                  'S & B & S',
+                  '\\begin{array} p & \\neg p & \\neg(\\neg p) \\end{array}',
+                  '\\begin{array} B & S & B \\end{array}',
+                  '\\begin{array} S & B & S \\end{array}',
                 ],
               },
               explain: {
@@ -733,18 +733,18 @@ export const module1: Module = {
               },
               lines: {
                 en: [
-                  '\\begin{array} p & q & \\neg p & \\neg p \\lor q',
-                  'B & B & S & B',
-                  'B & S & S & S',
-                  'S & B & B & B',
-                  'S & S & B & B',
+                  '\\begin{array} p & q & \\neg p & \\neg p \\lor q \\end{array}',
+                  '\\begin{array} B & B & S & B \\end{array}',
+                  '\\begin{array} B & S & S & S \\end{array}',
+                  '\\begin{array} S & B & B & B \\end{array}',
+                  '\\begin{array} S & S & B & B \\end{array}',
                 ],
                 id: [
-                  '\\begin{array} p & q & \\neg p & \\neg p \\lor q',
-                  'B & B & S & B',
-                  'B & S & S & S',
-                  'S & B & B & B',
-                  'S & S & B & B',
+                  '\\begin{array} p & q & \\neg p & \\neg p \\lor q \\end{array}',
+                  '\\begin{array} B & B & S & B \\end{array}',
+                  '\\begin{array} B & S & S & S \\end{array}',
+                  '\\begin{array} S & B & B & B \\end{array}',
+                  '\\begin{array} S & S & B & B \\end{array}',
                 ],
               },
               explain: {
@@ -786,24 +786,16 @@ export const module1: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Answer truth values as 1 (true) or 0 (false).', id: 'Jawab nilai kebenaran dengan 1 (benar) atau 0 (salah).' },
+          { en: 'Settle every simple statement first, then evaluate each compound one before counting.', id: 'Tentukan dulu setiap pernyataan sederhana, lalu nilai tiap pernyataan majemuknya sebelum menghitungnya.' },
         ],
         tasks: [
           {
             prompt: {
-              en: '$p$: "$20$ is a multiple of $4$" and $q$: "$20$ is a multiple of $6$". Evaluate $p \\land q$.',
-              id: '$p$: "$20$ kelipatan $4$" dan $q$: "$20$ kelipatan $6$". Tentukan nilai $p \\land q$.',
+              en: '$p$: "$20$ is a multiple of $4$" (true) and $q$: "$20$ is a multiple of $6$" (false). Of the two statements $p \\land q$ and $p \\lor \\neg q$, how many are true?',
+              id: '$p$: "$20$ kelipatan $4$" (benar) dan $q$: "$20$ kelipatan $6$" (salah). Dari dua pernyataan $p \\land q$ dan $p \\lor \\neg q$, berapa banyak yang benar?',
             },
-            blanks: [{ label: 'p \\land q =', answer: 0 }],
-            solution: ['$p$ benar tetapi $q$ salah, dan konjungsi butuh keduanya benar, jadi $p \\land q$ salah.'],
-          },
-          {
-            prompt: {
-              en: 'Same $p$ and $q$ as above. Evaluate $\\neg p \\lor q$.',
-              id: '$p$ dan $q$ sama seperti di atas. Tentukan nilai $\\neg p \\lor q$.',
-            },
-            blanks: [{ label: '\\neg p \\lor q =', answer: 0 }],
-            solution: ['$p$ benar, jadi $\\neg p$ salah; $q$ juga salah; disjungsi dua bagian yang salah adalah salah.'],
+            blanks: [{ answer: 1 }],
+            solution: ['p \\land q: \\text{ konjungsi butuh keduanya benar, tetapi }q\\text{ salah — salah.}', 'p \\lor \\neg q: \\neg q\\text{ benar (}q\\text{ salah), dan disjungsi hanya butuh satu bagian benar — benar.}', '\\text{Jadi satu dari dua pernyataan itu benar.}'],
           },
           {
             prompt: {
@@ -811,13 +803,21 @@ export const module1: Module = {
               id: 'Berapa banyak baris yang dibutuhkan tabel kebenaran untuk empat pernyataan sederhana?',
             },
             blanks: [{ answer: 16 }],
-            solution: ['Setiap pernyataan menggandakan banyaknya kombinasi: $2^4 = 16$.'],
+            solution: ['\\text{Setiap pernyataan menggandakan banyaknya kombinasi: }2^4 = 16\\text{.}'],
+          },
+          {
+            prompt: {
+              en: '$t$: "$25$ is odd" (true) and $u$: "$25$ is a perfect square" (true). Of the two statements $t \\land u$ and $t \\lor \\neg u$, how many are true?',
+              id: '$t$: "$25$ ganjil" (benar) dan $u$: "$25$ bilangan kuadrat" (benar). Dari dua pernyataan $t \\land u$ dan $t \\lor \\neg u$, berapa banyak yang benar?',
+            },
+            blanks: [{ answer: 2 }],
+            solution: ['t \\land u: \\text{ keduanya benar, jadi konjungsinya benar.}', 't \\lor \\neg u: t\\text{ sudah benar, jadi disjungsinya benar apa pun }\\neg u.', '\\text{Jadi kedua pernyataan itu benar.}'],
           },
         ],
         hints: [
           {
-            en: 'Settle the truth value of each simple statement on its own before combining them with $\\neg$, $\\land$ or $\\lor$.',
-            id: 'Tentukan dulu nilai kebenaran tiap pernyataan sederhana sendiri-sendiri sebelum menggabungkannya dengan $\\neg$, $\\land$, atau $\\lor$.',
+            en: 'Settle the truth value of each simple statement on its own, evaluate each compound statement separately, and only then count how many came out true.',
+            id: 'Tentukan dulu nilai kebenaran tiap pernyataan sederhana sendiri-sendiri, nilai tiap pernyataan majemuknya secara terpisah, dan baru hitung berapa banyak yang benar.',
           },
         ],
         xp: 50,

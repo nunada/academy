@@ -268,38 +268,38 @@ export const module4: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Answer truth values as 1 (true) or 0 (false).', id: 'Jawab nilai kebenaran dengan 1 (benar) atau 0 (salah).' },
+          { en: 'Check every member of the domain before answering — the count is what is graded, not a yes/no.', id: 'Periksa setiap anggota semestanya sebelum menjawab — yang dinilai adalah banyaknya, bukan ya/tidak.' },
         ],
         tasks: [
           {
             prompt: {
-              en: 'Is "$\\forall x \\in \\{2,4,6,8\\}, x$ is even" true?',
-              id: 'Apakah "$\\forall x \\in \\{2,4,6,8\\}, x$ genap" benar?',
+              en: 'Domain $\\{2, 4, 5, 6, 8, 10\\}$. How many of its members make the open sentence "$x$ is even" true?',
+              id: 'Semesta $\\{2, 4, 5, 6, 8, 10\\}$. Berapa banyak anggotanya yang membuat kalimat terbuka "$x$ genap" benar?',
             },
-            blanks: [{ answer: 1 }],
-            solution: ['Setiap anggota semestanya genap, jadi klaim universalnya benar.'],
+            blanks: [{ answer: 5 }],
+            solution: ['\\text{Semua anggotanya genap kecuali }5\\text{: yaitu }2, 4, 6, 8, 10 — \\text{lima anggota.}'],
           },
           {
             prompt: {
-              en: 'Is "$\\exists x \\in \\{2,4,6,8\\}, x$ is a multiple of $5$" true?',
-              id: 'Apakah "$\\exists x \\in \\{2,4,6,8\\}, x$ kelipatan $5$" benar?',
-            },
-            blanks: [{ answer: 0 }],
-            solution: ['Tak satu pun anggota semestanya kelipatan 5, jadi tak ada saksi dan klaim eksistensialnya salah.'],
-          },
-          {
-            prompt: {
-              en: 'How many members of $\\{2,4,6,8\\}$ are witnesses to the negation of "$\\forall x \\in \\{2,4,6,8\\}, x < 6$"?',
-              id: 'Berapa banyak anggota $\\{2,4,6,8\\}$ yang menjadi saksi bagi negasi dari "$\\forall x \\in \\{2,4,6,8\\}, x < 6$"?',
+              en: 'Same domain, $\\{2, 4, 5, 6, 8, 10\\}$. How many of its members make the open sentence "$x$ is a multiple of $5$" true?',
+              id: 'Semesta yang sama, $\\{2, 4, 5, 6, 8, 10\\}$. Berapa banyak anggotanya yang membuat kalimat terbuka "$x$ kelipatan $5$" benar?',
             },
             blanks: [{ answer: 2 }],
-            solution: ['Negasinya adalah "$\\exists x, x \\geq 6$"; anggota yang memenuhi adalah 6 dan 8 — dua saksi.'],
+            solution: ['\\text{Kelipatan 5 di dalam semesta itu adalah }5\\text{ dan }10 — \\text{dua anggota.}'],
+          },
+          {
+            prompt: {
+              en: 'Same domain. How many members are witnesses to the negation of "$\\forall x \\in \\{2, 4, 5, 6, 8, 10\\}, x < 6$"?',
+              id: 'Semesta yang sama. Berapa banyak anggota yang menjadi saksi bagi negasi dari "$\\forall x \\in \\{2, 4, 5, 6, 8, 10\\}, x < 6$"?',
+            },
+            blanks: [{ answer: 3 }],
+            solution: ['\\text{Negasinya adalah }\\exists x, x \\geq 6\\text{; anggota yang memenuhi adalah }6, 8, 10 — \\text{tiga saksi.}'],
           },
         ],
         hints: [
           {
-            en: 'For the last part, negate the statement first (swap the quantifier, negate the inequality), then count how many members satisfy that negated form.',
-            id: 'Untuk butir terakhir, ingkar dulu pernyataannya (tukar kuantornya, ingkar pertidaksamaannya), lalu hitung berapa banyak anggota yang memenuhi bentuk negasi itu.',
+            en: 'Go through the domain one member at a time and test each one against the open sentence before counting how many pass.',
+            id: 'Telusuri semestanya satu anggota demi satu anggota dan uji tiap anggota terhadap kalimat terbukanya sebelum menghitung berapa banyak yang lolos.',
           },
         ],
         xp: 50,
