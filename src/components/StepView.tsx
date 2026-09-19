@@ -311,6 +311,7 @@ function FillStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
                   className="blank"
                   value={values[i] ?? ''}
                   disabled={solved}
+                  placeholder="?"
                   aria-label={`blank ${i + 1}`}
                   onChange={(e) => {
                     const next = [...values]
