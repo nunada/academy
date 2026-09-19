@@ -27,6 +27,46 @@ const lathe = (profile: [number, number][], sweepDeg: number): THREE.LatheGeomet
   return geometry
 }
 
+/** A lathe only ever generates the swept *skin* — cutting away a wedge (any
+ *  `sweep` under 360°) leaves the two straight edges of that wedge with no
+ *  geometry at all. Doubled-sided material makes that opening render, but
+ *  without a face filling it there is nothing to distinguish "an open cut
+ *  through solid material" from "the shape is hollow here" — exactly the
+ *  wall a washer's thin, self-touching profile makes worst, since the
+ *  camera then looks straight through open skin to more open skin. A flat
+ *  polygon dropped in at each cut, shaped like the profile itself, is what
+ *  a real cut face would look like: solid, and colored distinctly enough
+ *  from the outer skin to read as "this is the inside", the way a diagram
+ *  in a textbook shades a cross-section. */
+const cap = (profile: [number, number][], phiRad: number): THREE.BufferGeometry => {
+  const shape = new THREE.Shape(profile.map(([r, h]) => new THREE.Vector2(r, h)))
+  const geometry = new THREE.ShapeGeometry(shape)
+  const pos = geometry.attributes.position
+  const cos = Math.cos(phiRad)
+  const sin = Math.sin(phiRad)
+  for (let i = 0; i < pos.count; i++) {
+    const r = pos.getX(i)
+    const h = pos.getY(i)
+    pos.setXYZ(i, r * cos, h, r * sin)
+  }
+  pos.needsUpdate = true
+  geometry.computeVertexNormals()
+  return geometry
+}
+
+const FULL_SWEEP_EPS = 0.5 // degrees — near enough to 360° that no cut is showing
+
+/** The cap's own material: a pale tint of the solid's colour, flat rather
+ *  than glossy, so a cut face reads as freshly-sliced material rather than
+ *  as more of the same lit, curved skin. */
+const capMaterial = (base: THREE.Color): THREE.MeshStandardMaterial =>
+  new THREE.MeshStandardMaterial({
+    color: base.clone().lerp(new THREE.Color('#ffffff'), 0.6),
+    roughness: 0.9,
+    metalness: 0,
+    side: THREE.DoubleSide,
+  })
+
 export function Solid3DView({ solid }: { solid: Solid3D }) {
   const { tc } = useI18n()
   const mountRef = useRef<HTMLDivElement>(null)
@@ -36,7 +76,13 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
   // re-revolving it at a different angle doesn't need new sample points.
   const profile = useMemo(() => buildProfile(solid), [solid])
 
-  const three = useRef<{ camera: THREE.PerspectiveCamera; controls: OrbitControls; mesh: THREE.Mesh } | null>(null)
+  const three = useRef<{
+    camera: THREE.PerspectiveCamera
+    controls: OrbitControls
+    mesh: THREE.Mesh
+    cap1: THREE.Mesh
+    cap2: THREE.Mesh
+  } | null>(null)
 
   useEffect(() => {
     const mount = mountRef.current
@@ -61,10 +107,19 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     mount.appendChild(renderer.domElement)
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.6))
-    const sun = new THREE.DirectionalLight(0xffffff, 1.1)
+    // A lower ambient share than a flat 0.6 leaves real light-to-shadow
+    // falloff across the curved skin — with ambient doing most of the work,
+    // a solid colour reads as a flat cutout instead of a rounded surface.
+    // The key light carries the shading; a dim, cool-toned fill from the
+    // opposite side keeps its own shadow side from going fully black
+    // without erasing the contrast the key light is there to provide.
+    scene.add(new THREE.AmbientLight(0xffffff, 0.4))
+    const sun = new THREE.DirectionalLight(0xffffff, 1.3)
     sun.position.set(dist, dist * 1.4, dist)
     scene.add(sun)
+    const fill = new THREE.DirectionalLight(0xbfd4ff, 0.35)
+    fill.position.set(-dist, dist * 0.3, -dist * 0.6)
+    scene.add(fill)
 
     const material = new THREE.MeshStandardMaterial({
       color: figColor(solid.color),
@@ -80,11 +135,26 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     // already-torn-down scene, leaving the live one with an empty
     // placeholder geometry forever. Building it inline has no such gap.
     const mesh = new THREE.Mesh(lathe(profile, sweep), material)
+
+    // A lathe under 360° is only ever the swept skin — the two straight
+    // edges where the wedge was cut away have no geometry of their own.
+    // These fill that opening with the profile's own flat shape, so a
+    // partial reveal reads as a clean cut through solid material rather
+    // than as a peek into a hollow shell.
+    const capMat = capMaterial(figColor(solid.color))
+    const cap1 = new THREE.Mesh(cap(profile, 0), capMat)
+    const cap2 = new THREE.Mesh(cap(profile, (sweep * Math.PI) / 180), capMat)
+    const capsShow = sweep < 360 - FULL_SWEEP_EPS
+    cap1.visible = capsShow
+    cap2.visible = capsShow
+
+    const group = new THREE.Group()
+    group.add(mesh, cap1, cap2)
     // A lathe's own axis is vertical (Y). `axis: 'x'` lays it on its side —
     // height running left-right — to match a disk/washer lesson's own
     // horizontal integration variable; `axis: 'y'` leaves it upright.
-    if (solid.axis === 'x') mesh.rotation.z = -Math.PI / 2
-    scene.add(mesh)
+    if (solid.axis === 'x') group.rotation.z = -Math.PI / 2
+    scene.add(group)
 
     const controls = new OrbitControls(camera, renderer.domElement)
     const mid = minH + span / 2
@@ -110,7 +180,7 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     }
     tick()
 
-    three.current = { camera, controls, mesh }
+    three.current = { camera, controls, mesh, cap1, cap2 }
 
     return () => {
       cancelAnimationFrame(frame)
@@ -118,6 +188,9 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
       controls.dispose()
       mesh.geometry.dispose()
       material.dispose()
+      cap1.geometry.dispose()
+      cap2.geometry.dispose()
+      capMat.dispose()
       renderer.dispose()
       mount.removeChild(renderer.domElement)
       three.current = null
@@ -140,6 +213,15 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     const geometry = lathe(profile, sweep)
     ctx.mesh.geometry.dispose()
     ctx.mesh.geometry = geometry
+
+    // cap1 stays put at phi=0; only cap2 (the moving edge of the wedge)
+    // needs a new shape, and both hide the instant the cut closes up.
+    const cap2Geometry = cap(profile, (sweep * Math.PI) / 180)
+    ctx.cap2.geometry.dispose()
+    ctx.cap2.geometry = cap2Geometry
+    const capsShow = sweep < 360 - FULL_SWEEP_EPS
+    ctx.cap1.visible = capsShow
+    ctx.cap2.visible = capsShow
   }, [sweep, profile])
 
   const reset = () => setSweep(solid.sweep ?? 270)
