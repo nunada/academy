@@ -20,6 +20,16 @@ const figColor = (role: Solid3D['color']): THREE.Color => {
   return new THREE.Color(css || '#4f8b56')
 }
 
+/** The raw `--fig-*` roles are tuned for thin strokes and small dots on a
+ *  cream page — saturated, and several of them (`a` most of all) quite
+ *  dark by design, since a dark line reads crisply against a light
+ *  background. Filled across an entire lit 3D surface instead of drawn as
+ *  a line, that same value comes out murky rather than richly coloured —
+ *  lightening it partway toward white first is what keeps a solid looking
+ *  like its own colour rather than a shadow of it, while still matching
+ *  the role a 2D figure elsewhere in the same lesson would use. */
+const solidColor = (role: Solid3D['color']): THREE.Color => figColor(role).lerp(new THREE.Color('#ffffff'), 0.28)
+
 const lathe = (profile: [number, number][], sweepDeg: number): THREE.LatheGeometry => {
   const points = profile.map(([r, h]) => new THREE.Vector2(r, h))
   const geometry = new THREE.LatheGeometry(points, 48, 0, (sweepDeg * Math.PI) / 180)
@@ -96,7 +106,6 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     const radius = Math.max(...profile.map((p) => p[0]), 1)
     const span = maxH - minH || 1
     const dist = Math.max(radius, span) * 2.4
-    camera.position.set(dist * 0.7, dist * 0.5, dist * 0.7)
 
     // preserveDrawingBuffer: a plain <canvas> screenshot (this app's own
     // export tools, a browser's page-capture) reads the buffer between
@@ -107,24 +116,24 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     mount.appendChild(renderer.domElement)
 
-    // A lower ambient share than a flat 0.6 leaves real light-to-shadow
-    // falloff across the curved skin — with ambient doing most of the work,
-    // a solid colour reads as a flat cutout instead of a rounded surface.
-    // The key light carries the shading; a dim, cool-toned fill from the
-    // opposite side keeps its own shadow side from going fully black
-    // without erasing the contrast the key light is there to provide.
-    scene.add(new THREE.AmbientLight(0xffffff, 0.4))
-    const sun = new THREE.DirectionalLight(0xffffff, 1.3)
+    // A lower ambient share than a flat 0.6 would leave real light-to-shadow
+    // falloff across the curved skin, but too little of it (paired with an
+    // already-dark base colour) is what "every solid looks nearly black"
+    // comes from — ambient here is doing a good share of the overall
+    // brightness, with the key and fill lights layered on top for shape
+    // rather than carrying the scene's whole brightness themselves.
+    scene.add(new THREE.AmbientLight(0xffffff, 0.75))
+    const sun = new THREE.DirectionalLight(0xffffff, 1.5)
     sun.position.set(dist, dist * 1.4, dist)
     scene.add(sun)
-    const fill = new THREE.DirectionalLight(0xbfd4ff, 0.35)
+    const fill = new THREE.DirectionalLight(0xbfd4ff, 0.55)
     fill.position.set(-dist, dist * 0.3, -dist * 0.6)
     scene.add(fill)
 
     const material = new THREE.MeshStandardMaterial({
-      color: figColor(solid.color),
+      color: solidColor(solid.color),
       metalness: 0.05,
-      roughness: 0.55,
+      roughness: 0.5,
       side: THREE.DoubleSide,
     })
     // Built here, synchronously, in the same effect that creates the mesh —
@@ -141,7 +150,7 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     // These fill that opening with the profile's own flat shape, so a
     // partial reveal reads as a clean cut through solid material rather
     // than as a peek into a hollow shell.
-    const capMat = capMaterial(figColor(solid.color))
+    const capMat = capMaterial(solidColor(solid.color))
     const cap1 = new THREE.Mesh(cap(profile, 0), capMat)
     const cap2 = new THREE.Mesh(cap(profile, (sweep * Math.PI) / 180), capMat)
     const capsShow = sweep < 360 - FULL_SWEEP_EPS
@@ -160,6 +169,21 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     const mid = minH + span / 2
     controls.target.set(solid.axis === 'x' ? mid : 0, solid.axis === 'x' ? 0 : mid, 0)
     controls.enableDamping = true
+
+    // Aim the default camera at the open wedge itself, not at some fixed
+    // diagonal that happens to work for one solid and not another. A cap
+    // sitting exactly edge-on to a generic viewpoint reads as a stray thin
+    // sliver rather than the flat cut face it actually is — this instead
+    // looks from partway around the *missing* arc (its bisector, nudged off
+    // to one side so both the cut and the surrounding skin are in view),
+    // in the lathe's own local frame, then carries the same rotation the
+    // group itself gets for `axis: 'x'` so the two stay in agreement.
+    const gapMid = (((sweep + 360) / 2) * Math.PI) / 180
+    const viewAngle = gapMid - Math.PI / 5
+    const camDir = new THREE.Vector3(Math.cos(viewAngle), 0.55, Math.sin(viewAngle))
+    if (solid.axis === 'x') camDir.applyEuler(new THREE.Euler(0, 0, -Math.PI / 2))
+    camDir.normalize()
+    camera.position.copy(controls.target).addScaledVector(camDir, dist * 1.7)
     camera.lookAt(controls.target)
 
     const resize = new ResizeObserver(() => {
