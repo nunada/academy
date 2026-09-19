@@ -1031,3 +1031,18 @@ th .sortable.on::after { content: ' ↓'; }
 }
 .mathkeys button:hover { border-color: var(--brand); }
 .mathkeys button:active { transform: translateY(1px); }
+
+/* The Playground's solid-of-revolution board: same embedded-figure spacing
+   reset as .graphboard, plus a round color-swatch button (a click target,
+   unlike .graphswatch which is just a dot next to a row it can't select). */
+.solidboard .fig { margin-top: 0; }
+.solidfields { margin-top: 14px; }
+.colorswatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.colorswatch:hover { border-color: var(--border); }

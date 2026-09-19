@@ -20,6 +20,7 @@ import { ResultTable } from '../components/ResultTable'
 import { CompileReport } from '../components/CompileReport'
 import { GamePreview } from '../components/GamePreview'
 import { GraphBoard } from '../components/GraphBoard'
+import { Solid3DBoard } from '../components/Solid3DBoard'
 
 const SIMPAN = 'nunada.playground.v1'
 
@@ -200,6 +201,8 @@ export default function Playground() {
 
       {modeId === 'graph' ? (
         <GraphBoard />
+      ) : modeId === 'solid3d' ? (
+        <Solid3DBoard />
       ) : (
       <div className="grid two">
         <div className="card">
