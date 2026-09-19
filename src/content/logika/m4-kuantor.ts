@@ -268,38 +268,38 @@ export const module4: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Check every member of the domain before answering — the count is what is graded, not a yes/no.', id: 'Periksa setiap anggota semestanya sebelum menjawab — yang dinilai adalah banyaknya, bukan ya/tidak.' },
+          { en: 'Every part asks for a sum over the domain, not a count — check every member before answering.', id: 'Setiap butir meminta jumlah pada semestanya, bukan banyaknya — periksa setiap anggotanya sebelum menjawab.' },
         ],
         tasks: [
           {
             prompt: {
-              en: 'Domain $\\{2, 4, 5, 6, 8, 10\\}$. How many of its members make the open sentence "$x$ is even" true?',
-              id: 'Semesta $\\{2, 4, 5, 6, 8, 10\\}$. Berapa banyak anggotanya yang membuat kalimat terbuka "$x$ genap" benar?',
+              en: 'Domain $\\{3, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20\\}$. What is the sum of the members that make the open sentence "$x$ is even" true?',
+              id: 'Semesta $\\{3, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20\\}$. Berapa jumlah anggota yang membuat kalimat terbuka "$x$ genap" benar?',
             },
-            blanks: [{ answer: 5 }],
-            solution: ['\\text{Semua anggotanya genap kecuali }5\\text{: yaitu }2, 4, 6, 8, 10 — \\text{lima anggota.}'],
+            blanks: [{ answer: 108 }],
+            solution: ['\\text{Semua anggotanya genap kecuali }3, 9, 15\\text{: yaitu }4, 6, 8, 10, 12, 14, 16, 18, 20.', '4+6+8+10+12+14+16+18+20 = 108.'],
           },
           {
             prompt: {
-              en: 'Same domain, $\\{2, 4, 5, 6, 8, 10\\}$. How many of its members make the open sentence "$x$ is a multiple of $5$" true?',
-              id: 'Semesta yang sama, $\\{2, 4, 5, 6, 8, 10\\}$. Berapa banyak anggotanya yang membuat kalimat terbuka "$x$ kelipatan $5$" benar?',
+              en: 'Same domain. What is the sum of the members that make the open sentence "$x$ is a multiple of $5$" true?',
+              id: 'Semesta yang sama. Berapa jumlah anggota yang membuat kalimat terbuka "$x$ kelipatan $5$" benar?',
             },
-            blanks: [{ answer: 2 }],
-            solution: ['\\text{Kelipatan 5 di dalam semesta itu adalah }5\\text{ dan }10 — \\text{dua anggota.}'],
+            blanks: [{ answer: 45 }],
+            solution: ['\\text{Kelipatan 5 di dalam semesta itu adalah }10, 15, 20.', '10+15+20 = 45.'],
           },
           {
             prompt: {
-              en: 'Same domain. How many members are witnesses to the negation of "$\\forall x \\in \\{2, 4, 5, 6, 8, 10\\}, x < 6$"?',
-              id: 'Semesta yang sama. Berapa banyak anggota yang menjadi saksi bagi negasi dari "$\\forall x \\in \\{2, 4, 5, 6, 8, 10\\}, x < 6$"?',
+              en: 'Same domain. What is the sum of the members that are witnesses to the negation of "$\\forall x, x < 15$"?',
+              id: 'Semesta yang sama. Berapa jumlah anggota yang menjadi saksi bagi negasi dari "$\\forall x, x < 15$"?',
             },
-            blanks: [{ answer: 3 }],
-            solution: ['\\text{Negasinya adalah }\\exists x, x \\geq 6\\text{; anggota yang memenuhi adalah }6, 8, 10 — \\text{tiga saksi.}'],
+            blanks: [{ answer: 69 }],
+            solution: ['\\text{Negasinya adalah }\\exists x, x \\geq 15\\text{; anggota yang memenuhi adalah }15, 16, 18, 20.', '15+16+18+20 = 69.'],
           },
         ],
         hints: [
           {
-            en: 'Go through the domain one member at a time and test each one against the open sentence before counting how many pass.',
-            id: 'Telusuri semestanya satu anggota demi satu anggota dan uji tiap anggota terhadap kalimat terbukanya sebelum menghitung berapa banyak yang lolos.',
+            en: 'Go through the domain one member at a time, test each one against the open sentence, and only add up the ones that pass.',
+            id: 'Telusuri semestanya satu anggota demi satu anggota, uji tiap anggota terhadap kalimat terbukanya, dan jumlahkan hanya yang lolos.',
           },
         ],
         xp: 50,

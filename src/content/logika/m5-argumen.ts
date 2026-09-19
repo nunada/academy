@@ -389,38 +389,38 @@ export const module5: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Check every case listed before answering — the count is what is graded, not a single yes/no.', id: 'Periksa setiap kasus yang tercantum sebelum menjawab — yang dinilai adalah banyaknya, bukan satu ya/tidak.' },
+          { en: 'Check every case listed before answering — the answer is a sum or a specific identification, not a small count.', id: 'Periksa setiap kasus yang tercantum sebelum menjawab — jawabannya jumlah atau identifikasi tertentu, bukan sekadar banyaknya.' },
         ],
         tasks: [
           {
             prompt: {
-              en: 'Using "if $n$ is a multiple of 15, then $n$ is a multiple of 5", Modus Tollens applies to a value of $n$ exactly when $n$ is not a multiple of 5. For how many of $n = 8, 9, 10, 12$ does Modus Tollens apply?',
-              id: 'Dengan "jika $n$ kelipatan 15, maka $n$ kelipatan 5", Modus Tollens berlaku untuk suatu nilai $n$ tepat ketika $n$ bukan kelipatan 5. Untuk berapa banyak dari $n = 8, 9, 10, 12$ Modus Tollens berlaku?',
+              en: 'Using "if $n$ is a multiple of 15, then $n$ is a multiple of 5", Modus Tollens applies to a value of $n$ exactly when $n$ is not a multiple of 5. What is the sum of every $n$ in $\\{6, 8, 9, 10, 12, 14, 15, 20, 21, 25\\}$ for which Modus Tollens applies?',
+              id: 'Dengan "jika $n$ kelipatan 15, maka $n$ kelipatan 5", Modus Tollens berlaku untuk suatu nilai $n$ tepat ketika $n$ bukan kelipatan 5. Berapa jumlah semua $n$ dalam $\\{6, 8, 9, 10, 12, 14, 15, 20, 21, 25\\}$ yang membuat Modus Tollens berlaku?',
+            },
+            blanks: [{ answer: 70 }],
+            solution: ['\\text{Kelipatan 5 di dalam himpunan itu adalah }10, 15, 20, 25\\text{ — Modus Tollens tidak berlaku untuk keempatnya.}', '\\text{Sisanya membuatnya berlaku: }6, 8, 9, 12, 14, 21.', '6+8+9+12+14+21 = 70.'],
+          },
+          {
+            prompt: {
+              en: 'Number the $4$ rows of $p$ and $q$ as: row $1$ = ($p$ true, $q$ true), row $2$ = ($p$ true, $q$ false), row $3$ = ($p$ false, $q$ true), row $4$ = ($p$ false, $q$ false). Testing the invalid form "$p \\Rightarrow q$, $\\neg p$, $\\therefore \\neg q$" (denying the antecedent), what is the sum of the row numbers where both premises ($p \\Rightarrow q$ and $\\neg p$) are true?',
+              id: 'Beri nomor keempat baris $p$ dan $q$ sebagai: baris $1$ = ($p$ benar, $q$ benar), baris $2$ = ($p$ benar, $q$ salah), baris $3$ = ($p$ salah, $q$ benar), baris $4$ = ($p$ salah, $q$ salah). Dengan menguji bentuk yang tidak sah "$p \\Rightarrow q$, $\\neg p$, $\\therefore \\neg q$" (mengingkar antesenden), berapa jumlah nomor baris yang kedua premisnya ($p \\Rightarrow q$ dan $\\neg p$) benar?',
+            },
+            blanks: [{ answer: 7 }],
+            solution: ['\\text{Baris 1 dan 2 punya }p\\text{ benar, jadi }\\neg p\\text{ salah — gugur.}', '\\text{Baris 3 (}p=S,q=B\\text{) dan baris 4 (}p=S,q=S\\text{): }p \\Rightarrow q\\text{ benar secara hampa, dan }\\neg p\\text{ benar — kedua premis benar pada keduanya.}', '3+4 = 7.'],
+          },
+          {
+            prompt: {
+              en: 'Using the same row numbering as above, which single row number (from the two found above) is a genuine counterexample — that is, has the conclusion $\\neg q$ come out false?',
+              id: 'Dengan penomoran baris yang sama seperti di atas, nomor baris manakah (dari dua yang ditemukan di atas) yang benar-benar contoh penyangkal — yakni, konklusi $\\neg q$-nya bernilai salah?',
             },
             blanks: [{ answer: 3 }],
-            solution: ['\\text{Kelipatan 5 di antara }8, 9, 10, 12\\text{ hanya }10\\text{, jadi }\\neg q\\text{ berlaku untuk }8, 9, 12 — \\text{tiga nilai.}'],
-          },
-          {
-            prompt: {
-              en: 'Testing the invalid form "$p \\Rightarrow q$, $\\neg p$, $\\therefore \\neg q$" (denying the antecedent) across all $4$ rows of $p$ and $q$: in how many rows are both premises ($p \\Rightarrow q$ and $\\neg p$) true?',
-              id: 'Menguji bentuk yang tidak sah "$p \\Rightarrow q$, $\\neg p$, $\\therefore \\neg q$" (mengingkar antesenden) pada keempat baris $p$ dan $q$: pada berapa banyak baris kedua premisnya ($p \\Rightarrow q$ dan $\\neg p$) benar?',
-            },
-            blanks: [{ answer: 2 }],
-            solution: ['p=B: \\neg p\\text{ salah, jadi baris ini gugur, apa pun }p \\Rightarrow q.', 'p=S, q=B: p \\Rightarrow q\\text{ benar secara hampa, dan }\\neg p\\text{ benar — kedua premis benar.}', 'p=S, q=S: p \\Rightarrow q\\text{ benar secara hampa, dan }\\neg p\\text{ benar — kedua premis benar.}', '\\text{Jadi }2\\text{ dari }4\\text{ baris punya kedua premis benar.}'],
-          },
-          {
-            prompt: {
-              en: 'Of those $2$ rows found above, how many are genuine counterexamples — that is, have the conclusion $\\neg q$ come out false?',
-              id: 'Dari kedua baris yang ditemukan di atas, berapa banyak yang benar-benar contoh penyangkal — yakni, konklusi $\\neg q$-nya bernilai salah?',
-            },
-            blanks: [{ answer: 1 }],
-            solution: ['p=S, q=B: q\\text{ benar, jadi }\\neg q\\text{ salah — ini contoh penyangkal.}', 'p=S, q=S: q\\text{ salah, jadi }\\neg q\\text{ benar — ini bukan contoh penyangkal.}', '\\text{Jadi hanya }1\\text{ dari }2\\text{ baris itu benar-benar contoh penyangkal — tetapi satu saja sudah cukup membuat bentuk argumennya tidak sah.}'],
+            solution: ['\\text{Baris 3 (}p=S,q=B\\text{): }q\\text{ benar, jadi }\\neg q\\text{ salah — ini contoh penyangkal.}', '\\text{Baris 4 (}p=S,q=S\\text{): }q\\text{ salah, jadi }\\neg q\\text{ benar — bukan contoh penyangkal.}', '\\text{Jadi baris 3 adalah contoh penyangkalnya — satu saja sudah cukup membuat bentuk argumennya tidak sah.}'],
           },
         ],
         hints: [
           {
-            en: 'For the last two parts: build the little 4-row table for p and q, settle every premise on each row first, then compare against the conclusion in that same row before counting.',
-            id: 'Untuk dua butir terakhir: bangun tabel kecil 4 baris untuk p dan q, tentukan dulu setiap premis pada tiap baris, lalu bandingkan dengan konklusi pada baris yang sama sebelum menghitungnya.',
+            en: 'For the last two parts: build the little 4-row table for p and q using the given numbering, settle every premise on each row first, then compare against the conclusion in that same row.',
+            id: 'Untuk dua butir terakhir: bangun tabel kecil 4 baris untuk p dan q memakai penomoran yang diberikan, tentukan dulu setiap premis pada tiap baris, lalu bandingkan dengan konklusi pada baris yang sama.',
           },
         ],
         xp: 50,

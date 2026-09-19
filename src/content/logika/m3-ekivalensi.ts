@@ -278,38 +278,38 @@ export const module3: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Build the full 4-row truth table for each expression before answering — do not judge from a single row.', id: 'Bangun tabel kebenaran 4 barisnya secara utuh untuk tiap ungkapan sebelum menjawab — jangan menilai dari satu baris saja.' },
+          { en: 'Every part now uses three simple statements, so the truth table has 8 rows — build the whole thing before answering.', id: 'Setiap butir kini memakai tiga pernyataan sederhana, jadi tabel kebenarannya punya 8 baris — bangun semuanya sebelum menjawab.' },
         ],
         tasks: [
           {
             prompt: {
-              en: 'The truth table for $(p \\land q) \\Rightarrow p$ has $4$ rows, one for each combination of $p$ and $q$. How many of those rows come out true?',
-              id: 'Tabel kebenaran $(p \\land q) \\Rightarrow p$ punya $4$ baris, satu untuk tiap kombinasi $p$ dan $q$. Berapa banyak dari baris itu yang bernilai benar?',
+              en: 'The truth table for $(p \\land r) \\lor (\\neg q \\land \\neg r)$ has $8$ rows, one for each combination of $p$, $q$, and $r$. How many of those rows come out true?',
+              id: 'Tabel kebenaran $(p \\land r) \\lor (\\neg q \\land \\neg r)$ punya $8$ baris, satu untuk tiap kombinasi $p$, $q$, dan $r$. Berapa banyak dari baris itu yang bernilai benar?',
             },
             blanks: [{ answer: 4 }],
-            solution: ['\\text{Jika }p \\land q\\text{ benar, }p\\text{ pasti ikut benar; jika }p \\land q\\text{ salah, kondisionalnya benar secara hampa. Setiap baris benar — semua }4\\text{.}'],
+            solution: ['\\text{Baris yang bernilai benar: }(B,B,B), (B,S,B), (B,S,S), (S,S,S).', '(p,q,r)=(B,B,B): p \\land r = B.', '(p,q,r)=(B,S,B): p \\land r = B.', '(p,q,r)=(B,S,S): \\neg q \\land \\neg r = B \\land B = B.', '(p,q,r)=(S,S,S): \\neg q \\land \\neg r = B \\land B = B.', '\\text{Empat dari delapan baris benar.}'],
           },
           {
             prompt: {
-              en: 'The truth table for $(p \\Rightarrow q) \\land (p \\Rightarrow \\neg q)$ has $4$ rows. How many of those rows come out true?',
-              id: 'Tabel kebenaran $(p \\Rightarrow q) \\land (p \\Rightarrow \\neg q)$ punya $4$ baris. Berapa banyak dari baris itu yang bernilai benar?',
+              en: 'The truth table for $(p \\Rightarrow q) \\land (p \\Rightarrow \\neg q) \\land (q \\lor r)$ has $8$ rows. How many of those rows come out true?',
+              id: 'Tabel kebenaran $(p \\Rightarrow q) \\land (p \\Rightarrow \\neg q) \\land (q \\lor r)$ punya $8$ baris. Berapa banyak dari baris itu yang bernilai benar?',
             },
-            blanks: [{ answer: 2 }],
-            solution: ['p=B: p \\Rightarrow q \\equiv q, \\; p \\Rightarrow \\neg q \\equiv \\neg q, \\text{ dan } q \\land \\neg q \\text{ selalu salah — kedua baris }p=B\\text{ salah.}', 'p=S: \\text{ kedua kondisional benar secara hampa, jadi konjungsinya benar — kedua baris }p=S\\text{ benar.}', '\\text{Jadi }2\\text{ dari }4\\text{ baris benar.}'],
+            blanks: [{ answer: 3 }],
+            solution: ['p=B: (p \\Rightarrow q) \\land (p \\Rightarrow \\neg q) \\equiv q \\land \\neg q, \\text{ selalu salah — keempat baris }p=B\\text{ salah.}', 'p=S: \\text{ kedua kondisional benar secara hampa, jadi bergantung hanya pada }q \\lor r.', '(S,B,B): q \\lor r = B.\\quad (S,B,S): q \\lor r = B.\\quad (S,S,B): q \\lor r = B.\\quad (S,S,S): q \\lor r = S.', '\\text{Tiga dari delapan baris benar.}'],
           },
           {
             prompt: {
-              en: '$p \\Leftrightarrow q$ and $(p \\land q) \\lor (\\neg p \\land \\neg q)$ are claimed to be logically equivalent. Building both truth tables across all $4$ rows, in how many rows do they agree?',
-              id: '$p \\Leftrightarrow q$ dan $(p \\land q) \\lor (\\neg p \\land \\neg q)$ diklaim ekivalen secara logis. Dengan membangun kedua tabel kebenarannya pada keempat baris, pada berapa banyak baris keduanya sepakat?',
+              en: '$p \\land (q \\lor r)$ and $(p \\land q) \\lor (p \\land r)$ are claimed to be logically equivalent (the distributive law). Building both truth tables across all $8$ rows, in how many rows do they agree?',
+              id: '$p \\land (q \\lor r)$ dan $(p \\land q) \\lor (p \\land r)$ diklaim ekivalen secara logis (hukum distributif). Dengan membangun kedua tabel kebenarannya pada kedelapan baris, pada berapa banyak baris keduanya sepakat?',
             },
-            blanks: [{ answer: 4 }],
-            solution: ['\\text{Keduanya benar tepat ketika }p\\text{ dan }q\\text{ punya nilai kebenaran yang sama — persis situasi yang sama, jadi keduanya sepakat pada}', '\\text{setiap baris: }4\\text{ dari }4\\text{.}'],
+            blanks: [{ answer: 8 }],
+            solution: ['\\text{Keduanya adalah bentuk yang sama menurut hukum distributif, jadi keduanya bernilai sama pada setiap kombinasi }p, q, r.', '\\text{Delapan dari delapan baris sepakat.}'],
           },
         ],
         hints: [
           {
-            en: 'Write out the full 4-row truth table for each expression — p true/q true, p true/q false, p false/q true, p false/q false — before counting anything.',
-            id: 'Tulis dulu tabel kebenaran lengkap 4 barisnya untuk tiap ungkapan — p benar/q benar, p benar/q salah, p salah/q benar, p salah/q salah — sebelum menghitung apa pun.',
+            en: 'Write out the full 8-row truth table for each expression — every combination of p, q, and r — before counting or comparing anything.',
+            id: 'Tulis dulu tabel kebenaran lengkap 8 barisnya untuk tiap ungkapan — setiap kombinasi p, q, dan r — sebelum menghitung atau membandingkan apa pun.',
           },
         ],
         xp: 50,

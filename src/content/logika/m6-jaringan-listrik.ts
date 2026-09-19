@@ -339,24 +339,24 @@ export const module6: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Check every combination listed before answering — the count is what is graded, not a single yes/no.', id: 'Periksa setiap kombinasi yang tercantum sebelum menjawab — yang dinilai adalah banyaknya, bukan satu ya/tidak.' },
+          { en: 'Check every combination listed before answering — the answer is a sum of combination numbers, not a small count.', id: 'Periksa setiap kombinasi yang tercantum sebelum menjawab — jawabannya jumlah nomor kombinasi, bukan sekadar banyaknya.' },
         ],
         tasks: [
           {
             prompt: {
-              en: 'A circuit is wired as $p \\land (q \\lor r)$. Check these four switch combinations, in order: (closed, open, closed), (open, closed, closed), (closed, closed, open), (open, open, closed) for $(p, q, r)$. In how many of them does the lamp light up?',
-              id: 'Sebuah rangkaian dikawatkan sebagai $p \\land (q \\lor r)$. Periksa keempat kombinasi saklar ini, secara berurutan: (tertutup, terbuka, tertutup), (terbuka, tertutup, tertutup), (tertutup, tertutup, terbuka), (terbuka, terbuka, tertutup) untuk $(p, q, r)$. Pada berapa banyak di antaranya lampunya menyala?',
+              en: 'A circuit is wired as $p \\land (q \\lor r)$. Number these $8$ switch combinations of $(p, q, r)$ from $1$ to $8$: 1. (closed,closed,closed) 2. (closed,closed,open) 3. (closed,open,closed) 4. (closed,open,open) 5. (open,closed,closed) 6. (open,closed,open) 7. (open,open,closed) 8. (open,open,open). What is the sum of the combination numbers for which the lamp lights up?',
+              id: 'Sebuah rangkaian dikawatkan sebagai $p \\land (q \\lor r)$. Beri nomor kedelapan kombinasi saklar $(p, q, r)$ ini dari $1$ sampai $8$: 1. (tertutup,tertutup,tertutup) 2. (tertutup,tertutup,terbuka) 3. (tertutup,terbuka,tertutup) 4. (tertutup,terbuka,terbuka) 5. (terbuka,tertutup,tertutup) 6. (terbuka,tertutup,terbuka) 7. (terbuka,terbuka,tertutup) 8. (terbuka,terbuka,terbuka). Berapa jumlah nomor kombinasi yang menyalakan lampunya?',
             },
-            blanks: [{ answer: 2 }],
-            solution: ['(B,S,B): q \\lor r = B, \\; p \\land (q \\lor r) = B — \\text{menyala.}', '(S,B,B): p = S, \\text{ jadi seluruhnya salah — tak menyala.}', '(B,B,S): q \\lor r = B, \\; p \\land (q \\lor r) = B — \\text{menyala.}', '(S,S,B): p = S — \\text{tak menyala.}', '\\text{Jadi }2\\text{ dari }4\\text{ kombinasi menyalakan lampunya.}'],
+            blanks: [{ answer: 6 }],
+            solution: ['p\\text{ harus tertutup agar lampunya bisa menyala sama sekali — hanya kombinasi 1, 2, 3, 4 yang mungkin.}', '1. (B,B,B): q \\lor r = B — \\text{menyala. } 2. (B,B,S): q \\lor r = B — \\text{menyala. } 3. (B,S,B): q \\lor r = B — \\text{menyala. } 4. (B,S,S): q \\lor r = S — \\text{tak menyala.}', '1+2+3 = 6.'],
           },
           {
             prompt: {
-              en: 'A circuit is wired as $(p \\lor q) \\land r$. Check these four combinations for $(p, q, r)$: (closed, closed, closed), (closed, open, closed), (open, closed, closed), (open, open, closed). In how many of them does the lamp light up?',
-              id: 'Sebuah rangkaian dikawatkan sebagai $(p \\lor q) \\land r$. Periksa keempat kombinasi ini untuk $(p, q, r)$: (tertutup, tertutup, tertutup), (tertutup, terbuka, tertutup), (terbuka, tertutup, tertutup), (terbuka, terbuka, tertutup). Pada berapa banyak di antaranya lampunya menyala?',
+              en: 'A circuit is wired as $(p \\lor q) \\land r$. Using the same numbering scheme as above (combinations $1$–$8$ of $(p, q, r)$), what is the sum of the combination numbers for which the lamp lights up?',
+              id: 'Sebuah rangkaian dikawatkan sebagai $(p \\lor q) \\land r$. Dengan skema penomoran yang sama seperti di atas (kombinasi $1$–$8$ dari $(p, q, r)$), berapa jumlah nomor kombinasi yang menyalakan lampunya?',
             },
-            blanks: [{ answer: 3 }],
-            solution: ['\\text{Pada ketiga kombinasi pertama, }r\\text{ tertutup dan setidaknya satu dari }p, q\\text{ tertutup, jadi }(p \\lor q) \\land r\\text{ benar — menyala.}', '\\text{Pada kombinasi keempat, }p\\text{ dan }q\\text{ sama-sama terbuka, jadi }p \\lor q\\text{ salah — tak menyala.}', '\\text{Jadi }3\\text{ dari }4\\text{ kombinasi menyalakan lampunya.}'],
+            blanks: [{ answer: 9 }],
+            solution: ['r\\text{ harus tertutup agar lampunya bisa menyala sama sekali — hanya kombinasi bernomor ganjil (1, 3, 5, 7) yang punya }r\\text{ tertutup.}', '1. (B,B,B): p \\lor q = B — \\text{menyala. } 3. (B,S,B): p \\lor q = B — \\text{menyala. } 5. (S,B,B): p \\lor q = B — \\text{menyala. } 7. (S,S,B): p \\lor q = S — \\text{tak menyala.}', '1+3+5 = 9.'],
           },
           {
             prompt: {
@@ -369,8 +369,8 @@ export const module6: Module = {
         ],
         hints: [
           {
-            en: 'Evaluate the inner parenthesised part first for each combination, exactly the way you would evaluate any compound statement, then count how many combinations lit the lamp.',
-            id: 'Tentukan dulu bagian dalam tanda kurung untuk tiap kombinasi, persis seperti caramu menilai pernyataan majemuk apa pun, lalu hitung berapa banyak kombinasi yang menyalakan lampunya.',
+            en: 'Evaluate the inner parenthesised part first for each numbered combination, exactly the way you would evaluate any compound statement, then add up the numbers of the combinations that lit the lamp.',
+            id: 'Tentukan dulu bagian dalam tanda kurung untuk tiap kombinasi bernomor, persis seperti caramu menilai pernyataan majemuk apa pun, lalu jumlahkan nomor kombinasi yang menyalakan lampunya.',
           },
         ],
         xp: 50,

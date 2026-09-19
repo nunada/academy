@@ -371,39 +371,41 @@ export const module1: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
+          { en: 'Work through every case before answering — the answer is a sum, not a count, so it will not fall out of a lucky guess.', id: 'Kerjakan setiap kasus sebelum menjawab — jawabannya adalah jumlah, bukan banyaknya, jadi tak akan keluar dari tebakan yang kebetulan.' },
         ],
         tasks: [
           {
             prompt: {
-              en: 'Of these four sentences, how many are genuine statements?\n1. "$2$ is a prime number."\n2. "$y - 3 = 10$."\n3. "Please stand up."\n4. "The Earth has one moon."',
-              id: 'Dari empat kalimat berikut, berapa banyak yang merupakan pernyataan sejati?\n1. "$2$ adalah bilangan prima."\n2. "$y - 3 = 10$."\n3. "Silakan berdiri."\n4. "Bumi memiliki satu bulan."',
+              en: 'Of these six numbered sentences, what is the sum of the numbers of the ones that are genuine statements?\n1. "$2$ is a prime number."\n2. "$y - 3 = 10$."\n3. "Please stand up."\n4. "The Earth has one moon."\n5. "Is water wet?"\n6. "$\\pi$ is irrational."',
+              id: 'Dari enam kalimat bernomor ini, berapa jumlah nomor-nomor dari kalimat yang merupakan pernyataan sejati?\n1. "$2$ adalah bilangan prima."\n2. "$y - 3 = 10$."\n3. "Silakan berdiri."\n4. "Bumi memiliki satu bulan."\n5. "Apakah air itu basah?"\n6. "$\\pi$ irasional."',
             },
-            blanks: [{ answer: 2 }],
+            blanks: [{ answer: 11 }],
             solution: [
-              '\\text{Kalimat 1 dan 4 adalah pernyataan (benar keduanya); kalimat 2 kalimat terbuka, kalimat 3 perintah.}',
+              '\\text{Pernyataan sejati: nomor 1, 4, dan 6 (ketiganya benar); nomor 2 kalimat terbuka, nomor 3 perintah, nomor 5 pertanyaan.}',
+              '1 + 4 + 6 = 11.',
             ],
           },
           {
             prompt: {
-              en: 'In "$ax^2 + bx + c = 0$, solve for $x$", how many parameters appear in the equation?',
-              id: 'Pada "$ax^2 + bx + c = 0$, carilah $x$", berapa banyak parameter yang muncul dalam persamaan itu?',
+              en: 'How many parameters appear across these three equations altogether: $ax + b = 0$, $x^2 + px + q = 0$, and $mx + c = 5$ (solve for $x$ in each)?',
+              id: 'Berapa banyak parameter yang muncul seluruhnya pada ketiga persamaan ini: $ax + b = 0$, $x^2 + px + q = 0$, dan $mx + c = 5$ (carilah $x$ pada masing-masing)?',
             },
-            blanks: [{ answer: 3 }],
-            solution: ['a, b, c\\text{ adalah parameter (tetap untuk satu persamaan, berbeda dari satu persamaan ke persamaan lain); }x\\text{ adalah variabel yang dicari — tiga parameter seluruhnya.}'],
+            blanks: [{ answer: 6 }],
+            solution: ['\\text{Setiap persamaan punya dua parameter (tetap untuk satu persamaan, berbeda dari persamaan lain): }a,b\\text{; }p,q\\text{; }m,c\\text{ — enam seluruhnya.}'],
           },
           {
             prompt: {
-              en: 'The open sentence "$x$ is a factor of $18$" has domain $\\{1, 2, \\ldots, 9\\}$. How many members are in its solution set?',
-              id: 'Kalimat terbuka "$x$ faktor dari $18$" bersemesta $\\{1, 2, \\ldots, 9\\}$. Berapa banyak anggota himpunan penyelesaiannya?',
+              en: 'The open sentence "$x$ is a factor of $18$" has domain $\\{1, 2, \\ldots, 9\\}$. What is the sum of the members of its solution set?',
+              id: 'Kalimat terbuka "$x$ faktor dari $18$" bersemesta $\\{1, 2, \\ldots, 9\\}$. Berapa jumlah anggota himpunan penyelesaiannya?',
             },
-            blanks: [{ answer: 5 }],
-            solution: ['\\text{Faktor dari 18 yang berada di dalam semesta }\\{1,\\ldots,9\\}\\text{ adalah 1, 2, 3, 6, 9 — lima anggota.}'],
+            blanks: [{ answer: 21 }],
+            solution: ['\\text{Faktor dari 18 yang berada di dalam semesta }\\{1,\\ldots,9\\}\\text{ adalah }1, 2, 3, 6, 9.', '1+2+3+6+9 = 21.'],
           },
         ],
         hints: [
           {
-            en: 'For part 3, list every factor of 18 first, then throw out the ones that fall outside the given domain.',
-            id: 'Untuk butir 3, daftar dulu semua faktor dari 18, lalu buang yang berada di luar semesta yang diberikan.',
+            en: 'For part 3, list every factor of 18 first, throw out the ones outside the given domain, and only then add up what is left.',
+            id: 'Untuk butir 3, daftar dulu semua faktor dari 18, buang yang berada di luar semesta yang diberikan, dan baru jumlahkan yang tersisa.',
           },
         ],
         xp: 50,
@@ -786,16 +788,16 @@ export const module1: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Settle every simple statement first, then evaluate each compound one before counting.', id: 'Tentukan dulu setiap pernyataan sederhana, lalu nilai tiap pernyataan majemuknya sebelum menghitungnya.' },
+          { en: 'Two of the three parts ask for a sum over a domain, not a count — work through every member before answering.', id: 'Dua dari tiga butir meminta jumlah pada suatu semesta, bukan banyaknya — kerjakan setiap anggotanya sebelum menjawab.' },
         ],
         tasks: [
           {
             prompt: {
-              en: '$p$: "$20$ is a multiple of $4$" (true) and $q$: "$20$ is a multiple of $6$" (false). Of the two statements $p \\land q$ and $p \\lor \\neg q$, how many are true?',
-              id: '$p$: "$20$ kelipatan $4$" (benar) dan $q$: "$20$ kelipatan $6$" (salah). Dari dua pernyataan $p \\land q$ dan $p \\lor \\neg q$, berapa banyak yang benar?',
+              en: 'Domain $\\{20, 24, 30, 40, 45, 60, 80\\}$. Let $p(x)$: "$x$ is a multiple of $4$" and $q(x)$: "$x$ is a multiple of $5$". What is the sum of every $x$ in the domain for which $p(x) \\land q(x)$ is true?',
+              id: 'Semesta $\\{20, 24, 30, 40, 45, 60, 80\\}$. Misalkan $p(x)$: "$x$ kelipatan $4$" dan $q(x)$: "$x$ kelipatan $5$". Berapa jumlah semua $x$ dalam semesta yang membuat $p(x) \\land q(x)$ benar?',
             },
-            blanks: [{ answer: 1 }],
-            solution: ['p \\land q: \\text{ konjungsi butuh keduanya benar, tetapi }q\\text{ salah — salah.}', 'p \\lor \\neg q: \\neg q\\text{ benar (}q\\text{ salah), dan disjungsi hanya butuh satu bagian benar — benar.}', '\\text{Jadi satu dari dua pernyataan itu benar.}'],
+            blanks: [{ answer: 200 }],
+            solution: ['p \\land q\\text{ benar tepat ketika }x\\text{ kelipatan }4\\text{ sekaligus kelipatan }5\\text{, yakni kelipatan }20.', '\\text{Anggota semesta yang kelipatan }20\\text{: }20, 40, 60, 80.', '20+40+60+80 = 200.'],
           },
           {
             prompt: {
@@ -807,17 +809,17 @@ export const module1: Module = {
           },
           {
             prompt: {
-              en: '$t$: "$25$ is odd" (true) and $u$: "$25$ is a perfect square" (true). Of the two statements $t \\land u$ and $t \\lor \\neg u$, how many are true?',
-              id: '$t$: "$25$ ganjil" (benar) dan $u$: "$25$ bilangan kuadrat" (benar). Dari dua pernyataan $t \\land u$ dan $t \\lor \\neg u$, berapa banyak yang benar?',
+              en: 'Domain $\\{6, 9, 14, 18, 21, 27, 36\\}$. Let $r(x)$: "$x$ is a multiple of $3$" and $s(x)$: "$x$ is even". What is the sum of every $x$ in the domain for which $r(x) \\land \\neg s(x)$ is true?',
+              id: 'Semesta $\\{6, 9, 14, 18, 21, 27, 36\\}$. Misalkan $r(x)$: "$x$ kelipatan $3$" dan $s(x)$: "$x$ genap". Berapa jumlah semua $x$ dalam semesta yang membuat $r(x) \\land \\neg s(x)$ benar?',
             },
-            blanks: [{ answer: 2 }],
-            solution: ['t \\land u: \\text{ keduanya benar, jadi konjungsinya benar.}', 't \\lor \\neg u: t\\text{ sudah benar, jadi disjungsinya benar apa pun }\\neg u.', '\\text{Jadi kedua pernyataan itu benar.}'],
+            blanks: [{ answer: 57 }],
+            solution: ['r \\land \\neg s\\text{ benar tepat ketika }x\\text{ kelipatan }3\\text{ tetapi ganjil.}', '\\text{Anggota semesta yang kelipatan }3\\text{: }6, 9, 18, 21, 27, 36\\text{; yang ganjil di antaranya: }9, 21, 27.', '9+21+27 = 57.'],
           },
         ],
         hints: [
           {
-            en: 'Settle the truth value of each simple statement on its own, evaluate each compound statement separately, and only then count how many came out true.',
-            id: 'Tentukan dulu nilai kebenaran tiap pernyataan sederhana sendiri-sendiri, nilai tiap pernyataan majemuknya secara terpisah, dan baru hitung berapa banyak yang benar.',
+            en: 'Go through the domain one member at a time, decide the truth value of each simple statement for it, then evaluate the compound statement — only add up the members that pass.',
+            id: 'Telusuri semestanya satu anggota demi satu anggota, tentukan nilai kebenaran tiap pernyataan sederhananya, lalu nilai pernyataan majemuknya — jumlahkan hanya anggota yang lolos.',
           },
         ],
         xp: 50,

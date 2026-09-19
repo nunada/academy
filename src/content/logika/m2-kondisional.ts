@@ -272,38 +272,38 @@ export const module2: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Evaluate every listed statement before counting how many are true.', id: 'Nilai setiap pernyataan yang tercantum sebelum menghitung berapa banyak yang benar.' },
+          { en: 'Every part asks for a sum over a domain, not a count — work through every member before answering.', id: 'Setiap butir meminta jumlah pada suatu semesta, bukan banyaknya — kerjakan setiap anggotanya sebelum menjawab.' },
         ],
         tasks: [
           {
             prompt: {
-              en: '$p$: "$2$ is negative" (false). $q$: "$2$ is prime" (true). $r$: "$2$ is odd" (false). Of the three conditionals $p \\Rightarrow q$, $p \\Rightarrow r$, $q \\Rightarrow r$, how many are true?',
-              id: '$p$: "$2$ negatif" (salah). $q$: "$2$ prima" (benar). $r$: "$2$ ganjil" (salah). Dari tiga kondisional $p \\Rightarrow q$, $p \\Rightarrow r$, $q \\Rightarrow r$, berapa banyak yang benar?',
+              en: 'Domain $\\{2, 3, 4, 5, 6, 7, 8, 9, 10\\}$. Let $p(n)$: "$n$ is prime" and $q(n)$: "$n$ is even". What is the sum of every $n$ in the domain for which $p(n) \\Rightarrow q(n)$ is true?',
+              id: 'Semesta $\\{2, 3, 4, 5, 6, 7, 8, 9, 10\\}$. Misalkan $p(n)$: "$n$ prima" dan $q(n)$: "$n$ genap". Berapa jumlah semua $n$ dalam semesta yang membuat $p(n) \\Rightarrow q(n)$ benar?',
             },
-            blanks: [{ answer: 2 }],
-            solution: ['p \\Rightarrow q: \\text{ hipotesis salah — benar secara hampa.}', 'p \\Rightarrow r: \\text{ hipotesis salah — benar secara hampa.}', 'q \\Rightarrow r: \\text{ hipotesis benar, konklusi salah — salah.}', '\\text{Jadi dua dari tiga kondisional itu benar.}'],
+            blanks: [{ answer: 39 }],
+            solution: ['p \\Rightarrow q\\text{ salah hanya ketika }n\\text{ prima dan ganjil: }n = 3, 5, 7.', '\\text{Sisanya membuatnya benar: }2, 4, 6, 8, 9, 10.', '2+4+6+8+9+10 = 39.'],
           },
           {
             prompt: {
-              en: '$p$: "$16$ is a perfect square" (true). $q$: "$16$ is odd" (false). $r$: "$16$ is a multiple of $3$" (false). Of the three conditionals $p \\Rightarrow q$, $p \\Rightarrow r$, $q \\Rightarrow r$, how many are true?',
-              id: '$p$: "$16$ bilangan kuadrat" (benar). $q$: "$16$ ganjil" (salah). $r$: "$16$ kelipatan $3$" (salah). Dari tiga kondisional $p \\Rightarrow q$, $p \\Rightarrow r$, $q \\Rightarrow r$, berapa banyak yang benar?',
+              en: 'Same domain, same $p(n)$ and $q(n)$. What is the sum of every $n$ for which the converse $q(n) \\Rightarrow p(n)$ is true?',
+              id: 'Semesta yang sama, $p(n)$ dan $q(n)$ yang sama. Berapa jumlah semua $n$ yang membuat konversnya $q(n) \\Rightarrow p(n)$ benar?',
             },
-            blanks: [{ answer: 1 }],
-            solution: ['p \\Rightarrow q: \\text{ hipotesis benar, konklusi salah — salah.}', 'p \\Rightarrow r: \\text{ hipotesis benar, konklusi salah — salah.}', 'q \\Rightarrow r: \\text{ hipotesis salah — benar secara hampa.}', '\\text{Jadi hanya satu dari tiga kondisional itu benar.}'],
+            blanks: [{ answer: 26 }],
+            solution: ['q \\Rightarrow p\\text{ salah hanya ketika }n\\text{ genap dan bukan prima: }n = 4, 6, 8, 10.', '\\text{Sisanya membuatnya benar: }2, 3, 5, 7, 9.', '2+3+5+7+9 = 26.'],
           },
           {
             prompt: {
-              en: '$p$: "$6 \\times 2 = 12$" (true). $q$: "$12 \\div 2 = 6$" (true). $r$: "$12$ is odd" (false). Of the three biconditionals $p \\Leftrightarrow q$, $p \\Leftrightarrow r$, $q \\Leftrightarrow r$, how many are true?',
-              id: '$p$: "$6 \\times 2 = 12$" (benar). $q$: "$12 \\div 2 = 6$" (benar). $r$: "$12$ ganjil" (salah). Dari tiga bikondisional $p \\Leftrightarrow q$, $p \\Leftrightarrow r$, $q \\Leftrightarrow r$, berapa banyak yang benar?',
+              en: 'Same domain, same $p(n)$ and $q(n)$. What is the sum of every $n$ for which the biconditional $p(n) \\Leftrightarrow q(n)$ is true?',
+              id: 'Semesta yang sama, $p(n)$ dan $q(n)$ yang sama. Berapa jumlah semua $n$ yang membuat bikondisionalnya $p(n) \\Leftrightarrow q(n)$ benar?',
             },
-            blanks: [{ answer: 1 }],
-            solution: ['p \\Leftrightarrow q: \\text{ keduanya benar, sepakat — benar.}', 'p \\Leftrightarrow r: \\text{ satu benar satu salah, tak sepakat — salah.}', 'q \\Leftrightarrow r: \\text{ satu benar satu salah, tak sepakat — salah.}', '\\text{Jadi hanya satu dari tiga bikondisional itu benar.}'],
+            blanks: [{ answer: 11 }],
+            solution: ['p \\Leftrightarrow q\\text{ benar ketika keduanya sepakat: }n=2\\text{ (prima dan genap) dan }n=9\\text{ (bukan prima dan ganjil).}', '2+9 = 11.'],
           },
         ],
         hints: [
           {
-            en: 'Settle p, q, and r on their own first. Then evaluate each of the three compound statements one at a time before counting.',
-            id: 'Tentukan dulu p, q, dan r sendiri-sendiri. Lalu nilai ketiga pernyataan majemuknya satu per satu sebelum menghitungnya.',
+            en: 'Go through the domain one member at a time, settle p(n) and q(n) for it, then evaluate the compound statement — only add up the members that make it true.',
+            id: 'Telusuri semestanya satu anggota demi satu anggota, tentukan p(n) dan q(n)-nya, lalu nilai pernyataan majemuknya — jumlahkan hanya anggota yang membuatnya benar.',
           },
         ],
         xp: 50,
@@ -655,38 +655,38 @@ export const module2: Module = {
         },
         requirements: [
           { en: 'Every box has to be right before a part counts as answered.', id: 'Setiap kotak harus benar sebelum satu butir dihitung terjawab.' },
-          { en: 'Evaluate every listed statement before counting how many are true.', id: 'Nilai setiap pernyataan yang tercantum sebelum menghitung berapa banyak yang benar.' },
+          { en: 'Every part asks for a sum over a domain, not a count — work through every member before answering.', id: 'Setiap butir meminta jumlah pada suatu semesta, bukan banyaknya — kerjakan setiap anggotanya sebelum menjawab.' },
         ],
         tasks: [
           {
             prompt: {
-              en: 'For $n = 4$: $p$: "$n$ is a multiple of 6" (false). $q$: "$n$ is even" (true). Of the original $p \\Rightarrow q$, its converse $q \\Rightarrow p$, and its contrapositive $\\neg q \\Rightarrow \\neg p$, how many come out true?',
-              id: 'Untuk $n = 4$: $p$: "$n$ kelipatan 6" (salah). $q$: "$n$ genap" (benar). Dari $p \\Rightarrow q$ aslinya, konversnya $q \\Rightarrow p$, dan kontraposisinya $\\neg q \\Rightarrow \\neg p$, berapa banyak yang benar?',
+              en: 'Domain $\\{2, 3, \\ldots, 12\\}$. Let $p(n)$: "$n$ is a multiple of $4$" and $q(n)$: "$n$ is even". Every multiple of $4$ is even, so $p(n) \\Rightarrow q(n)$ holds throughout. What is the sum of every $n$ in the domain for which the converse $q(n) \\Rightarrow p(n)$ is true?',
+              id: 'Semesta $\\{2, 3, \\ldots, 12\\}$. Misalkan $p(n)$: "$n$ kelipatan $4$" dan $q(n)$: "$n$ genap". Setiap kelipatan $4$ genap, jadi $p(n) \\Rightarrow q(n)$ berlaku di seluruh semesta. Berapa jumlah semua $n$ dalam semesta yang membuat konversnya $q(n) \\Rightarrow p(n)$ benar?',
             },
-            blanks: [{ answer: 2 }],
-            solution: ['p \\Rightarrow q: \\text{ hipotesis salah — benar secara hampa.}', 'q \\Rightarrow p: \\text{ hipotesis benar, konklusi salah — salah.}', '\\neg q \\Rightarrow \\neg p: \\neg q\\text{ salah — benar secara hampa.}', '\\text{Jadi dua dari tiga pernyataan itu benar; hanya konversnya yang salah.}'],
+            blanks: [{ answer: 59 }],
+            solution: ['\\text{Konversnya salah hanya ketika }n\\text{ genap tetapi bukan kelipatan }4\\text{: }n = 2, 6, 10.', '\\text{Sisa semesta membuatnya benar: }3, 4, 5, 7, 8, 9, 11, 12.', '3+4+5+7+8+9+11+12 = 59.'],
           },
           {
             prompt: {
-              en: '$p$: "$3$ is even" (false). $q$: "$3$ is negative" (false). $r$: "$3$ is odd" (true). Of $\\neg(p \\lor q)$, $\\neg(p \\lor r)$, $\\neg(q \\lor r)$, how many are true?',
-              id: '$p$: "$3$ genap" (salah). $q$: "$3$ negatif" (salah). $r$: "$3$ ganjil" (benar). Dari $\\neg(p \\lor q)$, $\\neg(p \\lor r)$, $\\neg(q \\lor r)$, berapa banyak yang benar?',
+              en: 'Domain $\\{1, 2, \\ldots, 10\\}$. Let $p(n)$: "$n$ is odd" and $q(n)$: "$n$ is a multiple of $3$". What is the sum of every $n$ in the domain for which $\\neg(p(n) \\lor q(n))$ is true?',
+              id: 'Semesta $\\{1, 2, \\ldots, 10\\}$. Misalkan $p(n)$: "$n$ ganjil" dan $q(n)$: "$n$ kelipatan $3$". Berapa jumlah semua $n$ dalam semesta yang membuat $\\neg(p(n) \\lor q(n))$ benar?',
             },
-            blanks: [{ answer: 1 }],
-            solution: ['\\neg(p \\lor q): p \\lor q\\text{ salah, jadi negasinya benar.}', '\\neg(p \\lor r): p \\lor r\\text{ benar (}r\\text{ benar), jadi negasinya salah.}', '\\neg(q \\lor r): q \\lor r\\text{ benar (}r\\text{ benar), jadi negasinya salah.}', '\\text{Jadi hanya satu dari ketiganya benar.}'],
+            blanks: [{ answer: 24 }],
+            solution: ['\\neg(p \\lor q)\\text{ benar tepat ketika }n\\text{ genap dan bukan kelipatan }3\\text{ — De Morgan, }\\neg p \\land \\neg q.', '\\text{Anggota yang memenuhi: }2, 4, 8, 10.', '2+4+8+10 = 24.'],
           },
           {
             prompt: {
-              en: 'With $p$ false, $q$ true, $r$ true, and reading each expression by the usual convention, how many of $p \\lor \\neg q \\land r$, $\\neg p \\land q \\lor r$, $p \\land q \\lor \\neg r$ come out true?',
-              id: 'Dengan $p$ salah, $q$ benar, $r$ benar, dan membaca tiap ungkapan menurut kesepakatan yang biasa, berapa banyak dari $p \\lor \\neg q \\land r$, $\\neg p \\land q \\lor r$, $p \\land q \\lor \\neg r$ yang benar?',
+              en: 'Domain $\\{1, 2, \\ldots, 10\\}$. Let $r(n)$: "$n$ is a multiple of $2$" and $s(n)$: "$n$ is a multiple of $3$". Reading $\\neg r(n) \\land s(n) \\lor r(n)$ by convention as $(\\neg r(n) \\land s(n)) \\lor r(n)$, what is the sum of every $n$ for which it is true?',
+              id: 'Semesta $\\{1, 2, \\ldots, 10\\}$. Misalkan $r(n)$: "$n$ kelipatan $2$" dan $s(n)$: "$n$ kelipatan $3$". Dengan membaca $\\neg r(n) \\land s(n) \\lor r(n)$ menurut kesepakatan sebagai $(\\neg r(n) \\land s(n)) \\lor r(n)$, berapa jumlah semua $n$ yang membuatnya benar?',
             },
-            blanks: [{ answer: 1 }],
-            solution: ['p \\lor \\neg q \\land r \\equiv p \\lor (\\neg q \\land r): \\neg q\\text{ salah, jadi seluruhnya salah.}', '\\neg p \\land q \\lor r \\equiv (\\neg p \\land q) \\lor r: \\neg p \\land q\\text{ benar, jadi seluruhnya benar.}', 'p \\land q \\lor \\neg r \\equiv (p \\land q) \\lor \\neg r: p \\land q\\text{ salah (}p\\text{ salah) dan }\\neg r\\text{ salah, jadi seluruhnya salah.}', '\\text{Jadi hanya satu dari ketiganya benar.}'],
+            blanks: [{ answer: 42 }],
+            solution: ['(\\neg r \\land s) \\lor r \\equiv r \\lor s\\text{: jika }r\\text{ benar sudah cukup; jika }r\\text{ salah, tersisa }s\\text{ saja.}', '\\text{Benar tepat ketika }n\\text{ kelipatan }2\\text{ atau }3\\text{: semua anggota semesta kecuali }1, 5, 7.', '\\text{Jumlah seluruh semesta adalah }55\\text{; }55 - (1+5+7) = 42.'],
           },
         ],
         hints: [
           {
-            en: 'Work each expression from the inside out: negate first, then combine with the tighter-binding connective, and only then the looser one — then count.',
-            id: 'Kerjakan tiap ungkapan dari dalam ke luar: ingkar dulu, lalu gabungkan dengan penghubung yang lebih erat ikatannya, baru yang lebih lemah — lalu hitung.',
+            en: 'Work each expression from the inside out: negate first, then combine with the tighter-binding connective, and only then the looser one — then go through the domain one member at a time.',
+            id: 'Kerjakan tiap ungkapan dari dalam ke luar: ingkar dulu, lalu gabungkan dengan penghubung yang lebih erat ikatannya, baru yang lebih lemah — lalu telusuri semestanya satu anggota demi satu anggota.',
           },
         ],
         xp: 50,
