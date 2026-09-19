@@ -45,6 +45,26 @@ export interface Solid3D {
 
 const SAMPLES = 48
 
+/** Below this, two consecutive profile points count as "the same point" —
+ *  a zero-length edge between them, harmless for the lathe's own side
+ *  surface (a degenerate quad simply has no area) but not for a `cap`'s
+ *  triangulation or for `computeVertexNormals` at that shared vertex,
+ *  which can come out ill-defined right where two lengths of the outline
+ *  happen to touch — a washer whose outer and inner radius agree at one
+ *  end is exactly this on purpose (a knife-edge rim), not a mistake to
+ *  fix in the formula, so the fix lives here instead: never hand the
+ *  lathe two points for the one place they coincide. */
+const COINCIDENT_EPS = 1e-9
+
+const closeEnough = (a: [number, number], b: [number, number]): boolean =>
+  Math.abs(a[0] - b[0]) < COINCIDENT_EPS && Math.abs(a[1] - b[1]) < COINCIDENT_EPS
+
+/** Drop any point that is the same as the one right before it, so a rim
+ *  where two walls happen to meet becomes one shared vertex instead of a
+ *  zero-length edge. */
+const dedupe = (points: [number, number][]): [number, number][] =>
+  points.filter((p, i) => i === 0 || !closeEnough(p, points[i - 1]))
+
 /** `(radius, height)` pairs tracing the solid's cross-section, in the order
  *  a lathe wants them: walk the outer wall from one end to the other, and —
  *  for a washer — back along the inner wall, so the path closes into a
@@ -65,7 +85,7 @@ export function buildProfile(solid: Solid3D): [number, number][] {
     }
     // Close the loop explicitly: a washer's path doesn't return to its own
     // start on its own (it ends at the inner wall's radius, not the outer's).
-    return [...outerPts, ...innerPts, outerPts[0]]
+    return dedupe([...outerPts, ...innerPts, outerPts[0]])
   }
 
   // A solid disk: touch the axis at either end that doesn't already, so the
@@ -74,5 +94,5 @@ export function buildProfile(solid: Solid3D): [number, number][] {
   if (profile[0][0] > 1e-9) profile.unshift([0, profile[0][1]])
   const last = profile[profile.length - 1]
   if (last[0] > 1e-9) profile.push([0, last[1]])
-  return profile
+  return dedupe(profile)
 }
