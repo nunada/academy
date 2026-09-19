@@ -64,12 +64,19 @@ const cap = (profile: [number, number][], phiRad: number): THREE.BufferGeometry 
   const shape = new THREE.Shape(profile.map(([r, h]) => new THREE.Vector2(r, h)))
   const geometry = new THREE.ShapeGeometry(shape)
   const pos = geometry.attributes.position
-  const cos = Math.cos(phiRad)
   const sin = Math.sin(phiRad)
+  const cos = Math.cos(phiRad)
+  // Three's own LatheGeometry places a profile point at (x, y, z) =
+  // (r·sin(phi), h, r·cos(phi)) — see three/src/geometries/LatheGeometry.js.
+  // A cap built with sin and cos swapped is a perfectly good flat polygon
+  // on its own, just rotated to a *different* phi than the one asked for,
+  // so it sits wherever that other angle's cut would be instead of this
+  // one's — off at its own angle relative to the actual open edge, rather
+  // than flush against it.
   for (let i = 0; i < pos.count; i++) {
     const r = pos.getX(i)
     const h = pos.getY(i)
-    pos.setXYZ(i, r * cos, h, r * sin)
+    pos.setXYZ(i, r * sin, h, r * cos)
   }
   pos.needsUpdate = true
   geometry.computeVertexNormals()
@@ -200,7 +207,11 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     // group itself gets for `axis: 'x'` so the two stay in agreement.
     const gapMid = (((sweep + 360) / 2) * Math.PI) / 180
     const viewAngle = gapMid - Math.PI / 5
-    const camDir = new THREE.Vector3(Math.cos(viewAngle), 0.55, Math.sin(viewAngle))
+    // Same (x, z) = (r·sin(phi), r·cos(phi)) convention LatheGeometry itself
+    // uses (see the `cap` helper above) — a camera direction built the other
+    // way round would aim a quarter-turn away from wherever the cut actually
+    // ended up.
+    const camDir = new THREE.Vector3(Math.sin(viewAngle), 0.55, Math.cos(viewAngle))
     if (solid.axis === 'x') camDir.applyEuler(new THREE.Euler(0, 0, -Math.PI / 2))
     camDir.normalize()
     camera.position.copy(controls.target).addScaledVector(camDir, dist * 1.7)
