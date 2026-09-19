@@ -215,24 +215,24 @@ export const module5: Module = {
               id: 'o1',
               math: true,
               prompt: {
-                en: 'Put these lines in order to write out a Modus Tollens argument about $n = 10$ and being a multiple of $4$.',
-                id: 'Susun baris-baris ini dengan urutan yang benar untuk menuliskan argumen Modus Tollens tentang $n = 10$ dan kelipatan $4$.',
+                en: 'Put these lines in order to write out a Modus Tollens argument showing $9$ is not a multiple of $4$.',
+                id: 'Susun baris-baris ini dengan urutan yang benar untuk menuliskan argumen Modus Tollens yang menunjukkan $9$ bukan kelipatan $4$.',
               },
               lines: {
                 en: [
                   'p \\Rightarrow q: \\text{ if } n \\text{ is a multiple of } 4 \\text{, then } n \\text{ is even}',
-                  '\\neg q: \\; 10 \\text{ is even, so this premise would instead need } n \\text{ to be odd — use } n = 9 \\text{: } 9 \\text{ is not even}',
+                  '\\neg q: \\; 9 \\text{ is not even}',
                   '\\therefore \\neg p: \\; 9 \\text{ is not a multiple of } 4',
                 ],
                 id: [
                   'p \\Rightarrow q: \\text{ jika } n \\text{ kelipatan } 4 \\text{, maka } n \\text{ genap}',
-                  '\\neg q: \\; 10 \\text{ genap, jadi premis ini justru butuh } n \\text{ ganjil — pakai } n = 9 \\text{: } 9 \\text{ tidak genap}',
+                  '\\neg q: \\; 9 \\text{ tidak genap}',
                   '\\therefore \\neg p: \\; 9 \\text{ bukan kelipatan } 4',
                 ],
               },
               explain: {
-                en: 'Modus Tollens needs a false conclusion to deny, so $n$ has to be a value that is **not** even — $9$, not $10$; from there, denying "even" forces denying "multiple of 4" as well.',
-                id: 'Modus Tollens butuh konklusi yang salah untuk diingkar, jadi $n$ harus berupa nilai yang **tidak** genap — $9$, bukan $10$; dari situ, mengingkar "genap" memaksa mengingkar "kelipatan 4" juga.',
+                en: 'Denying the conclusion ("$9$ is not even") forces denying the hypothesis ("$9$ is not a multiple of $4$") — exactly the Modus Tollens pattern $p \\Rightarrow q, \\neg q, \\therefore \\neg p$.',
+                id: 'Mengingkar konklusinya ("$9$ tidak genap") memaksa mengingkar hipotesisnya ("$9$ bukan kelipatan $4$") — persis pola Modus Tollens $p \\Rightarrow q, \\neg q, \\therefore \\neg p$.',
               },
               hint: {
                 en: 'The conditional always comes first. After that, the second premise must deny the conclusion side of it, not the hypothesis side.',
@@ -394,11 +394,11 @@ export const module5: Module = {
         tasks: [
           {
             prompt: {
-              en: '"If $n$ is a multiple of 15, then $n$ is a multiple of 5. $n$ is not a multiple of 5." By Modus Tollens, is $n$ a multiple of 15? (1 = no/false, i.e. the conclusion "not a multiple of 15" holds.)',
-              id: '"Jika $n$ kelipatan 15, maka $n$ kelipatan 5. $n$ bukan kelipatan 5." Menurut Modus Tollens, apakah $n$ kelipatan 15? (1 = tidak/salah, yakni konklusi "bukan kelipatan 15" berlaku.)',
+              en: '"If $n$ is a multiple of 15, then $n$ is a multiple of 5. $n$ is not a multiple of 5." By Modus Tollens, evaluate the conclusion: "$n$ is not a multiple of 15."',
+              id: '"Jika $n$ kelipatan 15, maka $n$ kelipatan 5. $n$ bukan kelipatan 5." Menurut Modus Tollens, tentukan nilai konklusinya: "$n$ bukan kelipatan 15."',
             },
             blanks: [{ answer: 1 }],
-            solution: ['Modus Tollens menjamin $\\neg p$: $n$ bukan kelipatan 15.'],
+            solution: ['Modus Tollens menjamin $\\neg p$: $n$ bukan kelipatan 15 — pernyataan itu benar.'],
           },
           {
             prompt: {

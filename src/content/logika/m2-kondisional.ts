@@ -197,7 +197,7 @@ export const module2: Module = {
               options: [
                 { en: '$p$: "$7$ is prime" (T), $q$: "$7$ is even" (F)', id: '$p$: "$7$ prima" (B), $q$: "$7$ genap" (S)' },
                 { en: '$p$: "$9$ is odd" (T), $q$: "$9$ is a perfect square" (T)', id: '$p$: "$9$ ganjil" (B), $q$: "$9$ bilangan kuadrat" (B)' },
-                { en: '$p$: "$4$ is odd" (F), $q$: "$4$ is prime" (T)', id: '$p$: "$4$ ganjil" (S), $q$: "$4$ prima" (B)' },
+                { en: '$p$: "$4$ is odd" (F), $q$: "$4$ is a perfect square" (T)', id: '$p$: "$4$ ganjil" (S), $q$: "$4$ bilangan kuadrat" (B)' },
                 { en: 'None of them', id: 'Tak satu pun' },
               ],
               answer: 1,
