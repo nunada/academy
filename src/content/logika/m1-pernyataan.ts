@@ -620,8 +620,8 @@ export const module1: Module = {
                 en: 'Complete the count of rows a truth table needs.',
                 id: 'Lengkapi banyaknya baris yang dibutuhkan sebuah tabel kebenaran.',
               },
-              template: 'A truth table for ___ simple statements needs ___ rows.',
-              blanks: ['3', '8'],
+              template: 'A truth table for 3 simple statements needs ___ rows.',
+              blanks: ['8'],
               explain: {
                 en: 'Each additional simple statement doubles the number of combinations: $2, 4, 8, 16, \\ldots$ for $1, 2, 3, 4, \\ldots$ statements — that is $2^3 = 8$.',
                 id: 'Setiap tambahan satu pernyataan sederhana menggandakan banyaknya kombinasi: $2, 4, 8, 16, \\ldots$ untuk $1, 2, 3, 4, \\ldots$ pernyataan — itulah $2^3 = 8$.',
