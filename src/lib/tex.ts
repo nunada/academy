@@ -30,13 +30,17 @@ const OPERATOR: Record<string, string> = {
   to: '→', rightarrow: '→', longrightarrow: '⟶', Rightarrow: '⇒',
   leftrightarrow: '↔', Leftrightarrow: '⇔', iff: '⟺', mapsto: '↦',
   in: '∈', notin: '∉', subset: '⊂', subseteq: '⊆', cup: '∪', cap: '∩',
-  emptyset: '∅', forall: '∀', exists: '∃', therefore: '∴',
+  emptyset: '∅', forall: '∀', exists: '∃', therefore: '∴', because: '∵',
   perp: '⊥', parallel: '∥', nparallel: '∦', angle: '∠', triangle: '△',
   circ: '∘', degree: '°', infty: '∞', partial: '∂', nabla: '∇',
   ldots: '…', cdots: '⋯', dots: '…', vdots: '⋮',
   langle: '⟨', rangle: '⟩', lVert: '‖', rVert: '‖', vert: '|', Vert: '‖',
   lfloor: '⌊', rfloor: '⌋', lceil: '⌈', rceil: '⌉',
   sum: '∑', prod: '∏', int: '∫', checkmark: '✓',
+  // Propositional logic — the connectives a mathematical-logic course needs
+  // that no other course has: negation, conjunction, disjunction, entailment.
+  neg: '¬', lnot: '¬', land: '∧', wedge: '∧', lor: '∨', vee: '∨', veebar: '⊻',
+  models: '⊨', top: '⊤', bot: '⊥',
 }
 
 /** Multi-letter names that must stay upright: `\cos` is a name, not c·o·s. */

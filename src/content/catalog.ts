@@ -240,6 +240,23 @@ export const COURSES: CourseInfo[] = [
     projects: 12,
   },
   {
+    id: 'logika',
+    title: { en: 'Mathematical Logic', id: 'Logika Matematika' },
+    tagline: {
+      en: 'Statements, connectives, quantifiers, valid arguments, mathematical induction, and logic wired as a switching circuit.',
+      id: 'Pernyataan, kata hubung, kuantor, argumen sah, induksi matematika, dan logika yang dikawatkan sebagai rangkaian saklar.',
+    },
+    icon: '🧠',
+    color: '#2e6b6b',
+    level: { en: 'Beginner', id: 'Pemula' },
+    language: 'math',
+    track: 'math',
+    requires: [],
+    available: true,
+    lessons: 24,
+    projects: 10,
+  },
+  {
     id: 'fungsi',
     title: { en: 'Functions and Graphs', id: 'Fungsi dan Grafik' },
     tagline: {
@@ -342,6 +359,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'python-media': () => import('./python-media'),
   'python-numpy': () => import('./python-numpy'),
   fundamentals: () => import('./fundamentals'),
+  logika: () => import('./logika'),
   fungsi: () => import('./fungsi'),
   vektor: () => import('./vektor'),
   limit: () => import('./limit'),
