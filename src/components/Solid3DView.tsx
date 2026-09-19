@@ -24,11 +24,23 @@ const figColor = (role: Solid3D['color']): THREE.Color => {
  *  cream page — saturated, and several of them (`a` most of all) quite
  *  dark by design, since a dark line reads crisply against a light
  *  background. Filled across an entire lit 3D surface instead of drawn as
- *  a line, that same value comes out murky rather than richly coloured —
- *  lightening it partway toward white first is what keeps a solid looking
- *  like its own colour rather than a shadow of it, while still matching
- *  the role a 2D figure elsewhere in the same lesson would use. */
-const solidColor = (role: Solid3D['color']): THREE.Color => figColor(role).lerp(new THREE.Color('#ffffff'), 0.28)
+ *  a line, that same value comes out murky rather than richly coloured, so
+ *  it needs lightening first — but `Color.lerp` blends in *linear* light,
+ *  where a dark sRGB value sits far closer to black than its hex digits
+ *  suggest. Lerping a colour this dark even partway toward white in that
+ *  space overshoots into near-grey long before the hex numbers would
+ *  predict (`#24463d` lerped 28% toward white came out `#939a98` — visibly
+ *  desaturated, not the "lightened green" the fraction implies). Raising
+ *  lightness in HSL instead, with hue and saturation left alone, lightens
+ *  the same way a person would describe it: still recognisably the same
+ *  colour, just paler. */
+const solidColor = (role: Solid3D['color']): THREE.Color => {
+  const color = figColor(role)
+  const hsl = { h: 0, s: 0, l: 0 }
+  color.getHSL(hsl)
+  color.setHSL(hsl.h, hsl.s, Math.min(0.92, hsl.l + 0.22))
+  return color
+}
 
 const lathe = (profile: [number, number][], sweepDeg: number): THREE.LatheGeometry => {
   const points = profile.map(([r, h]) => new THREE.Vector2(r, h))
@@ -66,16 +78,23 @@ const cap = (profile: [number, number][], phiRad: number): THREE.BufferGeometry 
 
 const FULL_SWEEP_EPS = 0.5 // degrees — near enough to 360° that no cut is showing
 
-/** The cap's own material: a pale tint of the solid's colour, flat rather
- *  than glossy, so a cut face reads as freshly-sliced material rather than
- *  as more of the same lit, curved skin. */
-const capMaterial = (base: THREE.Color): THREE.MeshStandardMaterial =>
-  new THREE.MeshStandardMaterial({
-    color: base.clone().lerp(new THREE.Color('#ffffff'), 0.6),
+/** The cap's own material: a pale, slightly desaturated tint of the solid's
+ *  colour, flat rather than glossy, so a cut face reads as freshly-sliced
+ *  material rather than as more of the same lit, curved skin. Built the
+ *  same HSL way as `solidColor`, for the same reason — `lerp` toward white
+ *  in linear light would wash a colour this dark out to near-grey well
+ *  before reaching the pale-but-still-tinted look this is after. */
+const capMaterial = (base: THREE.Color): THREE.MeshStandardMaterial => {
+  const hsl = { h: 0, s: 0, l: 0 }
+  base.getHSL(hsl)
+  const tint = new THREE.Color().setHSL(hsl.h, hsl.s * 0.6, Math.min(0.92, hsl.l + 0.3))
+  return new THREE.MeshStandardMaterial({
+    color: tint,
     roughness: 0.9,
     metalness: 0,
     side: THREE.DoubleSide,
   })
+}
 
 export function Solid3DView({ solid }: { solid: Solid3D }) {
   const { tc } = useI18n()
@@ -116,24 +135,25 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     mount.appendChild(renderer.domElement)
 
-    // A lower ambient share than a flat 0.6 would leave real light-to-shadow
-    // falloff across the curved skin, but too little of it (paired with an
-    // already-dark base colour) is what "every solid looks nearly black"
-    // comes from — ambient here is doing a good share of the overall
-    // brightness, with the key and fill lights layered on top for shape
-    // rather than carrying the scene's whole brightness themselves.
-    scene.add(new THREE.AmbientLight(0xffffff, 0.75))
-    const sun = new THREE.DirectionalLight(0xffffff, 1.5)
+    // Enough ambient to keep "every solid looks nearly black" from coming
+    // back, without so much total light that a non-metal surface's own
+    // (colourless) specular reflection starts to dominate over its diffuse
+    // colour — that is what actually happened at this file's first pass:
+    // ambient/key/fill all raised together pushed total light energy high
+    // enough that the achromatic highlight swamped the tinted diffuse term,
+    // and every solid rendered out as a near-greyscale silhouette of itself.
+    scene.add(new THREE.AmbientLight(0xffffff, 0.55))
+    const sun = new THREE.DirectionalLight(0xffffff, 1.05)
     sun.position.set(dist, dist * 1.4, dist)
     scene.add(sun)
-    const fill = new THREE.DirectionalLight(0xbfd4ff, 0.55)
+    const fill = new THREE.DirectionalLight(0xffffff, 0.25)
     fill.position.set(-dist, dist * 0.3, -dist * 0.6)
     scene.add(fill)
 
     const material = new THREE.MeshStandardMaterial({
       color: solidColor(solid.color),
-      metalness: 0.05,
-      roughness: 0.5,
+      metalness: 0,
+      roughness: 0.8,
       side: THREE.DoubleSide,
     })
     // Built here, synchronously, in the same effect that creates the mesh —
