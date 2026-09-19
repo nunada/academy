@@ -54,6 +54,24 @@ const TEMPLATES: Template[] = [
     params: { a: 1, h: 2, k: -3 },
   },
   {
+    id: 'cubic',
+    label: { en: 'Cubic', id: 'Kubik' },
+    rows: [{ expr: 'a*(x-h)^3+k', color: 'a' }],
+    params: { a: 1, h: 0, k: 0 },
+  },
+  {
+    id: 'sqrt',
+    label: { en: 'Square root', id: 'Akar kuadrat' },
+    rows: [{ expr: 'a*sqrt(x-h)+k', color: 'a' }],
+    params: { a: 1, h: 0, k: 0 },
+  },
+  {
+    id: 'rational',
+    label: { en: 'Rational', id: 'Rasional' },
+    rows: [{ expr: 'a/(x-h)+k', color: 'a' }],
+    params: { a: 1, h: 0, k: 0 },
+  },
+  {
     id: 'circle',
     label: { en: 'Circle', id: 'Lingkaran' },
     rows: [{ expr: '(x-a)^2+(y-b)^2=r^2', color: 'a' }],
@@ -70,6 +88,24 @@ const TEMPLATES: Template[] = [
     label: { en: 'Sine wave', id: 'Gelombang sinus' },
     rows: [{ expr: 'a*sin(b*(x-h))+k', color: 'a' }],
     params: { a: 1, b: 1, h: 0, k: 0 },
+  },
+  {
+    id: 'tangent',
+    label: { en: 'Tangent', id: 'Tangen' },
+    rows: [{ expr: 'a*tan(b*(x-h))+k', color: 'a' }],
+    params: { a: 1, b: 1, h: 0, k: 0 },
+  },
+  {
+    id: 'exponential',
+    label: { en: 'Exponential', id: 'Eksponen' },
+    rows: [{ expr: 'a*b^(x-h)+k', color: 'a' }],
+    params: { a: 1, b: 2, h: 0, k: 0 },
+  },
+  {
+    id: 'logarithm',
+    label: { en: 'Logarithm', id: 'Logaritma' },
+    rows: [{ expr: 'a*ln(x-h)+k', color: 'a' }],
+    params: { a: 1, h: 0, k: 0 },
   },
   {
     id: 'abs',
