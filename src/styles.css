@@ -523,19 +523,25 @@ pre.out.err { background: var(--bad-soft); color: var(--bad); border-color: tran
   .cert { border-color: #b9a260; box-shadow: none; }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 1200px) {
   .nav a { padding: 6px 9px; font-size: 0.85rem; }
   .brand small { display: none; }
   .page { padding: 18px 14px 60px; }
   .cert { padding: 28px 20px; }
 
   /* The topbar packs brand, nav, XP/hearts, the local-mode badge, language
-     toggle, and sign-out into a single non-wrapping row — fine on a laptop,
-     far too much for a 375px phone, where it forced the whole page to
-     scroll sideways. Letting it wrap keeps every control reachable; the nav
-     is pinned to its own full-width row after everything else (`order`,
-     not markup position) and scrolls sideways only if it still doesn't
-     fit, same idea as `.gridwrap` elsewhere in this file. */
+     toggle, and sign-out into a single non-wrapping row — measured at
+     roughly 1080-1180px of actual content (teacher role and the local-mode
+     badge both add a chip; Indonesian labels run a little longer than
+     English), not the "fine on any laptop, only phones need this" width
+     this rule used to assume. Below that, a laptop in anything but a
+     maximized window hit the same overflow a phone did: the row had
+     nowhere to shrink and forced the whole page to scroll sideways,
+     clipping "Sign out" off the edge rather than wrapping. Letting it wrap
+     keeps every control reachable; the nav is pinned to its own full-width
+     row after everything else (`order`, not markup position) and scrolls
+     sideways only if it still doesn't fit, same idea as `.gridwrap`
+     elsewhere in this file. */
   .topbar { flex-wrap: wrap; row-gap: 6px; padding: 10px 14px; }
   .nav { order: 5; width: 100%; margin-left: 0; flex-wrap: nowrap; overflow-x: auto; }
   .nav a { flex: none; }
