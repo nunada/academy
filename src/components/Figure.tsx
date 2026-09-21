@@ -37,6 +37,127 @@ const PAD = 26
 
 const stroke = (c: FigColor = 'a') => `var(--fig-${c})`
 
+/** `expr` split at a `/` that sits outside every pair of parentheses — the
+ *  one shape a rational function's hole detector can actually reason about,
+ *  since it then knows `denominator` is exactly what `expr` divides by, not
+ *  a guess. Anything else (no top-level `/`, more than one, or another
+ *  top-level operator sitting beside it) comes back `null` rather than a
+ *  wrong split: `1/(x-1)*(x+1)` really is `(1/(x-1))·(x+1)`, and treating
+ *  `(x-1)*(x+1)` as "the" denominator would hunt for roots of the wrong
+ *  expression. A single leading `+`/`-` is allowed through un-counted, since
+ *  `-(2x^2-19x+35)/(7-x)` is exactly as valid a rational function as its
+ *  unnegated form. */
+function splitTopDivision(expr: string): [numerator: string, denominator: string] | null {
+  let depth = 0
+  let slashAt = -1
+  let extraOperator = false
+  for (let i = 0; i < expr.length; i++) {
+    const c = expr[i]
+    if (c === '(') depth++
+    else if (c === ')') depth--
+    else if (depth === 0) {
+      if (c === '/') {
+        if (slashAt !== -1) return null // more than one top-level division
+        slashAt = i
+      } else if ('+-*^'.includes(c) && !(i === 0 && (c === '+' || c === '-'))) {
+        extraOperator = true
+      }
+    }
+  }
+  if (slashAt === -1 || extraOperator) return null
+  const numerator = expr.slice(0, slashAt).trim()
+  const denominator = expr.slice(slashAt + 1).trim()
+  if (numerator === '' || denominator === '') return null
+  return [numerator, denominator]
+}
+
+/** Every `x` in `[from, to]` where `denominator` crosses zero, found the only
+ *  way possible without a symbolic factoring — sampling for a sign change
+ *  and bisecting into it. An even-multiplicity root (`(x-3)^2`) never
+ *  flips sign and so is missed; that is a real limitation, but the
+ *  alternative — evaluating symbolically — is a different, much larger
+ *  feature than "show the hole this session's own example was missing".
+ *
+ *  A sample landing exactly on a root needs its own branch rather than
+ *  falling out of the sign-change check below: `(2x^2-19x+35)/(7-x)`'s own
+ *  root at `x=7` is exactly this at this function's default 400-step scan
+ *  of the default [-10, 10] view — `-10 + 20*340/400` comes back exactly
+ *  `7` in floating point, so the denominator sample there is exactly `0`,
+ *  and `prevY !== 0 && y !== 0` (needed so a real sign change can be told
+ *  apart from noise around an already-known zero) would silently throw the
+ *  very root a "nice", textbook example is most likely to land on. */
+function findSignChangeRoots(g: (x: number) => number, from: number, to: number): number[] {
+  const STEPS = 400
+  const roots: number[] = []
+  let prevX = from
+  let prevY = g(prevX)
+  if (prevY === 0) roots.push(prevX)
+  for (let i = 1; i <= STEPS; i++) {
+    const x = from + ((to - from) * i) / STEPS
+    const y = g(x)
+    if (y === 0) {
+      roots.push(x)
+    } else if (Number.isFinite(prevY) && Number.isFinite(y) && prevY !== 0 && (prevY < 0) !== (y < 0)) {
+      let lo = prevX
+      let hi = x
+      let yLo = prevY
+      for (let iter = 0; iter < 40; iter++) {
+        const mid = (lo + hi) / 2
+        const yMid = g(mid)
+        if (!Number.isFinite(yMid)) break
+        if ((yMid < 0) === (yLo < 0)) {
+          lo = mid
+          yLo = yMid
+        } else {
+          hi = mid
+        }
+      }
+      roots.push((lo + hi) / 2)
+    }
+    prevX = x
+    prevY = y
+  }
+  return roots
+}
+
+/** The removable discontinuities of `f` across `[from, to]` — the "hole" a
+ *  factor like `(x-7)` cancelling out of both halves of a rational function
+ *  leaves behind, undefined at exactly that one point despite the curve
+ *  drawing straight through it on either side. `sample()`'s own point-by-
+ *  point evaluation only ever shows this by accident, when a drawing sample
+ *  happens to land within floating-point distance of the exact `x` — which
+ *  depends on the current pan and zoom, so the same graph can look like it
+ *  has a hole at one view and not at another. Finding it properly means
+ *  locating the denominator's own roots and checking, at each one, whether
+ *  `f` merely blows up there (a real asymptote) or actually converges to a
+ *  single finite value from both sides (a hole) — a distinction `sample()`'s
+ *  coarse walk has no way to make on its own. */
+function findHoles(f: string, from: number, to: number, params: Record<string, number>): P[] {
+  if (!f.includes('/')) return []
+  const split = splitTopDivision(f)
+  if (!split) return []
+  const [, denominator] = split
+  const evalF = (x: number) => evaluateAt(f, { ...params, x })
+  const evalDen = (x: number) => evaluateAt(denominator, { ...params, x })
+  const span = to - from
+  const h = Math.max(span * 1e-6, 1e-9)
+
+  const holes: P[] = []
+  for (const x0 of findSignChangeRoots(evalDen, from, to)) {
+    const left = evalF(x0 - h)
+    const right = evalF(x0 + h)
+    if (!Number.isFinite(left) || !Number.isFinite(right)) continue
+    const scale = Math.max(Math.abs(left), Math.abs(right), 1)
+    if (Math.abs(left - right) > scale * 1e-3) continue // diverges — a pole, not a hole
+    holes.push([x0, (left + right) / 2])
+  }
+
+  // Bisection can find the same root twice from adjacent brackets when the
+  // sign-change sampling straddles it awkwardly.
+  holes.sort((a, b) => a[0] - b[0])
+  return holes.filter((p, i) => i === 0 || Math.abs(p[0] - holes[i - 1][0]) > span * 1e-4)
+}
+
 /** Where a label sits relative to the point it names: a little way out along
  *  the direction it came in on, so two arrows from the origin do not collide. */
 function labelAt(from: P, to: P, gap = 13): P {
@@ -493,6 +614,14 @@ export function FigureView({ figure }: { figure: Figure }) {
         const from = item.from ?? xSpan[0]
         const to = item.to ?? xSpan[1]
         const runs = sample(item.f, from, to)
+        // A removable discontinuity — the hole left behind when a factor
+        // cancels out of a rational function — is invisible to `sample()`'s
+        // own point-by-point walk unless a drawing sample happens to land
+        // exactly on it, which depends on the current pan and zoom. Found
+        // properly instead, so the same curve reads the same way at every
+        // view. Cheap to skip: only an expression with a `/` in it at all
+        // can have one.
+        const holes = item.f.includes('/') ? findHoles(item.f, from, to, params) : []
         const last = runs[runs.length - 1]
         if (last && item.label) {
           // Along the last run rather than at its very end, and a little
@@ -513,6 +642,16 @@ export function FigureView({ figure }: { figure: Figure }) {
                 strokeDasharray={item.dashed ? '6 4' : undefined}
               />
             ))}
+            {holes
+              .filter(([, hy]) => hy >= ySpan[0] && hy <= ySpan[1])
+              .map(([hx, hy], n) => {
+                const p = px([hx, hy])
+                return (
+                  // Same hollow-circle notation as a `dot` item's own `open` —
+                  // a point the curve passes through but does not include.
+                  <circle key={`hole-${n}`} cx={p[0]} cy={p[1]} r={5} fill="var(--surface-2)" stroke={stroke(item.color)} strokeWidth={2} />
+                )
+              })}
           </g>
         )
       }
