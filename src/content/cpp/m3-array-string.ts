@@ -178,7 +178,7 @@ export const module3: Module = {
               },
               options: [
                 { en: 'So it still works when every value is negative', id: 'Agar tetap benar walau semua nilainya negatif' },
-                { en: 'Because nilai[0] is always the biggest', id: 'Karena nilai[0] selalu yang terbesar' },
+                { en: 'Because scores[0] is always the biggest', id: 'Karena nilai[0] selalu yang terbesar' },
                 { en: 'It makes no difference either way', id: 'Tidak ada bedanya sama sekali' },
                 { en: 'Because arrays cannot start at 0', id: 'Karena array tidak boleh dimulai dari 0' },
               ],

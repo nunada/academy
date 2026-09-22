@@ -465,7 +465,7 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'Order changes the answer', id: 'Urutan mengubah jawaban' },
               body: {
-                en: 'Put the loosest condition first and every score matches it. Here 95 wrongly prints C, because `nilai >= 70` is checked before `nilai >= 90`.',
+                en: 'Put the loosest condition first and every score matches it. Here 95 wrongly prints C, because `score >= 70` is checked before `score >= 90`.',
                 id: 'Taruh kondisi paling longgar di depan, maka semua nilai akan cocok dengannya. Di sini 95 keliru mencetak C, karena `nilai >= 70` diperiksa sebelum `nilai >= 90`.',
               },
               code: {

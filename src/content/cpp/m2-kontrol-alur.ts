@@ -30,7 +30,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'One path or the other', id: 'Satu jalur atau yang lain' },
               body: {
-                en: '`if (kondisi) { ... }` runs its block only when the condition is true. Add `else { ... }` for what happens otherwise. The parentheses around the condition are required; the braces are not, but keep them — a stray line quietly falling outside an `if` without them is a classic bug.',
+                en: '`if (condition) { ... }` runs its block only when the condition is true. Add `else { ... }` for what happens otherwise. The parentheses around the condition are required; the braces are not, but keep them — a stray line quietly falling outside an `if` without them is a classic bug.',
                 id: '`if (kondisi) { ... }` menjalankan bloknya hanya ketika kondisinya benar. Tambahkan `else { ... }` untuk yang terjadi sebaliknya. Kurung di sekitar kondisi wajib ada; kurung kurawalnya tidak, tapi pertahankan — sebuah baris yang diam-diam jatuh di luar `if` tanpanya adalah bug klasik.',
               },
               code: {
@@ -402,7 +402,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'Three parts, one line', id: 'Tiga bagian, satu baris' },
               body: {
-                en: '`for (mulai; syarat; langkah)` packs a loop\'s whole life into one line: `mulai` runs once before the loop starts, `syarat` is checked before every round, `langkah` runs after every round. Reach for `for` whenever you already know how many times to repeat.',
+                en: '`for (init; condition; update)` packs a loop\'s whole life into one line: `init` runs once before the loop starts, `condition` is checked before every round, `update` runs after every round. Reach for `for` whenever you already know how many times to repeat.',
                 id: '`for (mulai; syarat; langkah)` memadatkan seluruh hidup sebuah perulangan ke satu baris: `mulai` berjalan sekali sebelum perulangan dimulai, `syarat` diperiksa sebelum setiap putaran, `langkah` berjalan setelah setiap putaran. Pakai `for` kapan pun kamu sudah tahu berapa kali harus mengulang.',
               },
               code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i <= 5; i++) {\n        cout << i << " ";\n    }\n    cout << endl;\n    return 0;\n}',
@@ -491,7 +491,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'while checks first', id: 'while memeriksa lebih dulu' },
               body: {
-                en: '`while (syarat) { ... }` repeats for as long as the condition holds, checked before every round — including the very first. Reach for it when you do not know in advance how many rounds it will take.',
+                en: '`while (condition) { ... }` repeats for as long as the condition holds, checked before every round — including the very first. Reach for it when you do not know in advance how many rounds it will take.',
                 id: '`while (syarat) { ... }` mengulang selama kondisinya terpenuhi, diperiksa sebelum setiap putaran — termasuk yang pertama. Pakai ini ketika kamu belum tahu sejak awal akan butuh berapa putaran.',
               },
               code: {
@@ -505,7 +505,7 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'do-while checks last', id: 'do-while memeriksa terakhir' },
               body: {
-                en: '`do { ... } while (syarat);` runs its block once no matter what, and only then checks the condition. Useful for anything that must happen at least once — asking the user a question before deciding whether to ask again.',
+                en: '`do { ... } while (condition);` runs its block once no matter what, and only then checks the condition. Useful for anything that must happen at least once — asking the user a question before deciding whether to ask again.',
                 id: '`do { ... } while (syarat);` menjalankan bloknya sekali apa pun yang terjadi, dan baru sesudahnya memeriksa kondisinya. Berguna untuk apa pun yang harus terjadi setidaknya sekali — menanyakan sesuatu ke pengguna sebelum memutuskan apakah perlu bertanya lagi.',
               },
               code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int i = 0;\n    do {\n        cout << i << " ";\n        i++;\n    } while (i < 3);\n    cout << endl;\n    return 0;\n}',

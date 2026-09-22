@@ -259,7 +259,7 @@ export const module7: Module = {
               kind: 'code',
               id: 'w1',
               prompt: {
-                en: 'The file `nilai.txt` holds one number per line. Read it and print the total, then the average rounded to one decimal, on two lines.',
+                en: 'The file `scores.txt` holds one number per line. Read it and print the total, then the average rounded to one decimal, on two lines.',
                 id: 'Berkas `nilai.txt` berisi satu angka per baris. Baca dan cetak totalnya, lalu rata-ratanya dibulatkan satu desimal, dalam dua baris.',
               },
               starter: { en: '# scores.txt has been prepared for you\n', id: '# nilai.txt sudah disiapkan untukmu\n' },
