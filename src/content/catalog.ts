@@ -409,6 +409,23 @@ export const COURSES: CourseInfo[] = [
     lessons: 8,
     projects: 4,
   },
+  {
+    id: 'barisan-deret',
+    title: { en: 'Infinite Sequences and Series', id: 'Barisan dan Deret Tak Hingga' },
+    tagline: {
+      en: 'What it means to sum infinitely many numbers, the tests that settle whether a series converges, and building a function itself out of an infinite polynomial — the binomial series, and the Taylor series behind e^x, sin x, and cos x.',
+      id: 'Apa artinya menjumlahkan tak hingga banyak bilangan, uji yang menuntaskan apakah sebuah deret konvergen, dan membangun fungsi itu sendiri dari polinom tak hingga — deret binomial, dan deret Taylor di balik e^x, sin x, dan cos x.',
+    },
+    icon: '∑',
+    color: '#2e5a8a',
+    level: { en: 'Advanced', id: 'Lanjut' },
+    language: 'math',
+    track: 'math',
+    requires: ['aplikasi-integral', 'integral-transenden'],
+    available: true,
+    lessons: 20,
+    projects: 10,
+  },
 ]
 
 /** One dynamic import per course. Written out rather than built from the id so
@@ -437,6 +454,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'teknik-integrasi': () => import('./teknik-integrasi'),
   'aplikasi-integral': () => import('./aplikasi-integral'),
   'integral-transenden': () => import('./integral-transenden'),
+  'barisan-deret': () => import('./barisan-deret'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes
