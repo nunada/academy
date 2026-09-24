@@ -273,8 +273,14 @@ function FillStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
   const template = resolveBi(step.template, lang)
   const blanks = resolveBi(step.blanks, lang)
   const segments = useMemo(() => template.split('___'), [template])
-  // A sentence with $inline maths$ in it is prose, not a program: set it as prose.
-  const prose = !step.math && template.includes('$')
+  // A sentence is prose, not a program: set it in the page's own type so it
+  // wraps, instead of one long monospaced line that has to be scrolled
+  // sideways. Prose is one line with $inline maths$ in it, or one with none
+  // of the punctuation a program is made of.
+  const prose =
+    !step.math &&
+    (template.includes('$') ||
+      (!template.includes('\n') && !/[(){}=<>#[\]"'`\\/*+]/.test(template) && template.trim().split(/\s+/).length >= 6))
   const [values, setValues] = useState<string[]>(() => blanks.map(() => ''))
   const [checked, setChecked] = useState(false)
 
