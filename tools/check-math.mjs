@@ -33,6 +33,7 @@ const MATH_COURSES = [
   'teknik-integrasi',
   'aplikasi-integral',
   'integral-transenden',
+  'barisan-deret',
 ]
 const toIdent = (c) => c.replace(/-([a-z])/g, (_, ch) => ch.toUpperCase())
 
