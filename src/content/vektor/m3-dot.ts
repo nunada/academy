@@ -185,8 +185,8 @@ export const module3: Module = {
               id: 'c2',
               title: { en: 'What the sign tells you at a glance', id: 'Apa yang langsung diberitahukan oleh tandanya' },
               body: {
-                en: 'Both magnitudes are positive, so the sign of $\\vec{a} \\cdot \\vec{b}$ is the sign of $\\cos\\theta$ — and that alone classifies the angle:\n\n**positive** — $\\theta < 90°$, an acute angle, the vectors broadly agree\n**zero** — $\\theta = 90°$, they are perpendicular\n**negative** — $\\theta > 90°$, an obtuse angle, they broadly oppose\n\nSo you can tell whether two vectors point the same general way without computing a single square root.',
-                id: 'Kedua besarnya positif, jadi tanda $\\vec{a} \\cdot \\vec{b}$ adalah tanda $\\cos\\theta$ — dan itu saja sudah menggolongkan sudutnya:\n\n**positif** — $\\theta < 90°$, sudut lancip, kedua vektor secara umum searah\n**nol** — $\\theta = 90°$, keduanya tegak lurus\n**negatif** — $\\theta > 90°$, sudut tumpul, keduanya secara umum berlawanan\n\nJadi kamu bisa tahu apakah dua vektor mengarah ke sisi yang sama tanpa menghitung satu akar pun.',
+                en: 'Both magnitudes are positive, so the sign of $\\vec{a} \\cdot \\vec{b}$ is the sign of $\\cos\\theta$ — and that alone classifies the angle:\n\n- **positive** — $\\theta < 90°$, an acute angle, the vectors broadly agree\n- **zero** — $\\theta = 90°$, they are perpendicular\n- **negative** — $\\theta > 90°$, an obtuse angle, they broadly oppose\n\nSo you can tell whether two vectors point the same general way without computing a single square root.',
+                id: 'Kedua besarnya positif, jadi tanda $\\vec{a} \\cdot \\vec{b}$ adalah tanda $\\cos\\theta$ — dan itu saja sudah menggolongkan sudutnya:\n\n- **positif** — $\\theta < 90°$, sudut lancip, kedua vektor secara umum searah\n- **nol** — $\\theta = 90°$, keduanya tegak lurus\n- **negatif** — $\\theta > 90°$, sudut tumpul, keduanya secara umum berlawanan\n\nJadi kamu bisa tahu apakah dua vektor mengarah ke sisi yang sama tanpa menghitung satu akar pun.',
               },
               figure: {
                 dim: 2,

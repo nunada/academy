@@ -37,8 +37,8 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Four kinds of sentence, one kind of logic', id: 'Empat jenis kalimat, satu jenis logika' },
               body: {
-                en: 'Ordinary language has several kinds of sentence: **declarative** ("Semarang is a city in Central Java"), **interrogative** ("Is Semarang a city in Central Java?"), **imperative** ("Visit Semarang"), and **exclamatory** ("What a lovely city Semarang is!"). Logic only ever works with the declarative kind — a sentence that **states** something, rather than asking, ordering, or exclaiming it.',
-                id: 'Bahasa sehari-hari punya beberapa jenis kalimat: **kalimat berita** ("Semarang adalah kota di Jawa Tengah"), **kalimat tanya** ("Apakah Semarang kota di Jawa Tengah?"), **kalimat perintah** ("Kunjungilah Semarang"), dan **kalimat seru** ("Alangkah indahnya kota Semarang!"). Logika hanya pernah bekerja dengan jenis kalimat berita — kalimat yang **menyatakan** sesuatu, bukan menanyakan, memerintahkan, atau menyerukannya.',
+                en: 'Ordinary language has several kinds of sentence:\n\n- **declarative** ("Semarang is a city in Central Java")\n- **interrogative** ("Is Semarang a city in Central Java?")\n- **imperative** ("Visit Semarang")\n- **exclamatory** ("What a lovely city Semarang is!")\n\nLogic only ever works with the declarative kind — a sentence that **states** something, rather than asking, ordering, or exclaiming it.',
+                id: 'Bahasa sehari-hari punya beberapa jenis kalimat:\n\n- **kalimat berita** ("Semarang adalah kota di Jawa Tengah")\n- **kalimat tanya** ("Apakah Semarang kota di Jawa Tengah?")\n- **kalimat perintah** ("Kunjungilah Semarang")\n- **kalimat seru** ("Alangkah indahnya kota Semarang!")\n\nLogika hanya pernah bekerja dengan jenis kalimat berita — kalimat yang **menyatakan** sesuatu, bukan menanyakan, memerintahkan, atau menyerukannya.',
               },
             },
             {

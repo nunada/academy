@@ -387,8 +387,8 @@ export const module4: Module = {
               id: 'c1',
               title: { en: 'Two coordinate systems, one formula each', id: 'Dua sistem koordinat, masing-masing satu formula' },
               body: {
-                en: 'Math coordinates put (0, 0) at the centre, with y growing upward. Screen coordinates put (0, 0) at the top-left, with y growing downward. `screen_x = 160 + x * 20` and `screen_y = 120 - y * 20` convert one into the other — the minus sign is what flips y the right way.',
-                id: 'Koordinat matematis menaruh (0, 0) di tengah, dengan y bertambah ke atas. Koordinat layar menaruh (0, 0) di kiri atas, dengan y bertambah ke bawah. `screen_x = 160 + x * 20` dan `screen_y = 120 - y * 20` mengubah satu ke yang lain — tanda minusnya itulah yang membalik y ke arah yang benar.',
+                en: '- Math coordinates put (0, 0) at the centre, with y growing upward.\n- Screen coordinates put (0, 0) at the top-left, with y growing downward.\n\n`screen_x = 160 + x * 20` and `screen_y = 120 - y * 20` convert one into the other — the minus sign is what flips y the right way.',
+                id: '- Koordinat matematis menaruh (0, 0) di tengah, dengan y bertambah ke atas.\n- Koordinat layar menaruh (0, 0) di kiri atas, dengan y bertambah ke bawah.\n\n`screen_x = 160 + x * 20` dan `screen_y = 120 - y * 20` mengubah satu ke yang lain — tanda minusnya itulah yang membalik y ke arah yang benar.',
               },
             },
             {

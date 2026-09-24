@@ -466,8 +466,8 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'Two default behaviours', id: 'Dua perilaku bawaan' },
               body: {
-                en: 'A **block** element — `div`, `p`, `h1` — takes the full width and starts a new line. An **inline** element — `a`, `span`, `strong` — flows in the text and is only as wide as its content. Width and vertical margin do nothing on an inline element.',
-                id: 'Elemen **block** — `div`, `p`, `h1` — mengambil lebar penuh dan memulai baris baru. Elemen **inline** — `a`, `span`, `strong` — mengalir di dalam teks dan hanya selebar isinya. Width dan margin vertikal tidak berpengaruh pada elemen inline.',
+                en: '| | Examples | Behaviour |\n|---|---|---|\n| **Block** | `div`, `p`, `h1` | takes the full width and starts a new line |\n| **Inline** | `a`, `span`, `strong` | flows in the text and is only as wide as its content |\n\nWidth and vertical margin do nothing on an inline element.',
+                id: '| | Contoh | Perilaku |\n|---|---|---|\n| **Block** | `div`, `p`, `h1` | mengambil lebar penuh dan memulai baris baru |\n| **Inline** | `a`, `span`, `strong` | mengalir di dalam teks dan hanya selebar isinya |\n\nWidth dan margin vertikal tidak berpengaruh pada elemen inline.',
               },
               code: '<style>\n  span { background: #fecaca; }\n  div  { background: #bfdbfe; }\n</style>\n\n<span>inline</span> <span>inline</span>\n<div>block</div>\n<div>block</div>',
               preview: true,

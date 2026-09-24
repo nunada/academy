@@ -40,8 +40,8 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Floor division, remainder, and power', id: 'Bagi bulat, sisa bagi, dan pangkat' },
               body: {
-                en: '`//` keeps only the whole part of a division. `%` gives what is left over. `**` raises to a power. And Python follows the same order of operations as math class — multiplication and division before addition and subtraction — so parentheses are how you override it.',
-                id: '`//` hanya menyimpan bagian bulat dari pembagian. `%` memberi sisanya. `**` memangkatkan. Dan Python mengikuti urutan operasi yang sama seperti pelajaran matematika — kali dan bagi sebelum tambah dan kurang — jadi kurung adalah cara mengubahnya.',
+                en: '- `//` keeps only the whole part of a division.\n- `%` gives what is left over.\n- `**` raises to a power.\n\nPython follows the same order of operations as math class — multiplication and division before addition and subtraction — so parentheses are how you override it.',
+                id: '- `//` hanya menyimpan bagian bulat dari pembagian.\n- `%` memberi sisanya.\n- `**` memangkatkan.\n\nPython mengikuti urutan operasi yang sama seperti pelajaran matematika — kali dan bagi sebelum tambah dan kurang — jadi kurung adalah cara mengubahnya.',
               },
               code: 'print(9 // 4)\nprint(9 % 4)\nprint(2 ** 5)\nprint(2 + 3 * 4)\nprint((2 + 3) * 4)',
               output: '2\n1\n32\n14\n20',

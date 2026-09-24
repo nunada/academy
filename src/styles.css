@@ -601,8 +601,8 @@ table.rtable th, table.rtable td {
 }
 table.rtable th { background: var(--surface-2); font-weight: 700; }
 table.rtable tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surface-2) 45%, transparent); }
-ul.richlist { margin: 0 0 1em; padding-left: 1.3em; }
-ul.richlist li { margin-bottom: 0.3em; }
+ul.richlist, ol.richlist { margin: 0 0 1em; padding-left: 1.3em; }
+ul.richlist li, ol.richlist li { margin-bottom: 0.3em; }
 
 table.rows td.nul { color: var(--muted); font-style: italic; }
 table.rows tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surface-2) 45%, transparent); }

@@ -31,8 +31,8 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'The shape of a program', id: 'Bentuk sebuah program' },
               body: {
-                en: 'Every C++ program you write in this course has the same skeleton. `#include <iostream>` brings in the tools for printing and reading text. `using namespace std;` lets you write `cout` instead of `std::cout`. Your own code lives between the braces of `int main() { ... }`, and `return 0;` tells the operating system the program finished without errors.',
-                id: 'Setiap program C++ yang kamu tulis di kursus ini punya kerangka yang sama. `#include <iostream>` memuat perkakas untuk mencetak dan membaca teks. `using namespace std;` membuatmu bisa menulis `cout` alih-alih `std::cout`. Kodemu sendiri ada di antara kurung kurawal `int main() { ... }`, dan `return 0;` memberitahu sistem operasi bahwa program selesai tanpa error.',
+                en: 'Every C++ program you write in this course has the same skeleton:\n\n- `#include <iostream>` brings in the tools for printing and reading text.\n- `using namespace std;` lets you write `cout` instead of `std::cout`.\n- Your own code lives between the braces of `int main() { ... }`.\n- `return 0;` tells the operating system the program finished without errors.',
+                id: 'Setiap program C++ yang kamu tulis di kursus ini punya kerangka yang sama:\n\n- `#include <iostream>` memuat perkakas untuk mencetak dan membaca teks.\n- `using namespace std;` membuatmu bisa menulis `cout` alih-alih `std::cout`.\n- Kodemu sendiri ada di antara kurung kurawal `int main() { ... }`.\n- `return 0;` memberitahu sistem operasi bahwa program selesai tanpa error.',
               },
               code: {
                 en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, world!" << endl;\n    return 0;\n}',
@@ -344,8 +344,8 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'The four types you need first', id: 'Empat tipe yang kamu butuhkan lebih dulu' },
               body: {
-                en: '`int` is a whole number, `double` is a number with a decimal point, `char` is a single character in single quotes, `bool` is true or false. This course has no `std::string`, so text stays as `char` arrays for now — you will meet those in Module 3.',
-                id: '`int` adalah bilangan bulat, `double` adalah bilangan dengan titik desimal, `char` adalah satu karakter dalam kutip tunggal, `bool` adalah true atau false. Kursus ini belum punya `std::string`, jadi teks untuk sementara memakai array `char` — kamu akan mempelajarinya di Modul 3.',
+                en: '| Type | Holds |\n|---|---|\n| `int` | a whole number |\n| `double` | a number with a decimal point |\n| `char` | a single character in single quotes |\n| `bool` | true or false |\n\nThis course has no `std::string`, so text stays as `char` arrays for now — you will meet those in Module 3.',
+                id: '| Tipe | Menyimpan |\n|---|---|\n| `int` | bilangan bulat |\n| `double` | bilangan dengan titik desimal |\n| `char` | satu karakter dalam kutip tunggal |\n| `bool` | true atau false |\n\nKursus ini belum punya `std::string`, jadi teks untuk sementara memakai array `char` — kamu akan mempelajarinya di Modul 3.',
               },
               figure: {
                 dim: 2,

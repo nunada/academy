@@ -55,8 +55,8 @@ export const module6: Module = {
               id: 'c3',
               title: { en: 'The names of common failures', id: 'Nama-nama kegagalan yang umum' },
               body: {
-                en: 'Each kind of failure has a name. `ValueError` is the right type but an impossible value, `ZeroDivisionError` speaks for itself, `KeyError` is a missing dictionary key, `IndexError` a position past the end of a list.',
-                id: 'Tiap jenis kegagalan punya nama. `ValueError` berarti tipenya benar tapi nilainya mustahil, `ZeroDivisionError` sudah jelas, `KeyError` adalah kunci dictionary yang tidak ada, `IndexError` adalah posisi melewati ujung list.',
+                en: 'Each kind of failure has a name:\n\n- `ValueError` is the right type but an impossible value.\n- `ZeroDivisionError` speaks for itself.\n- `KeyError` is a missing dictionary key.\n- `IndexError` is a position past the end of a list.',
+                id: 'Tiap jenis kegagalan punya nama:\n\n- `ValueError` berarti tipenya benar tapi nilainya mustahil.\n- `ZeroDivisionError` sudah jelas.\n- `KeyError` adalah kunci dictionary yang tidak ada.\n- `IndexError` adalah posisi melewati ujung list.',
               },
               code: {
                 en: 'try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print("cannot divide by zero")',

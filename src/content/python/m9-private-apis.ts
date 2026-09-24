@@ -75,8 +75,8 @@ export const module9: Module = {
               id: 'c3',
               title: { en: 'The numbers that come back', id: 'Angka-angka yang kembali' },
               body: {
-                en: 'A status code is the service saying how it went. `200` fine, `201` created, `400` your request was malformed, `401` bad or missing key, `404` no such thing, `500` their problem not yours. Check it before trusting the body.',
-                id: 'Kode status adalah cara layanan mengabarkan hasilnya. `200` beres, `201` berhasil dibuat, `400` permintaanmu cacat, `401` kunci salah atau tidak ada, `404` tidak ada barangnya, `500` masalah mereka, bukan kamu. Periksa kodenya sebelum memercayai isinya.',
+                en: 'A status code is the service saying how it went.\n\n| Code | Meaning |\n|---|---|\n| `200` | fine |\n| `201` | created |\n| `400` | your request was malformed |\n| `401` | bad or missing key |\n| `404` | no such thing |\n| `500` | their problem, not yours |\n\nCheck it before trusting the body.',
+                id: 'Kode status adalah cara layanan mengabarkan hasilnya.\n\n| Kode | Arti |\n|---|---|\n| `200` | beres |\n| `201` | berhasil dibuat |\n| `400` | permintaanmu cacat |\n| `401` | kunci salah atau tidak ada |\n| `404` | tidak ada barangnya |\n| `500` | masalah mereka, bukan kamu |\n\nPeriksa kodenya sebelum memercayai isinya.',
               },
               code: {
                 en: 'import nunada_api\n\nheaders = {"Authorization": "Bearer " + nunada_api.API_KEY}\nprint(nunada_api.get("https://api.nunada.test/siswa/1", headers=headers).status_code)\nprint(nunada_api.get("https://api.nunada.test/siswa/99", headers=headers).status_code)\nprint(nunada_api.get("https://api.nunada.test/ghost", headers=headers).status_code)',
