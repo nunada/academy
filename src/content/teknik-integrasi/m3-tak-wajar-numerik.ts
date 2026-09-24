@@ -5,7 +5,7 @@ import type { Module } from '../types'
  *  integrand that blows up inside the interval, and (turning the problem
  *  around entirely) a function with no elementary antiderivative at all,
  *  handled by returning to the Riemann-sum idea Module 2 started with. */
-export const module5: Module = {
+export const module3: Module = {
   id: 'int-m5',
   title: { en: 'Improper Integrals and Numerical Integration', id: 'Integral Tak Wajar dan Integral Numerik' },
   summary: {
@@ -128,12 +128,12 @@ export const module5: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Evaluate $\\displaystyle\\int_1^\\infty \\frac{1}{x^3}\\,dx$.',
-                id: 'Hitung $\\displaystyle\\int_1^\\infty \\frac{1}{x^3}\\,dx$.',
+                en: 'Evaluate $\\int_1^\\infty \\frac{1}{x^3}\\,dx$.',
+                id: 'Hitung $\\int_1^\\infty \\frac{1}{x^3}\\,dx$.',
               },
               blanks: [{ answer: 0.5 }],
               hints: [
-                { en: '$\\displaystyle\\int_1^t x^{-3}\\,dx = \\left[-\\tfrac{1}{2x^2}\\right]_1^t$.', id: '$\\displaystyle\\int_1^t x^{-3}\\,dx = \\left[-\\tfrac{1}{2x^2}\\right]_1^t$.' },
+                { en: '$\\int_1^t x^{-3}\\,dx = \\left[-\\tfrac{1}{2x^2}\\right]_1^t$.', id: '$\\int_1^t x^{-3}\\,dx = \\left[-\\tfrac{1}{2x^2}\\right]_1^t$.' },
               ],
               explain: {
                 en: '$\\lim_{t\\to\\infty}\\left(-\\tfrac{1}{2t^2}+\\tfrac12\\right) = 0+\\tfrac12 = 0.5$.',
@@ -202,8 +202,8 @@ export const module5: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'Why is $\\displaystyle\\int_0^1 \\frac{1}{x}\\,dx$ improper?',
-                id: 'Mengapa $\\displaystyle\\int_0^1 \\frac{1}{x}\\,dx$ tak wajar?',
+                en: 'Why is $\\int_0^1 \\frac{1}{x}\\,dx$ improper?',
+                id: 'Mengapa $\\int_0^1 \\frac{1}{x}\\,dx$ tak wajar?',
               },
               options: [
                 { en: 'The integrand is undefined at $x = 0$, an endpoint of the interval', id: 'Integrandnya tak terdefinisi di $x = 0$, titik ujung interval' },
@@ -258,8 +258,8 @@ export const module5: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Evaluate $\\displaystyle\\int_0^1 x^{-1/3}\\,dx$.',
-                id: 'Hitung $\\displaystyle\\int_0^1 x^{-1/3}\\,dx$.',
+                en: 'Evaluate $\\int_0^1 x^{-1/3}\\,dx$.',
+                id: 'Hitung $\\int_0^1 x^{-1/3}\\,dx$.',
               },
               blanks: [{ answer: 1.5 }],
               hints: [
@@ -287,17 +287,17 @@ export const module5: Module = {
         ],
         tasks: [
           {
-            prompt: { en: 'Evaluate $\\displaystyle\\int_2^\\infty \\frac{1}{x^2}\\,dx$.', id: 'Hitung $\\displaystyle\\int_2^\\infty \\frac{1}{x^2}\\,dx$.' },
+            prompt: { en: 'Evaluate $\\int_2^\\infty \\frac{1}{x^2}\\,dx$.', id: 'Hitung $\\int_2^\\infty \\frac{1}{x^2}\\,dx$.' },
             blanks: [{ answer: 0.5 }],
             solution: ['\\lim_{t\\to\\infty}\\left(-\\tfrac1t+\\tfrac12\\right) = \\tfrac12'],
           },
           {
-            prompt: { en: 'Evaluate $\\displaystyle\\int_0^4 \\frac{1}{\\sqrt{x}}\\,dx$.', id: 'Hitung $\\displaystyle\\int_0^4 \\frac{1}{\\sqrt{x}}\\,dx$.' },
+            prompt: { en: 'Evaluate $\\int_0^4 \\frac{1}{\\sqrt{x}}\\,dx$.', id: 'Hitung $\\int_0^4 \\frac{1}{\\sqrt{x}}\\,dx$.' },
             blanks: [{ answer: 4 }],
             solution: ['\\lim_{t\\to0^+}\\left(2\\sqrt4-2\\sqrt t\\right) = 4-0 = 4'],
           },
           {
-            prompt: { en: 'Evaluate $\\displaystyle\\int_1^\\infty e^{-x}\\,dx$.', id: 'Hitung $\\displaystyle\\int_1^\\infty e^{-x}\\,dx$.' },
+            prompt: { en: 'Evaluate $\\int_1^\\infty e^{-x}\\,dx$.', id: 'Hitung $\\int_1^\\infty e^{-x}\\,dx$.' },
             blanks: [{ answer: 1 / Math.E }],
             solution: ['\\lim_{t\\to\\infty}\\left(-e^{-t}+e^{-1}\\right) = 0+e^{-1} \\approx 0{,}37'],
           },
@@ -425,8 +425,8 @@ export const module5: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Use the trapezoidal rule with $n = 4$ to estimate $\\displaystyle\\int_0^4 \\sqrt{x}\\,dx$. Heights at $x = 0, 1, 2, 3, 4$ are $0, 1, 1.4142, 1.7321, 2$.',
-                id: 'Pakai aturan trapesium dengan $n = 4$ untuk menaksir $\\displaystyle\\int_0^4 \\sqrt{x}\\,dx$. Tinggi di $x = 0, 1, 2, 3, 4$ adalah $0, 1, 1.4142, 1.7321, 2$.',
+                en: 'Use the trapezoidal rule with $n = 4$ to estimate $\\int_0^4 \\sqrt{x}\\,dx$. Heights at $x = 0, 1, 2, 3, 4$ are $0, 1, 1.4142, 1.7321, 2$.',
+                id: 'Pakai aturan trapesium dengan $n = 4$ untuk menaksir $\\int_0^4 \\sqrt{x}\\,dx$. Tinggi di $x = 0, 1, 2, 3, 4$ adalah $0, 1, 1.4142, 1.7321, 2$.',
               },
               blanks: [{ label: 'T_4 \\approx', answer: 5.146, tol: 0.02 }],
               hints: [
@@ -547,8 +547,8 @@ export const module5: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Use Simpson\'s Rule with $n = 4$ to estimate $\\displaystyle\\int_0^4 \\sqrt{x}\\,dx$. Heights at $x = 0, 1, 2, 3, 4$ are $0, 1, 1.4142, 1.7321, 2$.',
-                id: 'Pakai Aturan Simpson dengan $n = 4$ untuk menaksir $\\displaystyle\\int_0^4 \\sqrt{x}\\,dx$. Tinggi di $x = 0, 1, 2, 3, 4$ adalah $0, 1, 1.4142, 1.7321, 2$.',
+                en: 'Use Simpson\'s Rule with $n = 4$ to estimate $\\int_0^4 \\sqrt{x}\\,dx$. Heights at $x = 0, 1, 2, 3, 4$ are $0, 1, 1.4142, 1.7321, 2$.',
+                id: 'Pakai Aturan Simpson dengan $n = 4$ untuk menaksir $\\int_0^4 \\sqrt{x}\\,dx$. Tinggi di $x = 0, 1, 2, 3, 4$ adalah $0, 1, 1.4142, 1.7321, 2$.',
               },
               blanks: [{ label: 'S_4 \\approx', answer: 5.25, tol: 0.02 }],
               hints: [

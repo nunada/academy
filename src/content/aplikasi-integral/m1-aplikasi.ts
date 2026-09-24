@@ -4,7 +4,7 @@ import type { Module } from '../types'
  *  for questions with nothing abstract left in them: how much area sits
  *  between two curves, how far something actually travelled versus where it
  *  ended up, and how much a solid weighs once a flat region is spun into one. */
-export const module6: Module = {
+export const module1: Module = {
   id: 'int-m6',
   title: { en: 'Applications of the Integral', id: 'Penerapan Integral' },
   summary: {
@@ -453,7 +453,7 @@ export const module6: Module = {
               },
               blanks: [{ answer: 23.56 }],
               hints: [
-                { en: '$V = \\pi \\displaystyle\\int_1^4 x\\,dx$.', id: '$V = \\pi \\displaystyle\\int_1^4 x\\,dx$.' },
+                { en: '$V = \\pi \\int_1^4 x\\,dx$.', id: '$V = \\pi \\int_1^4 x\\,dx$.' },
               ],
               explain: {
                 en: '$V = \\pi\\left[\\tfrac{x^2}{2}\\right]_1^4 = \\pi(8 - 0.5) = 7.5\\pi \\approx 23.56$.',
@@ -603,7 +603,7 @@ export const module6: Module = {
               },
               blanks: [{ answer: 1.26 }],
               hints: [
-                { en: '$V = 2\\pi \\displaystyle\\int_0^1 x^4\\,dx$.', id: '$V = 2\\pi \\displaystyle\\int_0^1 x^4\\,dx$.' },
+                { en: '$V = 2\\pi \\int_0^1 x^4\\,dx$.', id: '$V = 2\\pi \\int_0^1 x^4\\,dx$.' },
               ],
               explain: {
                 en: '$V = 2\\pi\\left[\\tfrac{x^5}{5}\\right]_0^1 = \\tfrac{2\\pi}{5} \\approx 1.26$.',

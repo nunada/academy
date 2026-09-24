@@ -5,7 +5,7 @@ import type { Module } from '../types'
  *  of a^2 - x^2 turns into a plain trig integral once the geometry that
  *  produced it is un-hidden, and a rational function too tangled for direct
  *  antidifferentiation splits into pieces Module 1 already knows how to do. */
-export const module4: Module = {
+export const module2: Module = {
   id: 'int-m4',
   title: { en: 'Trigonometric Integrals and Partial Fractions', id: 'Integral Trigonometri dan Pecahan Parsial' },
   summary: {

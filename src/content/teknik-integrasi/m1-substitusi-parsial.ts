@@ -4,7 +4,7 @@ import type { Module } from '../types'
  *  practice, and neither is new machinery: one reverses the chain rule, the
  *  other reverses the product rule. Every hard integral in this module is a
  *  disguised derivative rule from the last course, worked backwards. */
-export const module3: Module = {
+export const module1: Module = {
   id: 'int-m3',
   title: { en: 'Substitution and Integration by Parts', id: 'Substitusi dan Integral Parsial' },
   summary: {

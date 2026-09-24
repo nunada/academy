@@ -26,7 +26,7 @@ fs.writeFileSync(
   entry,
   [
     `export { COURSES } from '${q('src/content/catalog.ts')}'`,
-    ...['python', 'html', 'css', 'javascript', 'cpp', 'sql', 'typescript', 'react', 'gamedev', 'python-math', 'python-media', 'python-numpy', 'fundamentals', 'logika', 'vektor', 'fungsi', 'limit', 'turunan', 'integral'].map(
+    ...['python', 'html', 'css', 'javascript', 'cpp', 'sql', 'typescript', 'react', 'gamedev', 'python-math', 'python-media', 'python-numpy', 'fundamentals', 'logika', 'vektor', 'fungsi', 'limit', 'turunan', 'aplikasi-turunan', 'integral', 'teknik-integrasi', 'aplikasi-integral', 'integral-transenden'].map(
       (c) => `export { modules as ${c.replace('-', '')}Modules } from '${q(`src/content/${c}/index.ts`)}'`,
     ),
   ].join('\n'),
@@ -58,7 +58,11 @@ const SUMBER = {
   fungsi: 'fungsiModules',
   limit: 'limitModules',
   turunan: 'turunanModules',
+  'aplikasi-turunan': 'aplikasiturunanModules',
   integral: 'integralModules',
+  'teknik-integrasi': 'teknikintegrasiModules',
+  'aplikasi-integral': 'aplikasiintegralModules',
+  'integral-transenden': 'integraltransendenModules',
 }
 
 const masalah = []

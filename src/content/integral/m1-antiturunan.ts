@@ -152,8 +152,8 @@ export const module1: Module = {
                 id: 'Periksa tiap kandidat dengan menurunkannya: apakah sama dengan $f(x) = 6x^2$? Ketik $1$ untuk ya, $0$ untuk tidak.',
               },
               blanks: [
-                { label: '\\tfrac{d}{dx}(2x^3 - 4) \\overset{?}{=} 6x^2 \\ \\Rightarrow', answer: 1 },
-                { label: '\\tfrac{d}{dx}(3x^3) \\overset{?}{=} 6x^2 \\ \\Rightarrow', answer: 0 },
+                { label: '\\tfrac{d}{dx}(2x^3 - 4) = 6x^2 \\text{?} \\ \\Rightarrow', answer: 1 },
+                { label: '\\tfrac{d}{dx}(3x^3) = 6x^2 \\text{?} \\ \\Rightarrow', answer: 0 },
               ],
               hints: [
                 { en: 'Differentiate each candidate first, then compare to $6x^2$.', id: 'Turunkan tiap kandidat lebih dahulu, baru bandingkan dengan $6x^2$.' },

@@ -5,7 +5,7 @@ import type { Module } from '../types'
  *  answer, because the force or the density changes continuously across the
  *  object. Slice, approximate with a constant, sum, and take the limit — the
  *  Riemann-sum idea from Module 2, aimed at three new kinds of quantity. */
-export const module8: Module = {
+export const module3: Module = {
   id: 'int-m8',
   title: { en: 'Work, Fluid Forces, and Centers of Mass', id: 'Usaha, Gaya Fluida, dan Pusat Massa' },
   summary: {
