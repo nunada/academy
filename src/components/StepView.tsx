@@ -7,7 +7,7 @@ import { runWebTests, type WebOutcome } from '../lib/web'
 import { runSql, runSqlTests, type SqlOutcome, type SqlResult } from '../lib/sql'
 import { compileTs, runTsTests, type TsCompile, type TsOutcome } from '../lib/ts'
 import { runCppInteractive, runCppTests, type TestOutcome as CppOutcome } from '../lib/cpp'
-import { CodeBlock, CodeEditor, LivePreview, Output, Rich, Terminal, Tex, TexLines } from './ui'
+import { CodeBlock, CodeEditor, LivePreview, Output, Rich, RichBlock, Terminal, Tex, TexLines } from './ui'
 import { MathBoard, MathInputNote, emptyValues, markTask } from './MathBoard'
 import { evalAnswer, isRight } from '../lib/answer'
 import { FigureView } from './Figure'
@@ -153,9 +153,7 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
       <h2>
         <Rich text={tc(step.title)} />
       </h2>
-      <p>
-        <Rich text={tc(step.body)} />
-      </p>
+      <RichBlock text={tc(step.body)} />
       {step.figure && <FigureView figure={step.figure} />}
       {step.solid3d && (
         <Suspense fallback={<div className="fig3d" style={{ height: step.solid3d.height ?? 380 }} />}>

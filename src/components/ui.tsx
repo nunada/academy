@@ -62,6 +62,87 @@ export function Rich({ text }: { text: string }) {
   )
 }
 
+/** Cells of one `| a | b |` row, splitting only on pipes outside `$...$` so an
+ *  absolute value like $|x|$ survives inside a cell. */
+function tableCells(line: string): string[] {
+  const cells: string[] = []
+  let cur = ''
+  let inMath = false
+  for (const ch of line.trim()) {
+    if (ch === '$') inMath = !inMath
+    if (ch === '|' && !inMath) {
+      cells.push(cur.trim())
+      cur = ''
+    } else cur += ch
+  }
+  cells.push(cur.trim())
+  if (cells[0] === '') cells.shift()
+  if (cells[cells.length - 1] === '') cells.pop()
+  return cells
+}
+
+/** Block structure for lesson prose, on top of `Rich`'s inline formatting:
+ *  blank lines split paragraphs, a run of `- ` lines is a bullet list, and a
+ *  run of `| a | b |` lines is a table (first row the header; a `|---|` divider
+ *  row is optional). Plain single-paragraph text renders as one `<p>`, so
+ *  existing content is unchanged. */
+export function RichBlock({ text }: { text: string }) {
+  const blocks = text.split(/\n{2,}/).map((b) => b.trim()).filter(Boolean)
+  return (
+    <>
+      {blocks.map((block, i) => {
+        const lines = block.split('\n').map((l) => l.trim())
+        if (lines.every((l) => l.startsWith('- '))) {
+          return (
+            <ul className="richlist" key={i}>
+              {lines.map((l, j) => (
+                <li key={j}>
+                  <Rich text={l.slice(2)} />
+                </li>
+              ))}
+            </ul>
+          )
+        }
+        if (lines.every((l) => l.startsWith('|'))) {
+          const rows = lines.filter((l) => !/^\|[\s:|-]+\|?$/.test(l)).map(tableCells)
+          const [head, ...body] = rows
+          return (
+            <div className="gridwrap" key={i}>
+              <table className="rtable">
+                <thead>
+                  <tr>
+                    {head.map((c, j) => (
+                      <th key={j}>
+                        <Rich text={c} />
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {body.map((r, j) => (
+                    <tr key={j}>
+                      {r.map((c, k) => (
+                        <td key={k}>
+                          <Rich text={c} />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )
+        }
+        return (
+          <p key={i}>
+            <Rich text={block} />
+          </p>
+        )
+      })}
+    </>
+  )
+}
+
 export function Bar({ percent, good = false }: { percent: number; good?: boolean }) {
   return (
     <div className={good ? 'bar good' : 'bar'}>
