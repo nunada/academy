@@ -177,6 +177,16 @@ renders('y = a^x \\text{ dan } \\ln x', '<msup>', '<mi>ln</mi>')
 // A number keeps its digits together, or MathML spaces it like a product.
 if (!tex('12.5').includes('<mn>12.5</mn>')) fail('tex("12.5") split the number up')
 
+// An un-braced macro argument is exactly one token, per TeX itself —
+// `\tfrac12` is `\tfrac{1}{2}`, not `\tfrac{12}{}` with the digits merged
+// and the denominator lost. Widely used as shorthand across the curriculum.
+{
+  const out = tex('\\tfrac12')
+  if (!/<mfrac><mn>1<\/mn><mn>2<\/mn><\/mfrac>/.test(out)) {
+    fail(`tex("\\\\tfrac12") = ${out}, want a two-term mfrac of 1 over 2`)
+  }
+}
+
 /* ------------------------------------------- every formula the courses write
 
    The cases above check the renderer against what it was built for. This
