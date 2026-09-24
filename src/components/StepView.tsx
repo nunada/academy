@@ -273,6 +273,8 @@ function FillStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
   const template = resolveBi(step.template, lang)
   const blanks = resolveBi(step.blanks, lang)
   const segments = useMemo(() => template.split('___'), [template])
+  // A sentence with $inline maths$ in it is prose, not a program: set it as prose.
+  const prose = !step.math && template.includes('$')
   const [values, setValues] = useState<string[]>(() => blanks.map(() => ''))
   const [checked, setChecked] = useState(false)
 
@@ -299,11 +301,11 @@ function FillStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
       </h3>
       {step.figure && <FigureView figure={step.figure} />}
       {/* A formula belongs on the page as a formula, not in a code block. */}
-      <div className={step.math ? 'given mathfill' : undefined}>
-        <pre className={step.math ? 'plain' : 'code'}>
+      <div className={step.math || prose ? 'given mathfill' : undefined}>
+        <pre className={step.math || prose ? 'plain' : 'code'}>
           {segments.map((seg, i) => (
             <span key={i}>
-              {step.math ? <Tex src={seg} /> : seg}
+              {step.math ? <Tex src={seg} /> : prose ? <Rich text={seg} /> : seg}
               {i < segments.length - 1 && (
                 <input
                   className="blank"
