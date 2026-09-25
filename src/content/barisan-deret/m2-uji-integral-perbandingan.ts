@@ -71,8 +71,8 @@ export const module2: Module = {
                 ticks: true,
                 params: [{ name: 'p', min: 0.2, max: 3, step: 0.1, value: 1.5, label: 'p' }],
                 items: [
-                  { t: 'curve', f: '1/x', from: 0.5, color: 'muted', dashed: true, label: 'p = 1' },
-                  { t: 'curve', f: 'x^(-p)', from: 0.5, color: 'a', label: 'y = x^-p' },
+                  { t: 'curve', f: '1/x', color: 'muted', dashed: true, label: 'p = 1' },
+                  { t: 'curve', f: 'x^(-p)', color: 'a', label: 'y = x⁻ᵖ' },
                   { t: 'vline', x: 1, color: 'muted', dashed: true },
                 ],
                 caption: {
