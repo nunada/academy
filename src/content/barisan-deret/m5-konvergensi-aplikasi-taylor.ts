@@ -401,7 +401,7 @@ export const module5: Module = {
               figure: {
                 dim: 2,
                 xSpan: [0, 6],
-                ySpan: [0.7, 1.05],
+                ySpan: [0.6, 1.05],
                 ticks: true,
                 items: [
                   { t: 'dot', x: 1, y: 1, color: 'a' },

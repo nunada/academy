@@ -416,7 +416,7 @@ export const module5: Module = {
               figure: {
                 dim: 2,
                 xSpan: [-6.5, 6.5],
-                ySpan: [-0.5, 1],
+                ySpan: [-1, 1],
                 ticks: true,
                 params: [{ name: 'd', min: 0.1, max: 4, step: 0.1, value: 2, label: '|x|' }],
                 items: [
@@ -464,7 +464,7 @@ export const module5: Module = {
               figure: {
                 dim: 2,
                 xSpan: [-6.5, 6.5],
-                ySpan: [-0.5, 1],
+                ySpan: [-1, 1],
                 ticks: true,
                 items: [
                   { t: 'curve', f: '(1-cos(x))/x', color: 'a' },
