@@ -332,8 +332,8 @@ export const module1: Module = {
                 ySpan: [-1, 6],
                 ticks: true,
                 items: [
-                  { t: 'curve', f: 'e^x', from: -2, to: 1.9, color: 'muted', dashed: true, label: 'e^x' },
-                  { t: 'curve', f: 'e^(-x)', from: -1.9, to: 2, color: 'muted', dashed: true, label: 'e^(-x)' },
+                  { t: 'curve', f: 'e^x', from: -2, to: 1.9, color: 'muted', dashed: true, label: 'eˣ' },
+                  { t: 'curve', f: 'e^(-x)', from: -1.9, to: 2, color: 'muted', dashed: true, label: 'e⁻ˣ' },
                   { t: 'curve', f: '(e^x+e^(-x))/2', from: -2, to: 2, color: 'a', label: 'cosh x' },
                 ],
                 caption: {

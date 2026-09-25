@@ -464,7 +464,7 @@ export const module4: Module = {
                 ySpan: [-1, 2],
                 ticks: true,
                 items: [
-                  { t: 'curve', f: 'e^(-x^2)', from: -2.2, to: 2.2, color: 'muted', dashed: true, label: 'e^(-x²)' },
+                  { t: 'curve', f: 'e^(-x^2)', from: -2.2, to: 2.2, color: 'muted', dashed: true, label: 'e⁻ˣ²' },
                   { t: 'curve', f: '1-x^2+x^4/2-x^6/6', from: -1.7, to: 1.7, color: 'a', label: '4-term Taylor' },
                 ],
                 caption: {

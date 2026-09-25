@@ -372,7 +372,7 @@ export const module1: Module = {
                 ticks: true,
                 params: [{ name: 'r', min: -0.95, max: 0.95, step: 0.05, value: 0.5, label: 'r' }],
                 items: [
-                  { t: 'curve', f: '1/(1-r)', from: -1.4, to: 1.4, color: 'muted', dashed: true },
+                  { t: 'curve', f: '1/(1-r)', color: 'muted', dashed: true },
                   { t: 'dot', x: 'r', y: '1/(1-r)', color: 'result' },
                 ],
                 caption: {

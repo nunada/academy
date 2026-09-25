@@ -185,7 +185,7 @@ export const module2: Module = {
                 ySpan: [-1, 3],
                 ticks: true,
                 items: [
-                  { t: 'curve', f: 'ln(x^2)', from: 0.15, to: 4.3, color: 'a', label: 'ln(x^2)' },
+                  { t: 'curve', f: 'ln(x^2)', from: 0.15, to: 4.3, color: 'a', label: 'ln(x²)' },
                   { t: 'curve', f: '2*ln(x)', from: 0.15, to: 4.3, color: 'result', dashed: true, label: '2 ln x' },
                 ],
                 caption: {
@@ -327,8 +327,8 @@ export const module2: Module = {
                 ySpan: [-2, 30],
                 ticks: true,
                 items: [
-                  { t: 'curve', f: 'x^2', from: 0, to: 5, color: 'a', label: 'x^2' },
-                  { t: 'curve', f: 'e^x', from: 0, to: 3.4, color: 'result', label: 'e^x' },
+                  { t: 'curve', f: 'x^2', from: 0, to: 5, color: 'a', label: 'x²' },
+                  { t: 'curve', f: 'e^x', from: 0, to: 3.4, color: 'result', label: 'eˣ' },
                 ],
                 caption: {
                   en: '$e^x$ overtakes $x^2$ for good near $x\\approx 3.7$ and never looks back — the visible signature of $\\lim_{x\\to\\infty} e^x/x^2=\\infty$, computed exactly in the next concept.',
@@ -468,7 +468,7 @@ export const module2: Module = {
                   { t: 'curve', f: 'ln(x)', from: 0.2, to: 20, color: 'muted', label: 'ln x' },
                   { t: 'curve', f: 'x', from: 0, to: 20, color: 'a', label: 'x' },
                   { t: 'curve', f: 'x*ln(x)', from: 0.2, to: 8.5, color: 'b', label: 'x ln x' },
-                  { t: 'curve', f: 'x^2/10', from: 0, to: 17.3, color: 'result', label: 'x^2/10' },
+                  { t: 'curve', f: 'x^2/10', from: 0, to: 17.3, color: 'result', label: 'x²/10' },
                 ],
                 caption: {
                   en: 'Slowest to fastest, left to right along the visible order at large $x$: $\\ln x$, then $x$, then $x\\ln x$, then $x^2$ — the growth ladder made visible on one screen.',

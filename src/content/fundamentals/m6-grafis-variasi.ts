@@ -67,7 +67,7 @@ export const module6: Module = {
                 ticks: true,
                 params: [{ name: 'k', min: -2, max: 3, step: 0.25, value: 1, label: 'k' }],
                 items: [
-                  { t: 'curve', f: 'x^2', color: 'a', label: 'y=x^2' },
+                  { t: 'curve', f: 'x^2', color: 'a', label: 'y = x²' },
                   { t: 'curve', f: 'x+k', color: 'b', label: 'y=x+k' },
                   { t: 'dot', x: '0.5+sqrt(0.25+k)', y: '(0.5+sqrt(0.25+k))^2', color: 'result' },
                   { t: 'dot', x: '0.5-sqrt(0.25+k)', y: '(0.5-sqrt(0.25+k))^2', color: 'result' },
