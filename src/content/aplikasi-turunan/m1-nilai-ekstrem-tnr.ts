@@ -8,7 +8,7 @@ import type { Module } from '../types'
  *  module ends on turns out to be the reason the Integral course's "family
  *  of antiderivatives" was ever allowed to say "the only difference is a
  *  constant" in the first place. */
-export const module6: Module = {
+export const module1: Module = {
   id: 'tur-m6',
   title: { en: 'Extreme Values and the Mean Value Theorem', id: 'Nilai Ekstrem dan Teorema Nilai Rata-rata' },
   summary: {

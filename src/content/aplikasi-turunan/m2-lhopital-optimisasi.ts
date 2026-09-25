@@ -4,7 +4,7 @@ import type { Module } from '../types'
  *  to earn, and two procedures — one exact, one iterative — that turn a
  *  derivative into the tool that actually answers a real question: the best
  *  possible choice, or a root nothing else can find in closed form. */
-export const module7: Module = {
+export const module2: Module = {
   id: 'tur-m7',
   title: { en: "L'Hôpital's Rule, Optimization, and Newton's Method", id: "Aturan L'Hôpital, Optimisasi, dan Metode Newton" },
   summary: {

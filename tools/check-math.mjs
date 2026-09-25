@@ -21,18 +21,35 @@ const ROOT = process.cwd()
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'nunada-math-'))
 const q = (p) => path.join(ROOT, p).replace(/\\/g, '/')
 
+/** Every course worked on paper rather than run — add one here the day it
+ *  starts writing formulas, so the sweep below actually covers it. */
+const MATH_COURSES = [
+  'vektor',
+  'fungsi',
+  'limit',
+  'turunan',
+  'aplikasi-turunan',
+  'integral',
+  'teknik-integrasi',
+  'aplikasi-integral',
+  'integral-transenden',
+  'barisan-deret',
+]
+const toIdent = (c) => c.replace(/-([a-z])/g, (_, ch) => ch.toUpperCase())
+
 const entry = path.join(tmp, 'entry.ts')
 fs.writeFileSync(
   entry,
-  `export { tex } from '${q('src/lib/tex.ts')}'\n` +
-    `export { evalAnswer, isRight, isSameFormula } from '${q('src/lib/answer.ts')}'\n` +
-    `export { modules as vektor } from '${q('src/content/vektor/index.ts')}'\n` +
-    `export { modules as fungsi } from '${q('src/content/fungsi/index.ts')}'
-`,
+  [
+    `export { tex } from '${q('src/lib/tex.ts')}'`,
+    `export { evalAnswer, isRight, isSameFormula } from '${q('src/lib/answer.ts')}'`,
+    ...MATH_COURSES.map((c) => `export { modules as ${toIdent(c)} } from '${q(`src/content/${c}/index.ts`)}'`),
+  ].join('\n'),
 )
 const bundle = path.join(tmp, 'bundle.mjs')
 await build({ entryPoints: [entry], bundle: true, format: 'esm', outfile: bundle, logLevel: 'error' })
-const { tex, evalAnswer, isRight, isSameFormula, vektor, fungsi } = await import('file://' + bundle)
+const mathMod = await import('file://' + bundle)
+const { tex, evalAnswer, isRight, isSameFormula } = mathMod
 
 const problems = []
 const fail = (m) => problems.push(m)
@@ -160,6 +177,16 @@ renders('y = a^x \\text{ dan } \\ln x', '<msup>', '<mi>ln</mi>')
 // A number keeps its digits together, or MathML spaces it like a product.
 if (!tex('12.5').includes('<mn>12.5</mn>')) fail('tex("12.5") split the number up')
 
+// An un-braced macro argument is exactly one token, per TeX itself —
+// `\tfrac12` is `\tfrac{1}{2}`, not `\tfrac{12}{}` with the digits merged
+// and the denominator lost. Widely used as shorthand across the curriculum.
+{
+  const out = tex('\\tfrac12')
+  if (!/<mfrac><mn>1<\/mn><mn>2<\/mn><\/mfrac>/.test(out)) {
+    fail(`tex("\\\\tfrac12") = ${out}, want a two-term mfrac of 1 over 2`)
+  }
+}
+
 /* ------------------------------------------- every formula the courses write
 
    The cases above check the renderer against what it was built for. This
@@ -177,7 +204,7 @@ const MATH_NAMES = {
   round: 1, sign: 1,
 }
 
-const CURRICULA = { vektor, fungsi }
+const CURRICULA = Object.fromEntries(MATH_COURSES.map((c) => [c, mathMod[toIdent(c)]]))
 let formulas = 0
 let figures = 0
 
@@ -244,7 +271,10 @@ function sweepFigure(fig, where) {
    *  A name it does not have is a silently blank drawing, so it is checked. */
   const walkExpr = (src, at) => {
     if (typeof src !== 'string') return
-    for (const name of src.toLowerCase().match(/[a-z]+/g) ?? []) {
+    // Matches `expr.ts`'s own identifier rule — a letter followed by letters
+    // or digits — so a slider like "x0" or "y0" is read as one name, not
+    // split into a bare letter plus a digit it then can't find.
+    for (const name of src.toLowerCase().match(/[a-zπ][a-z0-9π]*/g) ?? []) {
       const known =
         name === 'x' || name === 'pi' || name === 'e' || sliders.has(name) || name in MATH_NAMES
       if (!known) fail(`${where} ${at}: "${name}" is neither a slider nor a function`)
@@ -303,7 +333,10 @@ function sweepFigure(fig, where) {
  *  step is not counted twice over. */
 function sweepTask(task, where) {
   if (task.given) sweep(task.given, `${where} given`)
-  for (const line of task.solution ?? []) sweep(line, `${where} solution`)
+  // `solution` is `Bi<string[]>` — either a plain array, or `{en, id}` each
+  // holding one. Sweep whichever lines are actually there.
+  const solutionLines = Array.isArray(task.solution) ? task.solution : [...(task.solution?.en ?? []), ...(task.solution?.id ?? [])]
+  for (const line of solutionLines) sweep(line, `${where} solution`)
   task.blanks.forEach((b, i) => {
     const at = `${where} blank ${i + 1}`
     if (b.label) sweep(b.label, `${at} label`)
@@ -342,9 +375,15 @@ for (const [courseId, modules] of Object.entries(CURRICULA)) {
           for (const o of step.options ?? []) sweepProse(o, where)
           for (const h of step.hints ?? []) sweepProse(h, where)
           if (step.math && step.template) {
-            for (const seg of step.template.split('___')) if (seg.trim()) sweep(seg, `${where} template`)
+            // `template` is `Bi<string>` — either a plain string, or `{en, id}`.
+            const templates = typeof step.template === 'string' ? [step.template] : [step.template.en, step.template.id]
+            for (const t of templates) for (const seg of t.split('___')) if (seg.trim()) sweep(seg, `${where} template`)
           }
-          if (step.math && step.lines) for (const line of step.lines) sweep(line, `${where} line`)
+          if (step.math && step.lines) {
+            // `lines` is `Bi<string[]>` — either a plain array, or `{en, id}` each holding one.
+            const lineSet = Array.isArray(step.lines) ? step.lines : [...(step.lines.en ?? []), ...(step.lines.id ?? [])]
+            for (const line of lineSet) sweep(line, `${where} line`)
+          }
           if (step.kind === 'math') sweepTask(step, where)
         }
       }

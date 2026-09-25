@@ -164,7 +164,9 @@ function parseGroup(p: P): string {
     if (peek(p) === '}') p.i++
     return inner
   }
-  return parseAtom(p)
+  // TeX's own rule for an un-braced argument: exactly one token, not a run
+  // of digits — `\frac12` is `\frac{1}{2}`, never `\frac{12}{}`.
+  return parseAtom(p, true)
 }
 
 /** The literal characters of `{...}`, for `\text`, where TeX is not maths. */
@@ -323,7 +325,11 @@ function parseCommand(p: P, cmd: string): string {
   return `<mtext>${esc(cmd)}</mtext>`
 }
 
-function parseAtom(p: P): string {
+/** `single` is set for an un-braced macro argument (a `\frac`, `\sqrt`,
+ *  `\vec`, ... operand with no `{}`), which TeX limits to exactly one
+ *  character — so a run of digits stops after the first, unlike an ordinary
+ *  number appearing in the middle of an expression. */
+function parseAtom(p: P, single = false): string {
   skipSpace(p)
   const t = p.toks[p.i]
   if (t === undefined) return ''
@@ -348,8 +354,13 @@ function parseAtom(p: P): string {
   }
 
   // A number runs as far as its digits and one decimal mark go, so MathML
-  // sees `12.5` as one <mn> rather than three atoms.
+  // sees `12.5` as one <mn> rather than three atoms — except as a single
+  // un-braced macro argument, which stops after this one digit.
   if (/[0-9]/.test(t)) {
+    if (single) {
+      p.i++
+      return `<mn>${t}</mn>`
+    }
     let num = ''
     while (p.i < p.toks.length && /^[0-9]$/.test(p.toks[p.i])) num += p.toks[p.i++]
     if ((p.toks[p.i] === '.' || p.toks[p.i] === ',') && /^[0-9]$/.test(p.toks[p.i + 1] ?? '')) {

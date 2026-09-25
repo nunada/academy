@@ -4,7 +4,7 @@ import type { Module } from '../types'
  *  by separating the two variables onto opposite sides and integrating each;
  *  and a second family of functions built from e^x the way sine and cosine
  *  are built from the unit circle, except built from a hyperbola instead. */
-export const module9: Module = {
+export const module1: Module = {
   id: 'int-m9',
   title: { en: 'Separable Differential Equations and Hyperbolic Functions', id: 'Persamaan Diferensial Terpisah dan Fungsi Hiperbolik' },
   summary: {

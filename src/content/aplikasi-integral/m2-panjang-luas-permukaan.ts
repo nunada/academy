@@ -5,7 +5,7 @@ import type { Module } from '../types'
  *  of rectangles. Both new formulas get checked against plain geometry — a
  *  circle's circumference, a sphere's surface, a cone's slant — the same way
  *  the quarter-circle checked trigonometric substitution back in Module 4. */
-export const module7: Module = {
+export const module2: Module = {
   id: 'int-m7',
   title: { en: 'Arc Length and Surface Area', id: 'Panjang Busur dan Luas Permukaan' },
   summary: {
