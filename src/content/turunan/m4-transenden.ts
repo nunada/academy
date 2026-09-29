@@ -54,7 +54,7 @@ export const module4: Module = {
                 xSpan: [-6.5, 6.5],
                 ySpan: [-2, 2],
                 ticks: true,
-                params: [{ name: 'x0', min: -6, max: 6, step: 0.1, value: 0 }],
+                params: [{ name: 'x0', min: -6, max: 6, step: 0.1, value: 0, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'sin(x)', color: 'a', label: 'sin x' },
                   { t: 'curve', f: 'sin(x0)+cos(x0)*(x-x0)', color: 'b', dashed: true, label: 'tangent' },
@@ -175,7 +175,7 @@ export const module4: Module = {
                 xSpan: [-2, 2.5],
                 ySpan: [-1, 8],
                 ticks: true,
-                params: [{ name: 'x0', min: -1.5, max: 2, step: 0.1, value: 0 }],
+                params: [{ name: 'x0', min: -1.5, max: 2, step: 0.1, value: 0, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'e^x', color: 'a' },
                   { t: 'curve', f: 'e^x0*(1+(x-x0))', color: 'b', dashed: true, label: 'tangent' },
@@ -333,7 +333,7 @@ export const module4: Module = {
                 xSpan: [-1, 4],
                 ySpan: [-3, 3],
                 ticks: true,
-                params: [{ name: 'x0', min: 0.2, max: 3.5, step: 0.1, value: 1 }],
+                params: [{ name: 'x0', min: 0.2, max: 3.5, step: 0.1, value: 1, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'ln(x)', from: 0.05, color: 'a' },
                   { t: 'curve', f: 'ln(x0)+(1/x0)*(x-x0)', color: 'b', dashed: true, label: 'tangent' },
@@ -462,7 +462,7 @@ export const module4: Module = {
                 xSpan: [0.1, 3],
                 ySpan: [-1, 5],
                 ticks: true,
-                params: [{ name: 'x0', min: 0.2, max: 2.5, step: 0.1, value: 1 }],
+                params: [{ name: 'x0', min: 0.2, max: 2.5, step: 0.1, value: 1, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'x^x', from: 0.1, color: 'a' },
                   { t: 'curve', f: 'x0^x0+(x0^x0*(ln(x0)+1))*(x-x0)', color: 'b', dashed: true, label: 'tangent' },
@@ -635,7 +635,7 @@ export const module4: Module = {
                 xSpan: [-1.5, 1.5],
                 ySpan: [-2, 2],
                 ticks: true,
-                params: [{ name: 'x0', min: -0.9, max: 0.9, step: 0.05, value: 0 }],
+                params: [{ name: 'x0', min: -0.9, max: 0.9, step: 0.05, value: 0, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'asin(x)', from: -1, to: 1, color: 'a' },
                   { t: 'curve', f: 'asin(x0)+(1/sqrt(1-x0^2))*(x-x0)', color: 'b', dashed: true, label: 'tangent' },
@@ -755,7 +755,7 @@ export const module4: Module = {
                 xSpan: [-6, 6],
                 ySpan: [-2.2, 2.2],
                 ticks: true,
-                params: [{ name: 'x0', min: -5, max: 5, step: 0.2, value: 0 }],
+                params: [{ name: 'x0', min: -5, max: 5, step: 0.2, value: 0, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'atan(x)', color: 'a' },
                   { t: 'curve', f: 'atan(x0)+(1/(1+x0^2))*(x-x0)', color: 'b', dashed: true, label: 'tangent' },

@@ -337,7 +337,7 @@ export const module1: Module = {
                 xSpan: [-4, 4],
                 ySpan: [-4, 4],
                 ticks: true,
-                params: [{ name: 'x0', min: -4, max: 4, step: 0.1, value: 1.5 }],
+                params: [{ name: 'x0', min: -4, max: 4, step: 0.1, value: 1.5, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'sqrt(9-x^2)', from: -3, to: 3, color: 'a', label: 'setengah atas' },
                   { t: 'curve', f: '-sqrt(9-x^2)', from: -3, to: 3, color: 'muted', dashed: true, label: 'setengah bawah' },

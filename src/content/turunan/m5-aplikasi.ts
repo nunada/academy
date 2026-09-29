@@ -330,7 +330,7 @@ export const module5: Module = {
                 xSpan: [-2.5, 2.5],
                 ySpan: [-3, 3],
                 ticks: true,
-                params: [{ name: 'x0', min: -2.2, max: 2.2, step: 0.1, value: -2 }],
+                params: [{ name: 'x0', min: -2.2, max: 2.2, step: 0.1, value: -2, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'x^3-3*x', color: 'a' },
                   { t: 'dot', x: -1, y: 2, color: 'b', label: '(-1, 2)' },
@@ -483,7 +483,7 @@ export const module5: Module = {
                 xSpan: [-2.5, 2.5],
                 ySpan: [-3, 3],
                 ticks: true,
-                params: [{ name: 'x0', min: -2.2, max: 2.2, step: 0.1, value: -1.5 }],
+                params: [{ name: 'x0', min: -2.2, max: 2.2, step: 0.1, value: -1.5, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'x^3-3*x', color: 'a' },
                   { t: 'dot', x: 0, y: 0, color: 'b', label: '(0, 0)' },

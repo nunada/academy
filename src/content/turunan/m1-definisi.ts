@@ -366,7 +366,7 @@ export const module1: Module = {
                 xSpan: [-3, 3],
                 ySpan: [-4, 4],
                 ticks: true,
-                params: [{ name: 'x0', min: -2, max: 2, step: 0.1, value: 1 }],
+                params: [{ name: 'x0', min: -2, max: 2, step: 0.1, value: 1, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'x^2', color: 'a', label: 'f(x)=x²' },
                   { t: 'curve', f: '2*x', color: 'result', label: 'f\'(x)=2x' },

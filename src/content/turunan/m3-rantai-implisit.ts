@@ -53,7 +53,7 @@ export const module3: Module = {
                 xSpan: [0, 4],
                 ySpan: [-4, 8],
                 ticks: true,
-                params: [{ name: 'x0', min: 0.1, max: 1.9, step: 0.1, value: 1 }],
+                params: [{ name: 'x0', min: 0.1, max: 1.9, step: 0.1, value: 1, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: '(2*x-1)^3', color: 'a' },
                   { t: 'curve', f: '(2*x0-1)^3+6*(2*x0-1)^2*(x-x0)', color: 'b', dashed: true, label: 'tangent' },
@@ -174,7 +174,7 @@ export const module3: Module = {
                 xSpan: [-1, 8],
                 ySpan: [-1, 7],
                 ticks: true,
-                params: [{ name: 'x0', min: 0, max: 7, step: 0.2, value: 3 }],
+                params: [{ name: 'x0', min: 0, max: 7, step: 0.2, value: 3, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'sqrt(5*x+1)', color: 'a' },
                   { t: 'curve', f: 'sqrt(5*x0+1)+(5/(2*sqrt(5*x0+1)))*(x-x0)', color: 'b', dashed: true, label: 'tangent' },
@@ -461,7 +461,7 @@ export const module3: Module = {
                 xSpan: [-1, 6],
                 ySpan: [-1, 8],
                 ticks: true,
-                params: [{ name: 'x0', min: 0.8, max: 5, step: 0.1, value: 2 }],
+                params: [{ name: 'x0', min: 0.8, max: 5, step: 0.1, value: 2, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: '6/x', from: 0.7, to: 6, color: 'a' },
                   { t: 'dot', x: 'x0', y: '6/x0', color: 'result', label: 'A' },

@@ -320,7 +320,7 @@ export const module1: Module = {
                 xSpan: [0.5, 3.5],
                 ySpan: [-1.5, 0.5],
                 ticks: true,
-                params: [{ name: 'x0', min: 1.05, max: 2.95, step: 0.05, value: 1.3 }],
+                params: [{ name: 'x0', min: 1.05, max: 2.95, step: 0.05, value: 1.3, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'x^2-4*x+3', from: 1, to: 3, color: 'a' },
                   { t: 'curve', f: '(x0^2-4*x0+3)+(2*x0-4)*(x-x0)', color: 'b', dashed: true, label: 'tangent' },
@@ -437,7 +437,7 @@ export const module1: Module = {
                 xSpan: [-0.5, 2.5],
                 ySpan: [-1, 9],
                 ticks: true,
-                params: [{ name: 'x0', min: 0.05, max: 1.95, step: 0.05, value: 0.6 }],
+                params: [{ name: 'x0', min: 0.05, max: 1.95, step: 0.05, value: 0.6, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'x^3', color: 'a' },
                   { t: 'seg', from: [0, 0], to: [2, 8], color: 'muted', dashed: true, label: 'secant' },

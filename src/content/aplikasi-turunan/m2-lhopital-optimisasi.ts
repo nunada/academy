@@ -134,7 +134,7 @@ export const module2: Module = {
                 xSpan: [-0.2, 3],
                 ySpan: [-1, 2],
                 ticks: true,
-                params: [{ name: 'x0', min: 0.02, max: 2.5, step: 0.02, value: 1 }],
+                params: [{ name: 'x0', min: 0.02, max: 2.5, step: 0.02, value: 1, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'x*ln(x)', from: 0.01, to: 3, color: 'a' },
                   { t: 'dot', x: 'x0', y: 'x0*ln(x0)', color: 'result', label: 'P' },
@@ -158,7 +158,7 @@ export const module2: Module = {
                 xSpan: [-0.2, 3],
                 ySpan: [-0.5, 5],
                 ticks: true,
-                params: [{ name: 'x0', min: 0.02, max: 2.5, step: 0.02, value: 1 }],
+                params: [{ name: 'x0', min: 0.02, max: 2.5, step: 0.02, value: 1, label: 'x₀' }],
                 items: [
                   { t: 'curve', f: 'x^x', from: 0.02, to: 3, color: 'a' },
                   { t: 'dot', x: 'x0', y: 'x0^x0', color: 'result', label: 'P' },
