@@ -82,6 +82,37 @@ export type FigItem =
       from?: number
       to?: number
     }
+  /** A parametric curve: the path of the point `(x(t), y(t))` as `t` runs from
+   *  `from` to `to`. `x` and `y` are expressions in `t` and in any slider —
+   *  so a slider named `t` is shadowed, and should not be declared. `from`
+   *  and `to` may be expressions too (a slider can sweep the end of the path,
+   *  which is how "the curve traced so far" is drawn). Plane figures only. */
+  | {
+      t: 'param'
+      x: string
+      y: string
+      from: number | string
+      to: number | string
+      color?: FigColor
+      dashed?: boolean
+      label?: string
+    }
+  /** A polar curve `r = f(theta)`, drawn as the points `(r cos θ, r sin θ)`
+   *  for `theta` from `from` to `to` (radians). `r` is an expression in
+   *  `theta` and any slider, and may go negative, which is exactly what a
+   *  polar graph needs it to do. `fill` shades the region swept from the
+   *  origin out to the curve over that range — the sector a polar area
+   *  integral adds up. Plane figures only. */
+  | {
+      t: 'polar'
+      r: string
+      from: number | string
+      to: number | string
+      color?: FigColor
+      dashed?: boolean
+      fill?: boolean
+      label?: string
+    }
   /** A horizontal or vertical rule: an asymptote, an axis of symmetry, the
    *  line y = x a function is reflected in. The value may be an expression. */
   | { t: 'hline'; y: number | string; color?: FigColor; dashed?: boolean; label?: string }
@@ -139,6 +170,10 @@ export interface Figure {
    *  and shouldn't look like one; `xSpan`/`ySpan` still set the canvas, just
    *  without any axis line or grid drawn across it. */
   axes?: boolean
+  /** Lay the grid out as a polar one — concentric circles and rays from the
+   *  origin — instead of horizontal and vertical lines. For a plane figure
+   *  that is read in `(r, θ)`. Keep both spans equal so the circles stay round. */
+  polar?: boolean
   /** Sliders, for a figure that shows a family rather than one drawing. */
   params?: FigParam[]
   items: FigItem[]

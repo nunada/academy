@@ -498,7 +498,7 @@ export const module5: Module = {
                 params: [{ name: 'a', min: 1.2, max: 4, step: 0.1, value: Math.E, label: 'a' }],
                 items: [
                   { t: 'curve', f: 'a^x', color: 'a', label: 'aˣ' },
-                  { t: 'curve', f: 'ln(x)/ln(a)', from: 0.002, color: 'b', label: 'log_a x' },
+                  { t: 'curve', f: 'ln(x)/ln(a)', from: 0.002, color: 'b', label: 'logₐ x' },
                   { t: 'curve', f: 'x', color: 'muted', dashed: true, label: 'y = x' },
                   { t: 'dot', x: 0, y: 1, color: 'a', label: '(0, 1)' },
                   { t: 'dot', x: 1, y: 0, color: 'b', label: '(1, 0)' },

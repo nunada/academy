@@ -384,26 +384,65 @@ export function FigureView({ figure }: { figure: Figure }) {
     const axisY = Math.max(PAD, Math.min(SIZE - PAD, px([0, 0])[1]))
     const axisX = Math.max(PAD, Math.min(SIZE - PAD, px([0, 0])[0]))
 
-    for (let v = Math.ceil(xSpan[0] / stepX) * stepX; v <= xSpan[1] + 1e-9; v += stepX) {
-      const x = px([v, 0])[0]
-      axes.push(<line key={`gx${v}`} className="figgrid" x1={x} y1={PAD} x2={x} y2={SIZE - PAD} />)
-      if (figure.ticks && Math.abs(v) > 1e-9) {
+    if (figure.polar) {
+      // Circles about the origin and a ray every thirty degrees — the grid a
+      // point is actually read against when it is given as (r, θ).
+      const o = px([0, 0])
+      const halfX = Math.max(Math.abs(xSpan[0]), Math.abs(xSpan[1]))
+      const halfY = Math.max(Math.abs(ySpan[0]), Math.abs(ySpan[1]))
+      const reach = Math.hypot(halfX, halfY)
+      const stepR = niceStep(2 * Math.max(halfX, halfY))
+      for (let r = stepR; r <= reach + 1e-9; r += stepR) {
         axes.push(
-          <text key={`tx${v}`} className="figtick" x={x} y={axisY + 15} textAnchor="middle">
-            {tickText(v, stepX)}
-          </text>,
+          <ellipse
+            key={`gr${r}`}
+            className="figgrid"
+            clipPath={`url(#${clipId})`}
+            fill="none"
+            cx={o[0]}
+            cy={o[1]}
+            rx={r * kx}
+            ry={r * ky}
+          />,
+        )
+        if (figure.ticks && r <= xSpan[1] + 1e-9) {
+          axes.push(
+            <text key={`tr${r}`} className="figtick" x={px([r, 0])[0]} y={axisY + 15} textAnchor="middle">
+              {tickText(r, stepR)}
+            </text>,
+          )
+        }
+      }
+      for (let deg = 0; deg < 180; deg += 30) {
+        const a = (deg * Math.PI) / 180
+        const p = px([reach * Math.cos(a), reach * Math.sin(a)])
+        const q = px([-reach * Math.cos(a), -reach * Math.sin(a)])
+        axes.push(
+          <line key={`gd${deg}`} className="figgrid" clipPath={`url(#${clipId})`} x1={p[0]} y1={p[1]} x2={q[0]} y2={q[1]} />,
         )
       }
-    }
-    for (let v = Math.ceil(ySpan[0] / stepY) * stepY; v <= ySpan[1] + 1e-9; v += stepY) {
-      const y = px([0, v])[1]
-      axes.push(<line key={`gy${v}`} className="figgrid" x1={PAD} y1={y} x2={SIZE - PAD} y2={y} />)
-      if (figure.ticks && Math.abs(v) > 1e-9) {
-        axes.push(
-          <text key={`ty${v}`} className="figtick" x={axisX - 6} y={y + 4} textAnchor="end">
-            {tickText(v, stepY)}
-          </text>,
-        )
+    } else {
+      for (let v = Math.ceil(xSpan[0] / stepX) * stepX; v <= xSpan[1] + 1e-9; v += stepX) {
+        const x = px([v, 0])[0]
+        axes.push(<line key={`gx${v}`} className="figgrid" x1={x} y1={PAD} x2={x} y2={SIZE - PAD} />)
+        if (figure.ticks && Math.abs(v) > 1e-9) {
+          axes.push(
+            <text key={`tx${v}`} className="figtick" x={x} y={axisY + 15} textAnchor="middle">
+              {tickText(v, stepX)}
+            </text>,
+          )
+        }
+      }
+      for (let v = Math.ceil(ySpan[0] / stepY) * stepY; v <= ySpan[1] + 1e-9; v += stepY) {
+        const y = px([0, v])[1]
+        axes.push(<line key={`gy${v}`} className="figgrid" x1={PAD} y1={y} x2={SIZE - PAD} y2={y} />)
+        if (figure.ticks && Math.abs(v) > 1e-9) {
+          axes.push(
+            <text key={`ty${v}`} className="figtick" x={axisX - 6} y={y + 4} textAnchor="end">
+              {tickText(v, stepY)}
+            </text>,
+          )
+        }
       }
     }
 
@@ -487,6 +526,43 @@ export function FigureView({ figure }: { figure: Figure }) {
       // there, and only the part past the edge is thrown away.
       run.push(px([x, Math.max(ySpan[0] - height, Math.min(ySpan[1] + height, y))]))
       prev = y
+    }
+    flush()
+    return segments
+  }
+
+  /** A path given as a function of one variable — a parametric or a polar
+   *  curve — as unbroken runs of screen points. A run ends where the path
+   *  stops being a number, or jumps across the picture (the `tan t` of a
+   *  parametrization with a pole), so a vertical asymptote is a gap and not a
+   *  line joining the two ends. Points are not clamped to the frame the way
+   *  `sample()` clamps a graph: a curve leaving along a diagonal has to keep
+   *  its direction, and the clip path throws away what is outside. */
+  function samplePath(at: (u: number) => [number, number], from: number, to: number): P[][] {
+    const steps = 720
+    const segments: P[][] = []
+    let run: P[] = []
+    let prev: P | null = null
+    const flush = () => {
+      if (run.length > 1) segments.push(run)
+      run = []
+    }
+    for (let i = 0; i <= steps; i++) {
+      const [x, y] = at(from + ((to - from) * i) / steps)
+      if (!Number.isFinite(x) || !Number.isFinite(y)) {
+        flush()
+        prev = null
+        continue
+      }
+      const p = px([x, y])
+      if (Math.abs(p[0]) > 1e5 || Math.abs(p[1]) > 1e5) {
+        flush()
+        prev = null
+        continue
+      }
+      if (prev !== null && Math.hypot(p[0] - prev[0], p[1] - prev[1]) > SIZE * 1.2) flush()
+      run.push(p)
+      prev = p
     }
     flush()
     return segments
@@ -652,6 +728,55 @@ export function FigureView({ figure }: { figure: Figure }) {
                   <circle key={`hole-${n}`} cx={p[0]} cy={p[1]} r={5} fill="var(--surface-2)" stroke={stroke(item.color)} strokeWidth={2} />
                 )
               })}
+          </g>
+        )
+      }
+      case 'param':
+      case 'polar': {
+        const from = num(item.from)
+        const to = num(item.to)
+        if (!Number.isFinite(from) || !Number.isFinite(to)) return null
+        const runs =
+          item.t === 'param'
+            ? samplePath(
+                (u) => [evaluateAt(item.x, { ...params, t: u }), evaluateAt(item.y, { ...params, t: u })],
+                from,
+                to,
+              )
+            : samplePath((u) => {
+                const r = evaluateAt(item.r, { ...params, theta: u })
+                return [r * Math.cos(u), r * Math.sin(u)]
+              }, from, to)
+        const last = runs[runs.length - 1]
+        if (last && item.label) {
+          const along = 0.84 - 0.16 * (curvesSoFar % 3)
+          const p = last[Math.floor((last.length - 1) * along)]
+          label([p[0] + 4, p[1] - 12], item.label, stroke(item.color))
+        }
+        curvesSoFar++
+        const o = px([0, 0])
+        return (
+          <g key={key} clipPath={`url(#${clipId})`}>
+            {item.t === 'polar' &&
+              item.fill &&
+              runs.map((run, n) => (
+                <polygon
+                  key={`f${n}`}
+                  className="figface"
+                  points={[o, ...run].map((p) => `${p[0]},${p[1]}`).join(' ')}
+                  fill={stroke(item.color)}
+                  stroke="none"
+                />
+              ))}
+            {runs.map((run, n) => (
+              <polyline
+                key={n}
+                className="figcurve"
+                points={run.map((p) => `${p[0]},${p[1]}`).join(' ')}
+                stroke={stroke(item.color)}
+                strokeDasharray={item.dashed ? '6 4' : undefined}
+              />
+            ))}
           </g>
         )
       }
