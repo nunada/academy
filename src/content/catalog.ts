@@ -426,6 +426,23 @@ export const COURSES: CourseInfo[] = [
     lessons: 20,
     projects: 10,
   },
+  {
+    id: 'parametrik-polar',
+    title: { en: 'Parametric Equations and Polar Coordinates', id: 'Persamaan Parametrik dan Koordinat Kutub' },
+    tagline: {
+      en: 'Curves traced by a moving point instead of drawn as y = f(x): parametric motion, polar roses and spirals, areas and lengths in both, and the conic sections as one family.',
+      id: 'Kurva yang dilukis oleh titik yang bergerak, bukan digambar sebagai y = f(x): gerak parametrik, mawar dan spiral kutub, luas dan panjang di keduanya, serta irisan kerucut sebagai satu keluarga.',
+    },
+    icon: '🌸',
+    color: '#8a3f6b',
+    level: { en: 'Advanced', id: 'Lanjut' },
+    language: 'math',
+    track: 'math',
+    requires: ['aplikasi-integral'],
+    available: true,
+    lessons: 12,
+    projects: 6,
+  },
 ]
 
 /** One dynamic import per course. Written out rather than built from the id so
@@ -455,6 +472,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'aplikasi-integral': () => import('./aplikasi-integral'),
   'integral-transenden': () => import('./integral-transenden'),
   'barisan-deret': () => import('./barisan-deret'),
+  'parametrik-polar': () => import('./parametrik-polar'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes

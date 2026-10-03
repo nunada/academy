@@ -34,6 +34,7 @@ const MATH_COURSES = [
   'aplikasi-integral',
   'integral-transenden',
   'barisan-deret',
+  'parametrik-polar',
 ]
 const toIdent = (c) => c.replace(/-([a-z])/g, (_, ch) => ch.toUpperCase())
 
