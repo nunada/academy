@@ -37,6 +37,10 @@ export default function StepView(props: Props) {
       return <ConceptStep {...props} step={props.step} />
     case 'quiz':
       return <QuizStep {...props} step={props.step} />
+    case 'multi':
+      return <MultiStep {...props} step={props.step} />
+    case 'judge':
+      return <JudgeStep {...props} step={props.step} />
     case 'fill':
       return <FillStep {...props} step={props.step} />
     case 'order':
@@ -189,11 +193,28 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
 
 /* ------------------------------------------------------------------ quiz */
 
+/** The order options are shown in. Authors write the right answer wherever it
+ *  reads best; without this it was nearly always the first one, which a
+ *  learner finds out within a lesson. Fixed per step, so it does not jump
+ *  around when the step re-renders. */
+function optionOrder(count: number, seed: string): number[] {
+  const order = Array.from({ length: count }, (_, i) => i)
+  let h = 7
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) | 0
+  for (let i = order.length - 1; i > 0; i--) {
+    h = (h * 1103515245 + 12345) & 0x7fffffff
+    const j = (h >> 8) % (i + 1)
+    ;[order[i], order[j]] = [order[j], order[i]]
+  }
+  return order
+}
+
 function QuizStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'quiz' }> }) {
   const { t, tc } = useI18n()
   const code = codeText(step.code, tc)
   const [picked, setPicked] = useState<number | null>(null)
   const [checked, setChecked] = useState(false)
+  const order = useMemo(() => optionOrder(step.options.length, step.id + step.prompt.en), [step])
 
   const right = picked === step.answer
 
@@ -212,7 +233,8 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
       {code && <CodeBlock>{code}</CodeBlock>}
       {step.figure && <FigureView figure={step.figure} />}
 
-      {step.options.map((o, i) => {
+      {order.map((i, shown) => {
+        const o = step.options[i]
         // A wrong pick is marked wrong, but the correct option stays neutral —
         // revealing it would hand over the answer instead of letting the
         // learner reason their way to it on a retry.
@@ -229,7 +251,7 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
               setChecked(false)
             }}
           >
-            <span className="key">{String.fromCharCode(65 + i)}</span>
+            <span className="key">{String.fromCharCode(65 + shown)}</span>
             <span>
               <Rich text={tc(o)} />
             </span>
@@ -257,6 +279,164 @@ function QuizStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
           </button>
           {isTeacher && !checked && (
             <button className="btn ghost sm" onClick={() => { setPicked(step.answer); setChecked(true) }}>
+              {t('showSolution')}
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* ----------------------------------------------------------------- multi */
+
+function MultiStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'multi' }> }) {
+  const { t, tc } = useI18n()
+  const [picked, setPicked] = useState<number[]>([])
+  const [checked, setChecked] = useState(false)
+  const order = useMemo(() => optionOrder(step.options.length, step.id + step.prompt.en), [step])
+
+  const want = [...step.answer].sort((a, b) => a - b).join(',')
+  const right = [...picked].sort((a, b) => a - b).join(',') === want
+
+  function check() {
+    if (picked.length === 0) return
+    setChecked(true)
+    if (right) onSolved()
+    else onWrong()
+  }
+
+  return (
+    <div className="card">
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
+      {step.figure && <FigureView figure={step.figure} />}
+
+      {order.map((i, shown) => {
+        const on = picked.includes(i)
+        let cls = 'choice'
+        if (checked) cls += on ? (right ? ' right' : ' wrong') : ''
+        else if (on) cls += ' picked'
+        return (
+          <button
+            className={cls}
+            key={i}
+            disabled={checked && right}
+            aria-pressed={on}
+            onClick={() => {
+              setPicked((p) => (p.includes(i) ? p.filter((x) => x !== i) : [...p, i]))
+              setChecked(false)
+            }}
+          >
+            <span className="key">{on ? '✓' : String.fromCharCode(65 + shown)}</span>
+            <span>
+              <Rich text={tc(step.options[i])} />
+            </span>
+          </button>
+        )
+      })}
+
+      {checked && (
+        <div className={right ? 'verdict ok' : 'verdict no'}>
+          <b>{right ? t('correct') : t('notQuite')}</b>
+          {right ? (
+            <Rich text={tc(step.explain)} />
+          ) : (
+            <span className="small muted">{step.hint ? <Rich text={tc(step.hint)} /> : t('tryAgainHint')}</span>
+          )}
+        </div>
+      )}
+
+      {!solved && (
+        <div className="row" style={{ marginTop: 14 }}>
+          <button className="btn" onClick={check} disabled={picked.length === 0 || blocked}>
+            {t('check')}
+          </button>
+          {isTeacher && !checked && (
+            <button className="btn ghost sm" onClick={() => { setPicked([...step.answer]); setChecked(true) }}>
+              {t('showSolution')}
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* ----------------------------------------------------------------- judge */
+
+function JudgeStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'judge' }> }) {
+  const { t, tc } = useI18n()
+  const [marks, setMarks] = useState<(boolean | null)[]>(() => step.statements.map(() => null))
+  const [checked, setChecked] = useState(false)
+
+  const right = marks.every((m, i) => m === step.answer[i])
+
+  function check() {
+    if (marks.some((m) => m === null)) return
+    setChecked(true)
+    if (right) onSolved()
+    else onWrong()
+  }
+
+  const label = (v: boolean) => tc(v ? { en: 'True', id: 'Benar' } : { en: 'False', id: 'Salah' })
+
+  return (
+    <div className="card">
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
+      {step.figure && <FigureView figure={step.figure} />}
+
+      <div className="judge">
+        {step.statements.map((s, i) => (
+          <div className="judgerow" key={i}>
+            <span className="judgetext">
+              <Rich text={tc(s)} />
+            </span>
+            <span className="judgebtns" role="group">
+              {[true, false].map((v) => {
+                let cls = 'choice'
+                if (marks[i] === v) cls += checked ? (right ? ' right' : '') : ' picked'
+                return (
+                  <button
+                    className={cls}
+                    key={String(v)}
+                    disabled={checked && right}
+                    aria-pressed={marks[i] === v}
+                    onClick={() => {
+                      setMarks((m) => m.map((x, k) => (k === i ? v : x)))
+                      setChecked(false)
+                    }}
+                  >
+                    {label(v)}
+                  </button>
+                )
+              })}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {checked && (
+        <div className={right ? 'verdict ok' : 'verdict no'}>
+          <b>{right ? t('correct') : t('notQuite')}</b>
+          {right ? (
+            <Rich text={tc(step.explain)} />
+          ) : (
+            <span className="small muted">{step.hint ? <Rich text={tc(step.hint)} /> : t('tryAgainHint')}</span>
+          )}
+        </div>
+      )}
+
+      {!solved && (
+        <div className="row" style={{ marginTop: 14 }}>
+          <button className="btn" onClick={check} disabled={marks.some((m) => m === null) || blocked}>
+            {t('check')}
+          </button>
+          {isTeacher && !checked && (
+            <button className="btn ghost sm" onClick={() => { setMarks([...step.answer]); setChecked(true) }}>
               {t('showSolution')}
             </button>
           )}

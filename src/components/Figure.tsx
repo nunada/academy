@@ -731,6 +731,24 @@ export function FigureView({ figure }: { figure: Figure }) {
           </g>
         )
       }
+      case 'text': {
+        const p = px(at(item.at))
+        const size = item.size === 'sm' ? 11 : item.size === 'lg' ? 17 : 13.5
+        return (
+          <text
+            key={key}
+            className="figtext"
+            x={p[0]}
+            y={p[1]}
+            fontSize={size}
+            textAnchor={item.anchor ?? 'middle'}
+            dominantBaseline="middle"
+            fill={stroke(item.color ?? 'muted')}
+          >
+            {item.text}
+          </text>
+        )
+      }
       case 'param':
       case 'polar': {
         const from = num(item.from)

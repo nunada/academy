@@ -82,6 +82,17 @@ export type FigItem =
       from?: number
       to?: number
     }
+  /** Plain text at a point, with no dot: a category under a bar, a numeral on
+   *  a clock face, a side length written beside the side. Upright, never
+   *  italicised the way a `label` is. `size` is `sm` | `md` (default) | `lg`. */
+  | {
+      t: 'text'
+      at: VecRef
+      text: string
+      color?: FigColor
+      size?: 'sm' | 'md' | 'lg'
+      anchor?: 'start' | 'middle' | 'end'
+    }
   /** A parametric curve: the path of the point `(x(t), y(t))` as `t` runs from
    *  `from` to `to`. `x` and `y` are expressions in `t` and in any slider —
    *  so a slider named `t` is shadowed, and should not be declared. `from`

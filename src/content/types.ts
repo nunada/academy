@@ -257,6 +257,36 @@ export type Step =
       hint?: Loc
     }
   | {
+      /** A question with more than one right option — the "pilihan ganda
+       *  kompleks" of a national test. Every correct option must be ticked and
+       *  no wrong one, so say in the prompt how many to choose or that it is
+       *  "all that apply". */
+      kind: 'multi'
+      id: string
+      prompt: Loc
+      figure?: Figure
+      options: Loc[]
+      /** Indices of every correct option. */
+      answer: number[]
+      explain: Loc
+      /** Shown instead of `explain` on a wrong try — a nudge, not the answer. */
+      hint?: Loc
+    }
+  | {
+      /** A table of statements, each marked Benar/Salah (True/False) — the other
+       *  complex-choice format of a national test. Right only when every row is. */
+      kind: 'judge'
+      id: string
+      prompt: Loc
+      figure?: Figure
+      statements: Loc[]
+      /** For each statement: true when it is correct. */
+      answer: boolean[]
+      explain: Loc
+      /** Shown instead of `explain` on a wrong try — a nudge, not the answer. */
+      hint?: Loc
+    }
+  | {
       kind: 'fill'
       id: string
       prompt: Loc

@@ -976,8 +976,8 @@ export const module3: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'Area is width times length: $w \\cdot (w+5) = 500$. The last option models perimeter, not area.',
-                id: 'Luas adalah lebar kali panjang: $w \\cdot (w+5) = 500$. Pilihan terakhir memodelkan keliling, bukan luas.',
+                en: 'Area is width times length: $w \\cdot (w+5) = 500$. The option $2w + 2(w+5) = 500$ models perimeter, not area.',
+                id: 'Luas adalah lebar kali panjang: $w \\cdot (w+5) = 500$. Pilihan $2w + 2(w+5) = 500$ memodelkan keliling, bukan luas.',
               },
               hint: {
                 en: 'Area of a rectangle is width times length — write the length in terms of $w$ first, then multiply.',

@@ -336,8 +336,8 @@ export const module2: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'On a calculator you would key in $x^2 + 4$ and then press the reciprocal. The last option is technically correct and completely useless — it has not taken anything apart.',
-                id: 'Di kalkulator kamu akan mengetik $x^2 + 4$ lalu menekan tombol kebalikan. Pilihan terakhir secara teknis benar dan sama sekali tak berguna — ia belum menguraikan apa pun.',
+                en: 'On a calculator you would key in $x^2 + 4$ and then press the reciprocal. The option $g(x) = x$, $f(u) = h(u)$ is technically correct and completely useless — it has not taken anything apart.',
+                id: 'Di kalkulator kamu akan mengetik $x^2 + 4$ lalu menekan tombol kebalikan. Pilihan $g(x) = x$, $f(u) = h(u)$ secara teknis benar dan sama sekali tak berguna — ia belum menguraikan apa pun.',
               },
               hint: {
                 en: 'Imagine punching this into a calculator one button at a time. Whatever you would compute first is the inner function $g$; everything you do to that result afterward is $f$.',

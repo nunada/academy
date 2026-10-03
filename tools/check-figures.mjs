@@ -100,6 +100,8 @@ function checkFigure(fig, where) {
     } else if (it.t === 'vline') {
       const x = numOf(it.x, params)
       if (!Number.isFinite(x)) fail(w, 'vline x is not finite')
+    } else if (it.t === 'text' && Array.isArray(it.at)) {
+      if (!inFrame(it.at[0], it.at[1])) fail(w, `text "${it.text}" at (${it.at[0]}, ${it.at[1]}) is outside the frame`)
     } else if (it.t === 'point' && Array.isArray(it.at)) {
       if (!inFrame(it.at[0], it.at[1])) fail(w, `point (${it.at[0]}, ${it.at[1]}) is outside the frame`)
     } else if (it.t === 'seg' && Array.isArray(it.from) && Array.isArray(it.to)) {

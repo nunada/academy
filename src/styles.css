@@ -343,6 +343,19 @@ pre.out.err { background: var(--bad-soft); color: var(--bad); border-color: tran
   font-size: 0.78rem; font-weight: 700;
 }
 
+/* Tabel pernyataan Benar/Salah: tiap baris satu pernyataan dan dua tombol. */
+.judge { display: grid; gap: 8px; }
+.judgerow {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
+  padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 10px;
+  background: var(--surface);
+}
+.judgebtns { display: flex; gap: 6px; }
+.judgebtns .choice { width: auto; margin: 0; padding: 7px 14px; justify-content: center; }
+@media (max-width: 560px) {
+  .judgerow { grid-template-columns: 1fr; }
+}
+
 .verdict { border-radius: 10px; padding: 12px 14px; margin-top: 12px; }
 .verdict.ok { background: var(--good-soft); border: 1px solid color-mix(in srgb, var(--good) 35%, transparent); }
 .verdict.no { background: var(--bad-soft); border: 1px solid color-mix(in srgb, var(--bad) 35%, transparent); }
@@ -968,6 +981,7 @@ th .sortable.on::after { content: ' ↓'; }
 .figtip { font-style: italic; }
 
 /* Grafik fungsi: kurva, garis bantu, angka pada sumbu, dan penggeser. */
+.figtext { font-family: var(--font, system-ui, sans-serif); font-weight: 600; pointer-events: none; }
 .figcurve { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .figrule { stroke-width: 1.5; }
 /* Angka pada sumbu bukan variabel: tegak. */
