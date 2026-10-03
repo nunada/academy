@@ -334,7 +334,7 @@ const UP: Pt3 = [-Math.cos(AZ) * Math.sin(EL), -Math.sin(AZ) * Math.sin(EL), Mat
 const dot3 = (a: Pt3, b: Pt3) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
 
 /** How far to shift `corners` so their drawing is centred, and the `range` that fits it. */
-function frame3(corners: Pt3[]): { shift: Pt3; range: number } {
+export function frame3(corners: Pt3[]): { shift: Pt3; range: number } {
   const us = corners.map((c) => dot3(c, RIGHT))
   const ws = corners.map((c) => dot3(c, UP))
   const cu = (Math.max(...us) + Math.min(...us)) / 2
@@ -346,7 +346,7 @@ function frame3(corners: Pt3[]): { shift: Pt3; range: number } {
   }
 }
 
-const line3 = (a: Pt3, b: Pt3): FigItem => ({ t: 'seg', from: a, to: b, color: 'muted', width: 1 })
+export const line3 = (a: Pt3, b: Pt3): FigItem => ({ t: 'seg', from: a, to: b, color: 'muted', width: 1 })
 
 /** A box `l` long (x), `w` wide (y) and `h` high (z), drawn from the usual
  *  corner view with its three visible faces tinted. `grid` draws the unit

@@ -223,6 +223,23 @@ export const COURSES: CourseInfo[] = [
     projects: 6,
   },
   {
+    id: 'tka-sd-matematika',
+    title: { en: 'TKA Math for Elementary School (SD)', id: 'TKA Matematika SD' },
+    tagline: {
+      en: 'Prepare for the TKA SD math test step by step: whole numbers, fractions, decimals and percent, measurement, shapes and solids, data — with practice in the real question formats.',
+      id: 'Persiapan TKA Matematika SD selangkah demi selangkah: bilangan cacah, pecahan, desimal dan persen, pengukuran, bangun datar dan bangun ruang, data — dengan latihan dalam bentuk soal yang sebenarnya.',
+    },
+    icon: '🎒',
+    color: '#d9822b',
+    level: { en: 'Beginner', id: 'Pemula' },
+    language: 'math',
+    track: 'math',
+    requires: [],
+    available: true,
+    lessons: 58,
+    projects: 29,
+  },
+  {
     id: 'fundamentals',
     title: { en: 'Algebra Fundamentals', id: 'Dasar-Dasar Aljabar' },
     tagline: {
@@ -473,6 +490,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'integral-transenden': () => import('./integral-transenden'),
   'barisan-deret': () => import('./barisan-deret'),
   'parametrik-polar': () => import('./parametrik-polar'),
+  'tka-sd-matematika': () => import('./tka-sd-matematika'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes

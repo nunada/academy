@@ -35,6 +35,7 @@ const MATH_COURSES = [
   'integral-transenden',
   'barisan-deret',
   'parametrik-polar',
+  'tka-sd-matematika',
 ]
 const toIdent = (c) => c.replace(/-([a-z])/g, (_, ch) => ch.toUpperCase())
 
@@ -118,6 +119,10 @@ marks('2/7', 2 / 7, true)
 marks('0.3', 2 / 7, false) // one place is a different number
 marks('0.1', 0, false) // a wrong answer near zero is still wrong
 marks('-5', -5, true)
+marks('2090500', 2090500, true)
+marks('2090050', 2090500, false) // a whole-number answer is exact, not within half a percent
+marks('12441', 12504, false)
+marks('161', 160, false)
 marks('12.000', 12000, true) // thousands written with a dot, as in Indonesia
 marks('1.250.000', 1250000, true)
 marks('12.500,5', 12500.5, true)

@@ -383,6 +383,9 @@ pre.out.err { background: var(--bad-soft); color: var(--bad); border-color: tran
   font-family: var(--mono); font-size: 0.85rem;
   white-space: pre;
 }
+/* Baris panjang (kalimat langkah) harus turun baris di layar sempit, bukan
+   mendorong halaman melebar; indentasi kode tetap terjaga oleh pre-wrap. */
+.orderline > span:first-child { min-width: 0; flex: 1 1 10rem; white-space: pre-wrap; overflow-wrap: anywhere; }
 .orderline .grip { margin-left: auto; display: flex; gap: 4px; }
 .orderline button {
   border: 1px solid #46685c; background: #21382c; color: #d8e5d5;
@@ -773,6 +776,11 @@ th .sortable.on::after { content: ' ↓'; }
   grid-auto-columns: max-content;
   align-items: center;
 }
+/* Di layar ponsel tiga kotak jawaban berdampingan (bilangan bulat, pembilang,
+   penyebut) lebih lebar dari layar; susun ke bawah saja. */
+@media (max-width: 560px) {
+  .blanks.inline { grid-auto-flow: row; grid-auto-columns: auto; align-items: start; }
+}
 
 .mathrow {
   display: flex;
@@ -850,6 +858,14 @@ th .sortable.on::after { content: ' ↓'; }
   font-size: 1rem;
   white-space: normal;
 }
+/* Baris yang berupa kalimat (bukan rumus pendek) harus boleh turun baris di layar
+   ponsel; MathML tidak memotong `mtext` sendiri, jadi izinkan secara eksplisit. */
+.orderline.math { flex-wrap: wrap; }
+.orderline.math > span:first-child { min-width: 0; flex: 1 1 12rem; overflow-wrap: anywhere; }
+.orderline.math .tex { display: inline-block; min-width: 0; max-width: 100%; }
+.orderline.math .tex math { display: inline-block; max-width: 100%; }
+.orderline.math .tex math,
+.orderline.math .tex mtext { white-space: normal; overflow-wrap: anywhere; }
 .orderline.math button {
   background: var(--surface);
   border-color: var(--border);
@@ -883,6 +899,24 @@ th .sortable.on::after { content: ' ↓'; }
     --fig-result: #7eaa71;
     --fig-muted: #6f8377;
     --fig-grid: #2b3a33;
+  }
+}
+
+/* Palet untuk kursus anak SD: soal menyebut warna dengan kata ("titik merah",
+   "garis oranye"), jadi setiap peran harus berupa warna yang jelas berbeda —
+   hijau tua, oranye, kuning, merah — bukan gradasi hijau dan koral kursus lain. */
+.fig.kid {
+  --fig-a: #1f6f4a;
+  --fig-b: #ee8a1b;
+  --fig-c: #c9a227;
+  --fig-result: #d62d2d;
+}
+@media (prefers-color-scheme: dark) {
+  .fig.kid {
+    --fig-a: #7fd1a3;
+    --fig-b: #f7a540;
+    --fig-c: #f2d15b;
+    --fig-result: #ff6b6b;
   }
 }
 

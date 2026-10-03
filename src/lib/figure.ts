@@ -182,6 +182,9 @@ export interface Figure {
    *  and shouldn't look like one; `xSpan`/`ySpan` still set the canvas, just
    *  without any axis line or grid drawn across it. */
   axes?: boolean
+  /** `kid` swaps the palette for four plainly different colours (green, orange,
+   *  gold, red) — for a course whose text names colours in words. */
+  palette?: 'kid'
   /** Width divided by height of the drawing, for a plane figure. 1 (the default)
    *  is square; 2 is twice as wide as tall. A number line, a bar chart or a
    *  row of fraction bars wants 2 or more; keep `xSpan`/`ySpan` in the same

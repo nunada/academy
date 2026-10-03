@@ -57,7 +57,9 @@ export function evalAnswer(input: string): number | null {
  *  0.005 is exactly the width of that rounding, and it is far narrower than
  *  the gap between any two answers a real mistake produces. */
 export const toleranceFor = (answer: number, tol?: number): number =>
-  tol ?? Math.max(Math.abs(answer) * 5e-3, 5e-3)
+  // A whole-number answer is exact: half a percent of 2 090 500 is 10 000, which
+  // would accept 2 090 050 — the very place-value slip a lesson may be about.
+  tol ?? (Number.isInteger(answer) ? 1e-9 : Math.max(Math.abs(answer) * 5e-3, 5e-3))
 
 export function isRight(input: string, answer: number, tol?: number): boolean {
   const got = evalAnswer(input)

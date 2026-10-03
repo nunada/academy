@@ -917,7 +917,7 @@ export function FigureView({ figure }: { figure: Figure }) {
   const sliders = figure.params ?? []
 
   return (
-    <figure className="fig">
+    <figure className={figure.palette === 'kid' ? 'fig kid' : 'fig'}>
       <svg
         ref={svgRef}
         className={rotatable ? 'figsvg grab' : 'figsvg'}
