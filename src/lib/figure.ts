@@ -56,14 +56,14 @@ export type FigItem =
       drag?: string
     }
   /** A plain line, for construction: a height, an edge, a projection drop. */
-  | { t: 'seg'; from: VecRef; to: VecRef; label?: string; color?: FigColor; dashed?: boolean }
+  | { t: 'seg'; from: VecRef; to: VecRef; label?: string; color?: FigColor; dashed?: boolean; width?: number }
   | { t: 'point'; at: VecRef; label?: string; color?: FigColor }
   /** A filled outline — a parallelogram, a triangle, a patch of a plane, one
    *  band of a nested-rectangle diagram. `label` sits at the shape's own
    *  centroid by default; give `labelAt` when several polys share a centroid
    *  (concentric bands, e.g. a box model's margin/border/padding/content)
    *  and each needs its name inside its own visible ring instead. */
-  | { t: 'poly'; pts: VecRef[]; label?: string; labelAt?: VecRef; color?: FigColor }
+  | { t: 'poly'; pts: VecRef[]; label?: string; labelAt?: VecRef; color?: FigColor; look?: 'solid' | 'outline' }
   /** An arc between two directions, drawn at `at` (the origin by default). */
   | { t: 'angle'; at?: VecRef; from: VecRef; to: VecRef; label?: string }
   /** The square that marks a right angle. */
@@ -122,6 +122,7 @@ export type FigItem =
       color?: FigColor
       dashed?: boolean
       fill?: boolean
+      look?: 'solid' | 'outline'
       label?: string
     }
   /** A horizontal or vertical rule: an asymptote, an axis of symmetry, the
@@ -181,6 +182,11 @@ export interface Figure {
    *  and shouldn't look like one; `xSpan`/`ySpan` still set the canvas, just
    *  without any axis line or grid drawn across it. */
   axes?: boolean
+  /** Width divided by height of the drawing, for a plane figure. 1 (the default)
+   *  is square; 2 is twice as wide as tall. A number line, a bar chart or a
+   *  row of fraction bars wants 2 or more; keep `xSpan`/`ySpan` in the same
+   *  ratio if shapes must not be stretched. Between 0.5 and 3. */
+  aspect?: number
   /** Lay the grid out as a polar one — concentric circles and rays from the
    *  origin — instead of horizontal and vertical lines. For a plane figure
    *  that is read in `(r, θ)`. Keep both spans equal so the circles stay round. */

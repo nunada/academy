@@ -61,8 +61,16 @@ export const toleranceFor = (answer: number, tol?: number): number =>
 
 export function isRight(input: string, answer: number, tol?: number): boolean {
   const got = evalAnswer(input)
-  if (got === null) return false
-  return Math.abs(got - answer) <= toleranceFor(answer, tol)
+  if (got !== null && Math.abs(got - answer) <= toleranceFor(answer, tol)) return true
+  // A child who writes twelve thousand as `12.000` means 12000, not 12. Read
+  // that way only as a second chance, so `3.142` is still three point one
+  // four two whenever that is the answer.
+  const typed = input.trim().toLowerCase()
+  if (/^-?\d{1,3}(\.\d{3})+(,\d+)?$/.test(typed)) {
+    const grouped = evalAnswer(typed.replace(/\./g, ''))
+    return grouped !== null && Math.abs(grouped - answer) <= toleranceFor(answer, tol)
+  }
+  return false
 }
 
 /* --------------------------------------------------------- formula answers

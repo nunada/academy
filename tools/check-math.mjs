@@ -118,6 +118,12 @@ marks('2/7', 2 / 7, true)
 marks('0.3', 2 / 7, false) // one place is a different number
 marks('0.1', 0, false) // a wrong answer near zero is still wrong
 marks('-5', -5, true)
+marks('12.000', 12000, true) // thousands written with a dot, as in Indonesia
+marks('1.250.000', 1250000, true)
+marks('12.500,5', 12500.5, true)
+marks('3.142', 3.142, true) // still a decimal when the decimal is the answer
+marks('12.000', 12, true) // and still twelve when twelve is the answer
+marks('12.000', 13000, false)
 marks('5', -5, false) // a sign error is an error
 marks('41.4', 41.409622, true)
 marks('40', 41.409622, false)

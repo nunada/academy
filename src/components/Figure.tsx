@@ -291,16 +291,21 @@ export function FigureView({ figure }: { figure: Figure }) {
   const clipId = useId()
   const dragging = useRef<{ name: string } | { az: number; el: number; x: number; y: number } | null>(null)
 
+  // The drawing is square unless a plane figure asks for another shape — a
+  // number line or a bar chart is wide and short, and a square frame around
+  // one is mostly empty paper.
+  const aspect = dim === 2 ? Math.max(0.5, Math.min(3, figure.aspect ?? 1)) : 1
+  const HT = Math.round(SIZE / aspect)
   const scale = (SIZE / 2 - PAD) / range
   const cx = SIZE / 2
-  const cy = SIZE / 2
+  const cy = HT / 2
 
   // A vector figure keeps one scale on both axes so a right angle looks like
   // one; a graph is free to stretch y, and usually has to.
   const xSpan: [number, number] = figure.xSpan ?? [-range, range]
   const ySpan: [number, number] = figure.ySpan ?? [-range, range]
   const kx = (SIZE - 2 * PAD) / (xSpan[1] - xSpan[0])
-  const ky = (SIZE - 2 * PAD) / (ySpan[1] - ySpan[0])
+  const ky = (HT - 2 * PAD) / (ySpan[1] - ySpan[0])
 
   const cam = useMemo(() => camera(view[0], view[1]), [view])
 
@@ -311,7 +316,7 @@ export function FigureView({ figure }: { figure: Figure }) {
         const [u, w] = cam.to2d(v)
         return [cx + u * scale, cy - w * scale]
       }
-      return [PAD + ((v[0] ?? 0) - xSpan[0]) * kx, SIZE - PAD - ((v[1] ?? 0) - ySpan[0]) * ky]
+      return [PAD + ((v[0] ?? 0) - xSpan[0]) * kx, HT - PAD - ((v[1] ?? 0) - ySpan[0]) * ky]
     }
   }, [dim, cam, scale, cx, cy, kx, ky, xSpan[0], ySpan[0]])
 
@@ -354,7 +359,7 @@ export function FigureView({ figure }: { figure: Figure }) {
     if ('name' in d) {
       const [sx, sy] = pointerPos(e)
       const snap = figure.snap ?? 0.5
-      const raw: [number, number] = [xSpan[0] + (sx - PAD) / kx, ySpan[0] + (SIZE - PAD - sy) / ky]
+      const raw: [number, number] = [xSpan[0] + (sx - PAD) / kx, ySpan[0] + (HT - PAD - sy) / ky]
       const next = raw.map((v, i) => {
         const [lo, hi] = i === 0 ? xSpan : ySpan
         const clamped = Math.max(lo, Math.min(hi, v))
@@ -381,7 +386,7 @@ export function FigureView({ figure }: { figure: Figure }) {
     const stepY = niceStep(ySpan[1] - ySpan[0])
     // Where the axes actually sit: on the origin when it is in view, and
     // otherwise pinned to the edge, so a graph of e^x still has an x axis.
-    const axisY = Math.max(PAD, Math.min(SIZE - PAD, px([0, 0])[1]))
+    const axisY = Math.max(PAD, Math.min(HT - PAD, px([0, 0])[1]))
     const axisX = Math.max(PAD, Math.min(SIZE - PAD, px([0, 0])[0]))
 
     if (figure.polar) {
@@ -424,7 +429,7 @@ export function FigureView({ figure }: { figure: Figure }) {
     } else {
       for (let v = Math.ceil(xSpan[0] / stepX) * stepX; v <= xSpan[1] + 1e-9; v += stepX) {
         const x = px([v, 0])[0]
-        axes.push(<line key={`gx${v}`} className="figgrid" x1={x} y1={PAD} x2={x} y2={SIZE - PAD} />)
+        axes.push(<line key={`gx${v}`} className="figgrid" x1={x} y1={PAD} x2={x} y2={HT - PAD} />)
         if (figure.ticks && Math.abs(v) > 1e-9) {
           axes.push(
             <text key={`tx${v}`} className="figtick" x={x} y={axisY + 15} textAnchor="middle">
@@ -447,7 +452,7 @@ export function FigureView({ figure }: { figure: Figure }) {
     }
 
     axes.push(<line key="ax" className="figaxis" x1={PAD} y1={axisY} x2={SIZE - PAD} y2={axisY} />)
-    axes.push(<line key="ay" className="figaxis" x1={axisX} y1={PAD} x2={axisX} y2={SIZE - PAD} />)
+    axes.push(<line key="ay" className="figaxis" x1={axisX} y1={PAD} x2={axisX} y2={HT - PAD} />)
     axes.push(
       <text key="lx" className="figaxislabel" x={SIZE - PAD + 2} y={axisY - 7} textAnchor="end">
         x
@@ -624,7 +629,8 @@ export function FigureView({ figure }: { figure: Figure }) {
             x2={to[0]}
             y2={to[1]}
             stroke={stroke(item.color ?? 'muted')}
-            strokeWidth={1.6}
+            strokeWidth={item.width ?? 1.6}
+            strokeLinecap={item.width ? 'round' : undefined}
             strokeDasharray={item.dashed ? '5 4' : undefined}
           />
         )
@@ -649,7 +655,7 @@ export function FigureView({ figure }: { figure: Figure }) {
         return (
           <polygon
             key={key}
-            className="figface"
+            className={item.look ? `figface ${item.look}` : 'figface'}
             points={pts.map((p) => `${p[0]},${p[1]}`).join(' ')}
             fill={stroke(item.color ?? 'result')}
             stroke={stroke(item.color ?? 'result')}
@@ -780,7 +786,7 @@ export function FigureView({ figure }: { figure: Figure }) {
               runs.map((run, n) => (
                 <polygon
                   key={`f${n}`}
-                  className="figface"
+                  className={item.look ? `figface ${item.look}` : 'figface'}
                   points={[o, ...run].map((p) => `${p[0]},${p[1]}`).join(' ')}
                   fill={stroke(item.color)}
                   stroke="none"
@@ -830,7 +836,7 @@ export function FigureView({ figure }: { figure: Figure }) {
             x1={p}
             y1={PAD}
             x2={p}
-            y2={SIZE - PAD}
+            y2={HT - PAD}
             stroke={stroke(item.color ?? 'muted')}
             strokeDasharray={item.dashed === false ? undefined : '6 4'}
           />
@@ -900,7 +906,7 @@ export function FigureView({ figure }: { figure: Figure }) {
     const near = 60
     return {
       x: Math.max(10, Math.min(SIZE - 10, p[0])),
-      y: Math.max(14, Math.min(SIZE - 6, p[1])),
+      y: Math.max(14, Math.min(HT - 6, p[1])),
       textAnchor: p[0] < near ? 'start' : p[0] > SIZE - near ? 'end' : 'middle',
     }
   }
@@ -915,10 +921,10 @@ export function FigureView({ figure }: { figure: Figure }) {
       <svg
         ref={svgRef}
         className={rotatable ? 'figsvg grab' : 'figsvg'}
-        viewBox={`0 0 ${SIZE} ${SIZE}`}
+        viewBox={`0 0 ${SIZE} ${HT}`}
         // The drawing is square, so it is sized by its side rather than by a
         // height cap — a cap would letterbox it inside a much wider box.
-        style={{ width: `min(100%, ${figure.height ?? 380}px)` }}
+        style={{ width: `min(100%, ${figure.height ?? Math.round(380 * Math.min(aspect, 1.5))}px)` }}
         role="img"
         aria-label={figure.caption ? tc(figure.caption) : undefined}
         onPointerDown={startRotate}
@@ -928,7 +934,7 @@ export function FigureView({ figure }: { figure: Figure }) {
       >
         <defs>
           <clipPath id={clipId}>
-            <rect x={PAD} y={PAD} width={SIZE - 2 * PAD} height={SIZE - 2 * PAD} />
+            <rect x={PAD} y={PAD} width={SIZE - 2 * PAD} height={HT - 2 * PAD} />
           </clipPath>
         </defs>
         {axes}

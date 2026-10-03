@@ -947,6 +947,10 @@ th .sortable.on::after { content: ' ↓'; }
 .figlabel .var { font-style: italic; }
 
 .figface { fill-opacity: 0.16; stroke-width: 1.4; stroke-dasharray: 4 3; }
+/* Bangun yang diarsir penuh: batang diagram, pecahan yang diwarnai, kotak satuan. */
+.figface.solid { fill-opacity: 0.55; stroke-dasharray: none; stroke-width: 1.6; }
+/* Hanya garis tepi, hampir tanpa isi: kotak yang belum diarsir. */
+.figface.outline { fill-opacity: 0.05; stroke-dasharray: none; stroke-width: 1.6; }
 .figedge { stroke: var(--fig-muted); stroke-width: 1.2; stroke-dasharray: 4 3; }
 .figarc { fill: none; stroke: var(--fig-result); stroke-width: 1.6; }
 .figright { fill: none; stroke: var(--fig-muted); stroke-width: 1.4; }
