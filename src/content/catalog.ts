@@ -240,6 +240,23 @@ export const COURSES: CourseInfo[] = [
     projects: 29,
   },
   {
+    id: 'tka-smp-matematika',
+    title: { en: 'TKA Math for Junior High (SMP)', id: 'TKA Matematika SMP' },
+    tagline: {
+      en: 'Prepare for the TKA SMP math test step by step: numbers, algebra, functions and sequences, geometry and measurement, data and probability — with practice in the real question formats.',
+      id: 'Persiapan TKA Matematika SMP selangkah demi selangkah: bilangan, aljabar, fungsi dan barisan, geometri dan pengukuran, data dan peluang — dengan latihan dalam bentuk soal yang sebenarnya.',
+    },
+    icon: '📚',
+    color: '#2f6f9f',
+    level: { en: 'Intermediate', id: 'Menengah' },
+    language: 'math',
+    track: 'math',
+    requires: [],
+    available: true,
+    lessons: 40,
+    projects: 20,
+  },
+  {
     id: 'fundamentals',
     title: { en: 'Algebra Fundamentals', id: 'Dasar-Dasar Aljabar' },
     tagline: {
@@ -491,6 +508,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'barisan-deret': () => import('./barisan-deret'),
   'parametrik-polar': () => import('./parametrik-polar'),
   'tka-sd-matematika': () => import('./tka-sd-matematika'),
+  'tka-smp-matematika': () => import('./tka-smp-matematika'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes

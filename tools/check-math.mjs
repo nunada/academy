@@ -36,6 +36,7 @@ const MATH_COURSES = [
   'barisan-deret',
   'parametrik-polar',
   'tka-sd-matematika',
+  'tka-smp-matematika',
 ]
 const toIdent = (c) => c.replace(/-([a-z])/g, (_, ch) => ch.toUpperCase())
 

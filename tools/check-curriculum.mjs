@@ -26,7 +26,7 @@ fs.writeFileSync(
   entry,
   [
     `export { COURSES } from '${q('src/content/catalog.ts')}'`,
-    ...['python', 'html', 'css', 'javascript', 'cpp', 'sql', 'typescript', 'react', 'gamedev', 'python-math', 'python-media', 'python-numpy', 'fundamentals', 'logika', 'vektor', 'fungsi', 'limit', 'turunan', 'aplikasi-turunan', 'integral', 'teknik-integrasi', 'aplikasi-integral', 'integral-transenden', 'barisan-deret', 'parametrik-polar', 'tka-sd-matematika'].map(
+    ...['python', 'html', 'css', 'javascript', 'cpp', 'sql', 'typescript', 'react', 'gamedev', 'python-math', 'python-media', 'python-numpy', 'fundamentals', 'logika', 'vektor', 'fungsi', 'limit', 'turunan', 'aplikasi-turunan', 'integral', 'teknik-integrasi', 'aplikasi-integral', 'integral-transenden', 'barisan-deret', 'parametrik-polar', 'tka-sd-matematika', 'tka-smp-matematika'].map(
       (c) => `export { modules as ${c.replace(/-/g, '')}Modules } from '${q(`src/content/${c}/index.ts`)}'`,
     ),
   ].join('\n'),
@@ -66,6 +66,7 @@ const SUMBER = {
   'barisan-deret': 'barisanderetModules',
   'parametrik-polar': 'parametrikpolarModules',
   'tka-sd-matematika': 'tkasdmatematikaModules',
+  'tka-smp-matematika': 'tkasmpmatematikaModules',
 }
 
 const masalah = []
