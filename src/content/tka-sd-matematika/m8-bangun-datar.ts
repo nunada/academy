@@ -1078,7 +1078,10 @@ export const module8: Module = {
               num(50, M, L('\\text{perimeter: }', '\\text{keliling: }')),
               num(48, M, L('\\text{fence: }', '\\text{pagar: }')),
             ],
-            solution: ['\\text{rectangle around the garden: } 16 \\text{ by } 9', '2 \\times (16 + 9) = 50', '50 - 2 = 48'],
+            solution: {
+              en: ['\\text{rectangle around the garden: } 16 \\text{ by } 9', '2 \\times (16 + 9) = 50', '50 - 2 = 48'],
+              id: ['\\text{persegi panjang di sekeliling kebun: } 16 \\text{ kali } 9', '2 \\times (16 + 9) = 50', '50 - 2 = 48'],
+            },
           },
         ],
       },

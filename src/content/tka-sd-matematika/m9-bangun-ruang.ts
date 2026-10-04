@@ -713,7 +713,10 @@ export const module9: Module = {
               'Fitri membuat kerangka sebuah kubus dari sedotan. Setiap rusuk adalah satu sedotan sepanjang 9 cm. Berapa sentimeter sedotan yang ia pakai seluruhnya?',
             ),
             blanks: [{ answer: 108, after: '\\text{ cm}' }],
-            solution: ['\\text{a cube has 12 edges}', '12 \\times 9 = 108\\text{ cm}'],
+            solution: {
+              en: ['\\text{a cube has 12 edges}', '12 \\times 9 = 108\\text{ cm}'],
+              id: ['\\text{sebuah kubus punya 12 rusuk}', '12 \\times 9 = 108\\text{ cm}'],
+            },
           },
           {
             prompt: L(

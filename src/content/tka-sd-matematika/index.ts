@@ -1,5 +1,5 @@
 import type { Module } from '../types'
-import type { Figure } from '../../lib/figure'
+import { plainColours } from '../figure-palette'
 import { module1 } from './m1-bilangan-cacah'
 import { module2 } from './m2-faktor-kelipatan'
 import { module3 } from './m3-pecahan'
@@ -12,18 +12,4 @@ import { module9 } from './m9-bangun-ruang'
 import { module10 } from './m10-data'
 import { module11 } from './m11-strategi-simulasi'
 
-/** Every figure in this course is drawn in the plain-colour palette: the text
- *  says "the red dot" and "the orange bar", so the colours have to be exactly
- *  that. Done once here so no figure has to remember to ask for it. */
-const kid = (f: Figure | undefined) => {
-  if (f) f.palette = 'kid'
-}
-const raw: Module[] = [module1, module2, module3, module4, module5, module6, module7, module8, module9, module10, module11]
-for (const m of raw) {
-  for (const s of m.submodules) {
-    for (const l of s.lessons) for (const st of l.steps) if ('figure' in st) kid(st.figure)
-    if (s.project.runtime === 'math') for (const t of s.project.tasks) kid(t.figure)
-  }
-}
-
-export const modules: Module[] = raw
+export const modules: Module[] = plainColours([module1, module2, module3, module4, module5, module6, module7, module8, module9, module10, module11])

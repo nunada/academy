@@ -671,11 +671,18 @@ export const module11: Module = {
               'Pak Joko menjual setengah dari mangga dalam keranjangnya pada pagi hari. Siang harinya ia menjual 12 lagi. Sekarang tersisa 8 mangga. Berapa mangga dalam keranjang pada awalnya?',
             ),
             blanks: [{ answer: 40, after: { en: '\\text{ mangoes}', id: '\\text{ mangga}' } }],
-            solution: [
-              '8 + 12 = 20 \\text{ (half of the mangoes)}',
-              '20 \\times 2 = 40',
-              '40 \\div 2 = 20,\\quad 20 - 12 = 8',
-            ],
+            solution: {
+              en: [
+                '8 + 12 = 20 \\text{ (half of the mangoes)}',
+                '20 \\times 2 = 40',
+                '40 \\div 2 = 20,\\quad 20 - 12 = 8',
+              ],
+              id: [
+                '8 + 12 = 20 \\text{ (setengah dari mangga)}',
+                '20 \\times 2 = 40',
+                '40 \\div 2 = 20,\\quad 20 - 12 = 8',
+              ],
+            },
           },
           {
             prompt: L(
@@ -687,11 +694,18 @@ export const module11: Module = {
               caption: L('The tank. The sides are in cm.', 'Bak air. Ukuran sisinya dalam cm.'),
             },
             blanks: [{ answer: 48, after: { en: '\\text{ litres}', id: '\\text{ liter}' } }],
-            solution: [
-              '60 \\times 40 \\times 50 = 120\\,000 \\text{ cm}^3 = 120 \\text{ l}',
-              '\\frac{3}{5} \\text{ of } 120 = 120 \\div 5 \\times 3 = 72 \\text{ l}',
-              '120 - 72 = 48 \\text{ l}',
-            ],
+            solution: {
+              en: [
+                '60 \\times 40 \\times 50 = 120\\,000 \\text{ cm}^3 = 120 \\text{ l}',
+                '\\frac{3}{5} \\text{ of } 120 = 120 \\div 5 \\times 3 = 72 \\text{ l}',
+                '120 - 72 = 48 \\text{ l}',
+              ],
+              id: [
+                '60 \\times 40 \\times 50 = 120\\,000 \\text{ cm}^3 = 120 \\text{ l}',
+                '\\frac{3}{5} \\text{ dari } 120 = 120 \\div 5 \\times 3 = 72 \\text{ l}',
+                '120 - 72 = 48 \\text{ l}',
+              ],
+            },
           },
         ],
         hints: [
@@ -1235,11 +1249,18 @@ export const module11: Module = {
                 '18 items are left and 36 minutes remain for answering, so each item gets $36 \\div 18 = 2$ minutes, the same as the plan.',
                 'Tersisa 18 soal dan 36 menit untuk menjawab, jadi tiap soal mendapat $36 \\div 18 = 2$ menit, sama dengan rencananya.',
               ),
-              solution: [
-                '30 - 12 = 18 \\text{ items}',
-                '75 - 15 - 24 = 36 \\text{ min}',
-                '36 \\div 18 = 2 \\text{ min}',
-              ],
+              solution: {
+                en: [
+                  '30 - 12 = 18 \\text{ items}',
+                  '75 - 15 - 24 = 36 \\text{ min}',
+                  '36 \\div 18 = 2 \\text{ min}',
+                ],
+                id: [
+                  '30 - 12 = 18 \\text{ soal}',
+                  '75 - 15 - 24 = 36 \\text{ menit}',
+                  '36 \\div 18 = 2 \\text{ menit}',
+                ],
+              },
             },
           ],
         },
@@ -1263,7 +1284,10 @@ export const module11: Module = {
               'Sebuah soal pilih semua berbunyi: "Pilih semua kelipatan 6." Pilihannya 12, 16, 18, 21, 30, dan 35. Berapa pilihan yang harus kamu centang?',
             ),
             blanks: [{ answer: 3, after: { en: '\\text{ options}', id: '\\text{ pilihan}' } }],
-            solution: ['12 = 2 \\times 6,\\ 18 = 3 \\times 6,\\ 30 = 5 \\times 6', '16, 21, 35 \\text{ are not}', '\\rightarrow 3'],
+            solution: {
+              en: ['12 = 2 \\times 6,\\ 18 = 3 \\times 6,\\ 30 = 5 \\times 6', '16, 21, 35 \\text{ are not}', '\\rightarrow 3'],
+              id: ['12 = 2 \\times 6,\\ 18 = 3 \\times 6,\\ 30 = 5 \\times 6', '16, 21, 35 \\text{ bukan}', '\\rightarrow 3'],
+            },
           },
           {
             prompt: L(
@@ -1271,13 +1295,22 @@ export const module11: Module = {
               'Berapa dari empat pernyataan ini yang Benar? (1) 0,5 = 50%. (2) $\\frac{3}{4}$ dari 20 adalah 15. (3) KPK dari 6 dan 9 adalah 18. (4) 2 jam = 100 menit.',
             ),
             blanks: [{ answer: 3, after: { en: '\\text{ statements}', id: '\\text{ pernyataan}' } }],
-            solution: [
-              '(1)\\ \\frac{50}{100} = 0.5 \\rightarrow \\text{true}',
-              '(2)\\ 20 \\div 4 \\times 3 = 15 \\rightarrow \\text{true}',
-              '(3)\\ 6, 12, 18 \\text{ and } 9, 18 \\rightarrow 18 \\text{, true}',
-              '(4)\\ 2 \\times 60 = 120 \\neq 100 \\rightarrow \\text{false}',
-              '3 \\text{ true}',
-            ],
+            solution: {
+              en: [
+                '(1)\\ \\frac{50}{100} = 0.5 \\rightarrow \\text{true}',
+                '(2)\\ 20 \\div 4 \\times 3 = 15 \\rightarrow \\text{true}',
+                '(3)\\ 6, 12, 18 \\text{ and } 9, 18 \\rightarrow 18 \\text{, true}',
+                '(4)\\ 2 \\times 60 = 120 \\neq 100 \\rightarrow \\text{false}',
+                '3 \\text{ true}',
+              ],
+              id: [
+                '(1)\\ \\frac{50}{100} = 0{,}5 \\rightarrow \\text{benar}',
+                '(2)\\ 20 \\div 4 \\times 3 = 15 \\rightarrow \\text{benar}',
+                '(3)\\ 6, 12, 18 \\text{ dan } 9, 18 \\rightarrow 18 \\text{, benar}',
+                '(4)\\ 2 \\times 60 = 120 \\neq 100 \\rightarrow \\text{salah}',
+                '3 \\text{ benar}',
+              ],
+            },
           },
           {
             prompt: L(
@@ -1285,7 +1318,10 @@ export const module11: Module = {
               'Sebuah tes terdiri dari 30 soal dalam 75 menit. Budi menyisakan 5 menit untuk memeriksa. Ia menjawab 24 soal pertama dalam 40 menit. Berapa menit yang bisa ia pakai untuk tiap dari 6 soal terakhir, jika waktunya sama untuk tiap soal?',
             ),
             blanks: [{ answer: 5, after: { en: '\\text{ minutes}', id: '\\text{ menit}' } }],
-            solution: ['75 - 5 - 40 = 30 \\text{ min}', '30 - 24 = 6 \\text{ items left}', '30 \\div 6 = 5 \\text{ min}'],
+            solution: {
+              en: ['75 - 5 - 40 = 30 \\text{ min}', '30 - 24 = 6 \\text{ items left}', '30 \\div 6 = 5 \\text{ min}'],
+              id: ['75 - 5 - 40 = 30 \\text{ menit}', '30 - 24 = 6 \\text{ soal tersisa}', '30 \\div 6 = 5 \\text{ menit}'],
+            },
           },
           {
             prompt: L(
@@ -1293,11 +1329,18 @@ export const module11: Module = {
               'Aku bilangan cacah di antara 10 dan 30. Aku kelipatan 4, dan aku juga faktor dari 48. Ada beberapa bilangan yang cocok. Berapa jumlah semuanya?',
             ),
             blanks: [{ answer: 52 }],
-            solution: [
-              '\\text{Factors of } 48: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48',
-              '\\text{Multiples of 4 between 10 and 30: } 12, 16, 24',
-              '12 + 16 + 24 = 52',
-            ],
+            solution: {
+              en: [
+                '\\text{Factors of } 48: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48',
+                '\\text{Multiples of 4 between 10 and 30: } 12, 16, 24',
+                '12 + 16 + 24 = 52',
+              ],
+              id: [
+                '\\text{Faktor dari } 48: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48',
+                '\\text{Kelipatan 4 di antara 10 dan 30: } 12, 16, 24',
+                '12 + 16 + 24 = 52',
+              ],
+            },
           },
         ],
         hints: [
@@ -2111,11 +2154,18 @@ export const module11: Module = {
               caption: L('A shape made of two rectangles.', 'Sebuah bangun yang terdiri dari dua persegi panjang.'),
             },
             blanks: [{ answer: 73, after: '\\text{ cm}^2' }],
-            solution: [
-              '\\text{Bottom part: } 12 \\times 4 = 48',
-              '\\text{Upper part: } 5 \\times 5 = 25',
-              '48 + 25 = 73 \\text{ cm}^2',
-            ],
+            solution: {
+              en: [
+                '\\text{Bottom part: } 12 \\times 4 = 48',
+                '\\text{Upper part: } 5 \\times 5 = 25',
+                '48 + 25 = 73 \\text{ cm}^2',
+              ],
+              id: [
+                '\\text{Bagian bawah: } 12 \\times 4 = 48',
+                '\\text{Bagian atas: } 5 \\times 5 = 25',
+                '48 + 25 = 73 \\text{ cm}^2',
+              ],
+            },
           },
           {
             prompt: L(
