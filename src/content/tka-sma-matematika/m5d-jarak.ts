@@ -112,7 +112,7 @@ export const lessonDistances: Lesson = {
         'Try it together: the distance from $C$ to $AG$ in the box with $AC=15$, $CG=20$ and $AG=25$.',
         'Coba bersama: jarak dari $C$ ke $AG$ pada balok dengan $AC=15$, $CG=20$, dan $AG=25$.',
       ),
-      template: 'CP=\\frac{15\\times20}{25}=\\frac{___}{25}=___',
+      template: '15\\times20=___ \\quad CP=300\\div25=___',
       blanks: ['300', '12'],
       explain: L(
         '$15\\times20=300$ and $300\\div25=12$.',

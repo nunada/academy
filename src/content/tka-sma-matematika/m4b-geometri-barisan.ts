@@ -91,15 +91,15 @@ export const m4s2: Submodule = {
             'Try it together: find the ratio and the 6th term of $2,6,18,\\ldots$',
             'Coba bersama: cari rasio dan suku ke-6 dari $2,6,18,\\ldots$',
           ),
-          template: 'r=\\frac{6}{2}=___ \\quad U_6=2\\cdot3^{___}=___',
-          blanks: ['3', '5', '486'],
+          template: 'r=6\\div2=___ \\quad U_6=2\\cdot3^5=2\\cdot___=___',
+          blanks: ['3', '243', '486'],
           explain: L(
             '$r=3$, and the 6th term has 5 multiplications: $U_6=2\\cdot3^5=2\\cdot243=486$.',
             '$r=3$, dan suku ke-6 mengalami 5 perkalian: $U_6=2\\cdot3^5=2\\cdot243=486$.',
           ),
           hint: L(
-            'For the exponent, count the steps from the first term to the 6th.',
-            'Untuk eksponen, hitung langkah dari suku pertama sampai suku ke-6.',
+            'The ratio is the second term divided by the first. For the last blank work out $3^5$.',
+            'Rasio adalah suku kedua dibagi suku pertama. Untuk blanko terakhir hitung $3^5$.',
           ),
         },
         {
@@ -233,7 +233,7 @@ export const m4s2: Submodule = {
             'Try it together: the sum of the first 5 terms of $2,6,18,\\ldots$',
             'Coba bersama: jumlah 5 suku pertama dari $2,6,18,\\ldots$',
           ),
-          template: 'S_5=\\frac{2(3^5-1)}{3-1}=\\frac{2\\times___}{2}=___',
+          template: '3^5-1=___ \\qquad S_5=\\frac{2\\cdot242}{2}=___',
           blanks: ['242', '242'],
           explain: L(
             '$3^5=243$, so $3^5-1=242$. Then $\\frac{2\\times242}{2}=242$.',

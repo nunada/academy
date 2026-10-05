@@ -117,8 +117,8 @@ export const m3s1: Submodule = {
             'Try it together: find the gradient of the line through $(1,3)$ and $(3,7)$.',
             'Coba bersama: cari gradien garis melalui $(1,3)$ dan $(3,7)$.',
           ),
-          template: 'm=\\frac{7-3}{3-1}=\\frac{___}{2}=___',
-          blanks: ['4', '2'],
+          template: '7-3=___ \\quad 3-1=___ \\quad m=\\frac{4}{2}=___',
+          blanks: ['4', '2', '2'],
           explain: L(
             'The rise is $7-3=4$ and the run is $3-1=2$, so $m=\\frac{4}{2}=2$.',
             'Kenaikannya $7-3=4$ dan pergeseran mendatarnya $3-1=2$, jadi $m=\\frac{4}{2}=2$.',
@@ -295,7 +295,7 @@ export const m3s1: Submodule = {
             'Try it together: find the inverse of $y=2x+1$ by solving for $x$.',
             'Coba bersama: cari invers $y=2x+1$ dengan menyelesaikan untuk $x$.',
           ),
-          template: 'x=\\frac{y-___}{___}',
+          template: 'y-___=2x \\quad x=(y-1)\\div___',
           blanks: ['1', '2'],
           explain: L(
             'Subtract 1 from both sides, then divide by 2: $x=\\frac{y-1}{2}$.',

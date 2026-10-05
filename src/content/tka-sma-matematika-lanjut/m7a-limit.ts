@@ -25,15 +25,17 @@ const factorGraph = () =>
   )
 
 /** y = sin(3x)/(5x), with a hole at (0, 3/5). */
-const sincGraph = () =>
-  plane(
+const sincGraph = () => ({
+  ...plane(
     [
       { t: 'curve', f: 'sin(3*x)/(5*x)', from: -4, to: -0.05, color: 'a' },
       { t: 'curve', f: 'sin(3*x)/(5*x)', from: 0.05, to: 4, color: 'a' },
       hole([0, 0.6], undefined, 'a'),
     ],
     { x: [-4, 4], y: [-0.4, 1] },
-  )
+  ),
+  aspect: 1.8,
+})
 
 export const m7s1: Submodule = {
   id: 'tka-sml-m7-s1',
@@ -367,8 +369,8 @@ export const m7s1: Submodule = {
           id: 'f1',
           math: true,
           prompt: L('Try it together: rewrite the limit.', 'Coba bersama: tulis ulang limitnya.'),
-          template: '\\frac{\\sin3x}{5x}=\\frac{___}{5}\\cdot\\frac{\\sin3x}{3x}\\ \\to\\ \\frac{___}{5}',
-          blanks: ['3', '3'],
+          template: '\\frac{\\sin3x}{5x}=\\frac35\\cdot\\frac{\\sin3x}{3x}\\ \\to\\ \\frac35\\cdot___',
+          blanks: ['1'],
           explain: L('$\\frac{\\sin3x}{5x}=\\frac35\\cdot\\frac{\\sin3x}{3x}$, and the last factor tends to $1$.', '$\\frac{\\sin3x}{5x}=\\frac35\\cdot\\frac{\\sin3x}{3x}$, dan faktor terakhir menuju $1$.'),
           hint: L('Multiply and divide by $3$.', 'Kalikan dan bagi dengan $3$.'),
         },

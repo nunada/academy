@@ -103,8 +103,11 @@ export const m1s1: Submodule = {
           kind: 'fill',
           id: 'f1',
           math: true,
-          prompt: L('Try it together: multiply the two matrices.', 'Coba bersama: kalikan kedua matriks.'),
-          template: `${pm([1, 2], [3, 4])}${pm([0, -1], [5, 2])}=${pm(['___', '___'], ['___', '___'])}`,
+          prompt: L(
+            `Try it together: find the four entries of $AB$ for $A=${pm([1, 2], [3, 4])}$ and $B=${pm([0, -1], [5, 2])}$.`,
+            `Coba bersama: cari keempat entri $AB$ untuk $A=${pm([1, 2], [3, 4])}$ dan $B=${pm([0, -1], [5, 2])}$.`,
+          ),
+          template: '(AB)_{11}=___ \\quad (AB)_{12}=___ \\quad (AB)_{21}=___ \\quad (AB)_{22}=___',
           blanks: ['10', '3', '20', '5'],
           explain: L(
             'Row by column: $1\\cdot0+2\\cdot5=10$, $1\\cdot(-1)+2\\cdot2=3$, $3\\cdot0+4\\cdot5=20$, $3\\cdot(-1)+4\\cdot2=5$.',

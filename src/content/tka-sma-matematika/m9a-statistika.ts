@@ -116,7 +116,7 @@ export const m9s1: Submodule = {
             'Try it together: the mean of $2,4,4,5,7,8,12$.',
             'Coba bersama: rata-rata dari $2,4,4,5,7,8,12$.',
           ),
-          template: '\\frac{2+4+4+5+7+8+12}{7}=\\frac{___}{7}=___',
+          template: '2+4+4+5+7+8+12=___ \\quad \\bar{x}=42\\div7=___',
           blanks: ['42', '6'],
           explain: L(
             'The sum is 42 and $42\\div7=6$.',
@@ -320,7 +320,7 @@ export const m9s1: Submodule = {
             'Try it together: the mean from the frequency table (scores 5 to 9 with frequencies 1, 2, 4, 2, 1).',
             'Coba bersama: rata-rata dari tabel frekuensi (nilai 5 sampai 9 dengan frekuensi 1, 2, 4, 2, 1).',
           ),
-          template: '\\bar{x}=\\frac{5\\cdot1+6\\cdot2+7\\cdot4+8\\cdot2+9\\cdot1}{10}=\\frac{___}{10}=___',
+          template: '5\\cdot1+6\\cdot2+7\\cdot4+8\\cdot2+9\\cdot1=___ \\quad \\bar{x}=70\\div10=___',
           blanks: ['70', '7'],
           explain: L(
             '$5+12+28+16+9=70$, and $70\\div10=7$.',

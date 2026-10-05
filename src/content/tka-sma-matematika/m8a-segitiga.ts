@@ -92,7 +92,7 @@ export const m8s1: Submodule = {
             'Try it together: complete the two exact values.',
             'Coba bersama: lengkapi dua nilai eksak ini.',
           ),
-          template: '\\sin30^{\\circ}=\\frac{1}{___} \\quad \\tan45^{\\circ}=___',
+          template: '\\sin30^{\\circ}=1\\div___ \\quad \\tan45^{\\circ}=___',
           blanks: ['2', '1'],
           explain: L(
             '$\\sin30^{\\circ}=\\frac{1}{2}$ (opposite 1, hypotenuse 2), and in the half-square the two legs are equal, so $\\tan45^{\\circ}=1$.',

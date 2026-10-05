@@ -117,8 +117,8 @@ export const m1s1: Submodule = {
             'Try it together: write $x=0.\\overline{6}$ as a fraction. One digit repeats, so multiply by 10 and subtract.',
             'Coba bersama: tulis $x=0{,}\\overline{6}$ sebagai pecahan. Satu angka berulang, jadi kalikan 10 lalu kurangkan.',
           ),
-          template: '10x - x = 6 \\Rightarrow 9x = ___ \\Rightarrow x = \\frac{2}{___}',
-          blanks: ['6', '3'],
+          template: '10x - x = 6 \\Rightarrow 9x = ___ \\Rightarrow x = 6 \\div ___ = \\frac{2}{3}',
+          blanks: ['6', '9'],
           explain: L(
             '$10x=6.\\overline{6}$ and $x=0.\\overline{6}$, so $9x=6$ and $x=\\frac{6}{9}=\\frac{2}{3}$.',
             '$10x=6{,}\\overline{6}$ dan $x=0{,}\\overline{6}$, jadi $9x=6$ dan $x=\\frac{6}{9}=\\frac{2}{3}$.',

@@ -105,7 +105,7 @@ export const m1s2: Submodule = {
             'Try it together: rationalise $\\frac{6}{\\sqrt{3}}$.',
             'Coba bersama: rasionalkan $\\frac{6}{\\sqrt{3}}$.',
           ),
-          template: '\\frac{6}{\\sqrt{3}}=\\frac{6\\sqrt{3}}{___}=___\\sqrt{3}',
+          template: '\\sqrt{3}\\cdot\\sqrt{3}=___ \\qquad \\frac{6\\sqrt{3}}{3}=___\\sqrt{3}',
           blanks: ['3', '2'],
           explain: L(
             'Multiplying top and bottom by $\\sqrt{3}$ makes the bottom $\\sqrt{3}\\cdot\\sqrt{3}=3$. Then $\\frac{6\\sqrt{3}}{3}=2\\sqrt{3}$.',

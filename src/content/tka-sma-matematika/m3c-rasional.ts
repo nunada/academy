@@ -93,7 +93,7 @@ export const lessonRational: Lesson = {
         'Try it together: the asymptotes of $f(x)=\\frac{2x+1}{x-3}$.',
         'Coba bersama: asimtot dari $f(x)=\\frac{2x+1}{x-3}$.',
       ),
-      template: 'x-3=0 \\Rightarrow x=___ \\qquad y=\\frac{2}{___}=___',
+      template: 'x-3=0 \\Rightarrow x=___ \\qquad y=2\\div___=___',
       blanks: ['3', '1', '2'],
       explain: L(
         'The denominator is zero at $x=3$. The horizontal asymptote is the ratio of the leading coefficients, $\\frac{2}{1}=2$.',

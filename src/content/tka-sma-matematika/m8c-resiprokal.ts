@@ -77,7 +77,7 @@ export const lessonReciprocal: Lesson = {
         'Try it together: $\\csc30^{\\circ}$ from $\\sin30^{\\circ}$.',
         'Coba bersama: $\\csc30^{\\circ}$ dari $\\sin30^{\\circ}$.',
       ),
-      template: '\\csc30^{\\circ}=\\frac{1}{\\sin30^{\\circ}}=\\frac{1}{1/___}=___',
+      template: '\\sin30^{\\circ}=1\\div___ \\quad \\csc30^{\\circ}=1\\div\\frac12=___',
       blanks: ['2', '2'],
       explain: L(
         '$\\sin30^{\\circ}=\\frac{1}{2}$, and one divided by one half is 2.',

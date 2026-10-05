@@ -3,22 +3,26 @@ import { L, dot, plane } from './figs'
 
 /** Module 3, submodule 2 — exponential, logarithmic and trigonometric functions. */
 
-const growth = (dots: [number, number][]) =>
-  plane(
+const growth = (dots: [number, number][]) => ({
+  ...plane(
     [{ t: 'curve', f: '3*2^x', from: -1.5, to: 3.2, color: 'a' }, ...dots.map((p) => dot(p, undefined, 'result'))],
     { x: [-2, 4], y: [-3, 28] },
-  )
+  ),
+  aspect: 1,
+})
 
 /** y = 2 sin 2x + 1, with x in degrees. */
-const wave = (dots: [number, number][]) =>
-  plane(
+const wave = (dots: [number, number][]) => ({
+  ...plane(
     [
       { t: 'curve', f: '2*sin(x*pi/90)+1', from: 0, to: 360, color: 'a' },
       { t: 'hline', y: 1, color: 'muted', dashed: true },
       ...dots.map((p) => dot(p, undefined, 'result')),
     ],
     { x: [-45, 405], y: [-2, 4] },
-  )
+  ),
+  aspect: 1.8,
+})
 
 export const m3s2: Submodule = {
   id: 'tka-sml-m3-s2',
@@ -96,7 +100,7 @@ export const m3s2: Submodule = {
           id: 'f1',
           math: true,
           prompt: L('Try it together: find $\\log_2 32$.', 'Coba bersama: cari $\\log_2 32$.'),
-          template: '2^{___}=32 \\Rightarrow \\log_2 32=___',
+          template: '2^x=32 \\Rightarrow x=___ \\qquad \\log_2 32=___',
           blanks: ['5', '5'],
           explain: L('$2^5=32$, so the exponent $5$ is the logarithm.', '$2^5=32$, jadi eksponen $5$ adalah logaritmanya.'),
           hint: L('Ask: $2$ to which power gives $32$?', 'Tanyakan: $2$ pangkat berapa yang memberi $32$?'),

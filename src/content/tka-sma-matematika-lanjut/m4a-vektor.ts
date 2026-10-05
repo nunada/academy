@@ -370,7 +370,7 @@ export const m4s1: Submodule = {
           id: 'f1',
           math: true,
           prompt: L('Try it together: $\\mathbf{a}=(1,1,0)$ and $\\mathbf{b}=(0,1,1)$.', 'Coba bersama: $\\mathbf{a}=(1,1,0)$ dan $\\mathbf{b}=(0,1,1)$.'),
-          template: '\\mathbf{a}\\cdot\\mathbf{b}=0+1+0=___ \\qquad \\cos\\theta=\\frac{___}{2}',
+          template: '\\mathbf{a}\\cdot\\mathbf{b}=0+1+0=___ \\qquad |\\mathbf{a}||\\mathbf{b}|=\\sqrt2\\cdot\\sqrt2=___',
           blanks: ['1', '1'],
           explain: L('$\\mathbf{a}\\cdot\\mathbf{b}=1$, and $|\\mathbf{a}||\\mathbf{b}|=\\sqrt2\\cdot\\sqrt2=2$.', '$\\mathbf{a}\\cdot\\mathbf{b}=1$, dan $|\\mathbf{a}||\\mathbf{b}|=\\sqrt2\\cdot\\sqrt2=2$.'),
           hint: L('Multiply matching components, then add.', 'Kalikan komponen yang bersesuaian, lalu jumlahkan.'),

@@ -234,7 +234,7 @@ export const m9s2: Submodule = {
             'Try it together: the complement of landing on R.',
             'Coba bersama: komplemen dari berhenti di R.',
           ),
-          template: "P(R')=1-\\frac{3}{8}=\\frac{___}{8}",
+          template: "8-3=___ \\quad P(R')=\\frac{5}{8}",
           blanks: ['5'],
           explain: L(
             '$1=\\frac{8}{8}$, so $\\frac{8}{8}-\\frac{3}{8}=\\frac{5}{8}$.',

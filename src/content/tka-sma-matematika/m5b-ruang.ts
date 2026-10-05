@@ -299,7 +299,7 @@ export const m5s2: Submodule = {
             'Try it together: the angle $CBG$ between the floor and the plane $ABGH$ in a cube of edge 6.',
             'Coba bersama: sudut $CBG$ antara alas dan bidang $ABGH$ pada kubus berusuk 6.',
           ),
-          template: '\\tan\\angle CBG=\\frac{CG}{BC}=\\frac{6}{___}=___',
+          template: 'BC=___ \\quad \\tan\\angle CBG=\\frac{6}{6}=___',
           blanks: ['6', '1'],
           explain: L(
             '$BC=6$ and $\\tan\\angle CBG=1$, so $\\angle CBG=45^{\\circ}$.',

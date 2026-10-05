@@ -107,7 +107,7 @@ export const m3s2: Submodule = {
             'Try it together: solve $x^2-4x+3=0$ with the formula.',
             'Coba bersama: selesaikan $x^2-4x+3=0$ dengan rumus.',
           ),
-          template: 'D=16-12=___ \\quad x=\\frac{4\\pm___}{2}',
+          template: 'D=16-12=___ \\quad \\sqrt{D}=___ \\quad x=(4\\pm\\sqrt{D})\\div2',
           blanks: ['4', '2'],
           explain: L(
             '$D=(-4)^2-4(1)(3)=4$, and $\\sqrt{4}=2$, so $x=\\frac{4\\pm2}{2}$, which gives 3 and 1.',

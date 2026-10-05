@@ -108,7 +108,7 @@ export const m1s2: Submodule = {
             `Try it together: find the inverse of $M=${pm([3, 1], [5, 2])}$.`,
             `Coba bersama: cari invers dari $M=${pm([3, 1], [5, 2])}$.`,
           ),
-          template: `\\det M=3\\cdot2-1\\cdot5=___ \\qquad M^{-1}=\\frac{1}{\\det M}${pm(['___', -1], [-5, '___'])}`,
+          template: '\\det M=3\\cdot2-1\\cdot5=___ \\qquad (M^{-1})_{11}=___ \\quad (M^{-1})_{22}=___',
           blanks: ['1', '2', '3'],
           explain: L(
             '$\\det M=1$. Swap the diagonal entries: the top-left entry is $2$ and the bottom-right entry is $3$.',
@@ -263,8 +263,11 @@ export const m1s2: Submodule = {
           kind: 'fill',
           id: 'f1',
           math: true,
-          prompt: L('Try it together: compute $A^{-1}\\mathbf{b}$.', 'Coba bersama: hitung $A^{-1}\\mathbf{b}$.'),
-          template: `A^{-1}\\mathbf{b}=${pm([2, -1], [-5, 3])}${pm([7], [12])}=${pm(['___'], ['___'])}`,
+          prompt: L(
+            `Try it together: compute $A^{-1}\\mathbf{b}=${pm([2, -1], [-5, 3])}${pm([7], [12])}$, row by row.`,
+            `Coba bersama: hitung $A^{-1}\\mathbf{b}=${pm([2, -1], [-5, 3])}${pm([7], [12])}$, baris demi baris.`,
+          ),
+          template: 'x=2\\cdot7+(-1)\\cdot12=___ \\qquad y=(-5)\\cdot7+3\\cdot12=___',
           blanks: ['2', '1'],
           explain: L('$2\\cdot7-1\\cdot12=2$ and $-5\\cdot7+3\\cdot12=1$.', '$2\\cdot7-1\\cdot12=2$ dan $-5\\cdot7+3\\cdot12=1$.'),
           hint: L('Each entry is a row of the matrix times the column.', 'Setiap entri adalah baris matriks kali kolom.'),
