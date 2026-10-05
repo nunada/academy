@@ -270,7 +270,7 @@ export const COURSES: CourseInfo[] = [
     track: 'math',
     requires: [],
     available: true,
-    lessons: 48,
+    lessons: 45,
     projects: 21,
   },
   {

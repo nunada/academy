@@ -69,14 +69,11 @@ export const m10s3: Submodule = {
       },
       {
         prompt: L(
-          'Solve $\\log_3x+\\log_3(x-2)=1$. The inside of every logarithm must be positive.',
-          'Selesaikan $\\log_3x+\\log_3(x-2)=1$. Isi setiap logaritma harus positif.',
+          'Write $\\sqrt{50}+\\sqrt{18}$ as $a\\sqrt{2}$. Find $a$.',
+          'Tulis $\\sqrt{50}+\\sqrt{18}$ sebagai $a\\sqrt{2}$. Tentukan $a$.',
         ),
-        blanks: [{ label: 'x =', answer: 3 }],
-        solution: {
-          en: ['\\log_3\\bigl(x(x-2)\\bigr)=1 \\Rightarrow x^2-2x=3', '(x-3)(x+1)=0 \\Rightarrow x=3 \\quad (x=-1 \\text{ is rejected})'],
-          id: ['\\log_3\\bigl(x(x-2)\\bigr)=1 \\Rightarrow x^2-2x=3', '(x-3)(x+1)=0 \\Rightarrow x=3 \\quad (x=-1 \\text{ ditolak})'],
-        },
+        blanks: [{ label: 'a =', answer: 8 }],
+        solution: ['\\sqrt{50}=5\\sqrt{2} \\quad \\sqrt{18}=3\\sqrt{2}', '5\\sqrt{2}+3\\sqrt{2}=8\\sqrt{2}'],
       },
     ],
   },

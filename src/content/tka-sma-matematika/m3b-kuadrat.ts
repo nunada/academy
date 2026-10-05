@@ -1,15 +1,14 @@
 import type { Submodule } from '../types'
 import { L, dot, plane } from './figs'
 
-/** Module 3, submodule 2 — quadratic functions, then exponential growth and
- *  decay. */
+/** Module 3, submodule 2 — quadratic functions. */
 
 export const m3s2: Submodule = {
   id: 'tka-sma-m3-s2',
-  title: L('Quadratic and Exponential Functions', 'Fungsi Kuadrat dan Eksponensial'),
+  title: L('Quadratic Functions', 'Fungsi Kuadrat'),
   summary: L(
-    'Read and sketch a parabola from its roots and vertex, use the discriminant, and model growth and decay with an exponential function.',
-    'Membaca dan menggambar parabola dari akar dan titik puncaknya, memakai diskriminan, serta memodelkan pertumbuhan dan peluruhan dengan fungsi eksponensial.',
+    'Read and sketch a parabola from its roots and vertex, use the discriminant, and find the greatest or least value.',
+    'Membaca dan menggambar parabola dari akar dan titik puncaknya, memakai diskriminan, serta mencari nilai terbesar atau terkecil.',
   ),
   lessons: [
     /* ------------------------------------------------------------ L1 quadratics */
@@ -180,187 +179,23 @@ export const m3s2: Submodule = {
         },
       ],
     },
-    /* --------------------------------------------------------- L2 exponential */
-    {
-      id: 'tka-sma-m3-s2-l2',
-      title: L('Exponential Growth and Decay', 'Pertumbuhan dan Peluruhan Eksponensial'),
-      goal: L(
-        'You can read the graph of an exponential function, model growth and half-life, and solve a simple exponential equation.',
-        'Kamu bisa membaca grafik fungsi eksponensial, memodelkan pertumbuhan dan waktu paruh, dan menyelesaikan persamaan eksponensial sederhana.',
-      ),
-      xp: 20,
-      steps: [
-        {
-          kind: 'concept',
-          id: 'c1',
-          title: L('Look Closely: Up Fast, Down Slowly', 'Ayo Amati: Naik Cepat, Turun Perlahan'),
-          body: L(
-            'In an **exponential function** $y=a^x$ the variable is in the exponent ($a>0$, $a\\neq1$).\n\n- If $a>1$ the graph **rises** faster and faster: $y=2^x$ (green).\n- If $0<a<1$ the graph **falls** and flattens: $y=\\left(\\frac{1}{2}\\right)^x$ (orange).\n- Both pass through $(0,1)$ because $a^0=1$.\n- Both stay **above** the $x$-axis: $a^x>0$ for every $x$. The $x$-axis is a horizontal **asymptote**: the curve comes closer and closer but never touches it.\n\nThe two curves are mirror images in the $y$-axis, because $\\left(\\frac{1}{2}\\right)^x=2^{-x}$.',
-            'Pada **fungsi eksponensial** $y=a^x$ variabelnya berada di eksponen ($a>0$, $a\\neq1$).\n\n- Jika $a>1$ grafik **naik** makin cepat: $y=2^x$ (hijau).\n- Jika $0<a<1$ grafik **turun** dan mendatar: $y=\\left(\\frac{1}{2}\\right)^x$ (oranye).\n- Keduanya melalui $(0,1)$ karena $a^0=1$.\n- Keduanya tetap **di atas** sumbu $x$: $a^x>0$ untuk setiap $x$. Sumbu $x$ adalah **asimtot** mendatar: kurva makin dekat tetapi tidak pernah menyentuhnya.\n\nKedua kurva saling bercermin terhadap sumbu $y$, karena $\\left(\\frac{1}{2}\\right)^x=2^{-x}$.',
-          ),
-          figure: {
-            ...plane(
-              [
-                { t: 'curve', f: '2^x', from: -3, to: 3.2, color: 'a' },
-                { t: 'curve', f: '0.5^x', from: -3.2, to: 3, color: 'b' },
-                dot([0, 1], '(0, 1)', 'result'),
-              ],
-              { x: [-4, 4], y: [-2, 9] },
-            ),
-            caption: L('y = 2^x (green) and y = (1/2)^x (orange).', 'y = 2^x (hijau) dan y = (1/2)^x (oranye).'),
-          },
-        },
-        {
-          kind: 'concept',
-          id: 'c2',
-          title: L('Step by Step: Growth and Half-Life', 'Contoh Bertahap: Pertumbuhan dan Waktu Paruh'),
-          body: L(
-            'A quantity that grows or shrinks by the same **factor** in equal time steps is modelled by\n\n$$N=N_0\\cdot r^{t}$$\n\nwhere $N_0$ is the starting amount and $r$ is the factor per step.\n\n**Growth:** 100 bacteria that double every hour: $N=100\\cdot2^{t}$. After 3 hours: $100\\times8=800$.\n\n**Decay (half-life):** a medicine has a half-life of 3 days: every 3 days half is left. From 80 g:\n\n1. Step 1: After 3 days: $80\\times\\frac{1}{2}=40$ g.\n2. Step 2: After 6 days: $40\\times\\frac{1}{2}=20$ g.\n3. Step 3: After 9 days: $20\\times\\frac{1}{2}=10$ g.\n\nIn one formula: $A=80\\cdot\\left(\\frac{1}{2}\\right)^{t/3}$. At $t=9$ it gives $80\\cdot\\left(\\frac{1}{2}\\right)^{3}=10$.',
-            'Besaran yang bertambah atau berkurang dengan **faktor** yang sama pada selang waktu yang sama dimodelkan dengan\n\n$$N=N_0\\cdot r^{t}$$\n\ndengan $N_0$ jumlah awal dan $r$ faktor per langkah.\n\n**Pertumbuhan:** 100 bakteri yang berlipat dua setiap jam: $N=100\\cdot2^{t}$. Setelah 3 jam: $100\\times8=800$.\n\n**Peluruhan (waktu paruh):** sebuah obat punya waktu paruh 3 hari: setiap 3 hari tersisa setengah. Dari 80 g:\n\n1. Langkah 1: Setelah 3 hari: $80\\times\\frac{1}{2}=40$ g.\n2. Langkah 2: Setelah 6 hari: $40\\times\\frac{1}{2}=20$ g.\n3. Langkah 3: Setelah 9 hari: $20\\times\\frac{1}{2}=10$ g.\n\nDalam satu rumus: $A=80\\cdot\\left(\\frac{1}{2}\\right)^{t/3}$. Pada $t=9$ rumus ini memberi $80\\cdot\\left(\\frac{1}{2}\\right)^{3}=10$.',
-          ),
-        },
-        {
-          kind: 'concept',
-          id: 'c3',
-          title: L('Watch Out!: Solving an Exponential Equation', 'Awas, Jebakan!: Menyelesaikan Persamaan Eksponensial'),
-          body: L(
-            'If two powers with the same base are equal, the exponents are equal: $a^m=a^n\\Rightarrow m=n$. So write both sides with the same base.\n\nSolve $3^{x+1}=81$.\n\n1. Step 1: $81=3^4$.\n2. Step 2: $3^{x+1}=3^4$, so $x+1=4$.\n3. Step 3: $x=3$.\n\nIf the bases cannot be matched, use a logarithm: $2^x=10$ gives $x=\\log_2 10\\approx3.32$.\n\n**Common mistakes:**\n\n- $2^x$ is **not** the same as $2x$: $2^3=8$ but $2\\times3=6$.\n- $(2^x)^2=2^{2x}$, not $2^{x+2}$.\n- An exponential never equals zero or a negative number: $2^x=-4$ has no solution.',
-            'Jika dua pangkat dengan basis sama bernilai sama, eksponennya sama: $a^m=a^n\\Rightarrow m=n$. Jadi tulis kedua ruas dengan basis yang sama.\n\nSelesaikan $3^{x+1}=81$.\n\n1. Langkah 1: $81=3^4$.\n2. Langkah 2: $3^{x+1}=3^4$, jadi $x+1=4$.\n3. Langkah 3: $x=3$.\n\nJika basisnya tidak dapat disamakan, pakai logaritma: $2^x=10$ memberi $x=\\log_2 10\\approx3{,}32$.\n\n**Kesalahan umum:**\n\n- $2^x$ **bukan** sama dengan $2x$: $2^3=8$ tetapi $2\\times3=6$.\n- $(2^x)^2=2^{2x}$, bukan $2^{x+2}$.\n- Eksponensial tidak pernah bernilai nol atau negatif: $2^x=-4$ tidak punya penyelesaian.',
-          ),
-        },
-        {
-          kind: 'quiz',
-          id: 'q1',
-          prompt: L(
-            'Which equation gives the orange curve?',
-            'Persamaan manakah yang memberikan kurva oranye?',
-          ),
-          figure: {
-            ...plane(
-              [
-                { t: 'curve', f: '2^x', from: -3, to: 3.2, color: 'a' },
-                { t: 'curve', f: '0.5^x', from: -3.2, to: 3, color: 'b' },
-              ],
-              { x: [-4, 4], y: [-2, 9] },
-            ),
-            caption: L('Two exponential curves.', 'Dua kurva eksponensial.'),
-          },
-          options: [
-            L('$y=\\left(\\frac{1}{2}\\right)^x$', '$y=\\left(\\frac{1}{2}\\right)^x$'),
-            L('$y=2^x$', '$y=2^x$'),
-            L('$y=2^x-1$', '$y=2^x-1$'),
-            L('$y=x^2$', '$y=x^2$'),
-          ],
-          answer: 0,
-          explain: L(
-            'The orange curve falls as $x$ grows and passes through $(0,1)$, so its base is between 0 and 1: $y=\\left(\\frac{1}{2}\\right)^x$. The green curve is $2^x$.',
-            'Kurva oranye turun saat $x$ membesar dan melalui $(0,1)$, jadi basisnya antara 0 dan 1: $y=\\left(\\frac{1}{2}\\right)^x$. Kurva hijau adalah $2^x$.',
-          ),
-          hint: L(
-            'Does the orange curve rise or fall to the right? What base does that mean?',
-            'Apakah kurva oranye naik atau turun ke kanan? Basis seperti apa artinya?',
-          ),
-        },
-        {
-          kind: 'fill',
-          id: 'f1',
-          math: true,
-          prompt: L(
-            'Try it together: 80 g of a medicine with a half-life of 3 days. How much is left after 3 days and after 6 days?',
-            'Coba bersama: 80 g obat dengan waktu paruh 3 hari. Berapa yang tersisa setelah 3 hari dan setelah 6 hari?',
-          ),
-          template: '80\\times\\frac{1}{2}=___ \\quad ___\\times\\frac{1}{2}=___',
-          blanks: ['40', '40', '20'],
-          explain: L(
-            'After 3 days half of 80 is 40. After another 3 days half of 40 is 20.',
-            'Setelah 3 hari setengah dari 80 adalah 40. Setelah 3 hari lagi setengah dari 40 adalah 20.',
-          ),
-          hint: L(
-            'The second row starts from the answer of the first.',
-            'Baris kedua dimulai dari jawaban baris pertama.',
-          ),
-        },
-        {
-          kind: 'multi',
-          id: 'mc1',
-          prompt: L('Choose the TWO true statements about $y=2^x$.', 'Pilih DUA pernyataan yang benar tentang $y=2^x$.'),
-          options: [
-            L('The graph passes through $(0,1)$.', 'Grafik melalui $(0,1)$.'),
-            L('$y$ is always positive.', '$y$ selalu positif.'),
-            L('$y$ takes negative values for negative $x$.', '$y$ bernilai negatif untuk $x$ negatif.'),
-            L('The graph goes down as $x$ increases.', 'Grafik turun saat $x$ bertambah.'),
-          ],
-          answer: [0, 1],
-          explain: L(
-            '$2^0=1$, and a positive base to any power is positive. For negative $x$ the value is a small positive number, like $2^{-3}=\\frac{1}{8}$. And with base 2 the graph goes up.',
-            '$2^0=1$, dan basis positif dipangkatkan apa pun hasilnya positif. Untuk $x$ negatif nilainya bilangan positif kecil, seperti $2^{-3}=\\frac{1}{8}$. Dan dengan basis 2 grafik naik.',
-          ),
-          hint: L(
-            'Try $x=0$, $x=3$ and $x=-3$ and look at the values.',
-            'Coba $x=0$, $x=3$, dan $x=-3$ lalu lihat nilainya.',
-          ),
-        },
-        {
-          kind: 'judge',
-          id: 'j1',
-          prompt: L('Decide whether each statement is True or False.', 'Tentukan tiap pernyataan Benar atau Salah.'),
-          statements: [
-            L('$y=\\left(\\frac{1}{3}\\right)^x$ is a decreasing function.', '$y=\\left(\\frac{1}{3}\\right)^x$ adalah fungsi turun.'),
-            L('$2^x=0$ for some value of $x$.', '$2^x=0$ untuk suatu nilai $x$.'),
-            L('If $2^x=2^5$, then $x=5$.', 'Jika $2^x=2^5$, maka $x=5$.'),
-            L('$3^{x+1}=81$ gives $x=4$.', '$3^{x+1}=81$ memberi $x=4$.'),
-          ],
-          answer: [true, false, true, false],
-          explain: L(
-            'A base between 0 and 1 gives a falling graph. An exponential is never 0. Equal bases mean equal exponents. And $3^{x+1}=3^4$ gives $x+1=4$, so $x=3$.',
-            'Basis antara 0 dan 1 memberi grafik turun. Eksponensial tidak pernah 0. Basis sama berarti eksponen sama. Dan $3^{x+1}=3^4$ memberi $x+1=4$, jadi $x=3$.',
-          ),
-          hint: L(
-            'For the last one, remember the exponent is $x+1$, not $x$.',
-            'Untuk yang terakhir, ingat eksponennya $x+1$, bukan $x$.',
-          ),
-        },
-        {
-          kind: 'math',
-          id: 'm1',
-          prompt: L(
-            'A substance has a half-life of 5 hours. From 100 g, after $t$ hours $A=100\\cdot\\left(\\frac{1}{2}\\right)^{t/5}$ grams remain. After how many hours are 6.25 g left?',
-            'Sebuah zat punya waktu paruh 5 jam. Dari 100 g, setelah $t$ jam tersisa $A=100\\cdot\\left(\\frac{1}{2}\\right)^{t/5}$ gram. Setelah berapa jam tersisa 6,25 g?',
-          ),
-          blanks: [{ label: 't =', answer: 20, after: '\\text{h}' }],
-          hints: [
-            L('Divide 100 by 6.25 to see how many halvings are needed.', 'Bagi 100 dengan 6,25 untuk mengetahui berapa kali harus dibelah dua.'),
-            L('$100\\div6.25=16=2^4$, so $\\left(\\frac{1}{2}\\right)^{t/5}=\\frac{1}{16}=\\left(\\frac{1}{2}\\right)^4$.', '$100\\div6{,}25=16=2^4$, jadi $\\left(\\frac{1}{2}\\right)^{t/5}=\\frac{1}{16}=\\left(\\frac{1}{2}\\right)^4$.'),
-            L('Equal bases: $\\frac{t}{5}=4$.', 'Basis sama: $\\frac{t}{5}=4$.'),
-          ],
-          explain: L(
-            '$6.25=100\\cdot\\left(\\frac{1}{2}\\right)^{t/5}$ gives $\\left(\\frac{1}{2}\\right)^{t/5}=\\frac{1}{16}=\\left(\\frac{1}{2}\\right)^4$, so $\\frac{t}{5}=4$ and $t=20$ hours.',
-            '$6{,}25=100\\cdot\\left(\\frac{1}{2}\\right)^{t/5}$ memberi $\\left(\\frac{1}{2}\\right)^{t/5}=\\frac{1}{16}=\\left(\\frac{1}{2}\\right)^4$, jadi $\\frac{t}{5}=4$ dan $t=20$ jam.',
-          ),
-          solution: {
-            en: ['\\left(\\frac{1}{2}\\right)^{t/5}=\\frac{6.25}{100}=\\frac{1}{16}=\\left(\\frac{1}{2}\\right)^4', '\\frac{t}{5}=4', 't=20'],
-            id: ['\\left(\\frac{1}{2}\\right)^{t/5}=\\frac{6{,}25}{100}=\\frac{1}{16}=\\left(\\frac{1}{2}\\right)^4', '\\frac{t}{5}=4', 't=20'],
-          },
-        },
-      ],
-    },
   ],
   project: {
     id: 'tka-sma-m3-s2-p',
     runtime: 'math',
-    title: L('Parabolas and Exponentials', 'Parabola dan Eksponensial'),
+    title: L('Parabolas at Work', 'Parabola dalam Pemakaian'),
     brief: L(
-      'Find roots and vertices, use the discriminant, maximise an area and model decay.',
-      'Cari akar dan titik puncak, pakai diskriminan, maksimumkan luas, dan modelkan peluruhan.',
+      'Find roots and vertices, use the discriminant, maximise an area and read a parabola from its graph.',
+      'Cari akar dan titik puncak, pakai diskriminan, maksimumkan luas, dan baca parabola dari grafiknya.',
     ),
     requirements: [
       L('Find roots, vertex and greatest value of a quadratic.', 'Mencari akar, titik puncak, dan nilai terbesar fungsi kuadrat.'),
-      L('Model growth or decay with an exponential function.', 'Memodelkan pertumbuhan atau peluruhan dengan fungsi eksponensial.'),
+      L('Use the discriminant to count the roots.', 'Memakai diskriminan untuk menghitung banyak akar.'),
     ],
     hints: [
       L('Factor, or use the quadratic formula. The vertex is at $x=-\\frac{b}{2a}$.', 'Faktorkan, atau pakai rumus kuadrat. Puncak ada di $x=-\\frac{b}{2a}$.'),
       L('One repeated root means $D=0$.', 'Satu akar kembar berarti $D=0$.'),
-      L('In decay, halve once per half-life.', 'Pada peluruhan, bagi dua sekali per waktu paruh.'),
+      L('A parabola with no real roots has $D<0$.', 'Parabola tanpa akar real punya $D<0$.'),
     ],
     xp: 50,
     tasks: [
@@ -416,14 +251,11 @@ export const m3s2: Submodule = {
       },
       {
         prompt: L(
-          '640 g of a substance with a half-life of 4 years remain after $t$ years as $640\\cdot\\left(\\frac{1}{2}\\right)^{t/4}$ g. How many grams are left after 12 years?',
-          'Zat 640 g dengan waktu paruh 4 tahun tersisa setelah $t$ tahun sebanyak $640\\cdot\\left(\\frac{1}{2}\\right)^{t/4}$ g. Berapa gram yang tersisa setelah 12 tahun?',
+          'For which smallest integer $k$ does $x^2-6x+k=0$ have no real roots?',
+          'Untuk bilangan bulat $k$ terkecil berapa $x^2-6x+k=0$ tidak punya akar real?',
         ),
-        blanks: [{ answer: 80, after: '\\text{g}' }],
-        solution: {
-          en: ['\\frac{12}{4}=3 \\text{ half-lives}', '640\\cdot\\left(\\frac{1}{2}\\right)^3=640\\cdot\\frac{1}{8}=80'],
-          id: ['\\frac{12}{4}=3 \\text{ waktu paruh}', '640\\cdot\\left(\\frac{1}{2}\\right)^3=640\\cdot\\frac{1}{8}=80'],
-        },
+        blanks: [{ label: 'k =', answer: 10 }],
+        solution: ['D=(-6)^2-4(1)(k)=36-4k<0', 'k>9 \\Rightarrow k=10'],
       },
     ],
   },

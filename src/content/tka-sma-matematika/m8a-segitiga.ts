@@ -1,16 +1,16 @@
 import type { Submodule } from '../types'
-import { L, rightTriangle, shape } from './figs'
+import { L, rightTriangle } from './figs'
 import { lessonReciprocal } from './m8c-resiprokal'
 
 /** Module 8, submodule 1 — trigonometric ratios in right triangles, and the
- *  sine rule, cosine rule and area formula for any triangle. */
+ *  reciprocal ratios cotangent, secant and cosecant. */
 
 export const m8s1: Submodule = {
   id: 'tka-sma-m8-s1',
-  title: L('Trigonometry in Triangles', 'Trigonometri pada Segitiga'),
+  title: L('Trigonometric Ratios', 'Perbandingan Trigonometri'),
   summary: L(
-    'Use sine, cosine and tangent in right triangles, then the sine rule, the cosine rule and the area formula in any triangle.',
-    'Memakai sinus, kosinus, dan tangen pada segitiga siku-siku, lalu aturan sinus, aturan kosinus, dan rumus luas pada segitiga sembarang.',
+    'Use sine, cosine and tangent in right triangles with the special angles, and the reciprocal ratios cotangent, secant and cosecant.',
+    'Memakai sinus, kosinus, dan tangen pada segitiga siku-siku dengan sudut istimewa, serta perbandingan kebalikan kotangen, sekan, dan kosekan.',
   ),
   lessons: [
     /* ------------------------------------------------------ L1 right triangles */
@@ -164,194 +164,24 @@ export const m8s1: Submodule = {
         },
       ],
     },
-    /* --------------------------------------------------- L2 sine and cosine rules */
-    {
-      id: 'tka-sma-m8-s1-l2',
-      title: L('The Sine Rule, Cosine Rule and Area', 'Aturan Sinus, Aturan Kosinus, dan Luas'),
-      goal: L(
-        'You can choose and use the sine rule or the cosine rule in any triangle, and find its area from two sides and the angle between them.',
-        'Kamu bisa memilih dan memakai aturan sinus atau aturan kosinus pada segitiga sembarang, dan mencari luasnya dari dua sisi dan sudut di antaranya.',
-      ),
-      xp: 20,
-      steps: [
-        {
-          kind: 'concept',
-          id: 'c1',
-          title: L('Look Closely: Sides and Opposite Angles', 'Ayo Amati: Sisi dan Sudut yang Berhadapan'),
-          body: L(
-            'In a triangle $ABC$, name each side by the small letter of the angle **opposite** it: $a$ is opposite $A$, $b$ is opposite $B$, $c$ is opposite $C$.\n\nThe **sine rule** says that every side divided by the sine of its opposite angle gives the same number:\n\n$$\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}=2R$$\n\nwhere $R$ is the radius of the circle through the three corners.\n\nExample: $a=10$ and $A=30^{\\circ}$. Then $2R=\\frac{10}{\\sin30^{\\circ}}=\\frac{10}{\\frac{1}{2}}=20$, so $R=10$.\n\nUse the sine rule when you know **an angle and its opposite side** (plus one more angle or side).',
-            'Pada segitiga $ABC$, beri nama tiap sisi dengan huruf kecil dari sudut yang **berhadapan** dengannya: $a$ berhadapan dengan $A$, $b$ dengan $B$, $c$ dengan $C$.\n\n**Aturan sinus** menyatakan bahwa setiap sisi dibagi sinus sudut di hadapannya memberi bilangan yang sama:\n\n$$\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}=2R$$\n\ndengan $R$ jari-jari lingkaran yang melalui ketiga titik sudut.\n\nContoh: $a=10$ dan $A=30^{\\circ}$. Maka $2R=\\frac{10}{\\sin30^{\\circ}}=\\frac{10}{\\frac{1}{2}}=20$, jadi $R=10$.\n\nPakai aturan sinus bila kamu tahu **sebuah sudut dan sisi di hadapannya** (ditambah satu sudut atau sisi lain).',
-          ),
-          figure: {
-            ...shape({
-              pts: [[0, 0], [6, 0], [2, 3.2]],
-              names: 'ABC',
-              sides: ['c', 'a', 'b'],
-            }),
-            caption: L('Side a is opposite angle A, side b opposite B and side c opposite C.', 'Sisi a berhadapan dengan sudut A, sisi b dengan B, dan sisi c dengan C.'),
-          },
-        },
-        {
-          kind: 'concept',
-          id: 'c2',
-          title: L('Step by Step: The Cosine Rule', 'Contoh Bertahap: Aturan Kosinus'),
-          body: L(
-            'The **cosine rule** is Pythagoras with a correction for the angle:\n\n$$c^2=a^2+b^2-2ab\\cos C$$\n\nHere $C$ is the angle **between** sides $a$ and $b$, and $c$ is opposite it. If $C=90^{\\circ}$, then $\\cos C=0$ and we get Pythagoras back.\n\nIn the picture $a=5$, $b=8$ and $C=60^{\\circ}$. Find $c$.\n\n1. Step 1: $c^2=5^2+8^2-2\\times5\\times8\\times\\cos60^{\\circ}$.\n2. Step 2: $=25+64-80\\times\\frac{1}{2}=89-40=49$.\n3. Step 3: $c=7$.\n\nUse the cosine rule when you know **two sides and the angle between them**, or **all three sides** (to find an angle: $\\cos C=\\frac{a^2+b^2-c^2}{2ab}$).',
-            '**Aturan kosinus** adalah Pythagoras dengan koreksi untuk sudutnya:\n\n$$c^2=a^2+b^2-2ab\\cos C$$\n\nDi sini $C$ adalah sudut **di antara** sisi $a$ dan $b$, dan $c$ berhadapan dengannya. Jika $C=90^{\\circ}$, maka $\\cos C=0$ dan kita kembali ke Pythagoras.\n\nPada gambar, $a=5$, $b=8$, dan $C=60^{\\circ}$. Cari $c$.\n\n1. Langkah 1: $c^2=5^2+8^2-2\\times5\\times8\\times\\cos60^{\\circ}$.\n2. Langkah 2: $=25+64-80\\times\\frac{1}{2}=89-40=49$.\n3. Langkah 3: $c=7$.\n\nPakai aturan kosinus bila kamu tahu **dua sisi dan sudut di antaranya**, atau **ketiga sisi** (untuk mencari sudut: $\\cos C=\\frac{a^2+b^2-c^2}{2ab}$).',
-          ),
-          figure: {
-            ...shape({
-              pts: [[0, 0], [8, 0], [2.5, 4.33]],
-              names: 'CAB',
-              sides: ['8', '?', '5'],
-              extra: [{ t: 'angle', at: [0, 0], from: [8, 0], to: [2.5, 4.33], label: '60°' }],
-            }),
-            caption: L('A triangle with sides 5 and 8 and the angle 60° between them.', 'Segitiga dengan sisi 5 dan 8 dan sudut 60° di antaranya.'),
-          },
-        },
-        {
-          kind: 'concept',
-          id: 'c3',
-          title: L('Step by Step: Area and Choosing the Rule', 'Contoh Bertahap: Luas dan Memilih Aturan'),
-          body: L(
-            'The area of **any** triangle from two sides and the angle between them:\n\n$$\\text{area}=\\frac{1}{2}ab\\sin C$$\n\nIn the picture, $a=6$, $b=8$ and $C=30^{\\circ}$. The area is $\\frac{1}{2}\\times6\\times8\\times\\sin30^{\\circ}=\\frac{1}{2}\\times48\\times\\frac{1}{2}=12$.\n\nWhich rule?\n\n| You know | Use |\n|---|---|\n| two angles and a side | sine rule |\n| a side and its opposite angle | sine rule |\n| two sides and the **included** angle | cosine rule |\n| three sides | cosine rule |\n\n**Watch out:** the largest angle is opposite the **longest** side and the smallest angle is opposite the shortest. If your answer breaks that, check for a slip.',
-            'Luas **setiap** segitiga dari dua sisi dan sudut di antaranya:\n\n$$\\text{luas}=\\frac{1}{2}ab\\sin C$$\n\nPada gambar, $a=6$, $b=8$, dan $C=30^{\\circ}$. Luasnya $\\frac{1}{2}\\times6\\times8\\times\\sin30^{\\circ}=\\frac{1}{2}\\times48\\times\\frac{1}{2}=12$.\n\nAturan mana?\n\n| Yang diketahui | Pakai |\n|---|---|\n| dua sudut dan sebuah sisi | aturan sinus |\n| sebuah sisi dan sudut di hadapannya | aturan sinus |\n| dua sisi dan sudut **apit** | aturan kosinus |\n| tiga sisi | aturan kosinus |\n\n**Awas:** sudut terbesar berhadapan dengan sisi **terpanjang** dan sudut terkecil berhadapan dengan sisi terpendek. Jika jawabanmu melanggar itu, periksa kembali.',
-          ),
-          figure: {
-            ...shape({
-              pts: [[0, 0], [8, 0], [5.196, 3]],
-              names: 'CAB',
-              sides: ['8', undefined, '6'],
-              extra: [{ t: 'angle', at: [0, 0], from: [8, 0], to: [5.196, 3], label: '30°' }],
-            }),
-            caption: L('Sides 6 and 8 with the angle 30° between them.', 'Sisi 6 dan 8 dengan sudut 30° di antaranya.'),
-          },
-        },
-        {
-          kind: 'quiz',
-          id: 'q1',
-          prompt: L(
-            'In the triangle, two sides are 3 and 5 and the angle between them is $120^{\\circ}$ ($\\cos120^{\\circ}=-\\frac{1}{2}$). What is the third side?',
-            'Pada segitiga, dua sisi adalah 3 dan 5 dan sudut di antaranya $120^{\\circ}$ ($\\cos120^{\\circ}=-\\frac{1}{2}$). Berapa sisi ketiga?',
-          ),
-          figure: {
-            ...shape({
-              pts: [[0, 0], [5, 0], [-1.5, 2.598]],
-              names: 'CAB',
-              sides: ['5', '?', '3'],
-              extra: [{ t: 'angle', at: [0, 0], from: [5, 0], to: [-1.5, 2.598], label: '120°' }],
-            }),
-            caption: L('A triangle with sides 3 and 5 and the angle 120° between them.', 'Segitiga dengan sisi 3 dan 5 dan sudut 120° di antaranya.'),
-          },
-          options: [L('7', '7'), L('$\\sqrt{34}$', '$\\sqrt{34}$'), L('8', '8'), L('4', '4')],
-          answer: 0,
-          explain: L(
-            '$c^2=9+25-2\\times3\\times5\\times\\left(-\\frac{1}{2}\\right)=34+15=49$, so $c=7$. The value $\\sqrt{34}$ forgets that $\\cos120^{\\circ}$ is negative, so the correction **adds** 15.',
-            '$c^2=9+25-2\\times3\\times5\\times\\left(-\\frac{1}{2}\\right)=34+15=49$, jadi $c=7$. Nilai $\\sqrt{34}$ melupakan bahwa $\\cos120^{\\circ}$ negatif, sehingga koreksinya **menambah** 15.',
-          ),
-          hint: L(
-            'Use $c^2=a^2+b^2-2ab\\cos C$. Take care with the sign: minus times minus.',
-            'Pakai $c^2=a^2+b^2-2ab\\cos C$. Hati-hati dengan tandanya: minus kali minus.',
-          ),
-        },
-        {
-          kind: 'fill',
-          id: 'f1',
-          math: true,
-          prompt: L(
-            'Try it together: find $c^2$ for $a=5$, $b=8$ and $C=60^{\\circ}$.',
-            'Coba bersama: cari $c^2$ untuk $a=5$, $b=8$, dan $C=60^{\\circ}$.',
-          ),
-          template: 'c^2=25+64-80\\times\\frac{1}{2}=89-___=___',
-          blanks: ['40', '49'],
-          explain: L(
-            '$80\\times\\frac{1}{2}=40$ and $89-40=49$, so $c=7$.',
-            '$80\\times\\frac{1}{2}=40$ dan $89-40=49$, jadi $c=7$.',
-          ),
-          hint: L(
-            'Multiply $80$ by $\\cos60^{\\circ}=\\frac{1}{2}$ first, then subtract.',
-            'Kalikan $80$ dengan $\\cos60^{\\circ}=\\frac{1}{2}$ dulu, lalu kurangkan.',
-          ),
-        },
-        {
-          kind: 'multi',
-          id: 'mc1',
-          prompt: L('Choose the TWO true statements.', 'Pilih DUA pernyataan yang benar.'),
-          options: [
-            L('The cosine rule finds the third side when two sides and the angle between them are known.', 'Aturan kosinus mencari sisi ketiga bila dua sisi dan sudut di antaranya diketahui.'),
-            L('The sine rule says $\\frac{a}{\\sin A}=\\frac{b}{\\sin B}$.', 'Aturan sinus menyatakan $\\frac{a}{\\sin A}=\\frac{b}{\\sin B}$.'),
-            L('The area of a triangle is $ab\\sin C$.', 'Luas segitiga adalah $ab\\sin C$.'),
-            L('The cosine rule is $c^2=a^2+b^2+2ab\\cos C$.', 'Aturan kosinus adalah $c^2=a^2+b^2+2ab\\cos C$.'),
-          ],
-          answer: [0, 1],
-          explain: L(
-            'The area has a factor $\\frac{1}{2}$, and the cosine rule has a **minus** sign: $c^2=a^2+b^2-2ab\\cos C$.',
-            'Luas memuat faktor $\\frac{1}{2}$, dan aturan kosinus bertanda **minus**: $c^2=a^2+b^2-2ab\\cos C$.',
-          ),
-          hint: L(
-            'If $C=90^{\\circ}$, the cosine rule must turn into Pythagoras. Which sign does that need?',
-            'Jika $C=90^{\\circ}$, aturan kosinus harus berubah menjadi Pythagoras. Tanda mana yang diperlukan?',
-          ),
-        },
-        {
-          kind: 'judge',
-          id: 'j1',
-          prompt: L('Decide whether each statement is True or False.', 'Tentukan tiap pernyataan Benar atau Salah.'),
-          statements: [
-            L('The area of a triangle is $\\frac{1}{2}ab\\sin C$.', 'Luas segitiga adalah $\\frac{1}{2}ab\\sin C$.'),
-            L('If $C=90^{\\circ}$, the cosine rule becomes the Pythagorean theorem.', 'Jika $C=90^{\\circ}$, aturan kosinus menjadi teorema Pythagoras.'),
-            L('The sine rule is the right tool when two sides and the angle between them are known.', 'Aturan sinus adalah alat yang tepat bila dua sisi dan sudut di antaranya diketahui.'),
-            L('The smallest angle of a triangle is opposite its longest side.', 'Sudut terkecil segitiga berhadapan dengan sisi terpanjangnya.'),
-          ],
-          answer: [true, true, false, false],
-          explain: L(
-            'For two sides and the included angle you need the cosine rule. And the **largest** angle is opposite the longest side.',
-            'Untuk dua sisi dan sudut apit diperlukan aturan kosinus. Dan sudut **terbesar** berhadapan dengan sisi terpanjang.',
-          ),
-          hint: L(
-            'Check the table of which rule goes with which information.',
-            'Periksa tabel aturan mana yang cocok dengan informasi apa.',
-          ),
-        },
-        {
-          kind: 'math',
-          id: 'm1',
-          prompt: L(
-            'A triangle has two sides 6 and 8 with an angle of $30^{\\circ}$ between them. What is its area?',
-            'Sebuah segitiga punya dua sisi 6 dan 8 dengan sudut $30^{\\circ}$ di antaranya. Berapa luasnya?',
-          ),
-          blanks: [{ answer: 12 }],
-          hints: [
-            L('Use the formula with two sides and the included angle.', 'Pakai rumus dengan dua sisi dan sudut apit.'),
-            L('$\\text{area}=\\frac{1}{2}\\times6\\times8\\times\\sin30^{\\circ}$.', '$\\text{luas}=\\frac{1}{2}\\times6\\times8\\times\\sin30^{\\circ}$.'),
-            L('$\\sin30^{\\circ}=\\frac{1}{2}$, and $\\frac{1}{2}\\times48=24$.', '$\\sin30^{\\circ}=\\frac{1}{2}$, dan $\\frac{1}{2}\\times48=24$.'),
-          ],
-          explain: L(
-            '$\\frac{1}{2}\\times6\\times8\\times\\frac{1}{2}=24\\times\\frac{1}{2}=12$.',
-            '$\\frac{1}{2}\\times6\\times8\\times\\frac{1}{2}=24\\times\\frac{1}{2}=12$.',
-          ),
-          solution: ['\\frac{1}{2}\\times6\\times8\\times\\sin30^{\\circ}', '=24\\times\\frac{1}{2}=12'],
-        },
-      ],
-    },
     lessonReciprocal,
   ],
   project: {
     id: 'tka-sma-m8-s1-p',
     runtime: 'math',
-    title: L('Trigonometry in Triangles at Work', 'Trigonometri pada Segitiga dalam Pemakaian'),
+    title: L('Trigonometric Ratios at Work', 'Perbandingan Trigonometri dalam Pemakaian'),
     brief: L(
-      'Find heights, sides, areas and a circumradius with trigonometry.',
-      'Cari tinggi, sisi, luas, dan jari-jari lingkaran luar dengan trigonometri.',
+      'Find heights, sides and exact values with sine, cosine, tangent and their reciprocals.',
+      'Cari tinggi, sisi, dan nilai eksak dengan sinus, kosinus, tangen, dan kebalikannya.',
     ),
     requirements: [
       L('Use sine, cosine and tangent of special angles in a right triangle.', 'Memakai sinus, kosinus, dan tangen sudut istimewa pada segitiga siku-siku.'),
-      L('Choose between the sine rule and the cosine rule.', 'Memilih antara aturan sinus dan aturan kosinus.'),
+      L('Use the reciprocal ratios.', 'Memakai perbandingan kebalikan.'),
     ],
     hints: [
       L('SOH-CAH-TOA: choose the ratio with the side you know and the side you want.', 'SOH-CAH-TOA: pilih perbandingan yang memuat sisi yang diketahui dan yang dicari.'),
-      L('Two sides and the angle between them: cosine rule and the area formula.', 'Dua sisi dan sudut apit: aturan kosinus dan rumus luas.'),
-      L('An angle and its opposite side: sine rule, $2R=\\frac{a}{\\sin A}$.', 'Sebuah sudut dan sisi di hadapannya: aturan sinus, $2R=\\frac{a}{\\sin A}$.'),
+      L('Learn the table of $30^{\\circ}$, $45^{\\circ}$ and $60^{\\circ}$.', 'Hafalkan tabel $30^{\\circ}$, $45^{\\circ}$, dan $60^{\\circ}$.'),
+      L('$\\csc$, $\\sec$ and $\\cot$ are $\\frac{1}{\\sin}$, $\\frac{1}{\\cos}$ and $\\frac{1}{\\tan}$.', '$\\csc$, $\\sec$, dan $\\cot$ adalah $\\frac{1}{\\sin}$, $\\frac{1}{\\cos}$, dan $\\frac{1}{\\tan}$.'),
     ],
     xp: 50,
     tasks: [
@@ -377,27 +207,19 @@ export const m8s1: Submodule = {
       },
       {
         prompt: L(
-          'Triangle $ABC$ has $a=5$, $b=8$ and $C=60^{\\circ}$. Find $c$.',
-          'Segitiga $ABC$ memiliki $a=5$, $b=8$, dan $C=60^{\\circ}$. Tentukan $c$.',
+          'Find the value of $\\sin60^{\\circ}\\cos30^{\\circ}+\\cos60^{\\circ}\\sin30^{\\circ}$.',
+          'Tentukan nilai $\\sin60^{\\circ}\\cos30^{\\circ}+\\cos60^{\\circ}\\sin30^{\\circ}$.',
         ),
-        blanks: [{ label: 'c =', answer: 7 }],
-        solution: ['c^2=25+64-2\\cdot5\\cdot8\\cdot\\frac{1}{2}=49', 'c=7'],
+        blanks: [{ answer: 1 }],
+        solution: ['\\frac{\\sqrt{3}}{2}\\cdot\\frac{\\sqrt{3}}{2}+\\frac{1}{2}\\cdot\\frac{1}{2}=\\frac{3}{4}+\\frac{1}{4}', '=1'],
       },
       {
         prompt: L(
-          'Two sides of a triangle are 10 and 12 and the angle between them is $30^{\\circ}$. Find its area.',
-          'Dua sisi sebuah segitiga adalah 10 dan 12 dan sudut di antaranya $30^{\\circ}$. Tentukan luasnya.',
+          'A ramp rises 3 m over a horizontal distance of 4 m. If $\\theta$ is its angle with the ground, what is $\\sin\\theta$? (Type it as a fraction such as 1/2.)',
+          'Sebuah tanjakan naik 3 m pada jarak mendatar 4 m. Jika $\\theta$ adalah sudutnya dengan tanah, berapa $\\sin\\theta$? (Ketik sebagai pecahan seperti 1/2.)',
         ),
-        blanks: [{ answer: 30 }],
-        solution: ['\\frac{1}{2}\\times10\\times12\\times\\sin30^{\\circ}', '=60\\times\\frac{1}{2}=30'],
-      },
-      {
-        prompt: L(
-          'In triangle $ABC$, $a=10$ and $A=30^{\\circ}$. Find the radius $R$ of the circle through $A$, $B$ and $C$.',
-          'Pada segitiga $ABC$, $a=10$ dan $A=30^{\\circ}$. Tentukan jari-jari $R$ lingkaran yang melalui $A$, $B$, dan $C$.',
-        ),
-        blanks: [{ label: 'R =', answer: 10 }],
-        solution: ['2R=\\frac{a}{\\sin A}=\\frac{10}{1/2}=20', 'R=10'],
+        blanks: [{ label: '\\sin\\theta =', answer: 3 / 5 }],
+        solution: { en: ['\\text{length}=\\sqrt{3^2+4^2}=5', '\\sin\\theta=\\frac{3}{5}'], id: ['\\text{panjang}=\\sqrt{3^2+4^2}=5', '\\sin\\theta=\\frac{3}{5}'] },
       },
       {
         prompt: L(

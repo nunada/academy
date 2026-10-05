@@ -67,20 +67,20 @@ export const test2: Lesson = {
         'Ikuti titik-titik dari kiri ke kanan. Apakah naik atau turun?',
       ),
     },
-    /* 3 — logarithms, understanding */
+    /* 3 — exponents, understanding */
     {
       kind: 'quiz',
       id: 'q3',
-      prompt: L('Solve $\\log_2x=5$.', 'Selesaikan $\\log_2x=5$.'),
-      options: [L('$x=32$', '$x=32$'), L('$x=10$', '$x=10$'), L('$x=25$', '$x=25$'), L('$x=\\frac{5}{2}$', '$x=\\frac{5}{2}$')],
+      prompt: L('Solve $4^x=\\frac{1}{8}$.', 'Selesaikan $4^x=\\frac{1}{8}$.'),
+      options: [L('$x=-\\frac{3}{2}$', '$x=-\\frac{3}{2}$'), L('$x=\\frac{3}{2}$', '$x=\\frac{3}{2}$'), L('$x=-2$', '$x=-2$'), L('$x=-\\frac{3}{4}$', '$x=-\\frac{3}{4}$')],
       answer: 0,
       explain: L(
-        '$\\log_2x=5$ means $2^5=x$, so $x=32$. The value 10 multiplies $2\\times5$, 25 is $5^2$ and $\\frac{5}{2}$ divides.',
-        '$\\log_2x=5$ berarti $2^5=x$, jadi $x=32$. Nilai 10 mengalikan $2\\times5$, 25 adalah $5^2$, dan $\\frac{5}{2}$ membagi.',
+        'Write both sides with base 2: $4^x=2^{2x}$ and $\\frac{1}{8}=2^{-3}$. So $2x=-3$ and $x=-\\frac{3}{2}$. The value $\\frac{3}{2}$ forgets the negative sign, and $-\\frac{3}{4}$ forgets that $4=2^2$ doubles the exponent.',
+        'Tulis kedua ruas dengan basis 2: $4^x=2^{2x}$ dan $\\frac{1}{8}=2^{-3}$. Jadi $2x=-3$ dan $x=-\\frac{3}{2}$. Nilai $\\frac{3}{2}$ melupakan tanda negatif, dan $-\\frac{3}{4}$ melupakan bahwa $4=2^2$ menggandakan eksponen.',
       ),
       hint: L(
-        'A logarithm is an exponent: write it as a power of 2.',
-        'Logaritma adalah eksponen: tulis sebagai pangkat dari 2.',
+        'Write 4 and $\\frac{1}{8}$ as powers of 2, then compare the exponents.',
+        'Tulis 4 dan $\\frac{1}{8}$ sebagai pangkat dari 2, lalu bandingkan eksponennya.',
       ),
     },
     /* 4 — geometry, understanding */
