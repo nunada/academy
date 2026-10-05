@@ -38,6 +38,7 @@ const MATH_COURSES = [
   'tka-sd-matematika',
   'tka-smp-matematika',
   'tka-sma-matematika',
+  'tka-sma-matematika-lanjut',
 ]
 const toIdent = (c) => c.replace(/-([a-z])/g, (_, ch) => ch.toUpperCase())
 
