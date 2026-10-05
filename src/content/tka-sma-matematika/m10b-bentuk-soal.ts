@@ -1,5 +1,6 @@
 import type { Submodule } from '../types'
 import { L, barChart, dot, numberLine, plane } from './figs'
+import { lessonSufficiency } from './m10d-kecukupan'
 
 /** Module 10, submodule 2 — the three TKA question formats: one-answer
  *  multiple choice, choose-all-that-apply, and True/False statements, plus a
@@ -31,8 +32,8 @@ export const m10s2: Submodule = {
           id: 'c1',
           title: L('Look Closely: Reading a TKA Question', 'Ayo Amati: Membaca Soal TKA'),
           body: L(
-            'A TKA multiple-choice question has a **stem** (the question and any picture) and **options**. Three of the options are usually **distractors**: answers made from a common mistake.\n\n- Read the stem **twice**, and use every number and label in the picture.\n- Decide what you expect **before** you look at the options.\n- Look at the picture below: a parabola with the labelled points on it. Which equation matches it? Read first: it opens **upward**, and its lowest point (the vertex) is at $x=3$.\n\nThe three question formats of the TKA are: **one correct answer**, **choose all the correct answers** (a "complex" multiple choice) and **a table of True/False statements**. The last two give credit only when every part is right.',
-            'Soal pilihan ganda TKA punya **pokok soal** (pertanyaan dan gambar apa pun) dan **pilihan**. Tiga dari pilihan biasanya adalah **pengecoh**: jawaban yang dibuat dari kesalahan umum.\n\n- Baca pokok soal **dua kali**, dan pakai setiap bilangan dan label pada gambar.\n- Tentukan apa yang kamu harapkan **sebelum** melihat pilihan.\n- Lihat gambar di bawah: parabola dengan titik-titik berlabel di atasnya. Persamaan mana yang cocok? Baca dulu: parabola membuka ke **atas**, dan titik terendahnya (puncak) ada di $x=3$.\n\nTiga bentuk soal TKA adalah: **satu jawaban benar**, **pilih semua jawaban yang benar** (pilihan ganda "kompleks"), dan **tabel pernyataan Benar/Salah**. Dua yang terakhir hanya memberi nilai bila setiap bagian benar.',
+            'A TKA multiple-choice question has a **stem** (the question and any picture) and **options**. Three of the options are usually **distractors**: answers made from a common mistake.\n\n- Read the stem **twice**, and use every number and label in the picture.\n- Decide what you expect **before** you look at the options.\n- Look at the picture below: a parabola with the labelled points on it. Which equation matches it? Read first: it opens **upward**, and its lowest point (the vertex) is at $x=3$.\n\nThe official TKA question forms are: **simple multiple choice** (one correct answer), **complex multiple choice** (choose ALL correct answers, or a table of True/False or Agree/Disagree statements). The complex forms give credit only when every part is right. A question may be **single** or part of a **group** that shares one stimulus (a text, table or picture) with several questions.',
+            'Soal pilihan ganda TKA punya **pokok soal** (pertanyaan dan gambar apa pun) dan **pilihan**. Tiga dari pilihan biasanya adalah **pengecoh**: jawaban yang dibuat dari kesalahan umum.\n\n- Baca pokok soal **dua kali**, dan pakai setiap bilangan dan label pada gambar.\n- Tentukan apa yang kamu harapkan **sebelum** melihat pilihan.\n- Lihat gambar di bawah: parabola dengan titik-titik berlabel di atasnya. Persamaan mana yang cocok? Baca dulu: parabola membuka ke **atas**, dan titik terendahnya (puncak) ada di $x=3$.\n\nBentuk soal TKA yang resmi adalah: **pilihan ganda sederhana** (satu jawaban benar), **pilihan ganda kompleks** (pilih SEMUA jawaban yang benar, atau tabel pernyataan Benar/Salah atau Sesuai/Tidak Sesuai). Bentuk kompleks hanya memberi nilai bila setiap bagian benar. Soal bisa **tunggal** atau bagian dari **grup** yang memakai satu stimulus (teks, tabel, atau gambar) untuk beberapa soal.',
           ),
           figure: {
             ...parabola([dot([1, 0], undefined, 'result'), dot([5, 0], undefined, 'result'), dot([3, -4], undefined, 'b')]),
@@ -403,6 +404,7 @@ export const m10s2: Submodule = {
         },
       ],
     },
+    lessonSufficiency,
   ],
   project: {
     id: 'tka-sma-m10-s2-p',

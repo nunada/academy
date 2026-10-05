@@ -26,7 +26,7 @@ export const test1: Lesson = {
       kind: 'quiz',
       id: 'q1',
       prompt: L('Which of these numbers is irrational?', 'Manakah di antara bilangan berikut yang irasional?'),
-      options: [L('$\\sqrt{12}$', '$\\sqrt{12}$'), L('$\\frac{22}{7}$', '$\\frac{22}{7}$'), L('$3.14$', '$3{,}14$'), L('$\\sqrt{49}$', '$\\sqrt{49}$')],
+      options: [L('$\\sqrt{12}$', '$\\sqrt{12}$'), L('$\\frac{22}{7}$', '$\\frac{22}{7}$'), L('$3.14$', '$3{,}14$'), L('$\\sqrt{49}$', '$\\sqrt{49}$'), L('$\\sqrt{0.25}$', '$\\sqrt{0{,}25}$')],
       answer: 0,
       explain: L(
         '12 is not a perfect square, so $\\sqrt{12}=2\\sqrt{3}$ is irrational. $\\frac{22}{7}$ and $3.14$ are fractions (approximations of $\\pi$, but rational themselves), and $\\sqrt{49}=7$.',
@@ -53,7 +53,7 @@ export const test1: Lesson = {
         ),
         caption: L('A line through (0, 3) and (3, 0).', 'Garis melalui (0, 3) dan (3, 0).'),
       },
-      options: [L('$-1$', '$-1$'), L('$1$', '$1$'), L('$3$', '$3$'), L('$-3$', '$-3$')],
+      options: [L('$-1$', '$-1$'), L('$1$', '$1$'), L('$3$', '$3$'), L('$-3$', '$-3$'), L('$0$', '$0$')],
       answer: 0,
       explain: L(
         'The line goes down as it goes right: $\\frac{0-3}{3-0}=-1$. A line that falls has a negative gradient, which rules out $1$ and $3$. The value $-3$ uses the intercept instead of the rise over the run.',
@@ -69,7 +69,7 @@ export const test1: Lesson = {
       kind: 'quiz',
       id: 'q3',
       prompt: L('Find the value of $\\sin30^{\\circ}+\\cos60^{\\circ}$.', 'Tentukan nilai $\\sin30^{\\circ}+\\cos60^{\\circ}$.'),
-      options: [L('$1$', '$1$'), L('$\\frac{1}{2}$', '$\\frac{1}{2}$'), L('$\\frac{\\sqrt{3}}{2}$', '$\\frac{\\sqrt{3}}{2}$'), L('$\\sqrt{3}$', '$\\sqrt{3}$')],
+      options: [L('$1$', '$1$'), L('$\\frac{1}{2}$', '$\\frac{1}{2}$'), L('$\\frac{\\sqrt{3}}{2}$', '$\\frac{\\sqrt{3}}{2}$'), L('$\\sqrt{3}$', '$\\sqrt{3}$'), L('$2$', '$2$')],
       answer: 0,
       explain: L(
         '$\\sin30^{\\circ}=\\frac{1}{2}$ and $\\cos60^{\\circ}=\\frac{1}{2}$, so the sum is $1$. The value $\\frac{1}{2}$ is only one of the terms, and $\\frac{\\sqrt{3}}{2}$ belongs to $\\sin60^{\\circ}$ and $\\cos30^{\\circ}$.',
@@ -85,7 +85,7 @@ export const test1: Lesson = {
       kind: 'quiz',
       id: 'q4',
       prompt: L('What is the median of the data $3,\\ 9,\\ 4,\\ 12,\\ 7,\\ 5$?', 'Berapa median dari data $3,\\ 9,\\ 4,\\ 12,\\ 7,\\ 5$?'),
-      options: [L('$6$', '$6$'), L('$5$', '$5$'), L('$7$', '$7$'), L('$8$', '$8$')],
+      options: [L('$6$', '$6$'), L('$5$', '$5$'), L('$7$', '$7$'), L('$8$', '$8$'), L('$6.5$', '$6{,}5$')],
       answer: 0,
       explain: L(
         'Sort first: $3,4,5,7,9,12$. There are six values, so the median is the average of the 3rd and 4th: $\\frac{5+7}{2}=6$. The value 8 comes from taking the middle of the unsorted list.',
@@ -187,7 +187,7 @@ export const test1: Lesson = {
         'In an arithmetic sequence $U_2=7$ and $U_6=19$. What is $U_{10}$?',
         'Pada barisan aritmetika, $U_2=7$ dan $U_6=19$. Berapa $U_{10}$?',
       ),
-      options: [L('$31$', '$31$'), L('$28$', '$28$'), L('$34$', '$34$'), L('$25$', '$25$')],
+      options: [L('$31$', '$31$'), L('$28$', '$28$'), L('$34$', '$34$'), L('$25$', '$25$'), L('$37$', '$37$')],
       answer: 0,
       explain: L(
         'From $U_6-U_2=4b=12$, $b=3$. Then $U_{10}=U_6+4b=19+12=31$. The value 28 adds 3 only three times, and 25 adds 6.',
@@ -210,7 +210,7 @@ export const test1: Lesson = {
         ...rightTriangle({ a: 8, b: 6, corners: ['T', 'P', 'O'], sides: { across: '?', up: '6', slant: '10' } }),
         caption: L('The triangle OTP has a right angle at T.', 'Segitiga OTP siku-siku di T.'),
       },
-      options: [L('$8$', '$8$'), L('$4$', '$4$'), L('$16$', '$16$'), L('$\\sqrt{136}$', '$\\sqrt{136}$')],
+      options: [L('$8$', '$8$'), L('$4$', '$4$'), L('$16$', '$16$'), L('$\\sqrt{136}$', '$\\sqrt{136}$'), L('$12$', '$12$')],
       answer: 0,
       explain: L(
         'A tangent is perpendicular to the radius, so $PT^2=OP^2-OT^2=100-36=64$ and $PT=8$. The value $\\sqrt{136}$ adds the squares instead of subtracting.',

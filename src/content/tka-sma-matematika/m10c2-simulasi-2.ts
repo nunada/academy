@@ -26,7 +26,7 @@ export const test2: Lesson = {
       kind: 'quiz',
       id: 'q1',
       prompt: L('Simplify $2^5\\times2^{-3}$.', 'Sederhanakan $2^5\\times2^{-3}$.'),
-      options: [L('$4$', '$4$'), L('$\\frac{1}{4}$', '$\\frac{1}{4}$'), L('$64$', '$64$'), L('$2^{-15}$', '$2^{-15}$')],
+      options: [L('$4$', '$4$'), L('$\\frac{1}{4}$', '$\\frac{1}{4}$'), L('$64$', '$64$'), L('$2^{-15}$', '$2^{-15}$'), L('$8$', '$8$')],
       answer: 0,
       explain: L(
         'Same base: add the exponents, $2^{5+(-3)}=2^2=4$. The value $2^{-15}$ multiplies the exponents instead of adding them, and $\\frac{1}{4}$ has the wrong sign of the exponent.',
@@ -56,7 +56,7 @@ export const test2: Lesson = {
         ),
         caption: L('Six points that rise from left to right.', 'Enam titik yang naik dari kiri ke kanan.'),
       },
-      options: [L('Positive', 'Positif'), L('Negative', 'Negatif'), L('No correlation', 'Tidak ada korelasi'), L('It cannot be told', 'Tidak dapat ditentukan')],
+      options: [L('Positive', 'Positif'), L('Negative', 'Negatif'), L('No correlation', 'Tidak ada korelasi'), L('It cannot be told', 'Tidak dapat ditentukan'), L('Negative for small $x$ and positive for large $x$', 'Negatif untuk $x$ kecil dan positif untuk $x$ besar')],
       answer: 0,
       explain: L(
         'The points go up as $x$ goes up, so the correlation is positive. A negative correlation would go downward.',
@@ -72,7 +72,7 @@ export const test2: Lesson = {
       kind: 'quiz',
       id: 'q3',
       prompt: L('Solve $4^x=\\frac{1}{8}$.', 'Selesaikan $4^x=\\frac{1}{8}$.'),
-      options: [L('$x=-\\frac{3}{2}$', '$x=-\\frac{3}{2}$'), L('$x=\\frac{3}{2}$', '$x=\\frac{3}{2}$'), L('$x=-2$', '$x=-2$'), L('$x=-\\frac{3}{4}$', '$x=-\\frac{3}{4}$')],
+      options: [L('$x=-\\frac{3}{2}$', '$x=-\\frac{3}{2}$'), L('$x=\\frac{3}{2}$', '$x=\\frac{3}{2}$'), L('$x=-2$', '$x=-2$'), L('$x=-\\frac{3}{4}$', '$x=-\\frac{3}{4}$'), L('$x=-3$', '$x=-3$')],
       answer: 0,
       explain: L(
         'Write both sides with base 2: $4^x=2^{2x}$ and $\\frac{1}{8}=2^{-3}$. So $2x=-3$ and $x=-\\frac{3}{2}$. The value $\\frac{3}{2}$ forgets the negative sign, and $-\\frac{3}{4}$ forgets that $4=2^2$ doubles the exponent.',
@@ -100,7 +100,7 @@ export const test2: Lesson = {
         }),
         caption: L('A triangle with angles of 50 and 60 degrees and an angle x at the top.', 'Segitiga dengan sudut 50 dan 60 derajat dan sudut x di puncak.'),
       },
-      options: [L('$70^{\\circ}$', '$70^{\\circ}$'), L('$110^{\\circ}$', '$110^{\\circ}$'), L('$10^{\\circ}$', '$10^{\\circ}$'), L('$130^{\\circ}$', '$130^{\\circ}$')],
+      options: [L('$70^{\\circ}$', '$70^{\\circ}$'), L('$110^{\\circ}$', '$110^{\\circ}$'), L('$10^{\\circ}$', '$10^{\\circ}$'), L('$130^{\\circ}$', '$130^{\\circ}$'), L('$50^{\\circ}$', '$50^{\\circ}$')],
       answer: 0,
       explain: L(
         '$x=180^{\\circ}-50^{\\circ}-60^{\\circ}=70^{\\circ}$. The value $110^{\\circ}$ is the sum of the two known angles, which is the exterior angle at $C$, not $x$.',
@@ -200,7 +200,7 @@ export const test2: Lesson = {
         'The point $(3,-2)$ is reflected in the $y$-axis and then translated by $\\begin{pmatrix}1\\\\4\\end{pmatrix}$. What is the final point?',
         'Titik $(3,-2)$ dicerminkan pada sumbu $y$ lalu digeser dengan $\\begin{pmatrix}1\\\\4\\end{pmatrix}$. Apa titik akhirnya?',
       ),
-      options: [L('$(-2,2)$', '$(-2,2)$'), L('$(4,2)$', '$(4,2)$'), L('$(-4,-6)$', '$(-4,-6)$'), L('$(2,2)$', '$(2,2)$')],
+      options: [L('$(-2,2)$', '$(-2,2)$'), L('$(4,2)$', '$(4,2)$'), L('$(-4,-6)$', '$(-4,-6)$'), L('$(2,2)$', '$(2,2)$'), L('$(2,-6)$', '$(2,-6)$')],
       answer: 0,
       explain: L(
         'The $y$-axis reflection changes the sign of $x$: $(-3,-2)$. Then add $(1,4)$: $(-2,2)$. The point $(4,2)$ translates without reflecting.',
@@ -223,7 +223,7 @@ export const test2: Lesson = {
         ...rightTriangle({ a: 10.39, b: 6, angle: '30°', sides: { up: 'x', slant: '12' } }),
         caption: L('A right triangle with hypotenuse 12 and an angle of 30 degrees.', 'Segitiga siku-siku dengan sisi miring 12 dan sudut 30 derajat.'),
       },
-      options: [L('$6$', '$6$'), L('$6\\sqrt{3}$', '$6\\sqrt{3}$'), L('$12$', '$12$'), L('$24$', '$24$')],
+      options: [L('$6$', '$6$'), L('$6\\sqrt{3}$', '$6\\sqrt{3}$'), L('$12$', '$12$'), L('$24$', '$24$'), L('$3\\sqrt{3}$', '$3\\sqrt{3}$')],
       answer: 0,
       explain: L(
         '$x=12\\sin30^{\\circ}=12\\times\\frac{1}{2}=6$. The value $6\\sqrt{3}$ is the other leg (adjacent to $30^{\\circ}$), and the sides of a right triangle can never be longer than the hypotenuse, which rules out 24.',

@@ -1,5 +1,6 @@
 import type { Submodule } from '../types'
 import { L, cone2d, cylinder2d, prism3d, sphere2d } from './figs'
+import { lessonNets } from './m7c-jaring'
 
 /** Module 7, submodule 2 — volume and surface area of prisms, cylinders,
  *  pyramids, cones and spheres. */
@@ -310,6 +311,7 @@ export const m7s2: Submodule = {
         },
       ],
     },
+    lessonNets,
   ],
   project: {
     id: 'tka-sma-m7-s2-p',
@@ -373,6 +375,14 @@ export const m7s2: Submodule = {
         ),
         blanks: [{ answer: 30, after: '\\text{L}' }],
         solution: { en: ['V_{\\text{cone}}=\\frac{1}{3}V_{\\text{cylinder}}=\\frac{1}{3}\\times90', '=30'], id: ['V_{\\text{kerucut}}=\\frac{1}{3}V_{\\text{tabung}}=\\frac{1}{3}\\times90', '=30'] },
+      },
+      {
+        prompt: L(
+          'The net of a box needs a piece of $8\\times10$ cm. A sheet is $40\\times30$ cm, and the pieces are kept straight. How many sheets are needed for 150 nets?',
+          'Jaring-jaring sebuah kotak memerlukan potongan $8\\times10$ cm. Selembar bahan berukuran $40\\times30$ cm, dan potongan diletakkan lurus. Berapa lembar bahan yang diperlukan untuk 150 jaring-jaring?',
+        ),
+        blanks: [{ answer: 10 }],
+        solution: { en: ['\\frac{40}{8}\\times\\frac{30}{10}=15\\text{ per sheet}', '\\frac{150}{15}=10'], id: ['\\frac{40}{8}\\times\\frac{30}{10}=15\\text{ per lembar}', '\\frac{150}{15}=10'] },
       },
     ],
   },
