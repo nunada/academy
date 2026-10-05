@@ -120,7 +120,7 @@ export function box3d(o: {
     const b = at(e.to)
     items.push({ t: 'text', at: S([(a[0] + b[0]) / 2 + gap, (a[1] + b[1]) / 2 + gap, (a[2] + b[2]) / 2 + gap * 0.4]), text: e.text, color: 'result', size: 'md' })
   }
-  return { dim: 3, axes: false, range, view: [38, 22], items }
+  return { dim: 3, axes: false, range: tidy(range * 1.18), view: [38, 22], items }
 }
 
 /* ------------------------------------------------------ right triangles */

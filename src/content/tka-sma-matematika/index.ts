@@ -4,5 +4,6 @@ import { module1 } from './m1-bilangan-real'
 import { module2 } from './m2-persamaan-linear'
 import { module3 } from './m3-fungsi'
 import { module4 } from './m4-barisan-deret'
+import { module5 } from './m5-objek-geometri'
 
-export const modules: Module[] = plainColours([module1, module2, module3, module4])
+export const modules: Module[] = plainColours([module1, module2, module3, module4, module5])
