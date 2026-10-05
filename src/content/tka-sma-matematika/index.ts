@@ -9,5 +9,6 @@ import { module6 } from './m6-transformasi'
 import { module7 } from './m7-pengukuran'
 import { module8 } from './m8-trigonometri'
 import { module9 } from './m9-data-peluang'
+import { module10 } from './m10-strategi-simulasi'
 
-export const modules: Module[] = plainColours([module1, module2, module3, module4, module5, module6, module7, module8, module9])
+export const modules: Module[] = plainColours([module1, module2, module3, module4, module5, module6, module7, module8, module9, module10])

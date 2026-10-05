@@ -270,8 +270,8 @@ export const COURSES: CourseInfo[] = [
     track: 'math',
     requires: [],
     available: true,
-    lessons: 0,
-    projects: 0,
+    lessons: 42,
+    projects: 21,
   },
   {
     id: 'fundamentals',
