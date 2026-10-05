@@ -299,6 +299,71 @@ export const module2: Module = {
               ),
             },
             {
+              kind: 'fill',
+              id: 'x1',
+              math: true,
+              prompt: L(
+                'Try it together: the number $A=3^3-3^2$ is given as an expression. First work out its value, then factorise it into primes.',
+                'Coba bersama: bilangan $A=3^3-3^2$ diberikan dalam bentuk ekspresi. Hitung dulu nilainya, lalu faktorkan menjadi bilangan prima.',
+              ),
+              template: '3^3-3^2=___-___=___=2\\times3^{___}',
+              blanks: ['27', '9', '18', '2'],
+              explain: L(
+                '$3^3=27$ and $3^2=9$, so $A=27-9=18$, and $18=2\\times9=2\\times3^2$. You cannot subtract the exponents: $3^3-3^2$ is not $3^1$.',
+                '$3^3=27$ dan $3^2=9$, jadi $A=27-9=18$, dan $18=2\\times9=2\\times3^2$. Eksponen tidak boleh dikurangkan: $3^3-3^2$ bukan $3^1$.',
+              ),
+              hint: L(
+                'Work out each power first, then subtract, and only then factorise the result.',
+                'Hitung dulu tiap pangkat, lalu kurangkan, dan baru setelah itu faktorkan hasilnya.',
+              ),
+            },
+            {
+              kind: 'multi',
+              id: 'x2',
+              prompt: L(
+                'Three numbers are $A=3^3-3^2$, $B=6^3-6^2$ and $C=6^3+6^2$. Work out each number and factorise it. Choose the TWO products of prime powers that are common factors of all three numbers.',
+                'Tiga bilangan adalah $A=3^3-3^2$, $B=6^3-6^2$, dan $C=6^3+6^2$. Hitung tiap bilangan dan faktorkan. Pilih DUA hasil kali pangkat bilangan prima yang merupakan faktor persekutuan ketiga bilangan itu.',
+              ),
+              options: [
+                L('$2\\times3^2$', '$2\\times3^2$'),
+                L('$2\\times3$', '$2\\times3$'),
+                L('$2^2\\times3^2$', '$2^2\\times3^2$'),
+                L('$3^2\\times5$', '$3^2\\times5$'),
+              ],
+              answer: [0, 1],
+              explain: L(
+                '$A=27-9=18=2\\times3^2$, $B=216-36=180=2^2\\times3^2\\times5$ and $C=216+36=252=2^2\\times3^2\\times7$. A common factor may use only primes that ALL three numbers have, with at most the LOWEST exponent: that gives $2\\times3^2$ and its factor $2\\times3$. The product $2^2\\times3^2$ needs two 2s, but $A$ has only one, and $3^2\\times5$ needs a 5, which $A$ and $C$ do not have.',
+                '$A=27-9=18=2\\times3^2$, $B=216-36=180=2^2\\times3^2\\times5$, dan $C=216+36=252=2^2\\times3^2\\times7$. Faktor persekutuan hanya boleh memakai bilangan prima yang dimiliki SEMUA bilangan itu, dengan eksponen paling besar sama dengan eksponen TERKECIL: itu memberi $2\\times3^2$ dan faktornya $2\\times3$. Hasil kali $2^2\\times3^2$ memerlukan dua faktor 2, padahal $A$ hanya punya satu, dan $3^2\\times5$ memerlukan faktor 5, yang tidak dimiliki $A$ dan $C$.',
+              ),
+              hint: L(
+                'First work out the three values, then write each as a product of prime powers. A common factor can only use primes that all three numbers have.',
+                'Hitung dulu ketiga nilainya, lalu tulis masing-masing sebagai hasil kali pangkat bilangan prima. Faktor persekutuan hanya boleh memakai bilangan prima yang dimiliki ketiga bilangan itu.',
+              ),
+            },
+            {
+              kind: 'judge',
+              id: 'x3',
+              prompt: L(
+                'Let $P=3^3-3^2$ and $Q=6^3-6^2$. Decide whether each statement is True or False.',
+                'Misalkan $P=3^3-3^2$ dan $Q=6^3-6^2$. Tentukan apakah setiap pernyataan Benar atau Salah.',
+              ),
+              statements: [
+                L('The GCF of $P$ and $Q$ is $2\\times3^2$.', 'FPB dari $P$ dan $Q$ adalah $2\\times3^2$.'),
+                L('$2^2\\times3^2\\times5$ is a common multiple of $P$ and $Q$.', '$2^2\\times3^2\\times5$ adalah kelipatan persekutuan $P$ dan $Q$.'),
+                L('The LCM of $P$ and $Q$ is $2\\times3^2\\times5$.', 'KPK dari $P$ dan $Q$ adalah $2\\times3^2\\times5$.'),
+                L('$2\\times3\\times5$ is a common factor of $P$ and $Q$.', '$2\\times3\\times5$ adalah faktor persekutuan $P$ dan $Q$.'),
+              ],
+              answer: [true, true, false, false],
+              explain: L(
+                '$P=18=2\\times3^2$ and $Q=180=2^2\\times3^2\\times5$. The GCF takes the common primes with the lowest exponents: $2\\times3^2$. The number 180 is a multiple of 18 and of itself, so it is a common multiple, and it is the smallest one, so the LCM is 180, not $2\\times3^2\\times5=90$ (which is not a multiple of 180). The product $2\\times3\\times5$ contains a 5, and $P$ has no 5, so it cannot be a factor of $P$.',
+                '$P=18=2\\times3^2$ dan $Q=180=2^2\\times3^2\\times5$. FPB mengambil bilangan prima yang sama dengan eksponen terkecil: $2\\times3^2$. Bilangan 180 adalah kelipatan 18 dan kelipatan dirinya sendiri, jadi ia kelipatan persekutuan, dan yang terkecil, sehingga KPK-nya 180, bukan $2\\times3^2\\times5=90$ (yang bukan kelipatan 180). Hasil kali $2\\times3\\times5$ memuat faktor 5, padahal $P$ tidak punya faktor 5, jadi bukan faktor $P$.',
+              ),
+              hint: L(
+                'Work out $P$ and $Q$ first and write both as products of primes. GCF: lowest exponents of the common primes. LCM: highest exponents of all primes.',
+                'Hitung dulu $P$ dan $Q$ dan tulis keduanya sebagai hasil kali bilangan prima. FPB: eksponen terkecil dari prima yang sama. KPK: eksponen terbesar dari semua prima.',
+              ),
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: L(
@@ -1039,6 +1104,83 @@ export const module2: Module = {
               ),
             },
             {
+              kind: 'quiz',
+              id: 'y1',
+              prompt: L(
+                '$\\frac{1}{2}$ kg of shallots costs Rp28,000. How much do $3\\frac{1}{4}$ kg of shallots cost?',
+                '$\\frac{1}{2}$ kg bawang merah harganya Rp28.000. Berapa harga $3\\frac{1}{4}$ kg bawang merah?',
+              ),
+              options: [
+                L('Rp182,000', 'Rp182.000'),
+                L('Rp91,000', 'Rp91.000'),
+                L('Rp196,000', 'Rp196.000'),
+                L('Rp168,000', 'Rp168.000'),
+              ],
+              answer: 0,
+              explain: L(
+                'Mass and price are in direct proportion. If $\\frac{1}{2}$ kg costs Rp28,000, then 1 kg costs Rp56,000. Convert $3\\frac{1}{4}=\\frac{13}{4}$ kg, so the price is $\\frac{13}{4}\\times56\\,000=182\\,000$. Rp91,000 multiplies the price of half a kilogram by 3.25 without doubling it first, Rp196,000 reads $3\\frac{1}{4}$ as 3.5, and Rp168,000 forgets the extra $\\frac{1}{4}$ kg.',
+                'Massa dan harga berbanding senilai. Jika $\\frac{1}{2}$ kg harganya Rp28.000, maka 1 kg harganya Rp56.000. Ubah $3\\frac{1}{4}=\\frac{13}{4}$ kg, jadi harganya $\\frac{13}{4}\\times56\\,000=182\\,000$. Rp91.000 mengalikan harga setengah kilogram dengan 3,25 tanpa menggandakannya dulu, Rp196.000 membaca $3\\frac{1}{4}$ sebagai 3,5, dan Rp168.000 melupakan tambahan $\\frac{1}{4}$ kg.',
+              ),
+              hint: L(
+                'Change the mixed number to a fraction or a decimal first. Then find the price of 1 kg, or ask how many times $\\frac{1}{2}$ kg fits into the new mass.',
+                'Ubah dulu bilangan campuran menjadi pecahan atau desimal. Lalu cari harga 1 kg, atau tanyakan berapa kali $\\frac{1}{2}$ kg muat dalam massa yang baru.',
+              ),
+            },
+            {
+              kind: 'math',
+              id: 'y2',
+              prompt: L(
+                '$\\frac{3}{4}$ kg of grapes costs Rp45,000. Citra buys $2\\frac{1}{2}$ kg of the same grapes. How many rupiah does she pay?',
+                '$\\frac{3}{4}$ kg anggur harganya Rp45.000. Citra membeli $2\\frac{1}{2}$ kg anggur yang sama. Berapa rupiah yang ia bayar?',
+              ),
+              blanks: [{ label: '\\text{Rp}', answer: 150000 }],
+              hints: [
+                L(
+                  'Direct proportion: the price of 1 kg is the same everywhere. First change $2\\frac{1}{2}$ to a fraction or a decimal.',
+                  'Perbandingan senilai: harga 1 kg selalu sama. Ubah dulu $2\\frac{1}{2}$ menjadi pecahan atau desimal.',
+                ),
+                L(
+                  'Find the price of 1 kg: divide Rp45,000 by $\\frac{3}{4}$. Then multiply by the number of kilograms Citra buys.',
+                  'Cari harga 1 kg: bagi Rp45.000 dengan $\\frac{3}{4}$. Lalu kalikan dengan banyak kilogram yang Citra beli.',
+                ),
+                L(
+                  '$45\\,000\\div\\frac{3}{4}=45\\,000\\times\\frac{4}{3}$ is the price of 1 kg. Multiply that by $2\\frac{1}{2}=2.5$.',
+                  '$45\\,000\\div\\frac{3}{4}=45\\,000\\times\\frac{4}{3}$ adalah harga 1 kg. Kalikan hasilnya dengan $2\\frac{1}{2}=2{,}5$.',
+                ),
+              ],
+              explain: L(
+                '1 kg costs $45\\,000\\div\\frac{3}{4}=60\\,000$. Then $2\\frac{1}{2}$ kg cost $2.5\\times60\\,000=150\\,000$, so Citra pays Rp150,000.',
+                '1 kg harganya $45\\,000\\div\\frac{3}{4}=60\\,000$. Maka $2\\frac{1}{2}$ kg harganya $2{,}5\\times60\\,000=150\\,000$, jadi Citra membayar Rp150.000.',
+              ),
+              solution: {
+                en: ['2\\frac{1}{2}=2.5', '\\text{price of 1 kg}=45\\,000\\div\\frac{3}{4}=60\\,000', '2.5\\times60\\,000=150\\,000'],
+                id: ['2\\frac{1}{2}=2{,}5', '\\text{harga 1 kg}=45\\,000\\div\\frac{3}{4}=60\\,000', '2{,}5\\times60\\,000=150\\,000'],
+              },
+            },
+            {
+              kind: 'quiz',
+              id: 'y3',
+              prompt: L(
+                'Hasan compares cooking oil in four shops. Shop A: $1\\frac{1}{2}$ L for Rp39,000. Shop B: 2 L for Rp50,000. Shop C: $\\frac{3}{4}$ L for Rp21,000. Shop D: $2\\frac{1}{2}$ L for Rp67,500. Which shop is the best choice if he wants the lowest price per litre?',
+                'Hasan membandingkan minyak goreng di empat toko. Toko A: $1\\frac{1}{2}$ L seharga Rp39.000. Toko B: 2 L seharga Rp50.000. Toko C: $\\frac{3}{4}$ L seharga Rp21.000. Toko D: $2\\frac{1}{2}$ L seharga Rp67.500. Toko mana pilihan terbaik jika ia ingin harga per liter yang paling rendah?',
+              ),
+              options: [
+                L('Shop B', 'Toko B'),
+                L('Shop A', 'Toko A'),
+                L('Shop C', 'Toko C'),
+                L('Shop D', 'Toko D'),
+              ],
+              answer: 0,
+              explain: L(
+                'Compare the price of ONE litre: A is $39\\,000\\div1.5=26\\,000$, B is $50\\,000\\div2=25\\,000$, C is $21\\,000\\div0.75=28\\,000$ and D is $67\\,500\\div2.5=27\\,000$. Shop B is the cheapest per litre. Shop C has the lowest total price, but it is for the smallest amount of oil.',
+                'Bandingkan harga SATU liter: A adalah $39\\,000\\div1{,}5=26\\,000$, B adalah $50\\,000\\div2=25\\,000$, C adalah $21\\,000\\div0{,}75=28\\,000$, dan D adalah $67\\,500\\div2{,}5=27\\,000$. Toko B paling murah per liter. Toko C punya harga total terendah, tetapi untuk minyak yang paling sedikit.',
+              ),
+              hint: L(
+                'Different shops sell different amounts, so the totals cannot be compared. Work out the price of one litre in each shop.',
+                'Setiap toko menjual jumlah yang berbeda, jadi total harganya tidak bisa dibandingkan. Hitung harga satu liter di tiap toko.',
+              ),
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: L(
@@ -1077,11 +1219,11 @@ export const module2: Module = {
         runtime: 'math',
         title: L('Ratio, Scale and Rate', 'Perbandingan, Skala, dan Laju'),
         brief: L(
-          'Work out a speed, read a plan, share money in a ratio and solve a work problem with inverse proportion.',
-          'Hitung sebuah kecepatan, baca sebuah denah, bagi uang menurut perbandingan, dan selesaikan soal pekerjaan dengan perbandingan berbalik nilai.',
+          'Work out a speed, read a plan, compare two paints by what is left over and solve a work problem with inverse proportion.',
+          'Hitung sebuah kecepatan, baca sebuah denah, bandingkan dua cat menurut sisanya, dan selesaikan soal pekerjaan dengan perbandingan berbalik nilai.',
         ),
         requirements: [
-          L('Use ratio, scale and sharing in a ratio with the right units.', 'Memakai perbandingan, skala, dan pembagian menurut perbandingan dengan satuan yang benar.'),
+          L('Use scale, rate and whole packs with the right units, and compare two options.', 'Memakai skala, laju, dan kemasan utuh dengan satuan yang benar, serta membandingkan dua pilihan.'),
           L('Tell direct from inverse proportion and use a rate.', 'Membedakan senilai dari berbalik nilai dan memakai laju.'),
         ],
         hints: [
@@ -1119,14 +1261,19 @@ export const module2: Module = {
           },
           {
             prompt: L(
-              'Citra, Dewi and Eko share Rp360,000 in the ratio 2 : 3 : 5. How many rupiah does Eko get, and how many rupiah more than Citra?',
-              'Citra, Dewi, dan Eko membagi uang Rp360.000 dengan perbandingan 2 : 3 : 5. Berapa rupiah yang diterima Eko, dan berapa rupiah lebih banyak daripada Citra?',
+              'Eko paints a wall of 84 m². Paint X covers 7 m² per kg and is sold only in tins of 5 kg. Paint Y covers 6 m² per kg and is sold only in tins of 4 kg. For each paint he buys the fewest tins that are enough. How many kg of paint are left over with X, and with Y? Then type 1 if X leaves less paint over, or 2 if Y does.',
+              'Eko mengecat dinding seluas 84 m². Cat X menutup 7 m² per kg dan hanya dijual dalam kaleng 5 kg. Cat Y menutup 6 m² per kg dan hanya dijual dalam kaleng 4 kg. Untuk tiap cat ia membeli kaleng paling sedikit yang cukup. Berapa kg cat yang tersisa pada cat X, dan pada cat Y? Lalu ketik 1 jika cat X menyisakan lebih sedikit, atau 2 jika cat Y.',
             ),
+            inline: true,
             blanks: [
-              { label: { en: '\\text{Eko gets } \\text{Rp}', id: '\\text{Eko menerima } \\text{Rp}' }, answer: 180000 },
-              { label: { en: '\\text{more than Citra } \\text{Rp}', id: '\\text{lebih dari Citra } \\text{Rp}' }, answer: 108000 },
+              { label: { en: '\\text{left with X} =', id: '\\text{sisa cat X} =' }, answer: 3, after: '\\text{ kg}' },
+              { label: { en: '\\text{left with Y} =', id: '\\text{sisa cat Y} =' }, answer: 2, after: '\\text{ kg}' },
+              { label: { en: '\\text{less left over: } 1 \\text{ or } 2 =', id: '\\text{sisa lebih sedikit: } 1 \\text{ atau } 2 =' }, answer: 2 },
             ],
-            solution: ['2 + 3 + 5 = 10 \\quad 360\\,000 \\div 10 = 36\\,000', '\\text{Eko: } 5 \\times 36\\,000 = 180\\,000', '\\text{Citra: } 2 \\times 36\\,000 = 72\\,000 \\quad 180\\,000 - 72\\,000 = 108\\,000'],
+            solution: {
+              en: ['\\text{X: } 84 \\div 7 = 12 \\text{ kg needed}, \\quad 12 \\div 5 = 2.4 \\Rightarrow 3 \\text{ tins} = 15 \\text{ kg}', '15 - 12 = 3 \\text{ kg left over}', '\\text{Y: } 84 \\div 6 = 14 \\text{ kg needed}, \\quad 14 \\div 4 = 3.5 \\Rightarrow 4 \\text{ tins} = 16 \\text{ kg}', '16 - 14 = 2 \\text{ kg left over}', '2 < 3 \\Rightarrow \\text{paint Y}'],
+              id: ['\\text{X: } 84 \\div 7 = 12 \\text{ kg dibutuhkan}, \\quad 12 \\div 5 = 2{,}4 \\Rightarrow 3 \\text{ kaleng} = 15 \\text{ kg}', '15 - 12 = 3 \\text{ kg sisa}', '\\text{Y: } 84 \\div 6 = 14 \\text{ kg dibutuhkan}, \\quad 14 \\div 4 = 3{,}5 \\Rightarrow 4 \\text{ kaleng} = 16 \\text{ kg}', '16 - 14 = 2 \\text{ kg sisa}', '2 < 3 \\Rightarrow \\text{cat Y}'],
+            },
           },
           {
             prompt: L(

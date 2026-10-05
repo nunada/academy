@@ -88,6 +88,17 @@ const plane = (x: [number, number], y: [number, number], items: FigItem[]): Figu
 
 const RP: MathBlank['label'] = '\\text{Rp}'
 
+/** The front of a house: a rectangle `w` wide and `h` high with a triangle `roof` high on top. */
+const houseFig = (w: number, h: number, roof: number): Piece => {
+  const mid = w / 2
+  return shape({
+    pts: [[0, 0], [w, 0], [w, h], [mid, h + roof], [0, h]],
+    sides: [`${w} m`, `${h} m`, undefined, undefined, `${h} m`],
+    rights: [0, 1],
+    extra: [line([0, h], [w, h], 'b', { dashed: true }), line([mid, h], [mid, h + roof], 'b', { dashed: true }), txt(mid + 0.7, h + roof / 2, `${roof} m`, 'md', 'muted')],
+  })
+}
+
 /* ---------------------------------------------------------------------------- the module */
 
 export const module8: Module = {
@@ -535,6 +546,15 @@ export const module8: Module = {
               ),
             },
             {
+              kind: 'concept',
+              id: 'c6',
+              title: L('Look Closely: Three Levels of Thinking', 'Ayo Amati: Tiga Tingkat Berpikir'),
+              body: L(
+                `Every TKA question asks for one of three levels of thinking. Knowing the level helps you see what the question wants from you.\n\n| Level | Thinking processes | One-line example |\n| --- | --- | --- |\n| Understanding | **Calculate**, **read information** from a table or graph, **group** things that belong together, **identify** | Work out $\\frac{3}{4} + \\frac{1}{8}$, or find the tallest bar in a bar chart. |\n| Applying | **Model** a story as a mathematical sentence, **apply** a rule, **interpret** a result | Turn "3 pens cost Rp12,000" into $3p = 12\\,000$, or say what a slope of 2 means for a taxi fare. |\n| Reasoning | **Analyse** a problem, **solve** a new kind of problem, **evaluate** other methods, **conclude** from data, **generalise** into a rule | Decide which of two phone plans is cheaper for 20 minutes, or write a rule for the $n$th term of a pattern. |\n\nA level is not the same as hard or easy. A Reasoning question can have small numbers. Ask yourself: am I only calculating, am I turning a story into mathematics, or must I find my own way?`,
+                `Setiap soal TKA meminta salah satu dari tiga tingkat berpikir. Mengenal tingkatnya membantumu melihat apa yang diminta soal.\n\n| Tingkat | Proses berpikir | Contoh satu baris |\n| --- | --- | --- |\n| Memahami | **Menghitung**, **membaca informasi** dari tabel atau grafik, **mengelompokkan** hal yang sejenis, **mengidentifikasi** | Hitung $\\frac{3}{4} + \\frac{1}{8}$, atau temukan batang tertinggi pada diagram batang. |\n| Mengaplikasikan | **Memodelkan** cerita menjadi kalimat matematika, **mengaplikasikan** aturan, **menginterpretasikan** hasil | Ubah "3 pulpen seharga Rp12.000" menjadi $3p = 12\\,000$, atau jelaskan arti gradien 2 pada tarif taksi. |\n| Bernalar | **Menganalisis** masalah, **memecahkan masalah** jenis baru, **mengevaluasi** cara lain, **menyimpulkan** dari data, **melakukan generalisasi** menjadi aturan | Tentukan paket telepon mana yang lebih murah untuk 20 menit, atau tulis aturan suku ke-$n$ suatu pola. |\n\nTingkat tidak sama dengan sulit atau mudah. Soal Bernalar bisa berangka kecil. Tanyakan pada dirimu: apakah aku hanya menghitung, mengubah cerita menjadi matematika, atau harus menemukan caraku sendiri?`,
+              ),
+            },
+            {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
@@ -847,8 +867,8 @@ export const module8: Module = {
               id: 'c1',
               title: L('Look Closely: Reading a TKA Question', 'Ayo Amati: Membaca Soal TKA'),
               body: L(
-                `The TKA uses three kinds of questions. Look at what each one asks you to do.\n\n| Kind | What you do | How it is marked |\n| --- | --- | --- |\n| One answer | Choose the one correct option. | Right or wrong. |\n| Choose all that apply | Choose every correct option. There can be 1, 2 or 3 of them. | All the correct options and none that are wrong, or no points. |\n| True or False | Mark each statement True or False. | Every statement must be right. |\n\nRead like a detective. Circle the question word (how many, which, NOT, only, most), underline the units, and look at the picture, its title and its scale before you read the options.\n\nIn the line chart, the dots are the data and the numbers at the side are the scale. Read the scale, not only how high a dot looks.`,
-                `TKA memakai tiga jenis soal. Lihat apa yang diminta oleh masing-masing.\n\n| Jenis | Yang kamu lakukan | Cara menilainya |\n| --- | --- | --- |\n| Satu jawaban | Pilih satu pilihan yang benar. | Benar atau salah. |\n| Pilih semua yang benar | Pilih setiap pilihan yang benar. Bisa ada 1, 2, atau 3. | Semua pilihan benar terpilih dan tidak ada yang salah, kalau tidak, tidak ada nilai. |\n| Benar atau Salah | Tandai tiap pernyataan Benar atau Salah. | Setiap pernyataan harus tepat. |\n\nBacalah seperti detektif. Lingkari kata tanya (berapa, manakah, BUKAN, hanya, paling), garis bawahi satuannya, dan lihat gambar, judul, serta skalanya sebelum membaca pilihan.\n\nPada diagram garis, titik-titik adalah datanya dan angka di samping adalah skalanya. Baca skalanya, jangan hanya melihat setinggi apa letak titiknya.`,
+                `The TKA uses three kinds of questions. Look at what each one asks you to do.\n\n| Kind | What you do | How it is marked |\n| --- | --- | --- |\n| One answer | Choose the one correct option. | Right or wrong. |\n| Choose all that apply | Choose every correct option. More than one answer is correct, so there are 2 or more of them. | All the correct options and none that are wrong, or no points. |\n| True or False | Mark each statement True or False. | Every statement must be right. |\n\nSome items are **group questions**: several questions share one text, picture or table, so read the shared part carefully once and then answer each question on its own.\n\nRead like a detective. Circle the question word (how many, which, NOT, only, most), underline the units, and look at the picture, its title and its scale before you read the options.\n\nIn the line chart, the dots are the data and the numbers at the side are the scale. Read the scale, not only how high a dot looks.`,
+                `TKA memakai tiga jenis soal. Lihat apa yang diminta oleh masing-masing.\n\n| Jenis | Yang kamu lakukan | Cara menilainya |\n| --- | --- | --- |\n| Satu jawaban | Pilih satu pilihan yang benar. | Benar atau salah. |\n| Pilih semua yang benar | Pilih setiap pilihan yang benar. Jawaban benar lebih dari satu, jadi ada 2 atau lebih. | Semua pilihan benar terpilih dan tidak ada yang salah, kalau tidak, tidak ada nilai. |\n| Benar atau Salah | Tandai tiap pernyataan Benar atau Salah. | Setiap pernyataan harus tepat. |\n\nBeberapa soal adalah **soal kelompok**: beberapa pertanyaan memakai satu teks, gambar, atau tabel yang sama, jadi bacalah bagian bersama itu dengan teliti sekali lalu jawab tiap pertanyaan sendiri-sendiri.\n\nBacalah seperti detektif. Lingkari kata tanya (berapa, manakah, BUKAN, hanya, paling), garis bawahi satuannya, dan lihat gambar, judul, serta skalanya sebelum membaca pilihan.\n\nPada diagram garis, titik-titik adalah datanya dan angka di samping adalah skalanya. Baca skalanya, jangan hanya melihat setinggi apa letak titiknya.`,
               ),
               figure: {
                 ...lineChart({
@@ -894,8 +914,8 @@ export const module8: Module = {
               id: 'c3',
               title: L('Step by Step: Choose All That Apply', 'Contoh Bertahap: Pilih Semua yang Benar'),
               body: L(
-                `Choose all the equations that have $x = 4$ as a solution. The options are $2x + 1 = 9$, $3x - 2 = 10$, $\\frac{x}{2} + 3 = 5$, $5x = 24$ and $x - 7 = 3$.\n\n1. Step 1: read the instruction. "Choose all" means there may be 1, 2 or 3 correct options. You must tick every correct option and no wrong one.\n2. Step 2: choose a method. Put $x = 4$ into the left side of each equation and compare it with the right side.\n3. Step 3: check the options one by one, and write a tick or a cross next to each, as in the table.\n4. Step 4: count the ticks. There are three, so tick exactly those three options.\n\n| Equation | Left side when $x = 4$ | Right side | Is $x = 4$ a solution? |\n| --- | --- | --- | --- |\n| $2x + 1 = 9$ | 9 | 9 | yes |\n| $3x - 2 = 10$ | 10 | 10 | yes |\n| $\\frac{x}{2} + 3 = 5$ | 5 | 5 | yes |\n| $5x = 24$ | 20 | 24 | no |\n| $x - 7 = 3$ | $-3$ | 3 | no |\n\n**Remember:** there is no partial credit. Do not stop at the first correct option. Check every option.`,
-                `Pilih semua persamaan yang mempunyai $x = 4$ sebagai penyelesaian. Pilihannya $2x + 1 = 9$, $3x - 2 = 10$, $\\frac{x}{2} + 3 = 5$, $5x = 24$, dan $x - 7 = 3$.\n\n1. Langkah 1: baca perintahnya. "Pilih semua" berarti mungkin ada 1, 2, atau 3 pilihan yang benar. Kamu harus memilih setiap pilihan yang benar dan tidak ada yang salah.\n2. Langkah 2: pilih cara. Masukkan $x = 4$ ke ruas kiri setiap persamaan dan bandingkan dengan ruas kanan.\n3. Langkah 3: periksa pilihan satu per satu, dan tulis tanda centang atau silang di sebelah masing-masing, seperti pada tabel.\n4. Langkah 4: hitung centangnya. Ada tiga, jadi pilih tepat ketiga pilihan itu.\n\n| Persamaan | Ruas kiri saat $x = 4$ | Ruas kanan | Apakah $x = 4$ penyelesaian? |\n| --- | --- | --- | --- |\n| $2x + 1 = 9$ | 9 | 9 | ya |\n| $3x - 2 = 10$ | 10 | 10 | ya |\n| $\\frac{x}{2} + 3 = 5$ | 5 | 5 | ya |\n| $5x = 24$ | 20 | 24 | tidak |\n| $x - 7 = 3$ | $-3$ | 3 | tidak |\n\n**Ingat:** tidak ada nilai sebagian. Jangan berhenti pada pilihan benar yang pertama. Periksa setiap pilihan.`,
+                `Choose all the equations that have $x = 4$ as a solution. The options are $2x + 1 = 9$, $3x - 2 = 10$, $\\frac{x}{2} + 3 = 5$, $5x = 24$ and $x - 7 = 3$.\n\n1. Step 1: read the instruction. "Choose all" means more than one option is correct (2, 3 or more). You must tick every correct option and no wrong one.\n2. Step 2: choose a method. Put $x = 4$ into the left side of each equation and compare it with the right side.\n3. Step 3: check the options one by one, and write a tick or a cross next to each, as in the table.\n4. Step 4: count the ticks. There are three, so tick exactly those three options.\n\n| Equation | Left side when $x = 4$ | Right side | Is $x = 4$ a solution? |\n| --- | --- | --- | --- |\n| $2x + 1 = 9$ | 9 | 9 | yes |\n| $3x - 2 = 10$ | 10 | 10 | yes |\n| $\\frac{x}{2} + 3 = 5$ | 5 | 5 | yes |\n| $5x = 24$ | 20 | 24 | no |\n| $x - 7 = 3$ | $-3$ | 3 | no |\n\n**Remember:** there is no partial credit. Do not stop at the first correct option. Check every option.`,
+                `Pilih semua persamaan yang mempunyai $x = 4$ sebagai penyelesaian. Pilihannya $2x + 1 = 9$, $3x - 2 = 10$, $\\frac{x}{2} + 3 = 5$, $5x = 24$, dan $x - 7 = 3$.\n\n1. Langkah 1: baca perintahnya. "Pilih semua" berarti jawaban benar lebih dari satu (2, 3, atau lebih). Kamu harus memilih setiap pilihan yang benar dan tidak ada yang salah.\n2. Langkah 2: pilih cara. Masukkan $x = 4$ ke ruas kiri setiap persamaan dan bandingkan dengan ruas kanan.\n3. Langkah 3: periksa pilihan satu per satu, dan tulis tanda centang atau silang di sebelah masing-masing, seperti pada tabel.\n4. Langkah 4: hitung centangnya. Ada tiga, jadi pilih tepat ketiga pilihan itu.\n\n| Persamaan | Ruas kiri saat $x = 4$ | Ruas kanan | Apakah $x = 4$ penyelesaian? |\n| --- | --- | --- | --- |\n| $2x + 1 = 9$ | 9 | 9 | ya |\n| $3x - 2 = 10$ | 10 | 10 | ya |\n| $\\frac{x}{2} + 3 = 5$ | 5 | 5 | ya |\n| $5x = 24$ | 20 | 24 | tidak |\n| $x - 7 = 3$ | $-3$ | 3 | tidak |\n\n**Ingat:** tidak ada nilai sebagian. Jangan berhenti pada pilihan benar yang pertama. Periksa setiap pilihan.`,
               ),
             },
             {
@@ -1066,8 +1086,8 @@ export const module8: Module = {
               ],
               answer: [0, 1],
               explain: L(
-                'The base is a circle: $\\frac{22}{7} \\times 7^2 = 154$ cm². The volume is base times height, $154 \\times 10 = 1\\,540$ cm³. 490 forgets $\\pi$ ($7^2 \\times 10$), and 4,620 is three times too big.',
-                'Alasnya lingkaran: $\\frac{22}{7} \\times 7^2 = 154$ cm². Volumenya luas alas kali tinggi, $154 \\times 10 = 1\\,540$ cm³. 490 lupa $\\pi$ ($7^2 \\times 10$), dan 4.620 tiga kali terlalu besar.',
+                'A cylinder is like a prism with a circle for its base. The base is a circle: $\\frac{22}{7} \\times 7^2 = 154$ cm². The volume is base times height, $154 \\times 10 = 1\\,540$ cm³. 490 forgets $\\pi$ ($7^2 \\times 10$), and 4,620 is three times too big.',
+                'Tabung seperti prisma yang alasnya lingkaran. Alasnya lingkaran: $\\frac{22}{7} \\times 7^2 = 154$ cm². Volumenya luas alas kali tinggi, $154 \\times 10 = 1\\,540$ cm³. 490 lupa $\\pi$ ($7^2 \\times 10$), dan 4.620 tiga kali terlalu besar.',
               ),
               hint: L(
                 'Find the area of the circular base first. Then multiply by the height. Check each statement on its own.',
@@ -1161,14 +1181,14 @@ export const module8: Module = {
               id: 'c3',
               title: L('Step by Step: Planning Your Time', 'Contoh Bertahap: Merencanakan Waktu'),
               body: L(
-                `The TKA has about 30 to 40 items in about 75 minutes. Let us make a time plan for a test with 35 items.\n\n1. Step 1: count. There are 35 items and 75 minutes.\n2. Step 2: keep 5 minutes at the end for checking. $75 - 5 = 70$ minutes to answer.\n3. Step 3: time for each item, $70 \\div 35 = 2$ minutes. So aim for about 2 minutes per item.\n4. Step 4: make a check-point. After 30 minutes you should be at about item 15 ($30 \\div 2$).\n5. Step 5: if one item takes more than about 3 minutes, mark it, skip it and come back later.\n\n**Remember:**\n\n- Round 1: answer the items you can do quickly. The easy items come first, so do not rush them, but do not slow down either.\n- Round 2: go back to the items you skipped, and the reasoning items that need more time.\n- Last minutes: check your answers and make sure no item is empty.`,
-                `TKA terdiri dari sekitar 30 sampai 40 soal dalam sekitar 75 menit. Mari kita buat rencana waktu untuk tes dengan 35 soal.\n\n1. Langkah 1: hitung. Ada 35 soal dan 75 menit.\n2. Langkah 2: sisakan 5 menit di akhir untuk memeriksa. $75 - 5 = 70$ menit untuk menjawab.\n3. Langkah 3: waktu tiap soal, $70 \\div 35 = 2$ menit. Jadi usahakan sekitar 2 menit per soal.\n4. Langkah 4: buat titik periksa. Setelah 30 menit kamu seharusnya sudah di soal nomor 15 ($30 \\div 2$).\n5. Langkah 5: kalau satu soal memakan lebih dari sekitar 3 menit, tandai, lewati, dan kembali lagi nanti.\n\n**Ingat:**\n\n- Putaran 1: jawab soal yang bisa kamu kerjakan dengan cepat. Soal mudah ada di awal, jadi jangan terburu-buru, tetapi jangan juga terlalu lambat.\n- Putaran 2: kembali ke soal yang kamu lewati, dan soal bernalar yang memerlukan waktu lebih lama.\n- Menit terakhir: periksa jawabanmu dan pastikan tidak ada soal yang kosong.`,
+                `The TKA Matematika has 30 items in 75 minutes. Let us make a time plan.\n\n1. Step 1: count. There are 30 items and 75 minutes.\n2. Step 2: keep 5 minutes at the end for checking. $75 - 5 = 70$ minutes to answer.\n3. Step 3: time for each item, $70 \\div 30 = \\frac{7}{3}$ minutes, which is 2 minutes 20 seconds. So aim for about 2 minutes 20 seconds per item.\n4. Step 4: make a check-point. After 35 minutes you should be at about item 15 ($35 \\div \\frac{7}{3} = 15$).\n5. Step 5: if one item takes more than about 4 minutes, mark it, skip it and come back later.\n\n**Remember:**\n\n- Round 1: answer the items you can do quickly. The easy items come first, so do not rush them, but do not slow down either.\n- Round 2: go back to the items you skipped, and the reasoning items that need more time.\n- Last minutes: check your answers and make sure no item is empty.`,
+                `TKA Matematika terdiri dari 30 soal dalam 75 menit. Mari kita buat rencana waktu.\n\n1. Langkah 1: hitung. Ada 30 soal dan 75 menit.\n2. Langkah 2: sisakan 5 menit di akhir untuk memeriksa. $75 - 5 = 70$ menit untuk menjawab.\n3. Langkah 3: waktu tiap soal, $70 \\div 30 = \\frac{7}{3}$ menit, yaitu 2 menit 20 detik. Jadi usahakan sekitar 2 menit 20 detik per soal.\n4. Langkah 4: buat titik periksa. Setelah 35 menit kamu seharusnya sudah di soal nomor 15 ($35 \\div \\frac{7}{3} = 15$).\n5. Langkah 5: kalau satu soal memakan lebih dari sekitar 4 menit, tandai, lewati, dan kembali lagi nanti.\n\n**Ingat:**\n\n- Putaran 1: jawab soal yang bisa kamu kerjakan dengan cepat. Soal mudah ada di awal, jadi jangan terburu-buru, tetapi jangan juga terlalu lambat.\n- Putaran 2: kembali ke soal yang kamu lewati, dan soal bernalar yang memerlukan waktu lebih lama.\n- Menit terakhir: periksa jawabanmu dan pastikan tidak ada soal yang kosong.`,
               ),
               figure: {
-                ...numberLine({ from: 0, to: 75, step: 5, labelEvery: 3, shade: [0, 70], marks: [{ at: 30, color: 'b' }, { at: 70, color: 'result' }] }),
+                ...numberLine({ from: 0, to: 75, step: 5, labelEvery: 3, shade: [0, 70], marks: [{ at: 35, color: 'b' }, { at: 70, color: 'result' }] }),
                 caption: L(
-                  'The 75 minutes. The green part (70 minutes) is for answering. The orange dot at minute 30 is the check-point, and the last 5 minutes are for checking.',
-                  'Waktu 75 menit. Bagian hijau (70 menit) untuk menjawab. Titik oranye di menit ke-30 adalah titik periksa, dan 5 menit terakhir untuk memeriksa.',
+                  'The 75 minutes. The green part (70 minutes) is for answering. The orange dot at minute 35 is the check-point, and the last 5 minutes are for checking.',
+                  'Waktu 75 menit. Bagian hijau (70 menit) untuk menjawab. Titik oranye di menit ke-35 adalah titik periksa, dan 5 menit terakhir untuk memeriksa.',
                 ),
               },
             },
@@ -1185,8 +1205,8 @@ export const module8: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
-                'A test has 40 items in 75 minutes. Dewi keeps 5 minutes at the end for checking. On average, about how long can she spend on each item?',
-                'Sebuah tes terdiri dari 40 soal dalam 75 menit. Dewi menyisakan 5 menit di akhir untuk memeriksa. Rata-rata, kira-kira berapa lama ia bisa memakai waktu untuk tiap soal?',
+                'A test has 30 items in 75 minutes. Dewi keeps 5 minutes at the end for checking. On average, about how long can she spend on each item?',
+                'Sebuah tes terdiri dari 30 soal dalam 75 menit. Dewi menyisakan 5 menit di akhir untuk memeriksa. Rata-rata, kira-kira berapa lama ia bisa memakai waktu untuk tiap soal?',
               ),
               figure: {
                 ...numberLine({ from: 0, to: 75, step: 15, marks: [{ at: 70, color: 'a' }, { at: 75, color: 'result' }] }),
@@ -1196,19 +1216,19 @@ export const module8: Module = {
                 ),
               },
               options: [
-                L('1.75 minutes', '1,75 menit'),
-                L('1.9 minutes', '1,9 menit'),
-                L('3.5 minutes', '3,5 menit'),
-                L('1.5 minutes', '1,5 menit'),
+                L('2 minutes 20 seconds', '2 menit 20 detik'),
+                L('2 minutes 30 seconds', '2 menit 30 detik'),
+                L('2 minutes 40 seconds', '2 menit 40 detik'),
+                L('1 minute 10 seconds', '1 menit 10 detik'),
               ],
               answer: 0,
               explain: L(
-                'She has $75 - 5 = 70$ minutes to answer, and $70 \\div 40 = 1.75$ minutes, which is 1 minute 45 seconds. The answer 1.9 forgets the checking time ($75 \\div 40 = 1.875$), and the others do not come from dividing the answering time by the number of items.',
-                'Ia punya $75 - 5 = 70$ menit untuk menjawab, dan $70 \\div 40 = 1{,}75$ menit, yaitu 1 menit 45 detik. Jawaban 1,9 melupakan waktu memeriksa ($75 \\div 40 = 1{,}875$), dan yang lain tidak berasal dari membagi waktu menjawab dengan banyak soal.',
+                'She has $75 - 5 = 70$ minutes to answer, and $70 \\div 30 = \\frac{7}{3}$ minutes, which is 2 minutes 20 seconds. The answer 2 minutes 30 seconds forgets the checking time ($75 \\div 30 = 2.5$), 2 minutes 40 seconds adds the checking time instead of taking it away ($80 \\div 30$), and the last one does not come from dividing the answering time by the number of items.',
+                'Ia punya $75 - 5 = 70$ menit untuk menjawab, dan $70 \\div 30 = \\frac{7}{3}$ menit, yaitu 2 menit 20 detik. Jawaban 2 menit 30 detik melupakan waktu memeriksa ($75 \\div 30 = 2{,}5$), 2 menit 40 detik menambahkan waktu memeriksa, bukan menguranginya ($80 \\div 30$), dan yang terakhir tidak berasal dari membagi waktu menjawab dengan banyak soal.',
               ),
               hint: L(
-                'First take the checking time away from the 75 minutes. Then share what is left between the 40 items.',
-                'Pertama kurangi 75 menit dengan waktu memeriksa. Lalu bagi sisanya untuk 40 soal.',
+                'First take the checking time away from the 75 minutes. Then share what is left between the 30 items.',
+                'Pertama kurangi 75 menit dengan waktu memeriksa. Lalu bagi sisanya untuk 30 soal.',
               ),
             },
             {
@@ -1216,18 +1236,18 @@ export const module8: Module = {
               id: 'f1',
               math: true,
               prompt: L(
-                'Try it together: a test has 35 items and 75 minutes. Keep 5 minutes for checking. How many minutes can you use for each item?',
-                'Coba bersama: sebuah tes terdiri dari 35 soal dan 75 menit. Sisakan 5 menit untuk memeriksa. Berapa menit yang bisa kamu pakai untuk tiap soal?',
+                'Try it together: a test has 30 items and 75 minutes. You plan 2 minutes for each item. How many minutes does that take, and how many minutes are left for checking and for the hard items?',
+                'Coba bersama: sebuah tes terdiri dari 30 soal dan 75 menit. Kamu merencanakan 2 menit untuk tiap soal. Berapa menit yang dipakai, dan berapa menit yang tersisa untuk memeriksa dan untuk soal sulit?',
               ),
-              template: '75 - 5 = ___ \\qquad 70 \\div 35 = ___',
-              blanks: ['70', '2'],
+              template: '30 \\times 2 = ___ \\qquad 75 - 60 = ___',
+              blanks: ['60', '15'],
               explain: L(
-                'You have $75 - 5 = 70$ minutes to answer, so each item gets $70 \\div 35 = 2$ minutes.',
-                'Kamu punya $75 - 5 = 70$ menit untuk menjawab, jadi tiap soal mendapat $70 \\div 35 = 2$ menit.',
+                'The items take $30 \\times 2 = 60$ minutes, so $75 - 60 = 15$ minutes are left for checking and for the hard items.',
+                'Soal-soal memakan $30 \\times 2 = 60$ menit, jadi tersisa $75 - 60 = 15$ menit untuk memeriksa dan untuk soal sulit.',
               ),
               hint: L(
-                'First take the checking time away from the 75 minutes. Then share what is left between the items.',
-                'Pertama kurangi 75 menit dengan waktu memeriksa. Lalu bagi sisanya untuk semua soal.',
+                'Multiply the number of items by the minutes for each item. Then take that time away from the 75 minutes.',
+                'Kalikan banyak soal dengan menit untuk tiap soal. Lalu kurangi 75 menit dengan waktu itu.',
               ),
             },
             {
@@ -1236,8 +1256,8 @@ export const module8: Module = {
               prompt: L('Decide whether each statement is True or False.', 'Tentukan tiap pernyataan Benar atau Salah.'),
               statements: [
                 L(
-                  'If an item takes more than about 3 minutes, it is a good idea to mark it, skip it and come back later.',
-                  'Kalau satu soal memakan lebih dari sekitar 3 menit, sebaiknya tandai, lewati, dan kembali lagi nanti.',
+                  'If an item takes more than about 4 minutes, it is a good idea to mark it, skip it and come back later.',
+                  'Kalau satu soal memakan lebih dari sekitar 4 menit, sebaiknya tandai, lewati, dan kembali lagi nanti.',
                 ),
                 L(
                   'In a True/False table, if the first two statements are True, the third must be False.',
@@ -1383,8 +1403,8 @@ export const module8: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'A test has 36 items and lasts 75 minutes. Citra spends 1.5 minutes on each of the first 24 items and keeps 3 minutes at the end for checking. If she spends the same time on each of the last 12 items, how many minutes can she spend on each one?',
-                'Sebuah tes terdiri dari 36 soal dan berlangsung 75 menit. Citra memakai 1,5 menit untuk tiap dari 24 soal pertama dan menyisakan 3 menit di akhir untuk memeriksa. Jika ia memakai waktu yang sama untuk tiap dari 12 soal terakhir, berapa menit yang bisa ia pakai untuk tiap soal?',
+                'A test has 30 items and lasts 75 minutes. Citra spends 2 minutes on each of the first 20 items and keeps 5 minutes at the end for checking. If she spends the same time on each of the last 10 items, how many minutes can she spend on each one?',
+                'Sebuah tes terdiri dari 30 soal dan berlangsung 75 menit. Citra memakai 2 menit untuk tiap dari 20 soal pertama dan menyisakan 5 menit di akhir untuk memeriksa. Jika ia memakai waktu yang sama untuk tiap dari 10 soal terakhir, berapa menit yang bisa ia pakai untuk tiap soal?',
               ),
               blanks: [{ answer: 3, after: { en: '\\text{ minutes}', id: '\\text{ menit}' } }],
               hints: [
@@ -1393,21 +1413,21 @@ export const module8: Module = {
                   'Garis bawahi yang ditanyakan. Berapa waktu yang sudah terpakai, dan berapa yang disisakan untuk memeriksa?',
                 ),
                 L(
-                  'Find the time for the first 24 items. Then take that time and the checking time away from 75 minutes.',
-                  'Cari waktu untuk 24 soal pertama. Lalu kurangi 75 menit dengan waktu itu dan waktu memeriksa.',
+                  'Find the time for the first 20 items. Then take that time and the checking time away from 75 minutes.',
+                  'Cari waktu untuk 20 soal pertama. Lalu kurangi 75 menit dengan waktu itu dan waktu memeriksa.',
                 ),
                 L(
-                  'The first 24 items take $24 \\times 1.5$ minutes. Subtract it and the 3 minutes from 75, then divide what is left by 12.',
-                  '24 soal pertama memakan $24 \\times 1{,}5$ menit. Kurangkan dari 75 bersama 3 menit, lalu bagi sisanya dengan 12.',
+                  'The first 20 items take $20 \\times 2$ minutes. Subtract it and the 5 minutes from 75, then divide what is left by 10.',
+                  '20 soal pertama memakan $20 \\times 2$ menit. Kurangkan dari 75 bersama 5 menit, lalu bagi sisanya dengan 10.',
                 ),
               ],
               explain: L(
-                'The first 24 items take $24 \\times 1.5 = 36$ minutes. Left for the last items: $75 - 36 - 3 = 36$ minutes. So each of the 12 items gets $36 \\div 12 = 3$ minutes.',
-                '24 soal pertama memakan $24 \\times 1{,}5 = 36$ menit. Tersisa untuk soal-soal terakhir: $75 - 36 - 3 = 36$ menit. Jadi tiap dari 12 soal mendapat $36 \\div 12 = 3$ menit.',
+                'The first 20 items take $20 \\times 2 = 40$ minutes. Left for the last items: $75 - 40 - 5 = 30$ minutes. So each of the 10 items gets $30 \\div 10 = 3$ minutes.',
+                '20 soal pertama memakan $20 \\times 2 = 40$ menit. Tersisa untuk soal-soal terakhir: $75 - 40 - 5 = 30$ menit. Jadi tiap dari 10 soal mendapat $30 \\div 10 = 3$ menit.',
               ),
               solution: {
-                en: ['24 \\times 1.5 = 36 \\text{ min}', '75 - 36 - 3 = 36 \\text{ min}', '36 \\div 12 = 3 \\text{ min}'],
-                id: ['24 \\times 1{,}5 = 36 \\text{ menit}', '75 - 36 - 3 = 36 \\text{ menit}', '36 \\div 12 = 3 \\text{ menit}'],
+                en: ['20 \\times 2 = 40 \\text{ min}', '75 - 40 - 5 = 30 \\text{ min}', '30 \\div 10 = 3 \\text{ min}'],
+                id: ['20 \\times 2 = 40 \\text{ menit}', '75 - 40 - 5 = 30 \\text{ menit}', '30 \\div 10 = 3 \\text{ menit}'],
               },
             },
           ],
@@ -1545,8 +1565,8 @@ export const module8: Module = {
               id: 'c1',
               title: L('Look Closely: How Practice Test 1 Works', 'Ayo Amati: Cara Kerja Simulasi TKA SMP 1'),
               body: L(
-                `This practice test has 13 questions, like a small TKA. Plan about 2 minutes for each question, which is about 26 minutes in all. Use a timer if you can.\n\n- The questions go from easy to hard, and the last two need the most reasoning.\n- You will meet one-answer questions, choose-all questions, True/False statements and typed answers.\n- Choose-all and True/False questions need every part right, with no partial credit.\n\nA hint appears when an answer is wrong, and an explanation appears when it is right. Use the four steps, check your answers and stay calm. Good luck!`,
-                `Simulasi ini terdiri dari 13 soal, seperti TKA kecil. Rencanakan sekitar 2 menit untuk tiap soal, jadi sekitar 26 menit seluruhnya. Pakai pengatur waktu kalau bisa.\n\n- Soal-soal berjalan dari mudah ke sulit, dan dua soal terakhir paling memerlukan penalaran.\n- Kamu akan bertemu soal satu jawaban, soal pilih semua, pernyataan Benar/Salah, dan jawaban ketikan.\n- Soal pilih semua dan Benar/Salah memerlukan setiap bagian benar, tanpa nilai sebagian.\n\nPetunjuk muncul kalau jawabanmu salah, dan penjelasan muncul kalau benar. Pakai empat langkah, periksa jawabanmu, dan tetap tenang. Semoga berhasil!`,
+                `This practice test has 13 questions, like a small TKA. The real test gives 75 minutes for 30 questions, so plan about 2.5 minutes for each question, which is about 32 minutes in all. Use a timer if you can.\n\n- The questions go from easy to hard, and the last two need the most reasoning.\n- You will meet one-answer questions, choose-all questions, True/False statements and typed answers.\n- Choose-all and True/False questions need every part right, with no partial credit.\n\nA hint appears when an answer is wrong, and an explanation appears when it is right. Use the four steps, check your answers and stay calm. Good luck!`,
+                `Simulasi ini terdiri dari 13 soal, seperti TKA kecil. TKA sebenarnya memberi 75 menit untuk 30 soal, jadi rencanakan sekitar 2,5 menit untuk tiap soal, yaitu sekitar 32 menit seluruhnya. Pakai pengatur waktu kalau bisa.\n\n- Soal-soal berjalan dari mudah ke sulit, dan dua soal terakhir paling memerlukan penalaran.\n- Kamu akan bertemu soal satu jawaban, soal pilih semua, pernyataan Benar/Salah, dan jawaban ketikan.\n- Soal pilih semua dan Benar/Salah memerlukan setiap bagian benar, tanpa nilai sebagian.\n\nPetunjuk muncul kalau jawabanmu salah, dan penjelasan muncul kalau benar. Pakai empat langkah, periksa jawabanmu, dan tetap tenang. Semoga berhasil!`,
               ),
             },
             /* 1 — numbers, Memahami */
@@ -1973,8 +1993,8 @@ export const module8: Module = {
               id: 'c1',
               title: L('Look Closely: How Practice Test 2 Works', 'Ayo Amati: Cara Kerja Simulasi TKA SMP 2'),
               body: L(
-                `This second practice test also has 13 questions, with new situations and new numbers. Plan about 2 minutes for each question, about 26 minutes in all, and keep an eye on your check-points.\n\n- The questions go from easy to hard, and the last two are the hardest.\n- If a question takes more than about 3 minutes, mark it, skip it and come back later.\n- Choose-all and True/False questions need every part right, and the statements may all be True or all be False.\n\nA hint appears when an answer is wrong, and an explanation appears when it is right. Read each question twice, circle words like NOT and only, and check your answers. Good luck!`,
-                `Simulasi kedua ini juga terdiri dari 13 soal, dengan situasi dan bilangan yang baru. Rencanakan sekitar 2 menit untuk tiap soal, jadi sekitar 26 menit seluruhnya, dan perhatikan titik-titik periksamu.\n\n- Soal-soal berjalan dari mudah ke sulit, dan dua soal terakhir paling sulit.\n- Kalau satu soal memakan lebih dari sekitar 3 menit, tandai, lewati, dan kembali lagi nanti.\n- Soal pilih semua dan Benar/Salah memerlukan setiap bagian benar, dan pernyataannya bisa semuanya Benar atau semuanya Salah.\n\nPetunjuk muncul kalau jawabanmu salah, dan penjelasan muncul kalau benar. Baca setiap soal dua kali, lingkari kata seperti BUKAN dan hanya, dan periksa jawabanmu. Semoga berhasil!`,
+                `This second practice test also has 13 questions, with new situations and new numbers. Plan about 2.5 minutes for each question, about 32 minutes in all (the real test has 30 questions in 75 minutes), and keep an eye on your check-points.\n\n- The questions go from easy to hard, and the last two are the hardest.\n- If a question takes more than about 4 minutes, mark it, skip it and come back later.\n- Choose-all and True/False questions need every part right, and the statements may all be True or all be False.\n\nA hint appears when an answer is wrong, and an explanation appears when it is right. Read each question twice, circle words like NOT and only, and check your answers. Good luck!`,
+                `Simulasi kedua ini juga terdiri dari 13 soal, dengan situasi dan bilangan yang baru. Rencanakan sekitar 2,5 menit untuk tiap soal, jadi sekitar 32 menit seluruhnya (TKA sebenarnya terdiri dari 30 soal dalam 75 menit), dan perhatikan titik-titik periksamu.\n\n- Soal-soal berjalan dari mudah ke sulit, dan dua soal terakhir paling sulit.\n- Kalau satu soal memakan lebih dari sekitar 4 menit, tandai, lewati, dan kembali lagi nanti.\n- Soal pilih semua dan Benar/Salah memerlukan setiap bagian benar, dan pernyataannya bisa semuanya Benar atau semuanya Salah.\n\nPetunjuk muncul kalau jawabanmu salah, dan penjelasan muncul kalau benar. Baca setiap soal dua kali, lingkari kata seperti BUKAN dan hanya, dan periksa jawabanmu. Semoga berhasil!`,
               ),
             },
             /* 1 — numbers, Memahami */
@@ -2521,6 +2541,336 @@ export const module8: Module = {
           ),
         ],
         xp: 50,
+      },
+    },
+
+    /* ======================================================================== S4: official-style practice */
+    {
+      id: 'tka-smp-m8-s4',
+      title: L('Practice in the Style of the Official Framework', 'Contoh Soal ala Kerangka Asesmen'),
+      summary: L(
+        'Six questions in the same forms and levels as the official TKA sample questions, with new numbers and stories, and a project of typed answers.',
+        'Enam soal dengan bentuk dan tingkat yang sama seperti contoh soal resmi TKA, dengan bilangan dan cerita baru, serta proyek dengan jawaban ketikan.',
+      ),
+      lessons: [
+        {
+          id: 'tka-smp-m8-s4-l1',
+          title: L('Official-Style Questions', 'Soal Bergaya Resmi'),
+          goal: L(
+            'You can answer questions that look like the official TKA samples: choose-all, one answer and True/False, at the Applying and Reasoning levels.',
+            'Kamu bisa menjawab soal yang mirip contoh resmi TKA: pilih semua yang benar, satu jawaban, dan Benar/Salah, pada tingkat Mengaplikasikan dan Bernalar.',
+          ),
+          xp: 20,
+          steps: [
+            {
+              kind: 'concept',
+              id: 'c1',
+              title: L('Look Closely: Six Questions Like the Real Ones', 'Ayo Amati: Enam Soal Seperti Aslinya'),
+              body: L(
+                `The official TKA framework shows sample questions for every level. These six follow the same pattern: the same question forms and the same levels, but with new numbers and new stories. Try them like a mini-test.\n\n| Question | Form | Level | Skill |\n| --- | --- | --- | --- |\n| 1 | Choose all that apply | Reasoning | Prime powers as common factors |\n| 2 | One answer | Applying | Direct proportion with a mixed number |\n| 3 | True/False per statement | Applying | Two equations with unknown coefficients |\n| 4 | True/False per statement | Applying | Angles from two pairs of parallel lines |\n| 5 | One answer | Reasoning | Combined area and choosing the best option |\n| 6 | One answer | Applying | A mean that must reach a target |\n\nHow to work:\n\n- In a choose-all question, more than one answer is correct. Check every option.\n- In a True/False question, judge every statement on its own.\n- Use the four steps, and write a small sketch or a short calculation for each question.`,
+                `Kerangka asesmen TKA resmi menampilkan contoh soal untuk setiap tingkat. Keenam soal ini mengikuti pola yang sama: bentuk soal dan tingkatnya sama, tetapi dengan bilangan dan cerita baru. Kerjakan seperti tes kecil.\n\n| Soal | Bentuk | Tingkat | Kemampuan |\n| --- | --- | --- | --- |\n| 1 | Pilih semua yang benar | Bernalar | Perpangkatan prima sebagai faktor persekutuan |\n| 2 | Satu jawaban | Mengaplikasikan | Perbandingan senilai dengan bilangan campuran |\n| 3 | Benar/Salah tiap pernyataan | Mengaplikasikan | Dua persamaan dengan koefisien yang belum diketahui |\n| 4 | Benar/Salah tiap pernyataan | Mengaplikasikan | Sudut dari dua pasang garis sejajar |\n| 5 | Satu jawaban | Bernalar | Luas gabungan dan memilih pilihan terbaik |\n| 6 | Satu jawaban | Mengaplikasikan | Rata-rata yang harus mencapai target |\n\nCara mengerjakan:\n\n- Pada soal pilih semua yang benar, jawaban benar lebih dari satu. Periksa setiap pilihan.\n- Pada soal Benar/Salah, nilai setiap pernyataan satu per satu.\n- Pakai empat langkah, dan buat sketsa kecil atau perhitungan singkat untuk setiap soal.`,
+              ),
+            },
+            {
+              kind: 'concept',
+              id: 'c2',
+              title: L('Step by Step: Combined Area and Leftovers', 'Contoh Bertahap: Luas Gabungan dan Sisa'),
+              body: L(
+                `To choose the best option, work out one option completely and then repeat the same steps for the others. Here is the method on a small wall.\n\nThe front of a shed is a rectangle 6 m wide and 3 m high with a triangle 2 m high on top. Paint covers $6\\text{ m}^2$ per kg and is sold only in 5 kg tins. How much paint is left over?\n\n1. Step 1: split the shape. The rectangle is $6 \\times 3 = 18\\text{ m}^2$ and the triangle is $\\frac{1}{2} \\times 6 \\times 2 = 6\\text{ m}^2$. The total is $18 + 6 = 24\\text{ m}^2$.\n2. Step 2: the paint needed is $24 \\div 6 = 4$ kg.\n3. Step 3: round up to whole tins. 4 kg needs 1 tin of 5 kg.\n4. Step 4: the leftover is $5 - 4 = 1$ kg.\n\n**Remember:**\n\n- Split a combined shape into a rectangle and a triangle.\n- Paint needed = area $\\div$ coverage, then round UP to whole tins.\n- To compare options, do the same steps for every option.`,
+                `Untuk memilih pilihan terbaik, hitung satu pilihan sampai selesai lalu ulangi langkah yang sama untuk pilihan lain. Ini caranya pada sebuah dinding kecil.\n\nBagian depan sebuah gudang berbentuk persegi panjang lebar 6 m dan tinggi 3 m dengan segitiga setinggi 2 m di atasnya. Cat mencakup $6\\text{ m}^2$ per kg dan hanya dijual dalam kaleng 5 kg. Berapa cat yang tersisa?\n\n1. Langkah 1: pecah bangunnya. Persegi panjang $6 \\times 3 = 18\\text{ m}^2$ dan segitiga $\\frac{1}{2} \\times 6 \\times 2 = 6\\text{ m}^2$. Jumlahnya $18 + 6 = 24\\text{ m}^2$.\n2. Langkah 2: cat yang diperlukan $24 \\div 6 = 4$ kg.\n3. Langkah 3: bulatkan ke atas menjadi kaleng utuh. 4 kg memerlukan 1 kaleng 5 kg.\n4. Langkah 4: sisanya $5 - 4 = 1$ kg.\n\n**Ingat:**\n\n- Pecah bangun gabungan menjadi persegi panjang dan segitiga.\n- Cat yang diperlukan = luas $\\div$ daya cakup, lalu bulatkan ke ATAS menjadi kaleng utuh.\n- Untuk membandingkan pilihan, lakukan langkah yang sama untuk setiap pilihan.`,
+              ),
+              figure: {
+                ...houseFig(6, 3, 2),
+                caption: L('The front of the shed, with lengths in metres.', 'Bagian depan gudang, dengan panjang dalam meter.'),
+              },
+            },
+            /* 1 — choose all, Reasoning */
+            {
+              kind: 'multi',
+              id: 'mc1',
+              prompt: L(
+                'Three numbers are written as expressions: $3^5 - 3^4$, $6^3 + 6^2$ and $15^2 + 9 \\times 15$. Which products of prime powers are common factors of all three numbers? Choose the correct answers. More than one answer is correct.',
+                'Tiga bilangan ditulis sebagai ekspresi: $3^5 - 3^4$, $6^3 + 6^2$, dan $15^2 + 9 \\times 15$. Hasil kali perpangkatan prima manakah yang merupakan faktor persekutuan dari ketiga bilangan itu? Pilihlah jawaban yang benar. Jawaban benar lebih dari satu.',
+              ),
+              options: [
+                L('$2 \\times 3^2$', '$2 \\times 3^2$'),
+                L('$3^2$', '$3^2$'),
+                L('$2^2 \\times 3^2$', '$2^2 \\times 3^2$'),
+                L('$3^3$', '$3^3$'),
+              ],
+              answer: [0, 1],
+              explain: L(
+                'First work out the numbers: $3^5 - 3^4 = 162 = 2 \\times 3^4$, $6^3 + 6^2 = 252 = 2^2 \\times 3^2 \\times 7$ and $15^2 + 9 \\times 15 = 360 = 2^3 \\times 3^2 \\times 5$. A common factor can use each prime only as many times as the smallest count: one 2 and two 3s. So $2 \\times 3^2$ and $3^2$ work, but $2^2 \\times 3^2$ needs two 2s (162 has only one) and $3^3$ needs three 3s (252 has only two).',
+                'Hitung dulu bilangannya: $3^5 - 3^4 = 162 = 2 \\times 3^4$, $6^3 + 6^2 = 252 = 2^2 \\times 3^2 \\times 7$, dan $15^2 + 9 \\times 15 = 360 = 2^3 \\times 3^2 \\times 5$. Faktor persekutuan boleh memakai tiap bilangan prima paling banyak sebanyak yang terkecil: satu 2 dan dua 3. Jadi $2 \\times 3^2$ dan $3^2$ memenuhi, tetapi $2^2 \\times 3^2$ memerlukan dua 2 (162 hanya punya satu) dan $3^3$ memerlukan tiga 3 (252 hanya punya dua).',
+              ),
+              hint: L(
+                'Calculate each expression, then write it as a product of primes. For every prime, find the smallest number of times it appears in the three numbers.',
+                'Hitung setiap ekspresi, lalu tulis sebagai hasil kali bilangan prima. Untuk setiap bilangan prima, cari berapa kali paling sedikit ia muncul pada ketiga bilangan.',
+              ),
+            },
+            /* 2 — one answer, Applying */
+            {
+              kind: 'quiz',
+              id: 'q1',
+              prompt: L(
+                'At the market, $\\frac{3}{4}$ kg of shrimp costs Rp63,000. How much do $2\\frac{1}{3}$ kg of the same shrimp cost?',
+                'Di pasar, $\\frac{3}{4}$ kg udang harganya Rp63.000. Berapa harga $2\\frac{1}{3}$ kg udang yang sama?',
+              ),
+              options: [
+                L('Rp196,000', 'Rp196.000'),
+                L('Rp147,000', 'Rp147.000'),
+                L('Rp168,000', 'Rp168.000'),
+                L('Rp252,000', 'Rp252.000'),
+              ],
+              answer: 0,
+              explain: L(
+                'The price is in direct proportion to the mass. One kilogram costs $63\\,000 \\div \\frac{3}{4} = 84\\,000$, so $2\\frac{1}{3}$ kg cost $84\\,000 \\times \\frac{7}{3} = 196\\,000$. The answer Rp147,000 multiplies the price of $\\frac{3}{4}$ kg by $\\frac{7}{3}$, Rp168,000 forgets the extra $\\frac{1}{3}$ kg, and Rp252,000 uses 3 kg.',
+                'Harga berbanding senilai dengan massa. Satu kilogram harganya $63\\,000 \\div \\frac{3}{4} = 84\\,000$, jadi $2\\frac{1}{3}$ kg harganya $84\\,000 \\times \\frac{7}{3} = 196\\,000$. Jawaban Rp147.000 mengalikan harga $\\frac{3}{4}$ kg dengan $\\frac{7}{3}$, Rp168.000 melupakan tambahan $\\frac{1}{3}$ kg, dan Rp252.000 memakai 3 kg.',
+              ),
+              hint: L(
+                'Find the price of 1 kg first. Dividing by a fraction is the same as multiplying by its flip. Write $2\\frac{1}{3}$ as an improper fraction before you multiply.',
+                'Cari dulu harga 1 kg. Membagi dengan pecahan sama dengan mengalikan dengan kebalikannya. Tulis $2\\frac{1}{3}$ sebagai pecahan tidak murni sebelum mengalikan.',
+              ),
+            },
+            /* 3 — True/False, Applying */
+            {
+              kind: 'judge',
+              id: 'j1',
+              prompt: L(
+                'The system of equations $ax + y = 17$ and $3x - by = 24$ has the solution $(x, y) = (4, -3)$. Decide whether each statement is True or False.',
+                'Sistem persamaan $ax + y = 17$ dan $3x - by = 24$ mempunyai penyelesaian $(x, y) = (4, -3)$. Tentukan apakah setiap pernyataan Benar atau Salah.',
+              ),
+              statements: [
+                L('$a$ is a prime number.', '$a$ adalah bilangan prima.'),
+                L('$b$ is an odd number.', '$b$ adalah bilangan ganjil.'),
+                L('$a \\times b = 24$.', '$a \\times b = 24$.'),
+              ],
+              answer: [true, false, false],
+              explain: L(
+                'Put $x = 4$ and $y = -3$ in. The first equation gives $4a - 3 = 17$, so $a = 5$, which is prime. The second gives $12 + 3b = 24$, so $b = 4$, which is even. Then $a \\times b = 20$, not 24.',
+                'Masukkan $x = 4$ dan $y = -3$. Persamaan pertama memberi $4a - 3 = 17$, jadi $a = 5$, yang prima. Persamaan kedua memberi $12 + 3b = 24$, jadi $b = 4$, yang genap. Maka $a \\times b = 20$, bukan 24.',
+              ),
+              hint: L(
+                'Replace $x$ and $y$ by their values in each equation. Each equation then has only one unknown left.',
+                'Gantikan $x$ dan $y$ dengan nilainya pada setiap persamaan. Setiap persamaan kemudian hanya punya satu bilangan yang belum diketahui.',
+              ),
+            },
+            /* 4 — True/False, Applying */
+            {
+              kind: 'judge',
+              id: 'j2',
+              prompt: L(
+                'In the picture, $L_1 \\parallel L_2$ and $L_3 \\parallel L_4$. Decide whether each statement is True or False.',
+                'Pada gambar, $L_1 \\parallel L_2$ dan $L_3 \\parallel L_4$. Tentukan apakah setiap pernyataan Benar atau Salah.',
+              ),
+              figure: {
+                ...(() => {
+                  const th = (50 * Math.PI) / 180
+                  const u: [number, number] = [Math.cos(th), Math.sin(th)]
+                  const H = 2.4
+                  const p1: [number, number] = [0, 0]
+                  const p2: [number, number] = [3.5, 0]
+                  const p3: [number, number] = [H / Math.tan(th), H]
+                  const p4: [number, number] = [3.5 + H / Math.tan(th), H]
+                  const add = (p: [number, number], v: [number, number], k: number): [number, number] => [p[0] + k * v[0], p[1] + k * v[1]]
+                  return {
+                    dim: 2 as const,
+                    axes: false as const,
+                    ...fit([[-1.2, -0.9], [8.6, 3.4]], 0.2),
+                    items: [
+                      line([-1.2, 0], [7.2, 0], 'a', { width: 2.4 }),
+                      line([0.8, H], [8, H], 'a', { width: 2.4 }),
+                      line(add(p1, u, -0.9), add(p3, u, 0.9), 'b', { width: 2.4 }),
+                      line(add(p2, u, -0.9), add(p4, u, 0.9), 'b', { width: 2.4 }),
+                      txt(7.7, -0.35, 'L1', 'md', 'muted'),
+                      txt(8.3, H - 0.35, 'L2', 'md', 'muted'),
+                      txt(2.95, 3.4, 'L3', 'md', 'muted'),
+                      txt(6.45, 3.4, 'L4', 'md', 'muted'),
+                      { t: 'angle', at: p1, from: [1, 0], to: add(p1, u, 1), label: '50°' },
+                      { t: 'angle', at: p2, from: [4.5, 0], to: add(p2, u, 1), label: 'a' },
+                      { t: 'angle', at: p3, from: [p3[0] - 1, H], to: add(p3, u, 1), label: 'b' },
+                      { t: 'angle', at: p4, from: [p4[0] + 1, H], to: add(p4, u, -1), label: 'c' },
+                    ] as FigItem[],
+                  }
+                })(),
+                caption: L(
+                  'Two pairs of parallel lines. One angle is 50 degrees, and the angles a, b and c are marked.',
+                  'Dua pasang garis sejajar. Satu sudut besarnya 50 derajat, dan sudut a, b, dan c ditandai.',
+                ),
+              },
+              statements: [
+                L('Angle $a$ is $130^\\circ$.', 'Sudut $a$ besarnya $130^\\circ$.'),
+                L('Angle $b$ is $130^\\circ$.', 'Sudut $b$ besarnya $130^\\circ$.'),
+                L('Angles $a$ and $c$ add up to $180^\\circ$.', 'Sudut $a$ dan $c$ jumlahnya $180^\\circ$.'),
+              ],
+              answer: [false, true, true],
+              explain: L(
+                'Angle $a$ corresponds to the $50^\\circ$ angle, because $L_3 \\parallel L_4$ and $L_1$ cuts both, so $a = 50^\\circ$. Angle $b$ sits next to a $50^\\circ$ angle on the straight line $L_2$ (corresponding angles between $L_1$ and $L_2$), so $b = 180^\\circ - 50^\\circ = 130^\\circ$. Angle $c$ corresponds to $b$, because $L_3 \\parallel L_4$ and $L_2$ cuts both, so $c = 130^\\circ$ too and $a + c = 50^\\circ + 130^\\circ = 180^\\circ$.',
+                'Sudut $a$ sehadap dengan sudut $50^\\circ$, karena $L_3 \\parallel L_4$ dan $L_1$ memotong keduanya, jadi $a = 50^\\circ$. Sudut $b$ berpelurus dengan sudut $50^\\circ$ pada garis lurus $L_2$ (sudut sehadap antara $L_1$ dan $L_2$), jadi $b = 180^\\circ - 50^\\circ = 130^\\circ$. Sudut $c$ sehadap dengan $b$, karena $L_3 \\parallel L_4$ dan $L_2$ memotong keduanya, jadi $c = 130^\\circ$ juga dan $a + c = 50^\\circ + 130^\\circ = 180^\\circ$.',
+              ),
+              hint: L(
+                'Take one pair of parallel lines at a time and find which angle matches (is equal to) the $50^\\circ$ angle. Angles on a straight line add up to $180^\\circ$.',
+                'Ambil satu pasang garis sejajar pada satu waktu dan cari sudut mana yang sama besar dengan sudut $50^\\circ$. Sudut-sudut pada garis lurus jumlahnya $180^\\circ$.',
+              ),
+            },
+            /* 5 — one answer, Reasoning */
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: L(
+                'The front of a house is a rectangle 9 m wide and 4 m high with a triangle on top that is 3 m high. All of it is painted once. Sun covers 9 m² per kg and is sold in 2.5 kg tins. Sea covers 11 m² per kg in 2 kg tins. Sky covers 12 m² per kg in 5 kg tins. Moon covers 15 m² per kg in 1.5 kg tins. Only whole tins can be bought. Which brand leaves the least paint over?',
+                'Bagian depan sebuah rumah berbentuk persegi panjang lebar 9 m dan tinggi 4 m dengan segitiga di atasnya setinggi 3 m. Seluruhnya dicat satu kali. Sun mencakup 9 m² per kg dan dijual dalam kaleng 2,5 kg. Sea mencakup 11 m² per kg dalam kaleng 2 kg. Sky mencakup 12 m² per kg dalam kaleng 5 kg. Moon mencakup 15 m² per kg dalam kaleng 1,5 kg. Hanya kaleng utuh yang bisa dibeli. Merek mana yang menyisakan cat paling sedikit?',
+              ),
+              figure: {
+                ...houseFig(9, 4, 3),
+                caption: L('The front of the house, with lengths in metres.', 'Bagian depan rumah, dengan panjang dalam meter.'),
+              },
+              options: [
+                L('Sky', 'Sky'),
+                L('Moon', 'Moon'),
+                L('Sea', 'Sea'),
+                L('Sun', 'Sun'),
+              ],
+              answer: 0,
+              explain: L(
+                'The area is $9 \\times 4 + \\frac{1}{2} \\times 9 \\times 3 = 36 + 13.5 = 49.5\\text{ m}^2$. Sun needs 5.5 kg, so 3 tins (7.5 kg) and 2 kg is left. Sea needs 4.5 kg, so 3 tins (6 kg) and 1.5 kg is left. Sky needs 4.125 kg, so 1 tin (5 kg) and 0.875 kg is left. Moon needs 3.3 kg, so 3 tins (4.5 kg) and 1.2 kg is left. Sky leaves the least, even though Moon covers the most per kg.',
+                'Luasnya $9 \\times 4 + \\frac{1}{2} \\times 9 \\times 3 = 36 + 13{,}5 = 49{,}5\\text{ m}^2$. Sun memerlukan 5,5 kg, jadi 3 kaleng (7,5 kg) dan tersisa 2 kg. Sea memerlukan 4,5 kg, jadi 3 kaleng (6 kg) dan tersisa 1,5 kg. Sky memerlukan 4,125 kg, jadi 1 kaleng (5 kg) dan tersisa 0,875 kg. Moon memerlukan 3,3 kg, jadi 3 kaleng (4,5 kg) dan tersisa 1,2 kg. Sky menyisakan paling sedikit, walaupun Moon mencakup paling luas per kg.',
+              ),
+              hint: L(
+                'Find the area first: a rectangle plus a triangle. Then, for each brand, divide the area by the coverage to get the paint needed, round up to whole tins, and compare what is left.',
+                'Cari dulu luasnya: persegi panjang ditambah segitiga. Lalu untuk setiap merek, bagi luas dengan daya cakup untuk mendapat cat yang diperlukan, bulatkan ke atas menjadi kaleng utuh, dan bandingkan sisanya.',
+              ),
+            },
+            /* 6 — one answer, Applying */
+            {
+              kind: 'quiz',
+              id: 'q3',
+              prompt: L(
+                'A box holds 8 mangoes, and the mean mass of the mangoes in the box must be 200 g. A small mango has a mass of 150 g, a medium one 200 g and a large one 250 g. The box already holds 2 large, 3 medium and 1 small mango. Which two mangoes should be added to the box?',
+                'Sebuah kotak berisi 8 mangga, dan massa rata-rata mangga di dalam kotak harus 200 g. Satu mangga kecil bermassa 150 g, mangga sedang 200 g, dan mangga besar 250 g. Kotak itu sudah berisi 2 mangga besar, 3 sedang, dan 1 kecil. Dua mangga apa yang harus ditambahkan ke kotak?',
+              ),
+              options: [
+                L('One small and one medium', 'Satu kecil dan satu sedang'),
+                L('Two small', 'Dua kecil'),
+                L('Two medium', 'Dua sedang'),
+                L('One large and one small', 'Satu besar dan satu kecil'),
+              ],
+              answer: 0,
+              explain: L(
+                'A mean of 200 g for 8 mangoes means a total of $8 \\times 200 = 1\\,600$ g. The box has $2 \\times 250 + 3 \\times 200 + 150 = 1\\,250$ g, so the two new mangoes must weigh $1\\,600 - 1\\,250 = 350$ g, and $150 + 200 = 350$. Two small ones give only 300 g, and two medium ones or a large and a small one give 400 g, which is too much.',
+                'Rata-rata 200 g untuk 8 mangga berarti jumlahnya $8 \\times 200 = 1\\,600$ g. Kotak berisi $2 \\times 250 + 3 \\times 200 + 150 = 1\\,250$ g, jadi dua mangga baru harus bermassa $1\\,600 - 1\\,250 = 350$ g, dan $150 + 200 = 350$. Dua mangga kecil hanya 300 g, dan dua sedang atau satu besar dan satu kecil menghasilkan 400 g, yang terlalu banyak.',
+              ),
+              hint: L(
+                'Use mean = total ÷ number. First find the total mass the box must have, then the mass already inside, and see what is missing.',
+                'Pakai rata-rata = jumlah ÷ banyak. Cari dulu jumlah massa yang harus dimiliki kotak, lalu massa yang sudah ada di dalamnya, dan lihat apa yang kurang.',
+              ),
+            },
+            {
+              kind: 'math',
+              id: 'm1',
+              prompt: L(
+                'Four test scores are 72, 85, 90 and 77. What score on the fifth test makes the mean of all five scores exactly 82?',
+                'Empat nilai ulangan adalah 72, 85, 90, dan 77. Berapa nilai ulangan kelima agar rata-rata kelima nilai tepat 82?',
+              ),
+              blanks: [{ answer: 86 }],
+              hints: [
+                L(
+                  'The mean is the total divided by the number of scores. What total do five scores need for a mean of 82?',
+                  'Rata-rata adalah jumlah dibagi banyak nilai. Berapa jumlah yang diperlukan lima nilai agar rata-ratanya 82?',
+                ),
+                L(
+                  'Find the total that the five scores need, then add up the four scores you already have.',
+                  'Cari jumlah yang diperlukan kelima nilai, lalu jumlahkan keempat nilai yang sudah ada.',
+                ),
+                L(
+                  'Five scores with mean 82 have a total of $5 \\times 82$. Subtract the sum of the four known scores from it.',
+                  'Lima nilai dengan rata-rata 82 berjumlah $5 \\times 82$. Kurangkan jumlah keempat nilai yang diketahui darinya.',
+                ),
+              ],
+              explain: L(
+                'The five scores must total $5 \\times 82 = 410$. The four scores total $72 + 85 + 90 + 77 = 324$, so the fifth score is $410 - 324 = 86$.',
+                'Kelima nilai harus berjumlah $5 \\times 82 = 410$. Keempat nilai berjumlah $72 + 85 + 90 + 77 = 324$, jadi nilai kelima adalah $410 - 324 = 86$.',
+              ),
+              solution: ['72 + 85 + 90 + 77 = 324', '5 \\times 82 = 410', '410 - 324 = 86'],
+            },
+          ],
+        },
+      ],
+      project: {
+        id: 'tka-smp-m8-s4-p',
+        runtime: 'math',
+        title: L('Project: Official-Style Typed Answers', 'Proyek: Jawaban Ketikan Bergaya Resmi'),
+        brief: L(
+          'Four typed-answer tasks of the same kinds as the official samples: common factors, proportion, a system of equations and a combined area with paint.',
+          'Empat soal jawaban ketikan dengan jenis yang sama seperti contoh resmi: faktor persekutuan, perbandingan, sistem persamaan, dan luas gabungan dengan cat.',
+        ),
+        requirements: [
+          L('Use prime factors, proportion and equations on new numbers.', 'Memakai faktor prima, perbandingan, dan persamaan pada bilangan baru.'),
+          L('Break a combined shape into simple parts and check the leftover.', 'Memecah bangun gabungan menjadi bagian sederhana dan memeriksa sisanya.'),
+        ],
+        hints: [
+          L('Write every number in a simple form first: a product of primes, a price for 1 unit, or the value of each unknown.', 'Tulis dulu setiap bilangan dalam bentuk sederhana: hasil kali bilangan prima, harga untuk 1 satuan, atau nilai tiap bilangan yang belum diketahui.'),
+          L('For the combined area, split the shape into a rectangle and a triangle and add their areas.', 'Untuk luas gabungan, pecah bangun menjadi persegi panjang dan segitiga lalu jumlahkan luasnya.'),
+          L('With paint, divide the area by the coverage, then round up to whole cans before you find what is left.', 'Pada soal cat, bagi luas dengan daya cakup, lalu bulatkan ke atas menjadi kaleng utuh sebelum mencari sisanya.'),
+        ],
+        xp: 50,
+        tasks: [
+          {
+            prompt: L(
+              'Find the greatest common factor of $4^3 - 4^2$ and $6^3 + 6^2$.',
+              'Tentukan faktor persekutuan terbesar dari $4^3 - 4^2$ dan $6^3 + 6^2$.',
+            ),
+            blanks: [{ answer: 12 }],
+            solution: {
+              en: ['4^3 - 4^2 = 64 - 16 = 48 = 2^4 \\times 3', '6^3 + 6^2 = 216 + 36 = 252 = 2^2 \\times 3^2 \\times 7', '\\text{GCF} = 2^2 \\times 3 = 12'],
+              id: ['4^3 - 4^2 = 64 - 16 = 48 = 2^4 \\times 3', '6^3 + 6^2 = 216 + 36 = 252 = 2^2 \\times 3^2 \\times 7', '\\text{FPB} = 2^2 \\times 3 = 12'],
+            },
+          },
+          {
+            prompt: L(
+              'A can of $\\frac{3}{5}$ litre of paint covers $12\\text{ m}^2$ of a wall. How many square metres can $2\\frac{1}{4}$ litres cover?',
+              'Satu kaleng cat $\\frac{3}{5}$ liter dapat menutupi $12\\text{ m}^2$ dinding. Berapa meter persegi yang dapat ditutupi oleh $2\\frac{1}{4}$ liter?',
+            ),
+            blanks: [{ answer: 45, after: '\\text{ m}^2' }],
+            solution: {
+              en: ['\\text{per litre} = 12 \\div \\frac{3}{5} = 20', '2\\frac{1}{4} = \\frac{9}{4}', '20 \\times \\frac{9}{4} = 45'],
+              id: ['\\text{per liter} = 12 \\div \\frac{3}{5} = 20', '2\\frac{1}{4} = \\frac{9}{4}', '20 \\times \\frac{9}{4} = 45'],
+            },
+          },
+          {
+            prompt: L(
+              'The system $px + 2y = 5$ and $3x - qy = 13$ has the solution $(x, y) = (3, -2)$. Find $p$ and $q$.',
+              'Sistem $px + 2y = 5$ dan $3x - qy = 13$ mempunyai penyelesaian $(x, y) = (3, -2)$. Tentukan $p$ dan $q$.',
+            ),
+            blanks: [
+              { label: 'p =', answer: 3 },
+              { label: 'q =', answer: 2 },
+            ],
+            solution: [
+              '3p + 2(-2) = 5 \\Rightarrow 3p = 9 \\Rightarrow p = 3',
+              '3 \\times 3 - q(-2) = 13 \\Rightarrow 9 + 2q = 13',
+              '2q = 4 \\Rightarrow q = 2',
+            ],
+          },
+          {
+            prompt: L(
+              'The end wall of a barn is a rectangle 8 m wide and 3 m high with a triangle on top that is 2 m high. Paint covers $8\\text{ m}^2$ per litre, and it is sold only in cans of 3 litres. The whole wall is painted once. Find the area of the wall, and how many litres of paint are left over.',
+              'Dinding ujung sebuah lumbung berbentuk persegi panjang lebar 8 m dan tinggi 3 m dengan segitiga di atasnya setinggi 2 m. Cat mencakup $8\\text{ m}^2$ per liter, dan hanya dijual dalam kaleng 3 liter. Seluruh dinding dicat satu kali. Tentukan luas dinding, dan berapa liter cat yang tersisa.',
+            ),
+            figure: {
+              ...houseFig(8, 3, 2),
+              caption: L('The end wall of the barn, with lengths in metres.', 'Dinding ujung lumbung, dengan panjang dalam meter.'),
+            },
+            blanks: [
+              { label: { en: '\\text{area} =', id: '\\text{luas} =' }, answer: 32, after: '\\text{ m}^2' },
+              { label: { en: '\\text{left over} =', id: '\\text{sisa} =' }, answer: 2, after: { en: '\\text{ litres}', id: '\\text{ liter}' } },
+            ],
+            solution: {
+              en: ['A = 8 \\times 3 + \\frac{1}{2} \\times 8 \\times 2 = 24 + 8 = 32', '32 \\div 8 = 4 \\text{ litres needed}', '\\text{2 cans} = 6 \\text{ litres},\\quad 6 - 4 = 2 \\text{ litres left}'],
+              id: ['A = 8 \\times 3 + \\frac{1}{2} \\times 8 \\times 2 = 24 + 8 = 32', '32 \\div 8 = 4 \\text{ liter diperlukan}', '\\text{2 kaleng} = 6 \\text{ liter},\\quad 6 - 4 = 2 \\text{ liter sisa}'],
+            },
+          },
+        ],
       },
     },
   ],

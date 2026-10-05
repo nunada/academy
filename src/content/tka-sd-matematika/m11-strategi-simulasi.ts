@@ -1,6 +1,6 @@
 import type { Loc, MathBlank, Module } from '../types'
 import type { FigColor, FigItem } from '../../lib/figure'
-import type { Piece } from './figs'
+import type { Piece, Pt } from './figs'
 import { barChart, clockFace, cubeStack3d, cuboid3d, fractionBars, fit, line, numberLine, outline, pictogram, rectPts, shape, solid, txt } from './figs'
 
 /** Module 11 — strategies for word problems, the three TKA question formats,
@@ -57,6 +57,34 @@ function sticks(n: number): Piece {
   return { dim: 2, axes: false, ...fit([[0, 0], [n, 1]], 0.7), items }
 }
 
+/** A die seen from one corner: the top, left and right faces show, with their dots. */
+function dieView(top: number, left: number, right: number): Piece {
+  const s = 1.732
+  const UL: Pt = [-s, 1]
+  const T: Pt = [0, 2]
+  const UR: Pt = [s, 1]
+  const C: Pt = [0, 0]
+  const LL: Pt = [-s, -1]
+  const B: Pt = [0, -2]
+  const spots: Record<number, Pt[]> = {
+    1: [[0.5, 0.5]],
+    2: [[0.25, 0.25], [0.75, 0.75]],
+    3: [[0.2, 0.2], [0.5, 0.5], [0.8, 0.8]],
+    4: [[0.25, 0.25], [0.75, 0.25], [0.25, 0.75], [0.75, 0.75]],
+    5: [[0.25, 0.25], [0.75, 0.25], [0.5, 0.5], [0.25, 0.75], [0.75, 0.75]],
+    6: [[0.25, 0.2], [0.25, 0.5], [0.25, 0.8], [0.75, 0.2], [0.75, 0.5], [0.75, 0.8]],
+  }
+  const items: FigItem[] = []
+  const face = (o: Pt, u: Pt, v: Pt, n: number) => {
+    items.push(outline([o, [o[0] + u[0], o[1] + u[1]], [o[0] + u[0] + v[0], o[1] + u[1] + v[1]], [o[0] + v[0], o[1] + v[1]]], 'muted'))
+    for (const [a, b] of spots[n]) items.push({ t: 'dot', x: o[0] + a * u[0] + b * v[0], y: o[1] + a * u[1] + b * v[1], color: 'a' })
+  }
+  face(UL, [T[0] - UL[0], T[1] - UL[1]], [C[0] - UL[0], C[1] - UL[1]], top)
+  face(UL, [C[0] - UL[0], C[1] - UL[1]], [LL[0] - UL[0], LL[1] - UL[1]], left)
+  face(C, [UR[0] - C[0], UR[1] - C[1]], [B[0] - C[0], B[1] - C[1]], right)
+  return { dim: 2, axes: false, ...fit([[-s, -2], [s, 2]], 0.4), items }
+}
+
 /** Tick labels in eighths: 0, 1/8, 2/8, ... 1. */
 const eighths = (v: number): string => {
   const n = Math.round(v * 8)
@@ -78,8 +106,8 @@ export const module11: Module = {
   id: 'tka-m11',
   title: L('Strategy and Practice Tests', 'Strategi dan Simulasi TKA'),
   summary: L(
-    'Learn a plan for every word problem, get to know the three TKA question formats, manage your time, and then try two full practice tests and a final try-out.',
-    'Pelajari rencana untuk setiap soal cerita, kenali tiga bentuk soal TKA, atur waktumu, lalu coba dua simulasi lengkap dan satu try-out akhir.',
+    'Learn a plan for every word problem, get to know the three TKA question formats, manage your time, and then try two practice tests, a final try-out and questions in the style of the official framework.',
+    'Pelajari rencana untuk setiap soal cerita, kenali tiga bentuk soal TKA, atur waktumu, lalu coba dua simulasi, satu try-out akhir, dan soal bergaya kerangka asesmen resmi.',
   ),
   submodules: [
     /* ======================================================================== S1: strategies */
@@ -465,6 +493,15 @@ export const module11: Module = {
               ),
             },
             {
+              kind: 'concept',
+              id: 'c5',
+              title: L('Look Closely: The Three Levels of Questions', 'Ayo Amati: Tiga Tingkat Soal'),
+              body: L(
+                `The TKA asks for three kinds of thinking, from easier to harder. When you know which one a question wants, you know what to do.\n\n| Level | What you do | Example |\n| --- | --- | --- |\n| Understand | Calculate, read a table or a chart, sort into groups, recognise | How many books did Ani read? Read her bar. |\n| Apply | Turn a story into a math sentence, use a formula, explain what an answer means | 3 notebooks at Rp4,000 and a pen at Rp2,500: write the sum and say what it tells you. |\n| Reason | Connect several ideas, choose the best strategy, draw a conclusion | Which shop is cheaper? Which statement does the chart really support? |\n\nA test mixes all three levels, so practise all of them. Before you start, ask yourself: do I only read and calculate, do I turn a story into a math sentence, or do I have to think it through?`,
+                `TKA meminta tiga macam berpikir, dari yang lebih mudah sampai yang lebih sulit. Kalau kamu tahu soal itu meminta yang mana, kamu tahu apa yang harus dilakukan.\n\n| Tingkat | Yang kamu lakukan | Contoh |\n| --- | --- | --- |\n| Memahami | Menghitung, membaca tabel atau diagram, mengelompokkan, mengenali | Berapa buku yang dibaca Ani? Baca batang miliknya. |\n| Mengaplikasikan | Mengubah cerita menjadi kalimat matematika, memakai rumus, menjelaskan makna sebuah jawaban | 3 buku tulis seharga Rp4.000 dan sebuah pulpen Rp2.500: tulis jumlahnya dan jelaskan artinya. |\n| Bernalar | Menghubungkan beberapa konsep, memilih strategi terbaik, menarik kesimpulan | Toko mana yang lebih murah? Pernyataan mana yang benar-benar didukung diagram? |\n\nSebuah tes mencampur ketiga tingkat itu, jadi latihlah semuanya. Sebelum mulai, tanyakan pada dirimu: apakah aku hanya membaca dan menghitung, mengubah cerita menjadi kalimat matematika, atau harus memikirkannya sampai tuntas?`,
+              ),
+            },
+            {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
@@ -750,8 +787,8 @@ export const module11: Module = {
               id: 'c1',
               title: L('Look Closely: Reading a TKA Question', 'Ayo Amati: Membaca Soal TKA'),
               body: L(
-                `The TKA uses three kinds of questions. Look at what each one asks you to do.\n\n| Kind | What you do | How it is marked |\n| --- | --- | --- |\n| One answer | Choose the one correct option. | Right or wrong. |\n| Choose all that apply | Choose every correct option. There can be 1, 2 or 3 of them. | All the correct options and none that are wrong, or no points. |\n| True or False | Mark each statement True or False. | Every statement must be right. |\n\nRead like a detective. Circle the question word (how many, which, NOT, only, most), underline the units, and look at the picture, its title and its scale before you read the options.\n\nIn the chart, the bars are the data and the numbers at the side are the scale. Read the scale, not only how tall a bar looks.`,
-                `TKA memakai tiga jenis soal. Lihat apa yang diminta oleh masing-masing.\n\n| Jenis | Yang kamu lakukan | Cara menilainya |\n| --- | --- | --- |\n| Satu jawaban | Pilih satu pilihan yang benar. | Benar atau salah. |\n| Pilih semua yang benar | Pilih setiap pilihan yang benar. Bisa ada 1, 2, atau 3. | Semua pilihan benar terpilih dan tidak ada yang salah, kalau tidak, tidak ada nilai. |\n| Benar atau Salah | Tandai tiap pernyataan Benar atau Salah. | Setiap pernyataan harus tepat. |\n\nBacalah seperti detektif. Lingkari kata tanya (berapa, manakah, BUKAN, hanya, paling), garis bawahi satuannya, dan lihat gambar, judul, serta skalanya sebelum membaca pilihan.\n\nPada diagram, batang adalah datanya dan angka di samping adalah skalanya. Baca skalanya, jangan hanya melihat setinggi apa batangnya.`,
+                `The TKA uses three kinds of questions. Look at what each one asks you to do.\n\n| Kind | What you do | How it is marked |\n| --- | --- | --- |\n| One answer | Choose the one correct option. | Right or wrong. |\n| Choose all that apply | Choose every correct option. More than one answer is correct. | All the correct options and none that are wrong, or no points. |\n| True or False | Mark each statement True or False. | Every statement must be right. |\n\nIn a choose-all question the test says: "Choose the correct answers! More than one answer is correct." Some questions also come in a group: several questions about one shared picture or table. Read the shared picture once, carefully, and use it for every question in the group.\n\nRead like a detective. Circle the question word (how many, which, NOT, only, most), underline the units, and look at the picture, its title and its scale before you read the options.\n\nIn the chart, the bars are the data and the numbers at the side are the scale. Read the scale, not only how tall a bar looks.`,
+                `TKA memakai tiga jenis soal. Lihat apa yang diminta oleh masing-masing.\n\n| Jenis | Yang kamu lakukan | Cara menilainya |\n| --- | --- | --- |\n| Satu jawaban | Pilih satu pilihan yang benar. | Benar atau salah. |\n| Pilih semua yang benar | Pilih setiap pilihan yang benar. Jawaban benar lebih dari satu. | Semua pilihan benar terpilih dan tidak ada yang salah, kalau tidak, tidak ada nilai. |\n| Benar atau Salah | Tandai tiap pernyataan Benar atau Salah. | Setiap pernyataan harus tepat. |\n\nPada soal pilih semua, tes menuliskan: "Pilihlah jawaban yang benar! Jawaban benar lebih dari satu." Ada juga soal yang datang berkelompok: beberapa soal tentang satu gambar atau satu tabel yang sama. Baca gambar bersama itu satu kali dengan teliti, lalu pakai untuk setiap soal dalam kelompok itu.\n\nBacalah seperti detektif. Lingkari kata tanya (berapa, manakah, BUKAN, hanya, paling), garis bawahi satuannya, dan lihat gambar, judul, serta skalanya sebelum membaca pilihan.\n\nPada diagram, batang adalah datanya dan angka di samping adalah skalanya. Baca skalanya, jangan hanya melihat setinggi apa batangnya.`,
               ),
               figure: {
                 ...barChart({
@@ -792,8 +829,8 @@ export const module11: Module = {
               id: 'c3',
               title: L('Step by Step: Choose All That Apply', 'Contoh Bertahap: Pilih Semua yang Benar'),
               body: L(
-                `Choose all the lengths that are equal to 2.5 m. The options are 250 cm, 25 cm, 25 dm, 0.25 km and 2,500 mm.\n\n1. Step 1: read the instruction. "Choose all" means there may be 1, 2 or 3 correct options. You must tick every correct option and no wrong one.\n2. Step 2: choose one unit to compare in. Let us use centimetres, $2.5\\text{ m} = 250\\text{ cm}$.\n3. Step 3: check the options one by one, and write a tick or a cross next to each, as in the table.\n4. Step 4: count the ticks. There are three, so tick exactly those three options.\n\n| Option | In centimetres | Equal to 2.5 m? |\n| --- | --- | --- |\n| 250 cm | 250 cm | yes |\n| 25 cm | 25 cm | no |\n| 25 dm | 250 cm | yes |\n| 0.25 km | 25,000 cm | no |\n| 2,500 mm | 250 cm | yes |\n\n**Remember:** there is no partial credit. Do not stop at the first correct option. Check every option.`,
-                `Pilih semua panjang yang sama dengan 2,5 m. Pilihannya 250 cm, 25 cm, 25 dm, 0,25 km, dan 2.500 mm.\n\n1. Langkah 1: baca perintahnya. "Pilih semua" berarti mungkin ada 1, 2, atau 3 pilihan yang benar. Kamu harus memilih setiap pilihan yang benar dan tidak ada yang salah.\n2. Langkah 2: pilih satu satuan untuk membandingkan. Mari pakai sentimeter, $2{,}5\\text{ m} = 250\\text{ cm}$.\n3. Langkah 3: periksa pilihan satu per satu, dan tulis tanda centang atau silang di sebelah masing-masing, seperti pada tabel.\n4. Langkah 4: hitung centangnya. Ada tiga, jadi pilih tepat ketiga pilihan itu.\n\n| Pilihan | Dalam sentimeter | Sama dengan 2,5 m? |\n| --- | --- | --- |\n| 250 cm | 250 cm | ya |\n| 25 cm | 25 cm | tidak |\n| 25 dm | 250 cm | ya |\n| 0,25 km | 25.000 cm | tidak |\n| 2.500 mm | 250 cm | ya |\n\n**Ingat:** tidak ada nilai sebagian. Jangan berhenti pada pilihan benar yang pertama. Periksa setiap pilihan.`,
+                `Choose all the lengths that are equal to 2.5 m. The options are 250 cm, 25 cm, 25 dm, 0.25 km and 2,500 mm.\n\n1. Step 1: read the instruction. "Choose all" means more than one option is correct. You must tick every correct option and no wrong one.\n2. Step 2: choose one unit to compare in. Let us use centimetres, $2.5\\text{ m} = 250\\text{ cm}$.\n3. Step 3: check the options one by one, and write a tick or a cross next to each, as in the table.\n4. Step 4: count the ticks. There are three, so tick exactly those three options.\n\n| Option | In centimetres | Equal to 2.5 m? |\n| --- | --- | --- |\n| 250 cm | 250 cm | yes |\n| 25 cm | 25 cm | no |\n| 25 dm | 250 cm | yes |\n| 0.25 km | 25,000 cm | no |\n| 2,500 mm | 250 cm | yes |\n\n**Remember:** there is no partial credit. Do not stop at the first correct option. Check every option.`,
+                `Pilih semua panjang yang sama dengan 2,5 m. Pilihannya 250 cm, 25 cm, 25 dm, 0,25 km, dan 2.500 mm.\n\n1. Langkah 1: baca perintahnya. "Pilih semua" berarti pilihan yang benar lebih dari satu. Kamu harus memilih setiap pilihan yang benar dan tidak ada yang salah.\n2. Langkah 2: pilih satu satuan untuk membandingkan. Mari pakai sentimeter, $2{,}5\\text{ m} = 250\\text{ cm}$.\n3. Langkah 3: periksa pilihan satu per satu, dan tulis tanda centang atau silang di sebelah masing-masing, seperti pada tabel.\n4. Langkah 4: hitung centangnya. Ada tiga, jadi pilih tepat ketiga pilihan itu.\n\n| Pilihan | Dalam sentimeter | Sama dengan 2,5 m? |\n| --- | --- | --- |\n| 250 cm | 250 cm | ya |\n| 25 cm | 25 cm | tidak |\n| 25 dm | 250 cm | ya |\n| 0,25 km | 25.000 cm | tidak |\n| 2.500 mm | 250 cm | ya |\n\n**Ingat:** tidak ada nilai sebagian. Jangan berhenti pada pilihan benar yang pertama. Periksa setiap pilihan.`,
               ),
             },
             {
@@ -949,8 +986,8 @@ export const module11: Module = {
               kind: 'multi',
               id: 'mc3',
               prompt: L(
-                'The box is built from unit cubes. Choose all the true statements. (There may be only one.)',
-                'Balok ini disusun dari kubus satuan. Pilih semua pernyataan yang benar. (Mungkin hanya ada satu.)',
+                'The box is built from unit cubes. Choose the TWO true statements.',
+                'Balok ini disusun dari kubus satuan. Pilih DUA pernyataan yang benar.',
               ),
               figure: {
                 ...cuboid3d({ l: 4, w: 3, h: 2, grid: true }),
@@ -958,14 +995,14 @@ export const module11: Module = {
               },
               options: [
                 L('The box holds 24 cubes.', 'Balok itu memuat 24 kubus.'),
+                L('One layer has 12 cubes.', 'Satu lapisan terdiri dari 12 kubus.'),
                 L('The box holds 9 cubes.', 'Balok itu memuat 9 kubus.'),
-                L('One layer has 7 cubes.', 'Satu lapisan terdiri dari 7 kubus.'),
                 L('The box has 3 layers.', 'Balok itu punya 3 lapisan.'),
               ],
-              answer: [0],
+              answer: [0, 1],
               explain: L(
-                'One layer has $4 \\times 3 = 12$ cubes and there are 2 layers, so the box holds $12 \\times 2 = 24$ cubes. 9 and 7 come from adding the sides, and the box has 2 layers, not 3.',
-                'Satu lapisan berisi $4 \\times 3 = 12$ kubus dan ada 2 lapisan, jadi balok memuat $12 \\times 2 = 24$ kubus. 9 dan 7 berasal dari menjumlahkan sisinya, dan balok punya 2 lapisan, bukan 3.',
+                'One layer has $4 \\times 3 = 12$ cubes and there are 2 layers, so the box holds $12 \\times 2 = 24$ cubes. The number 9 comes from adding the sides ($4 + 3 + 2$), and the box has 2 layers, not 3.',
+                'Satu lapisan berisi $4 \\times 3 = 12$ kubus dan ada 2 lapisan, jadi balok memuat $12 \\times 2 = 24$ kubus. Angka 9 berasal dari menjumlahkan sisinya ($4 + 3 + 2$), dan balok punya 2 lapisan, bukan 3.',
               ),
               hint: L(
                 'Count the cubes in one layer first, then count the layers. Check each statement on its own.',
@@ -1053,14 +1090,14 @@ export const module11: Module = {
               id: 'c3',
               title: L('Step by Step: Planning Your Time', 'Contoh Bertahap: Merencanakan Waktu'),
               body: L(
-                `The TKA has about 30 to 40 items in about 75 minutes. Let us make a time plan for a test with 35 items.\n\n1. Step 1: count. There are 35 items and 75 minutes.\n2. Step 2: keep 5 minutes at the end for checking. $75 - 5 = 70$ minutes to answer.\n3. Step 3: time for each item, $70 \\div 35 = 2$ minutes. So aim for about 2 minutes per item.\n4. Step 4: make a check-point. After 30 minutes you should be at about item 15 ($30 \\div 2$).\n5. Step 5: if one item takes more than about 3 minutes, mark it, skip it and come back later.\n\n**Remember:**\n\n- Round 1: answer the items you can do quickly.\n- Round 2: go back to the items you skipped.\n- Last minutes: check your answers and make sure no item is empty.`,
-                `TKA terdiri dari sekitar 30 sampai 40 soal dalam sekitar 75 menit. Mari kita buat rencana waktu untuk tes dengan 35 soal.\n\n1. Langkah 1: hitung. Ada 35 soal dan 75 menit.\n2. Langkah 2: sisakan 5 menit di akhir untuk memeriksa. $75 - 5 = 70$ menit untuk menjawab.\n3. Langkah 3: waktu tiap soal, $70 \\div 35 = 2$ menit. Jadi usahakan sekitar 2 menit per soal.\n4. Langkah 4: buat titik periksa. Setelah 30 menit kamu seharusnya sudah di soal nomor 15 ($30 \\div 2$).\n5. Langkah 5: kalau satu soal memakan lebih dari sekitar 3 menit, tandai, lewati, dan kembali lagi nanti.\n\n**Ingat:**\n\n- Putaran 1: jawab soal yang bisa kamu kerjakan dengan cepat.\n- Putaran 2: kembali ke soal yang kamu lewati.\n- Menit terakhir: periksa jawabanmu dan pastikan tidak ada soal yang kosong.`,
+                `The TKA Mathematics test has 30 items in 75 minutes. That is $75 \\div 30 = 2.5$ minutes for each item, but you also need time to check. Let us make a time plan.\n\n1. Step 1: count. There are 30 items and 75 minutes.\n2. Step 2: keep 15 minutes at the end for checking and for the items you skipped. $75 - 15 = 60$ minutes to answer.\n3. Step 3: time for each item, $60 \\div 30 = 2$ minutes. So aim for about 2 minutes per item.\n4. Step 4: make a check-point. After 30 minutes you should be at about item 15 ($30 \\div 2$).\n5. Step 5: if one item takes more than about 3 minutes, mark it, skip it and come back later.\n\n**Remember:**\n\n- Round 1: answer the items you can do quickly.\n- Round 2: go back to the items you skipped.\n- Last minutes: check your answers and make sure no item is empty.`,
+                `Tes TKA Matematika terdiri dari 30 soal dalam 75 menit. Itu $75 \\div 30 = 2{,}5$ menit untuk tiap soal, tetapi kamu juga memerlukan waktu untuk memeriksa. Mari kita buat rencana waktu.\n\n1. Langkah 1: hitung. Ada 30 soal dan 75 menit.\n2. Langkah 2: sisakan 15 menit di akhir untuk memeriksa dan untuk soal yang kamu lewati. $75 - 15 = 60$ menit untuk menjawab.\n3. Langkah 3: waktu tiap soal, $60 \\div 30 = 2$ menit. Jadi usahakan sekitar 2 menit per soal.\n4. Langkah 4: buat titik periksa. Setelah 30 menit kamu seharusnya sudah di soal nomor 15 ($30 \\div 2$).\n5. Langkah 5: kalau satu soal memakan lebih dari sekitar 3 menit, tandai, lewati, dan kembali lagi nanti.\n\n**Ingat:**\n\n- Putaran 1: jawab soal yang bisa kamu kerjakan dengan cepat.\n- Putaran 2: kembali ke soal yang kamu lewati.\n- Menit terakhir: periksa jawabanmu dan pastikan tidak ada soal yang kosong.`,
               ),
               figure: {
-                ...numberLine({ from: 0, to: 75, step: 5, labelEvery: 3, shade: [0, 70], marks: [{ at: 30, color: 'b' }, { at: 70, color: 'result' }] }),
+                ...numberLine({ from: 0, to: 75, step: 5, labelEvery: 3, shade: [0, 60], marks: [{ at: 30, color: 'b' }, { at: 60, color: 'result' }] }),
                 caption: L(
-                  'The 75 minutes. The green part (70 minutes) is for answering. The orange dot at minute 30 is the check-point, and the last 5 minutes are for checking.',
-                  'Waktu 75 menit. Bagian hijau (70 menit) untuk menjawab. Titik oranye di menit ke-30 adalah titik periksa, dan 5 menit terakhir untuk memeriksa.',
+                  'The 75 minutes. The green part (60 minutes) is for answering. The orange dot at minute 30 is the check-point, and the last 15 minutes are for checking.',
+                  'Waktu 75 menit. Bagian hijau (60 menit) untuk menjawab. Titik oranye di menit ke-30 adalah titik periksa, dan 15 menit terakhir untuk memeriksa.',
                 ),
               },
             },
@@ -1077,8 +1114,8 @@ export const module11: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
-                'The test has 35 items and 75 minutes, so your plan is about 2 minutes per item. After 30 minutes you are only at item 10. What is the best next move?',
-                'Tes ini terdiri dari 35 soal dan 75 menit, jadi rencanamu sekitar 2 menit per soal. Setelah 30 menit kamu baru sampai soal ke-10. Apa langkah terbaik berikutnya?',
+                'The test has 30 items and 75 minutes, so your plan is about 2 minutes per item. After 30 minutes you are only at item 10. What is the best next move?',
+                'Tes ini terdiri dari 30 soal dan 75 menit, jadi rencanamu sekitar 2 menit per soal. Setelah 30 menit kamu baru sampai soal ke-10. Apa langkah terbaik berikutnya?',
               ),
               figure: {
                 ...numberLine({ from: 0, to: 75, step: 15, marks: [{ at: 30, color: 'result' }, { at: 75, color: 'b' }] }),
@@ -1108,14 +1145,14 @@ export const module11: Module = {
               id: 'f1',
               math: true,
               prompt: L(
-                'Try it together: a test has 36 items and 75 minutes. Keep 3 minutes for checking. How many minutes can you use for each item?',
-                'Coba bersama: sebuah tes terdiri dari 36 soal dan 75 menit. Sisakan 3 menit untuk memeriksa. Berapa menit yang bisa kamu pakai untuk tiap soal?',
+                'Try it together: a test has 30 items and 75 minutes. Keep 15 minutes for checking. How many minutes can you use for each item?',
+                'Coba bersama: sebuah tes terdiri dari 30 soal dan 75 menit. Sisakan 15 menit untuk memeriksa. Berapa menit yang bisa kamu pakai untuk tiap soal?',
               ),
-              template: '75 - 3 = ___ \\qquad 72 \\div 36 = ___',
-              blanks: ['72', '2'],
+              template: '75 - 15 = ___ \\qquad 60 \\div 30 = ___',
+              blanks: ['60', '2'],
               explain: L(
-                'You have $75 - 3 = 72$ minutes to answer, so each item gets $72 \\div 36 = 2$ minutes.',
-                'Kamu punya $75 - 3 = 72$ menit untuk menjawab, jadi tiap soal mendapat $72 \\div 36 = 2$ menit.',
+                'You have $75 - 15 = 60$ minutes to answer, so each item gets $60 \\div 30 = 2$ minutes.',
+                'Kamu punya $75 - 15 = 60$ menit untuk menjawab, jadi tiap soal mendapat $60 \\div 30 = 2$ menit.',
               ),
               hint: L(
                 'First take the checking time away from the 75 minutes. Then share what is left between the items.',
@@ -1188,19 +1225,19 @@ export const module11: Module = {
                 caption: L('Test scores.', 'Nilai tes.'),
               },
               statements: [
-                L('The mean score is 84.', 'Rata-rata nilainya 84.'),
-                L('The mode is 90.', 'Modusnya 90.'),
-                L('The median is 90.', 'Mediannya 90.'),
+                L('The five scores add up to 420.', 'Kelima nilai itu berjumlah 420.'),
+                L('Budi and Dewi have the same score.', 'Budi dan Dewi mendapat nilai yang sama.'),
                 L('The highest score is 40 more than the lowest score.', 'Nilai tertinggi 40 lebih besar daripada nilai terendah.'),
+                L('Ani\'s score is half of Eko\'s score.', 'Nilai Ani setengah dari nilai Eko.'),
               ],
-              answer: [true, false, false, false],
+              answer: [true, true, false, false],
               explain: L(
-                'The sum is 420 and $420 \\div 5 = 84$. The mode is 80, because it appears twice. In order the scores are 70, 80, 80, 90, 100, so the median is 80. And $100 - 70 = 30$, not 40.',
-                'Jumlahnya 420 dan $420 \\div 5 = 84$. Modusnya 80, karena muncul dua kali. Jika diurutkan nilainya 70, 80, 80, 90, 100, jadi mediannya 80. Dan $100 - 70 = 30$, bukan 40.',
+                'The scores are 70, 80, 90, 80 and 100, and $70 + 80 + 90 + 80 + 100 = 420$. Budi and Dewi both have 80. The highest minus the lowest is $100 - 70 = 30$, not 40. Half of Eko\'s 100 is 50, but Ani has 70.',
+                'Nilainya 70, 80, 90, 80, dan 100, dan $70 + 80 + 90 + 80 + 100 = 420$. Budi dan Dewi sama-sama 80. Nilai tertinggi dikurangi terendah adalah $100 - 70 = 30$, bukan 40. Setengah dari 100 milik Eko adalah 50, padahal nilai Ani 70.',
               ),
               hint: L(
-                'Write the five scores in order. The mean needs the sum, the mode is the most frequent score, and the median is the middle one.',
-                'Tulis kelima nilai secara berurutan. Rata-rata memerlukan jumlah, modus adalah nilai yang paling sering muncul, dan median adalah yang di tengah.',
+                'Read the value of all five bars first. Then test each statement with those numbers.',
+                'Baca dulu nilai kelima batang. Lalu uji tiap pernyataan dengan angka-angka itu.',
               ),
             },
             {
@@ -1314,13 +1351,13 @@ export const module11: Module = {
           },
           {
             prompt: L(
-              'A test has 30 items in 75 minutes. Budi keeps 5 minutes for checking. He answers the first 24 items in 40 minutes. How many minutes can he spend on each of the last 6 items, if he spends the same time on each?',
-              'Sebuah tes terdiri dari 30 soal dalam 75 menit. Budi menyisakan 5 menit untuk memeriksa. Ia menjawab 24 soal pertama dalam 40 menit. Berapa menit yang bisa ia pakai untuk tiap dari 6 soal terakhir, jika waktunya sama untuk tiap soal?',
+              'A test has 30 items in 75 minutes. Budi keeps 15 minutes for checking. He answers the first 24 items in 42 minutes. How many minutes can he spend on each of the last 6 items, if he spends the same time on each?',
+              'Sebuah tes terdiri dari 30 soal dalam 75 menit. Budi menyisakan 15 menit untuk memeriksa. Ia menjawab 24 soal pertama dalam 42 menit. Berapa menit yang bisa ia pakai untuk tiap dari 6 soal terakhir, jika waktunya sama untuk tiap soal?',
             ),
-            blanks: [{ answer: 5, after: { en: '\\text{ minutes}', id: '\\text{ menit}' } }],
+            blanks: [{ answer: 3, after: { en: '\\text{ minutes}', id: '\\text{ menit}' } }],
             solution: {
-              en: ['75 - 5 - 40 = 30 \\text{ min}', '30 - 24 = 6 \\text{ items left}', '30 \\div 6 = 5 \\text{ min}'],
-              id: ['75 - 5 - 40 = 30 \\text{ menit}', '30 - 24 = 6 \\text{ soal tersisa}', '30 \\div 6 = 5 \\text{ menit}'],
+              en: ['75 - 15 - 42 = 18 \\text{ min}', '30 - 24 = 6 \\text{ items left}', '18 \\div 6 = 3 \\text{ min}'],
+              id: ['75 - 15 - 42 = 18 \\text{ menit}', '30 - 24 = 6 \\text{ soal tersisa}', '18 \\div 6 = 3 \\text{ menit}'],
             },
           },
           {
@@ -1652,19 +1689,19 @@ export const module11: Module = {
                 caption: L('Quiz scores of five children.', 'Nilai kuis lima anak.'),
               },
               statements: [
-                L('The mean score is 8.', 'Rata-rata nilainya 8.'),
-                L('The mode is 8.', 'Modusnya 8.'),
-                L('The median is 7.', 'Mediannya 7.'),
+                L('The five children scored 40 in all.', 'Kelima anak itu mendapat nilai 40 seluruhnya.'),
                 L('The difference between the highest and the lowest score is 5.', 'Selisih nilai tertinggi dan terendah adalah 5.'),
+                L('Citra scored 2 less than Budi.', 'Nilai Citra 2 lebih rendah daripada nilai Budi.'),
+                L('Budi and Dewi scored the same.', 'Budi dan Dewi mendapat nilai yang sama.'),
               ],
               answer: [true, true, false, true],
               explain: L(
-                'The sum is $6 + 8 + 7 + 8 + 11 = 40$ and $40 \\div 5 = 8$. The score 8 appears twice, so the mode is 8. In order, 6, 7, 8, 8, 11, the middle one is 8, not 7. And $11 - 6 = 5$.',
-                'Jumlahnya $6 + 8 + 7 + 8 + 11 = 40$ dan $40 \\div 5 = 8$. Nilai 8 muncul dua kali, jadi modusnya 8. Jika diurutkan, 6, 7, 8, 8, 11, yang di tengah adalah 8, bukan 7. Dan $11 - 6 = 5$.',
+                'The scores are 6, 8, 7, 8 and 11, and $6 + 8 + 7 + 8 + 11 = 40$. The highest minus the lowest is $11 - 6 = 5$. Citra has 7 and Budi has 8, so Citra scored only 1 less, not 2. Budi and Dewi both scored 8.',
+                'Nilainya 6, 8, 7, 8, dan 11, dan $6 + 8 + 7 + 8 + 11 = 40$. Nilai tertinggi dikurangi terendah adalah $11 - 6 = 5$. Citra mendapat 7 dan Budi mendapat 8, jadi nilai Citra hanya 1 lebih rendah, bukan 2. Budi dan Dewi sama-sama mendapat 8.',
               ),
               hint: L(
-                'Write the scores in order first. Then find the sum for the mean, the most frequent score, the middle score, and the difference.',
-                'Tulis dulu nilai-nilainya secara berurutan. Lalu cari jumlah untuk rata-rata, nilai yang paling sering, nilai di tengah, dan selisihnya.',
+                'Read the value of all five bars first. Then add them, subtract, and compare, one statement at a time.',
+                'Baca dulu nilai kelima batang. Lalu jumlahkan, kurangkan, dan bandingkan, satu pernyataan pada satu waktu.',
               ),
             },
             {
@@ -1740,8 +1777,8 @@ export const module11: Module = {
               id: 'c1',
               title: L('Look Closely: How Practice Test 2 Works', 'Ayo Amati: Cara Kerja Simulasi TKA 2'),
               body: L(
-                `This is the second practice test, with new situations and new numbers. It has 12 questions, so plan about 24 minutes. Try to beat your plan from Practice Test 1.\n\n- The questions go from easy to hard, and the last two are the hardest.\n- Choose-all questions may have 1, 2 or 3 correct options.\n- In True/False tables, judge every statement on its own.\n\nA hint appears when an answer is wrong, and an explanation appears when it is right. Skip and return if you are stuck, and leave a minute to check. Good luck!`,
-                `Ini simulasi kedua, dengan situasi dan bilangan baru. Terdiri dari 12 soal, jadi rencanakan sekitar 24 menit. Cobalah mengalahkan rencanamu pada Simulasi TKA 1.\n\n- Soal-soal berjalan dari mudah ke sulit, dan dua soal terakhir paling sulit.\n- Soal pilih semua bisa punya 1, 2, atau 3 pilihan yang benar.\n- Pada tabel Benar/Salah, nilai setiap pernyataan satu per satu.\n\nPetunjuk muncul kalau jawabanmu salah, dan penjelasan muncul kalau benar. Lewati dan kembali kalau buntu, dan sisakan satu menit untuk memeriksa. Semoga berhasil!`,
+                `This is the second practice test, with new situations and new numbers. It has 12 questions, so plan about 24 minutes. Try to beat your plan from Practice Test 1.\n\n- The questions go from easy to hard, and the last two are the hardest.\n- In choose-all questions, more than one answer is correct.\n- In True/False tables, judge every statement on its own.\n\nA hint appears when an answer is wrong, and an explanation appears when it is right. Skip and return if you are stuck, and leave a minute to check. Good luck!`,
+                `Ini simulasi kedua, dengan situasi dan bilangan baru. Terdiri dari 12 soal, jadi rencanakan sekitar 24 menit. Cobalah mengalahkan rencanamu pada Simulasi TKA 1.\n\n- Soal-soal berjalan dari mudah ke sulit, dan dua soal terakhir paling sulit.\n- Pada soal pilih semua, jawaban yang benar lebih dari satu.\n- Pada tabel Benar/Salah, nilai setiap pernyataan satu per satu.\n\nPetunjuk muncul kalau jawabanmu salah, dan penjelasan muncul kalau benar. Lewati dan kembali kalau buntu, dan sisakan satu menit untuk memeriksa. Semoga berhasil!`,
               ),
             },
             {
@@ -2005,27 +2042,27 @@ export const module11: Module = {
                 caption: L('Marbles of five children.', 'Kelereng lima anak.'),
               },
               statements: [
-                L('The mean is 10.', 'Rata-ratanya 10.'),
-                L('The mode is 14.', 'Modusnya 14.'),
-                L('The median is 9.', 'Mediannya 9.'),
+                L('Together the five children have 50 marbles.', 'Kelima anak itu punya 50 kelereng bersama-sama.'),
+                L('Ani has 5 more marbles than Citra.', 'Kelereng Ani 5 lebih banyak daripada Citra.'),
+                L('Budi and Dewi have the same number of marbles.', 'Budi dan Dewi punya kelereng sama banyak.'),
                 L('Eko has half as many marbles as Budi.', 'Kelereng Eko setengah dari kelereng Budi.'),
               ],
               answer: [true, false, true, false],
               explain: L(
-                'The sum is $14 + 9 + 12 + 9 + 6 = 50$ and $50 \\div 5 = 10$. The mode is 9, because it appears twice (14 appears once). In order, 6, 9, 9, 12, 14, the middle one is 9. Half of Budi\'s 9 would be 4.5, not 6.',
-                'Jumlahnya $14 + 9 + 12 + 9 + 6 = 50$ dan $50 \\div 5 = 10$. Modusnya 9, karena muncul dua kali (14 hanya sekali). Jika diurutkan, 6, 9, 9, 12, 14, yang di tengah adalah 9. Setengah dari 9 milik Budi adalah 4,5, bukan 6.',
+                'The marbles are 14, 9, 12, 9 and 6, and $14 + 9 + 12 + 9 + 6 = 50$. Ani has $14 - 12 = 2$ more than Citra, not 5. Budi and Dewi both have 9. Half of Budi\'s 9 would be 4.5, not 6.',
+                'Kelerengnya 14, 9, 12, 9, dan 6, dan $14 + 9 + 12 + 9 + 6 = 50$. Ani punya $14 - 12 = 2$ lebih banyak daripada Citra, bukan 5. Budi dan Dewi sama-sama punya 9. Setengah dari 9 milik Budi adalah 4,5, bukan 6.',
               ),
               hint: L(
-                'Write the numbers in order first. The mean needs the sum, the mode is the number that appears most often, and the median is the middle one.',
-                'Tulis dulu bilangannya secara berurutan. Rata-rata memerlukan jumlah, modus adalah bilangan yang paling sering muncul, dan median adalah yang di tengah.',
+                'Read the value of all five bars first. Then add, subtract or compare for each statement, one at a time.',
+                'Baca dulu nilai kelima batang. Lalu jumlahkan, kurangkan, atau bandingkan untuk tiap pernyataan, satu per satu.',
               ),
             },
             {
               kind: 'multi',
               id: 'mc2',
               prompt: L(
-                'A school bag costs Rp80,000. This week there is a 25% discount. Choose all the true statements. (There may be one, two or three.)',
-                'Sebuah tas sekolah harganya Rp80.000. Minggu ini ada diskon 25%. Pilih semua pernyataan yang benar. (Mungkin ada satu, dua, atau tiga.)',
+                'A school bag costs Rp80,000. This week there is a 25% discount. Choose the TWO true statements.',
+                'Sebuah tas sekolah harganya Rp80.000. Minggu ini ada diskon 25%. Pilih DUA pernyataan yang benar.',
               ),
               options: [
                 L('The discount is Rp20,000.', 'Diskonnya Rp20.000.'),
@@ -2125,8 +2162,8 @@ export const module11: Module = {
           },
           {
             prompt: L(
-              'The bar chart shows the books four children read. What is the mean number of books they read?',
-              'Diagram batang menunjukkan buku yang dibaca empat anak. Berapa rata-rata banyak buku yang mereka baca?',
+              'The bar chart shows the books four children read. What fraction of all the books did Ani read? Write it in simplest form.',
+              'Diagram batang menunjukkan buku yang dibaca empat anak. Berapa bagian dari seluruh buku yang dibaca Ani? Tulis dalam bentuk paling sederhana.',
             ),
             figure: {
               ...barChart({
@@ -2141,8 +2178,8 @@ export const module11: Module = {
               }),
               caption: L('Books read by four children.', 'Buku yang dibaca empat anak.'),
             },
-            blanks: [{ answer: 10, after: { en: '\\text{ books}', id: '\\text{ buku}' } }],
-            solution: ['12 + 8 + 15 + 5 = 40', '40 \\div 4 = 10'],
+            blanks: numDen(3, 10),
+            solution: ['12 + 8 + 15 + 5 = 40', '\\frac{12}{40} = \\frac{3}{10}'],
           },
           {
             prompt: L(
@@ -2224,6 +2261,364 @@ export const module11: Module = {
           L(
             'For the last task, find when the buses first leave together again, and then count how many times that fits.',
             'Untuk soal terakhir, cari kapan kedua bus pertama kali berangkat bersama lagi, lalu hitung berapa kali itu muat.',
+          ),
+        ],
+        xp: 50,
+      },
+    },
+
+    /* ======================================================================== S4: official-style practice */
+    {
+      id: 'tka-m11-s4',
+      title: L('Practice in the Style of the Official Framework', 'Contoh Soal ala Kerangka Asesmen'),
+      summary: L(
+        'Six questions that copy the form and the level of the sample questions in the official TKA framework, and a project of four typed-answer questions of the same kind.',
+        'Enam soal yang meniru bentuk dan tingkat soal-soal contoh pada kerangka asesmen TKA resmi, dan proyek berisi empat soal jawaban ketikan yang sejenis.',
+      ),
+      lessons: [
+        {
+          id: 'tka-m11-s4-l1',
+          title: L('Official-Style Questions', 'Soal Bergaya Resmi'),
+          goal: L(
+            'You can work through questions that look like the official TKA samples: a mixed calculation, a discount, True/False tables, a die, a choose-all question and a bar chart.',
+            'Kamu bisa mengerjakan soal yang mirip contoh resmi TKA: hitungan campuran, diskon, tabel Benar/Salah, dadu, soal pilih semua, dan diagram batang.',
+          ),
+          xp: 20,
+          steps: [
+            {
+              kind: 'concept',
+              id: 'c1',
+              title: L('Look Closely: Questions Shaped Like the Real Ones', 'Ayo Amati: Soal yang Bentuknya Seperti Aslinya'),
+              body: L(
+                `The next questions copy the shape of the sample questions in the official TKA framework. They are not the real test questions, but they have the same forms and the same levels.\n\n| Form | What it looks like |\n| --- | --- |\n| One answer | A story or a calculation with four options. Choose one. |\n| True/False table | Several statements. Mark every one True or False. |\n| Choose-all | More than one answer is correct. Choose every correct one. |\n\nTreat each question as the real thing. Read it twice, work it out on paper, and only then choose. If a question has a picture, the picture is part of the question.`,
+                `Soal-soal berikut meniru bentuk soal contoh pada kerangka asesmen TKA resmi. Soal-soal ini bukan soal tes yang sebenarnya, tetapi bentuk dan tingkatnya sama.\n\n| Bentuk | Seperti apa |\n| --- | --- |\n| Satu jawaban | Cerita atau hitungan dengan empat pilihan. Pilih satu. |\n| Tabel Benar/Salah | Beberapa pernyataan. Tandai setiap pernyataan Benar atau Salah. |\n| Pilih semua | Jawaban benar lebih dari satu. Pilih setiap jawaban yang benar. |\n\nAnggaplah setiap soal sebagai soal sebenarnya. Baca dua kali, hitung di kertas, baru pilih. Kalau soal punya gambar, gambar itu bagian dari soal.`,
+              ),
+              figure: {
+                ...barChart({
+                  bars: [
+                    { label: 'P', value: 20, color: 'a' },
+                    { label: 'Q', value: 30, color: 'b' },
+                    { label: 'R', value: 10, color: 'c' },
+                  ],
+                  max: 30,
+                  step: 10,
+                  showValues: false,
+                }),
+                caption: L(
+                  'A picture like this can belong to the question, so read its scale before you read the options.',
+                  'Gambar seperti ini bisa menjadi bagian soal, jadi baca skalanya sebelum membaca pilihan.',
+                ),
+              },
+            },
+            {
+              kind: 'concept',
+              id: 'c2',
+              title: L('Step by Step: Working Through a True/False Table', 'Contoh Bertahap: Mengerjakan Tabel Benar/Salah'),
+              body: L(
+                `Bu Rina fills 4 bottles with $2\\frac{1}{2}$ litres of syrup each. One statement says: "She has 10 litres of syrup in all." Is it True or False?\n\n1. Step 1: read the instruction. Every statement is judged on its own, so do not copy a pattern from the other rows.\n2. Step 2: underline the numbers in the story: 4 bottles and $2\\frac{1}{2}$ litres each.\n3. Step 3: work it out on paper. $4 \\times 2\\frac{1}{2} = 4 \\times 2 + 4 \\times \\frac{1}{2} = 8 + 2 = 10$ litres.\n4. Step 4: compare with the statement. It says 10 litres, so mark True.\n\n**Remember:**\n\n- Work the answer out first, then compare it with each statement.\n- A mixed number times a whole number: multiply the whole part and the fraction part separately, then add.\n- Check every statement, even when the first ones were easy.`,
+                `Bu Rina mengisi 4 botol dengan sirup $2\\frac{1}{2}$ liter tiap botol. Sebuah pernyataan berbunyi: "Ia punya 10 liter sirup seluruhnya." Benar atau Salah?\n\n1. Langkah 1: baca perintahnya. Setiap pernyataan dinilai sendiri-sendiri, jadi jangan meniru pola dari baris lain.\n2. Langkah 2: garis bawahi angka dalam cerita: 4 botol dan $2\\frac{1}{2}$ liter tiap botol.\n3. Langkah 3: hitung di kertas. $4 \\times 2\\frac{1}{2} = 4 \\times 2 + 4 \\times \\frac{1}{2} = 8 + 2 = 10$ liter.\n4. Langkah 4: bandingkan dengan pernyataan. Pernyataan itu menyebut 10 liter, jadi tandai Benar.\n\n**Ingat:**\n\n- Hitung jawabannya dulu, lalu bandingkan dengan tiap pernyataan.\n- Pecahan campuran dikali bilangan asli: kalikan bagian utuh dan bagian pecahan secara terpisah, lalu jumlahkan.\n- Periksa setiap pernyataan, walaupun beberapa yang pertama mudah.`,
+              ),
+            },
+            {
+              kind: 'quiz',
+              id: 'q1',
+              prompt: L(
+                'Work out $130\\% - 2 + 3 \\times 0.5 + \\frac{1}{4}$.',
+                'Hitunglah $130\\% - 2 + 3 \\times 0{,}5 + \\frac{1}{4}$.',
+              ),
+              options: [
+                L('$\\frac{21}{20}$', '$\\frac{21}{20}$'),
+                L('$\\frac{7}{5}$', '$\\frac{7}{5}$'),
+                L('$\\frac{3}{20}$', '$\\frac{3}{20}$'),
+                L('$\\frac{1}{20}$', '$\\frac{1}{20}$'),
+              ],
+              answer: 0,
+              explain: L(
+                'Write everything as a decimal: $130\\% = 1.3$ and $\\frac{1}{4} = 0.25$. Multiply first, $3 \\times 0.5 = 1.5$. Then add first and subtract 2 last: $1.3 + 1.5 + 0.25 - 2 = 3.05 - 2 = 1.05 = \\frac{21}{20}$. The answer $\\frac{7}{5}$ goes from left to right and multiplies last, $\\frac{3}{20}$ uses $\\frac{1}{5}$ for 0.5, and $\\frac{1}{20}$ uses 30% instead of 130%.',
+                'Tulis semuanya sebagai desimal: $130\\% = 1{,}3$ dan $\\frac{1}{4} = 0{,}25$. Kalikan dulu, $3 \\times 0{,}5 = 1{,}5$. Lalu jumlahkan dulu dan kurangi 2 paling akhir: $1{,}3 + 1{,}5 + 0{,}25 - 2 = 3{,}05 - 2 = 1{,}05 = \\frac{21}{20}$. Jawaban $\\frac{7}{5}$ menghitung dari kiri ke kanan dan mengalikan paling akhir, $\\frac{3}{20}$ memakai $\\frac{1}{5}$ untuk 0,5, dan $\\frac{1}{20}$ memakai 30% bukan 130%.',
+              ),
+              hint: L(
+                'Change the percent and the fraction into decimals first. Remember which operation is done before adding and subtracting.',
+                'Ubah dulu persen dan pecahan menjadi desimal. Ingat operasi mana yang dikerjakan sebelum menjumlah dan mengurang.',
+              ),
+            },
+            {
+              kind: 'quiz',
+              id: 'q2',
+              prompt: L(
+                'The school co-op gives a 20% discount on everything. A bag Y costs Rp60,000. A set of coloured pencils X costs $\\frac{1}{3}$ of the price of bag Y, and a water bottle Z costs 0.75 times the price of bag Y. After the discount, what is the price of X + Z?',
+                'Koperasi sekolah memberi diskon 20% untuk semua barang. Harga tas Y adalah Rp60.000. Harga satu set pensil warna X adalah $\\frac{1}{3}$ dari harga tas Y, dan harga botol minum Z adalah 0,75 kali harga tas Y. Setelah diskon, berapa harga X + Z?',
+              ),
+              options: [
+                L('Rp52,000', 'Rp52.000'),
+                L('Rp65,000', 'Rp65.000'),
+                L('Rp13,000', 'Rp13.000'),
+                L('Rp56,000', 'Rp56.000'),
+              ],
+              answer: 0,
+              explain: L(
+                'X costs $60\\,000 \\div 3 = 20\\,000$ and Z costs $0.75 \\times 60\\,000 = 45\\,000$, so together $65\\,000$. The discount is 20% of that, $13\\,000$, and $65\\,000 - 13\\,000 = 52\\,000$. Rp65,000 forgets the discount, Rp13,000 is only the discount, and Rp56,000 gives the discount to Z alone.',
+                'X harganya $60\\,000 \\div 3 = 20\\,000$ dan Z harganya $0{,}75 \\times 60\\,000 = 45\\,000$, jadi bersama $65\\,000$. Diskonnya 20% dari itu, yaitu $13\\,000$, dan $65\\,000 - 13\\,000 = 52\\,000$. Rp65.000 lupa diskon, Rp13.000 hanya diskonnya, dan Rp56.000 memberi diskon hanya untuk Z.',
+              ),
+              hint: L(
+                'Find the price of X and the price of Z from the price of Y first. Then think about what the discount is taken from.',
+                'Cari dulu harga X dan harga Z dari harga Y. Lalu pikirkan diskon itu diambil dari harga yang mana.',
+              ),
+            },
+            {
+              kind: 'judge',
+              id: 'j1',
+              prompt: L(
+                'Bu Wati sells herbal drink. One day she makes 7 jugs with $3\\frac{2}{5}$ litres of herbal drink in each jug. She pours all of it into 10 large bottles of equal size and into 8 small bottles. Each small bottle holds half as much as a large bottle. Decide whether each statement about Bu Wati\'s herbal drink is True or False.',
+                'Bu Wati menjual jamu. Suatu hari ia membuat 7 kendi yang masing-masing berisi $3\\frac{2}{5}$ liter jamu. Seluruh jamu itu dituang ke dalam 10 botol besar yang isinya sama banyak dan ke dalam 8 botol kecil. Isi setiap botol kecil adalah setengah isi botol besar. Tentukan Benar atau Salah untuk setiap pernyataan tentang jamu Bu Wati!',
+              ),
+              statements: [
+                L('Bu Wati made $23\\frac{4}{5}$ litres of herbal drink that day.', 'Hari itu Bu Wati membuat $23\\frac{4}{5}$ liter jamu.'),
+                L('Each large bottle holds 2 litres.', 'Setiap botol besar berisi 2 liter.'),
+                L('The small bottles hold $6\\frac{4}{5}$ litres in all.', 'Seluruh botol kecil berisi $6\\frac{4}{5}$ liter.'),
+              ],
+              answer: [true, false, true],
+              explain: L(
+                'The jugs hold $7 \\times 3\\frac{2}{5} = 21 + \\frac{14}{5} = 23\\frac{4}{5}$ litres. Eight small bottles are worth 4 large ones, so everything fills $10 + 4 = 14$ large bottles. One large bottle holds $\\frac{119}{5} \\div 14 = \\frac{17}{10} = 1\\frac{7}{10}$ litres, not 2. The small bottles hold $4 \\times 1\\frac{7}{10} = 6\\frac{4}{5}$ litres.',
+                'Kendi-kendi itu berisi $7 \\times 3\\frac{2}{5} = 21 + \\frac{14}{5} = 23\\frac{4}{5}$ liter. Delapan botol kecil sama dengan 4 botol besar, jadi semuanya mengisi $10 + 4 = 14$ botol besar. Satu botol besar berisi $\\frac{119}{5} \\div 14 = \\frac{17}{10} = 1\\frac{7}{10}$ liter, bukan 2. Botol kecil berisi $4 \\times 1\\frac{7}{10} = 6\\frac{4}{5}$ liter.',
+              ),
+              hint: L(
+                'Find the total amount first. Then ask how many large bottles all the small bottles are worth together.',
+                'Cari dulu jumlah seluruhnya. Lalu tanyakan semua botol kecil itu sama dengan berapa botol besar.',
+              ),
+            },
+            {
+              kind: 'quiz',
+              id: 'q3',
+              prompt: L(
+                'Dewi plays ludo with Eko. A die has 1, 2, 3, 4, 5 and 6 dots, and the dots on every two opposite faces add up to the same number. Dewi throws the die and it lands as in the picture. How many dots are on the bottom face?',
+                'Dewi bermain ludo dengan Eko. Sebuah dadu punya 1, 2, 3, 4, 5, dan 6 titik, dan jumlah titik pada setiap dua sisi berlawanan sama. Dewi melempar dadu dan dadunya jatuh seperti pada gambar. Berapa banyak titik pada sisi bawah?',
+              ),
+              figure: {
+                ...dieView(5, 3, 6),
+                caption: L(
+                  'The die after the throw. You can see the top face and two side faces.',
+                  'Dadu setelah dilempar. Kamu bisa melihat sisi atas dan dua sisi samping.',
+                ),
+              },
+              options: [L('2', '2'), L('1', '1'), L('4', '4'), L('5', '5')],
+              answer: 0,
+              explain: L(
+                'All six faces together have $1 + 2 + 3 + 4 + 5 + 6 = 21$ dots, shared by 3 pairs, so every pair adds up to 7. The top has 5, so the bottom has $7 - 5 = 2$. The numbers 4 and 1 are on faces we cannot see, and 5 is the top face itself.',
+                'Keenam sisi bersama-sama punya $1 + 2 + 3 + 4 + 5 + 6 = 21$ titik, dibagi untuk 3 pasang, jadi setiap pasang berjumlah 7. Sisi atas punya 5, jadi sisi bawah punya $7 - 5 = 2$. Angka 4 dan 1 ada pada sisi yang tidak terlihat, dan 5 adalah sisi atas itu sendiri.',
+              ),
+              hint: L(
+                'How many dots are there on all six faces together? Those dots are shared by three pairs with the same total.',
+                'Ada berapa titik pada keenam sisi seluruhnya? Titik-titik itu dibagi untuk tiga pasang yang jumlahnya sama.',
+              ),
+            },
+            {
+              kind: 'multi',
+              id: 'mc1',
+              prompt: L(
+                'For a school trip the class packs a snack hamper with 2 kg of rice, 3 bags of sugar of 4 hg each, and 6 packets of crackers of 75 g each. (Remember 1 kg = 1,000 g and 1 hg = 100 g.) How heavy is the hamper? Choose the correct answers! More than one answer is correct.',
+                'Untuk karya wisata, kelas mengemas keranjang makanan berisi 2 kg beras, 3 kantong gula masing-masing 4 hg, dan 6 bungkus biskuit masing-masing 75 g. (Ingat 1 kg = 1.000 g dan 1 hg = 100 g.) Seberapa berat keranjang itu? Pilihlah jawaban yang benar! Jawaban benar lebih dari satu.',
+              ),
+              options: [
+                L('The sugar weighs 1.2 kilograms in all.', 'Seluruh gula beratnya 1,2 kilogram.'),
+                L('The rice is heavier than the sugar and the crackers together.', 'Beras lebih berat daripada gula dan biskuit digabungkan.'),
+                L('The hamper weighs 2,570 grams in all.', 'Keranjang itu beratnya 2.570 gram seluruhnya.'),
+              ],
+              answer: [0, 1],
+              explain: L(
+                'Rice is 2,000 g. Sugar is $3 \\times 4 = 12$ hg, which is 1,200 g or 1.2 kg. Crackers are $6 \\times 75 = 450$ g. Together the hamper weighs 3,650 g. The sugar and crackers weigh 1,650 g, less than the 2,000 g of rice. The number 2,570 comes from treating 1 hg as 10 g.',
+                'Beras 2.000 g. Gula $3 \\times 4 = 12$ hg, yaitu 1.200 g atau 1,2 kg. Biskuit $6 \\times 75 = 450$ g. Bersama-sama keranjang itu beratnya 3.650 g. Gula dan biskuit beratnya 1.650 g, kurang dari 2.000 g beras. Angka 2.570 muncul karena menganggap 1 hg sama dengan 10 g.',
+              ),
+              hint: L(
+                'Change every amount to grams first. Then check each statement on its own.',
+                'Ubah dulu setiap berat menjadi gram. Lalu periksa setiap pernyataan satu per satu.',
+              ),
+            },
+            {
+              kind: 'judge',
+              id: 'j2',
+              prompt: L(
+                'The new school garden counts its visitors for the first five days. The chart shows the data. Decide whether each statement about the data is True or False.',
+                'Kebun sekolah yang baru mendata pengunjungnya selama lima hari pertama. Diagram menunjukkan datanya. Tentukan Benar atau Salah untuk setiap pernyataan tentang data itu!',
+              ),
+              figure: {
+                ...barChart({
+                  bars: [
+                    { label: '1', value: 20, color: 'a' },
+                    { label: '2', value: 25, color: 'b' },
+                    { label: '3', value: 30, color: 'c' },
+                    { label: '4', value: 15, color: 'result' },
+                    { label: '5', value: 25, color: 'a' },
+                  ],
+                  max: 30,
+                  step: 5,
+                  showValues: false,
+                }),
+                caption: L(
+                  'Visitors on days 1 to 5. The scale goes up by 5.',
+                  'Pengunjung pada hari ke-1 sampai ke-5. Skalanya naik 5.',
+                ),
+              },
+              statements: [
+                L('On day 1 there were only $\\frac{2}{3}$ as many visitors as on day 3.', 'Pada hari ke-1 pengunjungnya hanya $\\frac{2}{3}$ dari pengunjung hari ke-3.'),
+                L('In the five days, 115 visitors came in all.', 'Dalam lima hari, seluruhnya 115 pengunjung datang.'),
+                L('From one day to the next, the number of visitors never changed by more than 10.', 'Dari satu hari ke hari berikutnya, banyak pengunjung tidak pernah berubah lebih dari 10.'),
+              ],
+              answer: [true, true, false],
+              explain: L(
+                'Day 1 had 20 visitors and day 3 had 30, and $\\frac{20}{30} = \\frac{2}{3}$. The total is $20 + 25 + 30 + 15 + 25 = 115$. From day 3 to day 4 the number fell from 30 to 15, a change of 15, which is more than 10.',
+                'Hari ke-1 ada 20 pengunjung dan hari ke-3 ada 30, dan $\\frac{20}{30} = \\frac{2}{3}$. Jumlahnya $20 + 25 + 30 + 15 + 25 = 115$. Dari hari ke-3 ke hari ke-4 banyaknya turun dari 30 menjadi 15, perubahan sebesar 15, yang lebih dari 10.',
+              ),
+              hint: L(
+                'Read all five bars first. For the last statement, subtract each day from the day before it.',
+                'Baca dulu kelima batang. Untuk pernyataan terakhir, kurangkan setiap hari dengan hari sebelumnya.',
+              ),
+            },
+            {
+              kind: 'math',
+              id: 'm1',
+              prompt: L(
+                'A baker uses $4\\frac{3}{4}$ kg of flour for each batch of bread. How many kilograms of flour does the baker need for 6 batches? Write the answer as a decimal.',
+                'Seorang pembuat roti memakai $4\\frac{3}{4}$ kg tepung untuk setiap adonan roti. Berapa kilogram tepung yang diperlukan untuk 6 adonan? Tulis jawaban sebagai desimal.',
+              ),
+              blanks: [{ answer: 28.5, after: '\\text{ kg}' }],
+              hints: [
+                L(
+                  'Underline what is asked. What do you do to find the flour for 6 equal batches?',
+                  'Garis bawahi yang ditanyakan. Apa yang kamu lakukan untuk mencari tepung dari 6 adonan yang sama?',
+                ),
+                L(
+                  'Multiply 6 by the mixed number. Do the whole part and the fraction part separately.',
+                  'Kalikan 6 dengan bilangan campuran itu. Kerjakan bagian bulat dan bagian pecahannya secara terpisah.',
+                ),
+                L(
+                  '$6 \\times 4$ is the whole part. $6 \\times \\frac{3}{4}$ is the fraction part. Add the two parts.',
+                  '$6 \\times 4$ adalah bagian bulatnya. $6 \\times \\frac{3}{4}$ adalah bagian pecahannya. Jumlahkan kedua bagian itu.',
+                ),
+              ],
+              explain: L(
+                'The whole part is $6 \\times 4 = 24$ and the fraction part is $6 \\times \\frac{3}{4} = \\frac{18}{4} = 4.5$. Together the baker needs $24 + 4.5 = 28.5$ kg.',
+                'Bagian bulatnya $6 \\times 4 = 24$ dan bagian pecahannya $6 \\times \\frac{3}{4} = \\frac{18}{4} = 4{,}5$. Bersama-sama pembuat roti memerlukan $24 + 4{,}5 = 28{,}5$ kg.',
+              ),
+              solution: {
+                en: ['6 \\times 4 = 24', '6 \\times \\frac{3}{4} = \\frac{18}{4} = 4.5', '24 + 4.5 = 28.5'],
+                id: ['6 \\times 4 = 24', '6 \\times \\frac{3}{4} = \\frac{18}{4} = 4{,}5', '24 + 4{,}5 = 28{,}5'],
+              },
+            },
+          ],
+        },
+      ],
+      project: {
+        id: 'tka-m11-s4-p',
+        runtime: 'math',
+        title: L('Project: Official-Style Questions', 'Proyek: Soal Bergaya Resmi'),
+        brief: L(
+          'Four typed-answer questions of the same kind as the official samples: a mixed calculation, a discount, masses in a hamper and a conclusion from a chart.',
+          'Empat soal jawaban ketikan yang sejenis dengan contoh resmi: hitungan campuran, diskon, berat isi keranjang, dan kesimpulan dari diagram.',
+        ),
+        requirements: [
+          L('Work out a mixed calculation, a discount and a unit change step by step.', 'Menghitung hitungan campuran, diskon, dan perubahan satuan langkah demi langkah.'),
+          L('Decide which statements a chart supports.', 'Menentukan pernyataan yang didukung oleh sebuah diagram.'),
+        ],
+        tasks: [
+          {
+            prompt: L(
+              'Work out the value. You may type a decimal or a fraction.',
+              'Hitunglah nilainya. Kamu boleh mengetik desimal atau pecahan.',
+            ),
+            given: {
+              en: '140\\% - 1 + 3 \\times 0.5 - \\frac{2}{5}',
+              id: '140\\% - 1 + 3 \\times 0{,}5 - \\frac{2}{5}',
+            },
+            blanks: [{ label: '=', answer: 1.5 }],
+            solution: {
+              en: ['140\\% = 1.4, \\quad \\frac{2}{5} = 0.4', '3 \\times 0.5 = 1.5', '1.4 - 1 + 1.5 - 0.4 = 1.5'],
+              id: ['140\\% = 1{,}4, \\quad \\frac{2}{5} = 0{,}4', '3 \\times 0{,}5 = 1{,}5', '1{,}4 - 1 + 1{,}5 - 0{,}4 = 1{,}5'],
+            },
+          },
+          {
+            prompt: L(
+              'A toy shop gives a 25% discount on everything. A ball costs Rp40,000. A toy car costs $\\frac{3}{4}$ of the price of the ball, and a doll costs 1.5 times the price of the ball. How much do the toy car and the doll cost together after the discount?',
+              'Sebuah toko mainan memberi diskon 25% untuk semua barang. Sebuah bola harganya Rp40.000. Sebuah mobil mainan harganya $\\frac{3}{4}$ dari harga bola, dan sebuah boneka harganya 1,5 kali harga bola. Berapa harga mobil mainan dan boneka bersama-sama setelah diskon?',
+            ),
+            blanks: [{ label: RP, answer: 67500 }],
+            solution: {
+              en: [
+                '\\frac{3}{4} \\times 40\\,000 = 30\\,000, \\quad 1.5 \\times 40\\,000 = 60\\,000',
+                '30\\,000 + 60\\,000 = 90\\,000',
+                '90\\,000 - \\frac{1}{4} \\times 90\\,000 = 90\\,000 - 22\\,500 = 67\\,500',
+              ],
+              id: [
+                '\\frac{3}{4} \\times 40\\,000 = 30\\,000, \\quad 1{,}5 \\times 40\\,000 = 60\\,000',
+                '30\\,000 + 60\\,000 = 90\\,000',
+                '90\\,000 - \\frac{1}{4} \\times 90\\,000 = 90\\,000 - 22\\,500 = 67\\,500',
+              ],
+            },
+          },
+          {
+            prompt: L(
+              'Bu Rina packs a picnic basket with 3 bags of flour of 750 g each, 4 packs of sugar of 2 hg each, and 1 kg of rice. How many kilograms does the basket weigh in all?',
+              'Bu Rina mengemas keranjang piknik berisi 3 kantong tepung masing-masing 750 g, 4 bungkus gula masing-masing 2 hg, dan 1 kg beras. Berapa kilogram berat keranjang itu seluruhnya?',
+            ),
+            blanks: [{ answer: 4.05, after: '\\text{ kg}' }],
+            solution: {
+              en: ['3 \\times 750 = 2\\,250 \\text{ g}, \\quad 4 \\times 2 \\text{ hg} = 8 \\text{ hg} = 800 \\text{ g}', '2\\,250 + 800 + 1\\,000 = 4\\,050 \\text{ g}', '4\\,050 \\text{ g} = 4.05 \\text{ kg}'],
+              id: ['3 \\times 750 = 2\\,250 \\text{ g}, \\quad 4 \\times 2 \\text{ hg} = 8 \\text{ hg} = 800 \\text{ g}', '2\\,250 + 800 + 1\\,000 = 4\\,050 \\text{ g}', '4\\,050 \\text{ g} = 4{,}05 \\text{ kg}'],
+            },
+          },
+          {
+            prompt: L(
+              'The chart shows the children at the reading corner on days 1 to 5. How many of these statements does the chart support? (1) On day 1 only $\\frac{3}{4}$ as many children came as on day 2. (2) In all, 90 children came. (3) On day 4 only $\\frac{2}{5}$ as many children came as on day 3. (4) From one day to the next the number never changed by more than 10.',
+              'Diagram menunjukkan anak-anak di pojok baca pada hari ke-1 sampai ke-5. Berapa dari pernyataan berikut yang didukung diagram? (1) Pada hari ke-1 hanya $\\frac{3}{4}$ dari anak hari ke-2 yang datang. (2) Seluruhnya 90 anak datang. (3) Pada hari ke-4 hanya $\\frac{2}{5}$ dari anak hari ke-3 yang datang. (4) Dari satu hari ke hari berikutnya banyak anak tidak pernah berubah lebih dari 10.',
+            ),
+            figure: {
+              ...barChart({
+                bars: [
+                  { label: '1', value: 15, color: 'a' },
+                  { label: '2', value: 20, color: 'b' },
+                  { label: '3', value: 25, color: 'c' },
+                  { label: '4', value: 10, color: 'result' },
+                  { label: '5', value: 20, color: 'a' },
+                ],
+                max: 25,
+                step: 5,
+                showValues: false,
+              }),
+              caption: L('Children at the reading corner. The scale goes up by 5.', 'Anak di pojok baca. Skalanya naik 5.'),
+            },
+            blanks: [{ answer: 3, after: { en: '\\text{ statements}', id: '\\text{ pernyataan}' } }],
+            solution: {
+              en: [
+                '15, 20, 25, 10, 20',
+                '(1)\\ \\frac{15}{20} = \\frac{3}{4} \\rightarrow \\text{yes}',
+                '(2)\\ 15 + 20 + 25 + 10 + 20 = 90 \\rightarrow \\text{yes}',
+                '(3)\\ \\frac{10}{25} = \\frac{2}{5} \\rightarrow \\text{yes}',
+                '(4)\\ 25 - 10 = 15 > 10 \\rightarrow \\text{no}',
+                '3 \\text{ statements}',
+              ],
+              id: [
+                '15, 20, 25, 10, 20',
+                '(1)\\ \\frac{15}{20} = \\frac{3}{4} \\rightarrow \\text{ya}',
+                '(2)\\ 15 + 20 + 25 + 10 + 20 = 90 \\rightarrow \\text{ya}',
+                '(3)\\ \\frac{10}{25} = \\frac{2}{5} \\rightarrow \\text{ya}',
+                '(4)\\ 25 - 10 = 15 > 10 \\rightarrow \\text{tidak}',
+                '3 \\text{ pernyataan}',
+              ],
+            },
+          },
+        ],
+        hints: [
+          L(
+            'Change percents and fractions to the same form, and do multiplying before adding and subtracting.',
+            'Ubah persen dan pecahan ke bentuk yang sama, dan kerjakan perkalian sebelum penjumlahan dan pengurangan.',
+          ),
+          L(
+            'Write every amount of mass in grams before you add. Remember 1 hg = 100 g and 1 kg = 1,000 g.',
+            'Tulis setiap berat dalam gram sebelum menjumlahkan. Ingat 1 hg = 100 g dan 1 kg = 1.000 g.',
+          ),
+          L(
+            'For the chart, read all five bars first and test each statement on its own with those numbers.',
+            'Untuk diagram, baca dulu kelima batang dan uji tiap pernyataan sendiri-sendiri dengan angka-angka itu.',
           ),
         ],
         xp: 50,

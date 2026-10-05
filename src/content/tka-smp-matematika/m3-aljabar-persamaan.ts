@@ -1184,6 +1184,48 @@ export const module3: Module = {
               ),
             },
             {
+              kind: 'fill',
+              id: 'u1',
+              math: true,
+              prompt: L(
+                'Try it together: the system $ax+3y=11$ and $2x-by=5$ has the solution $(x,y)=(4,1)$. Put $x=4$ and $y=1$ into each equation to find the unknown coefficients $a$ and $b$.',
+                'Coba bersama: sistem $ax+3y=11$ dan $2x-by=5$ mempunyai penyelesaian $(x,y)=(4,1)$. Masukkan $x=4$ dan $y=1$ ke tiap persamaan untuk mencari koefisien $a$ dan $b$ yang belum diketahui.',
+              ),
+              template: 'a\\times4+3\\times1=11 \\Rightarrow 4a=___ \\Rightarrow a=___ \\quad 2\\times4-b\\times1=5 \\Rightarrow b=___',
+              blanks: ['8', '2', '3'],
+              explain: L(
+                'A solution makes both equations true. First equation: $4a+3=11$, so $4a=8$ and $a=2$. Second equation: $8-b=5$, so $b=3$. Check: $2\\times4+3\\times1=11$ and $2\\times4-3\\times1=5$.',
+                'Penyelesaian membuat kedua persamaan benar. Persamaan pertama: $4a+3=11$, jadi $4a=8$ dan $a=2$. Persamaan kedua: $8-b=5$, jadi $b=3$. Periksa: $2\\times4+3\\times1=11$ dan $2\\times4-3\\times1=5$.',
+              ),
+              hint: L(
+                'Replace $x$ by 4 and $y$ by 1 in each equation. Each equation then has only ONE unknown left, so solve them one at a time.',
+                'Ganti $x$ dengan 4 dan $y$ dengan 1 pada tiap persamaan. Setiap persamaan lalu hanya punya SATU yang belum diketahui, jadi selesaikan satu per satu.',
+              ),
+            },
+            {
+              kind: 'judge',
+              id: 'u2',
+              prompt: L(
+                'The system $ax+4y=7$ and $x+by=11$ has the solution $(x,y)=(3,-2)$. Decide whether each statement is True or False.',
+                'Sistem $ax+4y=7$ dan $x+by=11$ mempunyai penyelesaian $(x,y)=(3,-2)$. Tentukan apakah setiap pernyataan Benar atau Salah.',
+              ),
+              statements: [
+                L('$a$ is a prime number.', '$a$ adalah bilangan prima.'),
+                L('$b$ is an odd number.', '$b$ adalah bilangan ganjil.'),
+                L('$2a+b=6$.', '$2a+b=6$.'),
+                L('$a\\times b=20$.', '$a\\times b=20$.'),
+              ],
+              answer: [true, false, true, false],
+              explain: L(
+                'Substitute $x=3$ and $y=-2$. First equation: $3a-8=7$, so $3a=15$ and $a=5$, which is prime. Second equation: $3-2b=11$, so $-2b=8$ and $b=-4$, which is even. Then $2a+b=10-4=6$ is true, and $a\\times b=5\\times(-4)=-20$, not 20.',
+                'Substitusikan $x=3$ dan $y=-2$. Persamaan pertama: $3a-8=7$, jadi $3a=15$ dan $a=5$, yang prima. Persamaan kedua: $3-2b=11$, jadi $-2b=8$ dan $b=-4$, yang genap. Maka $2a+b=10-4=6$ benar, dan $a\\times b=5\\times(-4)=-20$, bukan 20.',
+              ),
+              hint: L(
+                'Do not solve the whole system. Put the given $x$ and $y$ into each equation, find $a$ and $b$, then test every statement with those numbers.',
+                'Jangan selesaikan seluruh sistem. Masukkan $x$ dan $y$ yang diketahui ke tiap persamaan, cari $a$ dan $b$, lalu uji setiap pernyataan dengan bilangan itu.',
+              ),
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: L(
@@ -1394,6 +1436,52 @@ export const module3: Module = {
               ),
             },
             {
+              kind: 'quiz',
+              id: 'v1',
+              prompt: L(
+                'A school play sells 120 tickets in all. An adult ticket costs Rp25,000 and a child ticket costs Rp15,000, and the takings are Rp2,400,000. Let $x$ be the number of adult tickets and $y$ the number of child tickets. Money is counted in thousands of rupiah. Which system matches the story?',
+                'Sebuah pentas sekolah menjual 120 tiket seluruhnya. Tiket dewasa harganya Rp25.000 dan tiket anak Rp15.000, dan hasil penjualannya Rp2.400.000. Misalkan $x$ banyak tiket dewasa dan $y$ banyak tiket anak. Uang dihitung dalam ribuan rupiah. Sistem mana yang sesuai dengan cerita?',
+              ),
+              options: [
+                L('$x+y=120$ and $25x+15y=2\\,400$', '$x+y=120$ dan $25x+15y=2\\,400$'),
+                L('$x+y=120$ and $15x+25y=2\\,400$', '$x+y=120$ dan $15x+25y=2\\,400$'),
+                L('$x+y=2\\,400$ and $25x+15y=120$', '$x+y=2\\,400$ dan $25x+15y=120$'),
+                L('$40(x+y)=2\\,400$', '$40(x+y)=2\\,400$'),
+              ],
+              answer: 0,
+              explain: L(
+                'One equation counts the tickets, $x+y=120$, and the other counts the money: each adult ticket brings 25 and each child ticket brings 15, so $25x+15y=2\\,400$. Wrong systems swap the two prices, swap the two totals, or treat every ticket as costing 40, which merges the two clues into one.',
+                'Satu persamaan menghitung tiket, $x+y=120$, dan yang lain menghitung uang: tiap tiket dewasa membawa 25 dan tiap tiket anak membawa 15, jadi $25x+15y=2\\,400$. Sistem yang salah menukar kedua harga, menukar kedua total, atau menganggap setiap tiket berharga 40, yang menggabungkan dua petunjuk menjadi satu.',
+              ),
+              hint: L(
+                'There are two different totals in the story: a number of tickets and an amount of money. Each total needs its own equation, with the right coefficients.',
+                'Ada dua total yang berbeda dalam cerita: banyak tiket dan jumlah uang. Setiap total memerlukan persamaannya sendiri, dengan koefisien yang tepat.',
+              ),
+            },
+            {
+              kind: 'judge',
+              id: 'v2',
+              prompt: L(
+                'Decide whether each statement about the quicker way to solve a system is True or False.',
+                'Tentukan apakah setiap pernyataan tentang cara yang lebih cepat untuk menyelesaikan suatu sistem Benar atau Salah.',
+              ),
+              statements: [
+                L('For $y=3x-2$ and $4x+y=19$, substitution is quicker than elimination.', 'Untuk $y=3x-2$ dan $4x+y=19$, substitusi lebih cepat daripada eliminasi.'),
+                L('For $2x+5y=26$ and $2x+y=10$, subtracting the two equations is quicker than substitution.', 'Untuk $2x+5y=26$ dan $2x+y=10$, mengurangkan kedua persamaan lebih cepat daripada substitusi.'),
+                L('For $y=2x+1$ and $3x+2y=16$, elimination is the only method that works.', 'Untuk $y=2x+1$ dan $3x+2y=16$, eliminasi adalah satu-satunya metode yang bisa dipakai.'),
+                L('For $3x+2y=16$ and $3x-2y=8$, adding the two equations removes $x$.', 'Untuk $3x+2y=16$ dan $3x-2y=8$, menjumlahkan kedua persamaan menghilangkan $x$.'),
+              ],
+              answer: [true, true, false, false],
+              explain: L(
+                'In the first system $y$ is already alone, so substituting gives $4x+3x-2=19$ at once. In the second, the $x$ terms are equal, so subtracting leaves $4y=16$. In the third, substitution also works: $3x+2(2x+1)=16$ gives $x=2$. In the fourth, adding gives $6x=24$: the $y$ terms cancel, not the $x$ terms.',
+                'Pada sistem pertama $y$ sudah sendirian, jadi substitusi langsung memberi $4x+3x-2=19$. Pada sistem kedua, suku $x$ sama, jadi pengurangan menyisakan $4y=16$. Pada sistem ketiga, substitusi juga bisa: $3x+2(2x+1)=16$ memberi $x=2$. Pada sistem keempat, penjumlahan memberi $6x=24$: suku $y$ yang saling menghapus, bukan suku $x$.',
+              ),
+              hint: L(
+                'For each system look for a variable that is alone, or for two terms that are equal or opposite. That tells you the quickest start.',
+                'Untuk tiap sistem, cari variabel yang sudah sendirian, atau dua suku yang sama atau berlawanan. Itu menunjukkan cara memulai yang paling cepat.',
+              ),
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: L(
@@ -1433,11 +1521,11 @@ export const module3: Module = {
         runtime: 'math',
         title: L('Solve the System', 'Menyelesaikan Sistem Persamaan'),
         brief: L(
-          'Read a solution from a graph, solve by substitution and by elimination, and use a system for coins and ages.',
-          'Baca penyelesaian dari grafik, selesaikan dengan substitusi dan eliminasi, dan pakai sistem persamaan untuk koin dan umur.',
+          'Read a solution from a graph, find unknown coefficients from a given solution, and use a system for coins and ages.',
+          'Baca penyelesaian dari grafik, cari koefisien yang belum diketahui dari penyelesaian yang diberikan, dan pakai sistem persamaan untuk koin dan umur.',
         ),
         requirements: [
-          L('Solve a system of two linear equations by substitution or elimination.', 'Menyelesaikan sistem dua persamaan linear dengan substitusi atau eliminasi.'),
+          L('Solve a system of two linear equations by substitution, elimination, or by finding unknown coefficients.', 'Menyelesaikan sistem dua persamaan linear dengan substitusi, eliminasi, atau dengan mencari koefisien yang belum diketahui.'),
           L('Write a system from a story and check the pair in both equations.', 'Menulis sistem persamaan dari sebuah cerita dan memeriksa pasangannya pada kedua persamaan.'),
         ],
         hints: [
@@ -1464,12 +1552,18 @@ export const module3: Module = {
             },
           },
           {
-            prompt: L('Solve by substitution: $y = x - 4$ and $2x + y = 11$.', 'Selesaikan dengan substitusi: $y = x - 4$ dan $2x + y = 11$.'),
+            prompt: L(
+              'The system $ax + 5y = 3$ and $3x + by = 1$ has the solution $(x, y) = (-1, 2)$. Find the coefficients $a$ and $b$.',
+              'Sistem $ax + 5y = 3$ dan $3x + by = 1$ mempunyai penyelesaian $(x, y) = (-1, 2)$. Tentukan koefisien $a$ dan $b$.',
+            ),
             inline: true,
-            blanks: xy(5, 1),
+            blanks: [
+              { label: 'a =', answer: 7 },
+              { label: 'b =', answer: 2 },
+            ],
             solution: {
-              en: ['2x + (x - 4) = 11', '3x - 4 = 11 \\Rightarrow 3x = 15 \\Rightarrow x = 5', 'y = 5 - 4 = 1', '\\text{Check: } 2(5) + 1 = 11'],
-              id: ['2x + (x - 4) = 11', '3x - 4 = 11 \\Rightarrow 3x = 15 \\Rightarrow x = 5', 'y = 5 - 4 = 1', '\\text{Periksa: } 2(5) + 1 = 11'],
+              en: ['a(-1) + 5(2) = 3 \\Rightarrow -a + 10 = 3 \\Rightarrow a = 7', '3(-1) + b(2) = 1 \\Rightarrow -3 + 2b = 1 \\Rightarrow 2b = 4 \\Rightarrow b = 2', '\\text{Check: } 7(-1) + 5(2) = 3 \\quad 3(-1) + 2(2) = 1'],
+              id: ['a(-1) + 5(2) = 3 \\Rightarrow -a + 10 = 3 \\Rightarrow a = 7', '3(-1) + b(2) = 1 \\Rightarrow -3 + 2b = 1 \\Rightarrow 2b = 4 \\Rightarrow b = 2', '\\text{Periksa: } 7(-1) + 5(2) = 3 \\quad 3(-1) + 2(2) = 1'],
             },
           },
           {

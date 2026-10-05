@@ -140,6 +140,40 @@ const isoTri = (half: number, h: number, sides: (string | undefined)[]): Piece =
     extra: [line([0, h], [0, 0], 'b', { dashed: true }), txt(0.5, h / 2, 'h', 'lg', 'result', 'start'), { t: 'right', at: [0, 0], from: [half, 0], to: [0, h] }],
   })
 
+/** A bridge truss with two families of parallel lines: L1 and L2 run across, L3 and L4 lean at `deg`
+ *  degrees. The corners are A = L2 and L3, B = L2 and L4, C = L1 and L4, D = L1 and L3, with AB = `ab`
+ *  and the two across-lines 2 apart. `arcs` mark only the angles a question uses (directions in
+ *  degrees, anticlockwise from `from` to `to`, at the named corner). `diagonal` adds the member BD. */
+function truss(o: { deg: number; ab: number; arcs: { at: 'A' | 'B' | 'C' | 'D'; from: number; to: number; label: string }[]; diagonal?: boolean }): Piece {
+  const h = 2
+  const dx = tidy(h / Math.tan(rad(o.deg)))
+  const P: Record<'A' | 'B' | 'C' | 'D', Pt> = { A: [0, 0], B: [o.ab, 0], C: [tidy(o.ab + dx), h], D: [dx, h] }
+  const lean = pol(o.deg, 1.3)
+  const items: FigItem[] = [
+    line([-1.8, 0], [o.ab + 2.2, 0], 'a', { width: 2.6 }),
+    line([dx - 1.8, h], [P.C[0] + 2.2, h], 'a', { width: 2.6 }),
+    line([-lean[0], -lean[1]], [P.D[0] + lean[0], h + lean[1]], 'b', { width: 2.6 }),
+    line([P.B[0] - lean[0], -lean[1]], [P.C[0] + lean[0], h + lean[1]], 'b', { width: 2.6 }),
+    txt(o.ab + 2.8, 0, 'L2', 'md', 'a'),
+    txt(P.C[0] + 2.8, h, 'L1', 'md', 'a'),
+    txt(P.D[0] + lean[0] + 0.1, h + lean[1] + 0.5, 'L3', 'md', 'b'),
+    txt(P.C[0] + lean[0] + 0.1, h + lean[1] + 0.5, 'L4', 'md', 'b'),
+    txt(-0.5, 0.45, 'A', 'lg', 'muted'),
+    txt(o.ab + 0.45, -0.5, 'B', 'lg', 'muted'),
+    txt(P.C[0] + 0.5, h - 0.45, 'C', 'lg', 'muted'),
+    txt(P.D[0] - 0.45, h + 0.5, 'D', 'lg', 'muted'),
+  ]
+  if (o.diagonal) items.push(line(P.B, P.D, 'c', { width: 2.6 }))
+  for (const a of o.arcs) items.push(arcAt(P[a.at], pol(a.from, 1, P[a.at]), pol(a.to, 1, P[a.at]), a.label))
+  const pts: Pt[] = [
+    [-1.8, -0.9],
+    [P.C[0] + 3.4, h + lean[1] + 0.9],
+    [P.D[0] + lean[0], h + lean[1] + 0.9],
+    [-lean[0], -lean[1] - 0.2],
+  ]
+  return { dim: 2, axes: false, ...fit(pts, 0.4), items }
+}
+
 /* -------------------------------------------------------------- module */
 
 export const module5: Module = {
@@ -570,6 +604,137 @@ export const module5: Module = {
               ),
             },
             {
+              kind: 'quiz',
+              id: 'b1',
+              prompt: L(
+                'In a bridge truss, $L_1\\parallel L_2$ and $L_3\\parallel L_4$. The angle at $A$ is $50^\\circ$. How big is the angle $r$ at $C$? Chain two angle pairs, one family of parallel lines at a time.',
+                'Pada rangka jembatan, $L_1\\parallel L_2$ dan $L_3\\parallel L_4$. Sudut di $A$ besarnya $50^\\circ$. Berapa besar sudut $r$ di $C$? Rangkai dua pasangan sudut, satu keluarga garis sejajar demi satu.',
+              ),
+              figure: {
+                ...truss({
+                  deg: 50,
+                  ab: 4,
+                  arcs: [
+                    { at: 'A', from: 0, to: 50, label: '50°' },
+                    { at: 'C', from: 180, to: 230, label: 'r' },
+                  ],
+                }),
+                caption: L(
+                  'Two green lines L1 and L2 are parallel, and two orange lines L3 and L4 are parallel. The angle at A is 50°, and r is the angle at C below L1.',
+                  'Dua garis hijau L1 dan L2 sejajar, dan dua garis oranye L3 dan L4 sejajar. Sudut di A besarnya 50°, dan r adalah sudut di C di bawah L1.',
+                ),
+              },
+              options: [
+                L('$50^\\circ$', '$50^\\circ$'),
+                L('$130^\\circ$', '$130^\\circ$'),
+                L('$40^\\circ$', '$40^\\circ$'),
+                L('$100^\\circ$', '$100^\\circ$'),
+              ],
+              answer: 0,
+              explain: L(
+                'Look at $L_3\\parallel L_4$ cut by $L_2$: the $50^\\circ$ angle at $A$ and the angle at $B$ above $L_2$, to the right of $L_4$, are corresponding, so that angle is $50^\\circ$. Now look at $L_1\\parallel L_2$ cut by $L_4$: that angle at $B$ and $r$ are alternate interior angles, so $r=50^\\circ$. The value $130$ is $180-50$, which treats $r$ as a neighbour on a straight line, $40$ is $90-50$, and $100$ is $50+50$.',
+                'Perhatikan $L_3\\parallel L_4$ yang dipotong $L_2$: sudut $50^\\circ$ di $A$ dan sudut di $B$ di atas $L_2$, di kanan $L_4$, adalah sudut sehadap, jadi sudut itu $50^\\circ$. Sekarang perhatikan $L_1\\parallel L_2$ yang dipotong $L_4$: sudut di $B$ itu dan $r$ adalah sudut dalam berseberangan, jadi $r=50^\\circ$. Nilai $130$ adalah $180-50$, yang menganggap $r$ berdampingan pada garis lurus, $40$ adalah $90-50$, dan $100$ adalah $50+50$.',
+              ),
+              hint: L(
+                'Do not jump from A to C in one go. First use one family of parallel lines to copy the 50 degrees to B, then use the other family to reach C. Equal pairs or pairs adding up to 180?',
+                'Jangan melompat dari A ke C sekaligus. Pakai dulu satu keluarga garis sejajar untuk menyalin 50 derajat ke B, lalu pakai keluarga yang lain untuk sampai ke C. Pasangan yang sama besar atau yang berjumlah 180?',
+              ),
+            },
+            {
+              kind: 'judge',
+              id: 'b2',
+              prompt: L(
+                'In the bridge truss, $L_1\\parallel L_2$ and $L_3\\parallel L_4$, and the angle at $A$ is $50^\\circ$. Each statement gives a size AND a reason. Decide whether each statement is True or False, so check the reason as well as the size.',
+                'Pada rangka jembatan, $L_1\\parallel L_2$ dan $L_3\\parallel L_4$, dan sudut di $A$ besarnya $50^\\circ$. Setiap pernyataan memberi besar sudut DAN alasannya. Tentukan apakah setiap pernyataan Benar atau Salah, jadi periksa alasannya juga, bukan hanya besarnya.',
+              ),
+              figure: {
+                ...truss({
+                  deg: 50,
+                  ab: 4,
+                  arcs: [
+                    { at: 'A', from: 0, to: 50, label: '50°' },
+                    { at: 'B', from: 0, to: 50, label: 'p' },
+                    { at: 'D', from: 230, to: 360, label: 'q' },
+                    { at: 'C', from: 180, to: 230, label: 'r' },
+                    { at: 'C', from: 0, to: 50, label: 's' },
+                  ],
+                }),
+                caption: L(
+                  'The same truss with the angles p, q, r and s marked, and the 50° angle at A.',
+                  'Rangka yang sama dengan sudut p, q, r, dan s ditandai, dan sudut 50° di A.',
+                ),
+              },
+              statements: [
+                L('$p=50^\\circ$, because $p$ and the $50^\\circ$ angle are corresponding angles.', '$p=50^\\circ$, karena $p$ dan sudut $50^\\circ$ adalah sudut sehadap.'),
+                L('$q=130^\\circ$, because $q$ and the $50^\\circ$ angle are co-interior angles between $L_1$ and $L_2$, so they add up to $180^\\circ$.', '$q=130^\\circ$, karena $q$ dan sudut $50^\\circ$ adalah sudut dalam sepihak di antara $L_1$ dan $L_2$, jadi jumlahnya $180^\\circ$.'),
+                L('$s=50^\\circ$, found with the supplementary rule: $s$ and the $50^\\circ$ angle at $A$ lie on one straight line.', '$s=50^\\circ$, dicari dengan aturan berpelurus: $s$ dan sudut $50^\\circ$ di $A$ terletak pada satu garis lurus.'),
+                L('$q$ and $r$ are equal, because they are alternate angles.', '$q$ dan $r$ sama besar, karena keduanya sudut dalam berseberangan.'),
+              ],
+              answer: [true, true, false, false],
+              explain: L(
+                'Statements 1 and 2 give correct sizes with correct reasons: $p$ is corresponding to the $50^\\circ$ angle, and $q$ is co-interior with it, so $q=180-50=130$. In statement 3 the size is right but the reason is wrong: $s$ and the angle at $A$ are not on one straight line, so the supplementary rule does not link them. They are equal because $s$ is corresponding to $p$ (between $L_1$ and $L_2$, cut by $L_4$) and $p=50^\\circ$. In statement 4 the angles are co-interior, not alternate: $q=130^\\circ$ and $r=50^\\circ$ add up to $180^\\circ$, and are not equal.',
+                'Pernyataan 1 dan 2 memberi besar sudut yang benar dengan alasan yang benar: $p$ sehadap dengan sudut $50^\\circ$, dan $q$ dalam sepihak dengannya, jadi $q=180-50=130$. Pada pernyataan 3 besarnya benar tetapi alasannya salah: $s$ dan sudut di $A$ tidak terletak pada satu garis lurus, jadi aturan berpelurus tidak menghubungkan keduanya. Keduanya sama besar karena $s$ sehadap dengan $p$ (di antara $L_1$ dan $L_2$, dipotong $L_4$) dan $p=50^\\circ$. Pada pernyataan 4 kedua sudut itu dalam sepihak, bukan berseberangan: $q=130^\\circ$ dan $r=50^\\circ$ berjumlah $180^\\circ$, dan tidak sama besar.',
+              ),
+              hint: L(
+                'First work out every marked angle with one rule each. Then read each reason slowly: does the rule it names really link those two angles?',
+                'Hitung dulu setiap sudut bertanda dengan satu aturan masing-masing. Lalu baca tiap alasan pelan-pelan: apakah aturan yang disebut benar-benar menghubungkan kedua sudut itu?',
+              ),
+            },
+            {
+              kind: 'math',
+              id: 'b3',
+              prompt: L(
+                'In the truss, $L_1\\parallel L_2$ and $L_3\\parallel L_4$, and a diagonal member $BD$ is added. The angle at $A$ is $50^\\circ$ and $\\angle ABD=60^\\circ$. Find $x=\\angle ADB$, $y=\\angle BDC$ and $z=\\angle BCD$.',
+                'Pada rangka, $L_1\\parallel L_2$ dan $L_3\\parallel L_4$, dan sebuah batang diagonal $BD$ ditambahkan. Sudut di $A$ besarnya $50^\\circ$ dan $\\angle ABD=60^\\circ$. Cari $x=\\angle ADB$, $y=\\angle BDC$, dan $z=\\angle BCD$.',
+              ),
+              figure: {
+                ...truss({
+                  deg: 50,
+                  ab: tidy((2 / Math.sin(rad(50))) * Math.sin(rad(70)) / Math.sin(rad(60))),
+                  diagonal: true,
+                  arcs: [
+                    { at: 'A', from: 0, to: 50, label: '50°' },
+                    { at: 'B', from: 120, to: 180, label: '60°' },
+                    { at: 'D', from: 230, to: 300, label: 'x' },
+                    { at: 'D', from: 300, to: 360, label: 'y' },
+                    { at: 'C', from: 180, to: 230, label: 'z' },
+                  ],
+                }),
+                caption: L(
+                  'The gold member BD cuts the truss into two triangles. The angles at A and at B (in triangle ABD) are given.',
+                  'Batang emas BD membagi rangka menjadi dua segitiga. Sudut di A dan di B (pada segitiga ABD) diketahui.',
+                ),
+              },
+              inline: true,
+              blanks: [
+                { label: 'x =', answer: 70, after: '^\\circ' },
+                { label: 'y =', answer: 60, after: '^\\circ' },
+                { label: 'z =', answer: 50, after: '^\\circ' },
+              ],
+              hints: [
+                L(
+                  'Triangle ABD already has two known angles. Use the angle sum of a triangle for $x$.',
+                  'Segitiga ABD sudah punya dua sudut yang diketahui. Pakai jumlah sudut segitiga untuk $x$.',
+                ),
+                L(
+                  '$L_1\\parallel L_2$ is cut by the diagonal BD, so $y$ is a partner of $\\angle ABD$. For $z$ use triangle BCD, which also needs the angle at B.',
+                  '$L_1\\parallel L_2$ dipotong diagonal BD, jadi $y$ berpasangan dengan $\\angle ABD$. Untuk $z$ pakai segitiga BCD, yang juga memerlukan sudut di B.',
+                ),
+                L(
+                  'The angle $\\angle DBC$ is alternate to $x$, because $L_3\\parallel L_4$ is cut by BD. Then the three angles of triangle BCD add up to $180^\\circ$.',
+                  'Sudut $\\angle DBC$ berseberangan dengan $x$, karena $L_3\\parallel L_4$ dipotong BD. Lalu ketiga sudut segitiga BCD berjumlah $180^\\circ$.',
+                ),
+              ],
+              explain: L(
+                'In triangle ABD, $x=180-50-60=70$. The angle $y$ is alternate to $\\angle ABD$ (between $L_1$ and $L_2$), so $y=60$. The angle $\\angle DBC$ is alternate to $x$ (between $L_3$ and $L_4$), so it is $70^\\circ$. In triangle BCD, $z=180-70-60=50$.',
+                'Pada segitiga ABD, $x=180-50-60=70$. Sudut $y$ berseberangan dengan $\\angle ABD$ (di antara $L_1$ dan $L_2$), jadi $y=60$. Sudut $\\angle DBC$ berseberangan dengan $x$ (di antara $L_3$ dan $L_4$), jadi besarnya $70^\\circ$. Pada segitiga BCD, $z=180-70-60=50$.',
+              ),
+              solution: {
+                en: ['x=180-50-60=70', 'y=\\angle ABD=60 \\quad (\\text{alternate angles, } L_1\\parallel L_2)', '\\angle DBC=x=70 \\quad (\\text{alternate angles, } L_3\\parallel L_4)', 'z=180-70-60=50'],
+                id: ['x=180-50-60=70', 'y=\\angle ABD=60 \\quad (\\text{sudut dalam berseberangan, } L_1\\parallel L_2)', '\\angle DBC=x=70 \\quad (\\text{sudut dalam berseberangan, } L_3\\parallel L_4)', 'z=180-70-60=50'],
+              },
+            },
+            {
               kind: 'math',
               id: 'm1',
               prompt: L(
@@ -648,19 +813,30 @@ export const module5: Module = {
           },
           {
             prompt: L(
-              'The two horizontal lines are parallel and one angle is $125^\\circ$. Find $p$ and $q$.',
-              'Kedua garis mendatar sejajar dan satu sudutnya $125^\\circ$. Cari $p$ dan $q$.',
+              'In a bridge truss, $L_1\\parallel L_2$ and $L_3\\parallel L_4$, and the angle at $A$ is $65^\\circ$. Find $p$ at $C$ and $q$ at $D$.',
+              'Pada rangka jembatan, $L_1\\parallel L_2$ dan $L_3\\parallel L_4$, dan sudut di $A$ besarnya $65^\\circ$. Cari $p$ di $C$ dan $q$ di $D$.',
             ),
             figure: {
-              ...parallelLines({ deg: 55, labels: [undefined, '125°', undefined, undefined, 'q', 'p'] }),
-              caption: L('One angle is 125°; p and q are at the lower crossing.', 'Satu sudut 125°; p dan q berada di perpotongan bawah.'),
+              ...truss({
+                deg: 65,
+                ab: 4,
+                arcs: [
+                  { at: 'A', from: 0, to: 65, label: '65°' },
+                  { at: 'C', from: 180, to: 245, label: 'p' },
+                  { at: 'D', from: 245, to: 360, label: 'q' },
+                ],
+              }),
+              caption: L('Two families of parallel lines. One angle is 65°; p is at C and q is at D.', 'Dua keluarga garis sejajar. Satu sudut 65°; p di C dan q di D.'),
             },
             inline: true,
             blanks: [
-              { label: 'p =', answer: 125, after: '^\\circ' },
-              { label: 'q =', answer: 55, after: '^\\circ' },
+              { label: 'p =', answer: 65, after: '^\\circ' },
+              { label: 'q =', answer: 115, after: '^\\circ' },
             ],
-            solution: ['p=125', 'q+p=180', 'q=180-125=55'],
+            solution: {
+              en: ['\\text{Angle at } B \\text{ above } L_2 = 65 \\quad (\\text{corresponding to } A, \\; L_3\\parallel L_4)', 'p=65 \\quad (\\text{alternate with that angle, } L_1\\parallel L_2)', 'q+65=180 \\quad (\\text{co-interior with } A, \\; L_1\\parallel L_2)', 'q=115'],
+              id: ['\\text{Sudut di } B \\text{ di atas } L_2 = 65 \\quad (\\text{sehadap dengan } A, \\; L_3\\parallel L_4)', 'p=65 \\quad (\\text{berseberangan dengan sudut itu, } L_1\\parallel L_2)', 'q+65=180 \\quad (\\text{sepihak dengan } A, \\; L_1\\parallel L_2)', 'q=115'],
+            },
           },
           {
             prompt: L(

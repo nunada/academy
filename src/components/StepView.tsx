@@ -312,6 +312,9 @@ function MultiStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Prop
         <Rich text={tc(step.prompt)} />
       </h3>
       {step.figure && <FigureView figure={step.figure} />}
+      <p className="small muted">
+        {tc({ en: 'Choose the correct answers. More than one answer is correct.', id: 'Pilihlah jawaban yang benar. Jawaban benar lebih dari satu.' })}
+      </p>
 
       {order.map((i, shown) => {
         const on = picked.includes(i)

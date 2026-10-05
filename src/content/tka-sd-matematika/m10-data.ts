@@ -1,10 +1,10 @@
-import type { Loc, Module } from '../types'
+import type { Loc, MathBlank, Module } from '../types'
 import type { FigItem } from '../../lib/figure'
 import type { Piece } from './figs'
 import { barChart, fit, line, outline, pictogram, rectPts, solid, txt } from './figs'
 
 /** Module 10 — data: presenting data (tally, frequency table, pictogram, bar chart)
- *  and using it (reading information, mean, mode and median). */
+ *  and using it (reading information, comparing, totals, changes and conclusions). */
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
@@ -65,16 +65,24 @@ function gridTable(rows: string[][], o: { cw?: number; head?: 'row' | 'col' | 'n
   return { dim: 2, axes: false, ...fit([[0, 0], [maxC * cw, R * ch]], 0.4), items }
 }
 
-/** A bar chart with a dashed line across it at `at` (the mean). */
-function chartWithLine(o: BarOpts, at: number): Piece {
+/** A bar chart with one row of boxed numbers under the bars, one box under each bar. */
+function chartWithBoxes(o: BarOpts, boxes: number[]): Piece {
   const p = barChart(o)
-  const k = 6 / o.max
   const xEnd = o.bars.length * 1.7 + 0.4
-  return {
-    ...p,
-    items: [...p.items, line([0, at * k], [xEnd, at * k], 'result', { dashed: true, width: 3 }), txt(xEnd + 0.15, at * k, String(at), 'md', 'result', 'start')],
-  }
+  const items: FigItem[] = [...p.items]
+  boxes.forEach((n, i) => {
+    const x = 0.5 + i * 1.7
+    items.push(outline(rectPts(x, -2.3, 1, 1), 'b'))
+    items.push(txt(x + 0.5, -1.8, String(n), 'md', 'b'))
+  })
+  return { dim: 2, axes: false, ...fit([[-1.2, -2.5], [xEnd + 0.3, 6.6]], 0.3), items }
 }
+
+/** Two boxes for a fraction in simplest form: numerator, then denominator. */
+const fracBlanks = (n: number, d: number): MathBlank[] => [
+  { label: { en: '\\text{numerator} =', id: '\\text{pembilang} =' }, answer: n },
+  { label: { en: '\\text{denominator} =', id: '\\text{penyebut} =' }, answer: d },
+]
 
 const NAMES4 = ['Ani', 'Budi', 'Citra', 'Dewi']
 const NAMES5 = ['Ani', 'Budi', 'Citra', 'Dewi', 'Eko']
@@ -87,6 +95,7 @@ const AFTER = {
   votes: { en: '\\text{ votes}', id: '\\text{ suara}' },
   kg: '\\text{ kg}',
   eggs: { en: '\\text{ eggs}', id: '\\text{ butir}' },
+  visitors: { en: '\\text{ visitors}', id: '\\text{ pengunjung}' },
 }
 
 /* -------------------------------------------------------------- module */
@@ -95,8 +104,8 @@ export const module10: Module = {
   id: 'tka-m10',
   title: L('Data', 'Data'),
   summary: L(
-    'Collect data with tally marks, show it in frequency tables, pictograms and bar charts, then read it, compare it and use the mean, mode and median.',
-    'Mengumpulkan data dengan turus, menyajikannya dalam tabel frekuensi, piktogram, dan diagram batang, lalu membacanya, membandingkannya, dan memakai rata-rata, modus, dan median.',
+    'Collect data with tally marks, show it in frequency tables, pictograms and bar charts, then read it, compare it and draw conclusions from it.',
+    'Mengumpulkan data dengan turus, menyajikannya dalam tabel frekuensi, piktogram, dan diagram batang, lalu membacanya, membandingkannya, dan menarik kesimpulan darinya.',
   ),
   submodules: [
     /* ============================================================ S1: presenting data */
@@ -614,8 +623,8 @@ export const module10: Module = {
       id: 'tka-m10-s2',
       title: L('Using Data', 'Menggunakan Data'),
       summary: L(
-        'Reading charts and tables to answer questions, and the mean, mode and median of a set of numbers.',
-        'Membaca diagram dan tabel untuk menjawab pertanyaan, serta rata-rata, modus, dan median dari sekumpulan angka.',
+        'Reading charts and tables to answer questions, comparing values with fractions, and deciding which conclusions the data support.',
+        'Membaca diagram dan tabel untuk menjawab pertanyaan, membandingkan nilai dengan pecahan, dan menentukan kesimpulan yang didukung data.',
       ),
       lessons: [
         /* ----------------------------------- S2 L1 reading information from data */
@@ -821,77 +830,77 @@ export const module10: Module = {
             },
           ],
         },
-        /* ------------------------------------------- S2 L2 mean, mode and median */
+        /* ---------------------------------- S2 L2 drawing conclusions from data */
         {
           id: 'tka-m10-s2-l2',
-          title: L('Mean, Mode and Median', 'Rata-rata, Modus, dan Median'),
+          title: L('Drawing Conclusions from Data', 'Menyimpulkan dari Data'),
           goal: L(
-            'You can find the mean, mode and median of a set of numbers, and use the mean to compare groups and find a missing value.',
-            'Kamu bisa mencari rata-rata, modus, dan median dari sekumpulan angka, serta memakai rata-rata untuk membandingkan kelompok dan mencari nilai yang hilang.',
+            'You can compare two values with a fraction, add data over several days, find the biggest rise, combine a table with a chart, and decide which statements the data support.',
+            'Kamu bisa membandingkan dua nilai dengan pecahan, menjumlahkan data beberapa hari, mencari kenaikan terbesar, memadukan tabel dengan diagram, dan menentukan pernyataan yang didukung data.',
           ),
           xp: 20,
           steps: [
             {
               kind: 'concept',
               id: 'c1',
-              title: L('Look Closely: Sharing Out Equally', 'Ayo Amati: Membagi Sama Rata'),
+              title: L('Look Closely: What the Data Can Tell Us', 'Ayo Amati: Apa yang Bisa Dikatakan Data'),
               body: L(
-                'Ani, Budi, Citra and Dewi have 4, 8, 6 and 10 marbles. They share all the marbles out equally, so that every child has the same number. How many marbles does each child get?\n\nThe tall bars give some marbles to the short bars, until all the bars are as high as the dashed line. That height is the **mean** of the numbers.\n\nWe can also find it by calculating. Put all the marbles together: $4 + 8 + 6 + 10 = 28$. Share them among 4 children: $28 \\div 4 = 7$. So the mean is 7, and $\\text{mean} = \\text{sum} \\div \\text{number of values}$.',
-                'Ani, Budi, Citra, dan Dewi punya 4, 8, 6, dan 10 kelereng. Mereka membagi semua kelereng sama rata, supaya setiap anak punya kelereng sama banyak. Berapa kelereng untuk tiap anak?\n\nBatang-batang yang tinggi memberikan sebagian kelerengnya ke batang yang pendek, sampai semua batang setinggi garis putus-putus. Tinggi itu adalah **rata-rata** dari angka-angka tersebut.\n\nKita juga bisa mencarinya dengan menghitung. Satukan semua kelereng: $4 + 8 + 6 + 10 = 28$. Bagi untuk 4 anak: $28 \\div 4 = 7$. Jadi rata-ratanya 7, dan $\\text{rata-rata} = \\text{jumlah} \\div \\text{banyak data}$.',
+                'The village library counts its visitors on days 1 to 5 and shows them in a bar chart. From the chart we can say true things about the visitors. A statement that the numbers prove is called a **conclusion**.\n\nHere are the questions we ask, and what to do.\n\n| Question | What to do |\n|---|---|\n| Is one value only $\\frac{3}{4}$ of another? | Compare with a fraction: write one value over the other and simplify |\n| How many in all over several days? | Add the bars of those days |\n| How much did it change from one day to the next? | Subtract two bars that stand next to each other |\n| Does the data support a statement? | Test the statement with the numbers from the chart |\n\nFor example, day 1 had 30 visitors and day 3 had 40. Since $\\frac{30}{40} = \\frac{3}{4}$, we can say that day 1 had only $\\frac{3}{4}$ of the visitors of day 3.',
+                'Perpustakaan desa mencatat pengunjungnya pada hari ke-1 sampai ke-5 dan menyajikannya dalam diagram batang. Dari diagram itu kita bisa mengatakan hal-hal yang benar tentang pengunjung. Pernyataan yang dibuktikan oleh angka-angka disebut **kesimpulan**.\n\nBerikut pertanyaan yang kita ajukan, dan yang dilakukan.\n\n| Pertanyaan | Yang dilakukan |\n|---|---|\n| Apakah satu nilai hanya $\\frac{3}{4}$ dari nilai lain? | Bandingkan dengan pecahan: tulis satu nilai di atas nilai lainnya lalu sederhanakan |\n| Berapa seluruhnya selama beberapa hari? | Jumlahkan batang-batang hari itu |\n| Berapa perubahan dari satu hari ke hari berikutnya? | Kurangkan dua batang yang bersebelahan |\n| Apakah data mendukung sebuah pernyataan? | Uji pernyataan itu dengan angka dari diagram |\n\nMisalnya, hari ke-1 ada 30 pengunjung dan hari ke-3 ada 40. Karena $\\frac{30}{40} = \\frac{3}{4}$, kita bisa mengatakan bahwa hari ke-1 hanya punya $\\frac{3}{4}$ dari pengunjung hari ke-3.',
               ),
               figure: {
-                ...chartWithLine({ bars: bars(NAMES4, [4, 8, 6, 10]), max: 12, step: 2 }, 7),
+                ...barChart({ bars: bars(DAYS5, [30, 20, 40, 50, 60]), max: 60, step: 10 }),
                 caption: L(
-                  'Marbles of four children. The dashed line at 7 is the height every bar would have after sharing equally.',
-                  'Kelereng empat anak. Garis putus-putus di 7 adalah tinggi setiap batang setelah dibagi sama rata.',
+                  'Visitors of the village library on days 1 to 5. The number under each bar is the day.',
+                  'Pengunjung perpustakaan desa pada hari ke-1 sampai ke-5. Angka di bawah tiap batang adalah harinya.',
                 ),
               },
             },
             {
               kind: 'concept',
               id: 'c2',
-              title: L('Step by Step: Mean, Mode and Median', 'Contoh Bertahap: Rata-rata, Modus, dan Median'),
+              title: L('Step by Step: Testing Two Statements', 'Contoh Bertahap: Menguji Dua Pernyataan'),
               body: L(
-                'Ani, Budi, Citra, Dewi and Eko read 8, 3, 8, 4 and 2 books. Find the mean, the mode and the median.\n\n1. Step 1: **Mean.** Add all the values: $8 + 3 + 8 + 4 + 2 = 25$. Share among 5 children: $25 \\div 5 = 5$.\n2. Step 2: **Mode.** The mode is the value that appears most often. The number 8 appears twice and the others once, so the mode is 8.\n3. Step 3: **Median.** The median is the middle value. First put the numbers in order: 2, 3, 4, 8, 8.\n4. Step 4: The middle of 5 numbers is the 3rd one, so the median is 4.\n\n**Remember:**\n\n- Mean = sum $\\div$ number of values. Mode = the value that appears most often.\n- Median: put the numbers in order first, then take the middle one.\n- With an even number of values, the median is halfway between the two middle values.\n- To compare two groups, compare their means.',
-                'Ani, Budi, Citra, Dewi, dan Eko membaca 8, 3, 8, 4, dan 2 buku. Cari rata-rata, modus, dan median.\n\n1. Langkah 1: **Rata-rata.** Jumlahkan semua nilai: $8 + 3 + 8 + 4 + 2 = 25$. Bagi untuk 5 anak: $25 \\div 5 = 5$.\n2. Langkah 2: **Modus.** Modus adalah nilai yang paling sering muncul. Angka 8 muncul dua kali dan yang lain sekali, jadi modusnya 8.\n3. Langkah 3: **Median.** Median adalah nilai tengah. Urutkan dulu angkanya: 2, 3, 4, 8, 8.\n4. Langkah 4: Tengah dari 5 angka adalah angka ke-3, jadi mediannya 4.\n\n**Ingat:**\n\n- Rata-rata = jumlah $\\div$ banyak data. Modus = nilai yang paling sering muncul.\n- Median: urutkan angkanya dulu, lalu ambil yang di tengah.\n- Kalau banyak datanya genap, median adalah titik tengah antara dua nilai yang di tengah.\n- Untuk membandingkan dua kelompok, bandingkan rata-ratanya.',
+                'Look at the chart of visitors on days 1 to 5. Test the statement "Day 1 had only $\\frac{3}{4}$ of the visitors of day 3" and the statement "The number of visitors went up every day". Then find the biggest rise.\n\n1. Step 1: read every bar: 30, 20, 40, 50 and 60 visitors.\n2. Step 2: test the first statement. $\\frac{3}{4}$ of 40 is $40 \\div 4 \\times 3 = 30$, and day 1 had 30 visitors. The statement is true.\n3. Step 3: find the rises. Day 1 to day 2: 10 fewer. Day 2 to day 3: $40 - 20 = 20$ more. Day 3 to day 4: $50 - 40 = 10$ more. Day 4 to day 5: $60 - 50 = 10$ more. The biggest rise is 20, from day 2 to day 3.\n4. Step 4: test the second statement. From day 1 to day 2 the number went down, so it did not go up every day. The statement is false.\n\n**Remember:**\n\n- "Only $\\frac{3}{4}$ of" means: find $\\frac{3}{4}$ of the bigger value and compare.\n- One day that does not fit is enough to make a statement false.\n- A rise is the difference between two bars that stand next to each other.',
+                'Lihat diagram pengunjung pada hari ke-1 sampai ke-5. Uji pernyataan "Hari ke-1 hanya punya $\\frac{3}{4}$ dari pengunjung hari ke-3" dan pernyataan "Banyak pengunjung naik setiap hari". Lalu cari kenaikan terbesar.\n\n1. Langkah 1: baca setiap batang: 30, 20, 40, 50, dan 60 pengunjung.\n2. Langkah 2: uji pernyataan pertama. $\\frac{3}{4}$ dari 40 adalah $40 \\div 4 \\times 3 = 30$, dan hari ke-1 ada 30 pengunjung. Pernyataan itu benar.\n3. Langkah 3: cari kenaikannya. Hari ke-1 ke hari ke-2: 10 lebih sedikit. Hari ke-2 ke hari ke-3: $40 - 20 = 20$ lebih banyak. Hari ke-3 ke hari ke-4: $50 - 40 = 10$ lebih banyak. Hari ke-4 ke hari ke-5: $60 - 50 = 10$ lebih banyak. Kenaikan terbesar adalah 20, dari hari ke-2 ke hari ke-3.\n4. Langkah 4: uji pernyataan kedua. Dari hari ke-1 ke hari ke-2 banyaknya turun, jadi tidak naik setiap hari. Pernyataan itu salah.\n\n**Ingat:**\n\n- "Hanya $\\frac{3}{4}$ dari" berarti: cari $\\frac{3}{4}$ dari nilai yang lebih besar lalu bandingkan.\n- Satu hari yang tidak cocok sudah cukup untuk membuat pernyataan salah.\n- Kenaikan adalah selisih dua batang yang bersebelahan.',
               ),
               figure: {
-                ...chartWithLine({ bars: bars(NAMES5, [8, 3, 8, 4, 2]), max: 10, step: 2 }, 5),
+                ...barChart({ bars: bars(DAYS5, [30, 20, 40, 50, 60]), max: 60, step: 10, showValues: false }),
                 caption: L(
-                  'Books read. The dashed line shows the mean, 5.',
-                  'Buku yang dibaca. Garis putus-putus menunjukkan rata-ratanya, yaitu 5.',
+                  'Visitors on days 1 to 5. The scale goes up by 10.',
+                  'Pengunjung pada hari ke-1 sampai ke-5. Skalanya naik 10.',
                 ),
               },
             },
             {
               kind: 'concept',
               id: 'c3',
-              title: L('Watch Out!: Order, Most Often and Dividing', 'Awas, Jebakan!: Urutan, Paling Sering, dan Pembagi'),
+              title: L('Watch Out!: Conclusions That Go Too Far', 'Awas, Jebakan!: Kesimpulan yang Terlalu Jauh'),
               body: L(
-                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| The numbers are 8, 3, 8, 4, 2. The middle one of the list is 8, so the median is 8 | Order first: 2, 3, 4, 8, 8. The middle one is 4, so the median is 4 |\n| The mode is the biggest number, or the one in the middle | The mode is the value that appears most often |\n| For 4, 4 and 10, divide by 2, because there are two different numbers | Add all three values: $4 + 4 + 10 = 18$. Divide by 3: the mean is 6 |',
-                'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| Angkanya 8, 3, 8, 4, 2. Yang di tengah daftar adalah 8, jadi mediannya 8 | Urutkan dulu: 2, 3, 4, 8, 8. Yang di tengah adalah 4, jadi mediannya 4 |\n| Modus adalah angka terbesar, atau angka yang di tengah | Modus adalah nilai yang paling sering muncul |\n| Untuk 4, 4, dan 10, dibagi 2, karena ada dua angka yang berbeda | Jumlahkan ketiga nilai: $4 + 4 + 10 = 18$. Bagi 3: rata-ratanya 6 |',
+                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| Day 1 (30) is 10 fewer than day 3 (40), so it is $\\frac{1}{10}$ of day 3 | A fraction says "out of": 30 out of 40 is $\\frac{30}{40} = \\frac{3}{4}$ |\n| The tallest bar (60) is the biggest rise | A rise is the difference between neighbouring bars: 20 from day 2 to day 3, but only 10 from day 4 to day 5 |\n| The bars went up on days 3, 4 and 5, so day 6 will be even higher | The data only tell what happened. We cannot be sure about a day that is not in the chart |',
+                'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| Hari ke-1 (30) kurang 10 dari hari ke-3 (40), jadi sepersepuluh dari hari ke-3 | Pecahan berarti "dari": 30 dari 40 adalah $\\frac{30}{40} = \\frac{3}{4}$ |\n| Batang tertinggi (60) adalah kenaikan terbesar | Kenaikan adalah selisih batang yang bersebelahan: 20 dari hari ke-2 ke hari ke-3, tetapi hanya 10 dari hari ke-4 ke hari ke-5 |\n| Batang naik pada hari ke-3, ke-4, dan ke-5, jadi hari ke-6 pasti lebih tinggi lagi | Data hanya menceritakan yang sudah terjadi. Kita tidak bisa yakin tentang hari yang tidak ada di diagram |',
               ),
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
-                'The chart shows the marbles of four children. What is the median number of marbles?',
-                'Diagram menunjukkan kelereng empat anak. Berapa median banyak kelereng itu?',
+                'The chart shows the kilograms of rice a stall sold on days 1 to 4. On day 4 the stall sold only a fraction of what it sold on day 3. Which fraction?',
+                'Diagram menunjukkan kilogram beras yang dijual sebuah warung pada hari ke-1 sampai ke-4. Pada hari ke-4 warung itu hanya menjual sebagian dari yang dijual pada hari ke-3. Berapa bagiannya?',
               ),
               figure: {
-                ...barChart({ bars: bars(NAMES4, [12, 5, 9, 6]), max: 14, step: 2 }),
-                caption: L('Marbles of four children.', 'Kelereng empat anak.'),
+                ...barChart({ bars: bars(['1', '2', '3', '4'], [30, 40, 60, 20]), max: 60, step: 10, showValues: false }),
+                caption: L('Rice sold in kg on days 1 to 4. The scale goes up by 10.', 'Beras yang dijual (kg) pada hari ke-1 sampai ke-4. Skalanya naik 10.'),
               },
-              options: [L('7.5', '7,5'), L('7', '7'), L('8', '8'), L('6', '6')],
+              options: [L('$\\frac{1}{3}$', '$\\frac{1}{3}$'), L('$\\frac{2}{3}$', '$\\frac{2}{3}$'), L('$\\frac{1}{4}$', '$\\frac{1}{4}$'), L('3', '3')],
               answer: 0,
               explain: L(
-                'In order the numbers are 5, 6, 9, 12. With 4 numbers there are two in the middle, 6 and 9, and the median is halfway: $(6 + 9) \\div 2 = 7.5$. The answer 7 comes from the two middle numbers of the unordered list, 8 is the mean, and 6 is only one of the two middle numbers.',
-                'Setelah diurutkan, angkanya 5, 6, 9, 12. Dengan 4 angka ada dua yang di tengah, yaitu 6 dan 9, dan mediannya di tengah-tengah: $(6 + 9) \\div 2 = 7{,}5$. Jawaban 7 berasal dari dua angka tengah pada daftar yang belum diurutkan, 8 adalah rata-ratanya, dan 6 hanya satu dari dua angka tengah.',
+                'Day 4 sold 20 kg and day 3 sold 60 kg, so day 4 is $\\frac{20}{60} = \\frac{1}{3}$ of day 3. The fraction $\\frac{2}{3}$ is how much less was sold (40 kg out of 60), $\\frac{1}{4}$ compares 20 with both days together (20 out of 80), and 3 turns it around: day 3 is 3 times day 4.',
+                'Hari ke-4 terjual 20 kg dan hari ke-3 terjual 60 kg, jadi hari ke-4 adalah $\\frac{20}{60} = \\frac{1}{3}$ dari hari ke-3. Pecahan $\\frac{2}{3}$ adalah bagian yang berkurang (40 kg dari 60), $\\frac{1}{4}$ membandingkan 20 dengan kedua hari bersama (20 dari 80), dan 3 membaliknya: hari ke-3 adalah 3 kali hari ke-4.',
               ),
               hint: L(
-                'Put the four numbers in order first. With an even number of values, the median is halfway between the two in the middle.',
-                'Urutkan dulu keempat angkanya. Kalau banyak datanya genap, median ada di tengah-tengah antara dua angka yang di tengah.',
+                'Read the bars of day 3 and day 4 first. Day 4 is compared with day 3: which number goes on top of the fraction, and which on the bottom?',
+                'Baca dulu batang hari ke-3 dan hari ke-4. Hari ke-4 dibandingkan dengan hari ke-3: angka mana di atas pecahan, dan angka mana di bawah?',
               ),
             },
             {
@@ -899,120 +908,155 @@ export const module10: Module = {
               id: 'f1',
               math: true,
               prompt: L(
-                'Try it together: Fitri scored 6, 9, 3, 9 and 8 in five tests. In order, her scores are 3, 6, 8, 9, 9. Find the sum, the mean and the median.',
-                'Coba bersama: Fitri mendapat nilai 6, 9, 3, 9, dan 8 pada lima ulangan. Setelah diurutkan, nilainya 3, 6, 8, 9, 9. Cari jumlah, rata-rata, dan median.',
+                'Try it together: in the chart of visitors, day 1 had 30 visitors and day 5 had 60. Day 1 had only what fraction of the visitors of day 5? Simplify it.',
+                'Coba bersama: pada diagram pengunjung, hari ke-1 ada 30 pengunjung dan hari ke-5 ada 60. Hari ke-1 hanya punya berapa bagian dari pengunjung hari ke-5? Sederhanakan.',
               ),
-              template: {
-                en: '\\text{sum} = ___ \\qquad \\text{mean} = ___ \\qquad \\text{median} = ___',
-                id: '\\text{jumlah} = ___ \\qquad \\text{rata-rata} = ___ \\qquad \\text{median} = ___',
+              figure: {
+                ...barChart({ bars: bars(DAYS5, [30, 20, 40, 50, 60]), max: 60, step: 10, showValues: false }),
+                caption: L('Visitors on days 1 to 5. The scale goes up by 10.', 'Pengunjung pada hari ke-1 sampai ke-5. Skalanya naik 10.'),
               },
-              blanks: ['35', '7', '8'],
+              template: '\\frac{30}{60} = \\frac{30 \\div 30}{60 \\div 30} = \\frac{___}{___}',
+              blanks: ['1', '2'],
               explain: L(
-                'The sum is $6 + 9 + 3 + 9 + 8 = 35$, the mean is $35 \\div 5 = 7$, and the median is the middle of 3, 6, 8, 9, 9, which is 8.',
-                'Jumlahnya $6 + 9 + 3 + 9 + 8 = 35$, rata-ratanya $35 \\div 5 = 7$, dan median adalah yang di tengah dari 3, 6, 8, 9, 9, yaitu 8.',
+                '30 out of 60 is $\\frac{30}{60}$. Dividing the top and the bottom by 30 gives $\\frac{1}{2}$, so day 1 had only half of the visitors of day 5.',
+                '30 dari 60 adalah $\\frac{30}{60}$. Membagi pembilang dan penyebut dengan 30 memberi $\\frac{1}{2}$, jadi hari ke-1 hanya punya setengah dari pengunjung hari ke-5.',
               ),
               hint: L(
-                'Add all five scores first. For the mean divide by 5. For the median take the middle number of the ordered list.',
-                'Jumlahkan dulu kelima nilai. Untuk rata-rata, bagi dengan 5. Untuk median, ambil angka tengah dari daftar yang sudah urut.',
+                'Write the smaller value over the bigger one. Then divide the top and the bottom by the same number.',
+                'Tulis nilai yang lebih kecil di atas nilai yang lebih besar. Lalu bagi pembilang dan penyebut dengan bilangan yang sama.',
               ),
             },
             {
               kind: 'quiz',
               id: 'q2',
               prompt: L(
-                'The table shows the scores of 10 children in a test. The top row is the score and the bottom row is the number of children with that score. What is the mean score?',
-                'Tabel menunjukkan nilai ulangan 10 anak. Baris atas adalah nilai dan baris bawah adalah banyak anak yang mendapat nilai itu. Berapa rata-rata nilainya?',
+                'The chart shows how many children are in four clubs: P, Q, R and S. The number in the box under each bar is how many of them are girls. How many boys are in club R and club S together?',
+                'Diagram menunjukkan banyak anak dalam empat klub: P, Q, R, dan S. Angka dalam kotak di bawah tiap batang adalah banyak anak perempuan di klub itu. Berapa anak laki-laki di klub R dan klub S bersama-sama?',
               ),
               figure: {
-                ...gridTable([['5', '6', '7', '8'], ['4', '3', '2', '1']], { cw: 2 }),
+                ...chartWithBoxes({ bars: bars(['P', 'Q', 'R', 'S'], [20, 30, 40, 10]), max: 40, step: 10, showValues: false }, [12, 10, 25, 5]),
                 caption: L(
-                  'Top row: score. Bottom row: number of children.',
-                  'Baris atas: nilai. Baris bawah: banyak anak.',
+                  'Children in four clubs (bars). The boxes under the bars show the girls.',
+                  'Anak dalam empat klub (batang). Kotak di bawah batang menunjukkan anak perempuan.',
                 ),
               },
-              options: [L('6', '6'), L('6.5', '6,5'), L('5', '5'), L('60', '60')],
+              options: [L('20', '20'), L('30', '30'), L('50', '50'), L('15', '15')],
               answer: 0,
               explain: L(
-                'The total of all scores is $5 \\times 4 + 6 \\times 3 + 7 \\times 2 + 8 \\times 1 = 60$, and $60 \\div 10 = 6$. The answer 6.5 is the mean of only the four scores 5, 6, 7, 8, 5 is the mode, and 60 is the sum, not yet shared among 10 children.',
-                'Jumlah semua nilai adalah $5 \\times 4 + 6 \\times 3 + 7 \\times 2 + 8 \\times 1 = 60$, dan $60 \\div 10 = 6$. Jawaban 6,5 adalah rata-rata dari empat nilai 5, 6, 7, 8 saja, 5 adalah modus, dan 60 adalah jumlahnya, belum dibagi untuk 10 anak.',
+                'Club R has 40 children and 25 girls, so $40 - 25 = 15$ boys. Club S has 10 children and 5 girls, so 5 boys. Together $15 + 5 = 20$. The number 30 is the girls of R and S, 50 is all the children of R and S, and 15 is the boys of club R only.',
+                'Klub R punya 40 anak dan 25 perempuan, jadi $40 - 25 = 15$ laki-laki. Klub S punya 10 anak dan 5 perempuan, jadi 5 laki-laki. Bersama-sama $15 + 5 = 20$. Angka 30 adalah perempuan di R dan S, 50 adalah semua anak di R dan S, dan 15 hanya laki-laki di klub R.',
               ),
               hint: L(
-                'Each score counts as many times as there are children with it. Find the total first, then divide by the number of children.',
-                'Setiap nilai dihitung sebanyak anak yang mendapatkannya. Cari dulu jumlah seluruhnya, lalu bagi dengan banyak anak.',
+                'Read the bar and the box of each club. The boys are what is left when the girls are taken away from the whole club.',
+                'Baca batang dan kotak tiap klub. Anak laki-laki adalah sisanya kalau anak perempuan dikurangkan dari seluruh klub.',
               ),
             },
             {
               kind: 'judge',
               id: 'j1',
               prompt: L(
-                'Five children read these numbers of books: 2, 9, 6, 4 and 4. Decide whether each statement is True or False.',
-                'Lima anak membaca buku sebanyak ini: 2, 9, 6, 4, dan 4. Tentukan tiap pernyataan Benar atau Salah.',
+                'The pictogram shows the books a school library lent on days 1 to 4. Decide whether each statement is True or False.',
+                'Piktogram menunjukkan buku yang dipinjamkan perpustakaan sekolah pada hari ke-1 sampai ke-4. Tentukan tiap pernyataan Benar atau Salah.',
               ),
               figure: {
-                ...gridTable([['2', '9', '6', '4', '4']], { cw: 1.8, head: 'none' }),
-                caption: L('The numbers of books, in the order they were written.', 'Banyak buku, sesuai urutan penulisannya.'),
+                ...pict([{ label: '1', count: 3 }, { label: '2', count: 4.5 }, { label: '3', count: 2 }, { label: '4', count: 4 }], 10),
+                caption: L('Books lent on days 1 to 4. One square = 10 books.', 'Buku yang dipinjamkan pada hari ke-1 sampai ke-4. Satu kotak = 10 buku.'),
               },
               statements: [
-                L('The mode is 4.', 'Modusnya 4.'),
-                L('The median is 6, because 6 is the middle number of the list as written.', 'Mediannya 6, karena 6 adalah angka tengah pada daftar seperti tertulis.'),
-                L('The mean is 5.', 'Rata-ratanya 5.'),
-                L('The mode is 9, because 9 is the biggest number.', 'Modusnya 9, karena 9 adalah angka terbesar.'),
+                L('On day 3, only $\\frac{2}{3}$ as many books were lent as on day 1.', 'Pada hari ke-3, buku yang dipinjamkan hanya $\\frac{2}{3}$ dari hari ke-1.'),
+                L('In the four days, 135 books were lent in all.', 'Dalam empat hari, seluruhnya 135 buku dipinjamkan.'),
+                L('The biggest rise from one day to the next was 25 books.', 'Kenaikan terbesar dari satu hari ke hari berikutnya adalah 25 buku.'),
+                L('We can be sure that more than 40 books will be lent on day 5.', 'Kita bisa yakin bahwa lebih dari 40 buku akan dipinjamkan pada hari ke-5.'),
               ],
-              answer: [true, false, true, false],
+              answer: [true, true, false, false],
               explain: L(
-                'The number 4 appears twice, so the mode is 4. In order the list is 2, 4, 4, 6, 9, so the median is 4, not 6. The mean is $(2 + 9 + 6 + 4 + 4) \\div 5 = 25 \\div 5 = 5$. The biggest number is not the mode.',
-                'Angka 4 muncul dua kali, jadi modusnya 4. Setelah diurutkan daftarnya 2, 4, 4, 6, 9, jadi mediannya 4, bukan 6. Rata-ratanya $(2 + 9 + 6 + 4 + 4) \\div 5 = 25 \\div 5 = 5$. Angka terbesar bukanlah modus.',
+                'The books lent were 30, 45, 20 and 40. Day 3 has 20 out of 30, which is $\\frac{2}{3}$, and the total is $30 + 45 + 20 + 40 = 135$. The rises are 15 (day 1 to 2) and 20 (day 3 to 4). The 25 is a fall from day 2 to day 3, not a rise. The data say nothing sure about day 5.',
+                'Buku yang dipinjamkan 30, 45, 20, dan 40. Hari ke-3 ada 20 dari 30, yaitu $\\frac{2}{3}$, dan jumlahnya $30 + 45 + 20 + 40 = 135$. Kenaikannya 15 (dari hari ke-1 ke hari ke-2) dan 20 (dari hari ke-3 ke hari ke-4). Angka 25 adalah penurunan dari hari ke-2 ke hari ke-3, bukan kenaikan. Data tidak memberi kepastian tentang hari ke-5.',
               ),
               hint: L(
-                'For the median, put the numbers in order first. For the mode, look for the number that appears most often.',
-                'Untuk median, urutkan dulu angkanya. Untuk modus, cari angka yang paling sering muncul.',
+                'Use the key to change every row into books. Then test each statement. A rise means the number went up.',
+                'Pakai kunci untuk mengubah tiap baris menjadi banyak buku. Lalu uji tiap pernyataan. Kenaikan berarti banyaknya bertambah.',
               ),
             },
             {
               kind: 'multi',
               id: 'mc1',
               prompt: L(
-                'Two groups of children counted their marbles. Each number is one child. Choose TWO true statements.',
-                'Dua kelompok anak menghitung kelereng mereka. Setiap angka adalah satu anak. Pilih DUA pernyataan yang benar.',
+                'The table shows the visitors of the village library on days 1 to 5. The top row is the day and the bottom row is the number of visitors. Choose TWO statements that the table supports.',
+                'Tabel menunjukkan pengunjung perpustakaan desa pada hari ke-1 sampai ke-5. Baris atas adalah hari dan baris bawah adalah banyak pengunjung. Pilih DUA pernyataan yang didukung tabel.',
               ),
               figure: {
-                ...gridTable([['P', '6', '8', '5', '9'], ['Q', '10', '6', '8']], { cw: 1.8, head: 'col' }),
-                caption: L('The marbles of the children in group P and group Q.', 'Kelereng anak-anak pada kelompok P dan kelompok Q.'),
+                ...gridTable([['1', '2', '3', '4', '5'], ['20', '30', '25', '40', '45']], { cw: 1.8 }),
+                caption: L('Top row: the day. Bottom row: visitors.', 'Baris atas: hari. Baris bawah: pengunjung.'),
               },
               options: [
-                L('Group Q has the higher mean.', 'Kelompok Q punya rata-rata yang lebih tinggi.'),
-                L('Group P has more marbles in all.', 'Kelompok P punya kelereng lebih banyak seluruhnya.'),
-                L('Group P has the higher mean, because it has more marbles in all.', 'Kelompok P punya rata-rata yang lebih tinggi, karena kelerengnya lebih banyak seluruhnya.'),
-                L('Both groups have the same mean.', 'Kedua kelompok punya rata-rata yang sama.'),
+                L('Day 2 had $\\frac{3}{4}$ as many visitors as day 4.', 'Hari ke-2 punya $\\frac{3}{4}$ dari pengunjung hari ke-4.'),
+                L('In the five days, 160 visitors came in all.', 'Dalam lima hari, seluruhnya 160 pengunjung datang.'),
+                L('The number of visitors went up every day.', 'Banyak pengunjung naik setiap hari.'),
+                L('Day 5 had twice as many visitors as day 1.', 'Hari ke-5 punya pengunjung dua kali lebih banyak daripada hari ke-1.'),
               ],
               answer: [0, 1],
               explain: L(
-                'Group P: $28 \\div 4 = 7$. Group Q: $24 \\div 3 = 8$. So Q has the higher mean, while P has more marbles in all (28 against 24) because it has more children. To compare groups, compare their means, not their totals.',
-                'Kelompok P: $28 \\div 4 = 7$. Kelompok Q: $24 \\div 3 = 8$. Jadi Q punya rata-rata lebih tinggi, sedangkan P punya kelereng lebih banyak seluruhnya (28 melawan 24) karena anaknya lebih banyak. Untuk membandingkan kelompok, bandingkan rata-ratanya, bukan jumlahnya.',
+                'Day 2 had 30 and day 4 had 40, and $\\frac{30}{40} = \\frac{3}{4}$. The total is $20 + 30 + 25 + 40 + 45 = 160$. The number fell from day 2 to day 3 (30 to 25), so it did not rise every day. Twice day 1 is 40, but day 5 had 45.',
+                'Hari ke-2 ada 30 dan hari ke-4 ada 40, dan $\\frac{30}{40} = \\frac{3}{4}$. Jumlahnya $20 + 30 + 25 + 40 + 45 = 160$. Banyaknya turun dari hari ke-2 ke hari ke-3 (30 ke 25), jadi tidak naik setiap hari. Dua kali hari ke-1 adalah 40, tetapi hari ke-5 ada 45.',
               ),
               hint: L(
-                'Find the sum and the mean of each group. A group with more children can have a bigger sum but a smaller mean.',
-                'Cari jumlah dan rata-rata tiap kelompok. Kelompok dengan anak lebih banyak bisa punya jumlah lebih besar tetapi rata-rata lebih kecil.',
+                'Read the five numbers first. Then test each statement with them, one by one.',
+                'Baca dulu kelima angka itu. Lalu uji tiap pernyataan dengan angka-angka itu, satu per satu.',
+              ),
+            },
+            {
+              kind: 'order',
+              id: 'o1',
+              prompt: L(
+                'Put the steps in order for deciding whether the data support a statement.',
+                'Urutkan langkah untuk menentukan apakah data mendukung sebuah pernyataan.',
+              ),
+              lines: {
+                en: [
+                  'Read the values from the chart or the table.',
+                  'Read the statement and find what it claims: a fraction, a total or a change.',
+                  'Calculate with the values from the data.',
+                  'Compare your result with the claim. If the data cannot show it, the statement is not supported.',
+                ],
+                id: [
+                  'Baca nilai-nilainya dari diagram atau tabel.',
+                  'Baca pernyataannya dan cari yang diklaim: pecahan, jumlah, atau perubahan.',
+                  'Hitung dengan nilai-nilai dari data.',
+                  'Bandingkan hasilmu dengan klaimnya. Kalau data tidak bisa menunjukkannya, pernyataan itu tidak didukung.',
+                ],
+              },
+              explain: L(
+                'First read the data, then see what the statement claims, then calculate, and last compare.',
+                'Pertama baca datanya, lalu lihat yang diklaim pernyataan, lalu hitung, dan terakhir bandingkan.',
+              ),
+              hint: L(
+                'You need the numbers before you can calculate, and the comparison with the claim comes last.',
+                'Kamu perlu angka-angkanya sebelum bisa menghitung, dan perbandingan dengan klaim dilakukan paling akhir.',
               ),
             },
             {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'Hasan scored 70, 85, 60 and 90 in four tests. What score must Hasan get in the fifth test so that the mean of the five tests is 80?',
-                'Hasan mendapat nilai 70, 85, 60, dan 90 pada empat ulangan. Berapa nilai yang harus didapat Hasan pada ulangan kelima supaya rata-rata kelima ulangan itu 80?',
+                'The chart shows the visitors at a swimming pool on days 1 to 5. On day 6 the pool had only $\\frac{3}{4}$ as many visitors as on day 4. How many visitors came on days 4, 5 and 6 together?',
+                'Diagram menunjukkan pengunjung kolam renang pada hari ke-1 sampai ke-5. Pada hari ke-6 kolam itu hanya punya $\\frac{3}{4}$ dari pengunjung hari ke-4. Berapa pengunjung yang datang pada hari ke-4, ke-5, dan ke-6 bersama-sama?',
               ),
-              blanks: [{ answer: 95 }],
+              figure: {
+                ...barChart({ bars: bars(DAYS5, [40, 50, 70, 80, 60]), max: 80, step: 10, showValues: false }),
+                caption: L('Visitors on days 1 to 5. The scale goes up by 10.', 'Pengunjung pada hari ke-1 sampai ke-5. Skalanya naik 10.'),
+              },
+              blanks: [{ answer: 200, after: AFTER.visitors }],
               hints: [
-                L('If the mean of 5 tests is 80, what must the total of the 5 scores be?', 'Kalau rata-rata 5 ulangan adalah 80, berapa jumlah kelima nilai itu?'),
-                L('The total needed is the mean times the number of tests. Then take away what Hasan already has.', 'Jumlah yang diperlukan adalah rata-rata dikali banyak ulangan. Lalu kurangi dengan yang sudah dimiliki Hasan.'),
-                L('The total needed is $5 \\times 80 = 400$. The first four scores add up to 305. What is left?', 'Jumlah yang diperlukan adalah $5 \\times 80 = 400$. Keempat nilai pertama berjumlah 305. Berapa sisanya?'),
+                L('Which days do you need? Read their bars first. Day 6 is not in the chart.', 'Hari mana saja yang kamu perlukan? Baca dulu batangnya. Hari ke-6 tidak ada di diagram.'),
+                L('Find the visitors of day 6 from day 4: take $\\frac{3}{4}$ of the value of day 4.', 'Cari pengunjung hari ke-6 dari hari ke-4: ambil $\\frac{3}{4}$ dari nilai hari ke-4.'),
+                L('Day 4 has 80 visitors and day 5 has 60. Find $\\frac{3}{4}$ of 80, then add the three days.', 'Hari ke-4 ada 80 pengunjung dan hari ke-5 ada 60. Cari $\\frac{3}{4}$ dari 80, lalu jumlahkan ketiga hari.'),
               ],
               explain: L(
-                'For a mean of 80 over 5 tests the total must be $5 \\times 80 = 400$. So far Hasan has $70 + 85 + 60 + 90 = 305$, so he needs $400 - 305 = 95$.',
-                'Untuk rata-rata 80 pada 5 ulangan, jumlahnya harus $5 \\times 80 = 400$. Sejauh ini Hasan punya $70 + 85 + 60 + 90 = 305$, jadi ia memerlukan $400 - 305 = 95$.',
+                'Day 4 has 80 and day 5 has 60. Day 6 has $\\frac{3}{4}$ of 80, which is $80 \\div 4 \\times 3 = 60$. Together $80 + 60 + 60 = 200$ visitors.',
+                'Hari ke-4 ada 80 dan hari ke-5 ada 60. Hari ke-6 punya $\\frac{3}{4}$ dari 80, yaitu $80 \\div 4 \\times 3 = 60$. Bersama-sama $80 + 60 + 60 = 200$ pengunjung.',
               ),
-              solution: ['5 \\times 80 = 400', '70 + 85 + 60 + 90 = 305', '400 - 305 = 95'],
+              solution: ['80 \\div 4 \\times 3 = 60', '80 + 60 + 60 = 200'],
             },
           ],
         },
@@ -1020,80 +1064,88 @@ export const module10: Module = {
       project: {
         id: 'tka-m10-s2-p',
         runtime: 'math',
-        title: L('Reading and Summing Up Data', 'Membaca dan Merangkum Data'),
+        title: L('Using Data to Draw Conclusions', 'Memakai Data untuk Menarik Kesimpulan'),
         brief: L(
-          'Find the mode, the mean and the median of real-life data, and use them to solve a problem.',
-          'Cari modus, rata-rata, dan median dari data sehari-hari, lalu pakai untuk menyelesaikan soal.',
+          'Read tables and charts, compare values with fractions, find the biggest rise and decide which statements the data support.',
+          'Baca tabel dan diagram, bandingkan nilai dengan pecahan, cari kenaikan terbesar, dan tentukan pernyataan yang didukung data.',
         ),
         requirements: [
-          L('Find the mode, mean and median of a set of numbers.', 'Mencari modus, rata-rata, dan median dari sekumpulan angka.'),
-          L('Use the mean of a group to find a total.', 'Memakai rata-rata suatu kelompok untuk mencari jumlah.'),
+          L('Add data, compare values with a fraction and find a change.', 'Menjumlahkan data, membandingkan nilai dengan pecahan, dan mencari perubahan.'),
+          L('Decide which statements a chart supports.', 'Menentukan pernyataan yang didukung sebuah diagram.'),
         ],
         hints: [
-          L('The mode is the value that appears most often, not the biggest frequency.', 'Modus adalah nilai yang paling sering muncul, bukan frekuensi yang terbesar.'),
-          L('Order the numbers before you look for the median. With an even number of values, take the halfway point.', 'Urutkan angkanya sebelum mencari median. Kalau banyak datanya genap, ambil titik tengahnya.'),
-          L('Total = mean $\\times$ number of values. To combine groups, add the totals and divide by all the children.', 'Jumlah = rata-rata $\\times$ banyak data. Untuk menggabungkan kelompok, jumlahkan jumlah-jumlahnya dan bagi dengan semua anak.'),
+          L('Read every value from the table or the bars before you calculate.', 'Baca setiap nilai dari tabel atau batang sebelum menghitung.'),
+          L('To compare with a fraction, write one value over the other and simplify. A change is the difference of two neighbouring bars.', 'Untuk membandingkan dengan pecahan, tulis satu nilai di atas nilai lainnya lalu sederhanakan. Perubahan adalah selisih dua batang yang bersebelahan.'),
+          L('To judge a statement, test it with the numbers one statement at a time. One value that does not fit makes it false.', 'Untuk menilai pernyataan, ujilah dengan angka-angka itu satu pernyataan pada satu waktu. Satu nilai yang tidak cocok membuatnya salah.'),
         ],
         xp: 50,
         tasks: [
           {
             prompt: L(
-              'The table shows the shoe sizes of 10 children. The top row is the shoe size and the bottom row is the number of children who wear it. What is the mode?',
-              'Tabel menunjukkan ukuran sepatu 10 anak. Baris atas adalah ukuran sepatu dan baris bawah adalah banyak anak yang memakainya. Berapa modusnya?',
+              'The table shows the visitors of the village library on days 1 to 4. How many visitors came in the four days?',
+              'Tabel menunjukkan pengunjung perpustakaan desa pada hari ke-1 sampai ke-4. Berapa pengunjung yang datang dalam empat hari itu?',
             ),
             figure: {
-              ...gridTable([['36', '37', '38', '39'], ['2', '4', '3', '1']], { cw: 2 }),
-              caption: L('Top row: shoe size. Bottom row: number of children.', 'Baris atas: ukuran sepatu. Baris bawah: banyak anak.'),
+              ...gridTable([['1', '2', '3', '4'], ['25', '40', '35', '30']], { cw: 2 }),
+              caption: L('Top row: the day. Bottom row: visitors.', 'Baris atas: hari. Baris bawah: pengunjung.'),
             },
-            blanks: [{ answer: 37 }],
+            blanks: [{ answer: 130, after: AFTER.visitors }],
+            solution: ['25 + 40 + 35 + 30 = 130'],
+          },
+          {
+            prompt: L(
+              'The chart shows the kilograms of rice sold by four stalls. Citra\'s stall sold only a fraction of what Dewi\'s stall sold. Write the fraction in simplest form.',
+              'Diagram menunjukkan kilogram beras yang dijual empat warung. Warung Citra hanya menjual sebagian dari yang dijual warung Dewi. Tulis bagian itu dalam bentuk paling sederhana.',
+            ),
+            figure: {
+              ...barChart({ bars: bars(NAMES4, [60, 80, 40, 100]), max: 100, step: 20, showValues: false }),
+              caption: L('Rice sold in kg. The scale goes up by 20.', 'Beras yang dijual (kg). Skalanya naik 20.'),
+            },
+            blanks: fracBlanks(2, 5),
+            solution: ['\\frac{40}{100} = \\frac{2}{5}'],
+          },
+          {
+            prompt: L(
+              'The village market counted its visitors on days 1 to 5. From one day to the next, what is the biggest rise in the number of visitors?',
+              'Pasar desa mencatat pengunjungnya pada hari ke-1 sampai ke-5. Dari satu hari ke hari berikutnya, berapa kenaikan terbesar banyak pengunjung?',
+            ),
+            figure: {
+              ...barChart({ bars: bars(DAYS5, [20, 40, 30, 60, 50]), max: 60, step: 10, showValues: false }),
+              caption: L('Visitors on days 1 to 5. The scale goes up by 10.', 'Pengunjung pada hari ke-1 sampai ke-5. Skalanya naik 10.'),
+            },
+            blanks: [{ answer: 30, after: AFTER.visitors }],
             solution: {
-              en: ['\\text{the most children (4) wear size } 37', '\\text{mode} = 37'],
-              id: ['\\text{anak terbanyak (4) memakai ukuran } 37', '\\text{modus} = 37'],
+              en: ['40 - 20 = 20, \\quad 60 - 30 = 30', '\\text{the other days went down}', '\\text{biggest rise} = 30'],
+              id: ['40 - 20 = 20, \\quad 60 - 30 = 30', '\\text{hari lainnya turun}', '\\text{kenaikan terbesar} = 30'],
             },
           },
           {
             prompt: L(
-              'Five children weigh 38 kg, 41 kg, 35 kg, 42 kg and 44 kg. What is their mean weight?',
-              'Lima anak beratnya 38 kg, 41 kg, 35 kg, 42 kg, dan 44 kg. Berapa berat rata-rata mereka?',
+              'The chart shows the visitors of a reading corner on days 1 to 5. How many of these statements does the chart support? (1) Day 2 had only $\\frac{3}{4}$ of the visitors of day 4. (2) In all, 250 visitors came. (3) Day 3 had half as many visitors as day 2. (4) The number of visitors went up every day.',
+              'Diagram menunjukkan pengunjung pojok baca pada hari ke-1 sampai ke-5. Berapa dari pernyataan berikut yang didukung diagram? (1) Hari ke-2 hanya punya $\\frac{3}{4}$ dari pengunjung hari ke-4. (2) Seluruhnya 250 pengunjung datang. (3) Hari ke-3 punya setengah dari pengunjung hari ke-2. (4) Banyak pengunjung naik setiap hari.',
             ),
             figure: {
-              ...barChart({ bars: bars(NAMES5, [38, 41, 35, 42, 44]), max: 50, step: 10 }),
-              caption: L('Weights in kg.', 'Berat dalam kg.'),
+              ...barChart({ bars: bars(DAYS5, [40, 60, 30, 80, 50]), max: 80, step: 10, showValues: false }),
+              caption: L('Visitors on days 1 to 5. The scale goes up by 10.', 'Pengunjung pada hari ke-1 sampai ke-5. Skalanya naik 10.'),
             },
-            blanks: [{ answer: 40, after: AFTER.kg }],
-            solution: ['38 + 41 + 35 + 42 + 44 = 200', '200 \\div 5 = 40'],
-          },
-          {
-            prompt: L(
-              'The bar chart shows the books six children read. What is the median number of books?',
-              'Diagram batang menunjukkan buku yang dibaca enam anak. Berapa median banyak buku itu?',
-            ),
-            figure: {
-              ...barChart({ bars: bars(['Ani', 'Budi', 'Citra', 'Dewi', 'Eko', 'Fitri'], [8, 3, 10, 6, 4, 8]), max: 10, step: 2, showValues: false }),
-              caption: L('Books read by six children. The scale goes up by 2.', 'Buku yang dibaca enam anak. Skalanya naik 2.'),
-            },
-            blanks: [{ answer: 7, after: AFTER.books }],
+            blanks: [{ answer: 2, after: { en: '\\text{ statements}', id: '\\text{ pernyataan}' } }],
             solution: {
-              en: ['\\text{values: } 8, 3, 10, 6, 4, 8', '\\text{in order: } 3, 4, 6, 8, 8, 10', '\\text{middle two: } 6 \\text{ and } 8, \\ (6 + 8) \\div 2 = 7'],
-              id: ['\\text{nilai: } 8, 3, 10, 6, 4, 8', '\\text{urut: } 3, 4, 6, 8, 8, 10', '\\text{dua tengah: } 6 \\text{ dan } 8, \\ (6 + 8) \\div 2 = 7'],
-            },
-          },
-          {
-            prompt: L(
-              'The table shows two groups of children. For each group it gives the number of children and the mean number of stickers per child. What is the mean number of stickers of all 10 children together?',
-              'Tabel menunjukkan dua kelompok anak. Untuk tiap kelompok, tabel memberi banyak anak dan rata-rata stiker tiap anak. Berapa rata-rata stiker dari seluruh 10 anak bersama-sama?',
-            ),
-            figure: {
-              ...gridTable([['A', '6', '7'], ['B', '4', '12']], { cw: 2, head: 'col' }),
-              caption: L(
-                'Left: the group. Middle: number of children. Right: mean number of stickers.',
-                'Kiri: kelompok. Tengah: banyak anak. Kanan: rata-rata stiker.',
-              ),
-            },
-            blanks: [{ answer: 9, after: AFTER.stickers }],
-            solution: {
-              en: ['\\text{group A: } 6 \\times 7 = 42', '\\text{group B: } 4 \\times 12 = 48', '(42 + 48) \\div 10 = 90 \\div 10 = 9'],
-              id: ['\\text{kelompok A: } 6 \\times 7 = 42', '\\text{kelompok B: } 4 \\times 12 = 48', '(42 + 48) \\div 10 = 90 \\div 10 = 9'],
+              en: [
+                '40, 60, 30, 80, 50',
+                '(1)\\ \\frac{60}{80} = \\frac{3}{4} \\rightarrow \\text{yes}',
+                '(2)\\ 40 + 60 + 30 + 80 + 50 = 260 \\neq 250 \\rightarrow \\text{no}',
+                '(3)\\ \\frac{30}{60} = \\frac{1}{2} \\rightarrow \\text{yes}',
+                '(4)\\ \\text{day 3 is lower than day 2} \\rightarrow \\text{no}',
+                '2 \\text{ statements}',
+              ],
+              id: [
+                '40, 60, 30, 80, 50',
+                '(1)\\ \\frac{60}{80} = \\frac{3}{4} \\rightarrow \\text{ya}',
+                '(2)\\ 40 + 60 + 30 + 80 + 50 = 260 \\neq 250 \\rightarrow \\text{tidak}',
+                '(3)\\ \\frac{30}{60} = \\frac{1}{2} \\rightarrow \\text{ya}',
+                '(4)\\ \\text{hari ke-3 lebih rendah dari hari ke-2} \\rightarrow \\text{tidak}',
+                '2 \\text{ pernyataan}',
+              ],
             },
           },
         ],

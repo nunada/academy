@@ -545,8 +545,8 @@ export const module4: Module = {
           id: 'tka-m4-s2-l1',
           title: { en: 'Percent, Fractions and Decimals', id: 'Persen, Pecahan, dan Desimal' },
           goal: {
-            en: 'You can change between percent, fractions and decimals and put them in order.',
-            id: 'Kamu bisa berpindah antara persen, pecahan, dan desimal serta mengurutkannya.',
+            en: 'You can change between percent, fractions and decimals, put them in order, and calculate with all three forms in one line.',
+            id: 'Kamu bisa berpindah antara persen, pecahan, dan desimal, mengurutkannya, serta menghitung dengan ketiga bentuk dalam satu baris.',
           },
           xp: 20,
           steps: [
@@ -587,8 +587,17 @@ export const module4: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Moving the Point', id: 'Awas, Jebakan!: Menggeser Koma' },
               body: {
-                en: 'Three mistakes that often happen when changing the form.\n\n| Wrong | Right |\n| --- | --- |\n| $5\\% = 0.5$ | $5\\% = \\frac{5}{100} = 0.05$ (the point moves two places) |\n| $0.3 = 3\\%$ | $0.3 = 0.30 = 30\\%$ |\n| $\\frac{1}{4} = 4\\%$ | $\\frac{1}{4} = \\frac{25}{100} = 25\\%$ |',
-                id: 'Tiga kesalahan yang sering terjadi saat mengubah bentuk.\n\n| Salah | Benar |\n| --- | --- |\n| $5\\% = 0{,}5$ | $5\\% = \\frac{5}{100} = 0{,}05$ (koma bergeser dua tempat) |\n| $0{,}3 = 3\\%$ | $0{,}3 = 0{,}30 = 30\\%$ |\n| $\\frac{1}{4} = 4\\%$ | $\\frac{1}{4} = \\frac{25}{100} = 25\\%$ |',
+                en: 'Four mistakes that often happen when changing the form.\n\n| Wrong | Right |\n| --- | --- |\n| $5\\% = 0.5$ | $5\\% = \\frac{5}{100} = 0.05$ (the point moves two places) |\n| $0.3 = 3\\%$ | $0.3 = 0.30 = 30\\%$ |\n| $\\frac{1}{4} = 4\\%$ | $\\frac{1}{4} = \\frac{25}{100} = 25\\%$ |\n| $40\\% + 0.5 = 40.5$ (a percent and a decimal added as they are) | $40\\% + 0.5 = 0.4 + 0.5 = 0.9$ (same form first) |',
+                id: 'Empat kesalahan yang sering terjadi saat mengubah bentuk.\n\n| Salah | Benar |\n| --- | --- |\n| $5\\% = 0{,}5$ | $5\\% = \\frac{5}{100} = 0{,}05$ (koma bergeser dua tempat) |\n| $0{,}3 = 3\\%$ | $0{,}3 = 0{,}30 = 30\\%$ |\n| $\\frac{1}{4} = 4\\%$ | $\\frac{1}{4} = \\frac{25}{100} = 25\\%$ |\n| $40\\% + 0{,}5 = 40{,}5$ (persen dan desimal dijumlah begitu saja) | $40\\% + 0{,}5 = 0{,}4 + 0{,}5 = 0{,}9$ (samakan bentuknya dulu) |',
+              },
+            },
+            {
+              kind: 'concept',
+              id: 'c4',
+              title: { en: 'Step by Step: Many Forms in One Line', id: 'Contoh Bertahap: Banyak Bentuk dalam Satu Baris' },
+              body: {
+                en: 'The teacher writes one line with a percent, a decimal, a whole number and a fraction: $140\\% - 2 + 4 \\times 0.25 + \\frac{1}{2}$. We cannot calculate until every part is written in the **same form**.\n\n1. Step 1: Choose one form. Here decimals are easy, so change every part: $140\\% = 1.4$ and $\\frac{1}{2} = 0.5$.\n2. Step 2: Do the multiplication first: $4 \\times 0.25 = 1$. The line is now $1.4 - 2 + 1 + 0.5$.\n3. Step 3: The first subtraction, $1.4 - 2$, does not work because 2 is bigger than 1.4. Add the other parts first: $1.4 + 1 + 0.5 = 2.9$.\n4. Step 4: Take away 2: $2.9 - 2 = 0.9$. As a fraction, $0.9 = \\frac{9}{10}$.\n\n**Remember:**\n\n- Change everything into one form first: all decimals, or all fractions.\n- If a fraction like $\\frac{1}{3}$ or $\\frac{1}{6}$ is in the line, use fractions for everything: $0.5 = \\frac{1}{2}$ and $75\\% = \\frac{3}{4}$.',
+                id: 'Guru menulis satu baris yang berisi persen, desimal, bilangan bulat, dan pecahan: $140\\% - 2 + 4 \\times 0{,}25 + \\frac{1}{2}$. Kita belum bisa menghitung sebelum semua bagian ditulis dalam **bentuk yang sama**.\n\n1. Langkah 1: Pilih satu bentuk. Di sini desimal lebih mudah, jadi ubah setiap bagian: $140\\% = 1{,}4$ dan $\\frac{1}{2} = 0{,}5$.\n2. Langkah 2: Kerjakan perkaliannya dulu: $4 \\times 0{,}25 = 1$. Barisnya sekarang $1{,}4 - 2 + 1 + 0{,}5$.\n3. Langkah 3: Pengurangan pertama, $1{,}4 - 2$, tidak bisa karena 2 lebih besar dari 1,4. Jumlahkan bagian yang lain dulu: $1{,}4 + 1 + 0{,}5 = 2{,}9$.\n4. Langkah 4: Kurangi 2: $2{,}9 - 2 = 0{,}9$. Sebagai pecahan, $0{,}9 = \\frac{9}{10}$.\n\n**Ingat:**\n\n- Ubah semuanya ke satu bentuk dulu: semuanya desimal, atau semuanya pecahan.\n- Jika ada pecahan seperti $\\frac{1}{3}$ atau $\\frac{1}{6}$ di dalam baris itu, pakai pecahan untuk semuanya: $0{,}5 = \\frac{1}{2}$ dan $75\\% = \\frac{3}{4}$.',
               },
             },
             {
@@ -695,6 +704,29 @@ export const module4: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q3',
+              prompt: {
+                en: 'What is $30\\% + 0.6 - \\frac{1}{4}$? Choose the answer written as a fraction.',
+                id: 'Berapa $30\\% + 0{,}6 - \\frac{1}{4}$? Pilih jawaban yang ditulis sebagai pecahan.',
+              },
+              options: [
+                { en: '$\\frac{13}{20}$', id: '$\\frac{13}{20}$' },
+                { en: '$\\frac{19}{50}$', id: '$\\frac{19}{50}$' },
+                { en: '$\\frac{11}{100}$', id: '$\\frac{11}{100}$' },
+                { en: '$\\frac{23}{20}$', id: '$\\frac{23}{20}$' },
+              ],
+              answer: 0,
+              explain: {
+                en: 'In decimals, $30\\% = 0.3$ and $\\frac{1}{4} = 0.25$, so the line is $0.3 + 0.6 - 0.25 = 0.65 = \\frac{13}{20}$. The answer $\\frac{19}{50}$ reads $30\\%$ as $0.03$, $\\frac{11}{100}$ reads $0.6$ as $0.06$, and $\\frac{23}{20}$ adds the quarter instead of taking it away.',
+                id: 'Dalam desimal, $30\\% = 0{,}3$ dan $\\frac{1}{4} = 0{,}25$, jadi barisnya $0{,}3 + 0{,}6 - 0{,}25 = 0{,}65 = \\frac{13}{20}$. Jawaban $\\frac{19}{50}$ membaca $30\\%$ sebagai $0{,}03$, $\\frac{11}{100}$ membaca $0{,}6$ sebagai $0{,}06$, dan $\\frac{23}{20}$ menambah seperempat, bukan mengurangi.',
+              },
+              hint: {
+                en: 'Write every part in the same form first. What are $30\\%$ and $\\frac{1}{4}$ as decimals? Then change your answer into a fraction.',
+                id: 'Tulis setiap bagian dalam bentuk yang sama dulu. Berapa $30\\%$ dan $\\frac{1}{4}$ dalam desimal? Lalu ubah jawabanmu menjadi pecahan.',
+              },
+            },
+            {
               kind: 'order',
               id: 'o1',
               math: true,
@@ -746,6 +778,41 @@ export const module4: Module = {
                 id: ['\\dfrac{3}{5} = \\dfrac{60}{100} = 60\\%', '100\\% - 60\\% = 40\\%'],
               },
             },
+            {
+              kind: 'math',
+              id: 'm2',
+              prompt: {
+                en: 'Calculate $75\\% - 2 + 3 \\times 0.5 + \\frac{1}{6}$. Write the answer as a fraction in simplest form.',
+                id: 'Hitunglah $75\\% - 2 + 3 \\times 0{,}5 + \\frac{1}{6}$. Tulis jawabannya sebagai pecahan dalam bentuk paling sederhana.',
+              },
+              inline: true,
+              blanks: [
+                { label: { en: '\\text{numerator} =', id: '\\text{pembilang} =' }, answer: 5 },
+                { label: { en: '\\text{denominator} =', id: '\\text{penyebut} =' }, answer: 12 },
+              ],
+              hints: [
+                {
+                  en: 'The line has a percent, a decimal and a fraction with 6 at the bottom. Which form works for all of them, decimals or fractions?',
+                  id: 'Baris itu berisi persen, desimal, dan pecahan berpenyebut 6. Bentuk mana yang cocok untuk semuanya, desimal atau pecahan?',
+                },
+                {
+                  en: 'Use fractions: $75\\% = \\frac{3}{4}$ and $0.5 = \\frac{1}{2}$. Do $3 \\times \\frac{1}{2}$ first, then add the positive parts before you subtract 2.',
+                  id: 'Pakai pecahan: $75\\% = \\frac{3}{4}$ dan $0{,}5 = \\frac{1}{2}$. Kerjakan $3 \\times \\frac{1}{2}$ dulu, lalu jumlahkan bagian-bagian positif sebelum mengurangi 2.',
+                },
+                {
+                  en: 'Add $\\frac{3}{4} + \\frac{3}{2} + \\frac{1}{6}$ with denominator 12. Then subtract 2, which is $\\frac{24}{12}$.',
+                  id: 'Jumlahkan $\\frac{3}{4} + \\frac{3}{2} + \\frac{1}{6}$ dengan penyebut 12. Lalu kurangi 2, yaitu $\\frac{24}{12}$.',
+                },
+              ],
+              explain: {
+                en: '$\\frac{3}{4} + \\frac{3}{2} + \\frac{1}{6} = \\frac{9}{12} + \\frac{18}{12} + \\frac{2}{12} = \\frac{29}{12}$, and $\\frac{29}{12} - \\frac{24}{12} = \\frac{5}{12}$.',
+                id: '$\\frac{3}{4} + \\frac{3}{2} + \\frac{1}{6} = \\frac{9}{12} + \\frac{18}{12} + \\frac{2}{12} = \\frac{29}{12}$, dan $\\frac{29}{12} - \\frac{24}{12} = \\frac{5}{12}$.',
+              },
+              solution: {
+                en: ['75\\% = \\dfrac{3}{4} \\quad 3 \\times 0.5 = \\dfrac{3}{2}', '\\dfrac{9}{12} + \\dfrac{18}{12} + \\dfrac{2}{12} = \\dfrac{29}{12}', '\\dfrac{29}{12} - 2 = \\dfrac{29}{12} - \\dfrac{24}{12} = \\dfrac{5}{12}'],
+                id: ['75\\% = \\dfrac{3}{4} \\quad 3 \\times 0{,}5 = \\dfrac{3}{2}', '\\dfrac{9}{12} + \\dfrac{18}{12} + \\dfrac{2}{12} = \\dfrac{29}{12}', '\\dfrac{29}{12} - 2 = \\dfrac{29}{12} - \\dfrac{24}{12} = \\dfrac{5}{12}'],
+              },
+            },
           ],
         },
 
@@ -754,8 +821,8 @@ export const module4: Module = {
           id: 'tka-m4-s2-l2',
           title: { en: 'Percent in Everyday Life', id: 'Persen dalam Kehidupan' },
           goal: {
-            en: 'You can find a percent of an amount, work out a discount, and use percent for parts of a whole.',
-            id: 'Kamu bisa mencari persen dari sebuah jumlah, menghitung diskon, dan memakai persen untuk bagian-bagian dari satu utuh.',
+            en: 'You can find a percent of an amount, work out a discount (also after "0.75 times the price"), and use percent for parts of a whole.',
+            id: 'Kamu bisa mencari persen dari sebuah jumlah, menghitung diskon (juga setelah "0,75 kali harga"), dan memakai persen untuk bagian-bagian dari satu utuh.',
           },
           xp: 20,
           steps: [
@@ -796,8 +863,17 @@ export const module4: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Discount or Price to Pay?', id: 'Awas, Jebakan!: Diskon atau Harga yang Dibayar?' },
               body: {
-                en: 'Three mistakes that often happen with percent of an amount.\n\n| Wrong | Right |\n| --- | --- |\n| $25\\%$ of 80 is $80 \\div 25$ | $25\\% = \\frac{1}{4}$, so $80 \\div 4 = 20$ |\n| A 20% discount on Rp50,000 means you pay Rp10,000 | Rp10,000 is only the discount. You pay Rp50,000 − Rp10,000 = Rp40,000 |\n| 30 out of 50 children is $30\\%$ | $\\frac{30}{50} = \\frac{60}{100} = 60\\%$ |',
-                id: 'Tiga kesalahan yang sering terjadi pada persen dari sebuah jumlah.\n\n| Salah | Benar |\n| --- | --- |\n| $25\\%$ dari 80 adalah $80 \\div 25$ | $25\\% = \\frac{1}{4}$, jadi $80 \\div 4 = 20$ |\n| Diskon 20% dari Rp50.000 berarti kamu membayar Rp10.000 | Rp10.000 hanya diskonnya. Kamu membayar Rp50.000 − Rp10.000 = Rp40.000 |\n| 30 dari 50 anak adalah $30\\%$ | $\\frac{30}{50} = \\frac{60}{100} = 60\\%$ |',
+                en: 'Four mistakes that often happen with percent of an amount.\n\n| Wrong | Right |\n| --- | --- |\n| $25\\%$ of 80 is $80 \\div 25$ | $25\\% = \\frac{1}{4}$, so $80 \\div 4 = 20$ |\n| A 20% discount on Rp50,000 means you pay Rp10,000 | Rp10,000 is only the discount. You pay Rp50,000 − Rp10,000 = Rp40,000 |\n| 30 out of 50 children is $30\\%$ | $\\frac{30}{50} = \\frac{60}{100} = 60\\%$ |\n| "$0.75$ times the price" is more than the price | $0.75$ is less than 1, so it is less than the price: $0.75 = \\frac{3}{4}$, and $\\frac{3}{4}$ of Rp16,000 is Rp12,000 |',
+                id: 'Empat kesalahan yang sering terjadi pada persen dari sebuah jumlah.\n\n| Salah | Benar |\n| --- | --- |\n| $25\\%$ dari 80 adalah $80 \\div 25$ | $25\\% = \\frac{1}{4}$, jadi $80 \\div 4 = 20$ |\n| Diskon 20% dari Rp50.000 berarti kamu membayar Rp10.000 | Rp10.000 hanya diskonnya. Kamu membayar Rp50.000 − Rp10.000 = Rp40.000 |\n| 30 dari 50 anak adalah $30\\%$ | $\\frac{30}{50} = \\frac{60}{100} = 60\\%$ |\n| "$0{,}75$ kali harga" lebih besar dari harganya | $0{,}75$ kurang dari 1, jadi hasilnya kurang dari harganya: $0{,}75 = \\frac{3}{4}$, dan $\\frac{3}{4}$ dari Rp16.000 adalah Rp12.000 |',
+              },
+            },
+            {
+              kind: 'concept',
+              id: 'c4',
+              title: { en: 'Step by Step: 0.75 Times the Price, then a Discount', id: 'Contoh Bertahap: 0,75 Kali Harga, lalu Diskon' },
+              body: {
+                en: 'A shop sells three books. Book P costs Rp20,000. Book Q costs $\\frac{1}{2}$ of the price of P. Book R costs $0.75$ times the price of P. The shop gives a $10\\%$ discount. How many rupiah must you pay for Q and R together?\n\n1. Step 1: Change $0.75$ into a fraction: $0.75 = \\frac{75}{100} = \\frac{3}{4} = 75\\%$. So "$0.75$ times the price" means $\\frac{3}{4}$ of the price.\n2. Step 2: Price of R: $\\frac{3}{4}$ of $20\\,000$ is $20\\,000 \\div 4 \\times 3 = 15\\,000$.\n3. Step 3: Price of Q: $\\frac{1}{2}$ of $20\\,000$ is $10\\,000$.\n4. Step 4: Q and R together: $10\\,000 + 15\\,000 = 25\\,000$.\n5. Step 5: The discount is $10\\%$ of $25\\,000$, which is $25\\,000 \\div 10 = 2\\,500$. You pay $25\\,000 - 2\\,500 = 22\\,500$.\n\n**Remember:** a number "times the price" is the same as a fraction or percent of the price.\n\n| Times | Same as | Of Rp20,000 |\n| --- | --- | --- |\n| $0.5$ | $\\frac{1}{2}$ or $50\\%$ | 10,000 |\n| $0.25$ | $\\frac{1}{4}$ or $25\\%$ | 5,000 |\n| $0.75$ | $\\frac{3}{4}$ or $75\\%$ | 15,000 |\n| $1.5$ | $1\\frac{1}{2}$ or $150\\%$ | 30,000 |',
+                id: 'Sebuah toko menjual tiga buku. Buku P harganya Rp20.000. Buku Q harganya $\\frac{1}{2}$ dari harga P. Buku R harganya $0{,}75$ kali harga P. Toko memberi diskon $10\\%$. Berapa rupiah yang harus kamu bayar untuk Q dan R bersama-sama?\n\n1. Langkah 1: Ubah $0{,}75$ menjadi pecahan: $0{,}75 = \\frac{75}{100} = \\frac{3}{4} = 75\\%$. Jadi "$0{,}75$ kali harga" berarti $\\frac{3}{4}$ dari harga.\n2. Langkah 2: Harga R: $\\frac{3}{4}$ dari $20\\,000$ adalah $20\\,000 \\div 4 \\times 3 = 15\\,000$.\n3. Langkah 3: Harga Q: $\\frac{1}{2}$ dari $20\\,000$ adalah $10\\,000$.\n4. Langkah 4: Q dan R bersama-sama: $10\\,000 + 15\\,000 = 25\\,000$.\n5. Langkah 5: Diskonnya $10\\%$ dari $25\\,000$, yaitu $25\\,000 \\div 10 = 2\\,500$. Kamu membayar $25\\,000 - 2\\,500 = 22\\,500$.\n\n**Ingat:** bilangan "kali harga" sama dengan pecahan atau persen dari harga.\n\n| Kali | Sama dengan | Dari Rp20.000 |\n| --- | --- | --- |\n| $0{,}5$ | $\\frac{1}{2}$ atau $50\\%$ | 10.000 |\n| $0{,}25$ | $\\frac{1}{4}$ atau $25\\%$ | 5.000 |\n| $0{,}75$ | $\\frac{3}{4}$ atau $75\\%$ | 15.000 |\n| $1{,}5$ | $1\\frac{1}{2}$ atau $150\\%$ | 30.000 |',
               },
             },
             {
@@ -892,6 +968,36 @@ export const module4: Module = {
               },
             },
             {
+              kind: 'quiz',
+              id: 'q3',
+              prompt: {
+                en: 'A shirt costs Rp40,000. A jacket costs $0.75$ times the price of the shirt. How much does the jacket cost?',
+                id: 'Sebuah kemeja harganya Rp40.000. Sebuah jaket harganya $0{,}75$ kali harga kemeja. Berapa harga jaket itu?',
+              },
+              figure: {
+                ...fractionBars([{ parts: 4, shaded: 3, label: '3/4' }]),
+                caption: {
+                  en: 'The price of the shirt cut into 4 equal parts. The jacket costs 3 of these parts.',
+                  id: 'Harga kemeja dibagi menjadi 4 bagian sama besar. Harga jaket adalah 3 bagian ini.',
+                },
+              },
+              options: [
+                { en: 'Rp30,000', id: 'Rp30.000' },
+                { en: 'Rp3,000', id: 'Rp3.000' },
+                { en: 'Rp10,000', id: 'Rp10.000' },
+                { en: 'Rp300,000', id: 'Rp300.000' },
+              ],
+              answer: 0,
+              explain: {
+                en: '$0.75 = \\frac{3}{4}$, so the jacket costs $\\frac{3}{4}$ of $40\\,000$: $40\\,000 \\div 4 \\times 3 = 30\\,000$. The answer Rp3,000 reads $0.75$ as $0.075$, Rp10,000 is the part that is left out ($\\frac{1}{4}$), and Rp300,000 moves the point the wrong way.',
+                id: '$0{,}75 = \\frac{3}{4}$, jadi harga jaket $\\frac{3}{4}$ dari $40\\,000$: $40\\,000 \\div 4 \\times 3 = 30\\,000$. Jawaban Rp3.000 membaca $0{,}75$ sebagai $0{,}075$, Rp10.000 adalah bagian yang tidak diambil ($\\frac{1}{4}$), dan Rp300.000 menggeser koma ke arah yang salah.',
+              },
+              hint: {
+                en: 'Change $0.75$ into a fraction. Then check your answer: $0.75$ is less than 1, so the jacket costs less than the shirt.',
+                id: 'Ubah $0{,}75$ menjadi pecahan. Lalu periksa jawabanmu: $0{,}75$ kurang dari 1, jadi jaket lebih murah daripada kemeja.',
+              },
+            },
+            {
               kind: 'judge',
               id: 'j1',
               prompt: {
@@ -945,6 +1051,37 @@ export const module4: Module = {
                 id: ['25\\% + 35\\% = 60\\%', '100\\% - 60\\% = 40\\%', '10\\% \\text{ dari } 40 = 4', '40\\% = 4 \\times 4 = 16'],
               },
             },
+            {
+              kind: 'math',
+              id: 'm2',
+              prompt: {
+                en: 'A shop gives a 25% discount on all toys. Toy Y costs Rp48,000. Toy X costs $\\frac{1}{2}$ of the price of Y, and toy Z costs $0.75$ times the price of Y. How many rupiah must you pay for X and Z together after the discount?',
+                id: 'Sebuah toko memberi diskon 25% untuk semua mainan. Mainan Y harganya Rp48.000. Mainan X harganya $\\frac{1}{2}$ dari harga Y, dan mainan Z harganya $0{,}75$ kali harga Y. Berapa rupiah yang harus dibayar untuk X dan Z bersama-sama setelah diskon?',
+              },
+              blanks: [{ answer: 45000, label: '\\text{Rp}' }],
+              hints: [
+                {
+                  en: 'Everything is based on the price of Y. Find the prices of X and Z first, then think about the discount.',
+                  id: 'Semuanya berdasarkan harga Y. Cari dulu harga X dan Z, lalu pikirkan diskonnya.',
+                },
+                {
+                  en: 'Change $0.75$ into a fraction. Find $\\frac{1}{2}$ of the price of Y and that fraction of the price of Y. Add the two prices before taking off the discount.',
+                  id: 'Ubah $0{,}75$ menjadi pecahan. Cari $\\frac{1}{2}$ dari harga Y dan pecahan itu dari harga Y. Jumlahkan kedua harga sebelum dikurangi diskon.',
+                },
+                {
+                  en: 'X is $48\\,000 \\div 2$ and Z is $\\frac{3}{4}$ of $48\\,000$. Change 25% into a fraction and take that part of the total of X and Z away.',
+                  id: 'X adalah $48\\,000 \\div 2$ dan Z adalah $\\frac{3}{4}$ dari $48\\,000$. Ubah 25% menjadi pecahan dan kurangkan bagian itu dari jumlah X dan Z.',
+                },
+              ],
+              explain: {
+                en: 'X costs $24\\,000$ and Z costs $\\frac{3}{4} \\times 48\\,000 = 36\\,000$, so together $60\\,000$. The discount is $\\frac{1}{4}$ of that, $15\\,000$, so you pay $60\\,000 - 15\\,000 = 45\\,000$ rupiah.',
+                id: 'Harga X adalah $24\\,000$ dan harga Z adalah $\\frac{3}{4} \\times 48\\,000 = 36\\,000$, jadi bersama-sama $60\\,000$. Diskonnya $\\frac{1}{4}$ dari itu, yaitu $15\\,000$, jadi kamu membayar $60\\,000 - 15\\,000 = 45\\,000$ rupiah.',
+              },
+              solution: {
+                en: ['X = 48\\,000 \\div 2 = 24\\,000', 'Z = \\dfrac{3}{4} \\times 48\\,000 = 36\\,000', '24\\,000 + 36\\,000 = 60\\,000', '60\\,000 - \\dfrac{1}{4} \\times 60\\,000 = 60\\,000 - 15\\,000 = 45\\,000'],
+                id: ['X = 48\\,000 \\div 2 = 24\\,000', 'Z = \\dfrac{3}{4} \\times 48\\,000 = 36\\,000', '24\\,000 + 36\\,000 = 60\\,000', '60\\,000 - \\dfrac{1}{4} \\times 60\\,000 = 60\\,000 - 15\\,000 = 45\\,000'],
+              },
+            },
           ],
         },
       ],
@@ -976,22 +1113,29 @@ export const module4: Module = {
             },
           },
           {
-            prompt: { en: 'What is $75\\%$ of 80 marbles?', id: 'Berapa $75\\%$ dari 80 kelereng?' },
-            blanks: [{ answer: 60, after: { en: '\\text{ marbles}', id: '\\text{ kelereng}' } }],
+            prompt: {
+              en: 'Calculate $60\\% + 2 \\times 0.75 - 1 + \\frac{1}{3}$. Write the answer as a fraction in simplest form.',
+              id: 'Hitunglah $60\\% + 2 \\times 0{,}75 - 1 + \\frac{1}{3}$. Tulis jawabannya sebagai pecahan dalam bentuk paling sederhana.',
+            },
+            inline: true,
+            blanks: [
+              { label: { en: '\\text{numerator} =', id: '\\text{pembilang} =' }, answer: 43 },
+              { label: { en: '\\text{denominator} =', id: '\\text{penyebut} =' }, answer: 30 },
+            ],
             solution: {
-              en: ['75\\% = \\dfrac{3}{4}', '80 \\div 4 = 20', '3 \\times 20 = 60'],
-              id: ['75\\% = \\dfrac{3}{4}', '80 \\div 4 = 20', '3 \\times 20 = 60'],
+              en: ['60\\% = \\dfrac{3}{5} \\quad 2 \\times 0.75 = \\dfrac{3}{2}', '\\dfrac{18}{30} + \\dfrac{45}{30} + \\dfrac{10}{30} = \\dfrac{73}{30}', '\\dfrac{73}{30} - 1 = \\dfrac{73}{30} - \\dfrac{30}{30} = \\dfrac{43}{30}'],
+              id: ['60\\% = \\dfrac{3}{5} \\quad 2 \\times 0{,}75 = \\dfrac{3}{2}', '\\dfrac{18}{30} + \\dfrac{45}{30} + \\dfrac{10}{30} = \\dfrac{73}{30}', '\\dfrac{73}{30} - 1 = \\dfrac{73}{30} - \\dfrac{30}{30} = \\dfrac{43}{30}'],
             },
           },
           {
             prompt: {
-              en: 'Shoes cost Rp120,000 and have a 25% discount. How many rupiah must you pay?',
-              id: 'Sepatu seharga Rp120.000 dan diskonnya 25%. Berapa rupiah yang harus dibayar?',
+              en: 'A shirt costs Rp80,000. A jacket costs $0.75$ times the price of the shirt. The jacket has a 10% discount. How many rupiah must you pay for the jacket?',
+              id: 'Sebuah kemeja harganya Rp80.000. Sebuah jaket harganya $0{,}75$ kali harga kemeja. Jaket itu diskon 10%. Berapa rupiah yang harus dibayar untuk jaket itu?',
             },
-            blanks: [{ answer: 90000, label: '\\text{Rp}' }],
+            blanks: [{ answer: 54000, label: '\\text{Rp}' }],
             solution: {
-              en: ['25\\% = \\dfrac{1}{4}', '120\\,000 \\div 4 = 30\\,000', '120\\,000 - 30\\,000 = 90\\,000'],
-              id: ['25\\% = \\dfrac{1}{4}', '120\\,000 \\div 4 = 30\\,000', '120\\,000 - 30\\,000 = 90\\,000'],
+              en: ['0.75 = \\dfrac{3}{4}', '\\dfrac{3}{4} \\times 80\\,000 = 60\\,000', '60\\,000 - 6\\,000 = 54\\,000'],
+              id: ['0{,}75 = \\dfrac{3}{4}', '\\dfrac{3}{4} \\times 80\\,000 = 60\\,000', '60\\,000 - 6\\,000 = 54\\,000'],
             },
           },
           {

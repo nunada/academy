@@ -1,7 +1,7 @@
 import type { Loc, MathBlank, Module } from '../types'
 import type { FigColor, FigItem } from '../../lib/figure'
 import type { Piece } from './figs'
-import { fit, fractionBars, fractionCircles, gridRect, line, numberLine, outline, rectPts, solid, txt } from './figs'
+import { fit, fractionBars, fractionCircles, gridRect, numberLine, outline, rectPts, solid, txt } from './figs'
 
 /** Module 3 — fractions: equivalent fractions, comparing and ordering,
  *  adding and subtracting, and a fraction times / divided by a WHOLE number.
@@ -68,18 +68,6 @@ function cutBar(p: number, s: number, k: number, labels?: [string, string]): Pie
     items.push(txt(-0.4, 0.5, labels[1], 'lg', 'muted', 'end'))
   }
   return { dim: 2, axes: false, ...fit([[labels ? -2.6 : 0, -0.2], [W + 0.2, 2.9]], 0.5), items }
-}
-
-/** Four equal shares, each marked with the same amount, under one long bracket marked "?". */
-function fourShares(each: string): Piece {
-  const items: FigItem[] = []
-  for (let i = 0; i < 4; i++) {
-    items.push(solid(rectPts(i * 2.4, 0, 2.4, 1.4), CYC[i % 4]))
-    items.push(txt(i * 2.4 + 1.2, 0.7, each, 'lg', 'muted'))
-  }
-  items.push(line([0, 2], [9.6, 2], 'result', { width: 3 }))
-  items.push(txt(4.8, 2.7, '?', 'lg', 'result'))
-  return { dim: 2, axes: false, ...fit([[0, -0.2], [9.6, 3.2]], 0.6), items }
 }
 
 const LBL_N = { en: '\\text{numerator} =', id: '\\text{pembilang} =' }
@@ -455,6 +443,25 @@ export const module3: Module = {
               },
             },
             {
+              kind: 'fill',
+              id: 'f2',
+              math: true,
+              prompt: L(
+                'Try it together: change $3\\frac{2}{5}$ into an improper fraction. Multiply the whole number by the denominator, then add the numerator.',
+                'Coba bersama: ubah $3\\frac{2}{5}$ menjadi pecahan tak wajar. Kalikan bilangan utuh dengan penyebut, lalu tambahkan pembilang.',
+              ),
+              template: '3 \\times 5 = ___ \\quad 15 + 2 = ___',
+              blanks: ['15', '17'],
+              explain: L(
+                '$3\\frac{2}{5}=\\frac{3\\times5+2}{5}=\\frac{17}{5}$. Three wholes are 15 fifths, and 2 more fifths make 17 fifths.',
+                '$3\\frac{2}{5}=\\frac{3\\times5+2}{5}=\\frac{17}{5}$. Tiga utuh adalah 15 seperlima, dan 2 seperlima lagi menjadi 17 seperlima.',
+              ),
+              hint: L(
+                'Here every whole is worth 5 fifths. How many fifths are there in 3 wholes? Then add the fifths that are left over.',
+                'Di sini setiap satu utuh bernilai 5 seperlima. Ada berapa seperlima dalam 3 utuh? Lalu tambahkan seperlima yang tersisa.',
+              ),
+            },
+            {
               kind: 'quiz',
               id: 'q2',
               prompt: L(
@@ -482,6 +489,37 @@ export const module3: Module = {
               ),
             },
             {
+              kind: 'quiz',
+              id: 'q3',
+              prompt: L(
+                'The three circles are pizzas of the same size, each cut into 3 equal slices. The coloured slices are the pizza that is left. How much pizza is left, written as a mixed number?',
+                'Ketiga lingkaran adalah pizza yang sama besar, masing-masing dipotong menjadi 3 irisan sama besar. Irisan berwarna adalah pizza yang tersisa. Berapa pizza yang tersisa, ditulis sebagai pecahan campuran?',
+              ),
+              figure: {
+                ...fractionCircles([
+                  { parts: 3, shaded: 3 },
+                  { parts: 3, shaded: 3 },
+                  { parts: 3, shaded: 1 },
+                ]),
+                caption: L('Two full pizzas and one pizza with only 1 slice of 3.', 'Dua pizza utuh dan satu pizza yang hanya tersisa 1 dari 3 irisan.'),
+              },
+              options: [
+                L('$2\\frac{1}{3}$', '$2\\frac{1}{3}$'),
+                L('$3\\frac{1}{3}$', '$3\\frac{1}{3}$'),
+                L('$2\\frac{2}{3}$', '$2\\frac{2}{3}$'),
+                L('$1\\frac{1}{3}$', '$1\\frac{1}{3}$'),
+              ],
+              answer: 0,
+              explain: L(
+                'There are 2 full pizzas and 1 slice of the third one, which is $\\frac{1}{3}$, so $2\\frac{1}{3}$. The answer $3\\frac{1}{3}$ counts the last pizza as a whole one and adds its slice again, and $2\\frac{2}{3}$ counts the 2 empty slices instead of the 1 coloured slice.',
+                'Ada 2 pizza utuh dan 1 irisan dari pizza ketiga, yaitu $\\frac{1}{3}$, jadi $2\\frac{1}{3}$. Jawaban $3\\frac{1}{3}$ menghitung pizza terakhir sebagai satu utuh lalu menambahkan irisannya lagi, dan $2\\frac{2}{3}$ menghitung 2 irisan yang kosong, bukan 1 irisan yang berwarna.',
+              ),
+              hint: L(
+                'Count the circles that are completely coloured. Then look at the last circle: how many slices are coloured, out of how many?',
+                'Hitung lingkaran yang berwarna penuh. Lalu lihat lingkaran terakhir: berapa irisan yang berwarna, dari berapa irisan?',
+              ),
+            },
+            {
               kind: 'judge',
               id: 'j1',
               prompt: L('Decide whether each statement is True or False.', 'Tentukan apakah setiap pernyataan Benar atau Salah.'),
@@ -500,6 +538,35 @@ export const module3: Module = {
                 'For each one, picture bars or a number line. For mixed numbers, multiply the whole number by the denominator, then add.',
                 'Untuk tiap pernyataan, bayangkan batang atau garis bilangan. Untuk pecahan campuran, kalikan bilangan utuh dengan penyebut, lalu tambahkan.',
               ),
+            },
+            {
+              kind: 'math',
+              id: 'm2',
+              prompt: L(
+                'Dewi lays 23 pieces of ribbon end to end. Each piece is $\\frac{1}{4}$ m long, so the whole length is $\\frac{23}{4}$ m. Write the length as a mixed number.',
+                'Dewi menyambung 23 potong pita ujung ke ujung. Tiap potong panjangnya $\\frac{1}{4}$ m, jadi panjang seluruhnya $\\frac{23}{4}$ m. Tulis panjangnya sebagai pecahan campuran.',
+              ),
+              inline: true,
+              blanks: mixed(5, 3, 4),
+              hints: [
+                L(
+                  'The numerator is bigger than the denominator, so there are whole metres inside. How many quarters make one whole metre?',
+                  'Pembilangnya lebih besar dari penyebut, jadi ada meter utuh di dalamnya. Berapa seperempat yang membentuk satu meter utuh?',
+                ),
+                L(
+                  'Divide the numerator by the denominator. The whole part is how many times 4 fits into 23, and the leftover is the new numerator.',
+                  'Bagi pembilang dengan penyebut. Bagian utuhnya adalah berapa kali 4 muat di dalam 23, dan sisanya menjadi pembilang baru.',
+                ),
+                L(
+                  'Check how close you are: $5\\times4=20$. How many quarters are left over from 23?',
+                  'Periksa dengan: $5\\times4=20$. Berapa seperempat yang tersisa dari 23?',
+                ),
+              ],
+              explain: L(
+                '$23\\div4=5$ remainder 3, so $\\frac{23}{4}=5\\frac{3}{4}$ m: five whole metres and three quarters more.',
+                '$23\\div4=5$ sisa 3, jadi $\\frac{23}{4}=5\\frac{3}{4}$ m: lima meter utuh dan tiga seperempat lagi.',
+              ),
+              solution: ['23 = 5 \\times 4 + 3', '\\frac{23}{4}=5\\frac{3}{4}'],
             },
             {
               kind: 'math',
@@ -979,6 +1046,29 @@ export const module3: Module = {
               ),
             },
             {
+              kind: 'quiz',
+              id: 'q3',
+              prompt: L(
+                'A tailor has a roll of cloth 5 m long. He cuts off $2\\frac{1}{3}$ m for a dress. How many metres of cloth are left?',
+                'Seorang penjahit punya segulung kain sepanjang 5 m. Ia memotong $2\\frac{1}{3}$ m untuk sebuah baju. Berapa meter kain yang tersisa?',
+              ),
+              options: [
+                L('$2\\frac{2}{3}$', '$2\\frac{2}{3}$'),
+                L('$3\\frac{1}{3}$', '$3\\frac{1}{3}$'),
+                L('$2\\frac{1}{3}$', '$2\\frac{1}{3}$'),
+                L('$3\\frac{2}{3}$', '$3\\frac{2}{3}$'),
+              ],
+              answer: 0,
+              explain: L(
+                'There is no fraction in 5 to take a third from, so borrow: $5=4\\frac{3}{3}$, and $4\\frac{3}{3}-2\\frac{1}{3}=2\\frac{2}{3}$. The answer $3\\frac{1}{3}$ adds the third instead of taking it away, $3\\frac{2}{3}$ forgets that a whole was borrowed, and $2\\frac{1}{3}$ just repeats the piece that was cut off.',
+                'Pada 5 tidak ada pecahan untuk dikurangi sepertiga, jadi meminjam: $5=4\\frac{3}{3}$, dan $4\\frac{3}{3}-2\\frac{1}{3}=2\\frac{2}{3}$. Jawaban $3\\frac{1}{3}$ menambah sepertiga, bukan mengurangi, $3\\frac{2}{3}$ lupa bahwa satu utuh sudah dipinjam, dan $2\\frac{1}{3}$ hanya mengulang potongan yang dipotong.',
+              ),
+              hint: L(
+                'The 5 has no fraction part to take a third away from. Borrow one whole and cut it into thirds first, or write both numbers as improper fractions.',
+                'Bilangan 5 tidak punya bagian pecahan untuk dikurangi sepertiga. Pinjam satu utuh dan potong menjadi sepertiga dulu, atau tulis kedua bilangan sebagai pecahan tak wajar.',
+              ),
+            },
+            {
               kind: 'judge',
               id: 'j1',
               prompt: L('Decide whether each statement is True or False.', 'Tentukan apakah setiap pernyataan Benar atau Salah.'),
@@ -997,6 +1087,35 @@ export const module3: Module = {
                 'Make the denominators the same before you decide. For mixed numbers, change them into improper fractions.',
                 'Samakan penyebutnya sebelum memutuskan. Untuk pecahan campuran, ubah menjadi pecahan tak wajar.',
               ),
+            },
+            {
+              kind: 'math',
+              id: 'm2',
+              prompt: L(
+                'Indah has two ribbons: one is $2\\frac{1}{2}$ m long and the other is $1\\frac{3}{4}$ m long. She ties them end to end. How long is the new ribbon? Write the answer as a mixed number.',
+                'Indah punya dua pita: satu panjangnya $2\\frac{1}{2}$ m dan yang lain $1\\frac{3}{4}$ m. Ia menyambungnya ujung ke ujung. Berapa panjang pita yang baru? Tulis jawabannya sebagai pecahan campuran.',
+              ),
+              inline: true,
+              blanks: mixed(4, 1, 4),
+              hints: [
+                L(
+                  'The denominators are 2 and 4. Which denominator can both fractions use?',
+                  'Penyebutnya 2 dan 4. Penyebut berapa yang bisa dipakai kedua pecahan?',
+                ),
+                L(
+                  'Change the half into quarters: $2\\frac{1}{2}=2\\frac{2}{4}$. Then add the whole numbers and the fractions separately.',
+                  'Ubah setengah menjadi seperempat: $2\\frac{1}{2}=2\\frac{2}{4}$. Lalu jumlahkan bilangan utuh dan pecahannya secara terpisah.',
+                ),
+                L(
+                  'Whole numbers: $2+1=3$. The two fractions together are more than 1, so one more whole goes onto the 3.',
+                  'Bilangan utuh: $2+1=3$. Kedua pecahan bersama-sama lebih dari 1, jadi satu utuh lagi ditambahkan pada 3.',
+                ),
+              ],
+              explain: L(
+                '$2\\frac{2}{4}+1\\frac{3}{4}=3+\\frac{5}{4}=3+1\\frac{1}{4}=4\\frac{1}{4}$ m.',
+                '$2\\frac{2}{4}+1\\frac{3}{4}=3+\\frac{5}{4}=3+1\\frac{1}{4}=4\\frac{1}{4}$ m.',
+              ),
+              solution: ['2\\frac{1}{2}=2\\frac{2}{4}', '2+1=3 \\quad \\frac{2}{4}+\\frac{3}{4}=\\frac{5}{4}=1\\frac{1}{4}', '3+1\\frac{1}{4}=4\\frac{1}{4}'],
             },
             {
               kind: 'math',
@@ -1107,8 +1226,8 @@ export const module3: Module = {
       id: 'tka-m3-s3',
       title: L('Fractions Times and Divided by Whole Numbers', 'Pecahan dikali dan dibagi Bilangan Asli'),
       summary: L(
-        'Multiply a fraction by a whole number (repeated addition and "a fraction of an amount") and divide a fraction by a whole number (cutting it into equal parts).',
-        'Mengalikan pecahan dengan bilangan asli (penjumlahan berulang dan "pecahan dari suatu jumlah") dan membagi pecahan dengan bilangan asli (memotongnya menjadi bagian yang sama besar).',
+        'Multiply a fraction or a mixed number by a whole number (repeated addition and "a fraction of an amount") and divide a fraction or a mixed number by a whole number (cutting it into equal parts).',
+        'Mengalikan pecahan atau pecahan campuran dengan bilangan asli (penjumlahan berulang dan "pecahan dari suatu jumlah") dan membagi pecahan atau pecahan campuran dengan bilangan asli (memotongnya menjadi bagian yang sama besar).',
       ),
       lessons: [
         /* ------------------------------------------------- S3 L1 fraction x whole */
@@ -1116,8 +1235,8 @@ export const module3: Module = {
           id: 'tka-m3-s3-l1',
           title: L('Fraction × Whole Number', 'Pecahan × Bilangan Asli'),
           goal: L(
-            'You can multiply a fraction by a whole number and find a fraction of an amount.',
-            'Kamu bisa mengalikan pecahan dengan bilangan asli dan mencari pecahan dari suatu jumlah.',
+            'You can multiply a fraction or a mixed number by a whole number and find a fraction of an amount.',
+            'Kamu bisa mengalikan pecahan atau pecahan campuran dengan bilangan asli dan mencari pecahan dari suatu jumlah.',
           ),
           xp: 20,
           steps: [
@@ -1158,8 +1277,17 @@ export const module3: Module = {
               id: 'c3',
               title: L('Watch Out!: What Gets Multiplied?', 'Awas, Jebakan!: Apa yang Dikalikan?'),
               body: L(
-                'Be careful with these mistakes.\n\n| Wrong | Right |\n|---|---|\n| $\\frac{2}{5}\\times3=\\frac{6}{15}$ (the denominator was multiplied too) | $\\frac{2}{5}\\times3=\\frac{6}{5}$ (only the numerator is multiplied) |\n| $\\frac{3}{4}$ of $24=24\\div3\\times4=32$ (divided by the numerator) | $\\frac{3}{4}$ of $24=24\\div4\\times3=18$ (divide by the denominator) |\n| $\\frac{1}{4}\\times2=\\frac{1}{8}$ (the denominator was multiplied instead) | $\\frac{1}{4}\\times2=\\frac{2}{4}=\\frac{1}{2}$ |',
-                'Hati-hati dengan kesalahan ini.\n\n| Salah | Benar |\n|---|---|\n| $\\frac{2}{5}\\times3=\\frac{6}{15}$ (penyebutnya ikut dikali) | $\\frac{2}{5}\\times3=\\frac{6}{5}$ (hanya pembilang yang dikali) |\n| $\\frac{3}{4}$ dari $24=24\\div3\\times4=32$ (dibagi dengan pembilang) | $\\frac{3}{4}$ dari $24=24\\div4\\times3=18$ (bagi dengan penyebut) |\n| $\\frac{1}{4}\\times2=\\frac{1}{8}$ (yang dikali justru penyebutnya) | $\\frac{1}{4}\\times2=\\frac{2}{4}=\\frac{1}{2}$ |',
+                'Be careful with these mistakes.\n\n| Wrong | Right |\n|---|---|\n| $\\frac{2}{5}\\times3=\\frac{6}{15}$ (the denominator was multiplied too) | $\\frac{2}{5}\\times3=\\frac{6}{5}$ (only the numerator is multiplied) |\n| $\\frac{3}{4}$ of $24=24\\div3\\times4=32$ (divided by the numerator) | $\\frac{3}{4}$ of $24=24\\div4\\times3=18$ (divide by the denominator) |\n| $\\frac{1}{4}\\times2=\\frac{1}{8}$ (the denominator was multiplied instead) | $\\frac{1}{4}\\times2=\\frac{2}{4}=\\frac{1}{2}$ |\n| $3\\times2\\frac{1}{4}=6\\frac{1}{4}$ (only the whole part was multiplied) | $3\\times2\\frac{1}{4}=6+\\frac{3}{4}=6\\frac{3}{4}$ (multiply the fraction part too) |',
+                'Hati-hati dengan kesalahan ini.\n\n| Salah | Benar |\n|---|---|\n| $\\frac{2}{5}\\times3=\\frac{6}{15}$ (penyebutnya ikut dikali) | $\\frac{2}{5}\\times3=\\frac{6}{5}$ (hanya pembilang yang dikali) |\n| $\\frac{3}{4}$ dari $24=24\\div3\\times4=32$ (dibagi dengan pembilang) | $\\frac{3}{4}$ dari $24=24\\div4\\times3=18$ (bagi dengan penyebut) |\n| $\\frac{1}{4}\\times2=\\frac{1}{8}$ (yang dikali justru penyebutnya) | $\\frac{1}{4}\\times2=\\frac{2}{4}=\\frac{1}{2}$ |\n| $3\\times2\\frac{1}{4}=6\\frac{1}{4}$ (hanya bagian utuhnya yang dikali) | $3\\times2\\frac{1}{4}=6+\\frac{3}{4}=6\\frac{3}{4}$ (bagian pecahannya juga dikali) |',
+              ),
+            },
+            {
+              kind: 'concept',
+              id: 'c4',
+              title: L('Step by Step: Mixed Number × Whole Number', 'Contoh Bertahap: Pecahan Campuran × Bilangan Asli'),
+              body: L(
+                'Mr. Eko buys 7 bags of rice. Each bag weighs $2\\frac{3}{4}$ kg. How many kilograms of rice is that? We need $7\\times2\\frac{3}{4}$.\n\n1. Step 1: Change the mixed number into an improper fraction: $2\\frac{3}{4}=\\frac{2\\times4+3}{4}=\\frac{11}{4}$.\n2. Step 2: Multiply the numerator by 7 and keep the denominator: $7\\times\\frac{11}{4}=\\frac{77}{4}$.\n3. Step 3: Change back to a mixed number: $77\\div4=19$ remainder 1, so $\\frac{77}{4}=19\\frac{1}{4}$ kg.\n4. Step 4: Check a second way. Whole parts: $7\\times2=14$. Fraction parts: $7\\times\\frac{3}{4}=\\frac{21}{4}=5\\frac{1}{4}$. Together: $14+5\\frac{1}{4}=19\\frac{1}{4}$.\n\n**Remember:**\n\n- Mixed number × whole number: change to an improper fraction first, or multiply the whole part and the fraction part separately and add the results.\n- Estimate to check: the answer is more than $7\\times2=14$ and less than $7\\times3=21$.',
+                'Pak Eko membeli 7 karung beras. Tiap karung beratnya $2\\frac{3}{4}$ kg. Berapa kilogram beras itu? Kita perlu menghitung $7\\times2\\frac{3}{4}$.\n\n1. Langkah 1: Ubah pecahan campuran menjadi pecahan tak wajar: $2\\frac{3}{4}=\\frac{2\\times4+3}{4}=\\frac{11}{4}$.\n2. Langkah 2: Kalikan pembilang dengan 7 dan penyebut tetap: $7\\times\\frac{11}{4}=\\frac{77}{4}$.\n3. Langkah 3: Ubah kembali ke pecahan campuran: $77\\div4=19$ sisa 1, jadi $\\frac{77}{4}=19\\frac{1}{4}$ kg.\n4. Langkah 4: Periksa dengan cara kedua. Bagian utuh: $7\\times2=14$. Bagian pecahan: $7\\times\\frac{3}{4}=\\frac{21}{4}=5\\frac{1}{4}$. Digabung: $14+5\\frac{1}{4}=19\\frac{1}{4}$.\n\n**Ingat:**\n\n- Pecahan campuran × bilangan asli: ubah dulu menjadi pecahan tak wajar, atau kalikan bagian utuh dan bagian pecahan secara terpisah lalu jumlahkan hasilnya.\n- Perkirakan untuk memeriksa: hasilnya lebih dari $7\\times2=14$ dan kurang dari $7\\times3=21$.',
               ),
             },
             {
@@ -1236,6 +1364,29 @@ export const module3: Module = {
               ),
             },
             {
+              kind: 'quiz',
+              id: 'q3',
+              prompt: L(
+                'Ani has Rp48,000. She spends $\\frac{1}{4}$ of her money on a book and $\\frac{1}{3}$ of her money on lunch. How many rupiah does she have left?',
+                'Ani punya uang Rp48.000. Ia menghabiskan $\\frac{1}{4}$ uangnya untuk membeli buku dan $\\frac{1}{3}$ uangnya untuk makan siang. Berapa rupiah uang yang masih ia punya?',
+              ),
+              options: [
+                L('Rp20,000', 'Rp20.000'),
+                L('Rp28,000', 'Rp28.000'),
+                L('Rp36,000', 'Rp36.000'),
+                L('Rp32,000', 'Rp32.000'),
+              ],
+              answer: 0,
+              explain: L(
+                'The book costs $\\frac{1}{4}\\times48\\,000=12\\,000$ and lunch costs $\\frac{1}{3}\\times48\\,000=16\\,000$. She spends $28\\,000$, so $48\\,000-28\\,000=20\\,000$ is left. Rp28,000 is what she spent, and the other two forget one of the two purchases.',
+                'Buku harganya $\\frac{1}{4}\\times48\\,000=12\\,000$ dan makan siang $\\frac{1}{3}\\times48\\,000=16\\,000$. Ia menghabiskan $28\\,000$, jadi sisanya $48\\,000-28\\,000=20\\,000$. Rp28.000 adalah uang yang dihabiskan, dan dua pilihan lain lupa salah satu dari dua pembelian.',
+              ),
+              hint: L(
+                'Both fractions are parts of the SAME Rp48,000. Find each amount, add them, and remember that the question asks for what is left.',
+                'Kedua pecahan adalah bagian dari Rp48.000 yang SAMA. Cari tiap jumlahnya, jumlahkan, dan ingat soal menanyakan uang yang masih tersisa.',
+              ),
+            },
+            {
               kind: 'multi',
               id: 'mc1',
               prompt: L(
@@ -1278,6 +1429,35 @@ export const module3: Module = {
             },
             {
               kind: 'math',
+              id: 'm2',
+              prompt: L(
+                'Siti fills 6 bottles from a drum. Each bottle holds $1\\frac{3}{4}$ litres. How many litres of water are in the 6 bottles together? Write the answer as a mixed number in simplest form.',
+                'Siti mengisi 6 botol dari sebuah drum. Tiap botol berisi $1\\frac{3}{4}$ liter. Berapa liter air di keenam botol itu bersama-sama? Tulis jawabannya sebagai pecahan campuran dalam bentuk paling sederhana.',
+              ),
+              inline: true,
+              blanks: mixed(10, 1, 2),
+              hints: [
+                L(
+                  'This is the same amount 6 times. Which operation do you use?',
+                  'Ini adalah jumlah yang sama sebanyak 6 kali. Operasi apa yang kamu pakai?',
+                ),
+                L(
+                  'Change $1\\frac{3}{4}$ into an improper fraction. Then multiply only the numerator by 6.',
+                  'Ubah $1\\frac{3}{4}$ menjadi pecahan tak wajar. Lalu kalikan hanya pembilangnya dengan 6.',
+                ),
+                L(
+                  '$1\\frac{3}{4}=\\frac{7}{4}$, so you get $\\frac{42}{4}$. Change it to a mixed number and simplify the fraction part. Check: is it between $6\\times1=6$ and $6\\times2=12$?',
+                  '$1\\frac{3}{4}=\\frac{7}{4}$, jadi kamu mendapat $\\frac{42}{4}$. Ubah ke pecahan campuran dan sederhanakan bagian pecahannya. Periksa: apakah hasilnya di antara $6\\times1=6$ dan $6\\times2=12$?',
+                ),
+              ],
+              explain: L(
+                '$6\\times\\frac{7}{4}=\\frac{42}{4}=10\\frac{2}{4}=10\\frac{1}{2}$ litres. It is between 6 and 12, as the estimate says.',
+                '$6\\times\\frac{7}{4}=\\frac{42}{4}=10\\frac{2}{4}=10\\frac{1}{2}$ liter. Hasilnya di antara 6 dan 12, sesuai perkiraan.',
+              ),
+              solution: ['1\\frac{3}{4}=\\frac{7}{4}', '6\\times\\frac{7}{4}=\\frac{42}{4}', '\\frac{42}{4}=10\\frac{2}{4}=10\\frac{1}{2}'],
+            },
+            {
+              kind: 'math',
               id: 'm1',
               prompt: L(
                 'In a class there are 36 pupils. $\\frac{5}{9}$ of them bring lunch from home. How many pupils do NOT bring lunch from home?',
@@ -1311,8 +1491,8 @@ export const module3: Module = {
           id: 'tka-m3-s3-l2',
           title: L('Fraction ÷ Whole Number', 'Pecahan ÷ Bilangan Asli'),
           goal: L(
-            'You can divide a fraction by a whole number by cutting it into equal parts.',
-            'Kamu bisa membagi pecahan dengan bilangan asli dengan memotongnya menjadi bagian yang sama besar.',
+            'You can divide a fraction or a mixed number by a whole number by cutting it into equal parts.',
+            'Kamu bisa membagi pecahan atau pecahan campuran dengan bilangan asli dengan memotongnya menjadi bagian yang sama besar.',
           ),
           xp: 20,
           steps: [
@@ -1353,8 +1533,17 @@ export const module3: Module = {
               id: 'c3',
               title: L('Watch Out!: Multiplying or Dividing?', 'Awas, Jebakan!: Dikali atau Dibagi?'),
               body: L(
-                'Watch out for these mistakes.\n\n| Wrong | Right |\n|---|---|\n| $\\frac{3}{4}\\div3=\\frac{9}{4}$ (the numerator was multiplied) | $\\frac{3}{4}\\div3=\\frac{3}{12}=\\frac{1}{4}$ (dividing makes the pieces smaller) |\n| $\\frac{4}{5}\\div2=\\frac{2}{10}$ (the numerator was divided AND the denominator multiplied) | $\\frac{4}{5}\\div2=\\frac{2}{5}$ or $\\frac{4}{10}$ (do only one of them) |\n| $\\frac{1}{3}\\div2=\\frac{1}{5}$ (2 was added to the denominator) | $\\frac{1}{3}\\div2=\\frac{1}{6}$ (the denominator is multiplied) |',
-                'Hati-hati dengan kesalahan ini.\n\n| Salah | Benar |\n|---|---|\n| $\\frac{3}{4}\\div3=\\frac{9}{4}$ (pembilangnya dikali) | $\\frac{3}{4}\\div3=\\frac{3}{12}=\\frac{1}{4}$ (membagi membuat potongan lebih kecil) |\n| $\\frac{4}{5}\\div2=\\frac{2}{10}$ (pembilang dibagi DAN penyebut dikali) | $\\frac{4}{5}\\div2=\\frac{2}{5}$ atau $\\frac{4}{10}$ (lakukan salah satu saja) |\n| $\\frac{1}{3}\\div2=\\frac{1}{5}$ (penyebut ditambah 2) | $\\frac{1}{3}\\div2=\\frac{1}{6}$ (penyebut dikali) |',
+                'Watch out for these mistakes.\n\n| Wrong | Right |\n|---|---|\n| $\\frac{3}{4}\\div3=\\frac{9}{4}$ (the numerator was multiplied) | $\\frac{3}{4}\\div3=\\frac{3}{12}=\\frac{1}{4}$ (dividing makes the pieces smaller) |\n| $\\frac{4}{5}\\div2=\\frac{2}{10}$ (the numerator was divided AND the denominator multiplied) | $\\frac{4}{5}\\div2=\\frac{2}{5}$ or $\\frac{4}{10}$ (do only one of them) |\n| $\\frac{1}{3}\\div2=\\frac{1}{5}$ (2 was added to the denominator) | $\\frac{1}{3}\\div2=\\frac{1}{6}$ (the denominator is multiplied) |\n| $2\\frac{2}{3}\\div2=1\\frac{2}{3}$ (only the whole part was divided) | $2\\frac{2}{3}\\div2=\\frac{8}{3}\\div2=\\frac{8}{6}=1\\frac{1}{3}$ (divide the whole amount) |',
+                'Hati-hati dengan kesalahan ini.\n\n| Salah | Benar |\n|---|---|\n| $\\frac{3}{4}\\div3=\\frac{9}{4}$ (pembilangnya dikali) | $\\frac{3}{4}\\div3=\\frac{3}{12}=\\frac{1}{4}$ (membagi membuat potongan lebih kecil) |\n| $\\frac{4}{5}\\div2=\\frac{2}{10}$ (pembilang dibagi DAN penyebut dikali) | $\\frac{4}{5}\\div2=\\frac{2}{5}$ atau $\\frac{4}{10}$ (lakukan salah satu saja) |\n| $\\frac{1}{3}\\div2=\\frac{1}{5}$ (penyebut ditambah 2) | $\\frac{1}{3}\\div2=\\frac{1}{6}$ (penyebut dikali) |\n| $2\\frac{2}{3}\\div2=1\\frac{2}{3}$ (hanya bagian utuhnya yang dibagi) | $2\\frac{2}{3}\\div2=\\frac{8}{3}\\div2=\\frac{8}{6}=1\\frac{1}{3}$ (bagi seluruh jumlahnya) |',
+              ),
+            },
+            {
+              kind: 'concept',
+              id: 'c4',
+              title: L('Step by Step: Mixed Number ÷ Whole Number', 'Contoh Bertahap: Pecahan Campuran ÷ Bilangan Asli'),
+              body: L(
+                'Mr. Joko has $5\\frac{1}{4}$ litres of cooking oil. He pours it equally into 3 jugs. How many litres are in each jug? We need $5\\frac{1}{4}\\div3$.\n\n1. Step 1: Change the mixed number into an improper fraction: $5\\frac{1}{4}=\\frac{5\\times4+1}{4}=\\frac{21}{4}$.\n2. Step 2: Multiply the denominator by 3: $\\frac{21}{4}\\div3=\\frac{21}{12}$. (Here you could also share the numerator, $21\\div3=7$, and get $\\frac{7}{4}$.)\n3. Step 3: Simplify and change to a mixed number: $\\frac{21}{12}=\\frac{7}{4}=1\\frac{3}{4}$ litres.\n4. Step 4: Check by multiplying back: $3\\times1\\frac{3}{4}=3\\times\\frac{7}{4}=\\frac{21}{4}=5\\frac{1}{4}$.\n\n**Remember:**\n\n- Mixed number ÷ whole number: change to an improper fraction first, then divide as before.\n- Check by multiplying back: the answer times the whole number must give the amount you started with.',
+                'Pak Joko punya $5\\frac{1}{4}$ liter minyak goreng. Ia menuangkannya sama banyak ke 3 teko. Berapa liter minyak di tiap teko? Kita perlu menghitung $5\\frac{1}{4}\\div3$.\n\n1. Langkah 1: Ubah pecahan campuran menjadi pecahan tak wajar: $5\\frac{1}{4}=\\frac{5\\times4+1}{4}=\\frac{21}{4}$.\n2. Langkah 2: Kalikan penyebut dengan 3: $\\frac{21}{4}\\div3=\\frac{21}{12}$. (Di sini kamu juga bisa membagi pembilangnya, $21\\div3=7$, dan mendapat $\\frac{7}{4}$.)\n3. Langkah 3: Sederhanakan dan ubah ke pecahan campuran: $\\frac{21}{12}=\\frac{7}{4}=1\\frac{3}{4}$ liter.\n4. Langkah 4: Periksa dengan mengalikan kembali: $3\\times1\\frac{3}{4}=3\\times\\frac{7}{4}=\\frac{21}{4}=5\\frac{1}{4}$.\n\n**Ingat:**\n\n- Pecahan campuran ÷ bilangan asli: ubah dulu menjadi pecahan tak wajar, lalu bagi seperti tadi.\n- Periksa dengan mengalikan kembali: hasilnya dikali bilangan asli harus sama dengan jumlah awal.',
               ),
             },
             {
@@ -1470,6 +1659,58 @@ export const module3: Module = {
             },
             {
               kind: 'math',
+              id: 'm2',
+              prompt: L(
+                'Mr. Eko cuts a rope $8\\frac{1}{4}$ m long into 6 equal pieces. How long is each piece? Write the answer as a mixed number in simplest form.',
+                'Pak Eko memotong seutas tali sepanjang $8\\frac{1}{4}$ m menjadi 6 potong sama panjang. Berapa panjang tiap potong? Tulis jawabannya sebagai pecahan campuran dalam bentuk paling sederhana.',
+              ),
+              inline: true,
+              blanks: mixed(1, 3, 8),
+              hints: [
+                L(
+                  'Cutting into equal pieces means dividing. First change the mixed number into an improper fraction.',
+                  'Memotong menjadi bagian sama panjang berarti membagi. Ubah dulu pecahan campuran menjadi pecahan tak wajar.',
+                ),
+                L(
+                  'Multiply the denominator of the improper fraction by 6, then simplify with the GCF.',
+                  'Kalikan penyebut pecahan tak wajar itu dengan 6, lalu sederhanakan dengan FPB.',
+                ),
+                L(
+                  '$8\\frac{1}{4}=\\frac{33}{4}$, so you get $\\frac{33}{24}$. Simplify it, then change it to a mixed number. Check by multiplying back by 6.',
+                  '$8\\frac{1}{4}=\\frac{33}{4}$, jadi kamu mendapat $\\frac{33}{24}$. Sederhanakan, lalu ubah ke pecahan campuran. Periksa dengan mengalikan kembali dengan 6.',
+                ),
+              ],
+              explain: L(
+                '$\\frac{33}{4}\\div6=\\frac{33}{24}=\\frac{11}{8}=1\\frac{3}{8}$ m. Check: $6\\times\\frac{11}{8}=\\frac{66}{8}=8\\frac{1}{4}$.',
+                '$\\frac{33}{4}\\div6=\\frac{33}{24}=\\frac{11}{8}=1\\frac{3}{8}$ m. Periksa: $6\\times\\frac{11}{8}=\\frac{66}{8}=8\\frac{1}{4}$.',
+              ),
+              solution: ['8\\frac{1}{4}=\\frac{33}{4}', '\\frac{33}{4}\\div6=\\frac{33}{24}=\\frac{11}{8}', '\\frac{11}{8}=1\\frac{3}{8}'],
+            },
+            {
+              kind: 'judge',
+              id: 'j2',
+              prompt: L(
+                'Mrs. Siti has 5 cans of cooking oil, each holding $2\\frac{3}{4}$ litres. She pours all the oil into 9 big bottles of equal size and 4 small bottles. Each small bottle holds half as much as a big bottle, and every bottle is filled completely. Decide whether each statement is True or False.',
+                'Bu Siti punya 5 kaleng minyak goreng, masing-masing berisi $2\\frac{3}{4}$ liter. Ia menuangkan semua minyak itu ke 9 botol besar yang sama ukurannya dan 4 botol kecil. Tiap botol kecil memuat setengah dari botol besar, dan setiap botol terisi penuh. Tentukan apakah setiap pernyataan Benar atau Salah.',
+              ),
+              statements: [
+                L('In all she has $13\\frac{3}{4}$ litres of oil.', 'Seluruhnya ia punya $13\\frac{3}{4}$ liter minyak.'),
+                L('Each big bottle holds $1\\frac{1}{4}$ litres.', 'Tiap botol besar memuat $1\\frac{1}{4}$ liter.'),
+                L('The 4 small bottles hold 2 litres together.', 'Keempat botol kecil memuat 2 liter bersama-sama.'),
+                L('The 4 small bottles together hold as much oil as 2 big bottles.', 'Keempat botol kecil bersama-sama memuat minyak sebanyak 2 botol besar.'),
+              ],
+              answer: [true, true, false, true],
+              explain: L(
+                'Total: $5\\times2\\frac{3}{4}=5\\times\\frac{11}{4}=\\frac{55}{4}=13\\frac{3}{4}$ litres. Two small bottles equal one big one, so the 4 small bottles count as 2 big ones, and there are $9+2=11$ big bottles in all. Each big bottle holds $\\frac{55}{4}\\div11=\\frac{5}{4}=1\\frac{1}{4}$ litres, so the 4 small bottles hold $2\\times1\\frac{1}{4}=2\\frac{1}{2}$ litres, not 2.',
+                'Jumlah: $5\\times2\\frac{3}{4}=5\\times\\frac{11}{4}=\\frac{55}{4}=13\\frac{3}{4}$ liter. Dua botol kecil sama dengan satu botol besar, jadi 4 botol kecil sama dengan 2 botol besar, dan seluruhnya ada $9+2=11$ botol besar. Tiap botol besar memuat $\\frac{55}{4}\\div11=\\frac{5}{4}=1\\frac{1}{4}$ liter, jadi 4 botol kecil memuat $2\\times1\\frac{1}{4}=2\\frac{1}{2}$ liter, bukan 2.',
+              ),
+              hint: L(
+                'First find the total amount of oil. Then count the bottles as if they were all big ones: how many big bottles are the 4 small ones worth?',
+                'Cari dulu jumlah seluruh minyak. Lalu hitung semua botol seolah-olah botol besar: 4 botol kecil sama dengan berapa botol besar?',
+              ),
+            },
+            {
+              kind: 'math',
               id: 'm1',
               prompt: L(
                 'Mr. Joko has $\\frac{4}{5}$ litre of paint. He pours it equally into 6 small cans. How many litres of paint are in 3 of those cans together? Write the fraction in simplest form.',
@@ -1505,17 +1746,17 @@ export const module3: Module = {
         runtime: 'math',
         title: L('Times and Divided by Whole Numbers', 'Dikali dan Dibagi Bilangan Asli'),
         brief: L(
-          'Multiply and divide fractions by whole numbers in plain sums and in syrup and rope problems.',
-          'Kalikan dan bagi pecahan dengan bilangan asli dalam hitungan biasa serta soal sirup dan tali.',
+          'Multiply and divide fractions and mixed numbers by whole numbers in plain sums and in rice, syrup and oil problems.',
+          'Kalikan dan bagi pecahan serta pecahan campuran dengan bilangan asli dalam hitungan biasa serta soal beras, sirup, dan minyak.',
         ),
         requirements: [
-          L('Multiply a fraction by a whole number, and find a fraction of an amount.', 'Mengalikan pecahan dengan bilangan asli, dan mencari pecahan dari suatu jumlah.'),
-          L('Divide a fraction by a whole number, and use division as the opposite of multiplication.', 'Membagi pecahan dengan bilangan asli, dan memakai pembagian sebagai kebalikan perkalian.'),
+          L('Multiply a fraction or a mixed number by a whole number.', 'Mengalikan pecahan atau pecahan campuran dengan bilangan asli.'),
+          L('Divide a fraction or a mixed number by a whole number, and use both in one problem.', 'Membagi pecahan atau pecahan campuran dengan bilangan asli, dan memakai keduanya dalam satu soal.'),
         ],
         hints: [
           L('Times a whole number: only the numerator is multiplied. Divided by a whole number: only the denominator is multiplied.', 'Dikali bilangan asli: hanya pembilang yang dikali. Dibagi bilangan asli: hanya penyebut yang dikali.'),
-          L('For a fraction of an amount, divide by the denominator first, then multiply by the numerator.', 'Untuk pecahan dari suatu jumlah, bagi dulu dengan penyebut, lalu kali dengan pembilang.'),
-          L('For the last task, work backwards: undo the division with a multiplication.', 'Untuk soal terakhir, bekerja mundur: batalkan pembagian dengan perkalian.'),
+          L('Check a division by multiplying back: the answer times the whole number must give the amount you started with.', 'Periksa pembagian dengan mengalikan kembali: hasilnya dikali bilangan asli harus sama dengan jumlah awal.'),
+          L('For a mixed number, change it to an improper fraction first. For the last task, go step by step: the total, then one bottle, then 4 bottles.', 'Untuk pecahan campuran, ubah dulu menjadi pecahan tak wajar. Untuk soal terakhir, kerjakan langkah demi langkah: jumlah seluruhnya, lalu satu botol, lalu 4 botol.'),
         ],
         xp: 50,
         tasks: [
@@ -1527,10 +1768,13 @@ export const module3: Module = {
             solution: ['5\\times\\frac{2}{9}=\\frac{5\\times2}{9}', '=\\frac{10}{9}'],
           },
           {
-            prompt: L('Find $\\frac{3}{8}$ of 56.', 'Cari $\\frac{3}{8}$ dari 56.'),
-            given: '\\frac{3}{8}\\times56',
-            blanks: [{ answer: 21 }],
-            solution: ['56 \\div 8 = 7', '3 \\times 7 = 21'],
+            prompt: L(
+              'Mum buys 6 packs of rice. Each pack weighs $2\\frac{1}{4}$ kg. How many kilograms of rice is that? Write it as a mixed number in simplest form.',
+              'Ibu membeli 6 bungkus beras. Tiap bungkus beratnya $2\\frac{1}{4}$ kg. Berapa kilogram beras itu? Tulis sebagai pecahan campuran dalam bentuk paling sederhana.',
+            ),
+            inline: true,
+            blanks: mixed(13, 1, 2),
+            solution: ['2\\frac{1}{4}=\\frac{9}{4}', '6\\times\\frac{9}{4}=\\frac{54}{4}', '\\frac{54}{4}=13\\frac{2}{4}=13\\frac{1}{2}'],
           },
           {
             prompt: L(
@@ -1543,16 +1787,11 @@ export const module3: Module = {
           },
           {
             prompt: L(
-              'A rope is cut into 4 equal pieces. Each piece is $\\frac{3}{10}$ m long. How long was the rope before it was cut? Write it as an improper fraction in simplest form.',
-              'Seutas tali dipotong menjadi 4 bagian sama panjang. Tiap potong panjangnya $\\frac{3}{10}$ m. Berapa panjang tali sebelum dipotong? Tulis sebagai pecahan tak wajar dalam bentuk paling sederhana.',
+              'Mr. Joko pours the oil from 6 cans, each holding $2\\frac{1}{4}$ litres, equally into 9 bottles. How many litres of oil are in 4 of the bottles?',
+              'Pak Joko menuangkan minyak dari 6 kaleng, masing-masing berisi $2\\frac{1}{4}$ liter, sama banyak ke 9 botol. Berapa liter minyak di 4 botol itu?',
             ),
-            figure: {
-              ...fourShares('3/10'),
-              caption: L('4 equal pieces of rope. How long is the whole rope?', '4 potong tali sama panjang. Berapa panjang seluruh tali?'),
-            },
-            inline: true,
-            blanks: numDen(6, 5),
-            solution: ['4 \\times \\frac{3}{10} = \\frac{12}{10}', '\\frac{12}{10}=\\frac{12\\div2}{10\\div2}=\\frac{6}{5}'],
+            blanks: [{ answer: 6, after: { en: '\\text{ litres}', id: '\\text{ liter}' } }],
+            solution: ['6\\times2\\frac{1}{4}=6\\times\\frac{9}{4}=\\frac{54}{4}=13\\frac{1}{2}', '13\\frac{1}{2}\\div9=\\frac{27}{2}\\div9=\\frac{27}{18}=\\frac{3}{2}', '4\\times\\frac{3}{2}=6'],
           },
         ],
       },

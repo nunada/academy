@@ -236,8 +236,8 @@ export const COURSES: CourseInfo[] = [
     track: 'math',
     requires: [],
     available: true,
-    lessons: 58,
-    projects: 29,
+    lessons: 59,
+    projects: 30,
   },
   {
     id: 'tka-smp-matematika',
@@ -253,8 +253,8 @@ export const COURSES: CourseInfo[] = [
     track: 'math',
     requires: [],
     available: true,
-    lessons: 40,
-    projects: 20,
+    lessons: 41,
+    projects: 21,
   },
   {
     id: 'fundamentals',
