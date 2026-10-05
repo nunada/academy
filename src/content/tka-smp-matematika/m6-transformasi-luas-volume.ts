@@ -3,6 +3,7 @@ import type { FigColor, FigItem, Figure } from '../../lib/figure'
 import type { Piece, Pt } from './figs'
 import {
   circle2d,
+  cone2d,
   coneNet,
   cylinder2d,
   cylinderNet,
@@ -24,8 +25,8 @@ import {
 
 /** Module 6 — single transformations on a coordinate grid (reflection, translation,
  *  rotation, dilation), perimeter and area of polygons, circles and combined regions,
- *  and nets and volumes of solids (prism, cylinder, pyramid, sphere). Surface area and
- *  the volume of a cone are outside the scope. */
+ *  and nets and volumes of solids (prism, cylinder, pyramid, cone, sphere). Surface area is
+ *  outside the scope. */
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
@@ -120,8 +121,8 @@ export const module6: Module = {
   id: 'tka-smp-m6',
   title: L('Transformations, Area and Volume', 'Transformasi, Luas, dan Volume'),
   summary: L(
-    'Move shapes on a coordinate grid by reflection, translation, rotation and dilation; find the perimeter and area of polygons, circles and combined regions; and learn the nets and the volumes of prisms, cylinders, pyramids and spheres.',
-    'Memindahkan bangun pada bidang koordinat dengan refleksi, translasi, rotasi, dan dilatasi; mencari keliling dan luas segi banyak, lingkaran, dan daerah gabungan; serta mempelajari jaring-jaring dan volume prisma, tabung, limas, dan bola.',
+    'Move shapes on a coordinate grid by reflection, translation, rotation and dilation; find the perimeter and area of polygons, circles and combined regions; and learn the nets and the volumes of prisms, cylinders, pyramids, cones and spheres.',
+    'Memindahkan bangun pada bidang koordinat dengan refleksi, translasi, rotasi, dan dilatasi; mencari keliling dan luas segi banyak, lingkaran, dan daerah gabungan; serta mempelajari jaring-jaring dan volume prisma, tabung, limas, kerucut, dan bola.',
   ),
   submodules: [
     /* ============================================ S1: geometric transformations */
@@ -1152,8 +1153,8 @@ export const module6: Module = {
       id: 'tka-smp-m6-s3',
       title: L('Solid Shapes', 'Bangun Ruang'),
       summary: L(
-        'Read the nets of prisms, cylinders, pyramids and cones, count faces, edges and vertices, and find the volume of prisms, cylinders, pyramids and spheres.',
-        'Membaca jaring-jaring prisma, tabung, limas, dan kerucut, menghitung sisi, rusuk, dan titik sudut, serta mencari volume prisma, tabung, limas, dan bola.',
+        'Read the nets of prisms, cylinders, pyramids and cones, count faces, edges and vertices, and find the volume of prisms, cylinders, pyramids, cones and spheres.',
+        'Membaca jaring-jaring prisma, tabung, limas, dan kerucut, menghitung sisi, rusuk, dan titik sudut, serta mencari volume prisma, tabung, limas, kerucut, dan bola.',
       ),
       lessons: [
         /* ------------------------------------------ S3 L1 nets */
@@ -1373,10 +1374,10 @@ export const module6: Module = {
         /* ------------------------------------------ S3 L2 volume */
         {
           id: 'tka-smp-m6-s3-l2',
-          title: L('Volume of Prisms, Cylinders, Pyramids and Spheres', 'Volume Prisma, Tabung, Limas, dan Bola'),
+          title: L('Volume of Prisms, Cylinders, Pyramids, Cones and Spheres', 'Volume Prisma, Tabung, Limas, Kerucut, dan Bola'),
           goal: L(
-            'You can find the volume of a prism, a cylinder, a pyramid and a sphere, and solve pouring problems and missing-length problems.',
-            'Kamu bisa mencari volume prisma, tabung, limas, dan bola, serta menyelesaikan soal menuang air dan soal mencari panjang yang hilang.',
+            'You can find the volume of a prism, a cylinder, a pyramid, a cone and a sphere, and solve pouring problems and missing-length problems.',
+            'Kamu bisa mencari volume prisma, tabung, limas, kerucut, dan bola, serta menyelesaikan soal menuang air dan soal mencari panjang yang hilang.',
           ),
           xp: 20,
           steps: [
@@ -1385,8 +1386,8 @@ export const module6: Module = {
               id: 'c1',
               title: L('Look Closely: Volume as Layers', 'Ayo Amati: Volume sebagai Lapisan'),
               body: L(
-                'Volume is the amount of space inside a solid. It is measured in cubic units such as $\\text{cm}^3$ and $\\text{m}^3$. Liquids use litres: $1\\text{ L}=1\\,000\\text{ cm}^3$ and $1\\text{ mL}=1\\text{ cm}^3$.\n\nA prism is a stack of identical layers, so its volume is the area of one layer (the base) times the number of layers (the height). A cylinder is like a prism whose base is a circle, so its volume is also base area $\\times$ height $=\\pi r^2\\times h$. A pyramid fits exactly three times into a prism with the same base and the same height, so it holds one third as much.\n\n| Solid | Volume | Worked example |\n|---|---|---|\n| Prism | $V=\\text{base area}\\times\\text{height}$ | base area $6\\text{ cm}^2$, height 10 cm: $V=6\\times10=60\\text{ cm}^3$ |\n| Cylinder (a prism with a circle base) | $V=\\pi r^2h$ | $r=7$ cm, $h=10$ cm, $\\pi=\\frac{22}{7}$: $V=\\frac{22}{7}\\times49\\times10=1\\,540\\text{ cm}^3$ |\n| Pyramid | $V=\\frac{1}{3}\\times\\text{base area}\\times\\text{height}$ | square base $6\\times6$ cm, height 5 cm: $V=\\frac{1}{3}\\times36\\times5=60\\text{ cm}^3$ |\n| Sphere | $V=\\frac{4}{3}\\pi r^3$ | $r=3$ cm: $V=\\frac{4}{3}\\pi\\times27=36\\pi\\text{ cm}^3$ |',
-                'Volume adalah besar ruang di dalam sebuah bangun ruang. Satuannya satuan kubik seperti $\\text{cm}^3$ dan $\\text{m}^3$. Zat cair memakai liter: $1\\text{ L}=1\\,000\\text{ cm}^3$ dan $1\\text{ mL}=1\\text{ cm}^3$.\n\nPrisma adalah tumpukan lapisan yang sama, jadi volumenya adalah luas satu lapisan (alas) kali banyak lapisan (tinggi). Tabung seperti prisma yang alasnya lingkaran, jadi volumenya juga luas alas $\\times$ tinggi $=\\pi r^2\\times h$. Sebuah limas muat tepat tiga kali ke dalam prisma yang alas dan tingginya sama, jadi isinya sepertiga.\n\n| Bangun ruang | Volume | Contoh |\n|---|---|---|\n| Prisma | $V=\\text{luas alas}\\times\\text{tinggi}$ | luas alas $6\\text{ cm}^2$, tinggi 10 cm: $V=6\\times10=60\\text{ cm}^3$ |\n| Tabung (prisma beralas lingkaran) | $V=\\pi r^2h$ | $r=7$ cm, $h=10$ cm, $\\pi=\\frac{22}{7}$: $V=\\frac{22}{7}\\times49\\times10=1\\,540\\text{ cm}^3$ |\n| Limas | $V=\\frac{1}{3}\\times\\text{luas alas}\\times\\text{tinggi}$ | alas persegi $6\\times6$ cm, tinggi 5 cm: $V=\\frac{1}{3}\\times36\\times5=60\\text{ cm}^3$ |\n| Bola | $V=\\frac{4}{3}\\pi r^3$ | $r=3$ cm: $V=\\frac{4}{3}\\pi\\times27=36\\pi\\text{ cm}^3$ |',
+                'Volume is the amount of space inside a solid. It is measured in cubic units such as $\\text{cm}^3$ and $\\text{m}^3$. Liquids use litres: $1\\text{ L}=1\\,000\\text{ cm}^3$ and $1\\text{ mL}=1\\text{ cm}^3$.\n\nA prism is a stack of identical layers, so its volume is the area of one layer (the base) times the number of layers (the height). A cylinder is like a prism whose base is a circle, so its volume is also base area $\\times$ height $=\\pi r^2\\times h$. A pyramid fits exactly three times into a prism with the same base and the same height, so it holds one third as much. A cone is a pyramid whose base is a circle, so it also holds one third of the cylinder with the same base and height.\n\n| Solid | Volume | Worked example |\n|---|---|---|\n| Prism | $V=\\text{base area}\\times\\text{height}$ | base area $6\\text{ cm}^2$, height 10 cm: $V=6\\times10=60\\text{ cm}^3$ |\n| Cylinder (a prism with a circle base) | $V=\\pi r^2h$ | $r=7$ cm, $h=10$ cm, $\\pi=\\frac{22}{7}$: $V=\\frac{22}{7}\\times49\\times10=1\\,540\\text{ cm}^3$ |\n| Pyramid | $V=\\frac{1}{3}\\times\\text{base area}\\times\\text{height}$ | square base $6\\times6$ cm, height 5 cm: $V=\\frac{1}{3}\\times36\\times5=60\\text{ cm}^3$ |\n| Cone (a pyramid with a circle base) | $V=\\frac{1}{3}\\pi r^2h$ | $r=3$ cm, $h=7$ cm: $V=\\frac{1}{3}\\pi\\times9\\times7=21\\pi\\text{ cm}^3$ |\n| Sphere | $V=\\frac{4}{3}\\pi r^3$ | $r=3$ cm: $V=\\frac{4}{3}\\pi\\times27=36\\pi\\text{ cm}^3$ |',
+                'Volume adalah besar ruang di dalam sebuah bangun ruang. Satuannya satuan kubik seperti $\\text{cm}^3$ dan $\\text{m}^3$. Zat cair memakai liter: $1\\text{ L}=1\\,000\\text{ cm}^3$ dan $1\\text{ mL}=1\\text{ cm}^3$.\n\nPrisma adalah tumpukan lapisan yang sama, jadi volumenya adalah luas satu lapisan (alas) kali banyak lapisan (tinggi). Tabung seperti prisma yang alasnya lingkaran, jadi volumenya juga luas alas $\\times$ tinggi $=\\pi r^2\\times h$. Sebuah limas muat tepat tiga kali ke dalam prisma yang alas dan tingginya sama, jadi isinya sepertiga. Kerucut adalah limas yang alasnya lingkaran, jadi ia juga memuat sepertiga tabung yang alas dan tingginya sama.\n\n| Bangun ruang | Volume | Contoh |\n|---|---|---|\n| Prisma | $V=\\text{luas alas}\\times\\text{tinggi}$ | luas alas $6\\text{ cm}^2$, tinggi 10 cm: $V=6\\times10=60\\text{ cm}^3$ |\n| Tabung (prisma beralas lingkaran) | $V=\\pi r^2h$ | $r=7$ cm, $h=10$ cm, $\\pi=\\frac{22}{7}$: $V=\\frac{22}{7}\\times49\\times10=1\\,540\\text{ cm}^3$ |\n| Limas | $V=\\frac{1}{3}\\times\\text{luas alas}\\times\\text{tinggi}$ | alas persegi $6\\times6$ cm, tinggi 5 cm: $V=\\frac{1}{3}\\times36\\times5=60\\text{ cm}^3$ |\n| Kerucut (limas beralas lingkaran) | $V=\\frac{1}{3}\\pi r^2h$ | $r=3$ cm, $h=7$ cm: $V=\\frac{1}{3}\\pi\\times9\\times7=21\\pi\\text{ cm}^3$ |\n| Bola | $V=\\frac{4}{3}\\pi r^3$ | $r=3$ cm: $V=\\frac{4}{3}\\pi\\times27=36\\pi\\text{ cm}^3$ |',
               ),
               figure: {
                 ...cylinder2d({ r: 3, h: 5, labels: { r: 'r', h: 'h' } }),
@@ -1408,11 +1409,24 @@ export const module6: Module = {
             },
             {
               kind: 'concept',
+              id: 'c4',
+              title: L('Step by Step: Cones', 'Contoh Bertahap: Kerucut'),
+              body: L(
+                'A cone is like a pyramid with a circle for its base. It has a radius $r$, a height $h$ (straight up from the centre of the base to the tip) and a slant height $s$ (along the side). Only $r$ and $h$ go into the volume.\n\nFill a cone with sand and pour it into a cylinder with the same base and the same height: you need exactly 3 cones to fill the cylinder. So a cone holds one third of that cylinder.\n\nAn ice-cream cone has radius 3 cm and height 7 cm. Leave $\\pi$ in the answer. How much ice cream fits in the cone?\n\n1. Step 1: Base area: $\\pi r^2=\\pi\\times3^2=9\\pi\\text{ cm}^2$.\n2. Step 2: The cylinder with the same base and height would hold $9\\pi\\times7=63\\pi\\text{ cm}^3$.\n3. Step 3: The cone holds one third of that: $V=\\frac{1}{3}\\times63\\pi=21\\pi\\text{ cm}^3$.\n4. Step 4: With $\\pi\\approx3.14$ this is about $66\\text{ cm}^3$, which is about 66 mL.\n\n**Remember:**\n\n- $V_{\\text{cone}}=\\frac{1}{3}\\pi r^2h$, one third of the cylinder with the same base and height.\n- Use the height $h$, not the slant height $s$.\n- Check: 3 cones of the same size fill 1 cylinder.',
+                'Kerucut seperti limas yang alasnya lingkaran. Kerucut punya jari-jari $r$, tinggi $h$ (lurus ke atas dari pusat alas sampai ujung) dan garis pelukis $s$ (sepanjang sisi miring). Hanya $r$ dan $h$ yang dipakai untuk volume.\n\nIsi sebuah kerucut dengan pasir lalu tuang ke tabung yang alas dan tingginya sama: kamu memerlukan tepat 3 kerucut untuk memenuhi tabung itu. Jadi kerucut memuat sepertiga tabung tersebut.\n\nSebuah cone es krim berjari-jari 3 cm dan tinggi 7 cm. Biarkan $\\pi$ dalam jawaban. Berapa banyak es krim yang muat di dalam kerucut?\n\n1. Langkah 1: Luas alas: $\\pi r^2=\\pi\\times3^2=9\\pi\\text{ cm}^2$.\n2. Langkah 2: Tabung dengan alas dan tinggi yang sama memuat $9\\pi\\times7=63\\pi\\text{ cm}^3$.\n3. Langkah 3: Kerucut memuat sepertiganya: $V=\\frac{1}{3}\\times63\\pi=21\\pi\\text{ cm}^3$.\n4. Langkah 4: Dengan $\\pi\\approx3{,}14$ ini sekitar $66\\text{ cm}^3$, yaitu sekitar 66 mL.\n\n**Ingat:**\n\n- $V_{\\text{kerucut}}=\\frac{1}{3}\\pi r^2h$, sepertiga tabung yang alas dan tingginya sama.\n- Pakai tinggi $h$, bukan garis pelukis $s$.\n- Periksa: 3 kerucut yang sama besar memenuhi 1 tabung.',
+              ),
+              figure: {
+                ...cone2d({ r: 3, h: 7, labels: { r: '3', h: '7' } }),
+                caption: L('The ice-cream cone: radius 3 cm, height 7 cm (dashed red lines).', 'Cone es krim: jari-jari 3 cm, tinggi 7 cm (garis putus-putus merah).'),
+              },
+            },
+            {
+              kind: 'concept',
               id: 'c3',
               title: L('Watch Out!: Formulas and Units', 'Awas, Jebakan!: Rumus dan Satuan'),
               body: L(
-                '| Wrong | Right |\n|---|---|\n| A cylinder has $r=3$ and $h=5$: $V=\\pi\\times3\\times5=15\\pi$ | The radius is squared: $V=\\pi\\times3^2\\times5=45\\pi$ |\n| A pyramid has volume base area $\\times$ height | A pyramid is one third of the prism: $\\frac{1}{3}\\times\\text{base area}\\times\\text{height}$ |\n| A sphere has diameter 6 cm: $V=\\frac{4}{3}\\pi\\times6^3$ | The formula needs the radius: $r=3$, so $V=\\frac{4}{3}\\pi\\times27=36\\pi$ |\n| $5\\text{ L}=500\\text{ cm}^3$ | $1\\text{ L}=1\\,000\\text{ cm}^3$, so $5\\text{ L}=5\\,000\\text{ cm}^3$ |',
-                '| Salah | Benar |\n|---|---|\n| Tabung dengan $r=3$ dan $h=5$: $V=\\pi\\times3\\times5=15\\pi$ | Jari-jari dikuadratkan: $V=\\pi\\times3^2\\times5=45\\pi$ |\n| Volume limas adalah luas alas $\\times$ tinggi | Limas adalah sepertiga prisma: $\\frac{1}{3}\\times\\text{luas alas}\\times\\text{tinggi}$ |\n| Bola berdiameter 6 cm: $V=\\frac{4}{3}\\pi\\times6^3$ | Rumus memerlukan jari-jari: $r=3$, jadi $V=\\frac{4}{3}\\pi\\times27=36\\pi$ |\n| $5\\text{ L}=500\\text{ cm}^3$ | $1\\text{ L}=1\\,000\\text{ cm}^3$, jadi $5\\text{ L}=5\\,000\\text{ cm}^3$ |',
+                '| Wrong | Right |\n|---|---|\n| A cylinder has $r=3$ and $h=5$: $V=\\pi\\times3\\times5=15\\pi$ | The radius is squared: $V=\\pi\\times3^2\\times5=45\\pi$ |\n| A pyramid has volume base area $\\times$ height | A pyramid is one third of the prism: $\\frac{1}{3}\\times\\text{base area}\\times\\text{height}$ |\n| A sphere has diameter 6 cm: $V=\\frac{4}{3}\\pi\\times6^3$ | The formula needs the radius: $r=3$, so $V=\\frac{4}{3}\\pi\\times27=36\\pi$ |\n| $5\\text{ L}=500\\text{ cm}^3$ | $1\\text{ L}=1\\,000\\text{ cm}^3$, so $5\\text{ L}=5\\,000\\text{ cm}^3$ |\n| A cone has volume $\\pi r^2h$ | A cone is one third of the cylinder: $\\frac{1}{3}\\pi r^2h$ |\n| A cone has $r=3$, $h=4$ and slant height $s=5$: $V=\\frac{1}{3}\\pi\\times3^2\\times5=15\\pi$ | Use the height 4, not the slant height 5: $V=\\frac{1}{3}\\pi\\times9\\times4=12\\pi$ |',
+                '| Salah | Benar |\n|---|---|\n| Tabung dengan $r=3$ dan $h=5$: $V=\\pi\\times3\\times5=15\\pi$ | Jari-jari dikuadratkan: $V=\\pi\\times3^2\\times5=45\\pi$ |\n| Volume limas adalah luas alas $\\times$ tinggi | Limas adalah sepertiga prisma: $\\frac{1}{3}\\times\\text{luas alas}\\times\\text{tinggi}$ |\n| Bola berdiameter 6 cm: $V=\\frac{4}{3}\\pi\\times6^3$ | Rumus memerlukan jari-jari: $r=3$, jadi $V=\\frac{4}{3}\\pi\\times27=36\\pi$ |\n| $5\\text{ L}=500\\text{ cm}^3$ | $1\\text{ L}=1\\,000\\text{ cm}^3$, jadi $5\\text{ L}=5\\,000\\text{ cm}^3$ |\n| Volume kerucut adalah $\\pi r^2h$ | Kerucut adalah sepertiga tabung: $\\frac{1}{3}\\pi r^2h$ |\n| Kerucut dengan $r=3$, $h=4$, dan garis pelukis $s=5$: $V=\\frac{1}{3}\\pi\\times3^2\\times5=15\\pi$ | Pakai tinggi 4, bukan garis pelukis 5: $V=\\frac{1}{3}\\pi\\times9\\times4=12\\pi$ |',
               ),
             },
             {
@@ -1489,19 +1503,46 @@ export const module6: Module = {
               ),
             },
             {
+              kind: 'quiz',
+              id: 'q3',
+              prompt: L(
+                'A funnel is a cone with radius 6 cm and height 8 cm. Its slant height is 10 cm. What is the volume of the funnel?',
+                'Sebuah corong berbentuk kerucut dengan jari-jari 6 cm dan tinggi 8 cm. Garis pelukisnya 10 cm. Berapa volume corong itu?',
+              ),
+              figure: {
+                ...cone2d({ r: 6, h: 8, labels: { r: '6', h: '8', s: '10' } }),
+                caption: L('The funnel: radius 6 cm, height 8 cm, slant height 10 cm.', 'Corong: jari-jari 6 cm, tinggi 8 cm, garis pelukis 10 cm.'),
+              },
+              options: [
+                L('$96\\pi\\text{ cm}^3$', '$96\\pi\\text{ cm}^3$'),
+                L('$120\\pi\\text{ cm}^3$', '$120\\pi\\text{ cm}^3$'),
+                L('$288\\pi\\text{ cm}^3$', '$288\\pi\\text{ cm}^3$'),
+                L('$144\\pi\\text{ cm}^3$', '$144\\pi\\text{ cm}^3$'),
+              ],
+              answer: 0,
+              explain: L(
+                'The base area is $\\pi\\times6^2=36\\pi$, so $V=\\frac{1}{3}\\times36\\pi\\times8=96\\pi\\text{ cm}^3$. The answer 120π uses the slant height 10 instead of the height 8, 288π forgets the one third, and 144π takes one half.',
+                'Luas alas $\\pi\\times6^2=36\\pi$, jadi $V=\\frac{1}{3}\\times36\\pi\\times8=96\\pi\\text{ cm}^3$. Jawaban 120π memakai garis pelukis 10, bukan tinggi 8, 288π lupa sepertiganya, dan 144π mengambil setengah.',
+              ),
+              hint: L(
+                'Which of the three lengths belongs in the formula: the radius, the height or the slant height? Then do not forget the fraction in front.',
+                'Dari ketiga panjang itu, mana yang masuk rumus: jari-jari, tinggi, atau garis pelukis? Lalu jangan lupa pecahan di depannya.',
+              ),
+            },
+            {
               kind: 'judge',
               id: 'j1',
               prompt: L('Decide whether each statement is True or False.', 'Tentukan apakah setiap pernyataan Benar atau Salah.'),
               statements: [
-                L('A cylinder with radius 5 cm and height 2 cm has volume $50\\pi\\text{ cm}^3$.', 'Tabung berjari-jari 5 cm dan tinggi 2 cm mempunyai volume $50\\pi\\text{ cm}^3$.'),
+                L('A cone with radius 3 cm, height 4 cm and slant height 5 cm has volume $15\\pi\\text{ cm}^3$.', 'Kerucut berjari-jari 3 cm, tinggi 4 cm, dan garis pelukis 5 cm mempunyai volume $15\\pi\\text{ cm}^3$.'),
                 L('A pyramid and a prism with the same base and the same height have the same volume.', 'Limas dan prisma dengan alas yang sama dan tinggi yang sama mempunyai volume yang sama.'),
                 L('A sphere with radius 6 cm has volume $288\\pi\\text{ cm}^3$.', 'Bola berjari-jari 6 cm mempunyai volume $288\\pi\\text{ cm}^3$.'),
                 L('$1$ litre is the same as $100\\text{ cm}^3$.', '$1$ liter sama dengan $100\\text{ cm}^3$.'),
               ],
-              answer: [true, false, true, false],
+              answer: [false, false, true, false],
               explain: L(
-                '$\\pi\\times5^2\\times2=50\\pi$. The pyramid has only one third of the volume of the prism. $\\frac{4}{3}\\pi\\times6^3=\\frac{4}{3}\\pi\\times216=288\\pi$. One litre is $1\\,000\\text{ cm}^3$.',
-                '$\\pi\\times5^2\\times2=50\\pi$. Limas hanya punya sepertiga volume prisma. $\\frac{4}{3}\\pi\\times6^3=\\frac{4}{3}\\pi\\times216=288\\pi$. Satu liter adalah $1\\,000\\text{ cm}^3$.',
+                'A cone uses the height 4, not the slant height 5: $\\frac{1}{3}\\pi\\times3^2\\times4=12\\pi$. The pyramid has only one third of the volume of the prism. $\\frac{4}{3}\\pi\\times6^3=\\frac{4}{3}\\pi\\times216=288\\pi$. One litre is $1\\,000\\text{ cm}^3$.',
+                'Kerucut memakai tinggi 4, bukan garis pelukis 5: $\\frac{1}{3}\\pi\\times3^2\\times4=12\\pi$. Limas hanya punya sepertiga volume prisma. $\\frac{4}{3}\\pi\\times6^3=\\frac{4}{3}\\pi\\times216=288\\pi$. Satu liter adalah $1\\,000\\text{ cm}^3$.',
               ),
               hint: L(
                 'Put the numbers into each formula. Remember the one third for a pyramid, and think about how litres and cubic centimetres are linked.',
@@ -1569,19 +1610,57 @@ export const module6: Module = {
                 id: ['V=\\frac{22}{7}\\times14^2\\times50=22\\times28\\times50=30\\,800', '\\text{alas}=40\\times22=880', 'h=30\\,800\\div880=35'],
               },
             },
+            {
+              kind: 'math',
+              id: 'm2',
+              prompt: L(
+                'A funnel is a cone with radius 14 cm and height 15 cm, and it is full of water. Use $\\pi=\\frac{22}{7}$. Find the volume of the water. The water is then poured into an empty cylinder with the same radius, 14 cm. How deep is the water in the cylinder?',
+                'Sebuah corong berbentuk kerucut berjari-jari 14 cm dan tinggi 15 cm, dan penuh berisi air. Pakai $\\pi=\\frac{22}{7}$. Tentukan volume air. Air itu lalu dituang ke sebuah tabung kosong dengan jari-jari yang sama, 14 cm. Berapa dalam air di dalam tabung?',
+              ),
+              figure: {
+                ...cone2d({ r: 14, h: 15, labels: { r: '14', h: '15' } }),
+                caption: L('The funnel: radius 14 cm, height 15 cm.', 'Corong: jari-jari 14 cm, tinggi 15 cm.'),
+              },
+              blanks: [
+                { label: { en: '\\text{volume} =', id: '\\text{volume} =' }, answer: 3080, after: '\\text{ cm}^3' },
+                { label: { en: '\\text{depth} =', id: '\\text{kedalaman} =' }, answer: 5, after: '\\text{ cm}' },
+              ],
+              hints: [
+                L(
+                  'A cone is one third of a cylinder with the same base and height. Write the cone formula first.',
+                  'Kerucut adalah sepertiga tabung yang alas dan tingginya sama. Tulis dulu rumus kerucut.',
+                ),
+                L(
+                  'Use $V=\\frac{1}{3}\\pi r^2h$ with $r=14$ and $h=15$. For the depth in the cylinder, divide the volume by the base area $\\pi r^2$.',
+                  'Pakai $V=\\frac{1}{3}\\pi r^2h$ dengan $r=14$ dan $h=15$. Untuk kedalaman di dalam tabung, bagi volume dengan luas alas $\\pi r^2$.',
+                ),
+                L(
+                  'Work out $\\frac{1}{3}\\times\\frac{22}{7}\\times14\\times14\\times15$ by dividing 14 by 7 and 15 by 3 first. The base area of the cylinder is $\\frac{22}{7}\\times14\\times14$.',
+                  'Hitung $\\frac{1}{3}\\times\\frac{22}{7}\\times14\\times14\\times15$ dengan membagi 14 dengan 7 dan 15 dengan 3 lebih dulu. Luas alas tabung adalah $\\frac{22}{7}\\times14\\times14$.',
+                ),
+              ],
+              explain: L(
+                '$V=\\frac{1}{3}\\times\\frac{22}{7}\\times14^2\\times15=22\\times28\\times5=3\\,080\\text{ cm}^3$. The base of the cylinder has area $\\frac{22}{7}\\times14^2=616\\text{ cm}^2$, so the depth is $3\\,080\\div616=5$ cm, one third of the height 15.',
+                '$V=\\frac{1}{3}\\times\\frac{22}{7}\\times14^2\\times15=22\\times28\\times5=3\\,080\\text{ cm}^3$. Alas tabung luasnya $\\frac{22}{7}\\times14^2=616\\text{ cm}^2$, jadi kedalamannya $3\\,080\\div616=5$ cm, sepertiga dari tinggi 15.',
+              ),
+              solution: {
+                en: ['V=\\frac{1}{3}\\times\\frac{22}{7}\\times14^2\\times15=22\\times28\\times5=3\\,080', '\\text{base}=\\frac{22}{7}\\times14^2=616', 'h=3\\,080\\div616=5'],
+                id: ['V=\\frac{1}{3}\\times\\frac{22}{7}\\times14^2\\times15=22\\times28\\times5=3\\,080', '\\text{alas}=\\frac{22}{7}\\times14^2=616', 'h=3\\,080\\div616=5'],
+              },
+            },
           ],
         },
       ],
       project: {
         id: 'tka-smp-m6-s3-p',
         runtime: 'math',
-        title: L('Balls, Tanks and Pyramids', 'Bola, Tangki, dan Limas'),
+        title: L('Balls, Tanks, Pyramids and Cones', 'Bola, Tangki, Limas, dan Kerucut'),
         brief: L(
-          'Find volumes of a ball, a pyramid and a prism, a missing height of a tank, and the rise of the water when a ball is dropped in.',
-          'Mencari volume bola, limas, dan prisma, tinggi tangki yang hilang, serta kenaikan air ketika sebuah bola dijatuhkan ke dalamnya.',
+          'Find volumes of a ball, a cone, a cylinder and a pyramid, a missing height of a tank, and the rise of the water when a ball is dropped in.',
+          'Mencari volume bola, kerucut, tabung, dan limas, tinggi tangki yang hilang, serta kenaikan air ketika sebuah bola dijatuhkan ke dalamnya.',
         ),
         requirements: [
-          L('Use the volume formulas of the prism, cylinder, pyramid and sphere.', 'Memakai rumus volume prisma, tabung, limas, dan bola.'),
+          L('Use the volume formulas of the prism, cylinder, pyramid, cone and sphere.', 'Memakai rumus volume prisma, tabung, limas, kerucut, dan bola.'),
           L('Use the fact that a volume of water does not change when it is moved or displaced.', 'Memakai kenyataan bahwa volume air tidak berubah ketika dipindahkan atau terdesak.'),
         ],
         hints: [
@@ -1605,20 +1684,20 @@ export const module6: Module = {
           },
           {
             prompt: L(
-              'A pyramid has a square base of side 12 cm and a height of 9 cm. Find its volume. Then find the volume of a prism with the same base and the same height.',
-              'Sebuah limas beralas persegi dengan sisi 12 cm dan tinggi 9 cm. Tentukan volumenya. Lalu tentukan volume prisma dengan alas dan tinggi yang sama.',
+              'A traffic cone is a cone with radius 6 cm and height 10 cm. Find its volume in terms of $\\pi$. Then find the volume of a cylinder with the same radius and the same height. Type your answers like $288\\pi$ as 288pi.',
+              'Sebuah pembatas jalan berbentuk kerucut dengan jari-jari 6 cm dan tinggi 10 cm. Tentukan volumenya dalam $\\pi$. Lalu tentukan volume tabung dengan jari-jari dan tinggi yang sama. Ketik jawabanmu seperti $288\\pi$ sebagai 288pi.',
             ),
             figure: {
-              ...prism3d({ base: [[0, 0], [12, 0], [12, 12], [0, 12]], h: 9, apex: true }),
-              caption: L('A square pyramid: base 12 by 12 cm, height 9 cm.', 'Limas beralas persegi: alas 12 kali 12 cm, tinggi 9 cm.'),
+              ...cone2d({ r: 6, h: 10, labels: { r: '6', h: '10' } }),
+              caption: L('A traffic cone: radius 6 cm, height 10 cm.', 'Kerucut lalu lintas: jari-jari 6 cm, tinggi 10 cm.'),
             },
             blanks: [
-              { label: { en: '\\text{pyramid} =', id: '\\text{limas} =' }, answer: 432, after: '\\text{ cm}^3' },
-              { label: { en: '\\text{prism} =', id: '\\text{prisma} =' }, answer: 1296, after: '\\text{ cm}^3' },
+              { label: { en: '\\text{cone} =', id: '\\text{kerucut} =' }, answer: 120 * Math.PI, after: '\\text{ cm}^3' },
+              { label: { en: '\\text{cylinder} =', id: '\\text{tabung} =' }, answer: 360 * Math.PI, after: '\\text{ cm}^3' },
             ],
             solution: {
-              en: ['\\text{base}=12\\times12=144', 'V_{\\text{pyramid}}=\\frac{1}{3}\\times144\\times9=432', 'V_{\\text{prism}}=144\\times9=1\\,296'],
-              id: ['\\text{alas}=12\\times12=144', 'V_{\\text{limas}}=\\frac{1}{3}\\times144\\times9=432', 'V_{\\text{prisma}}=144\\times9=1\\,296'],
+              en: ['V_{\\text{cone}}=\\frac{1}{3}\\pi\\times6^2\\times10=\\frac{1}{3}\\times360\\pi=120\\pi', 'V_{\\text{cylinder}}=\\pi\\times6^2\\times10=360\\pi'],
+              id: ['V_{\\text{kerucut}}=\\frac{1}{3}\\pi\\times6^2\\times10=\\frac{1}{3}\\times360\\pi=120\\pi', 'V_{\\text{tabung}}=\\pi\\times6^2\\times10=360\\pi'],
             },
           },
           {
