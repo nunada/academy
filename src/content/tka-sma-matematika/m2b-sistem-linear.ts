@@ -1,5 +1,6 @@
 import type { Submodule } from '../types'
 import { L, dot, plane, solid, txt } from './figs'
+import { lessonThreeUnknowns } from './m2c-tiga-variabel'
 
 /** Module 2, submodule 2 — systems of two linear equations, and linear
  *  inequalities in two variables with a simple optimisation. */
@@ -340,6 +341,7 @@ export const m2s2: Submodule = {
         },
       ],
     },
+    lessonThreeUnknowns,
   ],
   project: {
     id: 'tka-sma-m2-s2-p',
@@ -393,6 +395,14 @@ export const m2s2: Submodule = {
         ),
         blanks: [{ label: 'Rp', answer: 5000 }],
         solution: ['2n+3p=19\\,000 \\quad n+p=8\\,000', '2n+3p-3(n+p)=19\\,000-24\\,000 \\Rightarrow -n=-5\\,000', 'n=5\\,000'],
+      },
+      {
+        prompt: L(
+          'Solve $x+y+z=6$, $x-y+z=2$ and $2x+y-z=1$. Find the product $xyz$.',
+          'Selesaikan $x+y+z=6$, $x-y+z=2$, dan $2x+y-z=1$. Tentukan hasil kali $xyz$.',
+        ),
+        blanks: [{ label: 'xyz =', answer: 6 }],
+        solution: ['y=2, \\quad x+z=4, \\quad 2x-z=-1', 'x=1, \\quad z=3', 'xyz=1\\cdot2\\cdot3=6'],
       },
       {
         prompt: L(

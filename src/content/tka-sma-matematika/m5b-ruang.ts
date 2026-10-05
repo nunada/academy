@@ -1,5 +1,6 @@
 import type { Submodule } from '../types'
 import { L, box3d } from './figs'
+import { lessonDistances } from './m5d-jarak'
 
 /** Module 5, submodule 2 — the cube and the box: diagonals, distances, and
  *  angles between lines and planes. Corners are named ABCD (bottom) and
@@ -370,6 +371,7 @@ export const m5s2: Submodule = {
         },
       ],
     },
+    lessonDistances,
   ],
   project: {
     id: 'tka-sma-m5-s2-p',
@@ -436,6 +438,17 @@ export const m5s2: Submodule = {
         ),
         blanks: [{ answer: 45, after: '^{\\circ}' }],
         solution: ['AC=\\sqrt{36+64}=10', '\\tan\\theta=\\frac{CG}{AC}=\\frac{10}{10}=1 \\Rightarrow \\theta=45^{\\circ}'],
+      },
+      {
+        prompt: L(
+          'In the box $ABCD.EFGH$, $AB=6$ and $BC=8$. Find the distance from $B$ to the vertical plane $ACG$.',
+          'Pada balok $ABCD.EFGH$, $AB=6$ dan $BC=8$. Tentukan jarak dari $B$ ke bidang tegak $ACG$.',
+        ),
+        blanks: [{ answer: 4.8 }],
+        solution: {
+          en: ['AC=\\sqrt{6^2+8^2}=10', '\\frac{6\\times8}{10}=4.8'],
+          id: ['AC=\\sqrt{6^2+8^2}=10', '\\frac{6\\times8}{10}=4{,}8'],
+        },
       },
     ],
   },

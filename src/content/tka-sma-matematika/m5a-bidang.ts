@@ -2,6 +2,7 @@ import type { FigColor, FigItem } from '../../lib/figure'
 import type { Submodule } from '../types'
 import { L, circle2d, ellipsePts, fit, line, outline, rightTriangle, shape, txt } from './figs'
 import type { Pt } from './figs'
+import { lessonCongruence } from './m5c-kekongruenan'
 
 /** Module 5, submodule 1 — triangles (angle sum, Pythagoras, similarity) and
  *  circles (central and inscribed angles, tangents, arcs and sectors). */
@@ -398,6 +399,7 @@ export const m5s1: Submodule = {
         },
       ],
     },
+    lessonCongruence,
   ],
   project: {
     id: 'tka-sma-m5-s1-p',
@@ -470,6 +472,14 @@ export const m5s1: Submodule = {
         ),
         blanks: [{ label: 'k =', answer: 10 }],
         solution: ['\\frac{150}{360}\\times2\\pi\\times12=\\frac{5}{12}\\times24\\pi', '=10\\pi'],
+      },
+      {
+        prompt: L(
+          'Two parallel lines are cut by a transversal. Two co-interior angles are $(3x+10)^{\\circ}$ and $(2x+20)^{\\circ}$. Find $x$.',
+          'Dua garis sejajar dipotong oleh sebuah transversal. Dua sudut dalam sepihak adalah $(3x+10)^{\\circ}$ dan $(2x+20)^{\\circ}$. Tentukan $x$.',
+        ),
+        blanks: [{ label: 'x =', answer: 30 }],
+        solution: ['(3x+10)+(2x+20)=180', '5x=150 \\Rightarrow x=30'],
       },
     ],
   },

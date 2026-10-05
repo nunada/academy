@@ -108,6 +108,15 @@ export const m10s1: Submodule = {
           ),
         },
         {
+          kind: 'concept',
+          id: 'c5',
+          title: L('Look Closely: Three Levels of Thinking', 'Ayo Amati: Tiga Level Berpikir'),
+          body: L(
+            'The official framework of the TKA measures mathematical ability at **three cognitive levels**. A test mixes all three, from easy to hard.\n\n| Level | What you do | Example |\n|---|---|---|\n| **1. Knowing and Understanding** | calculate, read a graph or table, classify, identify | simplify $3(2x-4)-2(x-3)$; read the vertex from a graph |\n| **2. Applying** | model a real situation, apply a familiar method, interpret | write and solve an equation for a price problem |\n| **3. Reasoning** | analyse, solve a new kind of problem, evaluate, conclude, generalise, justify | test a claim with a counterexample; find a rule for a pattern |\n\nThe abilities behind them are: knowing mathematics, **representing** (equation, graph, table, diagram), **reasoning and proving**, **solving problems** and **connecting** topics.\n\nHow to use this: in a test, do the level-1 questions quickly and carefully, spend your thinking time on level 3, and always explain to yourself **why** an answer is right, not just what it is.',
+            'Kerangka resmi TKA mengukur kemampuan matematis pada **tiga level kognitif**. Sebuah tes mencampur ketiganya, dari yang mudah sampai yang sulit.\n\n| Level | Yang kamu lakukan | Contoh |\n|---|---|---|\n| **1. Pengetahuan dan Pemahaman** | menghitung, membaca grafik atau tabel, mengelompokkan, mengidentifikasi | menyederhanakan $3(2x-4)-2(x-3)$; membaca puncak dari grafik |\n| **2. Aplikasi** | memodelkan situasi nyata, menerapkan cara yang dikenal, menginterpretasikan | menulis dan menyelesaikan persamaan untuk soal harga |\n| **3. Penalaran** | menganalisis, menyelesaikan masalah jenis baru, mengevaluasi, menyimpulkan, menggeneralisasi, menjustifikasi | menguji pernyataan dengan contoh penyangkal; menemukan aturan suatu pola |\n\nKemampuan di baliknya adalah: pengetahuan matematika, **representasi** (persamaan, grafik, tabel, diagram), **penalaran dan pembuktian**, **pemecahan masalah**, dan **koneksi** antartopik.\n\nCara memakainya: dalam tes, kerjakan soal level 1 dengan cepat dan teliti, pakai waktu berpikirmu untuk level 3, dan selalu jelaskan pada dirimu sendiri **mengapa** sebuah jawaban benar, bukan hanya apa jawabannya.',
+          ),
+        },
+        {
           kind: 'quiz',
           id: 'q1',
           prompt: L(

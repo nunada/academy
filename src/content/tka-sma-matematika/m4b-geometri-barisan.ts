@@ -1,5 +1,6 @@
 import type { Submodule } from '../types'
 import { L, barChart } from './figs'
+import { lessonGrowth } from './m4c-pertumbuhan'
 
 /** Module 4, submodule 2 — geometric sequences and series, finite and infinite. */
 
@@ -304,6 +305,7 @@ export const m4s2: Submodule = {
         },
       ],
     },
+    lessonGrowth,
   ],
   project: {
     id: 'tka-sma-m4-s2-p',
@@ -365,6 +367,17 @@ export const m4s2: Submodule = {
         solution: {
           en: ['\\text{rebounds: } 6+3.6+\\cdots=\\frac{6}{1-0.6}=15', '10+2\\times15=40'],
           id: ['\\text{pantulan: } 6+3{,}6+\\cdots=\\frac{6}{1-0{,}6}=15', '10+2\\times15=40'],
+        },
+      },
+      {
+        prompt: L(
+          'A town has 5 000 residents and grows by 20% every year. How many residents will it have after 3 years?',
+          'Sebuah kota berpenduduk 5.000 orang dan tumbuh 20% setiap tahun. Berapa penduduknya setelah 3 tahun?',
+        ),
+        blanks: [{ answer: 8640 }],
+        solution: {
+          en: ['5\\,000\\times1.2^3=5\\,000\\times1.728', '=8\\,640'],
+          id: ['5\\,000\\times1{,}2^3=5\\,000\\times1{,}728', '=8\\,640'],
         },
       },
     ],

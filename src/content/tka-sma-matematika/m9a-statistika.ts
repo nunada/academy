@@ -1,5 +1,5 @@
 import type { Submodule } from '../types'
-import { L, barChart, dot, line, numberLine, pieChart, plane, solid } from './figs'
+import { L, barChart, dot, line, lineChart, numberLine, pieChart, plane, solid } from './figs'
 
 /** Module 9, submodule 1 — measures of centre and spread, and reading data
  *  displays. */
@@ -226,8 +226,8 @@ export const m9s1: Submodule = {
           id: 'c2',
           title: L('Step by Step: Grouped Data', 'Contoh Bertahap: Data Berkelompok'),
           body: L(
-            'When there are many values, they are grouped in **classes**. In a histogram the bars touch, and the height shows the frequency.\n\nTwenty people waited: 4 people for 0–10 minutes, 10 people for 10–20 minutes and 6 people for 20–30 minutes.\n\nTo **estimate** the mean, pretend everyone in a class is at the **class midpoint**: 5, 15 and 25.\n\n1. Step 1: $4\\times5+10\\times15+6\\times25=20+150+150=320$.\n2. Step 2: Estimated mean $=\\frac{320}{20}=16$ minutes.\n\nThe class with the highest bar (10–20) is the **modal class**. The answer is only an estimate, because we do not know where inside each class the values really are.',
-            'Bila ada banyak nilai, nilai-nilai itu dikelompokkan dalam **kelas**. Pada histogram, batang-batangnya bersentuhan, dan tinggi batang menunjukkan frekuensi.\n\nDua puluh orang menunggu: 4 orang selama 0–10 menit, 10 orang selama 10–20 menit, dan 6 orang selama 20–30 menit.\n\nUntuk **menaksir** rata-rata, anggap semua orang dalam suatu kelas berada pada **titik tengah kelas**: 5, 15, dan 25.\n\n1. Langkah 1: $4\\times5+10\\times15+6\\times25=20+150+150=320$.\n2. Langkah 2: Rata-rata taksiran $=\\frac{320}{20}=16$ menit.\n\nKelas dengan batang tertinggi (10–20) adalah **kelas modus**. Jawabannya hanya taksiran, karena kita tidak tahu letak sebenarnya nilai-nilai di dalam tiap kelas.',
+            'When there are many values, they are grouped in **classes**. In a histogram the bars touch, and the height shows the frequency.\n\nTwenty people waited: 4 people for 0–10 minutes, 10 people for 10–20 minutes and 6 people for 20–30 minutes.\n\nTo **estimate** the mean, pretend everyone in a class is at the **class midpoint**: 5, 15 and 25.\n\n1. Step 1: $4\\times5+10\\times15+6\\times25=20+150+150=320$.\n2. Step 2: Estimated mean $=\\frac{320}{20}=16$ minutes.\n\nThe class with the highest bar (10–20) is the **modal class**. The answer is only an estimate, because we do not know where inside each class the values really are.\n\n**Spread of grouped data.** Use the same midpoints. The variance is $\\frac{\\sum f(m-\\bar{x})^2}{\\sum f}$ with $\\bar{x}=16$: $\\frac{4(-11)^2+10(-1)^2+6(9)^2}{20}=\\frac{484+10+486}{20}=49$. The standard deviation is $\\sqrt{49}=7$ minutes.',
+            'Bila ada banyak nilai, nilai-nilai itu dikelompokkan dalam **kelas**. Pada histogram, batang-batangnya bersentuhan, dan tinggi batang menunjukkan frekuensi.\n\nDua puluh orang menunggu: 4 orang selama 0–10 menit, 10 orang selama 10–20 menit, dan 6 orang selama 20–30 menit.\n\nUntuk **menaksir** rata-rata, anggap semua orang dalam suatu kelas berada pada **titik tengah kelas**: 5, 15, dan 25.\n\n1. Langkah 1: $4\\times5+10\\times15+6\\times25=20+150+150=320$.\n2. Langkah 2: Rata-rata taksiran $=\\frac{320}{20}=16$ menit.\n\nKelas dengan batang tertinggi (10–20) adalah **kelas modus**. Jawabannya hanya taksiran, karena kita tidak tahu letak sebenarnya nilai-nilai di dalam tiap kelas.\n\n**Sebaran data berkelompok.** Pakai titik tengah yang sama. Variansinya $\\frac{\\sum f(m-\\bar{x})^2}{\\sum f}$ dengan $\\bar{x}=16$: $\\frac{4(-11)^2+10(-1)^2+6(9)^2}{20}=\\frac{484+10+486}{20}=49$. Simpangan bakunya $\\sqrt{49}=7$ menit.',
           ),
           figure: {
             ...barChart({
@@ -264,6 +264,23 @@ export const m9s1: Submodule = {
               { x: [0, 8], y: [0, 9] },
             ),
             caption: L('A scatter plot with a positive correlation and a line of best fit.', 'Diagram pencar dengan korelasi positif dan garis kecocokan terbaik.'),
+          },
+        },
+        {
+          kind: 'concept',
+          id: 'c4',
+          title: L('Step by Step: Line Charts', 'Contoh Bertahap: Diagram Garis'),
+          body: L(
+            'A **line chart** joins points in order, so it shows how a value **changes** over time.\n\nThe chart shows the number of visitors (in hundreds) over five months: 20, 30, 25, 40, 50.\n\n- A line going **up** means an increase; going **down** means a decrease. The **steeper** the line, the faster the change.\n- Change between two months: subtract. From month 2 to 3: $25-30=-5$ (a fall). From month 3 to 4: $40-25=+15$, the biggest rise.\n- The overall trend is upward: from 20 to 50.\n- Read between the points only as an estimate, and be careful with predictions beyond the last point.\n\nCompare displays: a **bar chart** compares categories, a **line chart** follows time, a **pie chart** shows shares of a whole, and a **scatter plot** shows the relation between two variables.',
+            '**Diagram garis** menghubungkan titik-titik secara berurutan, sehingga menunjukkan bagaimana suatu nilai **berubah** menurut waktu.\n\nDiagram menunjukkan banyak pengunjung (dalam ratusan) selama lima bulan: 20, 30, 25, 40, 50.\n\n- Garis yang **naik** berarti kenaikan; yang **turun** berarti penurunan. Makin **curam** garisnya, makin cepat perubahannya.\n- Perubahan antara dua bulan: kurangkan. Dari bulan 2 ke 3: $25-30=-5$ (turun). Dari bulan 3 ke 4: $40-25=+15$, kenaikan terbesar.\n- Kecenderungan keseluruhan naik: dari 20 menjadi 50.\n- Membaca di antara titik hanya berupa taksiran, dan berhati-hatilah dengan prediksi di luar titik terakhir.\n\nBandingkan penyajian: **diagram batang** membandingkan kategori, **diagram garis** mengikuti waktu, **diagram lingkaran** menunjukkan bagian dari keseluruhan, dan **diagram pencar** menunjukkan hubungan dua variabel.',
+          ),
+          figure: {
+            ...lineChart({
+              points: [20, 30, 25, 40, 50].map((v, i) => ({ label: String(i + 1), value: v })),
+              max: 50,
+              step: 10,
+            }),
+            caption: L('Visitors per month (in hundreds).', 'Pengunjung per bulan (dalam ratusan).'),
           },
         },
         {
@@ -437,6 +454,22 @@ export const m9s1: Submodule = {
         ),
         blanks: [{ answer: 10 }],
         solution: ['\\frac{20+x}{5}=6', '20+x=30 \\Rightarrow x=10'],
+      },
+      {
+        prompt: L(
+          'The line chart shows visitors (in hundreds) over five months. What is the biggest rise between two consecutive months?',
+          'Diagram garis menunjukkan pengunjung (dalam ratusan) selama lima bulan. Berapa kenaikan terbesar antara dua bulan berurutan?',
+        ),
+        figure: {
+          ...lineChart({
+            points: [20, 30, 25, 40, 50].map((v, i) => ({ label: String(i + 1), value: v })),
+            max: 50,
+            step: 10,
+          }),
+          caption: L('Visitors per month (in hundreds).', 'Pengunjung per bulan (dalam ratusan).'),
+        },
+        blanks: [{ answer: 15 }],
+        solution: ['30-20=10 \\quad 25-30=-5', '40-25=15 \\quad 50-40=10', '\\max=15'],
       },
     ],
   },

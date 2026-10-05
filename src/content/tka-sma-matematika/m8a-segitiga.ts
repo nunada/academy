@@ -1,5 +1,6 @@
 import type { Submodule } from '../types'
 import { L, rightTriangle, shape } from './figs'
+import { lessonReciprocal } from './m8c-resiprokal'
 
 /** Module 8, submodule 1 — trigonometric ratios in right triangles, and the
  *  sine rule, cosine rule and area formula for any triangle. */
@@ -333,6 +334,7 @@ export const m8s1: Submodule = {
         },
       ],
     },
+    lessonReciprocal,
   ],
   project: {
     id: 'tka-sma-m8-s1-p',
@@ -396,6 +398,14 @@ export const m8s1: Submodule = {
         ),
         blanks: [{ label: 'R =', answer: 10 }],
         solution: ['2R=\\frac{a}{\\sin A}=\\frac{10}{1/2}=20', 'R=10'],
+      },
+      {
+        prompt: L(
+          'Find the value of $\\csc45^{\\circ}\\times\\sec60^{\\circ}$ as a decimal, to two decimal places.',
+          'Tentukan nilai $\\csc45^{\\circ}\\times\\sec60^{\\circ}$ sebagai desimal, sampai dua angka di belakang koma.',
+        ),
+        blanks: [{ answer: 2 * Math.sqrt(2) }],
+        solution: ['\\csc45^{\\circ}=\\sqrt{2} \\quad \\sec60^{\\circ}=2', '\\sqrt{2}\\times2=2\\sqrt{2}'],
       },
     ],
   },

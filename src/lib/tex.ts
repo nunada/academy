@@ -26,7 +26,7 @@ const GREEK: Record<string, string> = {
 const OPERATOR: Record<string, string> = {
   cdot: '⋅', times: '×', div: '÷', pm: '±', mp: '∓', ast: '∗',
   neq: '≠', ne: '≠', leq: '≤', le: '≤', geq: '≥', ge: '≥',
-  approx: '≈', equiv: '≡', sim: '∼', propto: '∝',
+  approx: '≈', equiv: '≡', cong: '≅', sim: '∼', propto: '∝',
   to: '→', rightarrow: '→', longrightarrow: '⟶', Rightarrow: '⇒',
   leftrightarrow: '↔', Leftrightarrow: '⇔', iff: '⟺', mapsto: '↦',
   in: '∈', notin: '∉', subset: '⊂', subseteq: '⊆', cup: '∪', cap: '∩',

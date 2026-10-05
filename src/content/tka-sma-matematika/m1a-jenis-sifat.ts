@@ -79,6 +79,15 @@ export const m1s1: Submodule = {
           },
         },
         {
+          kind: 'concept',
+          id: 'c4',
+          title: L('Step by Step: Properties of the Operations', 'Contoh Bertahap: Sifat-Sifat Operasi'),
+          body: L(
+            'Real numbers follow rules that make calculation easier.\n\n| Property | Addition | Multiplication |\n|---|---|---|\n| **Commutative** (order) | $a+b=b+a$ | $a\\times b=b\\times a$ |\n| **Associative** (grouping) | $(a+b)+c=a+(b+c)$ | $(a\\times b)\\times c=a\\times(b\\times c)$ |\n| **Distributive** | $a\\times(b+c)=a\\times b+a\\times c$ | |\n| **Identity** | $a+0=a$ | $a\\times1=a$ |\n| **Inverse** | $a+(-a)=0$ | $a\\times\\frac{1}{a}=1$ ($a\\neq0$) |\n\nUse them to calculate by head:\n\n- $25\\times17\\times4=(25\\times4)\\times17=100\\times17=1\\,700$ (commutative and associative).\n- $18\\times99=18\\times(100-1)=1\\,800-18=1\\,782$ (distributive).\n\n**Watch out:** subtraction and division are **not** commutative or associative. $7-3\\neq3-7$, and $(8-4)-2=2$ but $8-(4-2)=6$.',
+            'Bilangan real mengikuti aturan yang memudahkan perhitungan.\n\n| Sifat | Penjumlahan | Perkalian |\n|---|---|---|\n| **Komutatif** (urutan) | $a+b=b+a$ | $a\\times b=b\\times a$ |\n| **Asosiatif** (pengelompokan) | $(a+b)+c=a+(b+c)$ | $(a\\times b)\\times c=a\\times(b\\times c)$ |\n| **Distributif** | $a\\times(b+c)=a\\times b+a\\times c$ | |\n| **Identitas** | $a+0=a$ | $a\\times1=a$ |\n| **Invers** | $a+(-a)=0$ | $a\\times\\frac{1}{a}=1$ ($a\\neq0$) |\n\nPakai untuk menghitung di kepala:\n\n- $25\\times17\\times4=(25\\times4)\\times17=100\\times17=1\\,700$ (komutatif dan asosiatif).\n- $18\\times99=18\\times(100-1)=1\\,800-18=1\\,782$ (distributif).\n\n**Awas:** pengurangan dan pembagian **tidak** komutatif maupun asosiatif. $7-3\\neq3-7$, dan $(8-4)-2=2$ tetapi $8-(4-2)=6$.',
+          ),
+        },
+        {
           kind: 'quiz',
           id: 'q1',
           prompt: L(
@@ -475,6 +484,14 @@ export const m1s1: Submodule = {
           en: ['x=-3,-2,-1,0,1', '\\text{5 integers}'],
           id: ['x=-3,-2,-1,0,1', '\\text{5 bilangan bulat}'],
         },
+      },
+      {
+        prompt: L(
+          'Use the properties of the operations to calculate $25\\times17\\times4$.',
+          'Gunakan sifat-sifat operasi untuk menghitung $25\\times17\\times4$.',
+        ),
+        blanks: [{ answer: 1700 }],
+        solution: ['(25\\times4)\\times17=100\\times17', '=1\\,700'],
       },
     ],
   },

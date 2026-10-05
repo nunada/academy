@@ -1,5 +1,6 @@
 import type { Submodule } from '../types'
 import { L, arrowDiagram, dot, plane } from './figs'
+import { lessonRational } from './m3c-rasional'
 
 /** Module 3, submodule 1 — functions, linear functions, composite and inverse
  *  functions. */
@@ -369,6 +370,7 @@ export const m3s1: Submodule = {
         },
       ],
     },
+    lessonRational,
   ],
   project: {
     id: 'tka-sma-m3-s1-p',
@@ -438,6 +440,17 @@ export const m3s1: Submodule = {
         solution: {
           en: ['3x^2+1=(3x+1)^2=9x^2+6x+1', '6x^2+6x=0 \\Rightarrow 6x(x+1)=0', 'x=-1 \\text{ or } x=0'],
           id: ['3x^2+1=(3x+1)^2=9x^2+6x+1', '6x^2+6x=0 \\Rightarrow 6x(x+1)=0', 'x=-1 \\text{ atau } x=0'],
+        },
+      },
+      {
+        prompt: L(
+          'How many integers $x$ from $-5$ to $5$ (inclusive) are in the domain of $f(x)=\\frac{x+4}{x^2-9}$?',
+          'Ada berapa bilangan bulat $x$ dari $-5$ sampai $5$ (termasuk ujungnya) yang berada dalam domain $f(x)=\\frac{x+4}{x^2-9}$?',
+        ),
+        blanks: [{ answer: 9 }],
+        solution: {
+          en: ['x^2-9=0 \\Rightarrow x=3 \\text{ or } x=-3', '11-2=9'],
+          id: ['x^2-9=0 \\Rightarrow x=3 \\text{ atau } x=-3', '11-2=9'],
         },
       },
     ],
