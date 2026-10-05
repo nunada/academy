@@ -257,6 +257,23 @@ export const COURSES: CourseInfo[] = [
     projects: 20,
   },
   {
+    id: 'tka-sma-matematika',
+    title: { en: 'TKA Math for Senior High (SMA)', id: 'TKA Matematika SMA' },
+    tagline: {
+      en: 'Prepare for the TKA SMA math test step by step: real numbers, linear systems, functions, sequences and series, geometry and transformations, measurement, trigonometry, data and probability — with practice in the real question formats.',
+      id: 'Persiapan TKA Matematika SMA selangkah demi selangkah: bilangan real, sistem linear, fungsi, barisan dan deret, geometri dan transformasi, pengukuran, trigonometri, data dan peluang — dengan latihan dalam bentuk soal yang sebenarnya.',
+    },
+    icon: '🎓',
+    color: '#5a3d8a',
+    level: { en: 'Advanced', id: 'Lanjut' },
+    language: 'math',
+    track: 'math',
+    requires: [],
+    available: true,
+    lessons: 0,
+    projects: 0,
+  },
+  {
     id: 'fundamentals',
     title: { en: 'Algebra Fundamentals', id: 'Dasar-Dasar Aljabar' },
     tagline: {
@@ -509,6 +526,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'parametrik-polar': () => import('./parametrik-polar'),
   'tka-sd-matematika': () => import('./tka-sd-matematika'),
   'tka-smp-matematika': () => import('./tka-smp-matematika'),
+  'tka-sma-matematika': () => import('./tka-sma-matematika'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes
