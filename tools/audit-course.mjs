@@ -1,11 +1,11 @@
-// Usage (from repo root): node tools/audit-course.mjs <course-dir> [--min-tasks=4]
+// Usage (from repo root): node tools/audit-course.mjs <course-dir> [--min-tasks=4] [--max-options=4]
 // Audits a prep course against its scaffolding rules and prints a per-module table plus problems:
 //  - every quiz / multi / judge / fill / order step has a hint
 //  - every math step has 3 graduated hints, an explain and a solution
 //  - every lesson has a concept step with a figure, a quiz with a figure, and a math step
 //  - lessons (not practice tests) carry at least one multi or judge step in about half the lessons overall
 //  - every project has >= min tasks, each with a solution
-//  - quiz options: 3-4, answer in range, no option refers to another by position
+//  - quiz options: 3 to --max-options (4 by default; the TKA SMA uses five, A-E), answer in range, no option refers to another by position
 //  - every `en` string is free of common Indonesian words
 import fs from 'node:fs'
 import os from 'node:os'
@@ -15,6 +15,7 @@ import { build } from 'esbuild'
 const ROOT = process.cwd()
 const course = process.argv[2]
 const minTasks = Number((process.argv.find((a) => a.startsWith('--min-tasks=')) ?? '--min-tasks=4').split('=')[1])
+const maxOptions = Number((process.argv.find((a) => a.startsWith('--max-options=')) ?? '--max-options=4').split('=')[1])
 if (!course) { console.error('give a course dir'); process.exit(2) }
 
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-'))
@@ -72,7 +73,7 @@ for (const m of modules) {
         if (['quiz', 'multi', 'judge', 'fill', 'order'].includes(st.kind) && !st.hint) bad(`${where}/${st.id}`, `${st.kind} has no hint`)
         if (st.kind === 'quiz') {
           row.quiz++
-          if (st.options.length < 3 || st.options.length > 4) bad(`${where}/${st.id}`, `quiz has ${st.options.length} options`)
+          if (st.options.length < 3 || st.options.length > maxOptions) bad(`${where}/${st.id}`, `quiz has ${st.options.length} options`)
           if (!(st.answer >= 0 && st.answer < st.options.length)) bad(`${where}/${st.id}`, 'quiz answer out of range')
         }
         if (st.kind === 'multi') {
