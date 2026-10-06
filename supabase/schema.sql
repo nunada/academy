@@ -378,7 +378,7 @@ $$;
 -- Takes the learner as an argument so the same ranking serves both the
 -- caller's own profile (my_weekly_medals) and anybody's public profile
 -- (public_profile). It is not granted to any client role: it answers for
--- whichever id it is handed, so only the two functions above may call it.
+-- whichever id it is handed, so only the two functions below may call it.
 create or replace function public.weekly_medals_of(p_user uuid)
 returns table (gold bigint, silver bigint, bronze bigint)
 language sql
