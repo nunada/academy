@@ -303,9 +303,8 @@ function ensureInteractiveReady(): Promise<void> {
   return interactiveReady
 }
 
-/** Kill a hung worker and forget it, so the next call spins up a fresh one —
- *  mirrors the same "terminate and respawn" recovery the user's other
- *  project (PyKelas) uses for exactly this failure mode. */
+/** Kill a hung worker and forget it, so the next call spins up a fresh one
+ *  (terminate and respawn). */
 function restartInteractiveWorker(): void {
   interactiveWorker?.terminate()
   interactiveWorker = null

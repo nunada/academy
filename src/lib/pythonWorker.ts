@@ -21,8 +21,7 @@
  *    out { type: 'need-input', id }          - zero or more, one per input()
  *    out { type: 'result', id, stdout, error? }
  *
- *  Shape of the SharedArrayBuffer `sab` (8 + SAB_DATA_BYTES bytes), mirroring
- *  the same technique in the user's other project, PyKelas:
+ *  Shape of the SharedArrayBuffer `sab` (8 + SAB_DATA_BYTES bytes):
  *    Int32Array(sab, 0, 2): [0] status (0 = worker waiting, 1 = data ready),
  *                           [1] byte length of the value the main thread wrote.
  *    Uint8Array(sab, 8, SAB_DATA_BYTES): the UTF-8 bytes of what was typed. */
