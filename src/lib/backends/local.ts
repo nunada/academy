@@ -13,6 +13,7 @@ import type {
   LeaderRow,
   LeaderboardKind,
   LeaderboardTrack,
+  MedalCounts,
   Profile,
   ProgressItem,
   Role,
@@ -173,6 +174,51 @@ function find(db: Db, id: string): Account {
   const a = db.accounts.find((x) => x.id === id)
   if (!a) throw new AuthError('account not found', 'invalid')
   return a
+}
+
+const alltimeXpOf = (a: Account): number =>
+  a.seeded ? a.seeded.alltime.code + a.seeded.alltime.math : a.xpEvents.reduce((n, e) => n + e.amount, 0)
+
+/** How many *completed* weeks (never the one still running — its rank can
+ *  still change) this learner placed 1st/2nd/3rd overall. Walks every distinct
+ *  week their own xpEvents touch and re-ranks that one week against everybody
+ *  else's total for it, rather than keeping a running counter anywhere:
+ *  xpEvents already is the full history, so there is nothing to keep in sync. */
+function weeklyMedalsOf(db: Db, who: Account): MedalCounts {
+  if (who.seeded) return { gold: 0, silver: 0, bronze: 0 }
+
+  const thisWeekStart = weekStart().getTime()
+  const pastWeeks = new Set<number>()
+  for (const e of who.xpEvents) {
+    const s = weekStart(new Date(e.created_at)).getTime()
+    if (s < thisWeekStart) pastWeeks.add(s)
+  }
+
+  let gold = 0
+  let silver = 0
+  let bronze = 0
+  for (const wk of pastWeeks) {
+    const totals = db.accounts
+      .filter((a) => a.profile.role !== 'teacher')
+      .map((a) => ({
+        user_id: a.id,
+        // A rival's seeded weekly figure stands in for every week alike —
+        // there is no invented history behind it to look up instead.
+        value: a.seeded
+          ? a.seeded.weekly.code + a.seeded.weekly.math
+          : a.xpEvents
+              .filter((e) => weekStart(new Date(e.created_at)).getTime() === wk)
+              .reduce((n, e) => n + e.amount, 0),
+      }))
+      .filter((r) => r.value > 0)
+      .sort((a, b) => b.value - a.value)
+
+    const rank = totals.findIndex((r) => r.user_id === who.id)
+    if (rank === 0) gold++
+    else if (rank === 1) silver++
+    else if (rank === 2) bronze++
+  }
+  return { gold, silver, bronze }
 }
 
 export function createLocalBackend(): Backend {
@@ -466,40 +512,39 @@ export function createLocalBackend(): Backend {
     async myWeeklyMedals() {
       const db = load()
       const me = db.accounts.find((a) => a.id === localStorage.getItem(SESSION_KEY))
-      if (!me || me.seeded) return { gold: 0, silver: 0, bronze: 0 }
+      return me ? weeklyMedalsOf(db, me) : { gold: 0, silver: 0, bronze: 0 }
+    },
 
-      const thisWeekStart = weekStart().getTime()
-      const pastWeeks = new Set<number>()
-      for (const e of me.xpEvents) {
-        const s = weekStart(new Date(e.created_at)).getTime()
-        if (s < thisWeekStart) pastWeeks.add(s)
+    // Same shape the database function returns, and the same refusals: nobody
+    // for an unknown id, and nobody for a teacher. Never the email or the
+    // password hash, which sit on the account beside everything read here.
+    async publicProfile(userId) {
+      const db = load()
+      const a = db.accounts.find((x) => x.id === userId)
+      if (!a || a.profile.role === 'teacher') return null
+
+      const place = db.accounts
+        .filter((x) => x.profile.role !== 'teacher')
+        .map((x) => ({ id: x.id, xp: alltimeXpOf(x), name: x.profile.username }))
+        .filter((r) => r.xp > 0)
+        .sort((p, q) => q.xp - p.xp || p.name.localeCompare(q.name))
+        .findIndex((r) => r.id === a.id)
+
+      return {
+        user_id: a.id,
+        username: a.profile.username,
+        display_name: a.profile.display_name,
+        created_at: a.profile.created_at,
+        xp_total: alltimeXpOf(a),
+        xp_week: a.seeded
+          ? a.seeded.weekly.code + a.seeded.weekly.math
+          : a.xpEvents.filter((e) => isThisWeek(e.created_at)).reduce((n, e) => n + e.amount, 0),
+        trophy_ids: a.trophies.map((t) => t.trophy_id),
+        trophy_count: a.seeded ? a.seeded.trophies : a.trophies.length,
+        certificates: a.certificates.map((c) => ({ kind: c.kind, ref_id: c.ref_id, issued_at: c.issued_at })),
+        medals: weeklyMedalsOf(db, a),
+        alltime_rank: place >= 0 && place < 3 ? place + 1 : null,
       }
-
-      let gold = 0
-      let silver = 0
-      let bronze = 0
-      for (const wk of pastWeeks) {
-        const totals = db.accounts
-          .filter((a) => a.profile.role !== 'teacher')
-          .map((a) => ({
-            user_id: a.id,
-            // A rival's seeded weekly figure stands in for every week alike —
-            // there is no invented history behind it to look up instead.
-            value: a.seeded
-              ? a.seeded.weekly.code + a.seeded.weekly.math
-              : a.xpEvents
-                  .filter((e) => weekStart(new Date(e.created_at)).getTime() === wk)
-                  .reduce((n, e) => n + e.amount, 0),
-          }))
-          .filter((r) => r.value > 0)
-          .sort((a, b) => b.value - a.value)
-
-        const rank = totals.findIndex((r) => r.user_id === me.id)
-        if (rank === 0) gold++
-        else if (rank === 1) silver++
-        else if (rank === 2) bronze++
-      }
-      return { gold, silver, bronze }
     },
 
     async teacherRoster() {

@@ -13,6 +13,7 @@ import type {
   MedalCounts,
   Profile,
   ProgressItem,
+  PublicProfile,
   RosterRow,
   TrophyRow,
   UserState,
@@ -275,6 +276,42 @@ export function createSupabaseBackend(): Backend {
       // come back zero, never no row at all.
       const row = data?.[0] as { gold: number; silver: number; bronze: number } | undefined
       return { gold: row?.gold ?? 0, silver: row?.silver ?? 0, bronze: row?.bronze ?? 0 }
+    },
+
+    async publicProfile(userId): Promise<PublicProfile | null> {
+      const { data, error } = await sb.rpc('public_profile', { p_user_id: userId })
+      if (error) throw error
+      // No row for an unknown id, and none for a teacher either.
+      const r = data?.[0] as
+        | {
+            user_id: string
+            username: string
+            display_name: string
+            created_at: string
+            xp_total: number
+            xp_week: number
+            trophy_ids: string[]
+            certificates: PublicProfile['certificates']
+            gold: number
+            silver: number
+            bronze: number
+            alltime_rank: number | null
+          }
+        | undefined
+      if (!r) return null
+      return {
+        user_id: r.user_id,
+        username: r.username,
+        display_name: r.display_name,
+        created_at: r.created_at,
+        xp_total: Number(r.xp_total),
+        xp_week: Number(r.xp_week),
+        trophy_ids: r.trophy_ids,
+        trophy_count: r.trophy_ids.length,
+        certificates: r.certificates,
+        medals: { gold: Number(r.gold), silver: Number(r.silver), bronze: Number(r.bronze) },
+        alltime_rank: r.alltime_rank,
+      }
     },
 
     // The two below raise 42501 for anybody who is not a teacher, and the error

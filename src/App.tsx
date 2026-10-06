@@ -14,6 +14,7 @@ import ProjectPage from './pages/ProjectPage'
 import Playground from './pages/Playground'
 import Leaderboard from './pages/Leaderboard'
 import Profile from './pages/Profile'
+import PublicProfile from './pages/PublicProfile'
 import Certificate from './pages/Certificate'
 import Teacher from './pages/Teacher'
 import ResetPassword from './pages/ResetPassword'
@@ -116,6 +117,14 @@ export default function App() {
           element={
             <RequireAuth>
               <Profile />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/u/:userId"
+          element={
+            <RequireAuth>
+              <PublicProfile />
             </RequireAuth>
           }
         />

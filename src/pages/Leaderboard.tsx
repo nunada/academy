@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
 import { getBackend } from '../lib/backends'
@@ -102,7 +103,7 @@ export default function Leaderboard() {
               <span className="pos">{i < 3 ? MEDALS[i] : i + 1}</span>
               <span className="who">
                 <b>
-                  {r.display_name}
+                  <Link to={`/u/${r.user_id}`}>{r.display_name}</Link>
                   {r.user_id === user?.id && <span className="pill brand" style={{ marginLeft: 8 }}>{t('you')}</span>}
                 </b>
                 <span className="small muted">@{r.username}</span>

@@ -6,7 +6,7 @@ import { useAllCourses } from '../app/curriculum'
 import { allTrophyIds, certificateTitle, describeTrophy } from '../lib/progress'
 import { AuthError, authErrors, type MedalCounts } from '../lib/db'
 import { getBackend } from '../lib/backends'
-import { Stat, ShareButton } from '../components/ui'
+import { Stat, MedalCard } from '../components/ui'
 
 const MEDAL_RANK_LABELS = ['medalRank1', 'medalRank2', 'medalRank3'] as const
 
@@ -53,34 +53,6 @@ function useWeeklyMedals(userId: string | undefined): MedalCounts | null {
   }, [userId])
 
   return medals
-}
-
-/** One earned medal. Unlike a trophy, there is no locked state to show for a
- *  medal that has never been won — the whole point is that only what was
- *  actually earned appears here at all. */
-function MedalCard({
-  icon,
-  label,
-  detail,
-  shareText,
-}: {
-  icon: string
-  label: string
-  detail: string
-  shareText: string
-}) {
-  return (
-    <div className="trophy">
-      <span className="em">{icon}</span>
-      <div>
-        <b>{label}</b>
-        <div className="small muted">{detail}</div>
-        <div style={{ marginTop: 6 }}>
-          <ShareButton text={shareText} />
-        </div>
-      </div>
-    </div>
-  )
 }
 
 /** Username and display name, in place — the same click-to-reveal shape as

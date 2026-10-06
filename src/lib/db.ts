@@ -90,6 +90,28 @@ export interface MedalCounts {
   bronze: number
 }
 
+/** What one learner shows to everybody else signed in — reached by clicking a
+ *  name on the leaderboard.
+ *
+ *  A fixed, small shape on purpose. It carries the numbers and the awards and
+ *  none of what is only the learner's own business: no email, hearts,
+ *  lesson-by-lesson progress, or certificate serial numbers. */
+export interface PublicProfile {
+  user_id: string
+  username: string
+  display_name: string
+  created_at: string
+  xp_total: number
+  xp_week: number
+  /** Earned trophies. For a seeded rival in local mode only `trophy_count` is known. */
+  trophy_ids: string[]
+  trophy_count: number
+  certificates: { kind: 'course' | 'path'; ref_id: string; issued_at: string }[]
+  medals: MedalCounts
+  /** Place on the all-time board — 1, 2 or 3 — or null outside the top three. */
+  alltime_rank: number | null
+}
+
 export type LeaderboardKind = 'weekly' | 'alltime' | 'trophies'
 
 /** Which half of the catalogue a board counts.
@@ -193,6 +215,9 @@ export interface Backend {
   /** See `MedalCounts` — the signed-in learner's own accumulated weekly medal
    *  count, overall track only. */
   myWeeklyMedals(): Promise<MedalCounts>
+  /** Another learner's public profile, or null when there is no such learner —
+   *  an unknown id and a teacher's id look the same from here, deliberately. */
+  publicProfile(userId: string): Promise<PublicProfile | null>
 
   /** Both are teachers-only. The check lives in the database, not here: these
    *  read every learner's rows, so a client-side guard would be decoration. */

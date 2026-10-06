@@ -241,6 +241,16 @@ export const ui = {
   language: { en: 'Language', id: 'Bahasa' },
   memberSince: { en: 'Member since', id: 'Bergabung sejak' },
 
+  // another learner's profile (opened from the leaderboard)
+  backToLeaderboard: { en: '← Leaderboard', id: '← Papan Peringkat' },
+  profileNotFound: {
+    en: "We couldn't find that learner.",
+    id: 'Pembelajar itu tidak ditemukan.',
+  },
+  profileNoTrophies: { en: 'No trophies yet.', id: 'Belum ada trofi.' },
+  profileNoCertificates: { en: 'No certificates yet.', id: 'Belum ada sertifikat.' },
+  profileNoMedals: { en: 'No medals yet.', id: 'Belum ada medali.' },
+
   // playground
   playgroundTitle: { en: 'Playground', id: 'Playground' },
   playgroundBlurb: {

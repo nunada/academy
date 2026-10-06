@@ -436,6 +436,37 @@ export function ShareButton({ text }: { text: string }) {
   )
 }
 
+/** One earned medal. Unlike a trophy, there is no locked state to show for a
+ *  medal that has never been won — the whole point is that only what was
+ *  actually earned appears here at all. `shareText` is left off when the medal
+ *  is somebody else's: only its owner has a reason to announce it. */
+export function MedalCard({
+  icon,
+  label,
+  detail,
+  shareText,
+}: {
+  icon: string
+  label: string
+  detail: string
+  shareText?: string
+}) {
+  return (
+    <div className="trophy">
+      <span className="em">{icon}</span>
+      <div>
+        <b>{label}</b>
+        <div className="small muted">{detail}</div>
+        {shareText && (
+          <div style={{ marginTop: 6 }}>
+            <ShareButton text={shareText} />
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export function Modal({ children, onClose }: { children: ReactNode; onClose?: () => void }) {
   useEffect(() => {
     function esc(e: KeyboardEvent) {
