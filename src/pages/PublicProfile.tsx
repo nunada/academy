@@ -22,15 +22,24 @@ export default function PublicProfile() {
 
   // undefined = loading, null = nobody by that id.
   const [data, setData] = useState<PublicProfileData | null | undefined>(undefined)
+  // Kept apart from "nobody by that id": a request that failed says nothing
+  // about whether the learner exists, and telling somebody "not found" when
+  // the database simply could not be asked sends them looking for the wrong fix.
+  const [failed, setFailed] = useState(false)
 
   useEffect(() => {
     if (!userId) return
     let alive = true
     setData(undefined)
+    setFailed(false)
     getBackend()
       .publicProfile(userId)
       .then((p) => alive && setData(p))
-      .catch(() => alive && setData(null))
+      .catch(() => {
+        if (!alive) return
+        setFailed(true)
+        setData(null)
+      })
     return () => {
       alive = false
     }
@@ -52,7 +61,7 @@ export default function PublicProfile() {
       <main className="page narrow">
         {back}
         <div className="card center muted" style={{ marginTop: 14 }}>
-          {t('profileNotFound')}
+          {failed ? t('profileLoadError') : t('profileNotFound')}
         </div>
       </main>
     )

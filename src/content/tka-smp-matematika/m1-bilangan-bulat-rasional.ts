@@ -70,8 +70,8 @@ export const module1: Module = {
           id: 'tka-smp-m1-s1-l1',
           title: L('Integers: Order and Operations', 'Bilangan Bulat: Urutan dan Operasi'),
           goal: L(
-            'You can order integers, find absolute values, and calculate with signs, the order of operations and the properties of operations.',
-            'Kamu bisa mengurutkan bilangan bulat, menentukan nilai mutlak, dan menghitung dengan tanda, urutan operasi, serta sifat-sifat operasi.',
+            'You can order integers and calculate with signs, the order of operations and the properties of operations.',
+            'Kamu bisa mengurutkan bilangan bulat dan menghitung dengan tanda, urutan operasi, serta sifat-sifat operasi.',
           ),
           xp: 20,
           steps: [
@@ -80,8 +80,8 @@ export const module1: Module = {
               id: 'c1',
               title: L('Look Closely: Numbers Below Zero', 'Ayo Amati: Bilangan di Bawah Nol'),
               body: L(
-                'In Dieng the morning temperature can drop to $-3$ °C. A diver swims at $-12$ m, which means 12 metres below sea level. Numbers like these are **negative integers**. Together with 0 and the positive numbers they form the **integers**.\n\n- On the number line, the further **right** a number is, the **greater** it is. So $-8<-3<0<2$.\n- The **absolute value** $|x|$ is the distance from $x$ to 0. It is never negative: $|-4|=4$ and $|3|=3$.\n- Two numbers with the same absolute value but different signs, like $-4$ and $4$, lie on opposite sides of 0.\n\nIn the picture, the green dot is at $-4$ and the orange dot is at 3. The jumps show how far each one is from 0.',
-                'Di Dieng, suhu pagi hari bisa turun sampai $-3$ °C. Seorang penyelam berenang di kedalaman $-12$ m, artinya 12 meter di bawah permukaan laut. Bilangan seperti ini disebut **bilangan bulat negatif**. Bersama 0 dan bilangan positif, semuanya membentuk **bilangan bulat**.\n\n- Pada garis bilangan, makin ke **kanan** letak suatu bilangan, makin **besar** bilangan itu. Jadi $-8<-3<0<2$.\n- **Nilai mutlak** $|x|$ adalah jarak $x$ ke 0. Nilai mutlak tidak pernah negatif: $|-4|=4$ dan $|3|=3$.\n- Dua bilangan yang nilai mutlaknya sama tetapi tandanya berbeda, seperti $-4$ dan $4$, terletak di dua sisi 0 yang berlawanan.\n\nPada gambar, titik hijau ada di $-4$ dan titik oranye ada di 3. Anak panah menunjukkan jarak masing-masing titik dari 0.',
+                'In Dieng the morning temperature can drop to $-3$ °C. A diver swims at $-12$ m, which means 12 metres below sea level. Numbers like these are **negative integers**. Together with 0 and the positive numbers they form the **integers**.\n\n- On the number line, the further **right** a number is, the **greater** it is. So $-8<-3<0<2$.\n- Two numbers like $-4$ and $4$ are **opposites**: they are the same distance from 0, on opposite sides of it.\n\nIn the picture, the green dot is at $-4$ and the orange dot is at 3. The jumps show how far each one is from 0.',
+                'Di Dieng, suhu pagi hari bisa turun sampai $-3$ °C. Seorang penyelam berenang di kedalaman $-12$ m, artinya 12 meter di bawah permukaan laut. Bilangan seperti ini disebut **bilangan bulat negatif**. Bersama 0 dan bilangan positif, semuanya membentuk **bilangan bulat**.\n\n- Pada garis bilangan, makin ke **kanan** letak suatu bilangan, makin **besar** bilangan itu. Jadi $-8<-3<0<2$.\n- Dua bilangan seperti $-4$ dan $4$ disebut **berlawanan**: jaraknya ke 0 sama, tetapi letaknya di dua sisi 0 yang berlawanan.\n\nPada gambar, titik hijau ada di $-4$ dan titik oranye ada di 3. Anak panah menunjukkan jarak masing-masing titik dari 0.',
               ),
               figure: {
                 ...numberLine({
@@ -165,19 +165,19 @@ export const module1: Module = {
                 caption: L('Two dots on a number line.', 'Dua titik pada garis bilangan.'),
               },
               options: [
-                L('$-5<3$ and $|-5|>|3|$', '$-5<3$ dan $|-5|>|3|$'),
+                L('$-5<3$ because $-5$ is to the left of 3', '$-5<3$ karena $-5$ ada di sebelah kiri 3'),
                 L('$-5>3$ because 5 is greater than 3', '$-5>3$ karena 5 lebih besar dari 3'),
-                L('$-5<3$ and $|-5|<|3|$', '$-5<3$ dan $|-5|<|3|$'),
-                L('$-5>3$ and $|-5|>|3|$', '$-5>3$ dan $|-5|>|3|$'),
+                L('$-5<3$ because $-5$ is further from 0 than 3', '$-5<3$ karena $-5$ lebih jauh dari 0 daripada 3'),
+                L('$-5>3$ because $-5$ is further from 0 than 3', '$-5>3$ karena $-5$ lebih jauh dari 0 daripada 3'),
               ],
               answer: 0,
               explain: L(
-                '$-5$ is to the left of 3, so it is smaller. But $-5$ is 5 steps from 0 and 3 is only 3 steps away, so its absolute value is greater. Ignoring the sign gives the wrong order.',
-                '$-5$ ada di sebelah kiri 3, jadi lebih kecil. Namun $-5$ berjarak 5 langkah dari 0 sedangkan 3 hanya 3 langkah, jadi nilai mutlaknya lebih besar. Mengabaikan tanda memberi urutan yang salah.',
+                '$-5$ is to the left of 3, so it is smaller. How far a number is from 0 does not decide its order: $-5$ is 5 steps from 0 and 3 is only 3, yet $-5$ is still the smaller number.',
+                '$-5$ ada di sebelah kiri 3, jadi lebih kecil. Jarak ke 0 tidak menentukan urutan: $-5$ berjarak 5 langkah dari 0 dan 3 hanya 3 langkah, tetapi $-5$ tetap bilangan yang lebih kecil.',
               ),
               hint: L(
-                'Two separate questions: which dot is further left, and which dot is further from 0?',
-                'Ada dua pertanyaan terpisah: titik mana yang lebih ke kiri, dan titik mana yang lebih jauh dari 0?',
+                'On a number line, the number further to the left is always the smaller one.',
+                'Pada garis bilangan, bilangan yang lebih ke kiri selalu lebih kecil.',
               ),
             },
             {

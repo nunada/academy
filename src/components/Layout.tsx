@@ -88,6 +88,7 @@ export default function Layout() {
             <NavLink to="/playground">{t('navPlayground')}</NavLink>
             <NavLink to="/leaderboard">{t('navLeaderboard')}</NavLink>
             <NavLink to="/profile">{t('navProfile')}</NavLink>
+            <NavLink to="/help">{t('navHelp')}</NavLink>
             {state?.profile.role === 'teacher' && <NavLink to="/teacher">{t('navTeacher')}</NavLink>}
           </nav>
         )}
@@ -106,6 +107,11 @@ export default function Layout() {
           <span className="pill warn" title={t('localModeNote')}>
             {t('localModeBadge')}
           </span>
+        )}
+        {!user && (
+          <Link className="btn ghost sm" to="/help">
+            {t('navHelp')}
+          </Link>
         )}
         <LangToggle />
         {user && (

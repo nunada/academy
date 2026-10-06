@@ -18,6 +18,7 @@ import PublicProfile from './pages/PublicProfile'
 import Certificate from './pages/Certificate'
 import Teacher from './pages/Teacher'
 import ResetPassword from './pages/ResetPassword'
+import Help from './pages/Help'
 
 function RequireAuth({ children }: { children: ReactNode }) {
   const { ready, user } = useStore()
@@ -55,6 +56,9 @@ export default function App() {
             you in on arrival, so both would bounce the visitor away from the
             page the link was for. */}
         <Route path="/reset-password" element={<ResetPassword />} />
+        {/* Open to everybody, signed in or not: a visitor deciding whether to
+            sign up is exactly who the guide is for. */}
+        <Route path="/help" element={<Help />} />
 
         <Route
           path="/learn"

@@ -10,6 +10,7 @@ export const ui = {
   navPlayground: { en: 'Playground', id: 'Playground' },
   navLeaderboard: { en: 'Leaderboard', id: 'Papan Peringkat' },
   navProfile: { en: 'Profile', id: 'Profil' },
+  navHelp: { en: 'Guide', id: 'Panduan' },
   signOut: { en: 'Sign out', id: 'Keluar' },
 
   // auth
@@ -247,6 +248,19 @@ export const ui = {
     en: "We couldn't find that learner.",
     id: 'Pembelajar itu tidak ditemukan.',
   },
+  profileLoadError: {
+    en: "This profile couldn't be loaded right now. Please try again in a moment.",
+    id: 'Profil ini belum bisa dimuat saat ini. Coba lagi sebentar lagi.',
+  },
+  // guide + FAQ page
+  helpTitle: { en: 'Nunada Academy Guide', id: 'Panduan Nunada Academy' },
+  helpIntro: {
+    en: 'New here? This page shows how Nunada Academy works, then answers the questions people ask most.',
+    id: 'Baru di sini? Halaman ini menunjukkan cara kerja Nunada Academy, lalu menjawab pertanyaan yang paling sering diajukan.',
+  },
+  helpStartTitle: { en: 'Getting started', id: 'Mulai belajar' },
+  helpFaqTitle: { en: 'Frequently asked questions', id: 'Pertanyaan yang sering diajukan' },
+  helpReady: { en: 'Ready to begin?', id: 'Siap mulai?' },
   profileNoTrophies: { en: 'No trophies yet.', id: 'Belum ada trofi.' },
   profileNoCertificates: { en: 'No certificates yet.', id: 'Belum ada sertifikat.' },
   profileNoMedals: { en: 'No medals yet.', id: 'Belum ada medali.' },

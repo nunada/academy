@@ -451,6 +451,25 @@ pre.out.err { background: var(--bad-soft); color: var(--bad); border-color: tran
 .lbrow .who b a:hover, .lbrow .who b a:focus-visible { text-decoration: underline; }
 .lbrow .val { font-weight: 700; }
 
+/* Guide page: numbered walkthrough and the FAQ accordion. */
+.helpsteps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.helpsteps li { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; }
+.helpsteps .num { font-size: 1.5rem; line-height: 1.2; }
+.faq { display: grid; gap: 8px; }
+.faq details {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 11px; padding: 0 14px;
+}
+.faq summary {
+  cursor: pointer; font-weight: 600; padding: 12px 0; list-style: none;
+  display: flex; justify-content: space-between; gap: 12px; align-items: center;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; font-size: 1.2rem; color: var(--muted); flex: none; }
+.faq details[open] summary::after { content: '\2212'; }
+.faq details[open] { border-color: var(--brand); }
+.faq details p { margin: 0 0 14px; color: var(--muted); }
+
 .trophy {
   display: flex; gap: 11px; align-items: flex-start;
   padding: 13px; border-radius: 11px;
