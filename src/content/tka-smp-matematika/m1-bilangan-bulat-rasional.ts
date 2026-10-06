@@ -227,15 +227,15 @@ export const module1: Module = {
               id: 'j1',
               prompt: L('Decide whether each statement is True or False.', 'Tentukan tiap pernyataan Benar atau Salah.'),
               statements: [
-                L('$|-7|=7$', '$|-7|=7$'),
+                L('$-6+10=4$', '$-6+10=4$'),
                 L('$-8>-3$', '$-8>-3$'),
                 L('$6-(-2)=8$', '$6-(-2)=8$'),
                 L('$-2^2=4$', '$-2^2=4$'),
               ],
               answer: [true, false, true, false],
               explain: L(
-                'The distance of $-7$ from 0 is 7. On the number line $-8$ is to the left of $-3$, so $-8<-3$. Subtracting a negative adds: $6+2=8$. And $-2^2=-(2\\times2)=-4$, because the square only touches the 2.',
-                'Jarak $-7$ dari 0 adalah 7. Pada garis bilangan $-8$ ada di kiri $-3$, jadi $-8<-3$. Mengurang bilangan negatif berarti menambah: $6+2=8$. Dan $-2^2=-(2\\times2)=-4$, karena pangkat dua hanya mengenai angka 2.',
+                'Start at $-6$ and move 10 steps to the right: $-6+10=4$. On the number line $-8$ is to the left of $-3$, so $-8<-3$. Subtracting a negative adds: $6+2=8$. And $-2^2=-(2\\times2)=-4$, because the square only touches the 2.',
+                'Mulai dari $-6$ lalu geser 10 langkah ke kanan: $-6+10=4$. Pada garis bilangan $-8$ ada di kiri $-3$, jadi $-8<-3$. Mengurang bilangan negatif berarti menambah: $6+2=8$. Dan $-2^2=-(2\\times2)=-4$, karena pangkat dua hanya mengenai angka 2.',
               ),
               hint: L(
                 'For $-8$ and $-3$, ask which is further left. For $-2^2$, ask what the exponent is attached to.',
@@ -481,7 +481,7 @@ export const module1: Module = {
               caption: L('Points A and B on a number line.', 'Titik A dan B pada garis bilangan.'),
             },
             blanks: [{ answer: 7 }],
-            solution: ['|-3|=3 \\quad |4|=4', '3+4=7'],
+            solution: ['4-(-3)=4+3', '=7'],
           },
           {
             prompt: L('Calculate. Follow the order of operations.', 'Hitunglah. Ikuti urutan operasi.'),
