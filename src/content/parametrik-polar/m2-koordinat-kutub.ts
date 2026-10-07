@@ -328,8 +328,8 @@ export const module2: Module = {
                 id: 'Lengkapi jumlah kelopaknya.',
               },
               template: {
-                en: '\\begin{aligned} r=\\cos5\\theta &: ___ \\text{ petals} \\\\ r=\\sin6\\theta &: ___ \\text{ petals} \\end{aligned}',
-                id: '\\begin{aligned} r=\\cos5\\theta &: ___ \\text{ kelopak} \\\\ r=\\sin6\\theta &: ___ \\text{ kelopak} \\end{aligned}',
+                en: 'r=\\cos5\\theta: ___ \\text{ petals} \\qquad r=\\sin6\\theta: ___ \\text{ petals}',
+                id: 'r=\\cos5\\theta: ___ \\text{ kelopak} \\qquad r=\\sin6\\theta: ___ \\text{ kelopak}',
               },
               blanks: ['5', '12'],
               explain: {

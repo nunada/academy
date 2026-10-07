@@ -62,6 +62,12 @@ const TERTUTUP = {
   is_teacher: {},
   teacher_roster: {},
   teacher_course_progress: {},
+  // Public profiles. `public_profile` is for signed-in learners only, and
+  // `weekly_medals_of` answers for whichever id it is handed, so it must be
+  // closed to every client role — only the two functions that wrap it call it.
+  my_weekly_medals: {},
+  public_profile: { p_user_id: '00000000-0000-0000-0000-000000000000' },
+  weekly_medals_of: { p_user: '00000000-0000-0000-0000-000000000000' },
 }
 
 /** ...and allowed this one, or nobody can sign up. */
@@ -121,7 +127,7 @@ if (masalah.length) {
   console.error('\ngrant check failed:\n' + masalah.map((m) => '  · ' + m).join('\n'))
   console.error(
     masalah.some((m) => m.includes('not on the project'))
-      ? '\nrun the whole of supabase/schema.sql in the SQL editor — it is safe to re-run'
+      ? '\nrun the whole of supabase/schema.sql in the SQL editor — it is safe to re-run.\n(public_profile / weekly_medals_of alone: supabase/public-profile.sql is the short version.)'
       : '\nre-run the grant block at the end of supabase/schema.sql'
   )
   process.exit(1)

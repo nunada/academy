@@ -11,7 +11,8 @@
     "check:curriculum": "node tools/check-curriculum.mjs",
     "check:math": "node tools/check-math.mjs",
     "check:cpp": "node tools/check-cpp.mjs",
-    "check:grants": "node tools/check-rpc-grants.mjs"
+    "check:grants": "node tools/check-rpc-grants.mjs",
+    "check:fill": "node tools/check-fill-templates.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

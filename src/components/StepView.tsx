@@ -1,4 +1,5 @@
-import { lazy, Suspense, useMemo, useState } from 'react'
+import { lazy, Suspense, useMemo, useState, type ReactNode } from 'react'
+import { parseFillTemplate, type FillNode } from '../lib/fillTemplate'
 import type { Loc, Step } from '../content/types'
 import { resolveBi } from '../content/types'
 import { useI18n } from '../i18n'
@@ -456,6 +457,9 @@ function FillStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
   const template = resolveBi(step.template, lang)
   const blanks = resolveBi(step.blanks, lang)
   const segments = useMemo(() => template.split('___'), [template])
+  // A formula is cut up so that a blank inside a fraction is laid out as a
+  // fraction with a box in it, not as two broken halves of one.
+  const nodes = useMemo(() => (step.math ? parseFillTemplate(template) : null), [template, step.math])
   // A sentence is prose, not a program: set it in the page's own type so it
   // wraps, instead of one long monospaced line that has to be scrolled
   // sideways. Prose is one line with $inline maths$ in it, or one with none
@@ -483,6 +487,36 @@ function FillStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
     else onWrong()
   }
 
+  const blankInput = (i: number) => (
+    <input
+      className="blank"
+      value={values[i] ?? ''}
+      disabled={solved}
+      placeholder="?"
+      aria-label={`blank ${i + 1}`}
+      onChange={(e) => {
+        const next = [...values]
+        next[i] = e.target.value
+        setValues(next)
+        setChecked(false)
+      }}
+    />
+  )
+
+  const renderNodes = (list: FillNode[]): ReactNode =>
+    list.map((n, k) =>
+      n.t === 'tex' ? (
+        <Tex key={k} src={n.src} />
+      ) : n.t === 'blank' ? (
+        <span key={k}>{blankInput(n.i)}</span>
+      ) : (
+        <span key={k} className="fracfill">
+          <span className="num">{renderNodes(n.num)}</span>
+          <span className="den">{renderNodes(n.den)}</span>
+        </span>
+      ),
+    )
+
   return (
     <div className="card">
       <h3>
@@ -492,26 +526,14 @@ function FillStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
       {/* A formula belongs on the page as a formula, not in a code block. */}
       <div className={step.math || prose ? 'given mathfill' : undefined}>
         <pre className={step.math || prose ? 'plain' : 'code'}>
-          {segments.map((seg, i) => (
-            <span key={i}>
-              {step.math ? <Tex src={seg} /> : prose ? <Rich text={seg} /> : seg}
-              {i < segments.length - 1 && (
-                <input
-                  className="blank"
-                  value={values[i] ?? ''}
-                  disabled={solved}
-                  placeholder="?"
-                  aria-label={`blank ${i + 1}`}
-                  onChange={(e) => {
-                    const next = [...values]
-                    next[i] = e.target.value
-                    setValues(next)
-                    setChecked(false)
-                  }}
-                />
-              )}
-            </span>
-          ))}
+          {nodes
+            ? renderNodes(nodes)
+            : segments.map((seg, i) => (
+                <span key={i}>
+                  {prose ? <Rich text={seg} /> : seg}
+                  {i < segments.length - 1 && blankInput(i)}
+                </span>
+              ))}
         </pre>
       </div>
 

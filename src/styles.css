@@ -869,6 +869,15 @@ th .sortable.on::after { content: ' ↓'; }
   overflow-x: auto;
   overflow-y: hidden;
 }
+/* Pecahan yang pembilang atau penyebutnya berupa kotak isian: ditata sebagai
+   pecahan sungguhan, dengan garis pecahan di antara kedua barisnya. */
+.fracfill {
+  display: inline-flex; flex-direction: column; align-items: center;
+  vertical-align: middle; margin: 0 0.2em; gap: 3px;
+}
+.fracfill > .num { border-bottom: 2px solid currentColor; padding: 0 0.25em 3px; }
+.fracfill > .den { padding: 0 0.25em; }
+.mathfill .fracfill .blank { width: 5.5ch; }
 .mathfill .blank { width: 7ch; min-width: 0; text-align: center; font-family: var(--mono); font-size: 0.9em; }
 
 .orderline.math {

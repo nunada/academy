@@ -306,8 +306,8 @@ export const module2: Module = {
                 'Try it together: the number $A=3^3-3^2$ is given as an expression. First work out its value, then factorise it into primes.',
                 'Coba bersama: bilangan $A=3^3-3^2$ diberikan dalam bentuk ekspresi. Hitung dulu nilainya, lalu faktorkan menjadi bilangan prima.',
               ),
-              template: '3^3-3^2=___-___=___=2\\times3^{___}',
-              blanks: ['27', '9', '18', '2'],
+              template: '3^3-3^2=___-___=___=2\\times3\\times___',
+              blanks: ['27', '9', '18', '3'],
               explain: L(
                 '$3^3=27$ and $3^2=9$, so $A=27-9=18$, and $18=2\\times9=2\\times3^2$. You cannot subtract the exponents: $3^3-3^2$ is not $3^1$.',
                 '$3^3=27$ dan $3^2=9$, jadi $A=27-9=18$, dan $18=2\\times9=2\\times3^2$. Eksponen tidak boleh dikurangkan: $3^3-3^2$ bukan $3^1$.',
