@@ -151,13 +151,6 @@ const FAQ: { q: Loc; a: Loc }[] = [
     ),
   },
   {
-    q: L('What does the "Local mode" badge mean?', 'Apa arti lencana "Mode lokal"?'),
-    a: L(
-      'The app is running without its online database, so accounts and progress are stored only in this browser. They are not shared across devices and disappear if the browser data is cleared.',
-      'Aplikasi berjalan tanpa basis data daring, sehingga akun dan progres hanya tersimpan di peramban ini. Datanya tidak terbagi antarperangkat dan hilang jika data peramban dihapus.',
-    ),
-  },
-  {
     q: L('What is the "Class" tab?', 'Apa itu tab "Kelas"?'),
     a: L(
       'It is only for teacher accounts: a roster of learners and how far each has got in each course. Teacher accounts can preview any lesson, do not earn XP, and do not appear on the leaderboard. A teacher account is assigned by the site owner, not chosen at sign-up.',
