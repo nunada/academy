@@ -36,6 +36,12 @@ export type WidgetName =
   | 'cnread'
   | 'grouping'
   | 'rods'
+  | 'explaws'
+  | 'exppattern'
+  | 'simplifyroot'
+  | 'rationalise'
+  | 'rootexp'
+  | 'scinot'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

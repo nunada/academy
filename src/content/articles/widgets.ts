@@ -82,6 +82,48 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Ketik sebuah bilangan dan lihat ia dikelompokkan tiga-tiga seperti bahasa Inggris dan Indonesia, di samping bilangan yang sama dikelompokkan empat-empat dengan 万 dan 亿 seperti bahasa China.',
     },
   },
+  explaws: {
+    title: { en: 'Interactive: test the laws of exponents', id: 'Interaktif: uji hukum-hukum eksponen' },
+    description: {
+      en: 'Pick one of the five laws of exponents, choose numbers, and see both sides of the law calculated exactly, as whole numbers and fractions, so you can check that they are equal.',
+      id: 'Pilih salah satu dari lima hukum eksponen, tentukan bilangannya, dan lihat kedua ruas hukum itu dihitung secara eksak, sebagai bilangan bulat dan pecahan, sehingga kamu dapat memeriksa bahwa keduanya sama.',
+    },
+  },
+  exppattern: {
+    title: { en: 'Interactive: why a⁰ = 1 and a⁻ⁿ = 1/aⁿ', id: 'Interaktif: mengapa a⁰ = 1 dan a⁻ⁿ = 1/aⁿ' },
+    description: {
+      en: 'A column of powers of one base, each step dividing by the base, which carries on past the exponent 0 into negative exponents.',
+      id: 'Satu kolom pangkat dari sebuah basis, setiap langkah membagi dengan basis, dilanjutkan melewati eksponen 0 ke eksponen negatif.',
+    },
+  },
+  simplifyroot: {
+    title: { en: 'Interactive: simplify a root', id: 'Interaktif: sederhanakan sebuah akar' },
+    description: {
+      en: 'Type a number and choose a square root, cube root or higher root: see its prime factors, the groups taken out of the root, and the simplest form.',
+      id: 'Ketik sebuah bilangan dan pilih akar kuadrat, akar pangkat tiga, atau akar yang lebih tinggi: lihat faktor primanya, kelompok yang dikeluarkan dari akar, dan bentuk paling sederhananya.',
+    },
+  },
+  rationalise: {
+    title: { en: 'Interactive: rationalise the denominator', id: 'Interaktif: rasionalkan penyebutnya' },
+    description: {
+      en: 'Rationalise a fraction such as 6/√3 or 1/(1+√2), step by step, with the conjugate and the difference of squares shown.',
+      id: 'Rasionalkan pecahan seperti 6/√3 atau 1/(1+√2), langkah demi langkah, dengan bentuk sekawan dan selisih kuadrat ditunjukkan.',
+    },
+  },
+  rootexp: {
+    title: { en: 'Interactive: radicals and fractional exponents', id: 'Interaktif: akar dan eksponen pecahan' },
+    description: {
+      en: 'Write a to the power m over n as a radical, evaluate it exactly, and compare with a decimal approximation.',
+      id: 'Tulis a pangkat m per n sebagai bentuk akar, hitung nilainya secara eksak, dan bandingkan dengan hampiran desimal.',
+    },
+  },
+  scinot: {
+    title: { en: 'Interactive: scientific notation', id: 'Interaktif: notasi ilmiah' },
+    description: {
+      en: 'Convert a number to scientific notation a × 10 to the power k and back, with the number of places the decimal point moves.',
+      id: 'Ubah bilangan ke notasi ilmiah a × 10 pangkat k dan sebaliknya, beserta banyaknya tempat koma desimal berpindah.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

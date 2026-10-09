@@ -1025,4 +1025,6 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
     { title: 'IEEE Standard for Floating-Point Arithmetic (IEEE 754-2019)', author: 'IEEE', year: 2019, source: 'Institute of Electrical and Electronics Engineers' },
     { title: 'Über eine Eigenschaft des Inbegriffes aller reellen algebraischen Zahlen', author: 'Georg Cantor', year: 1874, source: 'Journal für die reine und angewandte Mathematik 77, 258–262' },
   ],
+
+  related: ['exponents-and-radicals', 'chinese-numbers'],
 }

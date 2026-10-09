@@ -14,7 +14,8 @@
     "check:grants": "node tools/check-rpc-grants.mjs",
     "check:fill": "node tools/check-fill-templates.mjs",
     "check:articles": "node tools/check-articles.mjs",
-    "check:chinese": "node tools/check-chinese-numbers.mjs"
+    "check:chinese": "node tools/check-chinese-numbers.mjs",
+    "check:powers": "node tools/check-powers.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

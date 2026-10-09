@@ -954,4 +954,6 @@ Tanda untuk 10 menggambar aksaranya sendiri: dua garis yang bersilang, 十.`,
     { title: 'Preschool origins of cross-national differences in mathematical competence: The role of number-naming systems', author: 'Kevin F. Miller, Catherine M. Smith, Jianjun Zhu and Houcan Zhang', year: 1995, source: 'Psychological Science 6(1), 56–60' },
     { title: 'Shùshū Jiǔzhāng (Mathematical Treatise in Nine Sections)', author: 'Qin Jiushao', year: 1247 },
   ],
+
+  related: ['real-numbers', 'exponents-and-radicals'],
 }

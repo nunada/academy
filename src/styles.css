@@ -1319,3 +1319,14 @@ a.chip.static { cursor: pointer; }
 .rodlabel { font-size: 10.5px; fill: var(--text); }
 .rodlabel.dim { fill: var(--muted); }
 .rodgap { font-size: 11px; fill: var(--muted); font-style: italic; }
+
+/* Exponents and radicals article. */
+.lbl { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+.lbl input { width: 5.5em; }
+.lawrule { margin: 6px 0 10px; padding: 8px 12px; border-radius: 10px; background: var(--brand-soft); font-size: 1.1rem; }
+.patgrid { display: grid; gap: 0; margin: 10px 0; max-width: 28rem; }
+.patrow { display: grid; grid-template-columns: 4.5rem 1.5rem 1fr; align-items: center; padding: 3px 8px; border-radius: 8px; }
+.patrow.zero { background: var(--brand-soft); font-weight: 700; }
+.patexp, .patval { font-size: 1.05rem; }
+.pateq { color: var(--muted); text-align: center; }
+.patstep { grid-column: 1 / -1; font-size: 0.78rem; color: var(--muted); padding-left: 2.2rem; line-height: 1.2; }

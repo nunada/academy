@@ -52,7 +52,7 @@ const q = (p) => path.join(ROOT, p).replace(/\\/g, '/')
 const entry = path.join(tmp, 'entry.ts')
 fs.writeFileSync(
   entry,
-  `export { ARTICLES, loadArticle } from '${q('src/content/articles/index.ts')}'
+  `export { ARTICLES, loadArticle, articleById } from '${q('src/content/articles/index.ts')}'
 export { tagLabel } from '${q('src/content/articles/tags.ts')}'
 export { WIDGETS } from '${q('src/content/articles/widgets.ts')}'
 export * from '${q('src/lib/articleSeo.ts')}'`,
@@ -60,7 +60,7 @@ export * from '${q('src/lib/articleSeo.ts')}'`,
 const out = path.join(tmp, 'entry.mjs')
 await build({ entryPoints: [entry], bundle: true, format: 'esm', platform: 'node', outfile: out, logLevel: 'error' })
 const lib = await import('file://' + out.replace(/\\/g, '/'))
-const { ARTICLES, loadArticle, tagLabel, WIDGETS, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER } = lib
+const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER } = lib
 
 const LANGS = ['en', 'id']
 
@@ -154,8 +154,8 @@ function blockHtml(b, lang) {
 }
 
 const T = {
-  en: { home: 'Home', articles: 'Articles', updated: 'Updated', minutes: 'min read', quick: 'Quick answer', takeaways: 'Key takeaways', toc: 'On this page', faq: 'Frequently asked questions', refs: 'References', glossary: 'Glossary', glossaryTitle: 'Glossary: key terms', all: 'All articles', other: 'Baca dalam Bahasa Indonesia' },
-  id: { home: 'Beranda', articles: 'Artikel', updated: 'Diperbarui', minutes: 'menit baca', quick: 'Jawaban singkat', takeaways: 'Poin penting', toc: 'Daftar isi', faq: 'Pertanyaan yang sering diajukan', refs: 'Referensi', glossary: 'Glosarium', glossaryTitle: 'Glosarium: istilah penting', all: 'Semua artikel', other: 'Read in English' },
+  en: { home: 'Home', articles: 'Articles', updated: 'Updated', minutes: 'min read', quick: 'Quick answer', takeaways: 'Key takeaways', toc: 'On this page', faq: 'Frequently asked questions', refs: 'References', glossary: 'Glossary', glossaryTitle: 'Glossary: key terms', related: 'Related articles', all: 'All articles', other: 'Baca dalam Bahasa Indonesia' },
+  id: { home: 'Beranda', articles: 'Artikel', updated: 'Diperbarui', minutes: 'menit baca', quick: 'Jawaban singkat', takeaways: 'Poin penting', toc: 'Daftar isi', faq: 'Pertanyaan yang sering diajukan', refs: 'Referensi', glossary: 'Glosarium', glossaryTitle: 'Glosarium: istilah penting', related: 'Artikel terkait', all: 'Semua artikel', other: 'Read in English' },
 }
 
 const dateText = (iso, lang) =>
@@ -168,7 +168,14 @@ function refHtml(r) {
 function articleBodyHtml(a, lang) {
   const t = T[lang]
   const other = OTHER[lang]
-  const toc = [...a.sections.map((s) => [s.id, s.heading[lang]]), ...(a.glossary?.length ? [['glossary', t.glossary]] : []), ['faq', t.faq], ['references', t.refs]]
+  const related = (a.related ?? []).map((id) => articleById(id)).filter(Boolean)
+  const toc = [
+    ...a.sections.map((s) => [s.id, s.heading[lang]]),
+    ...(a.glossary?.length ? [['glossary', t.glossary]] : []),
+    ['faq', t.faq],
+    ['references', t.refs],
+    ...(related.length ? [['related', t.related]] : []),
+  ]
   return `<main class="page article">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="${esc(SITE)}/">${t.home}</a> › <a href="${esc(listUrl(SITE, lang))}">${t.articles}</a> › <span>${esc(a.title[lang])}</span></nav>
 <div class="article-layout"><article class="article-body" lang="${lang}">
@@ -181,6 +188,7 @@ ${a.sections.map((s) => `<section class="artsection" aria-labelledby="${s.id}"><
 ${a.glossary?.length ? `<section class="artsection" aria-labelledby="glossary"><h2 id="glossary">${t.glossaryTitle}</h2><dl class="glossary">${a.glossary.map((g) => `<div><dt>${inline(g.term[lang])}</dt><dd>${inline(g.definition[lang])}</dd></div>`).join('')}</dl></section>` : ''}
 <section class="artsection" aria-labelledby="faq"><h2 id="faq">${t.faq}</h2><div class="faq">${a.faq.map((f) => `<details open><summary>${inline(f.q[lang])}</summary><p>${inline(f.a[lang])}</p></details>`).join('')}</div></section>
 <section class="artsection" aria-labelledby="references"><h2 id="references">${t.refs}</h2><ol class="refs">${a.references.map(refHtml).join('')}</ol></section>
+${related.length ? `<section class="artsection" aria-labelledby="related"><h2 id="related">${t.related}</h2><ul>${related.map((r) => `<li><a href="${esc(articleUrl(SITE, lang, r))}">${esc(r.title[lang])}</a>: ${esc(r.description[lang])}</li>`).join('')}</ul></section>` : ''}
 </article></div></main>`
 }
 

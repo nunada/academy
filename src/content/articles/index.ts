@@ -11,12 +11,14 @@ import type { Lang } from '../types'
 import type { Article, ArticleBody, ArticleMeta } from './types'
 import { meta as realNumbers } from './real-numbers.meta'
 import { meta as chineseNumbers } from './chinese-numbers.meta'
+import { meta as exponentsAndRadicals } from './exponents-and-radicals.meta'
 
-export const ARTICLES: ArticleMeta[] = [chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
   'chinese-numbers': () => import('./chinese-numbers'),
+  'exponents-and-radicals': () => import('./exponents-and-radicals'),
 }
 
 export const articleById = (id: string): ArticleMeta | undefined => ARTICLES.find((a) => a.id === id)

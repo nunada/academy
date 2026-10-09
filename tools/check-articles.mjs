@@ -44,7 +44,7 @@ const flag = (where, msg) => {
 }
 const isLoc = (v) => v && typeof v === 'object' && typeof v.en === 'string' && typeof v.id === 'string'
 const LANGS = ['en', 'id']
-const RESERVED = new Set(['quick-answer', 'faq', 'references', 'glossary', 'index'])
+const RESERVED = new Set(['quick-answer', 'faq', 'references', 'glossary', 'related', 'index'])
 
 /* ------------------------------------------------------------- helpers */
 
@@ -240,6 +240,11 @@ for (const m of L.ARTICLES) {
     if (h.steps.length < 3) flag(w, `HowTo "${h.name.en}" needs at least 3 steps`)
     for (const st of h.steps) for (const lang of LANGS) if (/[$\n*`]/.test(st.text[lang] + st.name[lang])) flag(w, `HowTo "${h.name.en}" step text must be plain (${lang})`)
   }
+  for (const rid of a.related ?? []) {
+    if (rid === m.id) flag(w, 'related lists the article itself')
+    else if (!listed.has(rid)) flag(w, `related names "${rid}", which is not an article`)
+  }
+  if ((a.related ?? []).length > 4) flag(w, 'related should hold at most 4 articles')
   if (!m.about?.length || m.about.some((x) => !/^https:\/\//.test(x.sameAs.en) || !/^https:\/\//.test(x.sameAs.id))) flag(w, 'about needs at least one entity with https sameAs links in both languages')
 
   /* ---- every language string, every formula ---- */

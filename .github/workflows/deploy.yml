@@ -58,6 +58,10 @@ jobs:
       # against hand-written readings and round-tripped, because a wrong reading on a
       # page that teaches readings does harm.
       - run: npm run check:chinese
+      # Exact arithmetic behind the exponents and radicals widgets (simplified roots,
+      # rationalised fractions, scientific notation): checked against hand-written
+      # values and floating point.
+      - run: npm run check:powers
 
       - name: Work out where the site will live
         id: base

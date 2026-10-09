@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { formatDate, useI18n } from '../i18n'
 import type { Lang } from '../content/types'
-import { articleBySlug, loadArticle } from '../content/articles'
+import { articleById, articleBySlug, loadArticle } from '../content/articles'
 import type { Article } from '../content/articles/types'
 import { tagLabel } from '../content/articles/tags'
 import { Block, References } from '../components/article/ArticleBlocks'
@@ -17,6 +17,7 @@ function tocOf(a: Article, lang: Lang) {
   if (a.glossary?.length) items.push({ id: 'glossary', label: lang === 'id' ? 'Glosarium' : 'Glossary' })
   items.push({ id: 'faq', label: lang === 'id' ? 'Pertanyaan yang sering diajukan' : 'Frequently asked questions' })
   items.push({ id: 'references', label: lang === 'id' ? 'Referensi' : 'References' })
+  if (a.related?.length) items.push({ id: 'related', label: lang === 'id' ? 'Artikel terkait' : 'Related articles' })
   return items
 }
 
@@ -246,6 +247,23 @@ export default function ArticlePage({ routeLang }: { routeLang: Lang }) {
               <h2 id="references">{lang === 'id' ? 'Referensi' : 'References'}</h2>
               <References items={article.references} />
             </section>
+
+            {article.related && article.related.length > 0 && (
+              <section className="artsection" aria-labelledby="related">
+                <h2 id="related">{lang === 'id' ? 'Artikel terkait' : 'Related articles'}</h2>
+                <div className="grid two">
+                  {article.related
+                    .map((id) => articleById(id))
+                    .filter((r): r is NonNullable<typeof r> => !!r)
+                    .map((r) => (
+                      <Link key={r.id} className="card artcard" to={articlePath(routeLang, r)}>
+                        <h3>{r.title[routeLang]}</h3>
+                        <p className="small">{r.description[routeLang]}</p>
+                      </Link>
+                    ))}
+                </div>
+              </section>
+            )}
 
             <footer className="artfoot">
               <Link className="btn ghost" to={listPath(lang)}>
