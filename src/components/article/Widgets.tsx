@@ -16,6 +16,7 @@ import {
 import { Tex } from '../ui'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { ChineseConvert, ChineseGrouping, ChineseRead, ChineseRods } from './ChineseWidgets'
+import { CompareFractions, FractionBars, FractionCalculator, FractionToDecimal, SimplifyFraction } from './RationalWidgets'
 import { DivisibilityRules, DivisionWithRemainder, GcdLcm, IntegerNumberLine, IntegerOperations, PrimeFactoriser } from './IntegerWidgets'
 import { AreaModel, EvaluateExpression, ExpandSimplify, ExpressionAnatomy, FactorWidget } from './AlgebraWidgets'
 import { ExponentLaws, ExponentPattern, Rationalise, RootExponent, ScientificNotation, SimplifyRoot } from './PowerWidgets'
@@ -809,6 +810,16 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <PrimeFactoriser />
     case 'gcdlcm':
       return <GcdLcm />
+    case 'fracbars':
+      return <FractionBars />
+    case 'simplify':
+      return <SimplifyFraction />
+    case 'ratcompare':
+      return <CompareFractions />
+    case 'ratops':
+      return <FractionCalculator />
+    case 'ratdecimal':
+      return <FractionToDecimal />
   }
 }
 

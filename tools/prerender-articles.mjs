@@ -72,10 +72,17 @@ const esc = (s) =>
 /** The inline formatting of lesson prose, as HTML. Formulas become readable
  *  text inside <span class="math">: a crawler cannot use MathML it was not
  *  given, and a sentence like "√(2) is irrational" it can quote. */
+let curLang = 'en'
+
 function inline(text) {
   return text
-    .split(/(\$\$[^$]+\$\$|\$[^$]+\$|`[^`]+`|\*\*[^*]+\*\*)/g)
+    .split(/(\$\$[^$]+\$\$|\$[^$]+\$|`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\(article:[a-z0-9#-]+\))/g)
     .map((part) => {
+      const link = /^\[([^\]]+)\]\(article:([a-z0-9-]+)(?:#([a-z0-9-]+))?\)$/.exec(part)
+      if (link) {
+        const target = articleById(link[2])
+        return target ? `<a href="${esc(articleUrl(SITE, curLang, target))}${link[3] ? '#' + esc(link[3]) : ''}">${esc(link[1])}</a>` : esc(link[1])
+      }
       if (part.startsWith('$$') && part.endsWith('$$') && part.length > 4) return `<span class="math">${esc(texToText(part.slice(2, -2)))}</span>`
       if (part.startsWith('$') && part.endsWith('$') && part.length > 2) return `<span class="math">${esc(texToText(part.slice(1, -1)))}</span>`
       if (part.startsWith('`') && part.endsWith('`') && part.length > 2) return `<code>${esc(part.slice(1, -1))}</code>`
@@ -166,6 +173,7 @@ function refHtml(r) {
 }
 
 function articleBodyHtml(a, lang) {
+  curLang = lang
   const t = T[lang]
   const other = OTHER[lang]
   const related = (a.related ?? []).map((id) => articleById(id)).filter(Boolean)
@@ -348,7 +356,10 @@ const md = (a, lang) => {
   }
   parts.push(`## ${T[lang].faq}`, '')
   for (const f of a.faq) parts.push(`### ${plain(f.q[lang])}`, '', plain(f.a[lang]), '')
-  return parts.join('\n')
+  return parts.join('\n').replace(/\[([^\]]+)\]\(article:([a-z0-9-]+)(?:#([a-z0-9-]+))?\)/g, (m0, label, id, hash) => {
+    const target = articleById(id)
+    return target ? `[${label}](${articleUrl(SITE, lang, target)}${hash ? '#' + hash : ''})` : label
+  })
 }
 write('llms-full.txt', articles.flatMap((a) => LANGS.map((l) => md(a, l))).join('\n\n---\n\n') + '\n')
 

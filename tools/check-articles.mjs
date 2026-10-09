@@ -62,7 +62,8 @@ function* locs(node, where = '') {
   }
 }
 
-const words = (s) => s.replace(/\$[^$]*\$/g, ' x ').replace(/[*`|#>-]/g, ' ').split(/\s+/).filter(Boolean).length
+const LINK = /\[([^\]]*)\]\(article:([a-z0-9-]+)(?:#([a-z0-9-]+))?\)/g
+const words = (s) => s.replace(LINK, '$1').replace(/\$[^$]*\$/g, ' x ').replace(/[*`|#>-]/g, ' ').split(/\s+/).filter(Boolean).length
 
 /** The shape of a piece of prose, so the two languages can be compared. */
 function shape(text) {
@@ -280,6 +281,39 @@ for (const m of L.ARTICLES) {
     const faq = seo.jsonLd.find((d) => d['@type'] === 'FAQPage')
     if (faq && faq.mainEntity.some((e) => /[$`*]/.test(e.name + e.acceptedAnswer.text))) flag(w, `FAQPage text still holds markup (${lang})`)
   }
+}
+
+/* ------------------------------------------------- internal links in text */
+
+// `[label](article:id)` or `[label](article:id#section)` inside the prose of a
+// section. A link inside the text is worth more than a list at the bottom: it
+// sits where the reader needs the other article, with words around it that say
+// why. So each article must have some, they must point somewhere real, and they
+// must point to the same places in both languages.
+const byId = new Map(loaded.map((a) => [a.id, a]))
+for (const a of loaded) {
+  const w = a.id
+  const inText = /\/sections\/\d+\/blocks\/\d+\/text$/
+  const targets = { en: [], id: [] }
+  for (const [where, loc] of locs(a, w)) {
+    for (const lang of LANGS) {
+      const found = [...loc[lang].matchAll(LINK)]
+      if (found.length && !inText.test(where)) flag(where, `internal links belong in the text of a section, not here (${lang})`)
+      for (const f of found) {
+        const [, label, id, hash] = f
+        if (!label.trim() || /[$*`[\]]/.test(label)) flag(where, `link label "${label}" must be plain words (${lang})`)
+        const t = byId.get(id)
+        if (!t) flag(where, `link to "${id}", which is not an article (${lang})`)
+        else if (id === a.id) flag(where, `link to the article itself (${lang})`)
+        else if (hash && !t.sections.some((s) => s.id === hash)) flag(where, `link to "${id}#${hash}": no such section (${lang})`)
+        targets[lang].push(`${id}#${hash ?? ''}`)
+      }
+    }
+  }
+  if (targets.en.join() !== targets.id.join()) flag(w, `inline links differ between the languages: ${targets.en.join(' ')} vs ${targets.id.join(' ')}`)
+  const distinct = new Set(targets.en.map((t) => t.split('#')[0]))
+  const want = Math.min(2, loaded.length - 1)
+  if (distinct.size < want) flag(w, `needs inline links to at least ${want} other article(s) in its text, has ${distinct.size}`)
 }
 
 /* --------------------------------------------------------------- search */

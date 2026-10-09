@@ -1365,3 +1365,10 @@ a.chip.static { cursor: pointer; }
 .nldot.zero { fill: var(--muted); }
 .nldot.a { fill: var(--fig-a); }
 .nldot.r { fill: var(--fig-result); }
+
+/* Rational Numbers article */
+.fbsvg { width: 100%; max-width: 520px; display: block; margin: 8px auto; }
+.fbpart { stroke: var(--text); stroke-width: 1; }
+.fbpart.off { fill: var(--surface-2); }
+.fbpart.a { fill: var(--fig-a); fill-opacity: 0.75; }
+.fbpart.b { fill: var(--fig-c); fill-opacity: 0.75; }

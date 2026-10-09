@@ -111,6 +111,7 @@ function breadcrumbs(site: string, lang: Lang, a: ArticleMeta | null) {
  *  so it is safe inside JSON-LD and reads as a sentence. */
 export function plain(text: string): string {
   return text
+    .replace(/\[([^\]]+)\]\(article:[a-z0-9#-]+\)/g, '$1')
     .replace(/\$\$?([^$]+)\$\$?/g, (_, tex: string) => texToText(tex))
     .replace(/\*\*([^*]+)\*\*/g, '$1')
     .replace(/`([^`]+)`/g, '$1')

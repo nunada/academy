@@ -68,11 +68,11 @@ Negative numbers exist because people need to describe things that go below a st
 | Money | 50 dollars in the account | nothing | −30, an overdraft |
 | Goal difference | 2 goals ahead | level | −3, behind |
 
-Three kinds of number are often confused. The **natural numbers** are $1,2,3,\ldots$ (some books start at 0). The **whole numbers** are $0,1,2,3,\ldots$. The **integers** add the negatives. Every natural number is a whole number and every whole number is an integer, but not the other way round.
+Three kinds of number are often confused. The **natural numbers** are $1,2,3,\ldots$ (some books start at 0). The **whole numbers** are $0,1,2,3,\ldots$. The **integers** add the negatives. Every natural number is a whole number and every whole number is an integer, but not the other way round; the article on [real numbers](article:real-numbers#number-sets) shows how all these sets nest.
 
 Two facts about zero and signs are worth fixing now. **Zero is neither positive nor negative.** And every integer $a$ has an **opposite**, $-a$, on the other side of 0 at the same distance, so that $a+(-a)=0$. The opposite of 7 is $-7$, the opposite of $-7$ is 7, and the opposite of 0 is 0, which is why $-(-a)=a$.
 
-The integers are a *closed* family under three operations: add, subtract or multiply two integers and the result is always an integer. They are not closed under division, since $7\div2$ is not an integer. That one gap is what the later sections on remainders and fractions are about.`,
+The integers are a *closed* family under three operations: add, subtract or multiply two integers and the result is always an integer. They are not closed under division, since $7\div2$ is not an integer. That one gap is what the later sections on remainders are about, and what the article on [rational numbers](article:rational-numbers) closes with fractions.`,
             T`**Bilangan bulat adalah bilangan tanpa bagian pecahan: bilangan asli $1,2,3,\ldots$, negatifnya $-1,-2,-3,\ldots$, dan nol.** Himpunannya ditulis $\mathbb{Z}$, dari kata Jerman *Zahlen* ("bilangan").
 
 Bilangan negatif ada karena orang perlu menyatakan hal yang turun di bawah titik awal, dan bilangan bulat adalah yang kamu dapat ketika suatu besaran dapat bergerak ke dua arah:
@@ -85,11 +85,20 @@ Bilangan negatif ada karena orang perlu menyatakan hal yang turun di bawah titik
 | Uang | saldo Rp50.000 | tidak ada | −Rp30.000, utang |
 | Selisih gol | unggul 2 gol | imbang | −3, tertinggal |
 
-Tiga jenis bilangan sering tertukar. **Bilangan asli** adalah $1,2,3,\ldots$ (sebagian buku mulai dari 0). **Bilangan cacah** adalah $0,1,2,3,\ldots$. **Bilangan bulat** menambahkan negatifnya. Setiap bilangan asli adalah bilangan cacah dan setiap bilangan cacah adalah bilangan bulat, tetapi tidak sebaliknya.
+Tiga jenis bilangan sering tertukar. **Bilangan asli** adalah $1,2,3,\ldots$ (sebagian buku mulai dari 0). **Bilangan cacah** adalah $0,1,2,3,\ldots$. **Bilangan bulat** menambahkan negatifnya. Setiap bilangan asli adalah bilangan cacah dan setiap bilangan cacah adalah bilangan bulat, tetapi tidak sebaliknya; artikel [bilangan real](article:real-numbers#number-sets) menunjukkan bagaimana semua himpunan ini bersarang.
 
 Dua hal tentang nol dan tanda perlu dipegang sekarang. **Nol bukan positif dan bukan negatif.** Dan setiap bilangan bulat $a$ punya **lawan**, $-a$, di seberang 0 pada jarak yang sama, sehingga $a+(-a)=0$. Lawan 7 adalah $-7$, lawan $-7$ adalah 7, dan lawan 0 adalah 0, itulah sebabnya $-(-a)=a$.
 
-Bilangan bulat adalah keluarga yang *tertutup* terhadap tiga operasi: jumlahkan, kurangkan, atau kalikan dua bilangan bulat dan hasilnya selalu bilangan bulat. Mereka tidak tertutup terhadap pembagian, sebab $7\div2$ bukan bilangan bulat. Celah itulah yang dibahas pada bagian sisa pembagian dan pecahan nanti.`,
+Bilangan bulat adalah keluarga yang *tertutup* terhadap tiga operasi: jumlahkan, kurangkan, atau kalikan dua bilangan bulat dan hasilnya selalu bilangan bulat. Mereka tidak tertutup terhadap pembagian, sebab $7\div2$ bukan bilangan bulat. Celah itulah yang dibahas pada bagian sisa pembagian nanti, dan yang ditutup oleh artikel [bilangan rasional](article:rational-numbers) dengan pecahan.`,
+          ),
+        },
+        {
+          kind: 'callout',
+          tone: 'note',
+          title: L('Negative numbers took a long time to be accepted', 'Bilangan negatif lama baru diterima'),
+          text: L(
+            T`The *Nine Chapters on the Mathematical Art*, compiled by about the first century CE, already calculated with red counting rods for positive numbers and black rods for negative ones: see the [counting rods](article:chinese-numbers#counting-rods) in the article on Chinese numbers. In India, Brahmagupta (628) gave rules for fortunes and debts, including that a debt subtracted from zero is a fortune. European mathematicians were slower: Stifel still called negative numbers "absurd numbers" in 1544, and they were fully accepted only in the 1600s.`,
+            T`*Nine Chapters on the Mathematical Art*, yang disusun sekitar abad pertama M, sudah menghitung dengan batang hitung merah untuk bilangan positif dan batang hitam untuk bilangan negatif: lihat [batang hitung](article:chinese-numbers#counting-rods) pada artikel tentang bilangan dalam bahasa China. Di India, Brahmagupta (628) memberi aturan untuk harta dan utang, termasuk bahwa utang yang dikurangkan dari nol adalah harta. Matematikawan Eropa lebih lambat: Stifel pada 1544 masih menyebut bilangan negatif "bilangan yang absurd", dan baru diterima sepenuhnya pada abad ke-17.`,
           ),
         },
         {
@@ -259,7 +268,7 @@ Division follows the same signs, because $a\div b=c$ means $a=b\cdot c$: $(-12)\
 
 *A pattern.* Count down the first factor and watch the products: $3\cdot(-2)=-6$, $2\cdot(-2)=-4$, $1\cdot(-2)=-2$, $0\cdot(-2)=0$. Each step down adds 2. The next step must add 2 again: $(-1)\cdot(-2)=2$.
 
-*The distributive law.* Start from $0=(-1)\cdot0=(-1)\bigl(1+(-1)\bigr)=(-1)\cdot1+(-1)(-1)=-1+(-1)(-1)$. For the right side to equal 0, $(-1)(-1)$ has to be 1. Any other value would break the rule $a(b+c)=ab+ac$ that the whole of arithmetic depends on.
+*The distributive law.* Start from $0=(-1)\cdot0=(-1)\bigl(1+(-1)\bigr)=(-1)\cdot1+(-1)(-1)=-1+(-1)(-1)$. For the right side to equal 0, $(-1)(-1)$ has to be 1. Any other value would break the [distributive law](article:algebraic-expressions#expand), $a(b+c)=ab+ac$, that the whole of arithmetic depends on.
 
 **Division by zero is undefined.** $a\div0=c$ would mean $a=0\cdot c=0$, which is impossible for $a\neq0$; and $0\div0$ could be any number, so it has no single value. Meanwhile $0\div a=0$ for $a\neq0$.
 
@@ -279,7 +288,7 @@ Pembagian mengikuti tanda yang sama, karena $a\div b=c$ berarti $a=b\cdot c$: $(
 
 *Pola.* Turunkan faktor pertama dan perhatikan hasil kalinya: $3\cdot(-2)=-6$, $2\cdot(-2)=-4$, $1\cdot(-2)=-2$, $0\cdot(-2)=0$. Tiap langkah turun menambah 2. Langkah berikutnya harus menambah 2 lagi: $(-1)\cdot(-2)=2$.
 
-*Sifat distributif.* Mulai dari $0=(-1)\cdot0=(-1)\bigl(1+(-1)\bigr)=(-1)\cdot1+(-1)(-1)=-1+(-1)(-1)$. Agar ruas kanan sama dengan 0, $(-1)(-1)$ harus 1. Nilai lain akan merusak aturan $a(b+c)=ab+ac$ yang menjadi sandaran seluruh aritmetika.
+*Sifat distributif.* Mulai dari $0=(-1)\cdot0=(-1)\bigl(1+(-1)\bigr)=(-1)\cdot1+(-1)(-1)=-1+(-1)(-1)$. Agar ruas kanan sama dengan 0, $(-1)(-1)$ harus 1. Nilai lain akan merusak [sifat distributif](article:algebraic-expressions#expand), $a(b+c)=ab+ac$, yang menjadi sandaran seluruh aritmetika.
 
 **Pembagian dengan nol tidak terdefinisi.** $a\div0=c$ akan berarti $a=0\cdot c=0$, yang mustahil untuk $a\neq0$; dan $0\div0$ dapat berupa bilangan apa pun, sehingga tidak punya satu nilai. Sementara itu $0\div a=0$ untuk $a\neq0$.
 

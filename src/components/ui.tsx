@@ -2,7 +2,10 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { MAX_HEARTS, formatCountdown } from '../lib/hearts'
 import { useI18n } from '../i18n'
 import { previewDocument, previewReactDocument } from '../lib/web'
+import { Link } from 'react-router-dom'
 import { tex } from '../lib/tex'
+import { articleById } from '../content/articles'
+import { articlePath } from '../lib/articleSeo'
 
 /** One formula. MathML is markup, not React elements, so it goes in as HTML —
  *  from `tex()`, which escapes what it emits and only ever sees strings this
@@ -28,14 +31,27 @@ export function TexLines({ lines }: { lines: string[] }) {
   )
 }
 
-/** Minimal inline formatting for lesson prose: `code`, **bold**, $maths$, and
- *  $$a displayed equation$$ on a line of its own.
+/** A link to another article, written `[words](article:id)` or
+ *  `[words](article:id#section)` in prose. It points at the article's address in
+ *  the reader's language, and falls back to the plain words for an unknown id
+ *  (the article checker refuses one). */
+function ArticleLink({ label, id, hash }: { label: string; id: string; hash?: string }) {
+  const { lang } = useI18n()
+  const m = articleById(id)
+  if (!m) return <span>{label}</span>
+  return <Link to={articlePath(lang, m) + (hash ? `#${hash}` : '')}>{label}</Link>
+}
+
+/** Minimal inline formatting for lesson prose: `code`, **bold**, $maths$,
+ *  $$a displayed equation$$ on a line of its own, and `[words](article:id)` links.
  *  A full markdown dependency would be far more than the content needs. */
 export function Rich({ text }: { text: string }) {
-  const parts = text.split(/(\$\$[^$]+\$\$|\$[^$]+\$|`[^`]+`|\*\*[^*]+\*\*)/g)
+  const parts = text.split(/(\$\$[^$]+\$\$|\$[^$]+\$|`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\(article:[a-z0-9#-]+\))/g)
   return (
     <>
       {parts.map((part, i) => {
+        const link = /^\[([^\]]+)\]\(article:([a-z0-9-]+)(?:#([a-z0-9-]+))?\)$/.exec(part)
+        if (link) return <ArticleLink label={link[1]} id={link[2]} hash={link[3]} key={i} />
         if (part.startsWith('$$') && part.endsWith('$$') && part.length > 4) {
           return <Tex src={part.slice(2, -2)} display key={i} />
         }

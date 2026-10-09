@@ -412,7 +412,7 @@ Berlatihlah dengan widget di bawah: delapan bilangan dengan ukuran yang makin be
 | Year | digit by digit + 年 | 2025 = 二〇二五年 | èr líng èr wǔ nián |
 | Phone number | digit by digit, 1 = 幺 | 110 = 幺幺〇 | yāo yāo líng |
 
-A fraction is said "of three parts, one": 三分之一 means "one of three parts". A percentage is "of a hundred parts": 百分之五十 is 50%. The digits after 点 are never grouped: 3.14 is "three point one four", never "three point fourteen".
+A [fraction](article:rational-numbers) is said "of three parts, one": 三分之一 means "one of three parts". A [percentage](article:rational-numbers#decimals-percent) is "of a hundred parts": 百分之五十 is 50%. The digits after 点 are never grouped: 3.14 is "three point one four", never "three point fourteen".
 
 A year is a label, not a quantity, so it is read as separate digits and written with 〇 (or 零): 二〇二五年. The quantity "two thousand and twenty-five" would be 两千零二十五.`,
             T`**Pecahan, desimal, persen, bilangan negatif, dan bilangan urutan mengikuti pola tetap yang dibangun dari kata bilangan yang sama, sedangkan tahun dan nomor telepon dibaca angka demi angka.**
@@ -429,7 +429,7 @@ A year is a label, not a quantity, so it is read as separate digits and written 
 | Tahun | angka demi angka + 年 | 2025 = 二〇二五年 | èr líng èr wǔ nián |
 | Nomor telepon | angka demi angka, 1 = 幺 | 110 = 幺幺〇 | yāo yāo líng |
 
-Pecahan dibaca "dari tiga bagian, satu": 三分之一 berarti "satu dari tiga bagian". Persen adalah "dari seratus bagian": 百分之五十 adalah 50%. Angka setelah 点 tidak pernah dikelompokkan: 3,14 dibaca "tiga koma satu empat", bukan "tiga koma empat belas".
+[Pecahan](article:rational-numbers) dibaca "dari tiga bagian, satu": 三分之一 berarti "satu dari tiga bagian". [Persen](article:rational-numbers#decimals-percent) adalah "dari seratus bagian": 百分之五十 adalah 50%. Angka setelah 点 tidak pernah dikelompokkan: 3,14 dibaca "tiga koma satu empat", bukan "tiga koma empat belas".
 
 Tahun adalah label, bukan jumlah, sehingga dibaca sebagai angka-angka terpisah dan ditulis dengan 〇 (atau 零): 二〇二五年. Jumlah "dua ribu dua puluh lima" adalah 两千零二十五.`,
           ),
@@ -524,6 +524,7 @@ How a number is laid out:
 - The digits 1 to 5 are that many rods. For 6 to 9, one rod laid across stands for 5, and the remaining rods are added to it.
 - The direction alternates from place to place: rods stand upright in the ones, hundreds and ten-thousands places and lie flat in the tens, thousands and hundred-thousands places, so two neighbouring digits are never mixed up.
 - Zero is an empty column. A written circle for zero appears in Chinese mathematical books by the 13th century, for example in Qin Jiushao's *Shùshū Jiǔzhāng* (1247).
+- Red rods are positive and black rods negative in the *Nine Chapters on the Mathematical Art*, so a column of rods can hold a debt: see the history of [negative numbers](article:integers#what-are-integers) in the article on integers.
 
 **Suzhou numerals** (苏州码子, Sūzhōu mǎzi) are the written shorthand that grew out of the rods, long used by traders and still seen on some market price tags: 〇 〡 〢 〣 〤 〥 〦 〧 〨 〩 for 0 to 9. The widget draws the rods for a number beside its Suzhou numerals.`,
             T`**Batang hitung (算筹, suànchóu) adalah batang kecil dari bambu, tulang, atau gading yang disusun dalam kolom di permukaan datar untuk berhitung; ia membentuk sistem nilai tempat desimal awal, tempat sebuah tempat yang kosong adalah celah.** Seikat batang hitung ditemukan di makam dinasti Han (206 SM sampai 220 M), dan *Sunzi suanjing*, yang ditulis antara abad ke-3 dan ke-5 M, menjelaskan cara menyusun angkanya. Batang hitung berangsur digantikan oleh sempoa (算盘, suànpán), yang sudah meluas pada masa dinasti Ming (1368 sampai 1644).
@@ -534,6 +535,7 @@ Cara sebuah bilangan disusun:
 - Angka 1 sampai 5 adalah sebanyak itu batang. Untuk 6 sampai 9, satu batang yang dibaringkan melintang mewakili 5, dan batang sisanya ditambahkan padanya.
 - Arahnya bergantian dari tempat ke tempat: batang berdiri tegak di tempat satuan, ratusan, dan puluh ribuan, dan berbaring mendatar di tempat puluhan, ribuan, dan ratus ribuan, sehingga dua angka bertetangga tidak pernah tertukar.
 - Nol adalah kolom kosong. Lingkaran tertulis untuk nol muncul dalam buku matematika China pada abad ke-13, misalnya dalam *Shùshū Jiǔzhāng* karya Qin Jiushao (1247).
+- Batang merah positif dan batang hitam negatif dalam *Nine Chapters on the Mathematical Art*, sehingga satu kolom batang dapat menyimpan utang: lihat sejarah [bilangan negatif](article:integers#what-are-integers) pada artikel bilangan bulat.
 
 **Angka Suzhou** (苏州码子, Sūzhōu mǎzi) adalah tulisan singkat yang tumbuh dari batang hitung, lama dipakai para pedagang dan masih terlihat pada beberapa label harga di pasar: 〇 〡 〢 〣 〤 〥 〦 〧 〨 〩 untuk 0 sampai 9. Widget menggambar batang hitung untuk sebuah bilangan di samping angka Suzhou-nya.`,
           ),

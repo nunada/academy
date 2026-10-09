@@ -171,7 +171,7 @@ Pangkat tumbuh dengan cepat. Setiap kali eksponen naik 1, nilainya dikalikan bas
 
 - **Zero.** The product law says $a^m\cdot a^0=a^{m+0}=a^m$. Multiplying $a^m$ by $a^0$ changes nothing, so $a^0$ must be 1.
 - **Negative.** $a^n\cdot a^{-n}=a^{0}=1$. Something that multiplies $a^n$ to give 1 is its reciprocal, so $a^{-n}=\dfrac{1}{a^n}$. A negative exponent does not make the number negative: $2^{-3}=\dfrac18$, not $-8$.
-- **Fractional.** $\left(a^{1/n}\right)^n=a^{\frac1n\cdot n}=a^1=a$. A number whose $n$-th power is $a$ is an $n$-th root, so $a^{1/n}=\sqrt[n]{a}$. More generally $a^{m/n}=\left(a^{1/n}\right)^m=\sqrt[n]{a^m}$.
+- **Fractional.** $\left(a^{1/n}\right)^n=a^{\frac1n\cdot n}=a^1=a$. A number whose $n$-th power is $a$ is an $n$-th root, so $a^{1/n}=\sqrt[n]{a}$. More generally $a^{m/n}=\left(a^{1/n}\right)^m=\sqrt[n]{a^m}$, so any [rational number](article:rational-numbers) can be an exponent.
 
 The pattern is easiest to see by walking down the powers of 2. Each step down divides by 2:
 
@@ -182,7 +182,7 @@ Use the widget to try another base.`,
 
 - **Nol.** Hukum perkalian berkata $a^m\cdot a^0=a^{m+0}=a^m$. Mengalikan $a^m$ dengan $a^0$ tidak mengubah apa pun, sehingga $a^0$ harus 1.
 - **Negatif.** $a^n\cdot a^{-n}=a^{0}=1$. Sesuatu yang mengalikan $a^n$ menjadi 1 adalah kebalikannya, sehingga $a^{-n}=\dfrac{1}{a^n}$. Eksponen negatif tidak membuat bilangannya negatif: $2^{-3}=\dfrac18$, bukan $-8$.
-- **Pecahan.** $\left(a^{1/n}\right)^n=a^{\frac1n\cdot n}=a^1=a$. Bilangan yang pangkat $n$-nya adalah $a$ adalah akar pangkat $n$, sehingga $a^{1/n}=\sqrt[n]{a}$. Lebih umum, $a^{m/n}=\left(a^{1/n}\right)^m=\sqrt[n]{a^m}$.
+- **Pecahan.** $\left(a^{1/n}\right)^n=a^{\frac1n\cdot n}=a^1=a$. Bilangan yang pangkat $n$-nya adalah $a$ adalah akar pangkat $n$, sehingga $a^{1/n}=\sqrt[n]{a}$. Lebih umum, $a^{m/n}=\left(a^{1/n}\right)^m=\sqrt[n]{a^m}$, sehingga setiap [bilangan rasional](article:rational-numbers) dapat menjadi eksponen.
 
 Polanya paling mudah terlihat dengan menuruni pangkat dari 2. Setiap langkah ke bawah membagi dengan 2:
 
@@ -307,7 +307,7 @@ Akar dari bilangan bulat adalah bilangan bulat (bila bilangan itu pangkat sempur
           text: L(
             T`**To simplify a radical, factor the number under the root, take every group of $n$ equal factors out of an $n$-th root, and multiply what comes out: $\sqrt{72}=\sqrt{2^3\cdot3^2}=3\cdot2\sqrt{2}=6\sqrt{2}$.** Follow these steps, shown for $\sqrt{72}$:
 
-1. Factor the radicand into primes: $72=2\cdot2\cdot2\cdot3\cdot3$.
+1. Factor the radicand into [primes](article:integers#primes): $72=2\cdot2\cdot2\cdot3\cdot3$.
 2. Group equal primes in sets as large as the index (pairs for a square root): $(2\cdot2)\cdot2\cdot(3\cdot3)$.
 3. Take one prime out for each group; what has no partner stays inside: the pair of 2s gives 2, the pair of 3s gives 3, and one 2 stays under the root.
 4. Multiply what came out: $2\cdot3=6$, so $\sqrt{72}=6\sqrt{2}$.
@@ -319,7 +319,7 @@ The rules behind it, for $a,b\ge0$: $\sqrt{ab}=\sqrt{a}\cdot\sqrt{b}$ and $\sqrt
 Try any number below. Switch the index to see cube roots and higher roots.`,
             T`**Untuk menyederhanakan bentuk akar, faktorkan bilangan di bawah akar, keluarkan setiap kelompok berisi $n$ faktor yang sama dari akar pangkat $n$, lalu kalikan yang keluar: $\sqrt{72}=\sqrt{2^3\cdot3^2}=3\cdot2\sqrt{2}=6\sqrt{2}$.** Ikuti langkah berikut, ditunjukkan untuk $\sqrt{72}$:
 
-1. Faktorkan radikan menjadi bilangan prima: $72=2\cdot2\cdot2\cdot3\cdot3$.
+1. Faktorkan radikan menjadi [bilangan prima](article:integers#primes): $72=2\cdot2\cdot2\cdot3\cdot3$.
 2. Kelompokkan bilangan prima yang sama dalam himpunan sebesar indeksnya (berpasangan untuk akar kuadrat): $(2\cdot2)\cdot2\cdot(3\cdot3)$.
 3. Keluarkan satu bilangan prima untuk setiap kelompok; yang tidak berpasangan tetap di dalam: pasangan 2 menghasilkan 2, pasangan 3 menghasilkan 3, dan satu 2 tetap di bawah akar.
 4. Kalikan yang keluar: $2\cdot3=6$, sehingga $\sqrt{72}=6\sqrt{2}$.
@@ -639,7 +639,7 @@ Math.sqrt(2) ** 2     // 2.0000000000000004
 | ´^´ for a power | it is XOR: ´2 ^ 3´ is 1 | use ´**´, or ´pow(2, 3)´ in Python and ´Math.pow(2, 3)´ in JavaScript |
 | ´-2 ** 2´ | Python gives −4; JavaScript refuses it as a SyntaxError | write ´(-2) ** 2´ or ´-(2 ** 2)´ so the meaning is clear |
 | Negative base, fractional exponent | Python returns a complex number; JavaScript returns NaN | use ´Math.cbrt´ for cube roots; check the sign first |
-| Roots and rounding | ´Math.sqrt(2) ** 2´ is ´2.0000000000000004´ | compare with a tolerance, as in the article on real numbers |
+| Roots and rounding | ´Math.sqrt(2) ** 2´ is ´2.0000000000000004´ | compare with a tolerance, as in the [article on real numbers](article:real-numbers#real-numbers-in-code) |
 | Very large powers | JavaScript numbers lose exactness beyond 2⁵³; Python integers do not | use ´BigInt´ in JavaScript, or Python's ´int´ |
 | ´0 ** 0´ | it is 1 in both languages | remember it is a convention, not a theorem |
 
@@ -651,7 +651,7 @@ Use ´math.isqrt´ in Python when you need the whole-number part of a square roo
 | ´^´ untuk pangkat | itu XOR: ´2 ^ 3´ bernilai 1 | pakai ´**´, atau ´pow(2, 3)´ di Python dan ´Math.pow(2, 3)´ di JavaScript |
 | ´-2 ** 2´ | Python memberi −4; JavaScript menolaknya sebagai SyntaxError | tulis ´(-2) ** 2´ atau ´-(2 ** 2)´ agar maknanya jelas |
 | Basis negatif, eksponen pecahan | Python mengembalikan bilangan kompleks; JavaScript mengembalikan NaN | pakai ´Math.cbrt´ untuk akar pangkat tiga; periksa tandanya lebih dulu |
-| Akar dan pembulatan | ´Math.sqrt(2) ** 2´ bernilai ´2.0000000000000004´ | bandingkan dengan toleransi, seperti pada artikel bilangan real |
+| Akar dan pembulatan | ´Math.sqrt(2) ** 2´ bernilai ´2.0000000000000004´ | bandingkan dengan toleransi, seperti pada [artikel bilangan real](article:real-numbers#real-numbers-in-code) |
 | Pangkat yang sangat besar | bilangan JavaScript kehilangan ketepatan di atas 2⁵³; bilangan bulat Python tidak | pakai ´BigInt´ di JavaScript, atau ´int´ Python |
 | ´0 ** 0´ | bernilai 1 di kedua bahasa | ingat bahwa itu kesepakatan, bukan teorema |
 
@@ -673,7 +673,7 @@ Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuad
 
 | Mistake | Correct |
 |---|---|
-| $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$. Check: $(1+2)^2=9$, not $1+4=5$. |
+| $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$. Check: $(1+2)^2=9$, not $1+4=5$. See [expanding brackets](article:algebraic-expressions#expand). |
 | $\sqrt{a+b}=\sqrt{a}+\sqrt{b}$ | False in general: $\sqrt{9+16}=5$, not $3+4=7$. |
 | $-3^2=9$ | $-3^2=-(3\cdot3)=-9$. Only $(-3)^2=9$. |
 | $2^{-3}=-8$ | $2^{-3}=\dfrac18$. A negative exponent is a reciprocal. |
@@ -686,7 +686,7 @@ Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuad
 
 | Kesalahan | Yang benar |
 |---|---|
-| $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$. Periksa: $(1+2)^2=9$, bukan $1+4=5$. |
+| $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$. Periksa: $(1+2)^2=9$, bukan $1+4=5$. Lihat [menjabarkan kurung](article:algebraic-expressions#expand). |
 | $\sqrt{a+b}=\sqrt{a}+\sqrt{b}$ | Salah pada umumnya: $\sqrt{9+16}=5$, bukan $3+4=7$. |
 | $-3^2=9$ | $-3^2=-(3\cdot3)=-9$. Hanya $(-3)^2=9$. |
 | $2^{-3}=-8$ | $2^{-3}=\dfrac18$. Eksponen negatif adalah kebalikan. |

@@ -201,6 +201,41 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Masukkan dua bilangan bulat positif dan lihat algoritma Euclid berjalan baris demi baris, lalu FPB, KPK, dan eksponen prima di baliknya.',
     },
   },
+  fracbars: {
+    title: { en: 'Interactive: equivalent fractions as bars', id: 'Interaktif: pecahan senilai sebagai batang' },
+    description: {
+      en: 'Move three sliders to cut a bar into more equal parts and see that the shaded amount, and so the fraction, does not change.',
+      id: 'Geser tiga penggeser untuk memotong batang menjadi lebih banyak bagian sama besar dan lihat bahwa bagian yang diarsir, sehingga pecahannya, tidak berubah.',
+    },
+  },
+  simplify: {
+    title: { en: 'Interactive: simplify a fraction', id: 'Interaktif: sederhanakan pecahan' },
+    description: {
+      en: 'Type a fraction and see the greatest common divisor, the lowest terms, the prime factors, the mixed number and the decimal.',
+      id: 'Ketik pecahan dan lihat faktor persekutuan terbesar, bentuk paling sederhana, faktor primanya, bilangan campuran, dan desimalnya.',
+    },
+  },
+  ratcompare: {
+    title: { en: 'Interactive: compare two fractions', id: 'Interaktif: bandingkan dua pecahan' },
+    description: {
+      en: 'Enter two fractions and see which is greater by cross-multiplying, their places on a number line, and a fraction that lies between them.',
+      id: 'Masukkan dua pecahan dan lihat mana yang lebih besar dengan perkalian silang, letaknya pada garis bilangan, dan sebuah pecahan di antara keduanya.',
+    },
+  },
+  ratops: {
+    title: { en: 'Interactive: the four operations on fractions', id: 'Interaktif: empat operasi pada pecahan' },
+    description: {
+      en: 'Add, subtract, multiply or divide two fractions and read the working line by line, down to the simplified answer and its mixed number.',
+      id: 'Jumlahkan, kurangkan, kalikan, atau bagi dua pecahan dan baca langkah-langkahnya baris demi baris, sampai jawaban sederhana dan bilangan campurannya.',
+    },
+  },
+  ratdecimal: {
+    title: { en: 'Interactive: from fraction to decimal and percent', id: 'Interaktif: dari pecahan ke desimal dan persen' },
+    description: {
+      en: 'Type a fraction and see its decimal, whether it ends or repeats and why, the length of the repeating block, and the percentage.',
+      id: 'Ketik pecahan dan lihat desimalnya, apakah ia berakhir atau berulang dan mengapa, panjang blok yang berulang, dan persennya.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

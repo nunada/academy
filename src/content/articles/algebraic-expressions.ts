@@ -68,7 +68,7 @@ Expressions are built from **terms**, the parts joined by + or −. Each term ha
 | $-y$ | −1 | $y$ | 1 |
 | $4xy$ | 4 | $xy$ | 2 |
 
-Three habits make this easier. The sign in front of a term belongs to the term, so $3x^2-5x+7$ has the terms $3x^2$, $-5x$ and $7$. A letter on its own has coefficient 1, so $x=1x$. And the **degree** of a term is the sum of the exponents of its letters, so $4xy$ has degree 2; the degree of an expression is the largest degree among its terms.
+Three habits make this easier. The sign in front of a term belongs to the term, so $3x^2-5x+7$ has the terms $3x^2$, $-5x$ and $7$. A letter on its own has coefficient 1, so $x=1x$. And the **degree** of a term is the sum of the [exponents](article:exponents-and-radicals#what-is-an-exponent) of its letters, so $4xy$ has degree 2; the degree of an expression is the largest degree among its terms.
 
 The usual names are by number of terms: a **monomial** has one term, a **binomial** two and a **trinomial** three. A sum of terms whose letters have whole-number exponents is a **polynomial**; its degree gives it a name, linear (1), quadratic (2) or cubic (3). Not every expression is a polynomial: $\dfrac1x$ and $\sqrt{x}$ are algebraic expressions but not polynomials.
 
@@ -85,7 +85,7 @@ Bentuk aljabar tersusun dari **suku**, yaitu bagian-bagian yang dihubungkan oleh
 | $-y$ | −1 | $y$ | 1 |
 | $4xy$ | 4 | $xy$ | 2 |
 
-Tiga kebiasaan membuatnya lebih mudah. Tanda di depan sebuah suku adalah milik suku itu, sehingga $3x^2-5x+7$ memiliki suku $3x^2$, $-5x$, dan $7$. Huruf yang berdiri sendiri berkoefisien 1, sehingga $x=1x$. Dan **derajat** sebuah suku adalah jumlah eksponen hurufnya, sehingga $4xy$ berderajat 2; derajat bentuk aljabar adalah derajat terbesar di antara sukunya.
+Tiga kebiasaan membuatnya lebih mudah. Tanda di depan sebuah suku adalah milik suku itu, sehingga $3x^2-5x+7$ memiliki suku $3x^2$, $-5x$, dan $7$. Huruf yang berdiri sendiri berkoefisien 1, sehingga $x=1x$. Dan **derajat** sebuah suku adalah jumlah [eksponen](article:exponents-and-radicals#what-is-an-exponent) hurufnya, sehingga $4xy$ berderajat 2; derajat bentuk aljabar adalah derajat terbesar di antara sukunya.
 
 Namanya biasanya menurut banyak suku: **monomial** memiliki satu suku, **binomial** dua, dan **trinomial** tiga. Jumlah suku yang hurufnya berpangkat bilangan bulat disebut **polinomial** (suku banyak); derajatnya memberi nama: linear (1), kuadrat (2), atau kubik (3). Tidak semua bentuk aljabar adalah polinomial: $\dfrac1x$ dan $\sqrt{x}$ adalah bentuk aljabar tetapi bukan polinomial.
 
@@ -189,7 +189,7 @@ Tidak ada lagi yang dapat digabung, sehingga $3x^2+10x-4$ adalah bentuk paling s
         {
           kind: 'text',
           text: L(
-            T`**To evaluate an expression, replace every letter with its value, writing each value in brackets, and then calculate with the usual order of operations: brackets, then powers, then × and ÷, then + and −.** The brackets are what keep negative values safe.
+            T`**To evaluate an expression, replace every letter with its value, writing each value in brackets, and then calculate with the usual order of operations: brackets, then powers, then × and ÷, then + and −.** The brackets are what keep negative values safe, and the [order of operations with negative numbers](article:integers#order-of-operations) has traps of its own.
 
 Evaluate $2x^2-3x$ at $x=-3$:
 
@@ -207,7 +207,7 @@ A table of values evaluates one expression at many inputs. For $2x^2-3x$:
 | $2x^2-3x$ | 14 | 5 | 0 | −1 | 2 |
 
 **Substitution is also how you test.** Two expressions are *equivalent* when they have the same value for every input. One input where they differ proves they are not equivalent: $(x+3)^2$ and $x^2+9$ both give 9 at $x=0$, but at $x=1$ they give 16 and 10. The reverse does not hold. Agreeing at a few inputs proves nothing, since $x^2$ and $2x$ agree at both $x=0$ and $x=2$ yet are different expressions.`,
-            T`**Untuk menghitung nilai bentuk aljabar, ganti setiap huruf dengan nilainya, tulis tiap nilai di dalam kurung, lalu hitung dengan urutan operasi biasa: kurung, lalu pangkat, lalu × dan ÷, lalu + dan −.** Kurunglah yang menjaga nilai negatif tetap aman.
+            T`**Untuk menghitung nilai bentuk aljabar, ganti setiap huruf dengan nilainya, tulis tiap nilai di dalam kurung, lalu hitung dengan urutan operasi biasa: kurung, lalu pangkat, lalu × dan ÷, lalu + dan −.** Kurunglah yang menjaga nilai negatif tetap aman, dan [urutan operasi pada bilangan negatif](article:integers#order-of-operations) punya jebakannya sendiri.
 
 Hitung $2x^2-3x$ pada $x=-3$:
 
@@ -419,7 +419,7 @@ $\dfrac{x^2-1}{x^2-x}=\dfrac{(x-1)(x+1)}{x(x-1)}=\dfrac{x+1}{x}$.
 
 **Multiplying and dividing** work as with numbers: multiply tops and bottoms, $\dfrac ab\cdot\dfrac cd=\dfrac{ac}{bd}$, and to divide, multiply by the reciprocal, $\dfrac ab\div\dfrac cd=\dfrac ab\cdot\dfrac dc$. Factor first and cancel before multiplying out.
 
-**Adding and subtracting** need a common denominator, just as $\frac12+\frac13$ does:
+**Adding and subtracting** need a common denominator, just as [fractions of numbers](article:rational-numbers#add-subtract-fractions) such as $\frac12+\frac13$ do:
 
 $\dfrac1x+\dfrac1{x+1}=\dfrac{x+1}{x(x+1)}+\dfrac{x}{x(x+1)}=\dfrac{2x+1}{x(x+1)}$.
 
@@ -436,7 +436,7 @@ $\dfrac{x^2-1}{x^2-x}=\dfrac{(x-1)(x+1)}{x(x-1)}=\dfrac{x+1}{x}$.
 
 **Perkalian dan pembagian** bekerja seperti pada bilangan: kalikan pembilang dan penyebut, $\dfrac ab\cdot\dfrac cd=\dfrac{ac}{bd}$, dan untuk membagi, kalikan dengan kebalikannya, $\dfrac ab\div\dfrac cd=\dfrac ab\cdot\dfrac dc$. Faktorkan dulu dan coret sebelum mengalikan.
 
-**Penjumlahan dan pengurangan** memerlukan penyebut yang sama, seperti $\frac12+\frac13$:
+**Penjumlahan dan pengurangan** memerlukan penyebut yang sama, seperti pada [pecahan bilangan](article:rational-numbers#add-subtract-fractions) semisal $\frac12+\frac13$:
 
 $\dfrac1x+\dfrac1{x+1}=\dfrac{x+1}{x(x+1)}+\dfrac{x}{x(x+1)}=\dfrac{2x+1}{x(x+1)}$.
 
@@ -577,7 +577,7 @@ g(-3)    // NaN, because the original is 0 / 0 there`,
 | ´^´ for a power | it is XOR, not a power | use ´**´ |
 | ´x ** 2´ in plain Python | NameError until x has a value | give x a number, or use SymPy for a symbol |
 | Symbolic vs numeric | ´x**2 - 9´ never becomes ´(x - 3)*(x + 3)´ by itself | use ´factor´ in SymPy |
-| Comparing results | ´0.1 * 3´ is not exactly ´0.3´ | compare with a tolerance, as in the article on real numbers |
+| Comparing results | ´0.1 * 3´ is not exactly ´0.3´ | compare with a tolerance, as in the [article on real numbers](article:real-numbers#real-numbers-in-code) |
 
 A numeric test such as ´f(2)´ can catch a wrong simplification but cannot prove a right one: it checks one input, exactly the limit described in the section on evaluating.`,
             T`Jebakannya, berurutan dari yang paling sering menggigit:
@@ -589,7 +589,7 @@ A numeric test such as ´f(2)´ can catch a wrong simplification but cannot prov
 | ´^´ untuk pangkat | itu XOR, bukan pangkat | pakai ´**´ |
 | ´x ** 2´ di Python biasa | NameError sampai x diberi nilai | beri x sebuah bilangan, atau pakai SymPy untuk simbol |
 | Simbolik lawan numerik | ´x**2 - 9´ tidak pernah menjadi ´(x - 3)*(x + 3)´ dengan sendirinya | pakai ´factor´ di SymPy |
-| Membandingkan hasil | ´0.1 * 3´ tidak persis ´0.3´ | bandingkan dengan toleransi, seperti pada artikel bilangan real |
+| Membandingkan hasil | ´0.1 * 3´ tidak persis ´0.3´ | bandingkan dengan toleransi, seperti pada [artikel bilangan real](article:real-numbers#real-numbers-in-code) |
 
 Uji numerik seperti ´f(2)´ dapat menangkap penyederhanaan yang salah tetapi tidak dapat membuktikan yang benar: ia memeriksa satu masukan, tepat seperti batas yang dijelaskan pada bagian menghitung nilai.`,
           ),

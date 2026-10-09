@@ -70,6 +70,10 @@ jobs:
       # divisibility rules, factorisation, gcd and lcm): checked against hand-written
       # answers, the language operators and brute force.
       - run: npm run check:integers
+      # The fraction engine behind the rational-numbers widgets (operations, mixed
+      # numbers, when a decimal ends and how it repeats): checked against hand-written
+      # answers, float arithmetic and long division.
+      - run: npm run check:rationals
 
       - name: Work out where the site will live
         id: base

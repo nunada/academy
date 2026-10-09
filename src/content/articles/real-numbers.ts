@@ -149,7 +149,7 @@ Bilangan real digunakan dalam pengukuran, kalkulus, fisika, dan berbagai komputa
 | Irrational numbers | ℝ∖ℚ | real numbers that are not rational | $\sqrt{2}$, $\pi$, $e$ |
 | Real numbers | ℝ | all of the above together | everything on the number line |
 
-Every integer is rational, because $5=\frac{5}{1}$. Every rational number is real. And the two big families, rational and irrational, do not overlap: a real number is exactly one of them.`,
+Every [integer](article:integers) is rational, because $5=\frac{5}{1}$, and the [article on rational numbers](article:rational-numbers) shows how fractions are compared, added and simplified. Every rational number is real. And the two big families, rational and irrational, do not overlap: a real number is exactly one of them.`,
             T`**Jenis-jenis bilangan real adalah bilangan asli, cacah, bulat, rasional, dan irasional.** Himpunan-himpunan tersebut tersusun secara bertingkat: setiap himpunan memuat himpunan sebelumnya dan menambahkan bilangan yang tidak dapat dinyatakan oleh himpunan sebelumnya.
 
 | Himpunan | Simbol | Isinya | Contoh |
@@ -161,7 +161,7 @@ Every integer is rational, because $5=\frac{5}{1}$. Every rational number is rea
 | Bilangan irasional | ℝ∖ℚ | bilangan real yang bukan rasional | $\sqrt{2}$, $\pi$, $e$ |
 | Bilangan real | ℝ | gabungan semuanya | semua titik pada garis bilangan |
 
-Setiap bilangan bulat itu rasional, karena $5=\frac{5}{1}$. Setiap bilangan rasional itu real. Dan dua kelompok utama, rasional dan irasional, tidak beririsan: sebuah bilangan real tepat salah satunya.`,
+Setiap [bilangan bulat](article:integers) itu rasional, karena $5=\frac{5}{1}$, dan [artikel bilangan rasional](article:rational-numbers) menunjukkan cara membandingkan, menjumlahkan, dan menyederhanakan pecahan. Setiap bilangan rasional itu real. Dan dua kelompok utama, rasional dan irasional, tidak beririsan: sebuah bilangan real tepat salah satunya.`,
           ),
         },
         {
@@ -319,7 +319,7 @@ Jika ada angka yang tidak berulang, seperti pada $0{,}41\overline{6}$, gunakan d
 - $e=2.71828182\ldots$, the base of natural logarithms, which appears in growth and decay.
 - $\varphi=\dfrac{1+\sqrt{5}}{2}=1.61803398\ldots$, the golden ratio.
 
-There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square (and when it is, $\sqrt{n}$ is a whole number). Factorise $n$; if every prime appears an even number of times, $n$ is a perfect square and the root is a whole number. So $\sqrt{50}=5\sqrt{2}$ is irrational, while $\sqrt{49}=7$ is not.`,
+There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square (and when it is, $\sqrt{n}$ is a whole number). Factorise $n$ into [primes](article:integers#primes); if every prime appears an even number of times, $n$ is a perfect square and the root is a whole number. So $\sqrt{50}=5\sqrt{2}$ is irrational, while $\sqrt{49}=7$ is not; [simplifying radicals](article:exponents-and-radicals#simplify-radicals) shows how $\sqrt{50}$ becomes $5\sqrt2$.`,
             T`**Bilangan irasional** adalah bilangan real yang **bukan** rasional: tidak ada pecahan dua bilangan bulat yang sama dengannya. Dalam bentuk desimal, ia tidak pernah berakhir dan tidak memiliki pola angka yang berulang secara periodik. Contoh bilangan irasional yang terkenal antara lain:
 
 - $\sqrt{2}=1{,}41421356\ldots$, diagonal persegi dengan sisi 1.
@@ -327,7 +327,7 @@ There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ 
 - $e=2{,}71828182\ldots$, bilangan dasar logaritma natural, yang muncul pada pertumbuhan dan peluruhan.
 - $\varphi=\dfrac{1+\sqrt{5}}{2}=1{,}61803398\ldots$, rasio emas.
 
-Ada uji sederhana untuk akar kuadrat: untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna (dan jika $n$ kuadrat sempurna, $\sqrt{n}$ adalah bilangan bulat). Faktorkan $n$; jika setiap prima muncul sebanyak bilangan genap, $n$ adalah kuadrat sempurna dan akarnya bilangan bulat. Jadi $\sqrt{50}=5\sqrt{2}$ irasional, sedangkan $\sqrt{49}=7$ tidak.`,
+Ada uji sederhana untuk akar kuadrat: untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna (dan jika $n$ kuadrat sempurna, $\sqrt{n}$ adalah bilangan bulat). Faktorkan $n$ menjadi [bilangan prima](article:integers#primes); jika setiap prima muncul sebanyak bilangan genap, $n$ adalah kuadrat sempurna dan akarnya bilangan bulat. Jadi $\sqrt{50}=5\sqrt{2}$ irasional, sedangkan $\sqrt{49}=7$ tidak; [menyederhanakan bentuk akar](article:exponents-and-radicals#simplify-radicals) menunjukkan bagaimana $\sqrt{50}$ menjadi $5\sqrt2$.`,
           ),
         },
         {
