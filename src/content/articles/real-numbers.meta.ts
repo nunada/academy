@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'bilangan real, apa itu bilangan real, contoh bilangan real, sifat bilangan real, perbedaan bilangan rasional dan irasional, rumus bilangan real, bilangan rasional, bilangan irasional, garis bilangan, bilangan asli, bilangan cacah, bilangan bulat, desimal berulang, desimal berhenti, bukti akar 2 irasional, pi, floating point, notasi interval, nilai mutlak, himpunan bilangan real, himpunan bilangan, kuadrat sempurna, R, Q, Z, N',
   },
   published: '2026-10-09',
-  updated: '2026-10-09',
+  updated: '2026-10-10',
   readingMinutes: 19,
   about: [
     { name: { en: 'Real number', id: 'Bilangan real' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Real_number', id: 'https://id.wikipedia.org/wiki/Bilangan_real' } },

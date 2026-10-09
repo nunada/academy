@@ -19,8 +19,8 @@ const T = (s: TemplateStringsArray): string =>
 
 export const body: ArticleBody = {
   answer: L(
-    T`**Real numbers** are all the numbers that sit on the number line. They are the numbers we use every day — whole numbers, fractions, and decimals that end or repeat, all called *rational* numbers — together with numbers such as $\sqrt{2}$ and $\pi$ that no fraction can equal, called *irrational* numbers. The set of real numbers is written $\mathbb{R}$. A real number is rational when its decimal expansion ends or repeats, and irrational when it never ends and never repeats.`,
-    T`**Bilangan real** adalah semua bilangan yang terletak pada garis bilangan. Bilangan real mencakup bilangan yang digunakan sehari-hari, seperti bilangan bulat, pecahan, dan desimal yang berakhir atau berulang, yang semuanya disebut bilangan *rasional* — serta bilangan seperti $\sqrt{2}$ dan $\pi$ yang tidak dapat dinyatakan sebagai pecahan dua bilangan bulat dengan penyebut tak nol, yang disebut bilangan *irasional*. Himpunan bilangan real ditulis $\mathbb{R}$. Sebuah bilangan real itu rasional jika bentuk desimalnya berakhir atau berulang, dan irasional jika bentuk desimalnya tidak pernah berakhir dan tidak pernah berulang.`,
+    T`**Real numbers** are all the numbers that sit on the number line. They are the numbers we use every day — integers, fractions, and decimals that terminate or eventually repeat periodically, all called *rational* numbers — together with numbers such as $\sqrt{2}$ and $\pi$ that no fraction can equal, called *irrational* numbers. The set of real numbers is written $\mathbb{R}$. A real number is rational when its decimal expansion terminates or eventually repeats periodically, and irrational when its decimal expansion is infinite and never periodic.`,
+    T`**Bilangan real** adalah semua bilangan yang terletak pada garis bilangan. Bilangan real mencakup bilangan yang digunakan sehari-hari, seperti bilangan bulat, pecahan, dan desimal yang berakhir atau akhirnya berulang secara periodik, yang semuanya disebut bilangan *rasional* — serta bilangan seperti $\sqrt{2}$ dan $\pi$ yang tidak dapat dinyatakan sebagai pecahan dua bilangan bulat, yang disebut bilangan *irasional*. Himpunan bilangan real ditulis $\mathbb{R}$. Sebuah bilangan real itu rasional jika ekspansi desimalnya berakhir atau akhirnya berulang secara periodik, dan irasional jika ekspansi desimalnya tak berhingga dan tidak pernah periodik.`,
   ),
 
   keyPoints: [
@@ -33,8 +33,8 @@ export const body: ArticleBody = {
       T`Himpunan bilangan bersarang: $\mathbb{N}\subset W\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$, dan bilangan irasional adalah bilangan real di luar $\mathbb{Q}$.`,
     ),
     L(
-      T`A fraction in lowest terms has an ending decimal exactly when its denominator has no prime factor other than 2 and 5. Otherwise the decimal repeats.`,
-      T`Pecahan paling sederhana punya desimal yang berhenti tepat ketika penyebutnya tidak punya faktor prima selain 2 dan 5. Jika tidak, desimalnya berulang.`,
+      T`A fraction in lowest terms has a terminating decimal expansion exactly when its denominator has no prime factor other than 2 and 5. Otherwise the expansion eventually repeats periodically.`,
+      T`Pecahan paling sederhana punya ekspansi desimal yang berakhir tepat ketika penyebutnya tidak punya faktor prima selain 2 dan 5. Jika tidak, ekspansinya akhirnya berulang secara periodik.`,
     ),
     L(
       T`$\sqrt{2}$ is irrational, and the proof is short. So are $\pi$ and $e$, and for a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square.`,
@@ -59,13 +59,15 @@ export const body: ArticleBody = {
         {
           kind: 'text',
           text: L(
-            T`A **real number** is any number that can be placed on the number line. Equivalently, it is any number that can be written as a decimal — one that ends, one that repeats, or one that goes on for ever with no pattern: $3$, $-0.5$, $\frac{1}{3}=0.333\ldots$ and $\sqrt{2}=1.41421\ldots$ are all real numbers. The set of all real numbers is written $\mathbb{R}$.
+            T`A **real number** is any number that can be placed on the number line. Equivalently, it is any number that has a decimal expansion: one that terminates, one that eventually repeats periodically, or one that is infinite and never periodic: $3$, $-0.5$, $\frac{1}{3}=0.333\ldots$ and $\sqrt{2}=1.41421\ldots$ are all real numbers. The set of all real numbers is written $\mathbb{R}$.
 
 Every time you measure something — the length of a table, the temperature at noon, the time a race took — the answer is a real number.
 
 Another way to say the same thing is geometric. Draw a straight line, mark a point for 0 and another for 1, and every point on the line stands for exactly one real number. The line is the **number line**. Intuitively it has no gaps; that property is called **completeness**, and the section on the number line below says exactly what it means.
 
-Real numbers are the numbers of measurement, of calculus, of physics, and of almost every program that does arithmetic. Knowing how they are organised — which are fractions, which are not, and how a computer stores them — prevents a long list of mistakes, from a wrong exam answer to a wrong bank balance.
+Real numbers are the numbers used in measurement, in calculus, in physics, and in almost every program that does arithmetic. Knowing how they are organised — which are fractions, which are not, and how a computer stores them — prevents a long list of mistakes, from a wrong exam answer to a wrong bank balance.
+
+**A note on notation.** In this article the natural numbers $\mathbb{N}$ are $1,2,3,\ldots$ and the whole numbers $W$ are $0,1,2,3,\ldots$. Some books count 0 as a natural number, so check the convention when you read elsewhere. The word *integer* always means a number in $\mathbb{Z}$, and *decimal expansion* means the full list of digits of a number, however long.
 
 **Real numbers at a glance**
 
@@ -73,12 +75,12 @@ Real numbers are the numbers of measurement, of calculus, of physics, and of alm
 |---|---|
 | Symbol | $\mathbb{R}$ |
 | What it contains | all rational and all irrational numbers |
-| Decimal form | ends, repeats, or goes on for ever with no repeating block |
+| Decimal expansion | terminates, eventually repeats periodically, or is infinite and never periodic |
 | Operations | closed under addition, subtraction, multiplication and division (never by 0) |
 | Size | uncountably infinite (Cantor, 1874) |
 | Built rigorously by | Dedekind and Cantor, both in 1872 |
 | Not real numbers | $\infty$, and $\sqrt{-1}$ (a complex number) |`,
-            T`**Bilangan real** adalah bilangan apa pun yang dapat diletakkan pada garis bilangan. Dengan kata lain, bilangan real dapat dinyatakan dalam bentuk desimal — yang berakhir, yang berulang, atau yang berlanjut tanpa akhir tanpa pola: $3$, $-0{,}5$, $\frac{1}{3}=0{,}333\ldots$ dan $\sqrt{2}=1{,}41421\ldots$ semuanya bilangan real. Himpunan semua bilangan real ditulis $\mathbb{R}$.
+            T`**Bilangan real** adalah bilangan apa pun yang dapat diletakkan pada garis bilangan. Dengan kata lain, setiap bilangan real punya ekspansi desimal: yang berakhir, yang akhirnya berulang secara periodik, atau yang tak berhingga dan tidak pernah periodik: $3$, $-0{,}5$, $\frac{1}{3}=0{,}333\ldots$ dan $\sqrt{2}=1{,}41421\ldots$ semuanya bilangan real. Himpunan semua bilangan real ditulis $\mathbb{R}$.
 
 Setiap kali kamu mengukur sesuatu — panjang meja, suhu siang hari, waktu yang dipakai dalam lomba lari — hasil pengukuran tersebut dapat dinyatakan dengan bilangan real.
 
@@ -86,13 +88,15 @@ Cara lain mengatakannya bersifat geometris. Gambarlah garis lurus, tandai satu t
 
 Bilangan real digunakan dalam pengukuran, kalkulus, fisika, dan berbagai komputasi numerik. Mengetahui bagaimana bilangan real tersusun — mana yang pecahan, mana yang bukan, dan bagaimana komputer menyimpannya — membantu memahami berbagai persoalan perhitungan, termasuk kesalahan pembulatan dalam komputasi.
 
+**Catatan notasi.** Di artikel ini bilangan asli $\mathbb{N}$ adalah $1,2,3,\ldots$ dan bilangan cacah $W$ adalah $0,1,2,3,\ldots$. Sebagian buku menganggap 0 sebagai bilangan asli, jadi periksa konvensinya bila membaca di tempat lain. Kata *bilangan bulat* selalu berarti bilangan dalam $\mathbb{Z}$, dan *ekspansi desimal* berarti seluruh deretan angka sebuah bilangan, sepanjang apa pun.
+
 **Bilangan real sekilas**
 
 | Fakta | Keterangan |
 |---|---|
 | Simbol | $\mathbb{R}$ |
 | Isinya | semua bilangan rasional dan semua bilangan irasional |
-| Bentuk desimal | berhenti, berulang, atau berlanjut tanpa akhir tanpa kelompok angka yang berulang |
+| Ekspansi desimal | berakhir, akhirnya berulang secara periodik, atau tak berhingga dan tidak pernah periodik |
 | Operasi | tertutup terhadap penjumlahan, pengurangan, perkalian, dan pembagian (tidak pernah dengan 0) |
 | Ukuran | tak terhitung banyaknya (Cantor, 1874) |
 | Dibangun secara ketat oleh | Dedekind dan Cantor, keduanya pada 1872 |
@@ -143,7 +147,7 @@ Bilangan real digunakan dalam pengukuran, kalkulus, fisika, dan berbagai komputa
 | Set | Symbol | What it contains | Examples |
 |---|---|---|---|
 | Natural numbers | ℕ | the counting numbers $1, 2, 3, \ldots$ | 1, 7, 250 |
-| Whole numbers | W | the natural numbers and 0 | 0, 3, 12 |
+| Whole numbers | W | the natural numbers together with 0: $0, 1, 2, 3, \ldots$ | 0, 3, 12 |
 | Integers | ℤ | whole numbers and their negatives | −5, 0, 8 |
 | Rational numbers | ℚ | every number $\frac{p}{q}$ with integers $p$ and $q\neq 0$ | $\frac{2}{3}$, −0.75, 4 |
 | Irrational numbers | ℝ∖ℚ | real numbers that are not rational | $\sqrt{2}$, $\pi$, $e$ |
@@ -155,7 +159,7 @@ Every [integer](article:integers) is rational, because $5=\frac{5}{1}$, and the 
 | Himpunan | Simbol | Isinya | Contoh |
 |---|---|---|---|
 | Bilangan asli | ℕ | bilangan yang digunakan untuk menghitung: $1, 2, 3$, dan seterusnya | 1, 7, 250 |
-| Bilangan cacah | W | bilangan asli dan 0 | 0, 3, 12 |
+| Bilangan cacah | W | bilangan asli beserta 0: $0, 1, 2, 3, \ldots$ | 0, 3, 12 |
 | Bilangan bulat | ℤ | bilangan cacah beserta negatifnya | −5, 0, 8 |
 | Bilangan rasional | ℚ | setiap bilangan $\frac{p}{q}$ dengan $p$ dan $q\neq 0$ bilangan bulat | $\frac{2}{3}$, −0,75, 4 |
 | Bilangan irasional | ℝ∖ℚ | bilangan real yang bukan rasional | $\sqrt{2}$, $\pi$, $e$ |
@@ -179,10 +183,10 @@ Setiap [bilangan bulat](article:integers) itu rasional, karena $5=\frac{5}{1}$, 
           text: L(
             T`Not every number is real. The equation $x^2=-1$ has no real solution, because a real number squared is never negative. Mathematicians add a new number $i$ with $i^2=-1$ and get the **complex numbers** $\mathbb{C}$, which contain $\mathbb{R}$ — but that is another article.
 
-One trap before you try the next activity. A root sign does not make a number irrational: $\sqrt{16}=4$ is a natural number. And a decimal does not make a number irrational either: $1.4142$ ends, so it is the fraction $\frac{14142}{10000}$.`,
+One trap before you try the next activity. A root sign does not make a number irrational: $\sqrt{16}=4$ is a natural number. And a decimal does not make a number irrational either: $1.4142$ terminates, so it is the fraction $\frac{14142}{10000}$.`,
             T`Tidak semua bilangan itu real. Persamaan $x^2=-1$ tidak punya solusi real, karena bilangan real yang dikuadratkan tidak pernah negatif. Para matematikawan menambahkan bilangan baru $i$ dengan $i^2=-1$ dan memperoleh **bilangan kompleks** $\mathbb{C}$, yang memuat $\mathbb{R}$ — tetapi itu artikel lain.
 
-Satu jebakan sebelum mencoba aktivitas berikut. Tanda akar tidak otomatis membuat bilangan irasional: $\sqrt{16}=4$ adalah bilangan asli. Dan bentuk desimal juga tidak otomatis membuatnya irasional: $1{,}4142$ berhenti, jadi ia adalah pecahan $\frac{14142}{10000}$.`,
+Satu jebakan sebelum mencoba aktivitas berikut. Tanda akar tidak otomatis membuat bilangan irasional: $\sqrt{16}=4$ adalah bilangan asli. Dan bentuk desimal juga tidak otomatis membuatnya irasional: $1{,}4142$ berakhir, jadi ia adalah pecahan $\frac{14142}{10000}$.`,
           ),
         },
         { kind: 'widget', name: 'classify' },
@@ -197,16 +201,16 @@ Satu jebakan sebelum mencoba aktivitas berikut. Tanda akar tidak otomatis membua
         {
           kind: 'text',
           text: L(
-            T`A **rational number** is a number that can be written as a fraction $\frac{p}{q}$ of two integers, with $q\neq 0$. The word comes from *ratio*. Every rational number can also be written as a decimal, and that decimal always behaves in one of two ways:
+            T`A **rational number** is a number that can be written as a fraction $\frac{p}{q}$ of two integers, with $q\neq 0$. The word comes from *ratio*. Every rational number can also be written as a decimal, and its decimal expansion always behaves in one of two ways:
 
-- It **ends** (terminates): $\frac{1}{8}=0.125$ and $\frac{3}{40}=0.075$.
-- It **repeats** for ever in a block: $\frac{1}{3}=0.333\ldots=0.\overline{3}$ and $\frac{3}{11}=0.272727\ldots=0.\overline{27}$.
+- It **terminates**: $\frac{1}{8}=0.125$ and $\frac{3}{40}=0.075$.
+- It **eventually repeats periodically**, with one block of digits repeating without end: $\frac{1}{3}=0.333\ldots=0.\overline{3}$ and $\frac{3}{11}=0.272727\ldots=0.\overline{27}$.
 
 The bar over the digits marks the repeating block. Which of the two happens is decided by the denominator, once the fraction is in lowest terms.`,
-            T`**Bilangan rasional** adalah bilangan yang dapat ditulis sebagai pecahan $\frac{p}{q}$ dari dua bilangan bulat, dengan $q\neq 0$. Kata ini berasal dari *rasio*. Setiap bilangan rasional juga dapat ditulis sebagai desimal, dan bentuk desimalnya memiliki salah satu dari dua sifat berikut:
+            T`**Bilangan rasional** adalah bilangan yang dapat ditulis sebagai pecahan $\frac{p}{q}$ dari dua bilangan bulat, dengan $q\neq 0$. Kata ini berasal dari *rasio*. Setiap bilangan rasional juga dapat ditulis sebagai desimal, dan ekspansi desimalnya memiliki salah satu dari dua sifat berikut:
 
-- Desimalnya **berhenti**: $\frac{1}{8}=0{,}125$ dan $\frac{3}{40}=0{,}075$.
-- Desimalnya **berulang** tanpa akhir dalam satu kelompok angka: $\frac{1}{3}=0{,}333\ldots=0{,}\overline{3}$ dan $\frac{3}{11}=0{,}272727\ldots=0{,}\overline{27}$.
+- Ekspansinya **berakhir**: $\frac{1}{8}=0{,}125$ dan $\frac{3}{40}=0{,}075$.
+- Ekspansinya **akhirnya berulang secara periodik**, dengan satu kelompok angka berulang tanpa akhir: $\frac{1}{3}=0{,}333\ldots=0{,}\overline{3}$ dan $\frac{3}{11}=0{,}272727\ldots=0{,}\overline{27}$.
 
 Garis di atas angka menandai kelompok angka yang berulang. Mana dari keduanya yang terjadi ditentukan oleh penyebutnya, setelah pecahannya disederhanakan.`,
           ),
@@ -216,19 +220,19 @@ Garis di atas angka menandai kelompok angka yang berulang. Mana dari keduanya ya
           tone: 'tip',
           title: L('The prime-factor rule', 'Aturan faktor prima'),
           text: L(
-            T`Write the fraction in lowest terms and factorise its denominator into primes. If the **only** primes are 2 and 5, the decimal ends. If any other prime appears, the decimal repeats.
+            T`Write the fraction in lowest terms and factorise its denominator into primes. If the **only** primes are 2 and 5, the decimal expansion terminates. If any other prime appears, it eventually repeats periodically.
 
-For example $\frac{7}{20}$: $20=2^2\times 5$, so it ends ($0.35$). For $\frac{5}{12}$: $12=2^2\times 3$, and the 3 forces a repeat ($0.41\overline{6}$). The reason: dividing by $2^a5^b$ is the same as multiplying to reach a power of 10, and powers of 10 contain only 2s and 5s.`,
-            T`Tulis pecahan dalam bentuk paling sederhana lalu faktorkan penyebutnya menjadi bilangan prima. Jika **satu-satunya** prima adalah 2 dan 5, desimalnya berhenti. Jika ada prima lain, desimalnya berulang.
+For example $\frac{7}{20}$: $20=2^2\times 5$, so it terminates ($0.35$). For $\frac{5}{12}$: $12=2^2\times 3$, and the 3 forces a repeat ($0.41\overline{6}$). The reason: dividing by $2^a5^b$ is the same as multiplying to reach a power of 10, and powers of 10 contain only 2s and 5s.`,
+            T`Tulis pecahan dalam bentuk paling sederhana lalu faktorkan penyebutnya menjadi bilangan prima. Jika **satu-satunya** prima adalah 2 dan 5, ekspansi desimalnya berakhir. Jika ada prima lain, ekspansinya akhirnya berulang secara periodik.
 
-Contohnya $\frac{7}{20}$: $20=2^2\times 5$, jadi berhenti ($0{,}35$). Untuk $\frac{5}{12}$: $12=2^2\times 3$, dan faktor 3 memaksa desimalnya berulang ($0{,}41\overline{6}$). Alasannya: membagi dengan $2^a5^b$ sama dengan mengalikan hingga mencapai pangkat 10, dan pangkat 10 hanya mengandung faktor 2 dan 5.`,
+Contohnya $\frac{7}{20}$: $20=2^2\times 5$, jadi berakhir ($0{,}35$). Untuk $\frac{5}{12}$: $12=2^2\times 3$, dan faktor 3 memaksa desimalnya berulang ($0{,}41\overline{6}$). Alasannya: membagi dengan $2^a5^b$ sama dengan mengalikan hingga mencapai pangkat 10, dan pangkat 10 hanya mengandung faktor 2 dan 5.`,
           ),
         },
         { kind: 'widget', name: 'decimal' },
         {
           kind: 'text',
           text: L(
-            T`**Why must a decimal repeat?** Do the long division of $\frac{p}{q}$. After each digit a remainder is left, and it is always one of $0, 1, \ldots, q-1$. If the remainder is ever 0, the decimal ends. If not, there are only $q-1$ possible non-zero remainders, so within $q$ steps one of them must come back — and from that moment the digits repeat, because the same remainder leads to the same next digit. This is why the block of $\frac{1}{7}=0.\overline{142857}$ is exactly 6 digits long, one less than 7.
+            T`**Why must a decimal repeat?** Do the long division of $\frac{p}{q}$. After each digit a remainder is left, and it is always one of $0, 1, \ldots, q-1$. If the remainder is ever 0, the decimal terminates. If not, there are only $q-1$ possible non-zero remainders, so within $q$ steps one of them must come back — and from that moment the digits repeat, because the same remainder leads to the same next digit. This is why the block of $\frac{1}{7}=0.\overline{142857}$ is exactly 6 digits long, one less than 7.
 
 **How to turn a repeating decimal into a fraction.** Follow these steps, shown for $x=0.\overline{27}$:
 
@@ -238,7 +242,7 @@ Contohnya $\frac{7}{20}$: $20=2^2\times 5$, jadi berhenti ($0{,}35$). Untuk $\fr
 4. Solve and simplify: $x=\frac{27}{99}=\frac{3}{11}$.
 
 When some digits do not repeat, as in $0.41\overline{6}$, use two shifts: $100x=41.\overline{6}$ and $1000x=416.\overline{6}$. Subtracting gives $900x=375$, so $x=\frac{375}{900}=\frac{5}{12}$.`,
-            T`**Mengapa desimal harus berulang?** Lakukan pembagian bersusun $\frac{p}{q}$. Setelah tiap angka tersisa sebuah sisa, dan sisa itu selalu salah satu dari $0, 1, \ldots, q-1$. Jika suatu saat sisanya 0, desimalnya berhenti. Jika tidak, hanya ada $q-1$ kemungkinan sisa tak nol, sehingga dalam $q$ langkah salah satunya pasti muncul lagi — dan sejak saat itu angkanya berulang, karena sisa yang sama menghasilkan angka berikutnya yang sama. Itulah sebabnya kelompok angka pada $\frac{1}{7}=0{,}\overline{142857}$ panjangnya tepat 6 angka, satu kurang dari 7.
+            T`**Mengapa desimal harus berulang?** Lakukan pembagian bersusun $\frac{p}{q}$. Setelah tiap angka tersisa sebuah sisa, dan sisa itu selalu salah satu dari $0, 1, \ldots, q-1$. Jika suatu saat sisanya 0, desimalnya berakhir. Jika tidak, hanya ada $q-1$ kemungkinan sisa tak nol, sehingga dalam $q$ langkah salah satunya pasti muncul lagi — dan sejak saat itu angkanya berulang, karena sisa yang sama menghasilkan angka berikutnya yang sama. Itulah sebabnya kelompok angka pada $\frac{1}{7}=0{,}\overline{142857}$ panjangnya tepat 6 angka, satu kurang dari 7.
 
 **Cara mengubah desimal berulang menjadi pecahan.** Ikuti langkah berikut, ditunjukkan untuk $x=0{,}\overline{27}$:
 
@@ -256,17 +260,17 @@ Jika ada angka yang tidak berulang, seperti pada $0{,}41\overline{6}$, gunakan d
           tone: 'warning',
           title: L('0.999… equals 1', '0,999… sama dengan 1'),
           text: L(
-            T`Let $x=0.\overline{9}$. Then $10x=9.\overline{9}$, and $10x-x=9$ gives $9x=9$, so $x=1$. The two decimals $0.999\ldots$ and $1$ are two names for the same number. Any decimal that ends has such a twin: $0.5=0.4999\ldots$.`,
-            T`Misalkan $x=0{,}\overline{9}$. Maka $10x=9{,}\overline{9}$, dan $10x-x=9$ memberi $9x=9$, sehingga $x=1$. Dua desimal $0{,}999\ldots$ dan $1$ adalah dua nama untuk bilangan yang sama. Setiap desimal yang berhenti punya kembaran seperti itu: $0{,}5=0{,}4999\ldots$.`,
+            T`Let $x=0.\overline{9}$. Then $10x=9.\overline{9}$, and $10x-x=9$ gives $9x=9$, so $x=1$. The two decimals $0.999\ldots$ and $1$ are two names for the same number. Any terminating decimal has such a twin: $0.5=0.4999\ldots$.`,
+            T`Misalkan $x=0{,}\overline{9}$. Maka $10x=9{,}\overline{9}$, dan $10x-x=9$ memberi $9x=9$, sehingga $x=1$. Dua desimal $0{,}999\ldots$ dan $1$ adalah dua nama untuk bilangan yang sama. Setiap desimal yang berakhir punya kembaran seperti itu: $0{,}5=0{,}4999\ldots$.`,
           ),
         },
         {
           kind: 'activity',
-          title: L('Try it: which decimal ends?', 'Coba: desimal mana yang berhenti?'),
+          title: L('Try it: which decimal terminates?', 'Coba: desimal mana yang berakhir?'),
           step: {
             kind: 'quiz',
             id: 'a1',
-            prompt: L('Which of these fractions has a decimal that ends?', 'Pecahan mana yang desimalnya berhenti?'),
+            prompt: L('Which of these fractions has a terminating decimal?', 'Pecahan mana yang desimalnya berakhir?'),
             options: [
               L('$\\frac{7}{20}$', '$\\frac{7}{20}$'),
               L('$\\frac{1}{6}$', '$\\frac{1}{6}$'),
@@ -275,8 +279,8 @@ Jika ada angka yang tidak berulang, seperti pada $0{,}41\overline{6}$, gunakan d
             ],
             answer: 0,
             explain: L(
-              '$20=2^2\\times5$ has only the primes 2 and 5, so $\\frac{7}{20}=0.35$ ends. $6=2\\times3$, $9=3^2$ and $14=2\\times7$ each contain a prime other than 2 and 5, so those decimals repeat.',
-              '$20=2^2\\times5$ hanya punya prima 2 dan 5, jadi $\\frac{7}{20}=0{,}35$ berhenti. $6=2\\times3$, $9=3^2$ dan $14=2\\times7$ masing-masing memuat prima selain 2 dan 5, jadi desimalnya berulang.',
+              '$20=2^2\\times5$ has only the primes 2 and 5, so $\\frac{7}{20}=0.35$ terminates. $6=2\\times3$, $9=3^2$ and $14=2\\times7$ each contain a prime other than 2 and 5, so those decimals repeat.',
+              '$20=2^2\\times5$ hanya punya prima 2 dan 5, jadi $\\frac{7}{20}=0{,}35$ berakhir. $6=2\\times3$, $9=3^2$ dan $14=2\\times7$ masing-masing memuat prima selain 2 dan 5, jadi desimalnya berulang.',
             ),
             hint: L('Factorise each denominator into primes. Look for anything besides 2 and 5.', 'Faktorkan tiap penyebut menjadi prima. Cari yang selain 2 dan 5.'),
           },
@@ -312,7 +316,7 @@ Jika ada angka yang tidak berulang, seperti pada $0{,}41\overline{6}$, gunakan d
         {
           kind: 'text',
           text: L(
-            T`An **irrational number** is a real number that is **not** rational: no fraction of two integers equals it. In decimal form it never ends and never falls into a repeating block. Famous examples:
+            T`An **irrational number** is a real number that is **not** rational: no fraction of two integers equals it. Its decimal expansion is infinite and never periodic. Famous examples:
 
 - $\sqrt{2}=1.41421356\ldots$, the diagonal of a square with side 1.
 - $\pi=3.14159265\ldots$, the ratio of a circle's circumference to its diameter.
@@ -320,7 +324,7 @@ Jika ada angka yang tidak berulang, seperti pada $0{,}41\overline{6}$, gunakan d
 - $\varphi=\dfrac{1+\sqrt{5}}{2}=1.61803398\ldots$, the golden ratio.
 
 There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square (and when it is, $\sqrt{n}$ is a whole number). Factorise $n$ into [primes](article:integers#primes); if every prime appears an even number of times, $n$ is a perfect square and the root is a whole number. So $\sqrt{50}=5\sqrt{2}$ is irrational, while $\sqrt{49}=7$ is not; [simplifying radicals](article:exponents-and-radicals#simplify-radicals) shows how $\sqrt{50}$ becomes $5\sqrt2$.`,
-            T`**Bilangan irasional** adalah bilangan real yang **bukan** rasional: tidak ada pecahan dua bilangan bulat yang sama dengannya. Dalam bentuk desimal, ia tidak pernah berakhir dan tidak memiliki pola angka yang berulang secara periodik. Contoh bilangan irasional yang terkenal antara lain:
+            T`**Bilangan irasional** adalah bilangan real yang **bukan** rasional: tidak ada pecahan dua bilangan bulat yang sama dengannya. Ekspansi desimalnya tak berhingga dan tidak pernah periodik. Contoh bilangan irasional yang terkenal antara lain:
 
 - $\sqrt{2}=1{,}41421356\ldots$, diagonal persegi dengan sisi 1.
 - $\pi=3{,}14159265\ldots$, perbandingan keliling lingkaran terhadap diameternya.
@@ -345,24 +349,24 @@ Ada uji sederhana untuk akar kuadrat: untuk bilangan bulat positif $n$, $\sqrt{n
           text: L(
             T`**Proof that √2 is irrational**
 
-The ancient Greeks already knew this, and the argument is still the best first example of a proof by contradiction. Suppose $\sqrt{2}=\frac{a}{b}$ where $a$ and $b$ are positive integers with **no common factor** (a fraction in lowest terms). We will show that this is impossible.
+The ancient Greeks already knew this, and the argument is still the best first example of a proof by contradiction. Suppose $\sqrt{2}=\frac{a}{b}$ where $a$ and $b$ are positive integers that are **coprime**, meaning they have no common factor greater than 1 (a fraction in lowest terms). We will show that this is impossible.
 
 1. Square both sides: $2=\frac{a^2}{b^2}$, so $a^2=2b^2$.
 2. So $a^2$ is even. An odd number squared is odd, so $a$ itself must be even: $a=2k$ for some integer $k$.
 3. Substitute: $(2k)^2=2b^2$, so $4k^2=2b^2$ and $b^2=2k^2$.
 4. So $b^2$ is even, and by the same reasoning $b$ is even.
-5. Now $a$ and $b$ are both even, so they share the factor 2. That contradicts "no common factor".
+5. Now $a$ and $b$ are both even, so they share the factor 2. That contradicts the assumption that they are coprime.
 
 The assumption led to a contradiction, so no such fraction exists: $\sqrt{2}$ is irrational. ∎`,
             T`**Bukti bahwa √2 irasional**
 
-Orang Yunani kuno sudah mengetahui hal ini, dan argumennya masih menjadi contoh klasik pembuktian dengan kontradiksi. Misalkan $\sqrt{2}=\frac{a}{b}$ dengan $a$ dan $b$ bilangan bulat positif yang **tidak punya faktor persekutuan** (pecahan paling sederhana). Kita akan menunjukkan bahwa hal itu mustahil.
+Orang Yunani kuno sudah mengetahui hal ini, dan argumennya masih menjadi contoh klasik pembuktian dengan kontradiksi. Misalkan $\sqrt{2}=\frac{a}{b}$ dengan $a$ dan $b$ bilangan bulat positif yang **saling prima**, yaitu tidak punya faktor persekutuan lebih dari 1 (pecahan paling sederhana). Kita akan menunjukkan bahwa hal itu mustahil.
 
 1. Kuadratkan kedua ruas: $2=\frac{a^2}{b^2}$, sehingga $a^2=2b^2$.
 2. Jadi $a^2$ genap. Bilangan ganjil yang dikuadratkan tetap ganjil, sehingga $a$ sendiri harus genap: $a=2k$ untuk suatu bilangan bulat $k$.
 3. Substitusikan: $(2k)^2=2b^2$, sehingga $4k^2=2b^2$ dan $b^2=2k^2$.
 4. Jadi $b^2$ genap, dan dengan alasan yang sama $b$ genap.
-5. Sekarang $a$ dan $b$ keduanya genap, sehingga keduanya punya faktor 2. Itu bertentangan dengan "tidak punya faktor persekutuan".
+5. Sekarang $a$ dan $b$ keduanya genap, sehingga keduanya punya faktor 2. Itu bertentangan dengan pengandaian bahwa keduanya saling prima.
 
 Pengandaian tadi menimbulkan kontradiksi, jadi pecahan seperti itu tidak ada: $\sqrt{2}$ irasional. ∎`,
           ),
@@ -380,14 +384,14 @@ Pengandaian tadi menimbulkan kontradiksi, jadi pecahan seperti itu tidak ada: $\
             ),
             lines: {
               en: [
-                '\\text{Assume }\\sqrt{2}=\\frac{a}{b}\\text{ with no common factor}',
+                '\\text{Assume }\\sqrt{2}=\\frac{a}{b}\\text{ with }a,b\\text{ coprime}',
                 'a^2=2b^2\\text{, so }a^2\\text{ is even}',
                 '\\text{Then }a\\text{ is even: }a=2k',
                 '4k^2=2b^2\\text{, so }b^2=2k^2\\text{ and }b\\text{ is even}',
                 '\\text{Both even: contradiction}',
               ],
               id: [
-                '\\text{Misalkan }\\sqrt{2}=\\frac{a}{b}\\text{ tanpa faktor persekutuan}',
+                '\\text{Misalkan }\\sqrt{2}=\\frac{a}{b}\\text{ dengan }a,b\\text{ saling prima}',
                 'a^2=2b^2\\text{, jadi }a^2\\text{ genap}',
                 '\\text{Maka }a\\text{ genap: }a=2k',
                 '4k^2=2b^2\\text{, jadi }b^2=2k^2\\text{ dan }b\\text{ genap}',
@@ -630,16 +634,16 @@ Mengapa $q+i$ selalu irasional? Andaikan $q+i=r$, dengan $r$ rasional. Maka $i=r
         {
           kind: 'text',
           text: L(
-            T`**In code, 0.1 + 0.2 does not equal 0.3 because computers store real numbers as 64-bit binary floating-point values, and 0.1 cannot be stored exactly.** A computer has finite memory, and a real number can need infinitely many digits. So programs store an **approximation**. Almost all languages use the IEEE 754 *binary64* format (IEEE 754-2019; see Goldberg, 1991), called a ´double´ or a Python ´float´: 1 sign bit, 11 exponent bits and 52 fraction bits, which gives 53 bits of precision — about 15 to 17 significant decimal digits.
+            T`**In code, 0.1 + 0.2 does not equal 0.3 because computers store real numbers as 64-bit binary floating-point numbers (*floats* for short), and 0.1 cannot be stored exactly.** A computer has finite memory, and a real number can need infinitely many digits. So programs store an **approximation**. Almost all languages use the IEEE 754 *binary64* format (IEEE 754-2019; see Goldberg, 1991), called a ´double´ or a Python ´float´: 1 sign bit, 11 exponent bits and 52 fraction bits, which gives 53 bits of precision — about 15 to 17 significant decimal digits.
 
-The catch is that the format is *binary*. The decimal $0.1$ is $\frac{1}{10}$, and $10$ has the prime factor 5, so in base 2 the expansion of $0.1$ repeats for ever, just as $\frac{1}{3}$ repeats in base 10. The computer cannot keep the endless expansion, so it stores the nearest value the format can represent, and the value actually stored is
+The catch is that the format is *binary*. The decimal $0.1$ is $\frac{1}{10}$, and $10$ has the prime factor 5, so in base 2 the expansion of $0.1$ is periodic without end, just as the expansion of $\frac{1}{3}$ is in base 10. The computer cannot keep an infinite expansion, so it stores the nearest value the format can represent, and the value actually stored is
 
 $$0.1000000000000000055511151231257827\ldots$$
 
 Add two such rounded values and the tiny errors show up:`,
-            T`**Dalam kode, 0,1 + 0,2 tidak sama dengan 0,3 karena komputer merepresentasikan bilangan menggunakan format bilangan titik-mengambang (floating-point) biner 64-bit, dan 0,1 tidak dapat disimpan secara eksak.** Komputer memiliki kapasitas penyimpanan terbatas, sedangkan sebuah bilangan real bisa membutuhkan tak berhingga banyak angka. Maka program menyimpan **hampiran**. Hampir semua bahasa memakai format IEEE 754 *binary64* (IEEE 754-2019; lihat Goldberg, 1991), yang disebut ´double´ atau ´float´ di Python: 1 bit tanda, 11 bit eksponen, dan 52 bit bagian pecahan (fraction), sehingga memberi presisi 53 bit — sekitar 15 sampai 17 angka signifikan desimal.
+            T`**Dalam kode, 0,1 + 0,2 tidak sama dengan 0,3 karena komputer merepresentasikan bilangan menggunakan format bilangan titik-mengambang (floating-point number, disingkat float) biner 64-bit, dan 0,1 tidak dapat disimpan secara eksak.** Komputer memiliki kapasitas penyimpanan terbatas, sedangkan sebuah bilangan real bisa membutuhkan tak berhingga banyak angka. Maka program menyimpan **hampiran**. Hampir semua bahasa memakai format IEEE 754 *binary64* (IEEE 754-2019; lihat Goldberg, 1991), yang disebut ´double´ atau ´float´ di Python: 1 bit tanda, 11 bit eksponen, dan 52 bit bagian pecahan (fraction), sehingga memberi presisi 53 bit — sekitar 15 sampai 17 angka signifikan desimal.
 
-Masalahnya, formatnya *biner*. Desimal $0{,}1$ adalah $\frac{1}{10}$, dan $10$ punya faktor prima 5, sehingga dalam basis 2 ekspansi $0{,}1$ berulang tanpa akhir, sama seperti $\frac{1}{3}$ berulang dalam basis 10. Komputer tidak dapat menyimpan ekspansi yang tak berakhir itu, sehingga ia menyimpan nilai terdekat yang dapat diwakili oleh format tersebut, dan nilai yang benar-benar tersimpan adalah
+Masalahnya, formatnya *biner*. Desimal $0{,}1$ adalah $\frac{1}{10}$, dan $10$ punya faktor prima 5, sehingga dalam basis 2 ekspansi $0{,}1$ periodik tanpa akhir, sama seperti ekspansi $\frac{1}{3}$ dalam basis 10. Komputer tidak dapat menyimpan ekspansi yang tak berhingga itu, sehingga ia menyimpan nilai terdekat yang dapat diwakili oleh format tersebut, dan nilai yang benar-benar tersimpan adalah
 
 $$0{,}1000000000000000055511151231257827\ldots$$
 
@@ -845,17 +849,17 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
           kind: 'text',
           text: L(
             T`- **Real numbers** $\mathbb{R}$ are all the points on the number line: rational plus irrational.
-- **Rational** means a fraction of integers; its decimal ends or repeats. **Irrational** means it is not: $\sqrt{2}$, $\pi$, $e$.
+- **Rational** means a fraction of integers; its decimal expansion terminates or eventually repeats periodically. **Irrational** means it is not: $\sqrt{2}$, $\pi$, $e$.
 - The chain of sets is $\mathbb{N}\subset W\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$.
-- A reduced fraction ends exactly when the denominator has only the primes 2 and 5.
+- A reduced fraction terminates exactly when the denominator has only the primes 2 and 5.
 - For a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square; $\sqrt{2}$ is irrational by contradiction.
 - Rational + irrational is irrational; irrational + irrational can be either.
 - The rationals are dense but have gaps; the reals are dense and complete.
 - Computers store finite binary approximations, so compare floats with a tolerance and use integers, ´Fraction´ or ´Decimal´ for exact work.`,
             T`- **Bilangan real** $\mathbb{R}$ adalah semua titik pada garis bilangan: rasional ditambah irasional.
-- **Rasional** berarti pecahan bilangan bulat; desimalnya berhenti atau berulang. **Irasional** berarti bukan: $\sqrt{2}$, $\pi$, $e$.
+- **Rasional** berarti pecahan bilangan bulat; ekspansi desimalnya berakhir atau akhirnya berulang secara periodik. **Irasional** berarti bukan: $\sqrt{2}$, $\pi$, $e$.
 - Rantai himpunannya adalah $\mathbb{N}\subset W\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$.
-- Pecahan sederhana berhenti tepat ketika penyebutnya hanya punya prima 2 dan 5.
+- Pecahan sederhana berakhir tepat ketika penyebutnya hanya punya prima 2 dan 5.
 - Untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna; $\sqrt{2}$ irasional lewat kontradiksi.
 - Rasional + irasional adalah irasional; irasional + irasional bisa keduanya.
 - Bilangan rasional rapat tetapi berlubang; bilangan real rapat dan lengkap.
@@ -868,13 +872,13 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
 
   glossary: [
     { term: L('Real number', 'Bilangan real'), definition: L('A number that corresponds to a point on the number line; every real number is either rational or irrational.', 'Bilangan yang sesuai dengan sebuah titik pada garis bilangan; setiap bilangan real adalah rasional atau irasional.') },
-    { term: L('Rational number', 'Bilangan rasional'), definition: L('A number that can be written as a fraction of two integers with a non-zero denominator; its decimal expansion ends or repeats.', 'Bilangan yang dapat ditulis sebagai pecahan dua bilangan bulat dengan penyebut tak nol; ekspansi desimalnya berhenti atau berulang.') },
-    { term: L('Irrational number', 'Bilangan irasional'), definition: L('A real number that cannot be written as a fraction of two integers; its decimal expansion never ends and never repeats.', 'Bilangan real yang tidak dapat ditulis sebagai pecahan dua bilangan bulat; ekspansi desimalnya tidak pernah berhenti dan tidak pernah berulang.') },
-    { term: L('Integer', 'Bilangan bulat'), definition: L('A whole amount that may be positive, negative or zero: …, −2, −1, 0, 1, 2, ….', 'Bilangan utuh yang boleh positif, negatif, atau nol: …, −2, −1, 0, 1, 2, ….') },
+    { term: L('Rational number', 'Bilangan rasional'), definition: L('A number that can be written as a fraction of two integers with a non-zero denominator; its decimal expansion terminates or eventually repeats periodically.', 'Bilangan yang dapat ditulis sebagai pecahan dua bilangan bulat dengan penyebut tak nol; ekspansi desimalnya berakhir atau akhirnya berulang secara periodik.') },
+    { term: L('Irrational number', 'Bilangan irasional'), definition: L('A real number that cannot be written as a fraction of two integers; its decimal expansion is infinite and never periodic.', 'Bilangan real yang tidak dapat ditulis sebagai pecahan dua bilangan bulat; ekspansi desimalnya tak berhingga dan tidak pernah periodik.') },
+    { term: L('Integer', 'Bilangan bulat'), definition: L('A number in the set ℤ: a whole number or its negative, …, −2, −1, 0, 1, 2, ….', 'Bilangan dalam himpunan ℤ, yaitu bilangan cacah atau negatifnya: …, −2, −1, 0, 1, 2, ….') },
     { term: L('Natural number', 'Bilangan asli'), definition: L('A counting number 1, 2, 3, …; some books also include 0.', 'Bilangan hitung 1, 2, 3, …; sebagian buku juga memasukkan 0.') },
     { term: L('Whole number', 'Bilangan cacah'), definition: L('A natural number or zero: 0, 1, 2, 3, ….', 'Bilangan asli atau nol: 0, 1, 2, 3, ….') },
-    { term: L('Terminating decimal', 'Desimal berhenti'), definition: L('A decimal with finitely many digits after the point, such as 0.125.', 'Desimal dengan angka di belakang koma yang berhingga banyaknya, seperti 0,125.') },
-    { term: L('Repeating decimal', 'Desimal berulang'), definition: L('A decimal in which a block of digits repeats for ever, such as 0.272727….', 'Desimal yang sekelompok angkanya berulang tanpa akhir, seperti 0,272727….') },
+    { term: L('Terminating decimal', 'Desimal berakhir'), definition: L('A decimal with finitely many digits after the point, such as 0.125.', 'Desimal dengan angka di belakang koma yang berhingga banyaknya, seperti 0,125.') },
+    { term: L('Repeating decimal', 'Desimal berulang'), definition: L('A decimal expansion that eventually repeats periodically: from some digit onward a block of digits repeats without end, such as 0.272727….', 'Ekspansi desimal yang akhirnya berulang secara periodik: mulai dari suatu angka, sekelompok angka berulang tanpa akhir, seperti 0,272727….') },
     { term: L('Transcendental number', 'Bilangan transendental'), definition: L('A real number that is not a root of any non-zero polynomial with integer coefficients, such as π and e.', 'Bilangan real yang bukan akar polinomial tak nol mana pun dengan koefisien bulat, seperti π dan e.') },
     { term: L('Floating-point number', 'Bilangan floating point'), definition: L('The approximation of a real number that a computer stores, usually a 64-bit binary value with about 15 to 17 significant decimal digits.', 'Hampiran bilangan real yang disimpan komputer, biasanya nilai biner 64-bit dengan sekitar 15 sampai 17 angka signifikan desimal.') },
     { term: L('Interval', 'Interval'), definition: L('An unbroken stretch of the real number line, written with brackets, such as [a, b).', 'Bagian garis bilangan real yang tak terputus, ditulis dengan tanda kurung, seperti [a, b).') },
@@ -895,23 +899,23 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
       ],
     },
     {
-      name: L('How to tell whether a fraction’s decimal ends or repeats', 'Cara mengetahui apakah desimal sebuah pecahan berhenti atau berulang'),
+      name: L('How to tell whether a fraction’s decimal terminates or repeats', 'Cara mengetahui apakah desimal sebuah pecahan berakhir atau berulang'),
       description: L('Decide from the denominator alone, without doing the division.', 'Tentukan dari penyebutnya saja, tanpa melakukan pembagian.'),
       steps: [
         { name: L('Reduce the fraction', 'Sederhanakan pecahannya'), text: L('Write the fraction in lowest terms.', 'Tulis pecahan dalam bentuk paling sederhana.') },
         { name: L('Factorise the denominator', 'Faktorkan penyebutnya'), text: L('Break the denominator into prime factors, for example 12 = 2 × 2 × 3.', 'Uraikan penyebut menjadi faktor prima, misalnya 12 = 2 × 2 × 3.') },
-        { name: L('Look for primes other than 2 and 5', 'Cari prima selain 2 dan 5'), text: L('If the only primes are 2 and 5 the decimal ends; if any other prime appears the decimal repeats.', 'Jika satu-satunya prima adalah 2 dan 5 desimalnya berhenti; jika ada prima lain desimalnya berulang.') },
+        { name: L('Look for primes other than 2 and 5', 'Cari prima selain 2 dan 5'), text: L('If the only primes are 2 and 5 the decimal terminates; if any other prime appears it eventually repeats periodically.', 'Jika satu-satunya prima adalah 2 dan 5 desimalnya berakhir; jika ada prima lain desimalnya akhirnya berulang secara periodik.') },
       ],
     },
     {
       name: L('How to prove that √2 is irrational', 'Cara membuktikan bahwa √2 irasional'),
       description: L('A proof by contradiction that no fraction of integers equals the square root of 2.', 'Bukti dengan kontradiksi bahwa tidak ada pecahan bilangan bulat yang sama dengan akar kuadrat 2.'),
       steps: [
-        { name: L('Assume the opposite', 'Andaikan kebalikannya'), text: L('Suppose √2 = a/b with a and b integers that have no common factor.', 'Andaikan √2 = a/b dengan a dan b bilangan bulat yang tidak punya faktor persekutuan.') },
+        { name: L('Assume the opposite', 'Andaikan kebalikannya'), text: L('Suppose √2 = a/b with a and b integers that are coprime (no common factor greater than 1).', 'Andaikan √2 = a/b dengan a dan b bilangan bulat yang saling prima (tidak punya faktor persekutuan lebih dari 1).') },
         { name: L('Square both sides', 'Kuadratkan kedua ruas'), text: L('This gives a² = 2b², so a² is even and therefore a is even.', 'Ini memberi a² = 2b², sehingga a² genap dan karena itu a genap.') },
         { name: L('Write a as 2k', 'Tulis a sebagai 2k'), text: L('Substitute a = 2k to get 4k² = 2b², so b² = 2k².', 'Substitusikan a = 2k untuk mendapat 4k² = 2b², sehingga b² = 2k².') },
         { name: L('Conclude that b is even', 'Simpulkan bahwa b genap'), text: L('Then b² is even, so b is even.', 'Maka b² genap, sehingga b genap.') },
-        { name: L('Reach the contradiction', 'Capai kontradiksinya'), text: L('Both a and b are even, which contradicts having no common factor, so √2 is irrational.', 'Baik a maupun b genap, yang bertentangan dengan tidak adanya faktor persekutuan, sehingga √2 irasional.') },
+        { name: L('Reach the contradiction', 'Capai kontradiksinya'), text: L('Both a and b are even, which contradicts a and b being coprime, so √2 is irrational.', 'Baik a maupun b genap, yang bertentangan dengan a dan b saling prima, sehingga √2 irasional.') },
       ],
     },
   ],
@@ -921,14 +925,14 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
       q: L('What is a real number?', 'Apa itu bilangan real?'),
       a: L(
         'A real number is any number that corresponds to a point on the number line. It can be written as a decimal, finite or infinite. Real numbers include integers, fractions, terminating and repeating decimals, and irrational numbers such as √2 and π.',
-        'Bilangan real adalah bilangan apa pun yang sesuai dengan sebuah titik pada garis bilangan. Ia dapat ditulis sebagai desimal, berhingga maupun tak berhingga. Bilangan real mencakup bilangan bulat, pecahan, desimal berhenti dan berulang, serta bilangan irasional seperti √2 dan π.',
+        'Bilangan real adalah bilangan apa pun yang sesuai dengan sebuah titik pada garis bilangan. Ia punya ekspansi desimal, berhingga maupun tak berhingga. Bilangan real mencakup bilangan bulat, pecahan, desimal berakhir dan berulang, serta bilangan irasional seperti √2 dan π.',
       ),
     },
     {
       q: L('What is the difference between rational and irrational numbers?', 'Apa beda bilangan rasional dan irasional?'),
       a: L(
-        'A rational number can be written as a fraction of two integers, and its decimal ends or repeats. An irrational number cannot be written that way, and its decimal never ends and never repeats. Every real number is exactly one of the two.',
-        'Bilangan rasional dapat ditulis sebagai pecahan dua bilangan bulat, dan desimalnya berhenti atau berulang. Bilangan irasional tidak dapat ditulis seperti itu, dan desimalnya tidak pernah berhenti dan tidak pernah berulang. Setiap bilangan real tepat salah satu dari keduanya.',
+        'A rational number can be written as a fraction of two integers, and its decimal expansion terminates or eventually repeats periodically. An irrational number cannot be written that way, and its decimal expansion is infinite and never periodic. Every real number is exactly one of the two.',
+        'Bilangan rasional dapat ditulis sebagai pecahan dua bilangan bulat, dan ekspansi desimalnya berakhir atau akhirnya berulang secara periodik. Bilangan irasional tidak dapat ditulis seperti itu, dan ekspansi desimalnya tak berhingga dan tidak pernah periodik. Setiap bilangan real tepat salah satu dari keduanya.',
       ),
     },
     {
@@ -976,15 +980,15 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
     {
       q: L('Why does 0.1 + 0.2 not equal 0.3 on a computer?', 'Mengapa 0,1 + 0,2 tidak sama dengan 0,3 di komputer?'),
       a: L(
-        'Computers store numbers in binary floating point, and 0.1 has an endless repeating expansion in binary, so it is stored as the nearest representable value. The stored 0.1 plus the stored 0.2 comes out as 0.30000000000000004, which differs from the stored 0.3. Compare floats with a tolerance instead of using equality.',
-        'Komputer menyimpan bilangan dalam floating point biner, dan 0,1 punya ekspansi biner yang berulang tanpa akhir, sehingga ia disimpan sebagai nilai terdekat yang dapat diwakili. Nilai 0,1 yang tersimpan ditambah nilai 0,2 yang tersimpan menghasilkan 0,30000000000000004, yang berbeda dari 0,3 yang tersimpan. Untuk membandingkan hasil bilangan titik-mengambang, gunakan toleransi galat, bukan hanya operator kesamaan.',
+        'Computers store numbers in binary floating point, and 0.1 has an infinite periodic expansion in binary, so it is stored as the nearest representable value. The stored 0.1 plus the stored 0.2 comes out as 0.30000000000000004, which differs from the stored 0.3. Compare floats with a tolerance instead of using equality.',
+        'Komputer menyimpan bilangan dalam floating point biner, dan 0,1 punya ekspansi biner yang periodik tanpa akhir, sehingga ia disimpan sebagai nilai terdekat yang dapat diwakili. Nilai 0,1 yang tersimpan ditambah nilai 0,2 yang tersimpan menghasilkan 0,30000000000000004, yang berbeda dari 0,3 yang tersimpan. Untuk membandingkan hasil bilangan titik-mengambang, gunakan toleransi galat, bukan hanya operator kesamaan.',
       ),
     },
     {
       q: L('What are examples of real numbers?', 'Apa saja contoh bilangan real?'),
       a: L(
         'Examples of real numbers include the integer −3, the fraction 2/3, the terminating decimal 0.75, the repeating decimal 0.333…, and the irrational numbers √2, π and e. Every point on the number line is a real number.',
-        'Contoh bilangan real antara lain bilangan bulat −3, pecahan 2/3, desimal berhenti 0,75, desimal berulang 0,333…, dan bilangan irasional √2, π, dan e. Setiap titik pada garis bilangan adalah bilangan real.',
+        'Contoh bilangan real antara lain bilangan bulat −3, pecahan 2/3, desimal berakhir 0,75, desimal berulang 0,333…, dan bilangan irasional √2, π, dan e. Setiap titik pada garis bilangan adalah bilangan real.',
       ),
     },
     {
