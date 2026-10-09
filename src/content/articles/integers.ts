@@ -68,7 +68,7 @@ Negative numbers exist because people need to describe things that go below a st
 | Money | 50 dollars in the account | nothing | −30, an overdraft |
 | Goal difference | 2 goals ahead | level | −3, behind |
 
-Three kinds of number are often confused. The **natural numbers** are $1,2,3,\ldots$ (some books start at 0). The **whole numbers** are $0,1,2,3,\ldots$. The **integers** add the negatives. Every natural number is a whole number and every whole number is an integer, but not the other way round; the article on [real numbers](article:real-numbers#number-sets) shows how all these sets nest.
+Three kinds of number are often confused. The **natural numbers** are $1,2,3,\ldots$ (here they start at 1; some books start at 0). The **whole numbers** are $0,1,2,3,\ldots$. The **integers** add the negatives. Every natural number is a whole number and every whole number is an integer, but not the other way round; the article on [real numbers](article:real-numbers#number-sets) shows how all these sets nest.
 
 Two facts about zero and signs are worth fixing now. **Zero is neither positive nor negative.** And every integer $a$ has an **opposite**, $-a$, on the other side of 0 at the same distance, so that $a+(-a)=0$. The opposite of 7 is $-7$, the opposite of $-7$ is 7, and the opposite of 0 is 0, which is why $-(-a)=a$.
 
@@ -85,7 +85,7 @@ Bilangan negatif ada karena orang perlu menyatakan hal yang turun di bawah titik
 | Uang | saldo Rp50.000 | tidak ada | −Rp30.000, utang |
 | Selisih gol | unggul 2 gol | imbang | −3, tertinggal |
 
-Tiga jenis bilangan sering tertukar. **Bilangan asli** adalah $1,2,3,\ldots$ (sebagian buku mulai dari 0). **Bilangan cacah** adalah $0,1,2,3,\ldots$. **Bilangan bulat** menambahkan negatifnya. Setiap bilangan asli adalah bilangan cacah dan setiap bilangan cacah adalah bilangan bulat, tetapi tidak sebaliknya; artikel [bilangan real](article:real-numbers#number-sets) menunjukkan bagaimana semua himpunan ini bersarang.
+Tiga jenis bilangan sering tertukar. **Bilangan asli** adalah $1,2,3,\ldots$ (di sini mulai dari 1; sebagian buku mulai dari 0). **Bilangan cacah** adalah $0,1,2,3,\ldots$. **Bilangan bulat** menambahkan negatifnya. Setiap bilangan asli adalah bilangan cacah dan setiap bilangan cacah adalah bilangan bulat, tetapi tidak sebaliknya; artikel [bilangan real](article:real-numbers#number-sets) menunjukkan bagaimana semua himpunan ini bersarang.
 
 Dua hal tentang nol dan tanda perlu dipegang sekarang. **Nol bukan positif dan bukan negatif.** Dan setiap bilangan bulat $a$ punya **lawan**, $-a$, di seberang 0 pada jarak yang sama, sehingga $a+(-a)=0$. Lawan 7 adalah $-7$, lawan $-7$ adalah 7, dan lawan 0 adalah 0, itulah sebabnya $-(-a)=a$.
 
@@ -654,8 +654,8 @@ Masalahnya, **bahasa pemrograman tidak semuanya sepakat tentang operan negatif.*
         {
           kind: 'text',
           text: L(
-            T`**Python integers have no size limit and use floor division, while JavaScript numbers are floating-point, exact only up to $2^{53}-1$, with a remainder that follows the dividend; use ´BigInt´ in JavaScript for large exact integers.** The two languages disagree exactly where this article has been pointing.`,
-            T`**Bilangan bulat Python tidak punya batas ukuran dan memakai pembagian floor, sedangkan bilangan JavaScript berupa floating point, eksak hanya sampai $2^{53}-1$, dengan sisa yang mengikuti bilangan yang dibagi; pakai ´BigInt´ di JavaScript untuk bilangan bulat besar yang eksak.** Kedua bahasa itu berbeda tepat di tempat yang ditunjuk artikel ini.`,
+            T`**Python integers have no size limit and use floor division, while JavaScript numbers are floating-point numbers (floats), exact only up to $2^{53}-1$, with a remainder that follows the dividend; use ´BigInt´ in JavaScript for large exact integers.** The two languages disagree exactly where this article has been pointing.`,
+            T`**Bilangan bulat Python tidak punya batas ukuran dan memakai pembagian floor, sedangkan bilangan JavaScript berupa bilangan floating point (float), eksak hanya sampai $2^{53}-1$, dengan sisa yang mengikuti bilangan yang dibagi; pakai ´BigInt´ di JavaScript untuk bilangan bulat besar yang eksak.** Kedua bahasa itu berbeda tepat di tempat yang ditunjuk artikel ini.`,
           ),
         },
         {
@@ -934,7 +934,7 @@ Python's ´math.gcd´ and ´math.lcm´ (from Python 3.9) take any size of intege
   ],
 
   glossary: [
-    { term: L('Integer', 'Bilangan bulat'), definition: L('A number with no fractional part: zero, the positive whole numbers and their negatives.', 'Bilangan tanpa bagian pecahan: nol, bilangan utuh positif, dan negatifnya.') },
+    { term: L('Integer', 'Bilangan bulat'), definition: L('A number in the set ℤ, with no fractional part: zero, the positive whole numbers and their negatives.', 'Bilangan dalam himpunan ℤ, tanpa bagian pecahan: nol, bilangan bulat positif, dan negatifnya.') },
     { term: L('Opposite', 'Lawan (bilangan berlawanan)'), definition: L('The number on the other side of zero at the same distance, so that a number plus its opposite is zero.', 'Bilangan di seberang nol pada jarak yang sama, sehingga sebuah bilangan ditambah lawannya sama dengan nol.') },
     { term: L('Absolute value', 'Nilai mutlak'), definition: L('The distance of a number from zero, which is never negative, so the absolute value of minus 7 is 7.', 'Jarak sebuah bilangan dari nol yang tidak pernah negatif, sehingga nilai mutlak minus 7 adalah 7.') },
     { term: L('Closed under an operation', 'Tertutup terhadap suatu operasi'), definition: L('A set is closed under an operation when applying it to members of the set always gives a member; the integers are closed under addition, subtraction and multiplication.', 'Sebuah himpunan tertutup terhadap suatu operasi bila menerapkannya pada anggota himpunan selalu memberi anggota; bilangan bulat tertutup terhadap penjumlahan, pengurangan, dan perkalian.') },

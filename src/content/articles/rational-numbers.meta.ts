@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'bilangan rasional, pecahan, pengertian bilangan rasional, pembilang dan penyebut, pecahan senilai, menyederhanakan pecahan, bentuk paling sederhana, membandingkan pecahan, mengurutkan pecahan, penjumlahan pecahan, pengurangan pecahan, perkalian pecahan, pembagian pecahan, kebalikan, penyebut sama, bilangan campuran, pecahan tak wajar, pecahan ke desimal, desimal berulang, desimal berakhir, persen, persentase, perbandingan dan proporsi, pecahan satuan, modul fractions python',
   },
   published: '2026-10-09',
-  updated: '2026-10-09',
+  updated: '2026-10-10',
   readingMinutes: 17,
   about: [
     { name: { en: 'Rational number', id: 'Bilangan rasional' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Rational_number', id: 'https://id.wikipedia.org/wiki/Bilangan_rasional' } },

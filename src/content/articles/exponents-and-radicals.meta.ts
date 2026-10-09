@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'eksponen dan akar, bilangan berpangkat, sifat eksponen, sifat bilangan berpangkat, pangkat negatif, pangkat nol, pangkat pecahan, bentuk akar, akar kuadrat, akar pangkat tiga, menyederhanakan bentuk akar, merasionalkan penyebut, bentuk sekawan, notasi ilmiah, bentuk baku, perpangkatan, rumus eksponen, persamaan eksponen, persamaan akar, radikan, indeks akar',
   },
   published: '2026-10-09',
-  updated: '2026-10-09',
+  updated: '2026-10-10',
   readingMinutes: 17,
   about: [
     { name: { en: 'Exponentiation', id: 'Perpangkatan' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Exponentiation', id: 'https://en.wikipedia.org/wiki/Exponentiation' } },

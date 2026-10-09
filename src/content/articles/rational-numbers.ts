@@ -17,13 +17,13 @@ const T = (s: TemplateStringsArray): string =>
 
 export const body: ArticleBody = {
   answer: L(
-    T`**A rational number is any number that can be written as a fraction $\dfrac{p}{q}$ of two integers with $q\neq0$, such as $\dfrac34$, $-\dfrac72$ or $5=\dfrac51$.** Many fractions name the same number ($\frac68=\frac34$), so you compare, add and multiply them after bringing them to a common form. In decimal form a rational number either ends ($\frac38=0.375$) or repeats ($\frac13=0.\overline{3}$).`,
-    T`**Bilangan rasional adalah bilangan yang dapat ditulis sebagai pecahan $\dfrac{p}{q}$ dari dua bilangan bulat dengan $q\neq0$, seperti $\dfrac34$, $-\dfrac72$, atau $5=\dfrac51$.** Banyak pecahan menamai bilangan yang sama ($\frac68=\frac34$), sehingga kamu membandingkan, menjumlahkan, dan mengalikannya setelah membawanya ke bentuk yang sama. Dalam bentuk desimal, bilangan rasional berakhir ($\frac38=0{,}375$) atau berulang ($\frac13=0{,}\overline{3}$).`,
+    T`**A rational number is any number that can be written as a fraction $\dfrac{p}{q}$ of two integers with $q\neq0$, such as $\dfrac34$, $-\dfrac72$ or $5=\dfrac51$.** Many fractions name the same number ($\frac68=\frac34$), so you compare, add and multiply them after bringing them to a common form. The decimal expansion of a rational number either terminates ($\frac38=0.375$) or eventually repeats periodically ($\frac13=0.\overline{3}$).`,
+    T`**Bilangan rasional adalah bilangan yang dapat ditulis sebagai pecahan $\dfrac{p}{q}$ dari dua bilangan bulat dengan $q\neq0$, seperti $\dfrac34$, $-\dfrac72$, atau $5=\dfrac51$.** Banyak pecahan menamai bilangan yang sama ($\frac68=\frac34$), sehingga kamu membandingkan, menjumlahkan, dan mengalikannya setelah membawanya ke bentuk yang sama. Ekspansi desimal bilangan rasional berakhir ($\frac38=0{,}375$) atau akhirnya berulang secara periodik ($\frac13=0{,}\overline{3}$).`,
   ),
 
   keyPoints: [
     L(
-      T`A rational number is a ratio of integers; every integer is rational ($n=\frac n1$), and so is every fraction, ending decimal and repeating decimal.`,
+      T`A rational number is a ratio of integers; every integer is rational ($n=\frac n1$), and so is every fraction, terminating decimal and repeating decimal.`,
       T`Bilangan rasional adalah perbandingan bilangan bulat; setiap bilangan bulat adalah rasional ($n=\frac n1$), begitu pula setiap pecahan, desimal berakhir, dan desimal berulang.`,
     ),
     L(
@@ -39,8 +39,8 @@ export const body: ArticleBody = {
       T`Jumlahkan dan kurangkan di atas penyebut sama, kalikan pembilang dan penyebut, dan bagi dengan mengalikan kebalikannya.`,
     ),
     L(
-      T`A fraction in lowest terms has an ending decimal exactly when its denominator has no prime factor except 2 and 5; otherwise the decimal repeats.`,
-      T`Pecahan paling sederhana punya desimal berakhir tepat bila penyebutnya tidak punya faktor prima selain 2 dan 5; jika tidak, desimalnya berulang.`,
+      T`A fraction in lowest terms has a terminating decimal exactly when its denominator has no prime factor except 2 and 5; otherwise the decimal eventually repeats periodically.`,
+      T`Pecahan paling sederhana punya desimal berakhir tepat bila penyebutnya tidak punya faktor prima selain 2 dan 5; jika tidak, desimalnya akhirnya berulang secara periodik.`,
     ),
     L(
       T`Between any two rational numbers there is another, so there is no next fraction after $\frac12$.`,
@@ -417,24 +417,24 @@ Pada $-3\frac12$ tanda minus berlaku untuk seluruh bilangan: artinya $-\left(3+\
         {
           kind: 'text',
           text: L(
-            T`**To turn a fraction into a decimal, divide the top by the bottom; the decimal ends exactly when the denominator, in lowest terms, has no prime factor other than 2 and 5, and otherwise it repeats.** Ten is $2\cdot5$, so only denominators built from 2s and 5s fit into a power of ten.
+            T`**To turn a fraction into a decimal, divide the top by the bottom; the decimal terminates exactly when the denominator, in lowest terms, has no prime factor other than 2 and 5, and otherwise it eventually repeats periodically.** Ten is $2\cdot5$, so only denominators built from 2s and 5s fit into a power of ten.
 
 | Fraction | Decimal | Why |
 |---|---|---|
-| $\frac38$ | $0.375$ | $8=2^3$, ends after 3 digits |
-| $\frac{7}{20}$ | $0.35$ | $20=2^2\cdot5$, ends after 2 digits |
+| $\frac38$ | $0.375$ | $8=2^3$, terminates after 3 digits |
+| $\frac{7}{20}$ | $0.35$ | $20=2^2\cdot5$, terminates after 2 digits |
 | $\frac13$ | $0.\overline{3}$ | 3 is neither 2 nor 5 |
 | $\frac{5}{12}$ | $0.41\overline{6}$ | $12=2^2\cdot3$: 2 digits, then 6 repeats |
 | $\frac17$ | $0.\overline{142857}$ | a block of 6 digits repeats |
 
-Two numbers describe the repeat. The digits before it number $\max(x,y)$ when the denominator is $2^x\cdot5^y\cdot q$ with $q$ coprime to 10 (that is why $\frac5{12}$ has 2). The block is as long as the number of 10s you need to multiply to get a remainder of 1 modulo $q$: 1 for $\frac13$, 6 for $\frac17$ and for $\frac1{13}$, 16 for $\frac1{17}$, 96 for $\frac1{97}$. It always repeats because long division has fewer than $q$ possible remainders, so one must come back. The proof, and how to turn a repeating decimal back into a fraction, are in the [rational numbers section of the real numbers article](article:real-numbers#rational-numbers).
+Two numbers describe the repeat. The digits before it number $\max(x,y)$ when the denominator is $2^x\cdot5^y\cdot q$ with $q$ coprime to 10 (that is why $\frac5{12}$ has 2). The block is as long as the number of 10s you need to multiply to get a remainder of 1 modulo $q$: 1 for $\frac13$, 6 for $\frac17$ and for $\frac1{13}$, 16 for $\frac1{17}$, 96 for $\frac1{97}$. It always eventually repeats because long division has fewer than $q$ possible remainders, so one must come back. The proof, and how to turn a repeating decimal back into a fraction, are in the [rational numbers section of the real numbers article](article:real-numbers#rational-numbers).
 
 **Percent** means "per hundred": $p\%=\frac{p}{100}$. To convert a fraction, divide to get the decimal and shift the point two places: $\frac38=0.375=37.5\%$. To convert back, $25\%=\frac{25}{100}=\frac14$.
 
 Percentages apply to a base. A 200 dollar jacket with 15% off costs 85% of 200, which is $0.85\cdot200=170$ dollars. A rise of 20% followed by a fall of 20% does not return to the start, because the second percentage is of a larger number: $100\to120\to96$.
 
 Type any fraction below to see its decimal and why it looks that way.`,
-            T`**Untuk mengubah pecahan menjadi desimal, bagi pembilang dengan penyebut; desimalnya berakhir tepat bila penyebut, dalam bentuk paling sederhana, tidak punya faktor prima selain 2 dan 5, dan jika tidak ia berulang.** Sepuluh adalah $2\cdot5$, sehingga hanya penyebut yang tersusun dari 2 dan 5 yang muat dalam pangkat sepuluh.
+            T`**Untuk mengubah pecahan menjadi desimal, bagi pembilang dengan penyebut; desimalnya berakhir tepat bila penyebut, dalam bentuk paling sederhana, tidak punya faktor prima selain 2 dan 5, dan jika tidak ia akhirnya berulang secara periodik.** Sepuluh adalah $2\cdot5$, sehingga hanya penyebut yang tersusun dari 2 dan 5 yang muat dalam pangkat sepuluh.
 
 | Pecahan | Desimal | Alasan |
 |---|---|---|
@@ -456,11 +456,11 @@ Ketik pecahan apa pun di bawah untuk melihat desimalnya dan mengapa tampak demik
         { kind: 'widget', name: 'ratdecimal' },
         {
           kind: 'activity',
-          title: L('Try it: ends or repeats?', 'Coba: berakhir atau berulang?'),
+          title: L('Try it: terminates or repeats?', 'Coba: berakhir atau berulang?'),
           step: {
             kind: 'quiz',
             id: 'a8',
-            prompt: L('Which of these fractions has a decimal that ends?', 'Manakah di antara pecahan ini yang desimalnya berakhir?'),
+            prompt: L('Which of these fractions has a terminating decimal?', 'Manakah di antara pecahan ini yang desimalnya berakhir?'),
             options: [L('$\\frac16$', '$\\frac16$'), L('$\\frac27$', '$\\frac27$'), L('$\\frac38$', '$\\frac38$'), L('$\\frac5{12}$', '$\\frac5{12}$')],
             answer: 2,
             explain: L(
@@ -659,7 +659,7 @@ Kini bilangan yang sama tampil sebagai pecahan dalam resep, sebagai desimal pada
 | $-\frac{3}{4}=\frac{-3}{-4}$ | $\frac{-3}{-4}=+\frac34$. Move one minus sign only. |
 | $\frac50=0$ | A denominator of 0 is not allowed: $\frac50$ is not a number. |
 | $3\frac12=3\cdot\frac12$ | $3\frac12=3+\frac12=\frac72$. |
-| $0.\overline{3}\neq\frac13$ because it never ends | $0.\overline{3}=\frac13$ exactly: a repeating decimal is a fraction. |`,
+| $0.\overline{3}\neq\frac13$ because its expansion is infinite | $0.\overline{3}=\frac13$ exactly: a repeating decimal is a fraction. |`,
             T`**Kesalahan paling umum pada pecahan adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar dan bilangan yang menunjukkan alasannya.**
 
 | Kesalahan | Yang benar |
@@ -672,7 +672,7 @@ Kini bilangan yang sama tampil sebagai pecahan dalam resep, sebagai desimal pada
 | $-\frac{3}{4}=\frac{-3}{-4}$ | $\frac{-3}{-4}=+\frac34$. Pindahkan satu tanda minus saja. |
 | $\frac50=0$ | Penyebut 0 tidak diperbolehkan: $\frac50$ bukan bilangan. |
 | $3\frac12=3\cdot\frac12$ | $3\frac12=3+\frac12=\frac72$. |
-| $0{,}\overline{3}\neq\frac13$ karena tidak pernah berakhir | $0{,}\overline{3}=\frac13$ tepat: desimal berulang adalah pecahan. |`,
+| $0{,}\overline{3}\neq\frac13$ karena ekspansinya tak berhingga | $0{,}\overline{3}=\frac13$ tepat: desimal berulang adalah pecahan. |`,
           ),
         },
       ],
@@ -812,7 +812,7 @@ Kini bilangan yang sama tampil sebagai pecahan dalam resep, sebagai desimal pada
 - **Add and subtract:** common denominator (the LCM), then combine the tops; never add the denominators.
 - **Multiply and divide:** tops times tops, bottoms times bottoms; divide by flipping the second fraction; zero has no reciprocal.
 - **Mixed numbers:** divide with remainder to convert; $-3\frac12=-\left(3+\frac12\right)$.
-- **Decimals:** a lowest-terms fraction ends exactly when the denominator has only 2s and 5s; otherwise it repeats; $p\%=\frac p{100}$.
+- **Decimals:** a lowest-terms fraction terminates exactly when the denominator has only 2s and 5s; otherwise it eventually repeats periodically; $p\%=\frac p{100}$.
 - **Code:** use ´Fraction´ for exactness in Python; floats cannot hold $\frac1{10}$.`,
             T`- **Rasional:** $\frac pq$ dengan bilangan bulat $p,q$ dan $q\neq0$; setiap bilangan bulat rasional; satu bilangan punya banyak pecahan, satu di antaranya paling sederhana.
 - **Pecahan sama:** $\frac ab=\frac cd\iff ad=bc$; bagi pembilang dan penyebut dengan FPB untuk menyederhanakan; coret faktor, jangan suku.
@@ -820,7 +820,7 @@ Kini bilangan yang sama tampil sebagai pecahan dalam resep, sebagai desimal pada
 - **Menjumlah dan mengurang:** penyebut sama (KPK), lalu gabungkan pembilang; jangan menjumlahkan penyebut.
 - **Mengalikan dan membagi:** pembilang kali pembilang, penyebut kali penyebut; bagi dengan membalik pecahan kedua; nol tidak punya kebalikan.
 - **Bilangan campuran:** bagi dengan sisa untuk mengubah; $-3\frac12=-\left(3+\frac12\right)$.
-- **Desimal:** pecahan paling sederhana berakhir tepat bila penyebut hanya berisi 2 dan 5; jika tidak ia berulang; $p\%=\frac p{100}$.
+- **Desimal:** pecahan paling sederhana berakhir tepat bila penyebut hanya berisi 2 dan 5; jika tidak ia akhirnya berulang secara periodik; $p\%=\frac p{100}$.
 - **Kode:** pakai ´Fraction´ untuk ketepatan di Python; float tidak dapat menyimpan $\frac1{10}$.`,
           ),
         },
@@ -839,8 +839,8 @@ Kini bilangan yang sama tampil sebagai pecahan dalam resep, sebagai desimal pada
     { term: L('Mixed number', 'Bilangan campuran'), definition: L('A whole number together with a proper fraction, such as 3 and 2 over 5, which means 3 plus 2 over 5.', 'Bilangan bulat bersama pecahan wajar, seperti 3 dan 2 per 5, yang berarti 3 ditambah 2 per 5.') },
     { term: L('Reciprocal', 'Kebalikan'), definition: L('The fraction turned upside down; a number times its reciprocal is 1, and zero has no reciprocal.', 'Pecahan yang dibalik; bilangan dikali kebalikannya sama dengan 1, dan nol tidak punya kebalikan.') },
     { term: L('Common denominator', 'Penyebut sama'), definition: L('A denominator that two fractions are both rewritten over so that they can be added or compared; the least common multiple of the denominators is the smallest choice.', 'Penyebut yang menjadi dasar penulisan ulang dua pecahan agar dapat dijumlahkan atau dibandingkan; kelipatan persekutuan terkecil dari penyebutnya adalah pilihan terkecil.') },
-    { term: L('Terminating decimal', 'Desimal berakhir'), definition: L('A decimal with finitely many digits, such as 0.375; a fraction in lowest terms has one exactly when its denominator has only the prime factors 2 and 5.', 'Desimal dengan angka yang berhingga banyaknya, seperti 0,375; pecahan paling sederhana memilikinya tepat bila penyebutnya hanya berfaktor prima 2 dan 5.') },
-    { term: L('Repeating decimal', 'Desimal berulang'), definition: L('A decimal in which a block of digits repeats for ever, such as 0.333 and so on for 1 over 3.', 'Desimal yang sebuah blok angkanya berulang selamanya, seperti 0,333 dan seterusnya untuk 1 per 3.') },
+    { term: L('Terminating decimal', 'Desimal berakhir'), definition: L('A decimal expansion with finitely many digits, such as 0.375; a fraction in lowest terms has one exactly when its denominator has only the prime factors 2 and 5.', 'Ekspansi desimal dengan angka yang berhingga banyaknya, seperti 0,375; pecahan paling sederhana memilikinya tepat bila penyebutnya hanya berfaktor prima 2 dan 5.') },
+    { term: L('Repeating decimal', 'Desimal berulang'), definition: L('A decimal expansion that eventually repeats periodically: from some digit onward a block of digits repeats without end, such as 0.333 and so on for 1 over 3.', 'Ekspansi desimal yang akhirnya berulang secara periodik: mulai dari suatu angka, sebuah blok angka berulang tanpa akhir, seperti 0,333 dan seterusnya untuk 1 per 3.') },
     { term: L('Percent', 'Persen'), definition: L('A fraction with denominator 100, so that 25 percent means 25 over 100, which is 1 over 4.', 'Pecahan berpenyebut 100, sehingga 25 persen berarti 25 per 100, yaitu 1 per 4.') },
     { term: L('Ratio', 'Rasio (perbandingan)'), definition: L('A comparison of two quantities written a to b or as the fraction a over b.', 'Perbandingan dua besaran yang ditulis a banding b atau sebagai pecahan a per b.') },
   ],
@@ -867,12 +867,12 @@ Kini bilangan yang sama tampil sebagai pecahan dalam resep, sebagai desimal pada
       ],
     },
     {
-      name: L('How to tell whether a fraction ends or repeats as a decimal', 'Cara mengetahui desimal pecahan berakhir atau berulang'),
+      name: L('How to tell whether a fraction terminates or repeats as a decimal', 'Cara mengetahui desimal pecahan berakhir atau berulang'),
       description: L('Simplify the fraction, then look at the prime factors of its denominator.', 'Sederhanakan pecahan, lalu lihat faktor prima penyebutnya.'),
       steps: [
         { name: L('Reduce the fraction', 'Sederhanakan pecahan'), text: L('Divide the top and bottom by their greatest common divisor so the fraction is in lowest terms.', 'Bagi pembilang dan penyebut dengan faktor persekutuan terbesarnya sehingga pecahan paling sederhana.') },
         { name: L('Factor the denominator', 'Faktorkan penyebut'), text: L('Write the denominator as a product of primes, for example 12 is 2 times 2 times 3.', 'Tulis penyebut sebagai hasil kali bilangan prima, misalnya 12 adalah 2 kali 2 kali 3.') },
-        { name: L('Look for other primes', 'Cari bilangan prima lain'), text: L('If the only primes are 2 and 5, the decimal ends; if any other prime appears, it repeats.', 'Jika satu-satunya bilangan prima adalah 2 dan 5, desimalnya berakhir; jika ada bilangan prima lain, ia berulang.') },
+        { name: L('Look for other primes', 'Cari bilangan prima lain'), text: L('If the only primes are 2 and 5, the decimal terminates; if any other prime appears, it eventually repeats periodically.', 'Jika satu-satunya bilangan prima adalah 2 dan 5, desimalnya berakhir; jika ada bilangan prima lain, ia akhirnya berulang secara periodik.') },
       ],
     },
   ],
@@ -937,14 +937,14 @@ Kini bilangan yang sama tampil sebagai pecahan dalam resep, sebagai desimal pada
     {
       q: L('How do you turn a fraction into a decimal?', 'Bagaimana mengubah pecahan menjadi desimal?'),
       a: L(
-        'Divide the numerator by the denominator, by long division or a calculator. For 3 over 8 that gives 0.375. If the division never ends, the digits repeat, as 1 over 3 gives 0.333 and so on, written with a bar over the repeating digit.',
-        'Bagi pembilang dengan penyebut, dengan pembagian bersusun atau kalkulator. Untuk 3 per 8 hasilnya 0,375. Jika pembagian tidak pernah berakhir, angkanya berulang, seperti 1 per 3 menghasilkan 0,333 dan seterusnya, ditulis dengan garis di atas angka yang berulang.',
+        'Divide the numerator by the denominator, by long division or a calculator. For 3 over 8 that gives 0.375. If the division never terminates, the digits eventually repeat periodically, as 1 over 3 gives 0.333 and so on, written with a bar over the repeating digit.',
+        'Bagi pembilang dengan penyebut, dengan pembagian bersusun atau kalkulator. Untuk 3 per 8 hasilnya 0,375. Jika pembagian tidak pernah berakhir, angkanya akhirnya berulang secara periodik, seperti 1 per 3 menghasilkan 0,333 dan seterusnya, ditulis dengan garis di atas angka yang berulang.',
       ),
     },
     {
       q: L('When does a fraction give a terminating decimal?', 'Kapan pecahan menghasilkan desimal berakhir?'),
       a: L(
-        'When, in lowest terms, its denominator has no prime factor other than 2 and 5, because ten is 2 times 5. So 3 over 8 and 7 over 20 end, while 1 over 3, 1 over 6 and 5 over 12 repeat, since their denominators contain 3.',
+        'When, in lowest terms, its denominator has no prime factor other than 2 and 5, because ten is 2 times 5. So 3 over 8 and 7 over 20 terminate, while 1 over 3, 1 over 6 and 5 over 12 repeat, since their denominators contain 3.',
         'Bila, dalam bentuk paling sederhana, penyebutnya tidak punya faktor prima selain 2 dan 5, karena sepuluh adalah 2 kali 5. Jadi 3 per 8 dan 7 per 20 berakhir, sedangkan 1 per 3, 1 per 6, dan 5 per 12 berulang, sebab penyebutnya memuat 3.',
       ),
     },

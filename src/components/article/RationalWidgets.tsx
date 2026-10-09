@@ -433,8 +433,8 @@ export function FractionToDecimal() {
           {r.d === 1n
             ? tc(L('It is a whole number, so there are no decimal places.', 'Ia bilangan bulat, sehingga tidak ada tempat desimal.'))
             : t.terminates
-            ? tc(L(`It ends: the reduced denominator ${r.d} has no prime factors except 2 and 5, so the decimal stops after ${t.pre} digit${t.pre === 1 ? '' : 's'}.`, `Desimalnya berakhir: penyebut ${r.d} yang sudah disederhanakan tidak punya faktor prima selain 2 dan 5, sehingga desimal berhenti setelah ${t.pre} angka.`))
-            : tc(L(`It repeats: the reduced denominator has a prime factor other than 2 and 5. ${t.pre ? `${t.pre} digit${t.pre === 1 ? '' : 's'} come first, then ` : ''}a block of ${t.period ?? e.rep.length} digit${(t.period ?? e.rep.length) === 1 ? '' : 's'} repeats for ever.`, `Desimalnya berulang: penyebut yang sudah disederhanakan punya faktor prima selain 2 dan 5. ${t.pre ? `${t.pre} angka muncul lebih dulu, lalu ` : ''}blok ${t.period ?? e.rep.length} angka berulang selamanya.`))}{' '}
+            ? tc(L(`It terminates: the reduced denominator ${r.d} has no prime factors except 2 and 5, so the decimal terminates after ${t.pre} digit${t.pre === 1 ? '' : 's'}.`, `Desimalnya berakhir: penyebut ${r.d} yang sudah disederhanakan tidak punya faktor prima selain 2 dan 5, sehingga desimal berakhir setelah ${t.pre} angka.`))
+            : tc(L(`It eventually repeats periodically: the reduced denominator has a prime factor other than 2 and 5. ${t.pre ? `${t.pre} digit${t.pre === 1 ? '' : 's'} come first, then ` : ''}a block of ${t.period ?? e.rep.length} digit${(t.period ?? e.rep.length) === 1 ? '' : 's'} repeats without end.`, `Desimalnya akhirnya berulang secara periodik: penyebut yang sudah disederhanakan punya faktor prima selain 2 dan 5. ${t.pre ? `${t.pre} angka muncul lebih dulu, lalu ` : ''}blok ${t.period ?? e.rep.length} angka berulang tanpa akhir.`))}{' '}
           <Tex src={`${r.d}=${ptex}`} />
         </p>
         <p className="small">

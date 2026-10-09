@@ -556,7 +556,7 @@ Hanya $x=2$ yang merupakan penyelesaian. Tanda akar tidak pernah negatif, sehing
         {
           kind: 'text',
           text: L(
-            T`**Scientific notation writes a number as $a\times10^k$ with $1\le a<10$ and $k$ a whole number: move the decimal point until one non-zero digit is left of it, and let $k$ count the places moved.** Moving left makes $k$ positive and moving right makes it negative.
+            T`**Scientific notation writes a number as $a\times10^k$ with $1\le a<10$ and $k$ an integer: move the decimal point until one non-zero digit is left of it, and let $k$ count the places moved.** Moving left makes $k$ positive and moving right makes it negative.
 
 | Quantity | Ordinary number | Scientific notation |
 |---|---|---|
@@ -643,7 +643,7 @@ Math.sqrt(2) ** 2     // 2.0000000000000004
 | Very large powers | JavaScript numbers lose exactness beyond 2⁵³; Python integers do not | use ´BigInt´ in JavaScript, or Python's ´int´ |
 | ´0 ** 0´ | it is 1 in both languages | remember it is a convention, not a theorem |
 
-Use ´math.isqrt´ in Python when you need the whole-number part of a square root: it is exact for any size of integer, while ´math.sqrt´ works in floating point.`,
+Use ´math.isqrt´ in Python when you need the whole-number part of a square root: it is exact for any size of integer, while ´math.sqrt´ works with floating-point numbers (floats).`,
             T`Jebakannya, berurutan dari yang paling sering menggigit:
 
 | Jebakan | Yang terjadi | Yang sebaiknya dilakukan |
@@ -655,7 +655,7 @@ Use ´math.isqrt´ in Python when you need the whole-number part of a square roo
 | Pangkat yang sangat besar | bilangan JavaScript kehilangan ketepatan di atas 2⁵³; bilangan bulat Python tidak | pakai ´BigInt´ di JavaScript, atau ´int´ Python |
 | ´0 ** 0´ | bernilai 1 di kedua bahasa | ingat bahwa itu kesepakatan, bukan teorema |
 
-Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuadrat: ia eksak untuk bilangan bulat sebesar apa pun, sedangkan ´math.sqrt´ bekerja dengan floating point.`,
+Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuadrat: ia eksak untuk bilangan bulat sebesar apa pun, sedangkan ´math.sqrt´ bekerja dengan bilangan floating point (float).`,
           ),
         },
       ],

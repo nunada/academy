@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'bilangan bulat, bilangan negatif, garis bilangan, bilangan bulat positif dan negatif, penjumlahan bilangan bulat, pengurangan bilangan bulat, perkalian bilangan bulat, pembagian bilangan bulat, negatif kali negatif, nilai mutlak, lawan suatu bilangan, urutan operasi hitung, bilangan genap dan ganjil, aturan habis dibagi, habis dibagi 3, habis dibagi 9, bilangan prima, bilangan komposit, faktorisasi prima, faktor dan kelipatan, faktor persekutuan terbesar, fpb, kelipatan persekutuan terkecil, kpk, algoritma euclid, pembagian bersisa, modulo, aritmetika modular, sisa pembagian, pembagian bilangan bulat, python floor division',
   },
   published: '2026-10-09',
-  updated: '2026-10-09',
+  updated: '2026-10-10',
   readingMinutes: 19,
   about: [
     { name: { en: 'Integer', id: 'Bilangan bulat' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Integer', id: 'https://id.wikipedia.org/wiki/Bilangan_bulat' } },
