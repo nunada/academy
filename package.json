@@ -16,7 +16,8 @@
     "check:articles": "node tools/check-articles.mjs",
     "check:chinese": "node tools/check-chinese-numbers.mjs",
     "check:powers": "node tools/check-powers.mjs",
-    "check:algebra": "node tools/check-algebra.mjs"
+    "check:algebra": "node tools/check-algebra.mjs",
+    "check:integers": "node tools/check-integers.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

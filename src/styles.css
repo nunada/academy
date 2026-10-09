@@ -1350,3 +1350,18 @@ a.chip.static { cursor: pointer; }
 .amtext { font-size: 11px; fill: var(--text); }
 .amtext.big { font-size: 14px; font-weight: 700; }
 .amside { font-size: 12px; fill: var(--muted); font-weight: 700; }
+
+/* Integers article */
+.nlsvg { width: 100%; max-width: 560px; display: block; margin: 8px auto; }
+.nlaxis { stroke: var(--text); stroke-width: 1.6; }
+.nltick { stroke: var(--muted); stroke-width: 1; }
+.nllabel { font-size: 10px; fill: var(--muted); }
+.nlres { font-size: 13px; font-weight: 700; fill: var(--fig-result); }
+.nlarc.a path:first-child { stroke: var(--fig-a); }
+.nlarc.b path:first-child { stroke: var(--fig-c); }
+.nlarc.a .arrowhead { fill: var(--fig-a); }
+.nlarc.b .arrowhead { fill: var(--fig-c); }
+.nldot { stroke: var(--surface); stroke-width: 1.2; }
+.nldot.zero { fill: var(--muted); }
+.nldot.a { fill: var(--fig-a); }
+.nldot.r { fill: var(--fig-result); }

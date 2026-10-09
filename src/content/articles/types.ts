@@ -47,6 +47,12 @@ export type WidgetName =
   | 'evalexpr'
   | 'areamodel'
   | 'factor'
+  | 'intline'
+  | 'intops'
+  | 'divmod'
+  | 'divrules'
+  | 'primefactor'
+  | 'gcdlcm'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

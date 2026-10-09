@@ -159,6 +159,48 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Ketik polinomial dengan satu huruf dan lihat ia difaktorkan, dengan pola yang dipakai disebut dan faktornya dikalikan kembali sebagai pemeriksaan.',
     },
   },
+  intline: {
+    title: { en: 'Interactive: add and subtract on the number line', id: 'Interaktif: jumlah dan selisih pada garis bilangan' },
+    description: {
+      en: 'Move two sliders and watch the sum or difference of two integers drawn as two jumps on a number line, with the rule that applies.',
+      id: 'Geser dua penggeser dan lihat jumlah atau selisih dua bilangan bulat digambar sebagai dua lompatan pada garis bilangan, beserta aturan yang berlaku.',
+    },
+  },
+  intops: {
+    title: { en: 'Interactive: the four operations on integers', id: 'Interaktif: empat operasi pada bilangan bulat' },
+    description: {
+      en: 'Type two integers, even very large ones, pick an operation and see the exact result and the sign rule behind it.',
+      id: 'Ketik dua bilangan bulat, bahkan yang sangat besar, pilih operasi, dan lihat hasil eksak beserta aturan tanda di baliknya.',
+    },
+  },
+  divmod: {
+    title: { en: 'Interactive: division with remainder', id: 'Interaktif: pembagian bersisa' },
+    description: {
+      en: 'Divide one integer by another and compare the quotient and remainder that mathematics, Python and JavaScript each give, including for negative numbers.',
+      id: 'Bagi satu bilangan bulat dengan yang lain dan bandingkan hasil bagi dan sisa menurut matematika, Python, dan JavaScript, termasuk untuk bilangan negatif.',
+    },
+  },
+  divrules: {
+    title: { en: 'Interactive: divisibility rules', id: 'Interaktif: aturan habis dibagi' },
+    description: {
+      en: 'Type any integer and see which of 2, 3, 4, 5, 6, 8, 9, 10 and 11 divide it, what each rule looks at, and the real remainder as a check.',
+      id: 'Ketik bilangan bulat apa pun dan lihat mana dari 2, 3, 4, 5, 6, 8, 9, 10, dan 11 yang membaginya, apa yang dilihat tiap aturan, dan sisa sebenarnya sebagai pemeriksaan.',
+    },
+  },
+  primefactor: {
+    title: { en: 'Interactive: prime factorisation', id: 'Interaktif: faktorisasi prima' },
+    description: {
+      en: 'Type a whole number up to a trillion and see whether it is prime, its prime factorisation step by step, and how many divisors it has.',
+      id: 'Ketik bilangan bulat sampai satu triliun dan lihat apakah ia prima, faktorisasi primanya langkah demi langkah, dan berapa banyak pembaginya.',
+    },
+  },
+  gcdlcm: {
+    title: { en: 'Interactive: GCD and LCM with Euclid’s algorithm', id: 'Interaktif: FPB dan KPK dengan algoritma Euclid' },
+    description: {
+      en: 'Enter two positive integers and see Euclid’s algorithm run row by row, then the gcd, the lcm and the prime exponents behind them.',
+      id: 'Masukkan dua bilangan bulat positif dan lihat algoritma Euclid berjalan baris demi baris, lalu FPB, KPK, dan eksponen prima di baliknya.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

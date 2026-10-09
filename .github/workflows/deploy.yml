@@ -66,6 +66,10 @@ jobs:
       # combining, factoring): checked against hand-written results and against an
       # independent numeric evaluator on random expressions.
       - run: npm run check:algebra
+      # The integer engine behind the integers widgets (division conventions,
+      # divisibility rules, factorisation, gcd and lcm): checked against hand-written
+      # answers, the language operators and brute force.
+      - run: npm run check:integers
 
       - name: Work out where the site will live
         id: base

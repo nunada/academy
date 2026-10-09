@@ -16,6 +16,7 @@ import {
 import { Tex } from '../ui'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { ChineseConvert, ChineseGrouping, ChineseRead, ChineseRods } from './ChineseWidgets'
+import { DivisibilityRules, DivisionWithRemainder, GcdLcm, IntegerNumberLine, IntegerOperations, PrimeFactoriser } from './IntegerWidgets'
 import { AreaModel, EvaluateExpression, ExpandSimplify, ExpressionAnatomy, FactorWidget } from './AlgebraWidgets'
 import { ExponentLaws, ExponentPattern, Rationalise, RootExponent, ScientificNotation, SimplifyRoot } from './PowerWidgets'
 
@@ -796,6 +797,18 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <AreaModel />
     case 'factor':
       return <FactorWidget />
+    case 'intline':
+      return <IntegerNumberLine />
+    case 'intops':
+      return <IntegerOperations />
+    case 'divmod':
+      return <DivisionWithRemainder />
+    case 'divrules':
+      return <DivisibilityRules />
+    case 'primefactor':
+      return <PrimeFactoriser />
+    case 'gcdlcm':
+      return <GcdLcm />
   }
 }
 

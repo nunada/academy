@@ -33,7 +33,7 @@ const OPERATOR: Record<string, string> = {
   emptyset: '∅', forall: '∀', exists: '∃', therefore: '∴', because: '∵',
   perp: '⊥', parallel: '∥', nparallel: '∦', angle: '∠', triangle: '△',
   circ: '∘', degree: '°', infty: '∞', partial: '∂', nabla: '∇',
-  ldots: '…', cdots: '⋯', dots: '…', vdots: '⋮',
+  mid: '∣', ldots: '…', cdots: '⋯', dots: '…', vdots: '⋮',
   langle: '⟨', rangle: '⟩', lVert: '‖', rVert: '‖', vert: '|', Vert: '‖',
   lfloor: '⌊', rfloor: '⌋', lceil: '⌈', rceil: '⌉',
   sum: '∑', prod: '∏', int: '∫', checkmark: '✓',
@@ -245,6 +245,10 @@ function parseCommand(p: P, cmd: string): string {
   if (name in GREEK) return `<mi>${GREEK[name]}</mi>`
   if (NAMES.has(name)) return `<mi>${name}</mi>`
   if (SPACING.has(name)) return '<mspace width="0.22em"></mspace>'
+
+  // Modular arithmetic: `a mod n` and `a \equiv b \pmod n`.
+  if (name === 'bmod') return '<mspace width="0.3em"></mspace><mi>mod</mi><mspace width="0.3em"></mspace>'
+  if (name === 'pmod') return `<mspace width="0.6em"></mspace><mo>(</mo><mi>mod</mi><mspace width="0.3em"></mspace>${parseAtom(p)}<mo>)</mo>`
 
   switch (name) {
     case 'frac':

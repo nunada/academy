@@ -13,14 +13,16 @@ import { meta as realNumbers } from './real-numbers.meta'
 import { meta as chineseNumbers } from './chinese-numbers.meta'
 import { meta as exponentsAndRadicals } from './exponents-and-radicals.meta'
 import { meta as algebraicExpressions } from './algebraic-expressions.meta'
+import { meta as integers } from './integers.meta'
 
-export const ARTICLES: ArticleMeta[] = [algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
   'chinese-numbers': () => import('./chinese-numbers'),
   'exponents-and-radicals': () => import('./exponents-and-radicals'),
   'algebraic-expressions': () => import('./algebraic-expressions'),
+  integers: () => import('./integers'),
 }
 
 export const articleById = (id: string): ArticleMeta | undefined => ARTICLES.find((a) => a.id === id)

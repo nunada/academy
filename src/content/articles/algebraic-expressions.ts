@@ -942,5 +942,5 @@ Uji numerik seperti ´f(2)´ dapat menangkap penyederhanaan yang salah tetapi ti
     { title: 'SymPy tutorial: simplification', author: 'SymPy Development Team', source: 'docs.sympy.org', url: 'https://docs.sympy.org/latest/tutorials/intro-tutorial/simplification.html' },
   ],
 
-  related: ['real-numbers', 'exponents-and-radicals'],
+  related: ['real-numbers', 'integers', 'exponents-and-radicals'],
 }
