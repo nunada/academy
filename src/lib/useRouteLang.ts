@@ -22,8 +22,18 @@ export function useRouteLang(routeLang: Lang, siblingPath: (lang: Lang) => strin
   // two effects below would otherwise race on arrival: the second would see a
   // mismatch and "correct" the address back to the visitor's old language.
   const synced = useRef(false)
+  // Going from /articles/x to /artikel/x keeps this same component mounted — both
+  // routes render the same page — so "arrived" has to be decided again whenever
+  // the address's language changes. Without this, following the "Baca dalam
+  // Bahasa Indonesia" link looked like the visitor flipping the switch, and the
+  // page sent them straight back.
+  const lastRoute = useRef(routeLang)
 
   useEffect(() => {
+    if (lastRoute.current !== routeLang) {
+      lastRoute.current = routeLang
+      synced.current = false
+    }
     if (lang === routeLang) {
       synced.current = true
       return
