@@ -24,7 +24,7 @@ export const meta: ArticleMeta = {
   },
   published: '2026-10-09',
   updated: '2026-10-09',
-  readingMinutes: 18,
+  readingMinutes: 19,
   about: [
     { name: { en: 'Real number', id: 'Bilangan real' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Real_number', id: 'https://id.wikipedia.org/wiki/Bilangan_real' } },
     { name: { en: 'Rational number', id: 'Bilangan rasional' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Rational_number', id: 'https://id.wikipedia.org/wiki/Bilangan_rasional' } },

@@ -19,8 +19,8 @@ const T = (s: TemplateStringsArray): string =>
 
 export const body: ArticleBody = {
   answer: L(
-    T`**Real numbers** are all the numbers that sit on the number line. They are the numbers we use every day — whole numbers, fractions and decimals, called *rational* numbers — together with numbers such as $\sqrt{2}$ and $\pi$ that no fraction can equal, called *irrational* numbers. The set of real numbers is written $\mathbb{R}$. A real number is rational when its decimal expansion ends or repeats, and irrational when it never ends and never repeats.`,
-    T`**Bilangan real** adalah semua bilangan yang terletak pada garis bilangan. Bilangan real mencakup bilangan yang digunakan sehari-hari, seperti bilangan bulat, pecahan, dan bilangan desimal, yang disebut bilangan *rasional* — serta bilangan seperti $\sqrt{2}$ dan $\pi$ yang tidak dapat dinyatakan sebagai pecahan dua bilangan bulat dengan penyebut tak nol, yang disebut bilangan *irasional*. Himpunan bilangan real ditulis $\mathbb{R}$. Sebuah bilangan real itu rasional jika bentuk desimalnya berakhir atau berulang, dan irasional jika bentuk desimalnya tidak pernah berakhir dan tidak pernah berulang.`,
+    T`**Real numbers** are all the numbers that sit on the number line. They are the numbers we use every day — whole numbers, fractions, and decimals that end or repeat, all called *rational* numbers — together with numbers such as $\sqrt{2}$ and $\pi$ that no fraction can equal, called *irrational* numbers. The set of real numbers is written $\mathbb{R}$. A real number is rational when its decimal expansion ends or repeats, and irrational when it never ends and never repeats.`,
+    T`**Bilangan real** adalah semua bilangan yang terletak pada garis bilangan. Bilangan real mencakup bilangan yang digunakan sehari-hari, seperti bilangan bulat, pecahan, dan desimal yang berakhir atau berulang, yang semuanya disebut bilangan *rasional* — serta bilangan seperti $\sqrt{2}$ dan $\pi$ yang tidak dapat dinyatakan sebagai pecahan dua bilangan bulat dengan penyebut tak nol, yang disebut bilangan *irasional*. Himpunan bilangan real ditulis $\mathbb{R}$. Sebuah bilangan real itu rasional jika bentuk desimalnya berakhir atau berulang, dan irasional jika bentuk desimalnya tidak pernah berakhir dan tidak pernah berulang.`,
   ),
 
   keyPoints: [
@@ -37,8 +37,8 @@ export const body: ArticleBody = {
       T`Pecahan paling sederhana punya desimal yang berhenti tepat ketika penyebutnya tidak punya faktor prima selain 2 dan 5. Jika tidak, desimalnya berulang.`,
     ),
     L(
-      T`$\sqrt{2}$ is irrational, and the proof is short. So are $\pi$ and $e$, and $\sqrt{n}$ is irrational whenever $n$ is not a perfect square.`,
-      T`$\sqrt{2}$ itu irasional, dan buktinya singkat. Begitu juga $\pi$ dan $e$, dan $\sqrt{n}$ irasional setiap kali $n$ bukan kuadrat sempurna.`,
+      T`$\sqrt{2}$ is irrational, and the proof is short. So are $\pi$ and $e$, and for a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square.`,
+      T`$\sqrt{2}$ itu irasional, dan buktinya singkat. Begitu juga $\pi$ dan $e$, dan untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna.`,
     ),
     L(
       T`Between any two real numbers there are infinitely many rational and infinitely many irrational numbers, yet the rationals alone leave gaps that the real numbers fill.`,
@@ -63,7 +63,7 @@ export const body: ArticleBody = {
 
 Every time you measure something — the length of a table, the temperature at noon, the time a race took — the answer is a real number.
 
-Another way to say the same thing is geometric. Draw a straight line, mark a point for 0 and another for 1, and every point on the line stands for exactly one real number. The line is the **number line**, and it has no holes in it.
+Another way to say the same thing is geometric. Draw a straight line, mark a point for 0 and another for 1, and every point on the line stands for exactly one real number. The line is the **number line**. Intuitively it has no gaps; that property is called **completeness**, and the section on the number line below says exactly what it means.
 
 Real numbers are the numbers of measurement, of calculus, of physics, and of almost every program that does arithmetic. Knowing how they are organised — which are fractions, which are not, and how a computer stores them — prevents a long list of mistakes, from a wrong exam answer to a wrong bank balance.
 
@@ -82,7 +82,7 @@ Real numbers are the numbers of measurement, of calculus, of physics, and of alm
 
 Setiap kali kamu mengukur sesuatu — panjang meja, suhu siang hari, waktu yang dipakai dalam lomba lari — hasil pengukuran tersebut dapat dinyatakan dengan bilangan real.
 
-Cara lain mengatakannya bersifat geometris. Gambarlah garis lurus, tandai satu titik untuk 0 dan satu titik lain untuk 1, maka setiap titik pada garis itu mewakili tepat satu bilangan real. Garis tersebut disebut **garis bilangan**. Dalam pengertian matematis, bilangan real membentuk garis yang kontinu, tanpa celah.
+Cara lain mengatakannya bersifat geometris. Gambarlah garis lurus, tandai satu titik untuk 0 dan satu titik lain untuk 1, maka setiap titik pada garis itu mewakili tepat satu bilangan real. Garis tersebut disebut **garis bilangan**. Secara intuitif garis ini tidak memiliki celah; sifat ini disebut **kelengkapan (completeness)**, dan bagian tentang garis bilangan di bawah menjelaskan artinya secara tepat.
 
 Bilangan real digunakan dalam pengukuran, kalkulus, fisika, dan berbagai komputasi numerik. Mengetahui bagaimana bilangan real tersusun — mana yang pecahan, mana yang bukan, dan bagaimana komputer menyimpannya — membantu memahami berbagai persoalan perhitungan, termasuk kesalahan pembulatan dalam komputasi.
 
@@ -319,7 +319,7 @@ Jika ada angka yang tidak berulang, seperti pada $0{,}41\overline{6}$, gunakan d
 - $e=2.71828182\ldots$, the base of natural logarithms, which appears in growth and decay.
 - $\varphi=\dfrac{1+\sqrt{5}}{2}=1.61803398\ldots$, the golden ratio.
 
-There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ is irrational unless $n$ is a perfect square. Factorise $n$; if every prime appears an even number of times, $n$ is a perfect square and the root is a whole number. So $\sqrt{50}=5\sqrt{2}$ is irrational, while $\sqrt{49}=7$ is not.`,
+There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square (and when it is, $\sqrt{n}$ is a whole number). Factorise $n$; if every prime appears an even number of times, $n$ is a perfect square and the root is a whole number. So $\sqrt{50}=5\sqrt{2}$ is irrational, while $\sqrt{49}=7$ is not.`,
             T`**Bilangan irasional** adalah bilangan real yang **bukan** rasional: tidak ada pecahan dua bilangan bulat yang sama dengannya. Dalam bentuk desimal, ia tidak pernah berakhir dan tidak memiliki pola angka yang berulang secara periodik. Contoh bilangan irasional yang terkenal antara lain:
 
 - $\sqrt{2}=1{,}41421356\ldots$, diagonal persegi dengan sisi 1.
@@ -327,7 +327,7 @@ There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ 
 - $e=2{,}71828182\ldots$, bilangan dasar logaritma natural, yang muncul pada pertumbuhan dan peluruhan.
 - $\varphi=\dfrac{1+\sqrt{5}}{2}=1{,}61803398\ldots$, rasio emas.
 
-Ada uji sederhana untuk akar kuadrat: untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional kecuali $n$ adalah kuadrat sempurna. Faktorkan $n$; jika setiap prima muncul sebanyak bilangan genap, $n$ adalah kuadrat sempurna dan akarnya bilangan bulat. Jadi $\sqrt{50}=5\sqrt{2}$ irasional, sedangkan $\sqrt{49}=7$ tidak.`,
+Ada uji sederhana untuk akar kuadrat: untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna (dan jika $n$ kuadrat sempurna, $\sqrt{n}$ adalah bilangan bulat). Faktorkan $n$; jika setiap prima muncul sebanyak bilangan genap, $n$ adalah kuadrat sempurna dan akarnya bilangan bulat. Jadi $\sqrt{50}=5\sqrt{2}$ irasional, sedangkan $\sqrt{49}=7$ tidak.`,
           ),
         },
         {
@@ -442,14 +442,18 @@ Sekarang coba sendiri angka-angka desimalnya. Widget di bawah ini menemukan $\sq
           text: L(
             T`**On the number line, the rational numbers are dense but not complete, while the real numbers are both dense and complete.** Two properties of the real numbers sound alike and are not.
 
-**Density.** Between any two different real numbers there is another one — in fact infinitely many rational numbers and infinitely many irrational numbers. If $a<b$ are rational, the midpoint $\frac{a+b}{2}$ is rational and lies between them; and $a+\frac{b-a}{\sqrt{2}}$ is irrational and also lies between them. There is no "next" real number after 0, however much you zoom in.
+**Density.** A set is dense in the real numbers when every stretch of the line, however short, contains at least one of its members. The rational numbers are dense, and so are the irrational numbers: between any two different real numbers there is another one — in fact infinitely many rational numbers and infinitely many irrational numbers. If $a<b$ are rational, the midpoint $\frac{a+b}{2}$ is rational and lies between them; and $a+\frac{b-a}{\sqrt{2}}$ is irrational and also lies between them. There is no "next" real number after 0, however much you zoom in.
 
-**Completeness.** The rational numbers are dense and still have holes. The number $\sqrt{2}$ is missing from $\mathbb{Q}$: the rationals $1,\ 1.4,\ 1.41,\ 1.414,\ \ldots$ get closer and closer to a point on the line, but no rational number is that point. The real numbers fill every such hole, which is what makes the number line a continuous line and what calculus relies on.`,
-            T`**Pada garis bilangan, bilangan rasional itu rapat tetapi tidak lengkap, sedangkan bilangan real rapat sekaligus lengkap.** Dua sifat bilangan real terdengar mirip tetapi berbeda.
+**Completeness.** The rational numbers are dense and still have gaps: the number $\sqrt{2}$ is missing from $\mathbb{Q}$. The rationals $1,\ 1.4,\ 1.41,\ 1.414,\ \ldots$ get closer and closer to a point on the line, but no rational number is that point.
 
-**Kerapatan.** Di antara dua bilangan real yang berbeda selalu ada bilangan lain — bahkan tak berhingga banyak bilangan rasional dan tak berhingga banyak bilangan irasional. Jika $a<b$ rasional, titik tengah $\frac{a+b}{2}$ rasional dan terletak di antara keduanya; dan $a+\frac{b-a}{\sqrt{2}}$ irasional dan juga terletak di antara keduanya. Tidak ada bilangan real "berikutnya" setelah 0, sebesar apa pun kamu memperbesar tampilannya.
+"A line with no holes" is the picture; the precise statement is the **least upper bound property**: every non-empty set of real numbers that has an upper bound has a *least* upper bound. It fails in $\mathbb{Q}$ — the set of rational numbers whose square is less than 2 is bounded above, yet has no least upper bound among the rationals — and it holds in $\mathbb{R}$, where that least upper bound is $\sqrt{2}$. This is what makes the real number line continuous, and what calculus relies on.`,
+            T`**Pada garis bilangan, bilangan rasional itu rapat (dense) tetapi tidak lengkap (complete), sedangkan bilangan real rapat sekaligus lengkap.** Dua sifat bilangan real terdengar mirip tetapi berbeda.
 
-**Kelengkapan.** Bilangan rasional rapat tetapi tetap berlubang. Bilangan $\sqrt{2}$ tidak ada di $\mathbb{Q}$: bilangan rasional $1,\ 1{,}4,\ 1{,}41,\ 1{,}414,\ \ldots$ makin dekat ke sebuah titik pada garis, tetapi tidak ada bilangan rasional yang menjadi titik itu. Bilangan real mencakup titik-titik yang tidak dapat direpresentasikan oleh bilangan rasional, itulah yang membuat garis bilangan menjadi garis yang kontinu dan yang diandalkan kalkulus.`,
+**Kerapatan (dense).** Sebuah himpunan disebut rapat dalam bilangan real jika setiap bagian garis, sependek apa pun, memuat sedikitnya satu anggotanya. Bilangan rasional rapat, begitu juga bilangan irasional: di antara dua bilangan real yang berbeda selalu ada bilangan lain — bahkan tak berhingga banyak bilangan rasional dan tak berhingga banyak bilangan irasional. Jika $a<b$ rasional, titik tengah $\frac{a+b}{2}$ rasional dan terletak di antara keduanya; dan $a+\frac{b-a}{\sqrt{2}}$ irasional dan juga terletak di antara keduanya. Tidak ada bilangan real "berikutnya" setelah 0, sebesar apa pun kamu memperbesar tampilannya.
+
+**Kelengkapan (complete).** Bilangan rasional rapat tetapi tetap memiliki celah: bilangan $\sqrt{2}$ tidak ada di $\mathbb{Q}$. Bilangan rasional $1,\ 1{,}4,\ 1{,}41,\ 1{,}414,\ \ldots$ makin dekat ke sebuah titik pada garis, tetapi tidak ada bilangan rasional yang menjadi titik itu.
+
+"Garis tanpa lubang" hanyalah gambarannya; pernyataan yang tepat adalah **sifat batas atas terkecil**: setiap himpunan bilangan real yang tak kosong dan terbatas ke atas memiliki batas atas *terkecil*. Sifat ini tidak berlaku di $\mathbb{Q}$ — himpunan bilangan rasional yang kuadratnya kurang dari 2 terbatas ke atas, tetapi tidak punya batas atas terkecil di antara bilangan rasional — dan berlaku di $\mathbb{R}$, tempat batas atas terkecil itu adalah $\sqrt{2}$. Inilah yang membuat garis bilangan real kontinu, dan yang diandalkan kalkulus.`,
           ),
         },
         {
@@ -628,14 +632,14 @@ Mengapa $q+i$ selalu irasional? Andaikan $q+i=r$, dengan $r$ rasional. Maka $i=r
           text: L(
             T`**In code, 0.1 + 0.2 does not equal 0.3 because computers store real numbers as 64-bit binary floating-point values, and 0.1 cannot be stored exactly.** A computer has finite memory, and a real number can need infinitely many digits. So programs store an **approximation**. Almost all languages use the IEEE 754 *binary64* format (IEEE 754-2019; see Goldberg, 1991), called a ´double´ or a Python ´float´: 1 sign bit, 11 exponent bits and 52 fraction bits, which gives 53 bits of precision — about 15 to 17 significant decimal digits.
 
-The catch is that the format is *binary*. The decimal $0.1$ is $\frac{1}{10}$, and $10$ has the prime factor 5, so in base 2 the expansion of $0.1$ repeats for ever, just as $\frac{1}{3}$ repeats in base 10. The computer cuts it off, and the value actually stored is
+The catch is that the format is *binary*. The decimal $0.1$ is $\frac{1}{10}$, and $10$ has the prime factor 5, so in base 2 the expansion of $0.1$ repeats for ever, just as $\frac{1}{3}$ repeats in base 10. The computer cannot keep the endless expansion, so it stores the nearest value the format can represent, and the value actually stored is
 
 $$0.1000000000000000055511151231257827\ldots$$
 
 Add two such rounded values and the tiny errors show up:`,
             T`**Dalam kode, 0,1 + 0,2 tidak sama dengan 0,3 karena komputer merepresentasikan bilangan menggunakan format bilangan titik-mengambang (floating-point) biner 64-bit, dan 0,1 tidak dapat disimpan secara eksak.** Komputer memiliki kapasitas penyimpanan terbatas, sedangkan sebuah bilangan real bisa membutuhkan tak berhingga banyak angka. Maka program menyimpan **hampiran**. Hampir semua bahasa memakai format IEEE 754 *binary64* (IEEE 754-2019; lihat Goldberg, 1991), yang disebut ´double´ atau ´float´ di Python: 1 bit tanda, 11 bit eksponen, dan 52 bit bagian pecahan (fraction), sehingga memberi presisi 53 bit — sekitar 15 sampai 17 angka signifikan desimal.
 
-Masalahnya, formatnya *biner*. Desimal $0{,}1$ adalah $\frac{1}{10}$, dan $10$ punya faktor prima 5, sehingga dalam basis 2 ekspansi $0{,}1$ berulang tanpa akhir, sama seperti $\frac{1}{3}$ berulang dalam basis 10. Komputer menyimpan nilai hampiran yang dapat direpresentasikan dalam format tersebut, dan nilai yang benar-benar tersimpan adalah
+Masalahnya, formatnya *biner*. Desimal $0{,}1$ adalah $\frac{1}{10}$, dan $10$ punya faktor prima 5, sehingga dalam basis 2 ekspansi $0{,}1$ berulang tanpa akhir, sama seperti $\frac{1}{3}$ berulang dalam basis 10. Komputer tidak dapat menyimpan ekspansi yang tak berakhir itu, sehingga ia menyimpan nilai terdekat yang dapat diwakili oleh format tersebut, dan nilai yang benar-benar tersimpan adalah
 
 $$0{,}1000000000000000055511151231257827\ldots$$
 
@@ -734,7 +738,7 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
 | Myth | Reality |
 |---|---|
 | "π equals 3.14 or 22/7." | Both are rational approximations. π is irrational. |
-| "A number with a root sign is irrational." | $\sqrt{16}=4$ and $\sqrt{\frac{1}{4}}=\frac{1}{2}$ are rational. Only roots of non-perfect-squares are irrational. |
+| "A number with a root sign is irrational." | $\sqrt{16}=4$ is rational. For a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square. |
 | "0.999… is just below 1." | It equals 1 exactly. |
 | "Irrational numbers are rare." | Almost every real number is irrational. |
 | "A long, messy decimal must be irrational." | $\frac{1}{97}$ repeats only after 96 digits and is rational. What matters is whether it ever repeats. |
@@ -746,7 +750,7 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
 | Mitos | Kenyataan |
 |---|---|
 | "π sama dengan 3,14 atau 22/7." | Keduanya hampiran rasional. π irasional. |
-| "Bilangan dengan tanda akar itu irasional." | $\sqrt{16}=4$ dan $\sqrt{\frac{1}{4}}=\frac{1}{2}$ rasional. Hanya akar dari bilangan yang bukan kuadrat sempurna yang irasional. |
+| "Bilangan dengan tanda akar itu irasional." | $\sqrt{16}=4$ rasional. Untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna. |
 | "0,999… sedikit di bawah 1." | Ia sama dengan 1 tepat. |
 | "Bilangan irasional itu langka." | Hampir setiap bilangan real adalah irasional. |
 | "Desimal yang panjang dan acak pasti irasional." | $\frac{1}{97}$ baru berulang setelah 96 angka dan ia rasional. Yang menentukan adalah apakah ia pernah berulang. |
@@ -844,7 +848,7 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
 - **Rational** means a fraction of integers; its decimal ends or repeats. **Irrational** means it is not: $\sqrt{2}$, $\pi$, $e$.
 - The chain of sets is $\mathbb{N}\subset W\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$.
 - A reduced fraction ends exactly when the denominator has only the primes 2 and 5.
-- $\sqrt{n}$ is irrational unless $n$ is a perfect square; $\sqrt{2}$ is irrational by contradiction.
+- For a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square; $\sqrt{2}$ is irrational by contradiction.
 - Rational + irrational is irrational; irrational + irrational can be either.
 - The rationals are dense but have gaps; the reals are dense and complete.
 - Computers store finite binary approximations, so compare floats with a tolerance and use integers, ´Fraction´ or ´Decimal´ for exact work.`,
@@ -852,7 +856,7 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
 - **Rasional** berarti pecahan bilangan bulat; desimalnya berhenti atau berulang. **Irasional** berarti bukan: $\sqrt{2}$, $\pi$, $e$.
 - Rantai himpunannya adalah $\mathbb{N}\subset W\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$.
 - Pecahan sederhana berhenti tepat ketika penyebutnya hanya punya prima 2 dan 5.
-- $\sqrt{n}$ irasional kecuali $n$ kuadrat sempurna; $\sqrt{2}$ irasional lewat kontradiksi.
+- Untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna; $\sqrt{2}$ irasional lewat kontradiksi.
 - Rasional + irasional adalah irasional; irasional + irasional bisa keduanya.
 - Bilangan rasional rapat tetapi berlubang; bilangan real rapat dan lengkap.
 - Komputer menyimpan hampiran biner yang berhingga, jadi bandingkan float dengan toleransi dan pakai bilangan bulat, ´Fraction´, atau ´Decimal´ untuk hitungan eksak.`,
@@ -874,6 +878,8 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
     { term: L('Transcendental number', 'Bilangan transendental'), definition: L('A real number that is not a root of any non-zero polynomial with integer coefficients, such as π and e.', 'Bilangan real yang bukan akar polinomial tak nol mana pun dengan koefisien bulat, seperti π dan e.') },
     { term: L('Floating-point number', 'Bilangan floating point'), definition: L('The approximation of a real number that a computer stores, usually a 64-bit binary value with about 15 to 17 significant decimal digits.', 'Hampiran bilangan real yang disimpan komputer, biasanya nilai biner 64-bit dengan sekitar 15 sampai 17 angka signifikan desimal.') },
     { term: L('Interval', 'Interval'), definition: L('An unbroken stretch of the real number line, written with brackets, such as [a, b).', 'Bagian garis bilangan real yang tak terputus, ditulis dengan tanda kurung, seperti [a, b).') },
+    { term: L('Dense set', 'Himpunan rapat (dense)'), definition: L('A set is dense in the real numbers when every stretch of the number line, however short, contains at least one of its members; the rational and the irrational numbers are both dense.', 'Himpunan disebut rapat dalam bilangan real jika setiap bagian garis bilangan, sependek apa pun, memuat sedikitnya satu anggotanya; bilangan rasional dan bilangan irasional sama-sama rapat.') },
+    { term: L('Completeness', 'Kelengkapan (completeness)'), definition: L('The property that every non-empty set of real numbers with an upper bound has a least upper bound, which means the real number line has no gaps.', 'Sifat bahwa setiap himpunan bilangan real yang tak kosong dan terbatas ke atas memiliki batas atas terkecil, yang berarti garis bilangan real tidak memiliki celah.') },
     { term: L('Absolute value', 'Nilai mutlak'), definition: L('The distance from a number to 0 on the number line, written |x|.', 'Jarak sebuah bilangan ke 0 pada garis bilangan, ditulis |x|.') },
   ],
 
@@ -970,8 +976,8 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
     {
       q: L('Why does 0.1 + 0.2 not equal 0.3 on a computer?', 'Mengapa 0,1 + 0,2 tidak sama dengan 0,3 di komputer?'),
       a: L(
-        'Computers store numbers in binary floating point, and 0.1 has an endless repeating expansion in binary, so it is stored rounded. The rounded 0.1 plus the rounded 0.2 comes out as 0.30000000000000004, which differs from the stored 0.3. Compare floats with a tolerance instead of using equality.',
-        'Komputer menyimpan bilangan dalam floating point biner, dan 0,1 punya ekspansi biner yang berulang tanpa akhir, sehingga ia tersimpan dalam bentuk terbulatkan. 0,1 terbulatkan ditambah 0,2 terbulatkan menghasilkan 0,30000000000000004, yang berbeda dari 0,3 yang tersimpan. Untuk membandingkan hasil bilangan titik-mengambang, gunakan toleransi galat, bukan hanya operator kesamaan.',
+        'Computers store numbers in binary floating point, and 0.1 has an endless repeating expansion in binary, so it is stored as the nearest representable value. The stored 0.1 plus the stored 0.2 comes out as 0.30000000000000004, which differs from the stored 0.3. Compare floats with a tolerance instead of using equality.',
+        'Komputer menyimpan bilangan dalam floating point biner, dan 0,1 punya ekspansi biner yang berulang tanpa akhir, sehingga ia disimpan sebagai nilai terdekat yang dapat diwakili. Nilai 0,1 yang tersimpan ditambah nilai 0,2 yang tersimpan menghasilkan 0,30000000000000004, yang berbeda dari 0,3 yang tersimpan. Untuk membandingkan hasil bilangan titik-mengambang, gunakan toleransi galat, bukan hanya operator kesamaan.',
       ),
     },
     {
