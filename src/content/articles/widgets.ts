@@ -236,6 +236,27 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Ketik pecahan dan lihat desimalnya, apakah ia berakhir atau berulang dan mengapa, panjang blok yang berulang, dan persennya.',
     },
   },
+  rootcheck: {
+    title: { en: 'Interactive: is this root rational?', id: 'Interaktif: apakah akar ini rasional?' },
+    description: {
+      en: 'Type a whole number and a root index and see its prime factors, whether the root is a whole number or irrational, the simplified radical and 30 decimals.',
+      id: 'Ketik bilangan bulat dan indeks akar dan lihat faktor primanya, apakah akarnya bilangan bulat atau irasional, bentuk akar yang disederhanakan, dan 30 desimal.',
+    },
+  },
+  surdcalc: {
+    title: { en: 'Interactive: add and multiply numbers with a square root', id: 'Interaktif: jumlahkan dan kalikan bilangan berakar' },
+    description: {
+      en: 'Combine two numbers of the form a + b√m exactly and see when the sum, product or quotient of irrational numbers turns out to be rational.',
+      id: 'Gabungkan dua bilangan berbentuk a + b√m secara eksak dan lihat kapan jumlah, hasil kali, atau hasil bagi bilangan irasional ternyata rasional.',
+    },
+  },
+  convergents: {
+    title: { en: 'Interactive: rational approximations of π, e, √2 and φ', id: 'Interaktif: hampiran rasional untuk π, e, √2, dan φ' },
+    description: {
+      en: 'Pick a constant and see the fractions from its continued fraction, such as 22/7 and 355/113 for π, with their decimals and errors.',
+      id: 'Pilih sebuah konstanta dan lihat pecahan dari pecahan berantainya, seperti 22/7 dan 355/113 untuk π, beserta desimal dan galatnya.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

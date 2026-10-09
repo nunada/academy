@@ -74,6 +74,10 @@ jobs:
       # numbers, when a decimal ends and how it repeats): checked against hand-written
       # answers, float arithmetic and long division.
       - run: npm run check:rationals
+      # Integer roots, a + b√m arithmetic, digits of π, e, √2 and φ, and continued
+      # fractions behind the irrational-numbers widgets: checked against published
+      # values, exhaustive search and floating point.
+      - run: npm run check:irrational
 
       - name: Work out where the site will live
         id: base

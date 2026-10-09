@@ -259,7 +259,7 @@ Pakai widget untuk mencoba basis lain.`,
 | 10 | 100 | 10 | 1,000 |
 | 11 to 15 | 121, 144, 169, 196, 225 | | |
 
-A root of a whole number is either a whole number (when the number is a perfect power, as in the table) or an irrational number: for a positive integer $a$, $\sqrt{a}$ is irrational exactly when $a$ is not a perfect square. That is why $\sqrt{2}$, $\sqrt{3}$ and $\sqrt{72}$ never end and never repeat.`,
+A root of a whole number is either a whole number (when the number is a perfect power, as in the table) or an irrational number: for a positive integer $a$, $\sqrt{a}$ is irrational exactly when $a$ is not a perfect square. That is why the decimal expansions of $\sqrt{2}$, $\sqrt{3}$ and $\sqrt{72}$ are infinite and never periodic; the article on [irrational numbers](article:irrational-numbers#which-roots-are-irrational) shows how to test any root.`,
             T`**Akar pangkat $n$ dari $a$, ditulis $\sqrt[n]{a}$, adalah bilangan yang menghasilkan $a$ bila dipangkatkan $n$; $\sqrt{a}$ (indeks 2) adalah akar kuadrat dan $\sqrt[3]{a}$ adalah akar pangkat tiga.** Pada $\sqrt[n]{a}$ lambang $\sqrt{\ }$ adalah tanda akar, $a$ adalah radikan (bilangan di bawah tanda akar), dan $n$ adalah indeks.
 
 - **Akar kuadrat:** $\sqrt{49}=7$ karena $7^2=49$.
@@ -282,7 +282,7 @@ A root of a whole number is either a whole number (when the number is a perfect 
 | 10 | 100 | 10 | 1.000 |
 | 11 sampai 15 | 121, 144, 169, 196, 225 | | |
 
-Akar dari bilangan bulat adalah bilangan bulat (bila bilangan itu pangkat sempurna, seperti pada tabel) atau bilangan irasional: untuk bilangan bulat positif $a$, $\sqrt{a}$ irasional tepat ketika $a$ bukan kuadrat sempurna. Itulah sebabnya $\sqrt{2}$, $\sqrt{3}$, dan $\sqrt{72}$ tidak pernah berakhir dan tidak pernah berulang.`,
+Akar dari bilangan bulat adalah bilangan bulat (bila bilangan itu pangkat sempurna, seperti pada tabel) atau bilangan irasional: untuk bilangan bulat positif $a$, $\sqrt{a}$ irasional tepat ketika $a$ bukan kuadrat sempurna. Itulah sebabnya ekspansi desimal $\sqrt{2}$, $\sqrt{3}$, dan $\sqrt{72}$ tak berhingga dan tidak pernah periodik; artikel [bilangan irasional](article:irrational-numbers#which-roots-are-irrational) menunjukkan cara menguji akar apa pun.`,
           ),
         },
         {

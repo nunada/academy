@@ -148,8 +148,10 @@ export function fromRepeating(whole: string, pre: string, rep: string): { value:
 /** floor(sqrt(n)) for a BigInt. */
 export function isqrt(n: bigint): bigint {
   if (n < 2n) return n
-  let x = BigInt(Math.floor(Math.sqrt(Number(n))))
-  // Newton's method from a double's estimate; a few steps settle it exactly.
+  // A double's estimate when n fits in one, and a power of two above the root when it does not.
+  const approx = Math.sqrt(Number(n))
+  let x = Number.isFinite(approx) ? BigInt(Math.floor(approx)) : 1n << BigInt(Math.ceil(n.toString(2).length / 2))
+  // Newton's method from that estimate; a few steps settle it exactly.
   for (;;) {
     const y = (x + n / x) >> 1n
     if (y === x || y === x + 1n || y === x - 1n) {

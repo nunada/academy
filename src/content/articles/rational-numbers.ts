@@ -69,7 +69,7 @@ Several things follow at once:
 - **The denominator is never 0.** $\frac50$ does not name a number.
 - **Kinds of fraction.** A *proper* fraction is smaller than 1 in size ($\frac34$), an *improper* one is not ($\frac{17}{5}$), and a *mixed number* writes an improper one as a whole part plus a proper part ($3\frac25$).
 
-The rational numbers are closed under all four operations: add, subtract or multiply two of them, or divide by a non-zero one, and the answer is rational again. That is what the integers could not do for division, and it is why fractions were invented. They are not the whole number line, though: $\sqrt2$ and $\pi$ are real numbers that are not rational, which the article on [real numbers](article:real-numbers#irrational-numbers) explains.
+The rational numbers are closed under all four operations: add, subtract or multiply two of them, or divide by a non-zero one, and the answer is rational again. That is what the integers could not do for division, and it is why fractions were invented. They are not the whole number line, though: $\sqrt2$ and $\pi$ are real numbers that are not rational, which the article on [irrational numbers](article:irrational-numbers) explains, with the [real numbers](article:real-numbers#irrational-numbers) article as the overview.
 
 Languages say fractions in their own order. In English the numerator comes first ("three quarters"), while Chinese reads the denominator first: [三分之一, "of three parts, one"](article:chinese-numbers#fractions-decimals-dates).`,
             T`**Bilangan rasional adalah bilangan yang dapat ditulis sebagai $\dfrac{p}{q}$ dengan $p$ dan $q$ bilangan bulat dan $q\neq0$.** Himpunannya ditulis $\mathbb{Q}$, dari kata "quotient" (hasil bagi), dan kata *rasional* berasal dari *rasio* (perbandingan), bukan dari "masuk akal".
@@ -84,7 +84,7 @@ Beberapa hal langsung mengikutinya:
 - **Penyebut tidak pernah 0.** $\frac50$ tidak menamai bilangan apa pun.
 - **Jenis pecahan.** Pecahan *wajar* ukurannya kurang dari 1 ($\frac34$), pecahan *tak wajar* tidak demikian ($\frac{17}{5}$), dan *bilangan campuran* menulis pecahan tak wajar sebagai bagian bulat ditambah pecahan wajar ($3\frac25$).
 
-Bilangan rasional tertutup terhadap keempat operasi: jumlahkan, kurangkan, atau kalikan dua di antaranya, atau bagi dengan yang bukan nol, dan hasilnya rasional lagi. Itulah yang tidak dapat dilakukan bilangan bulat untuk pembagian, dan itulah sebabnya pecahan diciptakan. Namun bilangan rasional bukan seluruh garis bilangan: $\sqrt2$ dan $\pi$ adalah bilangan real yang tidak rasional, seperti dijelaskan artikel tentang [bilangan real](article:real-numbers#irrational-numbers).
+Bilangan rasional tertutup terhadap keempat operasi: jumlahkan, kurangkan, atau kalikan dua di antaranya, atau bagi dengan yang bukan nol, dan hasilnya rasional lagi. Itulah yang tidak dapat dilakukan bilangan bulat untuk pembagian, dan itulah sebabnya pecahan diciptakan. Namun bilangan rasional bukan seluruh garis bilangan: $\sqrt2$ dan $\pi$ adalah bilangan real yang tidak rasional, seperti dijelaskan artikel [bilangan irasional](article:irrational-numbers), dengan artikel [bilangan real](article:real-numbers#irrational-numbers) sebagai gambaran umum.
 
 Bahasa-bahasa menyebut pecahan dengan urutannya sendiri. Dalam bahasa Inggris pembilang disebut lebih dulu ("three quarters"), sedangkan bahasa Mandarin membaca penyebut lebih dulu: [三分之一, "dari tiga bagian, satu"](article:chinese-numbers#fractions-decimals-dates).`,
           ),
@@ -987,5 +987,5 @@ Kini bilangan yang sama tampil sebagai pecahan dalam resep, sebagai desimal pada
     { title: 'The Python Standard Library: fractions, rational numbers', author: 'Python Software Foundation', source: 'docs.python.org', url: 'https://docs.python.org/3/library/fractions.html' },
   ],
 
-  related: ['real-numbers', 'integers', 'algebraic-expressions', 'exponents-and-radicals'],
+  related: ['real-numbers', 'irrational-numbers', 'integers', 'exponents-and-radicals'],
 }

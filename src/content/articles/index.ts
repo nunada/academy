@@ -15,8 +15,9 @@ import { meta as exponentsAndRadicals } from './exponents-and-radicals.meta'
 import { meta as algebraicExpressions } from './algebraic-expressions.meta'
 import { meta as integers } from './integers.meta'
 import { meta as rationalNumbers } from './rational-numbers.meta'
+import { meta as irrationalNumbers } from './irrational-numbers.meta'
 
-export const ARTICLES: ArticleMeta[] = [rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -25,6 +26,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'algebraic-expressions': () => import('./algebraic-expressions'),
   integers: () => import('./integers'),
   'rational-numbers': () => import('./rational-numbers'),
+  'irrational-numbers': () => import('./irrational-numbers'),
 }
 
 export const articleById = (id: string): ArticleMeta | undefined => ARTICLES.find((a) => a.id === id)

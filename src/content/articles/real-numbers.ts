@@ -323,7 +323,7 @@ Jika ada angka yang tidak berulang, seperti pada $0{,}41\overline{6}$, gunakan d
 - $e=2.71828182\ldots$, the base of natural logarithms, which appears in growth and decay.
 - $\varphi=\dfrac{1+\sqrt{5}}{2}=1.61803398\ldots$, the golden ratio.
 
-There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square (and when it is, $\sqrt{n}$ is a whole number). Factorise $n$ into [primes](article:integers#primes); if every prime appears an even number of times, $n$ is a perfect square and the root is a whole number. So $\sqrt{50}=5\sqrt{2}$ is irrational, while $\sqrt{49}=7$ is not; [simplifying radicals](article:exponents-and-radicals#simplify-radicals) shows how $\sqrt{50}$ becomes $5\sqrt2$.`,
+There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square (and when it is, $\sqrt{n}$ is a whole number). Factorise $n$ into [primes](article:integers#primes); if every prime appears an even number of times, $n$ is a perfect square and the root is a whole number. So $\sqrt{50}=5\sqrt{2}$ is irrational, while $\sqrt{49}=7$ is not; [simplifying radicals](article:exponents-and-radicals#simplify-radicals) shows how $\sqrt{50}$ becomes $5\sqrt2$, and the article on [irrational numbers](article:irrational-numbers) goes further, into $\pi$, $e$ and rational approximations.`,
             T`**Bilangan irasional** adalah bilangan real yang **bukan** rasional: tidak ada pecahan dua bilangan bulat yang sama dengannya. Ekspansi desimalnya tak berhingga dan tidak pernah periodik. Contoh bilangan irasional yang terkenal antara lain:
 
 - $\sqrt{2}=1{,}41421356\ldots$, diagonal persegi dengan sisi 1.
@@ -331,7 +331,7 @@ There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ 
 - $e=2{,}71828182\ldots$, bilangan dasar logaritma natural, yang muncul pada pertumbuhan dan peluruhan.
 - $\varphi=\dfrac{1+\sqrt{5}}{2}=1{,}61803398\ldots$, rasio emas.
 
-Ada uji sederhana untuk akar kuadrat: untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna (dan jika $n$ kuadrat sempurna, $\sqrt{n}$ adalah bilangan bulat). Faktorkan $n$ menjadi [bilangan prima](article:integers#primes); jika setiap prima muncul sebanyak bilangan genap, $n$ adalah kuadrat sempurna dan akarnya bilangan bulat. Jadi $\sqrt{50}=5\sqrt{2}$ irasional, sedangkan $\sqrt{49}=7$ tidak; [menyederhanakan bentuk akar](article:exponents-and-radicals#simplify-radicals) menunjukkan bagaimana $\sqrt{50}$ menjadi $5\sqrt2$.`,
+Ada uji sederhana untuk akar kuadrat: untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna (dan jika $n$ kuadrat sempurna, $\sqrt{n}$ adalah bilangan bulat). Faktorkan $n$ menjadi [bilangan prima](article:integers#primes); jika setiap prima muncul sebanyak bilangan genap, $n$ adalah kuadrat sempurna dan akarnya bilangan bulat. Jadi $\sqrt{50}=5\sqrt{2}$ irasional, sedangkan $\sqrt{49}=7$ tidak; [menyederhanakan bentuk akar](article:exponents-and-radicals#simplify-radicals) menunjukkan bagaimana $\sqrt{50}$ menjadi $5\sqrt2$, dan artikel [bilangan irasional](article:irrational-numbers) membahas lebih jauh, tentang $\pi$, $e$, dan hampiran rasional.`,
           ),
         },
         {
@@ -1030,5 +1030,5 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
     { title: 'Über eine Eigenschaft des Inbegriffes aller reellen algebraischen Zahlen', author: 'Georg Cantor', year: 1874, source: 'Journal für die reine und angewandte Mathematik 77, 258–262' },
   ],
 
-  related: ['integers', 'exponents-and-radicals', 'algebraic-expressions', 'chinese-numbers'],
+  related: ['rational-numbers', 'irrational-numbers', 'integers', 'exponents-and-radicals'],
 }
