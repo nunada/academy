@@ -42,6 +42,11 @@ export type WidgetName =
   | 'rationalise'
   | 'rootexp'
   | 'scinot'
+  | 'terms'
+  | 'expand'
+  | 'evalexpr'
+  | 'areamodel'
+  | 'factor'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

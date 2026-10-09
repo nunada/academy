@@ -62,6 +62,10 @@ jobs:
       # rationalised fractions, scientific notation): checked against hand-written
       # values and floating point.
       - run: npm run check:powers
+      # The polynomial engine behind the algebraic-expressions widgets (expanding,
+      # combining, factoring): checked against hand-written results and against an
+      # independent numeric evaluator on random expressions.
+      - run: npm run check:algebra
 
       - name: Work out where the site will live
         id: base

@@ -260,7 +260,7 @@ for (const m of L.ARTICLES) {
     const prose = loc.id
       .replace(/\$[^$]*\$/g, ' ')
       .replace(/`[^`]*`/g, ' ')
-      .replace(/\b\d{1,3}(?:\.\d{3})+\b/g, ' ')
+      .replace(/(?:\b|(?<=Rp))\d{1,3}(?:\.\d{3})+\b/g, ' ')
     if (/\d\.\d/.test(prose) && !/https?:|v\d+\.\d|\d+\.\d+\.\d+/.test(prose)) flag(where, 'Indonesian text has a decimal point; use a comma')
   }
 

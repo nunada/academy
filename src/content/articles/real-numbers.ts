@@ -1026,5 +1026,5 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
     { title: 'Über eine Eigenschaft des Inbegriffes aller reellen algebraischen Zahlen', author: 'Georg Cantor', year: 1874, source: 'Journal für die reine und angewandte Mathematik 77, 258–262' },
   ],
 
-  related: ['exponents-and-radicals', 'chinese-numbers'],
+  related: ['exponents-and-radicals', 'algebraic-expressions', 'chinese-numbers'],
 }

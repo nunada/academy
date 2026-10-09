@@ -16,6 +16,7 @@ import {
 import { Tex } from '../ui'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { ChineseConvert, ChineseGrouping, ChineseRead, ChineseRods } from './ChineseWidgets'
+import { AreaModel, EvaluateExpression, ExpandSimplify, ExpressionAnatomy, FactorWidget } from './AlgebraWidgets'
 import { ExponentLaws, ExponentPattern, Rationalise, RootExponent, ScientificNotation, SimplifyRoot } from './PowerWidgets'
 
 /* ------------------------------------------------------------------ sets */
@@ -785,6 +786,16 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <RootExponent />
     case 'scinot':
       return <ScientificNotation />
+    case 'terms':
+      return <ExpressionAnatomy />
+    case 'expand':
+      return <ExpandSimplify />
+    case 'evalexpr':
+      return <EvaluateExpression />
+    case 'areamodel':
+      return <AreaModel />
+    case 'factor':
+      return <FactorWidget />
   }
 }
 

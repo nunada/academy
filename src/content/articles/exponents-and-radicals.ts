@@ -1003,5 +1003,5 @@ Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuad
     { title: 'ECMAScript Language Specification: the exponentiation operator', author: 'Ecma International', source: 'tc39.es', url: 'https://tc39.es/ecma262/#sec-exp-operator' },
   ],
 
-  related: ['real-numbers'],
+  related: ['real-numbers', 'algebraic-expressions'],
 }
