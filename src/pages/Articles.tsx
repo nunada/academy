@@ -41,7 +41,9 @@ export default function Articles({ routeLang }: { routeLang: Lang }) {
     const byId = new Map(ARTICLES.map((a) => [a.id, a]))
     let list = query.trim()
       ? search(index, query).map((h) => byId.get(h.id)!)
-      : [...ARTICLES].sort((a, b) => (a.updated < b.updated ? 1 : -1))
+      : // Newest first; articles from the same day keep the order they are listed in
+        // (the sort is stable), which is newest first in the catalogue file.
+        [...ARTICLES].sort((a, b) => b.published.localeCompare(a.published))
     if (tag) list = list.filter((a) => a.tags.includes(tag))
     if (track) list = list.filter((a) => a.track === track)
     return list

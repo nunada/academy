@@ -10,6 +10,9 @@ export const TAGS: { id: string; label: Loc }[] = [
   { id: 'python', label: { en: 'Python', id: 'Python' } },
   { id: 'javascript', label: { en: 'JavaScript', id: 'JavaScript' } },
   { id: 'computing', label: { en: 'Computing', id: 'Komputasi' } },
+  { id: 'numeral-systems', label: { en: 'Numeral systems', id: 'Sistem bilangan' } },
+  { id: 'history', label: { en: 'History', id: 'Sejarah' } },
+  { id: 'languages', label: { en: 'Languages', id: 'Bahasa' } },
 ]
 
 export const tagLabel = (id: string): Loc => TAGS.find((t) => t.id === id)?.label ?? { en: id, id }

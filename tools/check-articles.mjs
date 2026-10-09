@@ -251,7 +251,11 @@ for (const m of L.ARTICLES) {
     }
     // Indonesian writes decimals with a comma; a point in prose (not inside a
     // formula or code) is the English habit slipping through.
-    const prose = loc.id.replace(/\$[^$]*\$/g, ' ').replace(/`[^`]*`/g, ' ')
+    // Dotted thousands (10.000, 1.205) are how Indonesian writes big numbers, not decimals.
+    const prose = loc.id
+      .replace(/\$[^$]*\$/g, ' ')
+      .replace(/`[^`]*`/g, ' ')
+      .replace(/\b\d{1,3}(?:\.\d{3})+\b/g, ' ')
     if (/\d\.\d/.test(prose) && !/https?:|v\d+\.\d|\d+\.\d+\.\d+/.test(prose)) flag(where, 'Indonesian text has a decimal point; use a comma')
   }
 

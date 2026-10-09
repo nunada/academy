@@ -1,8 +1,7 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useMemo, useState } from 'react'
 import { useI18n } from '../../i18n'
 import type { Loc } from '../../content/types'
 import type { WidgetName } from '../../content/articles/types'
-import { WIDGETS } from '../../content/articles/widgets'
 import { MATH_FUNCS, evaluate } from '../../lib/expr'
 import {
   expand,
@@ -15,23 +14,8 @@ import {
   type Rat,
 } from '../../lib/realnum'
 import { Tex } from '../ui'
-
-const L = (en: string, id: string): Loc => ({ en, id })
-
-/** The frame every widget sits in: a title, the widget, and nothing else. */
-function Frame({ name, children }: { name: WidgetName; children: ReactNode }) {
-  const { tc } = useI18n()
-  return (
-    <div className="wgt" role="group" aria-label={tc(WIDGETS[name].title)}>
-      <h4>{tc(WIDGETS[name].title)}</h4>
-      {children}
-    </div>
-  )
-}
-
-/** A decimal separator the reader's language expects. */
-const useSep = () => (useI18n().lang === 'id' ? ',' : '.')
-const dec = (s: string, sep: string) => (sep === ',' ? s.replace('.', ',') : s)
+import { Frame, L, dec, useSep } from './widgetKit'
+import { ChineseConvert, ChineseGrouping, ChineseRead, ChineseRods } from './ChineseWidgets'
 
 /* ------------------------------------------------------------------ sets */
 
@@ -780,6 +764,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <IntervalWidget />
     case 'floats':
       return <FloatsWidget />
+    case 'cnconvert':
+      return <ChineseConvert />
+    case 'cnread':
+      return <ChineseRead />
+    case 'grouping':
+      return <ChineseGrouping />
+    case 'rods':
+      return <ChineseRods />
   }
 }
 

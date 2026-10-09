@@ -32,6 +32,10 @@ export type WidgetName =
   | 'density'
   | 'interval'
   | 'floats'
+  | 'cnconvert'
+  | 'cnread'
+  | 'grouping'
+  | 'rods'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

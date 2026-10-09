@@ -54,6 +54,10 @@ jobs:
       # splits the formula and shows the learner two broken halves.
       - run: npm run check:articles
       - run: npm run check:fill
+      # The Chinese-number readings and the converter behind the article: checked
+      # against hand-written readings and round-tripped, because a wrong reading on a
+      # page that teaches readings does harm.
+      - run: npm run check:chinese
 
       - name: Work out where the site will live
         id: base
