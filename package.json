@@ -5,14 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node tools/prerender-articles.mjs",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
     "check:curriculum": "node tools/check-curriculum.mjs",
     "check:math": "node tools/check-math.mjs",
     "check:cpp": "node tools/check-cpp.mjs",
     "check:grants": "node tools/check-rpc-grants.mjs",
-    "check:fill": "node tools/check-fill-templates.mjs"
+    "check:fill": "node tools/check-fill-templates.mjs",
+    "check:articles": "node tools/check-articles.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

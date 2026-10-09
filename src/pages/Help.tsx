@@ -123,6 +123,13 @@ const FAQ: { q: Loc; a: Loc }[] = [
     ),
   },
   {
+    q: L('Is there anything to read outside the courses?', 'Apakah ada bacaan di luar kursus?'),
+    a: L(
+      'Yes: the Articles menu. Each article explains one topic in full, with a table of contents, interactive activities and a FAQ. You can read them in any order, with no account, and search for the one you need.',
+      'Ada: menu Artikel. Setiap artikel menjelaskan satu topik secara lengkap, dengan daftar isi, aktivitas interaktif, dan FAQ. Kamu bisa membacanya dalam urutan apa pun, tanpa akun, dan mencari artikel yang kamu butuhkan.',
+    ),
+  },
+  {
     q: L('Where does my code run?', 'Di mana kodeku dijalankan?'),
     a: L(
       'In your own browser, so nothing you type is sent away to run. The first time you open a language it may take a moment to load.',

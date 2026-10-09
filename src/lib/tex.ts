@@ -43,6 +43,9 @@ const OPERATOR: Record<string, string> = {
   models: '⊨', top: '⊤', bot: '⊥',
 }
 
+/** `\mathbb{X}` — the blackboard-bold letters the number sets are written with. */
+const DOUBLE_STRUCK: Record<string, string> = { N: 'ℕ', Z: 'ℤ', Q: 'ℚ', R: 'ℝ', C: 'ℂ', P: 'ℙ' }
+
 /** Multi-letter names that must stay upright: `\cos` is a name, not c·o·s. */
 const NAMES = new Set([
   'sin', 'cos', 'tan', 'sec', 'csc', 'cot', 'arcsin', 'arccos', 'arctan',
@@ -271,6 +274,12 @@ function parseCommand(p: P, cmd: string): string {
     case 'mathrm':
     case 'operatorname':
       return `<mi>${esc(parseRaw(p))}</mi>`
+    case 'mathbb': {
+      // The number sets: \mathbb{R} is ℝ. Any other letter stays a plain
+      // letter rather than inventing a glyph the font may not have.
+      const letter = parseRaw(p)
+      return `<mi mathvariant="normal">${esc(DOUBLE_STRUCK[letter] ?? letter)}</mi>`
+    }
     case 'text':
     case 'textrm':
       return `<mtext>${esc(parseRaw(p)).replace(/ /g, ' ')}</mtext>`

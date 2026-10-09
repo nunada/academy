@@ -11,6 +11,7 @@ export const ui = {
   navLeaderboard: { en: 'Leaderboard', id: 'Papan Peringkat' },
   navProfile: { en: 'Profile', id: 'Profil' },
   navHelp: { en: 'Guide', id: 'Panduan' },
+  navArticles: { en: 'Articles', id: 'Artikel' },
   signOut: { en: 'Sign out', id: 'Keluar' },
 
   // auth

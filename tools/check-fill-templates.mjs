@@ -16,7 +16,7 @@ let courses = process.argv.slice(2)
 if (!courses.length) {
   courses = fs
     .readdirSync(path.join(ROOT, 'src/content'), { withFileTypes: true })
-    .filter((d) => d.isDirectory() && fs.existsSync(path.join(ROOT, 'src/content', d.name, 'index.ts')))
+    .filter((d) => d.isDirectory() && d.name !== 'articles' && fs.existsSync(path.join(ROOT, 'src/content', d.name, 'index.ts')))
     .map((d) => d.name)
 }
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'fill-'))

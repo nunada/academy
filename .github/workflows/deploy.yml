@@ -48,6 +48,13 @@ jobs:
       # still match the curriculum they describe.
       - run: npm run check:curriculum
 
+      # Articles are what search engines and AI answers read, so what they say about
+      # themselves is checked before it is published: description length, FAQ
+      # markup, formulas, both languages. Fill blanks too: one inside a square root
+      # splits the formula and shows the learner two broken halves.
+      - run: npm run check:articles
+      - run: npm run check:fill
+
       - name: Work out where the site will live
         id: base
         run: |
@@ -127,6 +134,9 @@ jobs:
       - name: Build
         env:
           VITE_BASE: ${{ steps.base.outputs.value }}
+          # Optional: the public address when the site has its own domain. Left empty,
+          # the build works it out from the repository (user.github.io/repo).
+          SITE_URL: ${{ vars.SITE_URL }}
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build

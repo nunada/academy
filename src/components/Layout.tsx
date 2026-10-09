@@ -66,7 +66,9 @@ function TrophyList({ ids }: { ids: string[] }) {
 
 export default function Layout() {
   const { user, state, signOut, hearts, nextHeartIn, xpTotal, mode } = useStore()
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  // The article list has one address per language.
+  const articlesPath = lang === 'id' ? '/artikel' : '/articles'
 
   return (
     <div className="app">
@@ -88,6 +90,7 @@ export default function Layout() {
             <NavLink to="/playground">{t('navPlayground')}</NavLink>
             <NavLink to="/leaderboard">{t('navLeaderboard')}</NavLink>
             <NavLink to="/profile">{t('navProfile')}</NavLink>
+            <NavLink to={articlesPath}>{t('navArticles')}</NavLink>
             <NavLink to="/help">{t('navHelp')}</NavLink>
             {state?.profile.role === 'teacher' && <NavLink to="/teacher">{t('navTeacher')}</NavLink>}
           </nav>
@@ -109,9 +112,14 @@ export default function Layout() {
           </span>
         )}
         {!user && (
-          <Link className="btn ghost sm" to="/help">
-            {t('navHelp')}
-          </Link>
+          <>
+            <Link className="btn ghost sm" to={articlesPath}>
+              {t('navArticles')}
+            </Link>
+            <Link className="btn ghost sm" to="/help">
+              {t('navHelp')}
+            </Link>
+          </>
         )}
         <LangToggle />
         {user && (

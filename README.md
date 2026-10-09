@@ -782,6 +782,80 @@ npm run check:math
 ```
 
 
+## Artikel
+
+Halaman penjelasan yang berdiri sendiri, terbuka tanpa akun dan tanpa urutan —
+kebalikan dari kursus. Daftarnya di `/articles` (Inggris) dan `/artikel`
+(Indonesia); setiap artikel punya satu alamat per bahasa
+(`/articles/real-numbers`, `/artikel/bilangan-real`) karena bagi mesin pencari
+itu dua halaman. Alamat menentukan bahasa saat orang datang, dan tombol EN/ID di
+halaman artikel memindahkan ke alamat saudaranya.
+
+**Berkas.** Semuanya di `src/content/articles/`: `<id>.meta.ts` (judul,
+deskripsi, tag, kata kunci, tanggal), `<id>.ts` (isi), `tags.ts`, `widgets.ts`,
+dan `index.ts` yang memuat dua tabel — daftar metadata (dimuat sekaligus) dan
+daftar pemuat isi (dimuat per artikel, supaya membuka satu artikel tidak
+mengunduh lima puluh). Menambah artikel berarti dua berkas baru dan satu baris
+di tiap tabel.
+
+**Isi sebuah artikel**, berurutan: *jawaban singkat* (2–3 kalimat yang bisa
+berdiri sendiri — inilah yang dikutip cuplikan unggulan dan jawaban AI), poin
+penting, daftar isi (menempel di samping, menyorot bagian yang sedang dibaca),
+bagian-bagian, FAQ, dan referensi. Sebuah bagian berisi blok: `text` (format
+yang sama dengan pelajaran: paragraf, daftar, tabel, `$rumus$`), `callout`,
+`figure`, `code`, `activity`, dan `widget`.
+
+**Aktivitas interaktif** ada dua macam. `activity` memakai ulang langkah
+pelajaran (`quiz`, `multi`, `judge`, `fill`, `order`, `math`) tanpa heart dan
+tanpa XP: salah tidak merugikan, dan yang selesai bisa diulang. `widget` adalah
+komponen khusus di `components/article/Widgets.tsx` — untuk artikel pertama:
+diagram himpunan bilangan, pengelompokan bilangan, pecahan ke desimal, desimal
+berulang ke pecahan, penebak digit √2, titik tengah, pembuat interval, dan
+perbandingan floating point. Hitungannya memakai BigInt (`lib/realnum.ts`)
+supaya yang diperlihatkan benar-benar eksak. Widget baru: tulis komponennya,
+tambahkan namanya ke `WidgetName` dan satu entri ke `WIDGETS` (judul dan
+deskripsinya dipakai halaman statis).
+
+**Menulis.** Prosa ditulis di antara backtick dengan TeX apa adanya (`\frac`
+tidak perlu digandakan) lewat tag `T`; tanda kode di dalamnya adalah `´`, bukan
+backtick. Bahasa Indonesia memakai koma desimal. Artikel yang baik punya jawaban
+singkat 25–90 kata, tiap jawaban FAQ satu paragraf polos 15–90 kata (ia juga
+masuk ke markup FAQPage), dan deskripsi 100–165 karakter (hasil pencarian
+memotong lebih panjang dari itu). `npm run check:articles` memeriksa semua itu,
+juga bahwa setiap rumus bisa digambar, setiap item latihan punya jawaban benar,
+dan kedua bahasa tidak menyimpang strukturnya.
+
+**SEO dan GEO.** Aplikasi ini satu halaman: HTML-nya kosong sampai JavaScript
+jalan, padahal kebanyakan perayap AI tidak menjalankannya. Maka
+`tools/prerender-articles.mjs` (jalan otomatis di `npm run build`) menulis satu
+berkas HTML nyata untuk tiap artikel dan bahasa, berisi `<title>`, deskripsi,
+canonical, hreflang, Open Graph dan Twitter; data terstruktur JSON-LD
+(**Article** yang juga **LearningResource**, **BreadcrumbList**, **FAQPage**);
+dan teks artikel di dalam `#root` (React menggantinya saat dimuat). Ia juga
+menulis `sitemap.xml`, `robots.txt` (perayap AI disebut satu per satu),
+`llms.txt`, dan `llms-full.txt`. Tag-nya dibangun oleh `lib/articleSeo.ts`, fungsi
+yang sama yang dipakai halaman saat berjalan (`lib/useSeo.ts`), jadi keduanya
+tidak bisa berbeda. Alamat canonical berakhir dengan garis miring, karena begitu
+alamat yang dijawab 200 oleh hosting statis.
+
+Dua hal yang perlu diketahui. Alamat situs diambil dari `SITE_URL` bila ada,
+bila tidak dari `GITHUB_REPOSITORY`; kalau situs memakai domain sendiri, isi
+*Repository variable* `SITE_URL` di GitHub. Dan `robots.txt` hanya berlaku di
+akar sebuah host: di situs proyek GitHub Pages (`user.github.io/repo/`) berkas
+itu tidak dibaca perayap, jadi kirim `sitemap.xml` sendiri lewat Google Search
+Console dan Bing Webmaster Tools.
+
+**Pencarian.** `lib/articleSearch.ts`, dibuat untuk ratusan artikel: indeksnya
+dibangun sekali, kueri hanya melewati token yang sudah disiapkan. Yang dicari
+adalah metadata — judul di kedua bahasa, deskripsi, tag, dan kata kunci tulisan
+tangan (sinonim, simbol, salah eja) — bukan isi artikel, supaya pembaca daftar
+tidak mengunduh seluruh teks. Huruf besar dan aksen tak berpengaruh, kata boleh
+diketik awalnya saja (`irrat`), kata empat huruf atau lebih boleh salah satu
+ketikan, dan semua kata kueri harus cocok. Daftar bisa disaring per jalur dan
+tag, dan tombol `/` memindahkan fokus ke kotak cari. Pencarian teks penuh, bila
+nanti perlu, ditambahkan sebagai kolom `body` berbobot rendah dari ekstrak saat
+build.
+
 ## Playground
 
 Ruang bebas yang memakai ulang ketujuh runtime-nya tanpa membangun apa pun yang

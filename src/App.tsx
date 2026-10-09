@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import type { ReactNode } from 'react'
+import { Suspense, lazy, type ReactNode } from 'react'
 import Layout from './components/Layout'
 import { useStore } from './app/store'
 import { useI18n } from './i18n'
@@ -19,6 +19,11 @@ import Certificate from './pages/Certificate'
 import Teacher from './pages/Teacher'
 import ResetPassword from './pages/ResetPassword'
 import Help from './pages/Help'
+import Articles from './pages/Articles'
+
+// An article pulls in the figure drawing and the interactive widgets; nobody
+// who is not reading one needs them.
+const ArticlePage = lazy(() => import('./pages/ArticlePage'))
 
 function RequireAuth({ children }: { children: ReactNode }) {
   const { ready, user } = useStore()
@@ -59,6 +64,26 @@ export default function App() {
         {/* Open to everybody, signed in or not: a visitor deciding whether to
             sign up is exactly who the guide is for. */}
         <Route path="/help" element={<Help />} />
+        {/* Articles are public and unordered, unlike a course, and each has an
+            address per language: /articles/real-numbers, /artikel/bilangan-real. */}
+        <Route path="/articles" element={<Articles routeLang="en" />} />
+        <Route path="/artikel" element={<Articles routeLang="id" />} />
+        <Route
+          path="/articles/:slug"
+          element={
+            <Suspense fallback={<main className="page muted">…</main>}>
+              <ArticlePage routeLang="en" />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/artikel/:slug"
+          element={
+            <Suspense fallback={<main className="page muted">…</main>}>
+              <ArticlePage routeLang="id" />
+            </Suspense>
+          }
+        />
 
         <Route
           path="/learn"
