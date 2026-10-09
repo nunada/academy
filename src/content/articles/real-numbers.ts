@@ -20,7 +20,7 @@ const T = (s: TemplateStringsArray): string =>
 export const body: ArticleBody = {
   answer: L(
     T`**Real numbers** are all the numbers that sit on the number line. They are the numbers we use every day — whole numbers, fractions and decimals, called *rational* numbers — together with numbers such as $\sqrt{2}$ and $\pi$ that no fraction can equal, called *irrational* numbers. The set of real numbers is written $\mathbb{R}$. A real number is rational when its decimal expansion ends or repeats, and irrational when it never ends and never repeats.`,
-    T`**Bilangan real** adalah semua bilangan yang terletak pada garis bilangan. Bilangan real mencakup bilangan yang kita pakai sehari-hari — bilangan bulat, pecahan, dan desimal, yang disebut bilangan *rasional* — serta bilangan seperti $\sqrt{2}$ dan $\pi$ yang tidak dapat sama dengan pecahan mana pun, yang disebut bilangan *irasional*. Himpunan bilangan real ditulis $\mathbb{R}$. Sebuah bilangan real itu rasional jika desimalnya berhenti atau berulang, dan irasional jika desimalnya tidak pernah berhenti dan tidak pernah berulang.`,
+    T`**Bilangan real** adalah semua bilangan yang terletak pada garis bilangan. Bilangan real mencakup bilangan yang digunakan sehari-hari, seperti bilangan bulat, pecahan, dan bilangan desimal, yang disebut bilangan *rasional* — serta bilangan seperti $\sqrt{2}$ dan $\pi$ yang tidak dapat dinyatakan sebagai pecahan dua bilangan bulat dengan penyebut tak nol, yang disebut bilangan *irasional*. Himpunan bilangan real ditulis $\mathbb{R}$. Sebuah bilangan real itu rasional jika bentuk desimalnya berakhir atau berulang, dan irasional jika bentuk desimalnya tidak pernah berakhir dan tidak pernah berulang.`,
   ),
 
   keyPoints: [
@@ -78,13 +78,13 @@ Real numbers are the numbers of measurement, of calculus, of physics, and of alm
 | Size | uncountably infinite (Cantor, 1874) |
 | Built rigorously by | Dedekind and Cantor, both in 1872 |
 | Not real numbers | $\infty$, and $\sqrt{-1}$ (a complex number) |`,
-            T`**Bilangan real** adalah bilangan apa pun yang dapat diletakkan pada garis bilangan. Setara dengan itu, ia adalah bilangan apa pun yang dapat ditulis sebagai desimal — yang berhenti, yang berulang, atau yang berlanjut tanpa akhir tanpa pola: $3$, $-0{,}5$, $\frac{1}{3}=0{,}333\ldots$ dan $\sqrt{2}=1{,}41421\ldots$ semuanya bilangan real. Himpunan semua bilangan real ditulis $\mathbb{R}$.
+            T`**Bilangan real** adalah bilangan apa pun yang dapat diletakkan pada garis bilangan. Dengan kata lain, bilangan real dapat dinyatakan dalam bentuk desimal — yang berakhir, yang berulang, atau yang berlanjut tanpa akhir tanpa pola: $3$, $-0{,}5$, $\frac{1}{3}=0{,}333\ldots$ dan $\sqrt{2}=1{,}41421\ldots$ semuanya bilangan real. Himpunan semua bilangan real ditulis $\mathbb{R}$.
 
-Setiap kali kamu mengukur sesuatu — panjang meja, suhu siang hari, waktu yang dipakai dalam lomba lari — hasilnya adalah bilangan real.
+Setiap kali kamu mengukur sesuatu — panjang meja, suhu siang hari, waktu yang dipakai dalam lomba lari — hasil pengukuran tersebut dapat dinyatakan dengan bilangan real.
 
-Cara lain mengatakannya bersifat geometris. Gambarlah garis lurus, tandai satu titik untuk 0 dan satu titik lain untuk 1, maka setiap titik pada garis itu mewakili tepat satu bilangan real. Garis itu disebut **garis bilangan**, dan ia tidak punya lubang.
+Cara lain mengatakannya bersifat geometris. Gambarlah garis lurus, tandai satu titik untuk 0 dan satu titik lain untuk 1, maka setiap titik pada garis itu mewakili tepat satu bilangan real. Garis tersebut disebut **garis bilangan**. Dalam pengertian matematis, bilangan real membentuk garis yang kontinu, tanpa celah.
 
-Bilangan real adalah bilangan untuk pengukuran, kalkulus, fisika, dan hampir semua program yang berhitung. Mengetahui bagaimana bilangan real tersusun — mana yang pecahan, mana yang bukan, dan bagaimana komputer menyimpannya — mencegah banyak kesalahan, dari jawaban ujian yang keliru sampai saldo bank yang salah.
+Bilangan real digunakan dalam pengukuran, kalkulus, fisika, dan berbagai komputasi numerik. Mengetahui bagaimana bilangan real tersusun — mana yang pecahan, mana yang bukan, dan bagaimana komputer menyimpannya — membantu memahami berbagai persoalan perhitungan, termasuk kesalahan pembulatan dalam komputasi.
 
 **Bilangan real sekilas**
 
@@ -92,7 +92,7 @@ Bilangan real adalah bilangan untuk pengukuran, kalkulus, fisika, dan hampir sem
 |---|---|
 | Simbol | $\mathbb{R}$ |
 | Isinya | semua bilangan rasional dan semua bilangan irasional |
-| Bentuk desimal | berhenti, berulang, atau berlanjut tanpa akhir tanpa blok yang berulang |
+| Bentuk desimal | berhenti, berulang, atau berlanjut tanpa akhir tanpa kelompok angka yang berulang |
 | Operasi | tertutup terhadap penjumlahan, pengurangan, perkalian, dan pembagian (tidak pernah dengan 0) |
 | Ukuran | tak terhitung banyaknya (Cantor, 1874) |
 | Dibangun secara ketat oleh | Dedekind dan Cantor, keduanya pada 1872 |
@@ -150,18 +150,18 @@ Bilangan real adalah bilangan untuk pengukuran, kalkulus, fisika, dan hampir sem
 | Real numbers | ℝ | all of the above together | everything on the number line |
 
 Every integer is rational, because $5=\frac{5}{1}$. Every rational number is real. And the two big families, rational and irrational, do not overlap: a real number is exactly one of them.`,
-            T`**Jenis-jenis bilangan real adalah bilangan asli, cacah, bulat, rasional, dan irasional.** Semuanya tersusun dalam lapisan: setiap lapisan memuat lapisan sebelumnya dan menambahkan bilangan yang tidak dapat dinyatakan oleh lapisan sebelumnya.
+            T`**Jenis-jenis bilangan real adalah bilangan asli, cacah, bulat, rasional, dan irasional.** Himpunan-himpunan tersebut tersusun secara bertingkat: setiap himpunan memuat himpunan sebelumnya dan menambahkan bilangan yang tidak dapat dinyatakan oleh himpunan sebelumnya.
 
 | Himpunan | Simbol | Isinya | Contoh |
 |---|---|---|---|
-| Bilangan asli | ℕ | bilangan hitung $1, 2, 3, \ldots$ | 1, 7, 250 |
+| Bilangan asli | ℕ | bilangan yang digunakan untuk menghitung: $1, 2, 3$, dan seterusnya | 1, 7, 250 |
 | Bilangan cacah | W | bilangan asli dan 0 | 0, 3, 12 |
 | Bilangan bulat | ℤ | bilangan cacah beserta negatifnya | −5, 0, 8 |
 | Bilangan rasional | ℚ | setiap bilangan $\frac{p}{q}$ dengan $p$ dan $q\neq 0$ bilangan bulat | $\frac{2}{3}$, −0,75, 4 |
 | Bilangan irasional | ℝ∖ℚ | bilangan real yang bukan rasional | $\sqrt{2}$, $\pi$, $e$ |
 | Bilangan real | ℝ | gabungan semuanya | semua titik pada garis bilangan |
 
-Setiap bilangan bulat itu rasional, karena $5=\frac{5}{1}$. Setiap bilangan rasional itu real. Dan dua keluarga besar, rasional dan irasional, tidak beririsan: sebuah bilangan real tepat salah satunya.`,
+Setiap bilangan bulat itu rasional, karena $5=\frac{5}{1}$. Setiap bilangan rasional itu real. Dan dua kelompok utama, rasional dan irasional, tidak beririsan: sebuah bilangan real tepat salah satunya.`,
           ),
         },
         {
@@ -203,12 +203,12 @@ Satu jebakan sebelum mencoba aktivitas berikut. Tanda akar tidak otomatis membua
 - It **repeats** for ever in a block: $\frac{1}{3}=0.333\ldots=0.\overline{3}$ and $\frac{3}{11}=0.272727\ldots=0.\overline{27}$.
 
 The bar over the digits marks the repeating block. Which of the two happens is decided by the denominator, once the fraction is in lowest terms.`,
-            T`**Bilangan rasional** adalah bilangan yang dapat ditulis sebagai pecahan $\frac{p}{q}$ dari dua bilangan bulat, dengan $q\neq 0$. Kata ini berasal dari *rasio*. Setiap bilangan rasional juga dapat ditulis sebagai desimal, dan desimal itu selalu berperilaku salah satu dari dua cara:
+            T`**Bilangan rasional** adalah bilangan yang dapat ditulis sebagai pecahan $\frac{p}{q}$ dari dua bilangan bulat, dengan $q\neq 0$. Kata ini berasal dari *rasio*. Setiap bilangan rasional juga dapat ditulis sebagai desimal, dan bentuk desimalnya memiliki salah satu dari dua sifat berikut:
 
 - Desimalnya **berhenti**: $\frac{1}{8}=0{,}125$ dan $\frac{3}{40}=0{,}075$.
-- Desimalnya **berulang** tanpa akhir dalam satu blok: $\frac{1}{3}=0{,}333\ldots=0{,}\overline{3}$ dan $\frac{3}{11}=0{,}272727\ldots=0{,}\overline{27}$.
+- Desimalnya **berulang** tanpa akhir dalam satu kelompok angka: $\frac{1}{3}=0{,}333\ldots=0{,}\overline{3}$ dan $\frac{3}{11}=0{,}272727\ldots=0{,}\overline{27}$.
 
-Garis di atas angka menandai blok yang berulang. Mana dari keduanya yang terjadi ditentukan oleh penyebutnya, setelah pecahannya disederhanakan.`,
+Garis di atas angka menandai kelompok angka yang berulang. Mana dari keduanya yang terjadi ditentukan oleh penyebutnya, setelah pecahannya disederhanakan.`,
           ),
         },
         {
@@ -238,12 +238,12 @@ Contohnya $\frac{7}{20}$: $20=2^2\times 5$, jadi berhenti ($0{,}35$). Untuk $\fr
 4. Solve and simplify: $x=\frac{27}{99}=\frac{3}{11}$.
 
 When some digits do not repeat, as in $0.41\overline{6}$, use two shifts: $100x=41.\overline{6}$ and $1000x=416.\overline{6}$. Subtracting gives $900x=375$, so $x=\frac{375}{900}=\frac{5}{12}$.`,
-            T`**Mengapa desimal harus berulang?** Lakukan pembagian bersusun $\frac{p}{q}$. Setelah tiap angka tersisa sebuah sisa, dan sisa itu selalu salah satu dari $0, 1, \ldots, q-1$. Jika suatu saat sisanya 0, desimalnya berhenti. Jika tidak, hanya ada $q-1$ kemungkinan sisa tak nol, sehingga dalam $q$ langkah salah satunya pasti muncul lagi — dan sejak saat itu angkanya berulang, karena sisa yang sama menghasilkan angka berikutnya yang sama. Itulah sebabnya blok pada $\frac{1}{7}=0{,}\overline{142857}$ panjangnya tepat 6 angka, satu kurang dari 7.
+            T`**Mengapa desimal harus berulang?** Lakukan pembagian bersusun $\frac{p}{q}$. Setelah tiap angka tersisa sebuah sisa, dan sisa itu selalu salah satu dari $0, 1, \ldots, q-1$. Jika suatu saat sisanya 0, desimalnya berhenti. Jika tidak, hanya ada $q-1$ kemungkinan sisa tak nol, sehingga dalam $q$ langkah salah satunya pasti muncul lagi — dan sejak saat itu angkanya berulang, karena sisa yang sama menghasilkan angka berikutnya yang sama. Itulah sebabnya kelompok angka pada $\frac{1}{7}=0{,}\overline{142857}$ panjangnya tepat 6 angka, satu kurang dari 7.
 
 **Cara mengubah desimal berulang menjadi pecahan.** Ikuti langkah berikut, ditunjukkan untuk $x=0{,}\overline{27}$:
 
 1. Beri nama bilangannya: misalkan $x=0{,}\overline{27}$.
-2. Kalikan dengan $10^n$, dengan $n$ panjang blok yang berulang (di sini 2, jadi kalikan 100): $100x=27{,}\overline{27}$.
+2. Kalikan dengan $10^n$, dengan $n$ panjang kelompok angka yang berulang (di sini 2, jadi kalikan 100): $100x=27{,}\overline{27}$.
 3. Kurangkan bilangan semula agar ekor tak berhingga saling meniadakan: $100x-x=27$, yaitu $99x=27$.
 4. Selesaikan dan sederhanakan: $x=\frac{27}{99}=\frac{3}{11}$.
 
@@ -320,7 +320,7 @@ Jika ada angka yang tidak berulang, seperti pada $0{,}41\overline{6}$, gunakan d
 - $\varphi=\dfrac{1+\sqrt{5}}{2}=1.61803398\ldots$, the golden ratio.
 
 There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ is irrational unless $n$ is a perfect square. Factorise $n$; if every prime appears an even number of times, $n$ is a perfect square and the root is a whole number. So $\sqrt{50}=5\sqrt{2}$ is irrational, while $\sqrt{49}=7$ is not.`,
-            T`**Bilangan irasional** adalah bilangan real yang **bukan** rasional: tidak ada pecahan dua bilangan bulat yang sama dengannya. Dalam bentuk desimal, ia tidak pernah berhenti dan tidak pernah jatuh ke blok berulang. Contoh terkenal:
+            T`**Bilangan irasional** adalah bilangan real yang **bukan** rasional: tidak ada pecahan dua bilangan bulat yang sama dengannya. Dalam bentuk desimal, ia tidak pernah berakhir dan tidak memiliki pola angka yang berulang secara periodik. Contoh bilangan irasional yang terkenal antara lain:
 
 - $\sqrt{2}=1{,}41421356\ldots$, diagonal persegi dengan sisi 1.
 - $\pi=3{,}14159265\ldots$, perbandingan keliling lingkaran terhadap diameternya.
@@ -356,7 +356,7 @@ The ancient Greeks already knew this, and the argument is still the best first e
 The assumption led to a contradiction, so no such fraction exists: $\sqrt{2}$ is irrational. ∎`,
             T`**Bukti bahwa √2 irasional**
 
-Orang Yunani kuno sudah mengetahui hal ini, dan argumennya masih menjadi contoh pertama terbaik untuk bukti dengan kontradiksi. Misalkan $\sqrt{2}=\frac{a}{b}$ dengan $a$ dan $b$ bilangan bulat positif yang **tidak punya faktor persekutuan** (pecahan paling sederhana). Kita akan menunjukkan bahwa hal itu mustahil.
+Orang Yunani kuno sudah mengetahui hal ini, dan argumennya masih menjadi contoh klasik pembuktian dengan kontradiksi. Misalkan $\sqrt{2}=\frac{a}{b}$ dengan $a$ dan $b$ bilangan bulat positif yang **tidak punya faktor persekutuan** (pecahan paling sederhana). Kita akan menunjukkan bahwa hal itu mustahil.
 
 1. Kuadratkan kedua ruas: $2=\frac{a^2}{b^2}$, sehingga $a^2=2b^2$.
 2. Jadi $a^2$ genap. Bilangan ganjil yang dikuadratkan tetap ganjil, sehingga $a$ sendiri harus genap: $a=2k$ untuk suatu bilangan bulat $k$.
@@ -449,7 +449,7 @@ Sekarang coba sendiri angka-angka desimalnya. Widget di bawah ini menemukan $\sq
 
 **Kerapatan.** Di antara dua bilangan real yang berbeda selalu ada bilangan lain — bahkan tak berhingga banyak bilangan rasional dan tak berhingga banyak bilangan irasional. Jika $a<b$ rasional, titik tengah $\frac{a+b}{2}$ rasional dan terletak di antara keduanya; dan $a+\frac{b-a}{\sqrt{2}}$ irasional dan juga terletak di antara keduanya. Tidak ada bilangan real "berikutnya" setelah 0, sebesar apa pun kamu memperbesar tampilannya.
 
-**Kelengkapan.** Bilangan rasional rapat tetapi tetap berlubang. Bilangan $\sqrt{2}$ tidak ada di $\mathbb{Q}$: bilangan rasional $1,\ 1{,}4,\ 1{,}41,\ 1{,}414,\ \ldots$ makin dekat ke sebuah titik pada garis, tetapi tidak ada bilangan rasional yang menjadi titik itu. Bilangan real mengisi setiap lubang seperti itu, itulah yang membuat garis bilangan menjadi garis yang kontinu dan yang diandalkan kalkulus.`,
+**Kelengkapan.** Bilangan rasional rapat tetapi tetap berlubang. Bilangan $\sqrt{2}$ tidak ada di $\mathbb{Q}$: bilangan rasional $1,\ 1{,}4,\ 1{,}41,\ 1{,}414,\ \ldots$ makin dekat ke sebuah titik pada garis, tetapi tidak ada bilangan rasional yang menjadi titik itu. Bilangan real mencakup titik-titik yang tidak dapat direpresentasikan oleh bilangan rasional, itulah yang membuat garis bilangan menjadi garis yang kontinu dan yang diandalkan kalkulus.`,
           ),
         },
         {
@@ -502,7 +502,7 @@ What happens when rational and irrational numbers are mixed? Let $q$ be a non-ze
 | irrational × irrational | either | $\sqrt{2}\times\sqrt{2}=2$ but $\sqrt{2}\times\sqrt{3}=\sqrt{6}$ is irrational |
 
 Why is $q+i$ always irrational? Suppose it were a rational number $r$. Then $i=r-q$ would be a difference of two rationals, which is rational — contradicting that $i$ is irrational.`,
-            T`**Bilangan real memenuhi enam sifat medan: ketertutupan, komutatif, asosiatif, distributif, unsur identitas, dan invers.** Untuk semua bilangan real $a$, $b$, dan $c$, berlaku aturan-aturan berikut, dan setiap manipulasi aljabar yang kamu lakukan bertumpu padanya:
+            T`**Bilangan real memenuhi enam sifat dasar operasi aljabar: ketertutupan, komutatif, asosiatif, distributif, unsur identitas, dan invers.** Untuk semua bilangan real $a$, $b$, dan $c$, berlaku aturan-aturan berikut, dan sifat-sifat tersebut menjadi dasar berbagai manipulasi aljabar:
 
 | Sifat | Pernyataan |
 |---|---|
@@ -513,7 +513,7 @@ Why is $q+i$ always irrational? Suppose it were a rational number $r$. Then $i=r
 | Identitas | $a+0=a$ dan $a\times1=a$ |
 | Invers | $a+(-a)=0$, dan $a\times\frac{1}{a}=1$ bila $a\neq0$ |
 
-Apa yang terjadi bila bilangan rasional dan irasional dicampur? Misalkan $q$ bilangan rasional tak nol dan $i$ bilangan irasional.
+Bagaimana hasil operasi antara bilangan rasional dan irasional? Misalkan $q$ bilangan rasional tak nol dan $i$ bilangan irasional.
 
 | Operasi | Hasil | Contoh |
 |---|---|---|
@@ -523,7 +523,7 @@ Apa yang terjadi bila bilangan rasional dan irasional dicampur? Misalkan $q$ bil
 | irasional + irasional | bisa keduanya | $\sqrt{2}+(-\sqrt{2})=0$ tetapi $\sqrt{2}+\sqrt{3}$ irasional |
 | irasional × irasional | bisa keduanya | $\sqrt{2}\times\sqrt{2}=2$ tetapi $\sqrt{2}\times\sqrt{3}=\sqrt{6}$ irasional |
 
-Mengapa $q+i$ selalu irasional? Andaikan hasilnya bilangan rasional $r$. Maka $i=r-q$ adalah selisih dua bilangan rasional, yang rasional — bertentangan dengan $i$ irasional.`,
+Mengapa $q+i$ selalu irasional? Andaikan $q+i=r$, dengan $r$ rasional. Maka $i=r-q$ juga rasional karena merupakan selisih dua bilangan rasional. Hal ini bertentangan dengan asumsi bahwa $i$ irasional.`,
           ),
         },
         {
@@ -575,11 +575,11 @@ Mengapa $q+i$ selalu irasional? Andaikan hasilnya bilangan rasional $r$. Maka $i
 | $(-\infty,\infty)$ | the whole line, $\mathbb{R}$ | any $x$ |
 
 **Absolute value.** $|x|$ is the distance from $x$ to 0, so it is never negative: $|x|=x$ if $x\ge0$ and $|x|=-x$ if $x<0$. More generally $|a-b|$ is the distance between $a$ and $b$. The inequality $|x|<3$ means "within 3 of zero", which is the interval $(-3,3)$.`,
-            T`**Untuk membandingkan bilangan real gunakan urutan, untuk menyatakan bagian garis bilangan gunakan interval, dan untuk mengukur jarak dari nol gunakan nilai mutlak.**
+            T`**Urutan digunakan untuk membandingkan bilangan real, interval untuk menyatakan bagian dari garis bilangan, dan nilai mutlak untuk menyatakan jarak suatu bilangan dari nol.**
 
 **Urutan.** Dua bilangan real mana pun dapat dibandingkan: tepat satu dari $a<b$, $a=b$, $a>b$ yang benar. Urutan bersifat transitif ($a<b$ dan $b<c$ memberi $a<c$). Menambah kedua ruas pertidaksamaan dengan bilangan yang sama mempertahankannya; mengalikan kedua ruas dengan bilangan **negatif** membalikkannya, sehingga $-2x<6$ memberi $x>-3$.
 
-**Interval.** Bagian garis bilangan ditulis sebagai interval. Kurung siku berarti ujungnya termasuk, kurung biasa berarti tidak termasuk, dan $\infty$ selalu memakai kurung biasa karena ia bukan bilangan real.
+**Interval.** Suatu bagian dari garis bilangan dapat dinyatakan dalam bentuk interval. Kurung siku berarti ujungnya termasuk, kurung biasa berarti tidak termasuk, dan $\infty$ selalu memakai kurung biasa karena ia bukan bilangan real.
 
 | Interval | Arti | Pertidaksamaan |
 |---|---|---|
@@ -590,7 +590,7 @@ Mengapa $q+i$ selalu irasional? Andaikan hasilnya bilangan rasional $r$. Maka $i
 | $(-\infty,b]$ | semua sampai dan termasuk $b$ | $x\le b$ |
 | $(-\infty,\infty)$ | seluruh garis, $\mathbb{R}$ | sembarang $x$ |
 
-**Nilai mutlak.** $|x|$ adalah jarak $x$ ke 0, sehingga tidak pernah negatif: $|x|=x$ jika $x\ge0$ dan $|x|=-x$ jika $x<0$. Lebih umum, $|a-b|$ adalah jarak antara $a$ dan $b$. Pertidaksamaan $|x|<3$ berarti "berjarak kurang dari 3 dari nol", yaitu interval $(-3,3)$.`,
+**Nilai mutlak.** $|x|$ adalah jarak $x$ ke 0, sehingga tidak pernah negatif: $|x|=x$ jika $x\ge0$ dan $|x|=-x$ jika $x<0$. Lebih umum, $|a-b|$ adalah jarak antara $a$ dan $b$. Pertidaksamaan $|x|<3$ berarti jarak $x$ dari nol kurang dari 3, yaitu interval $(-3,3)$.`,
           ),
         },
         { kind: 'widget', name: 'interval' },
@@ -621,7 +621,7 @@ Mengapa $q+i$ selalu irasional? Andaikan hasilnya bilangan rasional $r$. Maka $i
     /* ------------------------------------------------------------------ code */
     {
       id: 'real-numbers-in-code',
-      heading: L('Why does 0.1 + 0.2 not equal 0.3 in code?', 'Mengapa 0,1 + 0,2 tidak sama dengan 0,3 di dalam kode?'),
+      heading: L('Why does 0.1 + 0.2 not equal 0.3 in code?', 'Mengapa 0,1 + 0,2 tidak selalu sama dengan 0,3 dalam komputer?'),
       blocks: [
         {
           kind: 'text',
@@ -633,13 +633,13 @@ The catch is that the format is *binary*. The decimal $0.1$ is $\frac{1}{10}$, a
 $$0.1000000000000000055511151231257827\ldots$$
 
 Add two such rounded values and the tiny errors show up:`,
-            T`**Dalam kode, 0,1 + 0,2 tidak sama dengan 0,3 karena komputer menyimpan bilangan real sebagai nilai floating point biner 64-bit, dan 0,1 tidak dapat disimpan secara eksak.** Komputer punya memori terbatas, sedangkan sebuah bilangan real bisa membutuhkan tak berhingga banyak angka. Maka program menyimpan **hampiran**. Hampir semua bahasa memakai format IEEE 754 *binary64* (IEEE 754-2019; lihat Goldberg, 1991), yang disebut ´double´ atau ´float´ di Python: 1 bit tanda, 11 bit eksponen, dan 52 bit pecahan, sehingga memberi presisi 53 bit — sekitar 15 sampai 17 angka signifikan desimal.
+            T`**Dalam kode, 0,1 + 0,2 tidak sama dengan 0,3 karena komputer merepresentasikan bilangan menggunakan format bilangan titik-mengambang (floating-point) biner 64-bit, dan 0,1 tidak dapat disimpan secara eksak.** Komputer memiliki kapasitas penyimpanan terbatas, sedangkan sebuah bilangan real bisa membutuhkan tak berhingga banyak angka. Maka program menyimpan **hampiran**. Hampir semua bahasa memakai format IEEE 754 *binary64* (IEEE 754-2019; lihat Goldberg, 1991), yang disebut ´double´ atau ´float´ di Python: 1 bit tanda, 11 bit eksponen, dan 52 bit bagian pecahan (fraction), sehingga memberi presisi 53 bit — sekitar 15 sampai 17 angka signifikan desimal.
 
-Masalahnya, formatnya *biner*. Desimal $0{,}1$ adalah $\frac{1}{10}$, dan $10$ punya faktor prima 5, sehingga dalam basis 2 ekspansi $0{,}1$ berulang tanpa akhir, sama seperti $\frac{1}{3}$ berulang dalam basis 10. Komputer memotongnya, dan nilai yang benar-benar tersimpan adalah
+Masalahnya, formatnya *biner*. Desimal $0{,}1$ adalah $\frac{1}{10}$, dan $10$ punya faktor prima 5, sehingga dalam basis 2 ekspansi $0{,}1$ berulang tanpa akhir, sama seperti $\frac{1}{3}$ berulang dalam basis 10. Komputer menyimpan nilai hampiran yang dapat direpresentasikan dalam format tersebut, dan nilai yang benar-benar tersimpan adalah
 
 $$0{,}1000000000000000055511151231257827\ldots$$
 
-Jumlahkan dua nilai terbulatkan seperti itu dan galat kecilnya muncul:`,
+Ketika kedua nilai hampiran tersebut dijumlahkan, galat pembulatan dapat terlihat pada hasilnya:`,
           ),
         },
         {
@@ -681,9 +681,9 @@ What to do about it:
 | Summing many numbers | ´math.fsum´ reduces accumulated rounding error |
 
 Try it below. The widget calculates both expressions with 64-bit floating point, shows the exact value stored, and checks them the three ways a program might.`,
-            T`Ini bukan galat di Python atau JavaScript, dan bukan hal yang jarang. Ini adalah perilaku floating point biner di mana pun, pada setiap bahasa yang memakainya. Sebuah fakta berguna menyusul darinya: setiap bilangan yang dapat disimpan komputer sebagai float adalah bilangan **rasional** (pecahan dengan penyebut pangkat 2). Komputer tidak pernah menyimpan $\sqrt{2}$ atau $\pi$ — hanya bilangan rasional di dekatnya.
+            T`Perilaku ini bukan kesalahan khusus Python atau JavaScript, melainkan konsekuensi representasi bilangan titik-mengambang. Perilaku ini terjadi di mana pun, pada setiap bahasa yang memakainya. Hal penting yang perlu dipahami adalah bahwa setiap bilangan yang dapat disimpan komputer sebagai float adalah bilangan **rasional** (pecahan dengan penyebut pangkat 2). Komputer tidak pernah menyimpan $\sqrt{2}$ atau $\pi$ — hanya bilangan rasional di dekatnya.
 
-Apa yang sebaiknya dilakukan:
+Cara menangani perhitungan numerik:
 
 | Situasi | Pendekatan yang lebih baik |
 |---|---|
@@ -693,7 +693,7 @@ Apa yang sebaiknya dilakukan:
 | Bilangan bulat sangat besar | ´int´ Python eksak pada ukuran berapa pun; pakai ´BigInt´ di JavaScript |
 | Menjumlahkan banyak bilangan | ´math.fsum´ mengurangi akumulasi galat pembulatan |
 
-Cobalah di bawah. Widget ini menghitung kedua ekspresi dengan floating point 64-bit, menampilkan nilai persis yang tersimpan, dan memeriksanya dengan tiga cara yang mungkin dipakai program.`,
+Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floating point 64-bit, menampilkan nilai persis yang tersimpan, dan memeriksanya dengan tiga cara yang mungkin dipakai program.`,
           ),
         },
         { kind: 'widget', name: 'floats' },
@@ -767,7 +767,7 @@ Cobalah di bawah. Widget ini menghitung kedua ekspresi dengan floating point 64-
           kind: 'text',
           text: L(
             'These questions mix everything above. A wrong answer costs nothing here: read the hint and try again.',
-            'Soal-soal ini mencampur semua yang dibahas di atas. Jawaban salah tidak merugikan di sini: baca petunjuknya dan coba lagi.',
+            'Soal-soal ini mencampur semua yang dibahas di atas. Jika jawabanmu belum tepat, perhatikan petunjuk yang tersedia, lalu coba kembali.',
           ),
         },
         {
@@ -804,9 +804,9 @@ Cobalah di bawah. Widget ini menghitung kedua ekspresi dengan floating point 64-
             ],
             explain: L(
               '$\\frac{1}{7}=0.\\overline{142857}$, so the repeating block has 6 digits.',
-              '$\\frac{1}{7}=0{,}\\overline{142857}$, jadi blok yang berulang punya 6 angka.',
+              '$\\frac{1}{7}=0{,}\\overline{142857}$, jadi kelompok angka yang berulang punya 6 angka.',
             ),
-            prompt: L('How many digits are in the repeating block of the decimal for $\\frac{1}{7}$?', 'Berapa banyak angka dalam blok yang berulang pada desimal $\\frac{1}{7}$?'),
+            prompt: L('How many digits are in the repeating block of the decimal for $\\frac{1}{7}$?', 'Berapa banyak angka dalam kelompok angka yang berulang pada desimal $\\frac{1}{7}$?'),
             blanks: [{ answer: 6 }],
           },
         },
@@ -870,7 +870,7 @@ Cobalah di bawah. Widget ini menghitung kedua ekspresi dengan floating point 64-
     { term: L('Natural number', 'Bilangan asli'), definition: L('A counting number 1, 2, 3, …; some books also include 0.', 'Bilangan hitung 1, 2, 3, …; sebagian buku juga memasukkan 0.') },
     { term: L('Whole number', 'Bilangan cacah'), definition: L('A natural number or zero: 0, 1, 2, 3, ….', 'Bilangan asli atau nol: 0, 1, 2, 3, ….') },
     { term: L('Terminating decimal', 'Desimal berhenti'), definition: L('A decimal with finitely many digits after the point, such as 0.125.', 'Desimal dengan angka di belakang koma yang berhingga banyaknya, seperti 0,125.') },
-    { term: L('Repeating decimal', 'Desimal berulang'), definition: L('A decimal in which a block of digits repeats for ever, such as 0.272727….', 'Desimal yang sebuah blok angkanya berulang tanpa akhir, seperti 0,272727….') },
+    { term: L('Repeating decimal', 'Desimal berulang'), definition: L('A decimal in which a block of digits repeats for ever, such as 0.272727….', 'Desimal yang sekelompok angkanya berulang tanpa akhir, seperti 0,272727….') },
     { term: L('Transcendental number', 'Bilangan transendental'), definition: L('A real number that is not a root of any non-zero polynomial with integer coefficients, such as π and e.', 'Bilangan real yang bukan akar polinomial tak nol mana pun dengan koefisien bulat, seperti π dan e.') },
     { term: L('Floating-point number', 'Bilangan floating point'), definition: L('The approximation of a real number that a computer stores, usually a 64-bit binary value with about 15 to 17 significant decimal digits.', 'Hampiran bilangan real yang disimpan komputer, biasanya nilai biner 64-bit dengan sekitar 15 sampai 17 angka signifikan desimal.') },
     { term: L('Interval', 'Interval'), definition: L('An unbroken stretch of the real number line, written with brackets, such as [a, b).', 'Bagian garis bilangan real yang tak terputus, ditulis dengan tanda kurung, seperti [a, b).') },
@@ -883,7 +883,7 @@ Cobalah di bawah. Widget ini menghitung kedua ekspresi dengan floating point 64-
       description: L('Turn a decimal such as 0.272727… into an exact fraction by subtracting a shifted copy of itself.', 'Ubah desimal seperti 0,272727… menjadi pecahan eksak dengan mengurangkan salinannya yang digeser.'),
       steps: [
         { name: L('Name the number', 'Beri nama bilangannya'), text: L('Let x equal the repeating decimal, for example x = 0.272727….', 'Misalkan x sama dengan desimal berulang itu, misalnya x = 0,272727….') },
-        { name: L('Shift the decimal point', 'Geser komanya'), text: L('Multiply by 10 to the power n, where n is the length of the repeating block. For a block of 2 digits multiply by 100, so 100x = 27.2727….', 'Kalikan dengan 10 pangkat n, dengan n panjang blok yang berulang. Untuk blok 2 angka kalikan 100, sehingga 100x = 27,2727….') },
+        { name: L('Shift the decimal point', 'Geser komanya'), text: L('Multiply by 10 to the power n, where n is the length of the repeating block. For a block of 2 digits multiply by 100, so 100x = 27.2727….', 'Kalikan dengan 10 pangkat n, dengan n panjang kelompok angka yang berulang. Untuk kelompok 2 angka kalikan 100, sehingga 100x = 27,2727….') },
         { name: L('Subtract the original', 'Kurangkan bilangan semula'), text: L('Subtract x from 100x so the endless tails cancel: 99x = 27.', 'Kurangkan x dari 100x agar ekor tak berhingga saling meniadakan: 99x = 27.') },
         { name: L('Solve and simplify', 'Selesaikan dan sederhanakan'), text: L('Divide to get x = 27/99, then simplify to 3/11.', 'Bagi untuk mendapat x = 27/99, lalu sederhanakan menjadi 3/11.') },
       ],
@@ -971,7 +971,7 @@ Cobalah di bawah. Widget ini menghitung kedua ekspresi dengan floating point 64-
       q: L('Why does 0.1 + 0.2 not equal 0.3 on a computer?', 'Mengapa 0,1 + 0,2 tidak sama dengan 0,3 di komputer?'),
       a: L(
         'Computers store numbers in binary floating point, and 0.1 has an endless repeating expansion in binary, so it is stored rounded. The rounded 0.1 plus the rounded 0.2 comes out as 0.30000000000000004, which differs from the stored 0.3. Compare floats with a tolerance instead of using equality.',
-        'Komputer menyimpan bilangan dalam floating point biner, dan 0,1 punya ekspansi biner yang berulang tanpa akhir, sehingga ia tersimpan dalam bentuk terbulatkan. 0,1 terbulatkan ditambah 0,2 terbulatkan menghasilkan 0,30000000000000004, yang berbeda dari 0,3 yang tersimpan. Bandingkan float dengan toleransi, bukan dengan kesamaan.',
+        'Komputer menyimpan bilangan dalam floating point biner, dan 0,1 punya ekspansi biner yang berulang tanpa akhir, sehingga ia tersimpan dalam bentuk terbulatkan. 0,1 terbulatkan ditambah 0,2 terbulatkan menghasilkan 0,30000000000000004, yang berbeda dari 0,3 yang tersimpan. Untuk membandingkan hasil bilangan titik-mengambang, gunakan toleransi galat, bukan hanya operator kesamaan.',
       ),
     },
     {

@@ -202,7 +202,7 @@ const ITEMS: Sample[] = [
   { label: L('1.4142', '1,4142'), zone: 'Q', why: L('It ends, so it is 14142/10000. √2 only begins 1.4142…', 'Desimalnya berhenti, jadi ia 14142/10000. √2 hanya diawali 1,4142…') },
   { label: L('√7', '√7'), zone: 'I', why: L('7 is not a perfect square, so √7 is irrational.', '7 bukan kuadrat sempurna, jadi √7 irasional.') },
   { label: L('π', 'π'), zone: 'I', why: L('π is irrational: its decimals never end and never repeat.', 'π irasional: desimalnya tidak berhenti dan tidak berulang.') },
-  { label: L('0.1010010001… (one more 0 each time)', '0,1010010001… (nol bertambah satu tiap kali)'), zone: 'I', why: L('The pattern never repeats a block, so it is not a fraction: irrational.', 'Polanya tidak pernah mengulang sebuah blok, jadi bukan pecahan: irasional.') },
+  { label: L('0.1010010001… (one more 0 each time)', '0,1010010001… (nol bertambah satu tiap kali)'), zone: 'I', why: L('The pattern never repeats a block, so it is not a fraction: irrational.', 'Polanya tidak pernah mengulang sekelompok angka, jadi bukan pecahan: irasional.') },
 ]
 
 function ClassifyWidget() {
@@ -333,7 +333,7 @@ function DecimalWidget() {
               ) : (
                 <b>
                   {tc(L('The decimal repeats', 'Desimalnya berulang'))}
-                  {ex.truncated ? '…' : ` — ${tc(L('block length', 'panjang blok'))} ${ex.rep.length}${ex.pre ? `, ${tc(L('after', 'setelah'))} ${ex.pre.length} ${tc(L('digit(s)', 'angka'))}` : ''}.`}
+                  {ex.truncated ? '…' : ` — ${tc(L('block length', 'panjang kelompok angka'))} ${ex.rep.length}${ex.pre ? `, ${tc(L('after', 'setelah'))} ${ex.pre.length} ${tc(L('digit(s)', 'angka'))}` : ''}.`}
                 </b>
               )}
             </p>
@@ -404,7 +404,7 @@ function RepeatWidget() {
         ) : (
           <>
             <p className="small muted">
-              {tc(L('Shift the point past the fixed digits, then past one repeating block, and subtract so the endless tails cancel.', 'Geser koma melewati angka tetap, lalu melewati satu blok berulang, kemudian kurangkan agar ekor tak berhingga saling meniadakan.'))}
+              {tc(L('Shift the point past the fixed digits, then past one repeating block, and subtract so the endless tails cancel.', 'Geser koma melewati angka tetap, lalu melewati satu kelompok angka yang berulang, kemudian kurangkan agar ekor tak berhingga saling meniadakan.'))}
             </p>
             <ul className="steps">
               <li>
@@ -483,7 +483,7 @@ function Sqrt2Widget() {
       ) : (
         <p>
           <b>{tc(L(`${MAX} decimals and still going.`, `${MAX} desimal dan masih berlanjut.`))}</b>{' '}
-          {tc(L('The digits of √2 never end and never fall into a repeating block. That is what irrational means.', 'Angka-angka √2 tidak pernah berhenti dan tidak pernah jatuh ke blok berulang. Itulah arti irasional.'))}
+          {tc(L('The digits of √2 never end and never fall into a repeating block. That is what irrational means.', 'Angka-angka √2 tidak pernah berhenti dan tidak memiliki pola angka yang berulang secara periodik. Itulah arti irasional.'))}
         </p>
       )}
       <div className="wgtout" aria-live="polite">
