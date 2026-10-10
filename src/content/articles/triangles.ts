@@ -32,8 +32,8 @@ const tri = (pts: [number, number][], caption: Loc, opts: { extra?: FigItem[]; a
 
 export const body: ArticleBody = {
   answer: L(
-    T`**A triangle is a closed shape with three straight sides, three vertices and three interior angles that always add up to 180°.** Triangles are sorted by their sides (equilateral, isosceles, scalene) and by their angles (acute, right, obtuse). Three lengths form a triangle only if the longest is shorter than the other two together. The area is half the base times the height, and in a right triangle $a^2+b^2=c^2$.`,
-    T`**Segitiga adalah bangun tertutup dengan tiga sisi lurus, tiga titik sudut, dan tiga sudut dalam yang selalu berjumlah 180°.** Segitiga digolongkan menurut sisinya (sama sisi, sama kaki, sembarang) dan menurut sudutnya (lancip, siku-siku, tumpul). Tiga panjang membentuk segitiga hanya bila yang terpanjang lebih pendek daripada jumlah dua lainnya. Luasnya setengah alas kali tinggi, dan pada segitiga siku-siku $a^2+b^2=c^2$.`,
+    T`**A triangle is a closed shape with three straight sides, three vertices and three interior angles that always add up to 180°.** Triangles are sorted by their sides (equilateral, isosceles, scalene) and by their angles (acute, right, obtuse). Three lengths form a triangle only if the longest is shorter than the other two together. The area is half the base times the height, and the law of sines and cosines links its sides and angles.`,
+    T`**Segitiga adalah bangun tertutup dengan tiga sisi lurus, tiga titik sudut, dan tiga sudut dalam yang selalu berjumlah 180°.** Segitiga digolongkan menurut sisinya (sama sisi, sama kaki, sembarang) dan menurut sudutnya (lancip, siku-siku, tumpul). Tiga panjang membentuk segitiga hanya bila yang terpanjang lebih pendek daripada jumlah dua lainnya. Luasnya setengah alas kali tinggi, dan aturan sinus dan kosinus menghubungkan sisi dan sudutnya.`,
   ),
 
   keyPoints: [
@@ -46,8 +46,8 @@ export const body: ArticleBody = {
       T`Tiga panjang membentuk segitiga hanya bila masing-masing lebih pendek daripada jumlah dua lainnya; sisi terpanjang lalu menentukan jenisnya: $c^2<a^2+b^2$ lancip, $=$ siku-siku, $>$ tumpul.`,
     ),
     L(
-      T`Pythagorean theorem: in a right triangle $a^2+b^2=c^2$, and the converse holds; Euclid's formula $(m^2-n^2,\;2mn,\;m^2+n^2)$ produces whole-number triples such as $3,4,5$.`,
-      T`Teorema Pythagoras: pada segitiga siku-siku $a^2+b^2=c^2$, dan kebalikannya berlaku; rumus Euclid $(m^2-n^2,\;2mn,\;m^2+n^2)$ menghasilkan tripel bilangan bulat seperti $3,4,5$.`,
+      T`A right triangle has its hypotenuse opposite the right angle, and the $45^\circ$–$45^\circ$–$90^\circ$ and $30^\circ$–$60^\circ$–$90^\circ$ triangles have sides in the fixed ratios $1:1:\sqrt2$ and $1:\sqrt3:2$.`,
+      T`Segitiga siku-siku memiliki hipotenusa di depan sudut siku-siku, dan segitiga $45^\circ$–$45^\circ$–$90^\circ$ serta $30^\circ$–$60^\circ$–$90^\circ$ memiliki sisi berperbandingan tetap $1:1:\sqrt2$ dan $1:\sqrt3:2$.`,
     ),
     L(
       T`Area is $\frac12bh$; with three sides use Heron's formula $\sqrt{s(s-a)(s-b)(s-c)}$, with two sides and the angle between them $\frac12ab\sin C$, and with coordinates the shoelace formula.`,
@@ -185,7 +185,7 @@ Two rules link sides and angles. **Equal sides lie opposite equal angles**, and 
 
 Not every pair of names can occur together. An equilateral triangle is always acute. An isosceles triangle can be acute ($5,5,6$), right ($1,1,\sqrt2$, the half of a square cut along its diagonal) or obtuse ($5,5,8$). A scalene triangle can be acute ($4,5,6$), right ($3,4,5$) or obtuse ($2,3,4$).
 
-To find the angle type without any angle, look at the longest side $c$ and compare $c^2$ with $a^2+b^2$: if $c^2<a^2+b^2$ the triangle is acute, if $c^2=a^2+b^2$ it is right, and if $c^2>a^2+b^2$ it is obtuse. For $2,3,4$: $16>4+9=13$, so it is obtuse. This is the Pythagorean theorem and its two extensions, and the next sections use it.`,
+To find the angle type without any angle, look at the longest side $c$ and compare $c^2$ with $a^2+b^2$: if $c^2<a^2+b^2$ the triangle is acute, if $c^2=a^2+b^2$ it is right, and if $c^2>a^2+b^2$ it is obtuse. For $2,3,4$: $16>4+9=13$, so it is obtuse. This is the [Pythagorean theorem](article:pythagorean-theorem#converse) and its two extensions, and the next sections use it.`,
             T`**Segitiga digolongkan dengan dua cara yang saling bebas: menurut sisinya (sama sisi, sama kaki, sembarang) dan menurut sudut terbesarnya (lancip, siku-siku, tumpul), sehingga setiap segitiga memiliki satu nama dari tiap daftar.**
 
 | Menurut sisi | Definisi | Contoh sisi |
@@ -204,7 +204,7 @@ Dua aturan menghubungkan sisi dan sudut. **Sisi yang sama panjang berada di depa
 
 Tidak setiap pasangan nama dapat muncul bersama. Segitiga sama sisi selalu lancip. Segitiga sama kaki dapat lancip ($5,5,6$), siku-siku ($1,1,\sqrt2$, separuh persegi yang dipotong sepanjang diagonalnya), atau tumpul ($5,5,8$). Segitiga sembarang dapat lancip ($4,5,6$), siku-siku ($3,4,5$), atau tumpul ($2,3,4$).
 
-Untuk menentukan jenis sudut tanpa mengukur sudut, lihat sisi terpanjang $c$ dan bandingkan $c^2$ dengan $a^2+b^2$: jika $c^2<a^2+b^2$ segitiganya lancip, jika $c^2=a^2+b^2$ siku-siku, dan jika $c^2>a^2+b^2$ tumpul. Untuk $2,3,4$: $16>4+9=13$, sehingga tumpul. Inilah teorema Pythagoras dan dua perluasannya, dan bagian-bagian berikutnya memakainya.`,
+Untuk menentukan jenis sudut tanpa mengukur sudut, lihat sisi terpanjang $c$ dan bandingkan $c^2$ dengan $a^2+b^2$: jika $c^2<a^2+b^2$ segitiganya lancip, jika $c^2=a^2+b^2$ siku-siku, dan jika $c^2>a^2+b^2$ tumpul. Untuk $2,3,4$: $16>4+9=13$, sehingga tumpul. Inilah [teorema Pythagoras](article:pythagorean-theorem#converse) dan dua perluasannya, dan bagian-bagian berikutnya memakainya.`,
           ),
         },
         {
@@ -247,54 +247,34 @@ Ketik tiga panjang di bawah. Alat ini memakai pecahan eksak: ia menunjukkan apak
       ],
     },
 
-    /* ------------------------------------------------------------- pythagoras */
+    /* ------------------------------------------------------------ right triangles */
     {
-      id: 'pythagorean',
-      heading: L('What is the Pythagorean theorem?', 'Apa itu teorema Pythagoras?'),
+      id: 'right-triangles',
+      heading: L('What is special about right triangles?', 'Apa istimewanya segitiga siku-siku?'),
       blocks: [
         {
           kind: 'text',
           text: L(
-            T`**In a right triangle with legs $a$ and $b$ and hypotenuse $c$, the squares satisfy $a^2+b^2=c^2$; the converse also holds, so a triangle is right-angled exactly when its sides satisfy this equation.** The legs are the two sides next to the right angle; the hypotenuse is the longest side, opposite it.
+            T`**A right triangle has one $90^\circ$ angle; the side opposite it is the hypotenuse, the longest side, and the other two sides are the legs.** Its other two angles are acute and add up to $90^\circ$, since the three angles make $180^\circ$.
 
-**A proof by rearranging.** Take four copies of the right triangle, each with area $\frac12ab$, and put them in the corners of a big square of side $a+b$. In the middle a tilted square of side $c$ is left. The big square has area $(a+b)^2=a^2+2ab+b^2$, and it is also the tilted square plus the four triangles, $c^2+4\cdot\frac12ab=c^2+2ab$. Take $2ab$ from both sides: $a^2+b^2=c^2$.
+The sides of a right triangle obey the [Pythagorean theorem](article:pythagorean-theorem#what-is-the-theorem), $a^2+b^2=c^2$. That theorem has its own article, with proofs, whole-number triples and applications; the section on types above already uses it in reverse, to tell a right angle from three lengths.
 
-**Using it.** A ladder $2.5$ m long that stands $1.5$ m from a wall reaches $\sqrt{2.5^2-1.5^2}=\sqrt{4}=2$ m up the wall. The diagonal of a rectangle $6\times4$ is $\sqrt{52}=2\sqrt{13}$ after you [simplify the radical](article:exponents-and-radicals#simplify-radicals), and the diagonal of a unit square is $\sqrt2$, which is [irrational](article:irrational-numbers#why-sqrt2-is-irrational).
+Two right triangles are worth knowing by heart, because their sides come in fixed ratios:
 
-**Pythagorean triples.** Three whole numbers with $a^2+b^2=c^2$ are a *Pythagorean triple*. Euclid's formula produces them: for whole numbers $m>n>0$,
-$$(a,b,c)=(m^2-n^2,\;2mn,\;m^2+n^2).$$
-The triple is *primitive* (no common factor, see the [GCD](article:integers#gcd-lcm)) when $m,n$ are coprime and one of them is even. Every triple is a multiple of a primitive one, and every primitive one comes from this formula.
+- **The $45^\circ$–$45^\circ$–$90^\circ$ triangle** (half a square) has sides in the ratio $1:1:\sqrt2$: with legs $a$ the hypotenuse is $a\sqrt2$.
+- **The $30^\circ$–$60^\circ$–$90^\circ$ triangle** (half an equilateral triangle) has sides in the ratio $1:\sqrt3:2$: the short leg is half the hypotenuse and the long leg is the short leg times $\sqrt3$.
 
-| $m$ | $n$ | Triple |
-|---|---|---|
-| $2$ | $1$ | $3,4,5$ |
-| $3$ | $2$ | $5,12,13$ |
-| $4$ | $1$ | $8,15,17$ |
-| $4$ | $3$ | $7,24,25$ |
-| $5$ | $2$ | $20,21,29$ |
-| $5$ | $4$ | $9,40,41$ |
+In a right triangle the two legs serve as base and height, so the area is simply $\frac12ab$, and the circumcenter is the midpoint of the hypotenuse.`,
+            T`**Segitiga siku-siku memiliki satu sudut $90^\circ$; sisi di depannya adalah hipotenusa, sisi terpanjang, dan dua sisi lainnya adalah sisi tegak.** Kedua sudut lainnya lancip dan berjumlah $90^\circ$, karena ketiga sudut berjumlah $180^\circ$.
 
-**Two special right triangles** are worth knowing by heart. The $45^\circ$–$45^\circ$–$90^\circ$ triangle (half a square) has sides in the ratio $1:1:\sqrt2$. The $30^\circ$–$60^\circ$–$90^\circ$ triangle (half an equilateral triangle) has sides in the ratio $1:\sqrt3:2$, the short leg being half the hypotenuse.`,
-            T`**Pada segitiga siku-siku dengan sisi tegak $a$ dan $b$ dan hipotenusa $c$, kuadrat-kuadratnya memenuhi $a^2+b^2=c^2$; kebalikannya juga berlaku, sehingga segitiga siku-siku tepat bila sisi-sisinya memenuhi persamaan ini.** Sisi tegak adalah dua sisi di samping sudut siku-siku; hipotenusa adalah sisi terpanjang, di depannya.
+Sisi-sisi segitiga siku-siku memenuhi [teorema Pythagoras](article:pythagorean-theorem#what-is-the-theorem), $a^2+b^2=c^2$. Teorema itu punya artikel sendiri, dengan bukti, tripel bilangan bulat, dan penerapan; bagian tentang jenis di atas sudah memakainya secara terbalik, untuk mengenali sudut siku-siku dari tiga panjang.
 
-**Bukti dengan menata ulang.** Ambil empat salinan segitiga siku-siku, masing-masing berluas $\frac12ab$, dan letakkan di sudut-sudut persegi besar bersisi $a+b$. Di tengah tersisa persegi miring bersisi $c$. Persegi besar berluas $(a+b)^2=a^2+2ab+b^2$, dan ia juga persegi miring ditambah keempat segitiga, $c^2+4\cdot\frac12ab=c^2+2ab$. Kurangkan $2ab$ dari kedua ruas: $a^2+b^2=c^2$.
+Dua segitiga siku-siku layak dihafal, karena sisi-sisinya berperbandingan tetap:
 
-**Memakainya.** Tangga sepanjang $2{,}5$ m yang berdiri $1{,}5$ m dari tembok mencapai ketinggian $\sqrt{2{,}5^2-1{,}5^2}=\sqrt{4}=2$ m pada tembok. Diagonal persegi panjang $6\times4$ adalah $\sqrt{52}=2\sqrt{13}$ setelah kamu [menyederhanakan bentuk akar](article:exponents-and-radicals#simplify-radicals), dan diagonal persegi satuan adalah $\sqrt2$, yang [irasional](article:irrational-numbers#why-sqrt2-is-irrational).
+- **Segitiga $45^\circ$–$45^\circ$–$90^\circ$** (setengah persegi) memiliki sisi berperbandingan $1:1:\sqrt2$: dengan sisi tegak $a$ hipotenusanya $a\sqrt2$.
+- **Segitiga $30^\circ$–$60^\circ$–$90^\circ$** (setengah segitiga sama sisi) memiliki sisi berperbandingan $1:\sqrt3:2$: sisi tegak pendek setengah hipotenusa dan sisi tegak panjang adalah sisi tegak pendek kali $\sqrt3$.
 
-**Tripel Pythagoras.** Tiga bilangan bulat dengan $a^2+b^2=c^2$ disebut *tripel Pythagoras*. Rumus Euclid menghasilkannya: untuk bilangan bulat $m>n>0$,
-$$(a,b,c)=(m^2-n^2,\;2mn,\;m^2+n^2).$$
-Tripelnya *primitif* (tanpa faktor persekutuan, lihat [FPB](article:integers#gcd-lcm)) bila $m,n$ saling prima dan salah satunya genap. Setiap tripel adalah kelipatan tripel primitif, dan setiap tripel primitif berasal dari rumus ini.
-
-| $m$ | $n$ | Tripel |
-|---|---|---|
-| $2$ | $1$ | $3,4,5$ |
-| $3$ | $2$ | $5,12,13$ |
-| $4$ | $1$ | $8,15,17$ |
-| $4$ | $3$ | $7,24,25$ |
-| $5$ | $2$ | $20,21,29$ |
-| $5$ | $4$ | $9,40,41$ |
-
-**Dua segitiga siku-siku istimewa** layak dihafal. Segitiga $45^\circ$–$45^\circ$–$90^\circ$ (setengah persegi) memiliki sisi berperbandingan $1:1:\sqrt2$. Segitiga $30^\circ$–$60^\circ$–$90^\circ$ (setengah segitiga sama sisi) memiliki sisi berperbandingan $1:\sqrt3:2$, dengan sisi tegak pendek setengah hipotenusa.`,
+Pada segitiga siku-siku kedua sisi tegak berfungsi sebagai alas dan tinggi, sehingga luasnya cukup $\frac12ab$, dan pusat lingkaran luarnya adalah titik tengah hipotenusa.`,
           ),
         },
       ],
@@ -458,7 +438,7 @@ Jika dua segitiga sebangun dengan faktor skala $k$, setiap panjang dikalikan $k$
           text: L(
             T`**To solve a triangle means to find all three sides and all three angles from three measurements, using the law of cosines, $c^2=a^2+b^2-2ab\cos C$, and the law of sines, $\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}$.**
 
-The law of cosines is the Pythagorean theorem with a correction: at $C=90^\circ$ the cosine is $0$ and it becomes $c^2=a^2+b^2$. Its sign decides the type: $\cos C>0$ (acute), $=0$ (right) or $<0$ (obtuse), which is the test in the section on types. The law of sines says that each side is proportional to the sine of the opposite angle.
+The law of cosines is the [Pythagorean theorem](article:pythagorean-theorem#generalizations) with a correction: at $C=90^\circ$ the cosine is $0$ and it becomes $c^2=a^2+b^2$. Its sign decides the type: $\cos C>0$ (acute), $=0$ (right) or $<0$ (obtuse), which is the test in the section on types. The law of sines says that each side is proportional to the sine of the opposite angle.
 
 | Given | How to solve |
 |---|---|
@@ -474,7 +454,7 @@ The law of cosines is the Pythagorean theorem with a correction: at $C=90^\circ$
 Try every case below. A calculator or a program must be in *degree* mode for these formulas, or the angles must be converted to radians.`,
             T`**Memecahkan segitiga berarti mencari ketiga sisi dan ketiga sudut dari tiga ukuran, dengan aturan kosinus, $c^2=a^2+b^2-2ab\cos C$, dan aturan sinus, $\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}$.**
 
-Aturan kosinus adalah teorema Pythagoras dengan koreksi: pada $C=90^\circ$ kosinusnya $0$ dan ia menjadi $c^2=a^2+b^2$. Tandanya menentukan jenis: $\cos C>0$ (lancip), $=0$ (siku-siku), atau $<0$ (tumpul), yaitu uji pada bagian jenis segitiga. Aturan sinus mengatakan bahwa tiap sisi sebanding dengan sinus sudut di depannya.
+Aturan kosinus adalah [teorema Pythagoras](article:pythagorean-theorem#generalizations) dengan koreksi: pada $C=90^\circ$ kosinusnya $0$ dan ia menjadi $c^2=a^2+b^2$. Tandanya menentukan jenis: $\cos C>0$ (lancip), $=0$ (siku-siku), atau $<0$ (tumpul), yaitu uji pada bagian jenis segitiga. Aturan sinus mengatakan bahwa tiap sisi sebanding dengan sinus sudut di depannya.
 
 | Diketahui | Cara memecahkan |
 |---|---|
@@ -598,28 +578,20 @@ a * a + b * b === c * c                                   // true: exact for int
         {
           kind: 'text',
           text: L(
-            T`**Triangles are the oldest tool of surveying and of proof, and the Pythagorean theorem was known in several civilizations long before Pythagoras.**
+            T`**Triangles are the oldest tool of surveying and of proof, and most of what this article covers was set down in Euclid's *Elements* or soon after.**
 
-- **c. 1800 BCE.** The Babylonian clay tablet Plimpton 322 lists what appear to be Pythagorean triples, such as $(119,120,169)$, so the relation was in use a thousand years before Greek geometry.
-- **c. 800–500 BCE.** The Indian *Sulba Sutras*, rules for building altars, state that the diagonal of a rectangle produces the area of the squares on both sides.
 - **c. 600 BCE.** Tradition says that Thales of Miletus measured the height of a pyramid from the length of its shadow, an early use of similar triangles.
-- **c. 300 BCE.** Euclid's *Elements*, Book I, proves that the angles of a triangle add up to two right angles (I.32), the triangle inequality (I.20), the Pythagorean theorem (I.47) and its converse (I.48); Book II gives the law of cosines in geometric form.
+- **c. 300 BCE.** Euclid's *Elements*, Book I, proves that the angles of a triangle add up to two right angles (I.32), and the triangle inequality (I.20); Book II gives the law of cosines in geometric form.
 - **c. 60 CE.** Heron of Alexandria's *Metrica* proves the formula for the area from the three sides, which Arabic sources credit to Archimedes.
 - **1765.** Leonhard Euler shows that the circumcenter, centroid and orthocenter of a triangle are collinear: the Euler line.
-- **1822.** Karl Feuerbach describes the nine-point circle, which passes through the midpoints of the sides, the feet of the altitudes and the midpoints between the orthocenter and the vertices, and which touches the incircle.
+- **1822.** Karl Feuerbach describes the nine-point circle, which passes through the midpoints of the sides, the feet of the altitudes and the midpoints between the orthocenter and the vertices, and which touches the incircle.`,
+            T`**Segitiga adalah alat tertua dalam pengukuran tanah dan pembuktian, dan sebagian besar isi artikel ini sudah dituliskan dalam *Elements* Euclid atau tak lama sesudahnya.**
 
-The Pythagorean theorem has been proved in hundreds of ways: a collection published in 1927 lists more than 370.`,
-            T`**Segitiga adalah alat tertua dalam pengukuran tanah dan pembuktian, dan teorema Pythagoras sudah dikenal di beberapa peradaban jauh sebelum Pythagoras.**
-
-- **Sekitar 1800 SM.** Lempeng tanah liat Babilonia Plimpton 322 mendaftar apa yang tampaknya tripel Pythagoras, seperti $(119,120,169)$, sehingga hubungan itu sudah dipakai seribu tahun sebelum geometri Yunani.
-- **Sekitar 800–500 SM.** *Sulba Sutra* India, aturan membangun altar, menyatakan bahwa diagonal persegi panjang menghasilkan luas persegi pada kedua sisinya.
 - **Sekitar 600 SM.** Tradisi mengatakan bahwa Thales dari Miletos mengukur tinggi piramida dari panjang bayangannya, penggunaan awal segitiga sebangun.
-- **Sekitar 300 SM.** *Elements* Euclid, Buku I, membuktikan bahwa sudut segitiga berjumlah dua sudut siku-siku (I.32), ketaksamaan segitiga (I.20), teorema Pythagoras (I.47), dan kebalikannya (I.48); Buku II memberi aturan kosinus dalam bentuk geometri.
+- **Sekitar 300 SM.** *Elements* Euclid, Buku I, membuktikan bahwa sudut segitiga berjumlah dua sudut siku-siku (I.32), dan ketaksamaan segitiga (I.20); Buku II memberi aturan kosinus dalam bentuk geometri.
 - **Sekitar 60 M.** *Metrica* karya Heron dari Aleksandria membuktikan rumus luas dari ketiga sisi, yang menurut sumber Arab berasal dari Archimedes.
 - **1765.** Leonhard Euler menunjukkan bahwa pusat lingkaran luar, titik berat, dan titik tinggi segitiga segaris: garis Euler.
-- **1822.** Karl Feuerbach menguraikan lingkaran sembilan titik, yang melalui titik tengah sisi-sisi, kaki garis-garis tinggi, dan titik tengah antara titik tinggi dan titik-titik sudut, dan yang menyinggung lingkaran dalam.
-
-Teorema Pythagoras telah dibuktikan dengan ratusan cara: kumpulan yang terbit pada 1927 mendaftar lebih dari 370.`,
+- **1822.** Karl Feuerbach menguraikan lingkaran sembilan titik, yang melalui titik tengah sisi-sisi, kaki garis-garis tinggi, dan titik tengah antara titik tinggi dan titik-titik sudut, dan yang menyinggung lingkaran dalam.`,
           ),
         },
       ],
@@ -873,7 +845,6 @@ Teorema Pythagoras telah dibuktikan dengan ratusan cara: kumpulan yang terbit pa
             T`- **Angles:** $\angle A+\angle B+\angle C=180^\circ$; an exterior angle is the sum of the two remote interior angles.
 - **Existence:** each side is shorter than the sum of the other two; the third side is between $|a-b|$ and $a+b$.
 - **Types:** equilateral, isosceles, scalene by sides; acute, right, obtuse by $c^2$ against $a^2+b^2$ for the longest side $c$.
-- **Pythagoras:** right triangle $\Leftrightarrow a^2+b^2=c^2$; triples $(m^2-n^2,2mn,m^2+n^2)$; special $1:1:\sqrt2$ and $1:\sqrt3:2$.
 - **Area:** $\frac12bh$, Heron $\sqrt{s(s-a)(s-b)(s-c)}$, $\frac12ab\sin C$, and the coordinate formula.
 - **Centers:** centroid $G$ (medians, $2:1$), circumcenter $O$, orthocenter $H$ ($O,G,H$ on the Euler line), incenter $I$ ($r=\frac Ks$).
 - **Congruent:** SSS, SAS, ASA, AAS, RHS; **similar:** AA, with areas in the ratio $k^2$.
@@ -882,7 +853,6 @@ Teorema Pythagoras telah dibuktikan dengan ratusan cara: kumpulan yang terbit pa
             T`- **Sudut:** $\angle A+\angle B+\angle C=180^\circ$; sudut luar adalah jumlah dua sudut dalam yang tidak bersebelahan.
 - **Keberadaan:** tiap sisi lebih pendek daripada jumlah dua lainnya; sisi ketiga berada di antara $|a-b|$ dan $a+b$.
 - **Jenis:** sama sisi, sama kaki, sembarang menurut sisi; lancip, siku-siku, tumpul menurut $c^2$ terhadap $a^2+b^2$ untuk sisi terpanjang $c$.
-- **Pythagoras:** segitiga siku-siku $\Leftrightarrow a^2+b^2=c^2$; tripel $(m^2-n^2,2mn,m^2+n^2)$; istimewa $1:1:\sqrt2$ dan $1:\sqrt3:2$.
 - **Luas:** $\frac12bh$, Heron $\sqrt{s(s-a)(s-b)(s-c)}$, $\frac12ab\sin C$, dan rumus koordinat.
 - **Titik penting:** titik berat $G$ (garis berat, $2:1$), pusat lingkaran luar $O$, titik tinggi $H$ ($O,G,H$ pada garis Euler), pusat lingkaran dalam $I$ ($r=\frac Ks$).
 - **Kongruen:** SSS, SAS, ASA, AAS, RHS; **sebangun:** AA, dengan luas berperbandingan $k^2$.
@@ -904,7 +874,6 @@ Teorema Pythagoras telah dibuktikan dengan ratusan cara: kumpulan yang terbit pa
     { term: L('Orthocenter', 'Titik tinggi'), definition: L('The point where the three altitudes of a triangle meet.', 'Titik tempat ketiga garis tinggi segitiga bertemu.') },
     { term: L('Incenter', 'Pusat lingkaran dalam'), definition: L('The point where the three angle bisectors meet, equally far from the three sides and the center of the inscribed circle.', 'Titik tempat ketiga garis bagi sudut bertemu, berjarak sama dari ketiga sisi dan pusat lingkaran dalam.') },
     { term: L('Triangle inequality', 'Ketaksamaan segitiga'), definition: L('The rule that each side of a triangle is shorter than the sum of the other two sides.', 'Aturan bahwa tiap sisi segitiga lebih pendek daripada jumlah dua sisi lainnya.') },
-    { term: L('Pythagorean triple', 'Tripel Pythagoras'), definition: L('Three whole numbers a, b and c with a squared plus b squared equal to c squared, such as 3, 4 and 5.', 'Tiga bilangan bulat a, b, dan c dengan a kuadrat ditambah b kuadrat sama dengan c kuadrat, seperti 3, 4, dan 5.') },
     { term: L('Congruent triangles', 'Segitiga kongruen'), definition: L('Triangles with the same shape and size, so that all corresponding sides and angles are equal.', 'Segitiga dengan bentuk dan ukuran yang sama, sehingga semua sisi dan sudut yang bersesuaian sama.') },
     { term: L('Similar triangles', 'Segitiga sebangun'), definition: L('Triangles with equal angles and proportional sides, the same shape but possibly different sizes.', 'Segitiga dengan sudut sama dan sisi sebanding, bentuk sama tetapi ukuran mungkin berbeda.') },
     { term: L("Heron's formula", 'Rumus Heron'), definition: L('The formula that gives the area of a triangle from its three sides as the square root of s times s minus a times s minus b times s minus c.', 'Rumus yang memberi luas segitiga dari ketiga sisinya sebagai akar dari s kali s dikurang a kali s dikurang b kali s dikurang c.') },
@@ -933,16 +902,6 @@ Teorema Pythagoras telah dibuktikan dengan ratusan cara: kumpulan yang terbit pa
         { name: L('Take the square root', 'Tarik akar kuadrat'), text: L('The area is the square root of that product: the square root of 7056 is 84.', 'Luasnya adalah akar kuadrat hasil kali itu: akar kuadrat 7056 adalah 84.') },
       ],
     },
-    {
-      name: L('How to find the missing side of a right triangle', 'Cara mencari sisi yang hilang pada segitiga siku-siku'),
-      description: L('Use the Pythagorean theorem, choosing the hypotenuse first.', 'Pakai teorema Pythagoras dengan menentukan hipotenusa lebih dulu.'),
-      steps: [
-        { name: L('Find the hypotenuse', 'Tentukan hipotenusa'), text: L('The hypotenuse is the side opposite the right angle and the longest side; call it c.', 'Hipotenusa adalah sisi di depan sudut siku-siku dan sisi terpanjang; namai c.') },
-        { name: L('Write the equation', 'Tulis persamaannya'), text: L('Write a squared plus b squared equal to c squared with the known numbers.', 'Tulis a kuadrat ditambah b kuadrat sama dengan c kuadrat dengan bilangan yang diketahui.') },
-        { name: L('Isolate the unknown square', 'Pisahkan kuadrat yang tidak diketahui'), text: L('Add or subtract to get the unknown square alone: for a leg, subtract the other leg squared from c squared.', 'Tambah atau kurangkan untuk mendapat kuadrat yang tidak diketahui sendirian: untuk sisi tegak, kurangkan kuadrat sisi tegak lainnya dari c kuadrat.') },
-        { name: L('Take the square root', 'Tarik akar kuadrat'), text: L('Take the positive square root; for legs 9 and 12 the hypotenuse is the square root of 225, which is 15.', 'Tarik akar kuadrat positif; untuk sisi tegak 9 dan 12 hipotenusanya akar dari 225, yaitu 15.') },
-      ],
-    },
   ],
 
   faq: [
@@ -965,20 +924,6 @@ Teorema Pythagoras telah dibuktikan dengan ratusan cara: kumpulan yang terbit pa
       a: L(
         'Draw a line through one vertex parallel to the opposite side. The alternate angles it makes equal the other two angles of the triangle, so all three angles sit together on a straight line, which measures 180 degrees.',
         'Gambar garis melalui satu titik sudut yang sejajar sisi di depannya. Sudut dalam berseberangan yang terbentuk sama dengan dua sudut lain segitiga, sehingga ketiga sudut berdampingan pada garis lurus, yang besarnya 180 derajat.',
-      ),
-    },
-    {
-      q: L('What is the Pythagorean theorem?', 'Apa itu teorema Pythagoras?'),
-      a: L(
-        'In a right triangle the square of the hypotenuse equals the sum of the squares of the two legs, a squared plus b squared equals c squared. For legs 3 and 4 the hypotenuse is 5. The converse is also true, so it can test for a right angle.',
-        'Pada segitiga siku-siku kuadrat hipotenusa sama dengan jumlah kuadrat kedua sisi tegak, a kuadrat ditambah b kuadrat sama dengan c kuadrat. Untuk sisi tegak 3 dan 4 hipotenusanya 5. Kebalikannya juga benar, sehingga dapat dipakai menguji sudut siku-siku.',
-      ),
-    },
-    {
-      q: L('What is a Pythagorean triple?', 'Apa itu tripel Pythagoras?'),
-      a: L(
-        'It is a set of three whole numbers a, b and c with a squared plus b squared equal to c squared, such as 3, 4, 5 or 5, 12, 13. Euclid\'s formula m squared minus n squared, 2mn and m squared plus n squared produces them from two whole numbers m and n.',
-        'Itu tiga bilangan bulat a, b, dan c dengan a kuadrat ditambah b kuadrat sama dengan c kuadrat, seperti 3, 4, 5 atau 5, 12, 13. Rumus Euclid m kuadrat dikurangi n kuadrat, 2mn, dan m kuadrat ditambah n kuadrat menghasilkannya dari dua bilangan bulat m dan n.',
       ),
     },
     {
@@ -1048,12 +993,11 @@ Teorema Pythagoras telah dibuktikan dengan ratusan cara: kumpulan yang terbit pa
 
   references: [
     { title: 'The Thirteen Books of Euclid\'s Elements (2nd ed.), Book I, propositions 20, 32, 47 and 48, and Book II, propositions 12 and 13', author: 'Thomas L. Heath (translator)', year: 1908, source: 'Cambridge University Press' },
-    { title: 'The Pythagorean Theorem: A 4,000-Year History', author: 'Eli Maor', year: 2007, source: 'Princeton University Press' },
     { title: 'Mathematical Cuneiform Texts (the tablet Plimpton 322)', author: 'Otto Neugebauer and Abraham Sachs', year: 1945, source: 'American Oriental Society' },
     { title: 'Geometry Revisited, chapters 1 and 5 (the Euler line and the nine-point circle)', author: 'H. S. M. Coxeter and Samuel L. Greitzer', year: 1967, source: 'Mathematical Association of America' },
     { title: 'Miscalculating Area and Angles of a Needle-like Triangle', author: 'William Kahan', year: 2014, source: 'University of California, Berkeley, lecture notes' },
     { title: 'The Python Standard Library: math, mathematical functions', author: 'Python Software Foundation', source: 'docs.python.org', url: 'https://docs.python.org/3/library/math.html' },
   ],
 
-  related: ['quadrilaterals', 'circles', 'irrational-numbers', 'exponents-and-radicals'],
+  related: ['pythagorean-theorem', 'quadrilaterals', 'circles', 'irrational-numbers'],
 }

@@ -266,7 +266,7 @@ Geser keempat titik di bawah: sudut keliling pada sisi $AB$ yang sama tetap sama
           text: L(
             T`**The perpendicular from the center to a chord cuts the chord in half, a tangent is perpendicular to the radius, and the products of the pieces of crossing chords or secants are equal; all three come from the right triangles that the radius makes.**
 
-- **Chord and center.** If a chord is at distance $d$ from the center, its length is $2\sqrt{r^2-d^2}$. With $r=5$ and $d=3$ it is $2\sqrt{25-9}=8$, the $3$–$4$–$5$ triangle of the [Pythagorean theorem](article:triangles#pythagorean). Equal chords are equally far from the center, and the closer a chord is to the center the longer it is; the diameter ($d=0$) is the longest.
+- **Chord and center.** If a chord is at distance $d$ from the center, its length is $2\sqrt{r^2-d^2}$. With $r=5$ and $d=3$ it is $2\sqrt{25-9}=8$, the $3$–$4$–$5$ triangle of the [Pythagorean theorem](article:pythagorean-theorem#what-is-the-theorem). Equal chords are equally far from the center, and the closer a chord is to the center the longer it is; the diameter ($d=0$) is the longest.
 - **Two tangents.** From a point $P$ outside the circle there are two tangents, and the two tangent segments have equal length $\sqrt{OP^2-r^2}$. With $r=5$ and $OP=13$ the length is $\sqrt{169-25}=12$, the $5$–$12$–$13$ triangle.
 - **Crossing chords.** If two chords $AB$ and $CD$ cross at $P$ inside the circle, then $PA\cdot PB=PC\cdot PD$. For $PA=3$, $PB=8$ and $PC=4$ we get $PD=6$, since $3\cdot8=4\cdot6=24$.
 - **Secants and tangents.** From a point $P$ outside, two secants give $PA\cdot PB=PC\cdot PD$, and a tangent $PT$ and a secant give $PT^2=PA\cdot PB$. For the tangent $12$ above and the secant through the center, $PA=13-5=8$ and $PB=13+5=18$, and $8\cdot18=144=12^2$.
@@ -274,7 +274,7 @@ Geser keempat titik di bawah: sudut keliling pada sisi $AB$ yang sama tetap sama
 All of these say one thing: the number $|PO|^2-r^2$, the *power of the point* $P$, is negative inside the circle, zero on it and positive outside, and for every line through $P$ that meets the circle at $A$ and $B$ the product $PA\cdot PB$ equals its absolute value. Radicals like $2\sqrt{r^2-d^2}$ are often best left in [simplified form](article:exponents-and-radicals#simplify-radicals).`,
             T`**Garis tegak lurus dari pusat ke tali busur membagi tali busur itu menjadi dua sama panjang, garis singgung tegak lurus jari-jari, dan hasil kali potongan tali busur atau garis potong yang berpotongan sama; ketiganya berasal dari segitiga siku-siku yang dibentuk jari-jari.**
 
-- **Tali busur dan pusat.** Jika tali busur berjarak $d$ dari pusat, panjangnya $2\sqrt{r^2-d^2}$. Dengan $r=5$ dan $d=3$ panjangnya $2\sqrt{25-9}=8$, segitiga $3$–$4$–$5$ dari [teorema Pythagoras](article:triangles#pythagorean). Tali busur yang sama panjang berjarak sama dari pusat, dan makin dekat tali busur ke pusat makin panjang ia; diameter ($d=0$) yang terpanjang.
+- **Tali busur dan pusat.** Jika tali busur berjarak $d$ dari pusat, panjangnya $2\sqrt{r^2-d^2}$. Dengan $r=5$ dan $d=3$ panjangnya $2\sqrt{25-9}=8$, segitiga $3$–$4$–$5$ dari [teorema Pythagoras](article:pythagorean-theorem#what-is-the-theorem). Tali busur yang sama panjang berjarak sama dari pusat, dan makin dekat tali busur ke pusat makin panjang ia; diameter ($d=0$) yang terpanjang.
 - **Dua garis singgung.** Dari titik $P$ di luar lingkaran ada dua garis singgung, dan kedua ruas garis singgung sama panjang, $\sqrt{OP^2-r^2}$. Dengan $r=5$ dan $OP=13$ panjangnya $\sqrt{169-25}=12$, segitiga $5$–$12$–$13$.
 - **Tali busur berpotongan.** Jika dua tali busur $AB$ dan $CD$ berpotongan di $P$ di dalam lingkaran, maka $PA\cdot PB=PC\cdot PD$. Untuk $PA=3$, $PB=8$, dan $PC=4$ diperoleh $PD=6$, karena $3\cdot8=4\cdot6=24$.
 - **Garis potong dan garis singgung.** Dari titik $P$ di luar, dua garis potong memberi $PA\cdot PB=PC\cdot PD$, dan garis singgung $PT$ serta garis potong memberi $PT^2=PA\cdot PB$. Untuk garis singgung $12$ di atas dan garis potong melalui pusat, $PA=13-5=8$ dan $PB=13+5=18$, dan $8\cdot18=144=12^2$.
@@ -301,7 +301,7 @@ Expanding (see [expanding brackets](article:algebraic-expressions#expand)) gives
 
 **Through three points.** Three points that are not on one line lie on exactly one circle, the circumcircle of the triangle they form. The circle through $(0,0)$, $(6,0)$ and $(0,8)$ has center $(3,4)$, the midpoint of the hypotenuse, and $r=5$: $(x-3)^2+(y-4)^2=25$.
 
-**The unit circle.** For $r=1$ and the center at the origin, $x^2+y^2=1$, and the points are $(\cos t,\sin t)$. Rational points also exist: $(\frac35,\frac45)$ is on it because $3^2+4^2=5^2$, the same [Pythagorean triple](article:triangles#pythagorean) in disguise.`,
+**The unit circle.** For $r=1$ and the center at the origin, $x^2+y^2=1$, and the points are $(\cos t,\sin t)$. Rational points also exist: $(\frac35,\frac45)$ is on it because $3^2+4^2=5^2$, the same [Pythagorean triple](article:pythagorean-theorem#pythagorean-triples) in disguise.`,
             T`**Lingkaran berpusat $(h,k)$ dan berjari-jari $r$ adalah himpunan titik $(x,y)$ dengan $(x-h)^2+(y-k)^2=r^2$, karena itu menyatakan bahwa kuadrat jarak ke pusat adalah $r^2$.** Untuk pusat $(3,-2)$ dan $r=5$ persamaannya $(x-3)^2+(y+2)^2=25$.
 
 Menjabarkannya (lihat [menjabarkan kurung](article:algebraic-expressions#expand)) memberi *bentuk umum* $x^2+y^2+Dx+Ey+F=0$ dengan $D=-2h$, $E=-2k$, dan $F=h^2+k^2-r^2$. Lingkaran kita adalah $x^2+y^2-6x+4y-12=0$. Untuk kembali, *lengkapkan kuadrat* pada $x$ dan $y$: $x^2-6x=(x-3)^2-9$ dan $y^2+4y=(y+2)^2-4$, sehingga $(x-3)^2+(y+2)^2=12+9+4=25$. Bentuk umum menggambarkan lingkaran nyata hanya bila $r^2=\frac{D^2}{4}+\frac{E^2}{4}-F$ positif.
@@ -310,7 +310,7 @@ Menjabarkannya (lihat [menjabarkan kurung](article:algebraic-expressions#expand)
 
 **Melalui tiga titik.** Tiga titik yang tidak segaris terletak pada tepat satu lingkaran, lingkaran luar segitiga yang dibentuknya. Lingkaran melalui $(0,0)$, $(6,0)$, dan $(0,8)$ berpusat di $(3,4)$, titik tengah hipotenusa, dan $r=5$: $(x-3)^2+(y-4)^2=25$.
 
-**Lingkaran satuan.** Untuk $r=1$ dengan pusat di titik asal, $x^2+y^2=1$, dan titik-titiknya $(\cos t,\sin t)$. Ada juga titik rasional: $(\frac35,\frac45)$ terletak padanya karena $3^2+4^2=5^2$, [tripel Pythagoras](article:triangles#pythagorean) yang sama dalam samaran.`,
+**Lingkaran satuan.** Untuk $r=1$ dengan pusat di titik asal, $x^2+y^2=1$, dan titik-titiknya $(\cos t,\sin t)$. Ada juga titik rasional: $(\frac35,\frac45)$ terletak padanya karena $3^2+4^2=5^2$, [tripel Pythagoras](article:pythagorean-theorem#pythagorean-triples) yang sama dalam samaran.`,
           ),
         },
       ],

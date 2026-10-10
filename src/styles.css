@@ -1412,3 +1412,10 @@ a.chip.static { cursor: pointer; }
 .circsecond { fill: var(--fig-b); fill-opacity: 0.12; stroke: var(--fig-b); stroke-width: 2; }
 .circpolyin { fill: var(--fig-a); fill-opacity: 0.12; stroke: var(--fig-a); stroke-width: 1.4; }
 .circpolyout { fill: none; stroke: var(--fig-b); stroke-width: 1.4; }
+.pythsvg { max-width: 360px; }
+.pythframe { fill: none; stroke: var(--text); stroke-width: 1.2; }
+.pythtri { fill: var(--fig-muted); fill-opacity: 0.4; stroke: var(--text); stroke-width: 1; stroke-linejoin: round; }
+.pythsqa { fill: var(--fig-a); fill-opacity: 0.28; stroke: var(--fig-a); stroke-width: 1.4; }
+.pythsqb { fill: var(--fig-b); fill-opacity: 0.28; stroke: var(--fig-b); stroke-width: 1.4; }
+.pythsqc { fill: var(--fig-result); fill-opacity: 0.3; stroke: var(--fig-result); stroke-width: 1.4; }
+.pythlabel { font-size: 12px; font-weight: 700; fill: var(--text); }

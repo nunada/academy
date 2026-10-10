@@ -25,7 +25,8 @@
     "check:geometric": "node tools/check-geometric.mjs",
     "check:quadrilateral": "node tools/check-quadrilateral.mjs",
     "check:triangle": "node tools/check-triangle.mjs",
-    "check:circle": "node tools/check-circle.mjs"
+    "check:circle": "node tools/check-circle.mjs",
+    "check:pythagoras": "node tools/check-pythagoras.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

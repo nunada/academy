@@ -20,6 +20,7 @@ import { GeometricDetector, GeometricExplorer, GeometricSum, GeometricTwoTerms }
 import { QuadArea, QuadClassifier, QuadProperties } from './QuadrilateralWidgets'
 import { TriangleCenters, TriangleCheck, TriangleSolver } from './TriangleWidgets'
 import { CircleAngles, CircleCalc, CircleRelations, PiBounds } from './CircleWidgets'
+import { PythagoreanTree, PythagoreanTriples, PythagorasProof, PythagorasSolver } from './PythagorasWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -879,6 +880,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <CircleRelations />
     case 'pibound':
       return <PiBounds />
+    case 'pythsolve':
+      return <PythagorasSolver />
+    case 'pythproof':
+      return <PythagorasProof />
+    case 'pythtriples':
+      return <PythagoreanTriples />
+    case 'pythtree':
+      return <PythagoreanTree />
   }
 }
 

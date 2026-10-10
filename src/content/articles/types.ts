@@ -84,6 +84,10 @@ export type WidgetName =
   | 'circangle'
   | 'circlerel'
   | 'pibound'
+  | 'pythsolve'
+  | 'pythproof'
+  | 'pythtriples'
+  | 'pythtree'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

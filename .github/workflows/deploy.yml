@@ -98,6 +98,9 @@ jobs:
       # Circles on rational points (Thales, three points, tangents, chords, power of a point),
       # two circles against integer comparisons, sectors, inscribed angles, Archimedes' bounds.
       - run: npm run check:circle
+      # Pythagorean triples by Euclid's formula and by factoring against brute force, Berggren's
+      # tree, divisibility facts, and exact missing sides and distances.
+      - run: npm run check:pythagoras
 
       - name: Work out where the site will live
         id: base

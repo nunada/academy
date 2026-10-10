@@ -418,6 +418,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Gandakan sisi segibanyak di dalam dan di luar lingkaran, seperti Archimedes, dan amati kedua batas menyempit ke pi.',
     },
   },
+  pythsolve: {
+    title: { en: 'Interactive: find the missing side', id: 'Interaktif: cari sisi yang hilang' },
+    description: {
+      en: 'Give two sides of a right triangle and get the third exactly, as a whole number or a root, with a square drawn on every side so you can see a² + b² = c².',
+      id: 'Berikan dua sisi segitiga siku-siku dan dapatkan sisi ketiga secara eksak, sebagai bilangan bulat atau akar, dengan persegi pada setiap sisi agar a² + b² = c² terlihat.',
+    },
+  },
+  pythproof: {
+    title: { en: 'Interactive: a proof by rearranging', id: 'Interaktif: bukti dengan menata ulang' },
+    description: {
+      en: 'Slide the legs a and b and switch between a tilted square on four triangles and two squares on the same four triangles: the empty area is c² or a² + b².',
+      id: 'Geser sisi tegak a dan b lalu beralih antara satu persegi miring di sekitar empat segitiga dan dua persegi dengan keempat segitiga yang sama: luas kosongnya c² atau a² + b².',
+    },
+  },
+  pythtriples: {
+    title: { en: 'Interactive: Pythagorean triples', id: 'Interaktif: tripel Pythagoras' },
+    description: {
+      en: 'List every triple up to a hypotenuse, find all whole-number right triangles that share a leg, or build a triple from m and n with Euclid\'s formula.',
+      id: 'Daftar setiap tripel sampai suatu hipotenusa, cari semua segitiga siku-siku bersisi bilangan bulat yang berbagi sisi tegak, atau bentuk tripel dari m dan n dengan rumus Euclid.',
+    },
+  },
+  pythtree: {
+    title: { en: 'Interactive: the tree of primitive triples', id: 'Interaktif: pohon tripel primitif' },
+    description: {
+      en: 'Start at (3, 4, 5) and walk down Berggren\'s tree, where every primitive Pythagorean triple appears exactly once and each triple has three children.',
+      id: 'Mulai dari (3, 4, 5) dan telusuri pohon Berggren, tempat setiap tripel Pythagoras primitif muncul tepat sekali dan setiap tripel punya tiga anak.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {
