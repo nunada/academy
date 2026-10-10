@@ -23,7 +23,7 @@ export const body: ArticleBody = {
 
   keyPoints: [
     L(
-      T`In a geometric sequence the ratio of neighbours is constant: $\dfrac{a_{n+1}}{a_n}=r$, so each step multiplies by $r$ where an arithmetic sequence adds.`,
+      T`In a geometric sequence the ratio of neighbors is constant: $\dfrac{a_{n+1}}{a_n}=r$, so each step multiplies by $r$ where an arithmetic sequence adds.`,
       T`Pada barisan geometri rasio antartetangga konstan: $\dfrac{a_{n+1}}{a_n}=r$, sehingga tiap langkah mengalikan dengan $r$ sedangkan barisan aritmetika menambah.`,
     ),
     L(
@@ -59,7 +59,7 @@ export const body: ArticleBody = {
           text: L(
             T`**A geometric sequence (or geometric progression) is a list of non-zero numbers $a_1,a_2,a_3,\ldots$ in which the ratio of each term to the one before it is always the same number $r$, called the common ratio.** The rule is $a_{n+1}=r\,a_n$: to get the next term, multiply by $r$.
 
-| Sequence | Common ratio | Behaviour |
+| Sequence | Common ratio | Behavior |
 |---|---|---|
 | $3,6,12,24,\ldots$ | $r=2$ | doubling: grows |
 | $81,27,9,3,\ldots$ | $r=\frac13$ | shrinks toward 0 |
@@ -73,7 +73,7 @@ export const body: ArticleBody = {
 
 **Compare with arithmetic.** An [arithmetic sequence](article:arithmetic-sequences-and-series#what-is-an-arithmetic-sequence) adds the same amount each step, so its terms lie on a straight line; a geometric sequence multiplies, so its terms lie on an exponential curve and eventually leave any arithmetic sequence far behind.
 
-**The geometric mean.** For three neighbours of the same sign $a_n^2=a_{n-1}a_{n+1}$, so each term is the *geometric mean* $\sqrt{ab}$ of the two beside it, as each term of an arithmetic sequence is their arithmetic mean. That is where the name comes from.
+**The geometric mean.** For three neighbors of the same sign $a_n^2=a_{n-1}a_{n+1}$, so each term is the *geometric mean* $\sqrt{ab}$ of the two beside it, as each term of an arithmetic sequence is their arithmetic mean. That is where the name comes from.
 
 Type a list of numbers below and see whether it is geometric.`,
             T`**Barisan geometri (atau progresi geometri) adalah daftar bilangan bukan nol $a_1,a_2,a_3,\ldots$ yang rasio tiap suku terhadap suku sebelumnya selalu bilangan yang sama $r$, yang disebut rasio.** Aturannya $a_{n+1}=r\,a_n$: untuk mendapat suku berikutnya, kalikan dengan $r$.
@@ -490,7 +490,7 @@ Untuk $|r|\ge1$ jumlah parsial tidak menetap: $r=1$ memberi $na_1$, yang membesa
         {
           kind: 'text',
           text: L(
-            T`**Build the terms with the power operator, ´a1 * r ** i´ in both languages, and use ´fractions.Fraction´ in Python when the sum must be exact.** Powers grow or shrink so fast that floats overflow to infinity or underflow to 0 long before the maths becomes interesting.`,
+            T`**Build the terms with the power operator, ´a1 * r ** i´ in both languages, and use ´fractions.Fraction´ in Python when the sum must be exact.** Powers grow or shrink so fast that floats overflow to infinity or underflow to 0 long before the math becomes interesting.`,
             T`**Bangun suku-sukunya dengan operator pangkat, ´a1 * r ** i´ di kedua bahasa, dan pakai ´fractions.Fraction´ di Python bila jumlahnya harus eksak.** Pangkat tumbuh atau mengecil begitu cepat sehingga float meluap menjadi tak hingga atau menjadi 0 jauh sebelum matematikanya menarik.`,
           ),
         },
@@ -743,7 +743,7 @@ Legenda terkenal bercerita tentang penemu catur yang meminta kepada raja satu bu
               'After the first drop it goes up and down by $6,3.6,2.16,\\ldots$: $2\\cdot\\frac{6}{1-3/5}=30$, plus the first drop of 10, so 40 m.',
               'Setelah jatuhan pertama ia naik dan turun sejauh $6,3{,}6,2{,}16,\\ldots$: $2\\cdot\\frac{6}{1-3/5}=30$, ditambah jatuhan pertama 10, sehingga 40 m.',
             ),
-            hint: L('Each bounce is travelled twice, up and down, except the first drop.', 'Tiap pantulan ditempuh dua kali, naik dan turun, kecuali jatuhan pertama.'),
+            hint: L('Each bounce is traveled twice, up and down, except the first drop.', 'Tiap pantulan ditempuh dua kali, naik dan turun, kecuali jatuhan pertama.'),
           },
         },
       ],
@@ -757,7 +757,7 @@ Legenda terkenal bercerita tentang penemu catur yang meminta kepada raja satu bu
         {
           kind: 'text',
           text: L(
-            T`- **Definition:** $\frac{a_{n+1}}{a_n}=r$ is constant and no term is 0; each term is the geometric mean of its neighbours.
+            T`- **Definition:** $\frac{a_{n+1}}{a_n}=r$ is constant and no term is 0; each term is the geometric mean of its neighbors.
 - **n-th term:** $a_n=a_1r^{n-1}$, exponential in $n$; $|r|>1$ grows, $|r|<1$ decays, $r<0$ alternates.
 - **From two terms:** $r^{q-p}=\frac{a_q}{a_p}$ (one or two real ratios); $k$ means between $a$ and $b$: $r^{k+1}=\frac ba$.
 - **Sum of n terms:** $S_n=\dfrac{a_1(1-r^n)}{1-r}$ for $r\neq1$, and $na_1$ for $r=1$.
@@ -779,11 +779,11 @@ Legenda terkenal bercerita tentang penemu catur yang meminta kepada raja satu bu
 
   glossary: [
     { term: L('Geometric sequence', 'Barisan geometri'), definition: L('A sequence of non-zero numbers in which each term is the previous one times the same fixed number, such as 3, 6, 12, 24.', 'Barisan bilangan bukan nol yang setiap sukunya adalah suku sebelumnya dikali bilangan tetap yang sama, seperti 3, 6, 12, 24.') },
-    { term: L('Common ratio', 'Rasio'), definition: L('The constant multiplier r between neighbouring terms of a geometric sequence, found by dividing a term by the one before it.', 'Pengali tetap r antara suku-suku bertetangga pada barisan geometri, diperoleh dengan membagi sebuah suku dengan suku sebelumnya.') },
+    { term: L('Common ratio', 'Rasio'), definition: L('The constant multiplier r between neighboring terms of a geometric sequence, found by dividing a term by the one before it.', 'Pengali tetap r antara suku-suku bertetangga pada barisan geometri, diperoleh dengan membagi sebuah suku dengan suku sebelumnya.') },
     { term: L('Geometric series', 'Deret geometri'), definition: L('The sum of the terms of a geometric sequence, finite or infinite.', 'Jumlah suku-suku barisan geometri, berhingga atau tak hingga.') },
     { term: L('Exponential growth', 'Pertumbuhan eksponensial'), definition: L('Growth in which a quantity is multiplied by the same factor greater than 1 in each period, as in a geometric sequence with ratio above 1.', 'Pertumbuhan yang besarannya dikali faktor yang sama lebih dari 1 tiap periode, seperti pada barisan geometri dengan rasio di atas 1.') },
     { term: L('Exponential decay', 'Peluruhan eksponensial'), definition: L('Decrease in which a quantity is multiplied by the same factor between 0 and 1 in each period, so it shrinks toward 0 but never reaches it.', 'Penurunan yang besarannya dikali faktor yang sama antara 0 dan 1 tiap periode, sehingga mengecil menuju 0 tetapi tidak pernah mencapainya.') },
-    { term: L('Geometric mean', 'Rata-rata geometri'), definition: L('For two positive numbers a and b, the number equal to the square root of a times b; each term of a geometric sequence is the geometric mean of its neighbours.', 'Untuk dua bilangan positif a dan b, bilangan yang sama dengan akar dari a kali b; tiap suku barisan geometri adalah rata-rata geometri tetangganya.') },
+    { term: L('Geometric mean', 'Rata-rata geometri'), definition: L('For two positive numbers a and b, the number equal to the square root of a times b; each term of a geometric sequence is the geometric mean of its neighbors.', 'Untuk dua bilangan positif a dan b, bilangan yang sama dengan akar dari a kali b; tiap suku barisan geometri adalah rata-rata geometri tetangganya.') },
     { term: L('Partial sum', 'Jumlah parsial'), definition: L('The sum S sub n of the first n terms of a series.', 'Jumlah S indeks n dari n suku pertama sebuah deret.') },
     { term: L('Convergent series', 'Deret konvergen'), definition: L('A series whose partial sums approach a fixed finite number, called its sum; an infinite geometric series converges exactly when the ratio is smaller than 1 in size.', 'Deret yang jumlah parsialnya mendekati bilangan berhingga tetap, yang disebut jumlahnya; deret geometri tak hingga konvergen tepat bila rasionya berukuran kurang dari 1.') },
     { term: L('Divergent series', 'Deret divergen'), definition: L('A series whose partial sums do not approach a finite number, such as 1 plus 2 plus 4 plus 8 and so on.', 'Deret yang jumlah parsialnya tidak mendekati bilangan berhingga, seperti 1 ditambah 2 ditambah 4 ditambah 8 dan seterusnya.') },

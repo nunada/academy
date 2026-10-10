@@ -146,7 +146,7 @@ Menghitung dalam biner sama dengan menghitung dalam desimal dengan hanya dua ang
 | $2\div2$ | 1 | 0 |
 | $1\div2$ | 0 | 1 |
 
-Read the remainders upwards: $1011010_2$. This is the same division with remainder as in the [integers article](article:integers#remainders), and the last remainder is the leftmost digit because it is the highest place.
+Read the remainders upward: $1011010_2$. This is the same division with remainder as in the [integers article](article:integers#remainders), and the last remainder is the leftmost digit because it is the highest place.
 
 **Octal and hexadecimal.** Binary strings are long, so programmers group the bits. Three bits make one **octal** digit (base 8, digits 0 to 7) and four bits make one **hexadecimal** digit (base 16, digits 0 to 9 and then A to F for 10 to 15):
 
@@ -158,7 +158,7 @@ Read the remainders upwards: $1011010_2$. This is the same division with remaind
 |---|---|---|---|---|---|---|---|---|
 | Hex | 8 | 9 | A | B | C | D | E | F |
 
-Group from the right: $01011010_2$ is $0101\;1010$, which is $5A_{16}$, and $5\cdot16+10=90$. A byte is always exactly two hex digits, which is why ´FF´ is $11111111_2=255$. Hexadecimal is how colours are written on the web: ´#FF8800´ is red 255, green $\text{88}_{16}=136$ and blue 0, an orange. Octal survives in Unix file permissions, where ´755´ is $111\;101\;101$, read, write and execute for the owner and read and execute for everyone else.
+Group from the right: $01011010_2$ is $0101\;1010$, which is $5A_{16}$, and $5\cdot16+10=90$. A byte is always exactly two hex digits, which is why ´FF´ is $11111111_2=255$. Hexadecimal is how colors are written on the web: ´#FF8800´ is red 255, green $\text{88}_{16}=136$ and blue 0, an orange. Octal survives in Unix file permissions, where ´755´ is $111\;101\;101$, read, write and execute for the owner and read and execute for everyone else.
 
 Type a number below in any base and see it in all four.`,
             T`**Untuk mengubah biner menjadi desimal, jumlahkan nilai tempat angka 1; untuk mengubah desimal menjadi biner, bagi 2 berulang kali dan baca sisanya dari bawah ke atas.** Keduanya hanya memakai pangkat 2.
@@ -655,7 +655,7 @@ Pakai ´int(teks, 2)´ atau ´parseInt(teks, 2)´ untuk membaca biner yang diket
           text: L(
             T`**Binary arithmetic is much older than computers: Indian, Egyptian and European thinkers used it long before electronics made it essential.**
 
-- **c. 200 BCE.** Pingala, in a Sanskrit work on poetic metre, described patterns of short and long syllables that amount to binary numbers.
+- **c. 200 BCE.** Pingala, in a Sanskrit work on poetic meter, described patterns of short and long syllables that amount to binary numbers.
 - **Egypt.** The Rhind Papyrus multiplies by repeated doubling and adding, which is multiplication by the binary digits of one number.
 - **1703.** Leibniz published *Explication de l'arithmétique binaire*. He saw in the hexagrams of the I Ching, which are six-line patterns of broken and unbroken lines, the numbers 0 to 63 in binary.
 - **1854.** George Boole's *Laws of Thought* made logic an algebra of true and false, 1 and 0.
@@ -843,7 +843,7 @@ Satu benang merah mengalir melalui semuanya: dua simbol cukup untuk menulis bila
           kind: 'text',
           text: L(
             T`- **Binary:** base 2, digits 0 and 1 (bits), places worth $1,2,4,8,\ldots$; $1011_2=11$.
-- **Converting:** add the powers of 2 under the 1s; divide by 2 and read the remainders upwards; four bits make one hex digit, three one octal digit.
+- **Converting:** add the powers of 2 under the 1s; divide by 2 and read the remainders upward; four bits make one hex digit, three one octal digit.
 - **Arithmetic:** $1+1=10$ with a carry; multiply by shifting and adding; appending 0 doubles.
 - **Size:** $n$ bits hold $2^n$ values, a byte is 8 bits (256 values); KiB is 1024 bytes, kB is 1000.
 - **Negatives:** two's complement, the top bit is $-2^{n-1}$; negate by inverting and adding 1; overflow wraps.
@@ -890,7 +890,7 @@ Satu benang merah mengalir melalui semuanya: dua simbol cukup untuk menulis bila
       steps: [
         { name: L('Divide by 2', 'Bagi 2'), text: L('Divide the number by 2 and write down the remainder, which is 0 or 1; for 45 the first remainder is 1.', 'Bagi bilangan itu dengan 2 dan tulis sisanya, yaitu 0 atau 1; untuk 45 sisa pertamanya 1.') },
         { name: L('Repeat with the quotient', 'Ulangi dengan hasil bagi'), text: L('Divide the quotient by 2 again and keep going until the quotient is 0.', 'Bagi hasil bagi dengan 2 lagi dan teruskan sampai hasil baginya 0.') },
-        { name: L('Read upwards', 'Baca ke atas'), text: L('Read the remainders from the last to the first: they are the bits from left to right.', 'Baca sisanya dari yang terakhir ke yang pertama: itulah bit dari kiri ke kanan.') },
+        { name: L('Read upward', 'Baca ke atas'), text: L('Read the remainders from the last to the first: they are the bits from left to right.', 'Baca sisanya dari yang terakhir ke yang pertama: itulah bit dari kiri ke kanan.') },
         { name: L('Check', 'Periksa'), text: L('Add the powers of 2 under the 1s to get the number back: 45 is 32 plus 8 plus 4 plus 1, which is 101101.', 'Jumlahkan pangkat 2 di bawah angka 1 untuk mendapat bilangan semula: 45 adalah 32 ditambah 8 ditambah 4 ditambah 1, yaitu 101101.') },
       ],
     },
@@ -941,14 +941,14 @@ Satu benang merah mengalir melalui semuanya: dua simbol cukup untuk menulis bila
     {
       q: L('How do you convert decimal to binary?', 'Bagaimana mengubah desimal ke biner?'),
       a: L(
-        'Divide the number by 2 repeatedly, writing down each remainder, until the quotient is 0. Then read the remainders from the last to the first. For 45 the remainders read upwards are 101101, and 32 plus 8 plus 4 plus 1 is 45.',
+        'Divide the number by 2 repeatedly, writing down each remainder, until the quotient is 0. Then read the remainders from the last to the first. For 45 the remainders read upward are 101101, and 32 plus 8 plus 4 plus 1 is 45.',
         'Bagi bilangan itu dengan 2 berulang kali, menulis tiap sisa, sampai hasil baginya 0. Lalu baca sisanya dari yang terakhir ke yang pertama. Untuk 45 sisa yang dibaca ke atas adalah 101101, dan 32 ditambah 8 ditambah 4 ditambah 1 adalah 45.',
       ),
     },
     {
       q: L('What is hexadecimal and why is it used?', 'Apa itu heksadesimal dan mengapa dipakai?'),
       a: L(
-        'Hexadecimal is base 16, with digits 0 to 9 and A to F. One hex digit is exactly four bits, so a byte is two hex digits and long binary strings become short. Web colours such as FF8800 and memory addresses are written in hexadecimal.',
+        'Hexadecimal is base 16, with digits 0 to 9 and A to F. One hex digit is exactly four bits, so a byte is two hex digits and long binary strings become short. Web colors such as FF8800 and memory addresses are written in hexadecimal.',
         'Heksadesimal adalah basis 16, dengan angka 0 sampai 9 dan A sampai F. Satu angka heksadesimal tepat empat bit, sehingga satu byte adalah dua angka heksadesimal dan untai biner yang panjang menjadi pendek. Warna web seperti FF8800 dan alamat memori ditulis dalam heksadesimal.',
       ),
     },

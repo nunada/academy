@@ -30,7 +30,7 @@ export const body: ArticleBody = {
       T`Lima hukum mencakup semuanya: jumlahkan eksponen untuk mengalikan pangkat dengan basis sama, kurangkan untuk membagi, kalikan untuk pangkat dari pangkat, dan pangkat menyebar ke perkalian atau pembagian.`,
     ),
     L(
-      T`$a^0=1$, $a^{-n}=\dfrac{1}{a^n}$ and $a^{1/n}=\sqrt[n]{a}$ are not extra rules to memorise: they are the only values that keep the laws true.`,
+      T`$a^0=1$, $a^{-n}=\dfrac{1}{a^n}$ and $a^{1/n}=\sqrt[n]{a}$ are not extra rules to memorize: they are the only values that keep the laws true.`,
       T`$a^0=1$, $a^{-n}=\dfrac{1}{a^n}$, dan $a^{1/n}=\sqrt[n]{a}$ bukan aturan tambahan yang harus dihafal: itulah satu-satunya nilai yang menjaga hukum-hukumnya tetap benar.`,
     ),
     L(
@@ -38,7 +38,7 @@ export const body: ArticleBody = {
       T`$\sqrt{a}$ adalah akar yang tidak negatif, sehingga $\sqrt{9}=3$ dan bukan ±3, serta $\sqrt{x^2}=|x|$.`,
     ),
     L(
-      T`Simplify a radical by taking perfect powers out of it ($\sqrt{72}=6\sqrt{2}$), and rationalise a denominator by multiplying by the root or by the conjugate.`,
+      T`Simplify a radical by taking perfect powers out of it ($\sqrt{72}=6\sqrt{2}$), and rationalize a denominator by multiplying by the root or by the conjugate.`,
       T`Sederhanakan bentuk akar dengan mengeluarkan pangkat sempurna darinya ($\sqrt{72}=6\sqrt{2}$), dan rasionalkan penyebut dengan mengalikan dengan akarnya atau dengan bentuk sekawannya.`,
     ),
     L(
@@ -167,7 +167,7 @@ Pangkat tumbuh dengan cepat. Setiap kali eksponen naik 1, nilainya dikalikan bas
         {
           kind: 'text',
           text: L(
-            T`**$a^0=1$ for any $a\neq0$, $a^{-n}=\dfrac{1}{a^n}$, and $a^{1/n}=\sqrt[n]{a}$: these are not extra rules to memorise but the only values that keep the laws of exponents true.** Counting factors cannot explain an exponent of 0 or of −3, so mathematicians ask what value the laws force.
+            T`**$a^0=1$ for any $a\neq0$, $a^{-n}=\dfrac{1}{a^n}$, and $a^{1/n}=\sqrt[n]{a}$: these are not extra rules to memorize but the only values that keep the laws of exponents true.** Counting factors cannot explain an exponent of 0 or of −3, so mathematicians ask what value the laws force.
 
 - **Zero.** The product law says $a^m\cdot a^0=a^{m+0}=a^m$. Multiplying $a^m$ by $a^0$ changes nothing, so $a^0$ must be 1.
 - **Negative.** $a^n\cdot a^{-n}=a^{0}=1$. Something that multiplies $a^n$ to give 1 is its reciprocal, so $a^{-n}=\dfrac{1}{a^n}$. A negative exponent does not make the number negative: $2^{-3}=\dfrac18$, not $-8$.
@@ -351,24 +351,24 @@ Coba bilangan apa pun di bawah. Ganti indeksnya untuk melihat akar pangkat tiga 
       ],
     },
 
-    /* ----------------------------------------------------------- rationalise */
+    /* ----------------------------------------------------------- rationalize */
     {
       id: 'rationalise',
-      heading: L('How do you rationalise a denominator?', 'Bagaimana merasionalkan penyebut?'),
+      heading: L('How do you rationalize a denominator?', 'Bagaimana merasionalkan penyebut?'),
       blocks: [
         {
           kind: 'text',
           text: L(
-            T`**To rationalise a denominator, multiply the top and bottom of the fraction by a number that removes the root from the bottom: by the root itself for $\dfrac{a}{\sqrt{b}}$, and by the conjugate for $\dfrac{a}{p+\sqrt{q}}$.** Multiplying top and bottom by the same non-zero number does not change the value of a fraction.
+            T`**To rationalize a denominator, multiply the top and bottom of the fraction by a number that removes the root from the bottom: by the root itself for $\dfrac{a}{\sqrt{b}}$, and by the conjugate for $\dfrac{a}{p+\sqrt{q}}$.** Multiplying top and bottom by the same non-zero number does not change the value of a fraction.
 
 - **A single root.** $\dfrac{6}{\sqrt{3}}=\dfrac{6\cdot\sqrt{3}}{\sqrt{3}\cdot\sqrt{3}}=\dfrac{6\sqrt{3}}{3}=2\sqrt{3}$, because $\sqrt{3}\cdot\sqrt{3}=3$.
 - **A sum or difference.** The *conjugate* of $p+\sqrt{q}$ is $p-\sqrt{q}$ (flip the sign). Their product is a difference of squares, which has no root left: $(p+\sqrt{q})(p-\sqrt{q})=p^2-q$.
 
 For example $\dfrac{1}{1+\sqrt{2}}=\dfrac{1\cdot(1-\sqrt{2})}{(1+\sqrt{2})(1-\sqrt{2})}=\dfrac{1-\sqrt{2}}{1-2}=\dfrac{1-\sqrt{2}}{-1}=\sqrt{2}-1$.
 
-**How to rationalise a denominator**, in short: (1) choose the root, or the conjugate when the bottom is a sum or a difference; (2) multiply the top and the bottom by it; (3) simplify, and cancel any common factor.
+**How to rationalize a denominator**, in short: (1) choose the root, or the conjugate when the bottom is a sum or a difference; (2) multiply the top and the bottom by it; (3) simplify, and cancel any common factor.
 
-Rationalising is a convention, not a correction: $\dfrac{1}{\sqrt{2}}$ and $\dfrac{\sqrt{2}}{2}$ are the same number. The second is the expected form, and it is easier to estimate by hand, since $\sqrt{2}\approx1.414$ gives about $0.707$.`,
+Rationalizing is a convention, not a correction: $\dfrac{1}{\sqrt{2}}$ and $\dfrac{\sqrt{2}}{2}$ are the same number. The second is the expected form, and it is easier to estimate by hand, since $\sqrt{2}\approx1.414$ gives about $0.707$.`,
             T`**Untuk merasionalkan penyebut, kalikan pembilang dan penyebut pecahan dengan bilangan yang menghilangkan akar dari penyebut: dengan akarnya sendiri untuk $\dfrac{a}{\sqrt{b}}$, dan dengan bentuk sekawan untuk $\dfrac{a}{p+\sqrt{q}}$.** Mengalikan pembilang dan penyebut dengan bilangan tak nol yang sama tidak mengubah nilai pecahan.
 
 - **Satu akar.** $\dfrac{6}{\sqrt{3}}=\dfrac{6\cdot\sqrt{3}}{\sqrt{3}\cdot\sqrt{3}}=\dfrac{6\sqrt{3}}{3}=2\sqrt{3}$, karena $\sqrt{3}\cdot\sqrt{3}=3$.
@@ -384,7 +384,7 @@ Merasionalkan adalah kesepakatan, bukan koreksi: $\dfrac{1}{\sqrt{2}}$ dan $\dfr
         { kind: 'widget', name: 'rationalise' },
         {
           kind: 'activity',
-          title: L('Try it: rationalise', 'Coba: rasionalkan'),
+          title: L('Try it: rationalize', 'Coba: rasionalkan'),
           step: {
             kind: 'math',
             id: 'a5',
@@ -393,7 +393,7 @@ Merasionalkan adalah kesepakatan, bukan koreksi: $\dfrac{1}{\sqrt{2}}$ dan $\dfr
               L('You get $\\dfrac{6\\sqrt{3}}{3}$. Cancel the 3.', 'Kamu mendapat $\\dfrac{6\\sqrt{3}}{3}$. Coret 3-nya.'),
             ],
             explain: L('$\\dfrac{6}{\\sqrt{3}}=\\dfrac{6\\sqrt{3}}{3}=2\\sqrt{3}$, so $a=2$.', '$\\dfrac{6}{\\sqrt{3}}=\\dfrac{6\\sqrt{3}}{3}=2\\sqrt{3}$, sehingga $a=2$.'),
-            prompt: L('Rationalise the denominator and find $a$.', 'Rasionalkan penyebutnya dan tentukan $a$.'),
+            prompt: L('Rationalize the denominator and find $a$.', 'Rasionalkan penyebutnya dan tentukan $a$.'),
             given: String.raw`\frac{6}{\sqrt{3}}=a\sqrt{3}`,
             blanks: [{ label: 'a =', answer: 2 }],
           },
@@ -829,7 +829,7 @@ Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuad
 - **Five laws:** $a^ma^n=a^{m+n}$, $\dfrac{a^m}{a^n}=a^{m-n}$, $(a^m)^n=a^{mn}$, $(ab)^n=a^nb^n$, $\left(\dfrac ab\right)^n=\dfrac{a^n}{b^n}$.
 - **Forced values:** $a^0=1$ ($a\neq0$), $a^{-n}=\dfrac1{a^n}$, $a^{1/n}=\sqrt[n]{a}$, $a^{m/n}=\left(\sqrt[n]{a}\right)^m$.
 - **Roots:** $\sqrt{x^2}=|x|$; an even root of a negative number is not real; $\sqrt{a+b}\neq\sqrt{a}+\sqrt{b}$.
-- **Simplify** by taking groups of $n$ equal prime factors out of an $n$-th root; **rationalise** with the root or the conjugate.
+- **Simplify** by taking groups of $n$ equal prime factors out of an $n$-th root; **rationalize** with the root or the conjugate.
 - **Equations:** equal bases give equal exponents; check every radical solution.
 - **Scientific notation:** $a\times10^k$ with $1\le a<10$; in code use ´**´, not ´^´.`,
             T`- **Eksponen:** $a^n$ adalah $n$ faktor $a$; basisnya $a$ dan eksponennya $n$.
@@ -855,7 +855,7 @@ Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuad
     { term: L('Perfect square', 'Kuadrat sempurna'), definition: L('A whole number that is the square of a whole number, such as 1, 4, 9, 16 and 25.', 'Bilangan bulat yang merupakan kuadrat dari bilangan bulat, seperti 1, 4, 9, 16, dan 25.') },
     { term: L('Rational exponent', 'Eksponen rasional (pangkat pecahan)'), definition: L('A fractional exponent m over n, meaning the n-th root of the base raised to the power m.', 'Eksponen pecahan m per n, yang berarti akar pangkat n dari basis dipangkatkan m.') },
     { term: L('Conjugate', 'Bentuk sekawan'), definition: L('For p plus the square root of q, the expression p minus the square root of q; their product has no root.', 'Untuk p ditambah akar q, ekspresi p dikurangi akar q; hasil kali keduanya tidak memuat akar.') },
-    { term: L('Rationalising the denominator', 'Merasionalkan penyebut'), definition: L('Multiplying the top and bottom of a fraction by a number that removes the root from the denominator.', 'Mengalikan pembilang dan penyebut sebuah pecahan dengan bilangan yang menghilangkan akar dari penyebut.') },
+    { term: L('Rationalizing the denominator', 'Merasionalkan penyebut'), definition: L('Multiplying the top and bottom of a fraction by a number that removes the root from the denominator.', 'Mengalikan pembilang dan penyebut sebuah pecahan dengan bilangan yang menghilangkan akar dari penyebut.') },
     { term: L('Scientific notation', 'Notasi ilmiah (bentuk baku)'), definition: L('A way of writing a number as a times 10 to the power k, with a at least 1 and less than 10.', 'Cara menulis bilangan sebagai a kali 10 pangkat k, dengan a sekurang-kurangnya 1 dan kurang dari 10.') },
     { term: L('Extraneous solution', 'Penyelesaian asing'), definition: L('A value that solves the equation after squaring both sides but fails in the original equation.', 'Nilai yang menyelesaikan persamaan setelah kedua ruas dikuadratkan tetapi gagal pada persamaan semula.') },
   ],
@@ -872,7 +872,7 @@ Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuad
       ],
     },
     {
-      name: L('How to rationalise a denominator', 'Cara merasionalkan penyebut'),
+      name: L('How to rationalize a denominator', 'Cara merasionalkan penyebut'),
       description: L('Remove the root from the bottom of a fraction without changing its value.', 'Hilangkan akar dari penyebut sebuah pecahan tanpa mengubah nilainya.'),
       steps: [
         { name: L('Choose the multiplier', 'Pilih pengalinya'), text: L('Use the root itself when the bottom is a single root, and the conjugate when the bottom is a sum or a difference.', 'Pakai akarnya sendiri bila penyebut berupa satu akar, dan bentuk sekawan bila penyebut berupa jumlah atau selisih.') },
@@ -942,7 +942,7 @@ Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuad
       ),
     },
     {
-      q: L('How do you rationalise a denominator?', 'Bagaimana merasionalkan penyebut?'),
+      q: L('How do you rationalize a denominator?', 'Bagaimana merasionalkan penyebut?'),
       a: L(
         'Multiply the top and bottom of the fraction by a number that removes the root from the bottom. For a single root such as 6 over root 3 multiply by root 3 to get 2 root 3. For a sum such as 1 over 1 plus root 2, multiply by the conjugate, 1 minus root 2.',
         'Kalikan pembilang dan penyebut pecahan dengan bilangan yang menghilangkan akar dari penyebut. Untuk satu akar seperti 6 per akar 3, kalikan dengan akar 3 untuk mendapat 2 akar 3. Untuk jumlah seperti 1 per 1 ditambah akar 2, kalikan dengan bentuk sekawannya, 1 dikurangi akar 2.',

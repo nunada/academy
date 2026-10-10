@@ -65,7 +65,7 @@ Every time you measure something — the length of a table, the temperature at n
 
 Another way to say the same thing is geometric. Draw a straight line, mark a point for 0 and another for 1, and every point on the line stands for exactly one real number. The line is the **number line**. Intuitively it has no gaps; that property is called **completeness**, and the section on the number line below says exactly what it means.
 
-Real numbers are the numbers used in measurement, in calculus, in physics, and in almost every program that does arithmetic. Knowing how they are organised — which are fractions, which are not, and how a computer stores them — prevents a long list of mistakes, from a wrong exam answer to a wrong bank balance.
+Real numbers are the numbers used in measurement, in calculus, in physics, and in almost every program that does arithmetic. Knowing how they are organized — which are fractions, which are not, and how a computer stores them — prevents a long list of mistakes, from a wrong exam answer to a wrong bank balance.
 
 **A note on notation.** In this article the natural numbers $\mathbb{N}$ are $1,2,3,\ldots$ and the whole numbers $W$ are $0,1,2,3,\ldots$. Some books count 0 as a natural number, so check the convention when you read elsewhere. The word *integer* always means a number in $\mathbb{Z}$, and *decimal expansion* means the full list of digits of a number, however long.
 
@@ -676,7 +676,7 @@ Math.abs(0.1 + 0.2 - 0.3) < Number.EPSILON // true
         {
           kind: 'text',
           text: L(
-            T`This is not a bug in Python or JavaScript, and it is not rare. It is the behaviour of binary floating point everywhere, in every language that uses it. A useful fact follows from it: every number a computer can store as a float is a **rational** number (a fraction whose denominator is a power of 2). A computer never holds $\sqrt{2}$ or $\pi$ — only a nearby rational number.
+            T`This is not a bug in Python or JavaScript, and it is not rare. It is the behavior of binary floating point everywhere, in every language that uses it. A useful fact follows from it: every number a computer can store as a float is a **rational** number (a fraction whose denominator is a power of 2). A computer never holds $\sqrt{2}$ or $\pi$ — only a nearby rational number.
 
 What to do about it:
 

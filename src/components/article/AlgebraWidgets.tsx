@@ -112,7 +112,7 @@ export function ExpressionAnatomy() {
         </p>
         <p className="small muted">
           {likeGroups.length
-            ? tc(L('Rows with the same colour are like terms: they have the same variable part, so they can be combined.', 'Baris yang warnanya sama adalah suku sejenis: bagian variabelnya sama, sehingga dapat digabung.'))
+            ? tc(L('Rows with the same color are like terms: they have the same variable part, so they can be combined.', 'Baris yang warnanya sama adalah suku sejenis: bagian variabelnya sama, sehingga dapat digabung.'))
             : tc(L('No two terms are alike, so nothing can be combined.', 'Tidak ada dua suku yang sejenis, sehingga tidak ada yang dapat digabung.'))}
         </p>
       </>

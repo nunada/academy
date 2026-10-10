@@ -1,4 +1,4 @@
-/** The article catalogue.
+/** The article catalog.
  *
  *  Metadata is imported eagerly: the list page and the search need all of it and
  *  it is small. A body is a dynamic import, so opening one article downloads one

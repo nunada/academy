@@ -42,7 +42,7 @@ export const body: ArticleBody = {
       T`Memfaktorkan membalik penjabaran: keluarkan faktor persekutuan lebih dulu, lalu cari selisih dua kuadrat, kuadrat sempurna, atau dua bilangan dengan hasil kali dan jumlah yang tepat.`,
     ),
     L(
-      T`In a fraction you can cancel factors but never terms, and the cancelled factor must not be zero: $\dfrac{x^2-9}{x+3}=x-3$ only for $x\neq-3$.`,
+      T`In a fraction you can cancel factors but never terms, and the canceled factor must not be zero: $\dfrac{x^2-9}{x+3}=x-3$ only for $x\neq-3$.`,
       T`Pada pecahan kamu boleh mencoret faktor tetapi tidak pernah suku, dan faktor yang dicoret tidak boleh nol: $\dfrac{x^2-9}{x+3}=x-3$ hanya untuk $x\neq-3$.`,
     ),
   ],
@@ -130,7 +130,7 @@ Namanya biasanya menurut banyak suku: **monomial** memiliki satu suku, **binomia
 | $3x^2$ and $5x$ | no | exponents differ |
 | $2xy$ and $2x$ | no | letters differ |
 
-**Why it works.** It is the distributive law read backwards: $3x+5x=(3+5)x=8x$, as three of something plus five of the same thing is eight of it. That is also why unlike terms cannot be merged: $3x+5x^2$ is three of one thing and five of another, and there is no common thing to count.
+**Why it works.** It is the distributive law read backward: $3x+5x=(3+5)x=8x$, as three of something plus five of the same thing is eight of it. That is also why unlike terms cannot be merged: $3x+5x^2$ is three of one thing and five of another, and there is no common thing to count.
 
 Worked example: simplify $5x^2+3x-2x^2+7x-4$.
 
@@ -265,7 +265,7 @@ $(x+2)(x-3)=x\cdot x+x\cdot(-3)+2\cdot x+2\cdot(-3)=x^2-3x+2x-6=x^2-x-6$.
 
 **The area model shows why.** A rectangle of width $a+b$ and height $c+d$ has area $(a+b)(c+d)$, the rectangle formula from the [area of a quadrilateral](article:quadrilaterals#perimeter-and-area). Cut it into four pieces and the areas are $ac$, $bc$, $ad$ and $bd$; the pieces make up the whole, so the four products add up to the product of the sums. Move the sliders to see it with numbers.
 
-Three products come up so often that they are worth recognising:
+Three products come up so often that they are worth recognizing:
 
 | Name | Pattern | Example |
 |---|---|---|
@@ -413,9 +413,9 @@ $\dfrac{x^2-9}{x+3}=\dfrac{(x-3)(x+3)}{x+3}=x-3$.
 
 $\dfrac{x^2-1}{x^2-x}=\dfrac{(x-1)(x+1)}{x(x-1)}=\dfrac{x+1}{x}$.
 
-**Restrictions.** A fraction is undefined where its bottom is zero, and cancelling does not remove that. The first fraction above is not defined at $x=-3$, although $x-3$ is. So the honest statement is $\dfrac{x^2-9}{x+3}=x-3$ *for $x\neq-3$*. Try $x=-3$ in code below: the original gives an error or NaN.
+**Restrictions.** A fraction is undefined where its bottom is zero, and canceling does not remove that. The first fraction above is not defined at $x=-3$, although $x-3$ is. So the honest statement is $\dfrac{x^2-9}{x+3}=x-3$ *for $x\neq-3$*. Try $x=-3$ in code below: the original gives an error or NaN.
 
-**Terms cannot be cancelled.** In $\dfrac{x+3}{3}$ the 3 on top is part of a sum, not a factor, so it does not cancel. Test with $x=3$: the fraction is $\dfrac63=2$, while $x+1=4$. What is true is $\dfrac{x+3}{3}=\dfrac x3+1$.
+**Terms cannot be canceled.** In $\dfrac{x+3}{3}$ the 3 on top is part of a sum, not a factor, so it does not cancel. Test with $x=3$: the fraction is $\dfrac63=2$, while $x+1=4$. What is true is $\dfrac{x+3}{3}=\dfrac x3+1$.
 
 **Multiplying and dividing** work as with numbers: multiply tops and bottoms, $\dfrac ab\cdot\dfrac cd=\dfrac{ac}{bd}$, and to divide, multiply by the reciprocal, $\dfrac ab\div\dfrac cd=\dfrac ab\cdot\dfrac dc$. Factor first and cancel before multiplying out.
 
@@ -453,7 +453,7 @@ Penyebut bersamanya adalah hasil kali faktor-faktor yang berbeda, di sini $x(x+1
             options: [L('$x-3$', '$x-3$'), L('$x-9$', '$x-9$'), L('$x^2-3$', '$x^2-3$'), L('It cannot be simplified', 'Tidak dapat disederhanakan')],
             answer: 0,
             explain: L(
-              '$x^2-9=(x-3)(x+3)$, and the factor $x+3$ cancels, leaving $x-3$. Cancelling the 3 and the $x$ from the terms would be wrong.',
+              '$x^2-9=(x-3)(x+3)$, and the factor $x+3$ cancels, leaving $x-3$. Canceling the 3 and the $x$ from the terms would be wrong.',
               '$x^2-9=(x-3)(x+3)$, dan faktor $x+3$ dicoret, menyisakan $x-3$. Mencoret 3 dan $x$ dari suku-sukunya akan salah.',
             ),
             hint: L('Factor the top first.', 'Faktorkan pembilangnya dulu.'),
@@ -899,7 +899,7 @@ Uji numerik seperti ´f(2)´ dapat menangkap penyederhanaan yang salah tetapi ti
     {
       q: L('Can you cancel terms in a fraction?', 'Bolehkah mencoret suku pada pecahan?'),
       a: L(
-        'No, only factors can be cancelled. In x plus 3 over 3 the 3 on top is part of a sum, so it stays: the result is x over 3 plus 1. To cancel, factor first, as in x squared minus 9 over x plus 3, which becomes x minus 3.',
+        'No, only factors can be canceled. In x plus 3 over 3 the 3 on top is part of a sum, so it stays: the result is x over 3 plus 1. To cancel, factor first, as in x squared minus 9 over x plus 3, which becomes x minus 3.',
         'Tidak, hanya faktor yang boleh dicoret. Pada x ditambah 3 per 3, angka 3 di atas adalah bagian dari sebuah jumlah, sehingga tetap: hasilnya x per 3 ditambah 1. Untuk mencoret, faktorkan dulu, seperti pada x kuadrat dikurangi 9 per x ditambah 3, yang menjadi x dikurangi 3.',
       ),
     },

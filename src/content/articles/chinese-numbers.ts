@@ -38,7 +38,7 @@ export const body: ArticleBody = {
       T`Pecahan, persen, dan bilangan urutan mengikuti pola (三分之一, 百分之五十, 第三), sedangkan tahun dan nomor telepon dibaca angka demi angka.`,
     ),
     L(
-      T`Formal numerals (壹 贰 叁 …) protect cheques and contracts from alteration, and Chinese counting rods were an early decimal place-value system with zero left as a gap.`,
+      T`Formal numerals (壹 贰 叁 …) protect checks and contracts from alteration, and Chinese counting rods were an early decimal place-value system with zero left as a gap.`,
       T`Angka formal (壹 贰 叁 …) melindungi cek dan kontrak dari pengubahan, dan batang hitung China adalah sistem nilai tempat desimal awal dengan nol dibiarkan sebagai celah.`,
     ),
     L(
@@ -112,7 +112,7 @@ export const body: ArticleBody = {
         {
           kind: 'text',
           text: L(
-            T`**Numbers from 11 to 99 are built by saying the tens first and the ones second: 十一 is "ten-one" (11), 二十 is "two-ten" (20) and 三十五 is "three-ten-five" (35).** There is nothing to memorise beyond 零 to 十 and one rule: for 10 to 19 say 十 and then the digit, and for 20 to 99 say the tens digit, then 十, then the ones digit (leave it out when it is 0).
+            T`**Numbers from 11 to 99 are built by saying the tens first and the ones second: 十一 is "ten-one" (11), 二十 is "two-ten" (20) and 三十五 is "three-ten-five" (35).** There is nothing to memorize beyond 零 to 十 and one rule: for 10 to 19 say 十 and then the digit, and for 20 to 99 say the tens digit, then 十, then the ones digit (leave it out when it is 0).
 
 | Number | Chinese | Pinyin | Literally |
 |---|---|---|---|
@@ -360,22 +360,22 @@ Jadi 20.508.030 adalah 两千零五十万八千零三十 (liǎng qiān líng wǔ
       ],
     },
 
-    /* ----------------------------------------------------------- practise reading */
+    /* ----------------------------------------------------------- practice reading */
     {
-      id: 'practise-reading',
-      heading: L('How can you practise reading Chinese numbers?', 'Bagaimana berlatih membaca bilangan China?'),
+      id: 'practice-reading',
+      heading: L('How can you practice reading Chinese numbers?', 'Bagaimana berlatih membaca bilangan China?'),
       blocks: [
         {
           kind: 'text',
           text: L(
-            T`**To read a Chinese number, find 亿 and 万, read each part as a number up to 9999, and write each part with four digits.** Reading is the writing steps run backwards:
+            T`**To read a Chinese number, find 亿 and 万, read each part as a number up to 9999, and write each part with four digits.** Reading is the writing steps run backward:
 
 1. Find 亿 and 万 in the number and cut it after each of them.
 2. Read each part on its own: 千 is thousands, 百 hundreds, 十 tens, and what is left is the ones.
 3. Write every part except the first with four digits, putting zeros in front where needed (零 tells you a place is empty).
 4. Join the parts. For example 两千零五十万八千零三十 is 2050 | 8030, which is 20,508,030.
 
-Practise with the widget below: eight numbers of growing size, with pinyin on request. The wrong answers are the mistakes people really make — a place too many or too few, two digits swapped, one digit off.`,
+Practice with the widget below: eight numbers of growing size, with pinyin on request. The wrong answers are the mistakes people really make — a place too many or too few, two digits swapped, one digit off.`,
             T`**Untuk membaca bilangan China, cari 亿 dan 万, baca tiap bagian sebagai bilangan sampai 9999, dan tulis tiap bagian dengan empat angka.** Membaca adalah langkah menulis yang dijalankan terbalik:
 
 1. Cari 亿 dan 万 dalam bilangan itu dan potong setelah masing-masing.
@@ -461,7 +461,7 @@ Tahun adalah label, bukan jumlah, sehingga dibaca sebagai angka-angka terpisah d
         {
           kind: 'text',
           text: L(
-            T`**Formal Chinese numerals (大写数字, dàxiě shùzì) are a second set of characters for the same numbers, used on cheques, receipts and contracts because they are hard to alter.** The ordinary 一 can become 三 with one stroke, and 十 can become 千; 壹 and 叁 cannot.
+            T`**Formal Chinese numerals (大写数字, dàxiě shùzì) are a second set of characters for the same numbers, used on checks, receipts and contracts because they are hard to alter.** The ordinary 一 can become 三 with one stroke, and 十 can become 千; 壹 and 叁 cannot.
 
 | Number | Ordinary | Formal | Pinyin |
 |---|---|---|---|
@@ -479,9 +479,9 @@ Tahun adalah label, bukan jumlah, sehingga dibaca sebagai angka-angka terpisah d
 | 100 | 百 | 佰 | bǎi |
 | 1,000 | 千 | 仟 | qiān |
 
-The reading rules are the same, with two differences: the formal form of 2 is always 贰 (never 两), and 10 is written 壹拾 with its 壹 kept. A cheque for 1,205 yuan reads 壹仟贰佰零伍元整 (yī qiān èr bǎi líng wǔ yuán zhěng), where 整 means "exactly", closing the amount so nothing can be added after it. The converter above has a formal setting.
+The reading rules are the same, with two differences: the formal form of 2 is always 贰 (never 两), and 10 is written 壹拾 with its 壹 kept. A check for 1,205 yuan reads 壹仟贰佰零伍元整 (yī qiān èr bǎi líng wǔ yuán zhěng), where 整 means "exactly", closing the amount so nothing can be added after it. The converter above has a formal setting.
 
-This is the same idea as writing an amount in words on a cheque in English or Indonesian.`,
+This is the same idea as writing an amount in words on a check in English or Indonesian.`,
             T`**Angka formal China (大写数字, dàxiě shùzì) adalah set aksara kedua untuk bilangan yang sama, dipakai pada cek, kuitansi, dan kontrak karena sulit diubah.** 一 yang biasa dapat menjadi 三 dengan satu goresan, dan 十 dapat menjadi 千; 壹 dan 叁 tidak bisa.
 
 | Bilangan | Biasa | Formal | Pinyin |
@@ -522,7 +522,7 @@ How a number is laid out:
 
 - Each place gets its own column, with the highest place on the left, exactly like written digits.
 - The digits 1 to 5 are that many rods. For 6 to 9, one rod laid across stands for 5, and the remaining rods are added to it.
-- The direction alternates from place to place: rods stand upright in the ones, hundreds and ten-thousands places and lie flat in the tens, thousands and hundred-thousands places, so two neighbouring digits are never mixed up.
+- The direction alternates from place to place: rods stand upright in the ones, hundreds and ten-thousands places and lie flat in the tens, thousands and hundred-thousands places, so two neighboring digits are never mixed up.
 - Zero is an empty column. A written circle for zero appears in Chinese mathematical books by the 13th century, for example in Qin Jiushao's *Shùshū Jiǔzhāng* (1247).
 - Red rods are positive and black rods negative in the *Nine Chapters on the Mathematical Art*, so a column of rods can hold a debt: see the history of [negative numbers](article:integers#what-are-integers) in the article on integers.
 
@@ -791,7 +791,7 @@ Tanda untuk 10 menggambar aksaranya sendiri: dua garis yang bersilang, 十.`,
 - **Two:** 二 as a digit, 两 before 千, 万, 亿 and measure words; 二百 and 两百 are both heard.
 - **Groups of four:** 万 is 10,000 and 亿 is 100,000,000, so 100,000 is 十万 and one billion is 十亿.
 - **Patterns:** 三分之一 (1/3), 百分之五十 (50%), 第三 (3rd), 负五 (−5); years and phone numbers are digit by digit.
-- **Formal numerals** 壹 贰 叁 … are for cheques and contracts; **counting rods** and **Suzhou numerals** are older written systems with zero left empty.`,
+- **Formal numerals** 壹 贰 叁 … are for checks and contracts; **counting rods** and **Suzhou numerals** are older written systems with zero left empty.`,
             T`- **0 sampai 10** adalah 零 一 二 三 四 五 六 七 八 九 十; **11 sampai 99** adalah angka-angka yang digabung dengan 十 (十一, 二十, 三十五).
 - **Ratusan dan ribuan** memakai 百 dan 千 setelah angkanya; 100 adalah 一百, tidak pernah 百.
 - **Nol:** ucapkan 零 satu kali per celah berisi nol, termasuk melewati 万 dan 亿; jangan untuk nol di ujung.
@@ -813,7 +813,7 @@ Tanda untuk 10 menggambar aksaranya sendiri: dua garis yang bersilang, 十.`,
     { term: L('亿 (yì)', '亿 (yì)'), definition: L('The Chinese word for 100,000,000, ten thousand times 万.', 'Kata China untuk 100.000.000, sepuluh ribu kali 万.') },
     { term: L('零 (líng)', '零 (líng)'), definition: L('Zero; it is also read once for each gap of zeros between two non-zero digits.', 'Nol; ia juga dibaca satu kali untuk setiap celah berisi nol di antara dua angka bukan nol.') },
     { term: L('两 (liǎng)', '两 (liǎng)'), definition: L('The form of 2 used for quantities and before 千, 万 and 亿 instead of 二.', 'Bentuk 2 yang dipakai untuk jumlah dan sebelum 千, 万, dan 亿 sebagai pengganti 二.') },
-    { term: L('Formal numerals (大写)', 'Angka formal (大写)'), definition: L('A second set of characters for numbers, such as 壹 贰 叁, used on cheques and contracts because they are hard to alter.', 'Set aksara kedua untuk bilangan, seperti 壹 贰 叁, dipakai pada cek dan kontrak karena sulit diubah.') },
+    { term: L('Formal numerals (大写)', 'Angka formal (大写)'), definition: L('A second set of characters for numbers, such as 壹 贰 叁, used on checks and contracts because they are hard to alter.', 'Set aksara kedua untuk bilangan, seperti 壹 贰 叁, dipakai pada cek dan kontrak karena sulit diubah.') },
     { term: L('Counting rods (算筹)', 'Batang hitung (算筹)'), definition: L('Small sticks laid out in columns to calculate, an early decimal place-value system in which zero is an empty place.', 'Batang kecil yang disusun dalam kolom untuk berhitung, sistem nilai tempat desimal awal tempat nol adalah tempat yang kosong.') },
     { term: L('Suzhou numerals', 'Angka Suzhou'), definition: L('A written shorthand derived from counting rods, used by traders, with 〡 to 〩 for 1 to 9 and 〇 for 0.', 'Tulisan singkat turunan batang hitung, dipakai para pedagang, dengan 〡 sampai 〩 untuk 1 sampai 9 dan 〇 untuk 0.') },
     { term: L('Myriad', 'Myriad'), definition: L('An older English word for 10,000, the same unit as 万.', 'Kata bahasa Inggris yang lebih tua untuk 10.000, satuan yang sama dengan 万.') },
@@ -920,7 +920,7 @@ Tanda untuk 10 menggambar aksaranya sendiri: dua garis yang bersilang, 十.`,
     {
       q: L('What are the formal Chinese numerals?', 'Apa itu angka formal China?'),
       a: L(
-        'Formal numerals are a second set of characters used on cheques and contracts: 壹 贰 叁 肆 伍 陆 柒 捌 玖 拾 for 1 to 10, with 佰 for 100 and 仟 for 1,000. They are hard to alter, unlike 一 二 三, which can be changed with a stroke.',
+        'Formal numerals are a second set of characters used on checks and contracts: 壹 贰 叁 肆 伍 陆 柒 捌 玖 拾 for 1 to 10, with 佰 for 100 and 仟 for 1,000. They are hard to alter, unlike 一 二 三, which can be changed with a stroke.',
         'Angka formal adalah set aksara kedua yang dipakai pada cek dan kontrak: 壹 贰 叁 肆 伍 陆 柒 捌 玖 拾 untuk 1 sampai 10, dengan 佰 untuk 100 dan 仟 untuk 1.000. Angka ini sulit diubah, berbeda dari 一 二 三 yang dapat diubah dengan satu goresan.',
       ),
     },

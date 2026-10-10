@@ -258,7 +258,7 @@ export function CompareFractions() {
         )}
         {cmp !== 0 && (
           <p className="small muted">
-            {tc(L('A fraction strictly between them (their average, the grey dot):', 'Pecahan di antara keduanya (rata-ratanya, titik abu-abu):'))} <Tex src={frNeat(mid)} />
+            {tc(L('A fraction strictly between them (their average, the gray dot):', 'Pecahan di antara keduanya (rata-ratanya, titik abu-abu):'))} <Tex src={frNeat(mid)} />
           </p>
         )}
       </>

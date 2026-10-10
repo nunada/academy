@@ -23,7 +23,7 @@ export const body: ArticleBody = {
 
   keyPoints: [
     L(
-      T`In an arithmetic sequence the difference between neighbours is constant: $a_{n+1}-a_n=d$ for every $n$, and each term is the average of the two beside it.`,
+      T`In an arithmetic sequence the difference between neighbors is constant: $a_{n+1}-a_n=d$ for every $n$, and each term is the average of the two beside it.`,
       T`Pada barisan aritmetika selisih antartetangga konstan: $a_{n+1}-a_n=d$ untuk setiap $n$, dan setiap suku adalah rata-rata dari dua suku di sampingnya.`,
     ),
     L(
@@ -72,9 +72,9 @@ That gives the rule $a_{n+1}=a_n+d$: to get the next term, add $d$. A **sequence
 
 **How to tell.** Subtract each term from the next, always later minus earlier. If every difference is the same, the sequence is arithmetic. One difference that breaks the pattern is enough to rule it out. A sequence whose terms are multiplied by the same number each time is a [geometric sequence](article:geometric-sequences-and-series#what-is-a-geometric-sequence), built from the powers in the article on [exponents](article:exponents-and-radicals#what-is-an-exponent).
 
-Two useful facts follow at once. Each term is the average of its two neighbours, $a_n=\frac{a_{n-1}+a_{n+1}}{2}$, which is why the word *arithmetic* is used: the arithmetic mean sits in the middle. And differences may be negative or fractions, so the [integers](article:integers#add-subtract) rules for negative numbers and the [rational numbers](article:rational-numbers#add-subtract-fractions) rules for fractions apply.
+Two useful facts follow at once. Each term is the average of its two neighbors, $a_n=\frac{a_{n-1}+a_{n+1}}{2}$, which is why the word *arithmetic* is used: the arithmetic mean sits in the middle. And differences may be negative or fractions, so the [integers](article:integers#add-subtract) rules for negative numbers and the [rational numbers](article:rational-numbers#add-subtract-fractions) rules for fractions apply.
 
-**Where they appear.** Equal steps are everywhere: the heights of the steps in a staircase, seats in rows that each have 3 more than the one in front, a monthly saving that rises by a fixed amount, a taxi fare that adds a fixed charge per kilometre, a simple (not compound) interest balance. Type a list of numbers below and see whether it is arithmetic.`,
+**Where they appear.** Equal steps are everywhere: the heights of the steps in a staircase, seats in rows that each have 3 more than the one in front, a monthly saving that rises by a fixed amount, a taxi fare that adds a fixed charge per kilometer, a simple (not compound) interest balance. Type a list of numbers below and see whether it is arithmetic.`,
             T`**Barisan aritmetika (atau progresi aritmetika) adalah daftar bilangan $a_1,a_2,a_3,\ldots$ yang selisih antara tiap suku dan suku sebelumnya selalu bilangan yang sama $d$, yang disebut beda.** Notasinya $a_n$ untuk suku pada posisi $n$, dan di banyak buku sekolah $U_n$.
 
 Itu memberi aturan $a_{n+1}=a_n+d$: untuk mendapat suku berikutnya, tambahkan $d$. **Barisan** adalah daftar itu sendiri; **deret** adalah hasil menjumlahkan suku-sukunya, yang dibahas pada bagian jumlah di bawah.
@@ -109,7 +109,7 @@ Dua fakta berguna langsung mengikutinya. Setiap suku adalah rata-rata dari dua t
               '$3,7,11,15$ goes up by 4 each time. $2,4,8,16$ doubles, $1,4,9,16$ has differences $3,5,7$, and $1,1,2,3$ has differences $0,1,1$.',
               '$3,7,11,15$ naik 4 setiap kali. $2,4,8,16$ dilipatduakan, $1,4,9,16$ selisihnya $3,5,7$, dan $1,1,2,3$ selisihnya $0,1,1$.',
             ),
-            hint: L('Subtract neighbours and compare the differences.', 'Kurangkan tetangga dan bandingkan selisihnya.'),
+            hint: L('Subtract neighbors and compare the differences.', 'Kurangkan tetangga dan bandingkan selisihnya.'),
           },
         },
       ],
@@ -260,7 +260,7 @@ Beri dua suku apa pun di bawah dan lihat seluruh langkahnya.`,
           text: L(
             T`**The sum of the first $n$ terms of an arithmetic sequence is $S_n=\dfrac n2(a_1+a_n)=\dfrac n2\bigl(2a_1+(n-1)d\bigr)$: the number of terms times the average of the first and the last.** A sum of terms like this is called an *arithmetic series*, and $S_n$ is its $n$-th partial sum.
 
-**Gauss's trick.** Write the sum twice, once forwards and once backwards, and add the columns:
+**Gauss's trick.** Write the sum twice, once forward and once backward, and add the columns:
 
 $S_n=a_1+a_2+\cdots+a_n$
 
@@ -278,7 +278,7 @@ In every column the sum is the same, $a_1+a_n$, because moving one place along a
 
 **Sigma notation** writes a series compactly: $\sum_{k=1}^{n}(a_1+(k-1)d)$ means "add the terms for $k=1$ up to $k=n$". For example $\sum_{k=1}^{10}(3k+2)=5+8+\cdots+32=\frac{10}{2}(5+32)=185$.
 
-**$S_n$ is quadratic in $n$.** Expanding gives $S_n=\frac d2n^2+\bigl(a_1-\frac d2\bigr)n$, a quadratic with no constant term, which is how to recognise one. And you can run it backwards: $a_n=S_n-S_{n-1}$ for $n\ge2$ (and $a_1=S_1$). If $S_n=2n^2+3n$ then $a_1=5$ and $a_n=\bigl(2n^2+3n\bigr)-\bigl(2(n-1)^2+3(n-1)\bigr)=4n+1$, which is the sequence $5,9,13,\ldots$ again.
+**$S_n$ is quadratic in $n$.** Expanding gives $S_n=\frac d2n^2+\bigl(a_1-\frac d2\bigr)n$, a quadratic with no constant term, which is how to recognize one. And you can run it backward: $a_n=S_n-S_{n-1}$ for $n\ge2$ (and $a_1=S_1$). If $S_n=2n^2+3n$ then $a_1=5$ and $a_n=\bigl(2n^2+3n\bigr)-\bigl(2(n-1)^2+3(n-1)\bigr)=4n+1$, which is the sequence $5,9,13,\ldots$ again.
 
 Try the pairing for your own sequence below.`,
             T`**Jumlah $n$ suku pertama barisan aritmetika adalah $S_n=\dfrac n2(a_1+a_n)=\dfrac n2\bigl(2a_1+(n-1)d\bigr)$: banyak suku dikali rata-rata suku pertama dan suku terakhir.** Jumlah suku-suku seperti ini disebut *deret aritmetika*, dan $S_n$ adalah jumlah parsial ke-$n$-nya.
@@ -397,7 +397,7 @@ Deret seperti itu dikatakan **divergen**. Ini kontras tajam dengan [deret geomet
 
 | Problem | $a_1$, $d$ | Answer |
 |---|---|---|
-| A theatre has 20 seats in row 1 and each row has 3 more. How many in row 15? | $20$, $3$ | $20+14\cdot3=62$ seats |
+| A theater has 20 seats in row 1 and each row has 3 more. How many in row 15? | $20$, $3$ | $20+14\cdot3=62$ seats |
 | How many seats in all 15 rows? | same | $\frac{15}{2}(20+62)=615$ seats |
 | You save 100 dollars in month 1 and 50 more each month than the month before. How much in month 12, and in total? | $100$, $50$ | $100+11\cdot50=650$ dollars; $\frac{12}{2}(100+650)=4500$ dollars |
 | A salary of 40,000 dollars rises by 2,500 each year. What is it in year 8, and what is the 8-year total? | $40000$, $2500$ | $40000+7\cdot2500=57500$; $\frac82(40000+57500)=390000$ dollars |
@@ -423,11 +423,11 @@ Perhatikan bahwa "tiap baris 3 lebih banyak" dan "Rp50.000 lebih banyak tiap bul
         },
         {
           kind: 'activity',
-          title: L('Try it: seats in a theatre', 'Coba: kursi di gedung pertunjukan'),
+          title: L('Try it: seats in a theater', 'Coba: kursi di gedung pertunjukan'),
           step: {
             kind: 'quiz',
             id: 'a9',
-            prompt: L('A theatre has 20 seats in the first row and each row has 3 seats more than the row before. How many seats are in row 15?', 'Gedung pertunjukan punya 20 kursi pada baris pertama dan tiap baris punya 3 kursi lebih banyak daripada baris sebelumnya. Berapa kursi pada baris ke-15?'),
+            prompt: L('A theater has 20 seats in the first row and each row has 3 seats more than the row before. How many seats are in row 15?', 'Gedung pertunjukan punya 20 kursi pada baris pertama dan tiap baris punya 3 kursi lebih banyak daripada baris sebelumnya. Berapa kursi pada baris ke-15?'),
             options: [L('$59$', '$59$'), L('$62$', '$62$'), L('$65$', '$65$'), L('$60$', '$60$')],
             answer: 1,
             explain: L(
@@ -530,7 +530,7 @@ Untuk langkah pecahan yang eksak pakai ´fractions.Fraction´, seperti pada arti
 - **c. 1550 BCE.** The Rhind Papyrus has a problem that shares 10 measures of barley among 10 men so that each gets the same amount more than the one before: an arithmetic progression with difference $\frac18$.
 - **5th century CE.** The Chinese *Zhang Qiujian suanjing* has a woman weaving cloth who weaves a fixed extra amount each day; the calculation was done on [counting rods](article:chinese-numbers#counting-rods).
 - **499 CE.** Aryabhata gave rules in his *Aryabhatiya* for the sum of an arithmetic progression and for the number of its terms.
-- **About 1787.** The classroom story about Gauss, aged nine or ten, is that his teacher set $1+2+\cdots+100$ to keep the class busy and Gauss answered 5050 at once, by pairing 1 with 100, 2 with 99 and so on. The story was written down long afterwards and the details vary, but the idea of pairing is certainly his kind of insight, and it is the proof still given today.
+- **About 1787.** The classroom story about Gauss, aged nine or ten, is that his teacher set $1+2+\cdots+100$ to keep the class busy and Gauss answered 5050 at once, by pairing 1 with 100, 2 with 99 and so on. The story was written down long afterward and the details vary, but the idea of pairing is certainly his kind of insight, and it is the proof still given today.
 
 The word *arithmetic* goes back to the Greek *arithmos*, number.`,
             T`**Progresi aritmetika termasuk pola tertua dalam matematika, jauh sebelum ada notasi untuknya.**
@@ -608,7 +608,7 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
               L('The sequence $6,6,6,6$ is arithmetic.', 'Barisan $6,6,6,6$ aritmetika.'),
               L('$2,4,8,16$ is arithmetic.', '$2,4,8,16$ aritmetika.'),
               L('An infinite arithmetic series with $d\\neq0$ has a finite sum.', 'Deret aritmetika tak hingga dengan $d\\neq0$ punya jumlah berhingga.'),
-              L('Each term of an arithmetic sequence is the average of its two neighbours.', 'Setiap suku barisan aritmetika adalah rata-rata kedua tetangganya.'),
+              L('Each term of an arithmetic sequence is the average of its two neighbors.', 'Setiap suku barisan aritmetika adalah rata-rata kedua tetangganya.'),
               L('$S_n=\\frac n2(a_1+a_n)$.', '$S_n=\\frac n2(a_1+a_n)$.'),
             ],
             answer: [true, false, false, true, true],
@@ -710,7 +710,7 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
         {
           kind: 'text',
           text: L(
-            T`- **Definition:** $a_{n+1}-a_n=d$ is constant; each term is the average of its neighbours.
+            T`- **Definition:** $a_{n+1}-a_n=d$ is constant; each term is the average of its neighbors.
 - **n-th term:** $a_n=a_1+(n-1)d=dn+(a_1-d)$, a straight line in $n$.
 - **Number of terms:** $n=\dfrac{\ell-a_1}{d}+1$, which must be a positive whole number.
 - **From two terms:** $d=\dfrac{a_q-a_p}{q-p}$, $a_1=a_p-(p-1)d$; $k$ means between $a$ and $b$ have $d=\frac{b-a}{k+1}$.
@@ -742,7 +742,7 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
     { term: L('Series', 'Deret'), definition: L('The sum of the terms of a sequence, such as 3 plus 7 plus 11 plus 15.', 'Jumlah suku-suku sebuah barisan, seperti 3 ditambah 7 ditambah 11 ditambah 15.') },
     { term: L('Partial sum', 'Jumlah parsial'), definition: L('The sum S sub n of the first n terms of a sequence.', 'Jumlah S indeks n dari n suku pertama sebuah barisan.') },
     { term: L('Sigma notation', 'Notasi sigma'), definition: L('A compact way to write a sum using the Greek letter sigma, with the first and last values of the index written below and above it.', 'Cara ringkas menulis jumlah memakai huruf Yunani sigma, dengan nilai pertama dan terakhir indeks ditulis di bawah dan di atasnya.') },
-    { term: L('Arithmetic mean', 'Rata-rata aritmetika'), definition: L('The average of two numbers, half their sum; each term of an arithmetic sequence is the arithmetic mean of its neighbours.', 'Rata-rata dua bilangan, setengah jumlahnya; setiap suku barisan aritmetika adalah rata-rata aritmetika dari tetangganya.') },
+    { term: L('Arithmetic mean', 'Rata-rata aritmetika'), definition: L('The average of two numbers, half their sum; each term of an arithmetic sequence is the arithmetic mean of its neighbors.', 'Rata-rata dua bilangan, setengah jumlahnya; setiap suku barisan aritmetika adalah rata-rata aritmetika dari tetangganya.') },
     { term: L('Triangular number', 'Bilangan segitiga'), definition: L('A sum 1 plus 2 plus up to n, equal to n times n plus 1 over 2, such as 1, 3, 6, 10 and 15.', 'Jumlah 1 ditambah 2 sampai n, sama dengan n kali n tambah 1 per 2, seperti 1, 3, 6, 10, dan 15.') },
     { term: L('Divergent series', 'Deret divergen'), definition: L('A series whose partial sums do not settle on a finite total; every infinite arithmetic series with a non-zero term is divergent.', 'Deret yang jumlah parsialnya tidak menetap pada jumlah berhingga; setiap deret aritmetika tak hingga dengan suku bukan nol divergen.') },
     { term: L('Geometric sequence', 'Barisan geometri'), definition: L('A sequence in which each term is the previous one times the same fixed number, such as 2, 4, 8, 16.', 'Barisan yang setiap sukunya adalah suku sebelumnya dikali bilangan tetap yang sama, seperti 2, 4, 8, 16.') },
@@ -855,7 +855,7 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
     {
       q: L('Does an infinite arithmetic series have a sum?', 'Apakah deret aritmetika tak hingga punya jumlah?'),
       a: L(
-        'No, except in the trivial case where every term is zero. The partial sums grow without bound, upwards if the difference is positive and downwards if it is negative, so the series diverges. A geometric series with ratio smaller than 1 in size can have a sum.',
+        'No, except in the trivial case where every term is zero. The partial sums grow without bound, upward if the difference is positive and downward if it is negative, so the series diverges. A geometric series with ratio smaller than 1 in size can have a sum.',
         'Tidak, kecuali pada kasus sepele ketika setiap sukunya nol. Jumlah parsialnya membesar tanpa batas, ke atas bila beda positif dan ke bawah bila negatif, sehingga deretnya divergen. Deret geometri dengan rasio berukuran kurang dari 1 dapat punya jumlah.',
       ),
     },

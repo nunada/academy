@@ -200,7 +200,7 @@ export function SurdCalculator() {
           </p>
           <p className={rational ? 'okline' : 'small'}>
             {rational
-              ? tc(L('The result is rational: the √ part has cancelled completely, although the numbers that were combined are irrational.', 'Hasilnya rasional: bagian √ habis seluruhnya, padahal bilangan yang digabungkan irasional.'))
+              ? tc(L('The result is rational: the √ part has canceled completely, although the numbers that were combined are irrational.', 'Hasilnya rasional: bagian √ habis seluruhnya, padahal bilangan yang digabungkan irasional.'))
               : tc(L('The result still contains √ with a non-zero coefficient, so it is irrational.', 'Hasilnya masih memuat √ dengan koefisien bukan nol, sehingga irasional.'))}
           </p>
           <p className="small muted">

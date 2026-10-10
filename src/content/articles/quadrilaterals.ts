@@ -303,7 +303,7 @@ Pada belah ketupat kedua diagonal berpotongan tegak lurus dan saling membagi dua
 | Kite (sides $a,b$, diagonals $d_1,d_2$) | $2(a+b)$ | $\frac{d_1d_2}{2}$ |
 | Trapezoid (parallel sides $a,b$, legs $c,d$, height $h$) | $a+b+c+d$ | $\frac{(a+b)h}{2}$ |
 
-The height is the perpendicular distance between the parallel sides, never the slanted side. Perimeter is a length, in metres; area is a count of unit squares, in square metres.
+The height is the perpendicular distance between the parallel sides, never the slanted side. Perimeter is a length, in meters; area is a count of unit squares, in square meters.
 
 Each formula is the rectangle in disguise:
 
@@ -313,7 +313,7 @@ Each formula is the rectangle in disguise:
 
 For the trapezoid in the picture, $a=8$, $b=4$ and $h=4$ give $\frac{(8+4)\cdot4}{2}=24$. The $\frac12$ in these formulas is the usual [multiplication of fractions](article:rational-numbers#multiply-divide-fractions): half of $48$ is $24$.
 
-A word problem: a plot of land is a trapezoid whose parallel sides are $30$ m and $20$ m, $12$ m apart, and land costs 80 dollars per square metre. The area is $\frac{(30+20)\cdot12}{2}=300$ m², so the plot costs $300\cdot80=24000$ dollars.`,
+A word problem: a plot of land is a trapezoid whose parallel sides are $30$ m and $20$ m, $12$ m apart, and land costs 80 dollars per square meter. The area is $\frac{(30+20)\cdot12}{2}=300$ m², so the plot costs $300\cdot80=24000$ dollars.`,
             T`**Keliling adalah jumlah keempat sisi, dan luas diperoleh dari rumus menurut jenisnya: alas kali tinggi untuk jajargenjang, setengah hasil kali diagonal untuk belah ketupat atau layang-layang, dan setengah jumlah sisi sejajar kali tinggi untuk trapesium.**
 
 | Jenis | Keliling | Luas |
@@ -513,7 +513,7 @@ shoelace([[0, 0], [6, 0], [6, 4], [2, 6]])   // 26`,
 - **c. 1550 BCE.** The Rhind Papyrus, problem 52, finds the area of a trapezoid, which the Egyptian scribe describes as a triangle with its tip cut off.
 - **c. 300 BCE.** Euclid's *Elements*, Book I, definition 22, names the square, the oblong (our rectangle), the rhombus and the rhomboid (our parallelogram), and calls every other quadrilateral a *trapezium*. Proposition I.34 proves that the opposite sides and angles of a parallelogram are equal and that a diagonal bisects it. Later Greek writers narrowed *trapezium* to a quadrilateral with a pair of parallel sides.
 - **c. 150 CE.** Ptolemy's theorem: in a quadrilateral whose vertices lie on a circle, the product of the diagonals equals the sum of the products of the opposite sides.
-- **628 CE.** Brahmagupta gives the area of a quadrilateral inscribed in a circle, $\sqrt{(s-a)(s-b)(s-c)(s-d)}$, where $s$ is half the perimeter. It generalises Heron's formula for a triangle.
+- **628 CE.** Brahmagupta gives the area of a quadrilateral inscribed in a circle, $\sqrt{(s-a)(s-b)(s-c)(s-d)}$, where $s$ is half the perimeter. It generalizes Heron's formula for a triangle.
 - **1769.** Albrecht Meister describes the shoelace formula for the area of a polygon from its coordinates; it is now also known by Gauss's name, and as the surveyor's formula.
 
 The names themselves drifted. Over time British English kept *trapezium* for a quadrilateral with one pair of parallel sides, while American English moved to *trapezoid*, which is why one shape has two names today.`,
@@ -546,7 +546,7 @@ Namanya sendiri bergeser. Seiring waktu bahasa Inggris Britania mempertahankan *
 | A square is not a rectangle | It is: it has four right angles. Every square is a rectangle and a rhombus. |
 | The diagonals of a rectangle are perpendicular | They are equal and bisect each other; they are perpendicular only in a square. |
 | The diagonals of a parallelogram are equal | Only for a rectangle; in general they are different, but always bisect each other. |
-| The area of a parallelogram is the product of two neighbouring sides | It is base times height; the slanted side is longer than the height. |
+| The area of a parallelogram is the product of two neighboring sides | It is base times height; the slanted side is longer than the height. |
 | The area of a rhombus is $s^2$ | That is a square. A rhombus has $\frac{d_1d_2}{2}$, or base times height. |
 | The area of a trapezoid is $abh$ | It is $\frac{(a+b)h}{2}$: the average of the parallel sides times the height. |
 | The angles of a quadrilateral add up to $180^\circ$ | That is a triangle. A quadrilateral has $360^\circ$. |
@@ -721,7 +721,7 @@ Namanya sendiri bergeser. Seiring waktu bahasa Inggris Britania mempertahankan *
             kind: 'quiz',
             id: 'p9',
             prompt: L(
-              'A plot is a trapezoid with parallel sides 24 m and 16 m, 10 m apart. Land costs 60 dollars per square metre. What does the plot cost?',
+              'A plot is a trapezoid with parallel sides 24 m and 16 m, 10 m apart. Land costs 60 dollars per square meter. What does the plot cost?',
               'Sebidang tanah berbentuk trapesium dengan sisi sejajar 24 m dan 16 m, berjarak 10 m. Harga tanah Rp400.000 per meter persegi. Berapa harga tanah itu?',
             ),
             options: [L('12,000 dollars', 'Rp80.000.000'), L('24,000 dollars', 'Rp160.000.000'), L('9,600 dollars', 'Rp64.000.000'), L('14,400 dollars', 'Rp96.000.000')],
@@ -730,7 +730,7 @@ Namanya sendiri bergeser. Seiring waktu bahasa Inggris Britania mempertahankan *
               'The area is $\\frac{(24+16)\\cdot10}{2}=200$ m², so the cost is $200\\cdot60=12000$ dollars.',
               'Luasnya $\\frac{(24+16)\\cdot10}{2}=200$ m², sehingga harganya 200 kali Rp400.000, yaitu Rp80.000.000.',
             ),
-            hint: L('First find the area of the trapezoid, then multiply by the price per square metre.', 'Cari dulu luas trapesium, lalu kalikan dengan harga per meter persegi.'),
+            hint: L('First find the area of the trapezoid, then multiply by the price per square meter.', 'Cari dulu luas trapesium, lalu kalikan dengan harga per meter persegi.'),
           },
         },
       ],
@@ -803,10 +803,10 @@ Namanya sendiri bergeser. Seiring waktu bahasa Inggris Britania mempertahankan *
       name: L('How to classify a quadrilateral from coordinates', 'Cara menentukan jenis segiempat dari koordinat'),
       description: L('Use cross products for parallel sides, dot products for right angles and squared distances for equal sides.', 'Pakai hasil kali silang untuk sisi sejajar, hasil kali titik untuk sudut siku-siku, dan kuadrat jarak untuk sisi sama panjang.'),
       steps: [
-        { name: L('Write the four side vectors', 'Tulis keempat vektor sisi'), text: L('Subtract neighbouring vertices to get the vectors AB, BC, CD and DA.', 'Kurangkan titik sudut bertetangga untuk mendapat vektor AB, BC, CD, dan DA.') },
+        { name: L('Write the four side vectors', 'Tulis keempat vektor sisi'), text: L('Subtract neighboring vertices to get the vectors AB, BC, CD and DA.', 'Kurangkan titik sudut bertetangga untuk mendapat vektor AB, BC, CD, dan DA.') },
         { name: L('Test for parallel sides', 'Uji sisi sejajar'), text: L('Opposite sides are parallel when the cross product of their vectors is exactly zero.', 'Sisi berhadapan sejajar bila hasil kali silang vektornya tepat nol.') },
         { name: L('Compare squared lengths', 'Bandingkan kuadrat panjang'), text: L('Compare the squared lengths of the sides; equal squares mean equal sides, with no square root needed.', 'Bandingkan kuadrat panjang sisi; kuadrat yang sama berarti sisi sama panjang, tanpa akar.') },
-        { name: L('Test for a right angle', 'Uji sudut siku-siku'), text: L('Two neighbouring sides are perpendicular when the dot product of their vectors is zero.', 'Dua sisi bertetangga tegak lurus bila hasil kali titik vektornya nol.') },
+        { name: L('Test for a right angle', 'Uji sudut siku-siku'), text: L('Two neighboring sides are perpendicular when the dot product of their vectors is zero.', 'Dua sisi bertetangga tegak lurus bila hasil kali titik vektornya nol.') },
       ],
     },
   ],

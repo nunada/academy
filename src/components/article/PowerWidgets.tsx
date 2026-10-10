@@ -339,7 +339,7 @@ export function SimplifyRoot() {
   )
 }
 
-/* -------------------------------------------------------------- rationalise */
+/* -------------------------------------------------------------- rationalize */
 
 /** `rational + irrational·√rad` as TeX, in the order a person writes it. */
 function twoTermTex(rational: Rat, irrational: Rat, rad: bigint): string {

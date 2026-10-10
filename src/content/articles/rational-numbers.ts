@@ -126,7 +126,7 @@ $\dfrac{84}{126}$: the GCD of 84 and 126 is 42, so $\dfrac{84\div42}{126\div42}=
 
 You may also cancel step by step, by any common factor, until nothing is left to cancel. The lowest-terms form is unique, so every route gives the same answer, and for two fractions in lowest terms $\frac ab=\frac cd$ only when $a=c$ and $b=d$.
 
-**Cancel factors, never terms.** In $\frac{6}{8}=\frac{2\cdot3}{2\cdot4}$ the 2 is a factor of both, so it cancels. In $\frac{2+3}{2+4}$ the 2s are terms of a sum and do not cancel: the fraction is $\frac56$, not $\frac34$. The same care is needed with letters, as in the section on [algebraic fractions](article:algebraic-expressions#algebraic-fractions). Beware also of "cancelling" digits: $\frac{16}{64}$ happens to equal $\frac14$ when you strike the 6s, and $\frac{19}{95}$, $\frac{26}{65}$ and $\frac{49}{98}$ do the same, but these four are coincidences and the method is wrong, so never rely on it.
+**Cancel factors, never terms.** In $\frac{6}{8}=\frac{2\cdot3}{2\cdot4}$ the 2 is a factor of both, so it cancels. In $\frac{2+3}{2+4}$ the 2s are terms of a sum and do not cancel: the fraction is $\frac56$, not $\frac34$. The same care is needed with letters, as in the section on [algebraic fractions](article:algebraic-expressions#algebraic-fractions). Beware also of "canceling" digits: $\frac{16}{64}$ happens to equal $\frac14$ when you strike the 6s, and $\frac{19}{95}$, $\frac{26}{65}$ and $\frac{49}{98}$ do the same, but these four are coincidences and the method is wrong, so never rely on it.
 
 Try any fraction below.`,
             T`**Mengalikan atau membagi pembilang dan penyebut dengan bilangan bukan nol yang sama menghasilkan pecahan senilai, dan membagi keduanya dengan faktor persekutuan terbesarnya menghasilkan bentuk paling sederhana.** Dua pecahan sama tepat bila $\frac ab=\frac cd\iff ad=bc$: misalnya $\frac68=\frac34$ karena $6\cdot4=24=8\cdot3$.
@@ -252,7 +252,7 @@ The best common denominator is the [least common multiple](article:integers#gcd-
 
 $\dfrac23+\dfrac34=\dfrac{8}{12}+\dfrac{9}{12}=\dfrac{17}{12}=1\dfrac{5}{12}$.
 
-For a subtraction, $\dfrac56-\dfrac14=\dfrac{10}{12}-\dfrac{3}{12}=\dfrac{7}{12}$. If you use $b\cdot d$ instead of the least common multiple the answer is the same, but the numbers are larger and the result needs simplifying afterwards.
+For a subtraction, $\dfrac56-\dfrac14=\dfrac{10}{12}-\dfrac{3}{12}=\dfrac{7}{12}$. If you use $b\cdot d$ instead of the least common multiple the answer is the same, but the numbers are larger and the result needs simplifying afterward.
 
 **Never add the denominators.** $\frac12+\frac13$ is not $\frac25$: the denominators name the size of the pieces, and halves and thirds are different sizes. The right answer is $\frac36+\frac26=\frac56$. A check is that $\frac25=0.4$ is less than $\frac12$, but a sum of two positive numbers is larger than each of them.
 
@@ -785,11 +785,11 @@ Kini bilangan yang sama tampil sebagai pecahan dalam resep, sebagai desimal pada
           step: {
             kind: 'quiz',
             id: 'p6',
-            prompt: L('$\\frac34$ of a litre of juice is shared equally among 3 glasses. How much is in each?', '$\\frac34$ liter jus dibagi sama rata ke 3 gelas. Berapa isi tiap gelas?'),
+            prompt: L('$\\frac34$ of a liter of juice is shared equally among 3 glasses. How much is in each?', '$\\frac34$ liter jus dibagi sama rata ke 3 gelas. Berapa isi tiap gelas?'),
             options: [L('$\\frac94$ L', '$\\frac94$ L'), L('$\\frac14$ L', '$\\frac14$ L'), L('$\\frac1{12}$ L', '$\\frac1{12}$ L'), L('$\\frac37$ L', '$\\frac37$ L')],
             answer: 1,
             explain: L(
-              '$\\frac34\\div3=\\frac34\\cdot\\frac13=\\frac{3}{12}=\\frac14$ litre.',
+              '$\\frac34\\div3=\\frac34\\cdot\\frac13=\\frac{3}{12}=\\frac14$ liter.',
               '$\\frac34\\div3=\\frac34\\cdot\\frac13=\\frac{3}{12}=\\frac14$ liter.',
             ),
             hint: L('Dividing by 3 is multiplying by the reciprocal, $\\frac13$.', 'Membagi dengan 3 sama dengan mengalikan dengan kebalikannya, $\\frac13$.'),

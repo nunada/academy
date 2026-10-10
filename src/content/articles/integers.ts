@@ -601,7 +601,7 @@ Algoritma ini berhasil karena bilangan mana pun yang membagi $a$ dan $b$ juga me
 
 With a negative dividend the rule still holds, and the remainder stays between 0 and $|b|-1$: $-7=3\cdot(-3)+2$, so $-7\bmod3=2$, not $-1$. Think of a clock: 7 hours before 12 o'clock is 5 o'clock, and a day of 24 hours repeats after 24, which is the same as counting remainders.
 
-**Modular arithmetic** works with remainders only. Two integers are **congruent modulo $n$**, written $a\equiv c\pmod n$, when $n$ divides $a-c$, that is, when they leave the same remainder: $17\equiv2\pmod5$. Remainders respect addition and multiplication, so you can reduce first and calculate afterwards:
+**Modular arithmetic** works with remainders only. Two integers are **congruent modulo $n$**, written $a\equiv c\pmod n$, when $n$ divides $a-c$, that is, when they leave the same remainder: $17\equiv2\pmod5$. Remainders respect addition and multiplication, so you can reduce first and calculate afterward:
 
 - **Days of the week.** 100 days after a Monday: $100\bmod7=2$, so it is a Wednesday.
 - **Last digits.** The last digit of $7^k$ repeats 7, 9, 3, 1. Since $2026\bmod4=2$, the last digit of $7^{2026}$ is the second in the cycle, 9.

@@ -253,7 +253,7 @@ Coba bilanganmu sendiri, termasuk yang besar. Alat ini memfaktorkan sampai satu 
 
 **Why rational plus irrational is irrational.** Suppose $r+x=s$ with $r$ and $s$ rational and $x$ irrational. Then $x=s-r$ is a difference of rational numbers, which is rational: a contradiction. The same argument with division proves the product rule, since $x=\frac sr$ would be rational.
 
-**Two irrational numbers can combine into a rational one.** The pair $1+\sqrt2$ and $1-\sqrt2$ are *conjugates*, and their product is rational because the roots cancel, as in the [difference of squares](article:algebraic-expressions#expand): $(1+\sqrt2)(1-\sqrt2)=1-2=-1$. This is the idea behind [rationalising a denominator](article:exponents-and-radicals#rationalise).
+**Two irrational numbers can combine into a rational one.** The pair $1+\sqrt2$ and $1-\sqrt2$ are *conjugates*, and their product is rational because the roots cancel, as in the [difference of squares](article:algebraic-expressions#expand): $(1+\sqrt2)(1-\sqrt2)=1-2=-1$. This is the idea behind [rationalizing a denominator](article:exponents-and-radicals#rationalise).
 
 **Exact arithmetic with $a+b\sqrt m$.** Numbers of the form $a+b\sqrt m$, with $a$ and $b$ rational and $\sqrt m$ irrational, can be added, subtracted, multiplied and divided exactly and the answer is again of that form. The number is rational exactly when $b=0$. The tool below does this arithmetic with exact fractions; try the examples, then your own.
 

@@ -289,7 +289,7 @@ export function GaussPairing() {
         <p>
           <Tex src={`2S_{${N}}=${N}\\cdot${paren(pair)}=${ratTex(ratMul(rat(n, 1n), pair))}\\quad\\Rightarrow\\quad S_{${N}}=${ratTex(total)}`} />
         </p>
-        <p className="small muted">{tc(L('Writing the terms forwards and backwards, every column adds to the same number, the first term plus the last. Adding both rows gives the sum twice.', 'Menuliskan suku-suku maju dan mundur, setiap kolom berjumlah sama, yaitu suku pertama ditambah suku terakhir. Menjumlahkan kedua baris memberi jumlah dua kali.'))}</p>
+        <p className="small muted">{tc(L('Writing the terms forward and backward, every column adds to the same number, the first term plus the last. Adding both rows gives the sum twice.', 'Menuliskan suku-suku maju dan mundur, setiap kolom berjumlah sama, yaitu suku pertama ditambah suku terakhir. Menjumlahkan kedua baris memberi jumlah dua kali.'))}</p>
       </>
     )
   }

@@ -48,7 +48,7 @@ export function ChineseConvert() {
   const styles: [CnStyle, Loc][] = [
     ['simplified', L('Simplified', 'Sederhana')],
     ['traditional', L('Traditional', 'Tradisional')],
-    ['financial', L('Formal (cheques)', 'Formal (cek)')],
+    ['financial', L('Formal (checks)', 'Formal (cek)')],
   ]
 
   return (
@@ -355,7 +355,7 @@ const placeLabel = (d: number, place: number): string =>
 const SUZHOU = ['〇', '〡', '〢', '〣', '〤', '〥', '〦', '〧', '〨', '〩']
 
 /** One digit as rods. Vertical rods stand in the ones, hundreds, … places and
- *  horizontal rods lie in the tens, thousands, … places, so two neighbouring
+ *  horizontal rods lie in the tens, thousands, … places, so two neighboring
  *  digits can never run together. 1–5 are that many rods; 6–9 are one rod across
  *  for five, plus the rest. Zero is nothing at all. */
 function Rods({ d, vertical, x }: { d: number; vertical: boolean; x: number }) {

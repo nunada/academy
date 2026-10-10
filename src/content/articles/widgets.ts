@@ -104,9 +104,9 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
     },
   },
   rationalise: {
-    title: { en: 'Interactive: rationalise the denominator', id: 'Interaktif: rasionalkan penyebutnya' },
+    title: { en: 'Interactive: rationalize the denominator', id: 'Interaktif: rasionalkan penyebutnya' },
     description: {
-      en: 'Rationalise a fraction such as 6/√3 or 1/(1+√2), step by step, with the conjugate and the difference of squares shown.',
+      en: 'Rationalize a fraction such as 6/√3 or 1/(1+√2), step by step, with the conjugate and the difference of squares shown.',
       id: 'Rasionalkan pecahan seperti 6/√3 atau 1/(1+√2), langkah demi langkah, dengan bentuk sekawan dan selisih kuadrat ditunjukkan.',
     },
   },
@@ -127,7 +127,7 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
   terms: {
     title: { en: 'Interactive: take an expression apart', id: 'Interaktif: uraikan sebuah ekspresi' },
     description: {
-      en: 'Type an expression and see each term split into its coefficient, variable part and degree, with like terms shown in the same colour.',
+      en: 'Type an expression and see each term split into its coefficient, variable part and degree, with like terms shown in the same color.',
       id: 'Ketik sebuah ekspresi dan lihat tiap suku diuraikan menjadi koefisien, bagian variabel, dan derajatnya, dengan suku sejenis diberi warna yang sama.',
     },
   },
@@ -302,14 +302,14 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
   arithdetect: {
     title: { en: 'Interactive: is this list an arithmetic sequence?', id: 'Interaktif: apakah daftar ini barisan aritmetika?' },
     description: {
-      en: 'Type a list of numbers and see the differences between neighbours, whether they agree, the formula and next terms, or where the pattern breaks.',
+      en: 'Type a list of numbers and see the differences between neighbors, whether they agree, the formula and next terms, or where the pattern breaks.',
       id: 'Ketik daftar bilangan dan lihat selisih antartetangga, apakah sama, rumus dan suku berikutnya, atau di mana pola itu patah.',
     },
   },
   gauss: {
     title: { en: 'Interactive: Gauss’s pairing trick', id: 'Interaktif: trik pasangan Gauss' },
     description: {
-      en: 'List the terms forwards and backwards and see every column add to the same number, which is why S = n/2 times first plus last.',
+      en: 'List the terms forward and backward and see every column add to the same number, which is why S = n/2 times first plus last.',
       id: 'Daftarkan suku-sukunya maju dan mundur dan lihat setiap kolom berjumlah sama, itulah sebabnya S = n/2 kali pertama ditambah terakhir.',
     },
   },
@@ -323,7 +323,7 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
   geodetect: {
     title: { en: 'Interactive: is this list a geometric sequence?', id: 'Interaktif: apakah daftar ini barisan geometri?' },
     description: {
-      en: 'Type a list of numbers and see the ratios between neighbours, whether they agree, the formula and next terms, or where the pattern breaks.',
+      en: 'Type a list of numbers and see the ratios between neighbors, whether they agree, the formula and next terms, or where the pattern breaks.',
       id: 'Ketik daftar bilangan dan lihat rasio antartetangga, apakah sama, rumus dan suku berikutnya, atau di mana pola itu patah.',
     },
   },

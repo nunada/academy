@@ -89,7 +89,7 @@ export interface ArticleMeta {
    *  Keep it under about 60 characters. */
   seoTitle?: Loc
   /** The meta description and the card text: 120–160 characters, a complete
-   *  sentence that says what the reader will know afterwards. */
+   *  sentence that says what the reader will know afterward. */
   description: Loc
   track: ArticleTrack
   /** Ids from `tags.ts`. */
@@ -116,7 +116,7 @@ export type CalloutTone = 'definition' | 'tip' | 'warning' | 'note'
 
 export type ArticleBlock =
   /** Prose, with the lesson text's formatting: paragraphs, `- ` lists,
-   *  `1. ` lists, `| tables |`, `**bold**`, `` `code` `` and `$maths$`. */
+   *  `1. ` lists, `| tables |`, `**bold**`, `` `code` `` and `$math$`. */
   | { kind: 'text'; text: Loc }
   | { kind: 'callout'; tone: CalloutTone; title: Loc; text: Loc }
   | { kind: 'figure'; figure: Figure }

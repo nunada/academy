@@ -12,7 +12,7 @@ export const meta: ArticleMeta = {
     id: 'Eksponen dan Akar: Sifat, Rumus, Contoh',
   },
   description: {
-    en: 'Exponents and radicals explained: the five laws, zero, negative and fractional exponents, simplifying roots, rationalising and scientific notation, with practice.',
+    en: 'Exponents and radicals explained: the five laws, zero, negative and fractional exponents, simplifying roots, rationalizing and scientific notation, with practice.',
     id: 'Eksponen dan akar: lima sifat bilangan berpangkat, pangkat nol, negatif, dan pecahan, bentuk akar, merasionalkan penyebut, dan notasi ilmiah, dengan latihan.',
   },
   track: 'math',

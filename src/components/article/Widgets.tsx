@@ -67,7 +67,7 @@ const SAMPLES: Sample[] = [
   { label: L('e', 'e'), zone: 'I', why: L('Euler’s number e is irrational (proved by Euler in 1737).', 'Bilangan Euler e adalah irasional (dibuktikan oleh Euler pada 1737).') },
 ]
 
-/** Each box leaves a 20px ring below its inner neighbour, where its own name
+/** Each box leaves a 20px ring below its inner neighbor, where its own name
  *  sits, so a label never lands under a marker. */
 const BOX: Record<string, { x: number; y: number; w: number; h: number }> = {
   R: { x: 6, y: 6, w: 588, h: 268 },
