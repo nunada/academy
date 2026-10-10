@@ -66,7 +66,7 @@ export const body: ArticleBody = {
 | $2^5$ | two to the power five | $2\cdot2\cdot2\cdot2\cdot2$ | 32 |
 | $(-2)^3$ | minus two cubed | $(-2)(-2)(-2)$ | −8 |
 
-An exponent of 1 changes nothing ($a^1=a$). The words "squared" and "cubed" come from geometry: $5^2$ is the area of a square with side 5, and $10^3$ is the volume of a cube with side 10.
+An exponent of 1 changes nothing ($a^1=a$). The words "squared" and "cubed" come from geometry: $5^2$ is the area of a [square](article:quadrilaterals#perimeter-and-area) with side 5, and $10^3$ is the volume of a cube with side 10.
 
 Powers grow fast. Each time the exponent goes up by 1, the value is multiplied by the base again: $2^{10}=1{,}024$, $2^{20}=1{,}048{,}576$ and $2^{30}$ is already over a billion. That is why exponents are the language of growth, of computer memory and of very large and very small quantities, and why the successive powers of a number form a [geometric sequence](article:geometric-sequences-and-series#nth-term).`,
             T`**Eksponen (atau pangkat) adalah bilangan kecil yang ditulis di atas dan menyatakan berapa kali basis dikalikan dengan dirinya sendiri: $a^n=a\cdot a\cdots a$, dengan $n$ faktor $a$.** Pada $2^5$ basisnya 2 dan eksponennya 5.
@@ -79,7 +79,7 @@ Powers grow fast. Each time the exponent goes up by 1, the value is multiplied b
 | $2^5$ | dua pangkat lima | $2\cdot2\cdot2\cdot2\cdot2$ | 32 |
 | $(-2)^3$ | minus dua pangkat tiga | $(-2)(-2)(-2)$ | −8 |
 
-Eksponen 1 tidak mengubah apa pun ($a^1=a$). Istilah "kuadrat" dan "kubik" berasal dari geometri: $5^2$ adalah luas persegi dengan sisi 5, dan $10^3$ adalah volume kubus dengan rusuk 10.
+Eksponen 1 tidak mengubah apa pun ($a^1=a$). Istilah "kuadrat" dan "kubik" berasal dari geometri: $5^2$ adalah luas [persegi](article:quadrilaterals#perimeter-and-area) dengan sisi 5, dan $10^3$ adalah volume kubus dengan rusuk 10.
 
 Pangkat tumbuh dengan cepat. Setiap kali eksponen naik 1, nilainya dikalikan basis sekali lagi: $2^{10}=1.024$, $2^{20}=1.048.576$, dan $2^{30}$ sudah lebih dari satu miliar. Itulah sebabnya eksponen menjadi bahasa pertumbuhan, memori komputer, serta besaran yang sangat besar dan sangat kecil, dan mengapa pangkat berurutan dari suatu bilangan membentuk [barisan geometri](article:geometric-sequences-and-series#nth-term).`,
           ),
@@ -1003,5 +1003,5 @@ Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuad
     { title: 'ECMAScript Language Specification: the exponentiation operator', author: 'Ecma International', source: 'tc39.es', url: 'https://tc39.es/ecma262/#sec-exp-operator' },
   ],
 
-  related: ['real-numbers', 'algebraic-expressions'],
+  related: ['real-numbers', 'algebraic-expressions', 'quadrilaterals'],
 }

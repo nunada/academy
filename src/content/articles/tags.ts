@@ -3,6 +3,7 @@ import type { Loc } from '../types'
 /** The topics an article can be filed under. An article names them by id, so a
  *  tag is renamed here once and every article follows. */
 export const TAGS: { id: string; label: Loc }[] = [
+  { id: 'geometry', label: { en: 'Geometry', id: 'Geometri' } },
   { id: 'numbers', label: { en: 'Numbers', id: 'Bilangan' } },
   { id: 'algebra', label: { en: 'Algebra', id: 'Aljabar' } },
   { id: 'fundamentals', label: { en: 'Fundamentals', id: 'Dasar' } },

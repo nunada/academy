@@ -22,7 +22,8 @@
     "check:irrational": "node tools/check-irrational.mjs",
     "check:binary": "node tools/check-binary.mjs",
     "check:sequences": "node tools/check-sequences.mjs",
-    "check:geometric": "node tools/check-geometric.mjs"
+    "check:geometric": "node tools/check-geometric.mjs",
+    "check:quadrilateral": "node tools/check-quadrilateral.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

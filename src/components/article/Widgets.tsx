@@ -17,6 +17,7 @@ import { Tex } from '../ui'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { ChineseConvert, ChineseGrouping, ChineseRead, ChineseRods } from './ChineseWidgets'
 import { GeometricDetector, GeometricExplorer, GeometricSum, GeometricTwoTerms } from './GeometricWidgets'
+import { QuadArea, QuadClassifier, QuadProperties } from './QuadrilateralWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -856,6 +857,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <GeometricTwoTerms />
     case 'geosum':
       return <GeometricSum />
+    case 'quadclassify':
+      return <QuadClassifier />
+    case 'quadprops':
+      return <QuadProperties />
+    case 'quadarea':
+      return <QuadArea />
   }
 }
 

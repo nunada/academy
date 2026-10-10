@@ -263,7 +263,7 @@ For two binomials the rule is $(a+b)(c+d)=ac+ad+bc+bd$, four products. Many clas
 
 $(x+2)(x-3)=x\cdot x+x\cdot(-3)+2\cdot x+2\cdot(-3)=x^2-3x+2x-6=x^2-x-6$.
 
-**The area model shows why.** A rectangle of width $a+b$ and height $c+d$ has area $(a+b)(c+d)$. Cut it into four pieces and the areas are $ac$, $bc$, $ad$ and $bd$; the pieces make up the whole, so the four products add up to the product of the sums. Move the sliders to see it with numbers.
+**The area model shows why.** A rectangle of width $a+b$ and height $c+d$ has area $(a+b)(c+d)$, the rectangle formula from the [area of a quadrilateral](article:quadrilaterals#perimeter-and-area). Cut it into four pieces and the areas are $ac$, $bc$, $ad$ and $bd$; the pieces make up the whole, so the four products add up to the product of the sums. Move the sliders to see it with numbers.
 
 Three products come up so often that they are worth recognising:
 
@@ -282,7 +282,7 @@ Untuk dua binomial aturannya $(a+b)(c+d)=ac+ad+bc+bd$, empat hasil kali. Banyak 
 
 $(x+2)(x-3)=x\cdot x+x\cdot(-3)+2\cdot x+2\cdot(-3)=x^2-3x+2x-6=x^2-x-6$.
 
-**Model luas menunjukkan alasannya.** Persegi panjang dengan lebar $a+b$ dan tinggi $c+d$ berluas $(a+b)(c+d)$. Potong menjadi empat bagian dan luasnya $ac$, $bc$, $ad$, dan $bd$; keempat bagian itu menyusun keseluruhannya, sehingga empat hasil kali itu berjumlah sama dengan hasil kali kedua jumlah. Geser penggesernya untuk melihatnya dengan bilangan.
+**Model luas menunjukkan alasannya.** Persegi panjang dengan lebar $a+b$ dan tinggi $c+d$ berluas $(a+b)(c+d)$, rumus persegi panjang dari [luas segiempat](article:quadrilaterals#perimeter-and-area). Potong menjadi empat bagian dan luasnya $ac$, $bc$, $ad$, dan $bd$; keempat bagian itu menyusun keseluruhannya, sehingga empat hasil kali itu berjumlah sama dengan hasil kali kedua jumlah. Geser penggesernya untuk melihatnya dengan bilangan.
 
 Tiga hasil kali begitu sering muncul sehingga layak dikenali:
 

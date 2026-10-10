@@ -348,6 +348,27 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Lihat penurunan rumus jumlah dengan mengalikan dan mengurangkan, jumlah eksaknya, dan jumlah parsial yang mendekati jumlah tak hingga bila rasionya cukup kecil.',
     },
   },
+  quadclassify: {
+    title: { en: 'Interactive: classify four points', id: 'Interaktif: klasifikasikan empat titik' },
+    description: {
+      en: 'Type the coordinates of four vertices and see which quadrilateral they make, with side and diagonal lengths, angles, symmetry and every name that applies.',
+      id: 'Ketik koordinat empat titik sudut dan lihat segiempat apa yang terbentuk, lengkap dengan panjang sisi dan diagonal, sudut, simetri, dan semua nama yang berlaku.',
+    },
+  },
+  quadprops: {
+    title: { en: 'Interactive: properties of each quadrilateral', id: 'Interaktif: sifat tiap segiempat' },
+    description: {
+      en: 'Pick a square, rectangle, rhombus, parallelogram, kite or trapezoid and see its diagonals and a checklist of sides, angles, diagonals, symmetry, area and perimeter.',
+      id: 'Pilih persegi, persegi panjang, belah ketupat, jajargenjang, layang-layang, atau trapesium dan lihat diagonalnya serta daftar sisi, sudut, diagonal, simetri, luas, dan keliling.',
+    },
+  },
+  quadarea: {
+    title: { en: 'Interactive: area and perimeter from coordinates', id: 'Interaktif: luas dan keliling dari koordinat' },
+    description: {
+      en: 'Give four vertices and see the shoelace terms, their sum, the exact area, the exact side lengths and the perimeter, and a warning when the shape crosses itself.',
+      id: 'Berikan empat titik sudut dan lihat suku-suku tali sepatu, jumlahnya, luas eksak, panjang sisi eksak, dan keliling, serta peringatan bila bangunnya memotong dirinya sendiri.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

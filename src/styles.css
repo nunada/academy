@@ -1389,3 +1389,13 @@ a.chip.static { cursor: pointer; }
 /* Geometric Sequences and Series article */
 .geobar { fill: var(--fig-a); fill-opacity: 0.8; }
 .geobar.neg { fill: var(--fig-c); }
+
+/* Quadrilaterals article */
+.quadsvg { width: 100%; max-width: 360px; display: block; margin: 8px auto; }
+.quadfill { fill: var(--fig-a); fill-opacity: 0.16; stroke: var(--fig-a); stroke-width: 2; stroke-linejoin: round; }
+.quaddiag { stroke: var(--fig-b); stroke-width: 1.4; stroke-dasharray: 5 4; }
+.quadright { fill: none; stroke: var(--fig-a); stroke-width: 1.4; }
+.quaddot { fill: var(--fig-a); }
+.quadlabel { font-size: 13px; font-weight: 700; fill: var(--text); }
+.quadpts .inrow { margin-bottom: 4px; }
+.quadvertex { width: 1.4em; font-size: 1.1rem; }
