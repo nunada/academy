@@ -27,8 +27,6 @@ export const meta: ArticleMeta = {
   readingMinutes: 19,
   about: [
     { name: { en: 'Real number', id: 'Bilangan real' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Real_number', id: 'https://id.wikipedia.org/wiki/Bilangan_real' } },
-    { name: { en: 'Rational number', id: 'Bilangan rasional' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Rational_number', id: 'https://id.wikipedia.org/wiki/Bilangan_rasional' } },
-    { name: { en: 'Irrational number', id: 'Bilangan irasional' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Irrational_number', id: 'https://id.wikipedia.org/wiki/Bilangan_irasional' } },
     { name: { en: 'Floating-point arithmetic', id: 'Aritmetika floating point' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Floating-point_arithmetic', id: 'https://en.wikipedia.org/wiki/Floating-point_arithmetic' } },
   ],
 }

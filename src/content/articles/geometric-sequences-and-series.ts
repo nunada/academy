@@ -120,7 +120,7 @@ Ketik daftar bilangan di bawah dan lihat apakah ia geometri.`,
     /* --------------------------------------------------------------- nth term */
     {
       id: 'nth-term',
-      heading: L('How do you find the n-th term?', 'Bagaimana mencari suku ke-n?'),
+      heading: L('How do you find the n-th term of a geometric sequence?', 'Bagaimana mencari suku ke-n barisan geometri?'),
       blocks: [
         {
           kind: 'text',

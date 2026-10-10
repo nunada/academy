@@ -4,8 +4,8 @@ export const meta: ArticleMeta = {
   id: 'geometric-sequences-and-series',
   slug: { en: 'geometric-sequences-and-series', id: 'barisan-dan-deret-geometri' },
   title: {
-    en: 'Geometric Sequences and Series: Formulas, Sums and Examples',
-    id: 'Barisan dan Deret Geometri: Rumus, Jumlah, dan Contoh',
+    en: 'Geometric Sequences and Series: Ratio, Sums and Growth',
+    id: 'Barisan dan Deret Geometri: Rasio, Jumlah, dan Pertumbuhan',
   },
   seoTitle: {
     en: 'Geometric Sequences and Series: Formulas',

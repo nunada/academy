@@ -316,6 +316,53 @@ for (const a of loaded) {
   if (distinct.size < want) flag(w, `needs inline links to at least ${want} other article(s) in its text, has ${distinct.size}`)
 }
 
+/* ------------------------------------------------ keyword cannibalization */
+
+// Two pages that answer the same query compete with each other in search results and in
+// AI answers, and neither one wins. Each topic therefore has exactly one home: a question
+// (FAQ), a section heading, a HowTo or a Wikipedia entity may be claimed by one article only,
+// the other articles link to it instead of repeating it, and two articles may not share more
+// than a few search keywords or have near-identical titles.
+const norm = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+const claimed = { en: new Map(), id: new Map() }
+const claim = (kind, lang, text, where) => {
+  const key = kind + ':' + norm(text)
+  const prev = claimed[lang].get(key)
+  if (prev && prev.split('/')[0] !== where.split('/')[0]) flag(where, kind + ' "' + text + '" (' + lang + ') already belongs to ' + prev + ': two articles on the same question compete; keep it in one and link to it from the other')
+  else if (!prev) claimed[lang].set(key, where)
+}
+for (const a of loaded) {
+  for (const lang of LANGS) {
+    for (const f of a.faq) claim('FAQ question', lang, f.q[lang], a.id + '/faq')
+    for (const sec of a.sections) if (!['practice', 'summary'].includes(sec.id)) claim('section heading', lang, sec.heading[lang], a.id + '/' + sec.id)
+    for (const h of a.howTo ?? []) claim('HowTo', lang, h.name[lang], a.id + '/howTo')
+  }
+}
+const entityOwner = new Map()
+for (const m of L.ARTICLES)
+  for (const e of m.about ?? []) {
+    const owner = entityOwner.get(e.sameAs.en)
+    if (owner && owner !== m.id) flag(m.id, 'about entity "' + e.name.en + '" is already the subject of ' + owner + ': give it to one article only')
+    else entityOwner.set(e.sameAs.en, m.id)
+  }
+const STOP = new Set(['the', 'and', 'of', 'a', 'an', 'in', 'to', 'for', 'with', 'dan', 'yang', 'di', 'dengan'])
+const bag = (t) => new Set(norm(t).split(' ').filter((x) => x && !STOP.has(x)))
+const MAX_SHARED_KEYWORDS = 5
+for (let i = 0; i < L.ARTICLES.length; i++)
+  for (let j = i + 1; j < L.ARTICLES.length; j++) {
+    const x = L.ARTICLES[i]
+    const y = L.ARTICLES[j]
+    for (const lang of LANGS) {
+      const kx = new Set(x.keywords[lang].split(',').map(norm).filter(Boolean))
+      const shared = y.keywords[lang].split(',').map(norm).filter((k) => k && kx.has(k))
+      if (shared.length > MAX_SHARED_KEYWORDS) flag(x.id + ' + ' + y.id, 'share ' + shared.length + ' search keywords in ' + lang + ' (' + shared.join(', ') + '): at most ' + MAX_SHARED_KEYWORDS + ', or they compete')
+      const bx = bag(x.title[lang])
+      const by = bag(y.title[lang])
+      const inter = [...bx].filter((t) => by.has(t)).length
+      if (inter / (bx.size + by.size - inter) > 0.5) flag(x.id + ' + ' + y.id, 'titles are too alike in ' + lang + ': "' + x.title[lang] + '" and "' + y.title[lang] + '"')
+    }
+  }
+
 /* --------------------------------------------------------------- search */
 
 if (L.ARTICLES.length) {

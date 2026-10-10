@@ -118,7 +118,7 @@ Dua fakta berguna langsung mengikutinya. Setiap suku adalah rata-rata dari dua t
     /* --------------------------------------------------------------- nth term */
     {
       id: 'nth-term',
-      heading: L('How do you find the n-th term?', 'Bagaimana mencari suku ke-n?'),
+      heading: L('How do you find the n-th term of an arithmetic sequence?', 'Bagaimana mencari suku ke-n barisan aritmetika?'),
       blocks: [
         {
           kind: 'text',
@@ -860,10 +860,10 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
       ),
     },
     {
-      q: L('What is the difference between arithmetic and geometric sequences?', 'Apa beda barisan aritmetika dan geometri?'),
+      q: L('Is a list of square numbers an arithmetic sequence?', 'Apakah daftar bilangan kuadrat merupakan barisan aritmetika?'),
       a: L(
-        'An arithmetic sequence adds the same number each time, so equal differences, as in 2, 5, 8, 11. A geometric sequence multiplies by the same number each time, so equal ratios, as in 2, 4, 8, 16. The first grows along a straight line and the second grows exponentially.',
-        'Barisan aritmetika menambah bilangan yang sama setiap kali, sehingga selisihnya sama, seperti 2, 5, 8, 11. Barisan geometri mengalikan dengan bilangan yang sama setiap kali, sehingga rasionya sama, seperti 2, 4, 8, 16. Yang pertama tumbuh sepanjang garis lurus dan yang kedua tumbuh eksponensial.',
+        'No. The squares 1, 4, 9, 16 differ by 3, 5, 7, which are not equal, so the list is not arithmetic. The differences themselves form an arithmetic sequence with difference 2, which makes the squares a quadratic sequence, one level above arithmetic.',
+        'Bukan. Bilangan kuadrat 1, 4, 9, 16 berselisih 3, 5, 7 yang tidak sama, sehingga daftarnya bukan aritmetika. Selisihnya sendiri membentuk barisan aritmetika dengan beda 2, yang menjadikan bilangan kuadrat barisan kuadratik, satu tingkat di atas aritmetika.',
       ),
     },
     {
