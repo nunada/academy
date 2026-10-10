@@ -133,13 +133,16 @@ export function RichBlock({ text }: { text: string }) {
         if (lines.every((l) => l.startsWith('|'))) {
           const rows = lines.filter((l) => !/^\|[\s:|-]+\|?$/.test(l)).map(tableCells)
           const [head, ...body] = rows
+          // A column whose every cell starts with the red cross holds the wrong statements of a
+          // wrong/right table: the whole column, header included, is drawn in red.
+          const wrongCol = (k: number) => body.length > 0 && body.every((r) => r[k]?.startsWith('❌'))
           return (
             <div className="gridwrap" key={i}>
               <table className="rtable">
                 <thead>
                   <tr>
                     {head.map((c, j) => (
-                      <th key={j}>
+                      <th key={j} className={wrongCol(j) ? 'wrongcell' : undefined}>
                         <Rich text={c} />
                       </th>
                     ))}
@@ -149,7 +152,7 @@ export function RichBlock({ text }: { text: string }) {
                   {body.map((r, j) => (
                     <tr key={j}>
                       {r.map((c, k) => (
-                        <td key={k}>
+                        <td key={k} className={wrongCol(k) ? 'wrongcell' : undefined}>
                           <Rich text={c} />
                         </td>
                       ))}

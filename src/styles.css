@@ -637,6 +637,9 @@ table.rtable th, table.rtable td {
   vertical-align: top;
 }
 table.rtable th { background: var(--surface-2); font-weight: 700; }
+/* the wrong side of a wrong/right table (cells that start with the red cross) */
+table.rtable td.wrongcell { color: var(--bad); background: var(--bad-soft); }
+table.rtable th.wrongcell { color: var(--bad); background: var(--bad-soft); }
 table.rtable tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surface-2) 45%, transparent); }
 ul.richlist, ol.richlist { margin: 0 0 1em; padding-left: 1.3em; }
 ul.richlist li, ol.richlist li { margin-bottom: 0.3em; }
