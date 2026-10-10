@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nunada Academy: Coding &amp; Matematika</title>
+    <!-- Pilihan tema (terang/gelap) diterapkan sebelum halaman pertama tergambar, supaya tidak berkedip. -->
+    <script>
+      try {
+        var t = localStorage.getItem('nunada.theme')
+        if (t === 'light' || t === 'dark') {
+          document.documentElement.setAttribute('data-theme', t)
+          var c = t === 'dark' ? '#16241f' : '#fbf7ec'
+          document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.setAttribute('content', c) })
+        }
+      } catch (e) {}
+    </script>
     <meta name="description" content="Belajar coding dan matematika langkah demi langkah dengan scaffolding, mini proyek, XP, dan sertifikat." />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />

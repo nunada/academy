@@ -71,7 +71,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     color-scheme: dark;
 
     --bg: #16241f;
@@ -96,6 +96,31 @@
 
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 6px 18px rgba(0, 0, 0, 0.3);
   }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #16241f;
+  --surface: #1e3029;
+  --surface-2: #274036;
+  --border: #35544a;
+  --text: #f2eee1;
+  --muted: #9db3a6;
+
+  --brand: #a3c998;
+  --brand-dark: #a3c998;
+  --brand-soft: #24463d;
+  --on-brand: #16241f;
+
+  --good: #86c08b;
+  --good-soft: #21382c;
+
+  --bad: #ef8f70;
+  --bad-soft: #3b2620;
+  --warn: #e0b354;
+  --gold: #f5c65b;
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
 * { box-sizing: border-box; }
@@ -925,7 +950,7 @@ th .sortable.on::after { content: ' ↓'; }
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --fig-a: #9fc7b4;
     --fig-b: #ef8f70;
     --fig-c: #f5c65b;
@@ -933,6 +958,14 @@ th .sortable.on::after { content: ' ↓'; }
     --fig-muted: #6f8377;
     --fig-grid: #2b3a33;
   }
+}
+:root[data-theme="dark"] {
+  --fig-a: #9fc7b4;
+  --fig-b: #ef8f70;
+  --fig-c: #f5c65b;
+  --fig-result: #7eaa71;
+  --fig-muted: #6f8377;
+  --fig-grid: #2b3a33;
 }
 
 /* Palet untuk kursus anak SD: soal menyebut warna dengan kata ("titik merah",
@@ -945,12 +978,18 @@ th .sortable.on::after { content: ' ↓'; }
   --fig-result: #d62d2d;
 }
 @media (prefers-color-scheme: dark) {
-  .fig.kid {
+  :root:not([data-theme="light"]) .fig.kid {
     --fig-a: #7fd1a3;
     --fig-b: #f7a540;
     --fig-c: #f2d15b;
     --fig-result: #ff6b6b;
   }
+}
+:root[data-theme="dark"] .fig.kid {
+  --fig-a: #7fd1a3;
+  --fig-b: #f7a540;
+  --fig-c: #f2d15b;
+  --fig-result: #ff6b6b;
 }
 
 .fig { margin: 14px 0 0; }
@@ -1422,3 +1461,7 @@ a.chip.static { cursor: pointer; }
 .pythsqb { fill: var(--fig-b); fill-opacity: 0.28; stroke: var(--fig-b); stroke-width: 1.4; }
 .pythsqc { fill: var(--fig-result); fill-opacity: 0.3; stroke: var(--fig-result); stroke-width: 1.4; }
 .pythlabel { font-size: 12px; font-weight: 700; fill: var(--text); }
+
+/* Theme switch in the top bar: light, dark, or follow the system. */
+.themesw { margin-bottom: 0; }
+.themesw button { padding: 6px 10px; line-height: 1; font-size: 1rem; }

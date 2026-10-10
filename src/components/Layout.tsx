@@ -3,6 +3,7 @@ import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
 import { useAllCourses } from '../app/curriculum'
 import { describeTrophy } from '../lib/progress'
+import { useTheme, type ThemePref } from '../lib/theme'
 import { Hearts, ShareButton } from './ui'
 import { Logo } from './Logo'
 import { FeedbackWidget } from './FeedbackWidget'
@@ -17,6 +18,27 @@ function LangToggle() {
       <button className={lang === 'id' ? 'on' : ''} onClick={() => setLang('id')} aria-pressed={lang === 'id'}>
         ID
       </button>
+    </div>
+  )
+}
+
+/** Light, dark, or follow the system. The saved choice is applied before the first paint (index.html),
+ *  so this only shows it and changes it. */
+function ThemeToggle() {
+  const { t } = useI18n()
+  const { pref, setPref } = useTheme()
+  const options: { id: ThemePref; icon: string; label: string }[] = [
+    { id: 'light', icon: '☀️', label: t('themeLight') },
+    { id: 'dark', icon: '🌙', label: t('themeDark') },
+    { id: 'system', icon: '🖥️', label: t('themeSystem') },
+  ]
+  return (
+    <div className="tabs themesw" role="group" aria-label={t('themeLabel')}>
+      {options.map((o) => (
+        <button key={o.id} className={pref === o.id ? 'on' : ''} onClick={() => setPref(o.id)} aria-pressed={pref === o.id} aria-label={o.label} title={o.label}>
+          {o.icon}
+        </button>
+      ))}
     </div>
   )
 }
@@ -121,6 +143,7 @@ export default function Layout() {
             </Link>
           </>
         )}
+        <ThemeToggle />
         <LangToggle />
         {user && (
           <button className="btn ghost sm" onClick={() => void signOut()}>

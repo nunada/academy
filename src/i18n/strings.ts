@@ -4,6 +4,12 @@ export const ui = {
   appName: { en: 'Nunada Academy', id: 'Nunada Academy' },
   appTagline: { en: 'Code & Mathematics', id: 'Coding & Matematika' },
 
+  // color theme
+  themeLabel: { en: 'Color theme', id: 'Tema warna' },
+  themeLight: { en: 'Light', id: 'Terang' },
+  themeDark: { en: 'Dark', id: 'Gelap' },
+  themeSystem: { en: 'Follow the system', id: 'Ikuti sistem' },
+
   // nav
   navLearn: { en: 'Learn', id: 'Belajar' },
   navCatalog: { en: 'Catalog', id: 'Katalog' },

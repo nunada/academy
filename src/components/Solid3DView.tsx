@@ -13,6 +13,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { buildProfile, type Solid3D } from '../lib/solid3d'
 import { useI18n } from '../i18n'
+import { useTheme } from '../lib/theme'
 import { Rich } from './ui'
 
 const figColor = (role: Solid3D['color']): THREE.Color => {
@@ -106,6 +107,7 @@ const capMaterial = (base: THREE.Color): THREE.MeshStandardMaterial => {
 export function Solid3DView({ solid }: { solid: Solid3D }) {
   const { tc } = useI18n()
   const mountRef = useRef<HTMLDivElement>(null)
+  const { theme } = useTheme() // the scene reads the --fig-* colors, so it is built again when the theme changes
   const [sweep, setSweep] = useState(solid.sweep ?? 270)
 
   // The profile only depends on the solid's own data, never on `sweep` —
@@ -253,7 +255,7 @@ export function Solid3DView({ solid }: { solid: Solid3D }) {
     // `sweep`'s current value is read at setup time on purpose — its own
     // changes are handled below, without tearing down the whole scene.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [solid, profile])
+  }, [solid, profile, theme])
 
   // A user-driven sweep change, after the scene above already exists —
   // swap the geometry in place rather than rebuilding the whole scene.
