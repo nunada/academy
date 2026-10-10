@@ -122,7 +122,7 @@ export function plain(text: string): string {
 const TEX_SYMBOLS: Record<string, string> = {
   pi: 'π', times: '×', cdot: '·', div: '÷', pm: '±', neq: '≠', leq: '≤', geq: '≥', approx: '≈', infty: '∞',
   in: '∈', notin: '∉', subset: '⊂', subseteq: '⊆', cup: '∪', cap: '∩', Rightarrow: '⇒', to: '→', ldots: '…', cdots: '…',
-  sqrt: '√', oplus: '⊕', ll: '≪', gg: '≫', sim: '~', mid: '|', quad: ' ', qquad: ' ', alpha: 'α', beta: 'β', varphi: 'φ', phi: 'φ', theta: 'θ',
+  sqrt: '√', ell: 'ℓ', oplus: '⊕', ll: '≪', gg: '≫', sim: '~', mid: '|', quad: ' ', qquad: ' ', alpha: 'α', beta: 'β', varphi: 'φ', phi: 'φ', theta: 'θ',
 }
 
 /** A readable one-line version of a TeX formula, for text-only readers. Not a

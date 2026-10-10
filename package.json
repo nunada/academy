@@ -20,7 +20,8 @@
     "check:integers": "node tools/check-integers.mjs",
     "check:rationals": "node tools/check-rationals.mjs",
     "check:irrational": "node tools/check-irrational.mjs",
-    "check:binary": "node tools/check-binary.mjs"
+    "check:binary": "node tools/check-binary.mjs",
+    "check:sequences": "node tools/check-sequences.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

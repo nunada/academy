@@ -1382,3 +1382,6 @@ a.chip.static { cursor: pointer; }
 .bit.on { background: var(--brand); color: var(--on-brand); border-color: var(--brand); }
 .bit .bitw { font-size: 0.65rem; opacity: 0.75; }
 .bit .bitv { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 1.15rem; font-weight: 700; }
+
+/* Arithmetic Sequences and Series article */
+.seqline { stroke: var(--fig-c); stroke-width: 1.4; stroke-dasharray: 4 3; opacity: 0.7; }

@@ -16,6 +16,7 @@ import {
 import { Tex } from '../ui'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { ChineseConvert, ChineseGrouping, ChineseRead, ChineseRods } from './ChineseWidgets'
+import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
 import { CompareFractions, FractionBars, FractionCalculator, FractionToDecimal, SimplifyFraction } from './RationalWidgets'
@@ -838,6 +839,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <BitwiseOperations />
     case 'binfrac':
       return <BinaryFraction />
+    case 'arithseq':
+      return <SequenceExplorer />
+    case 'arithdetect':
+      return <SequenceDetector />
+    case 'gauss':
+      return <GaussPairing />
+    case 'twoterms':
+      return <TwoTerms />
   }
 }
 

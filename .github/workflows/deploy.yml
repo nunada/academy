@@ -82,6 +82,9 @@ jobs:
       # fractions in a base behind the binary-numbers widgets: checked against BigInt,
       # the language operators and exact reconstruction.
       - run: npm run check:binary
+      # Terms, partial sums, recognition and two-term reconstruction behind the
+      # arithmetic-sequence widgets: checked against repeated addition and Gauss pairing.
+      - run: npm run check:sequences
 
       - name: Work out where the site will live
         id: base

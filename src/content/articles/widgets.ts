@@ -292,6 +292,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Tulis bilangan seperti 0,1 dalam biner, oktal, atau heksadesimal dan lihat apakah ia berakhir atau berulang, beserta perkalian bersusun yang memberi angkanya.',
     },
   },
+  arithseq: {
+    title: { en: 'Interactive: build an arithmetic sequence', id: 'Interaktif: susun barisan aritmetika' },
+    description: {
+      en: 'Choose a first term, a common difference and a length and see the terms, the formula for the n-th term, the sum and a plot of points on a straight line.',
+      id: 'Pilih suku pertama, beda, dan panjang lalu lihat suku-sukunya, rumus suku ke-n, jumlahnya, dan plot titik pada garis lurus.',
+    },
+  },
+  arithdetect: {
+    title: { en: 'Interactive: is this list an arithmetic sequence?', id: 'Interaktif: apakah daftar ini barisan aritmetika?' },
+    description: {
+      en: 'Type a list of numbers and see the differences between neighbours, whether they agree, the formula and next terms, or where the pattern breaks.',
+      id: 'Ketik daftar bilangan dan lihat selisih antartetangga, apakah sama, rumus dan suku berikutnya, atau di mana pola itu patah.',
+    },
+  },
+  gauss: {
+    title: { en: 'Interactive: Gauss’s pairing trick', id: 'Interaktif: trik pasangan Gauss' },
+    description: {
+      en: 'List the terms forwards and backwards and see every column add to the same number, which is why S = n/2 times first plus last.',
+      id: 'Daftarkan suku-sukunya maju dan mundur dan lihat setiap kolom berjumlah sama, itulah sebabnya S = n/2 kali pertama ditambah terakhir.',
+    },
+  },
+  twoterms: {
+    title: { en: 'Interactive: find a sequence from two terms', id: 'Interaktif: temukan barisan dari dua suku' },
+    description: {
+      en: 'Give any two terms and their positions and get the common difference, the first term, the formula, any later term and its sum, with the working.',
+      id: 'Berikan dua suku dan posisinya lalu dapatkan beda, suku pertama, rumus, suku selanjutnya dan jumlahnya, beserta langkahnya.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

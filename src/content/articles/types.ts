@@ -66,6 +66,10 @@ export type WidgetName =
   | 'bitedit'
   | 'bitops'
   | 'binfrac'
+  | 'arithseq'
+  | 'arithdetect'
+  | 'gauss'
+  | 'twoterms'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

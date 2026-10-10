@@ -384,7 +384,7 @@ Pangkat genap dari bilangan negatif positif dan pangkat ganjil negatif: $(-2)^4=
           text: L(
             T`**An integer $a$ is divisible by $b$ when $a=b\cdot k$ for some integer $k$: $b$ is then a divisor (factor) of $a$ and $a$ is a multiple of $b$.** So 12 is divisible by 4 because $12=4\cdot3$, and 0 is divisible by every integer because $0=b\cdot0$.
 
-**Even and odd.** An even integer is divisible by 2, $a=2k$; an odd one is $a=2k+1$. Zero is even, and negative numbers have parity too: $-3$ is odd and $-4$ is even. Parity follows a short table:
+**Even and odd.** An even integer is divisible by 2, $a=2k$; an odd one is $a=2k+1$. Zero is even, and negative numbers have parity too: $-3$ is odd and $-4$ is even. The even numbers $2,4,6,\ldots$, the odd numbers $1,3,5,\ldots$ and the multiples of any integer each form an [arithmetic sequence](article:arithmetic-sequences-and-series#what-is-an-arithmetic-sequence), and their sums have a formula there. Parity follows a short table:
 
 | Operation | Result |
 |---|---|
@@ -412,7 +412,7 @@ A proof of one row: $(2a+1)+(2b+1)=2(a+b+1)$, which is even. The same style of p
 Example: $7200$ has digit sum 9 and ends in 00, so it is divisible by 2, 3, 4, 5, 6, 8, 9 and 10. For 11 take the digits from the right with alternating signs, $0-0+2-7=-5$, which is not a multiple of 11, so 7200 is not. Try any number below, including a very long one.`,
             T`**Bilangan bulat $a$ habis dibagi $b$ bila $a=b\cdot k$ untuk suatu bilangan bulat $k$: $b$ kemudian disebut pembagi (faktor) dari $a$ dan $a$ adalah kelipatan $b$.** Jadi 12 habis dibagi 4 karena $12=4\cdot3$, dan 0 habis dibagi setiap bilangan bulat karena $0=b\cdot0$.
 
-**Genap dan ganjil.** Bilangan bulat genap habis dibagi 2, $a=2k$; yang ganjil berbentuk $a=2k+1$. Nol genap, dan bilangan negatif juga punya paritas: $-3$ ganjil dan $-4$ genap. Paritas mengikuti tabel singkat:
+**Genap dan ganjil.** Bilangan bulat genap habis dibagi 2, $a=2k$; yang ganjil berbentuk $a=2k+1$. Nol genap, dan bilangan negatif juga punya paritas: $-3$ ganjil dan $-4$ genap. Bilangan genap $2,4,6,\ldots$, bilangan ganjil $1,3,5,\ldots$, dan kelipatan bilangan bulat mana pun masing-masing membentuk [barisan aritmetika](article:arithmetic-sequences-and-series#what-is-an-arithmetic-sequence), dan jumlah-jumlahnya punya rumus di sana. Paritas mengikuti tabel singkat:
 
 | Operasi | Hasil |
 |---|---|

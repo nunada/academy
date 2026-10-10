@@ -70,7 +70,7 @@ Expressions are built from **terms**, the parts joined by + or −. Each term ha
 
 Three habits make this easier. The sign in front of a term belongs to the term, so $3x^2-5x+7$ has the terms $3x^2$, $-5x$ and $7$. A letter on its own has coefficient 1, so $x=1x$. And the **degree** of a term is the sum of the [exponents](article:exponents-and-radicals#what-is-an-exponent) of its letters, so $4xy$ has degree 2; the degree of an expression is the largest degree among its terms.
 
-The usual names are by number of terms: a **monomial** has one term, a **binomial** two and a **trinomial** three. A sum of terms whose letters have whole-number exponents is a **polynomial**; its degree gives it a name, linear (1), quadratic (2) or cubic (3). Not every expression is a polynomial: $\dfrac1x$ and $\sqrt{x}$ are algebraic expressions but not polynomials.
+The usual names are by number of terms: a **monomial** has one term, a **binomial** two and a **trinomial** three. A sum of terms whose letters have whole-number exponents is a **polynomial**; its degree gives it a name, linear (1), quadratic (2) or cubic (3). Not every expression is a polynomial: $\dfrac1x$ and $\sqrt{x}$ are algebraic expressions but not polynomials. A linear expression such as $4n+1$ is also how the $n$-th term of an [arithmetic sequence](article:arithmetic-sequences-and-series#nth-term) is written.
 
 **Expression or equation?** An equation has an equals sign and says two expressions are equal, as in $2x+3=11$; you solve it. An expression such as $2x+3$ you simplify, evaluate or factor. Type any expression below to see it taken apart.`,
             T`**Bentuk aljabar adalah frasa matematika yang tersusun dari bilangan, variabel (huruf yang mewakili bilangan), dan operasi seperti +, −, ×, ÷, serta pangkat.** Contohnya $2x+3$, $a^2-2ab+b^2$, dan $\dfrac{x+1}{x}$. Bentuk aljabar adalah frasa, bukan kalimat: ia tidak punya tanda sama dengan dan tidak ada yang diselesaikan, tetapi ia punya nilai begitu huruf-hurufnya diberi nilai.
@@ -87,7 +87,7 @@ Bentuk aljabar tersusun dari **suku**, yaitu bagian-bagian yang dihubungkan oleh
 
 Tiga kebiasaan membuatnya lebih mudah. Tanda di depan sebuah suku adalah milik suku itu, sehingga $3x^2-5x+7$ memiliki suku $3x^2$, $-5x$, dan $7$. Huruf yang berdiri sendiri berkoefisien 1, sehingga $x=1x$. Dan **derajat** sebuah suku adalah jumlah [eksponen](article:exponents-and-radicals#what-is-an-exponent) hurufnya, sehingga $4xy$ berderajat 2; derajat bentuk aljabar adalah derajat terbesar di antara sukunya.
 
-Namanya biasanya menurut banyak suku: **monomial** memiliki satu suku, **binomial** dua, dan **trinomial** tiga. Jumlah suku yang hurufnya berpangkat bilangan bulat disebut **polinomial** (suku banyak); derajatnya memberi nama: linear (1), kuadrat (2), atau kubik (3). Tidak semua bentuk aljabar adalah polinomial: $\dfrac1x$ dan $\sqrt{x}$ adalah bentuk aljabar tetapi bukan polinomial.
+Namanya biasanya menurut banyak suku: **monomial** memiliki satu suku, **binomial** dua, dan **trinomial** tiga. Jumlah suku yang hurufnya berpangkat bilangan bulat disebut **polinomial** (suku banyak); derajatnya memberi nama: linear (1), kuadrat (2), atau kubik (3). Tidak semua bentuk aljabar adalah polinomial: $\dfrac1x$ dan $\sqrt{x}$ adalah bentuk aljabar tetapi bukan polinomial. Bentuk linear seperti $4n+1$ juga adalah cara menulis suku ke-$n$ sebuah [barisan aritmetika](article:arithmetic-sequences-and-series#nth-term).
 
 **Bentuk aljabar atau persamaan?** Persamaan memiliki tanda sama dengan dan menyatakan dua bentuk aljabar sama, seperti $2x+3=11$; persamaan diselesaikan. Bentuk aljabar seperti $2x+3$ disederhanakan, dihitung nilainya, atau difaktorkan. Ketik bentuk aljabar apa pun di bawah untuk melihatnya diuraikan.`,
           ),
@@ -942,5 +942,5 @@ Uji numerik seperti ´f(2)´ dapat menangkap penyederhanaan yang salah tetapi ti
     { title: 'SymPy tutorial: simplification', author: 'SymPy Development Team', source: 'docs.sympy.org', url: 'https://docs.sympy.org/latest/tutorials/intro-tutorial/simplification.html' },
   ],
 
-  related: ['real-numbers', 'integers', 'exponents-and-radicals'],
+  related: ['real-numbers', 'integers', 'arithmetic-sequences-and-series', 'exponents-and-radicals'],
 }
