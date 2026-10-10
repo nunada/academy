@@ -244,6 +244,7 @@ Pakai widget untuk mencoba basis lain.`,
 - **Principal root:** $\sqrt{9}=3$, not $\pm3$. The radical sign always means the non-negative root. The *equation* $x^2=9$ has two solutions, $x=3$ and $x=-3$, which is why a solution step writes $x=\pm\sqrt{9}$.
 - **Even and odd roots:** an even root of a negative number is not real ($\sqrt{-4}$), but an odd root of a negative number is ($\sqrt[3]{-27}=-3$).
 - **A root of a square:** $\sqrt{x^2}=|x|$, not $x$, because the result may not be negative: $\sqrt{(-5)^2}=\sqrt{25}=5$.
+- **A root in geometry:** the diagonal of a unit square is $\sqrt{1^2+1^2}=\sqrt2$, by the [Pythagorean theorem](article:triangles#pythagorean).
 
 | $n$ | $n^2$ | $n$ | $n^3$ |
 |---|---|---|---|
@@ -267,6 +268,7 @@ A root of a whole number is either a whole number (when the number is a perfect 
 - **Akar utama:** $\sqrt{9}=3$, bukan $\pm3$. Tanda akar selalu berarti akar yang tidak negatif. *Persamaan* $x^2=9$ memiliki dua penyelesaian, $x=3$ dan $x=-3$, itulah sebabnya langkah penyelesaian menulis $x=\pm\sqrt{9}$.
 - **Akar genap dan ganjil:** akar genap dari bilangan negatif bukan bilangan real ($\sqrt{-4}$), tetapi akar ganjil dari bilangan negatif adalah real ($\sqrt[3]{-27}=-3$).
 - **Akar dari kuadrat:** $\sqrt{x^2}=|x|$, bukan $x$, karena hasilnya tidak boleh negatif: $\sqrt{(-5)^2}=\sqrt{25}=5$.
+- **Akar dalam geometri:** diagonal persegi satuan adalah $\sqrt{1^2+1^2}=\sqrt2$, menurut [teorema Pythagoras](article:triangles#pythagorean).
 
 | $n$ | $n^2$ | $n$ | $n^3$ |
 |---|---|---|---|

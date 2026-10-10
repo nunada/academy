@@ -1399,3 +1399,6 @@ a.chip.static { cursor: pointer; }
 .quadlabel { font-size: 13px; font-weight: 700; fill: var(--text); }
 .quadpts .inrow { margin-bottom: 4px; }
 .quadvertex { width: 1.4em; font-size: 1.1rem; }
+.tricirc { fill: none; stroke: var(--fig-muted); stroke-width: 1.2; }
+.tridot { fill: var(--fig-b); }
+.tripoint { fill: var(--fig-b); font-size: 12px; }

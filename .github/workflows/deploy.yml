@@ -92,6 +92,9 @@ jobs:
       # Classifying four points, area and symmetry behind the quadrilateral widgets:
       # checked on every school type, under similarities and on random shapes.
       - run: npm run check:quadrilateral
+      # Triangle kinds, Heron against the shoelace area, the exact centers and the Euler
+      # line, Euclid's triples against brute force, and the law of sines and cosines solvers.
+      - run: npm run check:triangle
 
       - name: Work out where the site will live
         id: base

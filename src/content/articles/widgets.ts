@@ -369,6 +369,27 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Berikan empat titik sudut dan lihat suku-suku tali sepatu, jumlahnya, luas eksak, panjang sisi eksak, dan keliling, serta peringatan bila bangunnya memotong dirinya sendiri.',
     },
   },
+  tricheck: {
+    title: { en: 'Interactive: can three lengths make a triangle?', id: 'Interaktif: dapatkah tiga panjang membentuk segitiga?' },
+    description: {
+      en: 'Type three side lengths and see whether they make a triangle, its type by sides and angles, area from Heron\'s formula, inradius, circumradius and angles.',
+      id: 'Ketik tiga panjang sisi dan lihat apakah membentuk segitiga, jenisnya menurut sisi dan sudut, luas dari rumus Heron, jari-jari lingkaran dalam dan luar, serta sudutnya.',
+    },
+  },
+  tripoints: {
+    title: { en: 'Interactive: the centers of a triangle', id: 'Interaktif: titik-titik penting segitiga' },
+    description: {
+      en: 'Type three vertices and see the exact centroid, circumcenter and orthocenter, the incenter, both circles and the Euler line through O, G and H.',
+      id: 'Ketik tiga titik sudut dan lihat titik berat, pusat lingkaran luar, dan titik tinggi secara eksak, pusat lingkaran dalam, kedua lingkaran, dan garis Euler melalui O, G, dan H.',
+    },
+  },
+  trisolve: {
+    title: { en: 'Interactive: solve a triangle', id: 'Interaktif: pecahkan segitiga' },
+    description: {
+      en: 'Give three measurements (SSS, SAS, ASA, AAS or SSA) and get every side and angle by the law of sines and cosines, including the two-triangle ambiguous case.',
+      id: 'Berikan tiga ukuran (SSS, SAS, ASA, AAS, atau SSA) dan dapatkan semua sisi dan sudut dengan aturan sinus dan kosinus, termasuk kasus ambigu dengan dua segitiga.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

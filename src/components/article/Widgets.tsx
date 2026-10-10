@@ -18,6 +18,7 @@ import { Frame, L, dec, useSep } from './widgetKit'
 import { ChineseConvert, ChineseGrouping, ChineseRead, ChineseRods } from './ChineseWidgets'
 import { GeometricDetector, GeometricExplorer, GeometricSum, GeometricTwoTerms } from './GeometricWidgets'
 import { QuadArea, QuadClassifier, QuadProperties } from './QuadrilateralWidgets'
+import { TriangleCenters, TriangleCheck, TriangleSolver } from './TriangleWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -863,6 +864,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <QuadProperties />
     case 'quadarea':
       return <QuadArea />
+    case 'tricheck':
+      return <TriangleCheck />
+    case 'tripoints':
+      return <TriangleCenters />
+    case 'trisolve':
+      return <TriangleSolver />
   }
 }
 

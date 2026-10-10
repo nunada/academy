@@ -129,7 +129,7 @@ Kecuali disebutkan lain, "segiempat" di bawah berarti segiempat sederhana: sisi-
           text: L(
             T`**The interior angles of every simple quadrilateral add up to $360^\circ$, because one diagonal that lies inside it splits it into two triangles and each triangle has angle sum $180^\circ$.**
 
-Draw the diagonal $AC$ of a convex $ABCD$. The angle at $A$ is split between the triangles $ABC$ and $ACD$, and so is the angle at $C$, while $B$ belongs to the first triangle and $D$ to the second. The four angles of the quadrilateral are therefore exactly the six angles of the two triangles, regrouped:
+Draw the diagonal $AC$ of a convex $ABCD$. The angle at $A$ is split between the triangles $ABC$ and $ACD$, and so is the angle at $C$, while $B$ belongs to the first triangle and $D$ to the second. The four angles of the quadrilateral are therefore exactly the six angles of the two [triangles](article:triangles#angle-sum), regrouped:
 
 $$\angle A+\angle B+\angle C+\angle D=180^\circ+180^\circ=360^\circ.$$
 
@@ -138,7 +138,7 @@ The same holds for a concave quadrilateral: use the diagonal that lies inside, a
 This one fact solves many problems. If three angles are $70^\circ$, $95^\circ$ and $120^\circ$ the fourth is $360-285=75^\circ$. If the angles are in the ratio $1:2:3:4$, call them $x,2x,3x,4x$ as in [turning words into algebra](article:algebraic-expressions#words-to-algebra): then $10x=360$, so $x=36^\circ$ and the angles are $36^\circ,72^\circ,108^\circ,144^\circ$.`,
             T`**Sudut dalam setiap segiempat sederhana berjumlah $360^\circ$, karena satu diagonal yang berada di dalamnya membaginya menjadi dua segitiga dan tiap segitiga memiliki jumlah sudut $180^\circ$.**
 
-Gambar diagonal $AC$ pada $ABCD$ yang cembung. Sudut di $A$ terbagi di antara segitiga $ABC$ dan $ACD$, begitu pula sudut di $C$, sedangkan $B$ milik segitiga pertama dan $D$ milik segitiga kedua. Keempat sudut segiempat itu dengan demikian tepat enam sudut dari kedua segitiga, yang dikelompokkan ulang:
+Gambar diagonal $AC$ pada $ABCD$ yang cembung. Sudut di $A$ terbagi di antara segitiga $ABC$ dan $ACD$, begitu pula sudut di $C$, sedangkan $B$ milik segitiga pertama dan $D$ milik segitiga kedua. Keempat sudut segiempat itu dengan demikian tepat enam sudut dari kedua [segitiga](article:triangles#angle-sum), yang dikelompokkan ulang:
 
 $$\angle A+\angle B+\angle C+\angle D=180^\circ+180^\circ=360^\circ.$$
 
@@ -275,10 +275,10 @@ Beberapa di antaranya punya alasan yang rapi. Satu diagonal jajargenjang memoton
           text: L(
             T`**The diagonals of a rectangle with sides $l$ and $w$ are equal and have length $\sqrt{l^2+w^2}$, by the Pythagorean theorem.** For a $6\times4$ rectangle that is $\sqrt{52}=2\sqrt{13}\approx7.21$, after you [simplify the radical](article:exponents-and-radicals#simplify-radicals). For a square with side $s$ the diagonal is $s\sqrt2$, and because $\sqrt2$ is [irrational](article:irrational-numbers#why-sqrt2-is-irrational), no square with whole-number sides has a whole-number diagonal.
 
-For a rhombus the diagonals cross at right angles and halve each other, so each side is the hypotenuse of a right triangle whose legs are half of each diagonal. With diagonals $10$ and $24$ the legs are $5$ and $12$, the side is $\sqrt{25+144}=13$, and the perimeter is $4\cdot13=52$.`,
+For a rhombus the diagonals cross at right angles and halve each other, so each side is the [hypotenuse](article:triangles#pythagorean) of a right triangle whose legs are half of each diagonal. With diagonals $10$ and $24$ the legs are $5$ and $12$, the side is $\sqrt{25+144}=13$, and the perimeter is $4\cdot13=52$.`,
             T`**Diagonal persegi panjang dengan sisi $l$ dan $w$ sama panjang dan panjangnya $\sqrt{l^2+w^2}$, menurut teorema Pythagoras.** Untuk persegi panjang $6\times4$ itu $\sqrt{52}=2\sqrt{13}\approx7{,}21$, setelah kamu [menyederhanakan bentuk akar](article:exponents-and-radicals#simplify-radicals). Untuk persegi dengan sisi $s$ diagonalnya $s\sqrt2$, dan karena $\sqrt2$ [irasional](article:irrational-numbers#why-sqrt2-is-irrational), tidak ada persegi bersisi bilangan bulat yang diagonalnya bilangan bulat.
 
-Pada belah ketupat kedua diagonal berpotongan tegak lurus dan saling membagi dua, sehingga tiap sisi adalah sisi miring segitiga siku-siku yang kakinya setengah dari tiap diagonal. Dengan diagonal $10$ dan $24$ kakinya $5$ dan $12$, sisinya $\sqrt{25+144}=13$, dan kelilingnya $4\cdot13=52$.`,
+Pada belah ketupat kedua diagonal berpotongan tegak lurus dan saling membagi dua, sehingga tiap sisi adalah [sisi miring](article:triangles#pythagorean) segitiga siku-siku yang kakinya setengah dari tiap diagonal. Dengan diagonal $10$ dan $24$ kakinya $5$ dan $12$, sisinya $\sqrt{25+144}=13$, dan kelilingnya $4\cdot13=52$.`,
           ),
         },
       ],
@@ -914,5 +914,5 @@ Namanya sendiri bergeser. Seiring waktu bahasa Inggris Britania mempertahankan *
     { title: 'The Python Standard Library: fractions, rational numbers', author: 'Python Software Foundation', source: 'docs.python.org', url: 'https://docs.python.org/3/library/fractions.html' },
   ],
 
-  related: ['irrational-numbers', 'exponents-and-radicals', 'algebraic-expressions', 'rational-numbers'],
+  related: ['triangles', 'irrational-numbers', 'exponents-and-radicals', 'algebraic-expressions'],
 }

@@ -77,6 +77,9 @@ export type WidgetName =
   | 'quadclassify'
   | 'quadprops'
   | 'quadarea'
+  | 'tricheck'
+  | 'tripoints'
+  | 'trisolve'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */
