@@ -95,6 +95,9 @@ jobs:
       # Triangle kinds, Heron against the shoelace area, the exact centers and the Euler
       # line, Euclid's triples against brute force, and the law of sines and cosines solvers.
       - run: npm run check:triangle
+      # Circles on rational points (Thales, three points, tangents, chords, power of a point),
+      # two circles against integer comparisons, sectors, inscribed angles, Archimedes' bounds.
+      - run: npm run check:circle
 
       - name: Work out where the site will live
         id: base

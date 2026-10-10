@@ -21,8 +21,9 @@ import { meta as arithmeticSequences } from './arithmetic-sequences-and-series.m
 import { meta as geometricSequences } from './geometric-sequences-and-series.meta'
 import { meta as quadrilaterals } from './quadrilaterals.meta'
 import { meta as triangles } from './triangles.meta'
+import { meta as circles } from './circles.meta'
 
-export const ARTICLES: ArticleMeta[] = [triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -37,6 +38,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'geometric-sequences-and-series': () => import('./geometric-sequences-and-series'),
   quadrilaterals: () => import('./quadrilaterals'),
   triangles: () => import('./triangles'),
+  circles: () => import('./circles'),
 }
 
 export const articleById = (id: string): ArticleMeta | undefined => ARTICLES.find((a) => a.id === id)

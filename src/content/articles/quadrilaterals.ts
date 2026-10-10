@@ -512,7 +512,7 @@ shoelace([[0, 0], [6, 0], [6, 4], [2, 6]])   // 26`,
 
 - **c. 1550 BCE.** The Rhind Papyrus, problem 52, finds the area of a trapezoid, which the Egyptian scribe describes as a triangle with its tip cut off.
 - **c. 300 BCE.** Euclid's *Elements*, Book I, definition 22, names the square, the oblong (our rectangle), the rhombus and the rhomboid (our parallelogram), and calls every other quadrilateral a *trapezium*. Proposition I.34 proves that the opposite sides and angles of a parallelogram are equal and that a diagonal bisects it. Later Greek writers narrowed *trapezium* to a quadrilateral with a pair of parallel sides.
-- **c. 150 CE.** Ptolemy's theorem: in a quadrilateral whose vertices lie on a circle, the product of the diagonals equals the sum of the products of the opposite sides.
+- **c. 150 CE.** Ptolemy's theorem: in a quadrilateral whose vertices lie on a [circle](article:circles#angle-theorems), the product of the diagonals equals the sum of the products of the opposite sides.
 - **628 CE.** Brahmagupta gives the area of a quadrilateral inscribed in a circle, $\sqrt{(s-a)(s-b)(s-c)(s-d)}$, where $s$ is half the perimeter. It generalizes Heron's formula for a triangle.
 - **1769.** Albrecht Meister describes the shoelace formula for the area of a polygon from its coordinates; it is now also known by Gauss's name, and as the surveyor's formula.
 
@@ -521,7 +521,7 @@ The names themselves drifted. Over time British English kept *trapezium* for a q
 
 - **Sekitar 1550 SM.** Papirus Rhind, soal 52, mencari luas trapesium, yang digambarkan juru tulis Mesir sebagai segitiga yang ujungnya dipotong.
 - **Sekitar 300 SM.** *Elements* Euclid, Buku I, definisi 22, menamai persegi, *oblong* (persegi panjang kita), belah ketupat, dan *rhomboid* (jajargenjang kita), dan menyebut segiempat lainnya *trapezium*. Proposisi I.34 membuktikan bahwa sisi dan sudut berhadapan jajargenjang sama dan bahwa diagonal membaginya menjadi dua bagian sama. Penulis Yunani kemudian mempersempit *trapezium* menjadi segiempat dengan sepasang sisi sejajar.
-- **Sekitar 150 M.** Teorema Ptolemaios: pada segiempat yang titik sudutnya terletak pada sebuah lingkaran, hasil kali diagonal sama dengan jumlah hasil kali sisi-sisi berhadapan.
+- **Sekitar 150 M.** Teorema Ptolemaios: pada segiempat yang titik sudutnya terletak pada sebuah [lingkaran](article:circles#angle-theorems), hasil kali diagonal sama dengan jumlah hasil kali sisi-sisi berhadapan.
 - **628 M.** Brahmagupta memberikan luas segiempat yang terletak dalam lingkaran, $\sqrt{(s-a)(s-b)(s-c)(s-d)}$, dengan $s$ setengah keliling. Rumus ini menggeneralisasi rumus Heron untuk segitiga.
 - **1769.** Albrecht Meister menguraikan rumus tali sepatu untuk luas poligon dari koordinatnya; kini rumus ini juga dikenal dengan nama Gauss, dan sebagai rumus juru ukur.
 
@@ -914,5 +914,5 @@ Namanya sendiri bergeser. Seiring waktu bahasa Inggris Britania mempertahankan *
     { title: 'The Python Standard Library: fractions, rational numbers', author: 'Python Software Foundation', source: 'docs.python.org', url: 'https://docs.python.org/3/library/fractions.html' },
   ],
 
-  related: ['triangles', 'irrational-numbers', 'exponents-and-radicals', 'algebraic-expressions'],
+  related: ['triangles', 'circles', 'irrational-numbers', 'exponents-and-radicals'],
 }

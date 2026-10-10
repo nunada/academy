@@ -390,6 +390,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Berikan tiga ukuran (SSS, SAS, ASA, AAS, atau SSA) dan dapatkan semua sisi dan sudut dengan aturan sinus dan kosinus, termasuk kasus ambigu dengan dua segitiga.',
     },
   },
+  circlecalc: {
+    title: { en: 'Interactive: circumference, area, arcs and sectors', id: 'Interaktif: keliling, luas, busur, dan juring' },
+    description: {
+      en: 'Give a radius, diameter, circumference or area, then slide the central angle to see the arc length, sector, chord and segment, with exact multiples of pi.',
+      id: 'Berikan jari-jari, diameter, keliling, atau luas, lalu geser sudut pusat untuk melihat panjang busur, juring, tali busur, dan tembereng, dengan kelipatan pi yang eksak.',
+    },
+  },
+  circangle: {
+    title: { en: 'Interactive: angles in a circle', id: 'Interaktif: sudut dalam lingkaran' },
+    description: {
+      en: 'Slide four points around a circle and watch the central angle, the inscribed angles, Thales\' right angle and the opposite angles of a cyclic quadrilateral.',
+      id: 'Geser empat titik mengelilingi lingkaran dan amati sudut pusat, sudut keliling, sudut siku-siku Thales, dan sudut berhadapan segiempat tali busur.',
+    },
+  },
+  circlerel: {
+    title: { en: 'Interactive: lines, points and circles', id: 'Interaktif: garis, titik, dan lingkaran' },
+    description: {
+      en: 'Place a line, a point or a second circle against a circle and get the exact answer: miss, tangent or secant, the tangent points, and how two circles lie.',
+      id: 'Letakkan garis, titik, atau lingkaran kedua terhadap sebuah lingkaran dan dapatkan jawaban eksak: tidak memotong, menyinggung, atau memotong, titik singgung, dan letak dua lingkaran.',
+    },
+  },
+  pibound: {
+    title: { en: 'Interactive: trapping pi with polygons', id: 'Interaktif: menjebak pi dengan segibanyak' },
+    description: {
+      en: 'Double the sides of a polygon inside and outside a circle, as Archimedes did, and watch the two bounds close in on pi.',
+      id: 'Gandakan sisi segibanyak di dalam dan di luar lingkaran, seperti Archimedes, dan amati kedua batas menyempit ke pi.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

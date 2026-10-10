@@ -305,7 +305,7 @@ Contoh sederhana pangkat bilangan irasional yang rasional adalah $\left(\sqrt2^{
         {
           kind: 'text',
           text: L(
-            T`**$\pi$ and $e$ are irrational and also transcendental, which means that neither is a root of any non-zero polynomial with integer coefficients.** A number that is such a root is called **algebraic**.
+            T`**$\pi$ and $e$ are irrational and also transcendental, which means that neither is a root of any non-zero polynomial with integer coefficients.** A number that is such a root is called **algebraic**. The number $\pi$ is the ratio of the circumference of a circle to its diameter, as in the article on [circles](article:circles#pi-circumference).
 
 | Kind | Meaning | Examples |
 |---|---|---|
@@ -327,7 +327,7 @@ Every rational number is algebraic, so the algebraic numbers contain the rationa
 **Squaring the circle.** The old problem asks for a square equal in area to a given circle using only compass and straightedge. Lengths that can be constructed are always algebraic. Lindemann's theorem makes $\pi$, and so $\sqrt\pi$, transcendental, and so the construction is impossible. The phrase "to square the circle" has meant "to attempt the impossible" ever since.
 
 **What is still not known.** It is easy to prove that at least one of $\pi+e$ and $\pi e$ is irrational, but nobody knows which, or whether both are. Whether $\pi+e$ is irrational at all is still an open question.`,
-            T`**$\pi$ dan $e$ irasional dan juga transenden, yang berarti keduanya bukan akar polinomial tak nol mana pun dengan koefisien bulat.** Bilangan yang merupakan akar seperti itu disebut **aljabar**.
+            T`**$\pi$ dan $e$ irasional dan juga transenden, yang berarti keduanya bukan akar polinomial tak nol mana pun dengan koefisien bulat.** Bilangan yang merupakan akar seperti itu disebut **aljabar**. Bilangan $\pi$ adalah perbandingan keliling lingkaran terhadap diameternya, seperti pada artikel [lingkaran](article:circles#pi-circumference).
 
 | Jenis | Arti | Contoh |
 |---|---|---|

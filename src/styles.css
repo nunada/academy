@@ -1402,3 +1402,13 @@ a.chip.static { cursor: pointer; }
 .tricirc { fill: none; stroke: var(--fig-muted); stroke-width: 1.2; }
 .tridot { fill: var(--fig-b); }
 .tripoint { fill: var(--fig-b); font-size: 12px; }
+.circsvg { max-width: 380px; }
+.circbase { fill: none; stroke: var(--fig-a); stroke-width: 2; }
+.circsector { fill: var(--fig-a); fill-opacity: 0.2; stroke: none; }
+.circsegment { fill: var(--fig-b); fill-opacity: 0.25; stroke: none; }
+.circradius { stroke: var(--fig-muted); stroke-width: 1.4; }
+.circchord { stroke: var(--fig-a); stroke-width: 2; }
+.circchord2 { stroke: var(--fig-b); stroke-width: 2; }
+.circsecond { fill: var(--fig-b); fill-opacity: 0.12; stroke: var(--fig-b); stroke-width: 2; }
+.circpolyin { fill: var(--fig-a); fill-opacity: 0.12; stroke: var(--fig-a); stroke-width: 1.4; }
+.circpolyout { fill: none; stroke: var(--fig-b); stroke-width: 1.4; }

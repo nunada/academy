@@ -364,7 +364,7 @@ Soal cerita: sebidang tanah berbentuk segitiga dengan alas $24$ m dan tinggi $15
 | Center | Where three of these lines meet | What it does |
 |---|---|---|
 | Centroid $G$ | the **medians**, from a vertex to the midpoint of the opposite side | the balance point; it cuts each median $2:1$; its coordinates are the mean of the vertices |
-| Circumcenter $O$ | the **perpendicular bisectors** of the sides | the center of the circle through all three vertices, radius $R$ |
+| Circumcenter $O$ | the **perpendicular bisectors** of the sides | the center of the [circle through all three vertices](article:circles#equation), radius $R$ |
 | Orthocenter $H$ | the **altitudes**, from a vertex perpendicular to the opposite side | no simple meaning, but $H=A+B+C-2O$ |
 | Incenter $I$ | the **angle bisectors** | the center of the circle that touches all three sides, radius $r=\frac Ks$ |
 
@@ -380,7 +380,7 @@ Move the vertices below and watch the four centers, the two circles and the Eule
 | Titik | Tempat tiga garis ini bertemu | Fungsinya |
 |---|---|---|
 | Titik berat $G$ | **garis berat**, dari titik sudut ke titik tengah sisi di depannya | titik keseimbangan; ia membagi tiap garis berat dengan perbandingan $2:1$; koordinatnya rata-rata titik sudut |
-| Pusat lingkaran luar $O$ | **sumbu sisi** (garis bagi tegak lurus sisi) | pusat lingkaran yang melalui ketiga titik sudut, berjari-jari $R$ |
+| Pusat lingkaran luar $O$ | **sumbu sisi** (garis bagi tegak lurus sisi) | pusat [lingkaran yang melalui ketiga titik sudut](article:circles#equation), berjari-jari $R$ |
 | Titik tinggi $H$ | **garis tinggi**, dari titik sudut tegak lurus sisi di depannya | tidak punya arti sederhana, tetapi $H=A+B+C-2O$ |
 | Pusat lingkaran dalam $I$ | **garis bagi sudut** | pusat lingkaran yang menyinggung ketiga sisi, berjari-jari $r=\frac Ks$ |
 
@@ -1055,5 +1055,5 @@ Teorema Pythagoras telah dibuktikan dengan ratusan cara: kumpulan yang terbit pa
     { title: 'The Python Standard Library: math, mathematical functions', author: 'Python Software Foundation', source: 'docs.python.org', url: 'https://docs.python.org/3/library/math.html' },
   ],
 
-  related: ['quadrilaterals', 'irrational-numbers', 'exponents-and-radicals', 'integers'],
+  related: ['quadrilaterals', 'circles', 'irrational-numbers', 'exponents-and-radicals'],
 }
