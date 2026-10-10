@@ -19,7 +19,7 @@ export const meta: ArticleMeta = {
   tags: ['algebra', 'fundamentals', 'computing'],
   level: { en: 'Beginner to intermediate', id: 'Pemula hingga menengah' },
   keywords: {
-    en: 'algebraic expressions, algebra basics, terms and coefficients, like terms, combine like terms, simplify expressions, evaluate expressions, substitution, expand brackets, distributive law, FOIL, special products, difference of squares, perfect square, factoring, factorising, factor trinomials, common factor, polynomial, binomial, trinomial, degree of a polynomial, algebraic fractions, rational expressions, words to algebra, variable, constant, sympy expand factor simplify',
+    en: 'algebraic expressions, algebra basics, terms and coefficients, like terms, combine like terms, simplify expressions, evaluate expressions, substitution, expand brackets, distributive law, FOIL, special products, difference of squares, perfect square, factoring, factorizing, factor trinomials, common factor, polynomial, binomial, trinomial, degree of a polynomial, algebraic fractions, rational expressions, words to algebra, variable, constant, sympy expand factor simplify',
     id: 'bentuk aljabar, aljabar dasar, suku dan koefisien, suku sejenis, menyederhanakan bentuk aljabar, menghitung nilai bentuk aljabar, substitusi, menjabarkan kurung, sifat distributif, hasil kali istimewa, selisih dua kuadrat, kuadrat sempurna, pemfaktoran, memfaktorkan, faktor persekutuan, polinomial, suku banyak, binomial, trinomial, derajat polinomial, pecahan aljabar, mengubah kalimat menjadi aljabar, variabel, konstanta, koefisien',
   },
   published: '2026-10-09',

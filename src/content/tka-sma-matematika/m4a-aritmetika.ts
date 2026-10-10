@@ -24,7 +24,7 @@ export const m4s1: Submodule = {
       id: 'tka-sma-m4-s1-l1',
       title: L('Arithmetic Sequences', 'Barisan Aritmetika'),
       goal: L(
-        'You can recognise an arithmetic sequence, find its common difference and any term, and find how many terms reach a value.',
+        'You can recognize an arithmetic sequence, find its common difference and any term, and find how many terms reach a value.',
         'Kamu bisa mengenali barisan aritmetika, mencari bedanya dan suku mana pun, dan mencari banyak suku untuk mencapai suatu nilai.',
       ),
       xp: 20,

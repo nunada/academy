@@ -7,7 +7,7 @@ export const module9: Module = {
   id: 'tka-sma-m9',
   title: L('Data and Probability', 'Data dan Peluang'),
   summary: L(
-    'Centre and spread of data, reading data displays, counting rules, probability and expected value.',
+    'Center and spread of data, reading data displays, counting rules, probability and expected value.',
     'Pusat dan sebaran data, membaca penyajian data, aturan pencacahan, peluang, dan nilai harapan.',
   ),
   submodules: [m9s1, m9s2],

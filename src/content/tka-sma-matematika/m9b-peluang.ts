@@ -172,12 +172,12 @@ export const m9s2: Submodule = {
           id: 'c1',
           title: L('Look Closely: All the Outcomes of Two Dice', 'Ayo Amati: Semua Hasil dari Dua Dadu'),
           body: L(
-            'The **probability** of an event, when all outcomes are equally likely, is\n\n$$P(E)=\\frac{\\text{number of favourable outcomes}}{\\text{number of all outcomes}}$$\n\nWhen two fair dice are rolled there are $6\\times6=36$ equally likely outcomes (the grid). Exactly 6 of them have a sum of 7: $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$.\n\n$$P(\\text{sum}=7)=\\frac{6}{36}=\\frac{1}{6}$$\n\nA probability is always between 0 (impossible) and 1 (certain).',
+            'The **probability** of an event, when all outcomes are equally likely, is\n\n$$P(E)=\\frac{\\text{number of favorable outcomes}}{\\text{number of all outcomes}}$$\n\nWhen two fair dice are rolled there are $6\\times6=36$ equally likely outcomes (the grid). Exactly 6 of them have a sum of 7: $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$.\n\n$$P(\\text{sum}=7)=\\frac{6}{36}=\\frac{1}{6}$$\n\nA probability is always between 0 (impossible) and 1 (certain).',
             '**Peluang** suatu kejadian, bila semua hasil sama mungkinnya, adalah\n\n$$P(E)=\\frac{\\text{banyak hasil yang diinginkan}}{\\text{banyak semua hasil}}$$\n\nSaat dua dadu setimbang dilempar ada $6\\times6=36$ hasil yang sama mungkinnya (petak). Tepat 6 di antaranya berjumlah 7: $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$.\n\n$$P(\\text{jumlah}=7)=\\frac{6}{36}=\\frac{1}{6}$$\n\nPeluang selalu di antara 0 (mustahil) dan 1 (pasti).',
           ),
           figure: {
             ...gridRect({ cols: 6, rows: 6, shade: 6, dims: ['6', '6'] }),
-            caption: L('The 36 outcomes of two dice; 6 of them (coloured) give a sum of 7.', '36 hasil dua dadu; 6 di antaranya (berwarna) berjumlah 7.'),
+            caption: L('The 36 outcomes of two dice; 6 of them (colored) give a sum of 7.', '36 hasil dua dadu; 6 di antaranya (berwarna) berjumlah 7.'),
           },
         },
         {
@@ -194,7 +194,7 @@ export const m9s2: Submodule = {
           id: 'c3',
           title: L('Step by Step: Expected Value', 'Contoh Bertahap: Nilai Harapan'),
           body: L(
-            'The **expected value** is the long-run average result: multiply each value by its probability and add.\n\n$$E=\\sum x\\cdot P(x)$$\n\nA game: roll a fair die. If it shows 1 or 2, you win 0. If 3 or 4, you win 6. If 5 or 6, you win 9 (all in thousands of rupiah).\n\n1. Step 1: Each pair has probability $\\frac{2}{6}=\\frac{1}{3}$.\n2. Step 2: $E=0\\times\\frac{1}{3}+6\\times\\frac{1}{3}+9\\times\\frac{1}{3}=\\frac{15}{3}=5$.\n3. Step 3: If it costs 4 to play, the expected profit is $5-4=1$ per game, so the game favours the player.\n\n**Watch out:** the expected value need not be one of the actual outcomes. A single game pays 0, 6 or 9, never exactly 5.',
+            'The **expected value** is the long-run average result: multiply each value by its probability and add.\n\n$$E=\\sum x\\cdot P(x)$$\n\nA game: roll a fair die. If it shows 1 or 2, you win 0. If 3 or 4, you win 6. If 5 or 6, you win 9 (all in thousands of rupiah).\n\n1. Step 1: Each pair has probability $\\frac{2}{6}=\\frac{1}{3}$.\n2. Step 2: $E=0\\times\\frac{1}{3}+6\\times\\frac{1}{3}+9\\times\\frac{1}{3}=\\frac{15}{3}=5$.\n3. Step 3: If it costs 4 to play, the expected profit is $5-4=1$ per game, so the game favors the player.\n\n**Watch out:** the expected value need not be one of the actual outcomes. A single game pays 0, 6 or 9, never exactly 5.',
             '**Nilai harapan** adalah hasil rata-rata jangka panjang: kalikan tiap nilai dengan peluangnya lalu jumlahkan.\n\n$$E=\\sum x\\cdot P(x)$$\n\nSebuah permainan: lempar dadu setimbang. Jika muncul 1 atau 2, kamu menang 0. Jika 3 atau 4, kamu menang 6. Jika 5 atau 6, kamu menang 9 (semua dalam ribuan rupiah).\n\n1. Langkah 1: Setiap pasangan berpeluang $\\frac{2}{6}=\\frac{1}{3}$.\n2. Langkah 2: $E=0\\times\\frac{1}{3}+6\\times\\frac{1}{3}+9\\times\\frac{1}{3}=\\frac{15}{3}=5$.\n3. Langkah 3: Jika biaya bermain 4, keuntungan yang diharapkan $5-4=1$ per permainan, jadi permainan itu menguntungkan pemain.\n\n**Awas:** nilai harapan tidak harus salah satu hasil sebenarnya. Satu permainan membayar 0, 6, atau 9, tidak pernah tepat 5.',
           ),
         },
@@ -202,7 +202,7 @@ export const m9s2: Submodule = {
           kind: 'quiz',
           id: 'q1',
           prompt: L(
-            'A spinner is cut into 8 equal sections: 3 are labelled R, 2 labelled B and 3 labelled G (the numbers on the picture count sections). What is the probability that it does NOT land on R?',
+            'A spinner is cut into 8 equal sections: 3 are labeled R, 2 labeled B and 3 labeled G (the numbers on the picture count sections). What is the probability that it does NOT land on R?',
             'Sebuah gasing putar dibagi 8 bagian sama: 3 berlabel R, 2 berlabel B, dan 3 berlabel G (bilangan pada gambar menyatakan banyak bagian). Berapa peluang gasing TIDAK berhenti di R?',
           ),
           figure: {
@@ -353,7 +353,7 @@ export const m9s2: Submodule = {
         ),
         figure: {
           ...gridRect({ cols: 6, rows: 6, shade: 5, dims: ['6', '6'] }),
-          caption: L('The 36 outcomes; 5 of them (coloured) give a sum of 8.', '36 hasil; 5 di antaranya (berwarna) berjumlah 8.'),
+          caption: L('The 36 outcomes; 5 of them (colored) give a sum of 8.', '36 hasil; 5 di antaranya (berwarna) berjumlah 8.'),
         },
         blanks: [{ label: 'a =', answer: 5 }],
         solution: ['(2,6),(3,5),(4,4),(5,3),(6,2)', 'a=5'],

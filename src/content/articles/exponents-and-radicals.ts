@@ -290,7 +290,7 @@ Akar dari bilangan bulat adalah bilangan bulat (bila bilangan itu pangkat sempur
           tone: 'note',
           title: L('Where the notation comes from', 'Asal usul notasinya'),
           text: L(
-            T`The radical sign $\sqrt{\ }$ first appeared in print in Christoff Rudolff's *Die Coss* (1525). The raised exponent, as in $a^2$ and $a^3$, was popularised by René Descartes in *La Géométrie* (1637). Giving meaning to negative and fractional exponents is usually credited to John Wallis (1656) and Isaac Newton (1676), who began writing roots as powers.`,
+            T`The radical sign $\sqrt{\ }$ first appeared in print in Christoff Rudolff's *Die Coss* (1525). The raised exponent, as in $a^2$ and $a^3$, was popularized by René Descartes in *La Géométrie* (1637). Giving meaning to negative and fractional exponents is usually credited to John Wallis (1656) and Isaac Newton (1676), who began writing roots as powers.`,
             T`Tanda akar $\sqrt{\ }$ pertama kali muncul dalam cetakan di *Die Coss* karya Christoff Rudolff (1525). Eksponen yang ditulis di atas, seperti pada $a^2$ dan $a^3$, dipopulerkan oleh René Descartes dalam *La Géométrie* (1637). Pemberian makna pada eksponen negatif dan pecahan biasanya dikaitkan dengan John Wallis (1656) dan Isaac Newton (1676), yang mulai menulis akar sebagai pangkat.`,
           ),
         },
@@ -490,7 +490,7 @@ Bentuk eksponen juga satu-satunya cara menggabungkan akar dengan indeks berbeda.
 **Always check.** Squaring both sides can add answers that do not fit the original equation, called *extraneous* solutions. Take $\sqrt{x+2}=x$:
 
 1. Square both sides: $x+2=x^2$.
-2. Rearrange: $x^2-x-2=0$, which factorises as $(x-2)(x+1)=0$, so $x=2$ or $x=-1$.
+2. Rearrange: $x^2-x-2=0$, which factorizes as $(x-2)(x+1)=0$, so $x=2$ or $x=-1$.
 3. Check $x=2$: $\sqrt{4}=2$ ✓. Check $x=-1$: $\sqrt{1}=1$, which is not $-1$ ✗.
 
 Only $x=2$ is a solution. The root sign is never negative, so the right side cannot be negative either.`,

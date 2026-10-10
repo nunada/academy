@@ -222,7 +222,7 @@ export const m1s1: Submodule = {
           figure: {
             ...fractionBars([{ parts: 5, shaded: 2, label: '2 : 3', color: 'a' }]),
             caption: L(
-              'One bar in 5 parts. The coloured 2 parts belong to the first friend.',
+              'One bar in 5 parts. The colored 2 parts belong to the first friend.',
               'Satu batang dalam 5 bagian. 2 bagian berwarna milik sahabat pertama.',
             ),
           },

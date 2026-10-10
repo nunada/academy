@@ -773,7 +773,7 @@ export const module2: Module = {
                   { t: 'dot', x: 'h', y: 'k', label: 'sudut' },
                 ],
                 caption: {
-                  en: 'The corner always lands at $(h, k)$, whatever $a$ does — because $a$ multiplies a value that is zero there. Set $a$ negative and the V opens downwards.',
+                  en: 'The corner always lands at $(h, k)$, whatever $a$ does — because $a$ multiplies a value that is zero there. Set $a$ negative and the V opens downward.',
                   id: 'Sudutnya selalu mendarat di $(h, k)$, apa pun yang dilakukan $a$ — sebab $a$ mengalikan nilai yang di situ bernilai nol. Buat $a$ negatif dan huruf V-nya terbuka ke bawah.',
                 },
               },
@@ -941,7 +941,7 @@ export const module2: Module = {
         ],
         hints: [
           {
-            en: 'In part 2 the $-3$ flips the V downwards and makes it three times steeper, but the corner is still read from $h$ and $k$ alone.',
+            en: 'In part 2 the $-3$ flips the V downward and makes it three times steeper, but the corner is still read from $h$ and $k$ alone.',
             id: 'Pada butir 2, $-3$ membalik huruf V ke bawah dan membuatnya tiga kali lebih curam, tetapi sudutnya tetap dibaca dari $h$ dan $k$ saja.',
           },
           {

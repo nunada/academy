@@ -186,7 +186,7 @@ export const module2: Module = {
                     errorCode: 2345,
                   },
                   {
-                    name: { en: 'Capitalisation matters', id: 'Besar-kecil hurufnya berarti' },
+                    name: { en: 'Capitalization matters', id: 'Besar-kecil hurufnya berarti' },
                     probe: 'const t4: Size = "Small";',
                     expectError: true,
                     errorCode: 2820,
@@ -217,7 +217,7 @@ export const module2: Module = {
                     errorCode: 2345,
                   },
                   {
-                    name: { en: 'Capitalisation matters', id: 'Besar-kecil hurufnya berarti' },
+                    name: { en: 'Capitalization matters', id: 'Besar-kecil hurufnya berarti' },
                     probe: 'const uji4: Ukuran = "Kecil";',
                     expectError: true,
                     errorCode: 2820,

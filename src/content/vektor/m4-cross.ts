@@ -43,7 +43,7 @@ export const module4: Module = {
               id: 'c2',
               title: { en: 'Cover up a column', id: 'Tutup satu kolom' },
               body: {
-                en: 'You do not have to memorise those six products. For the $\\hat{i}$ component, cover the $\\hat{i}$ column and take the $2 \\times 2$ determinant that is left:\n$$\\begin{vmatrix} a_2 & a_3 \\\\ b_2 & b_3 \\end{vmatrix} = a_2b_3 - a_3b_2$$\nDo the same for $\\hat{j}$ and $\\hat{k}$ — but the middle one carries a **minus sign** in front of it. Written out:\n$$\\vec{a} \\times \\vec{b} = \\begin{vmatrix} a_2 & a_3 \\\\ b_2 & b_3 \\end{vmatrix}\\hat{i} - \\begin{vmatrix} a_1 & a_3 \\\\ b_1 & b_3 \\end{vmatrix}\\hat{j} + \\begin{vmatrix} a_1 & a_2 \\\\ b_1 & b_2 \\end{vmatrix}\\hat{k}$$\nThat middle minus is where nearly every wrong answer comes from.',
+                en: 'You do not have to memorize those six products. For the $\\hat{i}$ component, cover the $\\hat{i}$ column and take the $2 \\times 2$ determinant that is left:\n$$\\begin{vmatrix} a_2 & a_3 \\\\ b_2 & b_3 \\end{vmatrix} = a_2b_3 - a_3b_2$$\nDo the same for $\\hat{j}$ and $\\hat{k}$ — but the middle one carries a **minus sign** in front of it. Written out:\n$$\\vec{a} \\times \\vec{b} = \\begin{vmatrix} a_2 & a_3 \\\\ b_2 & b_3 \\end{vmatrix}\\hat{i} - \\begin{vmatrix} a_1 & a_3 \\\\ b_1 & b_3 \\end{vmatrix}\\hat{j} + \\begin{vmatrix} a_1 & a_2 \\\\ b_1 & b_2 \\end{vmatrix}\\hat{k}$$\nThat middle minus is where nearly every wrong answer comes from.',
                 id: 'Kamu tak perlu menghafal keenam hasil kali itu. Untuk komponen $\\hat{i}$, tutup kolom $\\hat{i}$ lalu ambil determinan $2 \\times 2$ yang tersisa:\n$$\\begin{vmatrix} a_2 & a_3 \\\\ b_2 & b_3 \\end{vmatrix} = a_2b_3 - a_3b_2$$\nLakukan hal yang sama untuk $\\hat{j}$ dan $\\hat{k}$ — hanya saja yang tengah membawa **tanda minus** di depannya. Ditulis lengkap:\n$$\\vec{a} \\times \\vec{b} = \\begin{vmatrix} a_2 & a_3 \\\\ b_2 & b_3 \\end{vmatrix}\\hat{i} - \\begin{vmatrix} a_1 & a_3 \\\\ b_1 & b_3 \\end{vmatrix}\\hat{j} + \\begin{vmatrix} a_1 & a_2 \\\\ b_1 & b_2 \\end{vmatrix}\\hat{k}$$\nMinus di tengah itulah sumber hampir semua jawaban yang keliru.',
               },
             },
@@ -160,7 +160,7 @@ export const module4: Module = {
               id: 'c1',
               title: { en: 'Perpendicular to both, and order matters', id: 'Tegak lurus keduanya, dan urutannya berpengaruh' },
               body: {
-                en: 'Two facts define $\\vec{a} \\times \\vec{b}$ as much as the formula does.\n\nFirst, it is **perpendicular to both** $\\vec{a}$ and $\\vec{b}$: $\\vec{a} \\cdot (\\vec{a} \\times \\vec{b}) = 0$ and $\\vec{b} \\cdot (\\vec{a} \\times \\vec{b}) = 0$, always. Which of the two perpendicular directions it takes is settled by the **right-hand rule**: curl the fingers of your right hand from $\\vec{a}$ towards $\\vec{b}$, and your thumb points along $\\vec{a} \\times \\vec{b}$.\n\nSecond, it is **anticommutative**:\n$$\\vec{b} \\times \\vec{a} = -(\\vec{a} \\times \\vec{b})$$\nSwapping two rows of a determinant flips its sign. So unlike the dot product, the order here is not optional.',
+                en: 'Two facts define $\\vec{a} \\times \\vec{b}$ as much as the formula does.\n\nFirst, it is **perpendicular to both** $\\vec{a}$ and $\\vec{b}$: $\\vec{a} \\cdot (\\vec{a} \\times \\vec{b}) = 0$ and $\\vec{b} \\cdot (\\vec{a} \\times \\vec{b}) = 0$, always. Which of the two perpendicular directions it takes is settled by the **right-hand rule**: curl the fingers of your right hand from $\\vec{a}$ toward $\\vec{b}$, and your thumb points along $\\vec{a} \\times \\vec{b}$.\n\nSecond, it is **anticommutative**:\n$$\\vec{b} \\times \\vec{a} = -(\\vec{a} \\times \\vec{b})$$\nSwapping two rows of a determinant flips its sign. So unlike the dot product, the order here is not optional.',
                 id: 'Dua kenyataan mendefinisikan $\\vec{a} \\times \\vec{b}$ sama kuatnya dengan rumusnya.\n\nPertama, ia **tegak lurus terhadap keduanya**, $\\vec{a}$ maupun $\\vec{b}$: $\\vec{a} \\cdot (\\vec{a} \\times \\vec{b}) = 0$ dan $\\vec{b} \\cdot (\\vec{a} \\times \\vec{b}) = 0$, selalu. Yang menentukan ke arah mana dari dua arah tegak lurus itu adalah **kaidah tangan kanan**: lengkungkan jari tangan kananmu dari $\\vec{a}$ menuju $\\vec{b}$, dan ibu jarimu menunjuk arah $\\vec{a} \\times \\vec{b}$.\n\nKedua, ia **antikomutatif**:\n$$\\vec{b} \\times \\vec{a} = -(\\vec{a} \\times \\vec{b})$$\nMenukar dua baris determinan membalik tandanya. Jadi berbeda dari perkalian titik, urutan di sini bukan hal yang bebas.',
               },
               figure: {
@@ -209,7 +209,7 @@ export const module4: Module = {
                   { label: 'θ =', n: { angle: [{ of: 'a' }, { of: 'b' }] } },
                 ],
                 caption: {
-                  en: 'Drag the two arrows. The cross product grows as the angle opens towards 90° and shrinks back to zero the moment the two line up — the mirror image of how the dot product behaved.',
+                  en: 'Drag the two arrows. The cross product grows as the angle opens toward 90° and shrinks back to zero the moment the two line up — the mirror image of how the dot product behaved.',
                   id: 'Seret kedua anak panahnya. Perkalian silangnya membesar seiring sudutnya melebar menuju 90° dan menyusut kembali ke nol tepat ketika keduanya sejajar — bayangan cermin dari perilaku perkalian titik.',
                 },
               },
@@ -372,7 +372,7 @@ export const module4: Module = {
         ],
         hints: [
           {
-            en: 'In part 2, pull the common factor 7 out of the cross product first — normalising $(-1, 1, 2)$ is much less work.',
+            en: 'In part 2, pull the common factor 7 out of the cross product first — normalizing $(-1, 1, 2)$ is much less work.',
             id: 'Pada butir 2, keluarkan dulu faktor bersama 7 dari perkalian silangnya — menormalkan $(-1, 1, 2)$ jauh lebih ringan.',
           },
           {

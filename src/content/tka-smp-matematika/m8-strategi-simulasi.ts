@@ -64,7 +64,7 @@ function barModel(rows: BarRow[]): Piece {
 }
 
 /** `n` squares in a row made of matchsticks; each new square adds its own three
- *  sticks in a new colour, so the "+3" can be seen. */
+ *  sticks in a new color, so the "+3" can be seen. */
 function sticks(n: number): Piece {
   const items: FigItem[] = []
   const cols: FigColor[] = ['a', 'b', 'c', 'result']
@@ -114,7 +114,7 @@ export const module8: Module = {
       id: 'tka-smp-m8-s1',
       title: L('Problem-Solving Strategies', 'Strategi Memecahkan Soal'),
       summary: L(
-        'A four-step plan for word problems, with bar models, algebra, guess and check, working backwards and estimating, and then reasoning problems that mix topics.',
+        'A four-step plan for word problems, with bar models, algebra, guess and check, working backward and estimating, and then reasoning problems that mix topics.',
         'Rencana empat langkah untuk soal cerita, dengan model batang, aljabar, coba-coba, berpikir mundur, dan menaksir, lalu soal bernalar yang mencampur beberapa topik.',
       ),
       lessons: [
@@ -133,7 +133,7 @@ export const module8: Module = {
               id: 'c1',
               title: L('Look Closely: Four Steps', 'Ayo Amati: Empat Langkah'),
               body: L(
-                `Dewi buys 4 exercise books at Rp7,500 each and a ruler for Rp4,000. She pays with Rp50,000. How much change does she get?\n\nA word problem is a small story with a question hiding inside. Do not rush to add up every number! Use the same four steps every time.\n\n| Step | What you do |\n| --- | --- |\n| Understand | Read it twice. Underline what is asked and circle what is given. |\n| Plan | Choose a strategy: draw a diagram or bar model, make a table, let $x$ be the unknown, guess and check, or work backwards. |\n| Calculate | Work one small step at a time and write the units. |\n| Check | Does the answer fit the story? Is it sensible? Estimate to check. |\n\nThe bar model shows Dewi's story: the money she pays is made of 4 books, the ruler and the change.`,
+                `Dewi buys 4 exercise books at Rp7,500 each and a ruler for Rp4,000. She pays with Rp50,000. How much change does she get?\n\nA word problem is a small story with a question hiding inside. Do not rush to add up every number! Use the same four steps every time.\n\n| Step | What you do |\n| --- | --- |\n| Understand | Read it twice. Underline what is asked and circle what is given. |\n| Plan | Choose a strategy: draw a diagram or bar model, make a table, let $x$ be the unknown, guess and check, or work backward. |\n| Calculate | Work one small step at a time and write the units. |\n| Check | Does the answer fit the story? Is it sensible? Estimate to check. |\n\nThe bar model shows Dewi's story: the money she pays is made of 4 books, the ruler and the change.`,
                 `Dewi membeli 4 buku tulis seharga Rp7.500 per buah dan sebuah penggaris seharga Rp4.000. Ia membayar dengan Rp50.000. Berapa uang kembaliannya?\n\nSoal cerita adalah cerita pendek dengan pertanyaan yang tersembunyi di dalamnya. Jangan buru-buru menjumlahkan semua angka! Pakai empat langkah yang sama setiap kali.\n\n| Langkah | Yang kamu lakukan |\n| --- | --- |\n| Pahami | Baca dua kali. Garis bawahi yang ditanyakan dan lingkari yang diketahui. |\n| Rencanakan | Pilih strategi: gambar diagram atau model batang, buat tabel, misalkan $x$ sebagai yang dicari, coba-coba, atau berpikir mundur. |\n| Hitung | Kerjakan satu langkah kecil demi satu langkah dan tulis satuannya. |\n| Periksa | Apakah jawabannya cocok dengan cerita? Masuk akal? Taksir untuk memeriksa. |\n\nModel batang menunjukkan cerita Dewi: uang yang ia bayarkan terdiri dari 4 buku, penggaris, dan uang kembalian.`,
               ),
               figure: {
@@ -180,7 +180,7 @@ export const module8: Module = {
               id: 'c3',
               title: L('Step by Step: Let x Be ...', 'Contoh Bertahap: Misalkan x adalah ...'),
               body: L(
-                `A taxi charges a starting fee of Rp9,000 plus Rp3,000 for each kilometre. Gita paid Rp42,000. How many kilometres did she ride?\n\n1. Step 1, Understand: fee Rp9,000, then Rp3,000 per km, total Rp42,000. Asked, the distance.\n2. Step 2, Plan: say in words what the unknown is. Let $x$ be the number of kilometres. The cost is $9\\,000 + 3\\,000x$.\n3. Step 3, Calculate: write the equation $9\\,000 + 3\\,000x = 42\\,000$. Subtract $9\\,000$ from both sides to get $3\\,000x = 33\\,000$. Divide both sides by $3\\,000$ to get $x = 11$.\n4. Step 4, Check: $9\\,000 + 3\\,000 \\times 11 = 9\\,000 + 33\\,000$, which is $42\\,000$. Gita rode 11 km.\n\n**Remember:**\n\n- Begin with "Let $x$ be ..." and say what $x$ counts, with its unit.\n- Turn the story into an equation, then do the same thing to both sides.\n- Answer the question in words, with the unit.`,
+                `A taxi charges a starting fee of Rp9,000 plus Rp3,000 for each kilometer. Gita paid Rp42,000. How many kilometers did she ride?\n\n1. Step 1, Understand: fee Rp9,000, then Rp3,000 per km, total Rp42,000. Asked, the distance.\n2. Step 2, Plan: say in words what the unknown is. Let $x$ be the number of kilometers. The cost is $9\\,000 + 3\\,000x$.\n3. Step 3, Calculate: write the equation $9\\,000 + 3\\,000x = 42\\,000$. Subtract $9\\,000$ from both sides to get $3\\,000x = 33\\,000$. Divide both sides by $3\\,000$ to get $x = 11$.\n4. Step 4, Check: $9\\,000 + 3\\,000 \\times 11 = 9\\,000 + 33\\,000$, which is $42\\,000$. Gita rode 11 km.\n\n**Remember:**\n\n- Begin with "Let $x$ be ..." and say what $x$ counts, with its unit.\n- Turn the story into an equation, then do the same thing to both sides.\n- Answer the question in words, with the unit.`,
                 `Sebuah taksi menetapkan tarif awal Rp9.000 ditambah Rp3.000 untuk setiap kilometer. Gita membayar Rp42.000. Berapa kilometer jarak yang ia tempuh?\n\n1. Langkah 1, Pahami: tarif awal Rp9.000, lalu Rp3.000 per km, jumlah Rp42.000. Ditanyakan jaraknya.\n2. Langkah 2, Rencanakan: sebutkan dengan kata-kata apa yang dicari. Misalkan $x$ adalah banyak kilometer. Biayanya $9\\,000 + 3\\,000x$.\n3. Langkah 3, Hitung: tulis persamaan $9\\,000 + 3\\,000x = 42\\,000$. Kurangkan $9\\,000$ pada kedua ruas sehingga $3\\,000x = 33\\,000$. Bagi kedua ruas dengan $3\\,000$ sehingga $x = 11$.\n4. Langkah 4, Periksa: $9\\,000 + 3\\,000 \\times 11 = 9\\,000 + 33\\,000$, yaitu $42\\,000$. Gita menempuh 11 km.\n\n**Ingat:**\n\n- Mulailah dengan "Misalkan $x$ adalah ..." dan sebutkan apa yang dihitung $x$, beserta satuannya.\n- Ubah cerita menjadi persamaan, lalu lakukan hal yang sama pada kedua ruas.\n- Jawab pertanyaannya dengan kalimat, lengkap dengan satuan.`,
               ),
               figure: {
@@ -211,9 +211,9 @@ export const module8: Module = {
             {
               kind: 'concept',
               id: 'c5',
-              title: L('Step by Step: Working Backwards', 'Contoh Bertahap: Berpikir Mundur'),
+              title: L('Step by Step: Working Backward', 'Contoh Bertahap: Berpikir Mundur'),
               body: L(
-                `A bus has some passengers when it leaves the terminal. At the first stop half of them get off and 6 get on. At the second stop 10 get off. Now there are 20 passengers. How many were on the bus at the start?\n\n1. Step 1: write the story as a chain. Start, then half get off, then plus 6, then minus 10, and the end is 20.\n2. Step 2: go backwards and undo each step in reverse order. The last step was "minus 10", so undo it: $20 + 10 = 30$.\n3. Step 3: undo "plus 6": $30 - 6 = 24$. Then undo "half get off", which means "halve", by doubling: $24 \\times 2 = 48$.\n4. Step 4: check by going forwards. $48 \\div 2 = 24$, then $24 + 6 = 30$, then $30 - 10 = 20$. Correct!\n\n**Remember:** to work backwards, start from the end and undo the steps in reverse order. Plus becomes minus, and times becomes divide.`,
+                `A bus has some passengers when it leaves the terminal. At the first stop half of them get off and 6 get on. At the second stop 10 get off. Now there are 20 passengers. How many were on the bus at the start?\n\n1. Step 1: write the story as a chain. Start, then half get off, then plus 6, then minus 10, and the end is 20.\n2. Step 2: go backward and undo each step in reverse order. The last step was "minus 10", so undo it: $20 + 10 = 30$.\n3. Step 3: undo "plus 6": $30 - 6 = 24$. Then undo "half get off", which means "halve", by doubling: $24 \\times 2 = 48$.\n4. Step 4: check by going forward. $48 \\div 2 = 24$, then $24 + 6 = 30$, then $30 - 10 = 20$. Correct!\n\n**Remember:** to work backward, start from the end and undo the steps in reverse order. Plus becomes minus, and times becomes divide.`,
                 `Sebuah bus membawa sejumlah penumpang saat berangkat dari terminal. Di perhentian pertama setengah penumpang turun dan 6 orang naik. Di perhentian kedua 10 orang turun. Sekarang ada 20 penumpang. Berapa penumpang di bus pada awalnya?\n\n1. Langkah 1: tulis ceritanya sebagai rantai. Mula-mula, lalu setengahnya turun, lalu tambah 6, lalu kurang 10, dan akhirnya 20.\n2. Langkah 2: berjalan mundur dan batalkan tiap langkah dengan urutan terbalik. Langkah terakhir "kurang 10", jadi batalkan: $20 + 10 = 30$.\n3. Langkah 3: batalkan "tambah 6": $30 - 6 = 24$. Lalu batalkan "setengahnya turun", yaitu "dibagi dua", dengan menggandakan: $24 \\times 2 = 48$.\n4. Langkah 4: periksa dengan berjalan maju. $48 \\div 2 = 24$, lalu $24 + 6 = 30$, lalu $30 - 10 = 20$. Benar!\n\n**Ingat:** untuk berpikir mundur, mulai dari akhir dan batalkan langkah-langkahnya dengan urutan terbalik. Tambah menjadi kurang, dan kali menjadi bagi.`,
               ),
               figure: {
@@ -261,7 +261,7 @@ export const module8: Module = {
               id: 'c7',
               title: L('Watch Out!: Word Problem Traps', 'Awas, Jebakan!: Jebakan Soal Cerita'),
               body: L(
-                `| Wrong | Right |\n| --- | --- |\n| Dewi buys 4 books and a ruler for Rp34,000, so the change is Rp34,000. | That is only what she spent. The question asks for the change: Rp50,000 − Rp34,000 = Rp16,000. Read the question again before you write the answer. |\n| Ratio $3 : 5$ and total 240,000, so one part is $240\\,000 \\div 5$. | Divide by the total number of parts, $3 + 5 = 8$. |\n| From $3\\,000x = 33\\,000$ the answer is 33,000 km. | $x$ is the number of kilometres: $x = 11$. 33,000 is a cost in rupiah, not a distance. |`,
+                `| Wrong | Right |\n| --- | --- |\n| Dewi buys 4 books and a ruler for Rp34,000, so the change is Rp34,000. | That is only what she spent. The question asks for the change: Rp50,000 − Rp34,000 = Rp16,000. Read the question again before you write the answer. |\n| Ratio $3 : 5$ and total 240,000, so one part is $240\\,000 \\div 5$. | Divide by the total number of parts, $3 + 5 = 8$. |\n| From $3\\,000x = 33\\,000$ the answer is 33,000 km. | $x$ is the number of kilometers: $x = 11$. 33,000 is a cost in rupiah, not a distance. |`,
                 `| Salah | Benar |\n| --- | --- |\n| Dewi membeli 4 buku dan penggaris seharga Rp34.000, jadi kembaliannya Rp34.000. | Itu baru yang ia belanjakan. Yang ditanya uang kembalian: Rp50.000 − Rp34.000 = Rp16.000. Baca lagi pertanyaannya sebelum menulis jawaban. |\n| Perbandingan $3 : 5$ dan jumlah 240.000, jadi satu bagian $240\\,000 \\div 5$. | Bagi dengan jumlah seluruh bagian, $3 + 5 = 8$. |\n| Dari $3\\,000x = 33\\,000$ jawabannya 33.000 km. | $x$ adalah banyak kilometer: $x = 11$. 33.000 adalah biaya dalam rupiah, bukan jarak. |`,
               ),
             },
@@ -321,18 +321,18 @@ export const module8: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: L(
-                'A car uses 7.8 litres of petrol for every 100 km. By estimating, about how many litres does it use for a trip of 395 km?',
+                'A car uses 7.8 liters of gasoline for every 100 km. By estimating, about how many liters does it use for a trip of 395 km?',
                 'Sebuah mobil memakai 7,8 liter bensin untuk setiap 100 km. Dengan menaksir, kira-kira berapa liter yang dipakai untuk perjalanan 395 km?',
               ),
               options: [
-                L('31 litres', '31 liter'),
-                L('3.1 litres', '3,1 liter'),
-                L('310 litres', '310 liter'),
-                L('62 litres', '62 liter'),
+                L('31 liters', '31 liter'),
+                L('3.1 liters', '3,1 liter'),
+                L('310 liters', '310 liter'),
+                L('62 liters', '62 liter'),
               ],
               answer: 0,
               explain: L(
-                'Round 7.8 to 8 and 395 km to 400 km, which is 4 hundreds. Then $8 \\times 4 = 32$ litres. Only 31 is close to that. 3.1 and 310 have the decimal point in the wrong place, and 62 doubles the distance.',
+                'Round 7.8 to 8 and 395 km to 400 km, which is 4 hundreds. Then $8 \\times 4 = 32$ liters. Only 31 is close to that. 3.1 and 310 have the decimal point in the wrong place, and 62 doubles the distance.',
                 'Bulatkan 7,8 menjadi 8 dan 395 km menjadi 400 km, yaitu 4 ratusan. Maka $8 \\times 4 = 32$ liter. Hanya 31 yang dekat dengan itu. 3,1 dan 310 salah letak koma desimalnya, dan 62 menggandakan jaraknya.',
               ),
               hint: L(
@@ -531,7 +531,7 @@ export const module8: Module = {
               figure: {
                 ...sticks(4),
                 caption: L(
-                  'Four squares in a row. The first square has 4 sticks, and each new square adds 3 sticks of a new colour.',
+                  'Four squares in a row. The first square has 4 sticks, and each new square adds 3 sticks of a new color.',
                   'Empat persegi berjajar. Persegi pertama 4 batang, dan setiap persegi baru menambah 3 batang dengan warna baru.',
                 ),
               },
@@ -550,7 +550,7 @@ export const module8: Module = {
               id: 'c6',
               title: L('Look Closely: Three Levels of Thinking', 'Ayo Amati: Tiga Tingkat Berpikir'),
               body: L(
-                `Every TKA question asks for one of three levels of thinking. Knowing the level helps you see what the question wants from you.\n\n| Level | Thinking processes | One-line example |\n| --- | --- | --- |\n| Understanding | **Calculate**, **read information** from a table or graph, **group** things that belong together, **identify** | Work out $\\frac{3}{4} + \\frac{1}{8}$, or find the tallest bar in a bar chart. |\n| Applying | **Model** a story as a mathematical sentence, **apply** a rule, **interpret** a result | Turn "3 pens cost Rp12,000" into $3p = 12\\,000$, or say what a slope of 2 means for a taxi fare. |\n| Reasoning | **Analyse** a problem, **solve** a new kind of problem, **evaluate** other methods, **conclude** from data, **generalise** into a rule | Decide which of two phone plans is cheaper for 20 minutes, or write a rule for the $n$th term of a pattern. |\n\nA level is not the same as hard or easy. A Reasoning question can have small numbers. Ask yourself: am I only calculating, am I turning a story into mathematics, or must I find my own way?`,
+                `Every TKA question asks for one of three levels of thinking. Knowing the level helps you see what the question wants from you.\n\n| Level | Thinking processes | One-line example |\n| --- | --- | --- |\n| Understanding | **Calculate**, **read information** from a table or graph, **group** things that belong together, **identify** | Work out $\\frac{3}{4} + \\frac{1}{8}$, or find the tallest bar in a bar chart. |\n| Applying | **Model** a story as a mathematical sentence, **apply** a rule, **interpret** a result | Turn "3 pens cost Rp12,000" into $3p = 12\\,000$, or say what a slope of 2 means for a taxi fare. |\n| Reasoning | **Analyze** a problem, **solve** a new kind of problem, **evaluate** other methods, **conclude** from data, **generalize** into a rule | Decide which of two phone plans is cheaper for 20 minutes, or write a rule for the $n$th term of a pattern. |\n\nA level is not the same as hard or easy. A Reasoning question can have small numbers. Ask yourself: am I only calculating, am I turning a story into mathematics, or must I find my own way?`,
                 `Setiap soal TKA meminta salah satu dari tiga tingkat berpikir. Mengenal tingkatnya membantumu melihat apa yang diminta soal.\n\n| Tingkat | Proses berpikir | Contoh satu baris |\n| --- | --- | --- |\n| Memahami | **Menghitung**, **membaca informasi** dari tabel atau grafik, **mengelompokkan** hal yang sejenis, **mengidentifikasi** | Hitung $\\frac{3}{4} + \\frac{1}{8}$, atau temukan batang tertinggi pada diagram batang. |\n| Mengaplikasikan | **Memodelkan** cerita menjadi kalimat matematika, **mengaplikasikan** aturan, **menginterpretasikan** hasil | Ubah "3 pulpen seharga Rp12.000" menjadi $3p = 12\\,000$, atau jelaskan arti gradien 2 pada tarif taksi. |\n| Bernalar | **Menganalisis** masalah, **memecahkan masalah** jenis baru, **mengevaluasi** cara lain, **menyimpulkan** dari data, **melakukan generalisasi** menjadi aturan | Tentukan paket telepon mana yang lebih murah untuk 20 menit, atau tulis aturan suku ke-$n$ suatu pola. |\n\nTingkat tidak sama dengan sulit atau mudah. Soal Bernalar bisa berangka kecil. Tanyakan pada dirimu: apakah aku hanya menghitung, mengubah cerita menjadi matematika, atau harus menemukan caraku sendiri?`,
               ),
             },
@@ -558,7 +558,7 @@ export const module8: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
-                'The bar chart shows the favourite sport of 30 students (F is futsal, B is badminton, S is swimming and V is volleyball). What fraction of the students chose badminton or volleyball?',
+                'The bar chart shows the favorite sport of 30 students (F is futsal, B is badminton, S is swimming and V is volleyball). What fraction of the students chose badminton or volleyball?',
                 'Diagram batang menunjukkan olahraga favorit 30 siswa (F adalah futsal, B adalah bulu tangkis, S adalah renang, dan V adalah bola voli). Berapa bagian siswa yang memilih bulu tangkis atau bola voli?',
               ),
               figure: {
@@ -572,7 +572,7 @@ export const module8: Module = {
                   max: 12,
                   step: 2,
                 }),
-                caption: L('Favourite sports of 30 students.', 'Olahraga favorit 30 siswa.'),
+                caption: L('Favorite sports of 30 students.', 'Olahraga favorit 30 siswa.'),
               },
               options: [
                 L('$\\frac{2}{5}$', '$\\frac{2}{5}$'),
@@ -741,7 +741,7 @@ export const module8: Module = {
         runtime: 'math',
         title: L('Project: Plan, Calculate, Check', 'Proyek: Rencanakan, Hitung, Periksa'),
         brief: L(
-          'Four word problems that need a plan, from easy to a real reasoning puzzle. Use working backwards, an equation, a bar model or small questions.',
+          'Four word problems that need a plan, from easy to a real reasoning puzzle. Use working backward, an equation, a bar model or small questions.',
           'Empat soal cerita yang memerlukan rencana, dari yang mudah sampai teka-teki bernalar. Pakai berpikir mundur, persamaan, model batang, atau pertanyaan-pertanyaan kecil.',
         ),
         requirements: [
@@ -831,7 +831,7 @@ export const module8: Module = {
             'Gambar atau buat model batang sebelum menghitung. Tanyakan: apa yang ditanyakan, dan apa yang diketahui?',
           ),
           L(
-            'When a story ends with the result and asks about the start, work backwards and undo every step. When there is an unknown amount, say "let $x$ be ..." and write an equation.',
+            'When a story ends with the result and asks about the start, work backward and undo every step. When there is an unknown amount, say "let $x$ be ..." and write an equation.',
             'Kalau cerita berakhir dengan hasil dan menanyakan awalnya, berpikir mundur dan batalkan setiap langkah. Kalau ada jumlah yang dicari, tulis "misalkan $x$ adalah ..." lalu buat persamaan.',
           ),
           L(
@@ -1294,11 +1294,11 @@ export const module8: Module = {
               ],
               answer: [true, true, false, true],
               explain: L(
-                '$10^{-4}$ moves the decimal point 4 places left: 0.00052. $6^2 = 36 < 45 < 49 = 7^2$. But $2^2 \\times 3^3 = 4 \\times 27 = 108$; the prime factorisation of 72 is $2^3 \\times 3^2$. And $24 = 2^3 \\times 3$, $36 = 2^2 \\times 3^2$, so the GCF is $2^2 \\times 3 = 12$.',
+                '$10^{-4}$ moves the decimal point 4 places left: 0.00052. $6^2 = 36 < 45 < 49 = 7^2$. But $2^2 \\times 3^3 = 4 \\times 27 = 108$; the prime factorization of 72 is $2^3 \\times 3^2$. And $24 = 2^3 \\times 3$, $36 = 2^2 \\times 3^2$, so the GCF is $2^2 \\times 3 = 12$.',
                 '$10^{-4}$ menggeser koma 4 tempat ke kiri: 0,00052. $6^2 = 36 < 45 < 49 = 7^2$. Tetapi $2^2 \\times 3^3 = 4 \\times 27 = 108$; faktorisasi prima 72 adalah $2^3 \\times 3^2$. Dan $24 = 2^3 \\times 3$, $36 = 2^2 \\times 3^2$, jadi FPB-nya $2^2 \\times 3 = 12$.',
               ),
               hint: L(
-                'Check each statement alone: move the decimal point, square 6 and 7, multiply out the primes, and factorise 24 and 36.',
+                'Check each statement alone: move the decimal point, square 6 and 7, multiply out the primes, and factorize 24 and 36.',
                 'Periksa tiap pernyataan sendiri-sendiri: geser koma, kuadratkan 6 dan 7, kalikan faktor primanya, dan faktorkan 24 dan 36.',
               ),
             },
@@ -1900,7 +1900,7 @@ export const module8: Module = {
               kind: 'math',
               id: 'm2',
               prompt: L(
-                'The length of a rectangular garden is 3 m more than twice its width, and its perimeter is 60 m. By how many square metres is the area of a square with the same perimeter larger than the area of the garden?',
+                'The length of a rectangular garden is 3 m more than twice its width, and its perimeter is 60 m. By how many square meters is the area of a square with the same perimeter larger than the area of the garden?',
                 'Panjang sebuah kebun berbentuk persegi panjang adalah 3 m lebih dari dua kali lebarnya, dan kelilingnya 60 m. Luas persegi yang kelilingnya sama dengan keliling kebun itu lebih besar berapa meter persegi daripada luas kebun?',
               ),
               figure: {
@@ -2449,13 +2449,13 @@ export const module8: Module = {
           },
           {
             prompt: L(
-              'A car uses 8 litres of petrol for every 100 km. Petrol costs Rp12,000 per litre. How much does the petrol cost for a trip of 350 km?',
+              'A car uses 8 liters of gasoline for every 100 km. Gasoline costs Rp12,000 per liter. How much does the gasoline cost for a trip of 350 km?',
               'Sebuah mobil memakai 8 liter bensin untuk setiap 100 km. Harga bensin Rp12.000 per liter. Berapa biaya bensin untuk perjalanan 350 km?',
             ),
             blanks: [{ label: RP, answer: 336000 }],
             solution: {
               en: [
-                '350 \\div 100 \\times 8 = 28 \\text{ litres}',
+                '350 \\div 100 \\times 8 = 28 \\text{ liters}',
                 '28 \\times 12\\,000 = 336\\,000',
               ],
               id: [
@@ -2466,19 +2466,19 @@ export const module8: Module = {
           },
           {
             prompt: L(
-              'A cylindrical water tank has a radius of 7 dm and a height of 10 dm. How many litres of water does it hold when it is full? Use $\\pi = \\frac{22}{7}$ and remember that $1\\text{ dm}^3 = 1$ litre.',
+              'A cylindrical water tank has a radius of 7 dm and a height of 10 dm. How many liters of water does it hold when it is full? Use $\\pi = \\frac{22}{7}$ and remember that $1\\text{ dm}^3 = 1$ liter.',
               'Sebuah bak air berbentuk tabung berjari-jari 7 dm dan tinggi 10 dm. Berapa liter air yang termuat saat bak penuh? Pakai $\\pi = \\frac{22}{7}$ dan ingat bahwa $1\\text{ dm}^3 = 1$ liter.',
             ),
             figure: {
               ...cylinder2d({ r: 3, h: 5, labels: { r: '7', h: '10' } }),
               caption: L('The tank. The sides are in dm.', 'Bak air. Ukuran sisinya dalam dm.'),
             },
-            blanks: [{ answer: 1540, after: { en: '\\text{ litres}', id: '\\text{ liter}' } }],
+            blanks: [{ answer: 1540, after: { en: '\\text{ liters}', id: '\\text{ liter}' } }],
             solution: {
               en: [
                 'V = \\pi r^2 h = \\frac{22}{7} \\times 7^2 \\times 10',
                 'V = 22 \\times 7 \\times 10 = 1\\,540 \\text{ dm}^3',
-                '1\\,540 \\text{ dm}^3 = 1\\,540 \\text{ litres}',
+                '1\\,540 \\text{ dm}^3 = 1\\,540 \\text{ liters}',
               ],
               id: [
                 'V = \\pi r^2 h = \\frac{22}{7} \\times 7^2 \\times 10',
@@ -2502,7 +2502,7 @@ export const module8: Module = {
           },
           {
             prompt: L(
-              'A photo is 12 cm wide and 18 cm long. It is enlarged to a similar photo whose longer side is 45 cm. By how many square centimetres does the area of the photo grow?',
+              'A photo is 12 cm wide and 18 cm long. It is enlarged to a similar photo whose longer side is 45 cm. By how many square centimeters does the area of the photo grow?',
               'Sebuah foto lebarnya 12 cm dan panjangnya 18 cm. Foto itu diperbesar menjadi foto sebangun yang sisi terpanjangnya 45 cm. Berapa sentimeter persegi luas foto bertambah?',
             ),
             figure: {
@@ -2532,7 +2532,7 @@ export const module8: Module = {
             'Kerjakan soal satu per satu, dan lewati lalu kembali kalau buntu. Periksa tiap jawaban dengan taksiran.',
           ),
           L(
-            'Choose a strategy: a diagram, an equation with "let $x$ be ...", guess and check, or working backwards. For similar figures, lengths grow by the scale factor and areas by its square.',
+            'Choose a strategy: a diagram, an equation with "let $x$ be ...", guess and check, or working backward. For similar figures, lengths grow by the scale factor and areas by its square.',
             'Pilih strategi: diagram, persamaan dengan "misalkan $x$ adalah ...", coba-coba, atau berpikir mundur. Pada bangun sebangun, panjang bertambah sebesar faktor skala dan luas sebesar kuadratnya.',
           ),
           L(
@@ -2581,7 +2581,7 @@ export const module8: Module = {
               ),
               figure: {
                 ...houseFig(6, 3, 2),
-                caption: L('The front of the shed, with lengths in metres.', 'Bagian depan gudang, dengan panjang dalam meter.'),
+                caption: L('The front of the shed, with lengths in meters.', 'Bagian depan gudang, dengan panjang dalam meter.'),
               },
             },
             /* 1 — choose all, Reasoning */
@@ -2723,7 +2723,7 @@ export const module8: Module = {
               ),
               figure: {
                 ...houseFig(9, 4, 3),
-                caption: L('The front of the house, with lengths in metres.', 'Bagian depan rumah, dengan panjang dalam meter.'),
+                caption: L('The front of the house, with lengths in meters.', 'Bagian depan rumah, dengan panjang dalam meter.'),
               },
               options: [
                 L('Sky', 'Sky'),
@@ -2828,12 +2828,12 @@ export const module8: Module = {
           },
           {
             prompt: L(
-              'A can of $\\frac{3}{5}$ litre of paint covers $12\\text{ m}^2$ of a wall. How many square metres can $2\\frac{1}{4}$ litres cover?',
+              'A can of $\\frac{3}{5}$ liter of paint covers $12\\text{ m}^2$ of a wall. How many square meters can $2\\frac{1}{4}$ liters cover?',
               'Satu kaleng cat $\\frac{3}{5}$ liter dapat menutupi $12\\text{ m}^2$ dinding. Berapa meter persegi yang dapat ditutupi oleh $2\\frac{1}{4}$ liter?',
             ),
             blanks: [{ answer: 45, after: '\\text{ m}^2' }],
             solution: {
-              en: ['\\text{per litre} = 12 \\div \\frac{3}{5} = 20', '2\\frac{1}{4} = \\frac{9}{4}', '20 \\times \\frac{9}{4} = 45'],
+              en: ['\\text{per liter} = 12 \\div \\frac{3}{5} = 20', '2\\frac{1}{4} = \\frac{9}{4}', '20 \\times \\frac{9}{4} = 45'],
               id: ['\\text{per liter} = 12 \\div \\frac{3}{5} = 20', '2\\frac{1}{4} = \\frac{9}{4}', '20 \\times \\frac{9}{4} = 45'],
             },
           },
@@ -2854,19 +2854,19 @@ export const module8: Module = {
           },
           {
             prompt: L(
-              'The end wall of a barn is a rectangle 8 m wide and 3 m high with a triangle on top that is 2 m high. Paint covers $8\\text{ m}^2$ per litre, and it is sold only in cans of 3 litres. The whole wall is painted once. Find the area of the wall, and how many litres of paint are left over.',
+              'The end wall of a barn is a rectangle 8 m wide and 3 m high with a triangle on top that is 2 m high. Paint covers $8\\text{ m}^2$ per liter, and it is sold only in cans of 3 liters. The whole wall is painted once. Find the area of the wall, and how many liters of paint are left over.',
               'Dinding ujung sebuah lumbung berbentuk persegi panjang lebar 8 m dan tinggi 3 m dengan segitiga di atasnya setinggi 2 m. Cat mencakup $8\\text{ m}^2$ per liter, dan hanya dijual dalam kaleng 3 liter. Seluruh dinding dicat satu kali. Tentukan luas dinding, dan berapa liter cat yang tersisa.',
             ),
             figure: {
               ...houseFig(8, 3, 2),
-              caption: L('The end wall of the barn, with lengths in metres.', 'Dinding ujung lumbung, dengan panjang dalam meter.'),
+              caption: L('The end wall of the barn, with lengths in meters.', 'Dinding ujung lumbung, dengan panjang dalam meter.'),
             },
             blanks: [
               { label: { en: '\\text{area} =', id: '\\text{luas} =' }, answer: 32, after: '\\text{ m}^2' },
-              { label: { en: '\\text{left over} =', id: '\\text{sisa} =' }, answer: 2, after: { en: '\\text{ litres}', id: '\\text{ liter}' } },
+              { label: { en: '\\text{left over} =', id: '\\text{sisa} =' }, answer: 2, after: { en: '\\text{ liters}', id: '\\text{ liter}' } },
             ],
             solution: {
-              en: ['A = 8 \\times 3 + \\frac{1}{2} \\times 8 \\times 2 = 24 + 8 = 32', '32 \\div 8 = 4 \\text{ litres needed}', '\\text{2 cans} = 6 \\text{ litres},\\quad 6 - 4 = 2 \\text{ litres left}'],
+              en: ['A = 8 \\times 3 + \\frac{1}{2} \\times 8 \\times 2 = 24 + 8 = 32', '32 \\div 8 = 4 \\text{ liters needed}', '\\text{2 cans} = 6 \\text{ liters},\\quad 6 - 4 = 2 \\text{ liters left}'],
               id: ['A = 8 \\times 3 + \\frac{1}{2} \\times 8 \\times 2 = 24 + 8 = 32', '32 \\div 8 = 4 \\text{ liter diperlukan}', '\\text{2 kaleng} = 6 \\text{ liter},\\quad 6 - 4 = 2 \\text{ liter sisa}'],
             },
           },

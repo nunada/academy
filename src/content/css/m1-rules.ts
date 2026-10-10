@@ -1,7 +1,7 @@
 import type { Module } from '../types'
 
 /** Module 1 — what a rule is, how to aim it, and the two things learners most
- *  want to change first: the words and the colours.
+ *  want to change first: the words and the colors.
  *
  *  Every `web` step here supplies `html`, so the markup is context and the
  *  learner writes only CSS. Tests read computed values, which means they check
@@ -11,7 +11,7 @@ export const module1: Module = {
   id: 'css-m1',
   title: { en: 'Rules and Selectors', id: 'Aturan dan Selektor' },
   summary: {
-    en: 'Write a rule, aim it at the right elements, and restyle text and colour.',
+    en: 'Write a rule, aim it at the right elements, and restyle text and color.',
     id: 'Menulis aturan, mengarahkannya ke elemen yang tepat, dan mengubah teks serta warna.',
   },
   submodules: [
@@ -39,7 +39,7 @@ export const module1: Module = {
                 id: 'Markup-nya sudah menyatakan "ini sebuah judul". CSS menyatakan seperti apa judul itu seharusnya tampak. Memisahkan keduanya itulah sebabnya satu stylesheet bisa mengubah tampilan seribu halaman.',
               },
               code: {
-                en: '<style>\n  h1 {\n    color: teal;\n  }\n</style>\n\n<h1>Coloured heading</h1>\n<p>This paragraph is untouched.</p>',
+                en: '<style>\n  h1 {\n    color: teal;\n  }\n</style>\n\n<h1>Colored heading</h1>\n<p>This paragraph is untouched.</p>',
                 id: '<style>\n  h1 {\n    color: teal;\n  }\n</style>\n\n<h1>Judul yang diwarnai</h1>\n<p>Paragraf ini tidak tersentuh.</p>',
               },
               preview: true,
@@ -95,7 +95,7 @@ export const module1: Module = {
             {
               kind: 'fill',
               id: 'f1',
-              prompt: { en: 'Give every paragraph a grey background.', id: 'Beri setiap paragraf latar abu-abu.' },
+              prompt: { en: 'Give every paragraph a gray background.', id: 'Beri setiap paragraf latar abu-abu.' },
               template: 'p {\n  background-color___ gray___\n}',
               blanks: [':', ';'],
               explain: {
@@ -115,7 +115,7 @@ export const module1: Module = {
                 id: '<h1>Nunada Academy</h1>\n<p>Belajar coding langkah demi langkah.</p>',
               },
               prompt: {
-                en: 'Make the `h1` white on a navy background, and the paragraph text grey (`gray`).',
+                en: 'Make the `h1` white on a navy background, and the paragraph text gray (`gray`).',
                 id: 'Buat `h1` berwarna putih dengan latar navy, dan teks paragrafnya abu-abu (`gray`).',
               },
               starter: 'h1 {\n\n}\n',
@@ -127,13 +127,13 @@ export const module1: Module = {
                       'assert(style("h1", "color") === "rgb(255, 255, 255)", "h1 color must be white, currently: " + style("h1", "color"));\nassert(style("h1", "background-color") === "rgb(0, 0, 128)", "h1 background must be navy, currently: " + style("h1", "background-color"));',
                   },
                   {
-                    name: { en: 'The paragraph is grey', id: 'The paragraph is grey' },
+                    name: { en: 'The paragraph is gray', id: 'The paragraph is gray' },
                     check: 'assert(style("p", "color") === "rgb(128, 128, 128)", "p color must be gray, currently: " + style("p", "color"));',
                   },
                   {
                     name: { en: 'The paragraph keeps its own background', id: 'The paragraph keeps its own background' },
                     check:
-                      'var bg = style("p", "background-color");\nassert(bg === "rgba(0, 0, 0, 0)" || bg === "transparent", "only h1 needs a coloured background");',
+                      'var bg = style("p", "background-color");\nassert(bg === "rgba(0, 0, 0, 0)" || bg === "transparent", "only h1 needs a colored background");',
                   },
                 ],
                 id: [
@@ -143,7 +143,7 @@ export const module1: Module = {
                       'assert(style("h1", "color") === "rgb(255, 255, 255)", "warna h1 harus putih, sekarang: " + style("h1", "color"));\nassert(style("h1", "background-color") === "rgb(0, 0, 128)", "latar h1 harus navy, sekarang: " + style("h1", "background-color"));',
                   },
                   {
-                    name: { en: 'The paragraph is grey', id: 'Paragrafnya abu-abu' },
+                    name: { en: 'The paragraph is gray', id: 'Paragrafnya abu-abu' },
                     check: 'assert(style("p", "color") === "rgb(128, 128, 128)", "warna p harus gray, sekarang: " + style("p", "color"));',
                   },
                   {
@@ -271,7 +271,7 @@ export const module1: Module = {
                 id: '<h1 id="utama">Judul</h1>\n<p class="catatan">Catatan pertama.</p>\n<p>Paragraf biasa.</p>\n<div class="kotak"><p class="catatan">Catatan di dalam kotak.</p></div>',
               },
               prompt: {
-                en: 'Colour `#main` teal, every `.note` crimson, and give paragraphs inside `.box` a `lightyellow` background.',
+                en: 'Color `#main` teal, every `.note` crimson, and give paragraphs inside `.box` a `lightyellow` background.',
                 id: 'Warnai `#utama` teal, tiap `.catatan` crimson, dan beri paragraf di dalam `.kotak` latar `lightyellow`.',
               },
               starter: '',
@@ -329,14 +329,14 @@ export const module1: Module = {
           en: '<div class="card">\n  <h2 class="title">Python</h2>\n  <p class="content">Beginner course, nine modules.</p>\n  <p class="content">1700 XP</p>\n</div>\n<div class="card">\n  <h2 class="title">HTML</h2>\n  <p class="content">Beginner course, four modules.</p>\n  <p class="content">660 XP</p>\n</div>',
           id: '<div class="kartu">\n  <h2 class="judul">Python</h2>\n  <p class="isi">Kursus pemula, sembilan modul.</p>\n  <p class="isi">1700 XP</p>\n</div>\n<div class="kartu">\n  <h2 class="judul">HTML</h2>\n  <p class="isi">Kursus pemula, empat modul.</p>\n  <p class="isi">660 XP</p>\n</div>',
         },
-        title: { en: 'Coloured cards', id: 'Kartu berwarna' },
+        title: { en: 'Colored cards', id: 'Kartu berwarna' },
         brief: {
           en: 'Style two cards using classes — the markup is already written.',
           id: 'Beri gaya pada dua kartu memakai class — markup-nya sudah ditulis.',
         },
         requirements: [
           { en: '`.card` gets a `whitesmoke` background.', id: '`.kartu` diberi latar `whitesmoke`.' },
-          { en: '`.title` is `darkslateblue` and centred.', id: '`.judul` berwarna `darkslateblue` dan rata tengah.' },
+          { en: '`.title` is `darkslateblue` and centered.', id: '`.judul` berwarna `darkslateblue` dan rata tengah.' },
           { en: '`.content` is `dimgray`.', id: '`.isi` berwarna `dimgray`.' },
           { en: 'Both cards must be styled by the same rules — no ids.', id: 'Kedua kartu harus diatur aturan yang sama — tanpa id.' },
         ],
@@ -349,9 +349,9 @@ export const module1: Module = {
                 'var k = all(".card");\nassert(k.length === 2, "there should be two .card");\nk.forEach(function (e, i) {\n  assert(getComputedStyle(e).backgroundColor === "rgb(245, 245, 245)", "card " + (i + 1) + " must have a whitesmoke background");\n});',
             },
             {
-              name: { en: 'Titles are coloured and centred', id: 'Titles are coloured and centred' },
+              name: { en: 'Titles are colored and centered', id: 'Titles are colored and centered' },
               check:
-                'all(".title").forEach(function (e, i) {\n  var s = getComputedStyle(e);\n  assert(s.color === "rgb(72, 61, 139)", "title " + (i + 1) + " must be darkslateblue, currently: " + s.color);\n  assert(s.textAlign === "center", "title " + (i + 1) + " must be centred");\n});',
+                'all(".title").forEach(function (e, i) {\n  var s = getComputedStyle(e);\n  assert(s.color === "rgb(72, 61, 139)", "title " + (i + 1) + " must be darkslateblue, currently: " + s.color);\n  assert(s.textAlign === "center", "title " + (i + 1) + " must be centered");\n});',
             },
             {
               name: { en: 'Body text is dimgray', id: 'Body text is dimgray' },
@@ -370,7 +370,7 @@ export const module1: Module = {
                 'var k = all(".kartu");\nassert(k.length === 2, "seharusnya ada dua .kartu");\nk.forEach(function (e, i) {\n  assert(getComputedStyle(e).backgroundColor === "rgb(245, 245, 245)", "kartu ke-" + (i + 1) + " harus berlatar whitesmoke");\n});',
             },
             {
-              name: { en: 'Titles are coloured and centred', id: 'Judulnya berwarna dan rata tengah' },
+              name: { en: 'Titles are colored and centered', id: 'Judulnya berwarna dan rata tengah' },
               check:
                 'all(".judul").forEach(function (e, i) {\n  var s = getComputedStyle(e);\n  assert(s.color === "rgb(72, 61, 139)", "judul ke-" + (i + 1) + " harus darkslateblue, sekarang: " + s.color);\n  assert(s.textAlign === "center", "judul ke-" + (i + 1) + " harus rata tengah");\n});',
             },
@@ -387,7 +387,7 @@ export const module1: Module = {
         },
         hints: [
           { en: 'Three rules is all it takes — one per class.', id: 'Cukup tiga aturan — satu untuk tiap class.' },
-          { en: 'Centring text is `text-align: center`.', id: 'Merata-tengahkan teks memakai `text-align: center`.' },
+          { en: 'Centering text is `text-align: center`.', id: 'Merata-tengahkan teks memakai `text-align: center`.' },
           { en: 'Because you select by class, both cards are covered at once.', id: 'Karena kamu memilih lewat class, kedua kartu tercakup sekaligus.' },
         ],
         solution: {
@@ -398,12 +398,12 @@ export const module1: Module = {
       },
     },
 
-    /* ------------------------------------------------------- 1.2 text & colour */
+    /* ------------------------------------------------------- 1.2 text & color */
     {
       id: 'css-m1-s2',
-      title: { en: 'Text and Colour', id: 'Teks dan Warna' },
+      title: { en: 'Text and Color', id: 'Teks dan Warna' },
       summary: {
-        en: 'Typography that stays readable, and colour written three ways.',
+        en: 'Typography that stays readable, and color written three ways.',
         id: 'Tipografi yang tetap terbaca, dan warna yang ditulis tiga cara.',
       },
       lessons: [
@@ -540,7 +540,7 @@ export const module1: Module = {
         },
         {
           id: 'css-m1-s2-l2',
-          title: { en: 'Three ways to write a colour', id: 'Tiga cara menulis warna' },
+          title: { en: 'Three ways to write a color', id: 'Tiga cara menulis warna' },
           goal: { en: 'Use names, hex, and rgb — and keep contrast.', id: 'Memakai nama, heksadesimal, dan rgb — sambil menjaga kontras.' },
           xp: 20,
           steps: [
@@ -549,7 +549,7 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Name, hex, rgb', id: 'Nama, heks, rgb' },
               body: {
-                en: 'The same colour can be written three ways. Names are readable but few. Hex `#rrggbb` is the common shorthand. `rgb()` spells out the three channels, and `rgba()` adds transparency.',
+                en: 'The same color can be written three ways. Names are readable but few. Hex `#rrggbb` is the common shorthand. `rgb()` spells out the three channels, and `rgba()` adds transparency.',
                 id: 'Warna yang sama bisa ditulis tiga cara. Nama itu terbaca tapi jumlahnya sedikit. Heks `#rrggbb` adalah singkatan yang lazim. `rgb()` mengeja ketiga kanalnya, dan `rgba()` menambahkan transparansi.',
               },
               code: {
@@ -563,7 +563,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Contrast is not a matter of taste', id: 'Kontras bukan soal selera' },
               body: {
-                en: 'Light grey on white looks elegant on your screen and disappears on a phone in sunlight — or for anyone with low vision. Body text needs a contrast ratio of at least 4.5:1 against its background. When in doubt, go darker.',
+                en: 'Light gray on white looks elegant on your screen and disappears on a phone in sunlight — or for anyone with low vision. Body text needs a contrast ratio of at least 4.5:1 against its background. When in doubt, go darker.',
                 id: 'Abu-abu muda di atas putih tampak elegan di layarmu dan lenyap di ponsel yang kena matahari — atau bagi siapa pun dengan penglihatan lemah. Teks isi butuh rasio kontras minimal 4,5:1 terhadap latarnya. Kalau ragu, gelapkan.',
               },
               code: {
@@ -575,7 +575,7 @@ export const module1: Module = {
             {
               kind: 'quiz',
               id: 'q1',
-              prompt: { en: 'What colour is `#ff0000`?', id: 'Warna apa `#ff0000`?' },
+              prompt: { en: 'What color is `#ff0000`?', id: 'Warna apa `#ff0000`?' },
               options: [
                 { en: 'Red — full red, no green, no blue', id: 'Merah — merah penuh, tanpa hijau, tanpa biru' },
                 { en: 'Green', id: 'Hijau' },
@@ -618,7 +618,7 @@ export const module1: Module = {
                 id: '<div class="panel">\n  <h2>Pengumuman</h2>\n  <p>Kelas dimulai pukul delapan pagi.</p>\n</div>',
               },
               prompt: {
-                en: 'Give `.panel` the background `#1e293b`, its `h2` the colour `#f8fafc`, and its `p` the colour `rgb(203, 213, 225)`.',
+                en: 'Give `.panel` the background `#1e293b`, its `h2` the color `#f8fafc`, and its `p` the color `rgb(203, 213, 225)`.',
                 id: 'Beri `.panel` latar `#1e293b`, `h2`-nya warna `#f8fafc`, dan `p`-nya warna `rgb(203, 213, 225)`.',
               },
               starter: '',
@@ -633,7 +633,7 @@ export const module1: Module = {
                     check: 'assert(style(".panel h2", "color") === "rgb(248, 250, 252)", "h2 color must be #f8fafc, currently: " + style(".panel h2", "color"));',
                   },
                   {
-                    name: { en: 'The paragraph is light grey', id: 'The paragraph is light grey' },
+                    name: { en: 'The paragraph is light gray', id: 'The paragraph is light gray' },
                     check: 'assert(style(".panel p", "color") === "rgb(203, 213, 225)", "p color must be rgb(203, 213, 225), currently: " + style(".panel p", "color"));',
                   },
                 ],
@@ -647,7 +647,7 @@ export const module1: Module = {
                     check: 'assert(style(".panel h2", "color") === "rgb(248, 250, 252)", "warna h2 harus #f8fafc, sekarang: " + style(".panel h2", "color"));',
                   },
                   {
-                    name: { en: 'The paragraph is light grey', id: 'Paragrafnya abu-abu terang' },
+                    name: { en: 'The paragraph is light gray', id: 'Paragrafnya abu-abu terang' },
                     check: 'assert(style(".panel p", "color") === "rgb(203, 213, 225)", "warna p harus rgb(203, 213, 225), sekarang: " + style(".panel p", "color"));',
                   },
                 ],
@@ -655,7 +655,7 @@ export const module1: Module = {
               hints: [
                 { en: 'Aim at the children with descendant selectors.', id: 'Bidik anak-anaknya dengan selektor keturunan.' },
                 { en: '`.panel h2` and `.panel p`', id: '`.panel h2` dan `.panel p`' },
-                { en: 'You may write the values in any notation — the check reads the resulting colour.', id: 'Kamu boleh menulis nilainya dalam notasi apa pun — pemeriksaannya membaca warna hasilnya.' },
+                { en: 'You may write the values in any notation — the check reads the resulting color.', id: 'Kamu boleh menulis nilainya dalam notasi apa pun — pemeriksaannya membaca warna hasilnya.' },
               ],
               solution:
                 '.panel {\n  background-color: #1e293b;\n}\n\n.panel h2 {\n  color: #f8fafc;\n}\n\n.panel p {\n  color: rgb(203, 213, 225);\n}',
@@ -672,13 +672,13 @@ export const module1: Module = {
         },
         title: { en: 'Styled article', id: 'Artikel bergaya' },
         brief: {
-          en: 'Turn a plain article into something readable, using type and colour only.',
+          en: 'Turn a plain article into something readable, using type and color only.',
           id: 'Ubah artikel polos menjadi sesuatu yang enak dibaca, hanya dengan tipografi dan warna.',
         },
         requirements: [
           { en: 'The page uses a font stack ending in `serif`.', id: 'Halaman memakai tumpukan font yang berakhir `serif`.' },
           { en: 'Paragraphs are 17px with a line-height of 1.7.', id: 'Paragraf berukuran 17px dengan line-height 1,7.' },
-          { en: 'The `h1` is centred and coloured `#0f172a`.', id: '`h1` rata tengah dan berwarna `#0f172a`.' },
+          { en: 'The `h1` is centered and colored `#0f172a`.', id: '`h1` rata tengah dan berwarna `#0f172a`.' },
           { en: '`.summary` is bold and `#334155`.', id: '`.ringkasan` tebal dan berwarna `#334155`.' },
           { en: '`.closing` is right-aligned.', id: '`.penutup` rata kanan.' },
           { en: 'Body text is `#1f2937` — dark enough to read.', id: 'Teks isi berwarna `#1f2937` — cukup gelap untuk dibaca.' },
@@ -697,9 +697,9 @@ export const module1: Module = {
                 'assert(style("p", "font-size") === "17px", "p font-size must be 17px, currently: " + style("p", "font-size"));\nvar lh = parseFloat(style("p", "line-height"));\nassert(Math.abs(lh - 17 * 1.7) < 1.5, "line-height must be 1.7 (about 28.9px), currently: " + style("p", "line-height"));',
             },
             {
-              name: { en: 'The title is centred and dark', id: 'The title is centred and dark' },
+              name: { en: 'The title is centered and dark', id: 'The title is centered and dark' },
               check:
-                'assert(style("h1", "text-align") === "center", "h1 must be centred");\nassert(style("h1", "color") === "rgb(15, 23, 42)", "h1 color must be #0f172a, currently: " + style("h1", "color"));',
+                'assert(style("h1", "text-align") === "center", "h1 must be centered");\nassert(style("h1", "color") === "rgb(15, 23, 42)", "h1 color must be #0f172a, currently: " + style("h1", "color"));',
             },
             {
               name: { en: 'The summary stands out', id: 'The summary stands out' },
@@ -728,7 +728,7 @@ export const module1: Module = {
                 'assert(style("p", "font-size") === "17px", "font-size p harus 17px, sekarang: " + style("p", "font-size"));\nvar lh = parseFloat(style("p", "line-height"));\nassert(Math.abs(lh - 17 * 1.7) < 1.5, "line-height harus 1.7 (sekitar 28.9px), sekarang: " + style("p", "line-height"));',
             },
             {
-              name: { en: 'The title is centred and dark', id: 'Judulnya rata tengah dan gelap' },
+              name: { en: 'The title is centered and dark', id: 'Judulnya rata tengah dan gelap' },
               check:
                 'assert(style("h1", "text-align") === "center", "h1 harus rata tengah");\nassert(style("h1", "color") === "rgb(15, 23, 42)", "warna h1 harus #0f172a, sekarang: " + style("h1", "color"));',
             },
@@ -751,7 +751,7 @@ export const module1: Module = {
         hints: [
           { en: 'Set the family once on body — everything inherits it.', id: 'Setel jenis fontnya sekali di body — semuanya mewarisinya.' },
           { en: 'The p rule covers every paragraph; the class rules then override what differs.', id: 'Aturan p mencakup semua paragraf; aturan class-nya lalu menimpa yang berbeda.' },
-          { en: 'Colour every p with #1f2937, then let .summary set its own colour.', id: 'Warnai semua p dengan #1f2937, lalu biarkan .ringkasan menetapkan warnanya sendiri.' },
+          { en: 'Color every p with #1f2937, then let .summary set its own color.', id: 'Warnai semua p dengan #1f2937, lalu biarkan .ringkasan menetapkan warnanya sendiri.' },
         ],
         solution: {
           en: 'body {\n  font-family: Georgia, "Times New Roman", serif;\n}\n\np {\n  font-size: 17px;\n  line-height: 1.7;\n  color: #1f2937;\n}\n\nh1 {\n  text-align: center;\n  color: #0f172a;\n}\n\n.summary {\n  font-weight: bold;\n  color: #334155;\n}\n\n.closing {\n  text-align: right;\n}',

@@ -188,9 +188,9 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
     },
   },
   primefactor: {
-    title: { en: 'Interactive: prime factorisation', id: 'Interaktif: faktorisasi prima' },
+    title: { en: 'Interactive: prime factorization', id: 'Interaktif: faktorisasi prima' },
     description: {
-      en: 'Type a whole number up to a trillion and see whether it is prime, its prime factorisation step by step, and how many divisors it has.',
+      en: 'Type a whole number up to a trillion and see whether it is prime, its prime factorization step by step, and how many divisors it has.',
       id: 'Ketik bilangan bulat sampai satu triliun dan lihat apakah ia prima, faktorisasi primanya langkah demi langkah, dan berapa banyak pembaginya.',
     },
   },

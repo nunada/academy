@@ -5,7 +5,7 @@ import { cubeStack3d, cuboid3d, fit, frame3, outline, rectPts, solid, txt, views
 
 /** Module 9 — solid shapes: the parts of a cube and a box, nets, building with unit
  *  cubes, volume (also of combined solids and water in a tank), and spatial
- *  visualisation (front, top and side views, and rebuilding a stack from its views).
+ *  visualization (front, top and side views, and rebuilding a stack from its views).
  *  Only cubes, boxes and their combinations; no prisms, cylinders, cones, spheres
  *  and no surface area. */
 
@@ -81,7 +81,7 @@ const netPiece = (cells: Cell[], o: { color?: FigColor; tags?: string[] } = {}):
 
 /** A box `l` by `w` by `h` laid flat in the usual cross: the base, the front on top of it,
  *  then the top and the back, with the left and right faces beside the front.
- *  Opposite faces share a colour; `dims` writes the three lengths beside the net. */
+ *  Opposite faces share a color; `dims` writes the three lengths beside the net. */
 function boxNet(o: { l: number; w: number; h: number; dims?: boolean }): Piece {
   const { l, w, h } = o
   const items: FigItem[] = []
@@ -262,7 +262,7 @@ export const module9: Module = {
               figure: {
                 ...cuboid3d({ l: 4, w: 3, h: 2 }),
                 caption: L(
-                  'A box seen from a corner. The top and two sides are coloured; the other three faces are behind.',
+                  'A box seen from a corner. The top and two sides are colored; the other three faces are behind.',
                   'Sebuah balok dilihat dari sudut. Sisi atas dan dua sisi samping diberi warna; tiga sisi lainnya ada di belakang.',
                 ),
               },
@@ -272,7 +272,7 @@ export const module9: Module = {
               id: 'c2',
               title: L('Step by Step: Counting the Parts of a Box', 'Contoh Bertahap: Menghitung Unsur Balok'),
               body: L(
-                'Ani makes a model of a box from straws and clay. The box is 6 cm long, 4 cm wide and 3 cm high. How many straws does she need, and how many centimetres of straw in all?\n\n1. Step 1: Faces. Top and bottom, front and back, left and right: that is 6 faces.\n2. Step 2: Edges. There are 4 edges around the top, 4 around the bottom and 4 standing up between them: $4 + 4 + 4 = 12$ edges, so she needs 12 straws.\n3. Step 3: Corners. There are 4 corners on the top and 4 on the bottom: 8 corners.\n4. Step 4: Equal edges. Four edges are 6 cm long, four are 4 cm long and four are 3 cm long.\n5. Step 5: Add the lengths: $4 \\times 6 + 4 \\times 4 + 4 \\times 3 = 24 + 16 + 12 = 52$ cm of straw.\n\n**Remember:** a cube and a box both have 6 faces, 12 edges and 8 corners.\n\n| Part | Cube | Box |\n| --- | --- | --- |\n| Faces | 6, all the same square | 6, opposite faces are the same |\n| Edges | 12, all the same length | 12, in 3 groups of 4 equal edges |\n| Corners | 8 | 8 |',
+                'Ani makes a model of a box from straws and clay. The box is 6 cm long, 4 cm wide and 3 cm high. How many straws does she need, and how many centimeters of straw in all?\n\n1. Step 1: Faces. Top and bottom, front and back, left and right: that is 6 faces.\n2. Step 2: Edges. There are 4 edges around the top, 4 around the bottom and 4 standing up between them: $4 + 4 + 4 = 12$ edges, so she needs 12 straws.\n3. Step 3: Corners. There are 4 corners on the top and 4 on the bottom: 8 corners.\n4. Step 4: Equal edges. Four edges are 6 cm long, four are 4 cm long and four are 3 cm long.\n5. Step 5: Add the lengths: $4 \\times 6 + 4 \\times 4 + 4 \\times 3 = 24 + 16 + 12 = 52$ cm of straw.\n\n**Remember:** a cube and a box both have 6 faces, 12 edges and 8 corners.\n\n| Part | Cube | Box |\n| --- | --- | --- |\n| Faces | 6, all the same square | 6, opposite faces are the same |\n| Edges | 12, all the same length | 12, in 3 groups of 4 equal edges |\n| Corners | 8 | 8 |',
                 'Ani membuat model balok dari sedotan dan plastisin. Balok itu panjangnya 6 cm, lebarnya 4 cm, dan tingginya 3 cm. Berapa sedotan yang ia butuhkan, dan berapa sentimeter sedotan seluruhnya?\n\n1. Langkah 1: Sisi. Atas dan bawah, depan dan belakang, kiri dan kanan: ada 6 sisi.\n2. Langkah 2: Rusuk. Ada 4 rusuk di sekeliling bagian atas, 4 di sekeliling bagian bawah, dan 4 yang berdiri di antaranya: $4 + 4 + 4 = 12$ rusuk, jadi ia butuh 12 sedotan.\n3. Langkah 3: Titik sudut. Ada 4 titik sudut di atas dan 4 di bawah: 8 titik sudut.\n4. Langkah 4: Rusuk yang sama. Empat rusuk panjangnya 6 cm, empat rusuk 4 cm, dan empat rusuk 3 cm.\n5. Langkah 5: Jumlahkan panjangnya: $4 \\times 6 + 4 \\times 4 + 4 \\times 3 = 24 + 16 + 12 = 52$ cm sedotan.\n\n**Ingat:** kubus dan balok sama-sama punya 6 sisi, 12 rusuk, dan 8 titik sudut.\n\n| Unsur | Kubus | Balok |\n| --- | --- | --- |\n| Sisi | 6, semuanya persegi yang sama | 6, sisi yang berhadapan sama |\n| Rusuk | 12, semuanya sama panjang | 12, dalam 3 kelompok yang masing-masing 4 rusuk sama panjang |\n| Titik sudut | 8 | 8 |',
               ),
               figure: {
@@ -288,13 +288,13 @@ export const module9: Module = {
               id: 'c3',
               title: L('Step by Step: Nets', 'Contoh Bertahap: Jaring-jaring'),
               body: L(
-                'Cut open a cardboard box along some edges and lay it flat. The flat shape is a **net**: fold it back and you get the box again.\n\nThe picture shows a net of a box 4 cm long, 3 cm wide and 2 cm high.\n\n1. Step 1: Count the pieces. The net has 6 rectangles, one for each face.\n2. Step 2: Find the pairs. Faces that sit opposite each other are the same size, and they have the same colour in the picture: top and bottom, front and back, left and right.\n3. Step 3: For a cube, all 6 pieces are the same square. Many ways of joining 6 squares fold into a cube (there are 11 of them), but not all ways do.\n4. Step 4: To test a net, pick one square as the bottom and fold the others up in your head. If two squares land on the same place, the net does not fold into a cube.\n\n**Remember:** a net of a cube has 6 equal squares, and faces that are opposite each other never touch in the net.',
+                'Cut open a cardboard box along some edges and lay it flat. The flat shape is a **net**: fold it back and you get the box again.\n\nThe picture shows a net of a box 4 cm long, 3 cm wide and 2 cm high.\n\n1. Step 1: Count the pieces. The net has 6 rectangles, one for each face.\n2. Step 2: Find the pairs. Faces that sit opposite each other are the same size, and they have the same color in the picture: top and bottom, front and back, left and right.\n3. Step 3: For a cube, all 6 pieces are the same square. Many ways of joining 6 squares fold into a cube (there are 11 of them), but not all ways do.\n4. Step 4: To test a net, pick one square as the bottom and fold the others up in your head. If two squares land on the same place, the net does not fold into a cube.\n\n**Remember:** a net of a cube has 6 equal squares, and faces that are opposite each other never touch in the net.',
                 'Gunting sebuah kardus pada beberapa rusuknya, lalu bentangkan sampai datar. Bentuk datar itu adalah **jaring-jaring**: lipat kembali dan kamu mendapat baloknya lagi.\n\nGambar menunjukkan jaring-jaring balok yang panjangnya 4 cm, lebarnya 3 cm, dan tingginya 2 cm.\n\n1. Langkah 1: Hitung bagiannya. Jaring-jaring itu punya 6 persegi panjang, satu untuk tiap sisi.\n2. Langkah 2: Cari pasangannya. Sisi yang berhadapan ukurannya sama, dan warnanya sama pada gambar: atas dan bawah, depan dan belakang, kiri dan kanan.\n3. Langkah 3: Pada kubus, keenam bagiannya adalah persegi yang sama. Ada banyak cara menyambung 6 persegi yang bisa dilipat menjadi kubus (ada 11 cara), tetapi tidak semua cara bisa.\n4. Langkah 4: Untuk menguji jaring-jaring, pilih satu persegi sebagai alas lalu lipat persegi yang lain ke atas di dalam kepalamu. Jika dua persegi jatuh di tempat yang sama, jaring-jaring itu tidak bisa dilipat menjadi kubus.\n\n**Ingat:** jaring-jaring kubus terdiri dari 6 persegi yang sama, dan sisi yang saling berhadapan tidak pernah bersentuhan pada jaring-jaringnya.',
               ),
               figure: {
                 ...boxNet({ l: 4, w: 3, h: 2, dims: true }),
                 caption: L(
-                  'A net of a box 4 cm by 3 cm by 2 cm. Opposite faces have the same colour.',
+                  'A net of a box 4 cm by 3 cm by 2 cm. Opposite faces have the same color.',
                   'Jaring-jaring balok 4 cm kali 3 cm kali 2 cm. Sisi yang berhadapan berwarna sama.',
                 ),
               },
@@ -348,7 +348,7 @@ export const module9: Module = {
               id: 'f1',
               math: true,
               prompt: L(
-                'Try it together: a box is 5 cm long, 4 cm wide and 2 cm high. How many centimetres of wire are needed to make all its edges?',
+                'Try it together: a box is 5 cm long, 4 cm wide and 2 cm high. How many centimeters of wire are needed to make all its edges?',
                 'Coba bersama: sebuah balok panjangnya 5 cm, lebarnya 4 cm, dan tingginya 2 cm. Berapa sentimeter kawat yang dibutuhkan untuk membuat semua rusuknya?',
               ),
               template: '4 \\times 5 + 4 \\times 4 + 4 \\times 2 = 20 + ___ + 8 = ___ \\text{ cm}',
@@ -420,7 +420,7 @@ export const module9: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'Dewi makes the frame of a box from wire, with one piece of wire for every edge and none left over. The box is 12 cm long, 8 cm wide and 5 cm high. How many centimetres of wire does she need?',
+                'Dewi makes the frame of a box from wire, with one piece of wire for every edge and none left over. The box is 12 cm long, 8 cm wide and 5 cm high. How many centimeters of wire does she need?',
                 'Dewi membuat kerangka sebuah balok dari kawat, satu potong kawat untuk setiap rusuk dan tidak ada yang tersisa. Balok itu panjangnya 12 cm, lebarnya 8 cm, dan tingginya 5 cm. Berapa sentimeter kawat yang ia butuhkan?',
               ),
               figure: {
@@ -709,7 +709,7 @@ export const module9: Module = {
           },
           {
             prompt: L(
-              'Fitri makes the frame of a cube from straws. Every edge is one straw of 9 cm. How many centimetres of straw does she use in all?',
+              'Fitri makes the frame of a cube from straws. Every edge is one straw of 9 cm. How many centimeters of straw does she use in all?',
               'Fitri membuat kerangka sebuah kubus dari sedotan. Setiap rusuk adalah satu sedotan sepanjang 9 cm. Berapa sentimeter sedotan yang ia pakai seluruhnya?',
             ),
             blanks: [{ answer: 108, after: '\\text{ cm}' }],
@@ -756,7 +756,7 @@ export const module9: Module = {
       id: 'tka-m9-s2',
       title: L('Volume', 'Volume'),
       summary: L(
-        'Volume is the number of unit cubes that fill a solid. You will find the volume of cubes, boxes and combined solids, link litres to cubic centimetres, and solve water-level problems.',
+        'Volume is the number of unit cubes that fill a solid. You will find the volume of cubes, boxes and combined solids, link liters to cubic centimeters, and solve water-level problems.',
         'Volume adalah banyaknya kubus satuan yang memenuhi sebuah bangun ruang. Kamu akan mencari volume kubus, balok, dan bangun ruang gabungan, menghubungkan liter dengan sentimeter kubik, dan menyelesaikan soal tinggi air.',
       ),
       lessons: [
@@ -765,7 +765,7 @@ export const module9: Module = {
           id: 'tka-m9-s2-l1',
           title: L('Volume of Cubes and Boxes', 'Volume Kubus dan Balok'),
           goal: L(
-            'You can find the volume of a cube and a box, find a missing edge, and change between cubic centimetres and litres.',
+            'You can find the volume of a cube and a box, find a missing edge, and change between cubic centimeters and liters.',
             'Kamu bisa mencari volume kubus dan balok, mencari rusuk yang belum diketahui, dan mengubah antara sentimeter kubik dan liter.',
           ),
           xp: 20,
@@ -775,7 +775,7 @@ export const module9: Module = {
               id: 'c1',
               title: L('Look Closely: How Much Space Does It Take?', 'Ayo Amati: Seberapa Besar Ruang yang Ditempati?'),
               body: L(
-                'Dewi fills a small box with sugar cubes. Her box is 4 cubes long, 3 cubes wide and 2 cubes high, and exactly 24 sugar cubes fit inside.\n\nThe amount of space that a solid takes up is its **volume**. We measure volume by counting how many unit cubes fit inside. A unit cube with edges of 1 cm has a volume of **1 cubic centimetre**, written $1\\text{ cm}^3$.\n\nSo the box has a volume of $24\\text{ cm}^3$. This is the layer idea from the last lesson: **volume = cubes in one layer × number of layers**.',
+                'Dewi fills a small box with sugar cubes. Her box is 4 cubes long, 3 cubes wide and 2 cubes high, and exactly 24 sugar cubes fit inside.\n\nThe amount of space that a solid takes up is its **volume**. We measure volume by counting how many unit cubes fit inside. A unit cube with edges of 1 cm has a volume of **1 cubic centimeter**, written $1\\text{ cm}^3$.\n\nSo the box has a volume of $24\\text{ cm}^3$. This is the layer idea from the last lesson: **volume = cubes in one layer × number of layers**.',
                 'Dewi mengisi sebuah kotak kecil dengan gula batu. Kotaknya panjangnya 4 kubus, lebarnya 3 kubus, dan tingginya 2 kubus, dan tepat 24 gula batu muat di dalamnya.\n\nBesar ruang yang ditempati sebuah bangun ruang disebut **volume**. Kita mengukur volume dengan menghitung berapa kubus satuan yang muat di dalamnya. Kubus satuan dengan rusuk 1 cm punya volume **1 sentimeter kubik**, ditulis $1\\text{ cm}^3$.\n\nJadi kotak itu bervolume $24\\text{ cm}^3$. Ini adalah gagasan lapisan dari pelajaran sebelumnya: **volume = kubus dalam satu lapis × banyak lapis**.',
               ),
               figure: {
@@ -802,9 +802,9 @@ export const module9: Module = {
             {
               kind: 'concept',
               id: 'c3',
-              title: L('Step by Step: Litres and Cubic Centimetres', 'Contoh Bertahap: Liter dan Sentimeter Kubik'),
+              title: L('Step by Step: Liters and Cubic Centimeters', 'Contoh Bertahap: Liter dan Sentimeter Kubik'),
               body: L(
-                'A glass tank is 50 cm long, 30 cm wide and 20 cm high. How many litres of water does it hold when it is full?\n\n1. Step 1: Find the volume in cubic centimetres: $50 \\times 30 \\times 20 = 30\\,000\\text{ cm}^3$.\n2. Step 2: Use the link between the units. A box 10 cm long, 10 cm wide and 10 cm high has a volume of $10 \\times 10 \\times 10 = 1\\,000\\text{ cm}^3$, and it holds exactly **1 litre**.\n3. Step 3: Divide: $30\\,000 \\div 1\\,000 = 30$.\n4. Step 4: The tank holds 30 litres.\n\n**Remember:**\n\n- 1 litre = $1\\,000\\text{ cm}^3$, so 1 ml = $1\\text{ cm}^3$.\n- A cube with edges of 1 m has a volume of $1\\text{ m}^3$, and it holds 1,000 litres.',
+                'A glass tank is 50 cm long, 30 cm wide and 20 cm high. How many liters of water does it hold when it is full?\n\n1. Step 1: Find the volume in cubic centimeters: $50 \\times 30 \\times 20 = 30\\,000\\text{ cm}^3$.\n2. Step 2: Use the link between the units. A box 10 cm long, 10 cm wide and 10 cm high has a volume of $10 \\times 10 \\times 10 = 1\\,000\\text{ cm}^3$, and it holds exactly **1 liter**.\n3. Step 3: Divide: $30\\,000 \\div 1\\,000 = 30$.\n4. Step 4: The tank holds 30 liters.\n\n**Remember:**\n\n- 1 liter = $1\\,000\\text{ cm}^3$, so 1 ml = $1\\text{ cm}^3$.\n- A cube with edges of 1 m has a volume of $1\\text{ m}^3$, and it holds 1,000 liters.',
                 'Sebuah bak kaca panjangnya 50 cm, lebarnya 30 cm, dan tingginya 20 cm. Berapa liter air yang muat saat bak itu penuh?\n\n1. Langkah 1: Cari volumenya dalam sentimeter kubik: $50 \\times 30 \\times 20 = 30\\,000\\text{ cm}^3$.\n2. Langkah 2: Pakai hubungan antarsatuan. Sebuah kotak dengan panjang 10 cm, lebar 10 cm, dan tinggi 10 cm punya volume $10 \\times 10 \\times 10 = 1\\,000\\text{ cm}^3$, dan tepat memuat **1 liter**.\n3. Langkah 3: Bagi: $30\\,000 \\div 1\\,000 = 30$.\n4. Langkah 4: Bak itu memuat 30 liter.\n\n**Ingat:**\n\n- 1 liter = $1\\,000\\text{ cm}^3$, jadi 1 ml = $1\\text{ cm}^3$.\n- Kubus dengan rusuk 1 m punya volume $1\\text{ m}^3$, dan memuat 1.000 liter.',
               ),
               figure: {
@@ -817,7 +817,7 @@ export const module9: Module = {
               id: 'c4',
               title: L('Watch Out!: Volume Mistakes', 'Awas, Jebakan!: Kesalahan pada Volume'),
               body: L(
-                '| Wrong | Right |\n| --- | --- |\n| A box 6 by 4 by 3 has volume $6 + 4 + 3 = 13\\text{ cm}^3$. | Multiply the three edges: $6 \\times 4 \\times 3 = 72\\text{ cm}^3$. |\n| A cube with an edge of 5 cm has volume $5 \\times 3 = 15\\text{ cm}^3$. | A cube has three equal edges: $5 \\times 5 \\times 5 = 125\\text{ cm}^3$. |\n| 1 litre = $100\\text{ cm}^3$. | 1 litre = $1\\,000\\text{ cm}^3$, the volume of a box 10 by 10 by 10. |',
+                '| Wrong | Right |\n| --- | --- |\n| A box 6 by 4 by 3 has volume $6 + 4 + 3 = 13\\text{ cm}^3$. | Multiply the three edges: $6 \\times 4 \\times 3 = 72\\text{ cm}^3$. |\n| A cube with an edge of 5 cm has volume $5 \\times 3 = 15\\text{ cm}^3$. | A cube has three equal edges: $5 \\times 5 \\times 5 = 125\\text{ cm}^3$. |\n| 1 liter = $100\\text{ cm}^3$. | 1 liter = $1\\,000\\text{ cm}^3$, the volume of a box 10 by 10 by 10. |',
                 '| Salah | Benar |\n| --- | --- |\n| Balok 6 kali 4 kali 3 bervolume $6 + 4 + 3 = 13\\text{ cm}^3$. | Kalikan ketiga rusuknya: $6 \\times 4 \\times 3 = 72\\text{ cm}^3$. |\n| Kubus dengan rusuk 5 cm bervolume $5 \\times 3 = 15\\text{ cm}^3$. | Kubus punya tiga rusuk yang sama: $5 \\times 5 \\times 5 = 125\\text{ cm}^3$. |\n| 1 liter = $100\\text{ cm}^3$. | 1 liter = $1\\,000\\text{ cm}^3$, volume sebuah kotak 10 kali 10 kali 10. |',
               ),
             },
@@ -895,7 +895,7 @@ export const module9: Module = {
                   'Balok dengan panjang 10 cm, lebar 10 cm, dan tinggi 10 cm bervolume 1.000 cm³.',
                 ),
                 L(
-                  'A tank with a volume of 1,000 cm³ holds 1 litre of water.',
+                  'A tank with a volume of 1,000 cm³ holds 1 liter of water.',
                   'Bak bervolume 1.000 cm³ memuat 1 liter air.',
                 ),
                 L(
@@ -907,17 +907,17 @@ export const module9: Module = {
                   'Balok dengan panjang 4 cm, lebar 3 cm, dan tinggi 2 cm bervolume 9 cm³.',
                 ),
                 L(
-                  'A tank with a volume of 5,000 cm³ holds 50 litres of water.',
+                  'A tank with a volume of 5,000 cm³ holds 50 liters of water.',
                   'Bak bervolume 5.000 cm³ memuat 50 liter air.',
                 ),
               ],
               answer: [0, 1],
               explain: L(
-                '$10 \\times 10 \\times 10 = 1\\,000\\text{ cm}^3$, which is exactly 1 litre. The others are wrong: the cube has $3 \\times 3 \\times 3 = 27\\text{ cm}^3$, the box has $4 \\times 3 \\times 2 = 24\\text{ cm}^3$, and $5\\,000\\text{ cm}^3$ is 5 litres.',
+                '$10 \\times 10 \\times 10 = 1\\,000\\text{ cm}^3$, which is exactly 1 liter. The others are wrong: the cube has $3 \\times 3 \\times 3 = 27\\text{ cm}^3$, the box has $4 \\times 3 \\times 2 = 24\\text{ cm}^3$, and $5\\,000\\text{ cm}^3$ is 5 liters.',
                 '$10 \\times 10 \\times 10 = 1\\,000\\text{ cm}^3$, yaitu tepat 1 liter. Yang lain salah: kubus itu bervolume $3 \\times 3 \\times 3 = 27\\text{ cm}^3$, balok itu $4 \\times 3 \\times 2 = 24\\text{ cm}^3$, dan $5\\,000\\text{ cm}^3$ adalah 5 liter.',
               ),
               hint: L(
-                'Work each one out: multiply three equal edges for a cube, three edges for a box, and remember how many cm³ make a litre.',
+                'Work each one out: multiply three equal edges for a cube, three edges for a box, and remember how many cm³ make a liter.',
                 'Hitung satu per satu: kalikan tiga rusuk yang sama untuk kubus, tiga rusuk untuk balok, dan ingat berapa cm³ yang membentuk satu liter.',
               ),
             },
@@ -925,21 +925,21 @@ export const module9: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'An aquarium is 60 cm long, 40 cm wide and 30 cm high. How many litres of water does it hold when it is full?',
+                'An aquarium is 60 cm long, 40 cm wide and 30 cm high. How many liters of water does it hold when it is full?',
                 'Sebuah akuarium panjangnya 60 cm, lebarnya 40 cm, dan tingginya 30 cm. Berapa liter air yang muat saat akuarium itu penuh?',
               ),
               figure: {
                 ...cuboid3d({ l: 60, w: 40, h: 30, labels: { l: '60 cm', w: '40 cm', h: '30 cm' } }),
                 caption: L('An aquarium 60 cm by 40 cm by 30 cm.', 'Akuarium 60 cm kali 40 cm kali 30 cm.'),
               },
-              blanks: [{ answer: 72, after: { en: '\\text{ litres}', id: '\\text{ liter}' } }],
+              blanks: [{ answer: 72, after: { en: '\\text{ liters}', id: '\\text{ liter}' } }],
               hints: [
                 L(
-                  'First find the volume of the aquarium in cubic centimetres.',
+                  'First find the volume of the aquarium in cubic centimeters.',
                   'Cari dulu volume akuarium dalam sentimeter kubik.',
                 ),
                 L(
-                  'Multiply length × width × height. Then change cm³ into litres: 1 litre is $1\\,000\\text{ cm}^3$.',
+                  'Multiply length × width × height. Then change cm³ into liters: 1 liter is $1\\,000\\text{ cm}^3$.',
                   'Kalikan panjang × lebar × tinggi. Lalu ubah cm³ menjadi liter: 1 liter adalah $1\\,000\\text{ cm}^3$.',
                 ),
                 L(
@@ -948,11 +948,11 @@ export const module9: Module = {
                 ),
               ],
               explain: L(
-                '$60 \\times 40 \\times 30 = 72\\,000\\text{ cm}^3$, and $72\\,000 \\div 1\\,000 = 72$ litres.',
+                '$60 \\times 40 \\times 30 = 72\\,000\\text{ cm}^3$, and $72\\,000 \\div 1\\,000 = 72$ liters.',
                 '$60 \\times 40 \\times 30 = 72\\,000\\text{ cm}^3$, dan $72\\,000 \\div 1\\,000 = 72$ liter.',
               ),
               solution: {
-                en: ['60 \\times 40 \\times 30 = 72\\,000\\text{ cm}^3', '72\\,000 \\div 1\\,000 = 72\\text{ litres}'],
+                en: ['60 \\times 40 \\times 30 = 72\\,000\\text{ cm}^3', '72\\,000 \\div 1\\,000 = 72\\text{ liters}'],
                 id: ['60 \\times 40 \\times 30 = 72\\,000\\text{ cm}^3', '72\\,000 \\div 1\\,000 = 72\\text{ liter}'],
               },
             },
@@ -1014,7 +1014,7 @@ export const module9: Module = {
               id: 'c3',
               title: L('Step by Step: Water in a Tank', 'Contoh Bertahap: Air di dalam Bak'),
               body: L(
-                'Ani pours 18 litres of water into an empty tank. The tank is 40 cm long, 30 cm wide and 25 cm high. How deep is the water?\n\n1. Step 1: Change litres to cubic centimetres: $18 \\times 1\\,000 = 18\\,000\\text{ cm}^3$.\n2. Step 2: The water forms a box with the same base as the tank: $40 \\times 30 = 1\\,200\\text{ cm}^2$.\n3. Step 3: Volume = base × depth, so depth = volume ÷ base: $18\\,000 \\div 1\\,200 = 15$ cm.\n4. Step 4: Check: $40 \\times 30 \\times 15 = 18\\,000$. The tank is 25 cm high, so 15 cm of water fits.\n\n**Remember:**\n\n- Water takes the shape of a box with the same base as the tank.\n- Depth of the water = volume of the water ÷ area of the base, with the volume in cm³.\n- 1 litre = $1\\,000\\text{ cm}^3$.',
+                'Ani pours 18 liters of water into an empty tank. The tank is 40 cm long, 30 cm wide and 25 cm high. How deep is the water?\n\n1. Step 1: Change liters to cubic centimeters: $18 \\times 1\\,000 = 18\\,000\\text{ cm}^3$.\n2. Step 2: The water forms a box with the same base as the tank: $40 \\times 30 = 1\\,200\\text{ cm}^2$.\n3. Step 3: Volume = base × depth, so depth = volume ÷ base: $18\\,000 \\div 1\\,200 = 15$ cm.\n4. Step 4: Check: $40 \\times 30 \\times 15 = 18\\,000$. The tank is 25 cm high, so 15 cm of water fits.\n\n**Remember:**\n\n- Water takes the shape of a box with the same base as the tank.\n- Depth of the water = volume of the water ÷ area of the base, with the volume in cm³.\n- 1 liter = $1\\,000\\text{ cm}^3$.',
                 'Ani menuangkan 18 liter air ke dalam bak yang kosong. Bak itu panjangnya 40 cm, lebarnya 30 cm, dan tingginya 25 cm. Berapa dalam air di dalam bak?\n\n1. Langkah 1: Ubah liter menjadi sentimeter kubik: $18 \\times 1\\,000 = 18\\,000\\text{ cm}^3$.\n2. Langkah 2: Air membentuk balok dengan alas yang sama dengan alas bak: $40 \\times 30 = 1\\,200\\text{ cm}^2$.\n3. Langkah 3: Volume = alas × dalam air, jadi dalam air = volume ÷ alas: $18\\,000 \\div 1\\,200 = 15$ cm.\n4. Langkah 4: Periksa: $40 \\times 30 \\times 15 = 18\\,000$. Bak itu tingginya 25 cm, jadi air setinggi 15 cm muat.\n\n**Ingat:**\n\n- Air berbentuk balok dengan alas yang sama dengan alas bak.\n- Kedalaman air = volume air ÷ luas alas, dengan volume dalam cm³.\n- 1 liter = $1\\,000\\text{ cm}^3$.',
               ),
               figure: {
@@ -1027,7 +1027,7 @@ export const module9: Module = {
               id: 'c4',
               title: L('Watch Out!: Combined Solids and Water', 'Awas, Jebakan!: Bangun Gabungan dan Air'),
               body: L(
-                '| Wrong | Right |\n| --- | --- |\n| Use the whole length for both parts of the block: $8 \\times 4 \\times 5 + 8 \\times 4 \\times 2$. | The parts must not overlap. The low part is only $8 - 3 = 5$ cm long. |\n| Fill the missing corner and then add it: $160 + 60$. | The corner is not part of the block. Take it away: $160 - 60 = 100$. |\n| 18 litres of water is $18\\text{ cm}^3$, so the depth is $18 \\div 1\\,200$. | 18 litres is $18\\,000\\text{ cm}^3$. Change the unit first, then divide by the base. |',
+                '| Wrong | Right |\n| --- | --- |\n| Use the whole length for both parts of the block: $8 \\times 4 \\times 5 + 8 \\times 4 \\times 2$. | The parts must not overlap. The low part is only $8 - 3 = 5$ cm long. |\n| Fill the missing corner and then add it: $160 + 60$. | The corner is not part of the block. Take it away: $160 - 60 = 100$. |\n| 18 liters of water is $18\\text{ cm}^3$, so the depth is $18 \\div 1\\,200$. | 18 liters is $18\\,000\\text{ cm}^3$. Change the unit first, then divide by the base. |',
                 '| Salah | Benar |\n| --- | --- |\n| Memakai seluruh panjang untuk kedua bagian balok kayu: $8 \\times 4 \\times 5 + 8 \\times 4 \\times 2$. | Bagian-bagiannya tidak boleh saling menumpuk. Bagian yang rendah panjangnya hanya $8 - 3 = 5$ cm. |\n| Mengisi sudut yang hilang lalu menjumlahkannya: $160 + 60$. | Sudut itu bukan bagian dari balok kayu. Kurangkan: $160 - 60 = 100$. |\n| 18 liter air sama dengan $18\\text{ cm}^3$, jadi dalam air $18 \\div 1\\,200$. | 18 liter sama dengan $18\\,000\\text{ cm}^3$. Ubah dulu satuannya, baru bagi dengan luas alas. |',
               ),
             },
@@ -1142,18 +1142,18 @@ export const module9: Module = {
                 caption: L('The tank: 40 cm by 25 cm by 20 cm.', 'Bak itu: 40 cm kali 25 cm kali 20 cm.'),
               },
               options: [
-                L('The tank holds 20 litres when it is full.', 'Bak itu memuat 20 liter saat penuh.'),
-                L('10 litres of water make the water 10 cm deep.', '10 liter air membuat air setinggi 10 cm.'),
-                L('10 litres of water make the water 5 cm deep.', '10 liter air membuat air setinggi 5 cm.'),
-                L('The tank holds 20,000 litres when it is full.', 'Bak itu memuat 20.000 liter saat penuh.'),
+                L('The tank holds 20 liters when it is full.', 'Bak itu memuat 20 liter saat penuh.'),
+                L('10 liters of water make the water 10 cm deep.', '10 liter air membuat air setinggi 10 cm.'),
+                L('10 liters of water make the water 5 cm deep.', '10 liter air membuat air setinggi 5 cm.'),
+                L('The tank holds 20,000 liters when it is full.', 'Bak itu memuat 20.000 liter saat penuh.'),
               ],
               answer: [0, 1],
               explain: L(
-                'The volume is $40 \\times 25 \\times 20 = 20\\,000\\text{ cm}^3$, which is 20 litres. The base is $40 \\times 25 = 1\\,000\\text{ cm}^2$, and 10 litres is $10\\,000\\text{ cm}^3$, so the depth is $10\\,000 \\div 1\\,000 = 10$ cm. 5 cm would need only 5 litres, and 20,000 is the number of cm³, not litres.',
+                'The volume is $40 \\times 25 \\times 20 = 20\\,000\\text{ cm}^3$, which is 20 liters. The base is $40 \\times 25 = 1\\,000\\text{ cm}^2$, and 10 liters is $10\\,000\\text{ cm}^3$, so the depth is $10\\,000 \\div 1\\,000 = 10$ cm. 5 cm would need only 5 liters, and 20,000 is the number of cm³, not liters.',
                 'Volumenya $40 \\times 25 \\times 20 = 20\\,000\\text{ cm}^3$, yaitu 20 liter. Luas alasnya $40 \\times 25 = 1\\,000\\text{ cm}^2$, dan 10 liter adalah $10\\,000\\text{ cm}^3$, jadi kedalamannya $10\\,000 \\div 1\\,000 = 10$ cm. Setinggi 5 cm hanya butuh 5 liter, dan 20.000 adalah banyaknya cm³, bukan liter.',
               ),
               hint: L(
-                'Find the volume in cm³ and change it to litres. For the depth, divide the water volume (in cm³) by the area of the base.',
+                'Find the volume in cm³ and change it to liters. For the depth, divide the water volume (in cm³) by the area of the base.',
                 'Cari volume dalam cm³ lalu ubah ke liter. Untuk kedalaman, bagi volume air (dalam cm³) dengan luas alas.',
               ),
             },
@@ -1161,7 +1161,7 @@ export const module9: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'A water container is made of a tall part and a low part, as in the picture. It is 50 cm long and 20 cm wide. The tall part is 20 cm long and 30 cm high, and the low part is 10 cm high. How many litres of water does it hold when it is full?',
+                'A water container is made of a tall part and a low part, as in the picture. It is 50 cm long and 20 cm wide. The tall part is 20 cm long and 30 cm high, and the low part is 10 cm high. How many liters of water does it hold when it is full?',
                 'Sebuah wadah air terdiri dari bagian tinggi dan bagian rendah, seperti pada gambar. Panjangnya 50 cm dan lebarnya 20 cm. Bagian yang tinggi panjangnya 20 cm dan tingginya 30 cm, sedangkan bagian yang rendah tingginya 10 cm. Berapa liter air yang muat saat wadah itu penuh?',
               ),
               figure: {
@@ -1177,14 +1177,14 @@ export const module9: Module = {
                 ),
                 caption: L('The water container, made of two boxes.', 'Wadah air itu, terdiri dari dua balok.'),
               },
-              blanks: [{ answer: 18, after: { en: '\\text{ litres}', id: '\\text{ liter}' } }],
+              blanks: [{ answer: 18, after: { en: '\\text{ liters}', id: '\\text{ liter}' } }],
               hints: [
                 L(
                   'The container is two boxes joined together. Where would you cut it?',
                   'Wadah itu adalah dua balok yang disambung. Di mana kamu akan memotongnya?',
                 ),
                 L(
-                  'Find the volume of each box in cm³ (the low part is shorter than the whole container), add them, and then change cm³ to litres.',
+                  'Find the volume of each box in cm³ (the low part is shorter than the whole container), add them, and then change cm³ to liters.',
                   'Cari volume tiap balok dalam cm³ (bagian yang rendah lebih pendek daripada seluruh wadah), jumlahkan, lalu ubah cm³ menjadi liter.',
                 ),
                 L(
@@ -1193,11 +1193,11 @@ export const module9: Module = {
                 ),
               ],
               explain: L(
-                'The tall part is $20 \\times 20 \\times 30 = 12\\,000\\text{ cm}^3$. The low part is $30 \\times 20 \\times 10 = 6\\,000\\text{ cm}^3$. Together that is $18\\,000\\text{ cm}^3$, which is 18 litres.',
+                'The tall part is $20 \\times 20 \\times 30 = 12\\,000\\text{ cm}^3$. The low part is $30 \\times 20 \\times 10 = 6\\,000\\text{ cm}^3$. Together that is $18\\,000\\text{ cm}^3$, which is 18 liters.',
                 'Bagian yang tinggi bervolume $20 \\times 20 \\times 30 = 12\\,000\\text{ cm}^3$. Bagian yang rendah bervolume $30 \\times 20 \\times 10 = 6\\,000\\text{ cm}^3$. Jumlahnya $18\\,000\\text{ cm}^3$, yaitu 18 liter.',
               ),
               solution: {
-                en: ['20 \\times 20 \\times 30 = 12\\,000\\text{ cm}^3', '50 - 20 = 30\\text{ cm},\\quad 30 \\times 20 \\times 10 = 6\\,000\\text{ cm}^3', '12\\,000 + 6\\,000 = 18\\,000\\text{ cm}^3', '18\\,000 \\div 1\\,000 = 18\\text{ litres}'],
+                en: ['20 \\times 20 \\times 30 = 12\\,000\\text{ cm}^3', '50 - 20 = 30\\text{ cm},\\quad 30 \\times 20 \\times 10 = 6\\,000\\text{ cm}^3', '12\\,000 + 6\\,000 = 18\\,000\\text{ cm}^3', '18\\,000 \\div 1\\,000 = 18\\text{ liters}'],
                 id: ['20 \\times 20 \\times 30 = 12\\,000\\text{ cm}^3', '50 - 20 = 30\\text{ cm},\\quad 30 \\times 20 \\times 10 = 6\\,000\\text{ cm}^3', '12\\,000 + 6\\,000 = 18\\,000\\text{ cm}^3', '18\\,000 \\div 1\\,000 = 18\\text{ liter}'],
               },
             },
@@ -1205,7 +1205,7 @@ export const module9: Module = {
               kind: 'math',
               id: 'm2',
               prompt: L(
-                'A fish tank is 60 cm long, 30 cm wide and 40 cm high. It already holds water 20 cm deep. Budi pours in 18 more litres of water. How deep is the water now?',
+                'A fish tank is 60 cm long, 30 cm wide and 40 cm high. It already holds water 20 cm deep. Budi pours in 18 more liters of water. How deep is the water now?',
                 'Sebuah akuarium panjangnya 60 cm, lebarnya 30 cm, dan tingginya 40 cm. Akuarium itu sudah berisi air setinggi 20 cm. Budi menuangkan 18 liter air lagi. Berapa dalam air sekarang?',
               ),
               figure: {
@@ -1219,7 +1219,7 @@ export const module9: Module = {
                   'Alas akuarium tetap sama. Cari luasnya, dan pikirkan berapa tinggi air NAIK.',
                 ),
                 L(
-                  'Change the 18 litres to cm³. Divide by the area of the base to see how many centimetres the water rises.',
+                  'Change the 18 liters to cm³. Divide by the area of the base to see how many centimeters the water rises.',
                   'Ubah 18 liter menjadi cm³. Bagi dengan luas alas untuk mengetahui berapa sentimeter air naik.',
                 ),
                 L(
@@ -1228,11 +1228,11 @@ export const module9: Module = {
                 ),
               ],
               explain: L(
-                'The base is $60 \\times 30 = 1\\,800\\text{ cm}^2$. The 18 litres are $18\\,000\\text{ cm}^3$, so the water rises $18\\,000 \\div 1\\,800 = 10$ cm. The depth is now $20 + 10 = 30$ cm, which is less than 40 cm, so nothing spills.',
+                'The base is $60 \\times 30 = 1\\,800\\text{ cm}^2$. The 18 liters are $18\\,000\\text{ cm}^3$, so the water rises $18\\,000 \\div 1\\,800 = 10$ cm. The depth is now $20 + 10 = 30$ cm, which is less than 40 cm, so nothing spills.',
                 'Luas alasnya $60 \\times 30 = 1\\,800\\text{ cm}^2$. Ke-18 liter itu adalah $18\\,000\\text{ cm}^3$, jadi air naik $18\\,000 \\div 1\\,800 = 10$ cm. Sekarang dalam air $20 + 10 = 30$ cm, kurang dari 40 cm, jadi tidak ada yang tumpah.',
               ),
               solution: {
-                en: ['60 \\times 30 = 1\\,800\\text{ cm}^2', '18\\text{ litres} = 18\\,000\\text{ cm}^3', '18\\,000 \\div 1\\,800 = 10\\text{ cm}', '20 + 10 = 30\\text{ cm}'],
+                en: ['60 \\times 30 = 1\\,800\\text{ cm}^2', '18\\text{ liters} = 18\\,000\\text{ cm}^3', '18\\,000 \\div 1\\,800 = 10\\text{ cm}', '20 + 10 = 30\\text{ cm}'],
                 id: ['60 \\times 30 = 1\\,800\\text{ cm}^2', '18\\text{ liter} = 18\\,000\\text{ cm}^3', '18\\,000 \\div 1\\,800 = 10\\text{ cm}', '20 + 10 = 30\\text{ cm}'],
               },
             },
@@ -1249,7 +1249,7 @@ export const module9: Module = {
         ),
         requirements: [
           L('Find the volume of a box and a missing edge.', 'Mencari volume balok dan rusuk yang belum diketahui.'),
-          L('Change between cm³ and litres.', 'Mengubah antara cm³ dan liter.'),
+          L('Change between cm³ and liters.', 'Mengubah antara cm³ dan liter.'),
         ],
         tasks: [
           {
@@ -1271,12 +1271,12 @@ export const module9: Module = {
           },
           {
             prompt: L(
-              'A bathroom tank is 80 cm long, 50 cm wide and 40 cm high. How many litres of water does it hold when it is full?',
+              'A bathroom tank is 80 cm long, 50 cm wide and 40 cm high. How many liters of water does it hold when it is full?',
               'Sebuah bak mandi panjangnya 80 cm, lebarnya 50 cm, dan tingginya 40 cm. Berapa liter air yang muat saat bak itu penuh?',
             ),
-            blanks: [{ answer: 160, after: { en: '\\text{ litres}', id: '\\text{ liter}' } }],
+            blanks: [{ answer: 160, after: { en: '\\text{ liters}', id: '\\text{ liter}' } }],
             solution: {
-              en: ['80 \\times 50 \\times 40 = 160\\,000\\text{ cm}^3', '160\\,000 \\div 1\\,000 = 160\\text{ litres}'],
+              en: ['80 \\times 50 \\times 40 = 160\\,000\\text{ cm}^3', '160\\,000 \\div 1\\,000 = 160\\text{ liters}'],
               id: ['80 \\times 50 \\times 40 = 160\\,000\\text{ cm}^3', '160\\,000 \\div 1\\,000 = 160\\text{ liter}'],
             },
           },
@@ -1313,10 +1313,10 @@ export const module9: Module = {
         xp: 50,
       },
     },
-    /* ================================================================== S3 — spatial visualisation */
+    /* ================================================================== S3 — spatial visualization */
     {
       id: 'tka-m9-s3',
-      title: L('Spatial Visualisation', 'Visualisasi Ruang'),
+      title: L('Spatial Visualization', 'Visualisasi Ruang'),
       summary: L(
         'A stack of cubes looks different from the front, from the side and from above. You will read and draw those views, see how a tall column hides what is behind it, and rebuild a stack from its views.',
         'Sebuah tumpukan kubus terlihat berbeda dari depan, dari samping, dan dari atas. Kamu akan membaca dan menggambar ketiga tampak itu, melihat bagaimana kolom yang tinggi menyembunyikan apa yang ada di belakangnya, dan menyusun kembali tumpukan dari tampaknya.',

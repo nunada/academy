@@ -32,7 +32,7 @@ function fracFmt(d: number, o: { reduce?: boolean; mixed?: boolean } = {}) {
 }
 
 /** `times` copies of `per` pieces, each piece 1/den, laid end to end on bars of `den` cells.
- *  Each copy has its own colour, so "3 groups of 2 fifths" can be seen as 3 groups. */
+ *  Each copy has its own color, so "3 groups of 2 fifths" can be seen as 3 groups. */
 function repeatBars(den: number, per: number, times: number): Piece {
   const W = 10
   const total = per * times
@@ -50,7 +50,7 @@ function repeatBars(den: number, per: number, times: number): Piece {
 }
 
 /** Top bar: `p` equal parts with `s` shaded (the amount). Bottom bar: every part cut into `k`,
- *  so `p*k` small parts; the shaded small parts are shared out in `k` equal groups, one colour each. */
+ *  so `p*k` small parts; the shaded small parts are shared out in `k` equal groups, one color each. */
 function cutBar(p: number, s: number, k: number, labels?: [string, string]): Piece {
   const W = 10
   const items: FigItem[] = []
@@ -120,7 +120,7 @@ export const module3: Module = {
               id: 'c1',
               title: L('Look Closely: Different Names, Same Amount', 'Ayo Amati: Nama Berbeda, Jumlah Sama'),
               body: L(
-                'Ani cuts a cake into 4 **equal parts** and eats 3 of them. That is written $\\frac{3}{4}$.\n\n- **Denominator** (bottom number): how many equal parts the whole is cut into.\n- **Numerator** (top number): how many parts we take.\n\nNow look at the three bars of the same length below. The coloured part is the same size in all of them: $\\frac{1}{2}=\\frac{2}{4}=\\frac{4}{8}$. The names are different but the amount is the same. These are called **equivalent fractions**.\n\nNotice the pattern. From $\\frac{1}{2}$ to $\\frac{2}{4}$, the numerator and the denominator are both multiplied by 2. From $\\frac{1}{2}$ to $\\frac{4}{8}$, both are multiplied by 4.',
+                'Ani cuts a cake into 4 **equal parts** and eats 3 of them. That is written $\\frac{3}{4}$.\n\n- **Denominator** (bottom number): how many equal parts the whole is cut into.\n- **Numerator** (top number): how many parts we take.\n\nNow look at the three bars of the same length below. The colored part is the same size in all of them: $\\frac{1}{2}=\\frac{2}{4}=\\frac{4}{8}$. The names are different but the amount is the same. These are called **equivalent fractions**.\n\nNotice the pattern. From $\\frac{1}{2}$ to $\\frac{2}{4}$, the numerator and the denominator are both multiplied by 2. From $\\frac{1}{2}$ to $\\frac{4}{8}$, both are multiplied by 4.',
                 'Ani memotong kue menjadi 4 bagian **sama besar**, lalu memakan 3 bagian. Itu ditulis $\\frac{3}{4}$.\n\n- **Penyebut** (angka bawah): kue dipotong menjadi berapa bagian sama besar.\n- **Pembilang** (angka atas): berapa bagian yang diambil.\n\nSekarang lihat tiga batang sama panjang di bawah. Bagian yang berwarna sama besar di semuanya: $\\frac{1}{2}=\\frac{2}{4}=\\frac{4}{8}$. Namanya beda, tetapi jumlahnya sama. Pecahan seperti ini disebut **pecahan senilai**.\n\nPerhatikan polanya. Dari $\\frac{1}{2}$ ke $\\frac{2}{4}$, pembilang dan penyebut sama-sama dikali 2. Dari $\\frac{1}{2}$ ke $\\frac{4}{8}$, keduanya dikali 4.',
               ),
               figure: {
@@ -130,7 +130,7 @@ export const module3: Module = {
                   { parts: 8, shaded: 4, label: '4/8' },
                 ]),
                 caption: L(
-                  'Three bars of the same length. The coloured part is equally long in every bar.',
+                  'Three bars of the same length. The colored part is equally long in every bar.',
                   'Tiga batang sama panjang. Bagian yang berwarna sama panjang di setiap batang.',
                 ),
               },
@@ -167,12 +167,12 @@ export const module3: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
-                'A pizza is cut into equal parts. The coloured parts have been eaten. What fraction of the pizza has been eaten?',
+                'A pizza is cut into equal parts. The colored parts have been eaten. What fraction of the pizza has been eaten?',
                 'Sebuah pizza dipotong menjadi bagian-bagian sama besar. Bagian yang berwarna sudah dimakan. Berapa bagian pizza yang sudah dimakan?',
               ),
               figure: {
                 ...fractionCircles([{ parts: 6, shaded: 4 }]),
-                caption: L('A pizza cut into equal slices. The coloured slices were eaten.', 'Sebuah pizza dipotong menjadi irisan sama besar. Irisan berwarna sudah dimakan.'),
+                caption: L('A pizza cut into equal slices. The colored slices were eaten.', 'Sebuah pizza dipotong menjadi irisan sama besar. Irisan berwarna sudah dimakan.'),
               },
               options: [
                 L('$\\frac{4}{6}$', '$\\frac{4}{6}$'),
@@ -182,11 +182,11 @@ export const module3: Module = {
               ],
               answer: 0,
               explain: L(
-                'There are 6 equal slices in all (the denominator) and 4 are coloured (the numerator). The fraction $\\frac{2}{6}$ is the part that was NOT eaten, and $\\frac{4}{2}$ compares eaten slices with the leftover slices.',
+                'There are 6 equal slices in all (the denominator) and 4 are colored (the numerator). The fraction $\\frac{2}{6}$ is the part that was NOT eaten, and $\\frac{4}{2}$ compares eaten slices with the leftover slices.',
                 'Ada 6 irisan sama besar seluruhnya (penyebut) dan 4 irisan berwarna (pembilang). Pecahan $\\frac{2}{6}$ adalah bagian yang BELUM dimakan, dan $\\frac{4}{2}$ membandingkan irisan yang dimakan dengan irisan yang tersisa.',
               ),
               hint: L(
-                'Count all the slices of the pizza first, then count only the coloured ones. Which count is the bottom number?',
+                'Count all the slices of the pizza first, then count only the colored ones. Which count is the bottom number?',
                 'Hitung dulu semua irisan pizza, lalu hitung hanya yang berwarna. Hitungan mana yang menjadi angka bawah?',
               ),
             },
@@ -492,7 +492,7 @@ export const module3: Module = {
               kind: 'quiz',
               id: 'q3',
               prompt: L(
-                'The three circles are pizzas of the same size, each cut into 3 equal slices. The coloured slices are the pizza that is left. How much pizza is left, written as a mixed number?',
+                'The three circles are pizzas of the same size, each cut into 3 equal slices. The colored slices are the pizza that is left. How much pizza is left, written as a mixed number?',
                 'Ketiga lingkaran adalah pizza yang sama besar, masing-masing dipotong menjadi 3 irisan sama besar. Irisan berwarna adalah pizza yang tersisa. Berapa pizza yang tersisa, ditulis sebagai pecahan campuran?',
               ),
               figure: {
@@ -511,11 +511,11 @@ export const module3: Module = {
               ],
               answer: 0,
               explain: L(
-                'There are 2 full pizzas and 1 slice of the third one, which is $\\frac{1}{3}$, so $2\\frac{1}{3}$. The answer $3\\frac{1}{3}$ counts the last pizza as a whole one and adds its slice again, and $2\\frac{2}{3}$ counts the 2 empty slices instead of the 1 coloured slice.',
+                'There are 2 full pizzas and 1 slice of the third one, which is $\\frac{1}{3}$, so $2\\frac{1}{3}$. The answer $3\\frac{1}{3}$ counts the last pizza as a whole one and adds its slice again, and $2\\frac{2}{3}$ counts the 2 empty slices instead of the 1 colored slice.',
                 'Ada 2 pizza utuh dan 1 irisan dari pizza ketiga, yaitu $\\frac{1}{3}$, jadi $2\\frac{1}{3}$. Jawaban $3\\frac{1}{3}$ menghitung pizza terakhir sebagai satu utuh lalu menambahkan irisannya lagi, dan $2\\frac{2}{3}$ menghitung 2 irisan yang kosong, bukan 1 irisan yang berwarna.',
               ),
               hint: L(
-                'Count the circles that are completely coloured. Then look at the last circle: how many slices are coloured, out of how many?',
+                'Count the circles that are completely colored. Then look at the last circle: how many slices are colored, out of how many?',
                 'Hitung lingkaran yang berwarna penuh. Lalu lihat lingkaran terakhir: berapa irisan yang berwarna, dari berapa irisan?',
               ),
             },
@@ -550,7 +550,7 @@ export const module3: Module = {
               blanks: mixed(5, 3, 4),
               hints: [
                 L(
-                  'The numerator is bigger than the denominator, so there are whole metres inside. How many quarters make one whole metre?',
+                  'The numerator is bigger than the denominator, so there are whole meters inside. How many quarters make one whole meter?',
                   'Pembilangnya lebih besar dari penyebut, jadi ada meter utuh di dalamnya. Berapa seperempat yang membentuk satu meter utuh?',
                 ),
                 L(
@@ -563,7 +563,7 @@ export const module3: Module = {
                 ),
               ],
               explain: L(
-                '$23\\div4=5$ remainder 3, so $\\frac{23}{4}=5\\frac{3}{4}$ m: five whole metres and three quarters more.',
+                '$23\\div4=5$ remainder 3, so $\\frac{23}{4}=5\\frac{3}{4}$ m: five whole meters and three quarters more.',
                 '$23\\div4=5$ sisa 3, jadi $\\frac{23}{4}=5\\frac{3}{4}$ m: lima meter utuh dan tiga seperempat lagi.',
               ),
               solution: ['23 = 5 \\times 4 + 3', '\\frac{23}{4}=5\\frac{3}{4}'],
@@ -1049,7 +1049,7 @@ export const module3: Module = {
               kind: 'quiz',
               id: 'q3',
               prompt: L(
-                'A tailor has a roll of cloth 5 m long. He cuts off $2\\frac{1}{3}$ m for a dress. How many metres of cloth are left?',
+                'A tailor has a roll of cloth 5 m long. He cuts off $2\\frac{1}{3}$ m for a dress. How many meters of cloth are left?',
                 'Seorang penjahit punya segulung kain sepanjang 5 m. Ia memotong $2\\frac{1}{3}$ m untuk sebuah baju. Berapa meter kain yang tersisa?',
               ),
               options: [
@@ -1196,7 +1196,7 @@ export const module3: Module = {
           },
           {
             prompt: L(
-              'Citra has $\\frac{3}{4}$ litre of juice. She wants to have $1\\frac{1}{6}$ litres. How many litres of juice must she add? Write the fraction in simplest form.',
+              'Citra has $\\frac{3}{4}$ liter of juice. She wants to have $1\\frac{1}{6}$ liters. How many liters of juice must she add? Write the fraction in simplest form.',
               'Citra punya $\\frac{3}{4}$ liter jus. Ia ingin punya $1\\frac{1}{6}$ liter. Berapa liter jus yang harus ia tambahkan? Tulis pecahannya dalam bentuk paling sederhana.',
             ),
             figure: {
@@ -1245,13 +1245,13 @@ export const module3: Module = {
               id: 'c1',
               title: L('Look Closely: Adding the Same Fraction Again and Again', 'Ayo Amati: Menjumlah Pecahan yang Sama Berulang-ulang'),
               body: L(
-                'Ani drinks $\\frac{2}{5}$ litre of milk every day for 3 days. Three days means the same amount 3 times, so we add it again and again: $\\frac{2}{5}+\\frac{2}{5}+\\frac{2}{5}=\\frac{6}{5}$ litres.\n\nRepeated addition is written as multiplication: $3\\times\\frac{2}{5}=\\frac{6}{5}$. Look at the picture: there are 3 groups of 2 fifths, which is 6 fifths.\n\n- The denominator stays the same, because the pieces are still fifths.\n- The numerator is multiplied by the whole number: $3\\times2=6$.',
+                'Ani drinks $\\frac{2}{5}$ liter of milk every day for 3 days. Three days means the same amount 3 times, so we add it again and again: $\\frac{2}{5}+\\frac{2}{5}+\\frac{2}{5}=\\frac{6}{5}$ liters.\n\nRepeated addition is written as multiplication: $3\\times\\frac{2}{5}=\\frac{6}{5}$. Look at the picture: there are 3 groups of 2 fifths, which is 6 fifths.\n\n- The denominator stays the same, because the pieces are still fifths.\n- The numerator is multiplied by the whole number: $3\\times2=6$.',
                 'Ani minum $\\frac{2}{5}$ liter susu setiap hari selama 3 hari. Tiga hari berarti jumlah yang sama sebanyak 3 kali, jadi kita menjumlahkannya berulang: $\\frac{2}{5}+\\frac{2}{5}+\\frac{2}{5}=\\frac{6}{5}$ liter.\n\nPenjumlahan berulang ditulis sebagai perkalian: $3\\times\\frac{2}{5}=\\frac{6}{5}$. Lihat gambarnya: ada 3 kelompok yang masing-masing 2 seperlima, yaitu 6 seperlima.\n\n- Penyebut tetap sama, karena potongannya masih seperlima.\n- Pembilang dikali dengan bilangan asli: $3\\times2=6$.',
               ),
               figure: {
                 ...repeatBars(5, 2, 3),
                 caption: L(
-                  'Three groups of 2 fifths, each group in its own colour: 6 fifths in all.',
+                  'Three groups of 2 fifths, each group in its own color: 6 fifths in all.',
                   'Tiga kelompok berisi 2 seperlima, tiap kelompok warnanya sendiri: seluruhnya 6 seperlima.',
                 ),
               },
@@ -1267,7 +1267,7 @@ export const module3: Module = {
               figure: {
                 ...gridRect({ cols: 6, rows: 4, shade: 18 }),
                 caption: L(
-                  '24 marbles in 4 equal rows of 6. The 3 coloured rows are $\\frac{3}{4}$ of the marbles.',
+                  '24 marbles in 4 equal rows of 6. The 3 colored rows are $\\frac{3}{4}$ of the marbles.',
                   '24 kelereng dalam 4 baris sama banyak, masing-masing 6. Tiga baris berwarna adalah $\\frac{3}{4}$ dari kelereng.',
                 ),
               },
@@ -1340,12 +1340,12 @@ export const module3: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: L(
-                'The picture shows 36 mangoes in equal rows. The coloured mangoes were sold. How many mangoes were sold?',
+                'The picture shows 36 mangoes in equal rows. The colored mangoes were sold. How many mangoes were sold?',
                 'Gambar menunjukkan 36 mangga dalam baris yang sama banyak. Mangga yang berwarna sudah terjual. Berapa mangga yang terjual?',
               ),
               figure: {
                 ...gridRect({ cols: 6, rows: 6, shade: 30 }),
-                caption: L('36 mangoes in 6 equal rows. The coloured ones were sold.', '36 mangga dalam 6 baris sama banyak. Yang berwarna sudah terjual.'),
+                caption: L('36 mangoes in 6 equal rows. The colored ones were sold.', '36 mangga dalam 6 baris sama banyak. Yang berwarna sudah terjual.'),
               },
               options: [
                 L('30', '30'),
@@ -1355,11 +1355,11 @@ export const module3: Module = {
               ],
               answer: 0,
               explain: L(
-                '5 of the 6 rows are coloured, so $\\frac{5}{6}$ of 36: $36\\div6=6$ in each row, and $5\\times6=30$. Giving 6 forgets to multiply by 5, and 180 forgets to divide by 6.',
+                '5 of the 6 rows are colored, so $\\frac{5}{6}$ of 36: $36\\div6=6$ in each row, and $5\\times6=30$. Giving 6 forgets to multiply by 5, and 180 forgets to divide by 6.',
                 '5 dari 6 baris berwarna, jadi $\\frac{5}{6}$ dari 36: $36\\div6=6$ di tiap baris, dan $5\\times6=30$. Jawaban 6 lupa dikali 5, dan 180 lupa dibagi 6.',
               ),
               hint: L(
-                'Count the rows to find the fraction that is coloured. Then count how many mangoes are in one row.',
+                'Count the rows to find the fraction that is colored. Then count how many mangoes are in one row.',
                 'Hitung barisnya untuk menemukan pecahan yang berwarna. Lalu hitung ada berapa mangga di satu baris.',
               ),
             },
@@ -1431,7 +1431,7 @@ export const module3: Module = {
               kind: 'math',
               id: 'm2',
               prompt: L(
-                'Siti fills 6 bottles from a drum. Each bottle holds $1\\frac{3}{4}$ litres. How many litres of water are in the 6 bottles together? Write the answer as a mixed number in simplest form.',
+                'Siti fills 6 bottles from a drum. Each bottle holds $1\\frac{3}{4}$ liters. How many liters of water are in the 6 bottles together? Write the answer as a mixed number in simplest form.',
                 'Siti mengisi 6 botol dari sebuah drum. Tiap botol berisi $1\\frac{3}{4}$ liter. Berapa liter air di keenam botol itu bersama-sama? Tulis jawabannya sebagai pecahan campuran dalam bentuk paling sederhana.',
               ),
               inline: true,
@@ -1451,7 +1451,7 @@ export const module3: Module = {
                 ),
               ],
               explain: L(
-                '$6\\times\\frac{7}{4}=\\frac{42}{4}=10\\frac{2}{4}=10\\frac{1}{2}$ litres. It is between 6 and 12, as the estimate says.',
+                '$6\\times\\frac{7}{4}=\\frac{42}{4}=10\\frac{2}{4}=10\\frac{1}{2}$ liters. It is between 6 and 12, as the estimate says.',
                 '$6\\times\\frac{7}{4}=\\frac{42}{4}=10\\frac{2}{4}=10\\frac{1}{2}$ liter. Hasilnya di antara 6 dan 12, sesuai perkiraan.',
               ),
               solution: ['1\\frac{3}{4}=\\frac{7}{4}', '6\\times\\frac{7}{4}=\\frac{42}{4}', '\\frac{42}{4}=10\\frac{2}{4}=10\\frac{1}{2}'],
@@ -1507,7 +1507,7 @@ export const module3: Module = {
               figure: {
                 ...cutBar(2, 1, 4, ['1/2', '1/8']),
                 caption: L(
-                  'The grey half is cut into 4 equal shares. Each share is one small piece, $\\frac{1}{8}$ of the whole.',
+                  'The gray half is cut into 4 equal shares. Each share is one small piece, $\\frac{1}{8}$ of the whole.',
                   'Setengah yang abu-abu dipotong menjadi 4 bagian sama besar. Tiap bagian adalah satu potong kecil, $\\frac{1}{8}$ dari seluruhnya.',
                 ),
               },
@@ -1517,13 +1517,13 @@ export const module3: Module = {
               id: 'c2',
               title: L('Step by Step: Dividing by a Whole Number', 'Contoh Bertahap: Membagi dengan Bilangan Asli'),
               body: L(
-                'Mr. Joko has $\\frac{3}{4}$ litre of cooking oil. He pours it equally into 3 bottles. How much oil is in each bottle?\n\n1. Step 1: $\\frac{3}{4}$ is 3 pieces of one quarter each.\n2. Step 2: Shortcut: 3 pieces shared by 3 bottles is 1 piece each, so $3\\div3=1$ and the answer is $\\frac{1}{4}$ litre.\n3. Step 3: Check with the general rule. Multiply the denominator by 3: $\\frac{3}{4\\times3}=\\frac{3}{12}$.\n4. Step 4: Simplify: $\\frac{3}{12}=\\frac{1}{4}$. Both ways give the same answer.\n\n**Remember:**\n\n- Fraction ÷ whole number: keep the numerator and multiply the denominator by the whole number.\n- Simplify the answer. If the numerator divides evenly, you can just divide the numerator.',
+                'Mr. Joko has $\\frac{3}{4}$ liter of cooking oil. He pours it equally into 3 bottles. How much oil is in each bottle?\n\n1. Step 1: $\\frac{3}{4}$ is 3 pieces of one quarter each.\n2. Step 2: Shortcut: 3 pieces shared by 3 bottles is 1 piece each, so $3\\div3=1$ and the answer is $\\frac{1}{4}$ liter.\n3. Step 3: Check with the general rule. Multiply the denominator by 3: $\\frac{3}{4\\times3}=\\frac{3}{12}$.\n4. Step 4: Simplify: $\\frac{3}{12}=\\frac{1}{4}$. Both ways give the same answer.\n\n**Remember:**\n\n- Fraction ÷ whole number: keep the numerator and multiply the denominator by the whole number.\n- Simplify the answer. If the numerator divides evenly, you can just divide the numerator.',
                 'Pak Joko punya $\\frac{3}{4}$ liter minyak goreng. Ia menuangkannya sama banyak ke 3 botol. Berapa liter minyak di tiap botol?\n\n1. Langkah 1: $\\frac{3}{4}$ adalah 3 potong yang masing-masing seperempat.\n2. Langkah 2: Cara cepat: 3 potong dibagi untuk 3 botol, tiap botol 1 potong, jadi $3\\div3=1$ dan jawabannya $\\frac{1}{4}$ liter.\n3. Langkah 3: Periksa dengan aturan umum. Kalikan penyebut dengan 3: $\\frac{3}{4\\times3}=\\frac{3}{12}$.\n4. Langkah 4: Sederhanakan: $\\frac{3}{12}=\\frac{1}{4}$. Kedua cara memberi jawaban yang sama.\n\n**Ingat:**\n\n- Pecahan ÷ bilangan asli: pembilang tetap dan penyebut dikali dengan bilangan asli itu.\n- Sederhanakan jawabannya. Kalau pembilang habis dibagi, kamu boleh langsung membagi pembilangnya.',
               ),
               figure: {
                 ...cutBar(4, 3, 3, ['3/4', '3/12']),
                 caption: L(
-                  'The grey $\\frac{3}{4}$ is cut into 3 equal shares of 3 twelfths each, and 3 twelfths is the same as $\\frac{1}{4}$.',
+                  'The gray $\\frac{3}{4}$ is cut into 3 equal shares of 3 twelfths each, and 3 twelfths is the same as $\\frac{1}{4}$.',
                   '$\\frac{3}{4}$ yang abu-abu dipotong menjadi 3 bagian sama besar, masing-masing 3 seperduabelas, dan 3 seperduabelas sama dengan $\\frac{1}{4}$.',
                 ),
               },
@@ -1542,7 +1542,7 @@ export const module3: Module = {
               id: 'c4',
               title: L('Step by Step: Mixed Number ÷ Whole Number', 'Contoh Bertahap: Pecahan Campuran ÷ Bilangan Asli'),
               body: L(
-                'Mr. Joko has $5\\frac{1}{4}$ litres of cooking oil. He pours it equally into 3 jugs. How many litres are in each jug? We need $5\\frac{1}{4}\\div3$.\n\n1. Step 1: Change the mixed number into an improper fraction: $5\\frac{1}{4}=\\frac{5\\times4+1}{4}=\\frac{21}{4}$.\n2. Step 2: Multiply the denominator by 3: $\\frac{21}{4}\\div3=\\frac{21}{12}$. (Here you could also share the numerator, $21\\div3=7$, and get $\\frac{7}{4}$.)\n3. Step 3: Simplify and change to a mixed number: $\\frac{21}{12}=\\frac{7}{4}=1\\frac{3}{4}$ litres.\n4. Step 4: Check by multiplying back: $3\\times1\\frac{3}{4}=3\\times\\frac{7}{4}=\\frac{21}{4}=5\\frac{1}{4}$.\n\n**Remember:**\n\n- Mixed number ÷ whole number: change to an improper fraction first, then divide as before.\n- Check by multiplying back: the answer times the whole number must give the amount you started with.',
+                'Mr. Joko has $5\\frac{1}{4}$ liters of cooking oil. He pours it equally into 3 jugs. How many liters are in each jug? We need $5\\frac{1}{4}\\div3$.\n\n1. Step 1: Change the mixed number into an improper fraction: $5\\frac{1}{4}=\\frac{5\\times4+1}{4}=\\frac{21}{4}$.\n2. Step 2: Multiply the denominator by 3: $\\frac{21}{4}\\div3=\\frac{21}{12}$. (Here you could also share the numerator, $21\\div3=7$, and get $\\frac{7}{4}$.)\n3. Step 3: Simplify and change to a mixed number: $\\frac{21}{12}=\\frac{7}{4}=1\\frac{3}{4}$ liters.\n4. Step 4: Check by multiplying back: $3\\times1\\frac{3}{4}=3\\times\\frac{7}{4}=\\frac{21}{4}=5\\frac{1}{4}$.\n\n**Remember:**\n\n- Mixed number ÷ whole number: change to an improper fraction first, then divide as before.\n- Check by multiplying back: the answer times the whole number must give the amount you started with.',
                 'Pak Joko punya $5\\frac{1}{4}$ liter minyak goreng. Ia menuangkannya sama banyak ke 3 teko. Berapa liter minyak di tiap teko? Kita perlu menghitung $5\\frac{1}{4}\\div3$.\n\n1. Langkah 1: Ubah pecahan campuran menjadi pecahan tak wajar: $5\\frac{1}{4}=\\frac{5\\times4+1}{4}=\\frac{21}{4}$.\n2. Langkah 2: Kalikan penyebut dengan 3: $\\frac{21}{4}\\div3=\\frac{21}{12}$. (Di sini kamu juga bisa membagi pembilangnya, $21\\div3=7$, dan mendapat $\\frac{7}{4}$.)\n3. Langkah 3: Sederhanakan dan ubah ke pecahan campuran: $\\frac{21}{12}=\\frac{7}{4}=1\\frac{3}{4}$ liter.\n4. Langkah 4: Periksa dengan mengalikan kembali: $3\\times1\\frac{3}{4}=3\\times\\frac{7}{4}=\\frac{21}{4}=5\\frac{1}{4}$.\n\n**Ingat:**\n\n- Pecahan campuran ÷ bilangan asli: ubah dulu menjadi pecahan tak wajar, lalu bagi seperti tadi.\n- Periksa dengan mengalikan kembali: hasilnya dikali bilangan asli harus sama dengan jumlah awal.',
               ),
             },
@@ -1550,12 +1550,12 @@ export const module3: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
-                'Mum has $\\frac{1}{3}$ of a tray of cake (the grey part). She shares it equally between 2 children, as the picture shows. How much of the whole tray does each child get?',
+                'Mum has $\\frac{1}{3}$ of a tray of cake (the gray part). She shares it equally between 2 children, as the picture shows. How much of the whole tray does each child get?',
                 'Ibu punya $\\frac{1}{3}$ loyang kue (bagian abu-abu). Ia membaginya sama banyak untuk 2 anak, seperti terlihat pada gambar. Berapa bagian dari seluruh loyang yang didapat tiap anak?',
               ),
               figure: {
                 ...cutBar(3, 1, 2),
-                caption: L('The grey third is cut into 2 equal shares.', 'Sepertiga yang abu-abu dipotong menjadi 2 bagian sama besar.'),
+                caption: L('The gray third is cut into 2 equal shares.', 'Sepertiga yang abu-abu dipotong menjadi 2 bagian sama besar.'),
               },
               options: [
                 L('$\\frac{1}{6}$', '$\\frac{1}{6}$'),
@@ -1596,12 +1596,12 @@ export const module3: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: L(
-                '$\\frac{4}{5}$ litre of water (the grey part) is poured equally into 2 glasses, as the picture shows. How many litres are in each glass?',
+                '$\\frac{4}{5}$ liter of water (the gray part) is poured equally into 2 glasses, as the picture shows. How many liters are in each glass?',
                 '$\\frac{4}{5}$ liter air (bagian abu-abu) dituang sama banyak ke 2 gelas, seperti terlihat pada gambar. Berapa liter air di tiap gelas?',
               ),
               figure: {
                 ...cutBar(5, 4, 2),
-                caption: L('The grey $\\frac{4}{5}$ is cut into 2 equal shares, one colour each.', '$\\frac{4}{5}$ yang abu-abu dipotong menjadi 2 bagian sama besar, tiap bagian satu warna.'),
+                caption: L('The gray $\\frac{4}{5}$ is cut into 2 equal shares, one color each.', '$\\frac{4}{5}$ yang abu-abu dipotong menjadi 2 bagian sama besar, tiap bagian satu warna.'),
               },
               options: [
                 L('$\\frac{2}{5}$', '$\\frac{2}{5}$'),
@@ -1615,7 +1615,7 @@ export const module3: Module = {
                 'Tiap gelas mendapat 4 dari 10 potong kecil, yaitu $\\frac{4}{10}=\\frac{2}{5}$. Jawaban $\\frac{2}{10}$ membagi dua pembilang DAN menggandakan penyebut, $\\frac{8}{5}$ mengalikan, dan $\\frac{4}{7}$ menambah 2 pada penyebut.',
               ),
               hint: L(
-                'In the lower bar, count how many small pieces one colour covers. How many small pieces make the whole?',
+                'In the lower bar, count how many small pieces one color covers. How many small pieces make the whole?',
                 'Pada batang bawah, hitung berapa potong kecil yang ditutupi satu warna. Berapa potong kecil yang membentuk seluruhnya?',
               ),
             },
@@ -1690,18 +1690,18 @@ export const module3: Module = {
               kind: 'judge',
               id: 'j2',
               prompt: L(
-                'Mrs. Siti has 5 cans of cooking oil, each holding $2\\frac{3}{4}$ litres. She pours all the oil into 9 big bottles of equal size and 4 small bottles. Each small bottle holds half as much as a big bottle, and every bottle is filled completely. Decide whether each statement is True or False.',
+                'Mrs. Siti has 5 cans of cooking oil, each holding $2\\frac{3}{4}$ liters. She pours all the oil into 9 big bottles of equal size and 4 small bottles. Each small bottle holds half as much as a big bottle, and every bottle is filled completely. Decide whether each statement is True or False.',
                 'Bu Siti punya 5 kaleng minyak goreng, masing-masing berisi $2\\frac{3}{4}$ liter. Ia menuangkan semua minyak itu ke 9 botol besar yang sama ukurannya dan 4 botol kecil. Tiap botol kecil memuat setengah dari botol besar, dan setiap botol terisi penuh. Tentukan apakah setiap pernyataan Benar atau Salah.',
               ),
               statements: [
-                L('In all she has $13\\frac{3}{4}$ litres of oil.', 'Seluruhnya ia punya $13\\frac{3}{4}$ liter minyak.'),
-                L('Each big bottle holds $1\\frac{1}{4}$ litres.', 'Tiap botol besar memuat $1\\frac{1}{4}$ liter.'),
-                L('The 4 small bottles hold 2 litres together.', 'Keempat botol kecil memuat 2 liter bersama-sama.'),
+                L('In all she has $13\\frac{3}{4}$ liters of oil.', 'Seluruhnya ia punya $13\\frac{3}{4}$ liter minyak.'),
+                L('Each big bottle holds $1\\frac{1}{4}$ liters.', 'Tiap botol besar memuat $1\\frac{1}{4}$ liter.'),
+                L('The 4 small bottles hold 2 liters together.', 'Keempat botol kecil memuat 2 liter bersama-sama.'),
                 L('The 4 small bottles together hold as much oil as 2 big bottles.', 'Keempat botol kecil bersama-sama memuat minyak sebanyak 2 botol besar.'),
               ],
               answer: [true, true, false, true],
               explain: L(
-                'Total: $5\\times2\\frac{3}{4}=5\\times\\frac{11}{4}=\\frac{55}{4}=13\\frac{3}{4}$ litres. Two small bottles equal one big one, so the 4 small bottles count as 2 big ones, and there are $9+2=11$ big bottles in all. Each big bottle holds $\\frac{55}{4}\\div11=\\frac{5}{4}=1\\frac{1}{4}$ litres, so the 4 small bottles hold $2\\times1\\frac{1}{4}=2\\frac{1}{2}$ litres, not 2.',
+                'Total: $5\\times2\\frac{3}{4}=5\\times\\frac{11}{4}=\\frac{55}{4}=13\\frac{3}{4}$ liters. Two small bottles equal one big one, so the 4 small bottles count as 2 big ones, and there are $9+2=11$ big bottles in all. Each big bottle holds $\\frac{55}{4}\\div11=\\frac{5}{4}=1\\frac{1}{4}$ liters, so the 4 small bottles hold $2\\times1\\frac{1}{4}=2\\frac{1}{2}$ liters, not 2.',
                 'Jumlah: $5\\times2\\frac{3}{4}=5\\times\\frac{11}{4}=\\frac{55}{4}=13\\frac{3}{4}$ liter. Dua botol kecil sama dengan satu botol besar, jadi 4 botol kecil sama dengan 2 botol besar, dan seluruhnya ada $9+2=11$ botol besar. Tiap botol besar memuat $\\frac{55}{4}\\div11=\\frac{5}{4}=1\\frac{1}{4}$ liter, jadi 4 botol kecil memuat $2\\times1\\frac{1}{4}=2\\frac{1}{2}$ liter, bukan 2.',
               ),
               hint: L(
@@ -1713,7 +1713,7 @@ export const module3: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'Mr. Joko has $\\frac{4}{5}$ litre of paint. He pours it equally into 6 small cans. How many litres of paint are in 3 of those cans together? Write the fraction in simplest form.',
+                'Mr. Joko has $\\frac{4}{5}$ liter of paint. He pours it equally into 6 small cans. How many liters of paint are in 3 of those cans together? Write the fraction in simplest form.',
                 'Pak Joko punya $\\frac{4}{5}$ liter cat. Ia menuangkannya sama banyak ke 6 kaleng kecil. Berapa liter cat dalam 3 kaleng itu bersama-sama? Tulis pecahannya dalam bentuk paling sederhana.',
               ),
               inline: true,
@@ -1728,12 +1728,12 @@ export const module3: Module = {
                   'Kalikan penyebut dengan 6 dan sederhanakan. Lalu kalikan pembilang jawabanmu dengan 3.',
                 ),
                 L(
-                  'One can has $\\frac{4}{30}=\\frac{2}{15}$ litre. For 3 cans, multiply that by 3 and simplify again.',
+                  'One can has $\\frac{4}{30}=\\frac{2}{15}$ liter. For 3 cans, multiply that by 3 and simplify again.',
                   'Satu kaleng berisi $\\frac{4}{30}=\\frac{2}{15}$ liter. Untuk 3 kaleng, kalikan itu dengan 3 dan sederhanakan lagi.',
                 ),
               ],
               explain: L(
-                'One can holds $\\frac{4}{5}\\div6=\\frac{4}{30}=\\frac{2}{15}$ litre. Three cans hold $3\\times\\frac{2}{15}=\\frac{6}{15}=\\frac{2}{5}$ litre.',
+                'One can holds $\\frac{4}{5}\\div6=\\frac{4}{30}=\\frac{2}{15}$ liter. Three cans hold $3\\times\\frac{2}{15}=\\frac{6}{15}=\\frac{2}{5}$ liter.',
                 'Satu kaleng berisi $\\frac{4}{5}\\div6=\\frac{4}{30}=\\frac{2}{15}$ liter. Tiga kaleng berisi $3\\times\\frac{2}{15}=\\frac{6}{15}=\\frac{2}{5}$ liter.',
               ),
               solution: ['\\frac{4}{5}\\div6=\\frac{4}{30}=\\frac{2}{15}', '3\\times\\frac{2}{15}=\\frac{6}{15}', '\\frac{6}{15}=\\frac{2}{5}'],
@@ -1778,7 +1778,7 @@ export const module3: Module = {
           },
           {
             prompt: L(
-              'Mum has $\\frac{3}{4}$ litre of syrup. She pours it equally into 6 glasses. How many litres of syrup are in each glass? Write the fraction in simplest form.',
+              'Mum has $\\frac{3}{4}$ liter of syrup. She pours it equally into 6 glasses. How many liters of syrup are in each glass? Write the fraction in simplest form.',
               'Ibu punya $\\frac{3}{4}$ liter sirup. Ia menuangkannya sama banyak ke 6 gelas. Berapa liter sirup di tiap gelas? Tulis pecahannya dalam bentuk paling sederhana.',
             ),
             inline: true,
@@ -1787,10 +1787,10 @@ export const module3: Module = {
           },
           {
             prompt: L(
-              'Mr. Joko pours the oil from 6 cans, each holding $2\\frac{1}{4}$ litres, equally into 9 bottles. How many litres of oil are in 4 of the bottles?',
+              'Mr. Joko pours the oil from 6 cans, each holding $2\\frac{1}{4}$ liters, equally into 9 bottles. How many liters of oil are in 4 of the bottles?',
               'Pak Joko menuangkan minyak dari 6 kaleng, masing-masing berisi $2\\frac{1}{4}$ liter, sama banyak ke 9 botol. Berapa liter minyak di 4 botol itu?',
             ),
-            blanks: [{ answer: 6, after: { en: '\\text{ litres}', id: '\\text{ liter}' } }],
+            blanks: [{ answer: 6, after: { en: '\\text{ liters}', id: '\\text{ liter}' } }],
             solution: ['6\\times2\\frac{1}{4}=6\\times\\frac{9}{4}=\\frac{54}{4}=13\\frac{1}{2}', '13\\frac{1}{2}\\div9=\\frac{27}{2}\\div9=\\frac{27}{18}=\\frac{3}{2}', '4\\times\\frac{3}{2}=6'],
           },
         ],

@@ -172,7 +172,7 @@ export const test2: Lesson = {
         'For a circle at the origin the tangent at $(x_1,y_1)$ is $x_1x+y_1y=r^2$. The distance from the origin to $y=5$ is $5=r$. The line $x+y=7$ is at distance $\\frac{7}{\\sqrt2}\\approx4.95<5$, so it cuts the circle. The tangent length is $\\sqrt{169-25}=12$.',
         'Untuk lingkaran di titik asal garis singgung di $(x_1,y_1)$ adalah $x_1x+y_1y=r^2$. Jarak dari titik asal ke $y=5$ adalah $5=r$. Garis $x+y=7$ berjarak $\\frac{7}{\\sqrt2}\\approx4{,}95<5$, jadi memotong lingkaran. Panjang garis singgung adalah $\\sqrt{169-25}=12$.',
       ),
-      hint: L('Compare the distance from the centre with the radius.', 'Bandingkan jarak dari pusat dengan jari-jari.'),
+      hint: L('Compare the distance from the center with the radius.', 'Bandingkan jarak dari pusat dengan jari-jari.'),
     },
     {
       kind: 'judge',
@@ -198,7 +198,7 @@ export const test2: Lesson = {
       kind: 'judge',
       id: 'j2',
       prompt: L(
-        'The point $P(2,1)$ is rotated by $90^{\\circ}$ anticlockwise about the origin and then reflected in the $x$-axis. Decide whether each statement is True or False.',
+        'The point $P(2,1)$ is rotated by $90^{\\circ}$ counterclockwise about the origin and then reflected in the $x$-axis. Decide whether each statement is True or False.',
         'Titik $P(2,1)$ diputar $90^{\\circ}$ berlawanan jarum jam terhadap titik asal lalu direfleksikan terhadap sumbu $x$. Tentukan tiap pernyataan Benar atau Salah.',
       ),
       statements: [

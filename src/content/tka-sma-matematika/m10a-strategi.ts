@@ -45,7 +45,7 @@ export const m10s1: Submodule = {
   id: 'tka-sma-m10-s1',
   title: L('Problem-Solving Strategies', 'Strategi Memecahkan Soal'),
   summary: L(
-    'A four-step method for word problems, the strategies of working backwards and writing equations, and reasoning with mixed-topic and pattern questions.',
+    'A four-step method for word problems, the strategies of working backward and writing equations, and reasoning with mixed-topic and pattern questions.',
     'Metode empat langkah untuk soal cerita, strategi bekerja mundur dan menulis persamaan, serta bernalar dalam soal campuran dan pola.',
   ),
   lessons: [
@@ -54,7 +54,7 @@ export const m10s1: Submodule = {
       id: 'tka-sma-m10-s1-l1',
       title: L('Four Steps for Word Problems', 'Empat Langkah Memecahkan Soal Cerita'),
       goal: L(
-        'You can read, plan, solve and check a word problem, using an equation, a diagram or working backwards.',
+        'You can read, plan, solve and check a word problem, using an equation, a diagram or working backward.',
         'Kamu bisa membaca, merencanakan, menyelesaikan, dan memeriksa soal cerita, memakai persamaan, gambar, atau bekerja mundur.',
       ),
       xp: 20,
@@ -64,7 +64,7 @@ export const m10s1: Submodule = {
           id: 'c1',
           title: L('Look Closely: Four Steps', 'Ayo Amati: Empat Langkah'),
           body: L(
-            'Every problem in the TKA, from any chapter, can be met with the same four steps:\n\n1. **Read.** Say in your own words what is given and what is asked. Underline the question.\n2. **Plan.** Choose a tool: a diagram, a table, an equation, a formula, or working backwards.\n3. **Solve.** Do the calculation neatly, one line at a time.\n4. **Check.** Does the answer make sense? Are the units right? Did you answer the question that was asked?\n\n**Example.** The length of a rectangle is 3 more than its width. Its perimeter is 26. Find the width.\n\n1. Read: the unknown is the width $w$; the length is $w+3$.\n2. Plan: perimeter $=2\\times(\\text{length}+\\text{width})$.\n3. Solve: $2(w+3+w)=26$, so $2w+3=13$ and $w=5$.\n4. Check: length 8, perimeter $2(8+5)=26$ ✓.',
+            'Every problem in the TKA, from any chapter, can be met with the same four steps:\n\n1. **Read.** Say in your own words what is given and what is asked. Underline the question.\n2. **Plan.** Choose a tool: a diagram, a table, an equation, a formula, or working backward.\n3. **Solve.** Do the calculation neatly, one line at a time.\n4. **Check.** Does the answer make sense? Are the units right? Did you answer the question that was asked?\n\n**Example.** The length of a rectangle is 3 more than its width. Its perimeter is 26. Find the width.\n\n1. Read: the unknown is the width $w$; the length is $w+3$.\n2. Plan: perimeter $=2\\times(\\text{length}+\\text{width})$.\n3. Solve: $2(w+3+w)=26$, so $2w+3=13$ and $w=5$.\n4. Check: length 8, perimeter $2(8+5)=26$ ✓.',
             'Setiap soal TKA, dari bab mana pun, dapat dihadapi dengan empat langkah yang sama:\n\n1. **Baca.** Katakan dengan kata-katamu sendiri apa yang diketahui dan apa yang ditanyakan. Garis bawahi pertanyaannya.\n2. **Rencanakan.** Pilih alat: gambar, tabel, persamaan, rumus, atau bekerja mundur.\n3. **Selesaikan.** Hitung dengan rapi, satu baris demi satu baris.\n4. **Periksa.** Apakah jawaban masuk akal? Apakah satuannya benar? Apakah kamu menjawab pertanyaan yang diajukan?\n\n**Contoh.** Panjang sebuah persegi panjang 3 lebih dari lebarnya. Kelilingnya 26. Tentukan lebarnya.\n\n1. Baca: yang dicari adalah lebar $w$; panjangnya $w+3$.\n2. Rencana: keliling $=2\\times(\\text{panjang}+\\text{lebar})$.\n3. Selesaikan: $2(w+3+w)=26$, jadi $2w+3=13$ dan $w=5$.\n4. Periksa: panjang 8, keliling $2(8+5)=26$ ✓.',
           ),
           figure: {
@@ -79,9 +79,9 @@ export const m10s1: Submodule = {
         {
           kind: 'concept',
           id: 'c2',
-          title: L('Step by Step: Working Backwards', 'Contoh Bertahap: Bekerja Mundur'),
+          title: L('Step by Step: Working Backward', 'Contoh Bertahap: Bekerja Mundur'),
           body: L(
-            'When the **end result** is known and the starting number is asked, undo the steps in the opposite order.\n\nI think of a number, multiply it by 3, subtract 4, and get 20. What was the number?\n\n1. Step 1: Draw the chain forward: $x\\to\\times3\\to-4\\to20$.\n2. Step 2: Go back from 20 and **undo the last step first**: undo $-4$ with $+4$: $20+4=24$.\n3. Step 3: Undo $\\times3$ with $\\div3$: $24\\div3=8$.\n4. Step 4: Check forwards: $8\\times3=24$, $24-4=20$ ✓.\n\nThe red arrows in the picture show the way back. Every operation is undone by its opposite: $+$ by $-$, $\\times$ by $\\div$, square by square root.',
+            'When the **end result** is known and the starting number is asked, undo the steps in the opposite order.\n\nI think of a number, multiply it by 3, subtract 4, and get 20. What was the number?\n\n1. Step 1: Draw the chain forward: $x\\to\\times3\\to-4\\to20$.\n2. Step 2: Go back from 20 and **undo the last step first**: undo $-4$ with $+4$: $20+4=24$.\n3. Step 3: Undo $\\times3$ with $\\div3$: $24\\div3=8$.\n4. Step 4: Check forward: $8\\times3=24$, $24-4=20$ ✓.\n\nThe red arrows in the picture show the way back. Every operation is undone by its opposite: $+$ by $-$, $\\times$ by $\\div$, square by square root.',
             'Bila **hasil akhir** diketahui dan bilangan awal yang ditanyakan, batalkan langkah-langkahnya dengan urutan sebaliknya.\n\nAku memikirkan sebuah bilangan, mengalikannya dengan 3, mengurangi 4, dan mendapat 20. Berapa bilangan itu?\n\n1. Langkah 1: Gambar rantai maju: $x\\to\\times3\\to-4\\to20$.\n2. Langkah 2: Mundur dari 20 dan **batalkan langkah terakhir lebih dulu**: batalkan $-4$ dengan $+4$: $20+4=24$.\n3. Langkah 3: Batalkan $\\times3$ dengan $\\div3$: $24\\div3=8$.\n4. Langkah 4: Periksa maju: $8\\times3=24$, $24-4=20$ ✓.\n\nPanah merah pada gambar menunjukkan jalan mundur. Setiap operasi dibatalkan oleh kebalikannya: $+$ oleh $-$, $\\times$ oleh $\\div$, kuadrat oleh akar kuadrat.',
           ),
           figure: {
@@ -103,7 +103,7 @@ export const m10s1: Submodule = {
           id: 'c4',
           title: L('Watch Out!: Word Problem Traps', 'Awas, Jebakan!: Jebakan Soal Cerita'),
           body: L(
-            '- **Answer what is asked.** After solving for $w=5$, the question may want the length (8) or the perimeter (26).\n- **Units.** Convert first (cm and m, minutes and hours, litres and cm$^3$), then calculate.\n- **Percent of what?** A 20% rise followed by a 20% fall is not a return to the start, because the second 20% is of a new amount.\n- **"At least"** means $\\ge$, **"more than"** means $>$, **"at most"** means $\\le$.\n- **Reasonable answers.** A person cannot be 2.5 people, a length cannot be negative, and a probability cannot be above 1. If the answer is impossible, find the slip.\n- **Last step: check.** Put your answer back into the story, not just into your own equation.',
+            '- **Answer what is asked.** After solving for $w=5$, the question may want the length (8) or the perimeter (26).\n- **Units.** Convert first (cm and m, minutes and hours, liters and cm$^3$), then calculate.\n- **Percent of what?** A 20% rise followed by a 20% fall is not a return to the start, because the second 20% is of a new amount.\n- **"At least"** means $\\ge$, **"more than"** means $>$, **"at most"** means $\\le$.\n- **Reasonable answers.** A person cannot be 2.5 people, a length cannot be negative, and a probability cannot be above 1. If the answer is impossible, find the slip.\n- **Last step: check.** Put your answer back into the story, not just into your own equation.',
             '- **Jawab yang ditanyakan.** Setelah mendapat $w=5$, soal mungkin menanyakan panjang (8) atau keliling (26).\n- **Satuan.** Ubah dulu (cm dan m, menit dan jam, liter dan cm$^3$), baru hitung.\n- **Persen dari apa?** Naik 20% lalu turun 20% tidak kembali ke awal, karena 20% kedua dihitung dari jumlah yang baru.\n- **"Paling sedikit"** berarti $\\ge$, **"lebih dari"** berarti $>$, **"paling banyak"** berarti $\\le$.\n- **Jawaban yang wajar.** Orang tidak mungkin 2,5 orang, panjang tidak mungkin negatif, dan peluang tidak mungkin di atas 1. Jika jawaban mustahil, cari kekeliruannya.\n- **Langkah terakhir: periksa.** Masukkan jawabanmu kembali ke ceritanya, bukan hanya ke persamaanmu sendiri.',
           ),
         },
@@ -112,7 +112,7 @@ export const m10s1: Submodule = {
           id: 'c5',
           title: L('Look Closely: Three Levels of Thinking', 'Ayo Amati: Tiga Level Berpikir'),
           body: L(
-            'The official framework of the TKA measures mathematical ability at **three cognitive levels**. A test mixes all three, from easy to hard.\n\n| Level | What you do | Example |\n|---|---|---|\n| **1. Knowing and Understanding** | calculate, read a graph or table, classify, identify | simplify $3(2x-4)-2(x-3)$; read the vertex from a graph |\n| **2. Applying** | model a real situation, apply a familiar method, interpret | write and solve an equation for a price problem |\n| **3. Reasoning** | analyse, solve a new kind of problem, evaluate, conclude, generalise, justify | test a claim with a counterexample; find a rule for a pattern |\n\nThe abilities behind them are: knowing mathematics, **representing** (equation, graph, table, diagram), **reasoning and proving**, **solving problems** and **connecting** topics.\n\nHow to use this: in a test, do the level-1 questions quickly and carefully, spend your thinking time on level 3, and always explain to yourself **why** an answer is right, not just what it is.',
+            'The official framework of the TKA measures mathematical ability at **three cognitive levels**. A test mixes all three, from easy to hard.\n\n| Level | What you do | Example |\n|---|---|---|\n| **1. Knowing and Understanding** | calculate, read a graph or table, classify, identify | simplify $3(2x-4)-2(x-3)$; read the vertex from a graph |\n| **2. Applying** | model a real situation, apply a familiar method, interpret | write and solve an equation for a price problem |\n| **3. Reasoning** | analyze, solve a new kind of problem, evaluate, conclude, generalize, justify | test a claim with a counterexample; find a rule for a pattern |\n\nThe abilities behind them are: knowing mathematics, **representing** (equation, graph, table, diagram), **reasoning and proving**, **solving problems** and **connecting** topics.\n\nHow to use this: in a test, do the level-1 questions quickly and carefully, spend your thinking time on level 3, and always explain to yourself **why** an answer is right, not just what it is.',
             'Kerangka resmi TKA mengukur kemampuan matematis pada **tiga level kognitif**. Sebuah tes mencampur ketiganya, dari yang mudah sampai yang sulit.\n\n| Level | Yang kamu lakukan | Contoh |\n|---|---|---|\n| **1. Pengetahuan dan Pemahaman** | menghitung, membaca grafik atau tabel, mengelompokkan, mengidentifikasi | menyederhanakan $3(2x-4)-2(x-3)$; membaca puncak dari grafik |\n| **2. Aplikasi** | memodelkan situasi nyata, menerapkan cara yang dikenal, menginterpretasikan | menulis dan menyelesaikan persamaan untuk soal harga |\n| **3. Penalaran** | menganalisis, menyelesaikan masalah jenis baru, mengevaluasi, menyimpulkan, menggeneralisasi, menjustifikasi | menguji pernyataan dengan contoh penyangkal; menemukan aturan suatu pola |\n\nKemampuan di baliknya adalah: pengetahuan matematika, **representasi** (persamaan, grafik, tabel, diagram), **penalaran dan pembuktian**, **pemecahan masalah**, dan **koneksi** antartopik.\n\nCara memakainya: dalam tes, kerjakan soal level 1 dengan cepat dan teliti, pakai waktu berpikirmu untuk level 3, dan selalu jelaskan pada dirimu sendiri **mengapa** sebuah jawaban benar, bukan hanya apa jawabannya.',
           ),
         },
@@ -147,7 +147,7 @@ export const m10s1: Submodule = {
           id: 'f1',
           math: true,
           prompt: L(
-            'Try it together: I multiply a number by 3, subtract 4 and get 20. Work backwards.',
+            'Try it together: I multiply a number by 3, subtract 4 and get 20. Work backward.',
             'Coba bersama: aku mengalikan sebuah bilangan dengan 3, mengurangi 4, dan mendapat 20. Bekerjalah mundur.',
           ),
           template: '20+4=___ \\quad ___\\div3=___',
@@ -186,7 +186,7 @@ export const m10s1: Submodule = {
           id: 'j1',
           prompt: L('Decide whether each statement is True or False.', 'Tentukan tiap pernyataan Benar atau Salah.'),
           statements: [
-            L('When working backwards, you undo the last step first.', 'Saat bekerja mundur, kamu membatalkan langkah terakhir lebih dulu.'),
+            L('When working backward, you undo the last step first.', 'Saat bekerja mundur, kamu membatalkan langkah terakhir lebih dulu.'),
             L('A 20% increase followed by a 20% decrease returns to the starting value.', 'Kenaikan 20% diikuti penurunan 20% kembali ke nilai awal.'),
             L('"At least 5" means 5 or more.', '"Paling sedikit 5" berarti 5 atau lebih.'),
             L('The answer $2.5$ people can be correct in a counting problem.', 'Jawaban $2{,}5$ orang bisa benar dalam soal menghitung.'),
@@ -237,7 +237,7 @@ export const m10s1: Submodule = {
           id: 'c1',
           title: L('Look Closely: A Pattern of Dots', 'Ayo Amati: Pola Titik-Titik'),
           body: L(
-            'Cans are stacked in rows: 1 can in the top row, 2 in the next, 3, 4, $\\ldots$ The picture shows the first 4 rows. The totals form a pattern:\n\n$$1,\\ 3,\\ 6,\\ 10,\\ \\ldots$$\n\nThe differences are $2,3,4,\\ldots$ and they keep growing by 1, so the rule is not linear. These are the **triangular numbers**:\n\n$$T_n=1+2+\\cdots+n=\\frac{n(n+1)}{2}$$\n\nSo the 4th total is $\\frac{4\\times5}{2}=10$ and the 10th is $\\frac{10\\times11}{2}=55$.\n\nThis question mixes the topic of **sequences** (an arithmetic series) with a **pattern**: recognising which tool applies from which chapter is half of the work.',
+            'Cans are stacked in rows: 1 can in the top row, 2 in the next, 3, 4, $\\ldots$ The picture shows the first 4 rows. The totals form a pattern:\n\n$$1,\\ 3,\\ 6,\\ 10,\\ \\ldots$$\n\nThe differences are $2,3,4,\\ldots$ and they keep growing by 1, so the rule is not linear. These are the **triangular numbers**:\n\n$$T_n=1+2+\\cdots+n=\\frac{n(n+1)}{2}$$\n\nSo the 4th total is $\\frac{4\\times5}{2}=10$ and the 10th is $\\frac{10\\times11}{2}=55$.\n\nThis question mixes the topic of **sequences** (an arithmetic series) with a **pattern**: recognizing which tool applies from which chapter is half of the work.',
             'Kaleng ditumpuk dalam baris: 1 kaleng di baris teratas, 2 di baris berikutnya, 3, 4, $\\ldots$ Gambar menunjukkan 4 baris pertama. Totalnya membentuk pola:\n\n$$1,\\ 3,\\ 6,\\ 10,\\ \\ldots$$\n\nSelisihnya $2,3,4,\\ldots$ dan terus bertambah 1, jadi aturannya tidak linear. Ini **bilangan segitiga**:\n\n$$T_n=1+2+\\cdots+n=\\frac{n(n+1)}{2}$$\n\nJadi total ke-4 adalah $\\frac{4\\times5}{2}=10$ dan total ke-10 adalah $\\frac{10\\times11}{2}=55$.\n\nSoal ini mencampur topik **barisan** (deret aritmetika) dengan **pola**: mengenali alat dari bab mana yang berlaku adalah separuh pekerjaan.',
           ),
           figure: {
@@ -268,7 +268,7 @@ export const m10s1: Submodule = {
           id: 'c4',
           title: L('Watch Out!: Mixed-Topic Traps', 'Awas, Jebakan!: Jebakan Soal Campuran'),
           body: L(
-            '- **Name the topic.** Ask "which chapter is this?": a rate, a sequence, a triangle, a probability? Then use that chapter\'s tool.\n- **Do not stop halfway.** Mixed problems often have two stages: for example, find a radius with Pythagoras, then use it in an area.\n- **Check the whole chain of units.** Area in $\\text{cm}^2$, volume in $\\text{cm}^3$, litres from $\\text{cm}^3$.\n- **Exact or rounded?** Keep $\\pi$ and square roots exact until the very last step, unless the question gives a value to use.\n- **"The first" or "the next".** In patterns, count from the correct start: term number 1 is the first term.\n- If you are stuck, **try a smaller case**: 2 rows instead of 10, 3 people instead of 30.',
+            '- **Name the topic.** Ask "which chapter is this?": a rate, a sequence, a triangle, a probability? Then use that chapter\'s tool.\n- **Do not stop halfway.** Mixed problems often have two stages: for example, find a radius with Pythagoras, then use it in an area.\n- **Check the whole chain of units.** Area in $\\text{cm}^2$, volume in $\\text{cm}^3$, liters from $\\text{cm}^3$.\n- **Exact or rounded?** Keep $\\pi$ and square roots exact until the very last step, unless the question gives a value to use.\n- **"The first" or "the next".** In patterns, count from the correct start: term number 1 is the first term.\n- If you are stuck, **try a smaller case**: 2 rows instead of 10, 3 people instead of 30.',
             '- **Namai topiknya.** Tanyakan "ini bab apa?": laju, barisan, segitiga, peluang? Lalu pakai alat bab itu.\n- **Jangan berhenti di tengah.** Soal campuran sering punya dua tahap: misalnya, cari jari-jari dengan Pythagoras, lalu pakai untuk luas.\n- **Periksa seluruh rantai satuan.** Luas dalam $\\text{cm}^2$, volume dalam $\\text{cm}^3$, liter dari $\\text{cm}^3$.\n- **Eksak atau dibulatkan?** Pertahankan $\\pi$ dan akar tetap eksak sampai langkah terakhir, kecuali soal memberi nilai yang harus dipakai.\n- **"Yang pertama" atau "yang berikutnya".** Dalam pola, hitung dari awal yang benar: suku nomor 1 adalah suku pertama.\n- Jika buntu, **coba kasus yang lebih kecil**: 2 baris bukan 10, 3 orang bukan 30.',
           ),
         },
@@ -392,7 +392,7 @@ export const m10s1: Submodule = {
     ],
     hints: [
       L('Write down what is given and what is asked before you calculate.', 'Tulis yang diketahui dan yang ditanyakan sebelum menghitung.'),
-      L('Work backwards for "I think of a number" questions.', 'Bekerja mundur untuk soal "aku memikirkan sebuah bilangan".'),
+      L('Work backward for "I think of a number" questions.', 'Bekerja mundur untuk soal "aku memikirkan sebuah bilangan".'),
       L('Always check the answer in the story.', 'Selalu periksa jawaban dalam ceritanya.'),
     ],
     xp: 50,

@@ -14,10 +14,10 @@ const L = (en: string, id: string): Loc => ({ en, id })
 type BarOpts = Parameters<typeof barChart>[0]
 type LineOpts = Parameters<typeof lineChart>[0]
 
-/** Bars from parallel lists of labels and values (all one colour when `color` is given). */
+/** Bars from parallel lists of labels and values (all one color when `color` is given). */
 const bars = (labels: string[], values: number[], color?: FigColor): BarOpts['bars'] => labels.map((label, i) => ({ label, value: values[i], color }))
 
-/** A table of cells, written only with numbers and names. `head` colours the first row or column. */
+/** A table of cells, written only with numbers and names. `head` colors the first row or column. */
 function gridTable(rows: string[][], o: { cw?: number; head?: 'row' | 'col' | 'none' } = {}): Piece {
   const cw = o.cw ?? 2
   const ch = 1.2
@@ -79,7 +79,7 @@ function lineWithRef(o: LineOpts, at: number): Piece {
   return { ...p, items: [...p.items, line([0, at * k], [xEnd + 0.5, at * k], 'result', { dashed: true, width: 2.5 })] }
 }
 
-/** A bag of marbles: every marble drawn, grouped by colour, so they can be counted. */
+/** A bag of marbles: every marble drawn, grouped by color, so they can be counted. */
 function bag(groups: { n: number; color: FigColor }[], cols = 5): Piece {
   const marbles: FigColor[] = groups.flatMap((g) => Array<FigColor>(g.n).fill(g.color))
   const rows = Math.ceil(marbles.length / cols)
@@ -213,7 +213,7 @@ export const module7: Module = {
               id: 'c3',
               title: L('Watch Out!: Misleading Graphs and Wrong Charts', 'Awas, Jebakan!: Grafik yang Menyesatkan dan Diagram yang Keliru'),
               body: L(
-                'Two charts can show the same numbers and still give a very different feeling. Always look at the vertical axis first.\n\n| Wrong | Right |\n|---|---|\n| The bar of 7B is three times as tall as the bar of 7A, so 7B scored three times as much | The axis starts at 50, not at 0. The scores are 52 and 56, so 7B is only a little higher |\n| A line chart is fine for comparing favourite fruits | Use a bar chart for separate categories. A line joins values that follow each other in time |\n| The parts 40%, 30% and 50% make a good pie chart | The parts of a pie chart must add up to 100%, but $40+30+50=120$ |',
+                'Two charts can show the same numbers and still give a very different feeling. Always look at the vertical axis first.\n\n| Wrong | Right |\n|---|---|\n| The bar of 7B is three times as tall as the bar of 7A, so 7B scored three times as much | The axis starts at 50, not at 0. The scores are 52 and 56, so 7B is only a little higher |\n| A line chart is fine for comparing favorite fruits | Use a bar chart for separate categories. A line joins values that follow each other in time |\n| The parts 40%, 30% and 50% make a good pie chart | The parts of a pie chart must add up to 100%, but $40+30+50=120$ |',
                 'Dua diagram bisa menampilkan angka yang sama tetapi memberi kesan yang sangat berbeda. Selalu lihat sumbu tegaknya lebih dulu.\n\n| Salah | Benar |\n|---|---|\n| Batang 7B tiga kali setinggi batang 7A, jadi nilai 7B tiga kali lebih besar | Sumbunya mulai dari 50, bukan 0. Nilainya 52 dan 56, jadi 7B hanya sedikit lebih tinggi |\n| Diagram garis cocok untuk membandingkan buah kesukaan | Pakai diagram batang untuk kategori terpisah. Garis menghubungkan nilai yang berurutan menurut waktu |\n| Bagian 40%, 30%, dan 50% membentuk diagram lingkaran yang baik | Bagian-bagian diagram lingkaran harus berjumlah 100%, tetapi $40+30+50=120$ |',
               ),
               figure: {
@@ -288,11 +288,11 @@ export const module7: Module = {
               ],
               answer: 0,
               explain: L(
-                'The rise is the difference between two neighbouring points: $24-15=9$ is the biggest. From week 1 to 2 and from week 4 to 5 the number rises by only 3, and from week 3 to 4 the line goes down.',
+                'The rise is the difference between two neighboring points: $24-15=9$ is the biggest. From week 1 to 2 and from week 4 to 5 the number rises by only 3, and from week 3 to 4 the line goes down.',
                 'Kenaikan adalah selisih dua titik yang berdekatan: $24-15=9$ adalah yang terbesar. Dari minggu ke-1 ke-2 dan dari minggu ke-4 ke-5 kenaikannya hanya 3, dan dari minggu ke-3 ke-4 garisnya turun.',
               ),
               hint: L(
-                'For each pair of neighbouring weeks, subtract the lower value from the higher one. Does the line go up or down?',
+                'For each pair of neighboring weeks, subtract the lower value from the higher one. Does the line go up or down?',
                 'Untuk setiap pasangan minggu yang berdekatan, kurangkan nilai yang lebih rendah dari yang lebih tinggi. Apakah garisnya naik atau turun?',
               ),
             },
@@ -397,7 +397,7 @@ export const module7: Module = {
           id: 'tka-smp-m7-s1-l2',
           title: L('Mean, Median, Mode and Range', 'Rata-rata, Median, Modus, dan Jangkauan'),
           goal: L(
-            'You can find the mean, median, mode and range, estimate a mean from a chart, and compare two data sets using a centre and a spread.',
+            'You can find the mean, median, mode and range, estimate a mean from a chart, and compare two data sets using a center and a spread.',
             'Kamu bisa menentukan rata-rata, median, modus, dan jangkauan, menaksir rata-rata dari diagram, serta membandingkan dua kumpulan data dengan ukuran pusat dan ukuran sebaran.',
           ),
           xp: 20,
@@ -405,7 +405,7 @@ export const module7: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: L('Look Closely: Levelling Out', 'Ayo Amati: Meratakan'),
+              title: L('Look Closely: Leveling Out', 'Ayo Amati: Meratakan'),
               body: L(
                 'Five friends tell how many books they read in the holidays: Ani 4, Budi 7, Citra 5, Dewi 8 and Eko 6. Which one number can describe the whole group?\n\nImagine moving books from the tall bars to the short bars until all bars are equally tall. That equal height is the **mean**, also called the average. The dashed line shows it. The bars above the line stick out by $1+2=3$ and the bars below it fall short by $2+1=3$, so they level out.\n\nFour numbers describe a data set:\n\n| Measure | Meaning | Here |\n|---|---|---|\n| Mean | sum of the values $\\div$ number of values | $(4+7+5+8+6)\\div5=6$ |\n| Median | the middle value after ordering | 4, 5, 6, 7, 8 gives 6 |\n| Mode | the value that occurs most often | none, every value occurs once |\n| Range | largest value $-$ smallest value | $8-4=4$ |',
                 'Lima teman bercerita berapa buku yang mereka baca selama liburan: Ani 4, Budi 7, Citra 5, Dewi 8, dan Eko 6. Satu bilangan apa yang dapat menggambarkan seluruh kelompok?\n\nBayangkan memindahkan buku dari batang yang tinggi ke batang yang pendek sampai semua batang sama tinggi. Tinggi yang sama itu adalah **rata-rata** (mean). Garis putus-putus menunjukkannya. Batang di atas garis menonjol $1+2=3$ dan batang di bawah garis kurang $2+1=3$, jadi keduanya saling meratakan.\n\nEmpat bilangan menggambarkan sebuah kumpulan data:\n\n| Ukuran | Arti | Di sini |\n|---|---|---|\n| Rata-rata | jumlah nilai $\\div$ banyak nilai | $(4+7+5+8+6)\\div5=6$ |\n| Median | nilai tengah setelah diurutkan | 4, 5, 6, 7, 8 menghasilkan 6 |\n| Modus | nilai yang paling sering muncul | tidak ada, setiap nilai muncul sekali |\n| Jangkauan | nilai terbesar $-$ nilai terkecil | $8-4=4$ |',
@@ -423,7 +423,7 @@ export const module7: Module = {
               id: 'c2',
               title: L('Step by Step: All Four Measures', 'Contoh Bertahap: Keempat Ukuran'),
               body: L(
-                'Budi practised the guitar for 12, 8, 15, 8, 10 and 7 minutes on six days.\n\n1. Step 1 (mean): add the values and divide by how many there are: $\\frac{12+8+15+8+10+7}{6}=\\frac{60}{6}=10$.\n2. Step 2 (order): write the values from smallest to largest: 7, 8, 8, 10, 12, 15.\n3. Step 3 (median): there are 6 values, an even number, so there are two middle values, 8 and 10. The median is their mean: $\\frac{8+10}{2}=9$.\n4. Step 4 (mode): 8 occurs twice, more often than any other value, so the mode is 8.\n5. Step 5 (range): $15-7=8$.\n\n**Remember:**\n\n- An odd number of values: the median is the middle one. An even number: the mean of the two middle ones.\n- A data set can have no mode, one mode or more than one mode.\n- A mean always lies between the smallest and the largest value.',
+                'Budi practiced the guitar for 12, 8, 15, 8, 10 and 7 minutes on six days.\n\n1. Step 1 (mean): add the values and divide by how many there are: $\\frac{12+8+15+8+10+7}{6}=\\frac{60}{6}=10$.\n2. Step 2 (order): write the values from smallest to largest: 7, 8, 8, 10, 12, 15.\n3. Step 3 (median): there are 6 values, an even number, so there are two middle values, 8 and 10. The median is their mean: $\\frac{8+10}{2}=9$.\n4. Step 4 (mode): 8 occurs twice, more often than any other value, so the mode is 8.\n5. Step 5 (range): $15-7=8$.\n\n**Remember:**\n\n- An odd number of values: the median is the middle one. An even number: the mean of the two middle ones.\n- A data set can have no mode, one mode or more than one mode.\n- A mean always lies between the smallest and the largest value.',
                 'Budi berlatih gitar selama 12, 8, 15, 8, 10, dan 7 menit pada enam hari.\n\n1. Langkah 1 (rata-rata): jumlahkan nilainya lalu bagi dengan banyak nilai: $\\frac{12+8+15+8+10+7}{6}=\\frac{60}{6}=10$.\n2. Langkah 2 (urutkan): tulis nilainya dari yang terkecil ke terbesar: 7, 8, 8, 10, 12, 15.\n3. Langkah 3 (median): ada 6 nilai, yaitu bilangan genap, jadi ada dua nilai tengah, 8 dan 10. Mediannya adalah rata-rata keduanya: $\\frac{8+10}{2}=9$.\n4. Langkah 4 (modus): 8 muncul dua kali, lebih sering daripada nilai lain, jadi modusnya 8.\n5. Langkah 5 (jangkauan): $15-7=8$.\n\n**Ingat:**\n\n- Banyak nilai ganjil: median adalah nilai yang di tengah. Banyak nilai genap: rata-rata dari dua nilai tengah.\n- Kumpulan data bisa tidak punya modus, punya satu modus, atau punya lebih dari satu modus.\n- Rata-rata selalu terletak di antara nilai terkecil dan nilai terbesar.',
               ),
               figure: {
@@ -576,7 +576,7 @@ export const module7: Module = {
                 'Kedua jumlah adalah 35, jadi kedua rata-rata adalah 7. Jangkauan A adalah $9-5=4$ dan jangkauan B adalah $13-1=12$. Rata-rata yang sama tidak berarti sebaran yang sama: jangkauan yang lebih kecil menunjukkan tim yang lebih konsisten, di sini A.',
               ),
               hint: L(
-                'Find the mean and the range of each team. A centre alone does not tell you how spread out the scores are.',
+                'Find the mean and the range of each team. A center alone does not tell you how spread out the scores are.',
                 'Cari rata-rata dan jangkauan setiap tim. Ukuran pusat saja tidak menunjukkan seberapa tersebar skornya.',
               ),
             },
@@ -658,7 +658,7 @@ export const module7: Module = {
           },
           {
             prompt: L(
-              '200 students chose their favourite school club. The pie chart gives the angle of each slice. Find the percentage of slice P and the number of students it stands for.',
+              '200 students chose their favorite school club. The pie chart gives the angle of each slice. Find the percentage of slice P and the number of students it stands for.',
               '200 siswa memilih ekstrakurikuler favorit mereka. Diagram lingkaran memberi sudut setiap juring. Cari persentase juring P dan banyak siswa yang diwakilinya.',
             ),
             figure: {
@@ -738,7 +738,7 @@ export const module7: Module = {
               id: 'c1',
               title: L('Look Closely: Outcomes and Events', 'Ayo Amati: Hasil dan Kejadian'),
               body: L(
-                'Budi rolls a fair die. Rolling is an **experiment**: we cannot be sure of the result in advance. Each possible result is an **outcome**, and the set of all outcomes is the **sample space**: $\\{1,2,3,4,5,6\\}$.\n\nAn **event** is a group of outcomes we are interested in. The event "an even number" is $\\{2,4,6\\}$: 3 favourable outcomes out of 6.\n\nWhen all outcomes are **equally likely** (a fair die, a fair coin), the probability of an event $A$ is\n\n$$P(A)=\\frac{\\text{number of favourable outcomes}}{\\text{number of equally likely outcomes}}$$\n\nSo $P(\\text{even})=\\frac{3}{6}=\\frac{1}{2}$.',
+                'Budi rolls a fair die. Rolling is an **experiment**: we cannot be sure of the result in advance. Each possible result is an **outcome**, and the set of all outcomes is the **sample space**: $\\{1,2,3,4,5,6\\}$.\n\nAn **event** is a group of outcomes we are interested in. The event "an even number" is $\\{2,4,6\\}$: 3 favorable outcomes out of 6.\n\nWhen all outcomes are **equally likely** (a fair die, a fair coin), the probability of an event $A$ is\n\n$$P(A)=\\frac{\\text{number of favorable outcomes}}{\\text{number of equally likely outcomes}}$$\n\nSo $P(\\text{even})=\\frac{3}{6}=\\frac{1}{2}$.',
                 'Budi melempar sebuah dadu yang adil. Melempar dadu adalah sebuah **percobaan**: kita tidak bisa memastikan hasilnya sebelumnya. Setiap hasil yang mungkin disebut **hasil**, dan himpunan semua hasil disebut **ruang sampel**: $\\{1,2,3,4,5,6\\}$.\n\n**Kejadian** adalah sekelompok hasil yang kita perhatikan. Kejadian "mata dadu genap" adalah $\\{2,4,6\\}$: 3 hasil yang diharapkan dari 6 hasil.\n\nBila semua hasil **sama mungkin** (dadu yang adil, koin yang adil), peluang kejadian $A$ adalah\n\n$$P(A)=\\frac{\\text{banyak hasil yang diharapkan}}{\\text{banyak hasil yang sama mungkin}}$$\n\nJadi $P(\\text{genap})=\\frac{3}{6}=\\frac{1}{2}$.',
               ),
               figure: {
@@ -754,7 +754,7 @@ export const module7: Module = {
               id: 'c2',
               title: L('Step by Step: Marbles in a Bag', 'Contoh Bertahap: Kelereng dalam Kantong'),
               body: L(
-                'A bag holds 3 green, 2 orange and 5 red marbles. Eko picks one marble without looking. What is the probability that it is orange?\n\n1. Step 1: Count all the marbles: $3+2+5=10$. Every marble is equally likely, so there are 10 outcomes.\n2. Step 2: Count the favourable outcomes: there are 2 orange marbles.\n3. Step 3: $P(\\text{orange})=\\frac{2}{10}=\\frac{1}{5}$.\n4. Step 4: The event "not orange" is the other 8 marbles: $P(\\text{not orange})=1-\\frac{1}{5}=\\frac{4}{5}$.\n\n**Remember:**\n\n- A probability is always from 0 to 1. An **impossible** event has $P=0$ and a **certain** event has $P=1$.\n- $P(\\text{not }A)=1-P(A)$.\n- A probability can be a fraction, a decimal or a percentage: $\\frac{1}{5}=0.2=20\\%$.',
+                'A bag holds 3 green, 2 orange and 5 red marbles. Eko picks one marble without looking. What is the probability that it is orange?\n\n1. Step 1: Count all the marbles: $3+2+5=10$. Every marble is equally likely, so there are 10 outcomes.\n2. Step 2: Count the favorable outcomes: there are 2 orange marbles.\n3. Step 3: $P(\\text{orange})=\\frac{2}{10}=\\frac{1}{5}$.\n4. Step 4: The event "not orange" is the other 8 marbles: $P(\\text{not orange})=1-\\frac{1}{5}=\\frac{4}{5}$.\n\n**Remember:**\n\n- A probability is always from 0 to 1. An **impossible** event has $P=0$ and a **certain** event has $P=1$.\n- $P(\\text{not }A)=1-P(A)$.\n- A probability can be a fraction, a decimal or a percentage: $\\frac{1}{5}=0.2=20\\%$.',
                 'Sebuah kantong berisi 3 kelereng hijau, 2 kelereng oranye, dan 5 kelereng merah. Eko mengambil satu kelereng tanpa melihat. Berapa peluang kelereng itu berwarna oranye?\n\n1. Langkah 1: Hitung semua kelereng: $3+2+5=10$. Setiap kelereng sama mungkin, jadi ada 10 hasil.\n2. Langkah 2: Hitung hasil yang diharapkan: ada 2 kelereng oranye.\n3. Langkah 3: $P(\\text{oranye})=\\frac{2}{10}=\\frac{1}{5}$.\n4. Langkah 4: Kejadian "bukan oranye" adalah 8 kelereng yang lain: $P(\\text{bukan oranye})=1-\\frac{1}{5}=\\frac{4}{5}$.\n\n**Ingat:**\n\n- Peluang selalu dari 0 sampai 1. Kejadian yang **mustahil** punya $P=0$ dan kejadian yang **pasti** punya $P=1$.\n- $P(\\text{bukan }A)=1-P(A)$.\n- Peluang dapat ditulis sebagai pecahan, desimal, atau persen: $\\frac{1}{5}=0{,}2=20\\%$.',
               ),
               figure: {
@@ -767,7 +767,7 @@ export const module7: Module = {
               id: 'c3',
               title: L('Watch Out!: Equally Likely, and Counted Once', 'Awas, Jebakan!: Sama Mungkin dan Dihitung Sekali'),
               body: L(
-                'The formula works only when the outcomes are equally likely. Also, count every favourable outcome only once.\n\n| Wrong | Right |\n|---|---|\n| A spinner has 3 sectors, so each one has probability $\\frac{1}{3}$ | Only if the sectors are equal. A sector that is half of the circle has probability $\\frac{1}{2}$ |\n| A bag has 2 green and 8 orange marbles, so $P(\\text{green})=\\frac{1}{2}$ because there are two colours | $P(\\text{green})=\\frac{2}{10}=\\frac{1}{5}$: count marbles, not colours |\n| For a die, "even or a multiple of 3": $3+2=5$ outcomes, so $\\frac{5}{6}$ | The 6 is in both groups. The favourable outcomes are 2, 3, 4, 6, so $\\frac{4}{6}=\\frac{2}{3}$ |',
+                'The formula works only when the outcomes are equally likely. Also, count every favorable outcome only once.\n\n| Wrong | Right |\n|---|---|\n| A spinner has 3 sectors, so each one has probability $\\frac{1}{3}$ | Only if the sectors are equal. A sector that is half of the circle has probability $\\frac{1}{2}$ |\n| A bag has 2 green and 8 orange marbles, so $P(\\text{green})=\\frac{1}{2}$ because there are two colors | $P(\\text{green})=\\frac{2}{10}=\\frac{1}{5}$: count marbles, not colors |\n| For a die, "even or a multiple of 3": $3+2=5$ outcomes, so $\\frac{5}{6}$ | The 6 is in both groups. The favorable outcomes are 2, 3, 4, 6, so $\\frac{4}{6}=\\frac{2}{3}$ |',
                 'Rumus ini hanya berlaku bila hasil-hasilnya sama mungkin. Selain itu, hitung setiap hasil yang diharapkan hanya satu kali.\n\n| Salah | Benar |\n|---|---|\n| Sebuah roda putar (spinner) punya 3 juring, jadi setiap juring berpeluang $\\frac{1}{3}$ | Hanya jika juring-juringnya sama besar. Juring yang setengah lingkaran berpeluang $\\frac{1}{2}$ |\n| Sebuah kantong berisi 2 kelereng hijau dan 8 kelereng oranye, jadi $P(\\text{hijau})=\\frac{1}{2}$ karena ada dua warna | $P(\\text{hijau})=\\frac{2}{10}=\\frac{1}{5}$: hitung kelerengnya, bukan warnanya |\n| Pada dadu, "genap atau kelipatan 3": $3+2=5$ hasil, jadi $\\frac{5}{6}$ | Angka 6 ada di kedua kelompok. Hasil yang diharapkan adalah 2, 3, 4, 6, jadi $\\frac{4}{6}=\\frac{2}{3}$ |',
               ),
               figure: {
@@ -861,7 +861,7 @@ export const module7: Module = {
               ],
               answer: 0,
               explain: L(
-                'The favourable outcomes are 2, 4, 6 and 8: 4 of the 8 equal sectors, so $\\frac{4}{8}=\\frac{1}{2}$. The answer $\\frac{3}{4}$ counts 4 and 8 twice (4 multiples of 2 plus 2 multiples of 4 gives 6). $\\frac{1}{4}$ counts only the multiples of 4.',
+                'The favorable outcomes are 2, 4, 6 and 8: 4 of the 8 equal sectors, so $\\frac{4}{8}=\\frac{1}{2}$. The answer $\\frac{3}{4}$ counts 4 and 8 twice (4 multiples of 2 plus 2 multiples of 4 gives 6). $\\frac{1}{4}$ counts only the multiples of 4.',
                 'Hasil yang diharapkan adalah 2, 4, 6, dan 8: 4 dari 8 juring yang sama besar, jadi $\\frac{4}{8}=\\frac{1}{2}$. Jawaban $\\frac{3}{4}$ menghitung 4 dan 8 dua kali (4 kelipatan 2 ditambah 2 kelipatan 4 menjadi 6). $\\frac{1}{4}$ hanya menghitung kelipatan 4.',
               ),
               hint: L(
@@ -904,7 +904,7 @@ export const module7: Module = {
                 L('The probability of an impossible event is 0.', 'Peluang kejadian yang mustahil adalah 0.'),
                 L('A probability can be 1.2 when an event is very likely.', 'Peluang bisa bernilai 1,2 bila suatu kejadian sangat mungkin terjadi.'),
                 L('If the probability of rain is 0.3, the probability of no rain is 0.7.', 'Jika peluang hujan adalah 0,3, peluang tidak hujan adalah 0,7.'),
-                L('A bag has 2 green and 8 orange marbles, so the probability of green is $\\frac{1}{2}$ because there are two colours.', 'Sebuah kantong berisi 2 kelereng hijau dan 8 kelereng oranye, jadi peluang hijau adalah $\\frac{1}{2}$ karena ada dua warna.'),
+                L('A bag has 2 green and 8 orange marbles, so the probability of green is $\\frac{1}{2}$ because there are two colors.', 'Sebuah kantong berisi 2 kelereng hijau dan 8 kelereng oranye, jadi peluang hijau adalah $\\frac{1}{2}$ karena ada dua warna.'),
               ],
               answer: [true, false, true, false],
               explain: L(
@@ -912,7 +912,7 @@ export const module7: Module = {
                 'Peluang berada di antara 0 (mustahil) dan 1 (pasti), jadi 1,2 tidak mungkin. P(bukan A) adalah $1-P(A)=1-0{,}3=0{,}7$. Kelereng hijau dan oranye tidak sama mungkin: $P(\\text{hijau})=\\frac{2}{10}=\\frac{1}{5}$.',
               ),
               hint: L(
-                'Remember the range of a probability, and that you count outcomes (marbles), not colours.',
+                'Remember the range of a probability, and that you count outcomes (marbles), not colors.',
                 'Ingat batas nilai peluang, dan bahwa yang dihitung adalah hasilnya (kelereng), bukan warnanya.',
               ),
             },
@@ -938,7 +938,7 @@ export const module7: Module = {
                   'Hitung dulu semua kelereng dalam kantong: itulah penyebut kedua pecahan.',
                 ),
                 L(
-                  'Orange: 4 favourable marbles. "Not red" can be found as $1-P(\\text{red})$, or by counting the marbles that are not red.',
+                  'Orange: 4 favorable marbles. "Not red" can be found as $1-P(\\text{red})$, or by counting the marbles that are not red.',
                   'Oranye: 4 kelereng yang diharapkan. "Bukan merah" dapat dicari sebagai $1-P(\\text{merah})$, atau dengan menghitung kelereng yang bukan merah.',
                 ),
                 L(
@@ -1090,11 +1090,11 @@ export const module7: Module = {
               ],
               answer: 0,
               explain: L(
-                'The points move towards the dashed line, so more rolls bring the relative frequency closer to $\\frac{1}{6}\\approx17\\%$. A small number of rolls is the least reliable, the value keeps changing after 100 rolls, and a high start is normal for few rolls.',
+                'The points move toward the dashed line, so more rolls bring the relative frequency closer to $\\frac{1}{6}\\approx17\\%$. A small number of rolls is the least reliable, the value keeps changing after 100 rolls, and a high start is normal for few rolls.',
                 'Titik-titiknya bergerak mendekati garis putus-putus, jadi lemparan yang makin banyak membuat frekuensi relatif makin dekat dengan $\\frac{1}{6}\\approx17\\%$. Lemparan yang sedikit paling tidak andal, nilainya terus berubah setelah 100 lemparan, dan awal yang tinggi wajar untuk lemparan yang sedikit.',
               ),
               hint: L(
-                'Follow the line from left to right. Does it move towards the dashed line or away from it?',
+                'Follow the line from left to right. Does it move toward the dashed line or away from it?',
                 'Ikuti garis dari kiri ke kanan. Apakah garis itu bergerak mendekati garis putus-putus atau menjauhinya?',
               ),
             },
@@ -1222,7 +1222,7 @@ export const module7: Module = {
               { label: { en: 'P(\\text{not greater than 5}) =', id: 'P(\\text{tidak lebih dari 5}) =' }, answer: 5 / 8 },
             ],
             solution: {
-              en: ['\\text{favourable}: 6, 7, 8 \\Rightarrow P=\\frac{3}{8}', 'P(\\text{not})=1-\\frac{3}{8}=\\frac{5}{8}'],
+              en: ['\\text{favorable}: 6, 7, 8 \\Rightarrow P=\\frac{3}{8}', 'P(\\text{not})=1-\\frac{3}{8}=\\frac{5}{8}'],
               id: ['\\text{diharapkan}: 6, 7, 8 \\Rightarrow P=\\frac{3}{8}', 'P(\\text{bukan})=1-\\frac{3}{8}=\\frac{5}{8}'],
             },
           },

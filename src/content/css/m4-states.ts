@@ -101,7 +101,7 @@ export const module4: Module = {
                 id: '<nav>\n  <a class="tautan" href="#">Beranda</a>\n  <a class="tautan" href="#">Kursus</a>\n</nav>',
               },
               prompt: {
-                en: 'Give `.link` the colour `#1d4ed8` with no underline, and on both hover **and** focus make it `#dc2626` and underlined.',
+                en: 'Give `.link` the color `#1d4ed8` with no underline, and on both hover **and** focus make it `#dc2626` and underlined.',
                 id: 'Beri `.tautan` warna `#1d4ed8` tanpa garis bawah, dan saat hover **maupun** focus jadikan `#dc2626` dan bergaris bawah.',
               },
               starter: '.link {\n\n}\n',
@@ -122,7 +122,7 @@ export const module4: Module = {
                       'assert(css().indexOf(":focus") !== -1, "there is no :focus rule yet — keyboard users would be left out");',
                   },
                   {
-                    name: { en: 'Both states change colour and underline', id: 'Both states change colour and underline' },
+                    name: { en: 'Both states change color and underline', id: 'Both states change color and underline' },
                     check:
                       'var text = css().replace(/\\s+/g, " ").toLowerCase();\n["hover", "focus"].forEach(function (st) {\n  var i = text.indexOf(":" + st);\n  assert(i !== -1, "there is no :" + st + " rule yet");\n});\nassert(text.indexOf("underline") !== -1, "the hover/focus state must add an underline");\nassert(text.indexOf("rgb(220, 38, 38)") !== -1 || text.indexOf("#dc2626") !== -1, "the hover/focus color must be #dc2626");',
                   },
@@ -143,7 +143,7 @@ export const module4: Module = {
                       'assert(css().indexOf(":focus") !== -1, "belum ada aturan untuk :focus — pengguna papan ketik akan terlewat");',
                   },
                   {
-                    name: { en: 'Both states change colour and underline', id: 'Kedua keadaan mengubah warna dan garis bawah' },
+                    name: { en: 'Both states change color and underline', id: 'Kedua keadaan mengubah warna dan garis bawah' },
                     check:
                       'var teks = css().replace(/\\s+/g, " ").toLowerCase();\n["hover", "focus"].forEach(function (st) {\n  var i = teks.indexOf(":" + st);\n  assert(i !== -1, "belum ada aturan :" + st);\n});\nassert(teks.indexOf("underline") !== -1, "keadaan hover/focus harus menambahkan garis bawah");\nassert(teks.indexOf("rgb(220, 38, 38)") !== -1 || teks.indexOf("#dc2626") !== -1, "warna hover/focus harus #dc2626");',
                   },
@@ -176,7 +176,7 @@ export const module4: Module = {
                 id: '`transition: background-color 0.2s` menyuruh peramban menganimasikan perubahan dari nilai lama ke baru alih-alih meloncat. Ia ditulis pada aturan **diam**, bukan pada `:hover`, agar berlaku ke dua arah.',
               },
               code: {
-                en: '<style>\n  .box {\n    background: #93c5fd;\n    padding: 16px;\n    transition: background-color 0.3s;\n  }\n  .box:hover { background: #1d4ed8; }\n</style>\n\n<div class="box">Point at it — the colour glides.</div>',
+                en: '<style>\n  .box {\n    background: #93c5fd;\n    padding: 16px;\n    transition: background-color 0.3s;\n  }\n  .box:hover { background: #1d4ed8; }\n</style>\n\n<div class="box">Point at it — the color glides.</div>',
                 id: '<style>\n  .kotak {\n    background: #93c5fd;\n    padding: 16px;\n    transition: background-color 0.3s;\n  }\n  .kotak:hover { background: #1d4ed8; }\n</style>\n\n<div class="kotak">Arahkan penunjuk — warnanya meluncur.</div>',
               },
               preview: true,
@@ -279,7 +279,7 @@ export const module4: Module = {
                       'var text = css().replace(/\\s+/g, " ");\nvar i = text.indexOf("@media");\nvar after = text.slice(i);\nassert(/repeat\\(\\s*3|1fr 1fr 1fr/.test(after), "there must be three columns inside the media query");',
                   },
                   {
-                    name: { en: 'Cells are coloured and eased', id: 'Cells are coloured and eased' },
+                    name: { en: 'Cells are colored and eased', id: 'Cells are colored and eased' },
                     check:
                       'assert(style(".cell", "background-color") === "rgb(224, 242, 254)", ".cell background must be #e0f2fe");\nvar d = style(".cell", "transition-duration");\nassert(d === "0.2s" || d === "200ms", "transition must be 0.2s, currently: " + d);',
                   },
@@ -306,7 +306,7 @@ export const module4: Module = {
                       'var teks = css().replace(/\\s+/g, " ");\nvar i = teks.indexOf("@media");\nvar sesudah = teks.slice(i);\nassert(/repeat\\(\\s*3|1fr 1fr 1fr/.test(sesudah), "di dalam media query harus ada tiga kolom");',
                   },
                   {
-                    name: { en: 'Cells are coloured and eased', id: 'Selnya berwarna dan bertransisi' },
+                    name: { en: 'Cells are colored and eased', id: 'Selnya berwarna dan bertransisi' },
                     check:
                       'assert(style(".sel", "background-color") === "rgb(224, 242, 254)", "latar .sel harus #e0f2fe");\nvar d = style(".sel", "transition-duration");\nassert(d === "0.2s" || d === "200ms", "transition harus 0.2s, sekarang: " + d);',
                   },
@@ -339,25 +339,25 @@ export const module4: Module = {
         },
         title: { en: 'Styled profile page', id: 'Halaman profil bergaya' },
         brief: {
-          en: 'Everything at once: a centred page, a flex header, a responsive grid, and states that respond to both mouse and keyboard.',
+          en: 'Everything at once: a centered page, a flex header, a responsive grid, and states that respond to both mouse and keyboard.',
           id: 'Semuanya sekaligus: halaman terpusat, header flex, kisi responsif, dan keadaan yang merespons tetikus maupun papan ketik.',
         },
         requirements: [
           { en: '`box-sizing: border-box` for everything.', id: '`box-sizing: border-box` untuk semuanya.' },
-          { en: '`.page` is centred with a max-width of 900px.', id: '`.halaman` terpusat dengan max-width 900px.' },
-          { en: '`.bar` is a flex row, 64px tall, `#0f172a` background, logo left and menu right, vertically centred.', id: '`.bar` baris flex, tinggi 64px, latar `#0f172a`, logo kiri dan menu kanan, terpusat vertikal.' },
+          { en: '`.page` is centered with a max-width of 900px.', id: '`.halaman` terpusat dengan max-width 900px.' },
+          { en: '`.bar` is a flex row, 64px tall, `#0f172a` background, logo left and menu right, vertically centered.', id: '`.bar` baris flex, tinggi 64px, latar `#0f172a`, logo kiri dan menu kanan, terpusat vertikal.' },
           { en: '`.menu` is a flex row with a 16px gap; its links are `#e2e8f0` with no underline.', id: '`.menu` baris flex dengan gap 16px; tautannya `#e2e8f0` tanpa garis bawah.' },
-          { en: 'Menu links change colour on hover **and** focus.', id: 'Tautan menu berubah warna saat hover **dan** focus.' },
+          { en: 'Menu links change color on hover **and** focus.', id: 'Tautan menu berubah warna saat hover **dan** focus.' },
           { en: '`.grid` is one column by default and three equal columns from 700px up, gap 16px.', id: '`.kisi` satu kolom secara bawaan dan tiga kolom sama lebar mulai 700px, gap 16px.' },
-          { en: '`.card` has 20px padding, a 1px solid `#e2e8f0` border, a 12px radius, and transitions its border colour over 0.2s.', id: '`.kartu` berpadding 20px, border solid 1px `#e2e8f0`, radius 12px, dan mentransisikan warna bordernya 0,2 detik.' },
+          { en: '`.card` has 20px padding, a 1px solid `#e2e8f0` border, a 12px radius, and transitions its border color over 0.2s.', id: '`.kartu` berpadding 20px, border solid 1px `#e2e8f0`, radius 12px, dan mentransisikan warna bordernya 0,2 detik.' },
         ],
         starter: '* {\n  box-sizing: border-box;\n}\n\n.page {\n\n}\n',
         tests: {
           en: [
             {
-              name: { en: 'The page is centred and capped', id: 'The page is centred and capped' },
+              name: { en: 'The page is centered and capped', id: 'The page is centered and capped' },
               check:
-                'assert(style(".page", "max-width") === "900px", "max-width must be 900px");\nvar r = sel(".page").getBoundingClientRect();\nvar left = r.left;\nvar right = doc.documentElement.clientWidth - r.right;\nassert(Math.abs(left - right) < 2, "the page must be centred (left " + Math.round(left) + ", right " + Math.round(right) + ")");',
+                'assert(style(".page", "max-width") === "900px", "max-width must be 900px");\nvar r = sel(".page").getBoundingClientRect();\nvar left = r.left;\nvar right = doc.documentElement.clientWidth - r.right;\nassert(Math.abs(left - right) < 2, "the page must be centered (left " + Math.round(left) + ", right " + Math.round(right) + ")");',
             },
             {
               name: { en: 'The header is a proper flex bar', id: 'The header is a proper flex bar' },
@@ -387,7 +387,7 @@ export const module4: Module = {
           ],
           id: [
             {
-              name: { en: 'The page is centred and capped', id: 'Halamannya terpusat dan dibatasi' },
+              name: { en: 'The page is centered and capped', id: 'Halamannya terpusat dan dibatasi' },
               check:
                 'assert(style(".halaman", "max-width") === "900px", "max-width harus 900px");\nvar r = sel(".halaman").getBoundingClientRect();\nvar kiri = r.left;\nvar kanan = doc.documentElement.clientWidth - r.right;\nassert(Math.abs(kiri - kanan) < 2, "halamannya harus terpusat (kiri " + Math.round(kiri) + ", kanan " + Math.round(kanan) + ")");',
             },
@@ -420,7 +420,7 @@ export const module4: Module = {
         },
         hints: [
           { en: 'Work top down: page, header, menu, grid, cards. Each is something you have already built.', id: 'Kerjakan dari atas: halaman, header, menu, kisi, kartu. Tiap bagian sudah pernah kamu bangun.' },
-          { en: 'The centred page needs both max-width and margin auto.', id: 'Halaman terpusat butuh max-width sekaligus margin auto.' },
+          { en: 'The centered page needs both max-width and margin auto.', id: 'Halaman terpusat butuh max-width sekaligus margin auto.' },
           { en: 'One rule can serve both states: `.menu a:hover, .menu a:focus`.', id: 'Satu aturan bisa melayani kedua keadaan: `.menu a:hover, .menu a:focus`.' },
           { en: 'Put the media query last, holding only the grid change.', id: 'Taruh media query paling akhir, memuat hanya perubahan kisinya.' },
         ],

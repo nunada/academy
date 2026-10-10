@@ -41,7 +41,7 @@ export const m7s1: Submodule = {
   id: 'tka-sml-m7-s1',
   title: L('Limits', 'Limit'),
   summary: L(
-    'Limits from graphs and by substitution, algebraic limits with factoring, rationalising and infinity, and trigonometric limits.',
+    'Limits from graphs and by substitution, algebraic limits with factoring, rationalizing and infinity, and trigonometric limits.',
     'Limit dari grafik dan dengan substitusi, limit aljabar dengan pemfaktoran, merasionalkan, dan tak hingga, serta limit trigonometri.',
   ),
   lessons: [
@@ -110,7 +110,7 @@ export const m7s1: Submodule = {
             'Dari kiri maupun kanan grafik menuju tinggi $4$ (lingkaran kosong), jadi limitnya $4$. Nilai $f(2)=1$ hal yang berbeda dan tidak berpengaruh. Limitnya ada, karena kedua sisi sama.',
           ),
           hint: L(
-            'Follow the graph from both sides towards $x=2$. Ignore the point at $x=2$ itself.',
+            'Follow the graph from both sides toward $x=2$. Ignore the point at $x=2$ itself.',
             'Ikuti grafik dari kedua sisi menuju $x=2$. Abaikan titik di $x=2$ itu sendiri.',
           ),
         },
@@ -184,7 +184,7 @@ export const m7s1: Submodule = {
       id: 'tka-sml-m7-s1-l2',
       title: L('Algebraic Limits', 'Limit Aljabar'),
       goal: L(
-        'You can find limits of the form 0/0 by factoring or rationalising, and limits at infinity of fractions and differences of roots.',
+        'You can find limits of the form 0/0 by factoring or rationalizing, and limits at infinity of fractions and differences of roots.',
         'Kamu bisa mencari limit berbentuk 0/0 dengan pemfaktoran atau merasionalkan, dan limit di tak hingga dari pecahan dan selisih akar.',
       ),
       xp: 20,
@@ -205,7 +205,7 @@ export const m7s1: Submodule = {
         {
           kind: 'concept',
           id: 'c2',
-          title: L('Step by Step: Factoring and Rationalising', 'Contoh Bertahap: Memfaktorkan dan Merasionalkan'),
+          title: L('Step by Step: Factoring and Rationalizing', 'Contoh Bertahap: Memfaktorkan dan Merasionalkan'),
           body: L(
             'For a $\\frac00$ form, **factor** if you can. If a **square root** is involved, multiply top and bottom by the **conjugate** (the same terms with the opposite sign in between) so that $(a-b)(a+b)=a^2-b^2$ removes the root.\n\n$$\\lim_{x\\to0}\\frac{\\sqrt{x+4}-2}{x}$$\n\n1. Step 1: Substitution gives $\\frac00$.\n2. Step 2: Multiply by $\\dfrac{\\sqrt{x+4}+2}{\\sqrt{x+4}+2}$: the top becomes $(x+4)-4=x$.\n3. Step 3: $\\dfrac{x}{x(\\sqrt{x+4}+2)}=\\dfrac{1}{\\sqrt{x+4}+2}$.\n4. Step 4: Substitute $x=0$: $\\dfrac{1}{2+2}=\\dfrac14$.',
             'Untuk bentuk $\\frac00$, **faktorkan** bila bisa. Bila ada **akar kuadrat**, kalikan pembilang dan penyebut dengan **sekawan**nya (suku yang sama dengan tanda berlawanan di tengah) agar $(a-b)(a+b)=a^2-b^2$ menghilangkan akar.\n\n$$\\lim_{x\\to0}\\frac{\\sqrt{x+4}-2}{x}$$\n\n1. Langkah 1: Substitusi memberi $\\frac00$.\n2. Langkah 2: Kalikan dengan $\\dfrac{\\sqrt{x+4}+2}{\\sqrt{x+4}+2}$: pembilang menjadi $(x+4)-4=x$.\n3. Langkah 3: $\\dfrac{x}{x(\\sqrt{x+4}+2)}=\\dfrac{1}{\\sqrt{x+4}+2}$.\n4. Langkah 4: Substitusi $x=0$: $\\dfrac{1}{2+2}=\\dfrac14$.',
@@ -246,7 +246,7 @@ export const m7s1: Submodule = {
           prompt: L('Try it together: factor and cancel.', 'Coba bersama: faktorkan dan coret.'),
           template: '\\frac{x^2-9}{x-3}=\\frac{(x-3)(x+3)}{x-3}=x+___\\ \\to\\ ___',
           blanks: ['3', '6'],
-          explain: L('After cancelling we get $x+3$, which tends to $6$.', 'Setelah dicoret didapat $x+3$, yang menuju $6$.'),
+          explain: L('After canceling we get $x+3$, which tends to $6$.', 'Setelah dicoret didapat $x+3$, yang menuju $6$.'),
           hint: L('Factor $x^2-9$ as a difference of squares.', 'Faktorkan $x^2-9$ sebagai selisih kuadrat.'),
         },
         {
@@ -439,7 +439,7 @@ export const m7s1: Submodule = {
       'Cari limit dengan pemfaktoran, dengan sekawan, di tak hingga, dan dengan sinus.',
     ),
     requirements: [
-      L('Recognise a $\\frac00$ form and remove it.', 'Mengenali bentuk $\\frac00$ dan menghilangkannya.'),
+      L('Recognize a $\\frac00$ form and remove it.', 'Mengenali bentuk $\\frac00$ dan menghilangkannya.'),
       L('Use $\\lim\\frac{\\sin x}{x}=1$.', 'Memakai $\\lim\\frac{\\sin x}{x}=1$.'),
     ],
     hints: [

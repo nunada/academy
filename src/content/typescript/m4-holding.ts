@@ -127,7 +127,7 @@ export const module4: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'They accept the same values. They differ entirely in what you are allowed to do afterwards.',
+                en: 'They accept the same values. They differ entirely in what you are allowed to do afterward.',
                 id: 'Keduanya menerima nilai yang sama. Bedanya sepenuhnya pada apa yang boleh kamu lakukan sesudahnya.',
               },
               hint: {
@@ -335,7 +335,7 @@ export const module4: Module = {
               id: 'c2',
               title: { en: 'And then the type comes from the value', id: 'Dan lalu tipenya datang dari nilainya' },
               body: {
-                en: '`typeof COLORS` is the type of that constant; indexing it with `number` gives the union of everything in it. So the literal union is **derived** from the array — one place to add a colour, and both the runtime list and the type follow.',
+                en: '`typeof COLORS` is the type of that constant; indexing it with `number` gives the union of everything in it. So the literal union is **derived** from the array — one place to add a color, and both the runtime list and the type follow.',
                 id: '`typeof WARNA` adalah tipe konstanta itu; mengindeksnya dengan `number` memberi union dari seluruh isinya. Jadi union literalnya **diturunkan** dari array-nya — satu tempat untuk menambah warna, dan daftar saat jalan maupun tipenya sama-sama ikut.',
               },
               code: {
@@ -494,22 +494,22 @@ export const module4: Module = {
                       'assert(k.color === "red", "the original box must not change, got: " + k.color);',
                   },
                   {
-                    name: { en: 'The list still holds the three colours', id: 'Daftarnya tetap memuat ketiga warnanya' },
+                    name: { en: 'The list still holds the three colors', id: 'Daftarnya tetap memuat ketiga warnanya' },
                     check:
-                      'assert(COLORS.length === 3, "should be 3 colours, got: " + COLORS.length);\n' +
+                      'assert(COLORS.length === 3, "should be 3 colors, got: " + COLORS.length);\n' +
                       'assert(COLORS[0] === "red" && COLORS[1] === "green" && COLORS[2] === "blue", "got: " + JSON.stringify(COLORS));',
                   },
                   {
-                    name: { en: 'The three colours are accepted', id: 'Ketiga warnanya diterima' },
+                    name: { en: 'The three colors are accepted', id: 'Ketiga warnanya diterima' },
                     probe: 'const t1: Color = "red";\nconst t2: Color = "green";\nconst t3: Color = "blue";',
                   },
                   {
-                    name: { en: 'A fourth colour is refused', id: 'Warna keempat ditolak' },
+                    name: { en: 'A fourth color is refused', id: 'Warna keempat ditolak' },
                     probe: 'const t4: Color = "yellow";',
                     expectError: true,
                   },
                   {
-                    name: { en: 'A plain string is not a colour', id: 'String biasa bukan sebuah warna' },
+                    name: { en: 'A plain string is not a color', id: 'String biasa bukan sebuah warna' },
                     probe: 'const word: string = "red";\nconst t5: Color = word;',
                     expectError: true,
                     errorCode: 2322,
@@ -527,11 +527,11 @@ export const module4: Module = {
                     errorCode: 2540,
                   },
                   {
-                    name: { en: 'The colour still can', id: 'Warnanya masih bisa' },
+                    name: { en: 'The color still can', id: 'Warnanya masih bisa' },
                     probe: 'const t7: Box = { id: 1, color: "red" };\nt7.color = "blue";',
                   },
                   {
-                    name: { en: 'Repainting refuses a colour that is not one', id: 'Mengecat ulang menolak warna yang bukan warna' },
+                    name: { en: 'Repainting refuses a color that is not one', id: 'Mengecat ulang menolak warna yang bukan warna' },
                     probe: 'const t8: Box = { id: 1, color: "red" };\nrepaint(t8, "yellow");',
                     expectError: true,
                     errorCode: 2345,
@@ -547,22 +547,22 @@ export const module4: Module = {
                       'assert(k.warna === "merah", "kotak aslinya tidak boleh berubah, sekarang: " + k.warna);',
                   },
                   {
-                    name: { en: 'The list still holds the three colours', id: 'Daftarnya tetap memuat ketiga warnanya' },
+                    name: { en: 'The list still holds the three colors', id: 'Daftarnya tetap memuat ketiga warnanya' },
                     check:
                       'assert(WARNA.length === 3, "harus 3 warna, sekarang: " + WARNA.length);\n' +
                       'assert(WARNA[0] === "merah" && WARNA[1] === "hijau" && WARNA[2] === "biru", "sekarang: " + JSON.stringify(WARNA));',
                   },
                   {
-                    name: { en: 'The three colours are accepted', id: 'Ketiga warnanya diterima' },
+                    name: { en: 'The three colors are accepted', id: 'Ketiga warnanya diterima' },
                     probe: 'const uji1: Warna = "merah";\nconst uji2: Warna = "hijau";\nconst uji3: Warna = "biru";',
                   },
                   {
-                    name: { en: 'A fourth colour is refused', id: 'Warna keempat ditolak' },
+                    name: { en: 'A fourth color is refused', id: 'Warna keempat ditolak' },
                     probe: 'const uji4: Warna = "kuning";',
                     expectError: true,
                   },
                   {
-                    name: { en: 'A plain string is not a colour', id: 'String biasa bukan sebuah warna' },
+                    name: { en: 'A plain string is not a color', id: 'String biasa bukan sebuah warna' },
                     probe: 'const kata: string = "merah";\nconst uji5: Warna = kata;',
                     expectError: true,
                     errorCode: 2322,
@@ -580,11 +580,11 @@ export const module4: Module = {
                     errorCode: 2540,
                   },
                   {
-                    name: { en: 'The colour still can', id: 'Warnanya masih bisa' },
+                    name: { en: 'The color still can', id: 'Warnanya masih bisa' },
                     probe: 'const uji7: Kotak = { id: 1, warna: "merah" };\nuji7.warna = "biru";',
                   },
                   {
-                    name: { en: 'Repainting refuses a colour that is not one', id: 'Mengecat ulang menolak warna yang bukan warna' },
+                    name: { en: 'Repainting refuses a color that is not one', id: 'Mengecat ulang menolak warna yang bukan warna' },
                     probe: 'const uji8: Kotak = { id: 1, warna: "merah" };\ncatUlang(uji8, "kuning");',
                     expectError: true,
                     errorCode: 2345,
@@ -594,7 +594,7 @@ export const module4: Module = {
               hints: [
                 { en: 'Two words at the end of the array literal do most of the work.', id: 'Dua kata di ujung array literalnya mengerjakan sebagian besarnya.' },
                 { en: 'Then `Color` is read off it: `(typeof COLORS)[number]`.', id: 'Lalu `Warna` dibaca darinya: `(typeof WARNA)[number]`.' },
-                { en: 'Only `id` gets `readonly` — the colour is meant to change.', id: 'Hanya `id` yang mendapat `readonly` — warnanya memang untuk diubah.' },
+                { en: 'Only `id` gets `readonly` — the color is meant to change.', id: 'Hanya `id` yang mendapat `readonly` — warnanya memang untuk diubah.' },
               ],
               solution: {
                 en:
@@ -736,12 +736,12 @@ export const module4: Module = {
             },
             {
               name: { en: 'A fourth status is refused', id: 'Status keempat ditolak' },
-              probe: 'const t4: Status = "cancelled";',
+              probe: 'const t4: Status = "canceled";',
               expectError: true,
             },
             {
               name: { en: 'The status list cannot grow', id: 'Daftar statusnya tak bisa tumbuh' },
-              probe: 'STATUS.push("cancelled");',
+              probe: 'STATUS.push("canceled");',
               expectError: true,
               errorCode: 2339,
             },
@@ -795,7 +795,7 @@ export const module4: Module = {
             },
             {
               name: { en: 'A status that does not exist has no count', id: 'Status yang tidak ada tidak punya hitungan' },
-              probe: 'count({ phase: "loading" }).cancelled;',
+              probe: 'count({ phase: "loading" }).canceled;',
               expectError: true,
             },
           ],

@@ -7,7 +7,7 @@ export const m1s2: Submodule = {
   id: 'tka-sma-m1-s2',
   title: L('Exponents and Roots', 'Eksponen dan Akar'),
   summary: L(
-    'Use the laws of exponents including negative and fractional ones, and simplify and rationalise roots.',
+    'Use the laws of exponents including negative and fractional ones, and simplify and rationalize roots.',
     'Memakai hukum eksponen termasuk yang negatif dan pecahan, serta menyederhanakan dan merasionalkan akar.',
   ),
   lessons: [
@@ -16,7 +16,7 @@ export const m1s2: Submodule = {
       id: 'tka-sma-m1-s2-l1',
       title: L('Exponents and Surds', 'Eksponen dan Bentuk Akar'),
       goal: L(
-        'You can simplify expressions with integer and fractional exponents, simplify a root, and rationalise a denominator.',
+        'You can simplify expressions with integer and fractional exponents, simplify a root, and rationalize a denominator.',
         'Kamu bisa menyederhanakan ekspresi dengan eksponen bulat dan pecahan, menyederhanakan akar, dan merasionalkan penyebut.',
       ),
       xp: 20,
@@ -56,9 +56,9 @@ export const m1s2: Submodule = {
         {
           kind: 'concept',
           id: 'c3',
-          title: L('Step by Step: Simplifying and Rationalising Roots', 'Contoh Bertahap: Menyederhanakan dan Merasionalkan Akar'),
+          title: L('Step by Step: Simplifying and Rationalizing Roots', 'Contoh Bertahap: Menyederhanakan dan Merasionalkan Akar'),
           body: L(
-            'The square in the picture has area 12, so its side is $\\sqrt{12}$.\n\n**Simplify a root:** pull out the biggest perfect square factor. $12=4\\times3$, so $\\sqrt{12}=\\sqrt{4}\\cdot\\sqrt{3}=2\\sqrt{3}$.\n\nThe rules: $\\sqrt{ab}=\\sqrt{a}\\sqrt{b}$ and $\\sqrt{\\frac{a}{b}}=\\frac{\\sqrt{a}}{\\sqrt{b}}$. But $\\sqrt{a+b}\\neq\\sqrt{a}+\\sqrt{b}$: $\\sqrt{9+16}=5$, not $3+4$.\n\n**Rationalise a denominator** (remove the root from the bottom):\n\n- One root: $\\frac{6}{\\sqrt{3}}=\\frac{6\\sqrt{3}}{\\sqrt{3}\\cdot\\sqrt{3}}=\\frac{6\\sqrt{3}}{3}=2\\sqrt{3}$.\n- Two terms: multiply by the **conjugate**. $\\frac{1}{\\sqrt{5}-2}\\cdot\\frac{\\sqrt{5}+2}{\\sqrt{5}+2}=\\frac{\\sqrt{5}+2}{5-4}=\\sqrt{5}+2$, because $(a-b)(a+b)=a^2-b^2$.',
+            'The square in the picture has area 12, so its side is $\\sqrt{12}$.\n\n**Simplify a root:** pull out the biggest perfect square factor. $12=4\\times3$, so $\\sqrt{12}=\\sqrt{4}\\cdot\\sqrt{3}=2\\sqrt{3}$.\n\nThe rules: $\\sqrt{ab}=\\sqrt{a}\\sqrt{b}$ and $\\sqrt{\\frac{a}{b}}=\\frac{\\sqrt{a}}{\\sqrt{b}}$. But $\\sqrt{a+b}\\neq\\sqrt{a}+\\sqrt{b}$: $\\sqrt{9+16}=5$, not $3+4$.\n\n**Rationalize a denominator** (remove the root from the bottom):\n\n- One root: $\\frac{6}{\\sqrt{3}}=\\frac{6\\sqrt{3}}{\\sqrt{3}\\cdot\\sqrt{3}}=\\frac{6\\sqrt{3}}{3}=2\\sqrt{3}$.\n- Two terms: multiply by the **conjugate**. $\\frac{1}{\\sqrt{5}-2}\\cdot\\frac{\\sqrt{5}+2}{\\sqrt{5}+2}=\\frac{\\sqrt{5}+2}{5-4}=\\sqrt{5}+2$, because $(a-b)(a+b)=a^2-b^2$.',
             'Persegi pada gambar luasnya 12, jadi sisinya $\\sqrt{12}$.\n\n**Menyederhanakan akar:** keluarkan faktor kuadrat sempurna terbesar. $12=4\\times3$, jadi $\\sqrt{12}=\\sqrt{4}\\cdot\\sqrt{3}=2\\sqrt{3}$.\n\nAturannya: $\\sqrt{ab}=\\sqrt{a}\\sqrt{b}$ dan $\\sqrt{\\frac{a}{b}}=\\frac{\\sqrt{a}}{\\sqrt{b}}$. Tetapi $\\sqrt{a+b}\\neq\\sqrt{a}+\\sqrt{b}$: $\\sqrt{9+16}=5$, bukan $3+4$.\n\n**Merasionalkan penyebut** (menghilangkan akar dari bawah):\n\n- Satu akar: $\\frac{6}{\\sqrt{3}}=\\frac{6\\sqrt{3}}{\\sqrt{3}\\cdot\\sqrt{3}}=\\frac{6\\sqrt{3}}{3}=2\\sqrt{3}$.\n- Dua suku: kalikan dengan **sekawannya**. $\\frac{1}{\\sqrt{5}-2}\\cdot\\frac{\\sqrt{5}+2}{\\sqrt{5}+2}=\\frac{\\sqrt{5}+2}{5-4}=\\sqrt{5}+2$, karena $(a-b)(a+b)=a^2-b^2$.',
           ),
           figure: {
@@ -102,7 +102,7 @@ export const m1s2: Submodule = {
           id: 'f1',
           math: true,
           prompt: L(
-            'Try it together: rationalise $\\frac{6}{\\sqrt{3}}$.',
+            'Try it together: rationalize $\\frac{6}{\\sqrt{3}}$.',
             'Coba bersama: rasionalkan $\\frac{6}{\\sqrt{3}}$.',
           ),
           template: '\\sqrt{3}\\cdot\\sqrt{3}=___ \\qquad \\frac{6\\sqrt{3}}{3}=___\\sqrt{3}',
@@ -186,7 +186,7 @@ export const m1s2: Submodule = {
     runtime: 'math',
     title: L('Exponents and Roots', 'Eksponen dan Akar'),
     brief: L(
-      'Simplify powers and roots, rationalise a denominator, and solve exponent equations by matching bases.',
+      'Simplify powers and roots, rationalize a denominator, and solve exponent equations by matching bases.',
       'Sederhanakan pangkat dan akar, rasionalkan penyebut, dan selesaikan persamaan eksponen dengan menyamakan basis.',
     ),
     requirements: [
@@ -195,7 +195,7 @@ export const m1s2: Submodule = {
     ],
     hints: [
       L('Write everything with the same base, then compare the exponents.', 'Tulis semuanya dengan basis yang sama, lalu bandingkan eksponennya.'),
-      L('To rationalise $\\frac{1}{a+\\sqrt{b}}$, multiply by the conjugate $a-\\sqrt{b}$.', 'Untuk merasionalkan $\\frac{1}{a+\\sqrt{b}}$, kalikan dengan sekawannya $a-\\sqrt{b}$.'),
+      L('To rationalize $\\frac{1}{a+\\sqrt{b}}$, multiply by the conjugate $a-\\sqrt{b}$.', 'Untuk merasionalkan $\\frac{1}{a+\\sqrt{b}}$, kalikan dengan sekawannya $a-\\sqrt{b}$.'),
       L('Fractional exponents are roots: $a^{\\frac{m}{n}}=\\sqrt[n]{a^m}$.', 'Eksponen pecahan adalah akar: $a^{\\frac{m}{n}}=\\sqrt[n]{a^m}$.'),
     ],
     xp: 50,

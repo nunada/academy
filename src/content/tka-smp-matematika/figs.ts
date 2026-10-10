@@ -102,7 +102,7 @@ export function circle2d(o: { r: number; radius?: string; diameter?: string; sec
   return { dim: 2, axes: false, ...fit([[-r, -r], [r, r]], 0.5), items }
 }
 
-/** A prism (or, with `apex`, a pyramid) on the given base polygon (anticlockwise, in the
+/** A prism (or, with `apex`, a pyramid) on the given base polygon (counterclockwise, in the
  *  xy-plane), `h` high, from the corner view. */
 export function prism3d(o: { base: Pt[]; h: number; apex?: boolean; label?: string }): Piece3 {
   const n = o.base.length

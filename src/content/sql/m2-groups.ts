@@ -66,7 +66,7 @@ export const module2: Module = {
         {
           id: 'sql-m2-s1-l1',
           title: { en: 'Collapsing a table to a number', id: 'Meringkas tabel menjadi angka' },
-          goal: { en: 'Summarise a whole table in one row.', id: 'Merangkum seluruh tabel dalam satu baris.' },
+          goal: { en: 'Summarize a whole table in one row.', id: 'Merangkum seluruh tabel dalam satu baris.' },
           xp: 20,
           steps: [
             {
@@ -430,7 +430,7 @@ export const module2: Module = {
               expectRows: [[9, 16, 6080000, 675556, 4]],
             },
             {
-              name: { en: 'Orders without a coupon never count towards it', id: 'Pesanan tanpa kupon tidak pernah ikut terhitung' },
+              name: { en: 'Orders without a coupon never count toward it', id: 'Pesanan tanpa kupon tidak pernah ikut terhitung' },
               setup: 'UPDATE orders SET coupon = NULL;',
               expectRows: [[8, 15, 5980000, 747500, 0]],
             },
@@ -460,7 +460,7 @@ export const module2: Module = {
               expectRows: [[9, 16, 6080000, 675556, 4]],
             },
             {
-              name: { en: 'Orders without a coupon never count towards it', id: 'Pesanan tanpa kupon tidak pernah ikut terhitung' },
+              name: { en: 'Orders without a coupon never count toward it', id: 'Pesanan tanpa kupon tidak pernah ikut terhitung' },
               setup: 'UPDATE pesanan SET kupon = NULL;',
               expectRows: [[8, 15, 5980000, 747500, 0]],
             },

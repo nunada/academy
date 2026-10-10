@@ -54,14 +54,14 @@ export const m5s1: Submodule = {
         {
           kind: 'concept',
           id: 'c1',
-          title: L('Look Closely: Distance From the Centre', 'Ayo Amati: Jarak dari Pusat'),
+          title: L('Look Closely: Distance From the Center', 'Ayo Amati: Jarak dari Pusat'),
           body: L(
-            'A circle is all points at the distance $r$ from the centre $(a,b)$. By Pythagoras, the point $(x,y)$ is on it when\n\n$$(x-a)^2+(y-b)^2=r^2$$\n\nThe picture shows $(x-2)^2+(y+1)^2=25$: centre $(2,-1)$ and radius $5$. Notice the signs: $y+1=y-(-1)$, so the centre has $b=-1$.\n\nThe red point $(6,2)$ is on the circle: $(6-2)^2+(2+1)^2=16+9=25$ ✓. It is at the end of a radius.',
+            'A circle is all points at the distance $r$ from the center $(a,b)$. By Pythagoras, the point $(x,y)$ is on it when\n\n$$(x-a)^2+(y-b)^2=r^2$$\n\nThe picture shows $(x-2)^2+(y+1)^2=25$: center $(2,-1)$ and radius $5$. Notice the signs: $y+1=y-(-1)$, so the center has $b=-1$.\n\nThe red point $(6,2)$ is on the circle: $(6-2)^2+(2+1)^2=16+9=25$ ✓. It is at the end of a radius.',
             'Lingkaran adalah semua titik yang berjarak $r$ dari pusat $(a,b)$. Dengan Pythagoras, titik $(x,y)$ ada padanya bila\n\n$$(x-a)^2+(y-b)^2=r^2$$\n\nGambar menunjukkan $(x-2)^2+(y+1)^2=25$: pusat $(2,-1)$ dan jari-jari $5$. Perhatikan tandanya: $y+1=y-(-1)$, jadi pusatnya berkoordinat $b=-1$.\n\nTitik merah $(6,2)$ ada pada lingkaran: $(6-2)^2+(2+1)^2=16+9=25$ ✓. Ia berada di ujung sebuah jari-jari.',
           ),
           figure: {
             ...center2(),
-            caption: L('The circle with centre (2, −1) and radius 5. The orange point (6, 2) is on it.', 'Lingkaran berpusat (2, −1) dan berjari-jari 5. Titik oranye (6, 2) ada padanya.'),
+            caption: L('The circle with center (2, −1) and radius 5. The orange point (6, 2) is on it.', 'Lingkaran berpusat (2, −1) dan berjari-jari 5. Titik oranye (6, 2) ada padanya.'),
           },
         },
         {
@@ -69,7 +69,7 @@ export const m5s1: Submodule = {
           id: 'c2',
           title: L('Step by Step: The General Form', 'Contoh Bertahap: Bentuk Umum'),
           body: L(
-            'Expanding gives the **general form** $x^2+y^2+Ax+By+C=0$. To read the centre and radius, **complete the square**:\n\n$$\\text{centre }\\left(-\\frac A2,\\,-\\frac B2\\right)\\qquad r^2=\\frac{A^2}{4}+\\frac{B^2}{4}-C$$\n\nFind the circle $x^2+y^2-4x+6y-12=0$.\n\n1. Step 1: $(x^2-4x)+(y^2+6y)=12$.\n2. Step 2: Complete the squares: $(x-2)^2-4+(y+3)^2-9=12$.\n3. Step 3: $(x-2)^2+(y+3)^2=25$: centre $(2,-3)$, radius $5$.\n\nThe equation only describes a circle when $r^2>0$.',
+            'Expanding gives the **general form** $x^2+y^2+Ax+By+C=0$. To read the center and radius, **complete the square**:\n\n$$\\text{center }\\left(-\\frac A2,\\,-\\frac B2\\right)\\qquad r^2=\\frac{A^2}{4}+\\frac{B^2}{4}-C$$\n\nFind the circle $x^2+y^2-4x+6y-12=0$.\n\n1. Step 1: $(x^2-4x)+(y^2+6y)=12$.\n2. Step 2: Complete the squares: $(x-2)^2-4+(y+3)^2-9=12$.\n3. Step 3: $(x-2)^2+(y+3)^2=25$: center $(2,-3)$, radius $5$.\n\nThe equation only describes a circle when $r^2>0$.',
             'Menjabarkan memberi **bentuk umum** $x^2+y^2+Ax+By+C=0$. Untuk membaca pusat dan jari-jari, **lengkapkan kuadrat**:\n\n$$\\text{pusat }\\left(-\\frac A2,\\,-\\frac B2\\right)\\qquad r^2=\\frac{A^2}{4}+\\frac{B^2}{4}-C$$\n\nCari lingkaran $x^2+y^2-4x+6y-12=0$.\n\n1. Langkah 1: $(x^2-4x)+(y^2+6y)=12$.\n2. Langkah 2: Lengkapkan kuadrat: $(x-2)^2-4+(y+3)^2-9=12$.\n3. Langkah 3: $(x-2)^2+(y+3)^2=25$: pusat $(2,-3)$, jari-jari $5$.\n\nPersamaan itu hanya menggambarkan lingkaran bila $r^2>0$.',
           ),
         },
@@ -86,7 +86,7 @@ export const m5s1: Submodule = {
           kind: 'quiz',
           id: 'q1',
           prompt: L(
-            'The circle has its centre at the red point (2, −1) and passes through the orange point (6, 2). Which is its equation?',
+            'The circle has its center at the red point (2, −1) and passes through the orange point (6, 2). Which is its equation?',
             'Lingkaran berpusat di titik merah (2, −1) dan melalui titik oranye (6, 2). Manakah persamaannya?',
           ),
           figure: {
@@ -102,11 +102,11 @@ export const m5s1: Submodule = {
           ].map((s) => L(`$${s}$`, `$${s}$`)),
           answer: 0,
           explain: L(
-            'The centre $(2,-1)$ gives $(x-2)^2+(y+1)^2$. The radius is the distance to $(6,2)$: $\\sqrt{4^2+3^2}=5$, so the right side is $r^2=25$, not $5$. The options with $(x+2)$ or $(y-1)$ have the wrong signs for the centre.',
+            'The center $(2,-1)$ gives $(x-2)^2+(y+1)^2$. The radius is the distance to $(6,2)$: $\\sqrt{4^2+3^2}=5$, so the right side is $r^2=25$, not $5$. The options with $(x+2)$ or $(y-1)$ have the wrong signs for the center.',
             'Pusat $(2,-1)$ memberi $(x-2)^2+(y+1)^2$. Jari-jarinya adalah jarak ke $(6,2)$: $\\sqrt{4^2+3^2}=5$, jadi ruas kanan adalah $r^2=25$, bukan $5$. Pilihan dengan $(x+2)$ atau $(y-1)$ salah tanda untuk pusatnya.',
           ),
           hint: L(
-            'Write the centre into the brackets with the opposite signs, then find $r^2$ from the distance to the orange point.',
+            'Write the center into the brackets with the opposite signs, then find $r^2$ from the distance to the orange point.',
             'Tulis pusat ke dalam kurung dengan tanda berlawanan, lalu cari $r^2$ dari jarak ke titik oranye.',
           ),
         },
@@ -117,8 +117,8 @@ export const m5s1: Submodule = {
           prompt: L('Try it together: read the circle $(x-2)^2+(y+1)^2=25$.', 'Coba bersama: baca lingkaran $(x-2)^2+(y+1)^2=25$.'),
           template: '(a,b)=(___,\\ ___) \\qquad r=\\sqrt{25}=___',
           blanks: ['2', '-1', '5'],
-          explain: L('The centre is $(2,-1)$ and $r=\\sqrt{25}=5$.', 'Pusatnya $(2,-1)$ dan $r=\\sqrt{25}=5$.'),
-          hint: L('The signs in the brackets are the opposite of the centre.', 'Tanda dalam kurung berlawanan dengan pusat.'),
+          explain: L('The center is $(2,-1)$ and $r=\\sqrt{25}=5$.', 'Pusatnya $(2,-1)$ dan $r=\\sqrt{25}=5$.'),
+          hint: L('The signs in the brackets are the opposite of the center.', 'Tanda dalam kurung berlawanan dengan pusat.'),
         },
         {
           kind: 'multi',
@@ -143,14 +143,14 @@ export const m5s1: Submodule = {
             'Misalkan lingkarannya $x^2+y^2-4x+6y-12=0$. Tentukan tiap pernyataan Benar atau Salah.',
           ),
           statements: [
-            L('The centre is $(2,-3)$.', 'Pusatnya $(2,-3)$.'),
+            L('The center is $(2,-3)$.', 'Pusatnya $(2,-3)$.'),
             L('The radius is $5$.', 'Jari-jarinya $5$.'),
             L('The point $(2,2)$ is on the circle.', 'Titik $(2,2)$ ada pada lingkaran.'),
-            L('The centre is $(-2,3)$.', 'Pusatnya $(-2,3)$.'),
+            L('The center is $(-2,3)$.', 'Pusatnya $(-2,3)$.'),
           ],
           answer: [true, true, true, false],
           explain: L(
-            'Completing the squares gives $(x-2)^2+(y+3)^2=25$. The point $(2,2)$: $0+25=25$ ✓. The centre is not $(-2,3)$; that has the signs of the equation, not of the centre.',
+            'Completing the squares gives $(x-2)^2+(y+3)^2=25$. The point $(2,2)$: $0+25=25$ ✓. The center is not $(-2,3)$; that has the signs of the equation, not of the center.',
             'Melengkapkan kuadrat memberi $(x-2)^2+(y+3)^2=25$. Titik $(2,2)$: $0+25=25$ ✓. Pusatnya bukan $(-2,3)$; itu tanda pada persamaan, bukan pada pusat.',
           ),
           hint: L('Complete the square in $x$ and in $y$.', 'Lengkapkan kuadrat dalam $x$ dan dalam $y$.'),
@@ -188,7 +188,7 @@ export const m5s1: Submodule = {
           id: 'c1',
           title: L('Look Closely: Perpendicular to the Radius', 'Ayo Amati: Tegak Lurus pada Jari-Jari'),
           body: L(
-            'A **tangent** touches the circle at exactly one point, and it is **perpendicular to the radius** there.\n\nTake $x^2+y^2=25$ and the point $P(3,4)$. The radius to $P$ has slope $\\frac43$, so the tangent has slope $-\\frac34$ and passes through $P$:\n\n$$y-4=-\\tfrac34(x-3)\\ \\iff\\ 3x+4y=25$$\n\nA shortcut for a circle centred at the origin: the tangent at $(x_1,y_1)$ is $x_1x+y_1y=r^2$. Here $3x+4y=25$ ✓.',
+            'A **tangent** touches the circle at exactly one point, and it is **perpendicular to the radius** there.\n\nTake $x^2+y^2=25$ and the point $P(3,4)$. The radius to $P$ has slope $\\frac43$, so the tangent has slope $-\\frac34$ and passes through $P$:\n\n$$y-4=-\\tfrac34(x-3)\\ \\iff\\ 3x+4y=25$$\n\nA shortcut for a circle centered at the origin: the tangent at $(x_1,y_1)$ is $x_1x+y_1y=r^2$. Here $3x+4y=25$ ✓.',
             '**Garis singgung** menyentuh lingkaran di tepat satu titik, dan **tegak lurus pada jari-jari** di situ.\n\nAmbil $x^2+y^2=25$ dan titik $P(3,4)$. Jari-jari ke $P$ bergradien $\\frac43$, jadi garis singgung bergradien $-\\frac34$ dan melalui $P$:\n\n$$y-4=-\\tfrac34(x-3)\\ \\iff\\ 3x+4y=25$$\n\nJalan pintas untuk lingkaran berpusat di titik asal: garis singgung di $(x_1,y_1)$ adalah $x_1x+y_1y=r^2$. Di sini $3x+4y=25$ ✓.',
           ),
           figure: {
@@ -201,7 +201,7 @@ export const m5s1: Submodule = {
           id: 'c2',
           title: L('Step by Step: The Tangent at a Point', 'Contoh Bertahap: Garis Singgung di Suatu Titik'),
           body: L(
-            'For a circle with centre $(a,b)$, the tangent at $(x_1,y_1)$ is\n\n$$(x_1-a)(x-a)+(y_1-b)(y-b)=r^2$$\n\nFind the tangent to $(x-2)^2+(y+1)^2=25$ at $P(6,2)$.\n\n1. Step 1: Check $P$ is on the circle: $16+9=25$ ✓.\n2. Step 2: $x_1-a=4$ and $y_1-b=2-(-1)=3$.\n3. Step 3: $4(x-2)+3(y+1)=25$, so $4x+3y-5=25$.\n4. Step 4: $4x+3y=30$. Check $P$: $24+6=30$ ✓.\n\nThe radius direction $(4,3)$ is the normal of the tangent line $4x+3y=30$.',
+            'For a circle with center $(a,b)$, the tangent at $(x_1,y_1)$ is\n\n$$(x_1-a)(x-a)+(y_1-b)(y-b)=r^2$$\n\nFind the tangent to $(x-2)^2+(y+1)^2=25$ at $P(6,2)$.\n\n1. Step 1: Check $P$ is on the circle: $16+9=25$ ✓.\n2. Step 2: $x_1-a=4$ and $y_1-b=2-(-1)=3$.\n3. Step 3: $4(x-2)+3(y+1)=25$, so $4x+3y-5=25$.\n4. Step 4: $4x+3y=30$. Check $P$: $24+6=30$ ✓.\n\nThe radius direction $(4,3)$ is the normal of the tangent line $4x+3y=30$.',
             'Untuk lingkaran berpusat $(a,b)$, garis singgung di $(x_1,y_1)$ adalah\n\n$$(x_1-a)(x-a)+(y_1-b)(y-b)=r^2$$\n\nCari garis singgung $(x-2)^2+(y+1)^2=25$ di $P(6,2)$.\n\n1. Langkah 1: Periksa $P$ ada pada lingkaran: $16+9=25$ ✓.\n2. Langkah 2: $x_1-a=4$ dan $y_1-b=2-(-1)=3$.\n3. Langkah 3: $4(x-2)+3(y+1)=25$, jadi $4x+3y-5=25$.\n4. Langkah 4: $4x+3y=30$. Periksa $P$: $24+6=30$ ✓.\n\nArah jari-jari $(4,3)$ adalah normal garis singgung $4x+3y=30$.',
           ),
         },
@@ -210,7 +210,7 @@ export const m5s1: Submodule = {
           id: 'c3',
           title: L('Step by Step: When Is a Line Tangent?', 'Contoh Bertahap: Kapan Garis Menyinggung?'),
           body: L(
-            'A line is tangent exactly when the **distance from the centre to the line equals the radius**. The distance from $(a,b)$ to $px+qy+k=0$ is\n\n$$\\frac{|pa+qb+k|}{\\sqrt{p^2+q^2}}$$\n\n1. Step 1: When is $3x+4y=k$ tangent to $x^2+y^2=16$? The distance from the origin is $\\frac{|k|}{\\sqrt{9+16}}=\\frac{|k|}{5}$.\n2. Step 2: Set it equal to $r=4$: $|k|=20$, so $k=\\pm20$.\n\n**A circle from its tangent.** Find the circle with centre $A(-2,1)$ tangent to the line $4x+3y-20=0$. The radius is the distance from $A$ to the line: $\\frac{|4(-2)+3(1)-20|}{\\sqrt{16+9}}=\\frac{25}{5}=5$. So the circle is $(x+2)^2+(y-1)^2=25$.\n\n**Tangent length.** From an outside point $P$ at distance $d$ from the centre, the tangent is $\\sqrt{d^2-r^2}$ long (Pythagoras: the radius is perpendicular to the tangent). For $P(13,0)$ and $x^2+y^2=25$: $\\sqrt{169-25}=12$.',
+            'A line is tangent exactly when the **distance from the center to the line equals the radius**. The distance from $(a,b)$ to $px+qy+k=0$ is\n\n$$\\frac{|pa+qb+k|}{\\sqrt{p^2+q^2}}$$\n\n1. Step 1: When is $3x+4y=k$ tangent to $x^2+y^2=16$? The distance from the origin is $\\frac{|k|}{\\sqrt{9+16}}=\\frac{|k|}{5}$.\n2. Step 2: Set it equal to $r=4$: $|k|=20$, so $k=\\pm20$.\n\n**A circle from its tangent.** Find the circle with center $A(-2,1)$ tangent to the line $4x+3y-20=0$. The radius is the distance from $A$ to the line: $\\frac{|4(-2)+3(1)-20|}{\\sqrt{16+9}}=\\frac{25}{5}=5$. So the circle is $(x+2)^2+(y-1)^2=25$.\n\n**Tangent length.** From an outside point $P$ at distance $d$ from the center, the tangent is $\\sqrt{d^2-r^2}$ long (Pythagoras: the radius is perpendicular to the tangent). For $P(13,0)$ and $x^2+y^2=25$: $\\sqrt{169-25}=12$.',
             'Garis menyinggung tepat ketika **jarak dari pusat ke garis sama dengan jari-jari**. Jarak dari $(a,b)$ ke $px+qy+k=0$ adalah\n\n$$\\frac{|pa+qb+k|}{\\sqrt{p^2+q^2}}$$\n\n1. Langkah 1: Kapan $3x+4y=k$ menyinggung $x^2+y^2=16$? Jarak dari titik asal adalah $\\frac{|k|}{\\sqrt{9+16}}=\\frac{|k|}{5}$.\n2. Langkah 2: Samakan dengan $r=4$: $|k|=20$, jadi $k=\\pm20$.\n\n**Lingkaran dari garis singgungnya.** Cari lingkaran berpusat $A(-2,1)$ yang menyinggung garis $4x+3y-20=0$. Jari-jarinya adalah jarak $A$ ke garis: $\\frac{|4(-2)+3(1)-20|}{\\sqrt{16+9}}=\\frac{25}{5}=5$. Jadi lingkarannya $(x+2)^2+(y-1)^2=25$.\n\n**Panjang garis singgung.** Dari titik luar $P$ yang berjarak $d$ dari pusat, garis singgungnya sepanjang $\\sqrt{d^2-r^2}$ (Pythagoras: jari-jari tegak lurus pada garis singgung). Untuk $P(13,0)$ dan $x^2+y^2=25$: $\\sqrt{169-25}=12$.',
           ),
         },
@@ -228,7 +228,7 @@ export const m5s1: Submodule = {
           options: ['3x+4y=25', '4x+3y=25', '3x-4y=25', '3x+4y=5', 'x+y=7'].map((s) => L(`$${s}$`, `$${s}$`)),
           answer: 0,
           explain: L(
-            'For a circle centred at the origin the tangent at $(x_1,y_1)$ is $x_1x+y_1y=r^2$, which is $3x+4y=25$. The option $4x+3y=25$ swaps the coordinates and does not pass through $P$: $12+12=24\\ne25$.',
+            'For a circle centered at the origin the tangent at $(x_1,y_1)$ is $x_1x+y_1y=r^2$, which is $3x+4y=25$. The option $4x+3y=25$ swaps the coordinates and does not pass through $P$: $12+12=24\\ne25$.',
             'Untuk lingkaran berpusat di titik asal garis singgung di $(x_1,y_1)$ adalah $x_1x+y_1y=r^2$, yaitu $3x+4y=25$. Pilihan $4x+3y=25$ menukar koordinat dan tidak melalui $P$: $12+12=24\\ne25$.',
           ),
           hint: L('Use $x_1x+y_1y=r^2$ and check that $P$ is on the line.', 'Pakai $x_1x+y_1y=r^2$ dan periksa bahwa $P$ ada pada garis.'),
@@ -258,7 +258,7 @@ export const m5s1: Submodule = {
             'The distance from the origin to $y=5$ is $5=r$, so it touches. The line $y=4$ is at distance $4<5$, so it cuts the circle twice. A tangent has exactly one common point.',
             'Jarak dari titik asal ke $y=5$ adalah $5=r$, jadi ia menyentuh. Garis $y=4$ berjarak $4<5$, jadi memotong lingkaran dua kali. Garis singgung memiliki tepat satu titik persekutuan.',
           ),
-          hint: L('Compare the distance from the centre with the radius.', 'Bandingkan jarak dari pusat dengan jari-jari.'),
+          hint: L('Compare the distance from the center with the radius.', 'Bandingkan jarak dari pusat dengan jari-jari.'),
         },
         {
           kind: 'judge',
@@ -269,7 +269,7 @@ export const m5s1: Submodule = {
           ),
           statements: [
             L('$P$ lies on the circle.', '$P$ terletak pada lingkaran.'),
-            L('The radius from the centre to $P$ has slope $\\frac34$.', 'Jari-jari dari pusat ke $P$ bergradien $\\frac34$.'),
+            L('The radius from the center to $P$ has slope $\\frac34$.', 'Jari-jari dari pusat ke $P$ bergradien $\\frac34$.'),
             L('The tangent at $P$ is $4x+3y=30$.', 'Garis singgung di $P$ adalah $4x+3y=30$.'),
             L('The tangent at $P$ has slope $\\frac34$.', 'Garis singgung di $P$ bergradien $\\frac34$.'),
           ],
@@ -289,7 +289,7 @@ export const m5s1: Submodule = {
           ),
           blanks: [{ label: 'k =', answer: 20 }],
           hints: [
-            L('Tangent means the distance from the centre equals the radius.', 'Menyinggung berarti jarak dari pusat sama dengan jari-jari.'),
+            L('Tangent means the distance from the center equals the radius.', 'Menyinggung berarti jarak dari pusat sama dengan jari-jari.'),
             L('The distance from the origin is $\\frac{k}{\\sqrt{3^2+4^2}}=\\frac{k}{5}$.', 'Jarak dari titik asal adalah $\\frac{k}{\\sqrt{3^2+4^2}}=\\frac{k}{5}$.'),
             L('Set $\\frac{k}{5}=4$.', 'Samakan $\\frac{k}{5}=4$.'),
           ],
@@ -436,19 +436,19 @@ export const m5s1: Submodule = {
       'Pakai persamaan lingkaran, garis singgung, busur, dan tembereng.',
     ),
     requirements: [
-      L('Find the radius from a centre and a point.', 'Mencari jari-jari dari pusat dan sebuah titik.'),
-      L('Use the distance from the centre to find a tangent.', 'Memakai jarak dari pusat untuk mencari garis singgung.'),
+      L('Find the radius from a center and a point.', 'Mencari jari-jari dari pusat dan sebuah titik.'),
+      L('Use the distance from the center to find a tangent.', 'Memakai jarak dari pusat untuk mencari garis singgung.'),
     ],
     hints: [
-      L('The radius is the distance from the centre to a point on the circle.', 'Jari-jari adalah jarak dari pusat ke titik pada lingkaran.'),
-      L('Tangent: the distance from the centre equals the radius.', 'Garis singgung: jarak dari pusat sama dengan jari-jari.'),
+      L('The radius is the distance from the center to a point on the circle.', 'Jari-jari adalah jarak dari pusat ke titik pada lingkaran.'),
+      L('Tangent: the distance from the center equals the radius.', 'Garis singgung: jarak dari pusat sama dengan jari-jari.'),
       L('A segment is a sector minus a triangle.', 'Tembereng adalah juring dikurangi segitiga.'),
     ],
     xp: 50,
     tasks: [
       {
         prompt: L(
-          'A circle has its centre at $(1,2)$ and passes through $(4,6)$. Find $r^2$.',
+          'A circle has its center at $(1,2)$ and passes through $(4,6)$. Find $r^2$.',
           'Sebuah lingkaran berpusat di $(1,2)$ dan melalui $(4,6)$. Cari $r^2$.',
         ),
         blanks: [{ label: 'r^2 =', answer: 25 }],
@@ -480,7 +480,7 @@ export const m5s1: Submodule = {
       },
       {
         prompt: L(
-          'The segment of a circle of radius $4$ cut off by a chord that subtends $90^{\\circ}$ at the centre has area $k\\pi-8$. Find $k$.',
+          'The segment of a circle of radius $4$ cut off by a chord that subtends $90^{\\circ}$ at the center has area $k\\pi-8$. Find $k$.',
           'Tembereng lingkaran berjari-jari $4$ yang dipotong oleh tali busur yang menghadap sudut pusat $90^{\\circ}$ berluas $k\\pi-8$. Tentukan $k$.',
         ),
         blanks: [{ label: 'k =', answer: 4 }],

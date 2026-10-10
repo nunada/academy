@@ -303,7 +303,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'Circles are easier than boxes', id: 'Lingkaran lebih mudah daripada kotak' },
               body: {
-                en: 'Two circles overlap when the distance between their centres is less than the sum of their radii. One comparison, no cases, and it works at any angle — which is why round hitboxes are so common even in games drawn entirely out of squares.',
+                en: 'Two circles overlap when the distance between their centers is less than the sum of their radii. One comparison, no cases, and it works at any angle — which is why round hitboxes are so common even in games drawn entirely out of squares.',
                 id: 'Dua lingkaran bertumpang tindih ketika jarak antara pusatnya kurang dari jumlah jari-jarinya. Satu perbandingan, tanpa kasus, dan berlaku di sudut mana pun — dan itulah sebabnya kotak tabrak bundar begitu umum bahkan di game yang seluruhnya digambar dari persegi.',
               },
               figure: {
@@ -328,7 +328,7 @@ export const module2: Module = {
                   { t: 'seg', from: [0, 0], to: [60, 80], color: 'result', label: 'distance = 100' },
                 ],
                 caption: {
-                  en: 'The straight line between the two centres is exactly what `distance` computes — here it comes to 100. `touches` overlaps them the moment that number drops below `a["r"] + b["r"]`.',
+                  en: 'The straight line between the two centers is exactly what `distance` computes — here it comes to 100. `touches` overlaps them the moment that number drops below `a["r"] + b["r"]`.',
                   id: 'Garis lurus antara kedua pusatnya adalah persis yang dihitung `distance` — di sini hasilnya 100. `touches` menganggap keduanya bertumpang tindih begitu angka itu turun di bawah `a["r"] + b["r"]`.',
                 },
               },
@@ -374,13 +374,13 @@ export const module2: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'Two circles of radius 5 have centres 10 apart. Do they overlap?',
+                en: 'Two circles of radius 5 have centers 10 apart. Do they overlap?',
                 id: 'Dua lingkaran berjari-jari 5 pusatnya berjarak 10. Apakah keduanya bertumpang tindih?',
               },
               options: [
                 { en: 'No — they touch at exactly one point', id: 'Tidak — keduanya bersentuhan tepat di satu titik' },
                 { en: 'Yes', id: 'Ya' },
-                { en: 'Only if they are the same colour', id: 'Hanya kalau warnanya sama' },
+                { en: 'Only if they are the same color', id: 'Hanya kalau warnanya sama' },
                 { en: 'There is not enough information', id: 'Informasinya tidak cukup' },
               ],
               answer: 0,
@@ -389,7 +389,7 @@ export const module2: Module = {
                 id: '`10 < 5 + 5` itu salah. Seperti pada kotak, perbandingan ketat berarti bersentuhan bukanlah bertumpang tindih.',
               },
               hint: {
-                en: 'Compare the actual distance between the centres to the sum of the two radii, using the same strict inequality style as the box test.',
+                en: 'Compare the actual distance between the centers to the sum of the two radii, using the same strict inequality style as the box test.',
                 id: 'Bandingkan jarak sebenarnya antara pusatnya dengan jumlah kedua jari-jarinya, memakai gaya pertidaksamaan ketat yang sama seperti uji kotak.',
               },
             },
@@ -469,22 +469,22 @@ export const module2: Module = {
                   name: { en: 'Overlapping circles touch', id: 'Lingkaran yang bertindihan bersentuhan' },
                   assert:
                     'a = {"x": 0, "y": 0, "r": 5}\n' +
-                    'assert touches(a, {"x": 6, "y": 0, "r": 5}), "centres 6 apart, radii sum to 10: must be a hit"\n' +
-                    'assert touches(a, {"x": 0, "y": 0, "r": 1}), "the same centre must be a hit"\n' +
+                    'assert touches(a, {"x": 6, "y": 0, "r": 5}), "centers 6 apart, radii sum to 10: must be a hit"\n' +
+                    'assert touches(a, {"x": 0, "y": 0, "r": 1}), "the same center must be a hit"\n' +
                     'assert touches({"x": 6, "y": 0, "r": 5}, a), "order must not matter"',
                 },
                 {
                   name: { en: 'Distant ones do not', id: 'Yang berjauhan tidak' },
                   assert:
                     'a = {"x": 0, "y": 0, "r": 5}\n' +
-                    'assert not touches(a, {"x": 11, "y": 0, "r": 5}), "centres 11 apart, radii sum to 10: not a hit"\n' +
+                    'assert not touches(a, {"x": 11, "y": 0, "r": 5}), "centers 11 apart, radii sum to 10: not a hit"\n' +
                     'assert not touches(a, {"x": 8, "y": 8, "r": 5}), "diagonal and too far: not a hit"',
                 },
                 {
                   name: { en: 'Exactly touching is not overlapping', id: 'Bersentuhan tepat bukan bertumpang tindih' },
                   assert:
                     'a = {"x": 0, "y": 0, "r": 5}\n' +
-                    'assert not touches(a, {"x": 10, "y": 0, "r": 5}), "centres exactly 10 apart with radii summing to 10 must not be a hit"',
+                    'assert not touches(a, {"x": 10, "y": 0, "r": 5}), "centers exactly 10 apart with radii summing to 10 must not be a hit"',
                 },
                 {
                   name: { en: 'Landing on the dot scores', id: 'Mendarat di butirnya menambah skor' },
@@ -771,7 +771,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'A bounce is one sign change', id: 'Pantulan adalah satu perubahan tanda' },
               body: {
-                en: 'Hitting a horizontal surface flips the vertical velocity and leaves the horizontal one alone. That is the whole of it. As with the walls in module 1, choose the direction rather than negating — `vy = -abs(vy)` sends it upwards whatever it was doing, and never gets stuck.',
+                en: 'Hitting a horizontal surface flips the vertical velocity and leaves the horizontal one alone. That is the whole of it. As with the walls in module 1, choose the direction rather than negating — `vy = -abs(vy)` sends it upward whatever it was doing, and never gets stuck.',
                 id: 'Menabrak permukaan mendatar membalik kecepatan tegaknya dan membiarkan yang mendatar. Hanya itu. Seperti dinding di modul 1, pilih arahnya alih-alih mengingkarinya — `vy = -abs(vy)` mengirimnya ke atas apa pun yang tadi ia lakukan, dan tak pernah tersangkut.',
               },
               code: {
@@ -784,7 +784,7 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'Where it hit should matter', id: 'Tempat kenanya seharusnya berarti' },
               body: {
-                en: 'A ball that always leaves at the same angle is a ball the player cannot aim. Measure how far from the paddle\'s centre it landed, as a fraction from `-1` to `1`, and turn that into horizontal speed. Now the edge of the paddle is a tool, and a game of luck becomes a game of skill.',
+                en: 'A ball that always leaves at the same angle is a ball the player cannot aim. Measure how far from the paddle\'s center it landed, as a fraction from `-1` to `1`, and turn that into horizontal speed. Now the edge of the paddle is a tool, and a game of luck becomes a game of skill.',
                 id: 'Bola yang selalu pergi dengan sudut sama adalah bola yang tak bisa diarahkan pemain. Ukur seberapa jauh dari pusat papannya ia mendarat, sebagai pecahan dari `-1` sampai `1`, lalu ubah itu jadi kecepatan mendatar. Sekarang tepi papannya jadi alat, dan permainan untung-untungan berubah jadi permainan keterampilan.',
               },
               code: {
@@ -814,7 +814,7 @@ export const module2: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'The ball hits the exact centre of the paddle. What should `vx` become?',
+                en: 'The ball hits the exact center of the paddle. What should `vx` become?',
                 id: 'Bolanya mengenai pusat papan tepat. `vx` harusnya jadi berapa?',
               },
               options: [
@@ -825,11 +825,11 @@ export const module2: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'The difference from the centre is zero, so zero times the speed is zero. The edges are where the steering lives.',
+                en: 'The difference from the center is zero, so zero times the speed is zero. The edges are where the steering lives.',
                 id: 'Selisih dari pusatnya nol, jadi nol dikali kecepatannya adalah nol. Tepinya-lah tempat pengarahannya berada.',
               },
               hint: {
-                en: 'Work out what the offset fraction equals when the hit point is exactly at the centre, then see what that fraction times the speed constant gives.',
+                en: 'Work out what the offset fraction equals when the hit point is exactly at the center, then see what that fraction times the speed constant gives.',
                 id: 'Cari tahu berapa pecahan offset-nya ketika titik kenanya persis di pusat, lalu lihat hasil pecahan itu dikali konstanta kecepatannya.',
               },
             },
@@ -837,7 +837,7 @@ export const module2: Module = {
               kind: 'game',
               id: 'g1',
               prompt: {
-                en: 'A ball bounces off the three walls and off the paddle. On a paddle hit, put the ball on top of it, send it up, and set `vx` from how far off centre it landed, times 180. It falls past the bottom for now.',
+                en: 'A ball bounces off the three walls and off the paddle. On a paddle hit, put the ball on top of it, send it up, and set `vx` from how far off center it landed, times 180. It falls past the bottom for now.',
                 id: 'Bola memantul dari tiga dinding dan dari papan. Saat kena papan, taruh bolanya di atas papan, kirim ke atas, dan setel `vx` dari seberapa jauh dari pusat ia mendarat, dikali 180. Untuk sekarang ia boleh lolos ke bawah.',
               },
               starter:
@@ -900,11 +900,11 @@ export const module2: Module = {
                     'assert abs(k["y"] - (210 - 6)) < 1e-9, f"must be placed on top of the paddle, y = 204, now: {k[\'y\']}"',
                 },
                 {
-                  name: { en: 'The centre sends it straight up', id: 'Pusatnya mengirimnya lurus ke atas' },
+                  name: { en: 'The center sends it straight up', id: 'Pusatnya mengirimnya lurus ke atas' },
                   assert:
-                    '# paddle 130..190, centre 160; the ball lands exactly there\n' +
+                    '# paddle 130..190, center 160; the ball lands exactly there\n' +
                     'k = update({"px": 130.0, "x": 159.9, "y": 206.0, "vx": 10.0, "vy": 150.0}, set(), 0.01)\n' +
-                    'assert abs(k["vx"]) < 1e-6, f"hitting exactly at the centre must make vx zero, now: {k[\'vx\']}"',
+                    'assert abs(k["vx"]) < 1e-6, f"hitting exactly at the center must make vx zero, now: {k[\'vx\']}"',
                 },
                 {
                   name: { en: 'The edges steer it', id: 'Tepinya mengarahkannya' },

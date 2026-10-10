@@ -517,7 +517,7 @@ export const module2: Module = {
                 id: 'Coret satu faktor x secara aljabar lebih dahulu, lalu terapkan L\'Hôpital pada bentuk tak tentu yang tersisa, lalu baca limitnya.',
               },
               hint: {
-                en: "L'Hôpital's Rule can only be applied once the expression is actually in an indeterminate $\\frac{\\infty}{\\infty}$ or $\\frac{0}{0}$ form — simplify what can be cancelled algebraically first.",
+                en: "L'Hôpital's Rule can only be applied once the expression is actually in an indeterminate $\\frac{\\infty}{\\infty}$ or $\\frac{0}{0}$ form — simplify what can be canceled algebraically first.",
                 id: "Aturan L'Hôpital hanya bisa diterapkan setelah ekspresinya benar-benar dalam bentuk tak tentu $\\frac{\\infty}{\\infty}$ atau $\\frac{0}{0}$ — sederhanakan dahulu apa yang bisa dicoret secara aljabar.",
               },
             },

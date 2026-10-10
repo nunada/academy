@@ -180,7 +180,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Working one example all the way through', id: 'Mengerjakan satu contoh sampai tuntas' },
               body: {
-                en: 'Find $f\'(3)$ for $f(x) = x^2$.\n$$f\'(3) = \\lim_{h \\to 0} \\frac{f(3+h) - f(3)}{h} = \\lim_{h \\to 0} \\frac{(3+h)^2 - 9}{h}$$\nExpand the top: $(3+h)^2 - 9 = 9 + 6h + h^2 - 9 = 6h + h^2$. So\n$$f\'(3) = \\lim_{h \\to 0} \\frac{6h + h^2}{h} = \\lim_{h \\to 0} \\frac{h(6+h)}{h} = \\lim_{h \\to 0}(6+h) = 6$$\nThe factoring step is not optional decoration — it is the only reason the $\\frac{0}{0}$ clears at all, cancelling the very $h$ that direct substitution tripped over.',
+                en: 'Find $f\'(3)$ for $f(x) = x^2$.\n$$f\'(3) = \\lim_{h \\to 0} \\frac{f(3+h) - f(3)}{h} = \\lim_{h \\to 0} \\frac{(3+h)^2 - 9}{h}$$\nExpand the top: $(3+h)^2 - 9 = 9 + 6h + h^2 - 9 = 6h + h^2$. So\n$$f\'(3) = \\lim_{h \\to 0} \\frac{6h + h^2}{h} = \\lim_{h \\to 0} \\frac{h(6+h)}{h} = \\lim_{h \\to 0}(6+h) = 6$$\nThe factoring step is not optional decoration — it is the only reason the $\\frac{0}{0}$ clears at all, canceling the very $h$ that direct substitution tripped over.',
                 id: 'Cari $f\'(3)$ untuk $f(x) = x^2$.\n$$f\'(3) = \\lim_{h \\to 0} \\frac{f(3+h) - f(3)}{h} = \\lim_{h \\to 0} \\frac{(3+h)^2 - 9}{h}$$\nJabarkan bagian atas: $(3+h)^2 - 9 = 9 + 6h + h^2 - 9 = 6h + h^2$. Jadi\n$$f\'(3) = \\lim_{h \\to 0} \\frac{6h + h^2}{h} = \\lim_{h \\to 0} \\frac{h(6+h)}{h} = \\lim_{h \\to 0}(6+h) = 6$$\nLangkah pemfaktoran bukan hiasan opsional — itulah satu-satunya sebab $\\frac{0}{0}$-nya bisa selesai sama sekali, mencoret persis $h$ yang membuat substitusi langsung tersandung.',
               },
               figure: {
@@ -358,7 +358,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Two derivative functions, worked in full', id: 'Dua fungsi turunan, dikerjakan tuntas' },
               body: {
-                en: 'For $f(x) = x^2$:\n$$f\'(x) = \\lim_{h\\to 0}\\frac{(x+h)^2-x^2}{h} = \\lim_{h\\to 0}\\frac{2xh+h^2}{h} = \\lim_{h\\to 0}(2x+h) = 2x$$\nEvery earlier numeric answer was this formula in disguise: $f\'(3) = 2(3) = 6$, matching exactly.\n\nFor $f(x) = \\dfrac{1}{x}$, the algebra leans on the rationalising-adjacent move of a common denominator:\n$$f\'(x) = \\lim_{h\\to 0}\\frac{\\frac{1}{x+h}-\\frac{1}{x}}{h} = \\lim_{h\\to 0}\\frac{\\frac{x-(x+h)}{x(x+h)}}{h} = \\lim_{h\\to 0}\\frac{-h}{hx(x+h)} = \\lim_{h\\to 0}\\frac{-1}{x(x+h)} = -\\frac{1}{x^2}$$\nSame recipe every time: expand or combine, cancel the shared $h$, then let $h \\to 0$ in what remains.',
+                en: 'For $f(x) = x^2$:\n$$f\'(x) = \\lim_{h\\to 0}\\frac{(x+h)^2-x^2}{h} = \\lim_{h\\to 0}\\frac{2xh+h^2}{h} = \\lim_{h\\to 0}(2x+h) = 2x$$\nEvery earlier numeric answer was this formula in disguise: $f\'(3) = 2(3) = 6$, matching exactly.\n\nFor $f(x) = \\dfrac{1}{x}$, the algebra leans on the rationalizing-adjacent move of a common denominator:\n$$f\'(x) = \\lim_{h\\to 0}\\frac{\\frac{1}{x+h}-\\frac{1}{x}}{h} = \\lim_{h\\to 0}\\frac{\\frac{x-(x+h)}{x(x+h)}}{h} = \\lim_{h\\to 0}\\frac{-h}{hx(x+h)} = \\lim_{h\\to 0}\\frac{-1}{x(x+h)} = -\\frac{1}{x^2}$$\nSame recipe every time: expand or combine, cancel the shared $h$, then let $h \\to 0$ in what remains.',
                 id: 'Untuk $f(x) = x^2$:\n$$f\'(x) = \\lim_{h\\to 0}\\frac{(x+h)^2-x^2}{h} = \\lim_{h\\to 0}\\frac{2xh+h^2}{h} = \\lim_{h\\to 0}(2x+h) = 2x$$\nSetiap jawaban numerik sebelumnya adalah rumus ini yang menyamar: $f\'(3) = 2(3) = 6$, cocok persis.\n\nUntuk $f(x) = \\dfrac{1}{x}$, aljabarnya bersandar pada gerakan sejenis penyamaan penyebut:\n$$f\'(x) = \\lim_{h\\to 0}\\frac{\\frac{1}{x+h}-\\frac{1}{x}}{h} = \\lim_{h\\to 0}\\frac{\\frac{x-(x+h)}{x(x+h)}}{h} = \\lim_{h\\to 0}\\frac{-h}{hx(x+h)} = \\lim_{h\\to 0}\\frac{-1}{x(x+h)} = -\\frac{1}{x^2}$$\nResep yang sama setiap kali: jabarkan atau samakan penyebut, coret $h$ yang sama, lalu biarkan $h \\to 0$ pada sisanya.',
               },
               figure: {
@@ -461,7 +461,7 @@ export const module1: Module = {
           id: 'tur-m1-s2-l2',
           title: { en: 'Differentiability and Continuity', id: 'Keterdiferensialan dan Kekontinuan' },
           goal: {
-            en: 'Show differentiability implies continuity, and recognise the shapes where a derivative fails to exist.',
+            en: 'Show differentiability implies continuity, and recognize the shapes where a derivative fails to exist.',
             id: 'Menunjukkan keterdiferensialan mengakibatkan kekontinuan, dan mengenali bentuk-bentuk tempat turunan gagal ada.',
           },
           xp: 20,

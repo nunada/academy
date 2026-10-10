@@ -73,7 +73,7 @@ export const module1: Module = {
               id: 'c4',
               title: { en: 'The field, and which way is down', id: 'Lapangannya, dan arah mana yang bawah' },
               body: {
-                en: 'The field is 320 across and 240 down, with `(0, 0)` at the **top left**. So `y` grows downwards — a smaller `y` is higher on the screen. Every graphics system does this, and it catches everybody once.',
+                en: 'The field is 320 across and 240 down, with `(0, 0)` at the **top left**. So `y` grows downward — a smaller `y` is higher on the screen. Every graphics system does this, and it catches everybody once.',
                 id: 'Lapangannya 320 melintang dan 240 menurun, dengan `(0, 0)` di **kiri atas**. Jadi `y` bertambah ke bawah — `y` yang lebih kecil berarti lebih tinggi di layar. Tiap sistem grafis melakukan ini, dan ia menjebak semua orang sekali.',
               },
               figure: {
@@ -116,7 +116,7 @@ export const module1: Module = {
               ],
               answer: 0,
               explain: {
-                en: '(0, 0) is the top left corner, so y counts downwards from there.',
+                en: '(0, 0) is the top left corner, so y counts downward from there.',
                 id: '(0, 0) adalah sudut kiri atas, jadi y menghitung ke bawah dari sana.',
               },
               hint: {
@@ -128,7 +128,7 @@ export const module1: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Complete a command that draws a circle of radius 10 at the centre of the field.',
+                en: 'Complete a command that draws a circle of radius 10 at the center of the field.',
                 id: 'Lengkapi perintah yang menggambar lingkaran berjari-jari 10 di tengah lapangan.',
               },
               template: '{"shape": "circle", "x": ___, "y": ___, "r": 10, "color": "#ef8f70"}',
@@ -138,7 +138,7 @@ export const module1: Module = {
                 id: 'Separuh dari 320 melintang, separuh dari 240 menurun.',
               },
               hint: {
-                en: 'The field\'s width and height were both given a couple of screens back — the centre sits at exactly half of each.',
+                en: 'The field\'s width and height were both given a couple of screens back — the center sits at exactly half of each.',
                 id: 'Lebar dan tinggi lapangan sudah disebutkan beberapa layar sebelumnya — titik tengahnya persis separuh dari masing-masing.',
               },
             },
@@ -402,7 +402,7 @@ export const module1: Module = {
           { en: '`start()` returns `{"x": 60.0, "y": 60.0, "vx": 90.0, "vy": 70.0}` — a position and a velocity in pixels per second.', id: '`start()` mengembalikan `{"x": 60.0, "y": 60.0, "vx": 90.0, "vy": 70.0}` — sebuah posisi dan kecepatan dalam piksel per detik.' },
           { en: 'Each frame the ball moves by its velocity times `dt`.', id: 'Tiap bingkai bolanya bergerak sebesar kecepatannya dikali `dt`.' },
           { en: 'The ball has a radius of 8. When its edge would pass a wall, put it exactly against the wall and send it the other way.', id: 'Bolanya berjari-jari 8. Ketika tepinya akan melewati dinding, taruh ia tepat menempel dindingnya dan kirim ke arah sebaliknya.' },
-          { en: 'The field is 320 by 240, so the centre stays between 8 and 312 across, and 8 and 232 down.', id: 'Lapangannya 320 kali 240, jadi pusatnya tetap antara 8 dan 312 melintang, serta 8 dan 232 menurun.' },
+          { en: 'The field is 320 by 240, so the center stays between 8 and 312 across, and 8 and 232 down.', id: 'Lapangannya 320 kali 240, jadi pusatnya tetap antara 8 dan 312 melintang, serta 8 dan 232 menurun.' },
           { en: '`draw` draws one circle of radius 8 in `#ef8f70` at the ball.', id: '`draw` menggambar satu lingkaran berjari-jari 8 berwarna `#ef8f70` di posisi bolanya.' },
           { en: '`update` must not change the state it was given.', id: '`update` tidak boleh mengubah keadaan yang diberikan padanya.' },
         ],
@@ -677,7 +677,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Separate ifs, not elif', id: 'if terpisah, bukan elif' },
               body: {
-                en: 'Two keys can be down at once — that is how you move diagonally. Write each direction as its own `if`, and pressing left and right together simply cancels out, which is what a player expects. An `elif` chain would silently pick a favourite.',
+                en: 'Two keys can be down at once — that is how you move diagonally. Write each direction as its own `if`, and pressing left and right together simply cancels out, which is what a player expects. An `elif` chain would silently pick a favorite.',
                 id: 'Dua tombol bisa ditekan sekaligus — begitulah kamu bergerak menyerong. Tulis tiap arah sebagai `if`-nya sendiri, dan menekan kiri dan kanan bersamaan akan saling meniadakan, dan itulah yang diharapkan pemain. Rantai `elif` akan diam-diam memilih favorit.',
               },
               code:
@@ -746,7 +746,7 @@ export const module1: Module = {
               kind: 'game',
               id: 'g1',
               prompt: {
-                en: 'A 20 by 20 player in `#24463d`, starting at the centre of the field, moving at **120 pixels per second** in whichever directions are held. It may leave the field for now.',
+                en: 'A 20 by 20 player in `#24463d`, starting at the center of the field, moving at **120 pixels per second** in whichever directions are held. It may leave the field for now.',
                 id: 'Pemain 20 kali 20 berwarna `#24463d`, mulai di tengah lapangan, bergerak **120 piksel per detik** ke arah mana pun yang sedang ditekan. Untuk sekarang ia boleh keluar lapangan.',
               },
               starter:

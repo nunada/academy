@@ -34,7 +34,7 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Two kinds of quantity', id: 'Dua jenis besaran' },
               body: {
-                en: 'A **scalar** is finished once you have said how much: a mass of 5 kg, a temperature of 27 °C, a length of 3 m. A **vector** is not finished until you have also said which way: a displacement of 3 m **to the east**, a force of 5 N **downwards**.\n\nSo a vector carries two things at once — a **magnitude** (a non-negative number) and a **direction**. Two vectors are the same vector when both agree; where they happen to be drawn does not matter.',
+                en: 'A **scalar** is finished once you have said how much: a mass of 5 kg, a temperature of 27 °C, a length of 3 m. A **vector** is not finished until you have also said which way: a displacement of 3 m **to the east**, a force of 5 N **downward**.\n\nSo a vector carries two things at once — a **magnitude** (a non-negative number) and a **direction**. Two vectors are the same vector when both agree; where they happen to be drawn does not matter.',
                 id: 'Sebuah **skalar** sudah lengkap begitu kamu menyebut seberapa banyak: massa 5 kg, suhu 27 °C, panjang 3 m. Sebuah **vektor** belum lengkap sebelum kamu juga menyebut ke mana arahnya: perpindahan 3 m **ke timur**, gaya 5 N **ke bawah**.\n\nJadi vektor membawa dua hal sekaligus — **besar** (bilangan tak negatif) dan **arah**. Dua vektor adalah vektor yang sama bila keduanya cocok; di mana ia kebetulan digambar tidak menjadi soal.',
               },
             },
@@ -342,7 +342,7 @@ export const module1: Module = {
         runtime: 'math',
         title: { en: 'From Points to Vectors', id: 'Dari Titik Menjadi Vektor' },
         brief: {
-          en: 'Three short problems on components, position vectors, and reading the definition backwards.',
+          en: 'Three short problems on components, position vectors, and reading the definition backward.',
           id: 'Tiga soal singkat tentang komponen, vektor posisi, dan membaca definisinya secara terbalik.',
         },
         requirements: [
@@ -388,7 +388,7 @@ export const module1: Module = {
         ],
         hints: [
           {
-            en: 'Parts 1 and 2 are the definition read forwards; part 3 is the same definition rearranged.',
+            en: 'Parts 1 and 2 are the definition read forward; part 3 is the same definition rearranged.',
             id: 'Butir 1 dan 2 adalah definisinya dibaca maju; butir 3 adalah definisi yang sama disusun ulang.',
           },
           {
@@ -877,7 +877,7 @@ export const module1: Module = {
         runtime: 'math',
         title: { en: 'Linear Combinations', id: 'Kombinasi Linear' },
         brief: {
-          en: 'Combine vectors with scalars — and then run the process backwards to find a scalar you were not given.',
+          en: 'Combine vectors with scalars — and then run the process backward to find a scalar you were not given.',
           id: 'Menggabungkan vektor dengan skalar — lalu membalik prosesnya untuk mencari skalar yang tidak diberikan.',
         },
         requirements: [

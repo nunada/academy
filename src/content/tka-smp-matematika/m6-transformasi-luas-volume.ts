@@ -63,7 +63,7 @@ const dashedH = (y: number, color: FigColor = 'c'): FigItem => ({ t: 'hline', y,
 /** A named point on the grid. */
 const dot = (p: Pt, label: string, color: FigColor = 'a'): FigItem => ({ t: 'dot', x: p[0], y: p[1], color, label })
 
-/** A regular polygon with `n` corners and circumradius `r`, anticlockwise. */
+/** A regular polygon with `n` corners and circumradius `r`, counterclockwise. */
 const regular = (n: number, r: number): Pt[] =>
   Array.from({ length: n }, (_, i) => {
     const a = Math.PI / 2 + (2 * Math.PI * i) / n
@@ -354,13 +354,13 @@ export const module6: Module = {
               id: 'c1',
               title: L('Look Closely: Turning a Figure', 'Ayo Amati: Memutar Bangun'),
               body: L(
-                `A **rotation** turns a figure about a fixed point, the **centre**, through an angle. A turn **anticlockwise** (against the hands of a clock) counts as positive. A rotation keeps the size and the shape of the figure.\n\nFor a centre at the origin $O$, the three turns of $90^\\circ$, $180^\\circ$ and $270^\\circ$ anticlockwise have simple rules:\n\n| Rotation about $O$ | Rule | Point $(3,1)$ becomes |\n|---|---|---|\n| $90^\\circ$ anticlockwise | $(x,y)\\rightarrow(-y,x)$ | $(-1,3)$ |\n| $180^\\circ$ | $(x,y)\\rightarrow(-x,-y)$ | $(-3,-1)$ |\n| $270^\\circ$ anticlockwise | $(x,y)\\rightarrow(y,-x)$ | $(1,-3)$ |\n\nA turn of $90^\\circ$ clockwise is the same as a turn of $270^\\circ$ anticlockwise. In the picture the green triangle is turned $90^\\circ$ anticlockwise about $O$.`,
+                `A **rotation** turns a figure about a fixed point, the **center**, through an angle. A turn **counterclockwise** (against the hands of a clock) counts as positive. A rotation keeps the size and the shape of the figure.\n\nFor a center at the origin $O$, the three turns of $90^\\circ$, $180^\\circ$ and $270^\\circ$ counterclockwise have simple rules:\n\n| Rotation about $O$ | Rule | Point $(3,1)$ becomes |\n|---|---|---|\n| $90^\\circ$ counterclockwise | $(x,y)\\rightarrow(-y,x)$ | $(-1,3)$ |\n| $180^\\circ$ | $(x,y)\\rightarrow(-x,-y)$ | $(-3,-1)$ |\n| $270^\\circ$ counterclockwise | $(x,y)\\rightarrow(y,-x)$ | $(1,-3)$ |\n\nA turn of $90^\\circ$ clockwise is the same as a turn of $270^\\circ$ counterclockwise. In the picture the green triangle is turned $90^\\circ$ counterclockwise about $O$.`,
                 `**Rotasi** memutar sebuah bangun terhadap titik tetap, yaitu **pusat rotasi**, sebesar suatu sudut. Putaran **berlawanan arah jarum jam** dihitung positif. Rotasi menjaga ukuran dan bentuk bangun.\n\nUntuk pusat di titik asal $O$, tiga putaran $90^\\circ$, $180^\\circ$, dan $270^\\circ$ berlawanan arah jarum jam punya aturan sederhana:\n\n| Rotasi terhadap $O$ | Aturan | Titik $(3,1)$ menjadi |\n|---|---|---|\n| $90^\\circ$ berlawanan arah jarum jam | $(x,y)\\rightarrow(-y,x)$ | $(-1,3)$ |\n| $180^\\circ$ | $(x,y)\\rightarrow(-x,-y)$ | $(-3,-1)$ |\n| $270^\\circ$ berlawanan arah jarum jam | $(x,y)\\rightarrow(y,-x)$ | $(1,-3)$ |\n\nPutaran $90^\\circ$ searah jarum jam sama dengan putaran $270^\\circ$ berlawanan arah jarum jam. Pada gambar, segitiga hijau diputar $90^\\circ$ berlawanan arah jarum jam terhadap $O$.`,
               ),
               figure: {
                 ...trans([[1, 1], [4, 1], [1, 3]], 'ABC', [[1, 1], [4, 1], [1, 3]].map((p) => rot90(p as Pt))),
                 caption: L(
-                  'Triangle ABC turned 90 degrees anticlockwise about the origin.',
+                  'Triangle ABC turned 90 degrees counterclockwise about the origin.',
                   'Segitiga ABC diputar 90 derajat berlawanan arah jarum jam terhadap titik asal.',
                 ),
               },
@@ -370,7 +370,7 @@ export const module6: Module = {
               id: 'c2',
               title: L('Step by Step: Turning About Another Point', 'Contoh Bertahap: Memutar terhadap Titik Lain'),
               body: L(
-                `Rotate the point $A(4,2)$ by $90^\\circ$ anticlockwise about the centre $P(1,1)$. No protractor is needed: count steps on the grid.\n\n1. Step 1: Start at the centre. To reach $A$ you go 3 steps right and 1 step up, so the steps are $(3,1)$.\n2. Step 2: Turn the steps by $90^\\circ$ anticlockwise: "right" becomes "up" and "up" becomes "left". So 3 right becomes 3 up, and 1 up becomes 1 left. The new steps are $(-1,3)$. This is the rule $(x,y)\\rightarrow(-y,x)$ applied to the steps.\n3. Step 3: Start at the centre again and take the new steps: $(1-1,\\ 1+3)=(0,4)$.\n4. Step 4: The image is $A'(0,4)$. Check: $PA'$ and $PA$ have the same length and make a right angle.\n\n**Remember:**\n\n- Subtract the centre to get the steps from the centre to the point.\n- Turn the steps with the rule for the origin.\n- Add the centre back.\n- For a $180^\\circ$ turn the image is on the opposite side of the centre at the same distance, so $A'=2P-A$.`,
+                `Rotate the point $A(4,2)$ by $90^\\circ$ counterclockwise about the center $P(1,1)$. No protractor is needed: count steps on the grid.\n\n1. Step 1: Start at the center. To reach $A$ you go 3 steps right and 1 step up, so the steps are $(3,1)$.\n2. Step 2: Turn the steps by $90^\\circ$ counterclockwise: "right" becomes "up" and "up" becomes "left". So 3 right becomes 3 up, and 1 up becomes 1 left. The new steps are $(-1,3)$. This is the rule $(x,y)\\rightarrow(-y,x)$ applied to the steps.\n3. Step 3: Start at the center again and take the new steps: $(1-1,\\ 1+3)=(0,4)$.\n4. Step 4: The image is $A'(0,4)$. Check: $PA'$ and $PA$ have the same length and make a right angle.\n\n**Remember:**\n\n- Subtract the center to get the steps from the center to the point.\n- Turn the steps with the rule for the origin.\n- Add the center back.\n- For a $180^\\circ$ turn the image is on the opposite side of the center at the same distance, so $A'=2P-A$.`,
                 `Putar titik $A(4,2)$ sebesar $90^\\circ$ berlawanan arah jarum jam terhadap pusat $P(1,1)$. Busur derajat tidak diperlukan: hitung langkah pada kisi.\n\n1. Langkah 1: Mulai dari pusat. Untuk sampai ke $A$ kamu melangkah 3 ke kanan dan 1 ke atas, jadi langkahnya $(3,1)$.\n2. Langkah 2: Putar langkah itu $90^\\circ$ berlawanan arah jarum jam: "kanan" menjadi "atas" dan "atas" menjadi "kiri". Jadi 3 ke kanan menjadi 3 ke atas, dan 1 ke atas menjadi 1 ke kiri. Langkah barunya $(-1,3)$. Ini adalah aturan $(x,y)\\rightarrow(-y,x)$ yang dipakai pada langkahnya.\n3. Langkah 3: Mulai lagi dari pusat dan ambil langkah baru itu: $(1-1,\\ 1+3)=(0,4)$.\n4. Langkah 4: Bayangannya adalah $A'(0,4)$. Cek: $PA'$ dan $PA$ sama panjang dan membentuk sudut siku-siku.\n\n**Ingat:**\n\n- Kurangkan pusat untuk mendapat langkah dari pusat ke titik.\n- Putar langkah itu dengan aturan untuk titik asal.\n- Tambahkan kembali pusatnya.\n- Untuk putaran $180^\\circ$ bayangan berada di seberang pusat pada jarak yang sama, jadi $A'=2P-A$.`,
               ),
               figure: {
@@ -383,7 +383,7 @@ export const module6: Module = {
                   dot([0, 4], "A'", 'result'),
                 ]),
                 caption: L(
-                  'A turns 90 degrees anticlockwise about P: the green segment PA becomes the red segment PA\'.',
+                  'A turns 90 degrees counterclockwise about P: the green segment PA becomes the red segment PA\'.',
                   'A berputar 90 derajat berlawanan arah jarum jam terhadap P: ruas hijau PA menjadi ruas merah PA\'.',
                 ),
               },
@@ -393,7 +393,7 @@ export const module6: Module = {
               id: 'c3',
               title: L('Step by Step: Dilation, and Slips to Avoid', 'Contoh Bertahap: Dilatasi dan Kesalahan yang Perlu Dihindari'),
               body: L(
-                `A **dilation** with the origin as centre and **scale factor** $k$ multiplies both coordinates by $k$: $(x,y)\\rightarrow(kx,ky)$. Enlarge the triangle $A(1,1)$, $B(2,1)$, $C(1,2)$ with $k=2$.\n\n1. Step 1: Multiply each coordinate by 2.\n2. Step 2: $A(1,1)\\rightarrow A'(2,2)$, $B(2,1)\\rightarrow B'(4,2)$, $C(1,2)\\rightarrow C'(2,4)$.\n3. Step 3: Check. $AB=1$ and $A'B'=2$, so every length is multiplied by 2. The angles stay the same, so the image is **similar** to the original, but it is not congruent.\n\n| Scale factor | What happens |\n|---|---|\n| $k>1$ | the figure is enlarged and moves farther from $O$ |\n| $k=1$ | the figure stays the same |\n| $0<k<1$ | the figure is shrunk and moves closer to $O$ |\n\nCommon slips:\n\n| Wrong | Right |\n|---|---|\n| With $k=3$: $(2,1)\\rightarrow(5,4)$, adding 3 | Multiply: $(2,1)\\rightarrow(6,3)$ |\n| $90^\\circ$ anticlockwise: $(x,y)\\rightarrow(y,-x)$ | That is $270^\\circ$ anticlockwise. For $90^\\circ$ use $(-y,x)$ |\n| Using the rule for the origin when the centre is another point | Subtract the centre, turn the steps, then add the centre back |`,
+                `A **dilation** with the origin as center and **scale factor** $k$ multiplies both coordinates by $k$: $(x,y)\\rightarrow(kx,ky)$. Enlarge the triangle $A(1,1)$, $B(2,1)$, $C(1,2)$ with $k=2$.\n\n1. Step 1: Multiply each coordinate by 2.\n2. Step 2: $A(1,1)\\rightarrow A'(2,2)$, $B(2,1)\\rightarrow B'(4,2)$, $C(1,2)\\rightarrow C'(2,4)$.\n3. Step 3: Check. $AB=1$ and $A'B'=2$, so every length is multiplied by 2. The angles stay the same, so the image is **similar** to the original, but it is not congruent.\n\n| Scale factor | What happens |\n|---|---|\n| $k>1$ | the figure is enlarged and moves farther from $O$ |\n| $k=1$ | the figure stays the same |\n| $0<k<1$ | the figure is shrunk and moves closer to $O$ |\n\nCommon slips:\n\n| Wrong | Right |\n|---|---|\n| With $k=3$: $(2,1)\\rightarrow(5,4)$, adding 3 | Multiply: $(2,1)\\rightarrow(6,3)$ |\n| $90^\\circ$ counterclockwise: $(x,y)\\rightarrow(y,-x)$ | That is $270^\\circ$ counterclockwise. For $90^\\circ$ use $(-y,x)$ |\n| Using the rule for the origin when the center is another point | Subtract the center, turn the steps, then add the center back |`,
                 `**Dilatasi** dengan pusat di titik asal dan **faktor skala** $k$ mengalikan kedua koordinat dengan $k$: $(x,y)\\rightarrow(kx,ky)$. Perbesar segitiga $A(1,1)$, $B(2,1)$, $C(1,2)$ dengan $k=2$.\n\n1. Langkah 1: Kalikan setiap koordinat dengan 2.\n2. Langkah 2: $A(1,1)\\rightarrow A'(2,2)$, $B(2,1)\\rightarrow B'(4,2)$, $C(1,2)\\rightarrow C'(2,4)$.\n3. Langkah 3: Cek. $AB=1$ dan $A'B'=2$, jadi setiap panjang dikalikan 2. Sudut-sudutnya tetap, jadi bayangannya **sebangun** dengan aslinya, tetapi tidak kongruen.\n\n| Faktor skala | Yang terjadi |\n|---|---|\n| $k>1$ | bangun diperbesar dan menjauh dari $O$ |\n| $k=1$ | bangun tetap sama |\n| $0<k<1$ | bangun diperkecil dan mendekat ke $O$ |\n\nKesalahan yang sering terjadi:\n\n| Salah | Benar |\n|---|---|\n| Dengan $k=3$: $(2,1)\\rightarrow(5,4)$, karena menambah 3 | Kalikan: $(2,1)\\rightarrow(6,3)$ |\n| $90^\\circ$ berlawanan arah jarum jam: $(x,y)\\rightarrow(y,-x)$ | Itu $270^\\circ$ berlawanan arah jarum jam. Untuk $90^\\circ$ pakai $(-y,x)$ |\n| Memakai aturan titik asal padahal pusatnya titik lain | Kurangkan pusat, putar langkahnya, lalu tambahkan kembali pusatnya |`,
               ),
               figure: {
@@ -408,7 +408,7 @@ export const module6: Module = {
                   ],
                 ),
                 caption: L(
-                  'Triangle ABC is enlarged with centre O and scale factor 2. Each image point lies on the dashed ray from O through the original point.',
+                  'Triangle ABC is enlarged with center O and scale factor 2. Each image point lies on the dashed ray from O through the original point.',
                   'Segitiga ABC diperbesar dengan pusat O dan faktor skala 2. Setiap titik bayangan terletak pada sinar putus-putus dari O melalui titik aslinya.',
                 ),
               },
@@ -428,7 +428,7 @@ export const module6: Module = {
                 L('A rotation of $180^\\circ$ about $O$', 'Rotasi $180^\\circ$ terhadap $O$'),
                 L('A reflection in the $x$-axis', 'Refleksi terhadap sumbu $x$'),
                 L('A reflection in the $y$-axis', 'Refleksi terhadap sumbu $y$'),
-                L('A rotation of $90^\\circ$ anticlockwise about $O$', 'Rotasi $90^\\circ$ berlawanan arah jarum jam terhadap $O$'),
+                L('A rotation of $90^\\circ$ counterclockwise about $O$', 'Rotasi $90^\\circ$ berlawanan arah jarum jam terhadap $O$'),
               ],
               answer: 0,
               explain: L(
@@ -445,7 +445,7 @@ export const module6: Module = {
               id: 'f1',
               math: true,
               prompt: L(
-                'Try it together: enlarge $A(2,3)$ with centre $O$ and scale factor $3$.',
+                'Try it together: enlarge $A(2,3)$ with center $O$ and scale factor $3$.',
                 'Coba bersama: perbesar $A(2,3)$ dengan pusat $O$ dan faktor skala $3$.',
               ),
               template: `(2,\\ 3)\\rightarrow(3\\times2,\\ 3\\times3)=(___,\\ ___)`,
@@ -471,7 +471,7 @@ export const module6: Module = {
                 caption: L('The red triangle is closer to O and smaller.', 'Segitiga merah lebih dekat ke O dan lebih kecil.'),
               },
               options: [
-                L('It is a dilation with centre $O$ and scale factor $\\frac{1}{2}$.', 'Itu dilatasi dengan pusat $O$ dan faktor skala $\\frac{1}{2}$.'),
+                L('It is a dilation with center $O$ and scale factor $\\frac{1}{2}$.', 'Itu dilatasi dengan pusat $O$ dan faktor skala $\\frac{1}{2}$.'),
                 L('Every side of the red triangle is half as long as the matching side of the green triangle.', 'Setiap sisi segitiga merah separuh panjang sisi yang bersesuaian pada segitiga hijau.'),
                 L('The red triangle is congruent to the green triangle.', 'Segitiga merah kongruen dengan segitiga hijau.'),
                 L('It is a translation by $(-1,-1)$.', 'Itu translasi $(-1,-1)$.'),
@@ -491,8 +491,8 @@ export const module6: Module = {
               id: 'j1',
               prompt: L('Decide whether each statement is True or False.', 'Tentukan apakah setiap pernyataan Benar atau Salah.'),
               statements: [
-                L('Rotating $(3,1)$ by $90^\\circ$ anticlockwise about $O$ gives $(-1,3)$.', 'Memutar $(3,1)$ sebesar $90^\\circ$ berlawanan arah jarum jam terhadap $O$ menghasilkan $(-1,3)$.'),
-                L('Rotating $(2,5)$ by $270^\\circ$ anticlockwise about $O$ gives $(-5,2)$.', 'Memutar $(2,5)$ sebesar $270^\\circ$ berlawanan arah jarum jam terhadap $O$ menghasilkan $(-5,2)$.'),
+                L('Rotating $(3,1)$ by $90^\\circ$ counterclockwise about $O$ gives $(-1,3)$.', 'Memutar $(3,1)$ sebesar $90^\\circ$ berlawanan arah jarum jam terhadap $O$ menghasilkan $(-1,3)$.'),
+                L('Rotating $(2,5)$ by $270^\\circ$ counterclockwise about $O$ gives $(-5,2)$.', 'Memutar $(2,5)$ sebesar $270^\\circ$ berlawanan arah jarum jam terhadap $O$ menghasilkan $(-5,2)$.'),
                 L('A dilation with scale factor $\\frac{1}{2}$ gives a smaller figure that is similar to the original.', 'Dilatasi dengan faktor skala $\\frac{1}{2}$ menghasilkan bangun yang lebih kecil dan sebangun dengan aslinya.'),
                 L('Under a dilation with scale factor 3, a side of length 4 becomes a side of length 7.', 'Pada dilatasi dengan faktor skala 3, sisi sepanjang 4 menjadi sisi sepanjang 7.'),
               ],
@@ -510,7 +510,7 @@ export const module6: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                `Hasan enlarged triangle $PQR$ with centre $O$ and scale factor $3$. The image of $P$ is $P'(-6,9)$. Find the coordinates of $P$.`,
+                `Hasan enlarged triangle $PQR$ with center $O$ and scale factor $3$. The image of $P$ is $P'(-6,9)$. Find the coordinates of $P$.`,
                 `Hasan memperbesar segitiga $PQR$ dengan pusat $O$ dan faktor skala $3$. Bayangan $P$ adalah $P'(-6,9)$. Tentukan koordinat $P$.`,
               ),
               inline: true,
@@ -594,7 +594,7 @@ export const module6: Module = {
           },
           {
             prompt: L(
-              `On a map of the school yard, the origin is the flagpole and one unit is 1 metre. A light stands at $L(4,-2)$. It is turned $90^\\circ$ anticlockwise about the flagpole. Find the new coordinates.`,
+              `On a map of the school yard, the origin is the flagpole and one unit is 1 meter. A light stands at $L(4,-2)$. It is turned $90^\\circ$ counterclockwise about the flagpole. Find the new coordinates.`,
               `Pada denah halaman sekolah, titik asal adalah tiang bendera dan satu satuan sama dengan 1 meter. Sebuah lampu berdiri di $L(4,-2)$. Lampu itu diputar $90^\\circ$ berlawanan arah jarum jam terhadap tiang bendera. Tentukan koordinat barunya.`,
             ),
             figure: {
@@ -650,7 +650,7 @@ export const module6: Module = {
               id: 'c1',
               title: L('Look Closely: Around and Inside', 'Ayo Amati: Sekeliling dan Bagian Dalam'),
               body: L(
-                'Ani wants to put a ribbon along the edge of a photo and cover its front with coloured paper. The ribbon needs the **perimeter**. The paper needs the **area**.\n\n- **Perimeter** is the total length of the boundary. It is measured in a length unit such as cm or m.\n- **Area** is the amount of flat surface inside the boundary. It is measured in square units such as $\\text{cm}^2$ or $\\text{m}^2$.\n\nThe picture shows a rectangle 5 cm long and 3 cm wide. It covers 15 unit squares, so its area is $15\\text{ cm}^2$. Its perimeter is $5+3+5+3=16$ cm.',
+                'Ani wants to put a ribbon along the edge of a photo and cover its front with colored paper. The ribbon needs the **perimeter**. The paper needs the **area**.\n\n- **Perimeter** is the total length of the boundary. It is measured in a length unit such as cm or m.\n- **Area** is the amount of flat surface inside the boundary. It is measured in square units such as $\\text{cm}^2$ or $\\text{m}^2$.\n\nThe picture shows a rectangle 5 cm long and 3 cm wide. It covers 15 unit squares, so its area is $15\\text{ cm}^2$. Its perimeter is $5+3+5+3=16$ cm.',
                 'Ani ingin memasang pita di sepanjang tepi sebuah foto dan menutupi bagian depannya dengan kertas warna. Pita membutuhkan **keliling**. Kertas membutuhkan **luas**.\n\n- **Keliling** adalah panjang seluruh garis tepi. Satuannya satuan panjang seperti cm atau m.\n- **Luas** adalah besar permukaan datar di dalam garis tepi. Satuannya satuan persegi seperti $\\text{cm}^2$ atau $\\text{m}^2$.\n\nGambar menunjukkan persegi panjang dengan panjang 5 cm dan lebar 3 cm. Bangun itu menutupi 15 persegi satuan, jadi luasnya $15\\text{ cm}^2$. Kelilingnya $5+3+5+3=16$ cm.',
               ),
               figure: {
@@ -797,7 +797,7 @@ export const module6: Module = {
                 'Kedua luasnya 24. Kelilingnya $2(6+4)=20$ dan $2(8+3)=22$, jadi berbeda. $1\\text{ m}^2=10\\,000\\text{ cm}^2$. Luas segitiganya $\\frac{1}{2}\\times10\\times6=30$.',
               ),
               hint: L(
-                'Work out the area and the perimeter of each shape separately. For units, think about how many centimetres make one metre, and what that means for a square.',
+                'Work out the area and the perimeter of each shape separately. For units, think about how many centimeters make one meter, and what that means for a square.',
                 'Hitung luas dan keliling setiap bangun secara terpisah. Untuk satuan, pikirkan berapa sentimeter dalam satu meter, dan apa artinya bagi sebuah persegi.',
               ),
             },
@@ -828,7 +828,7 @@ export const module6: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'A courtyard is shaped like a U. All lengths in the picture are in metres. It will be paved, and paving costs Rp45,000 per square metre. Find the area of the courtyard and the total cost.',
+                'A courtyard is shaped like a U. All lengths in the picture are in meters. It will be paved, and paving costs Rp45,000 per square meter. Find the area of the courtyard and the total cost.',
                 'Sebuah halaman berbentuk huruf U. Semua panjang pada gambar dalam meter. Halaman itu akan dipaving, dan biaya paving Rp45.000 per meter persegi. Tentukan luas halaman dan biaya totalnya.',
               ),
               figure: {
@@ -836,7 +836,7 @@ export const module6: Module = {
                   pts: [[0, 0], [10, 0], [10, 8], [7, 8], [7, 3], [3, 3], [3, 8], [0, 8]],
                   sides: ['10', '8', '3', '5', '4', '5', '3', '8'],
                 }),
-                caption: L('A U-shaped courtyard, lengths in metres.', 'Halaman berbentuk U, panjang dalam meter.'),
+                caption: L('A U-shaped courtyard, lengths in meters.', 'Halaman berbentuk U, panjang dalam meter.'),
               },
               blanks: [
                 { label: { en: '\\text{area} =', id: '\\text{luas} =' }, answer: 60, after: '\\text{ m}^2' },
@@ -852,7 +852,7 @@ export const module6: Module = {
                   'Persegi panjang besarnya $10\\times8$. Bagian yang dipotong lebarnya 4 (dari 3 sampai 7) dan dalamnya 5 (dari 3 sampai 8). Kurangkan luasnya.',
                 ),
                 L(
-                  'Once you have the area in square metres, multiply it by the price of one square metre.',
+                  'Once you have the area in square meters, multiply it by the price of one square meter.',
                   'Setelah mendapat luas dalam meter persegi, kalikan dengan harga satu meter persegi.',
                 ),
               ],
@@ -879,7 +879,7 @@ export const module6: Module = {
               id: 'c1',
               title: L('Look Closely: Parts of a Circle', 'Ayo Amati: Bagian-Bagian Lingkaran'),
               body: L(
-                'A bicycle wheel is a circle. The red segment in the picture is the **radius** $r$: the distance from the centre to the edge. The orange segment is the **diameter** $d$: a line through the centre from edge to edge, so $d=2r$.\n\nThe distance once round the circle is its **circumference** $C$. The space inside is its area $A$. Both use the number $\\pi$ (pi), which is about $3.14$, or about $\\frac{22}{7}$ when the radius is a multiple of 7.\n\n- Circumference: $C=2\\pi r=\\pi d$\n- Area: $A=\\pi r^2$\n\nWhen a problem says "in terms of $\\pi$", leave $\\pi$ in the answer, for example $36\\pi$.',
+                'A bicycle wheel is a circle. The red segment in the picture is the **radius** $r$: the distance from the center to the edge. The orange segment is the **diameter** $d$: a line through the center from edge to edge, so $d=2r$.\n\nThe distance once round the circle is its **circumference** $C$. The space inside is its area $A$. Both use the number $\\pi$ (pi), which is about $3.14$, or about $\\frac{22}{7}$ when the radius is a multiple of 7.\n\n- Circumference: $C=2\\pi r=\\pi d$\n- Area: $A=\\pi r^2$\n\nWhen a problem says "in terms of $\\pi$", leave $\\pi$ in the answer, for example $36\\pi$.',
                 'Roda sepeda berbentuk lingkaran. Ruas merah pada gambar adalah **jari-jari** $r$: jarak dari pusat ke tepi. Ruas oranye adalah **diameter** $d$: garis lurus melalui pusat dari tepi ke tepi, sehingga $d=2r$.\n\nJarak satu putaran mengelilingi lingkaran disebut **keliling** $C$. Ruang di dalamnya adalah luas $A$. Keduanya memakai bilangan $\\pi$ (pi), yang kira-kira $3{,}14$, atau kira-kira $\\frac{22}{7}$ jika jari-jarinya kelipatan 7.\n\n- Keliling: $C=2\\pi r=\\pi d$\n- Luas: $A=\\pi r^2$\n\nJika soal berkata "dalam $\\pi$", biarkan $\\pi$ tetap ada pada jawaban, misalnya $36\\pi$.',
               ),
               figure: {
@@ -964,7 +964,7 @@ export const module6: Module = {
               ),
               figure: {
                 ...ring(10, 6, '10', '6'),
-                caption: L('The outer radius is 10 cm. The grey inner circle has radius 6 cm and is cut out.', 'Jari-jari luarnya 10 cm. Lingkaran abu-abu di dalam berjari-jari 6 cm dan dipotong.'),
+                caption: L('The outer radius is 10 cm. The gray inner circle has radius 6 cm and is cut out.', 'Jari-jari luarnya 10 cm. Lingkaran abu-abu di dalam berjari-jari 6 cm dan dipotong.'),
               },
               options: [
                 L('$64\\pi\\text{ cm}^2$', '$64\\pi\\text{ cm}^2$'),
@@ -1038,7 +1038,7 @@ export const module6: Module = {
               ),
               figure: {
                 ...stadium(40, 7, '40', '14'),
-                caption: L('A rectangle with a half circle at each end. Lengths in metres.', 'Persegi panjang dengan setengah lingkaran di setiap ujung. Panjang dalam meter.'),
+                caption: L('A rectangle with a half circle at each end. Lengths in meters.', 'Persegi panjang dengan setengah lingkaran di setiap ujung. Panjang dalam meter.'),
               },
               blanks: [
                 { label: { en: '\\text{distance round} =', id: '\\text{jarak satu putaran} =' }, answer: 124, after: '\\text{ m}' },
@@ -1111,14 +1111,14 @@ export const module6: Module = {
             ),
             figure: {
               ...ring(21, 14, '14+7', '14'),
-              caption: L('The pond (grey) and the path round it (green).', 'Kolam (abu-abu) dan jalan setapak di sekelilingnya (hijau).'),
+              caption: L('The pond (gray) and the path round it (green).', 'Kolam (abu-abu) dan jalan setapak di sekelilingnya (hijau).'),
             },
             blanks: [{ label: { en: '\\text{area of path} =', id: '\\text{luas jalan} =' }, answer: 770, after: '\\text{ m}^2' }],
             solution: ['R=14+7=21', 'A=\\pi(21^2-14^2)=\\frac{22}{7}\\times(441-196)', '=\\frac{22}{7}\\times245=770'],
           },
           {
             prompt: L(
-              'A bicycle wheel has a diameter of 70 cm. Use $\\pi=\\frac{22}{7}$. Find the circumference of the wheel, and the distance the bicycle travels when the wheel turns 100 times, in metres.',
+              'A bicycle wheel has a diameter of 70 cm. Use $\\pi=\\frac{22}{7}$. Find the circumference of the wheel, and the distance the bicycle travels when the wheel turns 100 times, in meters.',
               'Roda sepeda berdiameter 70 cm. Pakai $\\pi=\\frac{22}{7}$. Tentukan keliling roda itu, dan jarak yang ditempuh sepeda ketika roda berputar 100 kali, dalam meter.',
             ),
             blanks: [
@@ -1386,7 +1386,7 @@ export const module6: Module = {
               id: 'c1',
               title: L('Look Closely: Volume as Layers', 'Ayo Amati: Volume sebagai Lapisan'),
               body: L(
-                'Volume is the amount of space inside a solid. It is measured in cubic units such as $\\text{cm}^3$ and $\\text{m}^3$. Liquids use litres: $1\\text{ L}=1\\,000\\text{ cm}^3$ and $1\\text{ mL}=1\\text{ cm}^3$.\n\nA prism is a stack of identical layers, so its volume is the area of one layer (the base) times the number of layers (the height). A cylinder is like a prism whose base is a circle, so its volume is also base area $\\times$ height $=\\pi r^2\\times h$. A pyramid fits exactly three times into a prism with the same base and the same height, so it holds one third as much. A cone is a pyramid whose base is a circle, so it also holds one third of the cylinder with the same base and height.\n\n| Solid | Volume | Worked example |\n|---|---|---|\n| Prism | $V=\\text{base area}\\times\\text{height}$ | base area $6\\text{ cm}^2$, height 10 cm: $V=6\\times10=60\\text{ cm}^3$ |\n| Cylinder (a prism with a circle base) | $V=\\pi r^2h$ | $r=7$ cm, $h=10$ cm, $\\pi=\\frac{22}{7}$: $V=\\frac{22}{7}\\times49\\times10=1\\,540\\text{ cm}^3$ |\n| Pyramid | $V=\\frac{1}{3}\\times\\text{base area}\\times\\text{height}$ | square base $6\\times6$ cm, height 5 cm: $V=\\frac{1}{3}\\times36\\times5=60\\text{ cm}^3$ |\n| Cone (a pyramid with a circle base) | $V=\\frac{1}{3}\\pi r^2h$ | $r=3$ cm, $h=7$ cm: $V=\\frac{1}{3}\\pi\\times9\\times7=21\\pi\\text{ cm}^3$ |\n| Sphere | $V=\\frac{4}{3}\\pi r^3$ | $r=3$ cm: $V=\\frac{4}{3}\\pi\\times27=36\\pi\\text{ cm}^3$ |',
+                'Volume is the amount of space inside a solid. It is measured in cubic units such as $\\text{cm}^3$ and $\\text{m}^3$. Liquids use liters: $1\\text{ L}=1\\,000\\text{ cm}^3$ and $1\\text{ mL}=1\\text{ cm}^3$.\n\nA prism is a stack of identical layers, so its volume is the area of one layer (the base) times the number of layers (the height). A cylinder is like a prism whose base is a circle, so its volume is also base area $\\times$ height $=\\pi r^2\\times h$. A pyramid fits exactly three times into a prism with the same base and the same height, so it holds one third as much. A cone is a pyramid whose base is a circle, so it also holds one third of the cylinder with the same base and height.\n\n| Solid | Volume | Worked example |\n|---|---|---|\n| Prism | $V=\\text{base area}\\times\\text{height}$ | base area $6\\text{ cm}^2$, height 10 cm: $V=6\\times10=60\\text{ cm}^3$ |\n| Cylinder (a prism with a circle base) | $V=\\pi r^2h$ | $r=7$ cm, $h=10$ cm, $\\pi=\\frac{22}{7}$: $V=\\frac{22}{7}\\times49\\times10=1\\,540\\text{ cm}^3$ |\n| Pyramid | $V=\\frac{1}{3}\\times\\text{base area}\\times\\text{height}$ | square base $6\\times6$ cm, height 5 cm: $V=\\frac{1}{3}\\times36\\times5=60\\text{ cm}^3$ |\n| Cone (a pyramid with a circle base) | $V=\\frac{1}{3}\\pi r^2h$ | $r=3$ cm, $h=7$ cm: $V=\\frac{1}{3}\\pi\\times9\\times7=21\\pi\\text{ cm}^3$ |\n| Sphere | $V=\\frac{4}{3}\\pi r^3$ | $r=3$ cm: $V=\\frac{4}{3}\\pi\\times27=36\\pi\\text{ cm}^3$ |',
                 'Volume adalah besar ruang di dalam sebuah bangun ruang. Satuannya satuan kubik seperti $\\text{cm}^3$ dan $\\text{m}^3$. Zat cair memakai liter: $1\\text{ L}=1\\,000\\text{ cm}^3$ dan $1\\text{ mL}=1\\text{ cm}^3$.\n\nPrisma adalah tumpukan lapisan yang sama, jadi volumenya adalah luas satu lapisan (alas) kali banyak lapisan (tinggi). Tabung seperti prisma yang alasnya lingkaran, jadi volumenya juga luas alas $\\times$ tinggi $=\\pi r^2\\times h$. Sebuah limas muat tepat tiga kali ke dalam prisma yang alas dan tingginya sama, jadi isinya sepertiga. Kerucut adalah limas yang alasnya lingkaran, jadi ia juga memuat sepertiga tabung yang alas dan tingginya sama.\n\n| Bangun ruang | Volume | Contoh |\n|---|---|---|\n| Prisma | $V=\\text{luas alas}\\times\\text{tinggi}$ | luas alas $6\\text{ cm}^2$, tinggi 10 cm: $V=6\\times10=60\\text{ cm}^3$ |\n| Tabung (prisma beralas lingkaran) | $V=\\pi r^2h$ | $r=7$ cm, $h=10$ cm, $\\pi=\\frac{22}{7}$: $V=\\frac{22}{7}\\times49\\times10=1\\,540\\text{ cm}^3$ |\n| Limas | $V=\\frac{1}{3}\\times\\text{luas alas}\\times\\text{tinggi}$ | alas persegi $6\\times6$ cm, tinggi 5 cm: $V=\\frac{1}{3}\\times36\\times5=60\\text{ cm}^3$ |\n| Kerucut (limas beralas lingkaran) | $V=\\frac{1}{3}\\pi r^2h$ | $r=3$ cm, $h=7$ cm: $V=\\frac{1}{3}\\pi\\times9\\times7=21\\pi\\text{ cm}^3$ |\n| Bola | $V=\\frac{4}{3}\\pi r^3$ | $r=3$ cm: $V=\\frac{4}{3}\\pi\\times27=36\\pi\\text{ cm}^3$ |',
               ),
               figure: {
@@ -1399,7 +1399,7 @@ export const module6: Module = {
               id: 'c2',
               title: L('Step by Step: Pouring Water', 'Contoh Bertahap: Menuang Air'),
               body: L(
-                'A full cylindrical jug has radius 7 cm and height 20 cm. Its water is poured into an empty box with a base of 20 cm by 14 cm. Use $\\pi=\\frac{22}{7}$. How deep is the water in the box?\n\n1. Step 1: Volume of the water: $V=\\pi r^2h=\\frac{22}{7}\\times7\\times7\\times20=3\\,080\\text{ cm}^3$. In litres this is $3\\,080\\div1\\,000=3.08$ L.\n2. Step 2: Pouring does not change the volume, so the water in the box is also $3\\,080\\text{ cm}^3$.\n3. Step 3: The base of the box has area $20\\times14=280\\text{ cm}^2$, so $280\\times h=3\\,080$.\n4. Step 4: Divide: $h=3\\,080\\div280=11$ cm.\n\n**Remember:**\n\n- The volume of the liquid stays the same when it is poured from one container to another.\n- To find a missing height, divide the volume by the base area: $h=V\\div\\text{base area}$.\n- To change $\\text{cm}^3$ into litres, divide by 1 000.',
+                'A full cylindrical jug has radius 7 cm and height 20 cm. Its water is poured into an empty box with a base of 20 cm by 14 cm. Use $\\pi=\\frac{22}{7}$. How deep is the water in the box?\n\n1. Step 1: Volume of the water: $V=\\pi r^2h=\\frac{22}{7}\\times7\\times7\\times20=3\\,080\\text{ cm}^3$. In liters this is $3\\,080\\div1\\,000=3.08$ L.\n2. Step 2: Pouring does not change the volume, so the water in the box is also $3\\,080\\text{ cm}^3$.\n3. Step 3: The base of the box has area $20\\times14=280\\text{ cm}^2$, so $280\\times h=3\\,080$.\n4. Step 4: Divide: $h=3\\,080\\div280=11$ cm.\n\n**Remember:**\n\n- The volume of the liquid stays the same when it is poured from one container to another.\n- To find a missing height, divide the volume by the base area: $h=V\\div\\text{base area}$.\n- To change $\\text{cm}^3$ into liters, divide by 1 000.',
                 'Sebuah kendi tabung penuh air berjari-jari 7 cm dan tinggi 20 cm. Airnya dituang ke sebuah kotak kosong yang alasnya 20 cm kali 14 cm. Pakai $\\pi=\\frac{22}{7}$. Berapa dalam air di dalam kotak?\n\n1. Langkah 1: Volume air: $V=\\pi r^2h=\\frac{22}{7}\\times7\\times7\\times20=3\\,080\\text{ cm}^3$. Dalam liter ini $3\\,080\\div1\\,000=3{,}08$ L.\n2. Langkah 2: Menuang tidak mengubah volume, jadi air di dalam kotak juga $3\\,080\\text{ cm}^3$.\n3. Langkah 3: Alas kotak luasnya $20\\times14=280\\text{ cm}^2$, jadi $280\\times h=3\\,080$.\n4. Langkah 4: Bagi: $h=3\\,080\\div280=11$ cm.\n\n**Ingat:**\n\n- Volume zat cair tetap sama ketika dituang dari satu wadah ke wadah lain.\n- Untuk mencari tinggi yang hilang, bagi volume dengan luas alas: $h=V\\div\\text{luas alas}$.\n- Untuk mengubah $\\text{cm}^3$ menjadi liter, bagi dengan 1 000.',
               ),
               figure: {
@@ -1412,7 +1412,7 @@ export const module6: Module = {
               id: 'c4',
               title: L('Step by Step: Cones', 'Contoh Bertahap: Kerucut'),
               body: L(
-                'A cone is like a pyramid with a circle for its base. It has a radius $r$, a height $h$ (straight up from the centre of the base to the tip) and a slant height $s$ (along the side). Only $r$ and $h$ go into the volume.\n\nFill a cone with sand and pour it into a cylinder with the same base and the same height: you need exactly 3 cones to fill the cylinder. So a cone holds one third of that cylinder.\n\nAn ice-cream cone has radius 3 cm and height 7 cm. Leave $\\pi$ in the answer. How much ice cream fits in the cone?\n\n1. Step 1: Base area: $\\pi r^2=\\pi\\times3^2=9\\pi\\text{ cm}^2$.\n2. Step 2: The cylinder with the same base and height would hold $9\\pi\\times7=63\\pi\\text{ cm}^3$.\n3. Step 3: The cone holds one third of that: $V=\\frac{1}{3}\\times63\\pi=21\\pi\\text{ cm}^3$.\n4. Step 4: With $\\pi\\approx3.14$ this is about $66\\text{ cm}^3$, which is about 66 mL.\n\n**Remember:**\n\n- $V_{\\text{cone}}=\\frac{1}{3}\\pi r^2h$, one third of the cylinder with the same base and height.\n- Use the height $h$, not the slant height $s$.\n- Check: 3 cones of the same size fill 1 cylinder.',
+                'A cone is like a pyramid with a circle for its base. It has a radius $r$, a height $h$ (straight up from the center of the base to the tip) and a slant height $s$ (along the side). Only $r$ and $h$ go into the volume.\n\nFill a cone with sand and pour it into a cylinder with the same base and the same height: you need exactly 3 cones to fill the cylinder. So a cone holds one third of that cylinder.\n\nAn ice-cream cone has radius 3 cm and height 7 cm. Leave $\\pi$ in the answer. How much ice cream fits in the cone?\n\n1. Step 1: Base area: $\\pi r^2=\\pi\\times3^2=9\\pi\\text{ cm}^2$.\n2. Step 2: The cylinder with the same base and height would hold $9\\pi\\times7=63\\pi\\text{ cm}^3$.\n3. Step 3: The cone holds one third of that: $V=\\frac{1}{3}\\times63\\pi=21\\pi\\text{ cm}^3$.\n4. Step 4: With $\\pi\\approx3.14$ this is about $66\\text{ cm}^3$, which is about 66 mL.\n\n**Remember:**\n\n- $V_{\\text{cone}}=\\frac{1}{3}\\pi r^2h$, one third of the cylinder with the same base and height.\n- Use the height $h$, not the slant height $s$.\n- Check: 3 cones of the same size fill 1 cylinder.',
                 'Kerucut seperti limas yang alasnya lingkaran. Kerucut punya jari-jari $r$, tinggi $h$ (lurus ke atas dari pusat alas sampai ujung) dan garis pelukis $s$ (sepanjang sisi miring). Hanya $r$ dan $h$ yang dipakai untuk volume.\n\nIsi sebuah kerucut dengan pasir lalu tuang ke tabung yang alas dan tingginya sama: kamu memerlukan tepat 3 kerucut untuk memenuhi tabung itu. Jadi kerucut memuat sepertiga tabung tersebut.\n\nSebuah cone es krim berjari-jari 3 cm dan tinggi 7 cm. Biarkan $\\pi$ dalam jawaban. Berapa banyak es krim yang muat di dalam kerucut?\n\n1. Langkah 1: Luas alas: $\\pi r^2=\\pi\\times3^2=9\\pi\\text{ cm}^2$.\n2. Langkah 2: Tabung dengan alas dan tinggi yang sama memuat $9\\pi\\times7=63\\pi\\text{ cm}^3$.\n3. Langkah 3: Kerucut memuat sepertiganya: $V=\\frac{1}{3}\\times63\\pi=21\\pi\\text{ cm}^3$.\n4. Langkah 4: Dengan $\\pi\\approx3{,}14$ ini sekitar $66\\text{ cm}^3$, yaitu sekitar 66 mL.\n\n**Ingat:**\n\n- $V_{\\text{kerucut}}=\\frac{1}{3}\\pi r^2h$, sepertiga tabung yang alas dan tingginya sama.\n- Pakai tinggi $h$, bukan garis pelukis $s$.\n- Periksa: 3 kerucut yang sama besar memenuhi 1 tabung.',
               ),
               figure: {
@@ -1537,15 +1537,15 @@ export const module6: Module = {
                 L('A cone with radius 3 cm, height 4 cm and slant height 5 cm has volume $15\\pi\\text{ cm}^3$.', 'Kerucut berjari-jari 3 cm, tinggi 4 cm, dan garis pelukis 5 cm mempunyai volume $15\\pi\\text{ cm}^3$.'),
                 L('A pyramid and a prism with the same base and the same height have the same volume.', 'Limas dan prisma dengan alas yang sama dan tinggi yang sama mempunyai volume yang sama.'),
                 L('A sphere with radius 6 cm has volume $288\\pi\\text{ cm}^3$.', 'Bola berjari-jari 6 cm mempunyai volume $288\\pi\\text{ cm}^3$.'),
-                L('$1$ litre is the same as $100\\text{ cm}^3$.', '$1$ liter sama dengan $100\\text{ cm}^3$.'),
+                L('$1$ liter is the same as $100\\text{ cm}^3$.', '$1$ liter sama dengan $100\\text{ cm}^3$.'),
               ],
               answer: [false, false, true, false],
               explain: L(
-                'A cone uses the height 4, not the slant height 5: $\\frac{1}{3}\\pi\\times3^2\\times4=12\\pi$. The pyramid has only one third of the volume of the prism. $\\frac{4}{3}\\pi\\times6^3=\\frac{4}{3}\\pi\\times216=288\\pi$. One litre is $1\\,000\\text{ cm}^3$.',
+                'A cone uses the height 4, not the slant height 5: $\\frac{1}{3}\\pi\\times3^2\\times4=12\\pi$. The pyramid has only one third of the volume of the prism. $\\frac{4}{3}\\pi\\times6^3=\\frac{4}{3}\\pi\\times216=288\\pi$. One liter is $1\\,000\\text{ cm}^3$.',
                 'Kerucut memakai tinggi 4, bukan garis pelukis 5: $\\frac{1}{3}\\pi\\times3^2\\times4=12\\pi$. Limas hanya punya sepertiga volume prisma. $\\frac{4}{3}\\pi\\times6^3=\\frac{4}{3}\\pi\\times216=288\\pi$. Satu liter adalah $1\\,000\\text{ cm}^3$.',
               ),
               hint: L(
-                'Put the numbers into each formula. Remember the one third for a pyramid, and think about how litres and cubic centimetres are linked.',
+                'Put the numbers into each formula. Remember the one third for a pyramid, and think about how liters and cubic centimeters are linked.',
                 'Masukkan angkanya ke setiap rumus. Ingat sepertiga untuk limas, dan pikirkan hubungan antara liter dan sentimeter kubik.',
               ),
             },
@@ -1702,7 +1702,7 @@ export const module6: Module = {
           },
           {
             prompt: L(
-              'A cylindrical water tank has a radius of 7 dm. When it is full it holds 4,620 litres (remember $1\\text{ L}=1\\text{ dm}^3$). Use $\\pi=\\frac{22}{7}$. Find the area of the base, and the height of the tank.',
+              'A cylindrical water tank has a radius of 7 dm. When it is full it holds 4,620 liters (remember $1\\text{ L}=1\\text{ dm}^3$). Use $\\pi=\\frac{22}{7}$. Find the area of the base, and the height of the tank.',
               'Sebuah tangki air berbentuk tabung berjari-jari 7 dm. Ketika penuh, tangki itu memuat 4.620 liter (ingat $1\\text{ L}=1\\text{ dm}^3$). Pakai $\\pi=\\frac{22}{7}$. Tentukan luas alas, dan tinggi tangki.',
             ),
             blanks: [
@@ -1716,7 +1716,7 @@ export const module6: Module = {
           },
           {
             prompt: L(
-              'A cylindrical tank of radius 12 cm holds enough water to cover a ball. A ball of radius 6 cm is dropped in and sinks completely, and no water spills. Find the volume of the ball in terms of $\\pi$, and how many centimetres the water level rises. Type the volume like $288\\pi$ as 288pi.',
+              'A cylindrical tank of radius 12 cm holds enough water to cover a ball. A ball of radius 6 cm is dropped in and sinks completely, and no water spills. Find the volume of the ball in terms of $\\pi$, and how many centimeters the water level rises. Type the volume like $288\\pi$ as 288pi.',
               'Sebuah tangki tabung berjari-jari 12 cm berisi air yang cukup untuk menutupi sebuah bola. Sebuah bola berjari-jari 6 cm dijatuhkan dan tenggelam seluruhnya, dan tidak ada air yang tumpah. Tentukan volume bola dalam $\\pi$, dan berapa sentimeter permukaan air naik. Ketik volumenya seperti $288\\pi$ sebagai 288pi.',
             ),
             figure: {

@@ -27,7 +27,7 @@ export const m7s1: Submodule = {
           id: 'c1',
           title: L('Look Closely: Why Area Units Grow So Fast', 'Ayo Amati: Mengapa Satuan Luas Cepat Membesar'),
           body: L(
-            'A square with side 1 m has side 100 cm. Its area is $1\\ \\text{m}^2$, but also $100\\times100=10\\,000\\ \\text{cm}^2$. A conversion factor is **squared** for area and **cubed** for volume.\n\n| Length | Area | Volume |\n|---|---|---|\n| $1\\ \\text{m}=100\\ \\text{cm}$ | $1\\ \\text{m}^2=10\\,000\\ \\text{cm}^2$ | $1\\ \\text{m}^3=1\\,000\\,000\\ \\text{cm}^3$ |\n| $1\\ \\text{km}=1\\,000\\ \\text{m}$ | $1\\ \\text{km}^2=1\\,000\\,000\\ \\text{m}^2$ | $1\\ \\text{L}=1\\,000\\ \\text{cm}^3$, $1\\ \\text{m}^3=1\\,000\\ \\text{L}$ |\n\n**Speed:** $\\text{speed}=\\frac{\\text{distance}}{\\text{time}}$. To change km/h to m/s, multiply by 1000 and divide by 3600: $72\\ \\text{km/h}=\\frac{72\\times1000}{3600}=20\\ \\text{m/s}$.\n\n**Flow rate** (debit) is volume per time, such as litres per minute.',
+            'A square with side 1 m has side 100 cm. Its area is $1\\ \\text{m}^2$, but also $100\\times100=10\\,000\\ \\text{cm}^2$. A conversion factor is **squared** for area and **cubed** for volume.\n\n| Length | Area | Volume |\n|---|---|---|\n| $1\\ \\text{m}=100\\ \\text{cm}$ | $1\\ \\text{m}^2=10\\,000\\ \\text{cm}^2$ | $1\\ \\text{m}^3=1\\,000\\,000\\ \\text{cm}^3$ |\n| $1\\ \\text{km}=1\\,000\\ \\text{m}$ | $1\\ \\text{km}^2=1\\,000\\,000\\ \\text{m}^2$ | $1\\ \\text{L}=1\\,000\\ \\text{cm}^3$, $1\\ \\text{m}^3=1\\,000\\ \\text{L}$ |\n\n**Speed:** $\\text{speed}=\\frac{\\text{distance}}{\\text{time}}$. To change km/h to m/s, multiply by 1000 and divide by 3600: $72\\ \\text{km/h}=\\frac{72\\times1000}{3600}=20\\ \\text{m/s}$.\n\n**Flow rate** (debit) is volume per time, such as liters per minute.',
             'Persegi dengan sisi 1 m bersisi 100 cm. Luasnya $1\\ \\text{m}^2$, tetapi juga $100\\times100=10\\,000\\ \\text{cm}^2$. Faktor konversi **dikuadratkan** untuk luas dan **dipangkatkan tiga** untuk volume.\n\n| Panjang | Luas | Volume |\n|---|---|---|\n| $1\\ \\text{m}=100\\ \\text{cm}$ | $1\\ \\text{m}^2=10\\,000\\ \\text{cm}^2$ | $1\\ \\text{m}^3=1\\,000\\,000\\ \\text{cm}^3$ |\n| $1\\ \\text{km}=1\\,000\\ \\text{m}$ | $1\\ \\text{km}^2=1\\,000\\,000\\ \\text{m}^2$ | $1\\ \\text{L}=1\\,000\\ \\text{cm}^3$, $1\\ \\text{m}^3=1\\,000\\ \\text{L}$ |\n\n**Kecepatan:** $\\text{kecepatan}=\\frac{\\text{jarak}}{\\text{waktu}}$. Untuk mengubah km/jam ke m/detik, kalikan 1000 dan bagi 3600: $72\\ \\text{km/jam}=\\frac{72\\times1000}{3600}=20\\ \\text{m/detik}$.\n\n**Debit** adalah volume per waktu, seperti liter per menit.',
           ),
           figure: {
@@ -96,17 +96,17 @@ export const m7s1: Submodule = {
           id: 'f1',
           math: true,
           prompt: L(
-            'Try it together: change 72 km/h to metres per second.',
+            'Try it together: change 72 km/h to meters per second.',
             'Coba bersama: ubah 72 km/jam menjadi meter per detik.',
           ),
           template: '\\frac{72\\times1000}{3600}=___',
           blanks: ['20'],
           explain: L(
-            '$72\\,000\\div3\\,600=20$ metres per second.',
+            '$72\\,000\\div3\\,600=20$ meters per second.',
             '$72\\,000\\div3\\,600=20$ meter per detik.',
           ),
           hint: L(
-            'There are 1000 metres in a kilometre and 3600 seconds in an hour.',
+            'There are 1000 meters in a kilometer and 3600 seconds in an hour.',
             'Ada 1000 meter dalam satu kilometer dan 3600 detik dalam satu jam.',
           ),
         },
@@ -154,13 +154,13 @@ export const m7s1: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A tap delivers 8 litres of water per minute. How many minutes does it take to fill a tank of volume 2 m$^3$?',
+            'A tap delivers 8 liters of water per minute. How many minutes does it take to fill a tank of volume 2 m$^3$?',
             'Sebuah keran mengalirkan 8 liter air per menit. Berapa menit untuk mengisi tangki bervolume 2 m$^3$?',
           ),
           blanks: [{ answer: 250, after: '\\text{min}' }],
           hints: [
-            L('Change the volume to litres first.', 'Ubah volume ke liter dulu.'),
-            L('$1\\ \\text{m}^3=1\\,000\\ \\text{L}$, so the tank holds $2\\,000$ litres.', '$1\\ \\text{m}^3=1\\,000\\ \\text{L}$, jadi tangki memuat $2\\,000$ liter.'),
+            L('Change the volume to liters first.', 'Ubah volume ke liter dulu.'),
+            L('$1\\ \\text{m}^3=1\\,000\\ \\text{L}$, so the tank holds $2\\,000$ liters.', '$1\\ \\text{m}^3=1\\,000\\ \\text{L}$, jadi tangki memuat $2\\,000$ liter.'),
             L('Divide by the flow rate: $2\\,000\\div8$.', 'Bagi dengan debit: $2\\,000\\div8$.'),
           ],
           explain: L(
@@ -333,7 +333,7 @@ export const m7s1: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A running track has two straight sections of 100 m each and two semicircular ends of radius 7 m. Use $\\pi=\\frac{22}{7}$. What is the length of one lap, in metres?',
+            'A running track has two straight sections of 100 m each and two semicircular ends of radius 7 m. Use $\\pi=\\frac{22}{7}$. What is the length of one lap, in meters?',
             'Sebuah lintasan lari punya dua bagian lurus masing-masing 100 m dan dua ujung setengah lingkaran berjari-jari 7 m. Pakai $\\pi=\\frac{22}{7}$. Berapa panjang satu putaran, dalam meter?',
           ),
           blanks: [{ answer: 244, after: '\\text{m}' }],
@@ -371,7 +371,7 @@ export const m7s1: Submodule = {
     xp: 50,
     tasks: [
       {
-        prompt: L('Change 90 km/h to metres per second.', 'Ubah 90 km/jam menjadi meter per detik.'),
+        prompt: L('Change 90 km/h to meters per second.', 'Ubah 90 km/jam menjadi meter per detik.'),
         blanks: [{ answer: 25, after: '\\text{m/s}' }],
         solution: ['\\frac{90\\times1000}{3600}=25'],
       },
@@ -409,7 +409,7 @@ export const m7s1: Submodule = {
       },
       {
         prompt: L(
-          'A tap delivers 20 litres per minute. How many minutes are needed to fill a tank of 3 m$^3$?',
+          'A tap delivers 20 liters per minute. How many minutes are needed to fill a tank of 3 m$^3$?',
           'Sebuah keran mengalirkan 20 liter per menit. Berapa menit diperlukan untuk mengisi tangki 3 m$^3$?',
         ),
         blanks: [{ answer: 150, after: '\\text{min}' }],

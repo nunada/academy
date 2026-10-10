@@ -61,7 +61,7 @@ export const module3: Module = {
               id: 'c3',
               title: { en: 'classList changes the styling', id: 'classList mengubah gayanya' },
               body: {
-                en: 'Rather than setting colours from JavaScript, add and remove classes and let CSS decide how each one looks. That keeps the two languages doing what each is good at.',
+                en: 'Rather than setting colors from JavaScript, add and remove classes and let CSS decide how each one looks. That keeps the two languages doing what each is good at.',
                 id: 'Alih-alih menyetel warna dari JavaScript, tambah dan hapus class lalu biarkan CSS yang menentukan tampilannya. Dengan begitu kedua bahasa tetap mengerjakan bagiannya masing-masing.',
               },
               code: {
@@ -564,7 +564,7 @@ export const module3: Module = {
             {
               kind: 'concept',
               id: 'c3',
-              title: { en: 'Clear the field afterwards', id: 'Kosongkan isiannya setelahnya' },
+              title: { en: 'Clear the field afterward', id: 'Kosongkan isiannya setelahnya' },
               body: {
                 en: 'After handling the input, set `value` back to an empty string. Without it the reader has to select and delete before typing the next one — a small thing that makes a form feel broken.',
                 id: 'Setelah masukannya ditangani, setel `value` kembali ke string kosong. Tanpa itu pembaca harus memblok dan menghapus sebelum mengetik berikutnya — hal kecil yang membuat formulir terasa rusak.',
@@ -590,7 +590,7 @@ export const module3: Module = {
                 id: 'Muat ulang memulai skripnya dari awal, jadi semua yang ada di memorinya lenyap.',
               },
               hint: {
-                en: 'Think about what a form\'s default behaviour does to the page, and to any variables the script was holding, the moment it fires unchecked.',
+                en: 'Think about what a form\'s default behavior does to the page, and to any variables the script was holding, the moment it fires unchecked.',
                 id: 'Pikirkan apa yang dilakukan perilaku bawaan formulir terhadap halaman, dan terhadap variabel apa pun yang sedang dipegang skripnya, begitu perilaku itu terjadi tanpa dicegah.',
               },
             },

@@ -54,7 +54,7 @@ export const module1: Module = {
               id: 'c3',
               title: { en: 'Most of the time you write nothing', id: 'Sebagian besar waktu kamu tak menulis apa-apa' },
               body: {
-                en: 'TypeScript **infers** the type from the value, so annotating a variable you are initialising right there is usually noise. The compiler already knows. Write the annotation where it cannot know: on function parameters.',
+                en: 'TypeScript **infers** the type from the value, so annotating a variable you are initializing right there is usually noise. The compiler already knows. Write the annotation where it cannot know: on function parameters.',
                 id: 'TypeScript **menyimpulkan** tipenya dari nilainya, jadi memberi keterangan pada variabel yang langsung kamu isi biasanya cuma kebisingan. Kompilernya sudah tahu. Tulis keterangannya di tempat ia tak bisa tahu: pada parameter fungsi.',
               },
               code: {
@@ -411,7 +411,7 @@ export const module1: Module = {
               },
               hints: [
                 { en: 'The starter demands both arguments. Give the second one a default.', id: 'Kode awalnya mewajibkan kedua argumennya. Beri yang kedua nilai bawaan.' },
-                { en: 'A discount of 0 takes nothing off, which is exactly the behaviour you want.', id: 'Diskon 0 tidak memotong apa pun, dan persis itulah perilaku yang kamu mau.' },
+                { en: 'A discount of 0 takes nothing off, which is exactly the behavior you want.', id: 'Diskon 0 tidak memotong apa pun, dan persis itulah perilaku yang kamu mau.' },
                 { en: 'Math.floor(price - (price * discount) / 100)', id: 'Math.floor(harga - (harga * diskon) / 100)' },
               ],
               solution: {
@@ -576,15 +576,15 @@ export const module1: Module = {
         },
         hints: [
           { en: 'The starter has no annotations at all, so it does not compile. Read the errors — they name the parameter.', id: 'Kode awalnya sama sekali tak punya keterangan tipe, jadi ia tak bisa dikompilasi. Baca galatnya — ia menyebut parameternya.' },
-          { en: 'Height in cm becomes metres: height / 100.', id: 'Tinggi dalam cm menjadi meter: tinggi / 100.' },
+          { en: 'Height in cm becomes meters: height / 100.', id: 'Tinggi dalam cm menjadi meter: tinggi / 100.' },
           { en: 'One decimal place: Math.round(x * 10) / 10.', id: 'Satu angka desimal: Math.round(x * 10) / 10.' },
           { en: 'The bands are open at the bottom and closed at the top: below 18.5 is Underweight, and 18.5 itself is already Normal.', id: 'Rentangnya terbuka di bawah dan tertutup di atas: di bawah 18,5 itu Kurus, dan 18,5 sendiri sudah Normal.' },
         ],
         solution: {
           en:
             'function bmi(weight: number, height: number): number {\n' +
-            '  const metres = height / 100;\n' +
-            '  return Math.round((weight / (metres * metres)) * 10) / 10;\n' +
+            '  const meters = height / 100;\n' +
+            '  return Math.round((weight / (meters * meters)) * 10) / 10;\n' +
             '}\n\n' +
             'function category(value: number): string {\n' +
             '  if (value < 18.5) return "Underweight";\n' +
@@ -764,7 +764,7 @@ export const module1: Module = {
               tests: {
                 en: [
                   {
-                    name: { en: 'It summarises a book', id: 'Ia meringkas sebuah buku' },
+                    name: { en: 'It summarizes a book', id: 'Ia meringkas sebuah buku' },
                     check:
                       'const b = { title: "Bumi Manusia", author: "Pramoedya", year: 1980 };\n' +
                       'assert(summarize(b) === "Bumi Manusia — Pramoedya (1980)", "summarize should be \\"Bumi Manusia — Pramoedya (1980)\\", got: " + JSON.stringify(summarize(b)));',
@@ -798,7 +798,7 @@ export const module1: Module = {
                 ],
                 id: [
                   {
-                    name: { en: 'It summarises a book', id: 'Ia meringkas sebuah buku' },
+                    name: { en: 'It summarizes a book', id: 'Ia meringkas sebuah buku' },
                     check:
                       'const b = { judul: "Bumi Manusia", penulis: "Pramoedya", tahun: 1980 };\n' +
                       'assert(ringkas(b) === "Bumi Manusia — Pramoedya (1980)", "ringkas harus \\"Bumi Manusia — Pramoedya (1980)\\", sekarang: " + JSON.stringify(ringkas(b)));',

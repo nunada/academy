@@ -128,7 +128,7 @@ export const module5: Module = {
       id: 'tka-m5-s1',
       title: L('Length', 'Panjang'),
       summary: L(
-        'Seven standard units of length, from kilometres to millimetres. You will measure with a ruler, change one unit into another, and solve distance and rope problems.',
+        'Seven standard units of length, from kilometers to millimeters. You will measure with a ruler, change one unit into another, and solve distance and rope problems.',
         'Tujuh satuan baku panjang, dari kilometer sampai milimeter. Kamu akan mengukur dengan penggaris, mengubah satuan, dan menyelesaikan soal jarak dan tali.',
       ),
       lessons: [
@@ -137,7 +137,7 @@ export const module5: Module = {
           id: 'tka-m5-s1-l1',
           title: L('Standard Units of Length and Measuring', 'Satuan Baku Panjang dan Mengukur'),
           goal: L(
-            'You can name the units of length in order, read a ruler to the millimetre, and choose a sensible unit.',
+            'You can name the units of length in order, read a ruler to the millimeter, and choose a sensible unit.',
             'Kamu bisa menyebutkan satuan panjang secara berurutan, membaca penggaris sampai milimeter, dan memilih satuan yang masuk akal.',
           ),
           xp: 20,
@@ -147,7 +147,7 @@ export const module5: Module = {
               id: 'c1',
               title: L('Look Closely: Whose Hand Span Is Right?', 'Ayo Amati: Jengkal Siapa yang Benar?'),
               body: L(
-                'Ani and Budi measure the same table. Ani uses her hand span and says, "The table is 8 hand spans long." Budi uses his bigger hand span and says, "It is 6 hand spans."\n\nBoth are right, but their numbers are different, because a hand span is not the same for everyone. So we need a **standard unit**: a unit that is the same length for everybody, everywhere.\n\nThe basic standard unit of length is the **metre (m)**. There are smaller units like the **centimetre (cm)** and the **millimetre (mm)**, and bigger ones like the **kilometre (km)**.',
+                'Ani and Budi measure the same table. Ani uses her hand span and says, "The table is 8 hand spans long." Budi uses his bigger hand span and says, "It is 6 hand spans."\n\nBoth are right, but their numbers are different, because a hand span is not the same for everyone. So we need a **standard unit**: a unit that is the same length for everybody, everywhere.\n\nThe basic standard unit of length is the **meter (m)**. There are smaller units like the **centimeter (cm)** and the **millimeter (mm)**, and bigger ones like the **kilometer (km)**.',
                 'Ani dan Budi mengukur meja yang sama. Ani memakai jengkalnya dan berkata, "Meja ini panjangnya 8 jengkal." Budi memakai jengkalnya yang lebih besar dan berkata, "6 jengkal."\n\nKeduanya benar, tetapi bilangannya berbeda, karena jengkal setiap orang tidak sama. Karena itu kita butuh **satuan baku**: satuan yang panjangnya sama untuk semua orang di mana saja.\n\nSatuan baku dasar untuk panjang adalah **meter (m)**. Ada satuan yang lebih kecil, seperti **sentimeter (cm)** dan **milimeter (mm)**, dan yang lebih besar, seperti **kilometer (km)**.',
               ),
               figure: {
@@ -166,7 +166,7 @@ export const module5: Module = {
               id: 'c2',
               title: L('Step by Step: The Staircase of Length Units', 'Contoh Bertahap: Tangga Satuan Panjang'),
               body: L(
-                'Let us put the seven units of length in order, from the biggest to the smallest.\n\n1. Step 1: Write the units from the biggest to the smallest: km, hm, dam, m, dm, cm, mm.\n2. Step 2: Every step down the staircase, the unit becomes 10 times smaller, so we need 10 times as many of them. 1 km = 10 hm, 1 hm = 10 dam, 1 dam = 10 m, and so on.\n3. Step 3: Go down three steps, from m to mm: $1 \\text{ m} = 10 \\text{ dm} = 100 \\text{ cm} = 1\\,000 \\text{ mm}$.\n4. Step 4: Going up the staircase is the opposite: 10 mm make 1 cm.\n\n**Remember:** the staircase, from the biggest unit to the smallest.\n\n| Unit | Symbol | One step down |\n| --- | --- | --- |\n| kilometre | km | 1 km = 10 hm |\n| hectometre | hm | 1 hm = 10 dam |\n| decametre | dam | 1 dam = 10 m |\n| metre | m | 1 m = 10 dm |\n| decimetre | dm | 1 dm = 10 cm |\n| centimetre | cm | 1 cm = 10 mm |\n| millimetre | mm | the smallest unit |\n\nA trick for the order: **K**ing **H**enry **D**ied **B**y **D**rinking **C**hocolate **M**ilk. The fourth word stands for the base unit, which is the metre.',
+                'Let us put the seven units of length in order, from the biggest to the smallest.\n\n1. Step 1: Write the units from the biggest to the smallest: km, hm, dam, m, dm, cm, mm.\n2. Step 2: Every step down the staircase, the unit becomes 10 times smaller, so we need 10 times as many of them. 1 km = 10 hm, 1 hm = 10 dam, 1 dam = 10 m, and so on.\n3. Step 3: Go down three steps, from m to mm: $1 \\text{ m} = 10 \\text{ dm} = 100 \\text{ cm} = 1\\,000 \\text{ mm}$.\n4. Step 4: Going up the staircase is the opposite: 10 mm make 1 cm.\n\n**Remember:** the staircase, from the biggest unit to the smallest.\n\n| Unit | Symbol | One step down |\n| --- | --- | --- |\n| kilometer | km | 1 km = 10 hm |\n| hectometer | hm | 1 hm = 10 dam |\n| decameter | dam | 1 dam = 10 m |\n| meter | m | 1 m = 10 dm |\n| decimeter | dm | 1 dm = 10 cm |\n| centimeter | cm | 1 cm = 10 mm |\n| millimeter | mm | the smallest unit |\n\nA trick for the order: **K**ing **H**enry **D**ied **B**y **D**rinking **C**hocolate **M**ilk. The fourth word stands for the base unit, which is the meter.',
                 'Mari kita urutkan tujuh satuan panjang dari yang terbesar sampai yang terkecil.\n\n1. Langkah 1: Tulis satuannya dari yang terbesar ke yang terkecil: km, hm, dam, m, dm, cm, mm.\n2. Langkah 2: Setiap turun satu anak tangga, satuannya menjadi 10 kali lebih kecil, jadi kita butuh 10 kali lebih banyak. 1 km = 10 hm, 1 hm = 10 dam, 1 dam = 10 m, dan seterusnya.\n3. Langkah 3: Turun tiga anak tangga, dari m ke mm: $1 \\text{ m} = 10 \\text{ dm} = 100 \\text{ cm} = 1\\,000 \\text{ mm}$.\n4. Langkah 4: Naik tangga berarti kebalikannya: 10 mm sama dengan 1 cm.\n\n**Ingat:** tangga satuan, dari satuan terbesar ke terkecil.\n\n| Satuan | Lambang | Satu anak tangga ke bawah |\n| --- | --- | --- |\n| kilometer | km | 1 km = 10 hm |\n| hektometer | hm | 1 hm = 10 dam |\n| dekameter | dam | 1 dam = 10 m |\n| meter | m | 1 m = 10 dm |\n| desimeter | dm | 1 dm = 10 cm |\n| sentimeter | cm | 1 cm = 10 mm |\n| milimeter | mm | satuan terkecil |\n\nKalimat pengingat urutannya: **K**akak **H**arus **D**engar **M**ama, **D**an **C**ici **M**enyanyi. Kata keempat mewakili satuan dasar, yaitu meter.',
               ),
               figure: {
@@ -221,7 +221,7 @@ export const module5: Module = {
               ],
               answer: 0,
               explain: L(
-                'The pencil starts at 1 cm and ends at 6 cm 3 mm, so its length is 6.3 − 1 = 5.3 cm. 6.3 cm forgets the start, 7.3 cm adds the start instead of subtracting it, and 4.7 cm counts the 3 small marks backwards from 6, which reads the tip as 5.7 cm.',
+                'The pencil starts at 1 cm and ends at 6 cm 3 mm, so its length is 6.3 − 1 = 5.3 cm. 6.3 cm forgets the start, 7.3 cm adds the start instead of subtracting it, and 4.7 cm counts the 3 small marks backward from 6, which reads the tip as 5.7 cm.',
                 'Pensil mulai dari 1 cm dan berakhir di 6 cm 3 mm, jadi panjangnya 6,3 − 1 = 5,3 cm. 6,3 cm melupakan awalnya, 7,3 cm menjumlahkan awalnya bukan mengurangkan, dan 4,7 cm menghitung 3 garis kecil mundur dari 6, sehingga ujungnya terbaca 5,7 cm.',
               ),
               hint: L(
@@ -256,22 +256,22 @@ export const module5: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: L(
-                'Look at the staircase. Which unit is exactly 10 times bigger than the centimetre?',
+                'Look at the staircase. Which unit is exactly 10 times bigger than the centimeter?',
                 'Lihat tangga satuan. Satuan manakah yang tepat 10 kali lebih besar daripada sentimeter?',
               ),
               figure: {
                 ...stairs(LEN, [5]),
-                caption: L('The centimetre is outlined in red.', 'Sentimeter diberi garis merah.'),
+                caption: L('The centimeter is outlined in red.', 'Sentimeter diberi garis merah.'),
               },
               options: [
-                L('decimetre (dm)', 'desimeter (dm)'),
-                L('metre (m)', 'meter (m)'),
-                L('millimetre (mm)', 'milimeter (mm)'),
-                L('decametre (dam)', 'dekameter (dam)'),
+                L('decimeter (dm)', 'desimeter (dm)'),
+                L('meter (m)', 'meter (m)'),
+                L('millimeter (mm)', 'milimeter (mm)'),
+                L('decameter (dam)', 'dekameter (dam)'),
               ],
               answer: 0,
               explain: L(
-                'One step up the staircase is 10 times bigger, so 1 dm = 10 cm. A metre is 100 cm, a decametre is 1,000 cm, and the millimetre is 10 times smaller, not bigger.',
+                'One step up the staircase is 10 times bigger, so 1 dm = 10 cm. A meter is 100 cm, a decameter is 1,000 cm, and the millimeter is 10 times smaller, not bigger.',
                 'Satu anak tangga ke atas berarti 10 kali lebih besar, jadi 1 dm = 10 cm. Satu meter adalah 100 cm, satu dekameter adalah 1.000 cm, dan milimeter 10 kali lebih kecil, bukan lebih besar.',
               ),
               hint: L(
@@ -299,7 +299,7 @@ export const module5: Module = {
                 'Pintu tingginya sekitar 2 m dan pensil panjangnya sekitar 15 cm. Jakarta ke Bandung sekitar 150 km, tebal buku beberapa mm, dan lapangan sepak bola panjangnya sekitar 100 m.',
               ),
               hint: L(
-                'Picture the real thing. Is a metre, a centimetre or a kilometre the size that fits it?',
+                'Picture the real thing. Is a meter, a centimeter or a kilometer the size that fits it?',
                 'Bayangkan bendanya. Apakah meter, sentimeter, atau kilometer yang ukurannya cocok?',
               ),
             },
@@ -307,7 +307,7 @@ export const module5: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'Dewi lays her crayon on a ruler, as in the picture. How long is the crayon, in millimetres?',
+                'Dewi lays her crayon on a ruler, as in the picture. How long is the crayon, in millimeters?',
                 'Dewi meletakkan krayonnya di atas penggaris, seperti pada gambar. Berapa panjang krayon itu dalam milimeter?',
               ),
               figure: {
@@ -356,7 +356,7 @@ export const module5: Module = {
               id: 'c1',
               title: L('Look Closely: Down the Stairs and Up the Stairs', 'Ayo Amati: Turun dan Naik Tangga'),
               body: L(
-                'Citra has a ribbon 2 m long. She wants to know how many centimetres that is. From m to cm we go **down** two steps on the staircase, and every step down is $\\times 10$. So $2 \\times 10 \\times 10 = 200$, and 2 m = 200 cm.\n\nNow the other way. A rope is 500 cm long. From cm to m we go **up** two steps, and every step up is $\\div 10$. So $500 \\div 10 \\div 10 = 5$, and 500 cm = 5 m.\n\nThe rule is short: **down = multiply, up = divide.** Going down gives a bigger number because the unit gets smaller.',
+                'Citra has a ribbon 2 m long. She wants to know how many centimeters that is. From m to cm we go **down** two steps on the staircase, and every step down is $\\times 10$. So $2 \\times 10 \\times 10 = 200$, and 2 m = 200 cm.\n\nNow the other way. A rope is 500 cm long. From cm to m we go **up** two steps, and every step up is $\\div 10$. So $500 \\div 10 \\div 10 = 5$, and 500 cm = 5 m.\n\nThe rule is short: **down = multiply, up = divide.** Going down gives a bigger number because the unit gets smaller.',
                 'Citra punya pita sepanjang 2 m. Ia ingin tahu berapa sentimeter panjangnya. Dari m ke cm kita **turun** dua anak tangga, dan setiap turun satu anak tangga adalah $\\times 10$. Jadi $2 \\times 10 \\times 10 = 200$, dan 2 m = 200 cm.\n\nSekarang sebaliknya. Seutas tali panjangnya 500 cm. Dari cm ke m kita **naik** dua anak tangga, dan setiap naik satu anak tangga adalah $\\div 10$. Jadi $500 \\div 10 \\div 10 = 5$, dan 500 cm = 5 m.\n\nAturannya singkat: **turun = kali, naik = bagi.** Turun menghasilkan bilangan yang lebih besar karena satuannya menjadi lebih kecil.',
               ),
               figure: {
@@ -372,7 +372,7 @@ export const module5: Module = {
               id: 'c2',
               title: L('Step by Step: Mixed Units, 3 km 450 m', 'Contoh Bertahap: Satuan Campuran, 3 km 450 m'),
               body: L(
-                'The distance from Eko’s house to school is 3 km 450 m. How many metres is that?\n\n1. Step 1: The distance has two units, km and m. Change the bigger unit first.\n2. Step 2: From km to m we go down three steps (km, hm, dam, m), so we multiply by $10 \\times 10 \\times 10 = 1\\,000$. 3 km = 3 × 1,000 = 3,000 m.\n3. Step 3: Add the part that is already in metres: $3\\,000 + 450 = 3\\,450$ m.\n4. Step 4: Check by going back up: $3\\,450 \\div 1\\,000$ is a little more than 3, so 3 km 450 m is right.\n\n**Remember:**\n\n| From | To | What to do |\n| --- | --- | --- |\n| km | m | multiply by 1,000 |\n| m | cm | multiply by 100 |\n| cm | mm | multiply by 10 |\n| mm | cm | divide by 10 |\n| m | km | divide by 1,000 |',
+                'The distance from Eko’s house to school is 3 km 450 m. How many meters is that?\n\n1. Step 1: The distance has two units, km and m. Change the bigger unit first.\n2. Step 2: From km to m we go down three steps (km, hm, dam, m), so we multiply by $10 \\times 10 \\times 10 = 1\\,000$. 3 km = 3 × 1,000 = 3,000 m.\n3. Step 3: Add the part that is already in meters: $3\\,000 + 450 = 3\\,450$ m.\n4. Step 4: Check by going back up: $3\\,450 \\div 1\\,000$ is a little more than 3, so 3 km 450 m is right.\n\n**Remember:**\n\n| From | To | What to do |\n| --- | --- | --- |\n| km | m | multiply by 1,000 |\n| m | cm | multiply by 100 |\n| cm | mm | multiply by 10 |\n| mm | cm | divide by 10 |\n| m | km | divide by 1,000 |',
                 'Jarak dari rumah Eko ke sekolah adalah 3 km 450 m. Berapa meter jarak itu?\n\n1. Langkah 1: Jarak itu punya dua satuan, km dan m. Ubah dulu satuan yang lebih besar.\n2. Langkah 2: Dari km ke m kita turun tiga anak tangga (km, hm, dam, m), jadi kita kalikan $10 \\times 10 \\times 10 = 1\\,000$. 3 km = 3 × 1.000 = 3.000 m.\n3. Langkah 3: Tambahkan bagian yang sudah dalam meter: $3\\,000 + 450 = 3\\,450$ m.\n4. Langkah 4: Cek dengan naik kembali: $3\\,450 \\div 1\\,000$ sedikit lebih dari 3, jadi 3 km 450 m sudah benar.\n\n**Ingat:**\n\n| Dari | Ke | Caranya |\n| --- | --- | --- |\n| km | m | kali 1.000 |\n| m | cm | kali 100 |\n| cm | mm | kali 10 |\n| mm | cm | bagi 10 |\n| m | km | bagi 1.000 |',
               ),
               figure: {
@@ -387,7 +387,7 @@ export const module5: Module = {
                   ],
                 }),
                 caption: L(
-                  'The number line is in metres. 3 km is a jump of 3,000 m, then 450 m more.',
+                  'The number line is in meters. 3 km is a jump of 3,000 m, then 450 m more.',
                   'Garis bilangan dalam meter. 3 km adalah lompatan 3.000 m, lalu 450 m lagi.',
                 ),
               },
@@ -397,7 +397,7 @@ export const module5: Module = {
               id: 'c3',
               title: L('Watch Out!: Converting Lengths', 'Awas, Jebakan!: Mengubah Satuan Panjang'),
               body: L(
-                '| Wrong | Right |\n| --- | --- |\n| 5 m = 50 cm | From m to cm is two steps down, so multiply by 100: 5 m = 500 cm. |\n| 2 m 35 cm = 2 + 35 = 37 cm | Change the metres first: 200 cm + 35 cm = 235 cm. |\n| 1 m + 50 cm = 51 | The units must be the same before you add: 100 cm + 50 cm = 150 cm. |',
+                '| Wrong | Right |\n| --- | --- |\n| 5 m = 50 cm | From m to cm is two steps down, so multiply by 100: 5 m = 500 cm. |\n| 2 m 35 cm = 2 + 35 = 37 cm | Change the meters first: 200 cm + 35 cm = 235 cm. |\n| 1 m + 50 cm = 51 | The units must be the same before you add: 100 cm + 50 cm = 150 cm. |',
                 '| Salah | Benar |\n| --- | --- |\n| 5 m = 50 cm | Dari m ke cm ada dua anak tangga turun, jadi kalikan 100: 5 m = 500 cm. |\n| 2 m 35 cm = 2 + 35 = 37 cm | Ubah dulu meternya: 200 cm + 35 cm = 235 cm. |\n| 1 m + 50 cm = 51 | Satuannya harus sama sebelum dijumlahkan: 100 cm + 50 cm = 150 cm. |',
               ),
             },
@@ -405,7 +405,7 @@ export const module5: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
-                'Look at the staircase from km down to m. How many metres are in 5 km?',
+                'Look at the staircase from km down to m. How many meters are in 5 km?',
                 'Lihat tangga dari km turun ke m. Ada berapa meter dalam 5 km?',
               ),
               figure: {
@@ -433,7 +433,7 @@ export const module5: Module = {
               id: 'f1',
               math: true,
               prompt: L(
-                'Try it together: change 4 m 25 cm into centimetres.',
+                'Try it together: change 4 m 25 cm into centimeters.',
                 'Coba bersama: ubah 4 m 25 cm menjadi sentimeter.',
               ),
               template: '4 \\text{ m} = ___ \\text{ cm},\\quad 400 + 25 = ___ \\text{ cm}',
@@ -466,7 +466,7 @@ export const module5: Module = {
                   ],
                 }),
                 caption: L(
-                  'The number line is in centimetres. The two pieces of rope are laid one after the other.',
+                  'The number line is in centimeters. The two pieces of rope are laid one after the other.',
                   'Garis bilangan dalam sentimeter. Kedua tali diletakkan berurutan.',
                 ),
               },
@@ -511,7 +511,7 @@ export const module5: Module = {
               id: 'o1',
               math: true,
               prompt: L(
-                'Put the steps for changing 2 m 40 cm into centimetres in order.',
+                'Put the steps for changing 2 m 40 cm into centimeters in order.',
                 'Urutkan langkah mengubah 2 m 40 cm menjadi sentimeter.',
               ),
               lines: [
@@ -533,7 +533,7 @@ export const module5: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'Ani walks 1 km 250 m from home to school. On the way home she takes a shortcut that is 350 m shorter. How many metres does Ani walk to school and back home?',
+                'Ani walks 1 km 250 m from home to school. On the way home she takes a shortcut that is 350 m shorter. How many meters does Ani walk to school and back home?',
                 'Ani berjalan 1 km 250 m dari rumah ke sekolah. Saat pulang ia lewat jalan pintas yang 350 m lebih pendek. Berapa meter Ani berjalan dari rumah ke sekolah dan pulang lagi?',
               ),
               blanks: [{ answer: 2150, after: '\\text{ m}' }],
@@ -543,7 +543,7 @@ export const module5: Module = {
                   'Ada dua perjalanan: pergi ke sekolah dan pulang. Tulis panjang tiap perjalanan.',
                 ),
                 L(
-                  'Change 1 km 250 m into metres first. Then the way home is 350 m less.',
+                  'Change 1 km 250 m into meters first. Then the way home is 350 m less.',
                   'Ubah dulu 1 km 250 m menjadi meter. Lalu jalan pulang kurang 350 m.',
                 ),
                 L(
@@ -577,18 +577,18 @@ export const module5: Module = {
         ],
         tasks: [
           {
-            prompt: L('How many metres are in 6 km?', 'Ada berapa meter dalam 6 km?'),
+            prompt: L('How many meters are in 6 km?', 'Ada berapa meter dalam 6 km?'),
             blanks: [{ answer: 6000, after: '\\text{ m}' }],
             solution: ['6\\text{ km} = 6 \\times 1\\,000 = 6\\,000\\text{ m}'],
           },
           {
-            prompt: L('Change 3 m 8 cm into centimetres.', 'Ubah 3 m 8 cm menjadi sentimeter.'),
+            prompt: L('Change 3 m 8 cm into centimeters.', 'Ubah 3 m 8 cm menjadi sentimeter.'),
             blanks: [{ answer: 308, after: '\\text{ cm}' }],
             solution: ['3\\text{ m} = 300\\text{ cm}', '300 + 8 = 308\\text{ cm}'],
           },
           {
             prompt: L(
-              'Dewi has a ribbon 5 m 20 cm long. Eko has a ribbon 380 cm long. How many centimetres longer is Dewi’s ribbon?',
+              'Dewi has a ribbon 5 m 20 cm long. Eko has a ribbon 380 cm long. How many centimeters longer is Dewi’s ribbon?',
               'Dewi punya pita sepanjang 5 m 20 cm. Eko punya pita sepanjang 380 cm. Pita Dewi lebih panjang berapa sentimeter?',
             ),
             blanks: [{ answer: 140, after: '\\text{ cm}' }],
@@ -607,7 +607,7 @@ export const module5: Module = {
                 marks: [{ at: 0 }, { at: 5 }, { at: 10 }, { at: 15 }, { at: 20 }],
               }),
               caption: L(
-                'The first 20 m of the fence, in metres. Each dot is a post.',
+                'The first 20 m of the fence, in meters. Each dot is a post.',
                 '20 m pertama dari pagar, dalam meter. Setiap titik adalah satu tiang.',
               ),
             },
@@ -1085,7 +1085,7 @@ export const module5: Module = {
       id: 'tka-m5-s3',
       title: L('Liquid Volume', 'Volume Zat Cair'),
       summary: L(
-        'Seven standard units for the volume of liquids, from kilolitres to millilitres. You will read a measuring jug, change units, and solve pouring problems.',
+        'Seven standard units for the volume of liquids, from kiloliters to milliliters. You will read a measuring jug, change units, and solve pouring problems.',
         'Tujuh satuan baku untuk volume zat cair, dari kiloliter sampai mililiter. Kamu akan membaca gelas ukur, mengubah satuan, dan menyelesaikan soal menuang.',
       ),
       lessons: [
@@ -1104,7 +1104,7 @@ export const module5: Module = {
               id: 'c1',
               title: L('Look Closely: A Jug of Water', 'Ayo Amati: Segelas Ukur Air'),
               body: L(
-                'Ani makes a drink. She pours water into a measuring jug until the water reaches the line marked 600. The marks on this jug are in **millilitres (ml)**.\n\nThe amount of liquid in a container is its **volume**. The basic standard unit for the volume of liquids is the **litre (l)**.\n\nA small bottle of water holds about 600 ml, a big bottle holds 1 l, and $1 \\text{ l} = 1\\,000 \\text{ ml}$.',
+                'Ani makes a drink. She pours water into a measuring jug until the water reaches the line marked 600. The marks on this jug are in **milliliters (ml)**.\n\nThe amount of liquid in a container is its **volume**. The basic standard unit for the volume of liquids is the **liter (l)**.\n\nA small bottle of water holds about 600 ml, a big bottle holds 1 l, and $1 \\text{ l} = 1\\,000 \\text{ ml}$.',
                 'Ani membuat minuman. Ia menuang air ke gelas ukur sampai air mencapai garis bertanda 600. Tanda pada gelas ukur ini dalam **mililiter (ml)**.\n\nBanyak cairan di dalam sebuah wadah disebut **volume**. Satuan baku dasar untuk volume zat cair adalah **liter (l)**.\n\nSebotol kecil air minum berisi sekitar 600 ml, sebotol besar berisi 1 l, dan $1 \\text{ l} = 1\\,000 \\text{ ml}$.',
               ),
               figure: {
@@ -1117,13 +1117,13 @@ export const module5: Module = {
               id: 'c2',
               title: L('Step by Step: The Staircase of Volume Units', 'Contoh Bertahap: Tangga Satuan Volume'),
               body: L(
-                'The units of liquid volume use the same staircase once more.\n\n1. Step 1: Write the units from the biggest to the smallest: kl, hl, dal, l, dl, cl, ml.\n2. Step 2: Every step down the staircase is $\\times 10$, and every step up is $\\div 10$.\n3. Step 3: Go down three steps, from l to ml: $1 \\text{ l} = 10 \\text{ dl} = 100 \\text{ cl} = 1\\,000 \\text{ ml}$.\n4. Step 4: Going up is the opposite: 10 ml make 1 cl, 10 cl make 1 dl, and 10 dl make 1 l.\n\n**Remember:** the staircase, from the biggest unit to the smallest.\n\n| Unit | Symbol | One step down |\n| --- | --- | --- |\n| kilolitre | kl | 1 kl = 10 hl |\n| hectolitre | hl | 1 hl = 10 dal |\n| decalitre | dal | 1 dal = 10 l |\n| litre | l | 1 l = 10 dl |\n| decilitre | dl | 1 dl = 10 cl |\n| centilitre | cl | 1 cl = 10 ml |\n| millilitre | ml | the smallest unit |\n\nThe same trick works again: **K**ing **H**enry **D**ied **B**y **D**rinking **C**hocolate **M**ilk. The fourth word is now the litre.',
+                'The units of liquid volume use the same staircase once more.\n\n1. Step 1: Write the units from the biggest to the smallest: kl, hl, dal, l, dl, cl, ml.\n2. Step 2: Every step down the staircase is $\\times 10$, and every step up is $\\div 10$.\n3. Step 3: Go down three steps, from l to ml: $1 \\text{ l} = 10 \\text{ dl} = 100 \\text{ cl} = 1\\,000 \\text{ ml}$.\n4. Step 4: Going up is the opposite: 10 ml make 1 cl, 10 cl make 1 dl, and 10 dl make 1 l.\n\n**Remember:** the staircase, from the biggest unit to the smallest.\n\n| Unit | Symbol | One step down |\n| --- | --- | --- |\n| kiloliter | kl | 1 kl = 10 hl |\n| hectoliter | hl | 1 hl = 10 dal |\n| decaliter | dal | 1 dal = 10 l |\n| liter | l | 1 l = 10 dl |\n| deciliter | dl | 1 dl = 10 cl |\n| centiliter | cl | 1 cl = 10 ml |\n| milliliter | ml | the smallest unit |\n\nThe same trick works again: **K**ing **H**enry **D**ied **B**y **D**rinking **C**hocolate **M**ilk. The fourth word is now the liter.',
                 'Satuan volume zat cair memakai tangga yang sama lagi.\n\n1. Langkah 1: Tulis satuannya dari yang terbesar ke yang terkecil: kl, hl, dal, l, dl, cl, ml.\n2. Langkah 2: Setiap turun satu anak tangga adalah $\\times 10$, dan setiap naik satu anak tangga adalah $\\div 10$.\n3. Langkah 3: Turun tiga anak tangga, dari l ke ml: $1 \\text{ l} = 10 \\text{ dl} = 100 \\text{ cl} = 1\\,000 \\text{ ml}$.\n4. Langkah 4: Naik adalah kebalikannya: 10 ml menjadi 1 cl, 10 cl menjadi 1 dl, dan 10 dl menjadi 1 l.\n\n**Ingat:** tangga satuan, dari satuan terbesar ke terkecil.\n\n| Satuan | Lambang | Satu anak tangga ke bawah |\n| --- | --- | --- |\n| kiloliter | kl | 1 kl = 10 hl |\n| hektoliter | hl | 1 hl = 10 dal |\n| dekaliter | dal | 1 dal = 10 l |\n| liter | l | 1 l = 10 dl |\n| desiliter | dl | 1 dl = 10 cl |\n| sentiliter | cl | 1 cl = 10 ml |\n| mililiter | ml | satuan terkecil |\n\nKalimat pengingat yang sama berlaku lagi: **K**akak **H**arus **D**engar **M**ama, **D**an **C**ici **M**enyanyi. Kata keempat sekarang mewakili liter.',
               ),
               figure: {
                 ...stairs(VOL, [3]),
                 caption: L(
-                  'The seven units of liquid volume. The litre is outlined in red.',
+                  'The seven units of liquid volume. The liter is outlined in red.',
                   'Tujuh satuan volume zat cair. Liter diberi garis merah.',
                 ),
               },
@@ -1133,13 +1133,13 @@ export const module5: Module = {
               id: 'c3',
               title: L('Step by Step: Reading a Measuring Jug', 'Contoh Bertahap: Membaca Gelas Ukur'),
               body: L(
-                'Read how much water is in the jug in the picture.\n\n1. Step 1: Look at the unit. This jug is marked in millilitres (ml).\n2. Step 2: Find what one small space is worth. Between 300 and 400 there are 2 small spaces, so each one is $100 \\div 2 = 50$ ml.\n3. Step 3: Look at the top of the water. It has passed the line for 300 ml.\n4. Step 4: Count the small spaces after 300. There is 1 space, which is 50 ml. So $300 + 50 = 350$ ml.\n\n**Remember:**\n\n- Read the top of the liquid, with your eyes level with it.\n- First find what one small space is worth, then count the spaces.',
+                'Read how much water is in the jug in the picture.\n\n1. Step 1: Look at the unit. This jug is marked in milliliters (ml).\n2. Step 2: Find what one small space is worth. Between 300 and 400 there are 2 small spaces, so each one is $100 \\div 2 = 50$ ml.\n3. Step 3: Look at the top of the water. It has passed the line for 300 ml.\n4. Step 4: Count the small spaces after 300. There is 1 space, which is 50 ml. So $300 + 50 = 350$ ml.\n\n**Remember:**\n\n- Read the top of the liquid, with your eyes level with it.\n- First find what one small space is worth, then count the spaces.',
                 'Bacalah banyak air di dalam gelas ukur pada gambar.\n\n1. Langkah 1: Lihat satuannya. Gelas ukur ini bertanda mililiter (ml).\n2. Langkah 2: Cari nilai satu ruang kecil. Di antara 300 dan 400 ada 2 ruang kecil, jadi masing-masing $100 \\div 2 = 50$ ml.\n3. Langkah 3: Lihat permukaan atas air. Permukaan itu sudah melewati garis 300 ml.\n4. Langkah 4: Hitung ruang kecil sesudah 300. Ada 1 ruang, yaitu 50 ml. Jadi $300 + 50 = 350$ ml.\n\n**Ingat:**\n\n- Baca permukaan atas cairan, dengan mata sejajar permukaan itu.\n- Cari dulu nilai satu ruang kecil, baru hitung ruangnya.',
               ),
               figure: {
                 ...jugs([{ max: 500, step: 50, labelEvery: 2, level: 350, unit: 'ml' }]),
                 caption: L(
-                  'A measuring jug in millilitres. The water is between 300 and 400.',
+                  'A measuring jug in milliliters. The water is between 300 and 400.',
                   'Sebuah gelas ukur dalam mililiter. Air berada di antara 300 dan 400.',
                 ),
               },
@@ -1157,12 +1157,12 @@ export const module5: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
-                'Citra pours orange juice into a measuring jug. How many millilitres of juice are in the jug?',
+                'Citra pours orange juice into a measuring jug. How many milliliters of juice are in the jug?',
                 'Citra menuang jus jeruk ke gelas ukur. Berapa mililiter jus di dalam gelas ukur itu?',
               ),
               figure: {
                 ...jugs([{ max: 1000, step: 100, labelEvery: 2, level: 700, unit: 'ml' }]),
-                caption: L('A measuring jug in millilitres.', 'Sebuah gelas ukur dalam mililiter.'),
+                caption: L('A measuring jug in milliliters.', 'Sebuah gelas ukur dalam mililiter.'),
               },
               options: [L('700 ml', '700 ml'), L('600 ml', '600 ml'), L('800 ml', '800 ml'), L('750 ml', '750 ml')],
               answer: 0,
@@ -1185,7 +1185,7 @@ export const module5: Module = {
               ),
               figure: {
                 ...jugs([{ max: 500, step: 50, labelEvery: 2, level: 150, unit: 'ml' }]),
-                caption: L('A measuring jug in millilitres.', 'Sebuah gelas ukur dalam mililiter.'),
+                caption: L('A measuring jug in milliliters.', 'Sebuah gelas ukur dalam mililiter.'),
               },
               template: '100 + ___ = ___ \\text{ ml}',
               blanks: ['50', '150'],
@@ -1202,7 +1202,7 @@ export const module5: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: L(
-                'Look at the staircase. From l down to ml, how many millilitres are in 1 l?',
+                'Look at the staircase. From l down to ml, how many milliliters are in 1 l?',
                 'Lihat tangga satuan. Dari l turun ke ml, ada berapa mililiter dalam 1 l?',
               ),
               figure: {
@@ -1248,12 +1248,12 @@ export const module5: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'Ani needs exactly 1 l of syrup. The jug in the picture shows how much she has now. How many more millilitres must she pour in?',
+                'Ani needs exactly 1 l of syrup. The jug in the picture shows how much she has now. How many more milliliters must she pour in?',
                 'Ani membutuhkan tepat 1 l sirup. Gelas ukur pada gambar menunjukkan banyak sirup yang ia punya sekarang. Berapa mililiter lagi yang harus ia tuang?',
               ),
               figure: {
                 ...jugs([{ max: 1000, step: 50, labelEvery: 2, level: 650, unit: 'ml', color: 'b' }]),
-                caption: L('A measuring jug in millilitres.', 'Sebuah gelas ukur dalam mililiter.'),
+                caption: L('A measuring jug in milliliters.', 'Sebuah gelas ukur dalam mililiter.'),
               },
               blanks: [{ answer: 350, after: '\\text{ ml}' }],
               hints: [
@@ -1325,7 +1325,7 @@ export const module5: Module = {
                   jumps: Array.from({ length: 12 }, (_, i) => ({ from: i * 250, to: (i + 1) * 250, color: (i % 2 === 0 ? 'a' : 'b') as FigColor })),
                 }),
                 caption: L(
-                  'The number line is in millilitres. Each arrow is one glass of 250 ml. There are 12 arrows.',
+                  'The number line is in milliliters. Each arrow is one glass of 250 ml. There are 12 arrows.',
                   'Garis bilangan dalam mililiter. Setiap panah adalah satu gelas 250 ml. Ada 12 panah.',
                 ),
               },
@@ -1335,7 +1335,7 @@ export const module5: Module = {
               id: 'c3',
               title: L('Watch Out!: Mixing Units', 'Awas, Jebakan!: Satuan yang Dicampur'),
               body: L(
-                '| Wrong | Right |\n| --- | --- |\n| 2 l = 200 ml | From l to ml is three steps down, so 2 l = 2,000 ml. |\n| 3 l ÷ 250 ml = 3 ÷ 250 | The units must match first: 3,000 ml ÷ 250 ml = 12. |\n| 4 l + 300 ml = 4 + 300 = 304 | Change the litres first: 4,000 ml + 300 ml = 4,300 ml. |',
+                '| Wrong | Right |\n| --- | --- |\n| 2 l = 200 ml | From l to ml is three steps down, so 2 l = 2,000 ml. |\n| 3 l ÷ 250 ml = 3 ÷ 250 | The units must match first: 3,000 ml ÷ 250 ml = 12. |\n| 4 l + 300 ml = 4 + 300 = 304 | Change the liters first: 4,000 ml + 300 ml = 4,300 ml. |',
                 '| Salah | Benar |\n| --- | --- |\n| 2 l = 200 ml | Dari l ke ml ada tiga anak tangga turun, jadi 2 l = 2.000 ml. |\n| 3 l ÷ 250 ml = 3 ÷ 250 | Satuannya harus sama dulu: 3.000 ml ÷ 250 ml = 12. |\n| 4 l + 300 ml = 4 + 300 = 304 | Ubah dulu literannya: 4.000 ml + 300 ml = 4.300 ml. |',
               ),
             },
@@ -1384,7 +1384,7 @@ export const module5: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: L(
-                'The two jugs are poured together into one big bowl. How many millilitres are in the bowl?',
+                'The two jugs are poured together into one big bowl. How many milliliters are in the bowl?',
                 'Kedua gelas ukur dituang bersama ke dalam satu mangkuk besar. Berapa mililiter isi mangkuk itu?',
               ),
               figure: {
@@ -1392,7 +1392,7 @@ export const module5: Module = {
                   { max: 500, step: 50, labelEvery: 2, level: 350, unit: 'ml' },
                   { max: 500, step: 50, labelEvery: 2, level: 450, unit: 'ml', color: 'b' },
                 ]),
-                caption: L('Two measuring jugs in millilitres.', 'Dua gelas ukur dalam mililiter.'),
+                caption: L('Two measuring jugs in milliliters.', 'Dua gelas ukur dalam mililiter.'),
               },
               options: [L('800 ml', '800 ml'), L('100 ml', '100 ml'), L('900 ml', '900 ml'), L('700 ml', '700 ml')],
               answer: 0,
@@ -1429,7 +1429,7 @@ export const module5: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'Pak Eko has 5 l of cooking oil. He fills as many bottles of 600 ml as he can. How many millilitres of oil are left over?',
+                'Pak Eko has 5 l of cooking oil. He fills as many bottles of 600 ml as he can. How many milliliters of oil are left over?',
                 'Pak Eko punya 5 l minyak goreng. Ia mengisi botol-botol 600 ml sebanyak mungkin. Berapa mililiter minyak yang tersisa?',
               ),
               blanks: [{ answer: 200, after: '\\text{ ml}' }],
@@ -1473,10 +1473,10 @@ export const module5: Module = {
         ],
         tasks: [
           {
-            prompt: L('How many millilitres of water are in the jug?', 'Berapa mililiter air di dalam gelas ukur?'),
+            prompt: L('How many milliliters of water are in the jug?', 'Berapa mililiter air di dalam gelas ukur?'),
             figure: {
               ...jugs([{ max: 500, step: 50, labelEvery: 2, level: 450, unit: 'ml' }]),
-              caption: L('A measuring jug in millilitres.', 'Sebuah gelas ukur dalam mililiter.'),
+              caption: L('A measuring jug in milliliters.', 'Sebuah gelas ukur dalam mililiter.'),
             },
             blanks: [{ answer: 450, after: '\\text{ ml}' }],
             solution: {
@@ -1485,7 +1485,7 @@ export const module5: Module = {
             },
           },
           {
-            prompt: L('Change 2 l 50 ml into millilitres.', 'Ubah 2 l 50 ml menjadi mililiter.'),
+            prompt: L('Change 2 l 50 ml into milliliters.', 'Ubah 2 l 50 ml menjadi mililiter.'),
             blanks: [{ answer: 2050, after: '\\text{ ml}' }],
             solution: ['2\\text{ l} = 2\\,000\\text{ ml}', '2\\,000 + 50 = 2\\,050\\text{ ml}'],
           },

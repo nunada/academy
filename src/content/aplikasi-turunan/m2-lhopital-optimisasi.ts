@@ -1,6 +1,6 @@
 import type { Module } from '../types'
 
-/** Module 7 — a rule that trivialises a result the Limits course worked hard
+/** Module 7 — a rule that trivializes a result the Limits course worked hard
  *  to earn, and two procedures — one exact, one iterative — that turn a
  *  derivative into the tool that actually answers a real question: the best
  *  possible choice, or a root nothing else can find in closed form. */
@@ -300,7 +300,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'From a sentence to a function of one variable', id: 'Dari sebuah kalimat menjadi fungsi satu peubah' },
               body: {
-                en: 'A farmer has $100$ m of fencing to enclose a rectangular field against a straight river — no fence needed along the river side. What dimensions maximise the enclosed area?\n\nLet $x$ be the width of each of the two sides perpendicular to the river, and $y$ the side parallel to it. The fencing constraint is $2x+y=100$, so $y=100-2x$. The quantity to maximise, area, becomes a function of $x$ alone:\n$$A(x) = xy = x(100-2x) = 100x-2x^2, \\qquad x\\in[0,50]$$\nThe domain is bounded because $x$ cannot be negative, nor so large that $y$ runs negative — every optimization problem\'s first real step is finding this one-variable function and its domain, before any derivative is taken at all.',
+                en: 'A farmer has $100$ m of fencing to enclose a rectangular field against a straight river — no fence needed along the river side. What dimensions maximize the enclosed area?\n\nLet $x$ be the width of each of the two sides perpendicular to the river, and $y$ the side parallel to it. The fencing constraint is $2x+y=100$, so $y=100-2x$. The quantity to maximize, area, becomes a function of $x$ alone:\n$$A(x) = xy = x(100-2x) = 100x-2x^2, \\qquad x\\in[0,50]$$\nThe domain is bounded because $x$ cannot be negative, nor so large that $y$ runs negative — every optimization problem\'s first real step is finding this one-variable function and its domain, before any derivative is taken at all.',
                 id: 'Seorang petani punya $100$ m pagar untuk memagari lahan berbentuk persegi panjang bersebelahan dengan sungai lurus — tak perlu pagar di sisi sungai. Ukuran apa yang memaksimalkan luas yang dipagari?\n\nMisalkan $x$ adalah lebar tiap dua sisi yang tegak lurus sungai, dan $y$ sisi yang sejajar dengannya. Kendala pagarnya adalah $2x+y=100$, sehingga $y=100-2x$. Besaran yang dimaksimalkan, luas, menjadi fungsi $x$ saja:\n$$A(x) = xy = x(100-2x) = 100x-2x^2, \\qquad x\\in[0,50]$$\nDomainnya terbatas sebab $x$ tak boleh negatif, juga tak boleh sebesar itu sehingga $y$ menjadi negatif — langkah nyata pertama setiap soal optimisasi adalah menemukan fungsi satu peubah ini beserta domainnya, sebelum turunan apa pun diambil sama sekali.',
               },
             },

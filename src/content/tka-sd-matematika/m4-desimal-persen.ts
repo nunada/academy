@@ -3,7 +3,7 @@ import type { FigItem } from '../../lib/figure'
 import { barChart, fit, fractionBars, gridRect, numberLine, outline, rectPts, solid } from './figs'
 import type { Piece } from './figs'
 
-/** A 10 by 10 grid with `a` squares in the first colour and the next `b` in the
+/** A 10 by 10 grid with `a` squares in the first color and the next `b` in the
  *  second, counted row by row from the bottom left. */
 function gridTwo(a: number, b: number): Piece {
   const items: FigItem[] = []
@@ -217,7 +217,7 @@ export const module4: Module = {
               kind: 'math',
               id: 'm1',
               prompt: {
-                en: 'Three bottles hold $0.45$ L, $0.5$ L and $0.405$ L of water. How many litres are in the bottle with the least water?',
+                en: 'Three bottles hold $0.45$ L, $0.5$ L and $0.405$ L of water. How many liters are in the bottle with the least water?',
                 id: 'Tiga botol berisi air $0{,}45$ L, $0{,}5$ L, dan $0{,}405$ L. Berapa liter air di botol yang isinya paling sedikit?',
               },
               blanks: [{ answer: 0.405, tol: 0.0001, after: '\\text{ L}' }],
@@ -262,7 +262,7 @@ export const module4: Module = {
               id: 'c1',
               title: { en: 'Look Closely: Fractions with Denominator 10, 100, 1,000', id: 'Ayo Amati: Pecahan Berpenyebut 10, 100, 1.000' },
               body: {
-                en: 'A ribbon is 1 metre long and marked every 10 cm, so it has 10 equal parts. A piece that is 3 parts long is $\\frac{3}{10}$ metre, which is $0.3$ metre.\n\nA fraction with denominator 10, 100 or 1,000 can be written straight away as a decimal. **The number of zeros in the denominator is the number of digits after the point.**\n\n| Fraction | Decimal | Read as |\n| --- | --- | --- |\n| $\\frac{3}{10}$ | $0.3$ | zero point three |\n| $\\frac{7}{100}$ | $0.07$ | zero point zero seven |\n| $\\frac{125}{1\\,000}$ | $0.125$ | zero point one two five |\n\nGoing the other way, a decimal can be written as a fraction and then simplified. For example, $0.36 = \\frac{36}{100} = \\frac{9}{25}$.',
+                en: 'A ribbon is 1 meter long and marked every 10 cm, so it has 10 equal parts. A piece that is 3 parts long is $\\frac{3}{10}$ meter, which is $0.3$ meter.\n\nA fraction with denominator 10, 100 or 1,000 can be written straight away as a decimal. **The number of zeros in the denominator is the number of digits after the point.**\n\n| Fraction | Decimal | Read as |\n| --- | --- | --- |\n| $\\frac{3}{10}$ | $0.3$ | zero point three |\n| $\\frac{7}{100}$ | $0.07$ | zero point zero seven |\n| $\\frac{125}{1\\,000}$ | $0.125$ | zero point one two five |\n\nGoing the other way, a decimal can be written as a fraction and then simplified. For example, $0.36 = \\frac{36}{100} = \\frac{9}{25}$.',
                 id: 'Sebuah pita panjangnya 1 meter dan ditandai tiap 10 cm, jadi ada 10 bagian sama panjang. Potongan sepanjang 3 bagian adalah $\\frac{3}{10}$ meter, yaitu $0{,}3$ meter.\n\nPecahan berpenyebut 10, 100, atau 1.000 bisa langsung ditulis sebagai desimal. **Banyak nol pada penyebut sama dengan banyak angka setelah koma.**\n\n| Pecahan | Desimal | Dibaca |\n| --- | --- | --- |\n| $\\frac{3}{10}$ | $0{,}3$ | nol koma tiga |\n| $\\frac{7}{100}$ | $0{,}07$ | nol koma nol tujuh |\n| $\\frac{125}{1\\,000}$ | $0{,}125$ | nol koma satu dua lima |\n\nSebaliknya, desimal bisa ditulis sebagai pecahan lalu disederhanakan. Contohnya, $0{,}36 = \\frac{36}{100} = \\frac{9}{25}$.',
               },
               figure: {
@@ -277,7 +277,7 @@ export const module4: Module = {
                   ],
                 }),
                 caption: {
-                  en: 'A 1 metre ribbon in 10 equal parts. The red dot is $\\frac{3}{10} = 0.3$ and the green dot is $\\frac{7}{10} = 0.7$.',
+                  en: 'A 1 meter ribbon in 10 equal parts. The red dot is $\\frac{3}{10} = 0.3$ and the green dot is $\\frac{7}{10} = 0.7$.',
                   id: 'Pita 1 meter dalam 10 bagian sama panjang. Titik merah adalah $\\frac{3}{10} = 0{,}3$ dan titik hijau adalah $\\frac{7}{10} = 0{,}7$.',
                 },
               },
@@ -303,7 +303,7 @@ export const module4: Module = {
               id: 'c3',
               title: { en: 'Step by Step: Adding Decimals', id: 'Contoh Bertahap: Menjumlah Desimal' },
               body: {
-                en: 'Ani buys a ribbon $2.75$ m long and another one $1.5$ m long. How many metres of ribbon is that altogether?\n\n1. Step 1: Write one number under the other. **The point must be exactly under the point.**\n2. Step 2: Fill the empty places with zeros: $1.5 = 1.50$.\n3. Step 3: Add from right to left like whole numbers: $5 + 0 = 5$, then $7 + 5 = 12$ (write 2, carry 1), then $2 + 1 + 1 = 4$.\n4. Step 4: Put the point in the answer, straight under the other points: $4.25$ m.\n\nSubtracting decimals works the same way: line up the points, make the digits match with zeros, then subtract.',
+                en: 'Ani buys a ribbon $2.75$ m long and another one $1.5$ m long. How many meters of ribbon is that altogether?\n\n1. Step 1: Write one number under the other. **The point must be exactly under the point.**\n2. Step 2: Fill the empty places with zeros: $1.5 = 1.50$.\n3. Step 3: Add from right to left like whole numbers: $5 + 0 = 5$, then $7 + 5 = 12$ (write 2, carry 1), then $2 + 1 + 1 = 4$.\n4. Step 4: Put the point in the answer, straight under the other points: $4.25$ m.\n\nSubtracting decimals works the same way: line up the points, make the digits match with zeros, then subtract.',
                 id: 'Ani membeli pita sepanjang $2{,}75$ m dan pita lain sepanjang $1{,}5$ m. Berapa meter panjang pita seluruhnya?\n\n1. Langkah 1: Tulis bilangan yang satu di bawah yang lain. **Koma harus tepat di bawah koma.**\n2. Langkah 2: Isi tempat yang kosong dengan nol: $1{,}5 = 1{,}50$.\n3. Langkah 3: Jumlahkan dari kanan ke kiri seperti bilangan bulat: $5 + 0 = 5$, lalu $7 + 5 = 12$ (tulis 2, simpan 1), lalu $2 + 1 + 1 = 4$.\n4. Langkah 4: Letakkan koma pada jawaban, tepat di bawah koma yang lain: $4{,}25$ m.\n\nMengurangi desimal caranya sama: sejajarkan koma, samakan angkanya dengan nol, lalu kurangkan.',
               },
               code: {
@@ -503,7 +503,7 @@ export const module4: Module = {
           },
           {
             prompt: {
-              en: 'A ribbon is 2 m long. Siti cuts off $\\frac{3}{4}$ m for a flower, then $0.6$ m for a hair band. How many metres of ribbon are left?',
+              en: 'A ribbon is 2 m long. Siti cuts off $\\frac{3}{4}$ m for a flower, then $0.6$ m for a hair band. How many meters of ribbon are left?',
               id: 'Sebuah pita panjangnya 2 m. Siti memotong $\\frac{3}{4}$ m untuk bunga, lalu $0{,}6$ m untuk pita rambut. Berapa meter pita yang tersisa?',
             },
             blanks: [{ answer: 0.65, tol: 0.0001, after: '\\text{ m}' }],
@@ -676,7 +676,7 @@ export const module4: Module = {
                 id: 'Di antara $20\\%$ dan $40\\%$ ada 4 bagian kecil, jadi tiap bagian bernilai $5\\%$. Titik A berada 3 bagian setelah $20\\%$: $20 + 15 = 35$, jadi $35\\%$.',
               },
               hint: {
-                en: 'Find the two labelled marks on each side of A. How many small parts are between them, and what is each part worth?',
+                en: 'Find the two labeled marks on each side of A. How many small parts are between them, and what is each part worth?',
                 id: 'Cari dua tanda berlabel di kiri dan kanan A. Ada berapa bagian kecil di antara keduanya, dan berapa nilai tiap bagian?',
               },
             },

@@ -13,14 +13,14 @@ const L = (en: string, id: string): Loc => ({ en, id })
 const r3 = (n: number) => Number(n.toFixed(3))
 const mid = (a: Pt, b: Pt): Pt => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]
 
-/** A regular polygon with `n` corners, anticlockwise from the angle `start`. */
+/** A regular polygon with `n` corners, counterclockwise from the angle `start`. */
 const reg = (n: number, r: number, cx = 0, cy = 0, start = 90): Pt[] =>
   Array.from({ length: n }, (_, i) => {
     const a = ((start + (360 * i) / n) * Math.PI) / 180
     return [r3(cx + r * Math.cos(a)), r3(cy + r * Math.sin(a))] as Pt
   })
 
-/** Outward unit normal of the edge a -> b of an anticlockwise polygon. */
+/** Outward unit normal of the edge a -> b of an counterclockwise polygon. */
 const normal = (a: Pt, b: Pt): Pt => {
   const dx = b[0] - a[0]
   const dy = b[1] - a[1]
@@ -28,7 +28,7 @@ const normal = (a: Pt, b: Pt): Pt => {
   return [dy / len, -dx / len]
 }
 
-/** `n` short ticks across the edge a -> b (equal sides), centred `at` of the way along. */
+/** `n` short ticks across the edge a -> b (equal sides), centered `at` of the way along. */
 function ticks(a: Pt, b: Pt, n: number, at = 0.5): FigItem[] {
   const dx = b[0] - a[0]
   const dy = b[1] - a[1]
@@ -83,7 +83,7 @@ interface Part {
   par?: [number, number][]
 }
 
-/** Any number of polygons (anticlockwise corners) in one picture, with names,
+/** Any number of polygons (counterclockwise corners) in one picture, with names,
  *  side labels, right-angle marks, equal-side ticks and parallel arrowheads.
  *  `extra` items are drawn on top, in the same coordinates. */
 function scene(parts: Part[], extra: FigItem[] = [], pad = 1): Piece {
@@ -230,7 +230,7 @@ export const module8: Module = {
               id: 'c2',
               title: L('Step by Step: Naming a Quadrilateral', 'Contoh Bertahap: Menamai Segiempat'),
               body: L(
-                `A tile has 4 sides, all of them equal, and no square corners. What shape is it? Ask the questions one by one.\n\n1. Step 1: Count the sides. There are 4, so it is a **quadrilateral**.\n2. Step 2: Look for **parallel sides**: sides that never meet, like the two rails of a train track. Both pairs of opposite sides are parallel.\n3. Step 3: Are the sides equal? Yes, all 4 are equal.\n4. Step 4: Are there square corners? No. A square would have 4 of them, so the tile is a **rhombus**.\n\n**Remember:** use this table to name a quadrilateral.\n\n| Shape | Parallel sides | Equal sides | Square corners | Diagonals |\n| --- | --- | --- | --- | --- |\n| Square | 2 pairs | all 4 | 4 | equal, cross at a square corner |\n| Rectangle | 2 pairs | opposite sides | 4 | equal |\n| Parallelogram | 2 pairs | opposite sides | none | not equal |\n| Rhombus | 2 pairs | all 4 | none | not equal, cross at a square corner |\n| Kite | none | 2 pairs of neighbours | none | not equal, cross at a square corner |\n| Trapezoid | exactly 1 pair | not needed | usually none | not equal |`,
+                `A tile has 4 sides, all of them equal, and no square corners. What shape is it? Ask the questions one by one.\n\n1. Step 1: Count the sides. There are 4, so it is a **quadrilateral**.\n2. Step 2: Look for **parallel sides**: sides that never meet, like the two rails of a train track. Both pairs of opposite sides are parallel.\n3. Step 3: Are the sides equal? Yes, all 4 are equal.\n4. Step 4: Are there square corners? No. A square would have 4 of them, so the tile is a **rhombus**.\n\n**Remember:** use this table to name a quadrilateral.\n\n| Shape | Parallel sides | Equal sides | Square corners | Diagonals |\n| --- | --- | --- | --- | --- |\n| Square | 2 pairs | all 4 | 4 | equal, cross at a square corner |\n| Rectangle | 2 pairs | opposite sides | 4 | equal |\n| Parallelogram | 2 pairs | opposite sides | none | not equal |\n| Rhombus | 2 pairs | all 4 | none | not equal, cross at a square corner |\n| Kite | none | 2 pairs of neighbors | none | not equal, cross at a square corner |\n| Trapezoid | exactly 1 pair | not needed | usually none | not equal |`,
                 `Sebuah ubin punya 4 sisi yang sama panjang dan tidak punya sudut siku-siku. Bentuk apakah itu? Tanyakan satu per satu.\n\n1. Langkah 1: Hitung sisinya. Ada 4, jadi ini **segiempat**.\n2. Langkah 2: Cari **sisi yang sejajar**: sisi yang tidak pernah bertemu, seperti dua rel kereta api. Kedua pasang sisi yang berhadapan sejajar.\n3. Langkah 3: Apakah sisinya sama panjang? Ya, keempatnya sama.\n4. Langkah 4: Adakah sudut siku-siku? Tidak. Persegi punya 4 sudut siku-siku, jadi ubin itu adalah **belah ketupat**.\n\n**Ingat:** pakai tabel ini untuk menamai segiempat.\n\n| Bangun | Sisi sejajar | Sisi sama panjang | Sudut siku-siku | Diagonal |\n| --- | --- | --- | --- | --- |\n| Persegi | 2 pasang | keempatnya | 4 | sama panjang, berpotongan siku-siku |\n| Persegi panjang | 2 pasang | sisi yang berhadapan | 4 | sama panjang |\n| Jajargenjang | 2 pasang | sisi yang berhadapan | tidak ada | tidak sama panjang |\n| Belah ketupat | 2 pasang | keempatnya | tidak ada | tidak sama panjang, berpotongan siku-siku |\n| Layang-layang | tidak ada | 2 pasang sisi bertetangga | tidak ada | tidak sama panjang, berpotongan siku-siku |\n| Trapesium | tepat 1 pasang | tidak harus | biasanya tidak ada | tidak sama panjang |`,
               ),
               figure: {
@@ -426,7 +426,7 @@ export const module8: Module = {
                   [dash([3, 0], [3, 3.5]), dash([0, 1.75], [6, 1.75]), line([0, 0], [6, 3.5], 'muted', { dashed: true, width: 2 })],
                 ),
                 caption: L(
-                  'The two red dashed lines are lines of symmetry. The grey diagonal is not.',
+                  'The two red dashed lines are lines of symmetry. The gray diagonal is not.',
                   'Dua garis putus-putus merah adalah sumbu simetri. Diagonal abu-abu bukan.',
                 ),
               },
@@ -986,7 +986,7 @@ export const module8: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'The floor of a hall is shaped like the L in the picture. Pak Eko puts a border strip along all the walls. The strip costs Rp5,000 for each metre. How much does the strip cost? (Ignore the doors.)',
+                'The floor of a hall is shaped like the L in the picture. Pak Eko puts a border strip along all the walls. The strip costs Rp5,000 for each meter. How much does the strip cost? (Ignore the doors.)',
                 'Lantai sebuah aula berbentuk huruf L seperti pada gambar. Pak Eko memasang lis di sepanjang semua dinding. Lis itu harganya Rp5.000 untuk tiap meter. Berapa biaya lis itu? (Abaikan pintu.)',
               ),
               figure: {
@@ -1000,7 +1000,7 @@ export const module8: Module = {
               hints: [
                 L('The strip goes along every wall, so first find the perimeter of the floor.', 'Lis dipasang di sepanjang semua dinding, jadi cari dulu keliling lantainya.'),
                 L('Two sides are missing. The L-shape has the same perimeter as the rectangle around it.', 'Ada dua sisi yang belum diketahui. Bangun L punya keliling yang sama dengan persegi panjang yang membungkusnya.'),
-                L('Find the perimeter of a 14 m by 10 m rectangle, then multiply by the price of one metre.', 'Cari keliling persegi panjang 14 m kali 10 m, lalu kalikan dengan harga satu meter.'),
+                L('Find the perimeter of a 14 m by 10 m rectangle, then multiply by the price of one meter.', 'Cari keliling persegi panjang 14 m kali 10 m, lalu kalikan dengan harga satu meter.'),
               ],
               explain: L(
                 'The perimeter is $2 \\times (14 + 10) = 48$ m. The cost is $48 \\times 5\\,000 = 240\\,000$ rupiah.',
@@ -1016,7 +1016,7 @@ export const module8: Module = {
         runtime: 'math',
         title: L('Round and Round', 'Berkeliling'),
         brief: L(
-          'Find perimeters of simple shapes, work backwards to a missing side, and fence a garden with a gap for the gate.',
+          'Find perimeters of simple shapes, work backward to a missing side, and fence a garden with a gap for the gate.',
           'Cari keliling bangun sederhana, hitung mundur untuk sisi yang hilang, dan pagari sebuah kebun dengan celah untuk pintu.',
         ),
         requirements: [
@@ -1064,7 +1064,7 @@ export const module8: Module = {
           },
           {
             prompt: L(
-              'Pak Budi wants to fence this L-shaped garden. The fence goes all round the garden, except for a gate 2 m wide. Write the perimeter of the garden, and how many metres of fence he needs.',
+              'Pak Budi wants to fence this L-shaped garden. The fence goes all round the garden, except for a gate 2 m wide. Write the perimeter of the garden, and how many meters of fence he needs.',
               'Pak Budi ingin memagari kebun berbentuk L ini. Pagar dipasang mengelilingi kebun, kecuali untuk pintu gerbang selebar 2 m. Tulis keliling kebun itu, dan berapa meter pagar yang ia butuhkan.',
             ),
             figure: {
@@ -1110,7 +1110,7 @@ export const module8: Module = {
               id: 'c1',
               title: L('Look Closely: Covering a Floor', 'Ayo Amati: Menutupi Lantai'),
               body: L(
-                `Dewi covers a small floor with square tiles. Each tile is 1 m long and 1 m wide. The floor is 5 tiles long and 3 tiles wide, so it takes 3 rows of 5 tiles: $3 \\times 5 = 15$ tiles.\n\nThe **area** of a shape is how much surface it covers. We count it in unit squares. A square with sides of 1 m is **1 square metre** (1 m²), and a square with sides of 1 cm is 1 square centimetre (1 cm²). So this floor has an area of 15 m².\n\nCounting is slow, so we multiply. Area of a rectangle $=$ length $\\times$ width. A square has equal sides, so its area is side $\\times$ side.`,
+                `Dewi covers a small floor with square tiles. Each tile is 1 m long and 1 m wide. The floor is 5 tiles long and 3 tiles wide, so it takes 3 rows of 5 tiles: $3 \\times 5 = 15$ tiles.\n\nThe **area** of a shape is how much surface it covers. We count it in unit squares. A square with sides of 1 m is **1 square meter** (1 m²), and a square with sides of 1 cm is 1 square centimeter (1 cm²). So this floor has an area of 15 m².\n\nCounting is slow, so we multiply. Area of a rectangle $=$ length $\\times$ width. A square has equal sides, so its area is side $\\times$ side.`,
                 `Dewi menutupi sebuah lantai kecil dengan ubin persegi. Tiap ubin panjangnya 1 m dan lebarnya 1 m. Lantai itu panjangnya 5 ubin dan lebarnya 3 ubin, jadi ada 3 baris yang masing-masing berisi 5 ubin: $3 \\times 5 = 15$ ubin.\n\n**Luas** sebuah bangun adalah seberapa banyak permukaan yang ditutupinya. Kita menghitungnya dengan persegi satuan. Persegi dengan sisi 1 m adalah **1 meter persegi** (1 m²), dan persegi dengan sisi 1 cm adalah 1 sentimeter persegi (1 cm²). Jadi luas lantai ini 15 m².\n\nMenghitung satu per satu itu lambat, jadi kita mengalikan. Luas persegi panjang $=$ panjang $\\times$ lebar. Persegi punya sisi yang sama, jadi luasnya sisi $\\times$ sisi.`,
               ),
               figure: {
@@ -1353,7 +1353,7 @@ export const module8: Module = {
                   ],
                 ),
                 caption: L(
-                  'The rhombus with its two diagonals (red). The grey dashed rectangle around it has sides of 10 cm and 6 cm.',
+                  'The rhombus with its two diagonals (red). The gray dashed rectangle around it has sides of 10 cm and 6 cm.',
                   'Belah ketupat dengan kedua diagonalnya (merah). Persegi panjang abu-abu putus-putus di sekelilingnya bersisi 10 cm dan 6 cm.',
                 ),
               },

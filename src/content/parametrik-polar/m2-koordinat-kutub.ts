@@ -99,7 +99,7 @@ export const module2: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'A negative $r$ means walking the same distance backwards, so $(-2,\\tfrac{\\pi}{6})$ lands on the opposite side of the pole. The others differ from $(2,\\tfrac{\\pi}{6})$ by a full turn or by a half turn paired with a sign change.',
+                en: 'A negative $r$ means walking the same distance backward, so $(-2,\\tfrac{\\pi}{6})$ lands on the opposite side of the pole. The others differ from $(2,\\tfrac{\\pi}{6})$ by a full turn or by a half turn paired with a sign change.',
                 id: '$r$ negatif berarti berjalan sejauh yang sama ke belakang, sehingga $(-2,\\tfrac{\\pi}{6})$ mendarat di sisi seberang kutub. Yang lain berbeda dari $(2,\\tfrac{\\pi}{6})$ sebesar satu putaran penuh atau setengah putaran yang dipasangkan dengan pergantian tanda.',
               },
               hint: {
@@ -157,7 +157,7 @@ export const module2: Module = {
                 '(x-1)^2+y^2 = 1',
               ],
               explain: {
-                en: 'Multiplying by $r$ makes both $r^2$ and $r\\cos\\theta$ appear, so each can be replaced; completing the square then reveals the circle with centre $(1,0)$ and radius $1$.',
+                en: 'Multiplying by $r$ makes both $r^2$ and $r\\cos\\theta$ appear, so each can be replaced; completing the square then reveals the circle with center $(1,0)$ and radius $1$.',
                 id: 'Mengalikan dengan $r$ memunculkan $r^2$ dan $r\\cos\\theta$ sekaligus, sehingga masing-masing bisa diganti; melengkapkan kuadrat lalu menampakkan lingkaran berpusat $(1,0)$ dan berjari-jari $1$.',
               },
               hint: {

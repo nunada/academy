@@ -41,7 +41,7 @@ export const m6s1: Submodule = {
           id: 'c1',
           title: L('Look Closely: A Matrix That Turns', 'Ayo Amati: Matriks yang Memutar'),
           body: L(
-            `A matrix $M$ moves the point $(x,y)$ to the point given by $M\\begin{pmatrix}x\\\\y\\end{pmatrix}$. The columns of $M$ are the images of $(1,0)$ and $(0,1)$.\n\nA **rotation by $90^{\\circ}$ anticlockwise** about the origin sends $(1,0)\\to(0,1)$ and $(0,1)\\to(-1,0)$, so $M=${pm([0, -1], [1, 0])}$. In the picture the green triangle with $B(3,1)$ is turned into the orange triangle: $B'=(-1,3)$.\n\nCheck: $${pm([0, -1], [1, 0])}${pm([3], [1])}=${pm([-1], [3])}$$`,
+            `A matrix $M$ moves the point $(x,y)$ to the point given by $M\\begin{pmatrix}x\\\\y\\end{pmatrix}$. The columns of $M$ are the images of $(1,0)$ and $(0,1)$.\n\nA **rotation by $90^{\\circ}$ counterclockwise** about the origin sends $(1,0)\\to(0,1)$ and $(0,1)\\to(-1,0)$, so $M=${pm([0, -1], [1, 0])}$. In the picture the green triangle with $B(3,1)$ is turned into the orange triangle: $B'=(-1,3)$.\n\nCheck: $${pm([0, -1], [1, 0])}${pm([3], [1])}=${pm([-1], [3])}$$`,
             `Matriks $M$ memindahkan titik $(x,y)$ ke titik $M\\begin{pmatrix}x\\\\y\\end{pmatrix}$. Kolom-kolom $M$ adalah bayangan $(1,0)$ dan $(0,1)$.\n\n**Rotasi $90^{\\circ}$ berlawanan arah jarum jam** terhadap titik asal mengirim $(1,0)\\to(0,1)$ dan $(0,1)\\to(-1,0)$, jadi $M=${pm([0, -1], [1, 0])}$. Pada gambar segitiga hijau dengan $B(3,1)$ diputar menjadi segitiga oranye: $B'=(-1,3)$.\n\nPeriksa: $${pm([0, -1], [1, 0])}${pm([3], [1])}=${pm([-1], [3])}$$`,
           ),
           figure: {
@@ -54,16 +54,16 @@ export const m6s1: Submodule = {
           id: 'c2',
           title: L('Step by Step: The Matrices to Know', 'Contoh Bertahap: Matriks yang Perlu Diketahui'),
           body: L(
-            `| Transformation | Matrix | $(x,y)\\to$ |\n|---|---|---|\n| reflection in the $x$-axis | $${pm([1, 0], [0, -1])}$ | $(x,-y)$ |\n| reflection in the $y$-axis | $${pm([-1, 0], [0, 1])}$ | $(-x,y)$ |\n| reflection in $y=x$ | $${pm([0, 1], [1, 0])}$ | $(y,x)$ |\n| rotation $90^{\\circ}$ anticlockwise | $${pm([0, -1], [1, 0])}$ | $(-y,x)$ |\n| rotation $180^{\\circ}$ | $${pm([-1, 0], [0, -1])}$ | $(-x,-y)$ |\n| dilation $(O,k)$ | $${pm(['k', 0], [0, 'k'])}$ | $(kx,ky)$ |\n\nApply them to $P(3,1)$: the $x$-axis reflection gives $(3,-1)$; the line $y=x$ gives $(1,3)$; the half-turn gives $(-3,-1)$; the dilation $(O,2)$ gives $(6,2)$.`,
+            `| Transformation | Matrix | $(x,y)\\to$ |\n|---|---|---|\n| reflection in the $x$-axis | $${pm([1, 0], [0, -1])}$ | $(x,-y)$ |\n| reflection in the $y$-axis | $${pm([-1, 0], [0, 1])}$ | $(-x,y)$ |\n| reflection in $y=x$ | $${pm([0, 1], [1, 0])}$ | $(y,x)$ |\n| rotation $90^{\\circ}$ counterclockwise | $${pm([0, -1], [1, 0])}$ | $(-y,x)$ |\n| rotation $180^{\\circ}$ | $${pm([-1, 0], [0, -1])}$ | $(-x,-y)$ |\n| dilation $(O,k)$ | $${pm(['k', 0], [0, 'k'])}$ | $(kx,ky)$ |\n\nApply them to $P(3,1)$: the $x$-axis reflection gives $(3,-1)$; the line $y=x$ gives $(1,3)$; the half-turn gives $(-3,-1)$; the dilation $(O,2)$ gives $(6,2)$.`,
             `| Transformasi | Matriks | $(x,y)\\to$ |\n|---|---|---|\n| refleksi terhadap sumbu $x$ | $${pm([1, 0], [0, -1])}$ | $(x,-y)$ |\n| refleksi terhadap sumbu $y$ | $${pm([-1, 0], [0, 1])}$ | $(-x,y)$ |\n| refleksi terhadap $y=x$ | $${pm([0, 1], [1, 0])}$ | $(y,x)$ |\n| rotasi $90^{\\circ}$ berlawanan jarum jam | $${pm([0, -1], [1, 0])}$ | $(-y,x)$ |\n| rotasi $180^{\\circ}$ | $${pm([-1, 0], [0, -1])}$ | $(-x,-y)$ |\n| dilatasi $(O,k)$ | $${pm(['k', 0], [0, 'k'])}$ | $(kx,ky)$ |\n\nTerapkan pada $P(3,1)$: refleksi sumbu $x$ memberi $(3,-1)$; garis $y=x$ memberi $(1,3)$; setengah putaran memberi $(-3,-1)$; dilatasi $(O,2)$ memberi $(6,2)$.`,
           ),
         },
         {
           kind: 'concept',
           id: 'c3',
-          title: L('Watch Out!: Translation and Other Centres', 'Awas, Jebakan!: Translasi dan Pusat Lain'),
+          title: L('Watch Out!: Translation and Other Centers', 'Awas, Jebakan!: Translasi dan Pusat Lain'),
           body: L(
-            `A **translation** by $(p,q)$ is **not** a matrix product. It **adds** a vector: $(x,y)\\to(x+p,\\,y+q)$. For example $(3,1)$ translated by $(2,-1)$ is $(5,0)$.\n\nA **dilation with centre $C(a,b)$** and factor $k$: first measure from the centre, then scale, then come back:\n\n$$X'=C+k\\,(X-C)$$\n\nDilate $X(5,4)$ about $C(1,2)$ with $k=3$: $X-C=(4,2)$, times $3$ is $(12,6)$, plus $C$ gives $X'=(13,8)$.\n\nA positive angle turns **anticlockwise**; $-90^{\\circ}$ (clockwise) has the matrix $${pm([0, 1], [-1, 0])}$.`,
+            `A **translation** by $(p,q)$ is **not** a matrix product. It **adds** a vector: $(x,y)\\to(x+p,\\,y+q)$. For example $(3,1)$ translated by $(2,-1)$ is $(5,0)$.\n\nA **dilation with center $C(a,b)$** and factor $k$: first measure from the center, then scale, then come back:\n\n$$X'=C+k\\,(X-C)$$\n\nDilate $X(5,4)$ about $C(1,2)$ with $k=3$: $X-C=(4,2)$, times $3$ is $(12,6)$, plus $C$ gives $X'=(13,8)$.\n\nA positive angle turns **counterclockwise**; $-90^{\\circ}$ (clockwise) has the matrix $${pm([0, 1], [-1, 0])}$.`,
             `**Translasi** oleh $(p,q)$ **bukan** hasil kali matriks. Ia **menambah** sebuah vektor: $(x,y)\\to(x+p,\\,y+q)$. Misalnya $(3,1)$ yang digeser $(2,-1)$ menjadi $(5,0)$.\n\n**Dilatasi berpusat di $C(a,b)$** dengan faktor $k$: ukur dulu dari pusat, lalu skala, lalu kembali:\n\n$$X'=C+k\\,(X-C)$$\n\nDilatasikan $X(5,4)$ terhadap $C(1,2)$ dengan $k=3$: $X-C=(4,2)$, kali $3$ adalah $(12,6)$, tambah $C$ memberi $X'=(13,8)$.\n\nSudut positif memutar **berlawanan jarum jam**; $-90^{\\circ}$ (searah jarum jam) bermatriks $${pm([0, 1], [-1, 0])}$.`,
           ),
         },
@@ -79,7 +79,7 @@ export const m6s1: Submodule = {
             caption: L('A triangle and its image.', 'Sebuah segitiga dan bayangannya.'),
           },
           options: [
-            L('Rotation by $90^{\\circ}$ anticlockwise about the origin', 'Rotasi $90^{\\circ}$ berlawanan jarum jam terhadap titik asal'),
+            L('Rotation by $90^{\\circ}$ counterclockwise about the origin', 'Rotasi $90^{\\circ}$ berlawanan jarum jam terhadap titik asal'),
             L('Reflection in the $y$-axis', 'Refleksi terhadap sumbu $y$'),
             L('Reflection in the line $y=x$', 'Refleksi terhadap garis $y=x$'),
             L('Rotation by $90^{\\circ}$ clockwise about the origin', 'Rotasi $90^{\\circ}$ searah jarum jam terhadap titik asal'),
@@ -100,7 +100,7 @@ export const m6s1: Submodule = {
           id: 'f1',
           math: true,
           prompt: L(
-            `Try it together: rotate $(3,1)$ by $90^{\\circ}$ anticlockwise with $M=${pm([0, -1], [1, 0])}$, row by row.`,
+            `Try it together: rotate $(3,1)$ by $90^{\\circ}$ counterclockwise with $M=${pm([0, -1], [1, 0])}$, row by row.`,
             `Coba bersama: putar $(3,1)$ sebesar $90^{\\circ}$ berlawanan jarum jam dengan $M=${pm([0, -1], [1, 0])}$, baris demi baris.`,
           ),
           template: "x'=0\\cdot3-1\\cdot1=___ \\qquad y'=1\\cdot3+0\\cdot1=___",
@@ -115,7 +115,7 @@ export const m6s1: Submodule = {
           options: [
             L(`Reflection in the $y$-axis has the matrix $${pm([-1, 0], [0, 1])}$.`, `Refleksi terhadap sumbu $y$ bermatriks $${pm([-1, 0], [0, 1])}$.`),
             L(`Dilation $(O,3)$ has the matrix $${pm([3, 0], [0, 3])}$.`, `Dilatasi $(O,3)$ bermatriks $${pm([3, 0], [0, 3])}$.`),
-            L(`Rotation by $90^{\\circ}$ anticlockwise has the matrix $${pm([0, 1], [-1, 0])}$.`, `Rotasi $90^{\\circ}$ berlawanan jarum jam bermatriks $${pm([0, 1], [-1, 0])}$.`),
+            L(`Rotation by $90^{\\circ}$ counterclockwise has the matrix $${pm([0, 1], [-1, 0])}$.`, `Rotasi $90^{\\circ}$ berlawanan jarum jam bermatriks $${pm([0, 1], [-1, 0])}$.`),
             L('A translation is a $2\\times2$ matrix times the point.', 'Translasi adalah matriks $2\\times2$ kali titik.'),
           ],
           answer: [0, 1],
@@ -149,7 +149,7 @@ export const m6s1: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'The point $(4,-2)$ is rotated by $90^{\\circ}$ anticlockwise about the origin. Find the sum of the coordinates of its image.',
+            'The point $(4,-2)$ is rotated by $90^{\\circ}$ counterclockwise about the origin. Find the sum of the coordinates of its image.',
             'Titik $(4,-2)$ diputar $90^{\\circ}$ berlawanan jarum jam terhadap titik asal. Cari jumlah koordinat bayangannya.',
           ),
           blanks: [{ answer: 6 }],
@@ -178,7 +178,7 @@ export const m6s1: Submodule = {
           id: 'c1',
           title: L('Look Closely: The Later Matrix Goes on the Left', 'Ayo Amati: Matriks yang Belakangan di Sebelah Kiri'),
           body: L(
-            `Do $T_1$ first and then $T_2$. The point goes $X\\to M_1X\\to M_2(M_1X)$, so the single matrix is $M=M_2M_1$: the **later** transformation is written on the **left**.\n\nReflect in the $x$-axis ($F$) and then rotate by $90^{\\circ}$ anticlockwise ($R$):\n\n$$RF=${pm([0, -1], [1, 0])}${pm([1, 0], [0, -1])}=${pm([0, 1], [1, 0])}$$\n\nThis is the reflection in $y=x$. Check with $(3,1)$: the reflection gives $(3,-1)$, then the rotation gives $(1,3)$ ✓. The picture follows the point.`,
+            `Do $T_1$ first and then $T_2$. The point goes $X\\to M_1X\\to M_2(M_1X)$, so the single matrix is $M=M_2M_1$: the **later** transformation is written on the **left**.\n\nReflect in the $x$-axis ($F$) and then rotate by $90^{\\circ}$ counterclockwise ($R$):\n\n$$RF=${pm([0, -1], [1, 0])}${pm([1, 0], [0, -1])}=${pm([0, 1], [1, 0])}$$\n\nThis is the reflection in $y=x$. Check with $(3,1)$: the reflection gives $(3,-1)$, then the rotation gives $(1,3)$ ✓. The picture follows the point.`,
             `Lakukan $T_1$ dulu lalu $T_2$. Titik berjalan $X\\to M_1X\\to M_2(M_1X)$, jadi matriks tunggalnya $M=M_2M_1$: transformasi yang **belakangan** ditulis di sebelah **kiri**.\n\nRefleksikan terhadap sumbu $x$ ($F$) lalu putar $90^{\\circ}$ berlawanan jarum jam ($R$):\n\n$$RF=${pm([0, -1], [1, 0])}${pm([1, 0], [0, -1])}=${pm([0, 1], [1, 0])}$$\n\nIni adalah refleksi terhadap $y=x$. Periksa dengan $(3,1)$: refleksi memberi $(3,-1)$, lalu rotasi memberi $(1,3)$ ✓. Gambar mengikuti titiknya.`,
           ),
           figure: {
@@ -251,7 +251,7 @@ export const m6s1: Submodule = {
           id: 'mc1',
           prompt: L('Choose the TWO true statements.', 'Pilih DUA pernyataan yang benar.'),
           options: [
-            L('Reflecting in the $x$-axis and then rotating $90^{\\circ}$ anticlockwise equals reflecting in $y=x$.', 'Refleksi terhadap sumbu $x$ lalu rotasi $90^{\\circ}$ berlawanan jarum jam sama dengan refleksi terhadap $y=x$.'),
+            L('Reflecting in the $x$-axis and then rotating $90^{\\circ}$ counterclockwise equals reflecting in $y=x$.', 'Refleksi terhadap sumbu $x$ lalu rotasi $90^{\\circ}$ berlawanan jarum jam sama dengan refleksi terhadap $y=x$.'),
             L('After the dilation $(O,3)$ the area of a figure is multiplied by $9$.', 'Setelah dilatasi $(O,3)$ luas suatu bangun dikalikan $9$.'),
             L('After the dilation $(O,3)$ the area of a figure is multiplied by $3$.', 'Setelah dilatasi $(O,3)$ luas suatu bangun dikalikan $3$.'),
             L('For the composition $M_2M_1$, the matrix $M_2$ is applied first.', 'Untuk komposisi $M_2M_1$, matriks $M_2$ diterapkan lebih dulu.'),
@@ -331,7 +331,7 @@ export const m6s1: Submodule = {
       },
       {
         prompt: L(
-          'A rotation by $90^{\\circ}$ anticlockwise is followed by a dilation $(O,2)$. The matrix of the composition is $\\begin{pmatrix}0&k\\\\2&0\\end{pmatrix}$. Find $k$.',
+          'A rotation by $90^{\\circ}$ counterclockwise is followed by a dilation $(O,2)$. The matrix of the composition is $\\begin{pmatrix}0&k\\\\2&0\\end{pmatrix}$. Find $k$.',
           'Rotasi $90^{\\circ}$ berlawanan jarum jam diikuti dilatasi $(O,2)$. Matriks komposisinya $\\begin{pmatrix}0&k\\\\2&0\\end{pmatrix}$. Tentukan $k$.',
         ),
         blanks: [{ label: 'k =', answer: -2 }],

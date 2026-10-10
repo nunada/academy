@@ -129,7 +129,7 @@ export const module3: Module = {
               kind: 'game',
               id: 'k1',
               prompt: {
-                en: 'The state holds `width` and `height`. Write `start()` returning `{"width": 80, "height": 40}`. Write `draw(state)` returning a `box` at x=100, y=90, sized `width` by `height`, colour "#437649", followed by a `text` at x=100, y=135 whose `text` is `f"{width} x {height}"`, size 12. Write `update` returning the state unchanged.',
+                en: 'The state holds `width` and `height`. Write `start()` returning `{"width": 80, "height": 40}`. Write `draw(state)` returning a `box` at x=100, y=90, sized `width` by `height`, color "#437649", followed by a `text` at x=100, y=135 whose `text` is `f"{width} x {height}"`, size 12. Write `update` returning the state unchanged.',
                 id: 'Keadaannya menyimpan `width` dan `height`. Tulis `start()` yang mengembalikan `{"width": 80, "height": 40}`. Tulis `draw(state)` yang mengembalikan `box` di x=100, y=90, berukuran `width` kali `height`, warna "#437649", diikuti `text` di x=100, y=135 yang isinya `f"{width} x {height}"`, ukuran 12. Tulis `update` yang mengembalikan keadaannya tanpa perubahan.',
               },
               starter:

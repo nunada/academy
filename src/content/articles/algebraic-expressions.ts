@@ -918,7 +918,7 @@ Uji numerik seperti ´f(2)´ dapat menangkap penyederhanaan yang salah tetapi ti
       ),
     },
     {
-      q: L('How do you check a factorisation?', 'Bagaimana memeriksa hasil pemfaktoran?'),
+      q: L('How do you check a factorization?', 'Bagaimana memeriksa hasil pemfaktoran?'),
       a: L(
         'Multiply the factors back out and compare the result with the original expression. If x minus 2 times x minus 3 expands to x squared minus 5x plus 6, the factoring is correct. You can also substitute one number, such as x equals 1, into both forms.',
         'Kalikan kembali faktor-faktornya dan bandingkan hasilnya dengan bentuk semula. Jika x dikurangi 2 kali x dikurangi 3 dijabarkan menjadi x kuadrat dikurangi 5x ditambah 6, pemfaktorannya benar. Kamu juga dapat mensubstitusikan satu bilangan, misalnya x sama dengan 1, ke kedua bentuk.',

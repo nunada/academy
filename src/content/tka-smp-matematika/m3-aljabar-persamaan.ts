@@ -55,7 +55,7 @@ function tileRows(rows: { label?: string; tiles: [TileKind, number][]; after?: s
 }
 
 /** A rectangle cut into cells for an area model. Columns run left to right, rows top to bottom;
- *  `cells[row][col]` is the text written in a cell and `colors` its colour. */
+ *  `cells[row][col]` is the text written in a cell and `colors` its color. */
 function areaModel(o: {
   cols: { label: string; w: number }[]
   rows: { label: string; h: number }[]
@@ -126,7 +126,7 @@ function balance(o: { left: { x?: number; ones?: number }; right: { x?: number; 
   return { dim: 2, axes: false, ...fit([[-9, -3.6], [9, top + 0.3]], 0.4), items }
 }
 
-/** Two lines `y = f1(x)` (green) and `y = f2(x)` (orange) on a labelled plane, with an optional
+/** Two lines `y = f1(x)` (green) and `y = f2(x)` (orange) on a labeled plane, with an optional
  *  red dot where they cross. */
 function twoLines(o: { f1: string; f2: string; at?: [number, number]; name?: string; xSpan: [number, number]; ySpan: [number, number] }): Pick<Figure, 'dim' | 'xSpan' | 'ySpan' | 'ticks' | 'items'> {
   const items: FigItem[] = [
@@ -635,7 +635,7 @@ export const module3: Module = {
               id: 'c3',
               title: L('Step by Step: A Word Problem in 4 Steps', 'Contoh Bertahap: Soal Cerita dalam 4 Langkah'),
               body: L(
-                'A taxi charges a starting fee of Rp8,000 plus Rp3,000 for every kilometre. Siti paid Rp26,000. How far did she ride?\n\n1. Step 1: Understand. The unknown is the distance, so let $k$ be the number of kilometres.\n2. Step 2: Model. Fee plus distance charge equals the total: $8\\,000 + 3\\,000k = 26\\,000$.\n3. Step 3: Solve. Subtract 8 000 from both sides: $3\\,000k = 18\\,000$. Divide both sides by 3 000: $k = 6$.\n4. Step 4: Check in the story: $8\\,000 + 3\\,000 \\times 6 = 26\\,000$. Siti rode 6 km.\n\nThe solution is one point on the number line: the single number that makes the equation true.',
+                'A taxi charges a starting fee of Rp8,000 plus Rp3,000 for every kilometer. Siti paid Rp26,000. How far did she ride?\n\n1. Step 1: Understand. The unknown is the distance, so let $k$ be the number of kilometers.\n2. Step 2: Model. Fee plus distance charge equals the total: $8\\,000 + 3\\,000k = 26\\,000$.\n3. Step 3: Solve. Subtract 8 000 from both sides: $3\\,000k = 18\\,000$. Divide both sides by 3 000: $k = 6$.\n4. Step 4: Check in the story: $8\\,000 + 3\\,000 \\times 6 = 26\\,000$. Siti rode 6 km.\n\nThe solution is one point on the number line: the single number that makes the equation true.',
                 'Sebuah taksi menarik biaya awal Rp8.000 ditambah Rp3.000 untuk setiap kilometer. Siti membayar Rp26.000. Berapa jauh ia naik taksi?\n\n1. Langkah 1: Pahami. Yang tidak diketahui adalah jaraknya, jadi misalkan $k$ adalah banyak kilometer.\n2. Langkah 2: Modelkan. Biaya awal ditambah biaya jarak sama dengan totalnya: $8\\,000 + 3\\,000k = 26\\,000$.\n3. Langkah 3: Selesaikan. Kurangi kedua ruas dengan 8 000: $3\\,000k = 18\\,000$. Bagi kedua ruas dengan 3 000: $k = 6$.\n4. Langkah 4: Periksa pada cerita: $8\\,000 + 3\\,000 \\times 6 = 26\\,000$. Siti naik taksi sejauh 6 km.\n\nPenyelesaiannya adalah satu titik pada garis bilangan: satu-satunya bilangan yang membuat persamaan itu benar.',
               ),
               figure: {

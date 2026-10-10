@@ -341,9 +341,9 @@ export const module2: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'Running fraction addition backwards', id: 'Menjalankan penjumlahan pecahan secara terbalik' },
+              title: { en: 'Running fraction addition backward', id: 'Menjalankan penjumlahan pecahan secara terbalik' },
               body: {
-                en: 'Adding $\\frac{2}{x-1} + \\frac{3}{x+2}$ over a common denominator gives $\\frac{2(x+2)+3(x-1)}{(x-1)(x+2)} = \\frac{5x+1}{(x-1)(x+2)}$. **Partial fractions** runs this backwards: given the combined fraction, recover the two simple pieces that were added to make it.\n\nFor $\\frac{5x+1}{(x-1)(x+2)}$, write $\\frac{A}{x-1} + \\frac{B}{x+2}$ and clear denominators: $5x+1 = A(x+2) + B(x-1)$. This must hold for **every** $x$, so choosing convenient values isolates each constant. At $x=1$: $5(1)+1 = A(3) \\Rightarrow 6 = 3A \\Rightarrow A=2$. At $x=-2$: $5(-2)+1 = B(-3) \\Rightarrow -9 = -3B \\Rightarrow B=3$.',
+                en: 'Adding $\\frac{2}{x-1} + \\frac{3}{x+2}$ over a common denominator gives $\\frac{2(x+2)+3(x-1)}{(x-1)(x+2)} = \\frac{5x+1}{(x-1)(x+2)}$. **Partial fractions** runs this backward: given the combined fraction, recover the two simple pieces that were added to make it.\n\nFor $\\frac{5x+1}{(x-1)(x+2)}$, write $\\frac{A}{x-1} + \\frac{B}{x+2}$ and clear denominators: $5x+1 = A(x+2) + B(x-1)$. This must hold for **every** $x$, so choosing convenient values isolates each constant. At $x=1$: $5(1)+1 = A(3) \\Rightarrow 6 = 3A \\Rightarrow A=2$. At $x=-2$: $5(-2)+1 = B(-3) \\Rightarrow -9 = -3B \\Rightarrow B=3$.',
                 id: 'Menjumlahkan $\\frac{2}{x-1} + \\frac{3}{x+2}$ dengan penyebut sekutu memberi $\\frac{2(x+2)+3(x-1)}{(x-1)(x+2)} = \\frac{5x+1}{(x-1)(x+2)}$. **Pecahan parsial** menjalankan ini terbalik: diberikan pecahan gabungannya, pulihkan kedua bagian sederhana yang dijumlahkan untuk membuatnya.\n\nUntuk $\\frac{5x+1}{(x-1)(x+2)}$, tulis $\\frac{A}{x-1} + \\frac{B}{x+2}$ dan hilangkan penyebutnya: $5x+1 = A(x+2) + B(x-1)$. Ini harus berlaku untuk $x$ **apa pun**, sehingga memilih nilai yang nyaman mengisolasi tiap konstanta. Di $x=1$: $5(1)+1 = A(3) \\Rightarrow 6 = 3A \\Rightarrow A=2$. Di $x=-2$: $5(-2)+1 = B(-3) \\Rightarrow -9 = -3B \\Rightarrow B=3$.',
               },
             },

@@ -80,7 +80,7 @@ export const module1: Module = {
               id: 'c1',
               title: L('Look Closely: Numbers Below Zero', 'Ayo Amati: Bilangan di Bawah Nol'),
               body: L(
-                'In Dieng the morning temperature can drop to $-3$ °C. A diver swims at $-12$ m, which means 12 metres below sea level. Numbers like these are **negative integers**. Together with 0 and the positive numbers they form the **integers**.\n\n- On the number line, the further **right** a number is, the **greater** it is. So $-8<-3<0<2$.\n- Two numbers like $-4$ and $4$ are **opposites**: they are the same distance from 0, on opposite sides of it.\n\nIn the picture, the green dot is at $-4$ and the orange dot is at 3. The jumps show how far each one is from 0.',
+                'In Dieng the morning temperature can drop to $-3$ °C. A diver swims at $-12$ m, which means 12 meters below sea level. Numbers like these are **negative integers**. Together with 0 and the positive numbers they form the **integers**.\n\n- On the number line, the further **right** a number is, the **greater** it is. So $-8<-3<0<2$.\n- Two numbers like $-4$ and $4$ are **opposites**: they are the same distance from 0, on opposite sides of it.\n\nIn the picture, the green dot is at $-4$ and the orange dot is at 3. The jumps show how far each one is from 0.',
                 'Di Dieng, suhu pagi hari bisa turun sampai $-3$ °C. Seorang penyelam berenang di kedalaman $-12$ m, artinya 12 meter di bawah permukaan laut. Bilangan seperti ini disebut **bilangan bulat negatif**. Bersama 0 dan bilangan positif, semuanya membentuk **bilangan bulat**.\n\n- Pada garis bilangan, makin ke **kanan** letak suatu bilangan, makin **besar** bilangan itu. Jadi $-8<-3<0<2$.\n- Dua bilangan seperti $-4$ dan $4$ disebut **berlawanan**: jaraknya ke 0 sama, tetapi letaknya di dua sisi 0 yang berlawanan.\n\nPada gambar, titik hijau ada di $-4$ dan titik oranye ada di 3. Anak panah menunjukkan jarak masing-masing titik dari 0.',
               ),
               figure: {
@@ -287,7 +287,7 @@ export const module1: Module = {
               id: 'c1',
               title: L('Look Closely: One Number, Many Forms', 'Ayo Amati: Satu Bilangan, Banyak Bentuk'),
               body: L(
-                'Ani drinks $\\frac{3}{4}$ litre of milk. Budi drinks 0.75 litre. Citra says she drank 75% of a 1-litre bottle. They all drank the same amount!\n\nA **rational number** is any number that can be written as $\\frac{a}{b}$, where $a$ and $b$ are integers and $b\\neq0$. Integers are rational too: $5=\\frac{5}{1}$ and $-2=\\frac{-2}{1}$.\n\n- A **fraction**, a **decimal** and a **percent** can name the same rational number: $\\frac{3}{4}=0.75=75\\%$.\n- **Equivalent fractions** such as $\\frac{3}{4}=\\frac{6}{8}=\\frac{15}{20}$ are the same point on the number line.\n- In the picture, the coloured part has the same length in every bar.',
+                'Ani drinks $\\frac{3}{4}$ liter of milk. Budi drinks 0.75 liter. Citra says she drank 75% of a 1-liter bottle. They all drank the same amount!\n\nA **rational number** is any number that can be written as $\\frac{a}{b}$, where $a$ and $b$ are integers and $b\\neq0$. Integers are rational too: $5=\\frac{5}{1}$ and $-2=\\frac{-2}{1}$.\n\n- A **fraction**, a **decimal** and a **percent** can name the same rational number: $\\frac{3}{4}=0.75=75\\%$.\n- **Equivalent fractions** such as $\\frac{3}{4}=\\frac{6}{8}=\\frac{15}{20}$ are the same point on the number line.\n- In the picture, the colored part has the same length in every bar.',
                 'Ani minum $\\frac{3}{4}$ liter susu. Budi minum 0,75 liter. Citra bilang ia minum 75% dari sebotol berukuran 1 liter. Ternyata jumlahnya sama!\n\n**Bilangan rasional** adalah bilangan yang dapat ditulis sebagai $\\frac{a}{b}$, dengan $a$ dan $b$ bilangan bulat dan $b\\neq0$. Bilangan bulat juga rasional: $5=\\frac{5}{1}$ dan $-2=\\frac{-2}{1}$.\n\n- Sebuah **pecahan**, **desimal**, dan **persen** bisa menamai bilangan rasional yang sama: $\\frac{3}{4}=0{,}75=75\\%$.\n- **Pecahan senilai** seperti $\\frac{3}{4}=\\frac{6}{8}=\\frac{15}{20}$ adalah titik yang sama pada garis bilangan.\n- Pada gambar, bagian yang berwarna sama panjang di setiap batang.',
               ),
               figure: {
@@ -297,7 +297,7 @@ export const module1: Module = {
                   { parts: 20, shaded: 15, label: '15/20' },
                 ]),
                 caption: L(
-                  'Three bars of the same length. The coloured part is the same in all of them.',
+                  'Three bars of the same length. The colored part is the same in all of them.',
                   'Tiga batang sama panjang. Bagian yang berwarna sama di semuanya.',
                 ),
               },
@@ -356,7 +356,7 @@ export const module1: Module = {
               ),
               figure: {
                 ...numberLine({ from: 0, to: 2, step: 0.25, labelEvery: 4, marks: [{ at: 1.25, color: 'result' }] }),
-                caption: L('The numbers 0, 1 and 2 are labelled. Each small step is the same length.', 'Bilangan 0, 1, dan 2 diberi label. Setiap langkah kecil sama panjang.'),
+                caption: L('The numbers 0, 1 and 2 are labeled. Each small step is the same length.', 'Bilangan 0, 1, dan 2 diberi label. Setiap langkah kecil sama panjang.'),
               },
               options: [
                 L('$\\frac{5}{4}$', '$\\frac{5}{4}$'),
@@ -593,12 +593,12 @@ export const module1: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
-                'The whole bar stands for 1. It is cut into equal parts and one part is coloured. Which power equals the coloured part?',
+                'The whole bar stands for 1. It is cut into equal parts and one part is colored. Which power equals the colored part?',
                 'Seluruh batang menyatakan 1. Batang itu dipotong menjadi bagian-bagian sama besar dan satu bagian diwarnai. Pangkat mana yang sama dengan bagian berwarna?',
               ),
               figure: {
                 ...fractionBars([{ parts: 8, shaded: 1 }]),
-                caption: L('One bar cut into equal parts. The first part is coloured.', 'Satu batang dipotong menjadi bagian-bagian sama besar. Bagian pertama diwarnai.'),
+                caption: L('One bar cut into equal parts. The first part is colored.', 'Satu batang dipotong menjadi bagian-bagian sama besar. Bagian pertama diwarnai.'),
               },
               options: [
                 L('$2^{-3}$', '$2^{-3}$'),
@@ -608,11 +608,11 @@ export const module1: Module = {
               ],
               answer: 0,
               explain: L(
-                'There are 8 parts, so the coloured part is $\\frac{1}{8}=\\frac{1}{2^3}=2^{-3}$. The power $-2^3=-8$ is negative, $2^{-8}$ copies the number of parts into the exponent, and $2^3=8$ is the reciprocal.',
+                'There are 8 parts, so the colored part is $\\frac{1}{8}=\\frac{1}{2^3}=2^{-3}$. The power $-2^3=-8$ is negative, $2^{-8}$ copies the number of parts into the exponent, and $2^3=8$ is the reciprocal.',
                 'Ada 8 bagian, jadi bagian berwarna adalah $\\frac{1}{8}=\\frac{1}{2^3}=2^{-3}$. Pangkat $-2^3=-8$ itu negatif, $2^{-8}$ menyalin banyak bagian ke dalam eksponen, dan $2^3=8$ adalah kebalikannya.',
               ),
               hint: L(
-                'Count the parts and write the coloured part as a fraction. Then write the denominator as a power of 2.',
+                'Count the parts and write the colored part as a fraction. Then write the denominator as a power of 2.',
                 'Hitung banyak bagian dan tulis bagian berwarna sebagai pecahan. Lalu tulis penyebutnya sebagai pangkat dari 2.',
               ),
             },
@@ -720,7 +720,7 @@ export const module1: Module = {
               id: 'c1',
               title: L('Look Closely: Roots and Where They Sit', 'Ayo Amati: Akar dan Letaknya'),
               body: L(
-                'A square garden has an area of 49 square metres. Its side is $\\sqrt{49}=7$ m, because $7^2=49$.\n\n- The **square root** $\\sqrt{n}$ is the non-negative number whose square is $n$. The **perfect squares** are 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, ...\n- The **cube root** $\\sqrt[3]{n}$ is the number whose cube is $n$: $\\sqrt[3]{27}=3$ because $3^3=27$, and $\\sqrt[3]{64}=4$.\n- To **estimate** $\\sqrt{20}$, find the perfect squares around 20: $16<20<25$, so $4<\\sqrt{20}<5$. It is a little less than 4.5.\n\nOn the number line, $\\sqrt{20}$ (the red dot) sits inside the green stretch between 4 and 5.',
+                'A square garden has an area of 49 square meters. Its side is $\\sqrt{49}=7$ m, because $7^2=49$.\n\n- The **square root** $\\sqrt{n}$ is the non-negative number whose square is $n$. The **perfect squares** are 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, ...\n- The **cube root** $\\sqrt[3]{n}$ is the number whose cube is $n$: $\\sqrt[3]{27}=3$ because $3^3=27$, and $\\sqrt[3]{64}=4$.\n- To **estimate** $\\sqrt{20}$, find the perfect squares around 20: $16<20<25$, so $4<\\sqrt{20}<5$. It is a little less than 4.5.\n\nOn the number line, $\\sqrt{20}$ (the red dot) sits inside the green stretch between 4 and 5.',
                 'Sebuah kebun berbentuk persegi luasnya 49 meter persegi. Panjang sisinya $\\sqrt{49}=7$ m, karena $7^2=49$.\n\n- **Akar kuadrat** $\\sqrt{n}$ adalah bilangan tak negatif yang kuadratnya $n$. **Bilangan kuadrat sempurna** adalah 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, ...\n- **Akar pangkat tiga** $\\sqrt[3]{n}$ adalah bilangan yang pangkat tiganya $n$: $\\sqrt[3]{27}=3$ karena $3^3=27$, dan $\\sqrt[3]{64}=4$.\n- Untuk **menaksir** $\\sqrt{20}$, cari bilangan kuadrat sempurna di sekitar 20: $16<20<25$, jadi $4<\\sqrt{20}<5$. Nilainya sedikit kurang dari 4,5.\n\nPada garis bilangan, $\\sqrt{20}$ (titik merah) berada di dalam bagian hijau di antara 4 dan 5.',
               ),
               figure: {
@@ -930,7 +930,7 @@ export const module1: Module = {
           },
           {
             prompt: L(
-              'A town has $2\\times10^{5}$ residents. Each resident uses $1.5\\times10^{2}$ litres of water a day. Write the total number of litres used in one day in scientific notation $a\\times10^{n}$.',
+              'A town has $2\\times10^{5}$ residents. Each resident uses $1.5\\times10^{2}$ liters of water a day. Write the total number of liters used in one day in scientific notation $a\\times10^{n}$.',
               'Sebuah kota punya $2\\times10^{5}$ penduduk. Setiap penduduk memakai $1{,}5\\times10^{2}$ liter air sehari. Tulis total liter air yang dipakai dalam sehari dalam notasi ilmiah $a\\times10^{n}$.',
             ),
             inline: true,
@@ -945,7 +945,7 @@ export const module1: Module = {
           },
           {
             prompt: L(
-              'A square rice field has an area of 75 m$^2$. Its side is $a\\sqrt{b}$ metres, with $b$ as small as possible. Find $a$ and $b$. Then the perimeter of the field is between $n$ and $n+1$ metres. Find $n$.',
+              'A square rice field has an area of 75 m$^2$. Its side is $a\\sqrt{b}$ meters, with $b$ as small as possible. Find $a$ and $b$. Then the perimeter of the field is between $n$ and $n+1$ meters. Find $n$.',
               'Sebuah petak sawah berbentuk persegi luasnya 75 m$^2$. Panjang sisinya $a\\sqrt{b}$ meter, dengan $b$ sekecil mungkin. Tentukan $a$ dan $b$. Lalu keliling sawah itu berada di antara $n$ dan $n+1$ meter. Tentukan $n$.',
             ),
             figure: {

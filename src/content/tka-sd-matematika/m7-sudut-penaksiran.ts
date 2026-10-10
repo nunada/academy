@@ -12,7 +12,7 @@ const L = (en: string, id: string): Loc => ({ en, id })
 
 const rad = (d: number) => (d * Math.PI) / 180
 const tidy = (n: number) => Number(n.toFixed(4))
-/** The point at distance `r` from (cx, cy) in direction `deg` (anticlockwise from the right). */
+/** The point at distance `r` from (cx, cy) in direction `deg` (counterclockwise from the right). */
 const at = (cx: number, cy: number, r: number, deg: number): Pt => [tidy(cx + r * Math.cos(rad(deg))), tidy(cy + r * Math.sin(rad(deg)))]
 const plus = (p: Piece, extra: FigItem[]): Piece => ({ ...p, items: [...p.items, ...extra] })
 
@@ -57,7 +57,7 @@ function clockAngle(h: number, label: string): Piece {
   return plus(clockFace({ h, m: 0 }), [{ t: 'angle', at: [0, 0], from: [0, 1], to: [tidy(Math.sin(th)), tidy(Math.cos(th))], label }])
 }
 
-/** Triangle with the corners listed A, B, C (anticlockwise): B at the origin, C on the x axis. */
+/** Triangle with the corners listed A, B, C (counterclockwise): B at the origin, C on the x axis. */
 function triPts(angB: number, angC: number, bc: number): [Pt, Pt, Pt] {
   const angA = 180 - angB - angC
   const ab = (bc * Math.sin(rad(angC))) / Math.sin(rad(angA))
@@ -120,7 +120,7 @@ function rulerPencil(len: number): Piece {
   return { dim: 2, axes: false, ...fit([[-0.6, -0.4], [22, 3.3]], 0.3), items }
 }
 
-/** A bench with `n` equal hand spans (or pencils) laid along it, the first one labelled. */
+/** A bench with `n` equal hand spans (or pencils) laid along it, the first one labeled. */
 function spansFig(n: number, label: string): Piece {
   const items: FigItem[] = [outline(rectPts(0, 0, n, 0.7), 'muted')]
   for (let i = 0; i < n; i++) items.push(solid(rectPts(i, 0.9, 1, 0.6), i % 2 ? 'b' : 'a'))
@@ -152,7 +152,7 @@ export const module7: Module = {
         /* ------------------------------------------------- S1 L1 kinds and measuring */
         {
           id: 'tka-m7-s1-l1',
-          title: L('Recognising and Measuring Angles', 'Mengenal dan Mengukur Sudut'),
+          title: L('Recognizing and Measuring Angles', 'Mengenal dan Mengukur Sudut'),
           goal: L(
             'You can name the kinds of angles, read a protractor on the right scale, and find the angle between the clock hands.',
             'Kamu bisa menyebut jenis-jenis sudut, membaca busur derajat pada skala yang benar, dan mencari sudut antara jarum jam.',
@@ -311,7 +311,7 @@ export const module7: Module = {
               id: 'c4',
               title: L('Step by Step: The Angle Between the Clock Hands', 'Contoh Bertahap: Sudut di Antara Jarum Jam'),
               body: L(
-                'A clock face is one full turn, $360^\\circ$. The numbers 1 to 12 are spread out evenly, so one gap between two neighbouring numbers is $360^\\circ\\div12=30^\\circ$.\n\n1. Step 1: At 4:00 the long hand points at 12 and the short hand points at 4.\n2. Step 2: Count the gaps from 12 to 4. There are 4 gaps.\n3. Step 3: Each gap is $30^\\circ$, so the angle is $4\\times30^\\circ=120^\\circ$.\n4. Step 4: Choose the smaller angle. If you get more than $180^\\circ$, subtract it from $360^\\circ$.\n\n**Remember:**\n\n- One hour on the clock is $30^\\circ$.\n- "The angle between the hands" means the smaller angle.',
+                'A clock face is one full turn, $360^\\circ$. The numbers 1 to 12 are spread out evenly, so one gap between two neighboring numbers is $360^\\circ\\div12=30^\\circ$.\n\n1. Step 1: At 4:00 the long hand points at 12 and the short hand points at 4.\n2. Step 2: Count the gaps from 12 to 4. There are 4 gaps.\n3. Step 3: Each gap is $30^\\circ$, so the angle is $4\\times30^\\circ=120^\\circ$.\n4. Step 4: Choose the smaller angle. If you get more than $180^\\circ$, subtract it from $360^\\circ$.\n\n**Remember:**\n\n- One hour on the clock is $30^\\circ$.\n- "The angle between the hands" means the smaller angle.',
                 'Muka jam adalah satu putaran penuh, $360^\\circ$. Angka 1 sampai 12 tersebar merata, jadi satu celah di antara dua angka yang bersebelahan adalah $360^\\circ\\div12=30^\\circ$.\n\n1. Langkah 1: Pada pukul 4.00 jarum panjang menunjuk angka 12 dan jarum pendek menunjuk angka 4.\n2. Langkah 2: Hitung celah dari 12 sampai 4. Ada 4 celah.\n3. Langkah 3: Tiap celah $30^\\circ$, jadi sudutnya $4\\times30^\\circ=120^\\circ$.\n4. Langkah 4: Pilih sudut yang lebih kecil. Jika hasilnya lebih dari $180^\\circ$, kurangkan dari $360^\\circ$.\n\n**Ingat:**\n\n- Satu jam pada jam adalah $30^\\circ$.\n- "Sudut di antara jarum" berarti sudut yang lebih kecil.',
               ),
               figure: {
@@ -868,17 +868,17 @@ export const module7: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'Ani lays a 30 cm ruler end to end along the whiteboard. It fits 6 times. About how many metres long is the whiteboard?',
+                'Ani lays a 30 cm ruler end to end along the whiteboard. It fits 6 times. About how many meters long is the whiteboard?',
                 'Ani meletakkan penggaris 30 cm berurutan di sepanjang papan tulis. Penggaris itu muat 6 kali. Kira-kira berapa meter panjang papan tulis itu?',
               ),
               blanks: [{ answer: 1.8, after: '\\text{ m}' }],
               hints: [
                 L(
-                  'First find the whole length in centimetres. How many rulers fit?',
+                  'First find the whole length in centimeters. How many rulers fit?',
                   'Cari dulu panjang seluruhnya dalam sentimeter. Berapa penggaris yang muat?',
                 ),
                 L(
-                  'Multiply the number of rulers by 30 cm. The question wants metres, so change cm into m.',
+                  'Multiply the number of rulers by 30 cm. The question wants meters, so change cm into m.',
                   'Kalikan banyak penggaris dengan 30 cm. Soal meminta meter, jadi ubah cm menjadi m.',
                 ),
                 L(

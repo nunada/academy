@@ -145,7 +145,7 @@ export interface TsTest {
   expectError?: boolean
   /** Narrow `expectError` to one TypeScript error code. */
   errorCode?: number
-  /** Behaviour check, run on the compiled JavaScript. */
+  /** Behavior check, run on the compiled JavaScript. */
   check?: string
 }
 
@@ -459,10 +459,10 @@ export interface Module {
   submodules: Submodule[]
 }
 
-/** What the catalogue knows about a course without fetching its curriculum.
+/** What the catalog knows about a course without fetching its curriculum.
  *
  *  Everything a card shows lives here, including the two counts — the landing
- *  page and the catalogue must never pull a curriculum just to say "37 lessons".
+ *  page and the catalog must never pull a curriculum just to say "37 lessons".
  *  Those counts are the one fact that crosses the lazy boundary by hand; the
  *  curriculum check counts the real thing and fails on a mismatch. */
 export interface CourseInfo {
@@ -471,13 +471,13 @@ export interface CourseInfo {
   tagline: Loc
   /** Emoji shown on the course card. */
   icon: string
-  /** CSS colour used for the card accent. */
+  /** CSS color used for the card accent. */
   color: string
   level: Loc
   /** What the learner writes. `math` is the one that is not a programming
    *  language: those courses are worked on paper and answered in a box. */
   language: 'python' | 'html' | 'css' | 'javascript' | 'typescript' | 'sql' | 'react' | 'cpp' | 'mixed' | 'math'
-  /** Which half of the catalogue this belongs under.
+  /** Which half of the catalog this belongs under.
    *
    *  Not the same question as `language`. The three Python-for-mathematics
    *  courses are about mathematics but are `code`: the learner writes a
@@ -488,7 +488,7 @@ export interface CourseInfo {
   track: 'code' | 'math'
   /** Courses that must be finished first. */
   requires: string[]
-  /** false = shown on the catalogue but not yet playable. */
+  /** false = shown on the catalog but not yet playable. */
   available: boolean
   /** How many of each the curriculum holds. */
   lessons: number

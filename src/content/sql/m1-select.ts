@@ -137,7 +137,7 @@ export const module1: Module = {
               id: 'c4',
               title: { en: 'Rename a column with AS', id: 'Ganti nama kolom dengan AS' },
               body: {
-                en: '`AS` gives a column a different name in the result. The stored column is untouched — only the answer is relabelled. It matters more than it looks: the name in the result is what the rest of your program will read.',
+                en: '`AS` gives a column a different name in the result. The stored column is untouched — only the answer is relabeled. It matters more than it looks: the name in the result is what the rest of your program will read.',
                 id: '`AS` memberi sebuah kolom nama lain di hasilnya. Kolom yang tersimpan tidak tersentuh — hanya jawabannya yang dilabeli ulang. Ini lebih penting dari kelihatannya: nama di hasil itulah yang akan dibaca sisa programmu.',
               },
               code: { en: 'SELECT title AS name, year AS published FROM book;', id: 'SELECT judul AS nama, tahun AS terbit FROM buku;' },
@@ -182,7 +182,7 @@ export const module1: Module = {
               kind: 'fill',
               id: 'f1',
               prompt: {
-                en: 'Complete the query that returns the author and the year, with the author labelled `by`.',
+                en: 'Complete the query that returns the author and the year, with the author labeled `by`.',
                 id: 'Lengkapi kueri yang mengembalikan penulis dan tahun, dengan penulis dilabeli `oleh`.',
               },
               template: {
@@ -204,7 +204,7 @@ export const module1: Module = {
               id: 's1',
               schema: SCHEMA,
               prompt: {
-                en: 'Return two columns from `book`: the title labelled `name`, and the year. Nothing else.',
+                en: 'Return two columns from `book`: the title labeled `name`, and the year. Nothing else.',
                 id: 'Kembalikan dua kolom dari `buku`: judulnya dilabeli `nama`, dan tahunnya. Tidak ada yang lain.',
               },
               starter: { en: 'SELECT * FROM book;\n', id: 'SELECT * FROM buku;\n' },
@@ -478,7 +478,7 @@ export const module1: Module = {
           id: 'Satu kueri yang bisa dijalankan pramuniaga tiap pagi: apa yang bisa kujual hari ini, tanpa harganya selangit?',
         },
         requirements: [
-          { en: 'Return exactly two columns: the title labelled `book`, and `price`.', id: 'Kembalikan tepat dua kolom: judulnya dilabeli `buku`, dan `harga`.' },
+          { en: 'Return exactly two columns: the title labeled `book`, and `price`.', id: 'Kembalikan tepat dua kolom: judulnya dilabeli `buku`, dan `harga`.' },
           { en: 'Keep only books priced 100000 or less — a book at exactly 100000 counts.', id: 'Sisakan hanya buku seharga 100000 atau kurang — buku tepat 100000 ikut terhitung.' },
           { en: 'Keep only books with stock above zero.', id: 'Sisakan hanya buku dengan stok di atas nol.' },
           { en: 'It has to keep working when the prices and the stock change.', id: 'Ia harus tetap bekerja ketika harga dan stoknya berubah.' },
@@ -627,7 +627,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'DESC, and tie-breakers', id: 'DESC, dan pemutus seri' },
               body: {
-                en: 'Sorting runs upwards by default; `DESC` turns it round. A second column after the comma is the tie-breaker — it decides only among rows the first column could not separate. Without one, tied rows land in an arbitrary order.',
+                en: 'Sorting runs upward by default; `DESC` turns it round. A second column after the comma is the tie-breaker — it decides only among rows the first column could not separate. Without one, tied rows land in an arbitrary order.',
                 id: 'Pengurutan berjalan menaik secara bawaan; `DESC` membaliknya. Kolom kedua setelah koma adalah pemutus serinya — ia hanya memutuskan di antara baris yang tak bisa dipisahkan kolom pertama. Tanpa itu, baris yang seri mendarat dalam urutan sembarang.',
               },
               code: { en: 'SELECT title, year FROM book ORDER BY year DESC, title;', id: 'SELECT judul, tahun FROM buku ORDER BY tahun DESC, judul;' },
@@ -947,7 +947,7 @@ export const module1: Module = {
           id: 'Rak pajangan untuk dekade pertama abad ini: apa isinya, dan dalam urutan apa.',
         },
         requirements: [
-          { en: 'Return three columns: the title labelled `book`, then `price` and `stock`.', id: 'Kembalikan tiga kolom: judulnya dilabeli `buku`, lalu `harga` dan `stok`.' },
+          { en: 'Return three columns: the title labeled `book`, then `price` and `stock`.', id: 'Kembalikan tiga kolom: judulnya dilabeli `buku`, lalu `harga` dan `stok`.' },
           { en: 'Keep only books published from 2000 to 2010, both years included.', id: 'Sisakan hanya buku terbitan 2000 sampai 2010, kedua tahunnya termasuk.' },
           { en: 'Keep only books with stock above zero.', id: 'Sisakan hanya buku dengan stok di atas nol.' },
           { en: 'Sort by price, most expensive first.', id: 'Urutkan berdasarkan harga, yang termahal dulu.' },

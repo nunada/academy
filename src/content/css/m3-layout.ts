@@ -190,7 +190,7 @@ export const module3: Module = {
                       'var it = all(".item");\nvar gap = Math.round(it[1].getBoundingClientRect().left - it[0].getBoundingClientRect().right);\nassert(Math.abs(gap - 20) < 2, "the gap between items must be 20px, currently: " + gap + "px");',
                   },
                   {
-                    name: { en: 'Items are padded and coloured', id: 'Items are padded and coloured' },
+                    name: { en: 'Items are padded and colored', id: 'Items are padded and colored' },
                     check:
                       'assert(style(".item", "padding-top") === "10px", ".item padding must be 10px");\nassert(style(".item", "background-color") === "rgb(224, 231, 255)", ".item background must be #e0e7ff");',
                   },
@@ -212,7 +212,7 @@ export const module3: Module = {
                       'var it = all(".item");\nvar jarak = Math.round(it[1].getBoundingClientRect().left - it[0].getBoundingClientRect().right);\nassert(Math.abs(jarak - 20) < 2, "jarak antaritem harus 20px, sekarang: " + jarak + "px");',
                   },
                   {
-                    name: { en: 'Items are padded and coloured', id: 'Itemnya berpadding dan berwarna' },
+                    name: { en: 'Items are padded and colored', id: 'Itemnya berpadding dan berwarna' },
                     check:
                       'assert(style(".item", "padding-top") === "10px", "padding .item harus 10px");\nassert(style(".item", "background-color") === "rgb(224, 231, 255)", "latar .item harus #e0e7ff");',
                   },
@@ -284,7 +284,7 @@ export const module3: Module = {
                   { t: 'poly', pts: [[5, 4], [8, 4], [8, 6], [5, 6]], color: 'a', label: 'menu' },
                 ],
                 caption: {
-                  en: 'align-items: center lines up items of different heights along their shared middle — the logo and the menu both sit centred on the same horizontal line even though the logo is taller.',
+                  en: 'align-items: center lines up items of different heights along their shared middle — the logo and the menu both sit centered on the same horizontal line even though the logo is taller.',
                   id: 'align-items: center menyejajarkan item yang tingginya berbeda pada garis tengah yang sama — logo dan menunya sama-sama terpusat pada garis horizontal yang sama meski logonya lebih tinggi.',
                 },
               },
@@ -297,7 +297,7 @@ export const module3: Module = {
             {
               kind: 'concept',
               id: 'c3',
-              title: { en: 'Centring, finally made easy', id: 'Memusatkan, akhirnya jadi mudah' },
+              title: { en: 'Centering, finally made easy', id: 'Memusatkan, akhirnya jadi mudah' },
               body: {
                 en: 'Both properties set to `center` puts a child dead in the middle of its container, horizontally and vertically. This is the answer to a question CSS made hard for twenty years.',
                 id: 'Kedua properti disetel `center` menaruh sebuah anak tepat di tengah wadahnya, horizontal maupun vertikal. Inilah jawaban atas pertanyaan yang dibuat sulit oleh CSS selama dua puluh tahun.',
@@ -339,7 +339,7 @@ export const module3: Module = {
                 id: '<div class="bar">\n  <div class="logo">Nunada</div>\n  <div class="menu">Masuk</div>\n</div>',
               },
               prompt: {
-                en: 'Make `.bar` a flex row 80px tall that pushes `.logo` and `.menu` to opposite ends and centres them vertically.',
+                en: 'Make `.bar` a flex row 80px tall that pushes `.logo` and `.menu` to opposite ends and centers them vertically.',
                 id: 'Jadikan `.bar` baris flex setinggi 80px yang mendorong `.logo` dan `.menu` ke ujung berlawanan dan memusatkannya secara vertikal.',
               },
               starter: '.bar {\n\n}\n',
@@ -356,7 +356,7 @@ export const module3: Module = {
                       'assert(style(".bar", "justify-content") === "space-between", "justify-content must be space-between, currently: " + style(".bar", "justify-content"));\nvar bar = sel(".bar").getBoundingClientRect();\nvar logo = sel(".logo").getBoundingClientRect();\nvar menu = sel(".menu").getBoundingClientRect();\nassert(Math.abs(logo.left - bar.left) < 2, "logo must sit flush with the left edge");\nassert(Math.abs(bar.right - menu.right) < 2, "menu must sit flush with the right edge");',
                   },
                   {
-                    name: { en: 'They are centred vertically', id: 'They are centred vertically' },
+                    name: { en: 'They are centered vertically', id: 'They are centered vertically' },
                     check:
                       'assert(style(".bar", "align-items") === "center", "align-items must be center, currently: " + style(".bar", "align-items"));\nvar bar = sel(".bar").getBoundingClientRect();\nvar logo = sel(".logo").getBoundingClientRect();\nvar top = logo.top - bar.top;\nvar bottom = bar.bottom - logo.bottom;\nassert(Math.abs(top - bottom) < 2, "top and bottom gaps must match (top " + Math.round(top) + ", bottom " + Math.round(bottom) + ")");',
                   },
@@ -373,7 +373,7 @@ export const module3: Module = {
                       'assert(style(".bar", "justify-content") === "space-between", "justify-content harus space-between, sekarang: " + style(".bar", "justify-content"));\nvar bar = sel(".bar").getBoundingClientRect();\nvar logo = sel(".logo").getBoundingClientRect();\nvar menu = sel(".menu").getBoundingClientRect();\nassert(Math.abs(logo.left - bar.left) < 2, "logo harus menempel ujung kiri");\nassert(Math.abs(bar.right - menu.right) < 2, "menu harus menempel ujung kanan");',
                   },
                   {
-                    name: { en: 'They are centred vertically', id: 'Keduanya terpusat vertikal' },
+                    name: { en: 'They are centered vertically', id: 'Keduanya terpusat vertikal' },
                     check:
                       'assert(style(".bar", "align-items") === "center", "align-items harus center, sekarang: " + style(".bar", "align-items"));\nvar bar = sel(".bar").getBoundingClientRect();\nvar logo = sel(".logo").getBoundingClientRect();\nvar atas = logo.top - bar.top;\nvar bawah = bar.bottom - logo.bottom;\nassert(Math.abs(atas - bawah) < 2, "jarak atas dan bawah harus sama (atas " + Math.round(atas) + ", bawah " + Math.round(bawah) + ")");',
                   },
@@ -403,7 +403,7 @@ export const module3: Module = {
         },
         requirements: [
           { en: '`.bar` is a flex row, 72px tall, with 0 24px padding and a `#0f172a` background.', id: '`.bar` adalah baris flex, tinggi 72px, padding 0 24px, latar `#0f172a`.' },
-          { en: 'Logo left, menu right, both vertically centred.', id: 'Logo di kiri, menu di kanan, keduanya terpusat vertikal.' },
+          { en: 'Logo left, menu right, both vertically centered.', id: 'Logo di kiri, menu di kanan, keduanya terpusat vertikal.' },
           { en: '`.logo` is white, 20px, bold.', id: '`.logo` putih, 20px, tebal.' },
           { en: '`.menu` is itself a flex row with a 20px gap.', id: '`.menu` sendiri adalah baris flex dengan gap 20px.' },
           { en: 'Links inside `.menu` are `#cbd5e1` with no underline.', id: 'Tautan di dalam `.menu` berwarna `#cbd5e1` tanpa garis bawah.' },
@@ -422,9 +422,9 @@ export const module3: Module = {
                 'var bar = sel(".bar").getBoundingClientRect();\nvar logo = sel(".logo").getBoundingClientRect();\nvar menu = sel(".menu").getBoundingClientRect();\nassert(Math.abs(logo.left - (bar.left + 24)) < 3, "the logo must be on the left, right after the padding");\nassert(Math.abs((bar.right - 24) - menu.right) < 3, "the menu must sit flush right, right before the padding");',
             },
             {
-              name: { en: 'Everything is vertically centred', id: 'Everything is vertically centred' },
+              name: { en: 'Everything is vertically centered', id: 'Everything is vertically centered' },
               check:
-                'assert(style(".bar", "align-items") === "center", ".bar align-items must be center");\nvar bar = sel(".bar").getBoundingClientRect();\nvar logo = sel(".logo").getBoundingClientRect();\nassert(Math.abs((logo.top - bar.top) - (bar.bottom - logo.bottom)) < 2, "the logo is not vertically centred yet");',
+                'assert(style(".bar", "align-items") === "center", ".bar align-items must be center");\nvar bar = sel(".bar").getBoundingClientRect();\nvar logo = sel(".logo").getBoundingClientRect();\nassert(Math.abs((logo.top - bar.top) - (bar.bottom - logo.bottom)) < 2, "the logo is not vertically centered yet");',
             },
             {
               name: { en: 'The logo reads as a logo', id: 'The logo reads as a logo' },
@@ -454,7 +454,7 @@ export const module3: Module = {
                 'var bar = sel(".bar").getBoundingClientRect();\nvar logo = sel(".logo").getBoundingClientRect();\nvar menu = sel(".menu").getBoundingClientRect();\nassert(Math.abs(logo.left - (bar.left + 24)) < 3, "logo harus di kiri, tepat setelah padding");\nassert(Math.abs((bar.right - 24) - menu.right) < 3, "menu harus menempel kanan, tepat sebelum padding");',
             },
             {
-              name: { en: 'Everything is vertically centred', id: 'Semuanya terpusat vertikal' },
+              name: { en: 'Everything is vertically centered', id: 'Semuanya terpusat vertikal' },
               check:
                 'assert(style(".bar", "align-items") === "center", "align-items .bar harus center");\nvar bar = sel(".bar").getBoundingClientRect();\nvar logo = sel(".logo").getBoundingClientRect();\nassert(Math.abs((logo.top - bar.top) - (bar.bottom - logo.bottom)) < 2, "logo belum terpusat vertikal");',
             },

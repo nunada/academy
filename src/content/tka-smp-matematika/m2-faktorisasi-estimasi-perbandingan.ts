@@ -3,7 +3,7 @@ import type { FigColor, FigItem } from '../../lib/figure'
 import type { Piece, Pt } from './figs'
 import { fit, line, numberLine, rectPts, solid, txt } from './figs'
 
-/** Module 2 — prime factorisation with GCF/LCM, estimating a result, ratio, scale and
+/** Module 2 — prime factorization with GCF/LCM, estimating a result, ratio, scale and
  *  proportion, direct and inverse proportion, and rate. */
 
 const L = (en: string, id: string): Loc => ({ en, id })
@@ -17,7 +17,7 @@ const nd = (v: number, a: TNode, b: TNode): TNode => ({ v, k: [a, b] })
 const TREE_GAP = 1.6
 const TREE_STEP = 1.7
 
-/** One factor tree with its leftmost leaf at `x0`. Leaves (the primes) are green, the rest grey. */
+/** One factor tree with its leftmost leaf at `x0`. Leaves (the primes) are green, the rest gray. */
 function drawTree(root: TNode, x0: number, label?: string): { items: FigItem[]; pts: Pt[]; width: number } {
   const items: FigItem[] = []
   const pts: Pt[] = []
@@ -109,7 +109,7 @@ function sharedBar(parts: { n: number; color: FigColor }[], total: string, o: { 
 
 export const module2: Module = {
   id: 'tka-smp-m2',
-  title: L('Factorisation, Estimation, Ratio and Rate', 'Faktorisasi, Estimasi, Perbandingan, dan Laju'),
+  title: L('Factorization, Estimation, Ratio and Rate', 'Faktorisasi, Estimasi, Perbandingan, dan Laju'),
   summary: L(
     'Break numbers into primes to find the GCF and the LCM, estimate the result of a calculation and judge whether an answer is reasonable, then compare quantities with ratios, scales, direct and inverse proportion, and rates such as speed.',
     'Menguraikan bilangan menjadi faktor prima untuk mencari FPB dan KPK, memperkirakan hasil perhitungan dan menilai apakah suatu jawaban masuk akal, lalu membandingkan besaran dengan perbandingan, skala, perbandingan senilai dan berbalik nilai, serta laju seperti kecepatan.',
@@ -118,7 +118,7 @@ export const module2: Module = {
     /* ============================================ S1: primes and estimation */
     {
       id: 'tka-smp-m2-s1',
-      title: L('Prime Factorisation and Estimation', 'Faktorisasi Prima dan Estimasi'),
+      title: L('Prime Factorization and Estimation', 'Faktorisasi Prima dan Estimasi'),
       summary: L(
         'Write a number as a product of primes and use it for the GCF, the LCM and perfect squares and cubes; estimate the result of a calculation and decide whether an answer is reasonable.',
         'Menulis bilangan sebagai hasil kali bilangan prima dan memakainya untuk FPB, KPK, serta kuadrat dan kubik sempurna; memperkirakan hasil perhitungan dan menilai apakah suatu jawaban masuk akal.',
@@ -127,7 +127,7 @@ export const module2: Module = {
         /* ------------------------------------------------ S1 L1 primes, GCF, LCM */
         {
           id: 'tka-smp-m2-s1-l1',
-          title: L('Prime Factorisation, GCF and LCM', 'Faktorisasi Prima, FPB, dan KPK'),
+          title: L('Prime Factorization, GCF and LCM', 'Faktorisasi Prima, FPB, dan KPK'),
           goal: L(
             'You can write a number as a product of primes and use it to find the GCF and the LCM, to test for perfect squares and cubes, and to solve problems about equal groups and repeating schedules.',
             'Kamu bisa menulis bilangan sebagai hasil kali bilangan prima dan memakainya untuk mencari FPB dan KPK, menguji kuadrat dan kubik sempurna, serta menyelesaikan soal kelompok sama banyak dan jadwal berulang.',
@@ -137,9 +137,9 @@ export const module2: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: L('Look Closely: Prime Factorisation and Factor Trees', 'Ayo Amati: Faktorisasi Prima dan Pohon Faktor'),
+              title: L('Look Closely: Prime Factorization and Factor Trees', 'Ayo Amati: Faktorisasi Prima dan Pohon Faktor'),
               body: L(
-                'Every natural number bigger than 1 is either a prime or a product of primes. A **factor tree** shows how: split the number into two factors, then split those again, until every branch ends in a prime.\n\n- **Prime number**: a number with exactly two factors, 1 and itself (2, 3, 5, 7, 11, 13, ...).\n- **Prime factorisation**: the number written as a product of primes only.\n- **Exponent**: how many times a prime is repeated, for example $2 \\times 2 \\times 2 = 2^3$.\n\nLook at the tree of 72. The green numbers at the ends of the branches are primes, so $72 = 2 \\times 2 \\times 2 \\times 3 \\times 3 = 2^3 \\times 3^2$.\n\nYou can start the tree with any pair of factors, for example $72 = 6 \\times 12$. The primes at the end are always the same.',
+                'Every natural number bigger than 1 is either a prime or a product of primes. A **factor tree** shows how: split the number into two factors, then split those again, until every branch ends in a prime.\n\n- **Prime number**: a number with exactly two factors, 1 and itself (2, 3, 5, 7, 11, 13, ...).\n- **Prime factorization**: the number written as a product of primes only.\n- **Exponent**: how many times a prime is repeated, for example $2 \\times 2 \\times 2 = 2^3$.\n\nLook at the tree of 72. The green numbers at the ends of the branches are primes, so $72 = 2 \\times 2 \\times 2 \\times 3 \\times 3 = 2^3 \\times 3^2$.\n\nYou can start the tree with any pair of factors, for example $72 = 6 \\times 12$. The primes at the end are always the same.',
                 'Setiap bilangan asli yang lebih besar dari 1 adalah bilangan prima atau hasil kali bilangan prima. **Pohon faktor** menunjukkan caranya: pecah bilangan menjadi dua faktor, lalu pecah lagi faktor-faktor itu, sampai setiap cabang berakhir di bilangan prima.\n\n- **Bilangan prima**: bilangan yang punya tepat dua faktor, yaitu 1 dan dirinya sendiri (2, 3, 5, 7, 11, 13, ...).\n- **Faktorisasi prima**: bilangan yang ditulis sebagai hasil kali bilangan prima saja.\n- **Eksponen (pangkat)**: berapa kali suatu bilangan prima diulang, misalnya $2 \\times 2 \\times 2 = 2^3$.\n\nLihat pohon faktor 72. Bilangan hijau di ujung cabang adalah bilangan prima, jadi $72 = 2 \\times 2 \\times 2 \\times 3 \\times 3 = 2^3 \\times 3^2$.\n\nKamu boleh memulai pohon dengan pasangan faktor apa saja, misalnya $72 = 6 \\times 12$. Bilangan prima di ujungnya selalu sama.',
               ),
               figure: {
@@ -155,7 +155,7 @@ export const module2: Module = {
               id: 'c2',
               title: L('Step by Step: GCF and LCM from Prime Factors', 'Contoh Bertahap: FPB dan KPK dari Faktor Prima'),
               body: L(
-                'Find the GCF and the LCM of 72 and 60.\n\n1. Step 1: Factorise both numbers: $72 = 2^3 \\times 3^2$ and $60 = 2^2 \\times 3 \\times 5$.\n2. Step 2: For the GCF, take only the primes that BOTH numbers have (2 and 3), each with its LOWEST exponent: $2^2 \\times 3^1$.\n3. Step 3: Multiply: GCF $= 4 \\times 3 = 12$.\n4. Step 4: For the LCM, take EVERY prime that appears (2, 3 and 5), each with its HIGHEST exponent: $2^3 \\times 3^2 \\times 5$.\n5. Step 5: Multiply: LCM $= 8 \\times 9 \\times 5 = 360$.\n\n**Remember:**\n\n- GCF: common primes, lowest exponents. LCM: all primes, highest exponents.\n- Check: GCF $\\times$ LCM = the two numbers multiplied: $12 \\times 360 = 4\\,320 = 72 \\times 60$.\n- A number is a **perfect square** when every exponent in its prime factorisation is even, and a **perfect cube** when every exponent is a multiple of 3.',
+                'Find the GCF and the LCM of 72 and 60.\n\n1. Step 1: Factorize both numbers: $72 = 2^3 \\times 3^2$ and $60 = 2^2 \\times 3 \\times 5$.\n2. Step 2: For the GCF, take only the primes that BOTH numbers have (2 and 3), each with its LOWEST exponent: $2^2 \\times 3^1$.\n3. Step 3: Multiply: GCF $= 4 \\times 3 = 12$.\n4. Step 4: For the LCM, take EVERY prime that appears (2, 3 and 5), each with its HIGHEST exponent: $2^3 \\times 3^2 \\times 5$.\n5. Step 5: Multiply: LCM $= 8 \\times 9 \\times 5 = 360$.\n\n**Remember:**\n\n- GCF: common primes, lowest exponents. LCM: all primes, highest exponents.\n- Check: GCF $\\times$ LCM = the two numbers multiplied: $12 \\times 360 = 4\\,320 = 72 \\times 60$.\n- A number is a **perfect square** when every exponent in its prime factorization is even, and a **perfect cube** when every exponent is a multiple of 3.',
                 'Cari FPB dan KPK dari 72 dan 60.\n\n1. Langkah 1: Faktorkan kedua bilangan: $72 = 2^3 \\times 3^2$ dan $60 = 2^2 \\times 3 \\times 5$.\n2. Langkah 2: Untuk FPB, ambil hanya bilangan prima yang dimiliki KEDUA bilangan (2 dan 3), masing-masing dengan eksponen TERKECIL: $2^2 \\times 3^1$.\n3. Langkah 3: Kalikan: FPB $= 4 \\times 3 = 12$.\n4. Langkah 4: Untuk KPK, ambil SEMUA bilangan prima yang muncul (2, 3, dan 5), masing-masing dengan eksponen TERBESAR: $2^3 \\times 3^2 \\times 5$.\n5. Langkah 5: Kalikan: KPK $= 8 \\times 9 \\times 5 = 360$.\n\n**Ingat:**\n\n- FPB: prima yang sama-sama ada, eksponen terkecil. KPK: semua prima, eksponen terbesar.\n- Periksa: FPB $\\times$ KPK = kedua bilangan dikalikan: $12 \\times 360 = 4\\,320 = 72 \\times 60$.\n- Bilangan disebut **kuadrat sempurna** jika semua eksponen pada faktorisasi primanya genap, dan **kubik sempurna** jika semua eksponennya kelipatan 3.',
               ),
               figure: {
@@ -174,7 +174,7 @@ export const module2: Module = {
               id: 'c3',
               title: L('Watch Out!: Traps with Primes, GCF and LCM', 'Awas, Jebakan!: Jebakan pada Bilangan Prima, FPB, dan KPK'),
               body: L(
-                'Check yourself against these common mistakes.\n\n| Wrong | Right |\n|---|---|\n| 1 is a prime number | 1 has only one factor, so it is not prime. And 2 IS prime: it is the only even prime |\n| $36 = 6 \\times 6$ is the prime factorisation | 6 is not prime. Split it: $36 = 2^2 \\times 3^2$ |\n| The GCF of 12 and 18 is $2^2 \\times 3^2 = 36$ (highest exponents) | The GCF takes the LOWEST exponents: $2 \\times 3 = 6$. The highest exponents give the LCM, 36 |',
+                'Check yourself against these common mistakes.\n\n| Wrong | Right |\n|---|---|\n| 1 is a prime number | 1 has only one factor, so it is not prime. And 2 IS prime: it is the only even prime |\n| $36 = 6 \\times 6$ is the prime factorization | 6 is not prime. Split it: $36 = 2^2 \\times 3^2$ |\n| The GCF of 12 and 18 is $2^2 \\times 3^2 = 36$ (highest exponents) | The GCF takes the LOWEST exponents: $2 \\times 3 = 6$. The highest exponents give the LCM, 36 |',
                 'Periksa dirimu dengan kesalahan yang sering terjadi ini.\n\n| Salah | Benar |\n|---|---|\n| 1 adalah bilangan prima | 1 hanya punya satu faktor, jadi bukan prima. Dan 2 ADALAH prima: satu-satunya prima yang genap |\n| $36 = 6 \\times 6$ adalah faktorisasi prima | 6 bukan prima. Pecah lagi: $36 = 2^2 \\times 3^2$ |\n| FPB dari 12 dan 18 adalah $2^2 \\times 3^2 = 36$ (eksponen terbesar) | FPB mengambil eksponen TERKECIL: $2 \\times 3 = 6$. Eksponen terbesar memberi KPK, yaitu 36 |',
               ),
             },
@@ -182,7 +182,7 @@ export const module2: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: L(
-                'The factor tree of 84 is finished. Which is the prime factorisation of 84?',
+                'The factor tree of 84 is finished. Which is the prime factorization of 84?',
                 'Pohon faktor 84 sudah selesai. Manakah faktorisasi prima dari 84?',
               ),
               figure: {
@@ -204,7 +204,7 @@ export const module2: Module = {
                 'Ikuti setiap cabang sampai ke bilangan prima hijau: 2, 2, 3, dan 7. Dua bilangan 2 ditulis $2^2$. Pilihan lain masih memuat 4, 14, atau 21, dan bilangan itu masih bisa dipecah, jadi bukan prima.',
               ),
               hint: L(
-                'A prime factorisation may contain only primes. Which options still have a number that can be split into smaller factors?',
+                'A prime factorization may contain only primes. Which options still have a number that can be split into smaller factors?',
                 'Faktorisasi prima hanya boleh memuat bilangan prima. Pilihan mana yang masih memuat bilangan yang bisa dipecah menjadi faktor lebih kecil?',
               ),
             },
@@ -294,7 +294,7 @@ export const module2: Module = {
                 'Kuadrat sempurna memerlukan SEMUA eksponen genap, dan kubik sempurna memerlukan SEMUA eksponen kelipatan 3. Satu eksponen yang cocok tidak cukup: $108 = 2^2 \\times 3^3$ memuat $3^3$, tetapi eksponen 2 bukan kelipatan 3; dan $360$ punya $3^2$, tetapi eksponennya yang lain, 3 dan 1, ganjil.',
               ),
               hint: L(
-                'Check ALL the exponents of a factorisation, not just one of them.',
+                'Check ALL the exponents of a factorization, not just one of them.',
                 'Periksa SEMUA eksponen pada suatu faktorisasi, bukan hanya satu.',
               ),
             },
@@ -303,7 +303,7 @@ export const module2: Module = {
               id: 'x1',
               math: true,
               prompt: L(
-                'Try it together: the number $A=3^3-3^2$ is given as an expression. First work out its value, then factorise it into primes.',
+                'Try it together: the number $A=3^3-3^2$ is given as an expression. First work out its value, then factorize it into primes.',
                 'Coba bersama: bilangan $A=3^3-3^2$ diberikan dalam bentuk ekspresi. Hitung dulu nilainya, lalu faktorkan menjadi bilangan prima.',
               ),
               template: '3^3-3^2=___-___=___=2\\times3\\times___',
@@ -313,7 +313,7 @@ export const module2: Module = {
                 '$3^3=27$ dan $3^2=9$, jadi $A=27-9=18$, dan $18=2\\times9=2\\times3^2$. Eksponen tidak boleh dikurangkan: $3^3-3^2$ bukan $3^1$.',
               ),
               hint: L(
-                'Work out each power first, then subtract, and only then factorise the result.',
+                'Work out each power first, then subtract, and only then factorize the result.',
                 'Hitung dulu tiap pangkat, lalu kurangkan, dan baru setelah itu faktorkan hasilnya.',
               ),
             },
@@ -321,7 +321,7 @@ export const module2: Module = {
               kind: 'multi',
               id: 'x2',
               prompt: L(
-                'Three numbers are $A=3^3-3^2$, $B=6^3-6^2$ and $C=6^3+6^2$. Work out each number and factorise it. Choose the TWO products of prime powers that are common factors of all three numbers.',
+                'Three numbers are $A=3^3-3^2$, $B=6^3-6^2$ and $C=6^3+6^2$. Work out each number and factorize it. Choose the TWO products of prime powers that are common factors of all three numbers.',
                 'Tiga bilangan adalah $A=3^3-3^2$, $B=6^3-6^2$, dan $C=6^3+6^2$. Hitung tiap bilangan dan faktorkan. Pilih DUA hasil kali pangkat bilangan prima yang merupakan faktor persekutuan ketiga bilangan itu.',
               ),
               options: [
@@ -461,7 +461,7 @@ export const module2: Module = {
                   ],
                 }),
                 caption: L(
-                  'In thousands of rupiah. Green: lower bound. Orange: upper bound. Grey: the money Budi has.',
+                  'In thousands of rupiah. Green: lower bound. Orange: upper bound. Gray: the money Budi has.',
                   'Dalam ribuan rupiah. Hijau: batas bawah. Oranye: batas atas. Abu-abu: uang yang dimiliki Budi.',
                 ),
               },
@@ -611,7 +611,7 @@ export const module2: Module = {
         runtime: 'math',
         title: L('Primes, GCF, LCM and Estimates', 'Bilangan Prima, FPB, KPK, dan Taksiran'),
         brief: L(
-          'Factorise numbers into primes, use them for schedules and perfect squares, and estimate the cost of a purchase.',
+          'Factorize numbers into primes, use them for schedules and perfect squares, and estimate the cost of a purchase.',
           'Faktorkan bilangan menjadi bilangan prima, pakai untuk jadwal dan kuadrat sempurna, lalu taksir harga suatu pembelian.',
         ),
         requirements: [
@@ -619,7 +619,7 @@ export const module2: Module = {
           L('Estimate a result by rounding to friendly numbers.', 'Menaksir hasil dengan membulatkan ke bilangan yang mudah.'),
         ],
         hints: [
-          L('For a factorisation, divide by 2, then 3, then 5, and so on, until nothing can be divided any more.', 'Untuk faktorisasi, bagi dengan 2, lalu 3, lalu 5, dan seterusnya, sampai tidak ada lagi yang bisa dibagi.'),
+          L('For a factorization, divide by 2, then 3, then 5, and so on, until nothing can be divided any more.', 'Untuk faktorisasi, bagi dengan 2, lalu 3, lalu 5, dan seterusnya, sampai tidak ada lagi yang bisa dibagi.'),
           L('A schedule that repeats and meets again asks for the LCM. Sharing into equal groups asks for the GCF.', 'Jadwal berulang yang bertemu lagi memakai KPK. Membagi menjadi kelompok sama banyak memakai FPB.'),
           L('A perfect square has only even exponents. Look for the primes whose exponent is odd.', 'Kuadrat sempurna hanya punya eksponen genap. Cari bilangan prima yang eksponennya ganjil.'),
         ],
@@ -849,7 +849,7 @@ export const module2: Module = {
                 '$5 \\times 200 = 1\\,000$ cm, dan $1\\,000$ cm $= 10$ m. Menulis 1.000 m lupa mengubah cm ke m, 40 berasal dari membagi 200 dengan 5, dan 100 m membagi dengan 10, bukan 100.',
               ),
               hint: L(
-                'Multiply the plan length by the scale number first. The answer is in cm: then change it to metres.',
+                'Multiply the plan length by the scale number first. The answer is in cm: then change it to meters.',
                 'Kalikan dulu panjang pada denah dengan bilangan skala. Hasilnya dalam cm: ubah ke meter.',
               ),
             },
@@ -972,7 +972,7 @@ export const module2: Module = {
               id: 'c3',
               title: L('Step by Step: Rate of Change', 'Contoh Bertahap: Laju Perubahan'),
               body: L(
-                'A tap fills a 120-litre tank in 8 minutes. How fast does the water flow, and how long does a 300-litre tank take?\n\nA **rate** compares two different quantities by dividing: how much one quantity changes for each unit of the other.\n\n1. Step 1: Flow rate = volume $\\div$ time $= 120 \\div 8 = 15$ litres per minute.\n2. Step 2: The graph of volume against time is a straight line through the origin, and the rate tells how steep it is.\n3. Step 3: Time for 300 litres: $300 \\div 15 = 20$ minutes.\n\n**Remember:**\n\n- Speed = distance $\\div$ time (km/h, m/s). Flow rate = volume $\\div$ time (L/min). Price per unit = price $\\div$ amount (Rp/kg).\n- Changing units: 1 m/s = $3.6$ km/h, so 72 km/h = 20 m/s.',
+                'A tap fills a 120-liter tank in 8 minutes. How fast does the water flow, and how long does a 300-liter tank take?\n\nA **rate** compares two different quantities by dividing: how much one quantity changes for each unit of the other.\n\n1. Step 1: Flow rate = volume $\\div$ time $= 120 \\div 8 = 15$ liters per minute.\n2. Step 2: The graph of volume against time is a straight line through the origin, and the rate tells how steep it is.\n3. Step 3: Time for 300 liters: $300 \\div 15 = 20$ minutes.\n\n**Remember:**\n\n- Speed = distance $\\div$ time (km/h, m/s). Flow rate = volume $\\div$ time (L/min). Price per unit = price $\\div$ amount (Rp/kg).\n- Changing units: 1 m/s = $3.6$ km/h, so 72 km/h = 20 m/s.',
                 'Sebuah keran mengisi bak 120 liter dalam 8 menit. Seberapa cepat air mengalir, dan berapa lama untuk mengisi bak 300 liter?\n\n**Laju** membandingkan dua besaran yang berbeda dengan pembagian: seberapa banyak satu besaran berubah untuk setiap satu satuan besaran yang lain.\n\n1. Langkah 1: Debit = volume $\\div$ waktu $= 120 \\div 8 = 15$ liter per menit.\n2. Langkah 2: Grafik volume terhadap waktu adalah garis lurus melalui titik asal, dan lajunya menunjukkan seberapa curam garis itu.\n3. Langkah 3: Waktu untuk 300 liter: $300 \\div 15 = 20$ menit.\n\n**Ingat:**\n\n- Kecepatan = jarak $\\div$ waktu (km/jam, m/s). Debit = volume $\\div$ waktu (L/menit). Harga per satuan = harga $\\div$ banyak (Rp/kg).\n- Mengubah satuan: 1 m/s = $3{,}6$ km/jam, jadi 72 km/jam = 20 m/s.',
               ),
               figure: {
@@ -990,7 +990,7 @@ export const module2: Module = {
                   { t: 'dot', x: 20, y: 300, color: 'result' },
                 ],
                 caption: L(
-                  'Horizontal: minutes. Vertical: litres. The green line passes through the red points (8, 120) and (20, 300).',
+                  'Horizontal: minutes. Vertical: liters. The green line passes through the red points (8, 120) and (20, 300).',
                   'Mendatar: menit. Tegak: liter. Garis hijau melalui titik merah (8, 120) dan (20, 300).',
                 ),
               },
@@ -1084,7 +1084,7 @@ export const module2: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: L(
-                'A train moves at a speed of 90 km/h. What is its speed in metres per second?',
+                'A train moves at a speed of 90 km/h. What is its speed in meters per second?',
                 'Sebuah kereta bergerak dengan kecepatan 90 km/jam. Berapa kecepatannya dalam meter per detik?',
               ),
               options: [
@@ -1099,7 +1099,7 @@ export const module2: Module = {
                 '$90 \\text{ km} = 90\\,000 \\text{ m}$ dan $1$ jam $= 3\\,600$ detik, jadi $90\\,000 \\div 3\\,600 = 25$ m/s. Tetap 90 berarti satuannya tidak diubah, 1,5 berasal dari membagi 60 saja, dan 324 mengalikan dengan 3,6, bukan membagi.',
               ),
               hint: L(
-                'Change km to m and hours to seconds. Does the number of metres per second come out bigger or smaller than the km/h number?',
+                'Change km to m and hours to seconds. Does the number of meters per second come out bigger or smaller than the km/h number?',
                 'Ubah km ke m dan jam ke detik. Apakah banyak meter per detik lebih besar atau lebih kecil daripada angka km/jam?',
               ),
             },
@@ -1161,7 +1161,7 @@ export const module2: Module = {
               kind: 'quiz',
               id: 'y3',
               prompt: L(
-                'Hasan compares cooking oil in four shops. Shop A: $1\\frac{1}{2}$ L for Rp39,000. Shop B: 2 L for Rp50,000. Shop C: $\\frac{3}{4}$ L for Rp21,000. Shop D: $2\\frac{1}{2}$ L for Rp67,500. Which shop is the best choice if he wants the lowest price per litre?',
+                'Hasan compares cooking oil in four shops. Shop A: $1\\frac{1}{2}$ L for Rp39,000. Shop B: 2 L for Rp50,000. Shop C: $\\frac{3}{4}$ L for Rp21,000. Shop D: $2\\frac{1}{2}$ L for Rp67,500. Which shop is the best choice if he wants the lowest price per liter?',
                 'Hasan membandingkan minyak goreng di empat toko. Toko A: $1\\frac{1}{2}$ L seharga Rp39.000. Toko B: 2 L seharga Rp50.000. Toko C: $\\frac{3}{4}$ L seharga Rp21.000. Toko D: $2\\frac{1}{2}$ L seharga Rp67.500. Toko mana pilihan terbaik jika ia ingin harga per liter yang paling rendah?',
               ),
               options: [
@@ -1172,11 +1172,11 @@ export const module2: Module = {
               ],
               answer: 0,
               explain: L(
-                'Compare the price of ONE litre: A is $39\\,000\\div1.5=26\\,000$, B is $50\\,000\\div2=25\\,000$, C is $21\\,000\\div0.75=28\\,000$ and D is $67\\,500\\div2.5=27\\,000$. Shop B is the cheapest per litre. Shop C has the lowest total price, but it is for the smallest amount of oil.',
+                'Compare the price of ONE liter: A is $39\\,000\\div1.5=26\\,000$, B is $50\\,000\\div2=25\\,000$, C is $21\\,000\\div0.75=28\\,000$ and D is $67\\,500\\div2.5=27\\,000$. Shop B is the cheapest per liter. Shop C has the lowest total price, but it is for the smallest amount of oil.',
                 'Bandingkan harga SATU liter: A adalah $39\\,000\\div1{,}5=26\\,000$, B adalah $50\\,000\\div2=25\\,000$, C adalah $21\\,000\\div0{,}75=28\\,000$, dan D adalah $67\\,500\\div2{,}5=27\\,000$. Toko B paling murah per liter. Toko C punya harga total terendah, tetapi untuk minyak yang paling sedikit.',
               ),
               hint: L(
-                'Different shops sell different amounts, so the totals cannot be compared. Work out the price of one litre in each shop.',
+                'Different shops sell different amounts, so the totals cannot be compared. Work out the price of one liter in each shop.',
                 'Setiap toko menjual jumlah yang berbeda, jadi total harganya tidak bisa dibandingkan. Hitung harga satu liter di tiap toko.',
               ),
             },
@@ -1184,13 +1184,13 @@ export const module2: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'A tap has a flow rate of 20 litres per minute. Siti fills one drum of 80 litres and 4 buckets of 10 litres each from it. How many minutes does she need in all?',
+                'A tap has a flow rate of 20 liters per minute. Siti fills one drum of 80 liters and 4 buckets of 10 liters each from it. How many minutes does she need in all?',
                 'Sebuah keran memiliki debit 20 liter per menit. Siti mengisi satu drum 80 liter dan 4 ember yang masing-masing 10 liter dari keran itu. Berapa menit yang ia butuhkan seluruhnya?',
               ),
               blanks: [{ answer: 6, after: { en: '\\text{ minutes}', id: '\\text{ menit}' } }],
               hints: [
                 L(
-                  'First find out how many litres of water Siti needs altogether.',
+                  'First find out how many liters of water Siti needs altogether.',
                   'Cari dulu berapa liter air yang Siti butuhkan seluruhnya.',
                 ),
                 L(
@@ -1198,12 +1198,12 @@ export const module2: Module = {
                   'Waktu = volume $\\div$ debit. Jumlahkan drum dan ember untuk mendapat volumenya.',
                 ),
                 L(
-                  'The volume is $80 + 4 \\times 10 = 120$ litres. Divide by 20 litres per minute.',
+                  'The volume is $80 + 4 \\times 10 = 120$ liters. Divide by 20 liters per minute.',
                   'Volumenya $80 + 4 \\times 10 = 120$ liter. Bagi dengan 20 liter per menit.',
                 ),
               ],
               explain: L(
-                'The volume is $80 + 4 \\times 10 = 120$ litres, and the time is $120 \\div 20 = 6$ minutes.',
+                'The volume is $80 + 4 \\times 10 = 120$ liters, and the time is $120 \\div 20 = 6$ minutes.',
                 'Volumenya $80 + 4 \\times 10 = 120$ liter, dan waktunya $120 \\div 20 = 6$ menit.',
               ),
               solution: {

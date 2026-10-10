@@ -40,7 +40,7 @@ export const lessonDistances: Lesson = {
       id: 'c2',
       title: L('Step by Step: A Point and a Plane', 'Contoh Bertahap: Titik dan Bidang'),
       body: L(
-        'The distance from a point to a **plane** is the length of the perpendicular from the point to the plane.\n\nIn a cube of edge 6:\n\n- The distance from $G$ to the floor $ABCD$ is $GC=6$, because $GC$ is perpendicular to the floor.\n- The distance from $B$ to the vertical plane $ACG$: that plane stands on the diagonal $AC$ of the floor, so the shortest way from $B$ to it is the perpendicular $BO$ to $AC$ on the floor ($O$ is the centre of the floor).\n\n1. Step 1: The diagonal $BD=6\\sqrt{2}$ passes through $O$, and $O$ is its midpoint.\n2. Step 2: $BO=\\frac{1}{2}\\times6\\sqrt{2}=3\\sqrt{2}$.\n\nSo the distance from $B$ to the plane $ACG$ is $3\\sqrt{2}\\approx4.24$.\n\n**Tip:** when a plane is **vertical** (like $ACG$), the distance from a point to it is measured **on the floor**, as the distance from the point to the plane\'s line on the floor.',
+        'The distance from a point to a **plane** is the length of the perpendicular from the point to the plane.\n\nIn a cube of edge 6:\n\n- The distance from $G$ to the floor $ABCD$ is $GC=6$, because $GC$ is perpendicular to the floor.\n- The distance from $B$ to the vertical plane $ACG$: that plane stands on the diagonal $AC$ of the floor, so the shortest way from $B$ to it is the perpendicular $BO$ to $AC$ on the floor ($O$ is the center of the floor).\n\n1. Step 1: The diagonal $BD=6\\sqrt{2}$ passes through $O$, and $O$ is its midpoint.\n2. Step 2: $BO=\\frac{1}{2}\\times6\\sqrt{2}=3\\sqrt{2}$.\n\nSo the distance from $B$ to the plane $ACG$ is $3\\sqrt{2}\\approx4.24$.\n\n**Tip:** when a plane is **vertical** (like $ACG$), the distance from a point to it is measured **on the floor**, as the distance from the point to the plane\'s line on the floor.',
         'Jarak dari titik ke **bidang** adalah panjang garis tegak lurus dari titik itu ke bidang.\n\nPada kubus berusuk 6:\n\n- Jarak dari $G$ ke alas $ABCD$ adalah $GC=6$, karena $GC$ tegak lurus alas.\n- Jarak dari $B$ ke bidang tegak $ACG$: bidang itu berdiri di atas diagonal $AC$ alas, jadi jalan terpendek dari $B$ ke bidang itu adalah garis tegak lurus $BO$ ke $AC$ pada alas ($O$ adalah pusat alas).\n\n1. Langkah 1: Diagonal $BD=6\\sqrt{2}$ melalui $O$, dan $O$ adalah titik tengahnya.\n2. Langkah 2: $BO=\\frac{1}{2}\\times6\\sqrt{2}=3\\sqrt{2}$.\n\nJadi jarak dari $B$ ke bidang $ACG$ adalah $3\\sqrt{2}\\approx4{,}24$.\n\n**Tips:** bila bidangnya **tegak** (seperti $ACG$), jarak dari titik ke bidang itu diukur **pada alas**, sebagai jarak dari titik ke garis perpotongan bidang itu dengan alas.',
       ),
       figure: {
@@ -79,7 +79,7 @@ export const lessonDistances: Lesson = {
       kind: 'quiz',
       id: 'q1',
       prompt: L(
-        'The cube has edge 6. $O$ is the centre of the floor $ABCD$. What is the distance from $B$ to the plane $ACG$ (the segment $BO$)?',
+        'The cube has edge 6. $O$ is the center of the floor $ABCD$. What is the distance from $B$ to the plane $ACG$ (the segment $BO$)?',
         'Kubus berusuk 6. $O$ adalah pusat alas $ABCD$. Berapa jarak dari $B$ ke bidang $ACG$ (ruas $BO$)?',
       ),
       figure: {
@@ -100,7 +100,7 @@ export const lessonDistances: Lesson = {
         '$BO$ adalah setengah diagonal alas $BD=6\\sqrt{2}$, jadi $BO=3\\sqrt{2}$. Nilai $6\\sqrt{2}$ adalah seluruh diagonal, dan 6 adalah sebuah rusuk.',
       ),
       hint: L(
-        'The two floor diagonals cross at the centre, and each is cut in half there.',
+        'The two floor diagonals cross at the center, and each is cut in half there.',
         'Kedua diagonal alas berpotongan di pusat, dan masing-masing terbagi dua di sana.',
       ),
     },

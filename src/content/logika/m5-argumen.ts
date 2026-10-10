@@ -141,7 +141,7 @@ export const module5: Module = {
           id: 'log-m5-s1-l2',
           title: { en: 'Modus Ponens and Modus Tollens', id: 'Modus Ponens dan Modus Tollens' },
           goal: {
-            en: 'Recognise and apply the two most common valid argument forms.',
+            en: 'Recognize and apply the two most common valid argument forms.',
             id: 'Mengenali dan menerapkan dua bentuk argumen sah yang paling umum.',
           },
           xp: 20,
@@ -916,11 +916,11 @@ export const module5: Module = {
                 ],
               },
               explain: {
-                en: 'State the induction hypothesis, add the new term $2(k+1)$ to both sides, factor, and recognise the result as $P(k+1)$.',
+                en: 'State the induction hypothesis, add the new term $2(k+1)$ to both sides, factor, and recognize the result as $P(k+1)$.',
                 id: 'Nyatakan hipotesis induksinya, tambahkan suku baru $2(k+1)$ ke kedua ruas, faktorkan, dan kenali hasilnya sebagai $P(k+1)$.',
               },
               hint: {
-                en: 'This follows the exact same shape as the worked sum example: hypothesis, add the new term, simplify, recognise.',
+                en: 'This follows the exact same shape as the worked sum example: hypothesis, add the new term, simplify, recognize.',
                 id: 'Ini mengikuti bentuk yang persis sama dengan contoh jumlah yang sudah dikerjakan: hipotesis, tambahkan suku baru, sederhanakan, kenali.',
               },
             },

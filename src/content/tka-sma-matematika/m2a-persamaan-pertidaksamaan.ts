@@ -174,12 +174,12 @@ export const m2s1: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A taxi charges Rp8,000 to start and Rp3,000 for every kilometre. A trip costs Rp32,000. How many kilometres was the trip?',
+            'A taxi charges Rp8,000 to start and Rp3,000 for every kilometer. A trip costs Rp32,000. How many kilometers was the trip?',
             'Sebuah taksi menarik biaya awal Rp8.000 dan Rp3.000 untuk setiap kilometer. Sebuah perjalanan berbiaya Rp32.000. Berapa kilometer jarak perjalanan itu?',
           ),
           blanks: [{ answer: 8, after: '\\text{km}' }],
           hints: [
-            L('Let $x$ be the number of kilometres. Write the cost as an expression in $x$.', 'Misalkan $x$ banyak kilometer. Tulis biayanya sebagai ekspresi dalam $x$.'),
+            L('Let $x$ be the number of kilometers. Write the cost as an expression in $x$.', 'Misalkan $x$ banyak kilometer. Tulis biayanya sebagai ekspresi dalam $x$.'),
             L('The cost is $8\\,000+3\\,000x$, and it equals $32\\,000$.', 'Biayanya $8\\,000+3\\,000x$, dan sama dengan $32\\,000$.'),
             L('Subtract 8 000 from both sides, then divide by 3 000.', 'Kurangkan kedua ruas dengan 8.000, lalu bagi dengan 3.000.'),
           ],

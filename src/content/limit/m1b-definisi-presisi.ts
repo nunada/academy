@@ -134,7 +134,7 @@ export const moduleDef: Module = {
           id: 'lim-m1b-s1-l2',
           title: { en: 'Finding Delta for a Curved Function', id: 'Mencari Delta untuk Fungsi Melengkung' },
           goal: {
-            en: 'Find delta for a nonlinear function by solving the epsilon-inequality for an interval, then centring delta inside it.',
+            en: 'Find delta for a nonlinear function by solving the epsilon-inequality for an interval, then centering delta inside it.',
             id: 'Mencari delta untuk fungsi taklinear dengan menyelesaikan pertidaksamaan epsilon untuk sebuah interval, lalu memusatkan delta di dalamnya.',
           },
           xp: 20,
@@ -172,7 +172,7 @@ export const moduleDef: Module = {
               id: 'c2',
               title: { en: 'Taking the nearer edge, to be safe on both sides', id: 'Mengambil tepi yang lebih dekat, agar aman di kedua sisi' },
               body: {
-                en: 'Since the interval $\\left(\\sqrt{9-\\varepsilon},\\ \\sqrt{9+\\varepsilon}\\right)$ is not centred at $3$, a symmetric window $(3-\\delta, 3+\\delta)$ can only be guaranteed to sit fully inside it if $\\delta$ is the **smaller** of the two distances to the edges:\n$$\\delta = \\min\\left\\{3-\\sqrt{9-\\varepsilon},\\ \\sqrt{9+\\varepsilon}-3\\right\\}$$\nTaking the smaller distance is what keeps **both** sides safe — using the larger one would let the window poke out past the nearer edge. For a concrete check, $\\varepsilon = 0.5$: $\\sqrt{8.5}\\approx 2.9155$ and $\\sqrt{9.5}\\approx 3.0822$, so the two candidate distances are $3-2.9155=0.0845$ and $3.0822-3=0.0822$; the smaller, $\\delta\\approx 0.0822$, is the one that works.',
+                en: 'Since the interval $\\left(\\sqrt{9-\\varepsilon},\\ \\sqrt{9+\\varepsilon}\\right)$ is not centered at $3$, a symmetric window $(3-\\delta, 3+\\delta)$ can only be guaranteed to sit fully inside it if $\\delta$ is the **smaller** of the two distances to the edges:\n$$\\delta = \\min\\left\\{3-\\sqrt{9-\\varepsilon},\\ \\sqrt{9+\\varepsilon}-3\\right\\}$$\nTaking the smaller distance is what keeps **both** sides safe — using the larger one would let the window poke out past the nearer edge. For a concrete check, $\\varepsilon = 0.5$: $\\sqrt{8.5}\\approx 2.9155$ and $\\sqrt{9.5}\\approx 3.0822$, so the two candidate distances are $3-2.9155=0.0845$ and $3.0822-3=0.0822$; the smaller, $\\delta\\approx 0.0822$, is the one that works.',
                 id: 'Karena interval $\\left(\\sqrt{9-\\varepsilon},\\ \\sqrt{9+\\varepsilon}\\right)$ tak berpusat di $3$, jendela simetris $(3-\\delta, 3+\\delta)$ hanya bisa dijamin duduk sepenuhnya di dalamnya bila $\\delta$ adalah yang **lebih kecil** dari kedua jarak ke tepinya:\n$$\\delta = \\min\\left\\{3-\\sqrt{9-\\varepsilon},\\ \\sqrt{9+\\varepsilon}-3\\right\\}$$\nMengambil jarak yang lebih kecil itulah yang menjaga **kedua** sisi tetap aman — memakai yang lebih besar akan membiarkan jendelanya menyembul melewati tepi yang lebih dekat. Untuk pemeriksaan konkret, $\\varepsilon = 0.5$: $\\sqrt{8.5}\\approx 2.9155$ dan $\\sqrt{9.5}\\approx 3.0822$, sehingga kedua jarak kandidatnya adalah $3-2.9155=0.0845$ dan $3.0822-3=0.0822$; yang lebih kecil, $\\delta\\approx 0.0822$, itulah yang berhasil.',
               },
             },

@@ -526,7 +526,7 @@ export const module3: Module = {
         {
           id: 'react-m3-s2-l2',
           title: { en: 'When an effect is right', id: 'Kapan efek memang tepat' },
-          goal: { en: 'Synchronise with something outside React.', id: 'Menyelaraskan dengan sesuatu di luar React.' },
+          goal: { en: 'Synchronize with something outside React.', id: 'Menyelaraskan dengan sesuatu di luar React.' },
           xp: 20,
           steps: [
             {
@@ -688,7 +688,7 @@ export const module3: Module = {
         runtime: 'web',
         react: true,
         html: ROOT,
-        title: { en: 'Searchable catalogue', id: 'Katalog yang bisa dicari' },
+        title: { en: 'Searchable catalog', id: 'Katalog yang bisa dicari' },
         brief: {
           en: 'A search box, a derived list, a derived count — and exactly one effect, where it belongs.',
           id: 'Kotak pencarian, daftar turunan, hitungan turunan — dan tepat satu efek, di tempat yang memang tepat.',

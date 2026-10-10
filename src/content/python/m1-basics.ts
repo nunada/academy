@@ -410,7 +410,7 @@ export const module1: Module = {
         },
         {
           id: 'py-m1-s2-l2',
-          title: { en: 'Maths and f-strings', id: 'Hitungan dan f-string' },
+          title: { en: 'Math and f-strings', id: 'Hitungan dan f-string' },
           goal: {
             en: 'Calculate with variables and drop the result into a sentence.',
             id: 'Menghitung dengan variabel dan menyisipkan hasilnya ke kalimat.',
@@ -529,7 +529,7 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'input() always gives text', id: 'input() selalu memberi teks' },
               body: {
-                en: 'This is the trap that catches everyone: whatever the user types, `input()` hands back a `str`. Adding to it glues text together instead of doing maths.',
+                en: 'This is the trap that catches everyone: whatever the user types, `input()` hands back a `str`. Adding to it glues text together instead of doing math.',
                 id: 'Ini jebakan yang menjerat semua orang: apa pun yang diketik pengguna, `input()` mengembalikan `str`. Menambahkannya justru menyambung teks, bukan menghitung.',
               },
               code: { en: 'answer = input("Age: ")\nprint(answer + "1")', id: 'jawab = input("Umur: ")\nprint(jawab + "1")' },
@@ -540,7 +540,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'int() and float() convert', id: 'int() dan float() mengubah' },
               body: {
-                en: 'Wrap the input in `int()` for a whole number or `float()` for a decimal, and the maths behaves.',
+                en: 'Wrap the input in `int()` for a whole number or `float()` for a decimal, and the math behaves.',
                 id: 'Bungkus input dengan `int()` untuk bilangan bulat atau `float()` untuk desimal, maka hitungannya benar.',
               },
               figure: {

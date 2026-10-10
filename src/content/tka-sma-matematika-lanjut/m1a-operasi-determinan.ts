@@ -6,7 +6,7 @@ import type { Pt } from './figs'
 
 const pts = (...p: Pt[]) => p
 
-/** The unit square (grey outline) and its image under a matrix with columns
+/** The unit square (gray outline) and its image under a matrix with columns
  *  `a` and `b` (green), drawn on a plane of the given window. */
 const imageOfSquare = (a: Pt, b: Pt, x: [number, number], y: [number, number]) =>
   plane(
@@ -42,13 +42,13 @@ export const m1s1: Submodule = {
           id: 'c1',
           title: L('Look Closely: A Table of Numbers That Moves Points', 'Ayo Amati: Tabel Bilangan yang Memindahkan Titik'),
           body: L(
-            `A **matrix** is a rectangular table of numbers. A matrix with $m$ rows and $n$ columns has **size** $m\\times n$.\n\nThe matrix $A=${pm([2, 1], [0, 3])}$ has size $2\\times2$. Its **columns** tell where the two unit vectors $(1,0)$ and $(0,1)$ go:\n\n- the first column $(2,0)$ is the image of $(1,0)$;\n- the second column $(1,3)$ is the image of $(0,1)$.\n\nSo $A$ turns the grey unit square into the green parallelogram of the picture. This is why matrices describe transformations, and it is the key to determinants and inverses.`,
+            `A **matrix** is a rectangular table of numbers. A matrix with $m$ rows and $n$ columns has **size** $m\\times n$.\n\nThe matrix $A=${pm([2, 1], [0, 3])}$ has size $2\\times2$. Its **columns** tell where the two unit vectors $(1,0)$ and $(0,1)$ go:\n\n- the first column $(2,0)$ is the image of $(1,0)$;\n- the second column $(1,3)$ is the image of $(0,1)$.\n\nSo $A$ turns the gray unit square into the green parallelogram of the picture. This is why matrices describe transformations, and it is the key to determinants and inverses.`,
             `**Matriks** adalah tabel bilangan berbentuk persegi panjang. Matriks dengan $m$ baris dan $n$ kolom berukuran $m\\times n$.\n\nMatriks $A=${pm([2, 1], [0, 3])}$ berukuran $2\\times2$. **Kolom**-kolomnya menunjukkan ke mana dua vektor satuan $(1,0)$ dan $(0,1)$ pergi:\n\n- kolom pertama $(2,0)$ adalah bayangan $(1,0)$;\n- kolom kedua $(1,3)$ adalah bayangan $(0,1)$.\n\nJadi $A$ mengubah persegi satuan abu-abu menjadi jajargenjang hijau pada gambar. Inilah sebabnya matriks menggambarkan transformasi, dan ini kunci untuk determinan dan invers.`,
           ),
           figure: {
             ...imageOfSquare([2, 0], [1, 3], [-1, 5], [-1, 5]),
             caption: L(
-              'The unit square (grey) and its image (green) under A. The red point is (2, 0) and the orange point is (1, 3).',
+              'The unit square (gray) and its image (green) under A. The red point is (2, 0) and the orange point is (1, 3).',
               'Persegi satuan (abu-abu) dan bayangannya (hijau) oleh A. Titik merah adalah (2, 0) dan titik oranye adalah (1, 3).',
             ),
           },

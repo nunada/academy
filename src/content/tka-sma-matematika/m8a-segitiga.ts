@@ -147,7 +147,7 @@ export const m8s1: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A ladder 10 m long leans against a wall and makes an angle of $30^{\\circ}$ with the ground. How high up the wall does it reach, in metres?',
+            'A ladder 10 m long leans against a wall and makes an angle of $30^{\\circ}$ with the ground. How high up the wall does it reach, in meters?',
             'Sebuah tangga sepanjang 10 m bersandar pada dinding dan membuat sudut $30^{\\circ}$ dengan tanah. Seberapa tinggi tangga mencapai dinding, dalam meter?',
           ),
           blanks: [{ answer: 5, after: '\\text{m}' }],
@@ -187,7 +187,7 @@ export const m8s1: Submodule = {
     tasks: [
       {
         prompt: L(
-          'A kite string is 50 m long and makes an angle of $30^{\\circ}$ with the level ground. How high is the kite, in metres? (Assume the string is straight.)',
+          'A kite string is 50 m long and makes an angle of $30^{\\circ}$ with the level ground. How high is the kite, in meters? (Assume the string is straight.)',
           'Tali layang-layang sepanjang 50 m membentuk sudut $30^{\\circ}$ dengan tanah datar. Seberapa tinggi layang-layang itu, dalam meter? (Anggap tali lurus.)',
         ),
         blanks: [{ answer: 25, after: '\\text{m}' }],
@@ -195,7 +195,7 @@ export const m8s1: Submodule = {
       },
       {
         prompt: L(
-          'From a point 40 m from the foot of a tower, the angle of elevation of the top is $45^{\\circ}$. How tall is the tower, in metres?',
+          'From a point 40 m from the foot of a tower, the angle of elevation of the top is $45^{\\circ}$. How tall is the tower, in meters?',
           'Dari titik yang berjarak 40 m dari kaki menara, sudut elevasi puncak menara $45^{\\circ}$. Berapa tinggi menara, dalam meter?',
         ),
         figure: {

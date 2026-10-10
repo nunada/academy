@@ -2,13 +2,13 @@ import type { Module } from '../types'
 
 /** Module 2 — computing limits without a table. The limit laws turn a limit
  *  of a combination into a combination of limits, and two algebraic moves —
- *  factoring and rationalising — rescue the $\frac{0}{0}$ cases where direct
+ *  factoring and rationalizing — rescue the $\frac{0}{0}$ cases where direct
  *  substitution refuses to answer. */
 export const module2: Module = {
   id: 'lim-m2',
   title: { en: 'Limit Laws and Algebraic Technique', id: 'Hukum Limit dan Teknik Aljabar' },
   summary: {
-    en: 'Direct substitution and the limit laws, then factoring and rationalising for the cases substitution refuses.',
+    en: 'Direct substitution and the limit laws, then factoring and rationalizing for the cases substitution refuses.',
     id: 'Substitusi langsung dan hukum limit, lalu pemfaktoran dan perasionalan untuk kasus yang ditolak substitusi.',
   },
   submodules: [
@@ -262,9 +262,9 @@ export const module2: Module = {
       lessons: [
         {
           id: 'lim-m2-s2-l1',
-          title: { en: 'Factoring and Cancelling', id: 'Memfaktorkan dan Mencoret' },
+          title: { en: 'Factoring and Canceling', id: 'Memfaktorkan dan Mencoret' },
           goal: {
-            en: 'Recognise the 0/0 form and clear it by factoring the numerator and denominator.',
+            en: 'Recognize the 0/0 form and clear it by factoring the numerator and denominator.',
             id: 'Mengenali bentuk 0/0 dan menyelesaikannya dengan memfaktorkan pembilang dan penyebut.',
           },
           xp: 20,
@@ -274,7 +274,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'The warning sign, and the fix', id: 'Tanda peringatan, dan cara memperbaikinya' },
               body: {
-                en: 'Substitute $x = a$ into $\\dfrac{p(x)}{q(x)}$ and get $\\dfrac{0}{0}$: that is not an answer, it is a **sign that $(x-a)$ divides both** the numerator and the denominator. Factor each, cancel the shared $(x-a)$, and substitute again into what is left — which, unlike the original, is no longer $\\frac{0}{0}$ at $a$.\n$$\\lim_{x \\to 3} \\frac{x^2 - 9}{x - 3} = \\lim_{x \\to 3} \\frac{(x-3)(x+3)}{x-3} = \\lim_{x \\to 3}(x+3) = 6$$\nThe cancelling step is legal precisely because a limit never looks at $x = a$ itself — for every $x$ actually being considered, $x \\neq 3$, so $\\dfrac{x-3}{x-3} = 1$ honestly, with nothing hidden.',
+                en: 'Substitute $x = a$ into $\\dfrac{p(x)}{q(x)}$ and get $\\dfrac{0}{0}$: that is not an answer, it is a **sign that $(x-a)$ divides both** the numerator and the denominator. Factor each, cancel the shared $(x-a)$, and substitute again into what is left — which, unlike the original, is no longer $\\frac{0}{0}$ at $a$.\n$$\\lim_{x \\to 3} \\frac{x^2 - 9}{x - 3} = \\lim_{x \\to 3} \\frac{(x-3)(x+3)}{x-3} = \\lim_{x \\to 3}(x+3) = 6$$\nThe canceling step is legal precisely because a limit never looks at $x = a$ itself — for every $x$ actually being considered, $x \\neq 3$, so $\\dfrac{x-3}{x-3} = 1$ honestly, with nothing hidden.',
                 id: 'Substitusikan $x = a$ ke $\\dfrac{p(x)}{q(x)}$ dan diperoleh $\\dfrac{0}{0}$: itu bukan jawaban, melainkan **tanda bahwa $(x-a)$ membagi habis** baik pembilang maupun penyebut. Faktorkan masing-masing, coret $(x-a)$ yang sama, lalu substitusikan lagi ke sisanya — yang, tak seperti semula, sudah bukan $\\frac{0}{0}$ lagi di $a$.\n$$\\lim_{x \\to 3} \\frac{x^2 - 9}{x - 3} = \\lim_{x \\to 3} \\frac{(x-3)(x+3)}{x-3} = \\lim_{x \\to 3}(x+3) = 6$$\nLangkah mencoret ini sah persis karena limit tak pernah memandang $x = a$ itu sendiri — untuk setiap $x$ yang sungguh-sungguh sedang dipertimbangkan, $x \\neq 3$, sehingga $\\dfrac{x-3}{x-3} = 1$ secara jujur, tanpa ada yang disembunyikan.',
               },
               figure: {
@@ -289,7 +289,7 @@ export const module2: Module = {
                   { t: 'dot', x: '3+d', y: '((3+d)^2-9)/((3+d)-3)', color: 'b', label: 'x' },
                 ],
                 caption: {
-                  en: 'Drag $x-3$ toward $0$ — the moving point slides along the line straight into the hole. After cancelling, the curve is just $y = x+3$ with a hole exactly where the original denominator vanished; the limit is that hole\'s height.',
+                  en: 'Drag $x-3$ toward $0$ — the moving point slides along the line straight into the hole. After canceling, the curve is just $y = x+3$ with a hole exactly where the original denominator vanished; the limit is that hole\'s height.',
                   id: 'Geser $x-3$ menuju $0$ — titik yang bergerak meluncur sepanjang garis tepat menuju lubangnya. Setelah mencoret, kurvanya sekadar $y = x+3$ dengan lubang tepat di tempat penyebut aslinya lenyap; limitnya adalah tinggi lubang itu.',
                 },
               },
@@ -370,7 +370,7 @@ export const module2: Module = {
         },
         {
           id: 'lim-m2-s2-l2',
-          title: { en: 'Rationalising', id: 'Merasionalkan' },
+          title: { en: 'Rationalizing', id: 'Merasionalkan' },
           goal: {
             en: 'Clear a 0/0 that has a square root in it by multiplying through by a conjugate.',
             id: 'Menyelesaikan 0/0 yang mengandung akar kuadrat dengan mengalikan dengan sekawan.',
@@ -445,7 +445,7 @@ export const module2: Module = {
                 id: 'Kalikan dengan sekawan, sederhanakan pembilangnya menjadi $x$ biasa, coret dengan $x$ yang sudah ada di bawah, lalu substitusikan ke sisanya — akarnya sudah selesai bekerja dan lenyap.',
               },
               hint: {
-                en: 'Each line depends on simplifying what the line before it produced — the multiplication has to happen before there is anything to cancel, and cancelling has to happen before a final substitution makes sense.',
+                en: 'Each line depends on simplifying what the line before it produced — the multiplication has to happen before there is anything to cancel, and canceling has to happen before a final substitution makes sense.',
                 id: 'Tiap baris bergantung pada penyederhanaan dari apa yang dihasilkan baris sebelumnya — perkaliannya harus terjadi sebelum ada yang bisa dicoret, dan pencoretannya harus terjadi sebelum substitusi akhir masuk akal.',
               },
             },
@@ -473,11 +473,11 @@ export const module2: Module = {
         runtime: 'math',
         title: { en: 'Clearing the 0/0 Form', id: 'Menyelesaikan Bentuk 0/0' },
         brief: {
-          en: 'A factoring limit, a rationalising limit, and one where you decide which tool to use.',
+          en: 'A factoring limit, a rationalizing limit, and one where you decide which tool to use.',
           id: 'Satu limit pemfaktoran, satu limit perasionalan, dan satu yang alatnya kamu tentukan sendiri.',
         },
         requirements: [
-          { en: 'A $\\frac{0}{0}$ result is a sign to factor or rationalise, never a final answer.', id: 'Hasil $\\frac{0}{0}$ adalah tanda untuk memfaktorkan atau merasionalkan, tak pernah jawaban akhir.' },
+          { en: 'A $\\frac{0}{0}$ result is a sign to factor or rationalize, never a final answer.', id: 'Hasil $\\frac{0}{0}$ adalah tanda untuk memfaktorkan atau merasionalkan, tak pernah jawaban akhir.' },
           { en: 'Always cancel before substituting the second time.', id: 'Selalu coret dahulu sebelum mensubstitusi untuk kedua kalinya.' },
         ],
         tasks: [
@@ -511,7 +511,7 @@ export const module2: Module = {
           },
         ],
         hints: [
-          { en: 'Part 3 has a $\\frac{0}{0}$ hiding on both top and bottom — factor both fully before cancelling anything.', id: 'Butir 3 menyembunyikan $\\frac{0}{0}$ di pembilang maupun penyebut — faktorkan keduanya sepenuhnya sebelum mencoret apa pun.' },
+          { en: 'Part 3 has a $\\frac{0}{0}$ hiding on both top and bottom — factor both fully before canceling anything.', id: 'Butir 3 menyembunyikan $\\frac{0}{0}$ di pembilang maupun penyebut — faktorkan keduanya sepenuhnya sebelum mencoret apa pun.' },
         ],
         xp: 50,
       },

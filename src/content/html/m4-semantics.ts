@@ -297,7 +297,7 @@ export const module4: Module = {
         runtime: 'web',
         title: { en: 'Complete profile page', id: 'Halaman profil lengkap' },
         brief: {
-          en: 'Everything at once: named regions, a navigation menu, articles, a table, and a labelled form.',
+          en: 'Everything at once: named regions, a navigation menu, articles, a table, and a labeled form.',
           id: 'Semuanya sekaligus: bagian bernama, menu navigasi, artikel, tabel, dan formulir berlabel.',
         },
         requirements: [
@@ -337,7 +337,7 @@ export const module4: Module = {
                 'var t = sel("main table");\nassert(t, "main needs a <table>");\nassert(t.querySelector("caption"), "the table needs a <caption>");\nassert(t.querySelector("caption").textContent.trim().length > 0, "the caption must not be empty");\nassert(t.querySelector("thead th"), "the table needs a <thead> containing <th>");\nassert(t.querySelectorAll("tbody tr").length >= 1, "the table needs at least one data row in tbody");',
             },
             {
-              name: { en: 'A form where every field is labelled', id: 'A form where every field is labelled' },
+              name: { en: 'A form where every field is labeled', id: 'A form where every field is labeled' },
               check:
                 'var f = sel("main form");\nassert(f, "main needs a <form>");\nvar fields = Array.prototype.slice.call(f.querySelectorAll("input, select, textarea"));\nassert(fields.length >= 2, "the form needs at least two fields, found: " + fields.length);\nfields.forEach(function (x) {\n  var id = x.getAttribute("id");\n  assert(id, "every field needs an id");\n  assert(doc.querySelector(\'label[for="\' + id + \'"]\'), "there is no label for the field with id " + id);\n});\nassert(f.querySelector("button, input[type=submit]"), "the form needs a submit button");',
             },
@@ -373,7 +373,7 @@ export const module4: Module = {
                 'var t = sel("main table");\nassert(t, "main butuh sebuah <table>");\nassert(t.querySelector("caption"), "tabel butuh <caption>");\nassert(t.querySelector("caption").textContent.trim().length > 0, "caption tidak boleh kosong");\nassert(t.querySelector("thead th"), "tabel butuh <thead> berisi <th>");\nassert(t.querySelectorAll("tbody tr").length >= 1, "tabel butuh minimal satu baris data di tbody");',
             },
             {
-              name: { en: 'A form where every field is labelled', id: 'Formulir yang tiap isiannya berlabel' },
+              name: { en: 'A form where every field is labeled', id: 'Formulir yang tiap isiannya berlabel' },
               check:
                 'var f = sel("main form");\nassert(f, "main butuh sebuah <form>");\nvar kolom = Array.prototype.slice.call(f.querySelectorAll("input, select, textarea"));\nassert(kolom.length >= 2, "formulir butuh minimal dua isian, ada: " + kolom.length);\nkolom.forEach(function (x) {\n  var id = x.getAttribute("id");\n  assert(id, "setiap isian butuh id");\n  assert(doc.querySelector(\'label[for="\' + id + \'"]\'), "belum ada label untuk isian ber-id " + id);\n});\nassert(f.querySelector("button, input[type=submit]"), "formulir butuh tombol kirim");',
             },

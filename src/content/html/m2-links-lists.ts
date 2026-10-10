@@ -3,13 +3,13 @@ import type { Module } from '../types'
 /** Module 2 — the things that make a page more than one screen of text.
  *
  *  The preview has no network, so image examples use a `data:` URI. That is not
- *  a workaround to apologise for: a broken image is exactly what shows why `alt`
+ *  a workaround to apologize for: a broken image is exactly what shows why `alt`
  *  matters, and one lesson leans on that deliberately. */
 export const module2: Module = {
   id: 'html-m2',
   title: { en: 'Links, Images, Lists', id: 'Tautan, Gambar, Daftar' },
   summary: {
-    en: 'Connect pages together, show pictures, and organise items.',
+    en: 'Connect pages together, show pictures, and organize items.',
     id: 'Menghubungkan halaman, menampilkan gambar, dan menata daftar.',
   },
   submodules: [

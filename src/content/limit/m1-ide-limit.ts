@@ -35,7 +35,7 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Approaching, not arriving', id: 'Mendekati, bukan tiba' },
               body: {
-                en: 'We write\n$$\\lim_{x \\to a} f(x) = L$$\nread "the limit of $f(x)$ as $x$ approaches $a$ is $L$", to say: as $x$ is taken **closer and closer** to $a$ — from either side, but never equal to $a$ — the values $f(x)$ get closer and closer to $L$.\n\nThat "never equal to $a$" is not a technicality to skip past. A limit is a statement about the **neighbourhood** of $a$, and it is deliberately silent about $a$ itself. $f(a)$ might equal $L$, might equal something else, or might not exist at all — none of that has been asked yet. This lesson is entirely about what happens on the way in.',
+                en: 'We write\n$$\\lim_{x \\to a} f(x) = L$$\nread "the limit of $f(x)$ as $x$ approaches $a$ is $L$", to say: as $x$ is taken **closer and closer** to $a$ — from either side, but never equal to $a$ — the values $f(x)$ get closer and closer to $L$.\n\nThat "never equal to $a$" is not a technicality to skip past. A limit is a statement about the **neighborhood** of $a$, and it is deliberately silent about $a$ itself. $f(a)$ might equal $L$, might equal something else, or might not exist at all — none of that has been asked yet. This lesson is entirely about what happens on the way in.',
                 id: 'Kita tulis\n$$\\lim_{x \\to a} f(x) = L$$\ndibaca "limit $f(x)$ untuk $x$ mendekati $a$ adalah $L$", untuk menyatakan: ketika $x$ diambil **semakin dekat** ke $a$ — dari sisi mana pun, tetapi tak pernah sama dengan $a$ — nilai $f(x)$ menjadi semakin dekat ke $L$.\n\n"Tak pernah sama dengan $a$" itu bukan detail teknis yang bisa dilewati. Limit adalah pernyataan tentang **sekitar** $a$, dan ia sengaja diam tentang $a$ itu sendiri. $f(a)$ bisa saja sama dengan $L$, bisa berbeda, atau bisa saja tak ada — tak satu pun dari itu sedang ditanyakan di sini. Pelajaran ini seluruhnya tentang apa yang terjadi dalam perjalanan menuju $a$.',
               },
               figure: {
@@ -337,7 +337,7 @@ export const module1: Module = {
           id: 'lim-m1-s2-l1',
           title: { en: 'Three Ways a Limit Can Fail', id: 'Tiga Cara Limit Bisa Gagal' },
           goal: {
-            en: 'Recognise a jump, an unbounded run-away, and an oscillation as the three ways a limit fails to exist.',
+            en: 'Recognize a jump, an unbounded run-away, and an oscillation as the three ways a limit fails to exist.',
             id: 'Mengenali lompatan, larian tak terbatas, dan osilasi sebagai tiga cara limit gagal ada.',
           },
           xp: 20,
@@ -452,7 +452,7 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Three relationships, all legal', id: 'Tiga hubungan, semuanya sah' },
               body: {
-                en: 'Because a limit only looks at points near $a$ and never at $a$ itself, $\\lim_{x \\to a} f(x)$ and $f(a)$ are free to relate in any of these ways:\n\n- **Both exist and agree.** The ordinary, well-behaved case — this is what Module 4 will name **continuous**.\n- **Both exist but disagree.** $f(a)$ was defined by hand to be something the surrounding values do not point to — a deliberately placed patch.\n- **The limit exists but $f(a)$ does not.** The hole from the last lesson: the formula simply has nothing to say at $a$, even though its neighbours all point the same way.\n\nWhat can **never** happen is the limit **depending** on $f(a)$ — changing $f(a)$, or even leaving it undefined, never changes what the function does next door.',
+                en: 'Because a limit only looks at points near $a$ and never at $a$ itself, $\\lim_{x \\to a} f(x)$ and $f(a)$ are free to relate in any of these ways:\n\n- **Both exist and agree.** The ordinary, well-behaved case — this is what Module 4 will name **continuous**.\n- **Both exist but disagree.** $f(a)$ was defined by hand to be something the surrounding values do not point to — a deliberately placed patch.\n- **The limit exists but $f(a)$ does not.** The hole from the last lesson: the formula simply has nothing to say at $a$, even though its neighbors all point the same way.\n\nWhat can **never** happen is the limit **depending** on $f(a)$ — changing $f(a)$, or even leaving it undefined, never changes what the function does next door.',
                 id: 'Karena limit hanya memandang titik-titik dekat $a$ dan tak pernah $a$ itu sendiri, $\\lim_{x \\to a} f(x)$ dan $f(a)$ bebas berhubungan dengan salah satu cara berikut:\n\n- **Keduanya ada dan sepakat.** Kasus biasa yang berperilaku baik — inilah yang akan dinamai **kontinu** pada Modul 4.\n- **Keduanya ada tetapi tidak sepakat.** $f(a)$ didefinisikan secara manual menjadi sesuatu yang tak ditunjuk oleh nilai-nilai di sekitarnya — sebuah tambalan yang sengaja ditaruh.\n- **Limitnya ada tetapi $f(a)$ tidak.** Lubang dari pelajaran sebelumnya: rumusnya sekadar tak punya apa-apa untuk dikatakan di $a$, meski semua tetangganya menunjuk arah yang sama.\n\nYang **tak pernah** bisa terjadi adalah limitnya **bergantung** pada $f(a)$ — mengubah $f(a)$, atau bahkan membiarkannya tak terdefinisi, tak pernah mengubah apa yang dilakukan fungsi itu di sebelahnya.',
               },
               figure: {

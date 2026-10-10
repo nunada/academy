@@ -2,7 +2,7 @@ import type { Module } from '../types'
 
 /** Module 6 — the payoff. Every technique from Modules 1-5 turns into a tool
  *  for questions with nothing abstract left in them: how much area sits
- *  between two curves, how far something actually travelled versus where it
+ *  between two curves, how far something actually traveled versus where it
  *  ended up, and how much a solid weighs once a flat region is spun into one. */
 export const module1: Module = {
   id: 'int-m6',
@@ -17,7 +17,7 @@ export const module1: Module = {
       id: 'int-m6-s1',
       title: { en: 'Area and Accumulated Change', id: 'Luas dan Perubahan Terakumulasi' },
       summary: {
-        en: 'The area trapped between two curves, and the difference between net displacement and total distance travelled.',
+        en: 'The area trapped between two curves, and the difference between net displacement and total distance traveled.',
         id: 'Luas yang terjebak di antara dua kurva, dan perbedaan antara perpindahan neto dan total jarak yang ditempuh.',
       },
       lessons: [
@@ -158,7 +158,7 @@ export const module1: Module = {
           id: 'int-m6-s1-l2',
           title: { en: 'Total Change from a Rate', id: 'Total Perubahan dari Sebuah Laju' },
           goal: {
-            en: 'Recover net change by integrating a rate, and distinguish net displacement from total distance travelled when the rate changes sign.',
+            en: 'Recover net change by integrating a rate, and distinguish net displacement from total distance traveled when the rate changes sign.',
             id: 'Memulihkan perubahan neto dengan mengintegralkan sebuah laju, dan membedakan perpindahan neto dari total jarak yang ditempuh ketika lajunya berganti tanda.',
           },
           xp: 20,
@@ -177,7 +177,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'When the rate changes sign, distance and displacement split apart', id: 'Ketika lajunya berganti tanda, jarak dan perpindahan berpisah' },
               body: {
-                en: 'For velocity $v(t) = t^2-4$ on $[0,3]$: $v(t)=0$ at $t=2$, negative before and positive after — the particle moves backward, then forward. Plain integration gives **displacement**, the net change in position:\n$$\\int_0^3 (t^2-4)\\,dt = \\left[\\frac{t^3}{3}-4t\\right]_0^3 = (9-12)-0 = -3$$\nBut **total distance travelled** must count backward motion as positive distance too, which means integrating $|v(t)|$ — splitting at $t=2$ where the sign changes:\n$$\\int_0^2 \\big(4-t^2\\big)\\,dt + \\int_2^3 \\big(t^2-4\\big)\\,dt = \\frac{16}{3} + \\frac{7}{3} = \\frac{23}{3} \\approx 7.67$$\nThe particle ends up $3$ units behind where it started, having actually travelled $\\frac{23}{3}$ units to get there.',
+                en: 'For velocity $v(t) = t^2-4$ on $[0,3]$: $v(t)=0$ at $t=2$, negative before and positive after — the particle moves backward, then forward. Plain integration gives **displacement**, the net change in position:\n$$\\int_0^3 (t^2-4)\\,dt = \\left[\\frac{t^3}{3}-4t\\right]_0^3 = (9-12)-0 = -3$$\nBut **total distance traveled** must count backward motion as positive distance too, which means integrating $|v(t)|$ — splitting at $t=2$ where the sign changes:\n$$\\int_0^2 \\big(4-t^2\\big)\\,dt + \\int_2^3 \\big(t^2-4\\big)\\,dt = \\frac{16}{3} + \\frac{7}{3} = \\frac{23}{3} \\approx 7.67$$\nThe particle ends up $3$ units behind where it started, having actually traveled $\\frac{23}{3}$ units to get there.',
                 id: 'Untuk kecepatan $v(t) = t^2-4$ pada $[0,3]$: $v(t)=0$ di $t=2$, negatif sebelumnya dan positif sesudahnya — partikelnya bergerak mundur, lalu maju. Integrasi biasa memberi **perpindahan**, perubahan neto posisi:\n$$\\int_0^3 (t^2-4)\\,dt = \\left[\\frac{t^3}{3}-4t\\right]_0^3 = (9-12)-0 = -3$$\nTetapi **total jarak yang ditempuh** harus menghitung gerak mundur sebagai jarak positif juga, yang berarti mengintegralkan $|v(t)|$ — memecah di $t=2$ tempat tandanya berganti:\n$$\\int_0^2 \\big(4-t^2\\big)\\,dt + \\int_2^3 \\big(t^2-4\\big)\\,dt = \\frac{16}{3} + \\frac{7}{3} = \\frac{23}{3} \\approx 7.67$$\nPartikelnya berakhir $3$ satuan di belakang tempat ia mulai, meski sebenarnya sudah menempuh $\\frac{23}{3}$ satuan untuk sampai di situ.',
               },
               figure: {
@@ -200,7 +200,7 @@ export const module1: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'Why does total distance travelled require splitting the integral at the point where velocity changes sign?',
+                en: 'Why does total distance traveled require splitting the integral at the point where velocity changes sign?',
                 id: 'Mengapa total jarak yang ditempuh memerlukan pemecahan integral di titik tempat kecepatan berganti tanda?',
               },
               options: [
@@ -281,7 +281,7 @@ export const module1: Module = {
             solution: ['F(t)=t^2-6t, \\quad F(5)-F(0) = (25-30)-0 = -5'],
           },
           {
-            prompt: { en: 'For the same $v(t) = 2t - 6$ on $[0, 5]$, find the total distance travelled.', id: 'Untuk $v(t) = 2t - 6$ yang sama pada $[0, 5]$, cari total jarak yang ditempuh.' },
+            prompt: { en: 'For the same $v(t) = 2t - 6$ on $[0, 5]$, find the total distance traveled.', id: 'Untuk $v(t) = 2t - 6$ yang sama pada $[0, 5]$, cari total jarak yang ditempuh.' },
             blanks: [{ answer: 13 }],
             solution: ['\\int_0^3(6-2t)\\,dt + \\int_3^5(2t-6)\\,dt = 9 + 4 = 13'],
           },

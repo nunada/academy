@@ -342,7 +342,7 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'The one that always agrees', id: 'Yang selalu sepakat' },
               body: {
-                en: 'The contrapositive is special: it is **logically equivalent** to the original conditional — always the same truth value, for every possible $p$ and $q$.\n$$p \\Rightarrow q \\equiv \\neg q \\Rightarrow \\neg p$$\nCheck it against the earlier example: "if a number is not even, then it is not divisible by 4" is true — an odd number is certainly not a multiple of 4. The converse and the inverse, by contrast, are logically equivalent to **each other** (each is the other read backwards), but not to the original — which is exactly why $6$ broke the converse without ever threatening the original conditional.',
+                en: 'The contrapositive is special: it is **logically equivalent** to the original conditional — always the same truth value, for every possible $p$ and $q$.\n$$p \\Rightarrow q \\equiv \\neg q \\Rightarrow \\neg p$$\nCheck it against the earlier example: "if a number is not even, then it is not divisible by 4" is true — an odd number is certainly not a multiple of 4. The converse and the inverse, by contrast, are logically equivalent to **each other** (each is the other read backward), but not to the original — which is exactly why $6$ broke the converse without ever threatening the original conditional.',
                 id: 'Kontraposisi istimewa: ia **ekuivalen secara logis** dengan kondisional aslinya — selalu punya nilai kebenaran yang sama, untuk sebarang $p$ dan $q$.\n$$p \\Rightarrow q \\equiv \\neg q \\Rightarrow \\neg p$$\nPeriksa dengan contoh sebelumnya: "jika sebuah bilangan tidak genap, maka bilangan itu tak habis dibagi 4" benar — bilangan ganjil tentu bukan kelipatan 4. Konvers dan invers, sebaliknya, ekuivalen secara logis **satu sama lain** (masing-masing adalah yang lain dibaca terbalik), tetapi tidak dengan yang asli — itulah sebabnya $6$ mematahkan konversnya tanpa pernah mengancam kondisional aslinya.',
               },
             },
@@ -420,7 +420,7 @@ export const module2: Module = {
               },
               blanks: [{ label: 'q \\Rightarrow p =', answer: 1 }],
               hints: [
-                { en: 'The converse and the inverse are each the other one read backwards.', id: 'Konvers dan invers masing-masing adalah yang lain dibaca terbalik.' },
+                { en: 'The converse and the inverse are each the other one read backward.', id: 'Konvers dan invers masing-masing adalah yang lain dibaca terbalik.' },
                 { en: 'Two logically equivalent statements always share a truth value.', id: 'Dua pernyataan yang ekuivalen secara logis selalu berbagi nilai kebenaran.' },
               ],
               explain: {
@@ -554,7 +554,7 @@ export const module2: Module = {
           id: 'log-m2-s2-l3',
           title: { en: 'Conventions for Reading Connectives', id: 'Kesepakatan Membaca Kata Hubung' },
           goal: {
-            en: 'Read an unparenthesised string of connectives the way every mathematics text agrees to.',
+            en: 'Read an unparenthesized string of connectives the way every mathematics text agrees to.',
             id: 'Membaca rangkaian kata hubung tanpa tanda kurung sebagaimana disepakati semua buku matematika.',
           },
           xp: 20,

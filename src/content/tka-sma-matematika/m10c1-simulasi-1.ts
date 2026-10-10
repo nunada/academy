@@ -203,7 +203,7 @@ export const test1: Lesson = {
       kind: 'quiz',
       id: 'q6',
       prompt: L(
-        'A circle has centre $O$ and radius 6. The point $P$ is 10 from $O$, and $PT$ touches the circle at $T$. How long is $PT$?',
+        'A circle has center $O$ and radius 6. The point $P$ is 10 from $O$, and $PT$ touches the circle at $T$. How long is $PT$?',
         'Sebuah lingkaran berpusat $O$ dan berjari-jari 6. Titik $P$ berjarak 10 dari $O$, dan $PT$ menyinggung lingkaran di $T$. Berapa panjang $PT$?',
       ),
       figure: {
@@ -270,7 +270,7 @@ export const test1: Lesson = {
       kind: 'math',
       id: 'm3',
       prompt: L(
-        'A ball is thrown upward from a balcony. Its height in metres after $t$ seconds is $h=-5t^2+20t+25$. After how many seconds does it hit the ground?',
+        'A ball is thrown upward from a balcony. Its height in meters after $t$ seconds is $h=-5t^2+20t+25$. After how many seconds does it hit the ground?',
         'Sebuah bola dilempar ke atas dari balkon. Tingginya dalam meter setelah $t$ detik adalah $h=-5t^2+20t+25$. Setelah berapa detik bola menyentuh tanah?',
       ),
       blanks: [{ label: 't =', answer: 5, after: '\\text{s}' }],

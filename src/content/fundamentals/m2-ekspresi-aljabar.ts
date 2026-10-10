@@ -364,7 +364,7 @@ export const module2: Module = {
             {
               kind: 'concept',
               id: 'c2',
-              title: { en: 'Simplifying by factoring and cancelling', id: 'Menyederhanakan dengan memfaktorkan dan mencoret' },
+              title: { en: 'Simplifying by factoring and canceling', id: 'Menyederhanakan dengan memfaktorkan dan mencoret' },
               body: {
                 en: 'To simplify, factor both numerator and denominator, then cancel factors common to both:\n$$\\frac{x^2-1}{x^2+x-2} = \\frac{(x-1)(x+1)}{(x-1)(x+2)} = \\frac{x+1}{x+2}$$\nOnly common **factors** cancel — never individual terms. There is no $x^2$ to cancel in $\\dfrac{x^2-1}{x^2+x-2}$ because $x^2$ is not a factor of either polynomial as a whole.',
                 id: 'Untuk menyederhanakan, faktorkan pembilang dan penyebutnya, lalu coret faktor yang sama pada keduanya:\n$$\\frac{x^2-1}{x^2+x-2} = \\frac{(x-1)(x+1)}{(x-1)(x+2)} = \\frac{x+1}{x+2}$$\nHanya **faktor** yang sama yang dicoret — tak pernah suku secara individual. Tak ada $x^2$ untuk dicoret pada $\\dfrac{x^2-1}{x^2+x-2}$ sebab $x^2$ bukan faktor dari salah satu polinomial secara keseluruhan.',
@@ -559,7 +559,7 @@ export const module2: Module = {
           id: 'Sederhanakan sebuah pecahan aljabar, lalu hitung dua pecahan aljabar di titik tertentu.',
         },
         requirements: [
-          { en: 'Factor before cancelling — only whole factors common to numerator and denominator may cancel.', id: 'Faktorkan sebelum mencoret — hanya faktor utuh yang sama pada pembilang dan penyebut yang boleh dicoret.' },
+          { en: 'Factor before canceling — only whole factors common to numerator and denominator may cancel.', id: 'Faktorkan sebelum mencoret — hanya faktor utuh yang sama pada pembilang dan penyebut yang boleh dicoret.' },
         ],
         tasks: [
           {

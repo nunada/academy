@@ -3,7 +3,7 @@ import { L, dot, plane, solid, txt } from './figs'
 import { lessonThreeUnknowns } from './m2c-tiga-variabel'
 
 /** Module 2, submodule 2 — systems of two linear equations, and linear
- *  inequalities in two variables with a simple optimisation. */
+ *  inequalities in two variables with a simple optimization. */
 
 export const m2s2: Submodule = {
   id: 'tka-sma-m2-s2',

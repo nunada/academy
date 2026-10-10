@@ -463,7 +463,7 @@ Contoh: $7200$ berjumlah angka 9 dan berakhir 00, sehingga habis dibagi 2, 3, 4,
     /* ----------------------------------------------------------------- primes */
     {
       id: 'primes',
-      heading: L('What are prime numbers and prime factorisation?', 'Apa itu bilangan prima dan faktorisasi prima?'),
+      heading: L('What are prime numbers and prime factorization?', 'Apa itu bilangan prima dan faktorisasi prima?'),
       blocks: [
         {
           kind: 'text',
@@ -476,13 +476,13 @@ Contoh: $7200$ berjumlah angka 9 dan berakhir 00, sehingga habis dibagi 2, 3, 4,
 
 **The fundamental theorem of arithmetic** says every integer greater than 1 can be written as a product of primes in exactly one way, apart from the order. So $360=2\cdot2\cdot2\cdot3\cdot3\cdot5=2^3\cdot3^2\cdot5$, and no other set of primes multiplies to 360.
 
-**To factorise,** divide by the smallest prime that goes in, again and again, until 1 is left: $360\div2=180$, $\div2=90$, $\div2=45$, $\div3=15$, $\div3=5$, $\div5=1$.
+**To factorize,** divide by the smallest prime that goes in, again and again, until 1 is left: $360\div2=180$, $\div2=90$, $\div2=45$, $\div3=15$, $\div3=5$, $\div5=1$.
 
 **To test whether $n$ is prime,** divide by the primes up to $\sqrt{n}$. If $n$ had a factor larger than $\sqrt{n}$, its partner factor would be smaller than $\sqrt{n}$, so you would have met it already. Take 91: $\sqrt{91}<10$, and $91=7\cdot13$, so it only looks prime. For 97 nothing in 2, 3, 5, 7 divides it, so 97 is prime.
 
 **There are infinitely many primes.** Euclid's argument: suppose a list of primes were complete, multiply them all and add 1. The result leaves remainder 1 on division by every prime on the list, so it either is a new prime or has one, and the list was not complete.
 
-**Divisors from the factorisation.** If $n=p^a q^b\cdots$ it has $(a+1)(b+1)\cdots$ positive divisors, so $360$ has $4\cdot3\cdot2=24$. Use the tool below.`,
+**Divisors from the factorization.** If $n=p^a q^b\cdots$ it has $(a+1)(b+1)\cdots$ positive divisors, so $360$ has $4\cdot3\cdot2=24$. Use the tool below.`,
             T`**Bilangan prima adalah bilangan bulat lebih dari 1 yang satu-satunya pembagi positifnya adalah 1 dan dirinya sendiri; setiap bilangan bulat lebih dari 1 adalah prima atau hasil kali bilangan prima, dan hasil kali itu tunggal.** Bilangan prima dimulai $2,3,5,7,11,13,17,19,23,29,31,37,41,43,47$, lima belas bilangan di bawah 50.
 
 - Bilangan **komposit** punya lebih banyak pembagi: $12=3\cdot4$.
@@ -679,7 +679,7 @@ Masalahnya, **bahasa pemrograman tidak semuanya sepakat tentang operan negatif.*
         {
           kind: 'code',
           lang: 'python',
-          caption: L('Euclid’s algorithm and factorisation in Python', 'Algoritma Euclid dan faktorisasi di Python'),
+          caption: L('Euclid’s algorithm and factorization in Python', 'Algoritma Euclid dan faktorisasi di Python'),
           code: `def gcd(a, b):
     while b:
         a, b = b, a % b
@@ -916,7 +916,7 @@ Python's ´math.gcd´ and ´math.lcm´ (from Python 3.9) take any size of intege
 - **Adding and subtracting:** same signs add and keep the sign; different signs subtract and keep the sign of the larger; $a-b=a+(-b)$.
 - **Multiplying and dividing:** same signs give positive, different signs give negative; never divide by 0.
 - **Order of operations:** brackets, powers, then ×÷, then +− left to right; $-3^2=-9$ but $(-3)^2=9$.
-- **Divisibility:** digit rules for 2, 3, 4, 5, 6, 8, 9, 10, 11; every integer above 1 has one prime factorisation.
+- **Divisibility:** digit rules for 2, 3, 4, 5, 6, 8, 9, 10, 11; every integer above 1 has one prime factorization.
 - **GCD and LCM:** smaller or larger prime exponents, or Euclid's algorithm; $\gcd\cdot\operatorname{lcm}=a\cdot b$.
 - **Remainders:** $a=bq+r$ with $0\le r<|b|$; Python, JavaScript and mathematics differ for negatives.`,
             T`- **Bilangan bulat:** $\ldots,-2,-1,0,1,2,\ldots$; nol bukan positif dan bukan negatif; setiap $a$ punya lawan $-a$.
@@ -942,7 +942,7 @@ Python's ´math.gcd´ and ´math.lcm´ (from Python 3.9) take any size of intege
     { term: L('Multiple', 'Kelipatan'), definition: L('The product of a number and any integer, such as 12, 24 and 36 for the number 12.', 'Hasil kali sebuah bilangan dengan bilangan bulat mana pun, seperti 12, 24, dan 36 untuk bilangan 12.') },
     { term: L('Prime number', 'Bilangan prima'), definition: L('An integer greater than 1 whose only positive divisors are 1 and itself.', 'Bilangan bulat lebih dari 1 yang satu-satunya pembagi positifnya adalah 1 dan dirinya sendiri.') },
     { term: L('Composite number', 'Bilangan komposit'), definition: L('An integer greater than 1 that is not prime, so it has a divisor other than 1 and itself.', 'Bilangan bulat lebih dari 1 yang bukan prima, sehingga punya pembagi selain 1 dan dirinya sendiri.') },
-    { term: L('Prime factorisation', 'Faktorisasi prima'), definition: L('The unique way of writing an integer greater than 1 as a product of primes, such as 360 equal to 2 cubed times 3 squared times 5.', 'Cara tunggal menulis bilangan bulat lebih dari 1 sebagai hasil kali bilangan prima, seperti 360 sama dengan 2 pangkat tiga kali 3 kuadrat kali 5.') },
+    { term: L('Prime factorization', 'Faktorisasi prima'), definition: L('The unique way of writing an integer greater than 1 as a product of primes, such as 360 equal to 2 cubed times 3 squared times 5.', 'Cara tunggal menulis bilangan bulat lebih dari 1 sebagai hasil kali bilangan prima, seperti 360 sama dengan 2 pangkat tiga kali 3 kuadrat kali 5.') },
     { term: L('Greatest common divisor (GCD)', 'Faktor persekutuan terbesar (FPB)'), definition: L('The largest integer that divides both of two given integers; for 48 and 180 it is 12.', 'Bilangan bulat terbesar yang membagi dua bilangan bulat yang diberikan; untuk 48 dan 180 nilainya 12.') },
     { term: L('Least common multiple (LCM)', 'Kelipatan persekutuan terkecil (KPK)'), definition: L('The smallest positive integer that is a multiple of both of two given integers; for 12 and 18 it is 36.', 'Bilangan bulat positif terkecil yang merupakan kelipatan dua bilangan bulat yang diberikan; untuk 12 dan 18 nilainya 36.') },
     { term: L('Coprime', 'Saling prima'), definition: L('Two integers whose greatest common divisor is 1, such as 8 and 15.', 'Dua bilangan bulat yang faktor persekutuan terbesarnya 1, seperti 8 dan 15.') },
@@ -962,7 +962,7 @@ Python's ´math.gcd´ and ´math.lcm´ (from Python 3.9) take any size of intege
       ],
     },
     {
-      name: L('How to find the prime factorisation of a number', 'Cara mencari faktorisasi prima suatu bilangan'),
+      name: L('How to find the prime factorization of a number', 'Cara mencari faktorisasi prima suatu bilangan'),
       description: L('Divide repeatedly by the smallest prime that goes in until nothing is left.', 'Bagi berulang kali dengan bilangan prima terkecil yang membagi sampai tidak ada yang tersisa.'),
       steps: [
         { name: L('Divide by the smallest prime', 'Bagi dengan prima terkecil'), text: L('Divide the number by 2 while it divides evenly, then by 3, then 5, and so on through the primes.', 'Bagi bilangan itu dengan 2 selama habis dibagi, lalu dengan 3, lalu 5, dan seterusnya melalui bilangan prima.') },
@@ -1043,7 +1043,7 @@ Python's ´math.gcd´ and ´math.lcm´ (from Python 3.9) take any size of intege
     {
       q: L('Is 1 a prime number?', 'Apakah 1 bilangan prima?'),
       a: L(
-        'No. A prime has exactly two positive divisors, 1 and itself, while 1 has only one divisor. Excluding it keeps prime factorisation unique, because otherwise 6 could be written as 2 times 3 and also as 1 times 2 times 3. The first prime is 2.',
+        'No. A prime has exactly two positive divisors, 1 and itself, while 1 has only one divisor. Excluding it keeps prime factorization unique, because otherwise 6 could be written as 2 times 3 and also as 1 times 2 times 3. The first prime is 2.',
         'Bukan. Bilangan prima punya tepat dua pembagi positif, 1 dan dirinya sendiri, sedangkan 1 hanya punya satu pembagi. Mengecualikannya menjaga faktorisasi prima tetap tunggal, sebab jika tidak 6 dapat ditulis 2 kali 3 dan juga 1 kali 2 kali 3. Prima pertama adalah 2.',
       ),
     },

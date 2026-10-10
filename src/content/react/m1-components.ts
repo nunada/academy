@@ -244,7 +244,7 @@ export const module1: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'Capitalise it. This is the single most common silent failure in React.',
+                en: 'Capitalize it. This is the single most common silent failure in React.',
                 id: 'Kapitalkan namanya. Ini kegagalan senyap paling umum di React.',
               },
               hint: {
@@ -465,7 +465,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'key tells React which is which', id: 'key memberi tahu React yang mana yang mana' },
               body: {
-                en: 'When the list changes, React compares the new elements to the old ones. `key` is how it recognises an item it has seen before, so it can move it rather than rebuild it. Use something stable from the data — an id. The array index works only while nothing is ever inserted, removed or reordered.',
+                en: 'When the list changes, React compares the new elements to the old ones. `key` is how it recognizes an item it has seen before, so it can move it rather than rebuild it. Use something stable from the data — an id. The array index works only while nothing is ever inserted, removed or reordered.',
                 id: 'Saat daftarnya berubah, React membandingkan elemen baru dengan yang lama. `key` adalah caranya mengenali item yang pernah ia lihat, sehingga ia bisa memindahkannya alih-alih membangunnya ulang. Pakai sesuatu yang stabil dari datanya — sebuah id. Indeks array hanya aman selama tidak pernah ada penyisipan, penghapusan, atau penyusunan ulang.',
               },
               figure: {
@@ -483,7 +483,7 @@ export const module1: Module = {
                   { t: 'seg', from: [8.1, 7], to: [4.85, 3], color: 'a', dashed: true },
                 ],
                 caption: {
-                  en: 'Budi (key 2) is removed. React matches what remains by key, not by slot — Citra moves from the third position into the second, and React recognises it as the same element and moves it rather than rebuilding it.',
+                  en: 'Budi (key 2) is removed. React matches what remains by key, not by slot — Citra moves from the third position into the second, and React recognizes it as the same element and moves it rather than rebuilding it.',
                   id: 'Budi (key 2) dihapus. React mencocokkan yang tersisa berdasarkan key, bukan posisi — Citra pindah dari posisi ketiga ke posisi kedua, dan React mengenalinya sebagai elemen yang sama lalu memindahkannya, bukan membangunnya ulang.',
                 },
               },
@@ -725,9 +725,9 @@ export const module1: Module = {
         runtime: 'web',
         react: true,
         html: ROOT,
-        title: { en: 'Course catalogue', id: 'Katalog kursus' },
+        title: { en: 'Course catalog', id: 'Katalog kursus' },
         brief: {
-          en: 'A catalogue built from data: a summary line, a list, and an empty state.',
+          en: 'A catalog built from data: a summary line, a list, and an empty state.',
           id: 'Katalog yang dibangun dari data: baris ringkasan, sebuah daftar, dan keadaan kosong.',
         },
         requirements: [

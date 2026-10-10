@@ -172,7 +172,7 @@ export const m5s2: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'In the cube $ABCD.EFGH$ with edge 6 cm, $M$ is the midpoint of the edge $CG$. Find the length $AM$, in centimetres.',
+            'In the cube $ABCD.EFGH$ with edge 6 cm, $M$ is the midpoint of the edge $CG$. Find the length $AM$, in centimeters.',
             'Pada kubus $ABCD.EFGH$ berusuk 6 cm, $M$ titik tengah rusuk $CG$. Tentukan panjang $AM$, dalam sentimeter.',
           ),
           blanks: [{ label: 'AM =', answer: 9, after: '\\text{cm}' }],
@@ -406,7 +406,7 @@ export const m5s2: Submodule = {
       },
       {
         prompt: L(
-          'A box measures 3 cm, 4 cm and 12 cm. How long is its space diagonal, in centimetres?',
+          'A box measures 3 cm, 4 cm and 12 cm. How long is its space diagonal, in centimeters?',
           'Sebuah balok berukuran 3 cm, 4 cm, dan 12 cm. Berapa panjang diagonal ruangnya, dalam sentimeter?',
         ),
         blanks: [{ answer: 13, after: '\\text{cm}' }],
@@ -414,7 +414,7 @@ export const m5s2: Submodule = {
       },
       {
         prompt: L(
-          'In a cube of edge 4 cm, $M$ is the midpoint of the edge $CG$. Find $AM$, in centimetres.',
+          'In a cube of edge 4 cm, $M$ is the midpoint of the edge $CG$. Find $AM$, in centimeters.',
           'Pada kubus berusuk 4 cm, $M$ titik tengah rusuk $CG$. Tentukan $AM$, dalam sentimeter.',
         ),
         blanks: [{ label: 'AM =', answer: 6, after: '\\text{cm}' }],

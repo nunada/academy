@@ -45,7 +45,7 @@ function barModel(rows: BarRow[]): Piece {
 }
 
 /** `n` squares in a row made of matchsticks; each new square adds its own three
- *  sticks in a new colour, so the "+3" can be seen. */
+ *  sticks in a new color, so the "+3" can be seen. */
 function sticks(n: number): Piece {
   const items: FigItem[] = []
   const cols: FigColor[] = ['a', 'b', 'c', 'result']
@@ -115,7 +115,7 @@ export const module11: Module = {
       id: 'tka-m11-s1',
       title: L('Problem-Solving Strategies', 'Strategi Memecahkan Soal'),
       summary: L(
-        'A four-step plan for word problems, with bar models, tables, guess and check, working backwards and estimating, and then reasoning problems that mix topics.',
+        'A four-step plan for word problems, with bar models, tables, guess and check, working backward and estimating, and then reasoning problems that mix topics.',
         'Rencana empat langkah untuk soal cerita, dengan model batang, tabel, coba-coba, berpikir mundur, dan menaksir, lalu soal bernalar yang mencampur beberapa topik.',
       ),
       lessons: [
@@ -134,7 +134,7 @@ export const module11: Module = {
               id: 'c1',
               title: L('Look Closely: Four Steps', 'Ayo Amati: Empat Langkah'),
               body: L(
-                `Ani buys 3 notebooks at Rp4,000 each and 1 pen for Rp2,500. She pays with Rp20,000. How much change does she get?\n\nA word problem is a small story with a question hiding inside. Do not rush to add up every number! Use the same four steps every time.\n\n| Step | What you do |\n| --- | --- |\n| Understand | Read it twice. Underline what is asked. Circle what is given. |\n| Plan | Choose a plan: draw a bar model, make a table, guess and check, or work backwards. |\n| Calculate | Work one small step at a time and write the units. |\n| Check | Does the answer fit the question? Is it sensible? Estimate to check. |\n\nThe bar model shows Ani's story: the money she pays is made of 3 notebooks, 1 pen and the change.`,
+                `Ani buys 3 notebooks at Rp4,000 each and 1 pen for Rp2,500. She pays with Rp20,000. How much change does she get?\n\nA word problem is a small story with a question hiding inside. Do not rush to add up every number! Use the same four steps every time.\n\n| Step | What you do |\n| --- | --- |\n| Understand | Read it twice. Underline what is asked. Circle what is given. |\n| Plan | Choose a plan: draw a bar model, make a table, guess and check, or work backward. |\n| Calculate | Work one small step at a time and write the units. |\n| Check | Does the answer fit the question? Is it sensible? Estimate to check. |\n\nThe bar model shows Ani's story: the money she pays is made of 3 notebooks, 1 pen and the change.`,
                 `Ani membeli 3 buku tulis seharga Rp4.000 per buah dan 1 pulpen seharga Rp2.500. Ia membayar dengan Rp20.000. Berapa uang kembaliannya?\n\nSoal cerita adalah cerita pendek dengan pertanyaan yang tersembunyi di dalamnya. Jangan buru-buru menjumlahkan semua angka! Pakai empat langkah yang sama setiap kali.\n\n| Langkah | Yang kamu lakukan |\n| --- | --- |\n| Pahami | Baca dua kali. Garis bawahi yang ditanyakan. Lingkari yang diketahui. |\n| Rencanakan | Pilih rencana: gambar model batang, buat tabel, coba-coba, atau berpikir mundur. |\n| Hitung | Kerjakan satu langkah kecil demi satu langkah dan tulis satuannya. |\n| Periksa | Apakah jawabannya cocok dengan pertanyaan? Masuk akal? Taksir untuk memeriksa. |\n\nModel batang menunjukkan cerita Ani: uang yang ia bayarkan terdiri dari 3 buku tulis, 1 pulpen, dan uang kembalian.`,
               ),
               figure: {
@@ -187,9 +187,9 @@ export const module11: Module = {
             {
               kind: 'concept',
               id: 'c4',
-              title: L('Step by Step: Working Backwards', 'Contoh Bertahap: Berpikir Mundur'),
+              title: L('Step by Step: Working Backward', 'Contoh Bertahap: Berpikir Mundur'),
               body: L(
-                `Citra had some money. She spent Rp5,000 on lunch. Then her mother gave her Rp3,000. Now she has Rp12,000. How much money did she have at the start?\n\n1. Step 1: write the story in order. Start, then minus 5, then plus 3, and the end is 12 (in thousands of rupiah).\n2. Step 2: go backwards and do the opposite of each step. The last step was "plus 3", so undo it: $12 - 3 = 9$.\n3. Step 3: the step before was "minus 5", so undo it: $9 + 5 = 14$. Citra started with Rp14,000.\n4. Step 4: check by going forwards, $14 - 5 = 9$ and then $9 + 3 = 12$. Correct!\n\n**Remember:** to work backwards, start from the end and undo each step in reverse order. Plus becomes minus, and times becomes divide.`,
+                `Citra had some money. She spent Rp5,000 on lunch. Then her mother gave her Rp3,000. Now she has Rp12,000. How much money did she have at the start?\n\n1. Step 1: write the story in order. Start, then minus 5, then plus 3, and the end is 12 (in thousands of rupiah).\n2. Step 2: go backward and do the opposite of each step. The last step was "plus 3", so undo it: $12 - 3 = 9$.\n3. Step 3: the step before was "minus 5", so undo it: $9 + 5 = 14$. Citra started with Rp14,000.\n4. Step 4: check by going forward, $14 - 5 = 9$ and then $9 + 3 = 12$. Correct!\n\n**Remember:** to work backward, start from the end and undo each step in reverse order. Plus becomes minus, and times becomes divide.`,
                 `Citra punya sejumlah uang. Ia membelanjakan Rp5.000 untuk makan siang. Lalu ibunya memberinya Rp3.000. Sekarang uangnya Rp12.000. Berapa uang Citra mula-mula?\n\n1. Langkah 1: tulis ceritanya berurutan. Mula-mula, lalu kurang 5, lalu tambah 3, dan akhirnya 12 (dalam ribuan rupiah).\n2. Langkah 2: berjalan mundur dan lakukan kebalikan setiap langkah. Langkah terakhir "tambah 3", jadi batalkan: $12 - 3 = 9$.\n3. Langkah 3: langkah sebelumnya "kurang 5", jadi batalkan: $9 + 5 = 14$. Uang Citra mula-mula Rp14.000.\n4. Langkah 4: periksa dengan berjalan maju, $14 - 5 = 9$ lalu $9 + 3 = 12$. Benar!\n\n**Ingat:** untuk berpikir mundur, mulai dari akhir dan batalkan tiap langkah dengan urutan terbalik. Tambah menjadi kurang, dan kali menjadi bagi.`,
               ),
               figure: {
@@ -409,7 +409,7 @@ export const module11: Module = {
               id: 'c1',
               title: L('Look Closely: Puzzles That Mix Topics', 'Ayo Amati: Soal yang Mencampur Topik'),
               body: L(
-                `Some TKA problems mix topics, for example fractions with measuring, or data with percent. They look hard, but the numbers are not big. You only need a plan.\n\nHere is one. Pak Joko has a wire 2 m long. He uses $\\frac{2}{5}$ of it for a frame and cuts the rest into 4 equal pieces. How long is each piece?\n\nBreak it into small questions:\n\n- How many centimetres are in 2 m?\n- How long is $\\frac{2}{5}$ of the wire?\n- How much wire is left?\n- How long is each of the 4 pieces?`,
+                `Some TKA problems mix topics, for example fractions with measuring, or data with percent. They look hard, but the numbers are not big. You only need a plan.\n\nHere is one. Pak Joko has a wire 2 m long. He uses $\\frac{2}{5}$ of it for a frame and cuts the rest into 4 equal pieces. How long is each piece?\n\nBreak it into small questions:\n\n- How many centimeters are in 2 m?\n- How long is $\\frac{2}{5}$ of the wire?\n- How much wire is left?\n- How long is each of the 4 pieces?`,
                 `Beberapa soal TKA mencampur topik, misalnya pecahan dengan pengukuran, atau data dengan persen. Kelihatannya sulit, tetapi angkanya tidak besar. Kamu hanya butuh rencana.\n\nIni salah satunya. Pak Joko punya kawat sepanjang 2 m. Ia memakai $\\frac{2}{5}$ bagian untuk membuat bingkai dan memotong sisanya menjadi 4 bagian sama panjang. Berapa panjang tiap potongan?\n\nPecah menjadi pertanyaan-pertanyaan kecil:\n\n- Ada berapa sentimeter dalam 2 m?\n- Berapa panjang $\\frac{2}{5}$ bagian kawat itu?\n- Berapa kawat yang tersisa?\n- Berapa panjang masing-masing dari 4 potongan?`,
               ),
               figure: {
@@ -436,7 +436,7 @@ export const module11: Module = {
               id: 'c2',
               title: L('Step by Step: Solving the Wire Puzzle', 'Contoh Bertahap: Memecahkan Teka-teki Kawat'),
               body: L(
-                `Let us answer the small questions one by one.\n\n1. Step 1, Understand: the wire is 2 m long, $\\frac{2}{5}$ is used, and the rest is cut into 4 equal pieces. Asked, the length of one piece.\n2. Step 2, Plan: change metres to centimetres, find $\\frac{2}{5}$ of the wire, subtract, then divide by 4.\n3. Step 3, Calculate: $2\\text{ m} = 200\\text{ cm}$. One fifth is $200 \\div 5 = 40$, so two fifths is $2 \\times 40 = 80\\text{ cm}$.\n4. Step 4, Calculate: what is left is $200 - 80 = 120\\text{ cm}$, and each piece is $120 \\div 4 = 30\\text{ cm}$.\n5. Step 5, Check: $4 \\times 30 = 120$ and $120 + 80 = 200$. It fits!\n\n**Remember:**\n\n- Write every small answer with its unit.\n- Use the same unit all the way through.\n- The last small answer is not always the one asked for, so check what the question wants.`,
+                `Let us answer the small questions one by one.\n\n1. Step 1, Understand: the wire is 2 m long, $\\frac{2}{5}$ is used, and the rest is cut into 4 equal pieces. Asked, the length of one piece.\n2. Step 2, Plan: change meters to centimeters, find $\\frac{2}{5}$ of the wire, subtract, then divide by 4.\n3. Step 3, Calculate: $2\\text{ m} = 200\\text{ cm}$. One fifth is $200 \\div 5 = 40$, so two fifths is $2 \\times 40 = 80\\text{ cm}$.\n4. Step 4, Calculate: what is left is $200 - 80 = 120\\text{ cm}$, and each piece is $120 \\div 4 = 30\\text{ cm}$.\n5. Step 5, Check: $4 \\times 30 = 120$ and $120 + 80 = 200$. It fits!\n\n**Remember:**\n\n- Write every small answer with its unit.\n- Use the same unit all the way through.\n- The last small answer is not always the one asked for, so check what the question wants.`,
                 `Mari kita jawab pertanyaan-pertanyaan kecil itu satu per satu.\n\n1. Langkah 1, Pahami: kawat panjangnya 2 m, $\\frac{2}{5}$ bagian dipakai, dan sisanya dipotong menjadi 4 bagian sama panjang. Ditanyakan panjang satu potongan.\n2. Langkah 2, Rencanakan: ubah meter ke sentimeter, cari $\\frac{2}{5}$ bagian kawat, kurangkan, lalu bagi 4.\n3. Langkah 3, Hitung: $2\\text{ m} = 200\\text{ cm}$. Seperlima adalah $200 \\div 5 = 40$, jadi dua perlima adalah $2 \\times 40 = 80\\text{ cm}$.\n4. Langkah 4, Hitung: sisanya $200 - 80 = 120\\text{ cm}$, dan tiap potongan $120 \\div 4 = 30\\text{ cm}$.\n5. Langkah 5, Periksa: $4 \\times 30 = 120$ dan $120 + 80 = 200$. Cocok!\n\n**Ingat:**\n\n- Tulis setiap jawaban kecil dengan satuannya.\n- Pakai satuan yang sama sampai akhir.\n- Jawaban kecil yang terakhir belum tentu yang ditanyakan, jadi periksa apa yang diminta soal.`,
               ),
               figure: {
@@ -478,7 +478,7 @@ export const module11: Module = {
               figure: {
                 ...sticks(3),
                 caption: L(
-                  'Three squares in a row. The first square has 4 sticks, and each new square adds 3 sticks of a new colour.',
+                  'Three squares in a row. The first square has 4 sticks, and each new square adds 3 sticks of a new color.',
                   'Tiga persegi berjajar. Persegi pertama 4 batang, dan setiap persegi baru menambah 3 batang dengan warna baru.',
                 ),
               },
@@ -497,7 +497,7 @@ export const module11: Module = {
               id: 'c5',
               title: L('Look Closely: The Three Levels of Questions', 'Ayo Amati: Tiga Tingkat Soal'),
               body: L(
-                `The TKA asks for three kinds of thinking, from easier to harder. When you know which one a question wants, you know what to do.\n\n| Level | What you do | Example |\n| --- | --- | --- |\n| Understand | Calculate, read a table or a chart, sort into groups, recognise | How many books did Ani read? Read her bar. |\n| Apply | Turn a story into a math sentence, use a formula, explain what an answer means | 3 notebooks at Rp4,000 and a pen at Rp2,500: write the sum and say what it tells you. |\n| Reason | Connect several ideas, choose the best strategy, draw a conclusion | Which shop is cheaper? Which statement does the chart really support? |\n\nA test mixes all three levels, so practise all of them. Before you start, ask yourself: do I only read and calculate, do I turn a story into a math sentence, or do I have to think it through?`,
+                `The TKA asks for three kinds of thinking, from easier to harder. When you know which one a question wants, you know what to do.\n\n| Level | What you do | Example |\n| --- | --- | --- |\n| Understand | Calculate, read a table or a chart, sort into groups, recognize | How many books did Ani read? Read her bar. |\n| Apply | Turn a story into a math sentence, use a formula, explain what an answer means | 3 notebooks at Rp4,000 and a pen at Rp2,500: write the sum and say what it tells you. |\n| Reason | Connect several ideas, choose the best strategy, draw a conclusion | Which shop is cheaper? Which statement does the chart really support? |\n\nA test mixes all three levels, so practice all of them. Before you start, ask yourself: do I only read and calculate, do I turn a story into a math sentence, or do I have to think it through?`,
                 `TKA meminta tiga macam berpikir, dari yang lebih mudah sampai yang lebih sulit. Kalau kamu tahu soal itu meminta yang mana, kamu tahu apa yang harus dilakukan.\n\n| Tingkat | Yang kamu lakukan | Contoh |\n| --- | --- | --- |\n| Memahami | Menghitung, membaca tabel atau diagram, mengelompokkan, mengenali | Berapa buku yang dibaca Ani? Baca batang miliknya. |\n| Mengaplikasikan | Mengubah cerita menjadi kalimat matematika, memakai rumus, menjelaskan makna sebuah jawaban | 3 buku tulis seharga Rp4.000 dan sebuah pulpen Rp2.500: tulis jumlahnya dan jelaskan artinya. |\n| Bernalar | Menghubungkan beberapa konsep, memilih strategi terbaik, menarik kesimpulan | Toko mana yang lebih murah? Pernyataan mana yang benar-benar didukung diagram? |\n\nSebuah tes mencampur ketiga tingkat itu, jadi latihlah semuanya. Sebelum mulai, tanyakan pada dirimu: apakah aku hanya membaca dan menghitung, mengubah cerita menjadi kalimat matematika, atau harus memikirkannya sampai tuntas?`,
               ),
             },
@@ -674,7 +674,7 @@ export const module11: Module = {
         runtime: 'math',
         title: L('Project: Plan, Calculate, Check', 'Proyek: Rencanakan, Hitung, Periksa'),
         brief: L(
-          'Four word problems that need a plan, from easy to a real reasoning puzzle. Use a bar model, working backwards or small questions.',
+          'Four word problems that need a plan, from easy to a real reasoning puzzle. Use a bar model, working backward or small questions.',
           'Empat soal cerita yang memerlukan rencana, dari yang mudah sampai teka-teki bernalar. Pakai model batang, berpikir mundur, atau pertanyaan-pertanyaan kecil.',
         ),
         requirements: [
@@ -723,14 +723,14 @@ export const module11: Module = {
           },
           {
             prompt: L(
-              'A water tank is 60 cm long, 40 cm wide and 50 cm high (inside). It is $\\frac{3}{5}$ full of water. How many more litres of water are needed to fill it?',
+              'A water tank is 60 cm long, 40 cm wide and 50 cm high (inside). It is $\\frac{3}{5}$ full of water. How many more liters of water are needed to fill it?',
               'Sebuah bak air panjangnya 60 cm, lebarnya 40 cm, dan tingginya 50 cm (bagian dalam). Bak itu terisi $\\frac{3}{5}$ bagian air. Berapa liter air lagi yang diperlukan untuk memenuhinya?',
             ),
             figure: {
               ...cuboid3d({ l: 6, w: 4, h: 5, labels: { l: '60', w: '40', h: '50' } }),
               caption: L('The tank. The sides are in cm.', 'Bak air. Ukuran sisinya dalam cm.'),
             },
-            blanks: [{ answer: 48, after: { en: '\\text{ litres}', id: '\\text{ liter}' } }],
+            blanks: [{ answer: 48, after: { en: '\\text{ liters}', id: '\\text{ liter}' } }],
             solution: {
               en: [
                 '60 \\times 40 \\times 50 = 120\\,000 \\text{ cm}^3 = 120 \\text{ l}',
@@ -751,11 +751,11 @@ export const module11: Module = {
             'Gambar atau buat model batang sebelum menghitung. Tanyakan: apa yang ditanyakan, dan apa yang diketahui?',
           ),
           L(
-            'When a story ends with the answer and asks about the start, work backwards and undo every step.',
+            'When a story ends with the answer and asks about the start, work backward and undo every step.',
             'Kalau cerita berakhir dengan jawaban dan menanyakan awalnya, berpikir mundur dan batalkan setiap langkah.',
           ),
           L(
-            'For the tank, find how many litres it holds when full, then how many litres are in it now.',
+            'For the tank, find how many liters it holds when full, then how many liters are in it now.',
             'Untuk bak air, cari berapa liter yang termuat saat penuh, lalu berapa liter yang ada di dalamnya sekarang.',
           ),
         ],
@@ -829,7 +829,7 @@ export const module11: Module = {
               id: 'c3',
               title: L('Step by Step: Choose All That Apply', 'Contoh Bertahap: Pilih Semua yang Benar'),
               body: L(
-                `Choose all the lengths that are equal to 2.5 m. The options are 250 cm, 25 cm, 25 dm, 0.25 km and 2,500 mm.\n\n1. Step 1: read the instruction. "Choose all" means more than one option is correct. You must tick every correct option and no wrong one.\n2. Step 2: choose one unit to compare in. Let us use centimetres, $2.5\\text{ m} = 250\\text{ cm}$.\n3. Step 3: check the options one by one, and write a tick or a cross next to each, as in the table.\n4. Step 4: count the ticks. There are three, so tick exactly those three options.\n\n| Option | In centimetres | Equal to 2.5 m? |\n| --- | --- | --- |\n| 250 cm | 250 cm | yes |\n| 25 cm | 25 cm | no |\n| 25 dm | 250 cm | yes |\n| 0.25 km | 25,000 cm | no |\n| 2,500 mm | 250 cm | yes |\n\n**Remember:** there is no partial credit. Do not stop at the first correct option. Check every option.`,
+                `Choose all the lengths that are equal to 2.5 m. The options are 250 cm, 25 cm, 25 dm, 0.25 km and 2,500 mm.\n\n1. Step 1: read the instruction. "Choose all" means more than one option is correct. You must tick every correct option and no wrong one.\n2. Step 2: choose one unit to compare in. Let us use centimeters, $2.5\\text{ m} = 250\\text{ cm}$.\n3. Step 3: check the options one by one, and write a tick or a cross next to each, as in the table.\n4. Step 4: count the ticks. There are three, so tick exactly those three options.\n\n| Option | In centimeters | Equal to 2.5 m? |\n| --- | --- | --- |\n| 250 cm | 250 cm | yes |\n| 25 cm | 25 cm | no |\n| 25 dm | 250 cm | yes |\n| 0.25 km | 25,000 cm | no |\n| 2,500 mm | 250 cm | yes |\n\n**Remember:** there is no partial credit. Do not stop at the first correct option. Check every option.`,
                 `Pilih semua panjang yang sama dengan 2,5 m. Pilihannya 250 cm, 25 cm, 25 dm, 0,25 km, dan 2.500 mm.\n\n1. Langkah 1: baca perintahnya. "Pilih semua" berarti pilihan yang benar lebih dari satu. Kamu harus memilih setiap pilihan yang benar dan tidak ada yang salah.\n2. Langkah 2: pilih satu satuan untuk membandingkan. Mari pakai sentimeter, $2{,}5\\text{ m} = 250\\text{ cm}$.\n3. Langkah 3: periksa pilihan satu per satu, dan tulis tanda centang atau silang di sebelah masing-masing, seperti pada tabel.\n4. Langkah 4: hitung centangnya. Ada tiga, jadi pilih tepat ketiga pilihan itu.\n\n| Pilihan | Dalam sentimeter | Sama dengan 2,5 m? |\n| --- | --- | --- |\n| 250 cm | 250 cm | ya |\n| 25 cm | 25 cm | tidak |\n| 25 dm | 250 cm | ya |\n| 0,25 km | 25.000 cm | tidak |\n| 2.500 mm | 250 cm | ya |\n\n**Ingat:** tidak ada nilai sebagian. Jangan berhenti pada pilihan benar yang pertama. Periksa setiap pilihan.`,
               ),
             },
@@ -897,7 +897,7 @@ export const module11: Module = {
               ],
               answer: 0,
               explain: L(
-                'Area of a triangle = ½ × base × height = ½ × 10 × 6 = 30 cm². 60 forgets the ½, 16 adds the sides, and 30 cm has the unit of a length, but an area is in square centimetres.',
+                'Area of a triangle = ½ × base × height = ½ × 10 × 6 = 30 cm². 60 forgets the ½, 16 adds the sides, and 30 cm has the unit of a length, but an area is in square centimeters.',
                 'Luas segitiga = ½ × alas × tinggi = ½ × 10 × 6 = 30 cm². 60 lupa ½, 16 menjumlahkan sisinya, dan 30 cm memakai satuan panjang, padahal luas dalam sentimeter persegi.',
               ),
               hint: L(
@@ -1449,7 +1449,7 @@ export const module11: Module = {
             {
               kind: 'quiz',
               id: 'q2',
-              prompt: L('How many metres is 3.5 km?', 'Berapa meter 3,5 km?'),
+              prompt: L('How many meters is 3.5 km?', 'Berapa meter 3,5 km?'),
               options: [
                 L('3,500 m', '3.500 m'),
                 L('350 m', '350 m'),
@@ -1462,7 +1462,7 @@ export const module11: Module = {
                 '1 km = 1.000 m, jadi $3{,}5 \\times 1\\,000 = 3\\,500$ m. Jawaban 350 m mengalikan 100 dan 35.000 m mengalikan 10.000.',
               ),
               hint: L(
-                'How many metres are there in 1 km? Then multiply by 3.5.',
+                'How many meters are there in 1 km? Then multiply by 3.5.',
                 'Ada berapa meter dalam 1 km? Lalu kalikan dengan 3,5.',
               ),
             },
@@ -1636,30 +1636,30 @@ export const module11: Module = {
               kind: 'math',
               id: 'm2',
               prompt: L(
-                'An aquarium is 50 cm long, 30 cm wide and 40 cm high. How many litres of water fit in it when it is full to the top?',
+                'An aquarium is 50 cm long, 30 cm wide and 40 cm high. How many liters of water fit in it when it is full to the top?',
                 'Sebuah akuarium panjangnya 50 cm, lebarnya 30 cm, dan tingginya 40 cm. Berapa liter air yang muat di dalamnya jika penuh sampai ke atas?',
               ),
               figure: {
                 ...cuboid3d({ l: 5, w: 3, h: 4, labels: { l: '50', w: '30', h: '40' } }),
                 caption: L('The aquarium. The sides are in cm.', 'Akuarium. Ukuran sisinya dalam cm.'),
               },
-              blanks: [{ answer: 60, after: { en: '\\text{ litres}', id: '\\text{ liter}' } }],
+              blanks: [{ answer: 60, after: { en: '\\text{ liters}', id: '\\text{ liter}' } }],
               hints: [
                 L(
                   'The volume of a box tells how much fits inside. Which three numbers do you need?',
                   'Volume balok menunjukkan berapa banyak yang muat di dalamnya. Tiga bilangan mana yang kamu perlukan?',
                 ),
                 L(
-                  'Multiply length × width × height. That gives cubic centimetres, and the question asks for litres.',
+                  'Multiply length × width × height. That gives cubic centimeters, and the question asks for liters.',
                   'Kalikan panjang × lebar × tinggi. Itu memberi sentimeter kubik, dan soal menanyakan liter.',
                 ),
                 L(
-                  'The volume is $50 \\times 30 \\times 40$ in cm³. Remember that 1 litre = $1\\,000\\text{ cm}^3$.',
+                  'The volume is $50 \\times 30 \\times 40$ in cm³. Remember that 1 liter = $1\\,000\\text{ cm}^3$.',
                   'Volumenya $50 \\times 30 \\times 40$ dalam cm³. Ingat 1 liter = $1\\,000\\text{ cm}^3$.',
                 ),
               ],
               explain: L(
-                '$50 \\times 30 \\times 40 = 60\\,000\\text{ cm}^3$. Since 1 litre is $1\\,000\\text{ cm}^3$, the aquarium holds $60\\,000 \\div 1\\,000 = 60$ litres.',
+                '$50 \\times 30 \\times 40 = 60\\,000\\text{ cm}^3$. Since 1 liter is $1\\,000\\text{ cm}^3$, the aquarium holds $60\\,000 \\div 1\\,000 = 60$ liters.',
                 '$50 \\times 30 \\times 40 = 60\\,000\\text{ cm}^3$. Karena 1 liter adalah $1\\,000\\text{ cm}^3$, akuarium memuat $60\\,000 \\div 1\\,000 = 60$ liter.',
               ),
               solution: [
@@ -1732,7 +1732,7 @@ export const module11: Module = {
               kind: 'math',
               id: 'm3',
               prompt: L(
-                'A train leaves station A at 08:15 and arrives at station B at 11:00. On the way it stops for 15 minutes. Whenever it is moving, it goes at 72 km/h. How many kilometres is it from A to B?',
+                'A train leaves station A at 08:15 and arrives at station B at 11:00. On the way it stops for 15 minutes. Whenever it is moving, it goes at 72 km/h. How many kilometers is it from A to B?',
                 'Sebuah kereta berangkat dari stasiun A pukul 08.15 dan tiba di stasiun B pukul 11.00. Di perjalanan kereta berhenti selama 15 menit. Saat bergerak, kecepatannya 72 km/jam. Berapa kilometer jarak dari A ke B?',
               ),
               blanks: [{ answer: 180, after: '\\text{ km}' }],
@@ -1884,7 +1884,7 @@ export const module11: Module = {
               kind: 'quiz',
               id: 'q4',
               prompt: L(
-                'Ani pours 2.5 litres of juice equally into glasses that each hold 250 ml. How many glasses does she fill?',
+                'Ani pours 2.5 liters of juice equally into glasses that each hold 250 ml. How many glasses does she fill?',
                 'Ani menuang 2,5 liter jus sama banyak ke dalam gelas yang masing-masing memuat 250 ml. Berapa gelas yang ia isi?',
               ),
               options: [
@@ -1895,11 +1895,11 @@ export const module11: Module = {
               ],
               answer: 0,
               explain: L(
-                'Use the same unit. 2.5 l = 2,500 ml, and $2\\,500 \\div 250 = 10$ glasses. The other numbers come from changing litres to millilitres in the wrong way.',
+                'Use the same unit. 2.5 l = 2,500 ml, and $2\\,500 \\div 250 = 10$ glasses. The other numbers come from changing liters to milliliters in the wrong way.',
                 'Pakai satuan yang sama. 2,5 l = 2.500 ml, dan $2\\,500 \\div 250 = 10$ gelas. Bilangan lainnya muncul dari mengubah liter ke mililiter dengan cara yang salah.',
               ),
               hint: L(
-                'Change litres to millilitres first (1 l = 1,000 ml). Then divide by the size of one glass.',
+                'Change liters to milliliters first (1 l = 1,000 ml). Then divide by the size of one glass.',
                 'Ubah dulu liter ke mililiter (1 l = 1.000 ml). Lalu bagi dengan ukuran satu gelas.',
               ),
             },
@@ -2084,7 +2084,7 @@ export const module11: Module = {
               kind: 'math',
               id: 'm3',
               prompt: L(
-                'A water tank inside is 50 cm long, 40 cm wide and 30 cm high. It is $\\frac{2}{5}$ full of water. Ani pours in 12 more litres. How high is the water now, in cm?',
+                'A water tank inside is 50 cm long, 40 cm wide and 30 cm high. It is $\\frac{2}{5}$ full of water. Ani pours in 12 more liters. How high is the water now, in cm?',
                 'Sebuah bak air bagian dalamnya panjang 50 cm, lebar 40 cm, dan tinggi 30 cm. Bak itu terisi $\\frac{2}{5}$ bagian air. Ani menuang 12 liter air lagi. Berapa cm tinggi air sekarang?',
               ),
               figure: {
@@ -2094,20 +2094,20 @@ export const module11: Module = {
               blanks: [{ answer: 18, after: '\\text{ cm}' }],
               hints: [
                 L(
-                  'Break it into small questions: how many litres does the tank hold when full, and how many litres are in it now?',
+                  'Break it into small questions: how many liters does the tank hold when full, and how many liters are in it now?',
                   'Pecah menjadi pertanyaan kecil: berapa liter yang termuat saat penuh, dan berapa liter yang ada sekarang?',
                 ),
                 L(
-                  'Full tank: $50 \\times 40 \\times 30$ in cm³, changed to litres. Then take $\\frac{2}{5}$ of that and add 12 litres.',
+                  'Full tank: $50 \\times 40 \\times 30$ in cm³, changed to liters. Then take $\\frac{2}{5}$ of that and add 12 liters.',
                   'Bak penuh: $50 \\times 40 \\times 30$ dalam cm³, diubah ke liter. Lalu ambil $\\frac{2}{5}$ bagiannya dan tambahkan 12 liter.',
                 ),
                 L(
-                  'The tank holds 60 litres, so it first has 24 litres and now 36 litres, which is $36\\,000\\text{ cm}^3$. The floor is $50 \\times 40$. Height = volume ÷ floor area.',
+                  'The tank holds 60 liters, so it first has 24 liters and now 36 liters, which is $36\\,000\\text{ cm}^3$. The floor is $50 \\times 40$. Height = volume ÷ floor area.',
                   'Bak memuat 60 liter, jadi mula-mula berisi 24 liter dan sekarang 36 liter, yaitu $36\\,000\\text{ cm}^3$. Alasnya $50 \\times 40$. Tinggi = volume ÷ luas alas.',
                 ),
               ],
               explain: L(
-                'The full tank is $50 \\times 40 \\times 30 = 60\\,000\\text{ cm}^3 = 60$ litres. $\\frac{2}{5}$ of 60 is 24 litres, and 12 more makes 36 litres, which is $36\\,000\\text{ cm}^3$. The floor is $50 \\times 40 = 2\\,000\\text{ cm}^2$, so the height is $36\\,000 \\div 2\\,000 = 18$ cm, which is less than 30, so it fits.',
+                'The full tank is $50 \\times 40 \\times 30 = 60\\,000\\text{ cm}^3 = 60$ liters. $\\frac{2}{5}$ of 60 is 24 liters, and 12 more makes 36 liters, which is $36\\,000\\text{ cm}^3$. The floor is $50 \\times 40 = 2\\,000\\text{ cm}^2$, so the height is $36\\,000 \\div 2\\,000 = 18$ cm, which is less than 30, so it fits.',
                 'Bak penuh $50 \\times 40 \\times 30 = 60\\,000\\text{ cm}^3 = 60$ liter. $\\frac{2}{5}$ dari 60 adalah 24 liter, dan 12 lagi menjadi 36 liter, yaitu $36\\,000\\text{ cm}^3$. Alasnya $50 \\times 40 = 2\\,000\\text{ cm}^2$, jadi tingginya $36\\,000 \\div 2\\,000 = 18$ cm, yang kurang dari 30, jadi masuk akal.',
               ),
               solution: [
@@ -2206,7 +2206,7 @@ export const module11: Module = {
           },
           {
             prompt: L(
-              'A motorbike travels at 45 km/h for 2 hours 20 minutes. How many kilometres does it travel?',
+              'A motorbike travels at 45 km/h for 2 hours 20 minutes. How many kilometers does it travel?',
               'Sebuah sepeda motor melaju dengan kecepatan 45 km/jam selama 2 jam 20 menit. Berapa kilometer yang ia tempuh?',
             ),
             blanks: [{ answer: 105, after: '\\text{ km}' }],
@@ -2315,7 +2315,7 @@ export const module11: Module = {
               id: 'c2',
               title: L('Step by Step: Working Through a True/False Table', 'Contoh Bertahap: Mengerjakan Tabel Benar/Salah'),
               body: L(
-                `Bu Rina fills 4 bottles with $2\\frac{1}{2}$ litres of syrup each. One statement says: "She has 10 litres of syrup in all." Is it True or False?\n\n1. Step 1: read the instruction. Every statement is judged on its own, so do not copy a pattern from the other rows.\n2. Step 2: underline the numbers in the story: 4 bottles and $2\\frac{1}{2}$ litres each.\n3. Step 3: work it out on paper. $4 \\times 2\\frac{1}{2} = 4 \\times 2 + 4 \\times \\frac{1}{2} = 8 + 2 = 10$ litres.\n4. Step 4: compare with the statement. It says 10 litres, so mark True.\n\n**Remember:**\n\n- Work the answer out first, then compare it with each statement.\n- A mixed number times a whole number: multiply the whole part and the fraction part separately, then add.\n- Check every statement, even when the first ones were easy.`,
+                `Bu Rina fills 4 bottles with $2\\frac{1}{2}$ liters of syrup each. One statement says: "She has 10 liters of syrup in all." Is it True or False?\n\n1. Step 1: read the instruction. Every statement is judged on its own, so do not copy a pattern from the other rows.\n2. Step 2: underline the numbers in the story: 4 bottles and $2\\frac{1}{2}$ liters each.\n3. Step 3: work it out on paper. $4 \\times 2\\frac{1}{2} = 4 \\times 2 + 4 \\times \\frac{1}{2} = 8 + 2 = 10$ liters.\n4. Step 4: compare with the statement. It says 10 liters, so mark True.\n\n**Remember:**\n\n- Work the answer out first, then compare it with each statement.\n- A mixed number times a whole number: multiply the whole part and the fraction part separately, then add.\n- Check every statement, even when the first ones were easy.`,
                 `Bu Rina mengisi 4 botol dengan sirup $2\\frac{1}{2}$ liter tiap botol. Sebuah pernyataan berbunyi: "Ia punya 10 liter sirup seluruhnya." Benar atau Salah?\n\n1. Langkah 1: baca perintahnya. Setiap pernyataan dinilai sendiri-sendiri, jadi jangan meniru pola dari baris lain.\n2. Langkah 2: garis bawahi angka dalam cerita: 4 botol dan $2\\frac{1}{2}$ liter tiap botol.\n3. Langkah 3: hitung di kertas. $4 \\times 2\\frac{1}{2} = 4 \\times 2 + 4 \\times \\frac{1}{2} = 8 + 2 = 10$ liter.\n4. Langkah 4: bandingkan dengan pernyataan. Pernyataan itu menyebut 10 liter, jadi tandai Benar.\n\n**Ingat:**\n\n- Hitung jawabannya dulu, lalu bandingkan dengan tiap pernyataan.\n- Pecahan campuran dikali bilangan asli: kalikan bagian utuh dan bagian pecahan secara terpisah, lalu jumlahkan.\n- Periksa setiap pernyataan, walaupun beberapa yang pertama mudah.`,
               ),
             },
@@ -2346,7 +2346,7 @@ export const module11: Module = {
               kind: 'quiz',
               id: 'q2',
               prompt: L(
-                'The school co-op gives a 20% discount on everything. A bag Y costs Rp60,000. A set of coloured pencils X costs $\\frac{1}{3}$ of the price of bag Y, and a water bottle Z costs 0.75 times the price of bag Y. After the discount, what is the price of X + Z?',
+                'The school co-op gives a 20% discount on everything. A bag Y costs Rp60,000. A set of colored pencils X costs $\\frac{1}{3}$ of the price of bag Y, and a water bottle Z costs 0.75 times the price of bag Y. After the discount, what is the price of X + Z?',
                 'Koperasi sekolah memberi diskon 20% untuk semua barang. Harga tas Y adalah Rp60.000. Harga satu set pensil warna X adalah $\\frac{1}{3}$ dari harga tas Y, dan harga botol minum Z adalah 0,75 kali harga tas Y. Setelah diskon, berapa harga X + Z?',
               ),
               options: [
@@ -2369,17 +2369,17 @@ export const module11: Module = {
               kind: 'judge',
               id: 'j1',
               prompt: L(
-                'Bu Wati sells herbal drink. One day she makes 7 jugs with $3\\frac{2}{5}$ litres of herbal drink in each jug. She pours all of it into 10 large bottles of equal size and into 8 small bottles. Each small bottle holds half as much as a large bottle. Decide whether each statement about Bu Wati\'s herbal drink is True or False.',
+                'Bu Wati sells herbal drink. One day she makes 7 jugs with $3\\frac{2}{5}$ liters of herbal drink in each jug. She pours all of it into 10 large bottles of equal size and into 8 small bottles. Each small bottle holds half as much as a large bottle. Decide whether each statement about Bu Wati\'s herbal drink is True or False.',
                 'Bu Wati menjual jamu. Suatu hari ia membuat 7 kendi yang masing-masing berisi $3\\frac{2}{5}$ liter jamu. Seluruh jamu itu dituang ke dalam 10 botol besar yang isinya sama banyak dan ke dalam 8 botol kecil. Isi setiap botol kecil adalah setengah isi botol besar. Tentukan Benar atau Salah untuk setiap pernyataan tentang jamu Bu Wati!',
               ),
               statements: [
-                L('Bu Wati made $23\\frac{4}{5}$ litres of herbal drink that day.', 'Hari itu Bu Wati membuat $23\\frac{4}{5}$ liter jamu.'),
-                L('Each large bottle holds 2 litres.', 'Setiap botol besar berisi 2 liter.'),
-                L('The small bottles hold $6\\frac{4}{5}$ litres in all.', 'Seluruh botol kecil berisi $6\\frac{4}{5}$ liter.'),
+                L('Bu Wati made $23\\frac{4}{5}$ liters of herbal drink that day.', 'Hari itu Bu Wati membuat $23\\frac{4}{5}$ liter jamu.'),
+                L('Each large bottle holds 2 liters.', 'Setiap botol besar berisi 2 liter.'),
+                L('The small bottles hold $6\\frac{4}{5}$ liters in all.', 'Seluruh botol kecil berisi $6\\frac{4}{5}$ liter.'),
               ],
               answer: [true, false, true],
               explain: L(
-                'The jugs hold $7 \\times 3\\frac{2}{5} = 21 + \\frac{14}{5} = 23\\frac{4}{5}$ litres. Eight small bottles are worth 4 large ones, so everything fills $10 + 4 = 14$ large bottles. One large bottle holds $\\frac{119}{5} \\div 14 = \\frac{17}{10} = 1\\frac{7}{10}$ litres, not 2. The small bottles hold $4 \\times 1\\frac{7}{10} = 6\\frac{4}{5}$ litres.',
+                'The jugs hold $7 \\times 3\\frac{2}{5} = 21 + \\frac{14}{5} = 23\\frac{4}{5}$ liters. Eight small bottles are worth 4 large ones, so everything fills $10 + 4 = 14$ large bottles. One large bottle holds $\\frac{119}{5} \\div 14 = \\frac{17}{10} = 1\\frac{7}{10}$ liters, not 2. The small bottles hold $4 \\times 1\\frac{7}{10} = 6\\frac{4}{5}$ liters.',
                 'Kendi-kendi itu berisi $7 \\times 3\\frac{2}{5} = 21 + \\frac{14}{5} = 23\\frac{4}{5}$ liter. Delapan botol kecil sama dengan 4 botol besar, jadi semuanya mengisi $10 + 4 = 14$ botol besar. Satu botol besar berisi $\\frac{119}{5} \\div 14 = \\frac{17}{10} = 1\\frac{7}{10}$ liter, bukan 2. Botol kecil berisi $4 \\times 1\\frac{7}{10} = 6\\frac{4}{5}$ liter.',
               ),
               hint: L(

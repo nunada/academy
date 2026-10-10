@@ -80,7 +80,7 @@ export const lessonGrowth: Lesson = {
         'Bedanya 100, 110, 121 (tidak tetap), tetapi rasionya $\\frac{1100}{1000}=\\frac{1210}{1100}=\\frac{1331}{1210}=1{,}1$. Jadi saldo tumbuh secara geometri: bunga majemuk 10%.',
       ),
       hint: L(
-        'Subtract neighbouring bars, then divide them. Which result stays the same?',
+        'Subtract neighboring bars, then divide them. Which result stays the same?',
         'Kurangkan batang yang bersebelahan, lalu bagi. Hasil mana yang tetap sama?',
       ),
     },

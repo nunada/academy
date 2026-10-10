@@ -166,7 +166,7 @@ export interface ArticleBody {
   glossary?: { term: Loc; definition: Loc }[]
   /** Procedures the article teaches, as numbered steps. Each must also appear
    *  on the page as visible text: markup that is not on the page is ignored at
-   *  best and penalised at worst. Becomes HowTo markup. */
+   *  best and penalized at worst. Becomes HowTo markup. */
   howTo?: { name: Loc; description: Loc; steps: { name: Loc; text: Loc }[] }[]
   /** Ids of other articles worth reading next. */
   related?: string[]

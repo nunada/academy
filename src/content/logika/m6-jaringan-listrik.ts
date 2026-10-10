@@ -231,7 +231,7 @@ export const module6: Module = {
               id: 'c2',
               title: { en: 'The same job, fewer switches', id: 'Pekerjaan yang sama, saklar lebih sedikit' },
               body: {
-                en: 'A logical equivalence lets a circuit be redesigned without changing what it does. The **distributive law**\n$$(p \\land q) \\lor (p \\land r) \\equiv p \\land (q \\lor r)$$\nreads, on the left, as **four** switches — two copies of $p$, one $q$, one $r$, wired as two series branches in parallel. The right side is the very circuit drawn above: only **three** switches, one copy of $p$ each. Since the two sides are logically equivalent, the smaller circuit lights the lamp under exactly the same conditions as the larger one — proving an equivalence is exactly proving a circuit can be simplified without changing its behaviour.',
+                en: 'A logical equivalence lets a circuit be redesigned without changing what it does. The **distributive law**\n$$(p \\land q) \\lor (p \\land r) \\equiv p \\land (q \\lor r)$$\nreads, on the left, as **four** switches — two copies of $p$, one $q$, one $r$, wired as two series branches in parallel. The right side is the very circuit drawn above: only **three** switches, one copy of $p$ each. Since the two sides are logically equivalent, the smaller circuit lights the lamp under exactly the same conditions as the larger one — proving an equivalence is exactly proving a circuit can be simplified without changing its behavior.',
                 id: 'Sebuah ekivalensi logis memungkinkan sebuah rangkaian dirancang ulang tanpa mengubah kerjanya. **Hukum distributif**\n$$(p \\land q) \\lor (p \\land r) \\equiv p \\land (q \\lor r)$$\npada ruas kiri terbaca sebagai **empat** saklar — dua salinan $p$, satu $q$, satu $r$, dikawatkan sebagai dua cabang seri yang diparalel. Ruas kanan adalah persis rangkaian yang digambar di atas: hanya **tiga** saklar, satu salinan $p$ saja. Karena kedua ruasnya ekivalen secara logis, rangkaian yang lebih kecil menyalakan lampu pada kondisi yang persis sama dengan yang lebih besar — membuktikan sebuah ekivalensi persis membuktikan sebuah rangkaian bisa disederhanakan tanpa mengubah perilakunya.',
               },
             },
@@ -250,7 +250,7 @@ export const module6: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'The parenthesised $p \\lor q$ is one parallel sub-circuit, and the outer $\\land$ puts that whole sub-circuit in series with $r$.',
+                en: 'The parenthesized $p \\lor q$ is one parallel sub-circuit, and the outer $\\land$ puts that whole sub-circuit in series with $r$.',
                 id: '$p \\lor q$ yang berkurung adalah satu sub-rangkaian paralel, dan $\\land$ terluarnya menaruh seluruh sub-rangkaian itu diseri dengan $r$.',
               },
               hint: {
@@ -369,7 +369,7 @@ export const module6: Module = {
         ],
         hints: [
           {
-            en: 'Evaluate the inner parenthesised part first for each numbered combination, exactly the way you would evaluate any compound statement, then add up the numbers of the combinations that lit the lamp.',
+            en: 'Evaluate the inner parenthesized part first for each numbered combination, exactly the way you would evaluate any compound statement, then add up the numbers of the combinations that lit the lamp.',
             id: 'Tentukan dulu bagian dalam tanda kurung untuk tiap kombinasi bernomor, persis seperti caramu menilai pernyataan majemuk apa pun, lalu jumlahkan nomor kombinasi yang menyalakan lampunya.',
           },
         ],

@@ -1,10 +1,10 @@
-/** The catalogue: metadata now, curriculum later.
+/** The catalog: metadata now, curriculum later.
  *
  *  All eight curricula together are 1.0 MB minified — 282 KB over the wire, and
  *  most of what the app used to ship before anything appeared. They sit in a
  *  chunk each now, fetched when a course is opened.
  *
- *  The landing page, the catalogue and the dashboard never fetch one. Everything
+ *  The landing page, the catalog and the dashboard never fetch one. Everything
  *  their cards show comes from the metadata below plus the learner's own
  *  progress rows, which carry a `course_id` — so "12 of 55, 22%" is arithmetic
  *  on rows the app already had.
@@ -56,7 +56,7 @@ export const COURSES: CourseInfo[] = [
     id: 'css',
     title: { en: 'CSS', id: 'CSS' },
     tagline: {
-      en: 'Layout, colour, and type — make a page look like it was designed.',
+      en: 'Layout, color, and type — make a page look like it was designed.',
       id: 'Tata letak, warna, dan tipografi — buat halaman tampak dirancang.',
     },
     icon: '🎨',
@@ -553,7 +553,7 @@ const dimuat = new Map<string, Course>()
 
 export const courseInfo = (id: string): CourseInfo | undefined => COURSES.find((c) => c.id === id)
 
-/** The catalogue in two halves. Programming and mathematics are listed
+/** The catalog in two halves. Programming and mathematics are listed
  *  separately everywhere they are listed at all — see `CourseInfo.track`. */
 export const coursesIn = (track: 'code' | 'math'): CourseInfo[] => COURSES.filter((c) => c.track === track)
 
@@ -624,7 +624,7 @@ export const PATHS: CareerPath[] = [
     id: 'front-end',
     title: { en: 'Front-End Developer', id: 'Front-End Developer' },
     blurb: {
-      en: 'Everything the browser runs: structure, style, behaviour, components.',
+      en: 'Everything the browser runs: structure, style, behavior, components.',
       id: 'Semua yang dijalankan peramban: struktur, gaya, perilaku, komponen.',
     },
     icon: '🖼️',

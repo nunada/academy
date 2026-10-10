@@ -74,7 +74,7 @@ export const m6s2: Submodule = {
           id: 'c3',
           title: L('Step by Step: Three Moves in a Row', 'Contoh Bertahap: Tiga Gerakan Berurutan'),
           body: L(
-            'A composition can have any number of moves. Do them **one at a time** and write each image.\n\nTake $P(2,1)$ and do: a dilation with centre $O$ and scale factor 2, then a reflection in the $y$-axis, then a translation by $\\begin{pmatrix}1\\\\3\\end{pmatrix}$.\n\n1. Step 1: Dilation: $(2,1)\\to(4,2)$.\n2. Step 2: Reflection in the $y$-axis: $(4,2)\\to(-4,2)$.\n3. Step 3: Translation: $(-4,2)+(1,3)=(-3,5)$.\n\nThe final point is $(-3,5)$.\n\n**Tips:**\n\n- Never try to do two moves in your head at once. Write every image.\n- If the question says "$S$ followed by $T$", do $S$ first. If it says "$T\\circ S$", it is the same: $S$ first.\n- Check each step with a quick sketch: does the image land where you expect (left or right of the mirror, bigger or smaller)?',
+            'A composition can have any number of moves. Do them **one at a time** and write each image.\n\nTake $P(2,1)$ and do: a dilation with center $O$ and scale factor 2, then a reflection in the $y$-axis, then a translation by $\\begin{pmatrix}1\\\\3\\end{pmatrix}$.\n\n1. Step 1: Dilation: $(2,1)\\to(4,2)$.\n2. Step 2: Reflection in the $y$-axis: $(4,2)\\to(-4,2)$.\n3. Step 3: Translation: $(-4,2)+(1,3)=(-3,5)$.\n\nThe final point is $(-3,5)$.\n\n**Tips:**\n\n- Never try to do two moves in your head at once. Write every image.\n- If the question says "$S$ followed by $T$", do $S$ first. If it says "$T\\circ S$", it is the same: $S$ first.\n- Check each step with a quick sketch: does the image land where you expect (left or right of the mirror, bigger or smaller)?',
             'Komposisi dapat memuat sebanyak apa pun gerakan. Lakukan **satu per satu** dan tulis setiap bayangan.\n\nAmbil $P(2,1)$ dan lakukan: dilatasi berpusat $O$ dengan faktor skala 2, lalu refleksi pada sumbu $y$, lalu translasi $\\begin{pmatrix}1\\\\3\\end{pmatrix}$.\n\n1. Langkah 1: Dilatasi: $(2,1)\\to(4,2)$.\n2. Langkah 2: Refleksi pada sumbu $y$: $(4,2)\\to(-4,2)$.\n3. Langkah 3: Translasi: $(-4,2)+(1,3)=(-3,5)$.\n\nTitik akhirnya $(-3,5)$.\n\n**Tips:**\n\n- Jangan mencoba melakukan dua gerakan sekaligus di kepala. Tulis setiap bayangan.\n- Jika soal berbunyi "$S$ dilanjutkan $T$", lakukan $S$ dulu. Jika berbunyi "$T\\circ S$", sama saja: $S$ dulu.\n- Periksa tiap langkah dengan sketsa cepat: apakah bayangan jatuh di tempat yang kamu duga (kiri atau kanan cermin, lebih besar atau lebih kecil)?',
           ),
           figure: {
@@ -163,7 +163,7 @@ export const m6s2: Submodule = {
             'Urutan terbukti berpengaruh untuk $P(1,3)$. Dan dua refleksi pada cermin yang berpotongan, seperti kedua sumbu, menghasilkan rotasi, bukan translasi.',
           ),
           hint: L(
-            'Parallel mirrors never cross; crossing mirrors have a centre to turn about.',
+            'Parallel mirrors never cross; crossing mirrors have a center to turn about.',
             'Cermin sejajar tidak berpotongan; cermin yang berpotongan punya pusat untuk berputar.',
           ),
         },
@@ -191,7 +191,7 @@ export const m6s2: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'The point $P(2,1)$ is dilated with centre $O$ and scale factor 2, then reflected in the $y$-axis, then translated by $\\begin{pmatrix}1\\\\3\\end{pmatrix}$. Find the final point.',
+            'The point $P(2,1)$ is dilated with center $O$ and scale factor 2, then reflected in the $y$-axis, then translated by $\\begin{pmatrix}1\\\\3\\end{pmatrix}$. Find the final point.',
             'Titik $P(2,1)$ didilatasi berpusat $O$ dengan faktor skala 2, lalu dicerminkan pada sumbu $y$, lalu digeser dengan $\\begin{pmatrix}1\\\\3\\end{pmatrix}$. Tentukan titik akhirnya.',
           ),
           inline: true,
@@ -217,7 +217,7 @@ export const m6s2: Submodule = {
       id: 'tka-sma-m6-s2-l2',
       title: L('Rotations, Dilations and Undoing a Composition', 'Rotasi, Dilatasi, dan Membatalkan Komposisi'),
       goal: L(
-        'You can combine rotations and dilations, dilate about a centre that is not the origin, and work backwards to find the starting point.',
+        'You can combine rotations and dilations, dilate about a center that is not the origin, and work backward to find the starting point.',
         'Kamu bisa menggabungkan rotasi dan dilatasi, mendilatasi terhadap pusat yang bukan titik asal, dan bekerja mundur untuk mencari titik awal.',
       ),
       xp: 20,
@@ -227,7 +227,7 @@ export const m6s2: Submodule = {
           id: 'c1',
           title: L('Look Closely: Turns Add Up', 'Ayo Amati: Putaran Saling Menjumlah'),
           body: L(
-            'Rotations about the **same centre** add their angles. Rotating $90^{\\circ}$ anticlockwise twice is one rotation of $180^{\\circ}$.\n\nTake $P(3,1)$ and the rule $(x,y)\\to(-y,x)$ for $90^{\\circ}$ anticlockwise:\n\n1. Step 1: $P(3,1)\\to P_1(-1,3)$.\n2. Step 2: $P_1(-1,3)\\to P_2(-3,-1)$.\n3. Step 3: One rotation of $180^{\\circ}$ gives $(-x,-y)=(-3,-1)$ ✓.\n\nSo $90^{\\circ}$ then $90^{\\circ}$ is $180^{\\circ}$, $90^{\\circ}$ then $270^{\\circ}$ is $360^{\\circ}$ (back where you started), and a turn of $-90^{\\circ}$ undoes a turn of $90^{\\circ}$.',
+            'Rotations about the **same center** add their angles. Rotating $90^{\\circ}$ counterclockwise twice is one rotation of $180^{\\circ}$.\n\nTake $P(3,1)$ and the rule $(x,y)\\to(-y,x)$ for $90^{\\circ}$ counterclockwise:\n\n1. Step 1: $P(3,1)\\to P_1(-1,3)$.\n2. Step 2: $P_1(-1,3)\\to P_2(-3,-1)$.\n3. Step 3: One rotation of $180^{\\circ}$ gives $(-x,-y)=(-3,-1)$ ✓.\n\nSo $90^{\\circ}$ then $90^{\\circ}$ is $180^{\\circ}$, $90^{\\circ}$ then $270^{\\circ}$ is $360^{\\circ}$ (back where you started), and a turn of $-90^{\\circ}$ undoes a turn of $90^{\\circ}$.',
             'Rotasi terhadap **pusat yang sama** menjumlahkan sudutnya. Memutar $90^{\\circ}$ berlawanan arah jarum jam dua kali sama dengan satu rotasi $180^{\\circ}$.\n\nAmbil $P(3,1)$ dan aturan $(x,y)\\to(-y,x)$ untuk $90^{\\circ}$ berlawanan arah jarum jam:\n\n1. Langkah 1: $P(3,1)\\to P_1(-1,3)$.\n2. Langkah 2: $P_1(-1,3)\\to P_2(-3,-1)$.\n3. Langkah 3: Satu rotasi $180^{\\circ}$ memberi $(-x,-y)=(-3,-1)$ ✓.\n\nJadi $90^{\\circ}$ lalu $90^{\\circ}$ adalah $180^{\\circ}$, $90^{\\circ}$ lalu $270^{\\circ}$ adalah $360^{\\circ}$ (kembali ke awal), dan putaran $-90^{\\circ}$ membatalkan putaran $90^{\\circ}$.',
           ),
           figure: {
@@ -250,7 +250,7 @@ export const m6s2: Submodule = {
           id: 'c2',
           title: L('Step by Step: Dilations in Combination', 'Contoh Bertahap: Dilatasi dalam Komposisi'),
           body: L(
-            '- Two dilations about the **same centre** multiply their factors: factor 2 then factor 3 is factor $6$.\n- A dilation followed by a translation: $(x,y)\\to(kx,ky)\\to(kx+a,\\ ky+b)$.\n- Areas multiply by $k^2$ each time: factor 2 then factor 3 gives $6^2=36$ times the area.\n\n**A centre that is not the origin.** Dilate $P(3,2)$ about $C(1,1)$ with factor 2.\n\n1. Step 1: Vector from the centre to $P$: $P-C=(2,1)$.\n2. Step 2: Multiply by the factor: $2\\times(2,1)=(4,2)$.\n3. Step 3: Add the centre back: $C+(4,2)=(5,3)$.\n\nThe image $P\'(5,3)$ is on the line from $C$ through $P$, twice as far from $C$.',
+            '- Two dilations about the **same center** multiply their factors: factor 2 then factor 3 is factor $6$.\n- A dilation followed by a translation: $(x,y)\\to(kx,ky)\\to(kx+a,\\ ky+b)$.\n- Areas multiply by $k^2$ each time: factor 2 then factor 3 gives $6^2=36$ times the area.\n\n**A center that is not the origin.** Dilate $P(3,2)$ about $C(1,1)$ with factor 2.\n\n1. Step 1: Vector from the center to $P$: $P-C=(2,1)$.\n2. Step 2: Multiply by the factor: $2\\times(2,1)=(4,2)$.\n3. Step 3: Add the center back: $C+(4,2)=(5,3)$.\n\nThe image $P\'(5,3)$ is on the line from $C$ through $P$, twice as far from $C$.',
             '- Dua dilatasi terhadap **pusat yang sama** mengalikan faktornya: faktor 2 lalu faktor 3 adalah faktor $6$.\n- Dilatasi dilanjutkan translasi: $(x,y)\\to(kx,ky)\\to(kx+a,\\ ky+b)$.\n- Luas dikalikan $k^2$ setiap kali: faktor 2 lalu faktor 3 memberi $6^2=36$ kali luas.\n\n**Pusat yang bukan titik asal.** Dilatasi $P(3,2)$ terhadap $C(1,1)$ dengan faktor 2.\n\n1. Langkah 1: Vektor dari pusat ke $P$: $P-C=(2,1)$.\n2. Langkah 2: Kalikan dengan faktor: $2\\times(2,1)=(4,2)$.\n3. Langkah 3: Tambahkan pusat kembali: $C+(4,2)=(5,3)$.\n\nBayangan $P\'(5,3)$ berada pada garis dari $C$ melalui $P$, dua kali lebih jauh dari $C$.',
           ),
           figure: {
@@ -271,7 +271,7 @@ export const m6s2: Submodule = {
           id: 'c3',
           title: L('Step by Step: Undoing a Composition', 'Contoh Bertahap: Membatalkan Komposisi'),
           body: L(
-            'To find the **starting point** from the final point, undo the moves **in the reverse order**, each by its inverse.\n\n| Move | Its inverse |\n|---|---|\n| translation by $(a,b)$ | translation by $(-a,-b)$ |\n| reflection in a line | the same reflection |\n| rotation by $\\theta$ | rotation by $-\\theta$ |\n| dilation with factor $k$ | dilation with factor $\\frac{1}{k}$ |\n\nA point is dilated with factor 3 (centre $O$) and then translated by $\\begin{pmatrix}2\\\\-1\\end{pmatrix}$. The result is $(11,5)$. Find the start.\n\n1. Step 1: Undo the translation (last move first): $(11-2,\\ 5+1)=(9,6)$.\n2. Step 2: Undo the dilation: $\\left(\\frac{9}{3},\\frac{6}{3}\\right)=(3,2)$.\n3. Step 3: Check forwards: $(3,2)\\to(9,6)\\to(11,5)$ ✓.',
+            'To find the **starting point** from the final point, undo the moves **in the reverse order**, each by its inverse.\n\n| Move | Its inverse |\n|---|---|\n| translation by $(a,b)$ | translation by $(-a,-b)$ |\n| reflection in a line | the same reflection |\n| rotation by $\\theta$ | rotation by $-\\theta$ |\n| dilation with factor $k$ | dilation with factor $\\frac{1}{k}$ |\n\nA point is dilated with factor 3 (center $O$) and then translated by $\\begin{pmatrix}2\\\\-1\\end{pmatrix}$. The result is $(11,5)$. Find the start.\n\n1. Step 1: Undo the translation (last move first): $(11-2,\\ 5+1)=(9,6)$.\n2. Step 2: Undo the dilation: $\\left(\\frac{9}{3},\\frac{6}{3}\\right)=(3,2)$.\n3. Step 3: Check forward: $(3,2)\\to(9,6)\\to(11,5)$ ✓.',
             'Untuk mencari **titik awal** dari titik akhir, batalkan gerakan **dengan urutan terbalik**, masing-masing dengan inversnya.\n\n| Gerakan | Inversnya |\n|---|---|\n| translasi $(a,b)$ | translasi $(-a,-b)$ |\n| refleksi pada suatu garis | refleksi yang sama |\n| rotasi sebesar $\\theta$ | rotasi sebesar $-\\theta$ |\n| dilatasi dengan faktor $k$ | dilatasi dengan faktor $\\frac{1}{k}$ |\n\nSebuah titik didilatasi dengan faktor 3 (pusat $O$) lalu digeser dengan $\\begin{pmatrix}2\\\\-1\\end{pmatrix}$. Hasilnya $(11,5)$. Cari titik awalnya.\n\n1. Langkah 1: Batalkan translasi (gerakan terakhir lebih dulu): $(11-2,\\ 5+1)=(9,6)$.\n2. Langkah 2: Batalkan dilatasi: $\\left(\\frac{9}{3},\\frac{6}{3}\\right)=(3,2)$.\n3. Langkah 3: Periksa maju: $(3,2)\\to(9,6)\\to(11,5)$ ✓.',
           ),
         },
@@ -279,7 +279,7 @@ export const m6s2: Submodule = {
           kind: 'quiz',
           id: 'q1',
           prompt: L(
-            'The point $P(3,2)$ is dilated about the centre $C(1,1)$ with scale factor 2. What is the image?',
+            'The point $P(3,2)$ is dilated about the center $C(1,1)$ with scale factor 2. What is the image?',
             'Titik $P(3,2)$ didilatasi terhadap pusat $C(1,1)$ dengan faktor skala 2. Apa bayangannya?',
           ),
           figure: {
@@ -291,7 +291,7 @@ export const m6s2: Submodule = {
               ],
               { x: [-1, 8], y: [-1, 6] },
             ),
-            caption: L('The centre C and the point P.', 'Pusat C dan titik P.'),
+            caption: L('The center C and the point P.', 'Pusat C dan titik P.'),
           },
           options: [L('$(5,3)$', '$(5,3)$'), L('$(6,4)$', '$(6,4)$'), L('$(4,\\frac{3}{2})$', '$(4,\\frac{3}{2})$'), L('$(7,5)$', '$(7,5)$')],
           answer: 0,
@@ -300,7 +300,7 @@ export const m6s2: Submodule = {
             'Vektor dari $C$ ke $P$ adalah $(2,1)$. Digandakan menjadi $(4,2)$, dan ditambahkan ke $C$ menjadi $(5,3)$. Titik $(6,4)$ adalah dilatasi terhadap titik asal, dan $(4,\\frac{3}{2})$ memakai faktor $\\frac{1}{2}$.',
           ),
           hint: L(
-            'Find the vector from the centre to $P$, scale it, and add it back to the centre.',
+            'Find the vector from the center to $P$, scale it, and add it back to the center.',
             'Cari vektor dari pusat ke $P$, skalakan, lalu tambahkan kembali ke pusat.',
           ),
         },
@@ -328,8 +328,8 @@ export const m6s2: Submodule = {
           id: 'mc1',
           prompt: L('Choose the TWO true statements.', 'Pilih DUA pernyataan yang benar.'),
           options: [
-            L('Two rotations of $90^{\\circ}$ about the same centre make a rotation of $180^{\\circ}$.', 'Dua rotasi $90^{\\circ}$ terhadap pusat yang sama menghasilkan rotasi $180^{\\circ}$.'),
-            L('A dilation with factor 2 followed by one with factor 3 (same centre) is a dilation with factor 6.', 'Dilatasi faktor 2 dilanjutkan faktor 3 (pusat sama) adalah dilatasi faktor 6.'),
+            L('Two rotations of $90^{\\circ}$ about the same center make a rotation of $180^{\\circ}$.', 'Dua rotasi $90^{\\circ}$ terhadap pusat yang sama menghasilkan rotasi $180^{\\circ}$.'),
+            L('A dilation with factor 2 followed by one with factor 3 (same center) is a dilation with factor 6.', 'Dilatasi faktor 2 dilanjutkan faktor 3 (pusat sama) adalah dilatasi faktor 6.'),
             L('The inverse of the translation by $(a,b)$ is the translation by $(a,b)$.', 'Invers translasi $(a,b)$ adalah translasi $(a,b)$.'),
             L('The inverse of a dilation with factor $k$ is a dilation with factor $-k$.', 'Invers dilatasi faktor $k$ adalah dilatasi faktor $-k$.'),
           ],
@@ -351,11 +351,11 @@ export const m6s2: Submodule = {
             L('To undo a composition, undo the moves in the same order as they were done.', 'Untuk membatalkan komposisi, batalkan gerakan dengan urutan yang sama seperti saat dilakukan.'),
             L('A reflection is undone by the same reflection.', 'Refleksi dibatalkan oleh refleksi yang sama.'),
             L('A dilation with factor $\\frac{1}{2}$ is undone by a dilation with factor 2.', 'Dilatasi faktor $\\frac{1}{2}$ dibatalkan oleh dilatasi faktor 2.'),
-            L('A rotation of $90^{\\circ}$ anticlockwise is undone by another rotation of $90^{\\circ}$ anticlockwise.', 'Rotasi $90^{\\circ}$ berlawanan arah jarum jam dibatalkan oleh rotasi $90^{\\circ}$ berlawanan arah jarum jam lagi.'),
+            L('A rotation of $90^{\\circ}$ counterclockwise is undone by another rotation of $90^{\\circ}$ counterclockwise.', 'Rotasi $90^{\\circ}$ berlawanan arah jarum jam dibatalkan oleh rotasi $90^{\\circ}$ berlawanan arah jarum jam lagi.'),
           ],
           answer: [false, true, true, false],
           explain: L(
-            'Undo in the **reverse** order. A second $90^{\\circ}$ anticlockwise turn would make $180^{\\circ}$; undoing needs a turn of $-90^{\\circ}$ (clockwise).',
+            'Undo in the **reverse** order. A second $90^{\\circ}$ counterclockwise turn would make $180^{\\circ}$; undoing needs a turn of $-90^{\\circ}$ (clockwise).',
             'Batalkan dengan urutan **terbalik**. Putaran $90^{\\circ}$ berlawanan arah jarum jam kedua akan menjadi $180^{\\circ}$; pembatalan memerlukan putaran $-90^{\\circ}$ (searah jarum jam).',
           ),
           hint: L(
@@ -367,7 +367,7 @@ export const m6s2: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'The point $P(2,1)$ is dilated with centre $O$ and factor 2, and then rotated $90^{\\circ}$ anticlockwise about $O$. Find the final point.',
+            'The point $P(2,1)$ is dilated with center $O$ and factor 2, and then rotated $90^{\\circ}$ counterclockwise about $O$. Find the final point.',
             'Titik $P(2,1)$ didilatasi berpusat $O$ dan faktor 2, lalu diputar $90^{\\circ}$ berlawanan arah jarum jam terhadap $O$. Tentukan titik akhirnya.',
           ),
           inline: true,
@@ -441,7 +441,7 @@ export const m6s2: Submodule = {
       },
       {
         prompt: L(
-          'The point $(4,-1)$ is rotated $90^{\\circ}$ anticlockwise about $O$ and then another $180^{\\circ}$ anticlockwise. Find the final point.',
+          'The point $(4,-1)$ is rotated $90^{\\circ}$ counterclockwise about $O$ and then another $180^{\\circ}$ counterclockwise. Find the final point.',
           'Titik $(4,-1)$ diputar $90^{\\circ}$ berlawanan arah jarum jam terhadap $O$ lalu $180^{\\circ}$ berlawanan arah jarum jam lagi. Tentukan titik akhirnya.',
         ),
         inline: true,
@@ -453,7 +453,7 @@ export const m6s2: Submodule = {
       },
       {
         prompt: L(
-          'A point is dilated with factor 4 (centre $O$) and then translated by $\\begin{pmatrix}-2\\\\6\\end{pmatrix}$. The result is $(14,2)$. Find the starting point.',
+          'A point is dilated with factor 4 (center $O$) and then translated by $\\begin{pmatrix}-2\\\\6\\end{pmatrix}$. The result is $(14,2)$. Find the starting point.',
           'Sebuah titik didilatasi dengan faktor 4 (pusat $O$) lalu digeser dengan $\\begin{pmatrix}-2\\\\6\\end{pmatrix}$. Hasilnya $(14,2)$. Tentukan titik awalnya.',
         ),
         inline: true,
@@ -465,7 +465,7 @@ export const m6s2: Submodule = {
       },
       {
         prompt: L(
-          'A triangle of area 5 is dilated with factor 2 and then again with factor 3 (same centre). What is the area of the final triangle?',
+          'A triangle of area 5 is dilated with factor 2 and then again with factor 3 (same center). What is the area of the final triangle?',
           'Sebuah segitiga berluas 5 didilatasi dengan faktor 2 lalu lagi dengan faktor 3 (pusat sama). Berapa luas segitiga akhirnya?',
         ),
         blanks: [{ answer: 180 }],

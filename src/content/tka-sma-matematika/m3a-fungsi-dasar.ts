@@ -279,7 +279,7 @@ export const m3s1: Submodule = {
           options: [L('3', '3'), L('7', '7'), L('19', '19'), L('$\\frac{1}{3}$', '$\\frac{1}{3}$')],
           answer: 0,
           explain: L(
-            '$f(3)=7$, so the inverse sends 7 back to 3: $f^{-1}(7)=3$. Reading the graph backwards: from height 7, go to $x=3$.',
+            '$f(3)=7$, so the inverse sends 7 back to 3: $f^{-1}(7)=3$. Reading the graph backward: from height 7, go to $x=3$.',
             '$f(3)=7$, jadi invers mengembalikan 7 ke 3: $f^{-1}(7)=3$. Membaca grafik terbalik: dari tinggi 7, pergi ke $x=3$.',
           ),
           hint: L(

@@ -34,7 +34,7 @@ export const module5: Module = {
               id: 'c1',
               title: { en: 'Start somewhere, then walk', id: 'Mulai dari suatu tempat, lalu berjalan' },
               body: {
-                en: 'A line in space is fixed by one point on it and one direction along it. Let $\\vec{r_0}$ be the position vector of a known point $P_0$, and $\\vec{v}$ a **direction vector**. Every point on the line is reached by starting at $P_0$ and walking some multiple of $\\vec{v}$:\n$$\\vec{r} = \\vec{r_0} + t\\,\\vec{v}, \\qquad t \\in R$$\nThat is the **vector form**. Each value of the parameter $t$ names one point: $t = 0$ gives $P_0$ itself, $t = 1$ gives the point one $\\vec{v}$ further on, negative $t$ goes backwards.\n\nNeither ingredient is unique — any point on the line will do for $\\vec{r_0}$, and any non-zero multiple of $\\vec{v}$ will do for the direction. Two lines with parallel direction vectors are parallel lines.',
+                en: 'A line in space is fixed by one point on it and one direction along it. Let $\\vec{r_0}$ be the position vector of a known point $P_0$, and $\\vec{v}$ a **direction vector**. Every point on the line is reached by starting at $P_0$ and walking some multiple of $\\vec{v}$:\n$$\\vec{r} = \\vec{r_0} + t\\,\\vec{v}, \\qquad t \\in R$$\nThat is the **vector form**. Each value of the parameter $t$ names one point: $t = 0$ gives $P_0$ itself, $t = 1$ gives the point one $\\vec{v}$ further on, negative $t$ goes backward.\n\nNeither ingredient is unique — any point on the line will do for $\\vec{r_0}$, and any non-zero multiple of $\\vec{v}$ will do for the direction. Two lines with parallel direction vectors are parallel lines.',
                 id: 'Sebuah garis di ruang ditentukan oleh satu titik padanya dan satu arah sepanjangnya. Misalkan $\\vec{r_0}$ vektor posisi sebuah titik $P_0$ yang diketahui, dan $\\vec{v}$ sebuah **vektor arah**. Setiap titik pada garis dicapai dengan berangkat dari $P_0$ lalu berjalan sekian kali $\\vec{v}$:\n$$\\vec{r} = \\vec{r_0} + t\\,\\vec{v}, \\qquad t \\in R$$\nItulah **bentuk vektor**. Setiap nilai parameter $t$ menamai satu titik: $t = 0$ memberi $P_0$ itu sendiri, $t = 1$ memberi titik sejauh satu $\\vec{v}$ berikutnya, $t$ negatif berjalan mundur.\n\nKedua bahannya tidak tunggal — titik mana pun pada garis boleh dipakai sebagai $\\vec{r_0}$, dan kelipatan tak nol mana pun dari $\\vec{v}$ boleh dipakai sebagai arahnya. Dua garis yang vektor arahnya sejajar adalah garis-garis yang sejajar.',
               },
               figure: {
@@ -52,7 +52,7 @@ export const module5: Module = {
                   { t: 'point', at: [-2, -2, 5], label: 't = -1' },
                 ],
                 caption: {
-                  en: 'Start at $\\vec{r_0}$ and walk $t$ copies of $\\vec{v}$. Whole values of $t$ are marked; every real value in between names a point too, and negative ones walk backwards. Turn the scene to see that all of them really are on one line.',
+                  en: 'Start at $\\vec{r_0}$ and walk $t$ copies of $\\vec{v}$. Whole values of $t$ are marked; every real value in between names a point too, and negative ones walk backward. Turn the scene to see that all of them really are on one line.',
                   id: 'Berangkat dari $\\vec{r_0}$ lalu berjalan sejauh $t$ kali $\\vec{v}$. Nilai bulat $t$ ditandai; setiap nilai real di antaranya juga menamai satu titik, dan nilai negatifnya berjalan mundur. Putar gambarnya untuk melihat bahwa semuanya memang terletak pada satu garis.',
                 },
               },
@@ -155,7 +155,7 @@ export const module5: Module = {
               },
               blanks: [{ answer: -2 }, { answer: -2 }, { answer: 5 }],
               hints: [
-                { en: 'A negative $t$ walks backwards along the direction vector.', id: '$t$ yang negatif berjalan mundur sepanjang vektor arahnya.' },
+                { en: 'A negative $t$ walks backward along the direction vector.', id: '$t$ yang negatif berjalan mundur sepanjang vektor arahnya.' },
                 { en: '$1 + 3(-1) = -2$, and $4 - (-1) = 5$.', id: '$1 + 3(-1) = -2$, dan $4 - (-1) = 5$.' },
               ],
               solution: ['(1 - 3,\\ -2 + 0,\\ 4 + 1) = (-2,\\ -2,\\ 5)'],

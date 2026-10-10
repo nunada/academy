@@ -19,7 +19,7 @@ export const module4: Module = {
       id: 'pymed-m4-s1',
       title: { en: 'Fraction Visualizer', id: 'Peraga Pecahan' },
       summary: {
-        en: 'One key changes the numerator, another the denominator — and a bar of coloured segments always shows exactly that fraction.',
+        en: 'One key changes the numerator, another the denominator — and a bar of colored segments always shows exactly that fraction.',
         id: 'Satu tombol mengubah pembilang, satu lagi penyebut — dan batang berisi segmen berwarna selalu menunjukkan persis pecahan itu.',
       },
       lessons: [
@@ -160,7 +160,7 @@ export const module4: Module = {
         {
           id: 'pymed-m4-s1-l2',
           title: { en: 'Drawing a Fraction as a Divided Bar', id: 'Menggambar Pecahan sebagai Kotak Terbagi' },
-          goal: { en: 'Colour part of a bar to show a fraction.', id: 'Mewarnai sebagian batang untuk menunjukkan sebuah pecahan.' },
+          goal: { en: 'Color part of a bar to show a fraction.', id: 'Mewarnai sebagian batang untuk menunjukkan sebuah pecahan.' },
           xp: 20,
           steps: [
             {
@@ -175,9 +175,9 @@ export const module4: Module = {
             {
               kind: 'concept',
               id: 'c2',
-              title: { en: 'Two colours, one loop', id: 'Dua warna, satu perulangan' },
+              title: { en: 'Two colors, one loop', id: 'Dua warna, satu perulangan' },
               body: {
-                en: 'The same loop draws every segment; only the colour changes, chosen by a small if/else based on the index. The result is a bar where exactly `numerator` out of `denominator` segments stand out.',
+                en: 'The same loop draws every segment; only the color changes, chosen by a small if/else based on the index. The result is a bar where exactly `numerator` out of `denominator` segments stand out.',
                 id: 'Perulangan yang sama menggambar tiap segmen; hanya warnanya yang berubah, dipilih lewat if/else kecil berdasarkan indeksnya. Hasilnya batang yang tepat `pembilang` dari `penyebut` segmennya menonjol.',
               },
               figure: {
@@ -192,7 +192,7 @@ export const module4: Module = {
                   { t: 'poly', pts: [[100, 100], [118, 100], [118, 130], [100, 130]], color: 'muted' },
                 ],
                 caption: {
-                  en: 'numerator = 2, denominator = 4 — the first two segments are coloured in, the other two stay grey, exactly as the loop\'s if/else decides for each index i.',
+                  en: 'numerator = 2, denominator = 4 — the first two segments are colored in, the other two stay gray, exactly as the loop\'s if/else decides for each index i.',
                   id: 'pembilang = 2, penyebut = 4 — dua segmen pertama diwarnai, dua lainnya tetap abu-abu, persis seperti yang diputuskan if/else perulangannya untuk tiap indeks i.',
                 },
               },
@@ -204,7 +204,7 @@ export const module4: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'numerator=0, denominator=5. How many segments come out coloured "#437649"?',
+                en: 'numerator=0, denominator=5. How many segments come out colored "#437649"?',
                 id: 'pembilang=0, penyebut=5. Berapa segmen yang berwarna "#437649"?',
               },
               options: [
@@ -287,7 +287,7 @@ export const module4: Module = {
                     'a = draw({"numerator": 2, "denominator": 5})\nfilled = sum(1 for p in a if p.get("color") == "#437649")\nassert filled == 2, f"must be 2 filled segments, now: {filled}"\nassert len(a) == 5, f"must be 5 segments total, now: {len(a)}"',
                 },
                 {
-                  name: { en: 'zero filled colours nothing', id: 'nol terisi tak mewarnai apa pun' },
+                  name: { en: 'zero filled colors nothing', id: 'nol terisi tak mewarnai apa pun' },
                   assert:
                     'a = draw({"numerator": 0, "denominator": 3})\nfilled = sum(1 for p in a if p.get("color") == "#437649")\nassert filled == 0, f"nothing must be filled, now: {filled}"',
                 },
@@ -302,7 +302,7 @@ export const module4: Module = {
                 },
               ],
               hints: [
-                { en: 'One loop over range(denominator), colour decided by i < numerator.', id: 'Satu perulangan atas range(denominator), warnanya ditentukan oleh i < numerator.' },
+                { en: 'One loop over range(denominator), color decided by i < numerator.', id: 'Satu perulangan atas range(denominator), warnanya ditentukan oleh i < numerator.' },
               ],
               solution:
                 'def start():\n    return {"numerator": 1, "denominator": 4}\n\ndef update(state, keys, dt):\n    return state\n\ndef draw(state):\n    numerator, denominator = state["numerator"], state["denominator"]\n    commands = []\n    for i in range(denominator):\n        color = "#437649" if i < numerator else "#e5e5e5"\n        commands.append({"shape": "box", "x": 40 + i * 20, "y": 100, "w": 18, "h": 30, "color": color})\n    return commands',
@@ -387,7 +387,7 @@ export const module4: Module = {
               id: 'c1',
               title: { en: 'Two coordinate systems, one formula each', id: 'Dua sistem koordinat, masing-masing satu formula' },
               body: {
-                en: '- Math coordinates put (0, 0) at the centre, with y growing upward.\n- Screen coordinates put (0, 0) at the top-left, with y growing downward.\n\n`screen_x = 160 + x * 20` and `screen_y = 120 - y * 20` convert one into the other — the minus sign is what flips y the right way.',
+                en: '- Math coordinates put (0, 0) at the center, with y growing upward.\n- Screen coordinates put (0, 0) at the top-left, with y growing downward.\n\n`screen_x = 160 + x * 20` and `screen_y = 120 - y * 20` convert one into the other — the minus sign is what flips y the right way.',
                 id: '- Koordinat matematis menaruh (0, 0) di tengah, dengan y bertambah ke atas.\n- Koordinat layar menaruh (0, 0) di kiri atas, dengan y bertambah ke bawah.\n\n`screen_x = 160 + x * 20` dan `screen_y = 120 - y * 20` mengubah satu ke yang lain — tanda minusnya itulah yang membalik y ke arah yang benar.',
               },
             },
@@ -425,11 +425,11 @@ export const module4: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'With m=1, c=0, the point at math x=0 lands at screen (160, 120) — the exact centre. Why is that not a coincidence?',
+                en: 'With m=1, c=0, the point at math x=0 lands at screen (160, 120) — the exact center. Why is that not a coincidence?',
                 id: 'Dengan m=1, c=0, titik pada x matematis=0 mendarat di layar (160, 120) — tepat di tengah. Mengapa itu bukan kebetulan?',
               },
               options: [
-                { en: 'f(0) = 0, and (0, 0) in math coordinates is exactly the screen\'s centre by the formula\'s design', id: 'f(0) = 0, dan (0, 0) dalam koordinat matematis persis pusat layar menurut rancangan formulanya' },
+                { en: 'f(0) = 0, and (0, 0) in math coordinates is exactly the screen\'s center by the formula\'s design', id: 'f(0) = 0, dan (0, 0) dalam koordinat matematis persis pusat layar menurut rancangan formulanya' },
                 { en: 'It only works for m=1', id: 'Hanya berlaku untuk m=1' },
                 { en: 'It only works for c=0', id: 'Hanya berlaku untuk c=0' },
                 { en: 'It is a coincidence', id: 'Itu memang kebetulan' },
@@ -498,7 +498,7 @@ export const module4: Module = {
                   assert: 'a = draw({"m": 1, "c": 0})\nassert len(a) == 2, f"must be 2 line segments, now: {len(a)}"',
                 },
                 {
-                  name: { en: 'passes through the screen centre for m=1, c=0', id: 'melewati pusat layar untuk m=1, c=0' },
+                  name: { en: 'passes through the screen center for m=1, c=0', id: 'melewati pusat layar untuk m=1, c=0' },
                   assert:
                     'a = draw({"m": 1, "c": 0})\npoints = {(a[0]["x1"], a[0]["y1"]), (a[0]["x2"], a[0]["y2"]), (a[1]["x2"], a[1]["y2"])}\nassert (160, 120) in points, f"the line must pass through (160, 120), points present: {points}"',
                 },

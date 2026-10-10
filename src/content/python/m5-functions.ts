@@ -251,7 +251,7 @@ export const module5: Module = {
         requirements: [
           { en: '`reverse(text)` returns the text reversed.', id: '`balik(teks)` mengembalikan teks yang dibalik.' },
           { en: '`vowels(text)` returns how many vowels (a, i, u, e, o) it contains.', id: '`vokal(teks)` mengembalikan jumlah huruf vokal (a, i, u, e, o) di dalamnya.' },
-          { en: '`palindrome(text)` returns True when the text reads the same backwards.', id: '`palindrom(teks)` mengembalikan True bila teks terbaca sama dari belakang.' },
+          { en: '`palindrome(text)` returns True when the text reads the same backward.', id: '`palindrom(teks)` mengembalikan True bila teks terbaca sama dari belakang.' },
           { en: 'All three must return, not print.', id: 'Ketiganya harus return, bukan print.' },
         ],
         starter: {
@@ -534,7 +534,7 @@ export const module5: Module = {
         id: 'py-m5-s2-p',
         title: { en: 'Class gradebook', id: 'Buku nilai kelas' },
         brief: {
-          en: 'Everything at once — a dictionary of students, functions to analyse it, and a printed report.',
+          en: 'Everything at once — a dictionary of students, functions to analyze it, and a printed report.',
           id: 'Semuanya sekaligus — dictionary berisi siswa, fungsi untuk menganalisisnya, dan laporan tercetak.',
         },
         requirements: [

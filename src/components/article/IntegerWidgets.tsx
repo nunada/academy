@@ -403,7 +403,7 @@ export function DivisibilityRules() {
   )
 }
 
-/* ------------------------------------------------------------- factorising */
+/* ------------------------------------------------------------- factorizing */
 
 export function PrimeFactoriser() {
   const { tc, lang } = useI18n()
@@ -413,7 +413,7 @@ export function PrimeFactoriser() {
   let body
   if (n === null) body = <p className="noline">{tc(NOT_INT)}</p>
   else if (n < 1n) body = <p className="noline">{tc(NOT_POS)}</p>
-  else if (n > FACTOR_LIMIT) body = <p className="noline">{tc(L('This tool factorises numbers up to 10^12 (a trillion).', 'Alat ini memfaktorkan bilangan sampai 10^12 (satu triliun).'))}</p>
+  else if (n > FACTOR_LIMIT) body = <p className="noline">{tc(L('This tool factorizes numbers up to 10^12 (a trillion).', 'Alat ini memfaktorkan bilangan sampai 10^12 (satu triliun).'))}</p>
   else if (n === 1n) body = <p className="muted">{tc(L('1 is neither prime nor composite: it has only one divisor, itself, and it is the empty product.', '1 bukan prima dan bukan komposit: ia hanya punya satu pembagi, yaitu dirinya sendiri, dan ia hasil kali kosong.'))}</p>
   else {
     const f = factorize(n)

@@ -57,7 +57,7 @@ export const m3s2: Submodule = {
           id: 'c3',
           title: L('Step by Step: The Greatest Value', 'Contoh Bertahap: Nilai Terbesar'),
           body: L(
-            'The vertex gives the greatest value (if the parabola opens down) or the least value (if it opens up).\n\nA ball is thrown upward. Its height in metres after $t$ seconds is $h(t)=-5t^2+20t$.\n\n1. Step 1: $a=-5<0$, so the parabola opens downward and has a **greatest** value.\n2. Step 2: The vertex is at $t=-\\frac{b}{2a}=-\\frac{20}{-10}=2$ seconds.\n3. Step 3: The greatest height is $h(2)=-5(4)+40=20$ metres.\n\nThe ball is back on the ground when $h=0$: $-5t(t-4)=0$, so at $t=4$.\n\n**Completing the square** gives the same: $x^2-6x+5=(x-3)^2-4$, so the least value is $-4$ at $x=3$.',
+            'The vertex gives the greatest value (if the parabola opens down) or the least value (if it opens up).\n\nA ball is thrown upward. Its height in meters after $t$ seconds is $h(t)=-5t^2+20t$.\n\n1. Step 1: $a=-5<0$, so the parabola opens downward and has a **greatest** value.\n2. Step 2: The vertex is at $t=-\\frac{b}{2a}=-\\frac{20}{-10}=2$ seconds.\n3. Step 3: The greatest height is $h(2)=-5(4)+40=20$ meters.\n\nThe ball is back on the ground when $h=0$: $-5t(t-4)=0$, so at $t=4$.\n\n**Completing the square** gives the same: $x^2-6x+5=(x-3)^2-4$, so the least value is $-4$ at $x=3$.',
             'Titik puncak memberi nilai terbesar (jika parabola membuka ke bawah) atau nilai terkecil (jika membuka ke atas).\n\nSebuah bola dilempar ke atas. Tingginya dalam meter setelah $t$ detik adalah $h(t)=-5t^2+20t$.\n\n1. Langkah 1: $a=-5<0$, jadi parabola membuka ke bawah dan punya nilai **terbesar**.\n2. Langkah 2: Puncaknya di $t=-\\frac{b}{2a}=-\\frac{20}{-10}=2$ detik.\n3. Langkah 3: Tinggi terbesar adalah $h(2)=-5(4)+40=20$ meter.\n\nBola kembali ke tanah saat $h=0$: $-5t(t-4)=0$, yaitu pada $t=4$.\n\n**Melengkapkan kuadrat** memberi hasil yang sama: $x^2-6x+5=(x-3)^2-4$, jadi nilai terkecilnya $-4$ di $x=3$.',
           ),
           figure: {
@@ -162,7 +162,7 @@ export const m3s2: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A ball has height $h(t)=-5t^2+20t$ metres after $t$ seconds. What is the greatest height, in metres?',
+            'A ball has height $h(t)=-5t^2+20t$ meters after $t$ seconds. What is the greatest height, in meters?',
             'Sebuah bola setinggi $h(t)=-5t^2+20t$ meter setelah $t$ detik. Berapa tinggi terbesarnya, dalam meter?',
           ),
           blanks: [{ answer: 20, after: '\\text{m}' }],
@@ -172,7 +172,7 @@ export const m3s2: Submodule = {
             L('Put that $t$ back into $h(t)$.', 'Masukkan $t$ itu kembali ke $h(t)$.'),
           ],
           explain: L(
-            '$t=-\\frac{20}{-10}=2$ and $h(2)=-5(4)+20(2)=-20+40=20$ metres.',
+            '$t=-\\frac{20}{-10}=2$ and $h(2)=-5(4)+20(2)=-20+40=20$ meters.',
             '$t=-\\frac{20}{-10}=2$ dan $h(2)=-5(4)+20(2)=-20+40=20$ meter.',
           ),
           solution: ['t=-\\frac{20}{2(-5)}=2', 'h(2)=-5(4)+20(2)', '=20'],
@@ -185,7 +185,7 @@ export const m3s2: Submodule = {
     runtime: 'math',
     title: L('Parabolas at Work', 'Parabola dalam Pemakaian'),
     brief: L(
-      'Find roots and vertices, use the discriminant, maximise an area and read a parabola from its graph.',
+      'Find roots and vertices, use the discriminant, maximize an area and read a parabola from its graph.',
       'Cari akar dan titik puncak, pakai diskriminan, maksimumkan luas, dan baca parabola dari grafiknya.',
     ),
     requirements: [
@@ -243,7 +243,7 @@ export const m3s2: Submodule = {
       },
       {
         prompt: L(
-          'A farmer has 40 m of fence for a rectangular pen. If the width is $x$ m, the length is $20-x$ m and the area is $x(20-x)$. What is the greatest area, in square metres?',
+          'A farmer has 40 m of fence for a rectangular pen. If the width is $x$ m, the length is $20-x$ m and the area is $x(20-x)$. What is the greatest area, in square meters?',
           'Seorang petani punya pagar sepanjang 40 m untuk kandang persegi panjang. Jika lebarnya $x$ m, panjangnya $20-x$ m dan luasnya $x(20-x)$. Berapa luas terbesar, dalam meter persegi?',
         ),
         blanks: [{ answer: 100, after: '\\text{m}^2' }],

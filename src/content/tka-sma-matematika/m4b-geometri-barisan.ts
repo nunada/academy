@@ -25,7 +25,7 @@ export const m4s2: Submodule = {
       id: 'tka-sma-m4-s2-l1',
       title: L('Geometric Sequences', 'Barisan Geometri'),
       goal: L(
-        'You can recognise a geometric sequence, find its common ratio and any term, and tell it apart from an arithmetic sequence.',
+        'You can recognize a geometric sequence, find its common ratio and any term, and tell it apart from an arithmetic sequence.',
         'Kamu bisa mengenali barisan geometri, mencari rasionya dan suku mana pun, dan membedakannya dari barisan aritmetika.',
       ),
       xp: 20,
@@ -35,7 +35,7 @@ export const m4s2: Submodule = {
           id: 'c1',
           title: L('Look Closely: Always Multiplying by the Same Number', 'Ayo Amati: Selalu Mengalikan dengan Bilangan yang Sama'),
           body: L(
-            'A rumour is told to 2 people. Each of them tells it to 3 new people each hour: the numbers of new listeners are 2, 6, 18, 54, $\\ldots$ Each term is the one before **times the same number**, the **common ratio** $r$. This is a **geometric sequence**.\n\n- $r=\\frac{U_{n+1}}{U_n}=\\frac{6}{2}=3$, and the first term is $a=2$.\n- $U_2=ar$, $U_3=ar^2$: the $n$th term multiplies by $r$ a total of $n-1$ times.\n\n$$U_n=a\\,r^{\\,n-1}$$\n\nSo $U_6=2\\times3^5=486$. The bars grow faster and faster, because each bar is a multiple of the last, not an addition.',
+            'A rumor is told to 2 people. Each of them tells it to 3 new people each hour: the numbers of new listeners are 2, 6, 18, 54, $\\ldots$ Each term is the one before **times the same number**, the **common ratio** $r$. This is a **geometric sequence**.\n\n- $r=\\frac{U_{n+1}}{U_n}=\\frac{6}{2}=3$, and the first term is $a=2$.\n- $U_2=ar$, $U_3=ar^2$: the $n$th term multiplies by $r$ a total of $n-1$ times.\n\n$$U_n=a\\,r^{\\,n-1}$$\n\nSo $U_6=2\\times3^5=486$. The bars grow faster and faster, because each bar is a multiple of the last, not an addition.',
             'Sebuah kabar disampaikan kepada 2 orang. Setiap orang menyampaikannya kepada 3 orang baru setiap jam: banyak pendengar baru adalah 2, 6, 18, 54, $\\ldots$ Tiap suku adalah suku sebelumnya **dikali bilangan yang sama**, yaitu **rasio** $r$. Ini **barisan geometri**.\n\n- $r=\\frac{U_{n+1}}{U_n}=\\frac{6}{2}=3$, dan suku pertamanya $a=2$.\n- $U_2=ar$, $U_3=ar^2$: suku ke-$n$ dikalikan $r$ sebanyak $n-1$ kali.\n\n$$U_n=a\\,r^{\\,n-1}$$\n\nJadi $U_6=2\\times3^5=486$. Batang-batangnya tumbuh makin cepat, karena tiap batang adalah kelipatan batang sebelumnya, bukan penambahan.',
           ),
           figure: {
@@ -57,7 +57,7 @@ export const m4s2: Submodule = {
           id: 'c3',
           title: L('Watch Out!: Add or Multiply?', 'Awas, Jebakan!: Menambah atau Mengalikan?'),
           body: L(
-            'Always ask: do I **add** the same number (arithmetic) or **multiply** by the same number (geometric)?\n\n| Sequence | Test | Type |\n|---|---|---|\n| $5,10,20,40$ | ratios $2,2,2$ | geometric, $r=2$ |\n| $1,3,5,7$ | differences $2,2,2$ | arithmetic |\n| $16,-8,4,-2$ | ratios $-\\frac{1}{2}$ each | geometric, $r=-\\frac{1}{2}$ |\n| $1,4,9,16$ | neither | neither |\n\n- With $r>1$ and $a>0$ the terms grow. With $0<r<1$ they shrink towards 0. With $r<0$ the signs alternate.\n- The formula has $r^{\\,n-1}$, **not** $r^{\\,n}$: the first term is $a$, not $ar$.',
+            'Always ask: do I **add** the same number (arithmetic) or **multiply** by the same number (geometric)?\n\n| Sequence | Test | Type |\n|---|---|---|\n| $5,10,20,40$ | ratios $2,2,2$ | geometric, $r=2$ |\n| $1,3,5,7$ | differences $2,2,2$ | arithmetic |\n| $16,-8,4,-2$ | ratios $-\\frac{1}{2}$ each | geometric, $r=-\\frac{1}{2}$ |\n| $1,4,9,16$ | neither | neither |\n\n- With $r>1$ and $a>0$ the terms grow. With $0<r<1$ they shrink toward 0. With $r<0$ the signs alternate.\n- The formula has $r^{\\,n-1}$, **not** $r^{\\,n}$: the first term is $a$, not $ar$.',
             'Selalu tanyakan: apakah aku **menambah** bilangan yang sama (aritmetika) atau **mengalikan** dengan bilangan yang sama (geometri)?\n\n| Barisan | Uji | Jenis |\n|---|---|---|\n| $5,10,20,40$ | rasio $2,2,2$ | geometri, $r=2$ |\n| $1,3,5,7$ | beda $2,2,2$ | aritmetika |\n| $16,-8,4,-2$ | rasio $-\\frac{1}{2}$ setiap kali | geometri, $r=-\\frac{1}{2}$ |\n| $1,4,9,16$ | bukan keduanya | bukan keduanya |\n\n- Dengan $r>1$ dan $a>0$ suku-sukunya membesar. Dengan $0<r<1$ suku-sukunya mengecil menuju 0. Dengan $r<0$ tandanya berganti-ganti.\n- Rumusnya memuat $r^{\\,n-1}$, **bukan** $r^{\\,n}$: suku pertama adalah $a$, bukan $ar$.',
           ),
         },
@@ -186,7 +186,7 @@ export const m4s2: Submodule = {
           id: 'c2',
           title: L('Step by Step: Adding Forever', 'Contoh Bertahap: Menjumlahkan Tanpa Henti'),
           body: L(
-            'Add $8+4+2+1+\\frac{1}{2}+\\cdots$ with no end. Here $r=\\frac{1}{2}$, and each bar is half the one before.\n\n1. Step 1: The partial sums are $8,12,14,15,15.5,\\ldots$ They creep up towards a limit.\n2. Step 2: When $|r|<1$, $r^n\\to0$ as $n$ grows, so $S_n=\\frac{a(1-r^n)}{1-r}$ tends to $\\frac{a}{1-r}$.\n3. Step 3: $S_\\infty=\\frac{8}{1-\\frac{1}{2}}=16$.\n\n$$S_\\infty=\\frac{a}{1-r}\\qquad\\text{only if }|r|<1$$\n\nIf $|r|\\ge1$ the terms do not shrink, so the sum grows without limit (or jumps about) and there is **no** sum to infinity.',
+            'Add $8+4+2+1+\\frac{1}{2}+\\cdots$ with no end. Here $r=\\frac{1}{2}$, and each bar is half the one before.\n\n1. Step 1: The partial sums are $8,12,14,15,15.5,\\ldots$ They creep up toward a limit.\n2. Step 2: When $|r|<1$, $r^n\\to0$ as $n$ grows, so $S_n=\\frac{a(1-r^n)}{1-r}$ tends to $\\frac{a}{1-r}$.\n3. Step 3: $S_\\infty=\\frac{8}{1-\\frac{1}{2}}=16$.\n\n$$S_\\infty=\\frac{a}{1-r}\\qquad\\text{only if }|r|<1$$\n\nIf $|r|\\ge1$ the terms do not shrink, so the sum grows without limit (or jumps about) and there is **no** sum to infinity.',
             'Jumlahkan $8+4+2+1+\\frac{1}{2}+\\cdots$ tanpa akhir. Di sini $r=\\frac{1}{2}$, dan tiap batang setengah batang sebelumnya.\n\n1. Langkah 1: Jumlah sebagiannya $8,12,14,15,15{,}5,\\ldots$ Jumlah itu merayap mendekati suatu batas.\n2. Langkah 2: Bila $|r|<1$, $r^n\\to0$ saat $n$ membesar, sehingga $S_n=\\frac{a(1-r^n)}{1-r}$ mendekati $\\frac{a}{1-r}$.\n3. Langkah 3: $S_\\infty=\\frac{8}{1-\\frac{1}{2}}=16$.\n\n$$S_\\infty=\\frac{a}{1-r}\\qquad\\text{hanya jika }|r|<1$$\n\nJika $|r|\\ge1$ suku-sukunya tidak mengecil, sehingga jumlahnya membesar tanpa batas (atau melompat-lompat) dan **tidak ada** jumlah tak hingga.',
           ),
           figure: {
@@ -199,7 +199,7 @@ export const m4s2: Submodule = {
           id: 'c3',
           title: L('Step by Step: The Bouncing Ball', 'Contoh Bertahap: Bola yang Memantul'),
           body: L(
-            'A ball is dropped from 8 m. After each bounce it rises to $\\frac{1}{2}$ of the previous height. What total distance does it travel before it stops?\n\n1. Step 1: The first fall is 8 m.\n2. Step 2: After that, each rebound height is travelled **twice** (up and down): $2\\left(4+2+1+\\cdots\\right)$.\n3. Step 3: $4+2+1+\\cdots=\\frac{4}{1-\\frac{1}{2}}=8$.\n4. Step 4: Total: $8+2\\times8=24$ m.\n\n**Repeating decimals** are infinite geometric series too: $0.\\overline{3}=0.3+0.03+0.003+\\cdots=\\frac{0.3}{1-0.1}=\\frac{1}{3}$.\n\n**Watch out:** do not forget the first fall, which is travelled only once.',
+            'A ball is dropped from 8 m. After each bounce it rises to $\\frac{1}{2}$ of the previous height. What total distance does it travel before it stops?\n\n1. Step 1: The first fall is 8 m.\n2. Step 2: After that, each rebound height is traveled **twice** (up and down): $2\\left(4+2+1+\\cdots\\right)$.\n3. Step 3: $4+2+1+\\cdots=\\frac{4}{1-\\frac{1}{2}}=8$.\n4. Step 4: Total: $8+2\\times8=24$ m.\n\n**Repeating decimals** are infinite geometric series too: $0.\\overline{3}=0.3+0.03+0.003+\\cdots=\\frac{0.3}{1-0.1}=\\frac{1}{3}$.\n\n**Watch out:** do not forget the first fall, which is traveled only once.',
             'Sebuah bola dijatuhkan dari ketinggian 8 m. Setelah tiap pantulan, bola naik setinggi $\\frac{1}{2}$ tinggi sebelumnya. Berapa jarak total yang ditempuh sebelum bola berhenti?\n\n1. Langkah 1: Jatuh pertama 8 m.\n2. Langkah 2: Setelah itu, setiap tinggi pantulan ditempuh **dua kali** (naik dan turun): $2\\left(4+2+1+\\cdots\\right)$.\n3. Langkah 3: $4+2+1+\\cdots=\\frac{4}{1-\\frac{1}{2}}=8$.\n4. Langkah 4: Total: $8+2\\times8=24$ m.\n\n**Desimal berulang** juga deret geometri tak hingga: $0{,}\\overline{3}=0{,}3+0{,}03+0{,}003+\\cdots=\\frac{0{,}3}{1-0{,}1}=\\frac{1}{3}$.\n\n**Awas:** jangan lupa jatuh pertama, yang hanya ditempuh sekali.',
           ),
         },
@@ -288,17 +288,17 @@ export const m4s2: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A ball is dropped from 8 m and bounces back to half of its previous height each time. What total distance, in metres, does it travel before it comes to rest?',
+            'A ball is dropped from 8 m and bounces back to half of its previous height each time. What total distance, in meters, does it travel before it comes to rest?',
             'Sebuah bola dijatuhkan dari 8 m dan memantul setengah tinggi sebelumnya setiap kali. Berapa jarak total, dalam meter, yang ditempuh bola sebelum berhenti?',
           ),
           blanks: [{ answer: 24, after: '\\text{m}' }],
           hints: [
-            L('The first fall is 8 m. After that, every rebound height is travelled up and down.', 'Jatuh pertama 8 m. Setelahnya, setiap tinggi pantulan ditempuh naik dan turun.'),
+            L('The first fall is 8 m. After that, every rebound height is traveled up and down.', 'Jatuh pertama 8 m. Setelahnya, setiap tinggi pantulan ditempuh naik dan turun.'),
             L('The rebound heights are $4,2,1,\\ldots$: a geometric series with $a=4$, $r=\\frac{1}{2}$. Its sum is $\\frac{4}{1-\\frac{1}{2}}$.', 'Tinggi pantulannya $4,2,1,\\ldots$: deret geometri dengan $a=4$, $r=\\frac{1}{2}$. Jumlahnya $\\frac{4}{1-\\frac{1}{2}}$.'),
             L('The sum is 8. Double it, then add the first fall.', 'Jumlahnya 8. Gandakan, lalu tambahkan jatuh pertama.'),
           ],
           explain: L(
-            '$4+2+1+\\cdots=8$, travelled twice gives 16, and with the first fall of 8 m the total is $8+16=24$ m.',
+            '$4+2+1+\\cdots=8$, traveled twice gives 16, and with the first fall of 8 m the total is $8+16=24$ m.',
             '$4+2+1+\\cdots=8$, ditempuh dua kali menjadi 16, dan dengan jatuh pertama 8 m totalnya $8+16=24$ m.',
           ),
           solution: ['4+2+1+\\cdots=\\frac{4}{1-\\frac{1}{2}}=8', '8+2\\times8', '=24'],
@@ -360,7 +360,7 @@ export const m4s2: Submodule = {
       },
       {
         prompt: L(
-          'A ball is dropped from 10 m and rebounds to $\\frac{3}{5}$ of its previous height each time. What total distance, in metres, does it travel before it stops?',
+          'A ball is dropped from 10 m and rebounds to $\\frac{3}{5}$ of its previous height each time. What total distance, in meters, does it travel before it stops?',
           'Sebuah bola dijatuhkan dari 10 m dan memantul setinggi $\\frac{3}{5}$ tinggi sebelumnya setiap kali. Berapa jarak total, dalam meter, yang ditempuh sebelum berhenti?',
         ),
         blanks: [{ answer: 40, after: '\\text{m}' }],

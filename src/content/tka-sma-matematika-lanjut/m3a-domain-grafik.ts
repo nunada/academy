@@ -8,7 +8,7 @@ export const m3s1: Submodule = {
   id: 'tka-sml-m3-s1',
   title: L('Domain, Range and Graphs', 'Domain, Daerah Hasil, dan Grafik'),
   summary: L(
-    'Find the domain and range of polynomial, rational, root and absolute-value functions, and recognise them from their graphs.',
+    'Find the domain and range of polynomial, rational, root and absolute-value functions, and recognize them from their graphs.',
     'Mencari domain dan daerah hasil fungsi polinom, rasional, akar, dan mutlak, serta mengenalinya dari grafiknya.',
   ),
   lessons: [
@@ -151,7 +151,7 @@ export const m3s1: Submodule = {
       id: 'tka-sml-m3-s1-l2',
       title: L('Graphs of Functions', 'Grafik Fungsi'),
       goal: L(
-        'You can sketch and recognise graphs of polynomial, rational, root and absolute-value functions, including shifts and asymptotes.',
+        'You can sketch and recognize graphs of polynomial, rational, root and absolute-value functions, including shifts and asymptotes.',
         'Kamu bisa membuat sketsa dan mengenali grafik fungsi polinom, rasional, akar, dan mutlak, termasuk pergeseran dan asimtot.',
       ),
       xp: 20,
@@ -176,7 +176,7 @@ export const m3s1: Submodule = {
               ],
               { x: [-5, 6], y: [-6, 8] },
             ),
-            caption: L('The graph of (x + 1)/(x − 1) with its asymptotes (grey dashes).', 'Grafik (x + 1)/(x − 1) dengan asimtotnya (garis putus-putus abu-abu).'),
+            caption: L('The graph of (x + 1)/(x − 1) with its asymptotes (gray dashes).', 'Grafik (x + 1)/(x − 1) dengan asimtotnya (garis putus-putus abu-abu).'),
           },
         },
         {

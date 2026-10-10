@@ -27,7 +27,7 @@ export const module1: Module = {
           id: 'log-m1-s1-l1',
           title: { en: 'Sentences and Statements', id: 'Kalimat dan Pernyataan' },
           goal: {
-            en: 'Recognise a statement, and say whether it is true or false.',
+            en: 'Recognize a statement, and say whether it is true or false.',
             id: 'Mengenali sebuah pernyataan, dan menyebut apakah ia benar atau salah.',
           },
           xp: 20,
@@ -556,7 +556,7 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Both, or it fails', id: 'Keduanya, atau gagal' },
               body: {
-                en: 'The **conjunction** of $p$ and $q$, written $p \\land q$ (read "$p$ and $q$"), is the statement that both hold at once. It matches how "and" already works in everyday speech: "It is raining and it is cold" is only true when both halves are true.\n$$\\begin{array} p & q & p \\land q \\\\\\\\ B & B & B \\\\\\\\ B & S & S \\\\\\\\ S & B & S \\\\\\\\ S & S & S \\end{array}$$\nOnly the very first row comes out true. A single false half is enough to make the whole conjunction false — a table worth memorising, since every other connective in this course is compared against it.',
+                en: 'The **conjunction** of $p$ and $q$, written $p \\land q$ (read "$p$ and $q$"), is the statement that both hold at once. It matches how "and" already works in everyday speech: "It is raining and it is cold" is only true when both halves are true.\n$$\\begin{array} p & q & p \\land q \\\\\\\\ B & B & B \\\\\\\\ B & S & S \\\\\\\\ S & B & S \\\\\\\\ S & S & S \\end{array}$$\nOnly the very first row comes out true. A single false half is enough to make the whole conjunction false — a table worth memorizing, since every other connective in this course is compared against it.',
                 id: '**Konjungsi** dari $p$ dan $q$, ditulis $p \\land q$ (dibaca "$p$ dan $q$"), adalah pernyataan bahwa keduanya berlaku sekaligus. Ini sesuai dengan makna "dan" dalam percakapan sehari-hari: "Hari ini hujan dan dingin" hanya benar bila kedua bagiannya benar.\n$$\\begin{array} p & q & p \\land q \\\\\\\\ B & B & B \\\\\\\\ B & S & S \\\\\\\\ S & B & S \\\\\\\\ S & S & S \\end{array}$$\nHanya baris pertama yang bernilai benar. Satu saja bagian yang salah sudah cukup membuat seluruh konjungsinya salah — tabel yang layak dihafal, karena setiap penghubung lain dalam kursus ini dibandingkan dengannya.',
               },
             },

@@ -1,9 +1,9 @@
 import type { Figure } from '../lib/figure'
 import type { Module } from './types'
 
-/** Draw every figure in a course in the plain-colour palette.
+/** Draw every figure in a course in the plain-color palette.
  *
- *  A course whose text says "the red dot" and "the orange bar" needs colours
+ *  A course whose text says "the red dot" and "the orange bar" needs colors
  *  that really are those, so each of its figures is marked `palette: 'kid'`
  *  (see `.fig.kid` in styles.css). Done once, at the course's index, so no
  *  figure has to remember to ask for it. */

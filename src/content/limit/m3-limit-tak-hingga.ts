@@ -25,7 +25,7 @@ export const module3: Module = {
           id: 'lim-m3-s1-l1',
           title: { en: 'When a Limit Blows Up', id: 'Ketika Limit Meledak' },
           goal: {
-            en: 'Read lim(x→a) f(x) = ∞ correctly, as a description of behaviour rather than a value.',
+            en: 'Read lim(x→a) f(x) = ∞ correctly, as a description of behavior rather than a value.',
             id: 'Membaca lim(x→a) f(x) = ∞ dengan benar, sebagai gambaran perilaku, bukan sebuah nilai.',
           },
           xp: 20,
@@ -179,7 +179,7 @@ export const module3: Module = {
                 id: '$f(x) = \\dfrac{x-3}{(x-3)(x+3)} = \\dfrac{1}{x+3}$ untuk $x \\neq 3$ — akar $x=3$ tercoret, sebuah lubang yang bisa dihapus, bukan asimtot. Hanya $x=-3$ yang bertahan sebagai asimtot tegak sejati, tempat penyebut (yang sudah disederhanakan) lenyap tetapi pembilangnya tidak.',
               },
               hint: {
-                en: 'Factor the denominator $x^2 - 9$ fully and see whether either factor cancels against the numerator $x - 3$ — a cancelling zero is a hole, not an asymptote.',
+                en: 'Factor the denominator $x^2 - 9$ fully and see whether either factor cancels against the numerator $x - 3$ — a canceling zero is a hole, not an asymptote.',
                 id: 'Faktorkan penyebut $x^2 - 9$ sepenuhnya dan lihat apakah salah satu faktornya tercoret dengan pembilang $x - 3$ — akar yang tercoret adalah lubang, bukan asimtot.',
               },
             },
@@ -284,7 +284,7 @@ export const module3: Module = {
       },
     },
 
-    /* ----------------------------------------------- 3.2 end behaviour */
+    /* ----------------------------------------------- 3.2 end behavior */
     {
       id: 'lim-m3-s2',
       title: { en: 'Limits at Infinity', id: 'Limit di Tak Hingga' },
@@ -487,7 +487,7 @@ export const module3: Module = {
       project: {
         id: 'lim-m3-s2-p',
         runtime: 'math',
-        title: { en: 'Reading the End Behaviour', id: 'Membaca Perilaku Ujung' },
+        title: { en: 'Reading the End Behavior', id: 'Membaca Perilaku Ujung' },
         brief: {
           en: 'Three limits at infinity, one from each of the three degree cases.',
           id: 'Tiga limit di tak hingga, satu dari masing-masing tiga kasus derajat.',

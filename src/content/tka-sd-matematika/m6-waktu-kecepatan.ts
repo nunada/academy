@@ -24,7 +24,7 @@ type NL = Parameters<typeof numberLine>[0]
 const timeLine = (from: number, to: number, step: number, labelEvery: number, extra: Pick<NL, 'marks' | 'jumps' | 'shade'> = {}): Piece =>
   numberLine({ from, to, step, labelEvery, fmt: hm, ...extra })
 
-/** Number line for one hour, labelled in minutes: 0, 15, 30, 45, 60. */
+/** Number line for one hour, labeled in minutes: 0, 15, 30, 45, 60. */
 const minuteLine = (marks: NL['marks']): Piece =>
   numberLine({ from: 0, to: 1, step: 0.25, fmt: (v) => String(Math.round(v * 60)), marks })
 
@@ -250,7 +250,7 @@ export const module6: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'Ani practises dancing for 2 hours every day for 1 week. How many minutes does Ani practise in the whole week?',
+                'Ani practices dancing for 2 hours every day for 1 week. How many minutes does Ani practice in the whole week?',
                 'Ani berlatih menari 2 jam setiap hari selama 1 pekan. Berapa menit Ani berlatih seluruhnya dalam 1 pekan?',
               ),
               blanks: [{ answer: 840, after: MIN_AFTER }],
@@ -516,7 +516,7 @@ export const module6: Module = {
           'Baca jam, ubah jam menjadi menit, dan cari tahu berapa lama sesuatu berlangsung.',
         ),
         requirements: [
-          L('Read the hands of an analogue clock correctly.', 'Membaca jarum jam analog dengan benar.'),
+          L('Read the hands of an analog clock correctly.', 'Membaca jarum jam analog dengan benar.'),
           L('Work out how long something lasts and change between hours and minutes.', 'Menghitung lama waktu dan mengubah jam menjadi menit.'),
         ],
         hints: [
@@ -608,7 +608,7 @@ export const module6: Module = {
               id: 'c1',
               title: L('Look Closely: How Fast?', 'Ayo Amati: Seberapa Cepat?'),
               body: L(
-                'Pak Rudi\'s bus keeps going at the same pace. Every 1 hour it covers 60 km. So the bus goes 60 km/h, which is read "60 kilometres per hour".\n\n**Speed** is the distance covered in one unit of time. The unit can be km/h or m/s. A runner who covers 5 m in every second has a speed of 5 m/s.\n\n| Time (hours) | Distance (km) |\n|---|---|\n| 1 | 60 |\n| 2 | 120 |\n| 3 | 180 |\n| 4 | 240 |\n\nLook at the picture. The dots for the bus lie on one straight line. Every hour adds 60 km.',
+                'Pak Rudi\'s bus keeps going at the same pace. Every 1 hour it covers 60 km. So the bus goes 60 km/h, which is read "60 kilometers per hour".\n\n**Speed** is the distance covered in one unit of time. The unit can be km/h or m/s. A runner who covers 5 m in every second has a speed of 5 m/s.\n\n| Time (hours) | Distance (km) |\n|---|---|\n| 1 | 60 |\n| 2 | 120 |\n| 3 | 180 |\n| 4 | 240 |\n\nLook at the picture. The dots for the bus lie on one straight line. Every hour adds 60 km.',
                 'Bus Pak Rudi melaju terus dengan laju yang sama. Setiap 1 jam bus itu menempuh 60 km. Jadi bus itu berkecepatan 60 km/jam, dibaca "60 kilometer per jam".\n\n**Kecepatan** adalah jarak yang ditempuh dalam satu satuan waktu. Satuannya bisa km/jam atau m/detik. Pelari yang menempuh 5 m setiap detik berkecepatan 5 m/detik.\n\n| Waktu (jam) | Jarak (km) |\n|---|---|\n| 1 | 60 |\n| 2 | 120 |\n| 3 | 180 |\n| 4 | 240 |\n\nLihat gambar. Titik-titik bus berada pada satu garis lurus. Setiap jam bertambah 60 km.',
               ),
               figure: {
@@ -739,11 +739,11 @@ export const module6: Module = {
                 L('A distance of 90 km covered in 3 hours means a speed of 30 km/h.', 'Jarak 90 km yang ditempuh dalam 3 jam berarti kecepatan 30 km/jam.'),
                 L('At 40 km/h, the distance covered in 2 hours is 20 km.', 'Dengan kecepatan 40 km/jam, jarak yang ditempuh dalam 2 jam adalah 20 km.'),
                 L('Time = distance $\\div$ speed.', 'Waktu = jarak $\\div$ kecepatan.'),
-                L('A speed of 5 m/s means 5 seconds for every 1 metre.', 'Kecepatan 5 m/detik berarti 5 detik untuk setiap 1 meter.'),
+                L('A speed of 5 m/s means 5 seconds for every 1 meter.', 'Kecepatan 5 m/detik berarti 5 detik untuk setiap 1 meter.'),
               ],
               answer: [true, false, true, false],
               explain: L(
-                '$90 \\div 3 = 30$ is right. At 40 km/h, 2 hours gives $40 \\times 2 = 80$ km, not 20. Time is distance divided by speed. A speed of 5 m/s means 5 metres every second.',
+                '$90 \\div 3 = 30$ is right. At 40 km/h, 2 hours gives $40 \\times 2 = 80$ km, not 20. Time is distance divided by speed. A speed of 5 m/s means 5 meters every second.',
                 '$90 \\div 3 = 30$ itu benar. Dengan 40 km/jam, 2 jam memberi $40 \\times 2 = 80$ km, bukan 20. Waktu adalah jarak dibagi kecepatan. Kecepatan 5 m/detik berarti 5 meter setiap detik.',
               ),
               hint: L(

@@ -175,7 +175,7 @@ export const module3: Module = {
                   { label: 'θ =', n: { angle: [{ of: 'a' }, { of: 'b' }] } },
                 ],
                 caption: {
-                  en: 'Drag the two arrows towards each other and apart. Watch the dot product: positive while the angle is under 90°, zero exactly at a right angle, negative beyond it.',
+                  en: 'Drag the two arrows toward each other and apart. Watch the dot product: positive while the angle is under 90°, zero exactly at a right angle, negative beyond it.',
                   id: 'Seret kedua anak panahnya saling mendekat lalu menjauh. Perhatikan perkalian titiknya: positif selama sudutnya di bawah 90°, nol tepat pada sudut siku-siku, negatif setelah melewatinya.',
                 },
               },
@@ -637,7 +637,7 @@ export const module3: Module = {
                 '\\text{proj}_{\\vec{b}}\\,\\vec{a} = \\left(\\tfrac{10}{9}, \\tfrac{20}{9}, \\tfrac{20}{9}\\right)',
               ],
               explain: {
-                en: 'Dot product on top, squared magnitude underneath, then multiply the whole fraction through $\\vec{b}$. Never normalise $\\vec{b}$ separately — the squared form saves you the root.',
+                en: 'Dot product on top, squared magnitude underneath, then multiply the whole fraction through $\\vec{b}$. Never normalize $\\vec{b}$ separately — the squared form saves you the root.',
                 id: 'Perkalian titik di atas, kuadrat besarnya di bawah, lalu kalikan seluruh pecahannya dengan $\\vec{b}$. Jangan menormalkan $\\vec{b}$ secara terpisah — bentuk kuadratnya menghemat satu langkah akar.',
               },
               hint: {
@@ -683,7 +683,7 @@ export const module3: Module = {
               id: 'c1',
               title: { en: 'Only the part along the motion counts', id: 'Hanya bagian sepanjang gerak yang diperhitungkan' },
               body: {
-                en: 'A force $\\vec{F}$ moving an object through a displacement $\\vec{d}$ does **work**\n$$W = \\vec{F} \\cdot \\vec{d} = |\\vec{F}|\\,|\\vec{d}|\\cos\\theta$$\nThe cosine is the whole physical content: only the component of the force along the motion does any work. Push a crate sideways while it moves forwards and you have done none.\n\nA negative $W$ means the force opposed the motion — friction, for instance. And $W$ is a scalar, measured in joules when $\\vec{F}$ is in newtons and $\\vec{d}$ in metres.',
+                en: 'A force $\\vec{F}$ moving an object through a displacement $\\vec{d}$ does **work**\n$$W = \\vec{F} \\cdot \\vec{d} = |\\vec{F}|\\,|\\vec{d}|\\cos\\theta$$\nThe cosine is the whole physical content: only the component of the force along the motion does any work. Push a crate sideways while it moves forward and you have done none.\n\nA negative $W$ means the force opposed the motion — friction, for instance. And $W$ is a scalar, measured in joules when $\\vec{F}$ is in newtons and $\\vec{d}$ in meters.',
                 id: 'Sebuah gaya $\\vec{F}$ yang memindahkan benda sejauh perpindahan $\\vec{d}$ melakukan **usaha**\n$$W = \\vec{F} \\cdot \\vec{d} = |\\vec{F}|\\,|\\vec{d}|\\cos\\theta$$\nCosinusnya adalah seluruh isi fisisnya: hanya komponen gaya yang searah gerak yang melakukan usaha. Dorong peti ke samping sementara ia bergerak maju, dan usaha yang kamu lakukan nol.\n\n$W$ yang negatif berarti gayanya melawan gerak — gesekan, misalnya. Dan $W$ adalah skalar, bersatuan joule bila $\\vec{F}$ dalam newton dan $\\vec{d}$ dalam meter.',
               },
               figure: {
@@ -703,7 +703,7 @@ export const module3: Module = {
                   { label: 'W = F·d =', n: { dot: [{ of: 'F' }, [5, 0]] } },
                 ],
                 caption: {
-                  en: 'Drag the force. Only the green part — its shadow on the displacement — does any work. Turn $\\vec{F}$ straight up and the work falls to zero; turn it backwards and the work goes negative.',
+                  en: 'Drag the force. Only the green part — its shadow on the displacement — does any work. Turn $\\vec{F}$ straight up and the work falls to zero; turn it backward and the work goes negative.',
                   id: 'Seret gayanya. Hanya bagian hijaunya — bayangan gaya pada perpindahan — yang melakukan usaha. Putar $\\vec{F}$ tegak lurus ke atas dan usahanya jatuh ke nol; putar ke belakang dan usahanya menjadi negatif.',
                 },
               },
@@ -835,7 +835,7 @@ export const module3: Module = {
           },
           {
             prompt: {
-              en: 'A force $\\vec{F} = (3, 4, -2)$ N moves an object from $A(1, 0, 2)$ to $B(4, 2, 1)$, in metres. Find the work done.',
+              en: 'A force $\\vec{F} = (3, 4, -2)$ N moves an object from $A(1, 0, 2)$ to $B(4, 2, 1)$, in meters. Find the work done.',
               id: 'Sebuah gaya $\\vec{F} = (3, 4, -2)$ N memindahkan benda dari $A(1, 0, 2)$ ke $B(4, 2, 1)$, dalam meter. Tentukan usaha yang dilakukan.',
             },
             blanks: [{ label: 'W =', answer: 19, after: '\\text{ J}' }],

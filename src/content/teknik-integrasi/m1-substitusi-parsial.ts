@@ -3,7 +3,7 @@ import type { Module } from '../types'
 /** Module 3 — the two integration techniques that carry most of the weight in
  *  practice, and neither is new machinery: one reverses the chain rule, the
  *  other reverses the product rule. Every hard integral in this module is a
- *  disguised derivative rule from the last course, worked backwards. */
+ *  disguised derivative rule from the last course, worked backward. */
 export const module1: Module = {
   id: 'int-m3',
   title: { en: 'Substitution and Integration by Parts', id: 'Substitusi dan Integral Parsial' },
@@ -25,7 +25,7 @@ export const module1: Module = {
           id: 'int-m3-s1-l1',
           title: { en: 'Reversing the Chain Rule', id: 'Membalik Aturan Rantai' },
           goal: {
-            en: 'Recognise an integral as a disguised chain rule, and substitute u for the inner function to integrate it.',
+            en: 'Recognize an integral as a disguised chain rule, and substitute u for the inner function to integrate it.',
             id: 'Mengenali sebuah integral sebagai aturan rantai yang tersamar, dan mensubstitusikan u untuk fungsi dalamnya agar bisa diintegralkan.',
           },
           xp: 20,
@@ -35,7 +35,7 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'An integral with a derivative hiding inside it', id: 'Integral dengan turunan yang bersembunyi di dalamnya' },
               body: {
-                en: 'The chain rule says $\\frac{d}{dx}\\big[F(g(x))\\big] = F\'(g(x))\\cdot g\'(x)$. Read backwards, any integral shaped like "a function of $g(x)$, times $g\'(x)$" antidifferentiates by naming the inner function:\n$$\\int (x^2+1)^5 \\cdot 2x\\,dx$$\nLet $u = x^2+1$. Then $\\frac{du}{dx} = 2x$, so $du = 2x\\,dx$ — the exact factor sitting in the integral. Substituting turns it into something the power rule already knows:\n$$\\int u^5\\,du = \\frac{u^6}{6} + C = \\frac{(x^2+1)^6}{6} + C$$\nCheck by differentiating the answer with the chain rule: $\\frac{d}{dx}\\left[\\frac{(x^2+1)^6}{6}\\right] = \\frac{6(x^2+1)^5}{6}\\cdot 2x = (x^2+1)^5\\cdot 2x$ — exactly the original integrand.',
+                en: 'The chain rule says $\\frac{d}{dx}\\big[F(g(x))\\big] = F\'(g(x))\\cdot g\'(x)$. Read backward, any integral shaped like "a function of $g(x)$, times $g\'(x)$" antidifferentiates by naming the inner function:\n$$\\int (x^2+1)^5 \\cdot 2x\\,dx$$\nLet $u = x^2+1$. Then $\\frac{du}{dx} = 2x$, so $du = 2x\\,dx$ — the exact factor sitting in the integral. Substituting turns it into something the power rule already knows:\n$$\\int u^5\\,du = \\frac{u^6}{6} + C = \\frac{(x^2+1)^6}{6} + C$$\nCheck by differentiating the answer with the chain rule: $\\frac{d}{dx}\\left[\\frac{(x^2+1)^6}{6}\\right] = \\frac{6(x^2+1)^5}{6}\\cdot 2x = (x^2+1)^5\\cdot 2x$ — exactly the original integrand.',
                 id: 'Aturan rantai menyatakan $\\frac{d}{dx}\\big[F(g(x))\\big] = F\'(g(x))\\cdot g\'(x)$. Dibaca terbalik, integral mana pun berbentuk "fungsi dari $g(x)$, dikali $g\'(x)$" diantiturunkan dengan menamai fungsi dalamnya:\n$$\\int (x^2+1)^5 \\cdot 2x\\,dx$$\nMisalkan $u = x^2+1$. Maka $\\frac{du}{dx} = 2x$, sehingga $du = 2x\\,dx$ — persis faktor yang duduk di dalam integralnya. Mensubstitusikannya mengubahnya menjadi sesuatu yang sudah dikenal aturan pangkat:\n$$\\int u^5\\,du = \\frac{u^6}{6} + C = \\frac{(x^2+1)^6}{6} + C$$\nPeriksa dengan menurunkan jawabannya memakai aturan rantai: $\\frac{d}{dx}\\left[\\frac{(x^2+1)^6}{6}\\right] = \\frac{6(x^2+1)^5}{6}\\cdot 2x = (x^2+1)^5\\cdot 2x$ — persis integrand aslinya.',
               },
             },
@@ -316,7 +316,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Choosing u to shrink, not grow', id: 'Memilih u agar menyusut, bukan membesar' },
               body: {
-                en: 'The formula trades $\\int u\\,dv$ for $\\int v\\,du$ — a good trade needs $du$ simpler than $u$, and $v$ no worse than $dv$ was. A rough priority for choosing $u$, sometimes remembered as **LIATE** (Logarithmic, Inverse trig, Algebraic, Trigonometric, Exponential), picks whichever **simplifies** fastest under differentiation.\n\nFor $\\int x e^x\\,dx$: $x$ is algebraic, $e^x$ is exponential — LIATE says let $u = x$ (differentiates to the constant $1$) and $dv = e^x\\,dx$ (integrates to itself, $v = e^x$):\n$$\\int xe^x\\,dx = xe^x - \\int e^x\\,dx = xe^x - e^x + C$$\nChoosing it backwards — $u = e^x$, $dv = x\\,dx$ — would trade one product integral for an even messier one, since $e^x$ never simplifies under differentiation.',
+                en: 'The formula trades $\\int u\\,dv$ for $\\int v\\,du$ — a good trade needs $du$ simpler than $u$, and $v$ no worse than $dv$ was. A rough priority for choosing $u$, sometimes remembered as **LIATE** (Logarithmic, Inverse trig, Algebraic, Trigonometric, Exponential), picks whichever **simplifies** fastest under differentiation.\n\nFor $\\int x e^x\\,dx$: $x$ is algebraic, $e^x$ is exponential — LIATE says let $u = x$ (differentiates to the constant $1$) and $dv = e^x\\,dx$ (integrates to itself, $v = e^x$):\n$$\\int xe^x\\,dx = xe^x - \\int e^x\\,dx = xe^x - e^x + C$$\nChoosing it backward — $u = e^x$, $dv = x\\,dx$ — would trade one product integral for an even messier one, since $e^x$ never simplifies under differentiation.',
                 id: 'Rumusnya menukar $\\int u\\,dv$ dengan $\\int v\\,du$ — pertukaran yang baik memerlukan $du$ lebih sederhana dari $u$, dan $v$ tak lebih buruk dari $dv$ semula. Prioritas kasar untuk memilih $u$, kadang diingat sebagai **LIATE** (Logaritma, Invers trigonometri, Aljabar, Trigonometri, Eksponen), memilih mana pun yang paling cepat **menyederhana** di bawah penurunan.\n\nUntuk $\\int x e^x\\,dx$: $x$ bersifat aljabar, $e^x$ bersifat eksponen — LIATE menyatakan misalkan $u = x$ (menurun menjadi konstanta $1$) dan $dv = e^x\\,dx$ (mengintegral menjadi dirinya sendiri, $v = e^x$):\n$$\\int xe^x\\,dx = xe^x - \\int e^x\\,dx = xe^x - e^x + C$$\nMemilihnya terbalik — $u = e^x$, $dv = x\\,dx$ — akan menukar satu integral hasil kali dengan yang bahkan lebih rumit, sebab $e^x$ tak pernah menyederhana di bawah penurunan.',
               },
             },

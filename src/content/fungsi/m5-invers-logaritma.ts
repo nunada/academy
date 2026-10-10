@@ -3,8 +3,8 @@ import type { Module } from '../types'
 /** Module 5 — undoing a function, and the one inverse that gets its own name.
  *
  *  Logarithms are taught here as what they are — the inverse of an exponential
- *  — rather than as a list of rules to memorise. Every log law in this module
- *  is an exponent law read backwards, and the lesson says so each time. */
+ *  — rather than as a list of rules to memorize. Every log law in this module
+ *  is an exponent law read backward, and the lesson says so each time. */
 export const module5: Module = {
   id: 'fun-m5',
   title: { en: 'Inverse Functions and Logarithms', id: 'Fungsi Invers dan Logaritma' },
@@ -303,7 +303,7 @@ export const module5: Module = {
                   { t: 'hline', y: -Math.PI / 2 },
                 ],
                 caption: {
-                  en: 'The first two stop dead at $x = \\pm 1$ — outside that there is no angle to return. Arctangent accepts everything but flattens towards $\\pm\\tfrac{\\pi}{2}$ and never arrives.',
+                  en: 'The first two stop dead at $x = \\pm 1$ — outside that there is no angle to return. Arctangent accepts everything but flattens toward $\\pm\\tfrac{\\pi}{2}$ and never arrives.',
                   id: 'Dua yang pertama berhenti tepat di $x = \\pm 1$ — di luar itu tak ada sudut yang bisa dikembalikan. Arctangen menerima apa saja tetapi memipih menuju $\\pm\\tfrac{\\pi}{2}$ dan tak pernah sampai.',
                 },
               },
@@ -632,7 +632,7 @@ export const module5: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'Every exponent law, backwards', id: 'Setiap hukum eksponen, dibalik' },
+              title: { en: 'Every exponent law, backward', id: 'Setiap hukum eksponen, dibalik' },
               body: {
                 en: 'Because a logarithm **is** an exponent, each exponent law becomes a logarithm law:\n$$\\log_a(xy) = \\log_a x + \\log_a y$$\n$$\\log_a\\!\\left(\\frac{x}{y}\\right) = \\log_a x - \\log_a y$$\n$$\\log_a(x^r) = r\\log_a x$$\nThe first comes straight from $a^m a^n = a^{m+n}$: multiplying the numbers adds their exponents. That is the property logarithms were invented for — before calculators, they turned an afternoon of multiplication into an afternoon of addition.\n\nAnd the two that are always true: $\\log_a 1 = 0$ and $\\log_a a = 1$.\n\nWhat is **not** a law is worth as much space:\n$$\\log(x + y) \\neq \\log x + \\log y, \\qquad \\frac{\\log x}{\\log y} \\neq \\log\\frac{x}{y}, \\qquad (\\log x)^2 \\neq 2\\log x$$\nThe laws convert multiplication into addition. They say nothing at all about a sum inside.',
                 id: 'Karena logaritma **adalah** sebuah pangkat, tiap hukum eksponen menjadi hukum logaritma:\n$$\\log_a(xy) = \\log_a x + \\log_a y$$\n$$\\log_a\\!\\left(\\frac{x}{y}\\right) = \\log_a x - \\log_a y$$\n$$\\log_a(x^r) = r\\log_a x$$\nYang pertama datang langsung dari $a^m a^n = a^{m+n}$: mengalikan bilangannya berarti menjumlahkan pangkatnya. Sifat itulah yang membuat logaritma diciptakan — sebelum ada kalkulator, ia mengubah satu sore penuh perkalian menjadi satu sore penuh penjumlahan.\n\nDan dua yang selalu benar: $\\log_a 1 = 0$ dan $\\log_a a = 1$.\n\nYang **bukan** hukum layak mendapat ruang yang sama:\n$$\\log(x + y) \\neq \\log x + \\log y, \\qquad \\frac{\\log x}{\\log y} \\neq \\log\\frac{x}{y}, \\qquad (\\log x)^2 \\neq 2\\log x$$\nHukum-hukumnya mengubah perkalian menjadi penjumlahan. Ia sama sekali tak berbicara tentang penjumlahan di dalamnya.',

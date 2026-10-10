@@ -184,7 +184,7 @@ export const m5s1: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A person 1.5 m tall casts a shadow 2 m long. At the same moment a tree casts a shadow 12 m long. How tall is the tree, in metres?',
+            'A person 1.5 m tall casts a shadow 2 m long. At the same moment a tree casts a shadow 12 m long. How tall is the tree, in meters?',
             'Seseorang setinggi 1,5 m bayangannya 2 m. Pada saat yang sama sebuah pohon bayangannya 12 m. Berapa tinggi pohon itu, dalam meter?',
           ),
           blanks: [{ answer: 9, after: '\\text{m}' }],
@@ -219,7 +219,7 @@ export const m5s1: Submodule = {
           id: 'c1',
           title: L('Look Closely: Two Angles on One Arc', 'Ayo Amati: Dua Sudut pada Satu Busur'),
           body: L(
-            'Look at the arc $AB$ of the circle with centre $O$.\n\n- The **central angle** $\\angle AOB$ has its corner at the centre. Here it is $100^{\\circ}$.\n- The **inscribed angle** $\\angle ACB$ has its corner $C$ on the circle and looks at the same arc. Here it is $50^{\\circ}$.\n\nThe key rule:\n\n$$\\text{inscribed angle}=\\tfrac{1}{2}\\times\\text{central angle on the same arc}$$\n\nSo every point $C$ on the big arc sees $AB$ under the same angle $50^{\\circ}$.',
+            'Look at the arc $AB$ of the circle with center $O$.\n\n- The **central angle** $\\angle AOB$ has its corner at the center. Here it is $100^{\\circ}$.\n- The **inscribed angle** $\\angle ACB$ has its corner $C$ on the circle and looks at the same arc. Here it is $50^{\\circ}$.\n\nThe key rule:\n\n$$\\text{inscribed angle}=\\tfrac{1}{2}\\times\\text{central angle on the same arc}$$\n\nSo every point $C$ on the big arc sees $AB$ under the same angle $50^{\\circ}$.',
             'Perhatikan busur $AB$ pada lingkaran berpusat $O$.\n\n- **Sudut pusat** $\\angle AOB$ titik sudutnya di pusat. Di sini besarnya $100^{\\circ}$.\n- **Sudut keliling** $\\angle ACB$ titik sudutnya $C$ di lingkaran dan menghadap busur yang sama. Di sini besarnya $50^{\\circ}$.\n\nAturan kuncinya:\n\n$$\\text{sudut keliling}=\\tfrac{1}{2}\\times\\text{sudut pusat pada busur yang sama}$$\n\nJadi setiap titik $C$ pada busur besar melihat $AB$ dengan sudut yang sama, $50^{\\circ}$.',
           ),
           figure: {
@@ -248,7 +248,7 @@ export const m5s1: Submodule = {
           id: 'c2',
           title: L('Step by Step: Tangents and Special Angles', 'Contoh Bertahap: Garis Singgung dan Sudut Istimewa'),
           body: L(
-            'A **tangent** touches the circle at one point $T$.\n\n- The tangent is **perpendicular to the radius** at the touching point: $OT\\perp PT$.\n- Two tangents from the same outside point have **equal lengths**.\n\nA circle has radius 3 and the outside point $P$ is 5 from the centre $O$. How long is the tangent $PT$?\n\n1. Step 1: $OTP$ is a right triangle with the right angle at $T$.\n2. Step 2: $PT^2=OP^2-OT^2=25-9=16$.\n3. Step 3: $PT=4$.\n\nTwo more special angles:\n\n- An angle inscribed in a **semicircle** (on a diameter) is $90^{\\circ}$.\n- **Opposite angles of a cyclic quadrilateral** (all four corners on the circle) add up to $180^{\\circ}$.',
+            'A **tangent** touches the circle at one point $T$.\n\n- The tangent is **perpendicular to the radius** at the touching point: $OT\\perp PT$.\n- Two tangents from the same outside point have **equal lengths**.\n\nA circle has radius 3 and the outside point $P$ is 5 from the center $O$. How long is the tangent $PT$?\n\n1. Step 1: $OTP$ is a right triangle with the right angle at $T$.\n2. Step 2: $PT^2=OP^2-OT^2=25-9=16$.\n3. Step 3: $PT=4$.\n\nTwo more special angles:\n\n- An angle inscribed in a **semicircle** (on a diameter) is $90^{\\circ}$.\n- **Opposite angles of a cyclic quadrilateral** (all four corners on the circle) add up to $180^{\\circ}$.',
             '**Garis singgung** menyentuh lingkaran di satu titik $T$.\n\n- Garis singgung **tegak lurus jari-jari** di titik singgung: $OT\\perp PT$.\n- Dua garis singgung dari titik luar yang sama **sama panjang**.\n\nSebuah lingkaran berjari-jari 3 dan titik luar $P$ berjarak 5 dari pusat $O$. Berapa panjang garis singgung $PT$?\n\n1. Langkah 1: $OTP$ adalah segitiga siku-siku dengan sudut siku-siku di $T$.\n2. Langkah 2: $PT^2=OP^2-OT^2=25-9=16$.\n3. Langkah 3: $PT=4$.\n\nDua sudut istimewa lain:\n\n- Sudut keliling pada **setengah lingkaran** (menghadap diameter) adalah $90^{\\circ}$.\n- **Sudut-sudut berhadapan pada segi empat tali busur** (keempat titik sudut di lingkaran) berjumlah $180^{\\circ}$.',
           ),
           figure: {
@@ -382,7 +382,7 @@ export const m5s1: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A tangent $PT$ is drawn from a point $P$ to a circle with centre $O$ and radius 5. $OP=13$. Find $PT$.',
+            'A tangent $PT$ is drawn from a point $P$ to a circle with center $O$ and radius 5. $OP=13$. Find $PT$.',
             'Garis singgung $PT$ ditarik dari titik $P$ ke lingkaran berpusat $O$ dan berjari-jari 5. $OP=13$. Tentukan $PT$.',
           ),
           blanks: [{ label: 'PT =', answer: 12 }],
@@ -430,7 +430,7 @@ export const m5s1: Submodule = {
       },
       {
         prompt: L(
-          'A rectangle is 12 cm long and 16 cm wide. How long is its diagonal, in centimetres?',
+          'A rectangle is 12 cm long and 16 cm wide. How long is its diagonal, in centimeters?',
           'Sebuah persegi panjang panjangnya 12 cm dan lebarnya 16 cm. Berapa panjang diagonalnya, dalam sentimeter?',
         ),
         figure: {
@@ -448,7 +448,7 @@ export const m5s1: Submodule = {
       },
       {
         prompt: L(
-          'A 6 m flagpole casts a shadow of 8 m. At the same moment a building casts a shadow of 40 m. How tall is the building, in metres?',
+          'A 6 m flagpole casts a shadow of 8 m. At the same moment a building casts a shadow of 40 m. How tall is the building, in meters?',
           'Sebuah tiang bendera 6 m bayangannya 8 m. Pada saat yang sama sebuah gedung bayangannya 40 m. Berapa tinggi gedung itu, dalam meter?',
         ),
         blanks: [{ answer: 30, after: '\\text{m}' }],

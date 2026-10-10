@@ -143,17 +143,17 @@ export const m7s2: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A cylindrical tank has radius 50 cm and height 140 cm. Use $\\pi=\\frac{22}{7}$. How many litres of water does it hold when full? ($1\\ \\text{L}=1\\,000\\ \\text{cm}^3$)',
+            'A cylindrical tank has radius 50 cm and height 140 cm. Use $\\pi=\\frac{22}{7}$. How many liters of water does it hold when full? ($1\\ \\text{L}=1\\,000\\ \\text{cm}^3$)',
             'Sebuah tangki berbentuk tabung berjari-jari 50 cm dan tinggi 140 cm. Pakai $\\pi=\\frac{22}{7}$. Berapa liter air yang termuat saat penuh? ($1\\ \\text{L}=1\\,000\\ \\text{cm}^3$)',
           ),
           blanks: [{ answer: 1100, after: '\\text{L}' }],
           hints: [
-            L('First find the volume in cubic centimetres: $\\pi r^2h$.', 'Cari dulu volume dalam sentimeter kubik: $\\pi r^2t$.'),
+            L('First find the volume in cubic centimeters: $\\pi r^2h$.', 'Cari dulu volume dalam sentimeter kubik: $\\pi r^2t$.'),
             L('$V=\\frac{22}{7}\\times50^2\\times140=22\\times2\\,500\\times20=1\\,100\\,000\\ \\text{cm}^3$.', '$V=\\frac{22}{7}\\times50^2\\times140=22\\times2\\,500\\times20=1\\,100\\,000\\ \\text{cm}^3$.'),
-            L('Divide by 1 000 to change to litres.', 'Bagi dengan 1.000 untuk mengubah ke liter.'),
+            L('Divide by 1 000 to change to liters.', 'Bagi dengan 1.000 untuk mengubah ke liter.'),
           ],
           explain: L(
-            '$140\\div7=20$, so $V=22\\times2\\,500\\times20=1\\,100\\,000\\ \\text{cm}^3$, which is $1\\,100$ litres.',
+            '$140\\div7=20$, so $V=22\\times2\\,500\\times20=1\\,100\\,000\\ \\text{cm}^3$, which is $1\\,100$ liters.',
             '$140\\div7=20$, jadi $V=22\\times2\\,500\\times20=1\\,100\\,000\\ \\text{cm}^3$, yaitu $1\\,100$ liter.',
           ),
           solution: ['V=\\frac{22}{7}\\times50^2\\times140=1\\,100\\,000\\ \\text{cm}^3', '1\\,100\\,000\\div1\\,000=1\\,100'],
@@ -294,7 +294,7 @@ export const m7s2: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A solid metal sphere of radius 3 cm is melted and recast as a solid cylinder of radius 3 cm. How tall is the cylinder, in centimetres?',
+            'A solid metal sphere of radius 3 cm is melted and recast as a solid cylinder of radius 3 cm. How tall is the cylinder, in centimeters?',
             'Sebuah bola logam padat berjari-jari 3 cm dilebur dan dicetak ulang menjadi tabung padat berjari-jari 3 cm. Berapa tinggi tabung itu, dalam sentimeter?',
           ),
           blanks: [{ answer: 4, after: '\\text{cm}' }],
@@ -334,7 +334,7 @@ export const m7s2: Submodule = {
     tasks: [
       {
         prompt: L(
-          'A box measures 5 cm by 4 cm by 3 cm. Find its surface area, in square centimetres.',
+          'A box measures 5 cm by 4 cm by 3 cm. Find its surface area, in square centimeters.',
           'Sebuah balok berukuran 5 cm kali 4 cm kali 3 cm. Cari luas permukaannya, dalam sentimeter persegi.',
         ),
         blanks: [{ answer: 94, after: '\\text{cm}^2' }],
@@ -342,7 +342,7 @@ export const m7s2: Submodule = {
       },
       {
         prompt: L(
-          'A cylinder has radius 7 cm and height 10 cm. Use $\\pi=\\frac{22}{7}$. Find its volume, in cubic centimetres.',
+          'A cylinder has radius 7 cm and height 10 cm. Use $\\pi=\\frac{22}{7}$. Find its volume, in cubic centimeters.',
           'Sebuah tabung berjari-jari 7 cm dan tinggi 10 cm. Pakai $\\pi=\\frac{22}{7}$. Cari volumenya, dalam sentimeter kubik.',
         ),
         figure: {
@@ -370,7 +370,7 @@ export const m7s2: Submodule = {
       },
       {
         prompt: L(
-          'A cylinder and a cone have the same base and the same height. The cylinder holds 90 litres. How many litres does the cone hold?',
+          'A cylinder and a cone have the same base and the same height. The cylinder holds 90 liters. How many liters does the cone hold?',
           'Sebuah tabung dan sebuah kerucut punya alas dan tinggi yang sama. Tabung memuat 90 liter. Berapa liter yang termuat kerucut?',
         ),
         blanks: [{ answer: 30, after: '\\text{L}' }],

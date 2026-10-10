@@ -171,7 +171,7 @@ export const ui = {
   someTestsFail: { en: 'Some checks did not pass yet.', id: 'Beberapa pemeriksaan belum lolos.' },
   loadingPython: { en: 'Starting Python…', id: 'Menyalakan Python…' },
   loadingPythonNote: {
-    en: 'First run downloads the Python runtime. It is cached afterwards.',
+    en: 'First run downloads the Python runtime. It is cached afterward.',
     id: 'Jalan pertama mengunduh runtime Python. Setelah itu tersimpan di cache.',
   },
 
@@ -184,7 +184,7 @@ export const ui = {
   },
   nextHeartIn: { en: 'Next heart in', id: 'Heart berikutnya dalam' },
   fullHearts: { en: 'All hearts full', id: 'Hearts penuh' },
-  practiceAnyway: { en: 'Keep practising (no XP)', id: 'Tetap berlatih (tanpa XP)' },
+  practiceAnyway: { en: 'Keep practicing (no XP)', id: 'Tetap berlatih (tanpa XP)' },
   waitForHeart: { en: 'Wait for a heart', id: 'Tunggu heart' },
 
   // leaderboard
@@ -193,7 +193,7 @@ export const ui = {
   lbTrophies: { en: 'Trophies', id: 'Trofi' },
   lbTrackAll: { en: 'Everything', id: 'Semua' },
   lbTrackNote: {
-    en: 'Only XP earned in this half of the catalogue counts here.',
+    en: 'Only XP earned in this half of the catalog counts here.',
     id: 'Hanya XP yang diperoleh di bagian katalog ini yang dihitung di sini.',
   },
   lbWeeklyNote: {

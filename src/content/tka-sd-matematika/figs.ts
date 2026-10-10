@@ -72,7 +72,7 @@ export function ellipsePts(cx: number, cy: number, rx: number, ry: number, a0 = 
   })
 }
 
-/** A pie slice: the centre, then the arc from `a0` to `a1` (degrees). */
+/** A pie slice: the center, then the arc from `a0` to `a1` (degrees). */
 export const sectorPts = (cx: number, cy: number, r: number, a0: number, a1: number): Pt[] => [
   [cx, cy],
   ...ellipsePts(cx, cy, r, r, a0, a1, Math.max(6, Math.round(Math.abs(a1 - a0) / 6))),
@@ -136,7 +136,7 @@ export function numberLine(o: {
 
 /* ------------------------------------------------------------- fractions */
 
-/** Rows of bars, each cut into equal parts with the first `shaded` coloured.
+/** Rows of bars, each cut into equal parts with the first `shaded` colored.
  *  Stack several to compare fractions: same width, different cuts. */
 export function fractionBars(rows: { parts: number; shaded: number; label?: string; color?: FigColor }[], o: { width?: number } = {}): Piece {
   const W = o.width ?? 10
@@ -156,7 +156,7 @@ export function fractionBars(rows: { parts: number; shaded: number; label?: stri
   return { dim: 2, axes: false, ...fit([[left, -0.2], [W + 0.2, top + 0.2]], 0.5), items }
 }
 
-/** Circles cut into equal slices, the first `shaded` coloured, side by side. */
+/** Circles cut into equal slices, the first `shaded` colored, side by side. */
 export function fractionCircles(circles: { parts: number; shaded: number; label?: string; color?: FigColor }[]): Piece {
   const r = 1.3
   const items: FigItem[] = []
@@ -176,7 +176,7 @@ export function fractionCircles(circles: { parts: number; shaded: number; label?
 
 /* ----------------------------------------------------------------- clock */
 
-/** An analogue clock face showing `h`:`m`. The short thick hand is the hour hand. */
+/** An analog clock face showing `h`:`m`. The short thick hand is the hour hand. */
 export function clockFace(o: { h: number; m: number; hands?: boolean }): Piece {
   const R = 4
   const items: FigItem[] = [outline(ellipsePts(0, 0, R, R), 'muted')]
@@ -258,7 +258,7 @@ export function pictogram(o: { rows: { label: string; count: number; color?: Fig
 /* -------------------------------------------------------- grids and shapes */
 
 /** A `cols` by `rows` grid of unit squares for counting area, with the first
- *  `shade` squares coloured (row by row from the bottom left). `dims` writes
+ *  `shade` squares colored (row by row from the bottom left). `dims` writes
  *  the side lengths along the bottom and left. */
 export function gridRect(o: { cols: number; rows: number; shade?: number; dims?: [string, string]; color?: FigColor }): Piece {
   const items: FigItem[] = []
@@ -279,7 +279,7 @@ export function gridRect(o: { cols: number; rows: number; shade?: number; dims?:
 
 /** A polygon with its corners named and, optionally, its sides measured.
  *  `sides[i]` labels the side from `pts[i]` to `pts[i+1]`; `rights` lists the
- *  corners that get a square right-angle mark. Corners are given anticlockwise. */
+ *  corners that get a square right-angle mark. Corners are given counterclockwise. */
 export function shape(o: {
   pts: Pt[]
   names?: string
@@ -325,7 +325,7 @@ export function shape(o: {
 
 
 /* The corner view every 3-D piece is drawn from (azimuth 38, elevation 22), as
- * the two screen axes. Used to centre a solid in its frame and to size the
+ * the two screen axes. Used to center a solid in its frame and to size the
  * frame so nothing is cut off. */
 const AZ = rad(38)
 const EL = rad(22)
@@ -333,7 +333,7 @@ const RIGHT: Pt3 = [-Math.sin(AZ), Math.cos(AZ), 0]
 const UP: Pt3 = [-Math.cos(AZ) * Math.sin(EL), -Math.sin(AZ) * Math.sin(EL), Math.cos(EL)]
 const dot3 = (a: Pt3, b: Pt3) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
 
-/** How far to shift `corners` so their drawing is centred, and the `range` that fits it. */
+/** How far to shift `corners` so their drawing is centered, and the `range` that fits it. */
 export function frame3(corners: Pt3[]): { shift: Pt3; range: number } {
   const us = corners.map((c) => dot3(c, RIGHT))
   const ws = corners.map((c) => dot3(c, UP))

@@ -1,7 +1,7 @@
 import type { Module } from '../types'
 
 /** Module 5 — the squeeze theorem, and the one limit it was built to prove:
- *  $\sin x / x \to 1$. Neither factoring nor rationalising touches this
+ *  $\sin x / x \to 1$. Neither factoring nor rationalizing touches this
  *  limit — it needs a genuinely different idea, and it is the idea the next
  *  course leans on to differentiate sine at all. */
 export const module5: Module = {
@@ -299,7 +299,7 @@ export const module5: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'A limit neither factoring nor rationalising can touch', id: 'Limit yang tak tersentuh pemfaktoran maupun perasionalan' },
+              title: { en: 'A limit neither factoring nor rationalizing can touch', id: 'Limit yang tak tersentuh pemfaktoran maupun perasionalan' },
               body: {
                 en: '$\\dfrac{\\sin x}{x}$ substitutes to $\\dfrac{0}{0}$ at $x=0$ — the familiar warning sign. But $\\sin x$ has no algebraic factor of $x$ to cancel; Module 2\'s tools have nothing to grab onto here. This limit needs the squeeze theorem instead.\n\nA geometric argument (comparing the area of a thin triangle, a circular sector, and a slightly larger triangle, all built on an angle $x$) produces exactly the inequality\n$$\\cos x \\leq \\frac{\\sin x}{x} \\leq 1 \\qquad \\text{for } x \\text{ near } 0$$\nSince $\\cos x \\to 1$ and the constant $1$ trivially stays at $1$ as $x \\to 0$, the squeeze theorem finishes the job:\n$$\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$$\nThis is one of the handful of limits in this course that is a genuinely new fact, not a consequence of the earlier techniques — and it is the fact the next course builds the derivative of $\\sin x$ on top of.',
                 id: '$\\dfrac{\\sin x}{x}$ tersubstitusi menjadi $\\dfrac{0}{0}$ di $x=0$ — tanda peringatan yang sudah dikenal. Tetapi $\\sin x$ tak punya faktor aljabar dari $x$ untuk dicoret; alat-alat Modul 2 tak punya pegangan di sini. Limit ini memerlukan teorema apit sebagai gantinya.\n\nSebuah argumen geometris (membandingkan luas segitiga tipis, juring lingkaran, dan segitiga sedikit lebih besar, semuanya dibangun di atas sudut $x$) menghasilkan persis ketaksamaan\n$$\\cos x \\leq \\frac{\\sin x}{x} \\leq 1 \\qquad \\text{untuk } x \\text{ dekat } 0$$\nKarena $\\cos x \\to 1$ dan konstanta $1$ jelas tetap di $1$ saat $x \\to 0$, teorema apit menuntaskan pekerjaannya:\n$$\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$$\nIni salah satu dari sedikit limit dalam kursus ini yang merupakan fakta baru sungguhan, bukan akibat dari teknik-teknik sebelumnya — dan inilah fakta yang menjadi dasar turunan $\\sin x$ pada kursus berikutnya.',
@@ -331,7 +331,7 @@ export const module5: Module = {
                 id: 'Mengapa $\\lim_{x \\to 0} \\dfrac{\\sin x}{x}$ memerlukan teorema apit, bukan pemfaktoran?',
               },
               options: [
-                { en: '$\\sin x$ has no algebraic factor of $x$ that can be cancelled', id: '$\\sin x$ tak punya faktor aljabar $x$ yang bisa dicoret' },
+                { en: '$\\sin x$ has no algebraic factor of $x$ that can be canceled', id: '$\\sin x$ tak punya faktor aljabar $x$ yang bisa dicoret' },
                 { en: 'The limit does not actually exist', id: 'Limitnya sebenarnya tak ada' },
                 { en: 'Direct substitution already works fine here', id: 'Substitusi langsung sudah berhasil di sini' },
                 { en: '$x$ cannot appear in a denominator', id: '$x$ tak boleh muncul di penyebut' },
@@ -388,7 +388,7 @@ export const module5: Module = {
                 id: 'Pakai $\\lim_{u \\to 0} \\dfrac{\\sin u}{u} = 1$ dengan $u = 3x$ untuk menghitung $\\lim_{x \\to 0} \\frac{\\sin 3x}{3x}$.',
               },
               blanks: [{ answer: 1 }],
-              hints: [{ en: 'As $x \\to 0$, $u = 3x \\to 0$ too — it is the exact same special limit, just relabelled.', id: 'Saat $x \\to 0$, $u = 3x \\to 0$ juga — ini limit istimewa yang persis sama, hanya diberi label ulang.' }],
+              hints: [{ en: 'As $x \\to 0$, $u = 3x \\to 0$ too — it is the exact same special limit, just relabeled.', id: 'Saat $x \\to 0$, $u = 3x \\to 0$ juga — ini limit istimewa yang persis sama, hanya diberi label ulang.' }],
               explain: {
                 en: 'Whatever sits inside — $x$, $3x$, or any expression going to $0$ — the pattern $\\dfrac{\\sin(\\text{that thing})}{\\text{that thing}}$ always approaches $1$.',
                 id: 'Apa pun yang ada di dalamnya — $x$, $3x$, atau ekspresi apa pun yang menuju $0$ — pola $\\dfrac{\\sin(\\text{itu})}{\\text{itu}}$ selalu mendekati $1$.',
@@ -410,7 +410,7 @@ export const module5: Module = {
               id: 'c1',
               title: { en: 'One more limit, built on the first', id: 'Satu limit lagi, dibangun di atas yang pertama' },
               body: {
-                en: 'A close relative: $\\lim_{x\\to 0} \\dfrac{1-\\cos x}{x}$. Multiply by the conjugate $1+\\cos x$ — Module 2\'s rationalising move, still at work here:\n$$\\frac{1-\\cos x}{x} \\cdot \\frac{1+\\cos x}{1+\\cos x} = \\frac{1-\\cos^2 x}{x(1+\\cos x)} = \\frac{\\sin^2 x}{x(1+\\cos x)} = \\frac{\\sin x}{x} \\cdot \\frac{\\sin x}{1+\\cos x}$$\nAs $x \\to 0$: the first factor $\\to 1$ (this lesson\'s limit), and the second factor $\\to \\dfrac{0}{2} = 0$. Their product goes to $1 \\cdot 0 = 0$:\n$$\\lim_{x \\to 0} \\frac{1-\\cos x}{x} = 0$$\nAnd the same substitution trick generalises the first limit into a whole family:\n$$\\lim_{x \\to 0} \\frac{\\sin kx}{x} = k, \\qquad \\lim_{x \\to 0} \\frac{\\tan x}{x} = 1$$\nthe second because $\\tan x = \\dfrac{\\sin x}{\\cos x}$, and $\\cos x \\to 1$ contributes nothing to change.',
+                en: 'A close relative: $\\lim_{x\\to 0} \\dfrac{1-\\cos x}{x}$. Multiply by the conjugate $1+\\cos x$ — Module 2\'s rationalizing move, still at work here:\n$$\\frac{1-\\cos x}{x} \\cdot \\frac{1+\\cos x}{1+\\cos x} = \\frac{1-\\cos^2 x}{x(1+\\cos x)} = \\frac{\\sin^2 x}{x(1+\\cos x)} = \\frac{\\sin x}{x} \\cdot \\frac{\\sin x}{1+\\cos x}$$\nAs $x \\to 0$: the first factor $\\to 1$ (this lesson\'s limit), and the second factor $\\to \\dfrac{0}{2} = 0$. Their product goes to $1 \\cdot 0 = 0$:\n$$\\lim_{x \\to 0} \\frac{1-\\cos x}{x} = 0$$\nAnd the same substitution trick generalizes the first limit into a whole family:\n$$\\lim_{x \\to 0} \\frac{\\sin kx}{x} = k, \\qquad \\lim_{x \\to 0} \\frac{\\tan x}{x} = 1$$\nthe second because $\\tan x = \\dfrac{\\sin x}{\\cos x}$, and $\\cos x \\to 1$ contributes nothing to change.',
                 id: 'Kerabat dekatnya: $\\lim_{x\\to 0} \\dfrac{1-\\cos x}{x}$. Kalikan dengan sekawan $1+\\cos x$ — gerakan perasionalan Modul 2, masih bekerja di sini:\n$$\\frac{1-\\cos x}{x} \\cdot \\frac{1+\\cos x}{1+\\cos x} = \\frac{1-\\cos^2 x}{x(1+\\cos x)} = \\frac{\\sin^2 x}{x(1+\\cos x)} = \\frac{\\sin x}{x} \\cdot \\frac{\\sin x}{1+\\cos x}$$\nSaat $x \\to 0$: faktor pertama $\\to 1$ (limit pelajaran ini), dan faktor kedua $\\to \\dfrac{0}{2} = 0$. Hasil kali keduanya menuju $1 \\cdot 0 = 0$:\n$$\\lim_{x \\to 0} \\frac{1-\\cos x}{x} = 0$$\nDan trik substitusi yang sama menggeneralisasi limit pertama menjadi satu keluarga penuh:\n$$\\lim_{x \\to 0} \\frac{\\sin kx}{x} = k, \\qquad \\lim_{x \\to 0} \\frac{\\tan x}{x} = 1$$\nyang kedua sebab $\\tan x = \\dfrac{\\sin x}{\\cos x}$, dan $\\cos x \\to 1$ tak menyumbang perubahan apa pun.',
               },
               figure: {

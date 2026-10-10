@@ -161,15 +161,15 @@ export const test1: Lesson = {
         'Sebuah lingkaran berpersamaan $x^2+y^2-6x+2y-15=0$. Pilih DUA pernyataan yang benar.',
       ),
       options: [
-        L('The centre is $(3,-1)$.', 'Pusatnya $(3,-1)$.'),
+        L('The center is $(3,-1)$.', 'Pusatnya $(3,-1)$.'),
         L('The radius is $5$.', 'Jari-jarinya $5$.'),
-        L('The centre is $(-3,1)$.', 'Pusatnya $(-3,1)$.'),
+        L('The center is $(-3,1)$.', 'Pusatnya $(-3,1)$.'),
         L('The radius is $25$.', 'Jari-jarinya $25$.'),
         L('The point $(0,0)$ lies on the circle.', 'Titik $(0,0)$ terletak pada lingkaran.'),
       ],
       answer: [0, 1],
       explain: L(
-        'Completing the squares: $(x-3)^2+(y+1)^2=15+9+1=25$, so the centre is $(3,-1)$ and $r=5$. The value $25$ is $r^2$. The origin gives $-15\\ne0$.',
+        'Completing the squares: $(x-3)^2+(y+1)^2=15+9+1=25$, so the center is $(3,-1)$ and $r=5$. The value $25$ is $r^2$. The origin gives $-15\\ne0$.',
         'Melengkapkan kuadrat: $(x-3)^2+(y+1)^2=15+9+1=25$, jadi pusatnya $(3,-1)$ dan $r=5$. Nilai $25$ adalah $r^2$. Titik asal memberi $-15\\ne0$.',
       ),
       hint: L('Complete the square in $x$ and in $y$.', 'Lengkapkan kuadrat dalam $x$ dan $y$.'),

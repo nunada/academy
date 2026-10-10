@@ -623,7 +623,7 @@ export const module1: Module = {
         js: true,
         title: { en: 'Grade report', id: 'Laporan nilai' },
         brief: {
-          en: 'Walk a list of scores, grade each one, and summarise the class.',
+          en: 'Walk a list of scores, grade each one, and summarize the class.',
           id: 'Susuri daftar nilai, beri predikat tiap nilai, lalu ringkas kelasnya.',
         },
         requirements: [

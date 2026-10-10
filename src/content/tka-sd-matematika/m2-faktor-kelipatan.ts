@@ -67,7 +67,7 @@ function factorTrees(trees: TNode[]): Piece {
 }
 
 /** Skip-counting on a number line from 0: jumps of `a` along the top, jumps of `b`
- *  underneath. `mark: 'first'` colours the first landing the two share. */
+ *  underneath. `mark: 'first'` colors the first landing the two share. */
 function skipLine(o: { to: number; a: number; b: number; labelEvery?: number; mark?: 'first' | 'none' }): Piece {
   const { to, a, b } = o
   const mult = (k: number) => Array.from({ length: Math.floor(to / k) }, (_, i) => (i + 1) * k)
@@ -128,7 +128,7 @@ export const module2: Module = {
       id: 'tka-m2-s1',
       title: { en: 'Factors and GCF', id: 'Faktor dan FPB' },
       summary: {
-        en: 'A factor divides a number exactly. From factors you get primes, prime factorisation and the greatest common factor.',
+        en: 'A factor divides a number exactly. From factors you get primes, prime factorization and the greatest common factor.',
         id: 'Faktor membagi habis sebuah bilangan. Dari faktor, kita bisa mencari bilangan prima, faktorisasi prima, dan FPB.',
       },
       lessons: [
@@ -338,7 +338,7 @@ export const module2: Module = {
         /* ---------------------------------------------------------------- l2 */
         {
           id: 'tka-m2-s1-l2',
-          title: { en: 'Prime Factorisation and GCF', id: 'Faktorisasi Prima dan FPB' },
+          title: { en: 'Prime Factorization and GCF', id: 'Faktorisasi Prima dan FPB' },
           goal: {
             en: 'You can write a number as a product of primes and find the GCF (FPB) of two numbers.',
             id: 'Kamu bisa menulis faktorisasi prima dan mencari FPB dua bilangan.',
@@ -350,7 +350,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'Look Closely: The Factor Tree', id: 'Ayo Amati: Pohon Faktor' },
               body: {
-                en: 'A composite number can be "broken" into a product of two smaller numbers. Keep breaking until nothing can be broken any more, that is, until every number is prime.\n\nThe picture is the **factor tree** of 36. $36 = 4 \\times 9$, then $4 = 2 \\times 2$ and $9 = 3 \\times 3$. The primes at the tips (the circled ones) are 2, 2, 3 and 3.\n\nWriting a number as a product of primes only is called **prime factorisation**. So $36 = 2 \\times 2 \\times 3 \\times 3$.',
+                en: 'A composite number can be "broken" into a product of two smaller numbers. Keep breaking until nothing can be broken any more, that is, until every number is prime.\n\nThe picture is the **factor tree** of 36. $36 = 4 \\times 9$, then $4 = 2 \\times 2$ and $9 = 3 \\times 3$. The primes at the tips (the circled ones) are 2, 2, 3 and 3.\n\nWriting a number as a product of primes only is called **prime factorization**. So $36 = 2 \\times 2 \\times 3 \\times 3$.',
                 id: 'Sebuah bilangan komposit bisa "dipecah" menjadi perkalian dua bilangan yang lebih kecil. Teruskan memecah sampai tidak ada yang bisa dipecah lagi, yaitu sampai semua bilangan prima.\n\nGambar di bawah adalah **pohon faktor** dari 36. $36 = 4 \\times 9$, lalu $4 = 2 \\times 2$ dan $9 = 3 \\times 3$. Bilangan prima di ujung (yang dilingkari) adalah 2, 2, 3, dan 3.\n\nMenulis bilangan sebagai perkalian bilangan prima saja disebut **faktorisasi prima**. Jadi $36 = 2 \\times 2 \\times 3 \\times 3$.',
               },
               figure: {
@@ -366,7 +366,7 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'Step by Step: The GCF of 24 and 36', id: 'Contoh Bertahap: FPB dari 24 dan 36' },
               body: {
-                en: 'Find the **GCF** (greatest common factor) of 24 and 36. In Indonesian it is called FPB. It is the biggest factor that both numbers share.\n\n1. Step 1: Make the factor tree of 24. $24 = 2 \\times 2 \\times 2 \\times 3$.\n2. Step 2: Make the factor tree of 36. $36 = 2 \\times 2 \\times 3 \\times 3$.\n3. Step 3: Find the primes that are in both lists. Both lists have two 2s and one 3 in common.\n4. Step 4: Multiply those shared primes. $2 \\times 2 \\times 3 = 12$, so the GCF is 12.\n5. Step 5: Check with the factor lists. 24: 1, 2, 3, 4, 6, 8, 12, 24. 36: 1, 2, 3, 4, 6, 9, 12, 18, 36. The biggest one they share is 12.\n\n**Remember:** there are two ways to find the GCF.\n\n- Listing: write the factors of both numbers, then pick the biggest one they share.\n- Prime factorisation: take only the primes that are in both numbers, then multiply them.',
+                en: 'Find the **GCF** (greatest common factor) of 24 and 36. In Indonesian it is called FPB. It is the biggest factor that both numbers share.\n\n1. Step 1: Make the factor tree of 24. $24 = 2 \\times 2 \\times 2 \\times 3$.\n2. Step 2: Make the factor tree of 36. $36 = 2 \\times 2 \\times 3 \\times 3$.\n3. Step 3: Find the primes that are in both lists. Both lists have two 2s and one 3 in common.\n4. Step 4: Multiply those shared primes. $2 \\times 2 \\times 3 = 12$, so the GCF is 12.\n5. Step 5: Check with the factor lists. 24: 1, 2, 3, 4, 6, 8, 12, 24. 36: 1, 2, 3, 4, 6, 9, 12, 18, 36. The biggest one they share is 12.\n\n**Remember:** there are two ways to find the GCF.\n\n- Listing: write the factors of both numbers, then pick the biggest one they share.\n- Prime factorization: take only the primes that are in both numbers, then multiply them.',
                 id: 'Cari **FPB** dari 24 dan 36. FPB adalah faktor persekutuan terbesar, yaitu faktor terbesar yang dimiliki kedua bilangan.\n\n1. Langkah 1: Buat pohon faktor 24. $24 = 2 \\times 2 \\times 2 \\times 3$.\n2. Langkah 2: Buat pohon faktor 36. $36 = 2 \\times 2 \\times 3 \\times 3$.\n3. Langkah 3: Cari bilangan prima yang ada di kedua daftar. Keduanya punya dua angka 2 dan satu angka 3 yang sama.\n4. Langkah 4: Kalikan bilangan prima yang sama itu. $2 \\times 2 \\times 3 = 12$, jadi FPB-nya 12.\n5. Langkah 5: Cek dengan daftar faktor. 24: 1, 2, 3, 4, 6, 8, 12, 24. 36: 1, 2, 3, 4, 6, 9, 12, 18, 36. Yang terbesar yang sama adalah 12.\n\n**Ingat:** ada dua cara mencari FPB.\n\n- Daftar faktor: tulis faktor kedua bilangan, lalu pilih yang sama dan terbesar.\n- Faktorisasi prima: ambil hanya bilangan prima yang ada di kedua bilangan, lalu kalikan.',
               },
               figure: {
@@ -380,9 +380,9 @@ export const module2: Module = {
             {
               kind: 'concept',
               id: 'c3',
-              title: { en: 'Watch Out!: Prime Factorisation and the GCF', id: 'Awas, Jebakan!: Faktorisasi Prima dan FPB' },
+              title: { en: 'Watch Out!: Prime Factorization and the GCF', id: 'Awas, Jebakan!: Faktorisasi Prima dan FPB' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| $12 = 3 \\times 4$ is the prime factorisation. | Every number at the tips must be prime. 4 can still be broken, so $12 = 2 \\times 2 \\times 3$. |\n| GCF of 12 and 18: use all the primes, $2 \\times 2 \\times 3 \\times 3 = 36$. | Use only the primes that are in both numbers: $2 \\times 3 = 6$. |\n| 8 and 15 have no GCF. | They always have one. 1 is a factor of every number, so the GCF of 8 and 15 is 1. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| $12 = 3 \\times 4$ is the prime factorization. | Every number at the tips must be prime. 4 can still be broken, so $12 = 2 \\times 2 \\times 3$. |\n| GCF of 12 and 18: use all the primes, $2 \\times 2 \\times 3 \\times 3 = 36$. | Use only the primes that are in both numbers: $2 \\times 3 = 6$. |\n| 8 and 15 have no GCF. | They always have one. 1 is a factor of every number, so the GCF of 8 and 15 is 1. |',
                 id: '| Salah | Benar |\n| --- | --- |\n| $12 = 3 \\times 4$ adalah faktorisasi prima. | Semua bilangan di ujung harus prima. 4 masih bisa dipecah, jadi $12 = 2 \\times 2 \\times 3$. |\n| FPB 12 dan 18: pakai semua bilangan prima, $2 \\times 2 \\times 3 \\times 3 = 36$. | Pakai hanya bilangan prima yang ada di kedua bilangan: $2 \\times 3 = 6$. |\n| 8 dan 15 tidak punya FPB. | Selalu ada. 1 adalah faktor semua bilangan, jadi FPB dari 8 dan 15 adalah 1. |',
               },
             },
@@ -390,7 +390,7 @@ export const module2: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'The factor tree of 60 is in the picture. What is the prime factorisation of 60?',
+                en: 'The factor tree of 60 is in the picture. What is the prime factorization of 60?',
                 id: 'Pohon faktor 60 ada pada gambar. Bagaimana faktorisasi prima dari 60?',
               },
               figure: {
@@ -487,7 +487,7 @@ export const module2: Module = {
               kind: 'order',
               id: 'o1',
               prompt: {
-                en: 'Put the steps for finding the GCF with prime factorisation in order.',
+                en: 'Put the steps for finding the GCF with prime factorization in order.',
                 id: 'Urutkan langkah mencari FPB dengan faktorisasi prima.',
               },
               lines: {
@@ -527,7 +527,7 @@ export const module2: Module = {
                   id: 'Lihat kedua bilangan: kamu butuh faktor terbesar yang dimiliki keduanya. Pohon faktor untuk tiap bilangan bisa membantu.',
                 },
                 {
-                  en: 'Write the prime factorisation of 72 and of 84. Then find the primes they share.',
+                  en: 'Write the prime factorization of 72 and of 84. Then find the primes they share.',
                   id: 'Tulis faktorisasi prima dari 72 dan dari 84. Lalu cari bilangan prima yang sama.',
                 },
                 {
@@ -564,8 +564,8 @@ export const module2: Module = {
           id: 'Empat soal singkat tentang bilangan prima, faktor, dan FPB, dari yang mudah sampai yang menantang.',
         },
         requirements: [
-          { en: 'Write factors and recognise prime numbers.', id: 'Menuliskan faktor dan mengenali bilangan prima.' },
-          { en: 'Find the GCF with factor lists or prime factorisation.', id: 'Mencari FPB dengan daftar faktor atau faktorisasi prima.' },
+          { en: 'Write factors and recognize prime numbers.', id: 'Menuliskan faktor dan mengenali bilangan prima.' },
+          { en: 'Find the GCF with factor lists or prime factorization.', id: 'Mencari FPB dengan daftar faktor atau faktorisasi prima.' },
         ],
         tasks: [
           {
@@ -630,7 +630,7 @@ export const module2: Module = {
             id: 'Bilangan prima punya tepat dua faktor. Bilangan 1 tidak dihitung prima.',
           },
           {
-            en: 'For the GCF, write the prime factorisation of both numbers and keep only the primes they share.',
+            en: 'For the GCF, write the prime factorization of both numbers and keep only the primes they share.',
             id: 'Untuk FPB, tulis faktorisasi prima kedua bilangan dan ambil hanya bilangan prima yang sama.',
           },
           {
@@ -682,7 +682,7 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'Step by Step: The LCM of 6 and 8', id: 'Contoh Bertahap: KPK dari 6 dan 8' },
               body: {
-                en: 'Find the LCM of 6 and 8.\n\n1. Step 1: Write the multiples of 6: 6, 12, 18, 24, 30, ...\n2. Step 2: Write the multiples of 8: 8, 16, 24, 32, ...\n3. Step 3: Find the numbers that are in both lists. These are the common multiples: 24, 48, ...\n4. Step 4: Take the smallest one. It is 24, so the LCM is 24.\n5. Step 5: Check with prime factorisation. $6 = 2 \\times 3$ and $8 = 2 \\times 2 \\times 2$. Take each prime as many times as it appears most often: three 2s and one 3. $2 \\times 2 \\times 2 \\times 3 = 24$.\n\n**Remember:**\n\n- Multiples come from multiplying the number by 1, 2, 3, ...\n- The LCM is never smaller than the biggest of the numbers.\n- With prime factorisation, take each prime as many times as it appears most often, then multiply.',
+                en: 'Find the LCM of 6 and 8.\n\n1. Step 1: Write the multiples of 6: 6, 12, 18, 24, 30, ...\n2. Step 2: Write the multiples of 8: 8, 16, 24, 32, ...\n3. Step 3: Find the numbers that are in both lists. These are the common multiples: 24, 48, ...\n4. Step 4: Take the smallest one. It is 24, so the LCM is 24.\n5. Step 5: Check with prime factorization. $6 = 2 \\times 3$ and $8 = 2 \\times 2 \\times 2$. Take each prime as many times as it appears most often: three 2s and one 3. $2 \\times 2 \\times 2 \\times 3 = 24$.\n\n**Remember:**\n\n- Multiples come from multiplying the number by 1, 2, 3, ...\n- The LCM is never smaller than the biggest of the numbers.\n- With prime factorization, take each prime as many times as it appears most often, then multiply.',
                 id: 'Cari KPK dari 6 dan 8.\n\n1. Langkah 1: Tulis kelipatan 6: 6, 12, 18, 24, 30, ...\n2. Langkah 2: Tulis kelipatan 8: 8, 16, 24, 32, ...\n3. Langkah 3: Cari bilangan yang ada di kedua daftar. Itulah kelipatan persekutuan: 24, 48, ...\n4. Langkah 4: Ambil yang terkecil. Yaitu 24, jadi KPK-nya 24.\n5. Langkah 5: Cek dengan faktorisasi prima. $6 = 2 \\times 3$ dan $8 = 2 \\times 2 \\times 2$. Ambil tiap bilangan prima sebanyak kemunculan terbanyaknya: tiga angka 2 dan satu angka 3. $2 \\times 2 \\times 2 \\times 3 = 24$.\n\n**Ingat:**\n\n- Kelipatan didapat dari mengalikan bilangan itu dengan 1, 2, 3, ...\n- KPK tidak pernah lebih kecil daripada bilangan terbesarnya.\n- Dengan faktorisasi prima, ambil tiap bilangan prima sebanyak kemunculan terbanyaknya, lalu kalikan.',
               },
               figure: {
@@ -840,7 +840,7 @@ export const module2: Module = {
                   id: 'Bilangan itu harus kelipatan 15 sekaligus kelipatan 20. Apa nama kelipatan persekutuan yang terkecil?',
                 },
                 {
-                  en: 'Write the multiples of 15 and of 20 one by one, or write the prime factorisation of both numbers.',
+                  en: 'Write the multiples of 15 and of 20 one by one, or write the prime factorization of both numbers.',
                   id: 'Tulis kelipatan 15 dan kelipatan 20 satu per satu, atau tulis faktorisasi prima kedua bilangan.',
                 },
                 {
@@ -1121,7 +1121,7 @@ export const module2: Module = {
           id: 'Empat soal tentang kelipatan, KPK, dan FPB, ditutup dengan teka-teki yang perlu berpikir.',
         },
         requirements: [
-          { en: 'List multiples and find the LCM with a list or prime factorisation.', id: 'Menuliskan kelipatan dan mencari KPK dengan daftar atau faktorisasi prima.' },
+          { en: 'List multiples and find the LCM with a list or prime factorization.', id: 'Menuliskan kelipatan dan mencari KPK dengan daftar atau faktorisasi prima.' },
           { en: 'Choose the GCF or the LCM from the key words of a story.', id: 'Memilih FPB atau KPK dari kata kunci pada soal cerita.' },
         ],
         tasks: [

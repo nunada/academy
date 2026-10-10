@@ -60,7 +60,7 @@ export function RootChecker() {
   let body
   if (n === null) body = <p className="noline">{tc(L('Type a positive whole number (up to 12 digits).', 'Ketik bilangan bulat positif (sampai 12 angka).'))}</p>
   else if (n < 1n) body = <p className="noline">{tc(L('Type a positive whole number: the root of a negative number is not real for an even index.', 'Ketik bilangan bulat positif: akar bilangan negatif tidak real untuk indeks genap.'))}</p>
-  else if (n > ROOT_LIMIT) body = <p className="noline">{tc(L('This tool factorises numbers up to 10^12.', 'Alat ini memfaktorkan bilangan sampai 10^12.'))}</p>
+  else if (n > ROOT_LIMIT) body = <p className="noline">{tc(L('This tool factorizes numbers up to 10^12.', 'Alat ini memfaktorkan bilangan sampai 10^12.'))}</p>
   else {
     const c = rootClass(n, k)
     const digits = rootDigits(n, k, 30).replace('.', sep === ',' ? '{,}' : '.')

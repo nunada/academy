@@ -174,7 +174,7 @@ export const module1: Module = {
                 { en: 'blue', id: 'biru' },
                 { en: 'red', id: 'merah' },
                 { en: 'green', id: 'hijau' },
-                { en: 'A different colour every time', id: 'Warna berbeda tiap kali' },
+                { en: 'A different color every time', id: 'Warna berbeda tiap kali' },
               ],
               answer: 0,
               explain: {

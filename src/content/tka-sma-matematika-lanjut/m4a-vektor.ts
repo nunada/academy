@@ -285,7 +285,7 @@ export const m4s1: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A river is $60$ m wide. A boat heads straight across at $30$ m/min and the current is $12$ m/min along the bank. How many metres downstream does the boat land from the point straight opposite its start?',
+            'A river is $60$ m wide. A boat heads straight across at $30$ m/min and the current is $12$ m/min along the bank. How many meters downstream does the boat land from the point straight opposite its start?',
             'Sebuah sungai selebar $60$ m. Perahu mengarah lurus ke seberang dengan $30$ m/menit dan arus $12$ m/menit sepanjang tepi. Berapa meter ke hilir perahu mendarat dari titik yang lurus berseberangan dengan titik awalnya?',
           ),
           blanks: [{ answer: 24, after: '\\text{m}' }],

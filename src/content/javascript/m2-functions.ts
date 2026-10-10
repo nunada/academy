@@ -33,7 +33,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'return hands the value back', id: 'return menyerahkan nilainya kembali' },
               body: {
-                en: 'A function that logs is a dead end — you cannot do anything with the number afterwards. `return` gives it to the caller, who can store it, add to it, or log it later.',
+                en: 'A function that logs is a dead end — you cannot do anything with the number afterward. `return` gives it to the caller, who can store it, add to it, or log it later.',
                 id: 'Fungsi yang hanya menampilkan adalah jalan buntu — kamu tak bisa mengolah angkanya setelah itu. `return` menyerahkannya kepada pemanggil, yang bisa menyimpannya, menambahkannya, atau menampilkannya nanti.',
               },
               code: {
@@ -327,7 +327,7 @@ export const module2: Module = {
           { en: '`reverse(text)` returns the text reversed.', id: '`balik(teks)` mengembalikan teks yang dibalik.' },
           { en: '`capitalize(text)` returns it with the first letter uppercased.', id: '`kapital(teks)` mengembalikannya dengan huruf pertama kapital.' },
           { en: '`countWords(text)` returns how many words it holds; empty or spaces only gives 0.', id: '`hitungKata(teks)` mengembalikan jumlah katanya; kosong atau hanya spasi memberi 0.' },
-          { en: '`palindrome(text)` returns true when it reads the same backwards, ignoring case.', id: '`palindrom(teks)` mengembalikan true bila terbaca sama dari belakang, tanpa memedulikan besar-kecil huruf.' },
+          { en: '`palindrome(text)` returns true when it reads the same backward, ignoring case.', id: '`palindrom(teks)` mengembalikan true bila terbaca sama dari belakang, tanpa memedulikan besar-kecil huruf.' },
           { en: 'All four return; none of them log.', id: 'Keempatnya mengembalikan nilai; tak satu pun menampilkan.' },
         ],
         starter: {
@@ -407,14 +407,14 @@ export const module2: Module = {
       id: 'js-m2-s2',
       title: { en: 'Arrays and Objects', id: 'Array dan Object' },
       summary: {
-        en: 'Ordered lists, labelled records, and the methods that transform them.',
+        en: 'Ordered lists, labeled records, and the methods that transform them.',
         id: 'Daftar berurut, catatan berlabel, dan method yang mengolahnya.',
       },
       lessons: [
         {
           id: 'js-m2-s2-l1',
           title: { en: 'Lists and records', id: 'Daftar dan catatan' },
-          goal: { en: 'Hold many values, and labelled ones.', id: 'Menyimpan banyak nilai, dan yang berlabel.' },
+          goal: { en: 'Hold many values, and labeled ones.', id: 'Menyimpan banyak nilai, dan yang berlabel.' },
           xp: 20,
           steps: [
             {
@@ -453,7 +453,7 @@ export const module2: Module = {
             {
               kind: 'concept',
               id: 'c2',
-              title: { en: 'An object is labelled', id: 'Object itu berlabel' },
+              title: { en: 'An object is labeled', id: 'Object itu berlabel' },
               body: {
                 en: 'An array says "the third one"; an object says "the one called name". Reach in with a dot. Asking for a key that is not there gives `undefined` rather than an error.',
                 id: 'Array berkata "yang ketiga"; object berkata "yang bernama nama". Jangkau isinya dengan titik. Meminta kunci yang tidak ada memberi `undefined`, bukan error.',

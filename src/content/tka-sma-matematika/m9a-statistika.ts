@@ -1,7 +1,7 @@
 import type { Submodule } from '../types'
 import { L, barChart, dot, line, lineChart, numberLine, pieChart, plane, solid } from './figs'
 
-/** Module 9, submodule 1 — measures of centre and spread, and reading data
+/** Module 9, submodule 1 — measures of center and spread, and reading data
  *  displays. */
 
 /** A box plot drawn above a number line. */
@@ -33,10 +33,10 @@ export const m9s1: Submodule = {
     'Mencari rata-rata, median, modus, kuartil, dan ukuran sebaran data, serta membaca tabel frekuensi, histogram, diagram lingkaran, dan diagram pencar.',
   ),
   lessons: [
-    /* ------------------------------------------------ L1 centre and spread */
+    /* ------------------------------------------------ L1 center and spread */
     {
       id: 'tka-sma-m9-s1-l1',
-      title: L('Centre and Spread', 'Pusat dan Sebaran Data'),
+      title: L('Center and Spread', 'Pusat dan Sebaran Data'),
       goal: L(
         'You can find the mean, median, mode, range and quartiles of a data set, a weighted mean, and a variance.',
         'Kamu bisa mencari rata-rata, median, modus, jangkauan, dan kuartil suatu data, rata-rata tertimbang, dan variansi.',
@@ -48,7 +48,7 @@ export const m9s1: Submodule = {
           id: 'c1',
           title: L('Look Closely: One Number for a Whole Set', 'Ayo Amati: Satu Bilangan untuk Seluruh Data'),
           body: L(
-            'Seven students scored 2, 4, 4, 5, 7, 8 and 12 on a quiz (the bars). Three numbers describe the **centre**:\n\n- The **mean** is the sum divided by the count: $\\frac{2+4+4+5+7+8+12}{7}=\\frac{42}{7}=6$.\n- The **median** is the middle value of the **sorted** data: the 4th of 7 values, which is $5$. With an even count, take the average of the two middle values.\n- The **mode** is the most frequent value: $4$.\n\nThe **range** is the biggest minus the smallest: $12-2=10$.\n\nThe mean (6) is pulled up by the high score 12, while the median (5) is not.',
+            'Seven students scored 2, 4, 4, 5, 7, 8 and 12 on a quiz (the bars). Three numbers describe the **center**:\n\n- The **mean** is the sum divided by the count: $\\frac{2+4+4+5+7+8+12}{7}=\\frac{42}{7}=6$.\n- The **median** is the middle value of the **sorted** data: the 4th of 7 values, which is $5$. With an even count, take the average of the two middle values.\n- The **mode** is the most frequent value: $4$.\n\nThe **range** is the biggest minus the smallest: $12-2=10$.\n\nThe mean (6) is pulled up by the high score 12, while the median (5) is not.',
             'Tujuh siswa mendapat nilai 2, 4, 4, 5, 7, 8, dan 12 pada sebuah kuis (batang-batang). Tiga bilangan menggambarkan **pusat** data:\n\n- **Rata-rata** (mean) adalah jumlah dibagi banyak data: $\\frac{2+4+4+5+7+8+12}{7}=\\frac{42}{7}=6$.\n- **Median** adalah nilai tengah dari data yang **terurut**: data ke-4 dari 7 data, yaitu $5$. Jika banyak datanya genap, ambil rata-rata dua nilai tengah.\n- **Modus** adalah nilai yang paling sering muncul: $4$.\n\n**Jangkauan** adalah nilai terbesar dikurangi nilai terkecil: $12-2=10$.\n\nRata-rata (6) tertarik naik oleh nilai tinggi 12, sedangkan median (5) tidak.',
           ),
           figure: {
@@ -398,7 +398,7 @@ export const m9s1: Submodule = {
     runtime: 'math',
     title: L('Data at Work', 'Data dalam Pemakaian'),
     brief: L(
-      'Find the centre and spread of data, a weighted mean, and read charts.',
+      'Find the center and spread of data, a weighted mean, and read charts.',
       'Cari pusat dan sebaran data, rata-rata tertimbang, dan baca diagram.',
     ),
     requirements: [

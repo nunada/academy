@@ -558,7 +558,7 @@ export const module1: Module = {
         ],
         hints: [
           {
-            en: 'In part 3 the leading coefficient is negative, so the parabola opens downwards and the turning point is a maximum, not a minimum.',
+            en: 'In part 3 the leading coefficient is negative, so the parabola opens downward and the turning point is a maximum, not a minimum.',
             id: 'Pada butir 3 koefisien utamanya negatif, jadi parabolanya terbuka ke bawah dan titik baliknya maksimum, bukan minimum.',
           },
           {
@@ -857,7 +857,7 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Increasing and decreasing', id: 'Naik dan turun' },
               body: {
-                en: 'On an interval $I$, a function is **increasing** if $f(x_1) < f(x_2)$ whenever $x_1 < x_2$ in $I$, and **decreasing** if $f(x_1) > f(x_2)$ instead.\n\nTwo things are worth saying plainly. First, these are properties **of an interval**, never of a single point: $x^2$ is decreasing on $(-\\infty, 0]$ and increasing on $[0, \\infty)$, and it is neither "at" $x = 0$. Second, reading a graph left to right, increasing means going uphill.\n\nWhere a function stops rising and starts falling is where its largest value sits — which is the question all of optimisation turns out to be.',
+                en: 'On an interval $I$, a function is **increasing** if $f(x_1) < f(x_2)$ whenever $x_1 < x_2$ in $I$, and **decreasing** if $f(x_1) > f(x_2)$ instead.\n\nTwo things are worth saying plainly. First, these are properties **of an interval**, never of a single point: $x^2$ is decreasing on $(-\\infty, 0]$ and increasing on $[0, \\infty)$, and it is neither "at" $x = 0$. Second, reading a graph left to right, increasing means going uphill.\n\nWhere a function stops rising and starts falling is where its largest value sits — which is the question all of optimization turns out to be.',
                 id: 'Pada suatu selang $I$, fungsi disebut **naik** bila $f(x_1) < f(x_2)$ setiap kali $x_1 < x_2$ di $I$, dan **turun** bila justru $f(x_1) > f(x_2)$.\n\nDua hal layak dinyatakan terang-terangan. Pertama, sifat ini melekat **pada selang**, tak pernah pada satu titik: $x^2$ turun pada $(-\\infty, 0]$ dan naik pada $[0, \\infty)$, dan ia bukan keduanya "di" $x = 0$. Kedua, membaca grafik dari kiri ke kanan, naik berarti menanjak.\n\nTempat sebuah fungsi berhenti naik lalu mulai turun adalah tempat nilai terbesarnya berada — dan ternyata itulah pertanyaan yang ditanyakan seluruh persoalan optimasi.',
               },
               figure: {
@@ -1140,7 +1140,7 @@ export const module1: Module = {
                 '\\lfloor -3 \\rfloor = -3',
               ],
               explain: {
-                en: 'Three different behaviours in one problem: rounding down normally, rounding down across zero, and an integer that needs no rounding at all.',
+                en: 'Three different behaviors in one problem: rounding down normally, rounding down across zero, and an integer that needs no rounding at all.',
                 id: 'Tiga perilaku berbeda dalam satu soal: pembulatan ke bawah biasa, pembulatan ke bawah yang melintasi nol, dan bilangan bulat yang sama sekali tak perlu dibulatkan.',
               },
             },
@@ -1386,7 +1386,7 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'The formula allows more than the picture does', id: 'Rumusnya mengizinkan lebih banyak daripada gambarnya' },
               body: {
-                en: 'A rectangle sits symmetrically under the semicircle $y=\\sqrt{25-x^2}$: base $2x$ centred on the origin, height $y$, top corners on the curve. Its area is\n$$A(x) = 2x\\sqrt{25-x^2}$$\nThe formula itself only needs $25-x^2 \\geq 0$, i.e. $-5 \\leq x \\leq 5$ — but the **picture** demands more: a rectangle needs a positive width and a positive height, so $x>0$ strictly. The domain the situation allows is $0 < x < 5$, narrower than the formula\'s own natural domain from Module 1\'s Lesson 2. The setup can always demand more than the algebra alone would.',
+                en: 'A rectangle sits symmetrically under the semicircle $y=\\sqrt{25-x^2}$: base $2x$ centered on the origin, height $y$, top corners on the curve. Its area is\n$$A(x) = 2x\\sqrt{25-x^2}$$\nThe formula itself only needs $25-x^2 \\geq 0$, i.e. $-5 \\leq x \\leq 5$ — but the **picture** demands more: a rectangle needs a positive width and a positive height, so $x>0$ strictly. The domain the situation allows is $0 < x < 5$, narrower than the formula\'s own natural domain from Module 1\'s Lesson 2. The setup can always demand more than the algebra alone would.',
                 id: 'Sebuah persegi panjang duduk simetris di bawah setengah lingkaran $y=\\sqrt{25-x^2}$: alasnya $2x$ berpusat di titik asal, tinggi $y$, kedua sudut atasnya pada kurvanya. Luasnya adalah\n$$A(x) = 2x\\sqrt{25-x^2}$$\nRumusnya sendiri hanya memerlukan $25-x^2 \\geq 0$, yaitu $-5 \\leq x \\leq 5$ — tetapi **gambarnya** menuntut lebih: persegi panjang memerlukan lebar dan tinggi yang positif, sehingga $x>0$ secara ketat. Domain yang diizinkan situasinya adalah $0 < x < 5$, lebih sempit dari domain alami rumusnya sendiri dari Pelajaran 2 Modul 1. Situasinya selalu bisa menuntut lebih daripada aljabar semata.',
               },
               figure: {

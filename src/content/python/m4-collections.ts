@@ -333,7 +333,7 @@ export const module4: Module = {
           ],
         },
         hints: [
-          { en: 'Collect first with append, report afterwards.', id: 'Kumpulkan dulu dengan append, laporkan setelahnya.' },
+          { en: 'Collect first with append, report afterward.', id: 'Kumpulkan dulu dengan append, laporkan setelahnya.' },
           { en: 'An empty list must be handled separately — dividing by 0 crashes.', id: 'List kosong harus ditangani terpisah — membagi dengan 0 akan error.' },
           { en: 'round(sum(scores) / len(scores), 1) gives one decimal.', id: 'round(sum(nilai) / len(nilai), 1) memberi satu angka desimal.' },
         ],
@@ -357,7 +357,7 @@ export const module4: Module = {
         {
           id: 'py-m4-s2-l1',
           title: { en: 'Key and value', id: 'Kunci dan nilai' },
-          goal: { en: 'Store labelled data.', id: 'Menyimpan data berlabel.' },
+          goal: { en: 'Store labeled data.', id: 'Menyimpan data berlabel.' },
           xp: 20,
           steps: [
             {

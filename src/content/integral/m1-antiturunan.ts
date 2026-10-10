@@ -1,6 +1,6 @@
 import type { Module } from '../types'
 
-/** Module 1 — the whole course starts by running the last one backwards. Every
+/** Module 1 — the whole course starts by running the last one backward. Every
  *  derivative rule the Derivatives course proved becomes, read right to left,
  *  a rule for undoing a derivative — and undoing loses information a forward
  *  rule never had to account for: the +C. */
@@ -8,7 +8,7 @@ export const module1: Module = {
   id: 'int-m1',
   title: { en: 'Antiderivatives and the Indefinite Integral', id: 'Antiturunan dan Integral Tak Tentu' },
   summary: {
-    en: 'Running differentiation backwards, the family of antiderivatives it produces, and pinning down one member of that family with an initial condition.',
+    en: 'Running differentiation backward, the family of antiderivatives it produces, and pinning down one member of that family with an initial condition.',
     id: 'Menjalankan penurunan secara terbalik, keluarga antiturunan yang dihasilkannya, dan menentukan satu anggota keluarga itu dengan syarat awal.',
   },
   submodules: [
@@ -25,7 +25,7 @@ export const module1: Module = {
           id: 'int-m1-s1-l1',
           title: { en: 'What an Antiderivative Is', id: 'Apa Itu Antiturunan' },
           goal: {
-            en: 'Recognise F as an antiderivative of f when F prime equals f, and see why the answer is always a whole family, not one function.',
+            en: 'Recognize F as an antiderivative of f when F prime equals f, and see why the answer is always a whole family, not one function.',
             id: 'Mengenali F sebagai antiturunan dari f ketika F aksen sama dengan f, dan melihat mengapa jawabannya selalu satu keluarga, bukan satu fungsi.',
           },
           xp: 20,
@@ -33,7 +33,7 @@ export const module1: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'Asking the derivative question backwards', id: 'Menanyakan soal turunan secara terbalik' },
+              title: { en: 'Asking the derivative question backward', id: 'Menanyakan soal turunan secara terbalik' },
               body: {
                 en: 'The Derivatives course always asked: given $f$, find $f\'$. This course asks the reverse: given $f$, find a function $F$ with\n$$F\'(x) = f(x)$$\n$F$ is called an **antiderivative** of $f$. For $f(x) = 2x$, one antiderivative is $F(x) = x^2$, since $\\frac{d}{dx}(x^2) = 2x$. But $x^2 + 5$ works too — its derivative is still $2x$, since the derivative of a constant is $0$. So does $x^2 - 100$. Differentiation destroys any constant that was added on, so undoing it can never recover that constant — every antiderivative comes with company.',
                 id: 'Kursus Turunan selalu bertanya: diberikan $f$, cari $f\'$. Kursus ini bertanya kebalikannya: diberikan $f$, cari fungsi $F$ dengan\n$$F\'(x) = f(x)$$\n$F$ disebut **antiturunan** dari $f$. Untuk $f(x) = 2x$, salah satu antiturunannya adalah $F(x) = x^2$, sebab $\\frac{d}{dx}(x^2) = 2x$. Tetapi $x^2 + 5$ juga berlaku — turunannya tetap $2x$, sebab turunan konstanta adalah $0$. Begitu pula $x^2 - 100$. Penurunan menghancurkan konstanta apa pun yang ditambahkan, sehingga membalikkannya tak pernah bisa memulihkan konstanta itu — setiap antiturunan datang dengan rombongan.',
@@ -83,7 +83,7 @@ export const module1: Module = {
                 id: 'Turunan konstanta apa pun adalah $0$, jadi menambahkan konstanta berbeda ke $F$ tak pernah mengubah $F\'$. Membalik turunan hanya bisa memulihkan $F$ hingga konstanta yang hilang itu.',
               },
               hint: {
-                en: 'Think about what happens to a constant term the moment you differentiate it — could running that step backwards ever tell you which constant used to be there?',
+                en: 'Think about what happens to a constant term the moment you differentiate it — could running that step backward ever tell you which constant used to be there?',
                 id: 'Pikirkan apa yang terjadi pada suku konstanta begitu ia diturunkan — bisakah menjalankan langkah itu terbalik pernah memberitahumu konstanta mana yang dulu ada di sana?',
               },
             },
@@ -179,7 +179,7 @@ export const module1: Module = {
               id: 'c1',
               title: { en: 'Undo bring-down-and-drop by doing the opposite', id: 'Membalik turunkan-dan-kurangi dengan melakukan sebaliknya' },
               body: {
-                en: 'The power rule for derivatives brings the exponent down and drops it by one: $\\frac{d}{dx}(x^n) = nx^{n-1}$. Running that backwards — raise the exponent by one, then divide by the new exponent — gives the **power rule for integration**:\n$$\\int x^n\\,dx = \\frac{x^{n+1}}{n+1} + C, \\qquad n \\neq -1$$\nCheck it the way every reversed rule gets checked: differentiate the answer. $\\frac{d}{dx}\\left(\\frac{x^{n+1}}{n+1}\\right) = \\frac{(n+1)x^n}{n+1} = x^n$. The two operations cancel exactly, which is the only test an antiderivative ever has to pass.\n\nFor $f(x) = x^5$: $\\int x^5\\,dx = \\frac{x^6}{6} + C$.',
+                en: 'The power rule for derivatives brings the exponent down and drops it by one: $\\frac{d}{dx}(x^n) = nx^{n-1}$. Running that backward — raise the exponent by one, then divide by the new exponent — gives the **power rule for integration**:\n$$\\int x^n\\,dx = \\frac{x^{n+1}}{n+1} + C, \\qquad n \\neq -1$$\nCheck it the way every reversed rule gets checked: differentiate the answer. $\\frac{d}{dx}\\left(\\frac{x^{n+1}}{n+1}\\right) = \\frac{(n+1)x^n}{n+1} = x^n$. The two operations cancel exactly, which is the only test an antiderivative ever has to pass.\n\nFor $f(x) = x^5$: $\\int x^5\\,dx = \\frac{x^6}{6} + C$.',
                 id: 'Aturan pangkat untuk turunan menurunkan pangkatnya lalu menguranginya satu: $\\frac{d}{dx}(x^n) = nx^{n-1}$. Menjalankannya terbalik — naikkan pangkatnya satu, lalu bagi dengan pangkat baru itu — memberi **aturan pangkat untuk integral**:\n$$\\int x^n\\,dx = \\frac{x^{n+1}}{n+1} + C, \\qquad n \\neq -1$$\nPeriksa dengan cara setiap aturan yang dibalik diperiksa: turunkan jawabannya. $\\frac{d}{dx}\\left(\\frac{x^{n+1}}{n+1}\\right) = \\frac{(n+1)x^n}{n+1} = x^n$. Kedua operasi saling meniadakan persis, dan itulah satu-satunya ujian yang harus dilalui antiturunan mana pun.\n\nUntuk $f(x) = x^5$: $\\int x^5\\,dx = \\frac{x^6}{6} + C$.',
               },
             },
@@ -188,7 +188,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Negative and fractional exponents, and the one case that breaks', id: 'Pangkat negatif dan pecahan, dan satu kasus yang gagal' },
               body: {
-                en: 'The rule needs no modification for negative or fractional $n$: $\\int x^{-3}\\,dx = \\frac{x^{-2}}{-2} + C = -\\frac{1}{2x^2} + C$, and $\\int \\sqrt{x}\\,dx = \\int x^{1/2}\\,dx = \\frac{x^{3/2}}{3/2} + C = \\frac{2}{3}x^{3/2} + C$.\n\nBut $n = -1$ divides by zero in the formula, so $\\int x^{-1}\\,dx = \\int \\frac{1}{x}\\,dx$ needs a different answer entirely. The Derivatives course proved $\\frac{d}{dx}(\\ln x) = \\frac{1}{x}$ — running that backwards directly gives\n$$\\int \\frac{1}{x}\\,dx = \\ln|x| + C$$\nThe absolute value matters: $\\frac{1}{x}$ is defined for negative $x$ too, and $\\ln|x|$ is what stays defined there (plain $\\ln x$ is not).',
+                en: 'The rule needs no modification for negative or fractional $n$: $\\int x^{-3}\\,dx = \\frac{x^{-2}}{-2} + C = -\\frac{1}{2x^2} + C$, and $\\int \\sqrt{x}\\,dx = \\int x^{1/2}\\,dx = \\frac{x^{3/2}}{3/2} + C = \\frac{2}{3}x^{3/2} + C$.\n\nBut $n = -1$ divides by zero in the formula, so $\\int x^{-1}\\,dx = \\int \\frac{1}{x}\\,dx$ needs a different answer entirely. The Derivatives course proved $\\frac{d}{dx}(\\ln x) = \\frac{1}{x}$ — running that backward directly gives\n$$\\int \\frac{1}{x}\\,dx = \\ln|x| + C$$\nThe absolute value matters: $\\frac{1}{x}$ is defined for negative $x$ too, and $\\ln|x|$ is what stays defined there (plain $\\ln x$ is not).',
                 id: 'Aturannya tak perlu diubah untuk $n$ negatif atau pecahan: $\\int x^{-3}\\,dx = \\frac{x^{-2}}{-2} + C = -\\frac{1}{2x^2} + C$, dan $\\int \\sqrt{x}\\,dx = \\int x^{1/2}\\,dx = \\frac{x^{3/2}}{3/2} + C = \\frac{2}{3}x^{3/2} + C$.\n\nTetapi $n = -1$ membagi dengan nol pada rumusnya, sehingga $\\int x^{-1}\\,dx = \\int \\frac{1}{x}\\,dx$ memerlukan jawaban yang sama sekali berbeda. Kursus Turunan membuktikan $\\frac{d}{dx}(\\ln x) = \\frac{1}{x}$ — menjalankannya terbalik langsung memberi\n$$\\int \\frac{1}{x}\\,dx = \\ln|x| + C$$\nNilai mutlaknya penting: $\\frac{1}{x}$ terdefinisi untuk $x$ negatif juga, dan $\\ln|x|$ itulah yang tetap terdefinisi di sana (sekadar $\\ln x$ tidak).',
               },
               figure: {
@@ -359,7 +359,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Sine, cosine, and the exponential, reversed', id: 'Sinus, cosinus, dan eksponen, dibalik' },
               body: {
-                en: 'The Derivatives course proved $\\frac{d}{dx}(\\sin x) = \\cos x$ and $\\frac{d}{dx}(\\cos x) = -\\sin x$. Read backwards:\n$$\\int \\cos x\\,dx = \\sin x + C, \\qquad \\int \\sin x\\,dx = -\\cos x + C$$\nThe minus sign moves to the other side when reversing — check it: $\\frac{d}{dx}(-\\cos x) = -(-\\sin x) = \\sin x$. And since $\\frac{d}{dx}(e^x) = e^x$:\n$$\\int e^x\\,dx = e^x + C$$\nthe one function that is, again, its own antiderivative.',
+                en: 'The Derivatives course proved $\\frac{d}{dx}(\\sin x) = \\cos x$ and $\\frac{d}{dx}(\\cos x) = -\\sin x$. Read backward:\n$$\\int \\cos x\\,dx = \\sin x + C, \\qquad \\int \\sin x\\,dx = -\\cos x + C$$\nThe minus sign moves to the other side when reversing — check it: $\\frac{d}{dx}(-\\cos x) = -(-\\sin x) = \\sin x$. And since $\\frac{d}{dx}(e^x) = e^x$:\n$$\\int e^x\\,dx = e^x + C$$\nthe one function that is, again, its own antiderivative.',
                 id: 'Kursus Turunan membuktikan $\\frac{d}{dx}(\\sin x) = \\cos x$ dan $\\frac{d}{dx}(\\cos x) = -\\sin x$. Dibaca terbalik:\n$$\\int \\cos x\\,dx = \\sin x + C, \\qquad \\int \\sin x\\,dx = -\\cos x + C$$\nTanda minusnya berpindah ke sisi lain ketika dibalik — periksa: $\\frac{d}{dx}(-\\cos x) = -(-\\sin x) = \\sin x$. Dan karena $\\frac{d}{dx}(e^x) = e^x$:\n$$\\int e^x\\,dx = e^x + C$$\nsatu-satunya fungsi yang, sekali lagi, menjadi antiturunannya sendiri.',
               },
             },
@@ -485,7 +485,7 @@ export const module1: Module = {
               id: 'c2',
               title: { en: 'Position from velocity, twice over', id: 'Posisi dari kecepatan, dua kali' },
               body: {
-                en: 'The Derivatives course established $v(t) = s\'(t)$ and $a(t) = v\'(t)$ — velocity is the derivative of position, acceleration the derivative of velocity. Antidifferentiation runs both arrows backwards: given acceleration and an initial velocity, recover velocity; given that velocity and an initial position, recover position.\n\nFor constant acceleration $a(t) = -10$ (gravity, in simplified units) with $v(0) = 20$ and $s(0) = 0$: $v(t) = \\int -10\\,dt = -10t + C_1$, and $v(0) = C_1 = 20$, so $v(t) = -10t + 20$. Then $s(t) = \\int (-10t + 20)\\,dt = -5t^2 + 20t + C_2$, and $s(0) = C_2 = 0$, so $s(t) = -5t^2 + 20t$ — two initial value problems, solved one after the other.',
+                en: 'The Derivatives course established $v(t) = s\'(t)$ and $a(t) = v\'(t)$ — velocity is the derivative of position, acceleration the derivative of velocity. Antidifferentiation runs both arrows backward: given acceleration and an initial velocity, recover velocity; given that velocity and an initial position, recover position.\n\nFor constant acceleration $a(t) = -10$ (gravity, in simplified units) with $v(0) = 20$ and $s(0) = 0$: $v(t) = \\int -10\\,dt = -10t + C_1$, and $v(0) = C_1 = 20$, so $v(t) = -10t + 20$. Then $s(t) = \\int (-10t + 20)\\,dt = -5t^2 + 20t + C_2$, and $s(0) = C_2 = 0$, so $s(t) = -5t^2 + 20t$ — two initial value problems, solved one after the other.',
                 id: 'Kursus Turunan menetapkan $v(t) = s\'(t)$ dan $a(t) = v\'(t)$ — kecepatan adalah turunan posisi, percepatan turunan kecepatan. Antiturunan menjalankan kedua panah itu terbalik: diberikan percepatan dan kecepatan awal, pulihkan kecepatan; diberikan kecepatan itu dan posisi awal, pulihkan posisi.\n\nUntuk percepatan konstan $a(t) = -10$ (gravitasi, dalam satuan yang disederhanakan) dengan $v(0) = 20$ dan $s(0) = 0$: $v(t) = \\int -10\\,dt = -10t + C_1$, dan $v(0) = C_1 = 20$, sehingga $v(t) = -10t + 20$. Lalu $s(t) = \\int (-10t + 20)\\,dt = -5t^2 + 20t + C_2$, dan $s(0) = C_2 = 0$, sehingga $s(t) = -5t^2 + 20t$ — dua soal nilai awal, diselesaikan satu demi satu.',
               },
               figure: {

@@ -2,7 +2,7 @@
  *
  *  Everything the junior-high course draws is re-exported from here, so a
  *  module imports one place. What is added are the pictures senior high needs
- *  and junior high does not: a coordinate plane with equal scales, a labelled
+ *  and junior high does not: a coordinate plane with equal scales, a labeled
  *  cube or box whose corners can be joined by distances and diagonals, and a
  *  right triangle named for the trigonometric ratios.
  */
@@ -44,7 +44,7 @@ export const dot = (p: Pt, label?: string, color: FigColor = 'a'): FigItem => ({
 
 /* ------------------------------------------------------ cube and cuboid */
 
-/** The eight corners of a box ABCD.EFGH: A, B, C, D on the floor (anticlockwise
+/** The eight corners of a box ABCD.EFGH: A, B, C, D on the floor (counterclockwise
  *  seen from above) and E, F, G, H directly above them. */
 export const CUBE_NAMES = 'ABCDEFGH'
 
@@ -127,7 +127,7 @@ export function box3d(o: {
 
 /** A right triangle with the right angle at the bottom-left, legs `a` (across)
  *  and `b` (up). Names go on the corners, the acute angle at the bottom-right is
- *  marked, and each side may be labelled. */
+ *  marked, and each side may be labeled. */
 export function rightTriangle(o: {
   a: number
   b: number

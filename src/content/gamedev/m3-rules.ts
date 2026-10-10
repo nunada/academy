@@ -57,7 +57,7 @@ export const module3: Module = {
               id: 'c3',
               title: { en: 'Show it, or it looks like a bug', id: 'Tampakkan, atau ia terlihat seperti kutu' },
               body: {
-                en: 'A player who is invulnerable and cannot tell will read it as the game failing to notice. Change the colour, or blink. The rule lives in `update` and the sign of it lives in `draw` — the state carries the fact, and both read it.',
+                en: 'A player who is invulnerable and cannot tell will read it as the game failing to notice. Change the color, or blink. The rule lives in `update` and the sign of it lives in `draw` — the state carries the fact, and both read it.',
                 id: 'Pemain yang sedang kebal tanpa tahu akan membacanya sebagai game yang gagal menyadari. Ubah warnanya, atau buat berkedip. Aturannya tinggal di `update` dan tandanya tinggal di `draw` — keadaannya yang membawa faktanya, dan keduanya membacanya.',
               },
               code:
@@ -96,7 +96,7 @@ export const module3: Module = {
               template: 'mercy = ___(0.0, state["mercy"] ___ dt)',
               blanks: ['max', '-'],
               explain: {
-                en: 'Subtract the elapsed time, and floor it at zero so it settles instead of running away downwards.',
+                en: 'Subtract the elapsed time, and floor it at zero so it settles instead of running away downward.',
                 id: 'Kurangi waktu yang berlalu, dan beri lantai nol agar ia berhenti alih-alih terus lari ke bawah.',
               },
               hint: {
@@ -232,7 +232,7 @@ export const module3: Module = {
                 { en: 'Everything except the lives is already written. Count the timer down first, before you use it.', id: 'Semuanya kecuali nyawanya sudah tertulis. Hitung mundur pewaktunya dulu, sebelum kamu memakainya.' },
                 { en: 'The loop already knows which blocks hit — that is the branch where the life goes.', id: 'Loop-nya sudah tahu balok mana yang mengenai — di cabang itulah nyawanya berkurang.' },
                 { en: 'Only take a life when `mercy <= 0`, and set `mercy = MERCY` at the same moment.', id: 'Hanya ambil nyawa ketika `mercy <= 0`, dan setel `mercy = MERCY` di saat yang sama.' },
-                { en: 'In `draw`, pick the player colour from `state["mercy"] > 0`.', id: 'Di `draw`, pilih warna pemainnya dari `state["mercy"] > 0`.' },
+                { en: 'In `draw`, pick the player color from `state["mercy"] > 0`.', id: 'Di `draw`, pilih warna pemainnya dari `state["mercy"] > 0`.' },
               ],
               solution:
                 'SPOT_X = [30, 120, 210, 280, 70, 160]\n' +

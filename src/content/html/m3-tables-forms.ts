@@ -355,7 +355,7 @@ export const module3: Module = {
                 'all("table tbody tr").forEach(function (r, i) {\n  var n = r.querySelectorAll("th, td").length;\n  assert(n === 3, "row " + (i + 1) + " must have three cells, found: " + n);\n});',
             },
             {
-              name: { en: 'Every row is labelled by a th', id: 'Every row is labelled by a th' },
+              name: { en: 'Every row is labeled by a th', id: 'Every row is labeled by a th' },
               check:
                 'all("table tbody tr").forEach(function (r, i) {\n  var first = r.querySelector("th, td");\n  assert(first.tagName === "TH", "the first cell of row " + (i + 1) + " must be <th>, not <td>");\n  assert(first.textContent.trim().length > 0, "the row label must not be empty");\n});',
             },
@@ -376,7 +376,7 @@ export const module3: Module = {
                 'all("table tbody tr").forEach(function (r, i) {\n  var n = r.querySelectorAll("th, td").length;\n  assert(n === 3, "baris ke-" + (i + 1) + " harus punya tiga sel, ada: " + n);\n});',
             },
             {
-              name: { en: 'Every row is labelled by a th', id: 'Tiap baris dilabeli sebuah th' },
+              name: { en: 'Every row is labeled by a th', id: 'Tiap baris dilabeli sebuah th' },
               check:
                 'all("table tbody tr").forEach(function (r, i) {\n  var pertama = r.querySelector("th, td");\n  assert(pertama.tagName === "TH", "sel pertama baris ke-" + (i + 1) + " harus <th>, bukan <td>");\n  assert(pertama.textContent.trim().length > 0, "label baris tidak boleh kosong");\n});',
             },
@@ -407,7 +407,7 @@ export const module3: Module = {
         {
           id: 'html-m3-s2-l1',
           title: { en: 'Inputs and labels', id: 'Input dan label' },
-          goal: { en: 'Collect text, correctly labelled.', id: 'Mengumpulkan teks, dengan label yang benar.' },
+          goal: { en: 'Collect text, correctly labeled.', id: 'Mengumpulkan teks, dengan label yang benar.' },
           xp: 20,
           steps: [
             {
@@ -494,7 +494,7 @@ export const module3: Module = {
               kind: 'web',
               id: 'w1',
               prompt: {
-                en: 'Inside a `form`, add a labelled text field for `Name` (id and name `name`) and a labelled email field for `Email` (id and name `email`), with the email required.',
+                en: 'Inside a `form`, add a labeled text field for `Name` (id and name `name`) and a labeled email field for `Email` (id and name `email`), with the email required.',
                 id: 'Di dalam sebuah `form`, tambahkan isian teks berlabel `Nama` (id dan name `nama`) serta isian email berlabel `Email` (id dan name `email`), dengan email wajib diisi.',
               },
               starter: '<form>\n\n</form>\n',
@@ -506,7 +506,7 @@ export const module3: Module = {
                       'var n = sel("form input#name");\nvar e = sel("form input#email");\nassert(n, "there is no input with id name yet");\nassert(e, "there is no input with id email yet");\nassert(n.getAttribute("type") === "text", "name must be type=text");\nassert(e.getAttribute("type") === "email", "email must be type=email");',
                   },
                   {
-                    name: { en: 'Both are labelled', id: 'Both are labelled' },
+                    name: { en: 'Both are labeled', id: 'Both are labeled' },
                     check:
                       'var ln = sel(\'label[for="name"]\');\nvar le = sel(\'label[for="email"]\');\nassert(ln, "need a <label for=\\"name\\">");\nassert(le, "need a <label for=\\"email\\">");\nassert(ln.textContent.trim() === "Name", "label must be: Name");\nassert(le.textContent.trim() === "Email", "label must be: Email");',
                   },
@@ -523,7 +523,7 @@ export const module3: Module = {
                       'var n = sel("form input#nama");\nvar e = sel("form input#email");\nassert(n, "belum ada input dengan id nama");\nassert(e, "belum ada input dengan id email");\nassert(n.getAttribute("type") === "text", "nama harus type=text");\nassert(e.getAttribute("type") === "email", "email harus type=email");',
                   },
                   {
-                    name: { en: 'Both are labelled', id: 'Keduanya berlabel' },
+                    name: { en: 'Both are labeled', id: 'Keduanya berlabel' },
                     check:
                       'var ln = sel(\'label[for="nama"]\');\nvar le = sel(\'label[for="email"]\');\nassert(ln, "butuh <label for=\\"nama\\">");\nassert(le, "butuh <label for=\\"email\\">");\nassert(ln.textContent.trim() === "Nama", "label harus: Nama");\nassert(le.textContent.trim() === "Email", "label harus: Email");',
                   },
@@ -621,14 +621,14 @@ export const module3: Module = {
               kind: 'web',
               id: 'w1',
               prompt: {
-                en: 'Add a labelled `select` with id and name `city` offering `Surabaya` (value `sby`) and `Malang` (value `mlg`), plus a submit button reading `Send`.',
+                en: 'Add a labeled `select` with id and name `city` offering `Surabaya` (value `sby`) and `Malang` (value `mlg`), plus a submit button reading `Send`.',
                 id: 'Tambahkan `select` berlabel dengan id dan name `kota` yang menawarkan `Surabaya` (value `sby`) dan `Malang` (value `mlg`), ditambah tombol kirim bertuliskan `Kirim`.',
               },
               starter: '<form>\n\n</form>\n',
               tests: {
                 en: [
                   {
-                    name: { en: 'A labelled select', id: 'A labelled select' },
+                    name: { en: 'A labeled select', id: 'A labeled select' },
                     check:
                       'var s = sel("form select#city");\nassert(s, "there is no <select id=\\"city\\"> yet");\nassert(s.getAttribute("name") === "city", "select needs name=city");\nassert(sel(\'label[for="city"]\'), "need a <label for=\\"city\\">");',
                   },
@@ -645,7 +645,7 @@ export const module3: Module = {
                 ],
                 id: [
                   {
-                    name: { en: 'A labelled select', id: 'Select yang berlabel' },
+                    name: { en: 'A labeled select', id: 'Select yang berlabel' },
                     check:
                       'var s = sel("form select#kota");\nassert(s, "belum ada <select id=\\"kota\\">");\nassert(s.getAttribute("name") === "kota", "select butuh name=kota");\nassert(sel(\'label[for="kota"]\'), "butuh <label for=\\"kota\\">");',
                   },
@@ -678,7 +678,7 @@ export const module3: Module = {
         runtime: 'web',
         title: { en: 'Registration form', id: 'Formulir pendaftaran' },
         brief: {
-          en: 'A complete form where every field is properly labelled.',
+          en: 'A complete form where every field is properly labeled.',
           id: 'Formulir lengkap yang setiap isiannya berlabel dengan benar.',
         },
         requirements: [
@@ -711,7 +711,7 @@ export const module3: Module = {
                 'var t = sel("form textarea");\nassert(t, "there is no <textarea> yet");\nassert(t.getAttribute("name") === "reason", "textarea needs name=reason");',
             },
             {
-              name: { en: 'Every field is labelled', id: 'Every field is labelled' },
+              name: { en: 'Every field is labeled', id: 'Every field is labeled' },
               check:
                 'var fields = all("form input, form select, form textarea");\nassert(fields.length >= 5, "there must be five fields, found: " + fields.length);\nfields.forEach(function (f) {\n  var id = f.getAttribute("id");\n  assert(id, "every field needs an id, one is missing it");\n  var l = doc.querySelector(\'label[for="\' + id + \'"]\');\n  assert(l, "there is no label for the field with id " + id);\n  assert(l.textContent.trim().length > 0, "the label for " + id + " must not be empty");\n});',
             },
@@ -738,7 +738,7 @@ export const module3: Module = {
                 'var t = sel("form textarea");\nassert(t, "belum ada <textarea>");\nassert(t.getAttribute("name") === "alasan", "textarea butuh name=alasan");',
             },
             {
-              name: { en: 'Every field is labelled', id: 'Tiap isian berlabel' },
+              name: { en: 'Every field is labeled', id: 'Tiap isian berlabel' },
               check:
                 'var kolom = all("form input, form select, form textarea");\nassert(kolom.length >= 5, "harus ada lima isian, ada: " + kolom.length);\nkolom.forEach(function (f) {\n  var id = f.getAttribute("id");\n  assert(id, "setiap isian butuh id, ada yang belum punya");\n  var l = doc.querySelector(\'label[for="\' + id + \'"]\');\n  assert(l, "belum ada label untuk isian ber-id " + id);\n  assert(l.textContent.trim().length > 0, "label untuk " + id + " tidak boleh kosong");\n});',
             },
@@ -752,7 +752,7 @@ export const module3: Module = {
         hints: [
           { en: 'Work field by field: label, then the control, then move on.', id: 'Kerjakan isian demi isian: label, lalu kontrolnya, lalu lanjut.' },
           { en: 'Every control needs an id, and its label needs the same value in for.', id: 'Tiap kontrol butuh id, dan labelnya butuh nilai sama di for.' },
-          { en: 'select and textarea are labelled exactly like an input.', id: 'select dan textarea diberi label persis seperti input.' },
+          { en: 'select and textarea are labeled exactly like an input.', id: 'select dan textarea diberi label persis seperti input.' },
           { en: 'textarea has a closing tag even when empty: <textarea …></textarea>', id: 'textarea punya tag penutup meski kosong: <textarea …></textarea>' },
         ],
         solution: {

@@ -199,7 +199,7 @@ export const m8s2: Submodule = {
           id: 'c2',
           title: L('Step by Step: Elevation, Depression and Slopes', 'Contoh Bertahap: Elevasi, Depresi, dan Kemiringan'),
           body: L(
-            '- The **angle of elevation** is measured **upwards from the horizontal**. The **angle of depression** is measured **downwards from the horizontal**. Both are measured from the horizontal, never from the vertical.\n- The angle of depression from $A$ down to $B$ equals the angle of elevation from $B$ up to $A$ (alternate angles).\n- The **gradient** (slope) of a line is rise over run, which is $\\tan$ of the angle it makes with the horizontal.\n\nExample: from the top of a lighthouse 50 m high the angle of depression of a boat is $45^{\\circ}$. How far is the boat from the foot of the lighthouse?\n\n1. Step 1: The angle at the boat is also $45^{\\circ}$ (alternate angles).\n2. Step 2: $\\tan45^{\\circ}=\\frac{50}{d}$, so $d=\\frac{50}{1}=50$ m.\n\nExample: a ramp rises 3 m over a horizontal distance of 4 m. The gradient is $\\frac{3}{4}$, so $\\tan\\theta=\\frac{3}{4}$, and the ramp is 5 m long, so $\\sin\\theta=\\frac{3}{5}$.',
+            '- The **angle of elevation** is measured **upward from the horizontal**. The **angle of depression** is measured **downward from the horizontal**. Both are measured from the horizontal, never from the vertical.\n- The angle of depression from $A$ down to $B$ equals the angle of elevation from $B$ up to $A$ (alternate angles).\n- The **gradient** (slope) of a line is rise over run, which is $\\tan$ of the angle it makes with the horizontal.\n\nExample: from the top of a lighthouse 50 m high the angle of depression of a boat is $45^{\\circ}$. How far is the boat from the foot of the lighthouse?\n\n1. Step 1: The angle at the boat is also $45^{\\circ}$ (alternate angles).\n2. Step 2: $\\tan45^{\\circ}=\\frac{50}{d}$, so $d=\\frac{50}{1}=50$ m.\n\nExample: a ramp rises 3 m over a horizontal distance of 4 m. The gradient is $\\frac{3}{4}$, so $\\tan\\theta=\\frac{3}{4}$, and the ramp is 5 m long, so $\\sin\\theta=\\frac{3}{5}$.',
             '- **Sudut elevasi** diukur **ke atas dari garis mendatar**. **Sudut depresi** diukur **ke bawah dari garis mendatar**. Keduanya diukur dari garis mendatar, tidak pernah dari garis tegak.\n- Sudut depresi dari $A$ ke bawah menuju $B$ sama dengan sudut elevasi dari $B$ ke atas menuju $A$ (sudut dalam berseberangan).\n- **Gradien** (kemiringan) suatu garis adalah kenaikan per pergeseran mendatar, yaitu $\\tan$ dari sudut yang dibentuknya dengan garis mendatar.\n\nContoh: dari puncak mercusuar setinggi 50 m, sudut depresi sebuah perahu $45^{\\circ}$. Seberapa jauh perahu dari kaki mercusuar?\n\n1. Langkah 1: Sudut di perahu juga $45^{\\circ}$ (sudut dalam berseberangan).\n2. Langkah 2: $\\tan45^{\\circ}=\\frac{50}{d}$, jadi $d=\\frac{50}{1}=50$ m.\n\nContoh: sebuah tanjakan naik 3 m pada jarak mendatar 4 m. Gradiennya $\\frac{3}{4}$, jadi $\\tan\\theta=\\frac{3}{4}$, dan tanjakan itu panjangnya 5 m, jadi $\\sin\\theta=\\frac{3}{5}$.',
           ),
           figure: {
@@ -262,8 +262,8 @@ export const m8s2: Submodule = {
           id: 'mc1',
           prompt: L('Choose the TWO true statements.', 'Pilih DUA pernyataan yang benar.'),
           options: [
-            L('An angle of elevation is measured upwards from the horizontal.', 'Sudut elevasi diukur ke atas dari garis mendatar.'),
-            L('An angle of depression is measured downwards from the horizontal.', 'Sudut depresi diukur ke bawah dari garis mendatar.'),
+            L('An angle of elevation is measured upward from the horizontal.', 'Sudut elevasi diukur ke atas dari garis mendatar.'),
+            L('An angle of depression is measured downward from the horizontal.', 'Sudut depresi diukur ke bawah dari garis mendatar.'),
             L('The gradient of a slope equals the sine of its angle.', 'Gradien suatu kemiringan sama dengan sinus sudutnya.'),
             L('An angle of elevation is measured from the vertical.', 'Sudut elevasi diukur dari garis tegak.'),
           ],
@@ -301,7 +301,7 @@ export const m8s2: Submodule = {
           kind: 'math',
           id: 'm1',
           prompt: L(
-            'A tower stands on level ground. From a point $A$ the angle of elevation of its top is $60^{\\circ}$; from a point $B$, 20 m farther away on the same line, it is $30^{\\circ}$. How far is $A$ from the foot of the tower, in metres?',
+            'A tower stands on level ground. From a point $A$ the angle of elevation of its top is $60^{\\circ}$; from a point $B$, 20 m farther away on the same line, it is $30^{\\circ}$. How far is $A$ from the foot of the tower, in meters?',
             'Sebuah menara berdiri di tanah datar. Dari titik $A$ sudut elevasi puncaknya $60^{\\circ}$; dari titik $B$, 20 m lebih jauh pada garis yang sama, sudutnya $30^{\\circ}$. Seberapa jauh $A$ dari kaki menara, dalam meter?',
           ),
           blanks: [{ label: 'x =', answer: 10, after: '\\text{m}' }],
@@ -367,7 +367,7 @@ export const m8s2: Submodule = {
       },
       {
         prompt: L(
-          'From the top of a lighthouse 50 m high, the angle of depression of a boat is $45^{\\circ}$. How far is the boat from the foot of the lighthouse, in metres?',
+          'From the top of a lighthouse 50 m high, the angle of depression of a boat is $45^{\\circ}$. How far is the boat from the foot of the lighthouse, in meters?',
           'Dari puncak mercusuar setinggi 50 m, sudut depresi sebuah perahu $45^{\\circ}$. Seberapa jauh perahu dari kaki mercusuar, dalam meter?',
         ),
         figure: {

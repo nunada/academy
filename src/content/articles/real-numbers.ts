@@ -220,7 +220,7 @@ Garis di atas angka menandai kelompok angka yang berulang. Mana dari keduanya ya
           tone: 'tip',
           title: L('The prime-factor rule', 'Aturan faktor prima'),
           text: L(
-            T`Write the fraction in lowest terms and factorise its denominator into primes. If the **only** primes are 2 and 5, the decimal expansion terminates. If any other prime appears, it eventually repeats periodically.
+            T`Write the fraction in lowest terms and factorize its denominator into primes. If the **only** primes are 2 and 5, the decimal expansion terminates. If any other prime appears, it eventually repeats periodically.
 
 For example $\frac{7}{20}$: $20=2^2\times 5$, so it terminates ($0.35$). For $\frac{5}{12}$: $12=2^2\times 3$, and the 3 forces a repeat ($0.41\overline{6}$). The reason: dividing by $2^a5^b$ is the same as multiplying to reach a power of 10, and powers of 10 contain only 2s and 5s.`,
             T`Tulis pecahan dalam bentuk paling sederhana lalu faktorkan penyebutnya menjadi bilangan prima. Jika **satu-satunya** prima adalah 2 dan 5, ekspansi desimalnya berakhir. Jika ada prima lain, ekspansinya akhirnya berulang secara periodik.
@@ -282,7 +282,7 @@ Jika ada angka yang tidak berulang, seperti pada $0{,}41\overline{6}$, gunakan d
               '$20=2^2\\times5$ has only the primes 2 and 5, so $\\frac{7}{20}=0.35$ terminates. $6=2\\times3$, $9=3^2$ and $14=2\\times7$ each contain a prime other than 2 and 5, so those decimals repeat.',
               '$20=2^2\\times5$ hanya punya prima 2 dan 5, jadi $\\frac{7}{20}=0{,}35$ berakhir. $6=2\\times3$, $9=3^2$ dan $14=2\\times7$ masing-masing memuat prima selain 2 dan 5, jadi desimalnya berulang.',
             ),
-            hint: L('Factorise each denominator into primes. Look for anything besides 2 and 5.', 'Faktorkan tiap penyebut menjadi prima. Cari yang selain 2 dan 5.'),
+            hint: L('Factorize each denominator into primes. Look for anything besides 2 and 5.', 'Faktorkan tiap penyebut menjadi prima. Cari yang selain 2 dan 5.'),
           },
         },
         {
@@ -323,7 +323,7 @@ Jika ada angka yang tidak berulang, seperti pada $0{,}41\overline{6}$, gunakan d
 - $e=2.71828182\ldots$, the base of natural logarithms, which appears in growth and decay.
 - $\varphi=\dfrac{1+\sqrt{5}}{2}=1.61803398\ldots$, the golden ratio.
 
-There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square (and when it is, $\sqrt{n}$ is a whole number). Factorise $n$ into [primes](article:integers#primes); if every prime appears an even number of times, $n$ is a perfect square and the root is a whole number. So $\sqrt{50}=5\sqrt{2}$ is irrational, while $\sqrt{49}=7$ is not; [simplifying radicals](article:exponents-and-radicals#simplify-radicals) shows how $\sqrt{50}$ becomes $5\sqrt2$, and the article on [irrational numbers](article:irrational-numbers) goes further, into $\pi$, $e$ and rational approximations.`,
+There is a simple test for square roots: for a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square (and when it is, $\sqrt{n}$ is a whole number). Factorize $n$ into [primes](article:integers#primes); if every prime appears an even number of times, $n$ is a perfect square and the root is a whole number. So $\sqrt{50}=5\sqrt{2}$ is irrational, while $\sqrt{49}=7$ is not; [simplifying radicals](article:exponents-and-radicals#simplify-radicals) shows how $\sqrt{50}$ becomes $5\sqrt2$, and the article on [irrational numbers](article:irrational-numbers) goes further, into $\pi$, $e$ and rational approximations.`,
             T`**Bilangan irasional** adalah bilangan real yang **bukan** rasional: tidak ada pecahan dua bilangan bulat yang sama dengannya. Ekspansi desimalnya tak berhingga dan tidak pernah periodik. Contoh bilangan irasional yang terkenal antara lain:
 
 - $\sqrt{2}=1{,}41421356\ldots$, diagonal persegi dengan sisi 1.
@@ -903,7 +903,7 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
       description: L('Decide from the denominator alone, without doing the division.', 'Tentukan dari penyebutnya saja, tanpa melakukan pembagian.'),
       steps: [
         { name: L('Reduce the fraction', 'Sederhanakan pecahannya'), text: L('Write the fraction in lowest terms.', 'Tulis pecahan dalam bentuk paling sederhana.') },
-        { name: L('Factorise the denominator', 'Faktorkan penyebutnya'), text: L('Break the denominator into prime factors, for example 12 = 2 × 2 × 3.', 'Uraikan penyebut menjadi faktor prima, misalnya 12 = 2 × 2 × 3.') },
+        { name: L('Factorize the denominator', 'Faktorkan penyebutnya'), text: L('Break the denominator into prime factors, for example 12 = 2 × 2 × 3.', 'Uraikan penyebut menjadi faktor prima, misalnya 12 = 2 × 2 × 3.') },
         { name: L('Look for primes other than 2 and 5', 'Cari prima selain 2 dan 5'), text: L('If the only primes are 2 and 5 the decimal terminates; if any other prime appears it eventually repeats periodically.', 'Jika satu-satunya prima adalah 2 dan 5 desimalnya berakhir; jika ada prima lain desimalnya akhirnya berulang secara periodik.') },
       ],
     },

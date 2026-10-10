@@ -6,7 +6,7 @@ import { fit, line, parallelLines, pythagorasSquares, shape, txt } from './figs'
 /** Module 5 — angles (on a line, round a point, where two lines cross, between
  *  parallel lines, in a triangle), the Pythagorean theorem, and congruent and
  *  similar figures. Every drawing is built from the numbers in its caption, so a
- *  labelled side or angle is the real one. */
+ *  labeled side or angle is the real one. */
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
@@ -54,7 +54,7 @@ const rays = (o: RayOpts): Piece => {
   return { dim: 2, axes: false, ...fit(p.pts, 0.6), items: p.items }
 }
 
-/** Two straight lines crossing; `labels[i]` names angle i (anticlockwise from the right). */
+/** Two straight lines crossing; `labels[i]` names angle i (counterclockwise from the right). */
 const crossing = (deg: number, labels: (string | undefined)[]): Piece =>
   rays({
     dirs: [0, deg, 180, 180 + deg],
@@ -143,7 +143,7 @@ const isoTri = (half: number, h: number, sides: (string | undefined)[]): Piece =
 /** A bridge truss with two families of parallel lines: L1 and L2 run across, L3 and L4 lean at `deg`
  *  degrees. The corners are A = L2 and L3, B = L2 and L4, C = L1 and L4, D = L1 and L3, with AB = `ab`
  *  and the two across-lines 2 apart. `arcs` mark only the angles a question uses (directions in
- *  degrees, anticlockwise from `from` to `to`, at the named corner). `diagonal` adds the member BD. */
+ *  degrees, counterclockwise from `from` to `to`, at the named corner). `diagonal` adds the member BD. */
 function truss(o: { deg: number; ab: number; arcs: { at: 'A' | 'B' | 'C' | 'D'; from: number; to: number; label: string }[]; diagonal?: boolean }): Piece {
   const h = 2
   const dx = tidy(h / Math.tan(rad(o.deg)))
@@ -286,11 +286,11 @@ export const module5: Module = {
               ],
               answer: 0,
               explain: L(
-                'Neighbours on a straight line add up to $180^\\circ$, so $x=180^\\circ-38^\\circ=142^\\circ$. The value $38^\\circ$ belongs to the angle across from the marked one, $52^\\circ$ comes from $90-38$ (a complement), and $322^\\circ$ from $360-38$.',
+                'Neighbors on a straight line add up to $180^\\circ$, so $x=180^\\circ-38^\\circ=142^\\circ$. The value $38^\\circ$ belongs to the angle across from the marked one, $52^\\circ$ comes from $90-38$ (a complement), and $322^\\circ$ from $360-38$.',
                 'Sudut yang berdampingan pada garis lurus berjumlah $180^\\circ$, jadi $x=180^\\circ-38^\\circ=142^\\circ$. Nilai $38^\\circ$ milik sudut yang berhadapan dengan sudut bertanda, $52^\\circ$ berasal dari $90-38$ (penyiku), dan $322^\\circ$ dari $360-38$.',
               ),
               hint: L(
-                'Is $x$ next to the $38^\\circ$ angle or across from it? Neighbours on a straight line make a straight angle together.',
+                'Is $x$ next to the $38^\\circ$ angle or across from it? Neighbors on a straight line make a straight angle together.',
                 'Apakah $x$ berdampingan atau berhadapan dengan sudut $38^\\circ$? Sudut yang berdampingan pada garis lurus bersama-sama membentuk sudut lurus.',
               ),
             },
@@ -352,7 +352,7 @@ export const module5: Module = {
               ],
               answer: [true, true, false, false],
               explain: L(
-                'A full turn is $360^\\circ$. The supplement of $120^\\circ$ is $180-120=60$. Neighbours on a line only have to add up to $180^\\circ$; they are equal just when both are $90^\\circ$. The complement of $35^\\circ$ is $90-35=55$, and $145$ is its supplement.',
+                'A full turn is $360^\\circ$. The supplement of $120^\\circ$ is $180-120=60$. Neighbors on a line only have to add up to $180^\\circ$; they are equal just when both are $90^\\circ$. The complement of $35^\\circ$ is $90-35=55$, and $145$ is its supplement.',
                 'Satu putaran penuh adalah $360^\\circ$. Pelurus dari $120^\\circ$ adalah $180-120=60$. Sudut berdampingan pada garis lurus hanya harus berjumlah $180^\\circ$; sama besar hanya jika keduanya $90^\\circ$. Penyiku dari $35^\\circ$ adalah $90-35=55$, dan $145$ adalah pelurusnya.',
               ),
               hint: L(
@@ -415,13 +415,13 @@ export const module5: Module = {
               id: 'c1',
               title: L('Look Closely: Parallel Lines Cut by a Line', 'Ayo Amati: Dua Garis Sejajar Dipotong Satu Garis'),
               body: L(
-                'Railway tracks run side by side and never meet: they are **parallel** lines. A road that crosses both tracks is a **transversal**. The crossing makes eight angles, numbered 1 to 8. The picture marks the four used below.\n\nBecause the tracks are parallel, the angles come in matching pairs:\n\n| Pair | Where they are | Relation | Example |\n|---|---|---|---|\n| Corresponding | the same place at each crossing | equal | 1 and 5 |\n| Alternate interior | between the lines, on opposite sides of the transversal | equal | 3 and 5 |\n| Co-interior | between the lines, on the same side of the transversal | add up to $180^\\circ$ | 3 and 6 |\n\nThe rules from the last lesson still work too: vertically opposite angles are equal, and neighbours on a line add up to $180^\\circ$.',
+                'Railway tracks run side by side and never meet: they are **parallel** lines. A road that crosses both tracks is a **transversal**. The crossing makes eight angles, numbered 1 to 8. The picture marks the four used below.\n\nBecause the tracks are parallel, the angles come in matching pairs:\n\n| Pair | Where they are | Relation | Example |\n|---|---|---|---|\n| Corresponding | the same place at each crossing | equal | 1 and 5 |\n| Alternate interior | between the lines, on opposite sides of the transversal | equal | 3 and 5 |\n| Co-interior | between the lines, on the same side of the transversal | add up to $180^\\circ$ | 3 and 6 |\n\nThe rules from the last lesson still work too: vertically opposite angles are equal, and neighbors on a line add up to $180^\\circ$.',
                 'Rel kereta api berjalan berdampingan dan tidak pernah bertemu: keduanya adalah garis **sejajar**. Jalan raya yang memotong kedua rel adalah **transversal**. Perpotongan itu membentuk delapan sudut, bernomor 1 sampai 8. Gambar menandai empat sudut yang dipakai di bawah.\n\nKarena relnya sejajar, sudut-sudutnya membentuk pasangan yang bersesuaian:\n\n| Pasangan | Letaknya | Hubungan | Contoh |\n|---|---|---|---|\n| Sehadap | sama letaknya pada tiap perpotongan | sama besar | 1 dan 5 |\n| Dalam berseberangan | di antara kedua garis, di sisi transversal yang berlawanan | sama besar | 3 dan 5 |\n| Dalam sepihak | di antara kedua garis, di sisi transversal yang sama | berjumlah $180^\\circ$ | 3 dan 6 |\n\nAturan dari pelajaran sebelumnya tetap berlaku: sudut bertolak belakang sama besar, dan sudut berdampingan pada garis lurus berjumlah $180^\\circ$.',
               ),
               figure: {
                 ...parallelLines({ deg: 60, labels: ['1', undefined, '3', undefined, '5', '6'] }),
                 caption: L(
-                  'Two parallel lines cut by a transversal. The numbers go anticlockwise from the top right: 1 to 4 round the upper crossing, 5 to 8 round the lower one. Angles 1, 3, 5 and 6 are marked.',
+                  'Two parallel lines cut by a transversal. The numbers go counterclockwise from the top right: 1 to 4 round the upper crossing, 5 to 8 round the lower one. Angles 1, 3, 5 and 6 are marked.',
                   'Dua garis sejajar dipotong transversal. Nomor berlawanan arah jarum jam mulai dari kanan atas: 1 sampai 4 di perpotongan atas, 5 sampai 8 di perpotongan bawah. Sudut 1, 3, 5, dan 6 diberi tanda.',
                 ),
               },
@@ -632,7 +632,7 @@ export const module5: Module = {
               ],
               answer: 0,
               explain: L(
-                'Look at $L_3\\parallel L_4$ cut by $L_2$: the $50^\\circ$ angle at $A$ and the angle at $B$ above $L_2$, to the right of $L_4$, are corresponding, so that angle is $50^\\circ$. Now look at $L_1\\parallel L_2$ cut by $L_4$: that angle at $B$ and $r$ are alternate interior angles, so $r=50^\\circ$. The value $130$ is $180-50$, which treats $r$ as a neighbour on a straight line, $40$ is $90-50$, and $100$ is $50+50$.',
+                'Look at $L_3\\parallel L_4$ cut by $L_2$: the $50^\\circ$ angle at $A$ and the angle at $B$ above $L_2$, to the right of $L_4$, are corresponding, so that angle is $50^\\circ$. Now look at $L_1\\parallel L_2$ cut by $L_4$: that angle at $B$ and $r$ are alternate interior angles, so $r=50^\\circ$. The value $130$ is $180-50$, which treats $r$ as a neighbor on a straight line, $40$ is $90-50$, and $100$ is $50+50$.',
                 'Perhatikan $L_3\\parallel L_4$ yang dipotong $L_2$: sudut $50^\\circ$ di $A$ dan sudut di $B$ di atas $L_2$, di kanan $L_4$, adalah sudut sehadap, jadi sudut itu $50^\\circ$. Sekarang perhatikan $L_1\\parallel L_2$ yang dipotong $L_4$: sudut di $B$ itu dan $r$ adalah sudut dalam berseberangan, jadi $r=50^\\circ$. Nilai $130$ adalah $180-50$, yang menganggap $r$ berdampingan pada garis lurus, $40$ adalah $90-50$, dan $100$ adalah $50+50$.',
               ),
               hint: L(
@@ -1350,7 +1350,7 @@ export const module5: Module = {
           },
           {
             prompt: L(
-              'A rectangular field is 40 m long and 30 m wide. Mr. Eko lays a path along its diagonal, and the path costs Rp20,000 per metre. Find the length of the path and the total cost in thousand rupiah.',
+              'A rectangular field is 40 m long and 30 m wide. Mr. Eko lays a path along its diagonal, and the path costs Rp20,000 per meter. Find the length of the path and the total cost in thousand rupiah.',
               'Sebuah lapangan persegi panjang panjangnya 40 m dan lebarnya 30 m. Pak Eko membuat jalur di sepanjang diagonalnya, dan biaya jalur Rp20.000 per meter. Cari panjang jalur dan total biayanya dalam ribu rupiah.',
             ),
             blanks: [
@@ -1875,7 +1875,7 @@ export const module5: Module = {
           },
           {
             prompt: L(
-              'Dewi is 150 cm tall and her shadow is 90 cm long. At the same time a lamp post casts a shadow of 6 m. How tall is the lamp post, in metres?',
+              'Dewi is 150 cm tall and her shadow is 90 cm long. At the same time a lamp post casts a shadow of 6 m. How tall is the lamp post, in meters?',
               'Dewi tingginya 150 cm dan bayangannya 90 cm. Pada waktu yang sama sebuah tiang lampu membentuk bayangan 6 m. Berapa tinggi tiang lampu itu, dalam meter?',
             ),
             blanks: [{ label: { en: '\\text{height} =', id: '\\text{tinggi} =' }, answer: 10, after: '\\text{ m}' }],

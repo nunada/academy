@@ -497,10 +497,10 @@ export const module9: Module = {
                       'sid = add_student("Dina", 100)\nassert sid == 4, "the first new id should be 4, got: " + repr(sid)\nassert add_student("Eko", 70) == 5, "the next id should be 5"',
                   },
                   {
-                    name: { en: 'The student really is there afterwards', id: 'Siswanya benar-benar ada sesudahnya' },
+                    name: { en: 'The student really is there afterward', id: 'Siswanya benar-benar ada sesudahnya' },
                     setup: 'import nunada_api\nnunada_api.reset()',
                     assert:
-                      'sid = add_student("Dina", 100)\nr = nunada_api.get(BASE + "/siswa/" + str(sid), headers=HEADERS)\nassert r.json()["data"]["nama"] == "Dina", "the new data should be retrievable afterwards"',
+                      'sid = add_student("Dina", 100)\nr = nunada_api.get(BASE + "/siswa/" + str(sid), headers=HEADERS)\nassert r.json()["data"]["nama"] == "Dina", "the new data should be retrievable afterward"',
                   },
                 ],
                 id: [
@@ -511,7 +511,7 @@ export const module9: Module = {
                       'sid = tambah_siswa("Dina", 100)\nassert sid == 4, "id pertama yang baru harus 4, dapat: " + repr(sid)\nassert tambah_siswa("Eko", 70) == 5, "id berikutnya harus 5"',
                   },
                   {
-                    name: { en: 'The student really is there afterwards', id: 'Siswanya benar-benar ada sesudahnya' },
+                    name: { en: 'The student really is there afterward', id: 'Siswanya benar-benar ada sesudahnya' },
                     setup: 'import nunada_api\nnunada_api.reset()',
                     assert:
                       'sid = tambah_siswa("Dina", 100)\nr = nunada_api.get(BASE + "/siswa/" + str(sid), headers=HEADERS)\nassert r.json()["data"]["nama"] == "Dina", "data baru harus bisa diambil kembali"',

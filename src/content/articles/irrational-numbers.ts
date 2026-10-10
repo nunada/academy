@@ -27,7 +27,7 @@ export const body: ArticleBody = {
       T`Bilangan real rasional atau irasional, tidak pernah keduanya; irasional berarti tidak ada bilangan bulat $p,q$ dengan $q\neq0$ yang membuat $\frac pq$ sama dengannya.`,
     ),
     L(
-      T`The $k$-th root of a positive integer is either an integer or irrational: it is an integer exactly when every exponent in the prime factorisation is a multiple of $k$.`,
+      T`The $k$-th root of a positive integer is either an integer or irrational: it is an integer exactly when every exponent in the prime factorization is a multiple of $k$.`,
       T`Akar pangkat $k$ dari bilangan bulat positif adalah bilangan bulat atau irasional: ia bilangan bulat tepat bila setiap eksponen dalam faktorisasi primanya kelipatan $k$.`,
     ),
     L(
@@ -125,9 +125,9 @@ Kata "irasional" berasal dari *rasio*, akar kata yang sama dengan bilangan rasio
         {
           kind: 'text',
           text: L(
-            T`**$\sqrt2$ is irrational because assuming $\sqrt2=\frac ab$ forces a number to have both an even and an odd count of factors of 2, which is impossible.** It is the oldest proof by contradiction, and the version below uses the unique [prime factorisation](article:integers#primes) of every integer.
+            T`**$\sqrt2$ is irrational because assuming $\sqrt2=\frac ab$ forces a number to have both an even and an odd count of factors of 2, which is impossible.** It is the oldest proof by contradiction, and the version below uses the unique [prime factorization](article:integers#primes) of every integer.
 
-Suppose $\sqrt2=\frac ab$ with $a$ and $b$ positive integers. Squaring gives $a^2=2b^2$. Now count how many times the prime 2 divides each side. If 2 divides $a$ exactly $m$ times, then it divides $a^2$ exactly $2m$ times, an **even** number. If it divides $b$ exactly $n$ times, then it divides $2b^2$ exactly $2n+1$ times, an **odd** number. The two sides are the same integer, so they have the same factorisation, and no number of factors of 2 is both even and odd. The assumption was false: no such $a$ and $b$ exist.
+Suppose $\sqrt2=\frac ab$ with $a$ and $b$ positive integers. Squaring gives $a^2=2b^2$. Now count how many times the prime 2 divides each side. If 2 divides $a$ exactly $m$ times, then it divides $a^2$ exactly $2m$ times, an **even** number. If it divides $b$ exactly $n$ times, then it divides $2b^2$ exactly $2n+1$ times, an **odd** number. The two sides are the same integer, so they have the same factorization, and no number of factors of 2 is both even and odd. The assumption was false: no such $a$ and $b$ exist.
 
 The more familiar version of the same proof, which cancels common factors until $a$ and $b$ are coprime and finds both even, is written out with an exercise in the [real numbers article](article:real-numbers#irrational-numbers). The count of 2s is shorter, and it proves more:
 
@@ -177,11 +177,11 @@ Versi yang lebih akrab dari bukti yang sama, yang mencoret faktor sama sampai $a
         {
           kind: 'text',
           text: L(
-            T`**The $k$-th root of a positive integer is either a whole number or irrational, and it is a whole number exactly when every exponent in the prime factorisation of the integer is a multiple of $k$.** There is no third case: a root of an integer is never a fraction that is not a whole number.
+            T`**The $k$-th root of a positive integer is either a whole number or irrational, and it is a whole number exactly when every exponent in the prime factorization of the integer is a multiple of $k$.** There is no third case: a root of an integer is never a fraction that is not a whole number.
 
-To decide, factorise and look at the exponents:
+To decide, factorize and look at the exponents:
 
-| Root | Factorisation | Exponents divisible by $k$? | Verdict |
+| Root | Factorization | Exponents divisible by $k$? | Verdict |
 |---|---|---|---|
 | $\sqrt{49}$ | $7^2$ | yes | $7$, rational |
 | $\sqrt{72}$ | $2^3\cdot3^2$ | no: 3 | $6\sqrt2$, irrational |
@@ -193,7 +193,7 @@ Taking out every complete group of $k$ equal primes also **simplifies the radica
 
 Two facts help. A fraction of integers works the same way, since $\sqrt{\frac pq}=\frac{\sqrt p}{\sqrt q}$, so $\sqrt{\frac49}=\frac23$ is rational but $\sqrt{\frac12}=\frac{\sqrt2}{2}$ is not. And a root of a number that is not an integer can still be rational (for example $\sqrt{\frac94}=\frac32$), so the rule above is about integers.
 
-Try your own numbers, including large ones. The tool factorises up to a trillion and prints 30 decimals.`,
+Try your own numbers, including large ones. The tool factorizes up to a trillion and prints 30 decimals.`,
             T`**Akar pangkat $k$ dari bilangan bulat positif adalah bilangan bulat atau irasional, dan ia bilangan bulat tepat bila setiap eksponen dalam faktorisasi prima bilangan itu kelipatan $k$.** Tidak ada kemungkinan ketiga: akar dari bilangan bulat tidak pernah pecahan yang bukan bilangan bulat.
 
 Untuk memutuskan, faktorkan dan lihat eksponennya:
@@ -227,7 +227,7 @@ Coba bilanganmu sendiri, termasuk yang besar. Alat ini memfaktorkan sampai satu 
               '$81=3^4$ and the exponent 4 is a multiple of the index 4, so $\\sqrt[4]{81}=3$. But $12=2^2\\cdot3$ and $50=2\\cdot5^2$ leave a prime to the power 1, and $16=2^4$ has exponent 4, which is not a multiple of 3.',
               '$81=3^4$ dan eksponen 4 adalah kelipatan indeks 4, sehingga $\\sqrt[4]{81}=3$. Tetapi $12=2^2\\cdot3$ dan $50=2\\cdot5^2$ menyisakan bilangan prima berpangkat 1, dan $16=2^4$ berekponen 4, yang bukan kelipatan 3.',
             ),
-            hint: L('Factorise each number and check the exponents against the root index.', 'Faktorkan tiap bilangan dan periksa eksponennya terhadap indeks akar.'),
+            hint: L('Factorize each number and check the exponents against the root index.', 'Faktorkan tiap bilangan dan periksa eksponennya terhadap indeks akar.'),
           },
         },
       ],
@@ -701,7 +701,7 @@ Pakai ´Decimal´ atau ´sympy´ untuk ketepatan, float untuk kecepatan, dan jan
               '$7$ is not a perfect square and $9=3^2$ is not a perfect cube, so $\\sqrt7$ and $\\sqrt[3]{9}$ are irrational. $\\sqrt{49}=7$, $0.\\overline{12}=\\frac{4}{33}$ and $\\sqrt2\\cdot\\sqrt8=\\sqrt{16}=4$ are rational.',
               '$7$ bukan kuadrat sempurna dan $9=3^2$ bukan kubik sempurna, sehingga $\\sqrt7$ dan $\\sqrt[3]{9}$ irasional. $\\sqrt{49}=7$, $0{,}\\overline{12}=\\frac{4}{33}$, dan $\\sqrt2\\cdot\\sqrt8=\\sqrt{16}=4$ rasional.',
             ),
-            hint: L('Factorise the numbers under the roots and simplify the product.', 'Faktorkan bilangan di bawah akar dan sederhanakan hasil kalinya.'),
+            hint: L('Factorize the numbers under the roots and simplify the product.', 'Faktorkan bilangan di bawah akar dan sederhanakan hasil kalinya.'),
           },
         },
         {
@@ -828,9 +828,9 @@ Pakai ´Decimal´ atau ´sympy´ untuk ketepatan, float untuk kecepatan, dan jan
   howTo: [
     {
       name: L('How to decide whether a square root is irrational', 'Cara menentukan apakah suatu akar kuadrat irasional'),
-      description: L('Factorise the number under the root and look at the exponents.', 'Faktorkan bilangan di bawah akar dan lihat eksponennya.'),
+      description: L('Factorize the number under the root and look at the exponents.', 'Faktorkan bilangan di bawah akar dan lihat eksponennya.'),
       steps: [
-        { name: L('Factorise', 'Faktorkan'), text: L('Write the whole number under the root as a product of primes, for example 72 is 2 cubed times 3 squared.', 'Tulis bilangan bulat di bawah akar sebagai hasil kali bilangan prima, misalnya 72 adalah 2 pangkat tiga kali 3 kuadrat.') },
+        { name: L('Factorize', 'Faktorkan'), text: L('Write the whole number under the root as a product of primes, for example 72 is 2 cubed times 3 squared.', 'Tulis bilangan bulat di bawah akar sebagai hasil kali bilangan prima, misalnya 72 adalah 2 pangkat tiga kali 3 kuadrat.') },
         { name: L('Check the exponents', 'Periksa eksponennya'), text: L('For a square root, look at whether every exponent is even; for a k-th root, whether every exponent is a multiple of k.', 'Untuk akar kuadrat, lihat apakah setiap eksponen genap; untuk akar pangkat k, apakah setiap eksponen kelipatan k.') },
         { name: L('Decide', 'Putuskan'), text: L('If all of them are, the root is a whole number and so rational; if any is not, the root is irrational.', 'Jika semuanya demikian, akarnya bilangan bulat dan rasional; jika ada yang tidak, akarnya irasional.') },
         { name: L('Simplify', 'Sederhanakan'), text: L('Take every complete group out of the root: the square root of 72 is 6 times the square root of 2.', 'Keluarkan setiap kelompok lengkap dari akar: akar kuadrat 72 adalah 6 kali akar 2.') },
@@ -876,7 +876,7 @@ Pakai ´Decimal´ atau ´sympy´ untuk ketepatan, float untuk kecepatan, dan jan
     {
       q: L('Why is the square root of 2 irrational?', 'Mengapa akar 2 irasional?'),
       a: L(
-        'If the square root of 2 equalled a over b, then a squared would equal 2 times b squared. The prime 2 would then divide the left side an even number of times and the right side an odd number of times, which is impossible for the same integer.',
+        'If the square root of 2 equaled a over b, then a squared would equal 2 times b squared. The prime 2 would then divide the left side an even number of times and the right side an odd number of times, which is impossible for the same integer.',
         'Jika akar 2 sama dengan a per b, maka a kuadrat sama dengan 2 kali b kuadrat. Bilangan prima 2 kemudian membagi ruas kiri genap kali dan ruas kanan ganjil kali, yang mustahil untuk bilangan bulat yang sama.',
       ),
     },
@@ -911,7 +911,7 @@ Pakai ´Decimal´ atau ´sympy´ untuk ketepatan, float untuk kecepatan, dan jan
     {
       q: L('How do you tell whether a root is irrational?', 'Bagaimana mengetahui apakah suatu akar irasional?'),
       a: L(
-        'Factorise the whole number under the root into primes. The k-th root is a whole number exactly when every exponent is a multiple of k, and otherwise it is irrational. For 72, which is 2 cubed times 3 squared, the exponent 3 is odd, so the square root is irrational.',
+        'Factorize the whole number under the root into primes. The k-th root is a whole number exactly when every exponent is a multiple of k, and otherwise it is irrational. For 72, which is 2 cubed times 3 squared, the exponent 3 is odd, so the square root is irrational.',
         'Faktorkan bilangan bulat di bawah akar menjadi bilangan prima. Akar pangkat k adalah bilangan bulat tepat bila setiap eksponen kelipatan k, dan jika tidak ia irasional. Untuk 72, yaitu 2 pangkat tiga kali 3 kuadrat, eksponen 3 ganjil, sehingga akar kuadratnya irasional.',
       ),
     },

@@ -91,7 +91,7 @@ export const module2: Module = {
               id: 'c3',
               title: { en: 'A border needs three things', id: 'Border butuh tiga hal' },
               body: {
-                en: '`border: 2px solid black` is width, style, colour. Miss out the style and nothing appears — `solid` is not the default, `none` is. `border-radius` then rounds the corners.',
+                en: '`border: 2px solid black` is width, style, color. Miss out the style and nothing appears — `solid` is not the default, `none` is. `border-radius` then rounds the corners.',
                 id: '`border: 2px solid black` adalah lebar, gaya, warna. Lupakan gayanya dan tidak ada yang muncul — `solid` bukan nilai bawaan, `none`-lah yang bawaan. `border-radius` kemudian membulatkan sudutnya.',
               },
               code: {
@@ -104,7 +104,7 @@ export const module2: Module = {
               kind: 'quiz',
               id: 'q1',
               prompt: {
-                en: 'You want space between an element\'s text and its coloured background. Which?',
+                en: 'You want space between an element\'s text and its colored background. Which?',
                 id: 'Kamu ingin ruang antara teks elemen dan latar berwarnanya. Yang mana?',
               },
               options: [
@@ -115,7 +115,7 @@ export const module2: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'Padding is inside the background. Margin would push the whole coloured box away instead.',
+                en: 'Padding is inside the background. Margin would push the whole colored box away instead.',
                 id: 'Padding berada di dalam latar. Margin justru akan mendorong seluruh kotak berwarnanya menjauh.',
               },
               hint: {
@@ -191,7 +191,7 @@ export const module2: Module = {
               },
               hints: [
                 { en: 'Four declarations in one rule.', id: 'Empat deklarasi dalam satu aturan.' },
-                { en: 'The border shorthand takes width, style, colour — in that order.', id: 'Singkatan border menerima lebar, gaya, warna — dalam urutan itu.' },
+                { en: 'The border shorthand takes width, style, color — in that order.', id: 'Singkatan border menerima lebar, gaya, warna — dalam urutan itu.' },
               ],
               solution: {
                 en: '.warning {\n  padding: 16px;\n  border: 2px solid #f59e0b;\n  border-radius: 8px;\n  margin: 24px;\n}',
@@ -402,7 +402,7 @@ export const module2: Module = {
               check: 'assert(style(".name", "margin-top") === "0px", ".name margin-top must be 0, currently: " + style(".name", "margin-top"));',
             },
             {
-              name: { en: 'Role colour and bio spacing', id: 'Role colour and bio spacing' },
+              name: { en: 'Role color and bio spacing', id: 'Role color and bio spacing' },
               check:
                 'assert(style(".role", "color") === "rgb(100, 116, 139)", ".role color must be #64748b");\nvar fs = parseFloat(style(".bio", "font-size"));\nvar lh = parseFloat(style(".bio", "line-height"));\nassert(Math.abs(lh - fs * 1.6) < 1.5, ".bio line-height must be 1.6, currently: " + style(".bio", "line-height"));',
             },
@@ -427,7 +427,7 @@ export const module2: Module = {
               check: 'assert(style(".nama", "margin-top") === "0px", "margin-top .nama harus 0, sekarang: " + style(".nama", "margin-top"));',
             },
             {
-              name: { en: 'Role colour and bio spacing', id: 'Warna peran dan jarak bio' },
+              name: { en: 'Role color and bio spacing', id: 'Warna peran dan jarak bio' },
               check:
                 'assert(style(".peran", "color") === "rgb(100, 116, 139)", "warna .peran harus #64748b");\nvar fs = parseFloat(style(".bio", "font-size"));\nvar lh = parseFloat(style(".bio", "line-height"));\nassert(Math.abs(lh - fs * 1.6) < 1.5, "line-height .bio harus 1.6, sekarang: " + style(".bio", "line-height"));',
             },
@@ -451,7 +451,7 @@ export const module2: Module = {
       id: 'css-m2-s2',
       title: { en: 'How Boxes Flow', id: 'Bagaimana Kotak Mengalir' },
       summary: {
-        en: 'Block, inline, and how to centre something.',
+        en: 'Block, inline, and how to center something.',
         id: 'Block, inline, dan cara memusatkan sesuatu.',
       },
       lessons: [
@@ -464,9 +464,9 @@ export const module2: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'Two default behaviours', id: 'Dua perilaku bawaan' },
+              title: { en: 'Two default behaviors', id: 'Dua perilaku bawaan' },
               body: {
-                en: '| | Examples | Behaviour |\n|---|---|---|\n| **Block** | `div`, `p`, `h1` | takes the full width and starts a new line |\n| **Inline** | `a`, `span`, `strong` | flows in the text and is only as wide as its content |\n\nWidth and vertical margin do nothing on an inline element.',
+                en: '| | Examples | Behavior |\n|---|---|---|\n| **Block** | `div`, `p`, `h1` | takes the full width and starts a new line |\n| **Inline** | `a`, `span`, `strong` | flows in the text and is only as wide as its content |\n\nWidth and vertical margin do nothing on an inline element.',
                 id: '| | Contoh | Perilaku |\n|---|---|---|\n| **Block** | `div`, `p`, `h1` | mengambil lebar penuh dan memulai baris baru |\n| **Inline** | `a`, `span`, `strong` | mengalir di dalam teks dan hanya selebar isinya |\n\nWidth dan margin vertikal tidak berpengaruh pada elemen inline.',
               },
               code: '<style>\n  span { background: #fecaca; }\n  div  { background: #bfdbfe; }\n</style>\n\n<span>inline</span> <span>inline</span>\n<div>block</div>\n<div>block</div>',
@@ -519,7 +519,7 @@ export const module2: Module = {
                 id: 'Kotak inline hanya selebar isinya. Ubah dulu ke inline-block atau block.',
               },
               hint: {
-                en: 'Think about the default flow behaviour of an element like span, and which box-related properties simply do not apply under that behaviour.',
+                en: 'Think about the default flow behavior of an element like span, and which box-related properties simply do not apply under that behavior.',
                 id: 'Pikirkan perilaku alir bawaan elemen seperti span, dan properti terkait kotak mana yang memang tidak berlaku pada perilaku itu.',
               },
             },
@@ -584,20 +584,20 @@ export const module2: Module = {
         },
         {
           id: 'css-m2-s2-l2',
-          title: { en: 'Centring a box', id: 'Memusatkan sebuah kotak' },
+          title: { en: 'Centering a box', id: 'Memusatkan sebuah kotak' },
           goal: { en: 'Put a block in the middle of the page.', id: 'Menaruh sebuah block di tengah halaman.' },
           xp: 20,
           steps: [
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'text-align centres text, not boxes', id: 'text-align memusatkan teks, bukan kotak' },
+              title: { en: 'text-align centers text, not boxes', id: 'text-align memusatkan teks, bukan kotak' },
               body: {
-                en: 'This is the single most common mix-up in CSS. `text-align: center` on a box centres the **words inside it**. The box itself stays exactly where it was, still full width.',
+                en: 'This is the single most common mix-up in CSS. `text-align: center` on a box centers the **words inside it**. The box itself stays exactly where it was, still full width.',
                 id: 'Ini kekeliruan paling umum dalam CSS. `text-align: center` pada sebuah kotak memusatkan **kata-kata di dalamnya**. Kotaknya sendiri tetap di tempatnya, tetap selebar penuh.',
               },
               code: {
-                en: '<style>\n  .box { width: 200px; background: #fca5a5; text-align: center; }\n</style>\n\n<div class="box">Text centred, box still on the left.</div>',
+                en: '<style>\n  .box { width: 200px; background: #fca5a5; text-align: center; }\n</style>\n\n<div class="box">Text centered, box still on the left.</div>',
                 id: '<style>\n  .kotak { width: 200px; background: #fca5a5; text-align: center; }\n</style>\n\n<div class="kotak">Teks di tengah, kotak tetap di kiri.</div>',
               },
               preview: true,
@@ -607,11 +607,11 @@ export const module2: Module = {
               id: 'c2',
               title: { en: 'A width plus auto margins', id: 'Sebuah width ditambah margin auto' },
               body: {
-                en: 'To centre the box, give it a width and let the left and right margins share what is left: `margin: 0 auto`. Without a width there is nothing left over, so nothing moves.',
+                en: 'To center the box, give it a width and let the left and right margins share what is left: `margin: 0 auto`. Without a width there is nothing left over, so nothing moves.',
                 id: 'Untuk memusatkan kotaknya, beri ia lebar dan biarkan margin kiri-kanan berbagi sisanya: `margin: 0 auto`. Tanpa lebar, tidak ada sisa, jadi tidak ada yang bergeser.',
               },
               code: {
-                en: '<style>\n  .box {\n    width: 200px;\n    margin: 0 auto;\n    background: #86efac;\n  }\n</style>\n\n<div class="box">The box itself is now centred.</div>',
+                en: '<style>\n  .box {\n    width: 200px;\n    margin: 0 auto;\n    background: #86efac;\n  }\n</style>\n\n<div class="box">The box itself is now centered.</div>',
                 id: '<style>\n  .kotak {\n    width: 200px;\n    margin: 0 auto;\n    background: #86efac;\n  }\n</style>\n\n<div class="kotak">Kotaknya sendiri kini di tengah.</div>',
               },
               preview: true,
@@ -631,7 +631,7 @@ export const module2: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'A block already fills its parent. Auto margins can only centre a box narrower than the space available.',
+                en: 'A block already fills its parent. Auto margins can only center a box narrower than the space available.',
                 id: 'Sebuah block sudah memenuhi induknya. Margin auto hanya bisa memusatkan kotak yang lebih sempit dari ruang yang ada.',
               },
               hint: {
@@ -647,7 +647,7 @@ export const module2: Module = {
                 id: '<div class="wadah">\n  <h1>Judul di Tengah</h1>\n  <p>Kotaknya berada di tengah halaman, dan teksnya juga.</p>\n</div>',
               },
               prompt: {
-                en: 'Centre `.container` on the page with a max-width of 400px, and centre the text inside it too.',
+                en: 'Center `.container` on the page with a max-width of 400px, and center the text inside it too.',
                 id: 'Pusatkan `.wadah` di halaman dengan max-width 400px, dan pusatkan juga teks di dalamnya.',
               },
               starter: '.container {\n\n}\n',
@@ -659,13 +659,13 @@ export const module2: Module = {
                       'assert(style(".container", "max-width") === "400px", "max-width must be 400px, currently: " + style(".container", "max-width"));\nvar w = sel(".container").getBoundingClientRect().width;\nassert(w <= 401, "width must not exceed 400px, currently: " + Math.round(w));',
                   },
                   {
-                    name: { en: 'The box itself is centred', id: 'The box itself is centred' },
+                    name: { en: 'The box itself is centered', id: 'The box itself is centered' },
                     check:
                       'var r = sel(".container").getBoundingClientRect();\nvar left = r.left;\nvar right = doc.documentElement.clientWidth - r.right;\nassert(Math.abs(left - right) < 2, "left and right gaps must match — use margin auto (left " + Math.round(left) + ", right " + Math.round(right) + ")");\nassert(left > 2, "the box has not moved from the left edge yet");',
                   },
                   {
-                    name: { en: 'The text is centred too', id: 'The text is centred too' },
-                    check: 'assert(style(".container", "text-align") === "center", "the text inside it must be centred");',
+                    name: { en: 'The text is centered too', id: 'The text is centered too' },
+                    check: 'assert(style(".container", "text-align") === "center", "the text inside it must be centered");',
                   },
                 ],
                 id: [
@@ -675,19 +675,19 @@ export const module2: Module = {
                       'assert(style(".wadah", "max-width") === "400px", "max-width harus 400px, sekarang: " + style(".wadah", "max-width"));\nvar w = sel(".wadah").getBoundingClientRect().width;\nassert(w <= 401, "lebarnya tidak boleh melebihi 400px, sekarang: " + Math.round(w));',
                   },
                   {
-                    name: { en: 'The box itself is centred', id: 'Kotaknya sendiri berada di tengah' },
+                    name: { en: 'The box itself is centered', id: 'Kotaknya sendiri berada di tengah' },
                     check:
                       'var r = sel(".wadah").getBoundingClientRect();\nvar kiri = r.left;\nvar kanan = doc.documentElement.clientWidth - r.right;\nassert(Math.abs(kiri - kanan) < 2, "jarak kiri dan kanan harus sama — gunakan margin auto (kiri " + Math.round(kiri) + ", kanan " + Math.round(kanan) + ")");\nassert(kiri > 2, "kotaknya belum bergeser dari tepi kiri");',
                   },
                   {
-                    name: { en: 'The text is centred too', id: 'Teksnya juga di tengah' },
+                    name: { en: 'The text is centered too', id: 'Teksnya juga di tengah' },
                     check: 'assert(style(".wadah", "text-align") === "center", "teks di dalamnya harus rata tengah");',
                   },
                 ],
               },
               hints: [
                 { en: 'Three declarations, all on .container.', id: 'Tiga deklarasi, semuanya pada .wadah.' },
-                { en: 'Centring the box and centring the text are two different properties.', id: 'Memusatkan kotak dan memusatkan teks adalah dua properti berbeda.' },
+                { en: 'Centering the box and centering the text are two different properties.', id: 'Memusatkan kotak dan memusatkan teks adalah dua properti berbeda.' },
                 { en: 'max-width: 400px; margin: 0 auto; text-align: center;', id: 'max-width: 400px; margin: 0 auto; text-align: center;' },
               ],
               solution: {
@@ -705,15 +705,15 @@ export const module2: Module = {
           en: '<div class="sheet">\n  <h1 class="title">Certificate</h1>\n  <p class="content">Awarded to Nunada for completing the CSS course.</p>\n  <span class="badge">Passed</span>\n  <span class="badge">2026</span>\n  <p class="secret">Internal note.</p>\n</div>',
           id: '<div class="halaman">\n  <h1 class="judul">Sertifikat</h1>\n  <p class="isi">Diberikan kepada Nunada atas penyelesaian kursus CSS.</p>\n  <span class="cap">Lulus</span>\n  <span class="cap">2026</span>\n  <p class="rahasia">Catatan internal.</p>\n</div>',
         },
-        title: { en: 'Centred certificate', id: 'Sertifikat terpusat' },
+        title: { en: 'Centered certificate', id: 'Sertifikat terpusat' },
         brief: {
-          en: 'A centred sheet with a pair of badges and one hidden note.',
+          en: 'A centered sheet with a pair of badges and one hidden note.',
           id: 'Lembar terpusat dengan sepasang lencana dan satu catatan tersembunyi.',
         },
         requirements: [
           { en: '`box-sizing: border-box` for everything.', id: '`box-sizing: border-box` untuk semuanya.' },
-          { en: '`.sheet` is centred, max-width 480px, 32px padding, 2px solid `#d4c58a` border.', id: '`.halaman` terpusat, max-width 480px, padding 32px, border solid 2px `#d4c58a`.' },
-          { en: 'The text inside `.sheet` is centred.', id: 'Teks di dalam `.halaman` rata tengah.' },
+          { en: '`.sheet` is centered, max-width 480px, 32px padding, 2px solid `#d4c58a` border.', id: '`.halaman` terpusat, max-width 480px, padding 32px, border solid 2px `#d4c58a`.' },
+          { en: 'The text inside `.sheet` is centered.', id: 'Teks di dalam `.halaman` rata tengah.' },
           { en: 'Each `.badge` is an inline-block, 90px wide, 6px padding, `#fef3c7` background.', id: 'Tiap `.cap` berupa inline-block, lebar 90px, padding 6px, latar `#fef3c7`.' },
           { en: '`.secret` is hidden with `display: none`.', id: '`.rahasia` disembunyikan dengan `display: none`.' },
         ],
@@ -721,14 +721,14 @@ export const module2: Module = {
         tests: {
           en: [
             {
-              name: { en: 'The sheet is centred and capped at 480px', id: 'The sheet is centred and capped at 480px' },
+              name: { en: 'The sheet is centered and capped at 480px', id: 'The sheet is centered and capped at 480px' },
               check:
-                'assert(style(".sheet", "max-width") === "480px", "max-width must be 480px");\nvar r = sel(".sheet").getBoundingClientRect();\nvar left = r.left;\nvar right = doc.documentElement.clientWidth - r.right;\nassert(Math.abs(left - right) < 2, "the box must be centred (left " + Math.round(left) + ", right " + Math.round(right) + ")");\nassert(left > 2, "it has not moved from the left edge yet — use margin auto");',
+                'assert(style(".sheet", "max-width") === "480px", "max-width must be 480px");\nvar r = sel(".sheet").getBoundingClientRect();\nvar left = r.left;\nvar right = doc.documentElement.clientWidth - r.right;\nassert(Math.abs(left - right) < 2, "the box must be centered (left " + Math.round(left) + ", right " + Math.round(right) + ")");\nassert(left > 2, "it has not moved from the left edge yet — use margin auto");',
             },
             {
-              name: { en: 'Padding, border, and centred text', id: 'Padding, border, and centred text' },
+              name: { en: 'Padding, border, and centered text', id: 'Padding, border, and centered text' },
               check:
-                'assert(style(".sheet", "padding-top") === "32px", "padding must be 32px");\nassert(style(".sheet", "border-top-width") === "2px", "border must be 2px");\nassert(style(".sheet", "border-top-style") === "solid", "border style must be solid");\nassert(style(".sheet", "border-top-color") === "rgb(212, 197, 138)", "border color must be #d4c58a");\nassert(style(".sheet", "text-align") === "center", "the text must be centred");',
+                'assert(style(".sheet", "padding-top") === "32px", "padding must be 32px");\nassert(style(".sheet", "border-top-width") === "2px", "border must be 2px");\nassert(style(".sheet", "border-top-style") === "solid", "border style must be solid");\nassert(style(".sheet", "border-top-color") === "rgb(212, 197, 138)", "border color must be #d4c58a");\nassert(style(".sheet", "text-align") === "center", "the text must be centered");',
             },
             {
               name: { en: 'The badges sit side by side', id: 'The badges sit side by side' },
@@ -743,12 +743,12 @@ export const module2: Module = {
           ],
           id: [
             {
-              name: { en: 'The sheet is centred and capped at 480px', id: 'Lembarnya terpusat dan dibatasi 480px' },
+              name: { en: 'The sheet is centered and capped at 480px', id: 'Lembarnya terpusat dan dibatasi 480px' },
               check:
                 'assert(style(".halaman", "max-width") === "480px", "max-width harus 480px");\nvar r = sel(".halaman").getBoundingClientRect();\nvar kiri = r.left;\nvar kanan = doc.documentElement.clientWidth - r.right;\nassert(Math.abs(kiri - kanan) < 2, "kotaknya harus terpusat (kiri " + Math.round(kiri) + ", kanan " + Math.round(kanan) + ")");\nassert(kiri > 2, "belum bergeser dari tepi kiri — gunakan margin auto");',
             },
             {
-              name: { en: 'Padding, border, and centred text', id: 'Padding, border, dan teks terpusat' },
+              name: { en: 'Padding, border, and centered text', id: 'Padding, border, dan teks terpusat' },
               check:
                 'assert(style(".halaman", "padding-top") === "32px", "padding harus 32px");\nassert(style(".halaman", "border-top-width") === "2px", "border harus 2px");\nassert(style(".halaman", "border-top-style") === "solid", "gaya border harus solid");\nassert(style(".halaman", "border-top-color") === "rgb(212, 197, 138)", "warna border harus #d4c58a");\nassert(style(".halaman", "text-align") === "center", "teksnya harus rata tengah");',
             },
@@ -765,7 +765,7 @@ export const module2: Module = {
           ],
         },
         hints: [
-          { en: 'Centring the sheet needs both a max-width and auto margins.', id: 'Memusatkan lembarnya butuh max-width sekaligus margin auto.' },
+          { en: 'Centering the sheet needs both a max-width and auto margins.', id: 'Memusatkan lembarnya butuh max-width sekaligus margin auto.' },
           { en: 'A span ignores width until you change its display.', id: 'Sebuah span mengabaikan width sampai kamu mengubah display-nya.' },
           { en: 'Four rules: *, .sheet, .badge, .secret.', id: 'Empat aturan: *, .halaman, .cap, .rahasia.' },
         ],

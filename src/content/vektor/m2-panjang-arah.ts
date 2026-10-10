@@ -1,7 +1,7 @@
 import type { Module } from '../types'
 
 /** Module 2 — magnitude, and the separation of a vector into "how long" and
- *  "which way". Normalisation is the idea the rest of the course leans on
+ *  "which way". Normalization is the idea the rest of the course leans on
  *  hardest: projections, plane normals and direction cosines are all it. */
 export const module2: Module = {
   id: 'vek-m2',
@@ -416,7 +416,7 @@ export const module2: Module = {
       lessons: [
         {
           id: 'vek-m2-s2-l1',
-          title: { en: 'Normalising a Vector', id: 'Menormalkan Vektor' },
+          title: { en: 'Normalizing a Vector', id: 'Menormalkan Vektor' },
           goal: {
             en: 'Turn any non-zero vector into a unit vector pointing the same way.',
             id: 'Mengubah sebarang vektor tak nol menjadi vektor satuan yang searah dengannya.',
@@ -428,7 +428,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'Divide by your own length', id: 'Bagi dengan panjangmu sendiri' },
               body: {
-                en: 'A **unit vector** is a vector of length 1. Every non-zero $\\vec{a}$ has one pointing in exactly its direction, found by dividing the vector by its own magnitude:\n$$\\hat{a} = \\frac{\\vec{a}}{|\\vec{a}|}$$\nThe check is immediate: $|\\hat{a}| = \\frac{1}{|\\vec{a}|}|\\vec{a}| = 1$. The process is called **normalising**, and it is how "which way" is separated from "how far".\n\nOnly $\\vec{0}$ has no unit vector — it has no direction to keep.',
+                en: 'A **unit vector** is a vector of length 1. Every non-zero $\\vec{a}$ has one pointing in exactly its direction, found by dividing the vector by its own magnitude:\n$$\\hat{a} = \\frac{\\vec{a}}{|\\vec{a}|}$$\nThe check is immediate: $|\\hat{a}| = \\frac{1}{|\\vec{a}|}|\\vec{a}| = 1$. The process is called **normalizing**, and it is how "which way" is separated from "how far".\n\nOnly $\\vec{0}$ has no unit vector — it has no direction to keep.',
                 id: '**Vektor satuan** adalah vektor yang panjangnya 1. Setiap $\\vec{a}$ tak nol punya satu vektor satuan yang arahnya persis sama, diperoleh dengan membagi vektornya dengan besarnya sendiri:\n$$\\hat{a} = \\frac{\\vec{a}}{|\\vec{a}|}$$\nPemeriksaannya langsung: $|\\hat{a}| = \\frac{1}{|\\vec{a}|}|\\vec{a}| = 1$. Prosesnya disebut **normalisasi**, dan inilah cara memisahkan "ke mana arahnya" dari "seberapa jauh".\n\nHanya $\\vec{0}$ yang tak punya vektor satuan — ia tak punya arah untuk dipertahankan.',
               },
               figure: {
@@ -446,7 +446,7 @@ export const module2: Module = {
                   { label: '|â| =', n: { norm: { unit: { of: 'a' } } } },
                 ],
                 caption: {
-                  en: 'Drag $\\vec{a}$ anywhere you like. The short green arrow follows it exactly in direction, and its length stays at 1 no matter what — that is the whole of normalising.',
+                  en: 'Drag $\\vec{a}$ anywhere you like. The short green arrow follows it exactly in direction, and its length stays at 1 no matter what — that is the whole of normalizing.',
                   id: 'Seret $\\vec{a}$ ke mana pun. Anak panah hijau pendek mengikuti arahnya persis, dan panjangnya tetap 1 apa pun yang terjadi — itulah seluruh isi normalisasi.',
                 },
               },
@@ -544,7 +544,7 @@ export const module2: Module = {
                 '\\hat{a} = \\tfrac{1}{7}(2, -3, 6) = \\left(\\tfrac{2}{7}, -\\tfrac{3}{7}, \\tfrac{6}{7}\\right)',
               ],
               explain: {
-                en: 'Dividing by 7 leaves the direction untouched and the length equal to 1. Notice the signs survive: normalising never flips a vector.',
+                en: 'Dividing by 7 leaves the direction untouched and the length equal to 1. Notice the signs survive: normalizing never flips a vector.',
                 id: 'Membagi dengan 7 tidak menyentuh arahnya dan membuat panjangnya menjadi 1. Perhatikan tandanya tetap: normalisasi tak pernah membalik vektor.',
               },
             },
@@ -564,7 +564,7 @@ export const module2: Module = {
               id: 'c1',
               title: { en: 'Length times direction', id: 'Panjang kali arah' },
               body: {
-                en: 'Normalising throws the length away. Multiplying by a new one puts a different length back:\n$$\\vec{v} = L\\,\\hat{a} = \\frac{L}{|\\vec{a}|}\\,\\vec{a}$$\nis the vector of length $L$ in the direction of $\\vec{a}$. Read the other way, every vector is its own length times its own direction, $\\vec{a} = |\\vec{a}|\\,\\hat{a}$ — which is the whole point of separating the two.',
+                en: 'Normalizing throws the length away. Multiplying by a new one puts a different length back:\n$$\\vec{v} = L\\,\\hat{a} = \\frac{L}{|\\vec{a}|}\\,\\vec{a}$$\nis the vector of length $L$ in the direction of $\\vec{a}$. Read the other way, every vector is its own length times its own direction, $\\vec{a} = |\\vec{a}|\\,\\hat{a}$ — which is the whole point of separating the two.',
                 id: 'Normalisasi membuang panjangnya. Mengalikan dengan panjang baru mengembalikan panjang yang berbeda:\n$$\\vec{v} = L\\,\\hat{a} = \\frac{L}{|\\vec{a}|}\\,\\vec{a}$$\nadalah vektor sepanjang $L$ yang searah dengan $\\vec{a}$. Dibaca sebaliknya, setiap vektor adalah panjangnya sendiri dikali arahnya sendiri, $\\vec{a} = |\\vec{a}|\\,\\hat{a}$ — dan justru itulah gunanya memisahkan keduanya.',
               },
               figure: {
@@ -582,7 +582,7 @@ export const module2: Module = {
                   { label: 'v = 5â =', v: { scale: 5, v: { unit: { of: 'a' } } }, dp: 1 },
                 ],
                 caption: {
-                  en: 'Drag $\\vec{a}$ anywhere. The green arrow $\\vec{v}$ always points the same way and always has length 5, whatever $\\vec{a}$ was — that is normalising and rescaling done in one move.',
+                  en: 'Drag $\\vec{a}$ anywhere. The green arrow $\\vec{v}$ always points the same way and always has length 5, whatever $\\vec{a}$ was — that is normalizing and rescaling done in one move.',
                   id: 'Seret $\\vec{a}$ ke mana pun. Anak panah hijau $\\vec{v}$ selalu searah dan selalu panjangnya 5, apa pun $\\vec{a}$-nya — itulah normalisasi dan penskalaan ulang dilakukan sekaligus.',
                 },
               },
@@ -693,7 +693,7 @@ export const module2: Module = {
                 '\\vec{v} = 15\\hat{a} = \\tfrac{15}{7}(2, -3, 6) = \\left(\\tfrac{30}{7}, -\\tfrac{45}{7}, \\tfrac{90}{7}\\right)',
               ],
               explain: {
-                en: 'Normalise, then scale — or do both at once with the factor $15/7$. As a check, $|\\vec{v}| = \\frac{15}{7} \\cdot 7 = 15$.',
+                en: 'Normalize, then scale — or do both at once with the factor $15/7$. As a check, $|\\vec{v}| = \\frac{15}{7} \\cdot 7 = 15$.',
                 id: 'Normalkan, lalu kalikan — atau lakukan sekaligus dengan faktor $15/7$. Sebagai pemeriksaan, $|\\vec{v}| = \\frac{15}{7} \\cdot 7 = 15$.',
               },
             },
@@ -735,7 +735,7 @@ export const module2: Module = {
         runtime: 'math',
         title: { en: 'Direction and Unit', id: 'Arah dan Satuan' },
         brief: {
-          en: 'Normalise, rebuild at a chosen length, and read a direction cosine straight off a component.',
+          en: 'Normalize, rebuild at a chosen length, and read a direction cosine straight off a component.',
           id: 'Menormalkan, menyusun ulang dengan panjang pilihan, dan membaca cosinus arah langsung dari komponennya.',
         },
         requirements: [

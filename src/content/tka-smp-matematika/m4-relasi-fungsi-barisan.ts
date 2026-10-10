@@ -97,7 +97,7 @@ export const module4: Module = {
               id: 'c1',
               title: L('Look Closely: Pairing Two Sets', 'Ayo Amati: Memasangkan Dua Himpunan'),
               body: L(
-                'Ani asks four friends for their favourite fruit and writes each answer next to the name. Every friend is **paired** with a fruit. A pairing between the members of one set and the members of another set is called a **relation**.\n\nNow a relation between numbers. Let $A=\\{1,2,3,4\\}$ and $B=\\{2,4,6,8,10\\}$, and pair every number of $A$ with its double in $B$. The same relation can be shown in four ways:\n\n- **Arrow diagram:** an arrow goes from each member of $A$ to its partner in $B$ (see the picture).\n- **Ordered pairs:** $\\{(1,2),(2,4),(3,6),(4,8)\\}$. In $(1,2)$ the first number comes from $A$ and the second from $B$.\n- **Table:** the pairs are written in two rows, as below.\n- **Graph:** every pair is a point on a plane. We draw it in the next step.\n\n| $x$ (from $A$) | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|\n| $y$ (from $B$) | 2 | 4 | 6 | 8 |',
+                'Ani asks four friends for their favorite fruit and writes each answer next to the name. Every friend is **paired** with a fruit. A pairing between the members of one set and the members of another set is called a **relation**.\n\nNow a relation between numbers. Let $A=\\{1,2,3,4\\}$ and $B=\\{2,4,6,8,10\\}$, and pair every number of $A$ with its double in $B$. The same relation can be shown in four ways:\n\n- **Arrow diagram:** an arrow goes from each member of $A$ to its partner in $B$ (see the picture).\n- **Ordered pairs:** $\\{(1,2),(2,4),(3,6),(4,8)\\}$. In $(1,2)$ the first number comes from $A$ and the second from $B$.\n- **Table:** the pairs are written in two rows, as below.\n- **Graph:** every pair is a point on a plane. We draw it in the next step.\n\n| $x$ (from $A$) | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|\n| $y$ (from $B$) | 2 | 4 | 6 | 8 |',
                 'Ani menanyakan buah kesukaan empat temannya dan menulis setiap jawaban di samping namanya. Setiap teman **dipasangkan** dengan satu buah. Pemasangan antara anggota suatu himpunan dan anggota himpunan lain disebut **relasi**.\n\nSekarang relasi antar bilangan. Misalkan $A=\\{1,2,3,4\\}$ dan $B=\\{2,4,6,8,10\\}$, lalu pasangkan setiap bilangan di $A$ dengan dua kalinya di $B$. Relasi yang sama dapat disajikan dengan empat cara:\n\n- **Diagram panah:** panah dari setiap anggota $A$ ke pasangannya di $B$ (lihat gambar).\n- **Pasangan berurutan:** $\\{(1,2),(2,4),(3,6),(4,8)\\}$. Pada $(1,2)$ bilangan pertama berasal dari $A$ dan bilangan kedua dari $B$.\n- **Tabel:** pasangannya ditulis dalam dua baris, seperti di bawah.\n- **Grafik:** setiap pasangan menjadi satu titik pada bidang. Kita menggambarnya di langkah berikutnya.\n\n| $x$ (dari $A$) | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|\n| $y$ (dari $B$) | 2 | 4 | 6 | 8 |',
               ),
               figure: {
@@ -482,7 +482,7 @@ export const module4: Module = {
               id: 'c4',
               title: L('Step by Step: A Function from a Story', 'Contoh Bertahap: Fungsi dari Sebuah Cerita'),
               body: L(
-                'A taxi charges a starting fee of Rp5,000 plus Rp3,000 for every kilometre. For $x$ km the fare in rupiah is $f(x)=3\\,000x+5\\,000$. For example, $f(4)=3\\,000\\times4+5\\,000=17\\,000$.\n\nNow the other way round: we know two values and want the rule $f(x)=ax+b$. Suppose $f(2)=11\\,000$ and $f(4)=17\\,000$.\n\n1. Step 1: From 2 km to 4 km the fare rises by $17\\,000-11\\,000=6\\,000$, for $4-2=2$ extra km. So $a=6\\,000\\div2=3\\,000$.\n2. Step 2: Put $x=2$ in $f(x)=3\\,000x+b$: $3\\,000\\times2+b=11\\,000$, so $b=5\\,000$.\n3. Step 3: Write the rule: $f(x)=3\\,000x+5\\,000$.\n\n**Remember:**\n\n- $a$ tells how much the output changes when the input goes up by 1.\n- $b$ is the output when the input is 0, the starting amount.',
+                'A taxi charges a starting fee of Rp5,000 plus Rp3,000 for every kilometer. For $x$ km the fare in rupiah is $f(x)=3\\,000x+5\\,000$. For example, $f(4)=3\\,000\\times4+5\\,000=17\\,000$.\n\nNow the other way round: we know two values and want the rule $f(x)=ax+b$. Suppose $f(2)=11\\,000$ and $f(4)=17\\,000$.\n\n1. Step 1: From 2 km to 4 km the fare rises by $17\\,000-11\\,000=6\\,000$, for $4-2=2$ extra km. So $a=6\\,000\\div2=3\\,000$.\n2. Step 2: Put $x=2$ in $f(x)=3\\,000x+b$: $3\\,000\\times2+b=11\\,000$, so $b=5\\,000$.\n3. Step 3: Write the rule: $f(x)=3\\,000x+5\\,000$.\n\n**Remember:**\n\n- $a$ tells how much the output changes when the input goes up by 1.\n- $b$ is the output when the input is 0, the starting amount.',
                 'Sebuah taksi menarik biaya awal Rp5.000 ditambah Rp3.000 untuk setiap kilometer. Untuk $x$ km, ongkos dalam rupiah adalah $f(x)=3\\,000x+5\\,000$. Contohnya, $f(4)=3\\,000\\times4+5\\,000=17\\,000$.\n\nSekarang sebaliknya: kita tahu dua nilai dan ingin mencari rumus $f(x)=ax+b$. Misalkan $f(2)=11\\,000$ dan $f(4)=17\\,000$.\n\n1. Langkah 1: Dari 2 km ke 4 km ongkos naik $17\\,000-11\\,000=6\\,000$, untuk tambahan $4-2=2$ km. Jadi $a=6\\,000\\div2=3\\,000$.\n2. Langkah 2: Masukkan $x=2$ ke $f(x)=3\\,000x+b$: $3\\,000\\times2+b=11\\,000$, jadi $b=5\\,000$.\n3. Langkah 3: Tulis rumusnya: $f(x)=3\\,000x+5\\,000$.\n\n**Ingat:**\n\n- $a$ menyatakan seberapa besar keluaran berubah ketika masukan naik 1.\n- $b$ adalah keluaran ketika masukan 0, yaitu jumlah awal.',
               ),
             },
@@ -705,7 +705,7 @@ export const module4: Module = {
                 'Setiap suku adalah setengah dari suku sebelumnya: $24\\div48=\\frac{1}{2}$, $12\\div24=\\frac{1}{2}$, $6\\div12=\\frac{1}{2}$. Selisih $-24$, $-12$, dan $-6$ tidak sama, jadi bukan aritmetika. Rasio 2 akan membuat suku membesar.',
               ),
               hint: L(
-                'Compare neighbouring terms two ways: subtract them, and divide them. Which way gives the same number every time?',
+                'Compare neighboring terms two ways: subtract them, and divide them. Which way gives the same number every time?',
                 'Bandingkan suku-suku yang berdekatan dengan dua cara: kurangkan, dan bagi. Cara mana yang memberi bilangan sama setiap kali?',
               ),
             },
@@ -774,7 +774,7 @@ export const module4: Module = {
                 'Pernyataan pertama dan ketiga benar: $b=-10$ memberi $U_6=100+5\\times(-10)=50$. Pada $3,6,12,24$ selisihnya 3, 6, 12 (tidak sama): barisan itu geometri dengan $r=2$. Pada $1,4,9,16$ selisihnya 3, 5, 7, jadi bukan aritmetika.',
               ),
               hint: L(
-                'For each list, subtract neighbouring terms. An arithmetic sequence gives the same difference every time.',
+                'For each list, subtract neighboring terms. An arithmetic sequence gives the same difference every time.',
                 'Untuk setiap daftar, kurangkan suku-suku yang berdekatan. Barisan aritmetika memberi selisih yang sama setiap kali.',
               ),
             },
@@ -805,7 +805,7 @@ export const module4: Module = {
               options: [
                 L('The rebound heights 80, 40, 20,… form a geometric sequence with $r=\\frac{1}{2}$', 'Tinggi pantulan 80, 40, 20,… membentuk barisan geometri dengan $r=\\frac{1}{2}$'),
                 L('The 5th rebound reaches 5 cm', 'Pantulan ke-5 mencapai 5 cm'),
-                L('The rebound heights go down by the same number of centimetres each time', 'Tinggi pantulan berkurang dengan banyak sentimeter yang sama setiap kali'),
+                L('The rebound heights go down by the same number of centimeters each time', 'Tinggi pantulan berkurang dengan banyak sentimeter yang sama setiap kali'),
                 L('The 4th rebound reaches 20 cm', 'Pantulan ke-4 mencapai 20 cm'),
               ],
               answer: [0, 1],
@@ -822,7 +822,7 @@ export const module4: Module = {
               kind: 'math',
               id: 'm1',
               prompt: L(
-                'A theatre has 12 seats in the first row, and every next row has 2 seats more than the row before. The last row has 40 seats. Write the formula for $U_n$, the number of seats in row $n$, and find how many rows the theatre has.',
+                'A theater has 12 seats in the first row, and every next row has 2 seats more than the row before. The last row has 40 seats. Write the formula for $U_n$, the number of seats in row $n$, and find how many rows the theater has.',
                 'Sebuah gedung teater punya 12 kursi pada baris pertama, dan setiap baris berikutnya punya 2 kursi lebih banyak daripada baris sebelumnya. Baris terakhir punya 40 kursi. Tuliskan rumus $U_n$, banyak kursi pada baris ke-$n$, dan cari banyak baris di teater itu.',
               ),
               blanks: [

@@ -45,7 +45,7 @@ function pict(rows: { label: string; count: number }[], per: number): Piece {
   return { ...p, items: [...p.items, solid(rectPts(-1.1, -1.3, 0.9, 0.8), 'muted')] }
 }
 
-/** A table of cells, written only with numbers and names. `head` colours the first row or column. */
+/** A table of cells, written only with numbers and names. `head` colors the first row or column. */
 function gridTable(rows: string[][], o: { cw?: number; head?: 'row' | 'col' | 'none' } = {}): Piece {
   const cw = o.cw ?? 2
   const ch = 1.2
@@ -427,7 +427,7 @@ export const module10: Module = {
                 'Skalanya $80 - 60 = 20$. Titik tengah adalah garis bawah ditambah setengah skala: $60 + 20 \\div 2 = 70$.',
               ),
               hint: L(
-                'The scale is the difference between two neighbouring lines. Half of the scale is added to the lower line.',
+                'The scale is the difference between two neighboring lines. Half of the scale is added to the lower line.',
                 'Skala adalah selisih dua garis yang bersebelahan. Setengah dari skala ditambahkan ke garis bawah.',
               ),
             },
@@ -674,7 +674,7 @@ export const module10: Module = {
               id: 'c3',
               title: L('Watch Out!: Adding When You Should Subtract', 'Awas, Jebakan!: Menjumlah Padahal Harus Mengurang'),
               body: L(
-                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| How many more books did Citra (50) read than Dewi (10)? $50 + 10 = 60$ | "How many more" compares two values: $50 - 10 = 40$ |\n| The tallest bar (90) must be the day with the biggest rise | A rise is the difference between neighbouring bars. From 60 to 80 is 20, from 80 to 90 is only 10 |\n| "How many in all?" is the tallest bar | "In all" means you add all the bars together |',
+                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| How many more books did Citra (50) read than Dewi (10)? $50 + 10 = 60$ | "How many more" compares two values: $50 - 10 = 40$ |\n| The tallest bar (90) must be the day with the biggest rise | A rise is the difference between neighboring bars. From 60 to 80 is 20, from 80 to 90 is only 10 |\n| "How many in all?" is the tallest bar | "In all" means you add all the bars together |',
                 'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| Berapa buku Citra (50) lebih banyak daripada Dewi (10)? $50 + 10 = 60$ | "Berapa lebih banyak" membandingkan dua nilai: $50 - 10 = 40$ |\n| Batang tertinggi (90) pasti hari dengan kenaikan terbesar | Kenaikan adalah selisih batang yang bersebelahan. Dari 60 ke 80 naik 20, dari 80 ke 90 hanya naik 10 |\n| "Berapa seluruhnya" adalah batang tertinggi | "Seluruhnya" berarti semua batang dijumlahkan |',
               ),
             },
@@ -877,7 +877,7 @@ export const module10: Module = {
               id: 'c3',
               title: L('Watch Out!: Conclusions That Go Too Far', 'Awas, Jebakan!: Kesimpulan yang Terlalu Jauh'),
               body: L(
-                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| Day 1 (30) is 10 fewer than day 3 (40), so it is $\\frac{1}{10}$ of day 3 | A fraction says "out of": 30 out of 40 is $\\frac{30}{40} = \\frac{3}{4}$ |\n| The tallest bar (60) is the biggest rise | A rise is the difference between neighbouring bars: 20 from day 2 to day 3, but only 10 from day 4 to day 5 |\n| The bars went up on days 3, 4 and 5, so day 6 will be even higher | The data only tell what happened. We cannot be sure about a day that is not in the chart |',
+                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| Day 1 (30) is 10 fewer than day 3 (40), so it is $\\frac{1}{10}$ of day 3 | A fraction says "out of": 30 out of 40 is $\\frac{30}{40} = \\frac{3}{4}$ |\n| The tallest bar (60) is the biggest rise | A rise is the difference between neighboring bars: 20 from day 2 to day 3, but only 10 from day 4 to day 5 |\n| The bars went up on days 3, 4 and 5, so day 6 will be even higher | The data only tell what happened. We cannot be sure about a day that is not in the chart |',
                 'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| Hari ke-1 (30) kurang 10 dari hari ke-3 (40), jadi sepersepuluh dari hari ke-3 | Pecahan berarti "dari": 30 dari 40 adalah $\\frac{30}{40} = \\frac{3}{4}$ |\n| Batang tertinggi (60) adalah kenaikan terbesar | Kenaikan adalah selisih batang yang bersebelahan: 20 dari hari ke-2 ke hari ke-3, tetapi hanya 10 dari hari ke-4 ke hari ke-5 |\n| Batang naik pada hari ke-3, ke-4, dan ke-5, jadi hari ke-6 pasti lebih tinggi lagi | Data hanya menceritakan yang sudah terjadi. Kita tidak bisa yakin tentang hari yang tidak ada di diagram |',
               ),
             },
@@ -1075,7 +1075,7 @@ export const module10: Module = {
         ],
         hints: [
           L('Read every value from the table or the bars before you calculate.', 'Baca setiap nilai dari tabel atau batang sebelum menghitung.'),
-          L('To compare with a fraction, write one value over the other and simplify. A change is the difference of two neighbouring bars.', 'Untuk membandingkan dengan pecahan, tulis satu nilai di atas nilai lainnya lalu sederhanakan. Perubahan adalah selisih dua batang yang bersebelahan.'),
+          L('To compare with a fraction, write one value over the other and simplify. A change is the difference of two neighboring bars.', 'Untuk membandingkan dengan pecahan, tulis satu nilai di atas nilai lainnya lalu sederhanakan. Perubahan adalah selisih dua batang yang bersebelahan.'),
           L('To judge a statement, test it with the numbers one statement at a time. One value that does not fit makes it false.', 'Untuk menilai pernyataan, ujilah dengan angka-angka itu satu pernyataan pada satu waktu. Satu nilai yang tidak cocok membuatnya salah.'),
         ],
         xp: 50,

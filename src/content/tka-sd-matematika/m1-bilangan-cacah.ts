@@ -97,7 +97,7 @@ function longDiv(o: { divisor: string; dividend: string; quotient: string; qStar
   return { dim: 2, axes: false, ...frame([[-3.2, bottom - 0.4], [(L - 1) * dx + 0.8, 2.4]], 0.4, 1.7), items }
 }
 
-/** One or more lines of calculation, one under the other, centred. */
+/** One or more lines of calculation, one under the other, centered. */
 function exprLines(lines: { t: string; color?: FigColor }[]): Piece {
   const items: FigItem[] = []
   const w = Math.max(...lines.map((l) => l.t.length)) * 0.55
@@ -995,7 +995,7 @@ export const module1: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Words Can Trick You', id: 'Awas, Jebakan!: Kata Bisa Menipu' },
               body: {
-                en: 'Some words look like they mean add or subtract, but you must read the whole sentence.\n\n| In the story | What it really asks | Calculation |\n| --- | --- | --- |\n| Budi has 133 more than Ani, and Ani has 245. How many does Budi have? | Budi’s amount, which is bigger than Ani’s | 245 + 133 |\n| Budi has 378 and Ani has 245. How many more does Budi have than Ani? | The difference between two amounts | 378 − 245 |\n| A box has 40 books and 15 are given away. How many are left? | What remains after some leave | 40 − 15 |\n| Ani received 15 more books and now has 40. How many did she have at first? | The start, so go backwards | 40 − 15 |\n\nNever choose the operation from one word. Ask yourself: does the amount grow, shrink, or are two amounts compared?',
+                en: 'Some words look like they mean add or subtract, but you must read the whole sentence.\n\n| In the story | What it really asks | Calculation |\n| --- | --- | --- |\n| Budi has 133 more than Ani, and Ani has 245. How many does Budi have? | Budi’s amount, which is bigger than Ani’s | 245 + 133 |\n| Budi has 378 and Ani has 245. How many more does Budi have than Ani? | The difference between two amounts | 378 − 245 |\n| A box has 40 books and 15 are given away. How many are left? | What remains after some leave | 40 − 15 |\n| Ani received 15 more books and now has 40. How many did she have at first? | The start, so go backward | 40 − 15 |\n\nNever choose the operation from one word. Ask yourself: does the amount grow, shrink, or are two amounts compared?',
                 id: 'Beberapa kata tampak berarti tambah atau kurang, tetapi kamu harus membaca seluruh kalimat.\n\n| Dalam cerita | Sebenarnya menanyakan | Hitungan |\n| --- | --- | --- |\n| Budi punya 133 lebih banyak dari Ani, dan Ani punya 245. Berapa kelereng Budi? | Jumlah Budi, yang lebih besar dari jumlah Ani | 245 + 133 |\n| Budi punya 378 dan Ani punya 245. Kelereng Budi lebih banyak berapa daripada kelereng Ani? | Selisih antara dua jumlah | 378 − 245 |\n| Sebuah kotak berisi 40 buku dan 15 diberikan. Berapa sisanya? | Yang tersisa setelah sebagian keluar | 40 − 15 |\n| Ani menerima 15 buku lagi dan sekarang punya 40. Berapa buku Ani semula? | Jumlah awal, jadi dihitung mundur | 40 − 15 |\n\nJangan memilih operasi hanya dari satu kata. Tanyakan pada dirimu: apakah jumlahnya bertambah, berkurang, atau dua jumlah dibandingkan?',
               },
             },
@@ -1210,7 +1210,7 @@ export const module1: Module = {
                 { label: 'Citra', segs: [{ v: 1275, unknown: true }, { v: 175, color: 'muted' }] },
               ]),
               caption: {
-                en: 'Budi’s bar is 250 longer than Ani’s. Citra’s bar is 175 shorter than Budi’s (the grey piece).',
+                en: 'Budi’s bar is 250 longer than Ani’s. Citra’s bar is 175 shorter than Budi’s (the gray piece).',
                 id: 'Batang Budi lebih panjang 250 dari batang Ani. Batang Citra lebih pendek 175 dari batang Budi (bagian abu-abu).',
               },
             },

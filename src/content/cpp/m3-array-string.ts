@@ -258,7 +258,7 @@ export const module3: Module = {
               id: 'c1',
               title: { en: 'An array of rows', id: 'Array berisi baris-baris' },
               body: {
-                en: '`int m[2][3];` is a grid with 2 rows and 3 columns. Reach a cell with `m[row][col]`, both counted from 0. Initialise it with nested braces, one inner `{ }` per row.',
+                en: '`int m[2][3];` is a grid with 2 rows and 3 columns. Reach a cell with `m[row][col]`, both counted from 0. Initialize it with nested braces, one inner `{ }` per row.',
                 id: '`int m[2][3];` adalah kisi berukuran 2 baris dan 3 kolom. Raih satu sel dengan `m[baris][kolom]`, keduanya dihitung dari 0. Inisialisasi dengan kurung kurawal bersarang, satu `{ }` bagian dalam per baris.',
               },
               code: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int m[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    cout << m[0][0] << endl;\n    cout << m[1][2] << endl;\n    return 0;\n}',
