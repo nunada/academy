@@ -198,8 +198,8 @@ export const module5: Module = {
               id: 'c4',
               title: L('Watch Out!: Rulers and Units', 'Awas, Jebakan!: Penggaris dan Satuan'),
               body: L(
-                '| Wrong | Right |\n| --- | --- |\n| The pencil is 9 cm 5 mm long, because the tip is at 9 cm 5 mm. | Look at the start too. It starts at 2 cm, so the length is 9 cm 5 mm − 2 cm = 7 cm 5 mm. |\n| The small marks on a ruler are cm. | The small marks are mm. Ten of them fill the space between two numbers, which is 1 cm. |\n| A door is about 2 mm high. | Choose a sensible unit: a door in m, a pencil in cm, a road in km. |',
-                '| Salah | Benar |\n| --- | --- |\n| Pensil itu panjangnya 9 cm 5 mm, karena ujungnya di 9 cm 5 mm. | Lihat juga awalnya. Pensil mulai dari 2 cm, jadi panjangnya 9 cm 5 mm − 2 cm = 7 cm 5 mm. |\n| Garis kecil pada penggaris adalah cm. | Garis kecil adalah mm. Sepuluh ruang kecil mengisi jarak antara dua angka, yaitu 1 cm. |\n| Tinggi pintu sekitar 2 mm. | Pilih satuan yang masuk akal: pintu dengan m, pensil dengan cm, jalan dengan km. |',
+                '| Wrong | Right |\n| --- | --- |\n| ❌ The pencil is 9 cm 5 mm long, because the tip is at 9 cm 5 mm. | Look at the start too. It starts at 2 cm, so the length is 9 cm 5 mm − 2 cm = 7 cm 5 mm. |\n| ❌ The small marks on a ruler are cm. | The small marks are mm. Ten of them fill the space between two numbers, which is 1 cm. |\n| ❌ A door is about 2 mm high. | Choose a sensible unit: a door in m, a pencil in cm, a road in km. |',
+                '| Salah | Benar |\n| --- | --- |\n| ❌ Pensil itu panjangnya 9 cm 5 mm, karena ujungnya di 9 cm 5 mm. | Lihat juga awalnya. Pensil mulai dari 2 cm, jadi panjangnya 9 cm 5 mm − 2 cm = 7 cm 5 mm. |\n| ❌ Garis kecil pada penggaris adalah cm. | Garis kecil adalah mm. Sepuluh ruang kecil mengisi jarak antara dua angka, yaitu 1 cm. |\n| ❌ Tinggi pintu sekitar 2 mm. | Pilih satuan yang masuk akal: pintu dengan m, pensil dengan cm, jalan dengan km. |',
               ),
             },
             {
@@ -397,8 +397,8 @@ export const module5: Module = {
               id: 'c3',
               title: L('Watch Out!: Converting Lengths', 'Awas, Jebakan!: Mengubah Satuan Panjang'),
               body: L(
-                '| Wrong | Right |\n| --- | --- |\n| 5 m = 50 cm | From m to cm is two steps down, so multiply by 100: 5 m = 500 cm. |\n| 2 m 35 cm = 2 + 35 = 37 cm | Change the meters first: 200 cm + 35 cm = 235 cm. |\n| 1 m + 50 cm = 51 | The units must be the same before you add: 100 cm + 50 cm = 150 cm. |',
-                '| Salah | Benar |\n| --- | --- |\n| 5 m = 50 cm | Dari m ke cm ada dua anak tangga turun, jadi kalikan 100: 5 m = 500 cm. |\n| 2 m 35 cm = 2 + 35 = 37 cm | Ubah dulu meternya: 200 cm + 35 cm = 235 cm. |\n| 1 m + 50 cm = 51 | Satuannya harus sama sebelum dijumlahkan: 100 cm + 50 cm = 150 cm. |',
+                '| Wrong | Right |\n| --- | --- |\n| ❌ 5 m = 50 cm | From m to cm is two steps down, so multiply by 100: 5 m = 500 cm. |\n| ❌ 2 m 35 cm = 2 + 35 = 37 cm | Change the meters first: 200 cm + 35 cm = 235 cm. |\n| ❌ 1 m + 50 cm = 51 | The units must be the same before you add: 100 cm + 50 cm = 150 cm. |',
+                '| Salah | Benar |\n| --- | --- |\n| ❌ 5 m = 50 cm | Dari m ke cm ada dua anak tangga turun, jadi kalikan 100: 5 m = 500 cm. |\n| ❌ 2 m 35 cm = 2 + 35 = 37 cm | Ubah dulu meternya: 200 cm + 35 cm = 235 cm. |\n| ❌ 1 m + 50 cm = 51 | Satuannya harus sama sebelum dijumlahkan: 100 cm + 50 cm = 150 cm. |',
               ),
             },
             {
@@ -704,8 +704,8 @@ export const module5: Module = {
               id: 'c4',
               title: L('Watch Out!: Scales and Weight Units', 'Awas, Jebakan!: Timbangan dan Satuan Berat'),
               body: L(
-                '| Wrong | Right |\n| --- | --- |\n| The pointer is between 300 and 400, so the weight is 400 g. | The pointer has not reached 400. One small space is 50 g, so the weight is 300 + 50 = 350 g. |\n| 1 kg = 100 g | From kg to g is three steps down, so 1 kg = 1,000 g. |\n| 2,500 g is heavier than 3 kg, because 2,500 is more than 3. | Compare in the same unit: 3 kg = 3,000 g, and 3,000 is more than 2,500. |',
-                '| Salah | Benar |\n| --- | --- |\n| Jarum di antara 300 dan 400, jadi beratnya 400 g. | Jarum belum mencapai 400. Satu ruang kecil adalah 50 g, jadi beratnya 300 + 50 = 350 g. |\n| 1 kg = 100 g | Dari kg ke g ada tiga anak tangga turun, jadi 1 kg = 1.000 g. |\n| 2.500 g lebih berat daripada 3 kg, karena 2.500 lebih besar daripada 3. | Bandingkan dalam satuan yang sama: 3 kg = 3.000 g, dan 3.000 lebih besar daripada 2.500. |',
+                '| Wrong | Right |\n| --- | --- |\n| ❌ The pointer is between 300 and 400, so the weight is 400 g. | The pointer has not reached 400. One small space is 50 g, so the weight is 300 + 50 = 350 g. |\n| ❌ 1 kg = 100 g | From kg to g is three steps down, so 1 kg = 1,000 g. |\n| ❌ 2,500 g is heavier than 3 kg, because 2,500 is more than 3. | Compare in the same unit: 3 kg = 3,000 g, and 3,000 is more than 2,500. |',
+                '| Salah | Benar |\n| --- | --- |\n| ❌ Jarum di antara 300 dan 400, jadi beratnya 400 g. | Jarum belum mencapai 400. Satu ruang kecil adalah 50 g, jadi beratnya 300 + 50 = 350 g. |\n| ❌ 1 kg = 100 g | Dari kg ke g ada tiga anak tangga turun, jadi 1 kg = 1.000 g. |\n| ❌ 2.500 g lebih berat daripada 3 kg, karena 2.500 lebih besar daripada 3. | Bandingkan dalam satuan yang sama: 3 kg = 3.000 g, dan 3.000 lebih besar daripada 2.500. |',
               ),
             },
             {
@@ -889,8 +889,8 @@ export const module5: Module = {
               id: 'c3',
               title: L('Watch Out!: Ons, hg and Prices', 'Awas, Jebakan!: Ons, hg, dan Harga'),
               body: L(
-                '| Wrong | Right |\n| --- | --- |\n| 1 ons = 10 g | 1 ons = 1 hg = 100 g. From hg down to g are two steps, so multiply by 100. |\n| The hg and the ons are two different units. | They are two names for the same unit: 1 hg = 1 ons = 100 g. |\n| Sugar costs Rp16,000 per kg, so 5 ons cost 5 × Rp16,000. | 10 ons make 1 kg, so 5 ons is half a kg. They cost Rp16,000 ÷ 2 = Rp8,000. |',
-                '| Salah | Benar |\n| --- | --- |\n| 1 ons = 10 g | 1 ons = 1 hg = 100 g. Dari hg turun ke g ada dua anak tangga, jadi kalikan 100. |\n| hg dan ons adalah dua satuan yang berbeda. | Keduanya dua nama untuk satuan yang sama: 1 hg = 1 ons = 100 g. |\n| Harga gula Rp16.000 per kg, jadi 5 ons harganya 5 × Rp16.000. | 10 ons sama dengan 1 kg, jadi 5 ons adalah setengah kg. Harganya Rp16.000 ÷ 2 = Rp8.000. |',
+                '| Wrong | Right |\n| --- | --- |\n| ❌ 1 ons = 10 g | 1 ons = 1 hg = 100 g. From hg down to g are two steps, so multiply by 100. |\n| ❌ The hg and the ons are two different units. | They are two names for the same unit: 1 hg = 1 ons = 100 g. |\n| ❌ Sugar costs Rp16,000 per kg, so 5 ons cost 5 × Rp16,000. | 10 ons make 1 kg, so 5 ons is half a kg. They cost Rp16,000 ÷ 2 = Rp8,000. |',
+                '| Salah | Benar |\n| --- | --- |\n| ❌ 1 ons = 10 g | 1 ons = 1 hg = 100 g. Dari hg turun ke g ada dua anak tangga, jadi kalikan 100. |\n| ❌ hg dan ons adalah dua satuan yang berbeda. | Keduanya dua nama untuk satuan yang sama: 1 hg = 1 ons = 100 g. |\n| ❌ Harga gula Rp16.000 per kg, jadi 5 ons harganya 5 × Rp16.000. | 10 ons sama dengan 1 kg, jadi 5 ons adalah setengah kg. Harganya Rp16.000 ÷ 2 = Rp8.000. |',
               ),
             },
             {
@@ -1149,8 +1149,8 @@ export const module5: Module = {
               id: 'c4',
               title: L('Watch Out!: Jugs and Volume Units', 'Awas, Jebakan!: Gelas Ukur dan Satuan Volume'),
               body: L(
-                '| Wrong | Right |\n| --- | --- |\n| The water is between 300 and 400, so it is 400 ml. | It has not reached 400. One small space is 50 ml, so it is 300 + 50 = 350 ml. |\n| 1 l = 100 ml | From l to ml is three steps down, so 1 l = 1,000 ml. |\n| 1 cl = 1 ml | From cl to ml is one step down, so 1 cl = 10 ml. |',
-                '| Salah | Benar |\n| --- | --- |\n| Air berada di antara 300 dan 400, jadi 400 ml. | Air belum mencapai 400. Satu ruang kecil adalah 50 ml, jadi 300 + 50 = 350 ml. |\n| 1 l = 100 ml | Dari l ke ml ada tiga anak tangga turun, jadi 1 l = 1.000 ml. |\n| 1 cl = 1 ml | Dari cl ke ml ada satu anak tangga turun, jadi 1 cl = 10 ml. |',
+                '| Wrong | Right |\n| --- | --- |\n| ❌ The water is between 300 and 400, so it is 400 ml. | It has not reached 400. One small space is 50 ml, so it is 300 + 50 = 350 ml. |\n| ❌ 1 l = 100 ml | From l to ml is three steps down, so 1 l = 1,000 ml. |\n| ❌ 1 cl = 1 ml | From cl to ml is one step down, so 1 cl = 10 ml. |',
+                '| Salah | Benar |\n| --- | --- |\n| ❌ Air berada di antara 300 dan 400, jadi 400 ml. | Air belum mencapai 400. Satu ruang kecil adalah 50 ml, jadi 300 + 50 = 350 ml. |\n| ❌ 1 l = 100 ml | Dari l ke ml ada tiga anak tangga turun, jadi 1 l = 1.000 ml. |\n| ❌ 1 cl = 1 ml | Dari cl ke ml ada satu anak tangga turun, jadi 1 cl = 10 ml. |',
               ),
             },
             {
@@ -1335,8 +1335,8 @@ export const module5: Module = {
               id: 'c3',
               title: L('Watch Out!: Mixing Units', 'Awas, Jebakan!: Satuan yang Dicampur'),
               body: L(
-                '| Wrong | Right |\n| --- | --- |\n| 2 l = 200 ml | From l to ml is three steps down, so 2 l = 2,000 ml. |\n| 3 l ÷ 250 ml = 3 ÷ 250 | The units must match first: 3,000 ml ÷ 250 ml = 12. |\n| 4 l + 300 ml = 4 + 300 = 304 | Change the liters first: 4,000 ml + 300 ml = 4,300 ml. |',
-                '| Salah | Benar |\n| --- | --- |\n| 2 l = 200 ml | Dari l ke ml ada tiga anak tangga turun, jadi 2 l = 2.000 ml. |\n| 3 l ÷ 250 ml = 3 ÷ 250 | Satuannya harus sama dulu: 3.000 ml ÷ 250 ml = 12. |\n| 4 l + 300 ml = 4 + 300 = 304 | Ubah dulu literannya: 4.000 ml + 300 ml = 4.300 ml. |',
+                '| Wrong | Right |\n| --- | --- |\n| ❌ 2 l = 200 ml | From l to ml is three steps down, so 2 l = 2,000 ml. |\n| ❌ 3 l ÷ 250 ml = 3 ÷ 250 | The units must match first: 3,000 ml ÷ 250 ml = 12. |\n| ❌ 4 l + 300 ml = 4 + 300 = 304 | Change the liters first: 4,000 ml + 300 ml = 4,300 ml. |',
+                '| Salah | Benar |\n| --- | --- |\n| ❌ 2 l = 200 ml | Dari l ke ml ada tiga anak tangga turun, jadi 2 l = 2.000 ml. |\n| ❌ 3 l ÷ 250 ml = 3 ÷ 250 | Satuannya harus sama dulu: 3.000 ml ÷ 250 ml = 12. |\n| ❌ 4 l + 300 ml = 4 + 300 = 304 | Ubah dulu literannya: 4.000 ml + 300 ml = 4.300 ml. |',
               ),
             },
             {

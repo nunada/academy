@@ -627,28 +627,28 @@ Pakai ´Decimal´ atau ´sympy´ untuk ketepatan, float untuk kecepatan, dan jan
 
 | Mistake | Correct |
 |---|---|
-| $\pi=\frac{22}{7}$ | $\frac{22}{7}=3.142857\ldots$ is an approximation; $\pi=3.14159\ldots$ is not a fraction at all. |
-| $\pi=3.14$ | $3.14$ is $\pi$ rounded to two decimals, a rational number. |
-| Every square root is irrational | $\sqrt{16}=4$ and $\sqrt{\frac14}=\frac12$ are rational. |
-| The sum of two irrationals is irrational | $\sqrt2+(-\sqrt2)=0$. |
-| The product of two irrationals is irrational | $\sqrt2\cdot\sqrt2=2$. |
-| A decimal with no visible pattern is irrational | $\frac1{97}$ repeats only after 96 digits. |
-| A decimal with a visible pattern is rational | $0.101001000\ldots$ has a pattern and is irrational. |
-| $0.\overline{9}$ is irrational because it never ends | $0.\overline{9}=1$ exactly. |
-| The calculator shows $\pi$, so $\pi$ terminates | A calculator shows the first 10 to 16 digits of a number whose digits never end. |`,
+| ❌ $\pi=\frac{22}{7}$ | $\frac{22}{7}=3.142857\ldots$ is an approximation; $\pi=3.14159\ldots$ is not a fraction at all. |
+| ❌ $\pi=3.14$ | $3.14$ is $\pi$ rounded to two decimals, a rational number. |
+| ❌ Every square root is irrational | $\sqrt{16}=4$ and $\sqrt{\frac14}=\frac12$ are rational. |
+| ❌ The sum of two irrationals is irrational | $\sqrt2+(-\sqrt2)=0$. |
+| ❌ The product of two irrationals is irrational | $\sqrt2\cdot\sqrt2=2$. |
+| ❌ A decimal with no visible pattern is irrational | $\frac1{97}$ repeats only after 96 digits. |
+| ❌ A decimal with a visible pattern is rational | $0.101001000\ldots$ has a pattern and is irrational. |
+| ❌ $0.\overline{9}$ is irrational because it never ends | $0.\overline{9}=1$ exactly. |
+| ❌ The calculator shows $\pi$, so $\pi$ terminates | A calculator shows the first 10 to 16 digits of a number whose digits never end. |`,
             T`**Kesalahan paling umum tentang bilangan irasional adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar dan bilangan yang menunjukkan alasannya.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| $\pi=\frac{22}{7}$ | $\frac{22}{7}=3{,}142857\ldots$ adalah hampiran; $\pi=3{,}14159\ldots$ sama sekali bukan pecahan. |
-| $\pi=3{,}14$ | $3{,}14$ adalah $\pi$ yang dibulatkan ke dua desimal, sebuah bilangan rasional. |
-| Setiap akar kuadrat irasional | $\sqrt{16}=4$ dan $\sqrt{\frac14}=\frac12$ rasional. |
-| Jumlah dua bilangan irasional irasional | $\sqrt2+(-\sqrt2)=0$. |
-| Hasil kali dua bilangan irasional irasional | $\sqrt2\cdot\sqrt2=2$. |
-| Desimal tanpa pola yang terlihat irasional | $\frac1{97}$ baru berulang setelah 96 angka. |
-| Desimal dengan pola yang terlihat rasional | $0{,}101001000\ldots$ punya pola dan irasional. |
-| $0{,}\overline{9}$ irasional karena tidak pernah berakhir | $0{,}\overline{9}=1$ tepat. |
-| Kalkulator menampilkan $\pi$, jadi $\pi$ berakhir | Kalkulator menampilkan 10 sampai 16 angka pertama dari bilangan yang angkanya tidak pernah berakhir. |`,
+| ❌ $\pi=\frac{22}{7}$ | $\frac{22}{7}=3{,}142857\ldots$ adalah hampiran; $\pi=3{,}14159\ldots$ sama sekali bukan pecahan. |
+| ❌ $\pi=3{,}14$ | $3{,}14$ adalah $\pi$ yang dibulatkan ke dua desimal, sebuah bilangan rasional. |
+| ❌ Setiap akar kuadrat irasional | $\sqrt{16}=4$ dan $\sqrt{\frac14}=\frac12$ rasional. |
+| ❌ Jumlah dua bilangan irasional irasional | $\sqrt2+(-\sqrt2)=0$. |
+| ❌ Hasil kali dua bilangan irasional irasional | $\sqrt2\cdot\sqrt2=2$. |
+| ❌ Desimal tanpa pola yang terlihat irasional | $\frac1{97}$ baru berulang setelah 96 angka. |
+| ❌ Desimal dengan pola yang terlihat rasional | $0{,}101001000\ldots$ punya pola dan irasional. |
+| ❌ $0{,}\overline{9}$ irasional karena tidak pernah berakhir | $0{,}\overline{9}=1$ tepat. |
+| ❌ Kalkulator menampilkan $\pi$, jadi $\pi$ berakhir | Kalkulator menampilkan 10 sampai 16 angka pertama dari bilangan yang angkanya tidak pernah berakhir. |`,
           ),
         },
       ],

@@ -741,26 +741,26 @@ Coba gunakan aktivitas berikut. Widget ini menghitung kedua ekspresi dengan floa
 
 | Myth | Reality |
 |---|---|
-| "π equals 3.14 or 22/7." | Both are rational approximations. π is irrational. |
-| "A number with a root sign is irrational." | $\sqrt{16}=4$ is rational. For a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square. |
-| "0.999… is just below 1." | It equals 1 exactly. |
-| "Irrational numbers are rare." | Almost every real number is irrational. |
-| "A long, messy decimal must be irrational." | $\frac{1}{97}$ repeats only after 96 digits and is rational. What matters is whether it ever repeats. |
-| "0.1 + 0.2 ≠ 0.3 means the computer is broken." | It is how binary floating point works. Compare with a tolerance. |
-| "∞ is a real number." | It is not. It is a symbol for "without bound". |
-| "Every number is real." | $\sqrt{-1}$ is not. It is a complex number. |`,
+| ❌ "π equals 3.14 or 22/7." | Both are rational approximations. π is irrational. |
+| ❌ "A number with a root sign is irrational." | $\sqrt{16}=4$ is rational. For a positive integer $n$, $\sqrt{n}$ is irrational exactly when $n$ is not a perfect square. |
+| ❌ "0.999… is just below 1." | It equals 1 exactly. |
+| ❌ "Irrational numbers are rare." | Almost every real number is irrational. |
+| ❌ "A long, messy decimal must be irrational." | $\frac{1}{97}$ repeats only after 96 digits and is rational. What matters is whether it ever repeats. |
+| ❌ "0.1 + 0.2 ≠ 0.3 means the computer is broken." | It is how binary floating point works. Compare with a tolerance. |
+| ❌ "∞ is a real number." | It is not. It is a symbol for "without bound". |
+| ❌ "Every number is real." | $\sqrt{-1}$ is not. It is a complex number. |`,
             T`**Kesalahan paling umum tentang bilangan real adalah delapan hal berikut, masing-masing dengan faktanya.**
 
 | Mitos | Kenyataan |
 |---|---|
-| "π sama dengan 3,14 atau 22/7." | Keduanya hampiran rasional. π irasional. |
-| "Bilangan dengan tanda akar itu irasional." | $\sqrt{16}=4$ rasional. Untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna. |
-| "0,999… sedikit di bawah 1." | Ia sama dengan 1 tepat. |
-| "Bilangan irasional itu langka." | Hampir setiap bilangan real adalah irasional. |
-| "Desimal yang panjang dan acak pasti irasional." | $\frac{1}{97}$ baru berulang setelah 96 angka dan ia rasional. Yang menentukan adalah apakah ia pernah berulang. |
-| "0,1 + 0,2 ≠ 0,3 berarti komputernya rusak." | Begitulah cara kerja floating point biner. Bandingkan dengan toleransi. |
-| "∞ adalah bilangan real." | Bukan. Ia adalah lambang untuk "tanpa batas". |
-| "Setiap bilangan itu real." | $\sqrt{-1}$ bukan. Ia bilangan kompleks. |`,
+| ❌ "π sama dengan 3,14 atau 22/7." | Keduanya hampiran rasional. π irasional. |
+| ❌ "Bilangan dengan tanda akar itu irasional." | $\sqrt{16}=4$ rasional. Untuk bilangan bulat positif $n$, $\sqrt{n}$ irasional tepat ketika $n$ bukan kuadrat sempurna. |
+| ❌ "0,999… sedikit di bawah 1." | Ia sama dengan 1 tepat. |
+| ❌ "Bilangan irasional itu langka." | Hampir setiap bilangan real adalah irasional. |
+| ❌ "Desimal yang panjang dan acak pasti irasional." | $\frac{1}{97}$ baru berulang setelah 96 angka dan ia rasional. Yang menentukan adalah apakah ia pernah berulang. |
+| ❌ "0,1 + 0,2 ≠ 0,3 berarti komputernya rusak." | Begitulah cara kerja floating point biner. Bandingkan dengan toleransi. |
+| ❌ "∞ adalah bilangan real." | Bukan. Ia adalah lambang untuk "tanpa batas". |
+| ❌ "Setiap bilangan itu real." | $\sqrt{-1}$ bukan. Ia bilangan kompleks. |`,
           ),
         },
       ],

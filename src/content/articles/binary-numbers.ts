@@ -690,28 +690,28 @@ Satu benang merah mengalir melalui semuanya: dua simbol cukup untuk menulis bila
 
 | Mistake | Correct |
 |---|---|
-| $1+1=2$ in binary | There is no digit 2 in binary: $1+1=10_2$. |
-| $10_2$ is ten | $10_2$ is two; ten is $1010_2$. |
-| A byte is 4 bits | A byte is 8 bits; 4 bits are a nibble. |
-| A byte holds 255 values | It holds 256 values, 0 to 255. |
-| ´~5´ is −5 | $\sim5=-6$: NOT is $-x-1$. |
-| Binary cannot show negative numbers | Two's complement does: $11111011_2=-5$ in 8 bits. |
-| $11111111_2$ is always 255 | Unsigned it is 255; as signed 8-bit it is −1. |
-| 1 KB is always 1024 bytes | kB is 1000 bytes; KiB is 1024 bytes. |
-| 0.1 is stored exactly in binary | $0.1=0.0\overline{0011}_2$ repeats, so a float holds only the nearest value. |`,
+| ❌ $1+1=2$ in binary | There is no digit 2 in binary: $1+1=10_2$. |
+| ❌ $10_2$ is ten | $10_2$ is two; ten is $1010_2$. |
+| ❌ A byte is 4 bits | A byte is 8 bits; 4 bits are a nibble. |
+| ❌ A byte holds 255 values | It holds 256 values, 0 to 255. |
+| ❌ ´~5´ is −5 | $\sim5=-6$: NOT is $-x-1$. |
+| ❌ Binary cannot show negative numbers | Two's complement does: $11111011_2=-5$ in 8 bits. |
+| ❌ $11111111_2$ is always 255 | Unsigned it is 255; as signed 8-bit it is −1. |
+| ❌ 1 KB is always 1024 bytes | kB is 1000 bytes; KiB is 1024 bytes. |
+| ❌ 0.1 is stored exactly in binary | $0.1=0.0\overline{0011}_2$ repeats, so a float holds only the nearest value. |`,
             T`**Kesalahan paling umum pada bilangan biner adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar dan bilangan yang menunjukkan alasannya.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| $1+1=2$ dalam biner | Tidak ada angka 2 dalam biner: $1+1=10_2$. |
-| $10_2$ adalah sepuluh | $10_2$ adalah dua; sepuluh adalah $1010_2$. |
-| Satu byte adalah 4 bit | Satu byte adalah 8 bit; 4 bit adalah satu nibble. |
-| Satu byte memuat 255 nilai | Ia memuat 256 nilai, 0 sampai 255. |
-| ´~5´ adalah −5 | $\sim5=-6$: NOT adalah $-x-1$. |
-| Biner tidak dapat menunjukkan bilangan negatif | Komplemen dua dapat: $11111011_2=-5$ dalam 8 bit. |
-| $11111111_2$ selalu 255 | Tanpa tanda ia 255; sebagai 8 bit bertanda ia −1. |
-| 1 KB selalu 1024 byte | kB adalah 1000 byte; KiB adalah 1024 byte. |
-| 0,1 disimpan dengan tepat dalam biner | $0{,}1=0{,}0\overline{0011}_2$ berulang, sehingga float hanya menyimpan nilai terdekat. |`,
+| ❌ $1+1=2$ dalam biner | Tidak ada angka 2 dalam biner: $1+1=10_2$. |
+| ❌ $10_2$ adalah sepuluh | $10_2$ adalah dua; sepuluh adalah $1010_2$. |
+| ❌ Satu byte adalah 4 bit | Satu byte adalah 8 bit; 4 bit adalah satu nibble. |
+| ❌ Satu byte memuat 255 nilai | Ia memuat 256 nilai, 0 sampai 255. |
+| ❌ ´~5´ adalah −5 | $\sim5=-6$: NOT adalah $-x-1$. |
+| ❌ Biner tidak dapat menunjukkan bilangan negatif | Komplemen dua dapat: $11111011_2=-5$ dalam 8 bit. |
+| ❌ $11111111_2$ selalu 255 | Tanpa tanda ia 255; sebagai 8 bit bertanda ia −1. |
+| ❌ 1 KB selalu 1024 byte | kB adalah 1000 byte; KiB adalah 1024 byte. |
+| ❌ 0,1 disimpan dengan tepat dalam biner | $0{,}1=0{,}0\overline{0011}_2$ berulang, sehingga float hanya menyimpan nilai terdekat. |`,
           ),
         },
       ],

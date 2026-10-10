@@ -759,28 +759,28 @@ Python's ´math.gcd´ and ´math.lcm´ (from Python 3.9) take any size of intege
 
 | Mistake | Correct |
 |---|---|
-| $-3^2=9$ | $-3^2=-(3\cdot3)=-9$. Only $(-3)^2=9$. |
-| $5-(-3)=2$ | $5-(-3)=5+3=8$. Subtracting a negative adds. |
-| $-5-3=-2$ | $-5-3=-5+(-3)=-8$. |
-| $(-2)(-3)=-6$ | Same signs give a positive: $6$. |
-| $-7>-3$ because $7>3$ | The order reverses for negatives: $-7<-3$. |
-| 0 is a positive integer | 0 is neither positive nor negative. |
-| 1 is a prime number | 1 has one divisor; the primes start at 2. |
-| $5\div0=0$ | Division by zero is undefined. |
-| $\operatorname{lcm}$ and $\gcd$ swapped | GCD divides both numbers and is the smaller; the LCM is a multiple of both and is the larger: $\gcd(12,18)=6$, $\operatorname{lcm}=36$. |`,
+| ❌ $-3^2=9$ | $-3^2=-(3\cdot3)=-9$. Only $(-3)^2=9$. |
+| ❌ $5-(-3)=2$ | $5-(-3)=5+3=8$. Subtracting a negative adds. |
+| ❌ $-5-3=-2$ | $-5-3=-5+(-3)=-8$. |
+| ❌ $(-2)(-3)=-6$ | Same signs give a positive: $6$. |
+| ❌ $-7>-3$ because $7>3$ | The order reverses for negatives: $-7<-3$. |
+| ❌ 0 is a positive integer | 0 is neither positive nor negative. |
+| ❌ 1 is a prime number | 1 has one divisor; the primes start at 2. |
+| ❌ $5\div0=0$ | Division by zero is undefined. |
+| ❌ $\operatorname{lcm}$ and $\gcd$ swapped | GCD divides both numbers and is the smaller; the LCM is a multiple of both and is the larger: $\gcd(12,18)=6$, $\operatorname{lcm}=36$. |`,
             T`**Kesalahan paling umum pada bilangan bulat adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar dan bilangan yang menunjukkan alasannya.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| $-3^2=9$ | $-3^2=-(3\cdot3)=-9$. Hanya $(-3)^2=9$. |
-| $5-(-3)=2$ | $5-(-3)=5+3=8$. Mengurangi bilangan negatif berarti menambah. |
-| $-5-3=-2$ | $-5-3=-5+(-3)=-8$. |
-| $(-2)(-3)=-6$ | Tanda sama menghasilkan positif: $6$. |
-| $-7>-3$ karena $7>3$ | Urutannya berbalik untuk bilangan negatif: $-7<-3$. |
-| 0 adalah bilangan bulat positif | 0 bukan positif dan bukan negatif. |
-| 1 adalah bilangan prima | 1 hanya punya satu pembagi; bilangan prima dimulai dari 2. |
-| $5\div0=0$ | Pembagian dengan nol tidak terdefinisi. |
-| $\operatorname{lcm}$ dan $\gcd$ tertukar | FPB membagi kedua bilangan dan lebih kecil; KPK adalah kelipatan keduanya dan lebih besar: $\gcd(12,18)=6$, $\operatorname{lcm}=36$. |`,
+| ❌ $-3^2=9$ | $-3^2=-(3\cdot3)=-9$. Hanya $(-3)^2=9$. |
+| ❌ $5-(-3)=2$ | $5-(-3)=5+3=8$. Mengurangi bilangan negatif berarti menambah. |
+| ❌ $-5-3=-2$ | $-5-3=-5+(-3)=-8$. |
+| ❌ $(-2)(-3)=-6$ | Tanda sama menghasilkan positif: $6$. |
+| ❌ $-7>-3$ karena $7>3$ | Urutannya berbalik untuk bilangan negatif: $-7<-3$. |
+| ❌ 0 adalah bilangan bulat positif | 0 bukan positif dan bukan negatif. |
+| ❌ 1 adalah bilangan prima | 1 hanya punya satu pembagi; bilangan prima dimulai dari 2. |
+| ❌ $5\div0=0$ | Pembagian dengan nol tidak terdefinisi. |
+| ❌ $\operatorname{lcm}$ dan $\gcd$ tertukar | FPB membagi kedua bilangan dan lebih kecil; KPK adalah kelipatan keduanya dan lebih besar: $\gcd(12,18)=6$, $\operatorname{lcm}=36$. |`,
           ),
         },
       ],

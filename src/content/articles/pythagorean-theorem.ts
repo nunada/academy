@@ -466,28 +466,28 @@ Sebuah kisah populer mengatakan bahwa bangsa Yunani terguncang oleh penemuan bah
 
 | Mistake | Correct |
 |---|---|
-| $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$; the missing $2ab$ is exactly what the proof by rearranging accounts for. |
-| $c=a+b$ | $c=\sqrt{a^2+b^2}$ is shorter than $a+b$: the hypotenuse is a shortcut. |
-| $c^2=25$, so $c=25$ | Take the square root: $c=5$. |
-| A missing leg is $\sqrt{c^2+a^2}$ | Subtract: $b=\sqrt{c^2-a^2}$. |
-| $\sqrt{a^2+b^2}=\sqrt{a^2}+\sqrt{b^2}$ | A root of a sum is not the sum of the roots: $\sqrt{9+16}=5$, but $\sqrt9+\sqrt{16}=7$. |
-| Rounding early: $c^2=2$ so $c=1.41$ | $\sqrt2$ is irrational; keep $\sqrt2$ until the last step. |
-| Every right triangle has whole-number sides | Legs $1$ and $1$ give $\sqrt2$; whole-number sides are the special case of triples. |
-| The theorem tells whether a triangle looks right-angled | It only decides when the numbers match exactly; test with $a^2+b^2=c^2$, not by eye. |
-| Mixing units | Convert first: legs of $3$ ft and $40$ in need one common unit. |`,
+| ❌ $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$; the missing $2ab$ is exactly what the proof by rearranging accounts for. |
+| ❌ $c=a+b$ | $c=\sqrt{a^2+b^2}$ is shorter than $a+b$: the hypotenuse is a shortcut. |
+| ❌ $c^2=25$, so $c=25$ | Take the square root: $c=5$. |
+| ❌ A missing leg is $\sqrt{c^2+a^2}$ | Subtract: $b=\sqrt{c^2-a^2}$. |
+| ❌ $\sqrt{a^2+b^2}=\sqrt{a^2}+\sqrt{b^2}$ | A root of a sum is not the sum of the roots: $\sqrt{9+16}=5$, but $\sqrt9+\sqrt{16}=7$. |
+| ❌ Rounding early: $c^2=2$ so $c=1.41$ | $\sqrt2$ is irrational; keep $\sqrt2$ until the last step. |
+| ❌ Every right triangle has whole-number sides | Legs $1$ and $1$ give $\sqrt2$; whole-number sides are the special case of triples. |
+| ❌ The theorem tells whether a triangle looks right-angled | It only decides when the numbers match exactly; test with $a^2+b^2=c^2$, not by eye. |
+| ❌ Mixing units | Convert first: legs of $3$ ft and $40$ in need one common unit. |`,
             T`**Kesalahan paling umum pada teorema ini adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$; $2ab$ yang hilang itulah yang dijelaskan oleh bukti dengan menata ulang. |
-| $c=a+b$ | $c=\sqrt{a^2+b^2}$ lebih pendek daripada $a+b$: hipotenusa adalah jalan pintas. |
-| $c^2=25$, sehingga $c=25$ | Tarik akar kuadrat: $c=5$. |
-| Sisi tegak yang hilang adalah $\sqrt{c^2+a^2}$ | Kurangkan: $b=\sqrt{c^2-a^2}$. |
-| $\sqrt{a^2+b^2}=\sqrt{a^2}+\sqrt{b^2}$ | Akar dari jumlah bukan jumlah akar: $\sqrt{9+16}=5$, tetapi $\sqrt9+\sqrt{16}=7$. |
-| Membulatkan terlalu dini: $c^2=2$ sehingga $c=1{,}41$ | $\sqrt2$ irasional; biarkan $\sqrt2$ sampai langkah terakhir. |
-| Setiap segitiga siku-siku bersisi bilangan bulat | Sisi tegak $1$ dan $1$ memberi $\sqrt2$; sisi bilangan bulat adalah kasus khusus tripel. |
-| Teorema menentukan apakah segitiga tampak siku-siku | Ia hanya menentukan bila angkanya cocok persis; uji dengan $a^2+b^2=c^2$, bukan dengan mata. |
-| Satuan campur aduk | Ubah dulu: sisi tegak $3$ kaki dan $40$ inci membutuhkan satu satuan yang sama. |`,
+| ❌ $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$; $2ab$ yang hilang itulah yang dijelaskan oleh bukti dengan menata ulang. |
+| ❌ $c=a+b$ | $c=\sqrt{a^2+b^2}$ lebih pendek daripada $a+b$: hipotenusa adalah jalan pintas. |
+| ❌ $c^2=25$, sehingga $c=25$ | Tarik akar kuadrat: $c=5$. |
+| ❌ Sisi tegak yang hilang adalah $\sqrt{c^2+a^2}$ | Kurangkan: $b=\sqrt{c^2-a^2}$. |
+| ❌ $\sqrt{a^2+b^2}=\sqrt{a^2}+\sqrt{b^2}$ | Akar dari jumlah bukan jumlah akar: $\sqrt{9+16}=5$, tetapi $\sqrt9+\sqrt{16}=7$. |
+| ❌ Membulatkan terlalu dini: $c^2=2$ sehingga $c=1{,}41$ | $\sqrt2$ irasional; biarkan $\sqrt2$ sampai langkah terakhir. |
+| ❌ Setiap segitiga siku-siku bersisi bilangan bulat | Sisi tegak $1$ dan $1$ memberi $\sqrt2$; sisi bilangan bulat adalah kasus khusus tripel. |
+| ❌ Teorema menentukan apakah segitiga tampak siku-siku | Ia hanya menentukan bila angkanya cocok persis; uji dengan $a^2+b^2=c^2$, bukan dengan mata. |
+| ❌ Satuan campur aduk | Ubah dulu: sisi tegak $3$ kaki dan $40$ inci membutuhkan satu satuan yang sama. |`,
           ),
         },
       ],

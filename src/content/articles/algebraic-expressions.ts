@@ -609,28 +609,28 @@ Uji numerik seperti ´f(2)´ dapat menangkap penyederhanaan yang salah tetapi ti
 
 | Mistake | Correct |
 |---|---|
-| $2x+3x=5x^2$ | $2x+3x=5x$. Adding like terms changes the coefficient, not the exponent. |
-| $(x+3)^2=x^2+9$ | $(x+3)^2=x^2+6x+9$. Check at $x=1$: 16, not 10. |
-| $3(x+2)=3x+2$ | $3(x+2)=3x+6$. The 3 multiplies every term. |
-| $-(x-4)=-x-4$ | $-(x-4)=-x+4$. The minus flips every sign inside. |
-| $3x+5x^2=8x^3$ | Unlike terms stay apart: $3x+5x^2$ is already simplest. |
-| $\dfrac{x+3}{3}=x+1$ | Terms do not cancel: $\dfrac{x+3}{3}=\dfrac x3+1$. |
-| $\dfrac{x^2-9}{x+3}=x-9$ | Factor first: it is $x-3$ (for $x\neq-3$). |
-| $x^2-16=(x-4)^2$ | $x^2-16=(x-4)(x+4)$. A difference of squares has two different signs. |
-| $-x^2=9$ at $x=-3$ | $-x^2=-(-3)^2=-9$. Only $(-x)^2$ is positive. |`,
+| ❌ $2x+3x=5x^2$ | $2x+3x=5x$. Adding like terms changes the coefficient, not the exponent. |
+| ❌ $(x+3)^2=x^2+9$ | $(x+3)^2=x^2+6x+9$. Check at $x=1$: 16, not 10. |
+| ❌ $3(x+2)=3x+2$ | $3(x+2)=3x+6$. The 3 multiplies every term. |
+| ❌ $-(x-4)=-x-4$ | $-(x-4)=-x+4$. The minus flips every sign inside. |
+| ❌ $3x+5x^2=8x^3$ | Unlike terms stay apart: $3x+5x^2$ is already simplest. |
+| ❌ $\dfrac{x+3}{3}=x+1$ | Terms do not cancel: $\dfrac{x+3}{3}=\dfrac x3+1$. |
+| ❌ $\dfrac{x^2-9}{x+3}=x-9$ | Factor first: it is $x-3$ (for $x\neq-3$). |
+| ❌ $x^2-16=(x-4)^2$ | $x^2-16=(x-4)(x+4)$. A difference of squares has two different signs. |
+| ❌ $-x^2=9$ at $x=-3$ | $-x^2=-(-3)^2=-9$. Only $(-x)^2$ is positive. |`,
             T`**Kesalahan paling umum pada bentuk aljabar adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar dan bilangan yang menunjukkan alasannya.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| $2x+3x=5x^2$ | $2x+3x=5x$. Menjumlahkan suku sejenis mengubah koefisien, bukan eksponen. |
-| $(x+3)^2=x^2+9$ | $(x+3)^2=x^2+6x+9$. Periksa pada $x=1$: 16, bukan 10. |
-| $3(x+2)=3x+2$ | $3(x+2)=3x+6$. Angka 3 mengalikan setiap suku. |
-| $-(x-4)=-x-4$ | $-(x-4)=-x+4$. Tanda minus membalik setiap tanda di dalam. |
-| $3x+5x^2=8x^3$ | Suku tak sejenis tetap terpisah: $3x+5x^2$ sudah paling sederhana. |
-| $\dfrac{x+3}{3}=x+1$ | Suku tidak dicoret: $\dfrac{x+3}{3}=\dfrac x3+1$. |
-| $\dfrac{x^2-9}{x+3}=x-9$ | Faktorkan dulu: hasilnya $x-3$ (untuk $x\neq-3$). |
-| $x^2-16=(x-4)^2$ | $x^2-16=(x-4)(x+4)$. Selisih dua kuadrat bertanda berbeda di kedua faktor. |
-| $-x^2=9$ pada $x=-3$ | $-x^2=-(-3)^2=-9$. Hanya $(-x)^2$ yang positif. |`,
+| ❌ $2x+3x=5x^2$ | $2x+3x=5x$. Menjumlahkan suku sejenis mengubah koefisien, bukan eksponen. |
+| ❌ $(x+3)^2=x^2+9$ | $(x+3)^2=x^2+6x+9$. Periksa pada $x=1$: 16, bukan 10. |
+| ❌ $3(x+2)=3x+2$ | $3(x+2)=3x+6$. Angka 3 mengalikan setiap suku. |
+| ❌ $-(x-4)=-x-4$ | $-(x-4)=-x+4$. Tanda minus membalik setiap tanda di dalam. |
+| ❌ $3x+5x^2=8x^3$ | Suku tak sejenis tetap terpisah: $3x+5x^2$ sudah paling sederhana. |
+| ❌ $\dfrac{x+3}{3}=x+1$ | Suku tidak dicoret: $\dfrac{x+3}{3}=\dfrac x3+1$. |
+| ❌ $\dfrac{x^2-9}{x+3}=x-9$ | Faktorkan dulu: hasilnya $x-3$ (untuk $x\neq-3$). |
+| ❌ $x^2-16=(x-4)^2$ | $x^2-16=(x-4)(x+4)$. Selisih dua kuadrat bertanda berbeda di kedua faktor. |
+| ❌ $-x^2=9$ pada $x=-3$ | $-x^2=-(-3)^2=-9$. Hanya $(-x)^2$ yang positif. |`,
           ),
         },
       ],

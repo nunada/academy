@@ -651,28 +651,28 @@ Kini bilangan yang sama tampil sebagai pecahan dalam resep, sebagai desimal pada
 
 | Mistake | Correct |
 |---|---|
-| $\frac12+\frac13=\frac25$ | $\frac12+\frac13=\frac56$. Never add the denominators. |
-| $\frac{2+3}{2+4}=\frac34$ | Terms do not cancel: $\frac{5}{6}$ is already simplest. |
-| $\frac13<\frac14$ because $3<4$ | A larger denominator means smaller parts: $\frac13>\frac14$. |
-| $\frac34\div\frac9{10}=\frac{3\cdot9}{4\cdot10}$ | Flip the divisor: $\frac34\cdot\frac{10}{9}=\frac56$. |
-| $\frac{a}{b}\cdot\frac{c}{d}=\frac{ac}{b+d}$ | Multiply the bottoms too: $\frac{ac}{bd}$. |
-| $-\frac{3}{4}=\frac{-3}{-4}$ | $\frac{-3}{-4}=+\frac34$. Move one minus sign only. |
-| $\frac50=0$ | A denominator of 0 is not allowed: $\frac50$ is not a number. |
-| $3\frac12=3\cdot\frac12$ | $3\frac12=3+\frac12=\frac72$. |
-| $0.\overline{3}\neq\frac13$ because its expansion is infinite | $0.\overline{3}=\frac13$ exactly: a repeating decimal is a fraction. |`,
+| ❌ $\frac12+\frac13=\frac25$ | $\frac12+\frac13=\frac56$. Never add the denominators. |
+| ❌ $\frac{2+3}{2+4}=\frac34$ | Terms do not cancel: $\frac{5}{6}$ is already simplest. |
+| ❌ $\frac13<\frac14$ because $3<4$ | A larger denominator means smaller parts: $\frac13>\frac14$. |
+| ❌ $\frac34\div\frac9{10}=\frac{3\cdot9}{4\cdot10}$ | Flip the divisor: $\frac34\cdot\frac{10}{9}=\frac56$. |
+| ❌ $\frac{a}{b}\cdot\frac{c}{d}=\frac{ac}{b+d}$ | Multiply the bottoms too: $\frac{ac}{bd}$. |
+| ❌ $-\frac{3}{4}=\frac{-3}{-4}$ | $\frac{-3}{-4}=+\frac34$. Move one minus sign only. |
+| ❌ $\frac50=0$ | A denominator of 0 is not allowed: $\frac50$ is not a number. |
+| ❌ $3\frac12=3\cdot\frac12$ | $3\frac12=3+\frac12=\frac72$. |
+| ❌ $0.\overline{3}\neq\frac13$ because its expansion is infinite | $0.\overline{3}=\frac13$ exactly: a repeating decimal is a fraction. |`,
             T`**Kesalahan paling umum pada pecahan adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar dan bilangan yang menunjukkan alasannya.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| $\frac12+\frac13=\frac25$ | $\frac12+\frac13=\frac56$. Jangan pernah menjumlahkan penyebut. |
-| $\frac{2+3}{2+4}=\frac34$ | Suku tidak dicoret: $\frac{5}{6}$ sudah paling sederhana. |
-| $\frac13<\frac14$ karena $3<4$ | Penyebut lebih besar berarti potongan lebih kecil: $\frac13>\frac14$. |
-| $\frac34\div\frac9{10}=\frac{3\cdot9}{4\cdot10}$ | Balik pembagi: $\frac34\cdot\frac{10}{9}=\frac56$. |
-| $\frac{a}{b}\cdot\frac{c}{d}=\frac{ac}{b+d}$ | Kalikan juga penyebutnya: $\frac{ac}{bd}$. |
-| $-\frac{3}{4}=\frac{-3}{-4}$ | $\frac{-3}{-4}=+\frac34$. Pindahkan satu tanda minus saja. |
-| $\frac50=0$ | Penyebut 0 tidak diperbolehkan: $\frac50$ bukan bilangan. |
-| $3\frac12=3\cdot\frac12$ | $3\frac12=3+\frac12=\frac72$. |
-| $0{,}\overline{3}\neq\frac13$ karena ekspansinya tak berhingga | $0{,}\overline{3}=\frac13$ tepat: desimal berulang adalah pecahan. |`,
+| ❌ $\frac12+\frac13=\frac25$ | $\frac12+\frac13=\frac56$. Jangan pernah menjumlahkan penyebut. |
+| ❌ $\frac{2+3}{2+4}=\frac34$ | Suku tidak dicoret: $\frac{5}{6}$ sudah paling sederhana. |
+| ❌ $\frac13<\frac14$ karena $3<4$ | Penyebut lebih besar berarti potongan lebih kecil: $\frac13>\frac14$. |
+| ❌ $\frac34\div\frac9{10}=\frac{3\cdot9}{4\cdot10}$ | Balik pembagi: $\frac34\cdot\frac{10}{9}=\frac56$. |
+| ❌ $\frac{a}{b}\cdot\frac{c}{d}=\frac{ac}{b+d}$ | Kalikan juga penyebutnya: $\frac{ac}{bd}$. |
+| ❌ $-\frac{3}{4}=\frac{-3}{-4}$ | $\frac{-3}{-4}=+\frac34$. Pindahkan satu tanda minus saja. |
+| ❌ $\frac50=0$ | Penyebut 0 tidak diperbolehkan: $\frac50$ bukan bilangan. |
+| ❌ $3\frac12=3\cdot\frac12$ | $3\frac12=3+\frac12=\frac72$. |
+| ❌ $0{,}\overline{3}\neq\frac13$ karena ekspansinya tak berhingga | $0{,}\overline{3}=\frac13$ tepat: desimal berulang adalah pecahan. |`,
           ),
         },
       ],

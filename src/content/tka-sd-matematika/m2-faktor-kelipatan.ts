@@ -183,8 +183,8 @@ export const module2: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Factors and Primes', id: 'Awas, Jebakan!: Faktor dan Bilangan Prima' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| The factors of 12 are 2, 3, 4, 6. | The factors of 12 are 1, 2, 3, 4, 6, 12. The number 1 and the number itself are always factors. |\n| 1 is a prime number. | 1 is not prime and not composite, because it has only one factor: 1. A prime has exactly two factors. |\n| 9 is prime because it is odd. | 9 = 3 × 3, so 9 is composite. Odd does not mean prime. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| Faktor dari 12 adalah 2, 3, 4, 6. | Faktor dari 12 adalah 1, 2, 3, 4, 6, 12. Angka 1 dan bilangan itu sendiri selalu menjadi faktor. |\n| 1 adalah bilangan prima. | 1 bukan prima dan bukan komposit, karena faktornya hanya satu: 1. Bilangan prima punya tepat dua faktor. |\n| 9 adalah bilangan prima karena ganjil. | 9 = 3 × 3, jadi 9 komposit. Ganjil belum tentu prima. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ The factors of 12 are 2, 3, 4, 6. | The factors of 12 are 1, 2, 3, 4, 6, 12. The number 1 and the number itself are always factors. |\n| ❌ 1 is a prime number. | 1 is not prime and not composite, because it has only one factor: 1. A prime has exactly two factors. |\n| ❌ 9 is prime because it is odd. | 9 = 3 × 3, so 9 is composite. Odd does not mean prime. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ Faktor dari 12 adalah 2, 3, 4, 6. | Faktor dari 12 adalah 1, 2, 3, 4, 6, 12. Angka 1 dan bilangan itu sendiri selalu menjadi faktor. |\n| ❌ 1 adalah bilangan prima. | 1 bukan prima dan bukan komposit, karena faktornya hanya satu: 1. Bilangan prima punya tepat dua faktor. |\n| ❌ 9 adalah bilangan prima karena ganjil. | 9 = 3 × 3, jadi 9 komposit. Ganjil belum tentu prima. |',
               },
             },
             {
@@ -382,8 +382,8 @@ export const module2: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Prime Factorization and the GCF', id: 'Awas, Jebakan!: Faktorisasi Prima dan FPB' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| $12 = 3 \\times 4$ is the prime factorization. | Every number at the tips must be prime. 4 can still be broken, so $12 = 2 \\times 2 \\times 3$. |\n| GCF of 12 and 18: use all the primes, $2 \\times 2 \\times 3 \\times 3 = 36$. | Use only the primes that are in both numbers: $2 \\times 3 = 6$. |\n| 8 and 15 have no GCF. | They always have one. 1 is a factor of every number, so the GCF of 8 and 15 is 1. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| $12 = 3 \\times 4$ adalah faktorisasi prima. | Semua bilangan di ujung harus prima. 4 masih bisa dipecah, jadi $12 = 2 \\times 2 \\times 3$. |\n| FPB 12 dan 18: pakai semua bilangan prima, $2 \\times 2 \\times 3 \\times 3 = 36$. | Pakai hanya bilangan prima yang ada di kedua bilangan: $2 \\times 3 = 6$. |\n| 8 dan 15 tidak punya FPB. | Selalu ada. 1 adalah faktor semua bilangan, jadi FPB dari 8 dan 15 adalah 1. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ $12 = 3 \\times 4$ is the prime factorization. | Every number at the tips must be prime. 4 can still be broken, so $12 = 2 \\times 2 \\times 3$. |\n| ❌ GCF of 12 and 18: use all the primes, $2 \\times 2 \\times 3 \\times 3 = 36$. | Use only the primes that are in both numbers: $2 \\times 3 = 6$. |\n| ❌ 8 and 15 have no GCF. | They always have one. 1 is a factor of every number, so the GCF of 8 and 15 is 1. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ $12 = 3 \\times 4$ adalah faktorisasi prima. | Semua bilangan di ujung harus prima. 4 masih bisa dipecah, jadi $12 = 2 \\times 2 \\times 3$. |\n| ❌ FPB 12 dan 18: pakai semua bilangan prima, $2 \\times 2 \\times 3 \\times 3 = 36$. | Pakai hanya bilangan prima yang ada di kedua bilangan: $2 \\times 3 = 6$. |\n| ❌ 8 dan 15 tidak punya FPB. | Selalu ada. 1 adalah faktor semua bilangan, jadi FPB dari 8 dan 15 adalah 1. |',
               },
             },
             {
@@ -698,8 +698,8 @@ export const module2: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Multiples and the LCM', id: 'Awas, Jebakan!: Kelipatan dan KPK' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| The LCM of 4 and 6 is 2. | 2 divides both numbers, so it is a factor (that is the GCF). The LCM looks for multiples: it is 12. |\n| The multiples of 5 are 1 and 5. | The multiples of 5 are 5, 10, 15, ... The numbers 1 and 5 are its factors. |\n| The LCM of 3 and 9 is 27 (3 × 9). | Look for the smallest one: 9 is already a multiple of 3, so the LCM is 9. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| KPK dari 4 dan 6 adalah 2. | 2 membagi kedua bilangan, jadi itu faktor (itulah FPB). KPK mencari kelipatan: yaitu 12. |\n| Kelipatan 5 adalah 1 dan 5. | Kelipatan 5 adalah 5, 10, 15, ... Angka 1 dan 5 adalah faktornya. |\n| KPK dari 3 dan 9 adalah 27 (3 × 9). | Cari yang terkecil: 9 sudah kelipatan 3, jadi KPK-nya 9. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ The LCM of 4 and 6 is 2. | 2 divides both numbers, so it is a factor (that is the GCF). The LCM looks for multiples: it is 12. |\n| ❌ The multiples of 5 are 1 and 5. | The multiples of 5 are 5, 10, 15, ... The numbers 1 and 5 are its factors. |\n| ❌ The LCM of 3 and 9 is 27 (3 × 9). | Look for the smallest one: 9 is already a multiple of 3, so the LCM is 9. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ KPK dari 4 dan 6 adalah 2. | 2 membagi kedua bilangan, jadi itu faktor (itulah FPB). KPK mencari kelipatan: yaitu 12. |\n| ❌ Kelipatan 5 adalah 1 dan 5. | Kelipatan 5 adalah 5, 10, 15, ... Angka 1 dan 5 adalah faktornya. |\n| ❌ KPK dari 3 dan 9 adalah 27 (3 × 9). | Cari yang terkecil: 9 sudah kelipatan 3, jadi KPK-nya 9. |',
               },
             },
             {
@@ -915,8 +915,8 @@ export const module2: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Choosing the Wrong Tool', id: 'Awas, Jebakan!: Salah Memilih Alat' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| Two lights flash every 6 and 8 seconds. They flash together again after 2 seconds (the GCF). | "Together again" means the LCM, which is 24 seconds. Together cannot happen sooner than 6 seconds. |\n| 12 chocolates and 18 strawberry sweets, the most bags: LCM = 36 bags. | "The most bags" means the GCF = 6. There cannot be more bags than there are chocolates. |\n| The question asks what is in each bag, and the answer is 6 (the GCF). | The GCF = 6 is the number of bags. In each bag: 12 ÷ 6 = 2 chocolates and 18 ÷ 6 = 3 strawberry sweets. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| Dua lampu menyala tiap 6 dan 8 detik. Menyala bersama lagi setelah 2 detik (FPB). | "Bersama lagi" berarti KPK, yaitu 24 detik. Bersama tidak mungkin lebih cepat dari 6 detik. |\n| 12 cokelat dan 18 permen stroberi, paling banyak kantong: KPK = 36 kantong. | "Paling banyak kantong" berarti FPB = 6. Kantong tidak mungkin lebih banyak daripada cokelat yang ada. |\n| Ditanya isi tiap kantong, dijawab 6 (hasil FPB). | FPB = 6 adalah banyak kantong. Isi tiap kantong: 12 ÷ 6 = 2 cokelat dan 18 ÷ 6 = 3 permen stroberi. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ Two lights flash every 6 and 8 seconds. They flash together again after 2 seconds (the GCF). | "Together again" means the LCM, which is 24 seconds. Together cannot happen sooner than 6 seconds. |\n| ❌ 12 chocolates and 18 strawberry sweets, the most bags: LCM = 36 bags. | "The most bags" means the GCF = 6. There cannot be more bags than there are chocolates. |\n| ❌ The question asks what is in each bag, and the answer is 6 (the GCF). | The GCF = 6 is the number of bags. In each bag: 12 ÷ 6 = 2 chocolates and 18 ÷ 6 = 3 strawberry sweets. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ Dua lampu menyala tiap 6 dan 8 detik. Menyala bersama lagi setelah 2 detik (FPB). | "Bersama lagi" berarti KPK, yaitu 24 detik. Bersama tidak mungkin lebih cepat dari 6 detik. |\n| ❌ 12 cokelat dan 18 permen stroberi, paling banyak kantong: KPK = 36 kantong. | "Paling banyak kantong" berarti FPB = 6. Kantong tidak mungkin lebih banyak daripada cokelat yang ada. |\n| ❌ Ditanya isi tiap kantong, dijawab 6 (hasil FPB). | FPB = 6 adalah banyak kantong. Isi tiap kantong: 12 ÷ 6 = 2 cokelat dan 18 ÷ 6 = 3 permen stroberi. |',
               },
             },
             {

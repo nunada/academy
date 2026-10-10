@@ -316,6 +316,25 @@ for (const a of loaded) {
   if (distinct.size < want) flag(w, `needs inline links to at least ${want} other article(s) in its text, has ${distinct.size}`)
 }
 
+/* ------------------------------------------------ wrong-and-right tables */
+
+// In a table of mistakes (or myths) the wrong statement carries a red cross, so a reader who
+// skims the first column still sees which side is the error.
+const WRONG_HEADER = /^\| *(Mistake \| Correct|Kesalahan \| Yang benar|Myth \| Reality|Mitos \| Kenyataan) *\|$/
+for (const a of loaded)
+  for (const sec of a.sections)
+    sec.blocks.forEach((b, i) => {
+      if (b.kind !== 'text' && b.kind !== 'callout') return
+      for (const lang of LANGS) {
+        const lines = b.text[lang].split('\n')
+        lines.forEach((line, k) => {
+          if (!WRONG_HEADER.test(line.trim())) return
+          for (let j = k + 2; j < lines.length && lines[j].startsWith('|'); j++)
+            if (!lines[j].startsWith('| ❌ ')) flag(a.id + '/' + sec.id + '[' + i + ']', 'a row of the ' + line.trim() + ' table must start with "❌ " (' + lang + '): ' + lines[j].slice(0, 50))
+        })
+      }
+    })
+
 /* ------------------------------------------------ keyword cannibalization */
 
 // Two pages that answer the same query compete with each other in search results and in

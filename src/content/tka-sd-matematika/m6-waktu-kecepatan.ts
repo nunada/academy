@@ -150,8 +150,8 @@ export const module6: Module = {
               id: 'c3',
               title: L('Watch Out!: Mixed-Up Hands', 'Awas, Jebakan!: Jarum Tertukar'),
               body: L(
-                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| The long hand points to 6, so it is 6 o\'clock (the hands were swapped) | The long hand on 6 means $6 \\times 5 = 30$ minutes. The hour comes from the short hand |\n| The long hand points to 7, so it is 7 minutes past | The 7 means $7 \\times 5 = 35$ minutes past |\n| 15.30 is the same as 5:30 in the afternoon | $15 - 12 = 3$, so 15.30 is 3:30 in the afternoon |',
-                'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| Jarum panjang menunjuk angka 6, jadi pukul 6 (jarum tertukar) | Jarum panjang di angka 6 berarti $6 \\times 5 = 30$ menit. Jamnya dilihat dari jarum pendek |\n| Jarum panjang menunjuk angka 7, jadi lewat 7 menit | Angka 7 berarti lewat $7 \\times 5 = 35$ menit |\n| Pukul 15.30 sama dengan pukul 5.30 sore | $15 - 12 = 3$, jadi pukul 15.30 adalah pukul 3.30 sore |',
+                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| ❌ The long hand points to 6, so it is 6 o\'clock (the hands were swapped) | The long hand on 6 means $6 \\times 5 = 30$ minutes. The hour comes from the short hand |\n| ❌ The long hand points to 7, so it is 7 minutes past | The 7 means $7 \\times 5 = 35$ minutes past |\n| ❌ 15.30 is the same as 5:30 in the afternoon | $15 - 12 = 3$, so 15.30 is 3:30 in the afternoon |',
+                'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| ❌ Jarum panjang menunjuk angka 6, jadi pukul 6 (jarum tertukar) | Jarum panjang di angka 6 berarti $6 \\times 5 = 30$ menit. Jamnya dilihat dari jarum pendek |\n| ❌ Jarum panjang menunjuk angka 7, jadi lewat 7 menit | Angka 7 berarti lewat $7 \\times 5 = 35$ menit |\n| ❌ Pukul 15.30 sama dengan pukul 5.30 sore | $15 - 12 = 3$, jadi pukul 15.30 adalah pukul 3.30 sore |',
               ),
             },
             {
@@ -324,8 +324,8 @@ export const module6: Module = {
               id: 'c3',
               title: L('Watch Out!: Time Is Not Counted in Hundreds', 'Awas, Jebakan!: Waktu Tidak Dihitung per Seratus'),
               body: L(
-                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| $1.5$ hours = 1 hour 50 minutes | $1.5$ hours = 1 hour + half an hour = 1 hour 30 minutes |\n| 09.15 $-$ 08.45 = 0.70, so 70 minutes | 08.45 to 09.00 is 15 minutes, and 09.00 to 09.15 is 15 minutes, so 30 minutes |\n| 1 hour 45 minutes + 30 minutes = 1 hour 75 minutes | $45 + 30 = 75$ minutes = 1 hour 15 minutes, so the answer is 2 hours 15 minutes |',
-                'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| $1{,}5$ jam = 1 jam 50 menit | $1{,}5$ jam = 1 jam + setengah jam = 1 jam 30 menit |\n| 09.15 $-$ 08.45 = 0,70, jadi 70 menit | 08.45 ke 09.00 ada 15 menit, dan 09.00 ke 09.15 ada 15 menit, jadi 30 menit |\n| 1 jam 45 menit + 30 menit = 1 jam 75 menit | $45 + 30 = 75$ menit = 1 jam 15 menit, jadi jawabannya 2 jam 15 menit |',
+                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| ❌ $1.5$ hours = 1 hour 50 minutes | $1.5$ hours = 1 hour + half an hour = 1 hour 30 minutes |\n| ❌ 09.15 $-$ 08.45 = 0.70, so 70 minutes | 08.45 to 09.00 is 15 minutes, and 09.00 to 09.15 is 15 minutes, so 30 minutes |\n| ❌ 1 hour 45 minutes + 30 minutes = 1 hour 75 minutes | $45 + 30 = 75$ minutes = 1 hour 15 minutes, so the answer is 2 hours 15 minutes |',
+                'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| ❌ $1{,}5$ jam = 1 jam 50 menit | $1{,}5$ jam = 1 jam + setengah jam = 1 jam 30 menit |\n| ❌ 09.15 $-$ 08.45 = 0,70, jadi 70 menit | 08.45 ke 09.00 ada 15 menit, dan 09.00 ke 09.15 ada 15 menit, jadi 30 menit |\n| ❌ 1 jam 45 menit + 30 menit = 1 jam 75 menit | $45 + 30 = 75$ menit = 1 jam 15 menit, jadi jawabannya 2 jam 15 menit |',
               ),
             },
             {
@@ -645,8 +645,8 @@ export const module6: Module = {
               id: 'c3',
               title: L('Watch Out!: Upside-Down Formulas and Units', 'Awas, Jebakan!: Rumus Terbalik dan Satuan'),
               body: L(
-                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| Speed = time $\\div$ distance (upside down) | Speed = distance $\\div$ time. Check: km divided by hours gives km/h |\n| 120 km in 2 hours: $120 \\times 2 = 240$ km/h | $120 \\div 2 = 60$ km/h |\n| 60 km/h means 60 km in 1 minute | 60 km/h means 60 km in 1 hour |',
-                'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| Kecepatan = waktu $\\div$ jarak (terbalik) | Kecepatan = jarak $\\div$ waktu. Cek: km dibagi jam menghasilkan km/jam |\n| 120 km dalam 2 jam: $120 \\times 2 = 240$ km/jam | $120 \\div 2 = 60$ km/jam |\n| 60 km/jam berarti 60 km dalam 1 menit | 60 km/jam berarti 60 km dalam 1 jam |',
+                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| ❌ Speed = time $\\div$ distance (upside down) | Speed = distance $\\div$ time. Check: km divided by hours gives km/h |\n| ❌ 120 km in 2 hours: $120 \\times 2 = 240$ km/h | $120 \\div 2 = 60$ km/h |\n| ❌ 60 km/h means 60 km in 1 minute | 60 km/h means 60 km in 1 hour |',
+                'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| ❌ Kecepatan = waktu $\\div$ jarak (terbalik) | Kecepatan = jarak $\\div$ waktu. Cek: km dibagi jam menghasilkan km/jam |\n| ❌ 120 km dalam 2 jam: $120 \\times 2 = 240$ km/jam | $120 \\div 2 = 60$ km/jam |\n| ❌ 60 km/jam berarti 60 km dalam 1 menit | 60 km/jam berarti 60 km dalam 1 jam |',
               ),
             },
             {
@@ -847,8 +847,8 @@ export const module6: Module = {
               id: 'c3',
               title: L('Watch Out!: Minutes, Decimals and Averages', 'Awas, Jebakan!: Menit, Desimal, dan Rata-rata'),
               body: L(
-                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| 12 km/h for 30 minutes: $12 \\times 30 = 360$ km | 30 minutes = 0.5 hour, so $12 \\times 0.5 = 6$ km |\n| 2.5 hours = 2 hours 50 minutes | 2.5 hours = 2 hours 30 minutes |\n| A bicycle covers 30 km in 2 hours, then 30 km in 3 hours. Average speed $= (15 + 10) \\div 2 = 12.5$ km/h | Average speed = total distance $\\div$ total time $= 60 \\div 5 = 12$ km/h |',
-                'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| 12 km/jam selama 30 menit: $12 \\times 30 = 360$ km | 30 menit = 0,5 jam, jadi $12 \\times 0{,}5 = 6$ km |\n| 2,5 jam = 2 jam 50 menit | 2,5 jam = 2 jam 30 menit |\n| Sepeda menempuh 30 km dalam 2 jam, lalu 30 km dalam 3 jam. Kecepatan rata-rata $= (15 + 10) \\div 2 = 12{,}5$ km/jam | Kecepatan rata-rata = jarak total $\\div$ waktu total $= 60 \\div 5 = 12$ km/jam |',
+                'Watch out for these three mistakes.\n\n| Wrong | Right |\n|---|---|\n| ❌ 12 km/h for 30 minutes: $12 \\times 30 = 360$ km | 30 minutes = 0.5 hour, so $12 \\times 0.5 = 6$ km |\n| ❌ 2.5 hours = 2 hours 50 minutes | 2.5 hours = 2 hours 30 minutes |\n| ❌ A bicycle covers 30 km in 2 hours, then 30 km in 3 hours. Average speed $= (15 + 10) \\div 2 = 12.5$ km/h | Average speed = total distance $\\div$ total time $= 60 \\div 5 = 12$ km/h |',
+                'Awas, ada tiga kesalahan yang sering terjadi.\n\n| Salah | Benar |\n|---|---|\n| ❌ 12 km/jam selama 30 menit: $12 \\times 30 = 360$ km | 30 menit = 0,5 jam, jadi $12 \\times 0{,}5 = 6$ km |\n| ❌ 2,5 jam = 2 jam 50 menit | 2,5 jam = 2 jam 30 menit |\n| ❌ Sepeda menempuh 30 km dalam 2 jam, lalu 30 km dalam 3 jam. Kecepatan rata-rata $= (15 + 10) \\div 2 = 12{,}5$ km/jam | Kecepatan rata-rata = jarak total $\\div$ waktu total $= 60 \\div 5 = 12$ km/jam |',
               ),
             },
             {

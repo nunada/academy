@@ -543,28 +543,28 @@ Namanya sendiri bergeser. Seiring waktu bahasa Inggris Britania mempertahankan *
 
 | Mistake | Correct |
 |---|---|
-| A square is not a rectangle | It is: it has four right angles. Every square is a rectangle and a rhombus. |
-| The diagonals of a rectangle are perpendicular | They are equal and bisect each other; they are perpendicular only in a square. |
-| The diagonals of a parallelogram are equal | Only for a rectangle; in general they are different, but always bisect each other. |
-| The area of a parallelogram is the product of two neighboring sides | It is base times height; the slanted side is longer than the height. |
-| The area of a rhombus is $s^2$ | That is a square. A rhombus has $\frac{d_1d_2}{2}$, or base times height. |
-| The area of a trapezoid is $abh$ | It is $\frac{(a+b)h}{2}$: the average of the parallel sides times the height. |
-| The angles of a quadrilateral add up to $180^\circ$ | That is a triangle. A quadrilateral has $360^\circ$. |
-| The diagonals of a kite bisect each other | Only the axis diagonal bisects the other one; they are perpendicular. |
-| Naming the vertices in any order | $ABCD$ must go round the shape; $ACBD$ can describe a bow-tie. |`,
+| ❌ A square is not a rectangle | It is: it has four right angles. Every square is a rectangle and a rhombus. |
+| ❌ The diagonals of a rectangle are perpendicular | They are equal and bisect each other; they are perpendicular only in a square. |
+| ❌ The diagonals of a parallelogram are equal | Only for a rectangle; in general they are different, but always bisect each other. |
+| ❌ The area of a parallelogram is the product of two neighboring sides | It is base times height; the slanted side is longer than the height. |
+| ❌ The area of a rhombus is $s^2$ | That is a square. A rhombus has $\frac{d_1d_2}{2}$, or base times height. |
+| ❌ The area of a trapezoid is $abh$ | It is $\frac{(a+b)h}{2}$: the average of the parallel sides times the height. |
+| ❌ The angles of a quadrilateral add up to $180^\circ$ | That is a triangle. A quadrilateral has $360^\circ$. |
+| ❌ The diagonals of a kite bisect each other | Only the axis diagonal bisects the other one; they are perpendicular. |
+| ❌ Naming the vertices in any order | $ABCD$ must go round the shape; $ACBD$ can describe a bow-tie. |`,
             T`**Kesalahan paling umum pada segiempat adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| Persegi bukan persegi panjang | Persegi adalah persegi panjang: ia memiliki empat sudut siku-siku. Setiap persegi adalah persegi panjang sekaligus belah ketupat. |
-| Diagonal persegi panjang tegak lurus | Diagonalnya sama panjang dan saling membagi dua; tegak lurus hanya pada persegi. |
-| Diagonal jajargenjang sama panjang | Hanya untuk persegi panjang; secara umum berbeda, tetapi selalu saling membagi dua. |
-| Luas jajargenjang adalah hasil kali dua sisi bertetangga | Luasnya alas kali tinggi; sisi yang miring lebih panjang daripada tinggi. |
-| Luas belah ketupat adalah $s^2$ | Itu persegi. Belah ketupat memiliki $\frac{d_1d_2}{2}$, atau alas kali tinggi. |
-| Luas trapesium adalah $abh$ | Luasnya $\frac{(a+b)h}{2}$: rata-rata sisi sejajar kali tinggi. |
-| Sudut segiempat berjumlah $180^\circ$ | Itu segitiga. Segiempat berjumlah $360^\circ$. |
-| Diagonal layang-layang saling membagi dua | Hanya diagonal sumbu yang membagi dua diagonal lainnya; keduanya tegak lurus. |
-| Menamai titik sudut dalam urutan sembarang | $ABCD$ harus mengelilingi bangun; $ACBD$ dapat menggambarkan pita. |`,
+| ❌ Persegi bukan persegi panjang | Persegi adalah persegi panjang: ia memiliki empat sudut siku-siku. Setiap persegi adalah persegi panjang sekaligus belah ketupat. |
+| ❌ Diagonal persegi panjang tegak lurus | Diagonalnya sama panjang dan saling membagi dua; tegak lurus hanya pada persegi. |
+| ❌ Diagonal jajargenjang sama panjang | Hanya untuk persegi panjang; secara umum berbeda, tetapi selalu saling membagi dua. |
+| ❌ Luas jajargenjang adalah hasil kali dua sisi bertetangga | Luasnya alas kali tinggi; sisi yang miring lebih panjang daripada tinggi. |
+| ❌ Luas belah ketupat adalah $s^2$ | Itu persegi. Belah ketupat memiliki $\frac{d_1d_2}{2}$, atau alas kali tinggi. |
+| ❌ Luas trapesium adalah $abh$ | Luasnya $\frac{(a+b)h}{2}$: rata-rata sisi sejajar kali tinggi. |
+| ❌ Sudut segiempat berjumlah $180^\circ$ | Itu segitiga. Segiempat berjumlah $360^\circ$. |
+| ❌ Diagonal layang-layang saling membagi dua | Hanya diagonal sumbu yang membagi dua diagonal lainnya; keduanya tegak lurus. |
+| ❌ Menamai titik sudut dalam urutan sembarang | $ABCD$ harus mengelilingi bangun; $ACBD$ dapat menggambarkan pita. |`,
           ),
         },
       ],

@@ -643,24 +643,24 @@ Tanda untuk 10 menggambar aksaranya sendiri: dua garis yang bersilang, 十.`,
 
 | Mistake | Correct |
 |---|---|
-| "10,000 is 十千." | 10,000 is 一万. Chinese has a word for 10 to the power 4, so 十千 is never said. |
-| "105 is 一百五." | 一百五 is 150, because the last unit is dropped in speech. 105 is 一百零五. |
-| "30,000 is 三千万." | 三千万 is 30,000,000. 30,000 is 三万. |
-| "100 is just 百." | 100 is 一百. Only 十 can lose its 一, and only at the start of a number. |
-| "Two people is 二个人." | Say 两个人. Use 两 before a measure word. |
-| "2025 is 两千零二十五年." | A year is read digit by digit: 二〇二五年. |
-| "Say 零 for every zero." | Say 零 once per gap, and never for zeros at the end. |`,
+| ❌ "10,000 is 十千." | 10,000 is 一万. Chinese has a word for 10 to the power 4, so 十千 is never said. |
+| ❌ "105 is 一百五." | 一百五 is 150, because the last unit is dropped in speech. 105 is 一百零五. |
+| ❌ "30,000 is 三千万." | 三千万 is 30,000,000. 30,000 is 三万. |
+| ❌ "100 is just 百." | 100 is 一百. Only 十 can lose its 一, and only at the start of a number. |
+| ❌ "Two people is 二个人." | Say 两个人. Use 两 before a measure word. |
+| ❌ "2025 is 两千零二十五年." | A year is read digit by digit: 二〇二五年. |
+| ❌ "Say 零 for every zero." | Say 零 once per gap, and never for zeros at the end. |`,
             T`**Kesalahan paling umum dengan bilangan China adalah tujuh hal berikut, masing-masing dengan bentuk yang benar.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| "10.000 adalah 十千." | 10.000 adalah 一万. Bahasa China punya kata untuk 10 pangkat 4, jadi 十千 tidak pernah diucapkan. |
-| "105 adalah 一百五." | 一百五 adalah 150, karena satuan terakhir dihilangkan dalam percakapan. 105 adalah 一百零五. |
-| "30.000 adalah 三千万." | 三千万 adalah 30.000.000. 30.000 adalah 三万. |
-| "100 cukup 百." | 100 adalah 一百. Hanya 十 yang boleh kehilangan 一-nya, dan hanya di awal bilangan. |
-| "Dua orang adalah 二个人." | Ucapkan 两个人. Pakai 两 sebelum kata penggolong. |
-| "2025 adalah 两千零二十五年." | Tahun dibaca angka demi angka: 二〇二五年. |
-| "Ucapkan 零 untuk setiap nol." | Ucapkan 零 satu kali per celah, dan jangan untuk nol di ujung. |`,
+| ❌ "10.000 adalah 十千." | 10.000 adalah 一万. Bahasa China punya kata untuk 10 pangkat 4, jadi 十千 tidak pernah diucapkan. |
+| ❌ "105 adalah 一百五." | 一百五 adalah 150, karena satuan terakhir dihilangkan dalam percakapan. 105 adalah 一百零五. |
+| ❌ "30.000 adalah 三千万." | 三千万 adalah 30.000.000. 30.000 adalah 三万. |
+| ❌ "100 cukup 百." | 100 adalah 一百. Hanya 十 yang boleh kehilangan 一-nya, dan hanya di awal bilangan. |
+| ❌ "Dua orang adalah 二个人." | Ucapkan 两个人. Pakai 两 sebelum kata penggolong. |
+| ❌ "2025 adalah 两千零二十五年." | Tahun dibaca angka demi angka: 二〇二五年. |
+| ❌ "Ucapkan 零 untuk setiap nol." | Ucapkan 零 satu kali per celah, dan jangan untuk nol di ujung. |`,
           ),
         },
       ],

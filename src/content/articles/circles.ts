@@ -496,28 +496,28 @@ power([3, -2, 25], [9, 5])               // 60: outside, exact for whole numbers
 
 | Mistake | Correct |
 |---|---|
-| The circumference is $\pi r^2$ | That is the area. The circumference is $2\pi r$. |
-| Putting the diameter into $\pi r^2$ | Halve it first: $r=\frac d2$, or use $\frac{\pi d^2}{4}$. |
-| $\pi$ equals $3.14$ or $\frac{22}{7}$ | Both are approximations; $\pi$ is irrational. |
-| The area is in cm, not cm² | Length is in cm, area in cm², volume in cm³. |
-| Arc length is $r\theta$ with $\theta$ in degrees | That needs radians; with degrees use $\frac{\theta}{360}\cdot2\pi r$. |
-| An inscribed angle equals the central angle | It is half of it. |
-| A tangent can cut the circle twice | A tangent has exactly one common point and is perpendicular to the radius. |
-| Some chord is longer than the diameter | The diameter is the longest chord. |
-| A calculator in the wrong mode | Radians against degrees: $\sin30$ is $0.5$ only in degree mode. |`,
+| ❌ The circumference is $\pi r^2$ | That is the area. The circumference is $2\pi r$. |
+| ❌ Putting the diameter into $\pi r^2$ | Halve it first: $r=\frac d2$, or use $\frac{\pi d^2}{4}$. |
+| ❌ $\pi$ equals $3.14$ or $\frac{22}{7}$ | Both are approximations; $\pi$ is irrational. |
+| ❌ The area is in cm, not cm² | Length is in cm, area in cm², volume in cm³. |
+| ❌ Arc length is $r\theta$ with $\theta$ in degrees | That needs radians; with degrees use $\frac{\theta}{360}\cdot2\pi r$. |
+| ❌ An inscribed angle equals the central angle | It is half of it. |
+| ❌ A tangent can cut the circle twice | A tangent has exactly one common point and is perpendicular to the radius. |
+| ❌ Some chord is longer than the diameter | The diameter is the longest chord. |
+| ❌ A calculator in the wrong mode | Radians against degrees: $\sin30$ is $0.5$ only in degree mode. |`,
             T`**Kesalahan paling umum pada lingkaran adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| Keliling adalah $\pi r^2$ | Itu luas. Keliling adalah $2\pi r$. |
-| Memasukkan diameter ke $\pi r^2$ | Bagi dua dulu: $r=\frac d2$, atau pakai $\frac{\pi d^2}{4}$. |
-| $\pi$ sama dengan $3{,}14$ atau $\frac{22}{7}$ | Keduanya hampiran; $\pi$ irasional. |
-| Luas dalam cm, bukan cm² | Panjang dalam cm, luas dalam cm², volume dalam cm³. |
-| Panjang busur $r\theta$ dengan $\theta$ dalam derajat | Itu membutuhkan radian; dengan derajat pakai $\frac{\theta}{360}\cdot2\pi r$. |
-| Sudut keliling sama dengan sudut pusat | Ia setengahnya. |
-| Garis singgung dapat memotong lingkaran dua kali | Garis singgung memiliki tepat satu titik persekutuan dan tegak lurus jari-jari. |
-| Ada tali busur yang lebih panjang daripada diameter | Diameter adalah tali busur terpanjang. |
-| Kalkulator pada mode yang salah | Radian atau derajat tertukar: $\sin30$ bernilai $0{,}5$ hanya pada mode derajat. |`,
+| ❌ Keliling adalah $\pi r^2$ | Itu luas. Keliling adalah $2\pi r$. |
+| ❌ Memasukkan diameter ke $\pi r^2$ | Bagi dua dulu: $r=\frac d2$, atau pakai $\frac{\pi d^2}{4}$. |
+| ❌ $\pi$ sama dengan $3{,}14$ atau $\frac{22}{7}$ | Keduanya hampiran; $\pi$ irasional. |
+| ❌ Luas dalam cm, bukan cm² | Panjang dalam cm, luas dalam cm², volume dalam cm³. |
+| ❌ Panjang busur $r\theta$ dengan $\theta$ dalam derajat | Itu membutuhkan radian; dengan derajat pakai $\frac{\theta}{360}\cdot2\pi r$. |
+| ❌ Sudut keliling sama dengan sudut pusat | Ia setengahnya. |
+| ❌ Garis singgung dapat memotong lingkaran dua kali | Garis singgung memiliki tepat satu titik persekutuan dan tegak lurus jari-jari. |
+| ❌ Ada tali busur yang lebih panjang daripada diameter | Diameter adalah tali busur terpanjang. |
+| ❌ Kalkulator pada mode yang salah | Radian atau derajat tertukar: $\sin30$ bernilai $0{,}5$ hanya pada mode derajat. |`,
           ),
         },
       ],

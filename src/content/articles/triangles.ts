@@ -609,28 +609,28 @@ a * a + b * b === c * c                                   // true: exact for int
 
 | Mistake | Correct |
 |---|---|
-| The angles of a triangle add up to $360^\circ$ | That is a quadrilateral. A triangle has $180^\circ$. |
-| Any three lengths make a triangle | The longest must be shorter than the other two together: $1,2,3$ is flat. |
-| The height is the slanted side | The height is the perpendicular distance; the slanted side is longer. |
-| The area is base times height | It is half of that: $\frac12bh$. |
-| $a^2+b^2=c^2$ holds in every triangle | Only in a right triangle; otherwise use the law of cosines. |
-| Any side can be the hypotenuse | It is the longest side, opposite the right angle: $c^2=a^2+b^2$. |
-| $4,5,6$ is a right triangle | $16+25=41\ne36$: it is acute. Check the squares. |
-| In SSA there is always one triangle | There can be none, one or two; check the second angle $180^\circ-B$. |
-| A calculator in radian mode gives $\sin30^\circ=0.5$ | It gives $-0.988$: use degree mode, or convert. |`,
+| ❌ The angles of a triangle add up to $360^\circ$ | That is a quadrilateral. A triangle has $180^\circ$. |
+| ❌ Any three lengths make a triangle | The longest must be shorter than the other two together: $1,2,3$ is flat. |
+| ❌ The height is the slanted side | The height is the perpendicular distance; the slanted side is longer. |
+| ❌ The area is base times height | It is half of that: $\frac12bh$. |
+| ❌ $a^2+b^2=c^2$ holds in every triangle | Only in a right triangle; otherwise use the law of cosines. |
+| ❌ Any side can be the hypotenuse | It is the longest side, opposite the right angle: $c^2=a^2+b^2$. |
+| ❌ $4,5,6$ is a right triangle | $16+25=41\ne36$: it is acute. Check the squares. |
+| ❌ In SSA there is always one triangle | There can be none, one or two; check the second angle $180^\circ-B$. |
+| ❌ A calculator in radian mode gives $\sin30^\circ=0.5$ | It gives $-0.988$: use degree mode, or convert. |`,
             T`**Kesalahan paling umum pada segitiga adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| Sudut segitiga berjumlah $360^\circ$ | Itu segiempat. Segitiga berjumlah $180^\circ$. |
-| Tiga panjang sembarang membentuk segitiga | Yang terpanjang harus lebih pendek daripada jumlah dua lainnya: $1,2,3$ datar. |
-| Tinggi adalah sisi yang miring | Tinggi adalah jarak tegak lurus; sisi yang miring lebih panjang. |
-| Luas adalah alas kali tinggi | Luasnya setengah dari itu: $\frac12bh$. |
-| $a^2+b^2=c^2$ berlaku pada setiap segitiga | Hanya pada segitiga siku-siku; selain itu pakai aturan kosinus. |
-| Sisi mana pun dapat menjadi hipotenusa | Hipotenusa adalah sisi terpanjang, di depan sudut siku-siku: $c^2=a^2+b^2$. |
-| $4,5,6$ adalah segitiga siku-siku | $16+25=41\ne36$: ia lancip. Periksa kuadratnya. |
-| Pada SSA selalu ada satu segitiga | Bisa tidak ada, satu, atau dua; periksa sudut kedua $180^\circ-B$. |
-| Kalkulator mode radian memberi $\sin30^\circ=0{,}5$ | Ia memberi $-0{,}988$: pakai mode derajat, atau ubah satuannya. |`,
+| ❌ Sudut segitiga berjumlah $360^\circ$ | Itu segiempat. Segitiga berjumlah $180^\circ$. |
+| ❌ Tiga panjang sembarang membentuk segitiga | Yang terpanjang harus lebih pendek daripada jumlah dua lainnya: $1,2,3$ datar. |
+| ❌ Tinggi adalah sisi yang miring | Tinggi adalah jarak tegak lurus; sisi yang miring lebih panjang. |
+| ❌ Luas adalah alas kali tinggi | Luasnya setengah dari itu: $\frac12bh$. |
+| ❌ $a^2+b^2=c^2$ berlaku pada setiap segitiga | Hanya pada segitiga siku-siku; selain itu pakai aturan kosinus. |
+| ❌ Sisi mana pun dapat menjadi hipotenusa | Hipotenusa adalah sisi terpanjang, di depan sudut siku-siku: $c^2=a^2+b^2$. |
+| ❌ $4,5,6$ adalah segitiga siku-siku | $16+25=41\ne36$: ia lancip. Periksa kuadratnya. |
+| ❌ Pada SSA selalu ada satu segitiga | Bisa tidak ada, satu, atau dua; periksa sudut kedua $180^\circ-B$. |
+| ❌ Kalkulator mode radian memberi $\sin30^\circ=0{,}5$ | Ia memberi $-0{,}988$: pakai mode derajat, atau ubah satuannya. |`,
           ),
         },
       ],

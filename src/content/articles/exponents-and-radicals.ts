@@ -675,28 +675,28 @@ Pakai ´math.isqrt´ di Python bila kamu membutuhkan bagian bulat dari akar kuad
 
 | Mistake | Correct |
 |---|---|
-| $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$. Check: $(1+2)^2=9$, not $1+4=5$. See [expanding brackets](article:algebraic-expressions#expand). |
-| $\sqrt{a+b}=\sqrt{a}+\sqrt{b}$ | False in general: $\sqrt{9+16}=5$, not $3+4=7$. |
-| $-3^2=9$ | $-3^2=-(3\cdot3)=-9$. Only $(-3)^2=9$. |
-| $2^{-3}=-8$ | $2^{-3}=\dfrac18$. A negative exponent is a reciprocal. |
-| $a^m\cdot a^n=a^{mn}$ | Exponents add: $a^{m+n}$. It is $(a^m)^n$ that multiplies them. |
-| $2^3\cdot3^3=6^6$ | $2^3\cdot3^3=6^3$. Bases multiply only when the exponents are equal. |
-| $\sqrt{x^2}=x$ | $\sqrt{x^2}=|x|$. Check: $\sqrt{(-5)^2}=5$, not $-5$. |
-| $a^0=0$ | $a^0=1$ for $a\neq0$. |
-| $\dfrac{1}{\sqrt{2}}$ is already simplest | The value is right, but the expected form has no root below: $\dfrac{\sqrt{2}}{2}$. |`,
+| ❌ $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$. Check: $(1+2)^2=9$, not $1+4=5$. See [expanding brackets](article:algebraic-expressions#expand). |
+| ❌ $\sqrt{a+b}=\sqrt{a}+\sqrt{b}$ | False in general: $\sqrt{9+16}=5$, not $3+4=7$. |
+| ❌ $-3^2=9$ | $-3^2=-(3\cdot3)=-9$. Only $(-3)^2=9$. |
+| ❌ $2^{-3}=-8$ | $2^{-3}=\dfrac18$. A negative exponent is a reciprocal. |
+| ❌ $a^m\cdot a^n=a^{mn}$ | Exponents add: $a^{m+n}$. It is $(a^m)^n$ that multiplies them. |
+| ❌ $2^3\cdot3^3=6^6$ | $2^3\cdot3^3=6^3$. Bases multiply only when the exponents are equal. |
+| ❌ $\sqrt{x^2}=x$ | $\sqrt{x^2}=|x|$. Check: $\sqrt{(-5)^2}=5$, not $-5$. |
+| ❌ $a^0=0$ | $a^0=1$ for $a\neq0$. |
+| ❌ $\dfrac{1}{\sqrt{2}}$ is already simplest | The value is right, but the expected form has no root below: $\dfrac{\sqrt{2}}{2}$. |`,
             T`**Kesalahan paling umum pada eksponen dan akar adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar dan bilangan yang menunjukkan alasannya.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$. Periksa: $(1+2)^2=9$, bukan $1+4=5$. Lihat [menjabarkan kurung](article:algebraic-expressions#expand). |
-| $\sqrt{a+b}=\sqrt{a}+\sqrt{b}$ | Salah pada umumnya: $\sqrt{9+16}=5$, bukan $3+4=7$. |
-| $-3^2=9$ | $-3^2=-(3\cdot3)=-9$. Hanya $(-3)^2=9$. |
-| $2^{-3}=-8$ | $2^{-3}=\dfrac18$. Eksponen negatif adalah kebalikan. |
-| $a^m\cdot a^n=a^{mn}$ | Eksponen dijumlahkan: $a^{m+n}$. Yang mengalikan eksponen adalah $(a^m)^n$. |
-| $2^3\cdot3^3=6^6$ | $2^3\cdot3^3=6^3$. Basis dikalikan hanya bila eksponennya sama. |
-| $\sqrt{x^2}=x$ | $\sqrt{x^2}=|x|$. Periksa: $\sqrt{(-5)^2}=5$, bukan $-5$. |
-| $a^0=0$ | $a^0=1$ untuk $a\neq0$. |
-| $\dfrac{1}{\sqrt{2}}$ sudah paling sederhana | Nilainya benar, tetapi bentuk yang diharapkan tidak punya akar di bawah: $\dfrac{\sqrt{2}}{2}$. |`,
+| ❌ $(a+b)^2=a^2+b^2$ | $(a+b)^2=a^2+2ab+b^2$. Periksa: $(1+2)^2=9$, bukan $1+4=5$. Lihat [menjabarkan kurung](article:algebraic-expressions#expand). |
+| ❌ $\sqrt{a+b}=\sqrt{a}+\sqrt{b}$ | Salah pada umumnya: $\sqrt{9+16}=5$, bukan $3+4=7$. |
+| ❌ $-3^2=9$ | $-3^2=-(3\cdot3)=-9$. Hanya $(-3)^2=9$. |
+| ❌ $2^{-3}=-8$ | $2^{-3}=\dfrac18$. Eksponen negatif adalah kebalikan. |
+| ❌ $a^m\cdot a^n=a^{mn}$ | Eksponen dijumlahkan: $a^{m+n}$. Yang mengalikan eksponen adalah $(a^m)^n$. |
+| ❌ $2^3\cdot3^3=6^6$ | $2^3\cdot3^3=6^3$. Basis dikalikan hanya bila eksponennya sama. |
+| ❌ $\sqrt{x^2}=x$ | $\sqrt{x^2}=|x|$. Periksa: $\sqrt{(-5)^2}=5$, bukan $-5$. |
+| ❌ $a^0=0$ | $a^0=1$ untuk $a\neq0$. |
+| ❌ $\dfrac{1}{\sqrt{2}}$ sudah paling sederhana | Nilainya benar, tetapi bentuk yang diharapkan tidak punya akar di bawah: $\dfrac{\sqrt{2}}{2}$. |`,
           ),
         },
       ],

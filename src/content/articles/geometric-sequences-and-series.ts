@@ -602,28 +602,28 @@ Legenda terkenal bercerita tentang penemu catur yang meminta kepada raja satu bu
 
 | Mistake | Correct |
 |---|---|
-| $a_n=a_1r^n$ | $a_n=a_1r^{n-1}$: for $n=1$ the term is $a_1$, not $a_1r$. |
-| $3,6,9,12$ is geometric | It adds 3, so it is arithmetic; a geometric sequence multiplies. |
-| $r=\frac{a_n}{a_{n+1}}$ | Later over earlier: $r=\frac{a_{n+1}}{a_n}$; for $64,32,16$ it is $\frac12$, not 2. |
-| A 5% rise has $r=0.05$ | It has $r=1.05$; a 20% fall has $r=0.8$. |
-| Doubling for 10 years gives 20 times | It gives $2^{10}=1024$ times. |
-| $S_n=a_1\frac{r^n-1}{r}$ | Divide by $r-1$: $S_n=a_1\frac{r^n-1}{r-1}$. |
-| The formula works for $r=1$ | It divides by 0; for $r=1$ the sum is $na_1$. |
-| $1+2+4+8+\cdots=\frac{1}{1-2}=-1$ | $|r|\ge1$: the series diverges and has no sum. |
-| The geometric mean of 2 and 8 is 5 | That is the arithmetic mean; the geometric mean is $\sqrt{16}=4$. |`,
+| ❌ $a_n=a_1r^n$ | $a_n=a_1r^{n-1}$: for $n=1$ the term is $a_1$, not $a_1r$. |
+| ❌ $3,6,9,12$ is geometric | It adds 3, so it is arithmetic; a geometric sequence multiplies. |
+| ❌ $r=\frac{a_n}{a_{n+1}}$ | Later over earlier: $r=\frac{a_{n+1}}{a_n}$; for $64,32,16$ it is $\frac12$, not 2. |
+| ❌ A 5% rise has $r=0.05$ | It has $r=1.05$; a 20% fall has $r=0.8$. |
+| ❌ Doubling for 10 years gives 20 times | It gives $2^{10}=1024$ times. |
+| ❌ $S_n=a_1\frac{r^n-1}{r}$ | Divide by $r-1$: $S_n=a_1\frac{r^n-1}{r-1}$. |
+| ❌ The formula works for $r=1$ | It divides by 0; for $r=1$ the sum is $na_1$. |
+| ❌ $1+2+4+8+\cdots=\frac{1}{1-2}=-1$ | $|r|\ge1$: the series diverges and has no sum. |
+| ❌ The geometric mean of 2 and 8 is 5 | That is the arithmetic mean; the geometric mean is $\sqrt{16}=4$. |`,
             T`**Kesalahan paling umum pada barisan geometri adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar dan bilangan yang menunjukkan alasannya.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| $a_n=a_1r^n$ | $a_n=a_1r^{n-1}$: untuk $n=1$ sukunya $a_1$, bukan $a_1r$. |
-| $3,6,9,12$ geometri | Ia menambah 3, sehingga aritmetika; barisan geometri mengalikan. |
-| $r=\frac{a_n}{a_{n+1}}$ | Yang kemudian per yang lebih dulu: $r=\frac{a_{n+1}}{a_n}$; untuk $64,32,16$ ia $\frac12$, bukan 2. |
-| Kenaikan 5% berarti $r=0{,}05$ | Ia berarti $r=1{,}05$; penurunan 20% berarti $r=0{,}8$. |
-| Berlipat dua selama 10 tahun menjadi 20 kali | Ia menjadi $2^{10}=1024$ kali. |
-| $S_n=a_1\frac{r^n-1}{r}$ | Bagi dengan $r-1$: $S_n=a_1\frac{r^n-1}{r-1}$. |
-| Rumusnya berlaku untuk $r=1$ | Ia membagi dengan 0; untuk $r=1$ jumlahnya $na_1$. |
-| $1+2+4+8+\cdots=\frac{1}{1-2}=-1$ | $|r|\ge1$: deretnya divergen dan tidak punya jumlah. |
-| Rata-rata geometri 2 dan 8 adalah 5 | Itu rata-rata aritmetika; rata-rata geometrinya $\sqrt{16}=4$. |`,
+| ❌ $a_n=a_1r^n$ | $a_n=a_1r^{n-1}$: untuk $n=1$ sukunya $a_1$, bukan $a_1r$. |
+| ❌ $3,6,9,12$ geometri | Ia menambah 3, sehingga aritmetika; barisan geometri mengalikan. |
+| ❌ $r=\frac{a_n}{a_{n+1}}$ | Yang kemudian per yang lebih dulu: $r=\frac{a_{n+1}}{a_n}$; untuk $64,32,16$ ia $\frac12$, bukan 2. |
+| ❌ Kenaikan 5% berarti $r=0{,}05$ | Ia berarti $r=1{,}05$; penurunan 20% berarti $r=0{,}8$. |
+| ❌ Berlipat dua selama 10 tahun menjadi 20 kali | Ia menjadi $2^{10}=1024$ kali. |
+| ❌ $S_n=a_1\frac{r^n-1}{r}$ | Bagi dengan $r-1$: $S_n=a_1\frac{r^n-1}{r-1}$. |
+| ❌ Rumusnya berlaku untuk $r=1$ | Ia membagi dengan 0; untuk $r=1$ jumlahnya $na_1$. |
+| ❌ $1+2+4+8+\cdots=\frac{1}{1-2}=-1$ | $|r|\ge1$: deretnya divergen dan tidak punya jumlah. |
+| ❌ Rata-rata geometri 2 dan 8 adalah 5 | Itu rata-rata aritmetika; rata-rata geometrinya $\sqrt{16}=4$. |`,
           ),
         },
       ],

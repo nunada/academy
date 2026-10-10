@@ -558,28 +558,28 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
 
 | Mistake | Correct |
 |---|---|
-| $a_n=a_1+nd$ | $a_n=a_1+(n-1)d$: for $n=1$ the term is $a_1$, not $a_1+d$. |
-| $2,4,8,16$ is arithmetic | The differences are $2,4,8$; it is geometric. |
-| The number of terms is $\frac{\ell-a_1}{d}$ | Add 1: $\frac{102-7}{5}+1=20$, not 19. |
-| $S_n=n(a_1+a_n)$ | Halve it: $S_n=\frac n2(a_1+a_n)$; $1+2+3$ is $\frac32\cdot4=6$, not 12. |
-| $d=a_n-a_{n+1}$ | Later minus earlier: $d=a_{n+1}-a_n$; for $20,15,10$ it is $-5$. |
-| Dividing by $q$ or $p$ to find $d$ | Divide by the steps: $d=\frac{a_q-a_p}{q-p}$. |
-| A decreasing sequence has no sum | $20+15+10+5=50$; a negative $d$ is fine. |
-| An infinite arithmetic series has a total | It diverges unless every term is 0. |
-| "The sum of the sequence" | A sequence is the list; the sum of its terms is a series. |`,
+| ❌ $a_n=a_1+nd$ | $a_n=a_1+(n-1)d$: for $n=1$ the term is $a_1$, not $a_1+d$. |
+| ❌ $2,4,8,16$ is arithmetic | The differences are $2,4,8$; it is geometric. |
+| ❌ The number of terms is $\frac{\ell-a_1}{d}$ | Add 1: $\frac{102-7}{5}+1=20$, not 19. |
+| ❌ $S_n=n(a_1+a_n)$ | Halve it: $S_n=\frac n2(a_1+a_n)$; $1+2+3$ is $\frac32\cdot4=6$, not 12. |
+| ❌ $d=a_n-a_{n+1}$ | Later minus earlier: $d=a_{n+1}-a_n$; for $20,15,10$ it is $-5$. |
+| ❌ Dividing by $q$ or $p$ to find $d$ | Divide by the steps: $d=\frac{a_q-a_p}{q-p}$. |
+| ❌ A decreasing sequence has no sum | $20+15+10+5=50$; a negative $d$ is fine. |
+| ❌ An infinite arithmetic series has a total | It diverges unless every term is 0. |
+| ❌ "The sum of the sequence" | A sequence is the list; the sum of its terms is a series. |`,
             T`**Kesalahan paling umum pada barisan aritmetika adalah sembilan hal berikut, masing-masing dengan pernyataan yang benar dan bilangan yang menunjukkan alasannya.**
 
 | Kesalahan | Yang benar |
 |---|---|
-| $a_n=a_1+nd$ | $a_n=a_1+(n-1)d$: untuk $n=1$ sukunya $a_1$, bukan $a_1+d$. |
-| $2,4,8,16$ aritmetika | Selisihnya $2,4,8$; ia geometri. |
-| Banyak suku adalah $\frac{\ell-a_1}{d}$ | Tambah 1: $\frac{102-7}{5}+1=20$, bukan 19. |
-| $S_n=n(a_1+a_n)$ | Bagi dua: $S_n=\frac n2(a_1+a_n)$; $1+2+3$ adalah $\frac32\cdot4=6$, bukan 12. |
-| $d=a_n-a_{n+1}$ | Yang kemudian dikurangi yang lebih dulu: $d=a_{n+1}-a_n$; untuk $20,15,10$ ia $-5$. |
-| Membagi dengan $q$ atau $p$ untuk mencari $d$ | Bagi dengan banyak langkah: $d=\frac{a_q-a_p}{q-p}$. |
-| Barisan menurun tidak punya jumlah | $20+15+10+5=50$; $d$ negatif tidak masalah. |
-| Deret aritmetika tak hingga punya jumlah | Ia divergen kecuali setiap sukunya 0. |
-| "Jumlah barisan" | Barisan adalah daftarnya; jumlah sukunya adalah deret. |`,
+| ❌ $a_n=a_1+nd$ | $a_n=a_1+(n-1)d$: untuk $n=1$ sukunya $a_1$, bukan $a_1+d$. |
+| ❌ $2,4,8,16$ aritmetika | Selisihnya $2,4,8$; ia geometri. |
+| ❌ Banyak suku adalah $\frac{\ell-a_1}{d}$ | Tambah 1: $\frac{102-7}{5}+1=20$, bukan 19. |
+| ❌ $S_n=n(a_1+a_n)$ | Bagi dua: $S_n=\frac n2(a_1+a_n)$; $1+2+3$ adalah $\frac32\cdot4=6$, bukan 12. |
+| ❌ $d=a_n-a_{n+1}$ | Yang kemudian dikurangi yang lebih dulu: $d=a_{n+1}-a_n$; untuk $20,15,10$ ia $-5$. |
+| ❌ Membagi dengan $q$ atau $p$ untuk mencari $d$ | Bagi dengan banyak langkah: $d=\frac{a_q-a_p}{q-p}$. |
+| ❌ Barisan menurun tidak punya jumlah | $20+15+10+5=50$; $d$ negatif tidak masalah. |
+| ❌ Deret aritmetika tak hingga punya jumlah | Ia divergen kecuali setiap sukunya 0. |
+| ❌ "Jumlah barisan" | Barisan adalah daftarnya; jumlah sukunya adalah deret. |`,
           ),
         },
       ],

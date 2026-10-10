@@ -269,8 +269,8 @@ export const module1: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Zeros and Values', id: 'Awas, Jebakan!: Angka Nol dan Nilai' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| Two million three thousand is 2,300,000. | It is 2,003,000. A place that is not spoken gets a 0. |\n| The value of 7 in 4,730,215 is 7. | The 7 is in the hundred thousands place, so its value is 700,000. |\n| The two 5s in 5,050 are worth the same. | The first 5 is worth 5,000 and the second is worth 50. The place decides the value. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| Dua juta tiga ribu ditulis 2.300.000. | Yang benar 2.003.000. Tempat yang tidak disebut diisi 0. |\n| Nilai angka 7 pada 4.730.215 adalah 7. | Angka 7 ada di tempat ratusan ribu, jadi nilainya 700.000. |\n| Dua angka 5 pada 5.050 nilainya sama. | Angka 5 yang pertama bernilai 5.000 dan yang kedua bernilai 50. Tempatnya yang menentukan nilai. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ Two million three thousand is 2,300,000. | It is 2,003,000. A place that is not spoken gets a 0. |\n| ❌ The value of 7 in 4,730,215 is 7. | The 7 is in the hundred thousands place, so its value is 700,000. |\n| ❌ The two 5s in 5,050 are worth the same. | The first 5 is worth 5,000 and the second is worth 50. The place decides the value. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ Dua juta tiga ribu ditulis 2.300.000. | Yang benar 2.003.000. Tempat yang tidak disebut diisi 0. |\n| ❌ Nilai angka 7 pada 4.730.215 adalah 7. | Angka 7 ada di tempat ratusan ribu, jadi nilainya 700.000. |\n| ❌ Dua angka 5 pada 5.050 nilainya sama. | Angka 5 yang pertama bernilai 5.000 dan yang kedua bernilai 50. Tempatnya yang menentukan nilai. |',
               },
             },
             {
@@ -486,8 +486,8 @@ export const module1: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Comparing and Rounding', id: 'Awas, Jebakan!: Membandingkan dan Membulatkan' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| 9,870 is bigger than 10,200, because 9 is bigger than 1. | Count the digits first. 10,200 has 5 digits and 9,870 has 4, so 10,200 is bigger. |\n| 4,368 rounded to the nearest hundred is 4,370. | That is rounding to the nearest ten. For hundreds look at the tens digit: 4,400. |\n| 3,499 rounded to the nearest thousand: 3,499 becomes 3,500, then 4,000. | Look only at the hundreds digit, 4. It is below 5, so the answer is 3,000. Never round twice. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| 9.870 lebih besar dari 10.200, karena 9 lebih besar dari 1. | Hitung dulu banyak angkanya. 10.200 punya 5 angka dan 9.870 punya 4, jadi 10.200 lebih besar. |\n| 4.368 dibulatkan ke ratusan terdekat menjadi 4.370. | Itu pembulatan ke puluhan terdekat. Untuk ratusan lihat angka puluhan: 4.400. |\n| 3.499 dibulatkan ke ribuan terdekat: 3.499 menjadi 3.500, lalu 4.000. | Lihat hanya angka ratusan, yaitu 4. Angka itu di bawah 5, jadi jawabannya 3.000. Jangan membulatkan dua kali. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ 9,870 is bigger than 10,200, because 9 is bigger than 1. | Count the digits first. 10,200 has 5 digits and 9,870 has 4, so 10,200 is bigger. |\n| ❌ 4,368 rounded to the nearest hundred is 4,370. | That is rounding to the nearest ten. For hundreds look at the tens digit: 4,400. |\n| ❌ 3,499 rounded to the nearest thousand: 3,499 becomes 3,500, then 4,000. | Look only at the hundreds digit, 4. It is below 5, so the answer is 3,000. Never round twice. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ 9.870 lebih besar dari 10.200, karena 9 lebih besar dari 1. | Hitung dulu banyak angkanya. 10.200 punya 5 angka dan 9.870 punya 4, jadi 10.200 lebih besar. |\n| ❌ 4.368 dibulatkan ke ratusan terdekat menjadi 4.370. | Itu pembulatan ke puluhan terdekat. Untuk ratusan lihat angka puluhan: 4.400. |\n| ❌ 3.499 dibulatkan ke ribuan terdekat: 3.499 menjadi 3.500, lalu 4.000. | Lihat hanya angka ratusan, yaitu 4. Angka itu di bawah 5, jadi jawabannya 3.000. Jangan membulatkan dua kali. |',
               },
             },
             {
@@ -784,8 +784,8 @@ export const module1: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Columns', id: 'Awas, Jebakan!: Bersusun' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| 3,456 + 2,789 = 5,135 | The carries were forgotten. 6 + 9 = 15, so write 5 and carry 1. The answer is 6,245. |\n| 6,431 − 2,758 = 4,327, by taking the smaller digit from the bigger digit in every column. | Never flip a column. If the top digit is smaller, borrow from the left. The answer is 3,673. |\n| 4,305 + 987 with the 9 written under the 4. | Line up the ones first. The 9 is in the hundreds place, so it goes under the 3. The answer is 5,292. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| 3.456 + 2.789 = 5.135 | Angka simpanannya terlupa. 6 + 9 = 15, jadi tulis 5 dan simpan 1. Jawabannya 6.245. |\n| 6.431 − 2.758 = 4.327, dengan mengurangkan angka kecil dari angka besar di setiap kolom. | Jangan membalik kolom. Jika angka atas lebih kecil, pinjam dari kolom kiri. Jawabannya 3.673. |\n| 4.305 + 987 dengan angka 9 ditulis di bawah angka 4. | Sejajarkan satuan dulu. Angka 9 ada di tempat ratusan, jadi ia di bawah angka 3. Jawabannya 5.292. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ 3,456 + 2,789 = 5,135 | The carries were forgotten. 6 + 9 = 15, so write 5 and carry 1. The answer is 6,245. |\n| ❌ 6,431 − 2,758 = 4,327, by taking the smaller digit from the bigger digit in every column. | Never flip a column. If the top digit is smaller, borrow from the left. The answer is 3,673. |\n| ❌ 4,305 + 987 with the 9 written under the 4. | Line up the ones first. The 9 is in the hundreds place, so it goes under the 3. The answer is 5,292. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ 3.456 + 2.789 = 5.135 | Angka simpanannya terlupa. 6 + 9 = 15, jadi tulis 5 dan simpan 1. Jawabannya 6.245. |\n| ❌ 6.431 − 2.758 = 4.327, dengan mengurangkan angka kecil dari angka besar di setiap kolom. | Jangan membalik kolom. Jika angka atas lebih kecil, pinjam dari kolom kiri. Jawabannya 3.673. |\n| ❌ 4.305 + 987 dengan angka 9 ditulis di bawah angka 4. | Sejajarkan satuan dulu. Angka 9 ada di tempat ratusan, jadi ia di bawah angka 3. Jawabannya 5.292. |',
               },
             },
             {
@@ -1299,8 +1299,8 @@ export const module1: Module = {
               id: 'c4',
               title: { en: 'Watch Out!: Zeros', id: 'Awas, Jebakan!: Angka Nol' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| 36 × 100 = 360 | Two zeros join the end: 36 × 100 = 3,600. |\n| 40 × 300 = 1,200 | Multiply 4 × 3 = 12, then add all three zeros: 12,000. |\n| 245 × 36 with the second row written as 735, so 1,470 + 735 = 2,205. | The second row multiplies by tens, so it needs the 0: 7,350. The answer is 8,820. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| 36 × 100 = 360 | Dua nol ditambahkan di belakang: 36 × 100 = 3.600. |\n| 40 × 300 = 1.200 | Kalikan 4 × 3 = 12, lalu tambahkan ketiga nolnya: 12.000. |\n| 245 × 36 dengan baris kedua ditulis 735, sehingga 1.470 + 735 = 2.205. | Baris kedua mengalikan dengan puluhan, jadi perlu angka 0: 7.350. Jawabannya 8.820. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ 36 × 100 = 360 | Two zeros join the end: 36 × 100 = 3,600. |\n| ❌ 40 × 300 = 1,200 | Multiply 4 × 3 = 12, then add all three zeros: 12,000. |\n| ❌ 245 × 36 with the second row written as 735, so 1,470 + 735 = 2,205. | The second row multiplies by tens, so it needs the 0: 7,350. The answer is 8,820. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ 36 × 100 = 360 | Dua nol ditambahkan di belakang: 36 × 100 = 3.600. |\n| ❌ 40 × 300 = 1.200 | Kalikan 4 × 3 = 12, lalu tambahkan ketiga nolnya: 12.000. |\n| ❌ 245 × 36 dengan baris kedua ditulis 735, sehingga 1.470 + 735 = 2.205. | Baris kedua mengalikan dengan puluhan, jadi perlu angka 0: 7.350. Jawabannya 8.820. |',
               },
             },
             {
@@ -1497,8 +1497,8 @@ export const module1: Module = {
               id: 'c4',
               title: { en: 'Watch Out!: Division', id: 'Awas, Jebakan!: Pembagian' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| 4,500 ÷ 100 = 450 | Take away two zeros: 4,500 ÷ 100 = 45. |\n| 50 eggs go into boxes of 8: 50 ÷ 8 = 6 remainder 2, so 6 boxes are enough. | The 2 left-over eggs still need a box, so 7 boxes are needed. |\n| 2,412 ÷ 6 = 42 | When the divisor does not fit, write a 0. The answer is 402, and 402 × 6 = 2,412. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| 4.500 ÷ 100 = 450 | Hilangkan dua nol: 4.500 ÷ 100 = 45. |\n| 50 telur dimasukkan ke kotak berisi 8: 50 ÷ 8 = 6 sisa 2, jadi 6 kotak cukup. | 2 telur yang tersisa tetap butuh kotak, jadi dibutuhkan 7 kotak. |\n| 2.412 ÷ 6 = 42 | Jika pembagi tidak muat, tulis angka 0. Jawabannya 402, dan 402 × 6 = 2.412. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ 4,500 ÷ 100 = 450 | Take away two zeros: 4,500 ÷ 100 = 45. |\n| ❌ 50 eggs go into boxes of 8: 50 ÷ 8 = 6 remainder 2, so 6 boxes are enough. | The 2 left-over eggs still need a box, so 7 boxes are needed. |\n| ❌ 2,412 ÷ 6 = 42 | When the divisor does not fit, write a 0. The answer is 402, and 402 × 6 = 2,412. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ 4.500 ÷ 100 = 450 | Hilangkan dua nol: 4.500 ÷ 100 = 45. |\n| ❌ 50 telur dimasukkan ke kotak berisi 8: 50 ÷ 8 = 6 sisa 2, jadi 6 kotak cukup. | 2 telur yang tersisa tetap butuh kotak, jadi dibutuhkan 7 kotak. |\n| ❌ 2.412 ÷ 6 = 42 | Jika pembagi tidak muat, tulis angka 0. Jawabannya 402, dan 402 × 6 = 2.412. |',
               },
             },
             {
@@ -1768,8 +1768,8 @@ export const module1: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Order of Operations', id: 'Awas, Jebakan!: Urutan Operasi' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| 6 + 4 × 5 = 50, worked from left to right. | × comes before +: 6 + 20 = 26. |\n| 24 ÷ 4 × 3 = 2, by doing × first. | × and ÷ go from left to right: 24 ÷ 4 = 6, then 6 × 3 = 18. |\n| 20 − 8 + 5 = 7, by doing + first. | + and − go from left to right: 20 − 8 = 12, then 12 + 5 = 17. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| 6 + 4 × 5 = 50, dikerjakan dari kiri ke kanan. | × dikerjakan sebelum +: 6 + 20 = 26. |\n| 24 ÷ 4 × 3 = 2, dengan mengerjakan × dulu. | × dan ÷ dikerjakan dari kiri ke kanan: 24 ÷ 4 = 6, lalu 6 × 3 = 18. |\n| 20 − 8 + 5 = 7, dengan mengerjakan + dulu. | + dan − dikerjakan dari kiri ke kanan: 20 − 8 = 12, lalu 12 + 5 = 17. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ 6 + 4 × 5 = 50, worked from left to right. | × comes before +: 6 + 20 = 26. |\n| ❌ 24 ÷ 4 × 3 = 2, by doing × first. | × and ÷ go from left to right: 24 ÷ 4 = 6, then 6 × 3 = 18. |\n| ❌ 20 − 8 + 5 = 7, by doing + first. | + and − go from left to right: 20 − 8 = 12, then 12 + 5 = 17. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ 6 + 4 × 5 = 50, dikerjakan dari kiri ke kanan. | × dikerjakan sebelum +: 6 + 20 = 26. |\n| ❌ 24 ÷ 4 × 3 = 2, dengan mengerjakan × dulu. | × dan ÷ dikerjakan dari kiri ke kanan: 24 ÷ 4 = 6, lalu 6 × 3 = 18. |\n| ❌ 20 − 8 + 5 = 7, dengan mengerjakan + dulu. | + dan − dikerjakan dari kiri ke kanan: 20 − 8 = 12, lalu 12 + 5 = 17. |',
               },
             },
             {
@@ -1962,8 +1962,8 @@ export const module1: Module = {
               id: 'c3',
               title: { en: 'Watch Out!: Multi-Step Problems', id: 'Awas, Jebakan!: Soal Bertahap' },
               body: {
-                en: '| Wrong | Right |\n| --- | --- |\n| 6 × 12 + 8 ÷ 8 = 73 | The brackets are missing, so ÷ only touches the 8. Write (6 × 12 + 8) ÷ 8 = 10. |\n| Ani paid Rp20,000 and 3 notebooks cost Rp13,500, so the answer is Rp13,500. | The question asks for the change: 20,000 − 13,500 = 6,500. Re-read the question before you answer. |\n| 3 × 4,500 = 1,350 | An estimate catches this: 3 × 5,000 = 15,000, so 1,350 is far too small. The right answer is 13,500. |',
-                id: '| Salah | Benar |\n| --- | --- |\n| 6 × 12 + 8 ÷ 8 = 73 | Tanda kurungnya hilang, jadi ÷ hanya mengenai angka 8. Tulis (6 × 12 + 8) ÷ 8 = 10. |\n| Ani membayar Rp20.000 dan 3 buku tulis berharga Rp13.500, jadi jawabannya Rp13.500. | Soal menanyakan kembalian: 20.000 − 13.500 = 6.500. Baca lagi soalnya sebelum menjawab. |\n| 3 × 4.500 = 1.350 | Penaksiran bisa menangkap ini: 3 × 5.000 = 15.000, jadi 1.350 terlalu kecil. Jawaban yang benar 13.500. |',
+                en: '| Wrong | Right |\n| --- | --- |\n| ❌ 6 × 12 + 8 ÷ 8 = 73 | The brackets are missing, so ÷ only touches the 8. Write (6 × 12 + 8) ÷ 8 = 10. |\n| ❌ Ani paid Rp20,000 and 3 notebooks cost Rp13,500, so the answer is Rp13,500. | The question asks for the change: 20,000 − 13,500 = 6,500. Re-read the question before you answer. |\n| ❌ 3 × 4,500 = 1,350 | An estimate catches this: 3 × 5,000 = 15,000, so 1,350 is far too small. The right answer is 13,500. |',
+                id: '| Salah | Benar |\n| --- | --- |\n| ❌ 6 × 12 + 8 ÷ 8 = 73 | Tanda kurungnya hilang, jadi ÷ hanya mengenai angka 8. Tulis (6 × 12 + 8) ÷ 8 = 10. |\n| ❌ Ani membayar Rp20.000 dan 3 buku tulis berharga Rp13.500, jadi jawabannya Rp13.500. | Soal menanyakan kembalian: 20.000 − 13.500 = 6.500. Baca lagi soalnya sebelum menjawab. |\n| ❌ 3 × 4.500 = 1.350 | Penaksiran bisa menangkap ini: 3 × 5.000 = 15.000, jadi 1.350 terlalu kecil. Jawaban yang benar 13.500. |',
               },
             },
             {
