@@ -85,6 +85,10 @@ jobs:
       # Terms, partial sums, recognition and two-term reconstruction behind the
       # arithmetic-sequence widgets: checked against repeated addition and Gauss pairing.
       - run: npm run check:sequences
+      # Terms, finite and infinite sums, recognition and the ratio from two terms behind
+      # the geometric-sequence widgets: checked against repeated multiplication and the
+      # exact gap to the infinite sum.
+      - run: npm run check:geometric
 
       - name: Work out where the site will live
         id: base

@@ -68,7 +68,7 @@ export const body: ArticleBody = {
 
 An exponent of 1 changes nothing ($a^1=a$). The words "squared" and "cubed" come from geometry: $5^2$ is the area of a square with side 5, and $10^3$ is the volume of a cube with side 10.
 
-Powers grow fast. Each time the exponent goes up by 1, the value is multiplied by the base again: $2^{10}=1{,}024$, $2^{20}=1{,}048{,}576$ and $2^{30}$ is already over a billion. That is why exponents are the language of growth, of computer memory and of very large and very small quantities.`,
+Powers grow fast. Each time the exponent goes up by 1, the value is multiplied by the base again: $2^{10}=1{,}024$, $2^{20}=1{,}048{,}576$ and $2^{30}$ is already over a billion. That is why exponents are the language of growth, of computer memory and of very large and very small quantities, and why the successive powers of a number form a [geometric sequence](article:geometric-sequences-and-series#nth-term).`,
             T`**Eksponen (atau pangkat) adalah bilangan kecil yang ditulis di atas dan menyatakan berapa kali basis dikalikan dengan dirinya sendiri: $a^n=a\cdot a\cdots a$, dengan $n$ faktor $a$.** Pada $2^5$ basisnya 2 dan eksponennya 5.
 
 | Ekspresi | Dibaca | Dijabarkan | Nilai |
@@ -81,7 +81,7 @@ Powers grow fast. Each time the exponent goes up by 1, the value is multiplied b
 
 Eksponen 1 tidak mengubah apa pun ($a^1=a$). Istilah "kuadrat" dan "kubik" berasal dari geometri: $5^2$ adalah luas persegi dengan sisi 5, dan $10^3$ adalah volume kubus dengan rusuk 10.
 
-Pangkat tumbuh dengan cepat. Setiap kali eksponen naik 1, nilainya dikalikan basis sekali lagi: $2^{10}=1.024$, $2^{20}=1.048.576$, dan $2^{30}$ sudah lebih dari satu miliar. Itulah sebabnya eksponen menjadi bahasa pertumbuhan, memori komputer, serta besaran yang sangat besar dan sangat kecil.`,
+Pangkat tumbuh dengan cepat. Setiap kali eksponen naik 1, nilainya dikalikan basis sekali lagi: $2^{10}=1.024$, $2^{20}=1.048.576$, dan $2^{30}$ sudah lebih dari satu miliar. Itulah sebabnya eksponen menjadi bahasa pertumbuhan, memori komputer, serta besaran yang sangat besar dan sangat kecil, dan mengapa pangkat berurutan dari suatu bilangan membentuk [barisan geometri](article:geometric-sequences-and-series#nth-term).`,
           ),
         },
         {

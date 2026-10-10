@@ -70,7 +70,7 @@ That gives the rule $a_{n+1}=a_n+d$: to get the next term, add $d$. A **sequence
 | $2,4,8,16,\ldots$ | differences $2,4,8$ | **not** arithmetic: each term is doubled |
 | $1,4,9,16,\ldots$ | differences $3,5,7$ | **not** arithmetic: the differences grow |
 
-**How to tell.** Subtract each term from the next, always later minus earlier. If every difference is the same, the sequence is arithmetic. One difference that breaks the pattern is enough to rule it out. A sequence whose terms are multiplied by the same number each time is a *geometric* sequence, the topic of powers in the article on [exponents](article:exponents-and-radicals#what-is-an-exponent).
+**How to tell.** Subtract each term from the next, always later minus earlier. If every difference is the same, the sequence is arithmetic. One difference that breaks the pattern is enough to rule it out. A sequence whose terms are multiplied by the same number each time is a [geometric sequence](article:geometric-sequences-and-series#what-is-a-geometric-sequence), built from the powers in the article on [exponents](article:exponents-and-radicals#what-is-an-exponent).
 
 Two useful facts follow at once. Each term is the average of its two neighbours, $a_n=\frac{a_{n-1}+a_{n+1}}{2}$, which is why the word *arithmetic* is used: the arithmetic mean sits in the middle. And differences may be negative or fractions, so the [integers](article:integers#add-subtract) rules for negative numbers and the [rational numbers](article:rational-numbers#add-subtract-fractions) rules for fractions apply.
 
@@ -88,7 +88,7 @@ Itu memberi aturan $a_{n+1}=a_n+d$: untuk mendapat suku berikutnya, tambahkan $d
 | $2,4,8,16,\ldots$ | selisih $2,4,8$ | **bukan** aritmetika: tiap suku dilipatduakan |
 | $1,4,9,16,\ldots$ | selisih $3,5,7$ | **bukan** aritmetika: selisihnya membesar |
 
-**Cara mengetahuinya.** Kurangkan tiap suku dari suku berikutnya, selalu yang kemudian dikurangi yang lebih dulu. Jika setiap selisih sama, barisannya aritmetika. Satu selisih yang menyimpang saja cukup untuk menyingkirkannya. Barisan yang sukunya dikalikan bilangan yang sama setiap kali adalah barisan *geometri*, topik pangkat pada artikel [eksponen](article:exponents-and-radicals#what-is-an-exponent).
+**Cara mengetahuinya.** Kurangkan tiap suku dari suku berikutnya, selalu yang kemudian dikurangi yang lebih dulu. Jika setiap selisih sama, barisannya aritmetika. Satu selisih yang menyimpang saja cukup untuk menyingkirkannya. Barisan yang sukunya dikalikan bilangan yang sama setiap kali adalah [barisan geometri](article:geometric-sequences-and-series#what-is-a-geometric-sequence), yang dibangun dari pangkat pada artikel [eksponen](article:exponents-and-radicals#what-is-an-exponent).
 
 Dua fakta berguna langsung mengikutinya. Setiap suku adalah rata-rata dari dua tetangganya, $a_n=\frac{a_{n-1}+a_{n+1}}{2}$, itulah sebabnya kata *aritmetika* dipakai: rata-rata aritmetika berada di tengah. Dan beda boleh negatif atau pecahan, sehingga aturan [bilangan bulat](article:integers#add-subtract) untuk bilangan negatif dan aturan [bilangan rasional](article:rational-numbers#add-subtract-fractions) untuk pecahan berlaku.
 
@@ -372,14 +372,14 @@ Coba pemasangan itu untuk barisanmu sendiri di bawah.`,
 - If $d<0$ they eventually fall to $-\infty$.
 - If $d=0$ and $a_1\neq0$ then $S_n=na_1$ also grows without bound.
 
-Such a series is said to **diverge**. This is a sharp contrast with a *geometric* series with a common ratio of size less than 1, such as $\frac12+\frac14+\frac18+\cdots$, whose terms shrink fast enough for the sum to settle at 1. In practice that means every question about an arithmetic series asks for a finite number of terms. If a problem seems to ask for the sum of an infinite arithmetic series, it is a geometric series in disguise or the answer is "it diverges".`,
+Such a series is said to **diverge**. This is a sharp contrast with a [geometric series](article:geometric-sequences-and-series#infinite-geometric-series) with a common ratio of size less than 1, such as $\frac12+\frac14+\frac18+\cdots$, whose terms shrink fast enough for the sum to settle at 1. In practice that means every question about an arithmetic series asks for a finite number of terms. If a problem seems to ask for the sum of an infinite arithmetic series, it is a geometric series in disguise or the answer is "it diverges".`,
             T`**Deret aritmetika tak hingga tidak punya jumlah berhingga kecuali setiap sukunya 0: jumlah parsialnya membesar tanpa batas.** Menambah lebih banyak suku terus mengubah jumlah dengan nilai bukan nol, dan dengan $d\neq0$ sukunya sendiri makin besar ukurannya, sehingga jumlahnya tidak dapat menetap.
 
 - Jika $d>0$ jumlah parsial $S_n=\frac d2n^2+\bigl(a_1-\frac d2\bigr)n$ akhirnya membesar menuju $+\infty$.
 - Jika $d<0$ jumlah itu akhirnya turun menuju $-\infty$.
 - Jika $d=0$ dan $a_1\neq0$ maka $S_n=na_1$ juga membesar tanpa batas.
 
-Deret seperti itu dikatakan **divergen**. Ini kontras tajam dengan deret *geometri* yang rasionya berukuran kurang dari 1, seperti $\frac12+\frac14+\frac18+\cdots$, yang sukunya mengecil cukup cepat sehingga jumlahnya menetap di 1. Dalam praktik itu berarti setiap pertanyaan tentang deret aritmetika meminta banyak suku yang berhingga. Jika suatu soal tampak meminta jumlah deret aritmetika tak hingga, itu deret geometri yang menyamar atau jawabannya "divergen".`,
+Deret seperti itu dikatakan **divergen**. Ini kontras tajam dengan [deret geometri](article:geometric-sequences-and-series#infinite-geometric-series) yang rasionya berukuran kurang dari 1, seperti $\frac12+\frac14+\frac18+\cdots$, yang sukunya mengecil cukup cepat sehingga jumlahnya menetap di 1. Dalam praktik itu berarti setiap pertanyaan tentang deret aritmetika meminta banyak suku yang berhingga. Jika suatu soal tampak meminta jumlah deret aritmetika tak hingga, itu deret geometri yang menyamar atau jawabannya "divergen".`,
           ),
         },
       ],
@@ -892,5 +892,5 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
     { title: 'The Python Standard Library: range, sum and itertools.accumulate', author: 'Python Software Foundation', source: 'docs.python.org', url: 'https://docs.python.org/3/library/stdtypes.html#range' },
   ],
 
-  related: ['algebraic-expressions', 'integers', 'rational-numbers', 'exponents-and-radicals'],
+  related: ['algebraic-expressions', 'geometric-sequences-and-series', 'rational-numbers', 'exponents-and-radicals'],
 }

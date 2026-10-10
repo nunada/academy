@@ -1385,3 +1385,7 @@ a.chip.static { cursor: pointer; }
 
 /* Arithmetic Sequences and Series article */
 .seqline { stroke: var(--fig-c); stroke-width: 1.4; stroke-dasharray: 4 3; opacity: 0.7; }
+
+/* Geometric Sequences and Series article */
+.geobar { fill: var(--fig-a); fill-opacity: 0.8; }
+.geobar.neg { fill: var(--fig-c); }

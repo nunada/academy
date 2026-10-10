@@ -320,6 +320,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Berikan dua suku dan posisinya lalu dapatkan beda, suku pertama, rumus, suku selanjutnya dan jumlahnya, beserta langkahnya.',
     },
   },
+  geodetect: {
+    title: { en: 'Interactive: is this list a geometric sequence?', id: 'Interaktif: apakah daftar ini barisan geometri?' },
+    description: {
+      en: 'Type a list of numbers and see the ratios between neighbours, whether they agree, the formula and next terms, or where the pattern breaks.',
+      id: 'Ketik daftar bilangan dan lihat rasio antartetangga, apakah sama, rumus dan suku berikutnya, atau di mana pola itu patah.',
+    },
+  },
+  geoseq: {
+    title: { en: 'Interactive: build a geometric sequence', id: 'Interaktif: susun barisan geometri' },
+    description: {
+      en: 'Choose a first term, a common ratio and a length and see the terms, the formula for the n-th term and bars showing growth, decay or alternation.',
+      id: 'Pilih suku pertama, rasio, dan panjang lalu lihat suku-sukunya, rumus suku ke-n, dan batang yang menunjukkan pertumbuhan, peluruhan, atau pergantian tanda.',
+    },
+  },
+  geotwo: {
+    title: { en: 'Interactive: find a geometric sequence from two terms', id: 'Interaktif: temukan barisan geometri dari dua suku' },
+    description: {
+      en: 'Give two terms and their positions and get the ratio (or both ratios), the first term and the formula, or see why no fraction fits.',
+      id: 'Berikan dua suku dan posisinya lalu dapatkan rasio (atau kedua rasio), suku pertama, dan rumus, atau lihat mengapa tidak ada pecahan yang cocok.',
+    },
+  },
+  geosum: {
+    title: { en: 'Interactive: sums of a geometric series', id: 'Interaktif: jumlah deret geometri' },
+    description: {
+      en: 'See the subtract-and-multiply derivation of the sum formula, the exact sum, and the partial sums closing in on the infinite sum when the ratio is small enough.',
+      id: 'Lihat penurunan rumus jumlah dengan mengalikan dan mengurangkan, jumlah eksaknya, dan jumlah parsial yang mendekati jumlah tak hingga bila rasionya cukup kecil.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

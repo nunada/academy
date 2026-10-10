@@ -16,6 +16,7 @@ import {
 import { Tex } from '../ui'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { ChineseConvert, ChineseGrouping, ChineseRead, ChineseRods } from './ChineseWidgets'
+import { GeometricDetector, GeometricExplorer, GeometricSum, GeometricTwoTerms } from './GeometricWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -847,6 +848,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <GaussPairing />
     case 'twoterms':
       return <TwoTerms />
+    case 'geodetect':
+      return <GeometricDetector />
+    case 'geoseq':
+      return <GeometricExplorer />
+    case 'geotwo':
+      return <GeometricTwoTerms />
+    case 'geosum':
+      return <GeometricSum />
   }
 }
 
