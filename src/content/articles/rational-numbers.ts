@@ -433,7 +433,7 @@ Two numbers describe the repeat. The digits before it number $\max(x,y)$ when th
 
 Percentages apply to a base. A 200 dollar jacket with 15% off costs 85% of 200, which is $0.85\cdot200=170$ dollars. A rise of 20% followed by a fall of 20% does not return to the start, because the second percentage is of a larger number: $100\to120\to96$.
 
-Type any fraction below to see its decimal and why it looks that way.`,
+Type any fraction below to see its decimal and why it looks that way. The same rule holds in other bases: in base 2 only denominators that are powers of 2 terminate, as the article on [binary numbers](article:binary-numbers#binary-fractions) shows.`,
             T`**Untuk mengubah pecahan menjadi desimal, bagi pembilang dengan penyebut; desimalnya berakhir tepat bila penyebut, dalam bentuk paling sederhana, tidak punya faktor prima selain 2 dan 5, dan jika tidak ia akhirnya berulang secara periodik.** Sepuluh adalah $2\cdot5$, sehingga hanya penyebut yang tersusun dari 2 dan 5 yang muat dalam pangkat sepuluh.
 
 | Pecahan | Desimal | Alasan |
@@ -450,7 +450,7 @@ Dua bilangan menggambarkan pengulangan itu. Banyak angka sebelum pengulangan ada
 
 Persentase berlaku pada suatu dasar. Jaket Rp200.000 yang didiskon 15% berharga 85% dari 200.000, yaitu $0{,}85\cdot200000=170000$ rupiah, atau Rp170.000. Kenaikan 20% yang diikuti penurunan 20% tidak kembali ke awal, karena persentase kedua dihitung dari bilangan yang lebih besar: $100\to120\to96$.
 
-Ketik pecahan apa pun di bawah untuk melihat desimalnya dan mengapa tampak demikian.`,
+Ketik pecahan apa pun di bawah untuk melihat desimalnya dan mengapa tampak demikian. Aturan yang sama berlaku pada basis lain: dalam basis 2 hanya penyebut berupa pangkat 2 yang berakhir, seperti ditunjukkan artikel [bilangan biner](article:binary-numbers#binary-fractions).`,
           ),
         },
         { kind: 'widget', name: 'ratdecimal' },

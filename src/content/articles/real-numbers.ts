@@ -636,14 +636,14 @@ Mengapa $q+i$ selalu irasional? Andaikan $q+i=r$, dengan $r$ rasional. Maka $i=r
           text: L(
             T`**In code, 0.1 + 0.2 does not equal 0.3 because computers store real numbers as 64-bit binary floating-point numbers (*floats* for short), and 0.1 cannot be stored exactly.** A computer has finite memory, and a real number can need infinitely many digits. So programs store an **approximation**. Almost all languages use the IEEE 754 *binary64* format (IEEE 754-2019; see Goldberg, 1991), called a ´double´ or a Python ´float´: 1 sign bit, 11 exponent bits and 52 fraction bits, which gives 53 bits of precision — about 15 to 17 significant decimal digits.
 
-The catch is that the format is *binary*. The decimal $0.1$ is $\frac{1}{10}$, and $10$ has the prime factor 5, so in base 2 the expansion of $0.1$ is periodic without end, just as the expansion of $\frac{1}{3}$ is in base 10. The computer cannot keep an infinite expansion, so it stores the nearest value the format can represent, and the value actually stored is
+The catch is that the format is *binary* (see [binary numbers](article:binary-numbers#binary-fractions) for how fractions are written in base 2). The decimal $0.1$ is $\frac{1}{10}$, and $10$ has the prime factor 5, so in base 2 the expansion of $0.1$ is periodic without end, just as the expansion of $\frac{1}{3}$ is in base 10. The computer cannot keep an infinite expansion, so it stores the nearest value the format can represent, and the value actually stored is
 
 $$0.1000000000000000055511151231257827\ldots$$
 
 Add two such rounded values and the tiny errors show up:`,
             T`**Dalam kode, 0,1 + 0,2 tidak sama dengan 0,3 karena komputer merepresentasikan bilangan menggunakan format bilangan titik-mengambang (floating-point number, disingkat float) biner 64-bit, dan 0,1 tidak dapat disimpan secara eksak.** Komputer memiliki kapasitas penyimpanan terbatas, sedangkan sebuah bilangan real bisa membutuhkan tak berhingga banyak angka. Maka program menyimpan **hampiran**. Hampir semua bahasa memakai format IEEE 754 *binary64* (IEEE 754-2019; lihat Goldberg, 1991), yang disebut ´double´ atau ´float´ di Python: 1 bit tanda, 11 bit eksponen, dan 52 bit bagian pecahan (fraction), sehingga memberi presisi 53 bit — sekitar 15 sampai 17 angka signifikan desimal.
 
-Masalahnya, formatnya *biner*. Desimal $0{,}1$ adalah $\frac{1}{10}$, dan $10$ punya faktor prima 5, sehingga dalam basis 2 ekspansi $0{,}1$ periodik tanpa akhir, sama seperti ekspansi $\frac{1}{3}$ dalam basis 10. Komputer tidak dapat menyimpan ekspansi yang tak berhingga itu, sehingga ia menyimpan nilai terdekat yang dapat diwakili oleh format tersebut, dan nilai yang benar-benar tersimpan adalah
+Masalahnya, formatnya *biner* (lihat [bilangan biner](article:binary-numbers#binary-fractions) untuk cara menulis pecahan dalam basis 2). Desimal $0{,}1$ adalah $\frac{1}{10}$, dan $10$ punya faktor prima 5, sehingga dalam basis 2 ekspansi $0{,}1$ periodik tanpa akhir, sama seperti ekspansi $\frac{1}{3}$ dalam basis 10. Komputer tidak dapat menyimpan ekspansi yang tak berhingga itu, sehingga ia menyimpan nilai terdekat yang dapat diwakili oleh format tersebut, dan nilai yang benar-benar tersimpan adalah
 
 $$0{,}1000000000000000055511151231257827\ldots$$
 

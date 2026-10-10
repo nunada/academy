@@ -1372,3 +1372,13 @@ a.chip.static { cursor: pointer; }
 .fbpart.off { fill: var(--surface-2); }
 .fbpart.a { fill: var(--fig-a); fill-opacity: 0.75; }
 .fbpart.b { fill: var(--fig-c); fill-opacity: 0.75; }
+
+/* Binary Numbers article */
+.mono { font-family: ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace; letter-spacing: 0.04em; }
+.binpre { white-space: pre; overflow-x: auto; }
+.bitrow { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+.bit { display: flex; flex-direction: column; align-items: center; min-width: 38px; padding: 4px 6px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); cursor: pointer; }
+.bit:hover { border-color: var(--brand); }
+.bit.on { background: var(--brand); color: var(--on-brand); border-color: var(--brand); }
+.bit .bitw { font-size: 0.65rem; opacity: 0.75; }
+.bit .bitv { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 1.15rem; font-weight: 700; }

@@ -654,8 +654,8 @@ Masalahnya, **bahasa pemrograman tidak semuanya sepakat tentang operan negatif.*
         {
           kind: 'text',
           text: L(
-            T`**Python integers have no size limit and use floor division, while JavaScript numbers are floating-point numbers (floats), exact only up to $2^{53}-1$, with a remainder that follows the dividend; use ´BigInt´ in JavaScript for large exact integers.** The two languages disagree exactly where this article has been pointing.`,
-            T`**Bilangan bulat Python tidak punya batas ukuran dan memakai pembagian floor, sedangkan bilangan JavaScript berupa bilangan floating point (float), eksak hanya sampai $2^{53}-1$, dengan sisa yang mengikuti bilangan yang dibagi; pakai ´BigInt´ di JavaScript untuk bilangan bulat besar yang eksak.** Kedua bahasa itu berbeda tepat di tempat yang ditunjuk artikel ini.`,
+            T`**Python integers have no size limit and use floor division, while JavaScript numbers are floating-point numbers (floats), exact only up to $2^{53}-1$, with a remainder that follows the dividend; use ´BigInt´ in JavaScript for large exact integers.** The two languages disagree exactly where this article has been pointing. Why fixed-size integers wrap around is explained by [two’s complement](article:binary-numbers#twos-complement) in the article on binary numbers.`,
+            T`**Bilangan bulat Python tidak punya batas ukuran dan memakai pembagian floor, sedangkan bilangan JavaScript berupa bilangan floating point (float), eksak hanya sampai $2^{53}-1$, dengan sisa yang mengikuti bilangan yang dibagi; pakai ´BigInt´ di JavaScript untuk bilangan bulat besar yang eksak.** Kedua bahasa itu berbeda tepat di tempat yang ditunjuk artikel ini. Mengapa bilangan bulat berukuran tetap berputar kembali dijelaskan oleh [komplemen dua](article:binary-numbers#twos-complement) pada artikel bilangan biner.`,
           ),
         },
         {
@@ -1095,5 +1095,5 @@ Python's ´math.gcd´ and ´math.lcm´ (from Python 3.9) take any size of intege
     { title: 'ECMAScript Language Specification: multiplicative operators (the remainder operator)', author: 'Ecma International', source: 'tc39.es', url: 'https://tc39.es/ecma262/#sec-multiplicative-operators' },
   ],
 
-  related: ['real-numbers', 'algebraic-expressions', 'chinese-numbers'],
+  related: ['real-numbers', 'binary-numbers', 'algebraic-expressions', 'chinese-numbers'],
 }

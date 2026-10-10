@@ -78,6 +78,10 @@ jobs:
       # fractions behind the irrational-numbers widgets: checked against published
       # values, exhaustive search and floating point.
       - run: npm run check:irrational
+      # Base conversion, two's complement, bitwise operators, column arithmetic and
+      # fractions in a base behind the binary-numbers widgets: checked against BigInt,
+      # the language operators and exact reconstruction.
+      - run: npm run check:binary
 
       - name: Work out where the site will live
         id: base

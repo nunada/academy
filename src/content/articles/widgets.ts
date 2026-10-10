@@ -257,6 +257,41 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Pilih sebuah konstanta dan lihat pecahan dari pecahan berantainya, seperti 22/7 dan 355/113 untuk π, beserta desimal dan galatnya.',
     },
   },
+  baseconv: {
+    title: { en: 'Interactive: convert between binary, octal, decimal and hexadecimal', id: 'Interaktif: ubah antara biner, oktal, desimal, dan heksadesimal' },
+    description: {
+      en: 'Type a whole number in any of the four bases and see it in all of them, with the division ladder that produces its binary digits.',
+      id: 'Ketik bilangan bulat dalam salah satu dari empat basis dan lihat dalam semuanya, beserta tangga pembagian yang menghasilkan angka bitnya.',
+    },
+  },
+  binarith: {
+    title: { en: 'Interactive: add, subtract and multiply in binary', id: 'Interaktif: jumlah, kurang, dan kali dalam biner' },
+    description: {
+      en: 'Enter two binary numbers and watch the column working, with its carries and borrows or its shifted partial products, checked against decimal.',
+      id: 'Masukkan dua bilangan biner dan perhatikan langkah per kolom, beserta bawaan dan pinjaman atau hasil kali parsial yang digeser, diperiksa dengan desimal.',
+    },
+  },
+  bitedit: {
+    title: { en: 'Interactive: flip the bits of a byte', id: 'Interaktif: balik bit-bit satu byte' },
+    description: {
+      en: 'Click individual bits and read the number as unsigned, as signed two’s complement, in hexadecimal and octal, and as an ASCII character.',
+      id: 'Klik bit satu per satu dan baca bilangannya sebagai tanpa tanda, sebagai komplemen dua bertanda, dalam heksadesimal dan oktal, dan sebagai karakter ASCII.',
+    },
+  },
+  bitops: {
+    title: { en: 'Interactive: AND, OR, XOR, NOT and shifts', id: 'Interaktif: AND, OR, XOR, NOT, dan geseran' },
+    description: {
+      en: 'Apply a bitwise operator to two bytes and see the bits line up, with the result in binary and in decimal.',
+      id: 'Terapkan operator bitwise pada dua byte dan lihat bit-bitnya sejajar, dengan hasil dalam biner dan desimal.',
+    },
+  },
+  binfrac: {
+    title: { en: 'Interactive: fractions in binary', id: 'Interaktif: pecahan dalam biner' },
+    description: {
+      en: 'Write a number such as 0.1 in binary, octal or hexadecimal and see whether it terminates or repeats, and the long multiplication that gives the digits.',
+      id: 'Tulis bilangan seperti 0,1 dalam biner, oktal, atau heksadesimal dan lihat apakah ia berakhir atau berulang, beserta perkalian bersusun yang memberi angkanya.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

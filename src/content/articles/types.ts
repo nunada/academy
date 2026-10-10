@@ -61,6 +61,11 @@ export type WidgetName =
   | 'rootcheck'
   | 'surdcalc'
   | 'convergents'
+  | 'baseconv'
+  | 'binarith'
+  | 'bitedit'
+  | 'bitops'
+  | 'binfrac'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

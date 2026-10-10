@@ -33,7 +33,7 @@ const OPERATOR: Record<string, string> = {
   emptyset: '∅', forall: '∀', exists: '∃', therefore: '∴', because: '∵',
   perp: '⊥', parallel: '∥', nparallel: '∦', angle: '∠', triangle: '△',
   circ: '∘', degree: '°', infty: '∞', partial: '∂', nabla: '∇',
-  mid: '∣', ldots: '…', cdots: '⋯', dots: '…', vdots: '⋮',
+  mid: '∣', oplus: '⊕', ll: '≪', gg: '≫', ldots: '…', cdots: '⋯', dots: '…', vdots: '⋮',
   langle: '⟨', rangle: '⟩', lVert: '‖', rVert: '‖', vert: '|', Vert: '‖',
   lfloor: '⌊', rfloor: '⌋', lceil: '⌈', rceil: '⌉',
   sum: '∑', prod: '∏', int: '∫', checkmark: '✓',
