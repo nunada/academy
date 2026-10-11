@@ -192,11 +192,17 @@ export function Hearts({ count, nextIn, infinite = false }: { count: number; nex
   }
   return (
     <span className="hearts" title={nextIn === null ? t('fullHearts') : `${t('nextHeartIn')} ${formatCountdown(nextIn)}`}>
-      {Array.from({ length: MAX_HEARTS }, (_, i) => (
-        <span className={i < count ? 'h on' : 'h'} key={i}>
-          ❤️
-        </span>
-      ))}
+      <span className="hrow">
+        {Array.from({ length: MAX_HEARTS }, (_, i) => (
+          <span className={i < count ? 'h on' : 'h'} key={i}>
+            ❤️
+          </span>
+        ))}
+      </span>
+      {/* On a phone the row of hearts and the countdown give way to this short count. */}
+      <span className="hn" aria-hidden="true">
+        ❤️ {count}
+      </span>
       {nextIn !== null && <small className="muted" style={{ marginLeft: 4 }}>{formatCountdown(nextIn)}</small>}
     </span>
   )

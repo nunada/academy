@@ -1465,3 +1465,41 @@ a.chip.static { cursor: pointer; }
 /* Theme switch in the top bar: light, dark, or follow the system. */
 .themesw { margin-bottom: 0; }
 .themesw button { padding: 6px 10px; line-height: 1; font-size: 1rem; }
+
+/* One short top bar on a phone: the controls share a single row with the logo, the menu scrolls
+   sideways on a second row, and the three-button theme switch becomes one button that cycles. */
+.themecycle { display: none; }
+.hearts .hn { display: none; }
+.signout .i { display: none; }
+
+@media (max-width: 640px) {
+  .topbar { gap: 8px; row-gap: 2px; padding: 6px 10px; }
+  .brand { gap: 7px; }
+  .brand .mark svg { width: 26px; height: 26px; }
+  .brand-name { font-size: 0.95rem; }
+  .topbar .tabs { padding: 2px; }
+  .topbar .tabs button { padding: 5px 9px; font-size: 0.8rem; }
+  .themegroup { display: none; }
+  .themecycle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; padding: 0; font-size: 1rem; line-height: 1;
+    border: 1px solid var(--border); border-radius: 999px;
+    background: var(--surface-2); color: var(--text); cursor: pointer;
+  }
+  /* A short count instead of the row of hearts and the countdown; the title still says when the next heart arrives. */
+  .hearts .hrow, .hearts small { display: none; }
+  .hearts .hn { display: inline; font-weight: 700; font-size: 0.82rem; }
+  /* The developer-only local-mode badge would push the bar onto a third row. */
+  .topbar .pill.warn { display: none; }
+  .signout { padding: 5px 9px; }
+  .signout .t { display: none; }
+  .signout .i { display: inline; }
+  .nav { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { padding: 4px 10px; font-size: 0.82rem; }
+}
+
+/* On the narrowest phones the logo alone stands for the brand. */
+@media (max-width: 480px) {
+  .brand-name { display: none; }
+}
