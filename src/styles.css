@@ -604,9 +604,6 @@ pre.out.err { background: var(--bad-soft); color: var(--bad); border-color: tran
      row after everything else (`order`, not markup position) and scrolls
      sideways only if it still doesn't fit, same idea as `.gridwrap`
      elsewhere in this file. */
-  .topbar { flex-wrap: wrap; row-gap: 6px; padding: 10px 14px; }
-  .nav { order: 5; width: 100%; margin-left: 0; flex-wrap: nowrap; overflow-x: auto; }
-  .nav a { flex: none; }
   .hearts { font-size: 0.85rem; }
   .pill { padding: 3px 8px; font-size: 0.75rem; }
 }
@@ -1466,17 +1463,19 @@ a.chip.static { cursor: pointer; }
 .themesw { margin-bottom: 0; }
 .themesw button { padding: 6px 10px; line-height: 1; font-size: 1rem; }
 
-/* One short top bar on a phone: the controls share a single row with the logo, the menu scrolls
-   sideways on a second row, and the three-button theme switch becomes one button that cycles. */
+/* One short top bar on a phone or a small tablet: the controls share a single row with the logo, the menu
+   scrolls sideways on a second row, and the three-button theme switch becomes one button that cycles. */
 .themecycle { display: none; }
 .hearts .hn { display: none; }
 .signout .i { display: none; }
 
-@media (max-width: 640px) {
-  .topbar { gap: 8px; row-gap: 2px; padding: 6px 10px; }
-  .brand { gap: 7px; }
-  .brand .mark svg { width: 26px; height: 26px; }
-  .brand-name { font-size: 0.95rem; }
+/* Up to a small laptop: the menu has its own row under the logo and the controls, so nothing wraps in
+   the middle, and the theme switch is the single button that cycles (the three-button one is wider). */
+@media (max-width: 1500px) {
+  .topbar { flex-wrap: wrap; row-gap: 2px; padding: 7px 14px; }
+  .nav { order: 5; width: 100%; margin-left: 0; flex-wrap: nowrap; overflow-x: auto; }
+  .nav a { flex: none; padding: 4px 10px; }
+  .brand small { display: none; }
   .topbar .tabs { padding: 2px; }
   .topbar .tabs button { padding: 5px 9px; font-size: 0.8rem; }
   .themegroup { display: none; }
@@ -1486,6 +1485,13 @@ a.chip.static { cursor: pointer; }
     border: 1px solid var(--border); border-radius: 999px;
     background: var(--surface-2); color: var(--text); cursor: pointer;
   }
+}
+
+@media (max-width: 900px) {
+  .topbar { column-gap: 8px; padding: 6px 10px; }
+  .brand { gap: 7px; }
+  .brand .mark svg { width: 26px; height: 26px; }
+  .brand-name { font-size: 0.95rem; }
   /* A short count instead of the row of hearts and the countdown; the title still says when the next heart arrives. */
   .hearts .hrow, .hearts small { display: none; }
   .hearts .hn { display: inline; font-weight: 700; font-size: 0.82rem; }
@@ -1496,7 +1502,7 @@ a.chip.static { cursor: pointer; }
   .signout .i { display: inline; }
   .nav { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
   .nav::-webkit-scrollbar { display: none; }
-  .nav a { padding: 4px 10px; font-size: 0.82rem; }
+  .nav a { font-size: 0.82rem; }
 }
 
 /* On the narrowest phones the logo alone stands for the brand. */
