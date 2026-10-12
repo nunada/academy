@@ -101,6 +101,9 @@ jobs:
       # Pythagorean triples by Euclid's formula and by factoring against brute force, Berggren's
       # tree, divisibility facts, and exact missing sides and distances.
       - run: npm run check:pythagoras
+      # Tangent lines: the slope as a limit against the power rule, the double-root signature of a tangent,
+      # outside tangents against a grid of fractions, rational roots, corners, cube-root and cusp quotients.
+      - run: npm run check:tangent
 
       - name: Work out where the site will live
         id: base

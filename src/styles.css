@@ -1459,6 +1459,22 @@ a.chip.static { cursor: pointer; }
 .pythsqc { fill: var(--fig-result); fill-opacity: 0.3; stroke: var(--fig-result); stroke-width: 1.4; }
 .pythlabel { font-size: 12px; font-weight: 700; fill: var(--text); }
 
+/* The tangent line widgets: a graph on a square window. */
+.tansvg { width: 100%; max-width: 380px; display: block; margin: 8px auto; }
+.tanframe { fill: var(--surface); stroke: var(--border); stroke-width: 1; }
+.tanaxis { stroke: var(--border); stroke-width: 1.2; }
+.tancurve { fill: none; stroke: var(--fig-a); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
+.tantan { stroke: var(--fig-result); stroke-width: 2; }
+.tantan.faint { opacity: 0.45; stroke-dasharray: 6 4; }
+.tantan.wide { stroke-width: 7; opacity: 0.4; stroke-linecap: round; }
+.tansec { stroke: var(--fig-b); stroke-width: 2; }
+.tannorm { stroke: var(--fig-muted); stroke-width: 1.6; stroke-dasharray: 5 4; }
+.tandot { fill: var(--text); stroke: var(--surface); stroke-width: 1.5; }
+.tandot.sec { fill: var(--fig-b); }
+.tandot.open { fill: var(--surface); stroke: var(--text); }
+.tanlabel { font-size: 13px; font-weight: 700; fill: var(--text); }
+.wgt table.rtable tr.hi td { background: var(--brand-soft); font-weight: 700; }
+
 /* Theme switch in the top bar: light, dark, or follow the system. */
 .themesw { margin-bottom: 0; }
 .themesw button { padding: 6px 10px; line-height: 1; font-size: 1rem; }

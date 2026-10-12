@@ -446,6 +446,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Mulai dari (3, 4, 5) dan telusuri pohon Berggren, tempat setiap tripel Pythagoras primitif muncul tepat sekali dan setiap tripel punya tiga anak.',
     },
   },
+  tanzoom: {
+    title: { en: 'Interactive: zoom in on a curve', id: 'Interaktif: perbesar sebuah kurva' },
+    description: {
+      en: 'Pick a function and a point and zoom in: the curve straightens out until it is indistinguishable from its tangent line, and the gap between them shrinks faster than the window.',
+      id: 'Pilih sebuah fungsi dan titik lalu perbesar: kurva makin lurus sampai tak dapat dibedakan dari garis singgungnya, dan selisih keduanya mengecil lebih cepat daripada jendelanya.',
+    },
+  },
+  tansecant: {
+    title: { en: 'Interactive: from a secant to the tangent', id: 'Interaktif: dari garis potong ke garis singgung' },
+    description: {
+      en: 'Move a second point toward the first from either side and watch the slope of the secant line settle on the slope of the tangent, with a table of the slopes for h = 2 down to 0.0001.',
+      id: 'Gerakkan titik kedua mendekati titik pertama dari kedua sisi dan lihat gradien garis potong menuju gradien garis singgung, dengan tabel gradien untuk h = 2 sampai 0,0001.',
+    },
+  },
+  tanline: {
+    title: { en: 'Interactive: the tangent line calculator', id: 'Interaktif: kalkulator garis singgung' },
+    description: {
+      en: 'Type a polynomial and a point and get the difference quotient, the exact slope, the tangent and normal lines and where the tangent meets the curve again, or find the tangents through an outside point.',
+      id: 'Ketik sebuah polinomial dan titik lalu dapatkan hasil bagi selisih, gradien eksak, garis singgung dan garis normal serta tempat garis singgung bertemu kurva lagi, atau cari garis singgung melalui titik di luar.',
+    },
+  },
+  tannodiff: {
+    title: { en: 'Interactive: where there is no derivative', id: 'Interaktif: ketika turunan tidak ada' },
+    description: {
+      en: 'Six graphs at x = 0: a corner, a smooth look-alike, a jump, a vertical tangent, a cusp and endless wiggling, each with its one-sided secant slopes and a zoom that shows what never straightens out.',
+      id: 'Enam grafik di x = 0: sudut tajam, yang mirip tetapi mulus, lompatan, garis singgung tegak, cusp, dan osilasi tanpa henti, masing-masing dengan gradien garis potong dari tiap sisi dan perbesaran yang menunjukkan apa yang tidak pernah menjadi lurus.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

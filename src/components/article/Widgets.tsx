@@ -21,6 +21,7 @@ import { QuadArea, QuadClassifier, QuadProperties } from './QuadrilateralWidgets
 import { TriangleCenters, TriangleCheck, TriangleSolver } from './TriangleWidgets'
 import { CircleAngles, CircleCalc, CircleRelations, PiBounds } from './CircleWidgets'
 import { PythagoreanTree, PythagoreanTriples, PythagorasProof, PythagorasSolver } from './PythagorasWidgets'
+import { TangentLineTool, TangentNoDerivative, TangentSecant, TangentZoom } from './TangentWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -888,6 +889,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <PythagoreanTriples />
     case 'pythtree':
       return <PythagoreanTree />
+    case 'tanzoom':
+      return <TangentZoom />
+    case 'tansecant':
+      return <TangentSecant />
+    case 'tanline':
+      return <TangentLineTool />
+    case 'tannodiff':
+      return <TangentNoDerivative />
   }
 }
 
