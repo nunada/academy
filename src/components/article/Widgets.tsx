@@ -26,6 +26,7 @@ import { DerivativeFromDefinition, DerivativeGraph, DerivativeSteps } from './De
 import { DifferentiationSteps, ExponentialBase, ProductBox } from './RulesWidgets'
 import { GeometricRates, MarginalAnalysis, MotionAlongLine } from './RatesWidgets'
 import { SineLimit, SpringMotion, TrigSlope } from './TrigWidgets'
+import { ChainRates, ChainSteps, SineScale } from './ChainWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -927,6 +928,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <SineLimit />
     case 'springmotion':
       return <SpringMotion />
+    case 'chainsteps':
+      return <ChainSteps />
+    case 'chainrates':
+      return <ChainRates />
+    case 'sinscale':
+      return <SineScale />
   }
 }
 

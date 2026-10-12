@@ -117,6 +117,10 @@ jobs:
       # pi/180, the six derivative formulas against central differences, and the spring.
       - run: npm run check:trig
 
+      # The chain rule: the differentiator for composite functions against exact derivatives of rational functions, exact
+      # fractional powers, dual numbers, central differences for every expression and step, and the oscillation numbers.
+      - run: npm run check:chain
+
       - name: Work out where the site will live
         id: base
         run: |

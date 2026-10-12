@@ -565,6 +565,27 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Tarik beban ke bawah A satuan lalu lepaskan: posisinya A cos t, kecepatannya −A sin t, dan percepatannya −A cos t, dengan beban yang naik turun pada pegasnya dan grafik posisi dan kecepatan.',
     },
   },
+  chainsteps: {
+    title: { en: 'Interactive: differentiate a composite function', id: 'Interaktif: menurunkan fungsi komposit' },
+    description: {
+      en: 'Type a function built from powers, e^u, sin, cos, tan, cot, sec, csc and square roots of other functions, and see each chain rule step with its outside and inside function, the derivative and higher derivatives, checked against a difference quotient.',
+      id: 'Ketik fungsi yang dibangun dari pangkat, e^u, sin, cos, tan, cot, sec, csc, dan akar kuadrat dari fungsi lain, lalu lihat tiap langkah aturan rantai dengan fungsi luar dan fungsi dalamnya, turunan dan turunan tingkat tingginya, dicocokkan dengan hasil bagi selisih.',
+    },
+  },
+  chainrates: {
+    title: { en: 'Interactive: rates multiply', id: 'Interaktif: laju saling dikalikan' },
+    description: {
+      en: 'Pick an outside function and an inside function, slide x, and see that the rate of the inside times the rate of the outside is the slope of the composite graph.',
+      id: 'Pilih fungsi luar dan fungsi dalam, geser x, dan lihat bahwa laju bagian dalam dikali laju bagian luar adalah gradien grafik komposit.',
+    },
+  },
+  sinscale: {
+    title: { en: 'Interactive: the constant inside a sine', id: 'Interaktif: konstanta di dalam sinus' },
+    description: {
+      en: 'Change k in A sin(kx) and see the slope grow by the factor k, switch to degrees to see the factor π/180, or double the frequency of a piston and watch its velocity, acceleration and jerk grow by 2, 4 and 8.',
+      id: 'Ubah k pada A sin(kx) dan lihat gradien membesar dengan faktor k, ganti ke derajat untuk melihat faktor π/180, atau gandakan frekuensi piston dan lihat kecepatan, percepatan, dan sentakannya membesar 2, 4, dan 8 kali.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

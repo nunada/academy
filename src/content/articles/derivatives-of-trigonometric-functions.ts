@@ -498,7 +498,7 @@ print(math.cos(1))                                   # 0.5403023: the central di
 | Mistake | Correct |
 |---|---|
 | ❌ $\frac{d}{dx}\cos x=\sin x$ | The derivative of cosine has a minus sign: $-\sin x$. The cosine starts at its peak and falls, so its slope is negative. |
-| ❌ $\frac{d}{dx}\sin 2x=\cos 2x$ | The table is for $\sin x$ with a plain $x$ inside. With $2x$ inside the wave is twice as steep: the derivative is $2\cos 2x$, from the chain rule. |
+| ❌ $\frac{d}{dx}\sin 2x=\cos 2x$ | The table is for $\sin x$ with a plain $x$ inside. With $2x$ inside the wave is twice as steep: the derivative is $2\cos 2x$, from the [chain rule](article:the-chain-rule#chain-rule). |
 | ❌ $\frac{d}{dx}\tan x=\sec x$ | The derivative of tangent is $\sec^2x$. The expression $\sec x\tan x$ is the derivative of $\sec x$. |
 | ❌ $\frac{d}{dx}\sec x=\sec^2x$ | $\sec^2x$ is the derivative of $\tan x$. For secant, $\sec'x=\sec x\tan x$. |
 | ❌ $\frac{d}{dx}\sin^2x=\cos^2x$ | $\sin^2x=\sin x\cdot\sin x$, and the product rule gives $\cos x\sin x+\sin x\cos x=2\sin x\cos x$. |
@@ -511,7 +511,7 @@ print(math.cos(1))                                   # 0.5403023: the central di
 | Kesalahan | Yang benar |
 |---|---|
 | ❌ $\frac{d}{dx}\cos x=\sin x$ | Turunan kosinus bertanda minus: $-\sin x$. Kosinus mulai dari puncaknya lalu turun, sehingga gradiennya negatif. |
-| ❌ $\frac{d}{dx}\sin 2x=\cos 2x$ | Tabel itu untuk $\sin x$ dengan $x$ polos di dalamnya. Dengan $2x$ di dalam, gelombangnya dua kali lebih curam: turunannya $2\cos 2x$, dari aturan rantai. |
+| ❌ $\frac{d}{dx}\sin 2x=\cos 2x$ | Tabel itu untuk $\sin x$ dengan $x$ polos di dalamnya. Dengan $2x$ di dalam, gelombangnya dua kali lebih curam: turunannya $2\cos 2x$, dari [aturan rantai](article:the-chain-rule#chain-rule). |
 | ❌ $\frac{d}{dx}\tan x=\sec x$ | Turunan tangen adalah $\sec^2x$. Ekspresi $\sec x\tan x$ adalah turunan $\sec x$. |
 | ❌ $\frac{d}{dx}\sec x=\sec^2x$ | $\sec^2x$ adalah turunan $\tan x$. Untuk sekan, $\sec'x=\sec x\tan x$. |
 | ❌ $\frac{d}{dx}\sin^2x=\cos^2x$ | $\sin^2x=\sin x\cdot\sin x$, dan aturan hasil kali memberi $\cos x\sin x+\sin x\cos x=2\sin x\cos x$. |
@@ -841,5 +841,5 @@ print(math.cos(1))                                   # 0.5403023: the central di
     { title: 'SymPy tutorial: Calculus', author: 'SymPy Development Team', source: 'docs.sympy.org', url: 'https://docs.sympy.org/latest/tutorials/intro-tutorial/calculus.html' },
   ],
 
-  related: ['the-derivative-as-a-rate-of-change', 'differentiation-rules', 'the-derivative-as-a-function', 'circles'],
+  related: ['the-derivative-as-a-rate-of-change', 'differentiation-rules', 'the-chain-rule', 'circles'],
 }

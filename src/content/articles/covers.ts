@@ -339,6 +339,26 @@ const trigonometry = (): string => {
   )
 }
 
+const chainRule = (): string => {
+  const cx = [78, 200, 322]
+  const y = 76
+  const arrow = (x1: number, x2: number): string => line(x1, y, x2, y, 'st', 2.6) + path(`M${x2 - 9},${y - 7}L${x2},${y}L${x2 - 9},${y + 7}`, 'st', 2.6)
+  return (
+    dot(cx[0], y, 'pa', 36) +
+    dot(cx[1], y, 'pb', 36) +
+    dot(cx[2], y, 'pr', 36) +
+    arrow(cx[0] + 40, cx[1] - 40) +
+    arrow(cx[1] + 40, cx[2] - 40) +
+    text(cx[0], y + 9, 'x', 28) +
+    text(cx[1], y + 9, 'u', 28) +
+    text(cx[2], y + 9, 'y', 28) +
+    text((cx[0] + cx[1]) / 2, y - 14, 'g', 19, 'tm') +
+    text((cx[1] + cx[2]) / 2, y - 14, 'f', 19, 'tm') +
+    path('M78,128C120,150 280,150 322,128', 'sm', 2, '5 5') +
+    text(200, 176, 'dy/dx = dy/du · du/dx', 19)
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -365,6 +385,7 @@ const COVERS: Record<string, () => string> = {
   'differentiation-rules': differentiationRules,
   'the-derivative-as-a-rate-of-change': rateOfChange,
   'derivatives-of-trigonometric-functions': trigonometry,
+  'the-chain-rule': chainRule,
 }
 
 /** Ids that have their own drawing, for the checker. */

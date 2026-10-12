@@ -105,6 +105,9 @@ export type WidgetName =
   | 'trigslope'
   | 'limitsin'
   | 'springmotion'
+  | 'chainsteps'
+  | 'chainrates'
+  | 'sinscale'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */
