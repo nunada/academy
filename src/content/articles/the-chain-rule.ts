@@ -940,5 +940,5 @@ print(round(y.v, 6), round(y.d, 6))                                 # 0.595461 -
     { title: 'Learning representations by back-propagating errors', author: 'David E. Rumelhart, Geoffrey E. Hinton, Ronald J. Williams', year: 1986, source: 'Nature, 323, 533–536' },
   ],
 
-  related: ['derivatives-of-trigonometric-functions', 'differentiation-rules', 'the-derivative-as-a-rate-of-change', 'the-derivative-as-a-function'],
+  related: ['derivatives-of-trigonometric-functions', 'differentiation-rules', 'the-derivative-as-a-rate-of-change', 'implicit-differentiation'],
 }

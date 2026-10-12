@@ -32,7 +32,8 @@
     "check:diffrules": "node tools/check-diffrules.mjs",
     "check:rates": "node tools/check-rates.mjs",
     "check:trig": "node tools/check-trig.mjs",
-    "check:chain": "node tools/check-chain.mjs"
+    "check:chain": "node tools/check-chain.mjs",
+    "check:implicit": "node tools/check-implicitdiff.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

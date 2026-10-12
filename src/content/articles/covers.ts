@@ -359,6 +359,29 @@ const chainRule = (): string => {
   )
 }
 
+const implicitDifferentiation = (): string => {
+  const X = (x: number) => 54 + x * 36
+  const Y = (y: number) => 176 - y * 31
+  // the folium of Descartes, x³ + y³ = 9xy, drawn from its parametrization t = tan φ
+  let d = ''
+  for (let i = 0; i <= 160; i++) {
+    const t = Math.tan((i / 160) * 1.5707)
+    const x = (9 * t) / (1 + t ** 3)
+    const y = (9 * t * t) / (1 + t ** 3)
+    d += `${i ? 'L' : 'M'}${n1(X(x))},${n1(Y(y))}`
+  }
+  return (
+    line(20, Y(0), 380, Y(0), 'sm', 2) +
+    line(X(0), 190, X(0), 12, 'sm', 2) +
+    path(d, 'sa', 3.6) +
+    line(X(0.2), Y(4 + 0.8 * -1.8), X(4.2), Y(4 + 0.8 * 2.2), 'sb', 3) +
+    line(X(0.8), Y(4 - 1.25 * -1.2), X(3.2), Y(4 - 1.25 * 1.2), 'sr', 3, '7 5') +
+    dot(X(2), Y(4), 'fr', 6.5) +
+    text(330, 78, 'y′', 46) +
+    text(330, 112, 'x³+y³=9xy', 16, 'tm')
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -386,6 +409,7 @@ const COVERS: Record<string, () => string> = {
   'the-derivative-as-a-rate-of-change': rateOfChange,
   'derivatives-of-trigonometric-functions': trigonometry,
   'the-chain-rule': chainRule,
+  'implicit-differentiation': implicitDifferentiation,
 }
 
 /** Ids that have their own drawing, for the checker. */

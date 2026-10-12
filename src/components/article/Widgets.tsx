@@ -27,6 +27,7 @@ import { DifferentiationSteps, ExponentialBase, ProductBox } from './RulesWidget
 import { GeometricRates, MarginalAnalysis, MotionAlongLine } from './RatesWidgets'
 import { SineLimit, SpringMotion, TrigSlope } from './TrigWidgets'
 import { ChainRates, ChainSteps, SineScale } from './ChainWidgets'
+import { ImplicitSlide, ImplicitSteps } from './ImplicitWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -934,6 +935,10 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <ChainRates />
     case 'sinscale':
       return <SineScale />
+    case 'implicitsteps':
+      return <ImplicitSteps />
+    case 'implicitslide':
+      return <ImplicitSlide />
   }
 }
 

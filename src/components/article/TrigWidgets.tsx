@@ -214,7 +214,7 @@ export function SpringMotion() {
       </div>
       <Plot
         xr={[0, T]}
-        yr={[-A * 1.25, A * 1.25]}
+        yr={[-10, 10]}
         curves={[
           { f: (u) => A * Math.cos(u), cls: 'tancurve' },
           { f: (u) => -A * Math.sin(u), cls: 'tancurve sec' },

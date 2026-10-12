@@ -586,6 +586,20 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Ubah k pada A sin(kx) dan lihat gradien membesar dengan faktor k, ganti ke derajat untuk melihat faktor π/180, atau gandakan frekuensi piston dan lihat kecepatan, percepatan, dan sentakannya membesar 2, 4, dan 8 kali.',
     },
   },
+  implicitsteps: {
+    title: { en: 'Interactive: differentiate an equation implicitly', id: 'Interaktif: menurunkan persamaan secara implisit' },
+    description: {
+      en: 'Type an equation in x and y, and see both sides differentiated, the terms with y′ collected and solved, the slope, tangent line and normal line at a point of the curve, and the second derivative, with the curve drawn and the slope checked numerically.',
+      id: 'Ketik persamaan dalam x dan y, lalu lihat kedua ruas diturunkan, suku-suku dengan y′ dikumpulkan dan diselesaikan, gradien, garis singgung, dan garis normal di suatu titik kurva, serta turunan kedua, dengan kurva yang digambar dan gradien yang diperiksa secara numerik.',
+    },
+  },
+  implicitslide: {
+    title: { en: 'Interactive: a point round a curve', id: 'Interaktif: titik mengelilingi kurva' },
+    description: {
+      en: 'Move a point round a circle, an ellipse or a rounded square and watch its tangent and normal lines turn, with the slope from y′ = −x/y and its relatives, horizontal where the numerator is 0 and vertical where the denominator is 0.',
+      id: 'Gerakkan titik mengelilingi lingkaran, elips, atau persegi bulat dan lihat garis singgung dan garis normalnya berputar, dengan gradien dari y′ = −x/y dan kerabatnya, mendatar di tempat pembilang 0 dan tegak di tempat penyebut 0.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

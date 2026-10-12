@@ -121,6 +121,10 @@ jobs:
       # fractional powers, dual numbers, central differences for every expression and step, and the oscillation numbers.
       - run: npm run check:chain
 
+      # Implicit differentiation: curves around a known function against exact derivatives, twenty curves against Newton's
+      # method and central differences for y' and y'', the chapter's examples and the rational power rule.
+      - run: npm run check:implicit
+
       - name: Work out where the site will live
         id: base
         run: |

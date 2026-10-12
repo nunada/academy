@@ -27,6 +27,7 @@ const RULE: Record<RuleId, { en: string; id: string }> = {
   product: { en: 'Product rule', id: 'Aturan hasil kali' },
   quotient: { en: 'Quotient rule', id: 'Aturan hasil bagi' },
   chain: { en: 'Chain rule', id: 'Aturan rantai' },
+  implicit: { en: 'y is a function of x', id: 'y adalah fungsi dari x' },
 }
 
 const ERR: Record<ParseError['code'], { en: string; id: string }> = {
@@ -36,6 +37,8 @@ const ERR: Record<ParseError['code'], { en: string; id: string }> = {
   function: { en: 'Only sin, cos, tan, cot, sec, csc, sqrt and e^ are known here. Logarithms and inverse trigonometric functions come later.', id: 'Di sini hanya sin, cos, tan, cot, sec, csc, sqrt, dan e^ yang dikenal. Logaritma dan fungsi trigonometri invers dibahas kemudian.' },
   exp: { en: 'e must appear as e^x or e^(something), and an exponent must be a number such as 3, -2 or (1/2).', id: 'e harus muncul sebagai e^x atau e^(sesuatu), dan pangkat harus berupa bilangan seperti 3, -2, atau (1/2).' },
   big: { en: 'That expression is too long.', id: 'Ekspresi itu terlalu panjang.' },
+  equation: { en: 'Write an equation with one = sign, for example x^2 + y^2 = 25.', id: 'Tulis persamaan dengan satu tanda =, misalnya x^2 + y^2 = 25.' },
+  noy: { en: 'There is no y in this equation, so there is nothing to differentiate implicitly.', id: 'Tidak ada y dalam persamaan ini, sehingga tidak ada yang diturunkan secara implisit.' },
 }
 
 const PRESETS = ['sin(2x)', '(3x^2+1)^2', 'cos(x^2+1)', 'sin(x^2+e^x)', 'e^(cos x)', 'tan(5 - sin(2x))', 'sqrt(3x+1)', '1/(3x-2)', 'sin^5(x)', 'x sin(2x)']
@@ -285,7 +288,7 @@ export function SineScale() {
         </div>
         <Plot
           xr={[0, 2 * T]}
-          yr={[-A * 1.2, A * 1.2]}
+          yr={[-6.2, 6.2]}
           curves={[{ f: (t) => A * Math.cos(w * t), cls: 'tancurve' }]}
           label={tc(L('The position of the piston over two cycles', 'Posisi piston selama dua siklus'))}
         />
@@ -346,21 +349,24 @@ export function SineScale() {
           </label>
         )}
       </div>
-      <p className="small muted">{tc(L('Graph of y = A sin(kx) (green)', 'Grafik y = A sin(kx) (hijau)'))}</p>
+      <p className="small muted">{tc(L('Graph of y = A sin(kx) (green), drawn to the same scale whatever A and k are', 'Grafik y = A sin(kx) (hijau), digambar dengan skala yang sama berapa pun A dan k'))}</p>
       <Plot
         xr={xr}
-        yr={[-A * 1.25, A * 1.25]}
+        yr={[-6.2, 6.2]}
         curves={[
           ...(deg ? [] : [{ f: (t: number) => A * Math.sin(t), cls: 'tancurve faint' }]),
           { f: (t: number) => sinKx(A, kk, t), cls: 'tancurve' },
         ]}
         label={tc(L('The graph of A sin(kx)', 'Grafik A sin(kx)'))}
       />
-      <p className="small muted">{tc(L('Its derivative A k cos(kx): the amplitude is multiplied by k', 'Turunannya A k cos(kx): amplitudonya dikalikan k'))}</p>
+      <p className="small muted">{tc(L('Its derivative A k cos(kx) (orange) against A cos x (faint): the amplitude is multiplied by k', 'Turunannya A k cos(kx) (jingga) terhadap A cos x (samar): amplitudonya dikalikan k'))}</p>
       <Plot
         xr={xr}
-        yr={[-Math.max(A * kk, A * 0.05) * 1.25, Math.max(A * kk, A * 0.05) * 1.25]}
-        curves={[{ f: (t) => sinKxSlope(A, kk, t), cls: 'tancurve sec' }]}
+        yr={deg ? [-0.11, 0.11] : [-22, 22]}
+        curves={[
+          ...(deg ? [] : [{ f: (t: number) => A * Math.cos(t), cls: 'tancurve faint' }]),
+          { f: (t: number) => sinKxSlope(A, kk, t), cls: 'tancurve sec' },
+        ]}
         label={tc(L('The graph of the derivative', 'Grafik turunannya'))}
       />
       <div className="wgtout" aria-live="polite">

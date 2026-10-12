@@ -29,8 +29,9 @@ import { meta as differentiationRules } from './differentiation-rules.meta'
 import { meta as rateOfChange } from './the-derivative-as-a-rate-of-change.meta'
 import { meta as trigDerivatives } from './derivatives-of-trigonometric-functions.meta'
 import { meta as chainRule } from './the-chain-rule.meta'
+import { meta as implicitDiff } from './implicit-differentiation.meta'
 
-export const ARTICLES: ArticleMeta[] = [chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -52,6 +53,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'differentiation-rules': () => import('./differentiation-rules'),
   'derivatives-of-trigonometric-functions': () => import('./derivatives-of-trigonometric-functions'),
   'the-chain-rule': () => import('./the-chain-rule'),
+  'implicit-differentiation': () => import('./implicit-differentiation'),
   'the-derivative-as-a-rate-of-change': () => import('./the-derivative-as-a-rate-of-change'),
 }
 

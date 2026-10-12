@@ -108,6 +108,8 @@ export type WidgetName =
   | 'chainsteps'
   | 'chainrates'
   | 'sinscale'
+  | 'implicitsteps'
+  | 'implicitslide'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

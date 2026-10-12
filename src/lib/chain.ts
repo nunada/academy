@@ -27,6 +27,10 @@ export type Node =
   | { t: 'num'; v: Rat }
   | { t: 'pi' }
   | { t: 'x' }
+  /** y as a function of x, for implicit differentiation */
+  | { t: 'y' }
+  /** dy/dx, written as a symbol so that an equation can be solved for it */
+  | { t: 'yp' }
   | { t: 'neg'; a: Node }
   | { t: 'add'; a: Node; b: Node }
   | { t: 'sub'; a: Node; b: Node }
@@ -49,6 +53,8 @@ const absR = (r: Rat): Rat => (r.n < 0n ? negR(r) : r)
 export const K = (n: number | bigint | Rat, d = 1): Node => ({ t: 'num', v: typeof n === 'object' ? n : rat(BigInt(n), BigInt(d)) })
 export const X: Node = { t: 'x' }
 export const PI: Node = { t: 'pi' }
+export const Y: Node = { t: 'y' }
+export const YP: Node = { t: 'yp' }
 export const neg = (a: Node): Node => ({ t: 'neg', a })
 export const add = (a: Node, b: Node): Node => ({ t: 'add', a, b })
 export const sub = (a: Node, b: Node): Node => ({ t: 'sub', a, b })
@@ -65,6 +71,8 @@ export function isConst(n: Node): boolean {
     case 'pi':
       return true
     case 'x':
+    case 'y':
+    case 'yp':
       return false
     case 'neg':
     case 'pow':
@@ -81,6 +89,8 @@ export function subst(n: Node, inner: Node): Node {
   switch (n.t) {
     case 'num':
     case 'pi':
+    case 'y':
+    case 'yp':
       return n
     case 'x':
       return inner
@@ -103,6 +113,8 @@ export function size(n: Node): number {
     case 'num':
     case 'pi':
     case 'x':
+    case 'y':
+    case 'yp':
       return 1
     case 'neg':
     case 'pow':
@@ -121,7 +133,8 @@ const ratValue = (r: Rat): number => Number(r.n) / Number(r.d)
 const fnValue = (f: FnName, x: number): number =>
   f === 'sin' ? Math.sin(x) : f === 'cos' ? Math.cos(x) : f === 'tan' ? Math.tan(x) : f === 'cot' ? 1 / Math.tan(x) : f === 'sec' ? 1 / Math.cos(x) : 1 / Math.sin(x)
 
-export function evalFloat(n: Node, x: number): number {
+export function evalFloat(n: Node, x: number, y = NaN, yp = NaN): number {
+  const e = (c: Node): number => evalFloat(c, x, y, yp)
   switch (n.t) {
     case 'num':
       return ratValue(n.v)
@@ -129,22 +142,26 @@ export function evalFloat(n: Node, x: number): number {
       return Math.PI
     case 'x':
       return x
+    case 'y':
+      return y
+    case 'yp':
+      return yp
     case 'neg':
-      return -evalFloat(n.a, x)
+      return -e(n.a)
     case 'add':
-      return evalFloat(n.a, x) + evalFloat(n.b, x)
+      return e(n.a) + e(n.b)
     case 'sub':
-      return evalFloat(n.a, x) - evalFloat(n.b, x)
+      return e(n.a) - e(n.b)
     case 'mul':
-      return evalFloat(n.a, x) * evalFloat(n.b, x)
+      return e(n.a) * e(n.b)
     case 'div':
-      return evalFloat(n.a, x) / evalFloat(n.b, x)
+      return e(n.a) / e(n.b)
     case 'pow':
-      return evalFloat(n.a, x) ** ratValue(n.n)
+      return e(n.a) ** ratValue(n.n)
     case 'exp':
-      return Math.exp(evalFloat(n.a, x))
+      return Math.exp(e(n.a))
     case 'fn':
-      return fnValue(n.f, evalFloat(n.a, x))
+      return fnValue(n.f, e(n.a))
   }
 }
 
@@ -160,28 +177,31 @@ const ratPow = (x: Rat, n: bigint): Rat | null => {
 }
 
 /** Exact value at a rational x, or null when π, e^u, a trigonometric function, a fractional power or a division by zero is involved. */
-export function evalExact(n: Node, x: Rat): Rat | null {
+export function evalExact(n: Node, x: Rat, y?: Rat): Rat | null {
   switch (n.t) {
     case 'num':
       return n.v
     case 'pi':
     case 'exp':
     case 'fn':
+    case 'yp':
       return null
     case 'x':
       return x
+    case 'y':
+      return y ?? null
     case 'neg': {
-      const v = evalExact(n.a, x)
+      const v = evalExact(n.a, x, y)
       return v === null ? null : negR(v)
     }
     case 'pow': {
       if (!isInt(n.n) || absR(n.n).n > 200n) return null
-      const b = evalExact(n.a, x)
+      const b = evalExact(n.a, x, y)
       return b === null ? null : ratPow(b, n.n.n)
     }
     default: {
-      const a = evalExact(n.a, x)
-      const b = evalExact(n.b, x)
+      const a = evalExact(n.a, x, y)
+      const b = evalExact(n.b, x, y)
       if (a === null || b === null) return null
       if (n.t === 'add') return ratAdd(a, b)
       if (n.t === 'sub') return ratSub(a, b)
@@ -203,6 +223,8 @@ export function toRational(n: Node): RationalFn | null {
     case 'pi':
     case 'exp':
     case 'fn':
+    case 'y':
+    case 'yp':
       return null
     case 'neg': {
       const v = toRational(n.a)
@@ -315,7 +337,7 @@ function rebuildSum(ts: Term[]): Node {
   return acc as Node
 }
 
-const rank = (b: Node): number => (b.t === 'pi' ? 0 : b.t === 'x' ? 1 : b.t === 'exp' ? 3 : b.t === 'fn' ? 4 : 2)
+const rank = (b: Node): number => (b.t === 'pi' ? 0 : b.t === 'x' || b.t === 'y' || b.t === 'yp' ? 1 : b.t === 'exp' ? 3 : b.t === 'fn' ? 4 : 2)
 
 function facNode(f: Fac): Node {
   if (isOne(f.e)) return f.b
@@ -351,6 +373,10 @@ function normalize(n: Node): Term[] {
       return [{ c: ONE, fs: [{ b: PI, e: ONE }] }]
     case 'x':
       return [{ c: ONE, fs: [{ b: X, e: ONE }] }]
+    case 'y':
+      return [{ c: ONE, fs: [{ b: Y, e: ONE }] }]
+    case 'yp':
+      return [{ c: ONE, fs: [{ b: YP, e: ONE }] }]
     case 'neg':
       return normalize(n.a).map((t) => ({ c: negR(t.c), fs: t.fs }))
     case 'add':
@@ -447,7 +473,7 @@ export function simp(n: Node): Node {
 
 /* ------------------------------------------------------------------ differentiating */
 
-export type RuleId = 'constant' | 'power' | 'exponential' | 'trig' | 'multiple' | 'negative' | 'sum' | 'difference' | 'product' | 'quotient' | 'chain'
+export type RuleId = 'constant' | 'power' | 'exponential' | 'trig' | 'multiple' | 'negative' | 'sum' | 'difference' | 'product' | 'quotient' | 'chain' | 'implicit'
 
 export interface Step {
   rule: RuleId
@@ -492,6 +518,12 @@ export function differentiate(n: Node, steps: Step[] = []): Node {
     case 'x':
       record('power', K(1))
       return K(1)
+    case 'y':
+      record('implicit', YP)
+      return YP
+    case 'yp':
+      record('constant', K(0))
+      return K(0)
     case 'neg': {
       const slot = steps.length
       steps.push({ rule: 'negative', expr: n, result: K(0) })
@@ -581,13 +613,13 @@ export function nth(n: Node, k: number): Node {
 
 const ratTex = (r: Rat): string => (r.d === 1n ? `${absR(r).n}` : `\\frac{${absR(r).n}}{${r.d}}`)
 
-const isAtom = (n: Node): boolean => n.t === 'x' || n.t === 'pi' || (n.t === 'num' && n.v.d === 1n && n.v.n >= 0n)
+const isAtom = (n: Node): boolean => n.t === 'x' || n.t === 'y' || n.t === 'pi' || (n.t === 'num' && n.v.d === 1n && n.v.n >= 0n)
 
 /** The letter the variable is printed with: x normally, u when a widget shows an outside function. */
 export function toTex(n: Node, v = 'x'): string {
   const wrapAll = (c: Node) => `\\left(${toTex(c, v)}\\right)`
   const tex = (c: Node) => toTex(c, v)
-  const arg = (a: Node) => (a.t === 'x' || a.t === 'pi' ? ` ${tex(a)}` : `\\left(${tex(a)}\\right)`)
+  const arg = (a: Node) => (a.t === 'x' || a.t === 'y' || a.t === 'pi' ? ` ${tex(a)}` : `\\left(${tex(a)}\\right)`)
   switch (n.t) {
     case 'num':
       return n.v.n < 0n ? `-${ratTex(n.v)}` : ratTex(n.v)
@@ -595,6 +627,10 @@ export function toTex(n: Node, v = 'x'): string {
       return '\\pi'
     case 'x':
       return v
+    case 'y':
+      return 'y'
+    case 'yp':
+      return "y'"
     case 'neg':
       return `-${n.a.t === 'add' || n.a.t === 'sub' || n.a.t === 'neg' ? wrapAll(n.a) : tex(n.a)}`
     case 'add':
@@ -617,7 +653,7 @@ export function toTex(n: Node, v = 'x'): string {
         if (i > 0) {
           const prev = parts[i - 1]
           const startsNumber = p.t === 'num' || (p.t === 'pow' && p.a.t === 'num')
-          const spaced = (prev.t === 'fn' && (prev.a.t === 'x' || prev.a.t === 'pi')) || prev.t === 'pi' || prev.t === 'exp' || (prev.t === 'pow' && prev.a.t === 'fn' && (prev.a.a.t === 'x' || prev.a.a.t === 'pi'))
+          const spaced = (prev.t === 'fn' && (prev.a.t === 'x' || prev.a.t === 'y' || prev.a.t === 'pi')) || prev.t === 'pi' || prev.t === 'exp' || (prev.t === 'pow' && prev.a.t === 'fn' && (prev.a.a.t === 'x' || prev.a.a.t === 'pi'))
           s += startsNumber ? '\\cdot ' : spaced ? '\\,' : ''
         }
         s += piece
@@ -650,6 +686,10 @@ export function toText(n: Node): string {
       return 'pi'
     case 'x':
       return 'x'
+    case 'y':
+      return 'y'
+    case 'yp':
+      return 'yp'
     case 'neg':
       return `(-${toText(n.a)})`
     case 'add':
@@ -672,7 +712,7 @@ export function toText(n: Node): string {
 /* ------------------------------------------------------------------ parsing */
 
 export class ParseError extends Error {
-  constructor(public code: 'syntax' | 'paren' | 'varexp' | 'function' | 'exp' | 'big', public detail = '') {
+  constructor(public code: 'syntax' | 'paren' | 'varexp' | 'function' | 'exp' | 'big' | 'equation' | 'noy', public detail = '') {
     super(code)
   }
 }
@@ -681,7 +721,8 @@ type Tok = { k: 'n'; v: string } | { k: 'id'; v: string } | { k: 'op'; v: string
 
 const NAMES = ['sqrt', 'sin', 'cos', 'tan', 'cot', 'sec', 'csc', 'pi', 'e', 'x']
 
-function tokenize(src: string): Tok[] {
+function tokenize(src: string, withY: boolean): Tok[] {
+  const names = withY ? [...NAMES, 'y'] : NAMES
   const out: Tok[] = []
   const s = src.replace(/π/g, 'pi').replace(/−/g, '-').replace(/\s+/g, ' ').trim().toLowerCase()
   if (s.length === 0) throw new ParseError('syntax')
@@ -702,7 +743,7 @@ function tokenize(src: string): Tok[] {
       let rest = s.slice(i, j)
       const whole = rest
       while (rest) {
-        const name = NAMES.find((nm) => rest.startsWith(nm))
+        const name = names.find((nm) => rest.startsWith(nm))
         if (!name) throw new ParseError('function', whole)
         out.push({ k: 'id', v: name })
         rest = rest.slice(name.length)
@@ -810,7 +851,7 @@ class Parser {
     } else if (t.k === 'n') {
       this.eat()
       v = decimalToRat(t.v)
-    } else if (t.k === 'id' && t.v === 'x') {
+    } else if (t.k === 'id' && (t.v === 'x' || t.v === 'y')) {
       throw new ParseError('varexp')
     } else throw new ParseError('exp')
     return sign < 0n ? negR(v) : v
@@ -854,9 +895,9 @@ class Parser {
     const t = this.peek()
     if (!t) throw new ParseError('syntax')
     if (t.k === 'op' && t.v === '(') return this.atom()
-    if (t.k === 'id' && (t.v === 'x' || t.v === 'pi')) {
+    if (t.k === 'id' && (t.v === 'x' || t.v === 'y' || t.v === 'pi')) {
       this.eat()
-      return t.v === 'x' ? X : PI
+      return t.v === 'x' ? X : t.v === 'y' ? Y : PI
     }
     if (t.k === 'n') {
       this.eat()
@@ -875,10 +916,13 @@ class Parser {
       return fn(name, a)
     }
     const t = this.peek()
-    if (t && t.k === 'id' && (t.v === 'x' || t.v === 'pi')) {
+    if (t && t.k === 'id' && (t.v === 'x' || t.v === 'y' || t.v === 'pi')) {
       this.eat()
       if (this.isOp('^')) throw new ParseError('paren', name)
-      return fn(name, t.v === 'x' ? X : PI)
+      // sin xy would read as sin(x) times y, which nobody means: ask for brackets
+      const next = this.peek()
+      if (next && (next.k === 'n' || (next.k === 'id' && (next.v === 'x' || next.v === 'y' || next.v === 'pi')) || (next.k === 'op' && next.v === '('))) throw new ParseError('paren', name)
+      return fn(name, t.v === 'x' ? X : t.v === 'y' ? Y : PI)
     }
     throw new ParseError('paren', name)
   }
@@ -894,6 +938,10 @@ class Parser {
       if (t.v === 'x') {
         this.eat()
         return X
+      }
+      if (t.v === 'y') {
+        this.eat()
+        return Y
       }
       if (t.v === 'pi') {
         this.eat()
@@ -929,8 +977,8 @@ class Parser {
 }
 
 /** Read an expression such as `sin(2x)`, `(3x^2+1)^2`, `e^(cos x)`, `tan(5 - sin(2x))`, `sqrt(3x+1)`, `sin^5(x)`. */
-export function parseExpression(src: string): Node {
-  return new Parser(tokenize(src)).parse()
+export function parseExpression(src: string, opts: { y?: boolean } = {}): Node {
+  return new Parser(tokenize(src, opts.y === true)).parse()
 }
 
 /* ------------------------------------------------------------ oscillations */
@@ -948,3 +996,39 @@ export function pistonRates(A: number, b: number): { v: number; a: number; j: nu
 /** The average temperature in Fairbanks, Alaska, on day x of the year, in degrees Celsius, and how fast it is changing. */
 export const fairbanks = (x: number): number => 20 * Math.sin(((2 * Math.PI) / 365) * (x - 101)) - 4
 export const fairbanksSlope = (x: number): number => ((40 * Math.PI) / 365) * Math.cos(((2 * Math.PI) / 365) * (x - 101))
+
+/* ------------------------------------------------------------ tidying a fraction */
+
+const gcdBig = (a: bigint, b: bigint): bigint => {
+  let x = a < 0n ? -a : a
+  let y = b < 0n ? -b : b
+  while (y) [x, y] = [y, x % y]
+  return x
+}
+
+/** The sum of the terms of a node, as the simplifier sees them. */
+const termsOf = (n: Node): Term[] => normalize(n)
+
+/** The greatest rational that divides every coefficient of every term of the given nodes, with the sign that makes
+ *  the first coefficient of the *last* node positive, so a fraction N/D can be written without a common factor. */
+export function commonFactor(ns: Node[]): Rat {
+  let g = 0n
+  let l = 1n
+  let lead: Rat | null = null
+  ns.forEach((n, k) => {
+    const ts = termsOf(n)
+    for (const t of ts) {
+      g = gcdBig(g, t.c.n)
+      l = (l / gcdBig(l, t.c.d)) * t.c.d
+    }
+    if (k === ns.length - 1 && ts.length) lead = ts[0].c
+  })
+  if (g === 0n) return ONE
+  const f = rat(g, l)
+  return lead !== null && (lead as Rat).n < 0n ? negR(f) : f
+}
+
+/** The node with every term divided by k. */
+export function divideTerms(n: Node, k: Rat): Node {
+  return rebuildSum(termsOf(n).map((t) => ({ c: ratDiv(t.c, k), fs: t.fs })))
+}
