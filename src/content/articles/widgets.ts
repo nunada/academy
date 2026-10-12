@@ -537,6 +537,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Perbesar lingkaran, bola, kubus, atau persegi dan lihat bahwa laju luas atau volumenya adalah panjang atau luas yang sudah kamu kenal: keliling, luas permukaan, tiga sisi, setengah keliling.',
     },
   },
+  trigsteps: {
+    title: { en: 'Interactive: differentiate with sine, cosine and the rest', id: 'Interaktif: menurunkan dengan sinus, kosinus, dan lainnya' },
+    description: {
+      en: 'Type a function made of sin x, cos x, tan x, cot x, sec x, csc x, powers of x, e^x, sums, products and quotients, and see each rule applied, the derivative and higher derivatives, checked against a difference quotient.',
+      id: 'Ketik fungsi yang tersusun dari sin x, cos x, tan x, cot x, sec x, csc x, pangkat x, e^x, jumlah, hasil kali, dan hasil bagi, lalu lihat tiap aturan yang dipakai, turunan dan turunan tingkat tingginya, dicocokkan dengan hasil bagi selisih.',
+    },
+  },
+  trigslope: {
+    title: { en: 'Interactive: a trigonometric graph and its slopes', id: 'Interaktif: grafik trigonometri dan gradiennya' },
+    description: {
+      en: 'Slide a point along the graph of sin, cos, tan, cot, sec or csc and watch the slope of its tangent trace out the graph of the derivative underneath.',
+      id: 'Geser sebuah titik sepanjang grafik sin, cos, tan, cot, sec, atau csc dan lihat gradien garis singgungnya menggambar grafik turunan di bawahnya.',
+    },
+  },
+  limitsin: {
+    title: { en: 'Interactive: the limit behind sine and cosine', id: 'Interaktif: limit di balik sinus dan kosinus' },
+    description: {
+      en: 'See sin h < h < tan h on a unit circle and the table of sin h / h and (cos h − 1) / h as h shrinks, then switch to degrees to see why calculus insists on radians.',
+      id: 'Lihat sin h < h < tan h pada lingkaran satuan dan tabel sin h / h dan (cos h − 1) / h saat h mengecil, lalu ganti ke derajat untuk melihat mengapa kalkulus berkeras memakai radian.',
+    },
+  },
+  springmotion: {
+    title: { en: 'Interactive: a weight on a spring', id: 'Interaktif: beban pada pegas' },
+    description: {
+      en: 'Pull a weight down A units and let it go: its position A cos t, velocity −A sin t and acceleration −A cos t, with the weight bobbing on its spring and the graphs of position and velocity.',
+      id: 'Tarik beban ke bawah A satuan lalu lepaskan: posisinya A cos t, kecepatannya −A sin t, dan percepatannya −A cos t, dengan beban yang naik turun pada pegasnya dan grafik posisi dan kecepatan.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

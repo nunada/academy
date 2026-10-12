@@ -797,5 +797,5 @@ print(sp.diff(x**3 - 3*x**2 + 2, x, 3), sp.diff(x**3 - 3*x**2 + 2, x, 4))   # 6 
     { title: 'SymPy tutorial: Calculus (diff)', author: 'SymPy Development Team', source: 'docs.sympy.org', url: 'https://docs.sympy.org/latest/tutorials/intro-tutorial/calculus.html' },
   ],
 
-  related: ['the-derivative-as-a-function', 'tangent-lines-and-derivative-at-a-point', 'algebraic-expressions', 'exponents-and-radicals'],
+  related: ['the-derivative-as-a-function', 'derivatives-of-trigonometric-functions', 'algebraic-expressions', 'exponents-and-radicals'],
 }

@@ -70,6 +70,7 @@ const genFloat = (depth) => {
     if (c < 0.25) return D.PI
     if (c < 0.4) return D.X
     if (c < 0.55) return D.EX
+    if (c < 0.7) return D.TRIG(pick(['sin', 'cos', 'tan', 'cot', 'sec', 'csc']))
     if (c < 0.8) return D.pw(R(rnd(-6, 6), rnd(1, 4)))
     return D.pw(R(rnd(-2, 2), 1), R(rnd(-1, 1), 1))
   }
@@ -113,7 +114,7 @@ eq(D.toTex(D.derive(D.parseExpression('e^x')).result), 'e^{x}', 'TeX of d e^x')
 eq(D.toTex(D.derive(D.parseExpression('5')).result), '0', 'a constant has derivative 0')
 eq(D.toTex(D.derive(D.parseExpression('1/x')).result), '-\\frac{1}{x^{2}}', 'd 1/x')
 eq(D.toTex(D.derive(D.parseExpression('x^(2/3)')).result), '\\frac{2}{3}x^{-\\frac{1}{3}}', 'TeX of d x^(2/3)')
-eq(D.toTex(D.derive(D.parseExpression('x^(pi)')).result), '\\pi x^{-1+\\pi}', 'TeX of d x^pi')
+eq(D.toTex(D.derive(D.parseExpression('x^(pi)')).result), '\\pi\\,x^{-1+\\pi}', 'TeX of d x^pi')
 
 /* ------------------- 1b. rational functions: exact, against derivative.ts */
 let exactChecked = 0
@@ -159,7 +160,7 @@ for (let i = 0; i < 6000; i++) {
   close(F(D.simp(f))(x), fx, `simplify ${D.toText(f)}`, 1e-9)
   let again
   try {
-    again = D.parseExpression(D.toText(f))
+    again = D.parseExpression(D.toText(f), { trig: true })
   } catch (e) {
     fail(`could not read back ${D.toText(f)}: ${e.code ?? e.message}`)
     continue
@@ -168,6 +169,50 @@ for (let i = 0; i < 6000; i++) {
 }
 eq(floatChecked > 2500, true, 'enough expressions compared in floating point')
 eq(stepChecked > 5000, true, 'enough steps compared')
+
+/* ------------------------------------------------ trigonometric functions of x */
+const tval = (src, x) => D.evalFloat(D.parseExpression(src, { trig: true }), x)
+const tder = (src, x) => D.evalFloat(D.derive(D.parseExpression(src, { trig: true })).result, x)
+close(tder('sin x', 1), Math.cos(1), 'd sin x')
+close(tder('cos(x)', 1), -Math.sin(1), 'd cos x')
+close(tder('tan x', 0.7), 1 / Math.cos(0.7) ** 2, 'd tan x')
+close(tder('cot x', 0.7), -1 / Math.sin(0.7) ** 2, 'd cot x')
+close(tder('sec x', 0.7), Math.sin(0.7) / Math.cos(0.7) ** 2, 'd sec x')
+close(tder('csc x', 0.7), -Math.cos(0.7) / Math.sin(0.7) ** 2, 'd csc x')
+close(tder('x^2 sin x', 1.3), 2 * 1.3 * Math.sin(1.3) + 1.3 ** 2 * Math.cos(1.3), 'd x^2 sin x')
+close(tder('e^x sin x', 1.3), Math.exp(1.3) * (Math.sin(1.3) + Math.cos(1.3)), 'd e^x sin x')
+close(tder('sin x / x', 1.3), (1.3 * Math.cos(1.3) - Math.sin(1.3)) / 1.3 ** 2, 'd sin x / x')
+close(tder('sin x cos x', 0.9), Math.cos(0.9) ** 2 - Math.sin(0.9) ** 2, 'd sin x cos x')
+close(tder('cos x/(1 - sin x)', 0.9), 1 / (1 - Math.sin(0.9)), 'd cos x/(1 - sin x)')
+close(tder('sinx', 1), Math.cos(1), 'letters run together: sinx')
+close(tval('xcosx', 2), 2 * Math.cos(2), 'letters run together: xcosx')
+eq(D.toTex(D.derive(D.parseExpression('tan x', { trig: true })).result), '\\sec^{2}x', 'TeX of d tan x')
+eq(D.toTex(D.derive(D.parseExpression('sec x', { trig: true })).result), '\\sec\\,x\\,\\tan\\,x', 'TeX of d sec x')
+eq(D.toTex(D.derive(D.parseExpression('csc x', { trig: true })).result), '-\\csc\\,x\\,\\cot\\,x', 'TeX of d csc x')
+eq(D.toTex(D.derive(D.parseExpression('cos x', { trig: true })).result), '-\\sin\\,x', 'TeX of d cos x')
+for (const src of ['sin(2x)', 'sin(x)^2', 'sin(x+1)', 'sin x^2', 'cos(x', 'arcsin(x)', 'sin']) {
+  let threw = false
+  try {
+    D.parseExpression(src, { trig: true })
+  } catch {
+    threw = true
+  }
+  eq(threw, true, `"${src}" is refused even with trigonometry on`)
+}
+let off = false
+try {
+  D.parseExpression('sin x')
+} catch (e) {
+  off = e.code === 'function'
+}
+eq(off, true, 'without the trig option sin x is still refused (the article on differentiation rules)')
+// higher derivatives of sin and cos run in a cycle of four
+for (const [src, cycle] of [['sin x', [Math.sin, Math.cos, (x) => -Math.sin(x), (x) => -Math.cos(x)]], ['cos x', [Math.cos, (x) => -Math.sin(x), (x) => -Math.cos(x), Math.sin]]]) {
+  for (let n = 0; n <= 12; n++) {
+    const x = 0.4 + 0.37 * n
+    close(D.evalFloat(D.nth(D.parseExpression(src, { trig: true }), n), x), cycle[n % 4](x), `the ${n}-th derivative of ${src}`, 1e-9)
+  }
+}
 
 /* ------------------------------------------------------------- 4. refusals */
 for (const src of ['(x+1)^3', '2^x', 'e^(2x)', 'sin(x)', 'x^x', 'e', 'x^(x)', '(x^2+1)^2', 'sqrt(x+1)', '', 'x+', 'x y', '3 +* 4', 'ln(x)', 'e^x^2']) {

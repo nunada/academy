@@ -30,7 +30,8 @@
     "check:tangent": "node tools/check-tangent.mjs",
     "check:derivative": "node tools/check-derivative.mjs",
     "check:diffrules": "node tools/check-diffrules.mjs",
-    "check:rates": "node tools/check-rates.mjs"
+    "check:rates": "node tools/check-rates.mjs",
+    "check:trig": "node tools/check-trig.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

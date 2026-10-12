@@ -25,6 +25,7 @@ import { TangentLineTool, TangentNoDerivative, TangentSecant, TangentZoom } from
 import { DerivativeFromDefinition, DerivativeGraph, DerivativeSteps } from './DerivativeWidgets'
 import { DifferentiationSteps, ExponentialBase, ProductBox } from './RulesWidgets'
 import { GeometricRates, MarginalAnalysis, MotionAlongLine } from './RatesWidgets'
+import { SineLimit, SpringMotion, TrigSlope } from './TrigWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -918,6 +919,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <MarginalAnalysis />
     case 'georates':
       return <GeometricRates />
+    case 'trigsteps':
+      return <DifferentiationSteps trig />
+    case 'trigslope':
+      return <TrigSlope />
+    case 'limitsin':
+      return <SineLimit />
+    case 'springmotion':
+      return <SpringMotion />
   }
 }
 

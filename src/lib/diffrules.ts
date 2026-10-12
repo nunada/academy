@@ -24,11 +24,15 @@ export interface Exp {
   b: Rat
 }
 
+export type TrigFn = 'sin' | 'cos' | 'tan' | 'cot' | 'sec' | 'csc'
+export const TRIG_FNS: TrigFn[] = ['sin', 'cos', 'tan', 'cot', 'sec', 'csc']
+
 export type Node =
   | { t: 'num'; v: Rat }
   | { t: 'pi' }
   | { t: 'x' }
   | { t: 'ex' }
+  | { t: 'trig'; f: TrigFn }
   | { t: 'pow'; e: Exp }
   | { t: 'neg'; a: Node }
   | { t: 'add'; a: Node; b: Node }
@@ -46,6 +50,7 @@ export const K = (n: number | bigint | Rat, d = 1): Node => ({ t: 'num', v: type
 export const X: Node = { t: 'x' }
 export const PI: Node = { t: 'pi' }
 export const EX: Node = { t: 'ex' }
+export const TRIG = (f: TrigFn): Node => ({ t: 'trig', f })
 export const pw = (a: Rat | number, b: Rat | number = 0): Node => ({
   t: 'pow',
   e: { a: typeof a === 'number' ? rat(BigInt(a), 1n) : a, b: typeof b === 'number' ? rat(BigInt(b), 1n) : b },
@@ -64,6 +69,7 @@ export function isConst(n: Node): boolean {
       return true
     case 'x':
     case 'ex':
+    case 'trig':
     case 'pow':
       return false
     case 'neg':
@@ -77,6 +83,9 @@ export function isConst(n: Node): boolean {
 
 const expValue = (e: Exp): number => Number(e.a.n) / Number(e.a.d) + (Number(e.b.n) / Number(e.b.d)) * Math.PI
 
+const trigValue = (f: TrigFn, x: number): number =>
+  f === 'sin' ? Math.sin(x) : f === 'cos' ? Math.cos(x) : f === 'tan' ? Math.tan(x) : f === 'cot' ? 1 / Math.tan(x) : f === 'sec' ? 1 / Math.cos(x) : 1 / Math.sin(x)
+
 export function evalFloat(n: Node, x: number): number {
   switch (n.t) {
     case 'num':
@@ -87,6 +96,8 @@ export function evalFloat(n: Node, x: number): number {
       return x
     case 'ex':
       return Math.exp(x)
+    case 'trig':
+      return trigValue(n.f, x)
     case 'pow':
       return x ** expValue(n.e)
     case 'neg':
@@ -120,6 +131,7 @@ export function evalExact(n: Node, x: Rat): Rat | null {
       return n.v
     case 'pi':
     case 'ex':
+    case 'trig':
       return null
     case 'x':
       return x
@@ -152,6 +164,7 @@ export function toRational(n: Node): RationalFn | null {
       return rf([ZERO, ONE])
     case 'pi':
     case 'ex':
+    case 'trig':
       return null
     case 'pow': {
       if (!isZero(n.e.b) || n.e.a.d !== 1n) return null
@@ -223,6 +236,7 @@ function simp1(n: Node): Node {
     case 'pi':
     case 'x':
     case 'ex':
+    case 'trig':
       return n
     case 'pow':
       return fromPower(n.e)
@@ -285,7 +299,7 @@ function simp1(n: Node): Node {
 
 /* ------------------------------------------------------------------ differentiating */
 
-export type RuleId = 'constant' | 'power' | 'exponential' | 'multiple' | 'negative' | 'sum' | 'difference' | 'product' | 'quotient'
+export type RuleId = 'constant' | 'power' | 'exponential' | 'trig' | 'multiple' | 'negative' | 'sum' | 'difference' | 'product' | 'quotient'
 
 export interface Step {
   rule: RuleId
@@ -315,6 +329,23 @@ export function differentiate(n: Node, steps: Step[] = []): Node {
     case 'ex': {
       record('exponential', EX)
       return EX
+    }
+    case 'trig': {
+      // sin' = cos, cos' = -sin, tan' = sec^2, cot' = -csc^2, sec' = sec tan, csc' = -csc cot
+      const r: Node =
+        n.f === 'sin'
+          ? TRIG('cos')
+          : n.f === 'cos'
+            ? neg(TRIG('sin'))
+            : n.f === 'tan'
+              ? mul(TRIG('sec'), TRIG('sec'))
+              : n.f === 'cot'
+                ? neg(mul(TRIG('csc'), TRIG('csc')))
+                : n.f === 'sec'
+                  ? mul(TRIG('sec'), TRIG('tan'))
+                  : neg(mul(TRIG('csc'), TRIG('cot')))
+      record('trig', r)
+      return r
     }
     case 'neg': {
       const slot = steps.length
@@ -402,6 +433,8 @@ function expTex(e: Exp): string {
 /** Binding strength: 1 sum, 2 product, 3 sign, 4 power/atom. */
 const level = (n: Node): number => (n.t === 'add' || n.t === 'sub' ? 1 : n.t === 'mul' ? 2 : n.t === 'neg' ? 3 : 4)
 
+const endsWithTrig = (n: Node): boolean => (n.t === 'trig' ? true : n.t === 'mul' ? endsWithTrig(n.b) : false)
+
 const startsWithNumber = (n: Node): boolean => (n.t === 'num' ? true : n.t === 'mul' ? startsWithNumber(n.a) : false)
 
 export function toTex(n: Node): string {
@@ -415,20 +448,22 @@ export function toTex(n: Node): string {
       return 'x'
     case 'ex':
       return 'e^{x}'
+    case 'trig':
+      return `\\${n.f}\\,x`
     case 'pow':
       return `x^{${expTex(n.e)}}`
     case 'neg':
-      return `-${wrap(n.a, 3)}`
+      return `-${wrap(n.a, 2)}`
     case 'add':
       return `${toTex(n.a)}+${toTex(n.b)}`
     case 'sub':
       return `${toTex(n.a)}-${wrap(n.b, 2)}`
     case 'mul': {
-      if (n.a.t !== 'num' && toText(n.a) === toText(n.b)) return n.a.t === 'ex' ? 'e^{2x}' : `\\left(${toTex(n.a)}\\right)^{2}`
+      if (n.a.t !== 'num' && toText(n.a) === toText(n.b)) return n.a.t === 'ex' ? 'e^{2x}' : n.a.t === 'trig' ? `\\${n.a.f}^{2}x` : `\\left(${toTex(n.a)}\\right)^{2}`
       const left = n.a.t === 'add' || n.a.t === 'sub' || n.a.t === 'neg' ? `\\left(${toTex(n.a)}\\right)` : toTex(n.a)
       const right = n.b.t === 'add' || n.b.t === 'sub' || n.b.t === 'neg' ? `\\left(${toTex(n.b)}\\right)` : toTex(n.b)
       // a number next to a number needs a dot; a number before a letter, a bracket or a fraction does not
-      return startsWithNumber(n.b) ? `${left}\\cdot ${right}` : left.endsWith('\\pi') ? `${left} ${right}` : `${left}${right}`
+      return startsWithNumber(n.b) ? `${left}\\cdot ${right}` : left.endsWith('\\pi') || endsWithTrig(n.a) ? `${left}\\,${right}` : `${left}${right}`
     }
     case 'div':
       return `\\frac{${toTex(n.a)}}{${toTex(n.b)}}`
@@ -451,6 +486,8 @@ export function toText(n: Node): string {
       return 'x'
     case 'ex':
       return 'e^x'
+    case 'trig':
+      return `${n.f}(x)`
     case 'pow':
       return `x^${ex(n.e)}`
     case 'neg':
@@ -476,7 +513,7 @@ export class ParseError extends Error {
 
 type Tok = { k: 'n'; v: string } | { k: 'id'; v: string } | { k: 'op'; v: string }
 
-function tokenize(src: string): Tok[] {
+function tokenize(src: string, trig: boolean): Tok[] {
   const out: Tok[] = []
   const s = src.replace(/π/g, 'pi').replace(/−/g, '-').replace(/\s+/g, ' ').trim().toLowerCase()
   if (s.length === 0) throw new ParseError('syntax')
@@ -496,7 +533,20 @@ function tokenize(src: string): Tok[] {
       while (j < s.length && /[a-z]/.test(s[j])) j++
       const word = s.slice(i, j)
       if (word === 'pi' || word === 'sqrt' || word === 'e' || word === 'x') out.push({ k: 'id', v: word })
-      else if (/^[ex]+$/.test(word) || /^(x|e|pi)+$/.test(word)) {
+      else if (trig && /^(sin|cos|tan|cot|sec|csc|x|e|pi)+$/.test(word)) {
+        // letters run together, such as "sinx" or "xcosx": split into the known names
+        let rest = word
+        while (rest) {
+          const name = ['sin', 'cos', 'tan', 'cot', 'sec', 'csc', 'pi'].find((nm) => rest.startsWith(nm))
+          if (name) {
+            out.push({ k: 'id', v: name })
+            rest = rest.slice(name.length)
+          } else {
+            out.push({ k: 'id', v: rest[0] })
+            rest = rest.slice(1)
+          }
+        }
+      } else if (/^[ex]+$/.test(word) || /^(x|e|pi)+$/.test(word)) {
         // juxtaposed letters such as "xe" or "ex": split into single known pieces
         let rest = word
         while (rest) {
@@ -695,6 +745,21 @@ class Parser {
       if (t.v === 'x') return X
       if (t.v === 'pi') return PI
       if (t.v === 'e') throw new ParseError('exp', 'e')
+      if ((TRIG_FNS as string[]).includes(t.v)) {
+        // sin x, sin(x): the argument must be exactly x, since anything else needs the chain rule
+        let paren = false
+        if (this.isOp('(')) {
+          this.eat()
+          paren = true
+        }
+        const a = this.eat()
+        if (!a || a.k !== 'id' || a.v !== 'x') throw new ParseError('chain', t.v)
+        if (paren) {
+          if (!this.isOp(')')) throw new ParseError('chain', t.v)
+          this.eat()
+        }
+        return TRIG(t.v as TrigFn)
+      }
       if (t.v === 'sqrt') {
         if (!this.isOp('(')) throw new ParseError('syntax')
         this.eat()
@@ -716,6 +781,6 @@ class Parser {
 }
 
 /** Read an expression such as `x^3 - 3x`, `(x^2+1)(x-3)`, `x e^x`, `(t^2-1)/(t^3+1)` (with x), `sqrt(x)`, `x^(pi+1)`. */
-export function parseExpression(src: string): Node {
-  return new Parser(tokenize(src)).parse()
+export function parseExpression(src: string, opts: { trig?: boolean } = {}): Node {
+  return new Parser(tokenize(src, opts.trig === true)).parse()
 }

@@ -15,6 +15,7 @@ const RULE: Record<RuleId, { en: string; id: string }> = {
   constant: { en: 'Constant rule', id: 'Aturan konstanta' },
   power: { en: 'Power rule', id: 'Aturan pangkat' },
   exponential: { en: 'The derivative of e^x', id: 'Turunan e^x' },
+  trig: { en: 'Derivative of a trigonometric function', id: 'Turunan fungsi trigonometri' },
   multiple: { en: 'Constant multiple rule', id: 'Aturan kelipatan konstanta' },
   negative: { en: 'Negative of a function', id: 'Negatif suatu fungsi' },
   sum: { en: 'Sum rule', id: 'Aturan jumlah' },
@@ -22,6 +23,8 @@ const RULE: Record<RuleId, { en: string; id: string }> = {
   product: { en: 'Product rule', id: 'Aturan hasil kali' },
   quotient: { en: 'Quotient rule', id: 'Aturan hasil bagi' },
 }
+
+const TRIG_PRESETS = ['sin(x)', 'cos(x)', 'x^2 sin x', 'e^x sin x', 'sin x / x', 'cos x / (1 - sin x)', 'tan x', 'sec x', 'sin x cos x', 'x + 2 sin x']
 
 const PRESETS = [
   'x^3 - 3x^2 + 5x - 1',
@@ -48,24 +51,35 @@ const fracTex = (num_: Parameters<typeof polyTex>[0], den: Parameters<typeof pol
 
 const primes = (k: number): string => (k <= 3 ? "'".repeat(k) : `^{(${k})}`)
 
-export function DifferentiationSteps() {
+export function DifferentiationSteps({ trig = false }: { trig?: boolean }) {
   const { tc, lang } = useI18n()
   const sep = useSep()
-  const [src, setSrc] = useState('(x^2+1)(x^3-3x)')
+  const [src, setSrc] = useState(trig ? 'x^2 sin x' : '(x^2+1)(x^3-3x)')
   const [order, setOrder] = useState(1)
   const [xs, setXs] = useState('1')
 
   let f: Node | null = null
   let err: ParseError['code'] | null = null
   try {
-    f = parseExpression(src)
+    f = parseExpression(src, { trig })
   } catch (e) {
     err = e instanceof ParseError ? e.code : 'syntax'
   }
   const x0 = parseRational(xs)
 
   let body
-  if (!f) body = <p className="noline">{ERR[err ?? 'syntax'][lang]}</p>
+  if (!f) {
+    const e = ERR[err ?? 'syntax']
+    body = (
+      <p className="noline">
+        {trig && err === 'function'
+          ? tc(L('Only sin, cos, tan, cot, sec and csc of x are known, with powers of x, e^x, sums, products and quotients. Inverse trigonometric functions and other arguments come later.', 'Hanya sin, cos, tan, cot, sec, dan csc dari x yang dikenal, bersama pangkat x, e^x, jumlah, hasil kali, dan hasil bagi. Fungsi trigonometri invers dan argumen lain dibahas kemudian.'))
+          : trig && err === 'chain'
+            ? tc(L('A trigonometric function of anything other than x (such as sin(2x) or sin(x)^2), or a power of a sum, needs the chain rule, which comes next. For now write sin(x) sin(x), or expand a product.', 'Fungsi trigonometri dari selain x (seperti sin(2x) atau sin(x)^2), atau pangkat dari suatu jumlah, memerlukan aturan rantai, yang dibahas berikutnya. Untuk sekarang tulis sin(x) sin(x), atau jabarkan hasil kali.'))
+            : e[lang]}
+      </p>
+    )
+  }
   else {
     const F = f
     const { steps } = derive(F)
@@ -106,7 +120,7 @@ export function DifferentiationSteps() {
             {tc(L('Multiplied out and reduced:', 'Dijabarkan dan disederhanakan:'))} <Tex src={`f'(x)=${fracTex(simplified.num, simplified.den)}`} />
           </p>
         )}
-        {order === 1 && <p className="small muted">{tc(L('Powers are valid where they are defined; for instance x^(2/3) has the derivative (2/3)x^(−1/3) for x ≠ 0.', 'Pangkat berlaku di tempat ia terdefinisi; misalnya x^(2/3) memiliki turunan (2/3)x^(−1/3) untuk x ≠ 0.'))}</p>}
+        {order === 1 && !trig && <p className="small muted">{tc(L('Powers are valid where they are defined; for instance x^(2/3) has the derivative (2/3)x^(−1/3) for x ≠ 0.', 'Pangkat berlaku di tempat ia terdefinisi; misalnya x^(2/3) memiliki turunan (2/3)x^(−1/3) untuk x ≠ 0.'))}</p>}
         {xv === null ? (
           <p className="noline">{tc(L('Type x₀ as a number, such as 1, -2 or 1/2.', 'Ketik x₀ sebagai bilangan, seperti 1, -2, atau 1/2.'))}</p>
         ) : (
@@ -121,7 +135,7 @@ export function DifferentiationSteps() {
   }
 
   return (
-    <Frame name="diffsteps">
+    <Frame name={trig ? 'trigsteps' : 'diffsteps'}>
       <div className="inrow">
         <label className="lbl">
           f(x) = <input style={{ width: '15em', maxWidth: '100%' }} value={src} aria-label="f(x)" onChange={(e) => setSrc(e.target.value)} />
@@ -131,7 +145,7 @@ export function DifferentiationSteps() {
         </label>
       </div>
       <div className="chips">
-        {PRESETS.map((p) => (
+        {(trig ? TRIG_PRESETS : PRESETS).map((p) => (
           <button key={p} className="chip ghost" onClick={() => setSrc(p)}>
             {p}
           </button>

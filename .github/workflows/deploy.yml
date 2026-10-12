@@ -113,6 +113,9 @@ jobs:
       # Rates of change: Sturm roots, motion along a line in exact arithmetic, throws in closed form, marginal cost
       # against the next unit, and the geometric rates against central differences.
       - run: npm run check:rates
+      # Trigonometric derivatives: exact Taylor series of sine and cosine, the squeeze and the two limits, degrees giving
+      # pi/180, the six derivative formulas against central differences, and the spring.
+      - run: npm run check:trig
 
       - name: Work out where the site will live
         id: base
