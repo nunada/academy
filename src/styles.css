@@ -1485,13 +1485,12 @@ a.chip.static { cursor: pointer; }
 .hearts .hn { display: none; }
 .signout .i { display: none; }
 
-/* Up to a small laptop: the menu has its own row under the logo and the controls, so nothing wraps in
-   the middle, and the theme switch is the single button that cycles (the three-button one is wider). */
+/* Up to a laptop: the controls are short (one button that cycles the theme, a count for the hearts, an
+   icon for sign-out, no developer badge) so that the logo, the menu and the controls still fit on one row. */
 @media (max-width: 1500px) {
-  .topbar { flex-wrap: wrap; row-gap: 2px; padding: 7px 14px; }
-  .nav { order: 5; width: 100%; margin-left: 0; flex-wrap: nowrap; overflow-x: auto; }
-  .nav a { flex: none; padding: 4px 10px; }
+  .topbar { padding: 7px 14px; }
   .brand small { display: none; }
+  .nav a { padding: 4px 10px; }
   .topbar .tabs { padding: 2px; }
   .topbar .tabs button { padding: 5px 9px; font-size: 0.8rem; }
   .themegroup { display: none; }
@@ -1501,6 +1500,19 @@ a.chip.static { cursor: pointer; }
     border: 1px solid var(--border); border-radius: 999px;
     background: var(--surface-2); color: var(--text); cursor: pointer;
   }
+  .hearts .hrow, .hearts small { display: none; }
+  .hearts .hn { display: inline; font-weight: 700; font-size: 0.82rem; }
+  .topbar .pill.warn { display: none; }
+  .signout { padding: 5px 9px; }
+  .signout .t { display: none; }
+  .signout .i { display: inline; }
+}
+
+/* Narrower than the one-row bar: the menu gets its own row under the logo and the controls. */
+@media (max-width: 1230px) {
+  .topbar { flex-wrap: wrap; row-gap: 2px; }
+  .nav { order: 5; width: 100%; margin-left: 0; flex-wrap: nowrap; overflow-x: auto; }
+  .nav a { flex: none; }
 }
 
 @media (max-width: 900px) {
@@ -1508,14 +1520,6 @@ a.chip.static { cursor: pointer; }
   .brand { gap: 7px; }
   .brand .mark svg { width: 26px; height: 26px; }
   .brand-name { font-size: 0.95rem; }
-  /* A short count instead of the row of hearts and the countdown; the title still says when the next heart arrives. */
-  .hearts .hrow, .hearts small { display: none; }
-  .hearts .hn { display: inline; font-weight: 700; font-size: 0.82rem; }
-  /* The developer-only local-mode badge would push the bar onto a third row. */
-  .topbar .pill.warn { display: none; }
-  .signout { padding: 5px 9px; }
-  .signout .t { display: none; }
-  .signout .i { display: inline; }
   .nav { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
   .nav::-webkit-scrollbar { display: none; }
   .nav a { font-size: 0.82rem; }
