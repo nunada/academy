@@ -55,12 +55,13 @@ fs.writeFileSync(
   `export { ARTICLES, loadArticle, articleById } from '${q('src/content/articles/index.ts')}'
 export { tagLabel } from '${q('src/content/articles/tags.ts')}'
 export { WIDGETS } from '${q('src/content/articles/widgets.ts')}'
+export { coverSvg } from '${q('src/content/articles/covers.ts')}'
 export * from '${q('src/lib/articleSeo.ts')}'`,
 )
 const out = path.join(tmp, 'entry.mjs')
 await build({ entryPoints: [entry], bundle: true, format: 'esm', platform: 'node', outfile: out, logLevel: 'error' })
 const lib = await import('file://' + out.replace(/\\/g, '/'))
-const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER } = lib
+const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, coverSvg, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER } = lib
 
 const LANGS = ['en', 'id']
 
@@ -203,7 +204,7 @@ ${related.length ? `<section class="artsection" aria-labelledby="related"><h2 id
 function listBodyHtml(lang) {
   const t = T[lang]
   return `<main class="page"><h1>${t.articles}</h1><div class="grid two">${ARTICLES.map(
-    (a) => `<a class="card artcard" href="${esc(articleUrl(SITE, lang, a))}"><span class="small muted">${a.readingMinutes} ${t.minutes}</span><h2>${esc(a.title[lang])}</h2><p class="small">${esc(a.description[lang])}</p></a>`,
+    (a) => `<a class="card artcard" href="${esc(articleUrl(SITE, lang, a))}"><div class="artcover" aria-hidden="true">${coverSvg(a.id)}</div><span class="small muted">${a.readingMinutes} ${t.minutes}</span><h2>${esc(a.title[lang])}</h2><p class="small">${esc(a.description[lang])}</p></a>`,
   ).join('')}</div></main>`
 }
 

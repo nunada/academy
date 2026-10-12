@@ -1224,6 +1224,30 @@ a.chip.static { cursor: pointer; }
 .artcard { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: inherit; }
 .artcard:hover { border-color: var(--brand); }
 .artcard h2 { margin: 2px 0 0; font-size: 1.2rem; }
+.artcover { margin: 0 0 6px; line-height: 0; }
+
+/* The drawing on an article's card (src/content/articles/covers.ts): colors as classes, so it follows the theme. */
+.cv { width: 100%; height: auto; display: block; border-radius: var(--radius-sm); stroke-linecap: round; stroke-linejoin: round; }
+.cv .bg { fill: var(--surface-2); }
+.cv .sa { fill: none; stroke: var(--fig-a); }
+.cv .sb { fill: none; stroke: var(--fig-b); }
+.cv .sc { fill: none; stroke: var(--fig-c); }
+.cv .sr { fill: none; stroke: var(--fig-result); }
+.cv .sm { fill: none; stroke: var(--fig-muted); }
+.cv .st { fill: none; stroke: var(--text); }
+.cv .fa { fill: var(--fig-a); stroke: none; }
+.cv .fb { fill: var(--fig-b); stroke: none; }
+.cv .fc { fill: var(--fig-c); stroke: none; }
+.cv .fr { fill: var(--fig-result); stroke: none; }
+.cv .fm { fill: var(--fig-muted); stroke: none; }
+.cv .pa { fill: var(--fig-a); fill-opacity: 0.3; stroke: var(--fig-a); stroke-width: 2; }
+.cv .pb { fill: var(--fig-b); fill-opacity: 0.3; stroke: var(--fig-b); stroke-width: 2; }
+.cv .pc { fill: var(--fig-c); fill-opacity: 0.3; stroke: var(--fig-c); stroke-width: 2; }
+.cv .pr { fill: var(--fig-result); fill-opacity: 0.3; stroke: var(--fig-result); stroke-width: 2; }
+.cv .pm { fill: var(--fig-muted); fill-opacity: 0.22; stroke: var(--fig-muted); stroke-width: 2; }
+.cv text { fill: var(--text); stroke: none; font-family: var(--font-display, Georgia, serif); font-weight: 700; }
+.cv text.tm { fill: var(--muted); font-weight: 600; }
+.cv text.zh { font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-weight: 500; }
 .artcard p { margin: 0; }
 
 /* The page itself: reading column plus a sticky contents list. */

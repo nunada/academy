@@ -27,6 +27,7 @@ fs.writeFileSync(
   entry,
   `export { ARTICLES, loadArticle, bodyIds } from '${q('src/content/articles/index.ts')}'
 export { TAGS } from '${q('src/content/articles/tags.ts')}'
+export { coverIds, coverSvg } from '${q('src/content/articles/covers.ts')}'
 export { WIDGETS } from '${q('src/content/articles/widgets.ts')}'
 export { tex } from '${q('src/lib/tex.ts')}'
 export { parseFillTemplate, brokenPieces, countBlanks } from '${q('src/lib/fillTemplate.ts')}'
@@ -108,6 +109,9 @@ const tagIds = new Set(L.TAGS.map((t) => t.id))
 
 const listed = new Set(L.ARTICLES.map((a) => a.id))
 for (const id of L.bodyIds()) if (!listed.has(id)) flag(id, 'has a body loader but no entry in ARTICLES')
+// every article has its own cover on the list page (src/content/articles/covers.ts)
+for (const a of L.ARTICLES) if (!L.coverIds().includes(a.id)) flag(a.id, 'has no cover drawing in src/content/articles/covers.ts')
+for (const a of L.ARTICLES) if (!/^<svg[^>]*>.*<\/svg>$/s.test(L.coverSvg(a.id)) || /NaN|undefined|Infinity/.test(L.coverSvg(a.id))) flag(a.id, 'cover drawing is broken (NaN or malformed SVG)')
 
 for (const m of L.ARTICLES) {
   const w = m.id

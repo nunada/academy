@@ -1,0 +1,377 @@
+/** The picture on each article's card.
+ *
+ *  A cover is a small SVG drawn from the article's own subject: the number line with π and √2, the square on the
+ *  hypotenuse, a tangent line to a parabola, the product-rule rectangle. It is built here as a string rather than a
+ *  React tree so that the same drawing serves two places: the running list page (which puts the string in a
+ *  wrapper) and the build step that writes the static HTML of the list (`tools/prerender-articles.mjs`), which
+ *  cannot render React. Colors are classes (`sa`, `pb`, ...) defined in styles.css, so a cover follows the light and
+ *  dark theme like every figure does. Text inside a cover is symbols and numbers only, so it needs no translation.
+ *
+ *  Add a cover for a new article by adding its id to COVERS; an article without one gets the plain `generic` drawing. */
+
+const W = 400
+const H = 200
+
+const n1 = (x: number): string => String(Math.round(x * 10) / 10)
+
+const line = (x1: number, y1: number, x2: number, y2: number, cls: string, w = 3, dash = ''): string =>
+  `<line x1="${n1(x1)}" y1="${n1(y1)}" x2="${n1(x2)}" y2="${n1(y2)}" class="${cls}" stroke-width="${w}"${dash ? ` stroke-dasharray="${dash}"` : ''}/>`
+
+const poly = (pts: [number, number][], cls: string): string => `<polygon points="${pts.map(([x, y]) => `${n1(x)},${n1(y)}`).join(' ')}" class="${cls}"/>`
+const rect = (x: number, y: number, w: number, h: number, cls: string, r = 3): string => `<rect x="${n1(x)}" y="${n1(y)}" width="${n1(w)}" height="${n1(h)}" rx="${r}" class="${cls}"/>`
+const dot = (x: number, y: number, cls: string, r = 5.5): string => `<circle cx="${n1(x)}" cy="${n1(y)}" r="${r}" class="${cls}"/>`
+const path = (d: string, cls: string, w = 3, dash = ''): string => `<path d="${d}" class="${cls}" stroke-width="${w}"${dash ? ` stroke-dasharray="${dash}"` : ''}/>`
+const text = (x: number, y: number, s: string, size = 16, cls = '', anchor = 'middle'): string =>
+  `<text x="${n1(x)}" y="${n1(y)}" font-size="${size}" text-anchor="${anchor}" class="${cls}">${s}</text>`
+
+/** The graph of f as a path over [x0, x1], through the maps X and Y, skipping what leaves the picture. */
+function curve(f: (x: number) => number, x0: number, x1: number, X: (x: number) => number, Y: (y: number) => number, cls: string, w = 3.2, n = 90, dash = ''): string {
+  let d = ''
+  let pen = false
+  for (let i = 0; i <= n; i++) {
+    const x = x0 + ((x1 - x0) * i) / n
+    const y = Y(f(x))
+    if (!Number.isFinite(y) || y < -20 || y > H + 20) {
+      pen = false
+      continue
+    }
+    d += `${pen ? 'L' : 'M'}${n1(X(x))},${n1(y)}`
+    pen = true
+  }
+  return path(d, cls, w, dash)
+}
+
+/** A tick-marked horizontal axis from x1 to x2 at height y. */
+const axis = (x1: number, x2: number, y: number): string => line(x1, y, x2, y, 'sm', 2)
+
+/* ------------------------------------------------------------------ the covers */
+
+const realNumbers = (): string => {
+  const X = (v: number) => 44 + v * 74
+  const y = 118
+  let s = axis(20, 380, y) + path(`M372,${y - 6}L382,${y}L372,${y + 6}`, 'sm', 2)
+  for (let v = 0; v <= 4; v++) s += line(X(v), y - 7, X(v), y + 7, 'sm', 2) + text(X(v), y + 28, String(v), 15, 'tm')
+  const marks: [number, string, string, number][] = [
+    [0.5, '½', 'fc', 42],
+    [Math.SQRT2, '√2', 'fa', 70],
+    [Math.E, 'e', 'fr', 42],
+    [Math.PI, 'π', 'fb', 70],
+  ]
+  for (const [v, label, cls, up] of marks) s += line(X(v), y, X(v), y - up + 14, 'sm', 1.4, '3 3') + dot(X(v), y, cls, 6) + text(X(v), y - up, label, 22, '')
+  return s
+}
+
+const chineseNumbers = (): string => {
+  const chars = ['一', '二', '三', '四', '五']
+  let s = ''
+  chars.forEach((c, i) => {
+    const cx = 56 + i * 72
+    s += `<text x="${cx}" y="112" font-size="60" text-anchor="middle" class="zh" lang="zh-Hans">${c}</text>`
+    for (let k = 0; k <= i; k++) s += line(cx - 22 + k * 11, 138, cx - 22 + k * 11, 172, 'sb', 4)
+  })
+  return s
+}
+
+const exponents = (): string => {
+  const X = (x: number) => 70 + x * 92
+  const Y = (y: number) => 172 - y * 50
+  return axis(50, 360, 172) + line(70, 190, 70, 14, 'sm', 2) + line(X(0), Y(0), X(3), Y(3), 'sm', 2, '6 5') + curve((x) => x * x, 0, 1.76, X, Y, 'sa') + curve(Math.sqrt, 0, 3, X, Y, 'sb') + text(X(1.55), Y(2.7) - 4, 'x²', 20, '') + text(X(2.75), Y(1.5), '√x', 20, '')
+}
+
+const algebra = (): string => {
+  const x0 = 96
+  const y0 = 28
+  const wx = 132
+  const w3 = 72
+  const hx = 92
+  const h2 = 52
+  return (
+    rect(x0, y0, wx, hx, 'pa') +
+    rect(x0 + wx, y0, w3, hx, 'pb') +
+    rect(x0, y0 + hx, wx, h2, 'pb') +
+    rect(x0 + wx, y0 + hx, w3, h2, 'pc') +
+    text(x0 + wx / 2, y0 + hx / 2 + 8, 'x²', 26) +
+    text(x0 + wx + w3 / 2, y0 + hx / 2 + 7, '3x', 22) +
+    text(x0 + wx / 2, y0 + hx + h2 / 2 + 7, '2x', 22) +
+    text(x0 + wx + w3 / 2, y0 + hx + h2 / 2 + 7, '6', 22) +
+    text(x0 + wx / 2, y0 - 8, 'x', 17, 'tm') +
+    text(x0 + wx + w3 / 2, y0 - 8, '+3', 17, 'tm') +
+    text(x0 - 14, y0 + hx / 2 + 6, 'x', 17, 'tm') +
+    text(x0 - 22, y0 + hx + h2 / 2 + 6, '+2', 17, 'tm')
+  )
+}
+
+const integers = (): string => {
+  const X = (v: number) => 200 + v * 34
+  const y = 124
+  let s = axis(20, 380, y)
+  for (let v = -5; v <= 5; v++) s += line(X(v), y - 7, X(v), y + 7, v === 0 ? 'st' : 'sm', v === 0 ? 3 : 2) + (v % 5 === 0 ? text(X(v), y + 28, String(v), 15, 'tm') : '')
+  s += path(`M${X(-3)},${y - 8}Q${(X(-3) + X(2)) / 2},${y - 92} ${X(2)},${y - 8}`, 'sb', 3.4)
+  s += path(`M${X(2) - 9},${y - 24}L${X(2)},${y - 8}L${X(2) - 17},${y - 10}`, 'sb', 3)
+  return s + dot(X(-3), y, 'fr', 6.5) + dot(X(2), y, 'fa', 6.5) + text((X(-3) + X(2)) / 2, y - 70, '+5', 20, '') + text(X(-3), y + 28, '−3', 15, 'tm') + text(X(2), y + 28, '2', 15, 'tm')
+}
+
+const rationals = (): string => {
+  let s = ''
+  const rows: [number, number, string][] = [
+    [2, 1, '½'],
+    [4, 2, '2/4'],
+    [6, 3, '3/6'],
+  ]
+  rows.forEach(([parts, filled, label], i) => {
+    const y = 28 + i * 52
+    const w = 270
+    const x0 = 44
+    for (let k = 0; k < parts; k++) s += rect(x0 + (k * w) / parts + 1.5, y, w / parts - 3, 36, k < filled ? 'pa' : 'pm', 4)
+    s += text(354, y + 26, label, 21, '')
+  })
+  return s
+}
+
+const irrational = (): string => {
+  const x0 = 96
+  const yb = 160
+  const u = 104
+  let s = axis(48, 370, yb) + rect(x0, yb - u, u, u, 'pa', 2)
+  s += line(x0, yb, x0 + u, yb - u, 'sr', 4)
+  s += path(`M${n1(x0 + u)},${yb - u}A${n1(u * Math.SQRT2)},${n1(u * Math.SQRT2)} 0 0 1 ${n1(x0 + u * Math.SQRT2)},${yb}`, 'sr', 2.4, '5 4')
+  s += dot(x0, yb, 'fm', 4.5) + dot(x0 + u, yb, 'fm', 4.5) + dot(x0 + u * Math.SQRT2, yb, 'fr', 7)
+  return s + text(x0, yb + 26, '0', 15, 'tm') + text(x0 + u, yb + 26, '1', 15, 'tm') + text(x0 + u * Math.SQRT2 + 6, yb + 28, '√2', 19, '') + text(x0 + u / 2 - 14, yb - u / 2 - 4, '√2', 18, '')
+}
+
+const binary = (): string => {
+  const bits = [1, 0, 1, 1, 0, 1, 0, 0]
+  const vals = [128, 64, 32, 16, 8, 4, 2, 1]
+  let s = ''
+  bits.forEach((b, i) => {
+    const x = 28 + i * 44
+    s += rect(x, 58, 38, 52, b ? 'pa' : 'pm', 6) + text(x + 19, 94, String(b), 30, '') + text(x + 19, 130, String(vals[i]), 13, 'tm')
+  })
+  return s + text(200, 172, '128 + 32 + 16 + 4 = 180', 17, 'tm')
+}
+
+const arithmetic = (): string => {
+  let s = axis(30, 372, 182)
+  const pts: string[] = []
+  for (let i = 0; i < 7; i++) {
+    const h = 26 + i * 20
+    const x = 48 + i * 48
+    s += rect(x, 182 - h, 30, h, 'pa', 3)
+    pts.push(`${n1(x + 15)},${n1(182 - h)}`)
+  }
+  s += path(`M${pts.join('L')}`, 'sr', 2.6, '2 6')
+  return s + pts.map((p) => dot(Number(p.split(',')[0]), Number(p.split(',')[1]), 'fr', 4.5)).join('')
+}
+
+const geometric = (): string => {
+  let s = axis(30, 372, 182)
+  const pts: [number, number][] = []
+  for (let i = 0; i < 5; i++) {
+    const h = 10 * 2 ** i
+    const x = 56 + i * 66
+    s += rect(x, 182 - h, 42, h, 'pb', 3)
+    pts.push([x + 21, 182 - h])
+  }
+  return s + curve((x) => 10 * 2 ** x, 0, 4, (x) => 77 + x * 66, (y) => 182 - y, 'sa', 3, 60) + pts.map(([x, y]) => dot(x, y, 'fa', 4.5)).join('')
+}
+
+const quadrilaterals = (): string => {
+  const at = (cx: number, pts: [number, number][], cls: string) => poly(pts.map(([x, y]) => [cx + x, 100 + y] as [number, number]), cls)
+  return (
+    at(48, [[-26, -26], [26, -26], [26, 26], [-26, 26]], 'pa') +
+    at(124, [[-34, -22], [34, -22], [34, 22], [-34, 22]], 'pb') +
+    at(200, [[-30, 24], [14, 24], [34, -24], [-10, -24]], 'pc') +
+    at(276, [[-34, 24], [34, 24], [18, -24], [-18, -24]], 'pr') +
+    at(352, [[0, -36], [26, -8], [0, 36], [-26, -8]], 'pm')
+  )
+}
+
+const triangles = (): string => {
+  const A: [number, number] = [78, 162]
+  const B: [number, number] = [322, 162]
+  const C: [number, number] = [190, 30]
+  const mid = (p: [number, number], q: [number, number]): [number, number] => [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2]
+  const G: [number, number] = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3]
+  const mAB = mid(A, B)
+  const mBC = mid(B, C)
+  const mCA = mid(C, A)
+  return (
+    poly([A, B, C], 'pa') +
+    line(C[0], C[1], mAB[0], mAB[1], 'sb', 2.4, '6 5') +
+    line(A[0], A[1], mBC[0], mBC[1], 'sb', 2.4, '6 5') +
+    line(B[0], B[1], mCA[0], mCA[1], 'sb', 2.4, '6 5') +
+    dot(G[0], G[1], 'fr', 7) +
+    text(A[0] - 12, A[1] + 6, 'A', 17) +
+    text(B[0] + 12, B[1] + 6, 'B', 17) +
+    text(C[0], C[1] - 10, 'C', 17)
+  )
+}
+
+const circles = (): string => {
+  const cx = 170
+  const cy = 100
+  const r = 72
+  const a = (30 * Math.PI) / 180
+  const P: [number, number] = [cx + r * Math.cos(a), cy - r * Math.sin(a)]
+  const d: [number, number] = [Math.sin(a), Math.cos(a)]
+  const Q1: [number, number] = [cx + r * Math.cos((165 * Math.PI) / 180), cy - r * Math.sin((165 * Math.PI) / 180)]
+  const Q2: [number, number] = [cx + r * Math.cos((285 * Math.PI) / 180), cy - r * Math.sin((285 * Math.PI) / 180)]
+  return (
+    `<circle cx="${cx}" cy="${cy}" r="${r}" class="pa"/>` +
+    line(P[0] - 110 * d[0], P[1] - 110 * d[1], P[0] + 110 * d[0], P[1] + 110 * d[1], 'sr', 3) +
+    line(cx, cy, P[0], P[1], 'sb', 3) +
+    line(Q1[0], Q1[1], Q2[0], Q2[1], 'sm', 2.4, '6 5') +
+    dot(cx, cy, 'fm', 4.5) +
+    dot(P[0], P[1], 'fr', 6.5) +
+    text(cx - 12, cy + 24, 'O', 16, 'tm') +
+    text(P[0] + 16, P[1] - 10, 'P', 17)
+  )
+}
+
+const pythagoras = (): string => {
+  const dx = 95
+  const u = 15
+  const X = (x: number) => x + dx
+  const C: [number, number] = [125, 128]
+  const B: [number, number] = [C[0] + 4 * u, C[1]]
+  const A: [number, number] = [C[0], C[1] - 3 * u]
+  const n: [number, number] = [3 * u, -4 * u]
+  const P = (pts: [number, number][]) => pts.map(([x, y]) => [X(x), y] as [number, number])
+  return (
+    poly(P([C, B, [B[0], B[1] + 4 * u], [C[0], C[1] + 4 * u]]), 'pb') +
+    poly(P([A, C, [C[0] - 3 * u, C[1]], [A[0] - 3 * u, A[1]]]), 'pa') +
+    poly(P([A, B, [B[0] + n[0], B[1] + n[1]], [A[0] + n[0], A[1] + n[1]]]), 'pr') +
+    poly(P([C, B, A]), 'pm') +
+    text(X(C[0] + 2 * u), C[1] + 2 * u + 8, '4²', 21) +
+    text(X(C[0] - 1.5 * u), C[1] - 1.5 * u + 8, '3²', 21) +
+    text(X(A[0] + 2 * u + 1.5 * u), A[1] + 1.5 * u - 2 * u + 4, '5²', 21)
+  )
+}
+
+const tangentLines = (): string => {
+  const X = (x: number) => 84 + (x + 2) * 58
+  const Y = (y: number) => 178 - y * 28
+  const q = 2.2
+  return (
+    axis(40, 370, 178) +
+    curve((x) => x * x, -1.9, 2.55, X, Y, 'sa') +
+    curve((x) => (Math.pow(q, 2) - 1) / (q - 1) * (x - 1) + 1, 0.1, 2.5, X, Y, 'sb', 2.6, 10, '7 5') +
+    curve((x) => 2 * x - 1, -0.5, 2.1, X, Y, 'sr', 3.4, 10) +
+    dot(X(1), Y(1), 'fr', 7) +
+    dot(X(q), Y(q * q), 'fb', 5.5) +
+    text(X(1) - 14, Y(1) + 8, 'P', 17) +
+    text(X(q) + 14, Y(q * q) - 6, 'Q', 17)
+  )
+}
+
+const derivativeFunction = (): string => {
+  const panel = (x0: number): string => rect(x0, 14, 176, 172, 'pm', 8)
+  const XL = (x: number) => 24 + (x + 2.2) * (168 / 4.4)
+  const YL = (y: number) => 100 - y * 17
+  const XR = (x: number) => 208 + (x + 2.2) * (168 / 4.4)
+  const YR = (y: number) => 158 - (y + 3) * 8.4
+  return (
+    panel(16) +
+    panel(200) +
+    curve((x) => x ** 3 - 3 * x, -2.2, 2.2, XL, YL, 'sa') +
+    curve((x) => 3 * x * x - 3, -2.2, 2.2, XR, YR, 'sb') +
+    line(XR(-2.2), YR(0), XR(2.2), YR(0), 'sm', 1.6, '4 4') +
+    dot(XL(-1), YL(2), 'fr', 5.5) +
+    dot(XL(1), YL(-2), 'fr', 5.5) +
+    dot(XR(-1), YR(0), 'fr', 5.5) +
+    dot(XR(1), YR(0), 'fr', 5.5) +
+    text(104, 36, 'f', 19) +
+    text(288, 36, "f′", 19)
+  )
+}
+
+const differentiationRules = (): string => {
+  const x0 = 78
+  const yb = 150
+  const w = 150
+  const h = 84
+  const dw = 44
+  const dh = 32
+  return (
+    rect(x0, yb - h, w, h, 'pa', 2) +
+    rect(x0 + w, yb - h, dw, h, 'pb', 2) +
+    rect(x0, yb - h - dh, w, dh, 'pc', 2) +
+    rect(x0 + w, yb - h - dh, dw, dh, 'pr', 2) +
+    text(x0 + w / 2, yb - h / 2 + 8, 'uv', 28) +
+    text(x0 + w + dw / 2, yb - h / 2 + 5, 'vΔu', 14) +
+    text(x0 + w / 2, yb - h - dh / 2 + 6, 'uΔv', 16) +
+    text(x0 + w / 2, yb + 26, '(uv)′ = u′v + uv′', 18, 'tm')
+  )
+}
+
+const rateOfChange = (): string => {
+  const X = (t: number) => 44 + t * 31
+  const Ys = (s: number) => 92 - s * 0.55
+  const Yv = (v: number) => 148 - v * 0.62
+  return (
+    line(X(0), Ys(0), X(10), Ys(0), 'sm', 2) +
+    line(X(0), Yv(0), X(10), Yv(0), 'sm', 2) +
+    line(X(5), Ys(122.5), X(5), Yv(-49), 'sm', 1.6, '4 4') +
+    curve((t) => 49 * t - 4.9 * t * t, 0, 10, X, Ys, 'sa', 3.4) +
+    curve((t) => 49 - 9.8 * t, 0, 10, X, Yv, 'sb', 3.4, 10) +
+    dot(X(5), Ys(122.5), 'fr', 6.5) +
+    dot(X(5), Yv(0), 'fr', 6.5) +
+    text(362, 36, 's', 20) +
+    text(362, 172, 'v', 20)
+  )
+}
+
+const trigonometry = (): string => {
+  const X = (x: number) => 24 + x * (352 / (2 * Math.PI))
+  const Y = (y: number) => 100 - y * 62
+  const a = 0.95
+  const m = Math.cos(a)
+  return (
+    axis(16, 384, Y(0)) +
+    curve(Math.sin, 0, 2 * Math.PI, X, Y, 'sa', 3.4, 120) +
+    curve(Math.cos, 0, 2 * Math.PI, X, Y, 'sb', 3, 120, '7 5') +
+    curve((x) => Math.sin(a) + m * (x - a), a - 0.6, a + 0.6, X, Y, 'sr', 3.2, 10) +
+    line(X(a), Y(Math.sin(a)), X(a), Y(m), 'sm', 1.5, '3 3') +
+    dot(X(a), Y(Math.sin(a)), 'fr', 6.5) +
+    dot(X(a), Y(m), 'fr', 5) +
+    text(X(2.5), Y(1) - 12, 'sin', 17) +
+    text(X(5.3), Y(1) - 12, 'cos', 17)
+  )
+}
+
+const generic = (): string => {
+  const X = (x: number) => 60 + x * 70
+  const Y = (y: number) => 160 - y * 60
+  return axis(40, 370, 160) + line(60, 184, 60, 20, 'sm', 2) + curve((x) => Math.sqrt(Math.max(x, 0)) * 1.2 + 0.1, 0, 4, X, Y, 'sa')
+}
+
+const COVERS: Record<string, () => string> = {
+  'real-numbers': realNumbers,
+  'chinese-numbers': chineseNumbers,
+  'exponents-and-radicals': exponents,
+  'algebraic-expressions': algebra,
+  integers,
+  'rational-numbers': rationals,
+  'irrational-numbers': irrational,
+  'binary-numbers': binary,
+  'arithmetic-sequences-and-series': arithmetic,
+  'geometric-sequences-and-series': geometric,
+  quadrilaterals,
+  triangles,
+  circles,
+  'pythagorean-theorem': pythagoras,
+  'tangent-lines-and-derivative-at-a-point': tangentLines,
+  'the-derivative-as-a-function': derivativeFunction,
+  'differentiation-rules': differentiationRules,
+  'the-derivative-as-a-rate-of-change': rateOfChange,
+  'derivatives-of-trigonometric-functions': trigonometry,
+}
+
+/** Ids that have their own drawing, for the checker. */
+export const coverIds = (): string[] => Object.keys(COVERS)
+
+/** The whole `<svg>` of an article's cover, as markup. Decorative: the card already carries the title. */
+export function coverSvg(id: string): string {
+  const art = (COVERS[id] ?? generic)()
+  return `<svg class="cv" viewBox="0 0 ${W} ${H}" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice"><rect width="${W}" height="${H}" class="bg"/>${art}</svg>`
+}

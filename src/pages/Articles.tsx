@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { formatDate, useI18n } from '../i18n'
 import type { Lang } from '../content/types'
 import { ARTICLES } from '../content/articles'
+import { coverSvg } from '../content/articles/covers'
 import type { ArticleTrack } from '../content/articles/types'
 import { TAGS, tagLabel } from '../content/articles/tags'
 import { articlePath, listPath, listSeo } from '../lib/articleSeo'
@@ -130,6 +131,7 @@ export default function Articles({ routeLang }: { routeLang: Lang }) {
         <div className="grid two">
           {results.map((a) => (
             <Link key={a.id} className="card artcard" to={articlePath(routeLang, a)}>
+              <div className="artcover" aria-hidden="true" dangerouslySetInnerHTML={{ __html: coverSvg(a.id) }} />
               <span className="small muted">
                 {a.track === 'math' ? t('trackMath') : t('trackCode')} · {a.readingMinutes} {lang === 'id' ? 'menit baca' : 'min read'}
               </span>
