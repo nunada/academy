@@ -92,6 +92,9 @@ export type WidgetName =
   | 'tansecant'
   | 'tanline'
   | 'tannodiff'
+  | 'derivgraph'
+  | 'derivdef'
+  | 'derivsteps'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

@@ -1474,6 +1474,9 @@ a.chip.static { cursor: pointer; }
 .tandot.open { fill: var(--surface); stroke: var(--text); }
 .tanlabel { font-size: 13px; font-weight: 700; fill: var(--text); }
 .wgt table.rtable tr.hi td { background: var(--brand-soft); font-weight: 700; }
+.dersvg { width: 100%; max-width: 520px; display: block; margin: 6px auto; }
+.tancurve.faint { opacity: 0.3; }
+.tancurve.sec { stroke: var(--fig-b); }
 
 /* Theme switch in the top bar: light, dark, or follow the system. */
 .themesw { margin-bottom: 0; }

@@ -27,7 +27,8 @@
     "check:triangle": "node tools/check-triangle.mjs",
     "check:circle": "node tools/check-circle.mjs",
     "check:pythagoras": "node tools/check-pythagoras.mjs",
-    "check:tangent": "node tools/check-tangent.mjs"
+    "check:tangent": "node tools/check-tangent.mjs",
+    "check:derivative": "node tools/check-derivative.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

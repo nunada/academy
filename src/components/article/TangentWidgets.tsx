@@ -25,14 +25,14 @@ import { Frame, L, dec, useSep } from './widgetKit'
 
 /* ------------------------------------------------------------------ helpers */
 
-const num = (r: Rat): number => Number(r.n) / Number(r.d)
-const rt = (r: Rat): string => (r.d === 1n ? `${r.n}` : `${r.n < 0n ? '-' : ''}\\frac{${r.n < 0n ? -r.n : r.n}}{${r.d}}`)
+export const num = (r: Rat): number => Number(r.n) / Number(r.d)
+export const rt = (r: Rat): string => (r.d === 1n ? `${r.n}` : `${r.n < 0n ? '-' : ''}\\frac{${r.n < 0n ? -r.n : r.n}}{${r.d}}`)
 /** `v - r` written so that a negative r reads `v + |r|`. */
 const minus = (v: string, r: Rat): string => (r.n === 0n ? v : r.n < 0n ? `${v}+${rt(rat(-r.n, r.d))}` : `${v}-${rt(r)}`)
-const small = (r: Rat | null): r is Rat => r !== null && (r.n < 0n ? -r.n : r.n) <= 99999n && r.d <= 999n
+export const small = (r: Rat | null): r is Rat => r !== null && (r.n < 0n ? -r.n : r.n) <= 99999n && r.d <= 999n
 
 /** A number for a table: up to six significant digits, with the reader's decimal mark. */
-function show(x: number, sep: string): string {
+export function show(x: number, sep: string): string {
   if (Number.isNaN(x)) return '–'
   if (!Number.isFinite(x)) return x > 0 ? '+∞' : '−∞'
   if (Math.abs(x) < 1e-12) return '0'

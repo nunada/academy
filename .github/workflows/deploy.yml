@@ -104,6 +104,9 @@ jobs:
       # Tangent lines: the slope as a limit against the power rule, the double-root signature of a tangent,
       # outside tangents against a grid of fractions, rational roots, corners, cube-root and cusp quotients.
       - run: npm run check:tangent
+      # Derivative functions: the difference quotient as a polynomial in h, reduced derivatives of rational functions
+      # and the order of the gap, polynomial division, step functions of polylines and the drawn graphs' derivatives.
+      - run: npm run check:derivative
 
       - name: Work out where the site will live
         id: base

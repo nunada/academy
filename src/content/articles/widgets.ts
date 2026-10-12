@@ -474,6 +474,27 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Enam grafik di x = 0: sudut tajam, yang mirip tetapi mulus, lompatan, garis singgung tegak, cusp, dan osilasi tanpa henti, masing-masing dengan gradien garis potong dari tiap sisi dan perbesaran yang menunjukkan apa yang tidak pernah menjadi lurus.',
     },
   },
+  derivgraph: {
+    title: { en: 'Interactive: the graph of f and the graph of f′', id: 'Interaktif: grafik f dan grafik f′' },
+    description: {
+      en: 'Slide a point along a graph and watch the height of the second graph follow the slope of the first: nine functions, from a parabola to a corner, a vertical tangent and a derivative that is not continuous.',
+      id: 'Geser sebuah titik sepanjang grafik dan lihat tinggi grafik kedua mengikuti gradien grafik pertama: sembilan fungsi, dari parabola sampai sudut tajam, garis singgung tegak, dan turunan yang tidak kontinu.',
+    },
+  },
+  derivdef: {
+    title: { en: 'Interactive: a derivative function, exactly', id: 'Interaktif: fungsi turunan, secara eksak' },
+    description: {
+      en: 'Type a polynomial or a quotient such as x/(x-1) and get the difference quotient expanded in h, the derivative function f′, where it is undefined, both graphs, and a table of secant slopes at a point.',
+      id: 'Ketik polinomial atau hasil bagi seperti x/(x-1) dan dapatkan hasil bagi selisih yang dijabarkan dalam h, fungsi turunan f′, tempat ia tak terdefinisi, kedua grafik, dan tabel gradien garis potong di suatu titik.',
+    },
+  },
+  derivsteps: {
+    title: { en: 'Interactive: the derivative of a graph made of segments', id: 'Interaktif: turunan grafik yang tersusun dari ruas garis' },
+    description: {
+      en: 'Enter the corners of a graph made of line segments and get its derivative, a step function with no value at a corner; or go the other way and rebuild the graph from the steps.',
+      id: 'Masukkan titik-titik sudut grafik yang tersusun dari ruas garis dan dapatkan turunannya, sebuah fungsi tangga tanpa nilai di sudut tajam; atau sebaliknya, bangun kembali grafik dari anak tangganya.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

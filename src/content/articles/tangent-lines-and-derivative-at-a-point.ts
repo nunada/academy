@@ -174,6 +174,7 @@ Cancelling $h$ gives $9+6h+h^2$, which tends to $9$ as $h\to0$. So $f'(2)=9$, an
 
 **2. A fraction: combine over a common denominator.** For $f(x)=\frac1x$ at $a=2$, using [adding fractions](article:rational-numbers#add-subtract-fractions),
 $$\frac{\frac1{2+h}-\frac12}{h}=\frac{2-(2+h)}{2(2+h)\,h}=\frac{-1}{2(2+h)}\to-\frac14.$$
+The same steps at any $a\ne0$ give $f'(a)=-\frac{1}{a^2}$: the slope is negative everywhere, steep near $x=0$ and flattening out far away, and it is $-\frac14$ at both $a=2$ and $a=-2$, so there are two tangents of that slope.
 
 **3. A root: multiply by the conjugate.** For $f(x)=\sqrt x$ at $a=4$, by [rationalizing](article:exponents-and-radicals#rationalise) the numerator: multiplying top and bottom by $\sqrt{4+h}+2$ turns the numerator into $(4+h)-4=h$, so
 $$\frac{\sqrt{4+h}-2}{h}=\frac{h}{h\left(\sqrt{4+h}+2\right)}.$$
@@ -192,6 +193,7 @@ Mencoret $h$ memberi $9+6h+h^2$, yang menuju $9$ saat $h\to0$. Jadi $f'(2)=9$, d
 
 **2. Pecahan: samakan penyebut.** Untuk $f(x)=\frac1x$ di $a=2$, dengan [penjumlahan pecahan](article:rational-numbers#add-subtract-fractions),
 $$\frac{\frac1{2+h}-\frac12}{h}=\frac{2-(2+h)}{2(2+h)\,h}=\frac{-1}{2(2+h)}\to-\frac14.$$
+Langkah yang sama di sembarang $a\ne0$ memberi $f'(a)=-\frac{1}{a^2}$: gradiennya negatif di mana-mana, curam di dekat $x=0$ dan melandai di tempat yang jauh, dan bernilai $-\frac14$ di $a=2$ maupun $a=-2$, sehingga ada dua garis singgung dengan gradien itu.
 
 **3. Akar: kalikan dengan sekawan.** Untuk $f(x)=\sqrt x$ di $a=4$, dengan [merasionalkan](article:exponents-and-radicals#rationalise) pembilang: mengalikan pembilang dan penyebut dengan $\sqrt{4+h}+2$ mengubah pembilang menjadi $(4+h)-4=h$, sehingga
 $$\frac{\sqrt{4+h}-2}{h}=\frac{h}{h\left(\sqrt{4+h}+2\right)}.$$
@@ -277,9 +279,9 @@ Cobalah: ketik sebuah polinomial dan titik, atau titik di luar kurva. Setiap bil
           text: L(
             T`**The derivative at a point is the instantaneous rate of change: how fast the output is changing per unit of input at that exact moment, in units of $y$ per unit of $x$.** The difference quotient is the *average* rate of change over a step of size $h$, and the derivative is what the average settles on as the step shrinks to nothing.
 
-**Speed.** Let a ball dropped from a tower fall $s(t)=5t^2$ meters in $t$ seconds (gravity rounded to $10\ \text{m/s}^2$). Its average speed from $t=1$ to $t=1+h$ is
-$$\frac{5(1+h)^2-5}{h}=10+5h.$$
-Over a whole second ($h=1$) that is $15$ m/s, over half a second $12.5$ m/s, over $0.1$ s it is $10.5$ m/s, over $0.01$ s it is $10.05$ m/s, and as $h\to0$ it tends to $10$ m/s. That number, $s'(1)=10$ m/s, is the reading on the speedometer at $t=1$: an average needs a time interval, a speed at an instant needs the limit.
+**Speed.** Let a ball dropped from a tower fall $s(t)=4.9t^2$ meters in $t$ seconds. Its average speed from $t=1$ to $t=1+h$ is
+$$\frac{4.9(1+h)^2-4.9}{h}=9.8+4.9h.$$
+Over a whole second ($h=1$) that is $14.7$ m/s, over half a second $12.25$ m/s, over $0.1$ s it is $10.29$ m/s, over $0.01$ s it is $9.849$ m/s, and as $h\to0$ it tends to $9.8$ m/s. That number, $s'(1)=9.8$ m/s, is the reading on the speedometer at $t=1$: an average needs a time interval, a speed at an instant needs the limit.
 
 **Cost.** If making $q$ items costs $C(q)=2q^2+30q+400$ dollars, then $C(11)-C(10)=972-900=72$ dollars is the extra cost of the 11th item, which is a difference quotient with $h=1$. The derivative $C'(10)=4\cdot10+30=70$ is the *marginal cost* at $10$ items: $70$ dollars per additional item, close to the exact extra of $72$ dollars. Economists use the derivative as a quick estimate of the cost of one more.
 
@@ -290,9 +292,9 @@ Over a whole second ($h=1$) that is $15$ m/s, over half a second $12.5$ m/s, ove
 **Units.** The derivative has the units of $y$ divided by the units of $x$: meters per second for distance against time, dollars per item for cost against quantity. A road that climbs $8$ meters for each $100$ meters along the ground has slope $0.08$, an 8% grade.`,
             T`**Turunan di suatu titik adalah laju perubahan sesaat: seberapa cepat keluaran berubah per satuan masukan pada saat yang tepat itu, dalam satuan $y$ per satuan $x$.** Hasil bagi selisih adalah laju perubahan *rata-rata* pada langkah sebesar $h$, dan turunan adalah nilai yang didekati rata-rata itu saat langkahnya mengecil menjadi nol.
 
-**Kecepatan.** Misalkan bola yang dijatuhkan dari menara jatuh sejauh $s(t)=5t^2$ meter dalam $t$ detik (gravitasi dibulatkan menjadi $10\ \text{m/s}^2$). Kecepatan rata-ratanya dari $t=1$ sampai $t=1+h$ adalah
-$$\frac{5(1+h)^2-5}{h}=10+5h.$$
-Dalam satu detik penuh ($h=1$) itu $15$ m/s, dalam setengah detik $12{,}5$ m/s, dalam $0{,}1$ detik $10{,}5$ m/s, dalam $0{,}01$ detik $10{,}05$ m/s, dan saat $h\to0$ ia menuju $10$ m/s. Bilangan itu, $s'(1)=10$ m/s, adalah angka pada spidometer di $t=1$: rata-rata memerlukan selang waktu, kecepatan pada satu saat memerlukan limit.
+**Kecepatan.** Misalkan bola yang dijatuhkan dari menara jatuh sejauh $s(t)=4{,}9t^2$ meter dalam $t$ detik. Kecepatan rata-ratanya dari $t=1$ sampai $t=1+h$ adalah
+$$\frac{4{,}9(1+h)^2-4{,}9}{h}=9{,}8+4{,}9h.$$
+Dalam satu detik penuh ($h=1$) itu $14{,}7$ m/s, dalam setengah detik $12{,}25$ m/s, dalam $0{,}1$ detik $10{,}29$ m/s, dalam $0{,}01$ detik $9{,}849$ m/s, dan saat $h\to0$ ia menuju $9{,}8$ m/s. Bilangan itu, $s'(1)=9{,}8$ m/s, adalah angka pada spidometer di $t=1$: rata-rata memerlukan selang waktu, kecepatan pada satu saat memerlukan limit.
 
 **Biaya.** Jika membuat $q$ barang berbiaya $C(q)=2q^2+30q+400$ ribu rupiah, maka $C(11)-C(10)=972-900=72$ ribu rupiah, yaitu Rp72.000, adalah tambahan biaya barang ke-11, yang merupakan hasil bagi selisih dengan $h=1$. Turunan $C'(10)=4\cdot10+30=70$ adalah *biaya marjinal* pada $10$ barang: Rp70.000 per tambahan satu barang, dekat dengan tambahan eksak Rp72.000. Para ekonom memakai turunan sebagai perkiraan cepat biaya satu barang lagi.
 
@@ -587,11 +589,11 @@ print(shift([Fraction(4), 0, Fraction(1, 2)], Fraction(6))[1])   # 6, the slope 
           step: {
             kind: 'math',
             id: 'p6',
-            hints: [L('$s(3)=45$ and $s(2)=20$.', '$s(3)=45$ dan $s(2)=20$.'), L('Divide the change in distance by the change in time.', 'Bagi perubahan jarak dengan perubahan waktu.')],
-            explain: L('$\\frac{s(3)-s(2)}{3-2}=\\frac{45-20}{1}=25$ m/s.', '$\\frac{s(3)-s(2)}{3-2}=\\frac{45-20}{1}=25$ m/s.'),
-            prompt: L('A ball falls $s(t)=5t^2$ meters in $t$ seconds. Find its average speed between $t=2$ and $t=3$, in m/s.', 'Sebuah bola jatuh sejauh $s(t)=5t^2$ meter dalam $t$ detik. Tentukan kecepatan rata-ratanya antara $t=2$ dan $t=3$, dalam m/s.'),
-            given: String.raw`\frac{s(3)-s(2)}{3-2}=\frac{45-20}{1}=v`,
-            blanks: [{ label: 'v =', answer: 25 }],
+            hints: [L('$s(3)=44.1$ and $s(2)=19.6$.', '$s(3)=44{,}1$ dan $s(2)=19{,}6$.'), L('Divide the change in distance by the change in time.', 'Bagi perubahan jarak dengan perubahan waktu.')],
+            explain: L('$\\frac{s(3)-s(2)}{3-2}=\\frac{44.1-19.6}{1}=24.5$ m/s.', '$\\frac{s(3)-s(2)}{3-2}=\\frac{44{,}1-19{,}6}{1}=24{,}5$ m/s.'),
+            prompt: L('A ball falls $s(t)=4.9t^2$ meters in $t$ seconds. Find its average speed between $t=2$ and $t=3$, in m/s.', 'Sebuah bola jatuh sejauh $s(t)=4{,}9t^2$ meter dalam $t$ detik. Tentukan kecepatan rata-ratanya antara $t=2$ dan $t=3$, dalam m/s.'),
+            given: String.raw`\frac{s(3)-s(2)}{3-2}=\frac{44.1-19.6}{1}=v`,
+            blanks: [{ label: 'v =', answer: 24.5 }],
           },
         },
         {
@@ -816,7 +818,7 @@ print(shift([Fraction(4), 0, Fraction(1, 2)], Fraction(6))[1])   # 6, the slope 
   ],
 
   references: [
-    { title: "Thomas' Calculus: Early Transcendentals (14th ed.), Chapter 3: Derivatives", author: 'Joel Hass, Christopher Heil and Maurice D. Weir', year: 2018, source: 'Pearson' },
+    { title: "Thomas' Calculus: Early Transcendentals in SI Units (15th ed.), Section 3.1: Tangent Lines and the Derivative at a Point", author: 'Joel Hass, Christopher Heil, Maurice D. Weir et al.', year: 2023, source: 'Pearson' },
     { title: 'Calculus (8th ed.), sections 2.1 The Tangent and Velocity Problems and 2.7 Derivatives and Rates of Change', author: 'James Stewart', year: 2015, source: 'Cengage Learning' },
     { title: 'The History of the Calculus and Its Conceptual Development', author: 'Carl B. Boyer', year: 1949, source: 'Hafner (Dover reprint, 1959)' },
     { title: "Résumé des leçons données à l'École royale polytechnique sur le calcul infinitésimal", author: 'Augustin-Louis Cauchy', year: 1823, source: 'Imprimerie royale' },

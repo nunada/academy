@@ -22,6 +22,7 @@ import { TriangleCenters, TriangleCheck, TriangleSolver } from './TriangleWidget
 import { CircleAngles, CircleCalc, CircleRelations, PiBounds } from './CircleWidgets'
 import { PythagoreanTree, PythagoreanTriples, PythagorasProof, PythagorasSolver } from './PythagorasWidgets'
 import { TangentLineTool, TangentNoDerivative, TangentSecant, TangentZoom } from './TangentWidgets'
+import { DerivativeFromDefinition, DerivativeGraph, DerivativeSteps } from './DerivativeWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -897,6 +898,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <TangentLineTool />
     case 'tannodiff':
       return <TangentNoDerivative />
+    case 'derivgraph':
+      return <DerivativeGraph />
+    case 'derivdef':
+      return <DerivativeFromDefinition />
+    case 'derivsteps':
+      return <DerivativeSteps />
   }
 }
 
