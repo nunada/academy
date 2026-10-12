@@ -289,7 +289,9 @@ Over a whole second ($h=1$) that is $14.7$ m/s, over half a second $12.25$ m/s, 
 
 **Constant rate.** For a straight line the rate is the same everywhere, and the tangent line is the line itself. The equal steps of an [arithmetic sequence](article:arithmetic-sequences-and-series#what-is-an-arithmetic-sequence) are the same thing in discrete form: a constant difference is a constant slope. A curve has a different slope at each point, and the derivative is what lets you ask for it one point at a time.
 
-**Units.** The derivative has the units of $y$ divided by the units of $x$: meters per second for distance against time, dollars per item for cost against quantity. A road that climbs $8$ meters for each $100$ meters along the ground has slope $0.08$, an 8% grade.`,
+**Units.** The derivative has the units of $y$ divided by the units of $x$: meters per second for distance against time, dollars per item for cost against quantity. A road that climbs $8$ meters for each $100$ meters along the ground has slope $0.08$, an 8% grade.
+
+Motion along a line (velocity, speed, acceleration, jerk, free fall) and marginal cost and revenue are worked out in full in [the derivative as a rate of change](article:the-derivative-as-a-rate-of-change#motion-along-a-line).`,
             T`**Turunan di suatu titik adalah laju perubahan sesaat: seberapa cepat keluaran berubah per satuan masukan pada saat yang tepat itu, dalam satuan $y$ per satuan $x$.** Hasil bagi selisih adalah laju perubahan *rata-rata* pada langkah sebesar $h$, dan turunan adalah nilai yang didekati rata-rata itu saat langkahnya mengecil menjadi nol.
 
 **Kecepatan.** Misalkan bola yang dijatuhkan dari menara jatuh sejauh $s(t)=4{,}9t^2$ meter dalam $t$ detik. Kecepatan rata-ratanya dari $t=1$ sampai $t=1+h$ adalah
@@ -302,7 +304,9 @@ Dalam satu detik penuh ($h=1$) itu $14{,}7$ m/s, dalam setengah detik $12{,}25$ 
 
 **Laju tetap.** Untuk garis lurus laju perubahannya sama di mana-mana, dan garis singgungnya adalah garis itu sendiri. Langkah-langkah sama pada [barisan aritmetika](article:arithmetic-sequences-and-series#what-is-an-arithmetic-sequence) adalah hal yang sama dalam bentuk diskret: beda tetap adalah gradien tetap. Kurva memiliki gradien yang berbeda di tiap titik, dan turunan memungkinkan kamu menanyakannya satu titik demi satu titik.
 
-**Satuan.** Turunan bersatuan $y$ dibagi satuan $x$: meter per detik untuk jarak terhadap waktu, rupiah per barang untuk biaya terhadap jumlah. Jalan yang naik $8$ meter untuk setiap $100$ meter sepanjang tanah memiliki gradien $0{,}08$, tanjakan 8%.`,
+**Satuan.** Turunan bersatuan $y$ dibagi satuan $x$: meter per detik untuk jarak terhadap waktu, rupiah per barang untuk biaya terhadap jumlah. Jalan yang naik $8$ meter untuk setiap $100$ meter sepanjang tanah memiliki gradien $0{,}08$, tanjakan 8%.
+
+Gerak sepanjang garis lurus (kecepatan, laju, percepatan, sentakan, jatuh bebas) serta biaya dan pendapatan marjinal diuraikan lengkap dalam [turunan sebagai laju perubahan](article:the-derivative-as-a-rate-of-change#motion-along-a-line).`,
           ),
         },
       ],

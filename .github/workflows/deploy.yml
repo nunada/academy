@@ -110,6 +110,9 @@ jobs:
       # Differentiation rules: the rules' result against the exact derivative of rational functions, central
       # differences for every expression and step, and the print/parse round trip.
       - run: npm run check:diffrules
+      # Rates of change: Sturm roots, motion along a line in exact arithmetic, throws in closed form, marginal cost
+      # against the next unit, and the geometric rates against central differences.
+      - run: npm run check:rates
 
       - name: Work out where the site will live
         id: base

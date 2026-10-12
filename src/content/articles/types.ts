@@ -98,6 +98,9 @@ export type WidgetName =
   | 'diffsteps'
   | 'expbase'
   | 'prodbox'
+  | 'motionline'
+  | 'marginals'
+  | 'georates'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

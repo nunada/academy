@@ -24,6 +24,7 @@ import { PythagoreanTree, PythagoreanTriples, PythagorasProof, PythagorasSolver 
 import { TangentLineTool, TangentNoDerivative, TangentSecant, TangentZoom } from './TangentWidgets'
 import { DerivativeFromDefinition, DerivativeGraph, DerivativeSteps } from './DerivativeWidgets'
 import { DifferentiationSteps, ExponentialBase, ProductBox } from './RulesWidgets'
+import { GeometricRates, MarginalAnalysis, MotionAlongLine } from './RatesWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -911,6 +912,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <ExponentialBase />
     case 'prodbox':
       return <ProductBox />
+    case 'motionline':
+      return <MotionAlongLine />
+    case 'marginals':
+      return <MarginalAnalysis />
+    case 'georates':
+      return <GeometricRates />
   }
 }
 

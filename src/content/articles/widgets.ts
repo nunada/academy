@@ -516,6 +516,27 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Perbesar persegi panjang u kali v dengan langkah kecil dan lihat luas tambahannya terbagi menjadi dua pita dan satu pojok kecil, yang menghilang lebih cepat daripada pita saat langkahnya mengecil.',
     },
   },
+  motionline: {
+    title: { en: 'Interactive: motion along a line', id: 'Interaktif: gerak sepanjang garis lurus' },
+    description: {
+      en: 'Type a position function s(t) and see its velocity, acceleration and jerk, the graphs of position, velocity and acceleration, when the body moves forward or backward and speeds up or slows down, and its total distance.',
+      id: 'Ketik fungsi posisi s(t) dan lihat kecepatan, percepatan, dan sentakannya, grafik posisi, kecepatan, dan percepatan, kapan benda maju atau mundur serta makin cepat atau makin lambat, dan jarak totalnya.',
+    },
+  },
+  marginals: {
+    title: { en: 'Interactive: marginal cost, revenue and profit', id: 'Interaktif: biaya, pendapatan, dan laba marjinal' },
+    description: {
+      en: 'Type a cost and a revenue function and compare each marginal value, the derivative, with the exact cost or revenue of one more unit, and find where marginal revenue equals marginal cost.',
+      id: 'Ketik fungsi biaya dan pendapatan dan bandingkan setiap nilai marjinal, yaitu turunannya, dengan biaya atau pendapatan eksak untuk satu satuan lagi, serta cari tempat pendapatan marjinal sama dengan biaya marjinal.',
+    },
+  },
+  georates: {
+    title: { en: 'Interactive: rates of area and volume', id: 'Interaktif: laju luas dan volume' },
+    description: {
+      en: 'Grow a circle, a sphere, a cube or a square and see that the rate of its area or volume is a length or an area you already know: the circumference, the surface area, three faces, half the perimeter.',
+      id: 'Perbesar lingkaran, bola, kubus, atau persegi dan lihat bahwa laju luas atau volumenya adalah panjang atau luas yang sudah kamu kenal: keliling, luas permukaan, tiga sisi, setengah keliling.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {
