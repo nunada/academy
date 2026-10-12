@@ -115,11 +115,11 @@ which tends to $-\frac{1}{(x-1)^2}$ for $x\ne1$.
 **5. $f(x)=\sqrt x$: the second form and a conjugate.** For $x>0$, write $z-x=(\sqrt z-\sqrt x)(\sqrt z+\sqrt x)$ and cancel:
 $$\frac{\sqrt z-\sqrt x}{z-x}=\frac{1}{\sqrt z+\sqrt x},$$
 which tends to $\frac{1}{2\sqrt x}$ as $z\to x$.
-This is the same trick as [rationalizing](article:exponents-and-radicals#rationalise). The formula blows up at $0$: $\sqrt x$ is defined on $[0,\infty)$ and its derivative only on $(0,\infty)$.
+This is the same trick as [rationalizing](article:exponents-and-radicals#rationalise). The formula blows up at $0$: $\sqrt x$ is defined for $x\ge0$ and its derivative only for $x>0$.
 
 Two more cases are worth keeping in mind. For a constant $f(x)=c$ every difference quotient is $0$, so $f'(x)=0$. For a line $f(x)=mx+b$ it is $\frac{m(x+h)+b-mx-b}{h}=m$, so $f'(x)=m$: the slope of a line is its derivative.
 
-Compare $x^2\to2x$ with $x^3\to3x^2$. In both the exponent comes down in front and the power of $x$ goes down by one. That pattern is correct, and the rules for differentiation prove it for every positive whole number; here it is only an observation from the examples.
+Compare $x^2\to2x$ with $x^3\to3x^2$. In both the exponent comes down in front and the power of $x$ goes down by one. That pattern is correct, and the [differentiation rules](article:differentiation-rules#constants-and-powers) prove it for every positive whole number; here it is only an observation from the examples.
 
 To check any of these at a point, put a value of $x$ in: for $\frac{x}{x-1}$ at $x=3$ the formula gives $-\frac14$, and the secant slopes in the tool below close in on exactly that. Try your own function: it expands the difference quotient in powers of $h$, or reduces the derivative of a quotient, and shows both graphs.`,
             T`**Untuk menurunkan dari definisi, tulis hasil bagi selisih dengan $x$ tetap sebagai huruf, sederhanakan sampai $h$ tercoret, lalu biarkan $h\to0$; yang tersisa adalah rumus dalam $x$.** Berikut lima fungsi, masing-masing dengan triknya sendiri.
@@ -143,11 +143,11 @@ yang menuju $-\frac{1}{(x-1)^2}$ untuk $x\ne1$.
 **5. $f(x)=\sqrt x$: bentuk kedua dan sekawan.** Untuk $x>0$, tulis $z-x=(\sqrt z-\sqrt x)(\sqrt z+\sqrt x)$ dan coret:
 $$\frac{\sqrt z-\sqrt x}{z-x}=\frac{1}{\sqrt z+\sqrt x},$$
 yang menuju $\frac{1}{2\sqrt x}$ saat $z\to x$.
-Ini trik yang sama dengan [merasionalkan](article:exponents-and-radicals#rationalise). Rumusnya membesar tanpa batas di $0$: $\sqrt x$ terdefinisi pada $[0,\infty)$ dan turunannya hanya pada $(0,\infty)$.
+Ini trik yang sama dengan [merasionalkan](article:exponents-and-radicals#rationalise). Rumusnya membesar tanpa batas di $0$: $\sqrt x$ terdefinisi untuk $x\ge0$ dan turunannya hanya untuk $x>0$.
 
 Dua kasus lagi perlu diingat. Untuk konstanta $f(x)=c$ setiap hasil bagi selisih adalah $0$, sehingga $f'(x)=0$. Untuk garis $f(x)=mx+b$ hasilnya $\frac{m(x+h)+b-mx-b}{h}=m$, sehingga $f'(x)=m$: gradien sebuah garis adalah turunannya.
 
-Bandingkan $x^2\to2x$ dengan $x^3\to3x^2$. Pada keduanya pangkat turun ke depan dan pangkat $x$ berkurang satu. Pola itu benar, dan aturan diferensiasi membuktikannya untuk setiap bilangan bulat positif; di sini ia hanya pengamatan dari contoh.
+Bandingkan $x^2\to2x$ dengan $x^3\to3x^2$. Pada keduanya pangkat turun ke depan dan pangkat $x$ berkurang satu. Pola itu benar, dan [aturan turunan](article:differentiation-rules#constants-and-powers) membuktikannya untuk setiap bilangan bulat positif; di sini ia hanya pengamatan dari contoh.
 
 Untuk memeriksa salah satunya di suatu titik, masukkan nilai $x$: untuk $\frac{x}{x-1}$ di $x=3$ rumusnya memberi $-\frac14$, dan gradien garis potong pada alat di bawah mendekati tepat nilai itu. Coba fungsimu sendiri: alat itu menjabarkan hasil bagi selisih dalam pangkat $h$, atau menyederhanakan turunan sebuah hasil bagi, dan memperlihatkan kedua grafik.`,
           ),
@@ -201,7 +201,7 @@ Reading the graph of $f'$ tells you three things at a glance:
 
 1. **Where the rate of change is positive, negative or zero.** $f'>0$ means $f$ is rising, $f'<0$ means falling, $f'=0$ means a flat spot, which is often the top of a hill or the bottom of a valley.
 2. **How big the rate is.** The farther $f'$ is from the axis, the steeper the graph of $f$.
-3. **Where the rate itself is increasing or decreasing.** Where the graph of $f'$ climbs, the slope of $f$ is growing; the graph of $f$ bends upward. Where it falls, the graph of $f$ bends downward. The rate of change of $f'$ is the *second derivative*, written $f''$, which is just the derivative function applied twice.
+3. **Where the rate itself is increasing or decreasing.** Where the graph of $f'$ climbs, the slope of $f$ is growing; the graph of $f$ bends upward. Where it falls, the graph of $f$ bends downward. The rate of change of $f'$ is the [second derivative](article:differentiation-rules#higher-order), written $f''$, which is just the derivative function applied twice.
 
 Two examples to compare with the tool below. For $f(x)=x^2$ the slope is negative to the left of the vertex, zero at the vertex and positive to the right, growing steadily: $f'(x)=2x$, a straight line. For $f(x)=x^3-3x$ the graph rises to a peak at $x=-1$, falls through $x=0$ with slope $-3$ (its steepest fall) and rises again after a valley at $x=1$, so $f'(x)=3x^2-3$ is a parabola that crosses the axis at $-1$ and $1$ and has its lowest point at $x=0$.
 
@@ -214,7 +214,7 @@ Membaca grafik $f'$ memberi tiga hal sekilas:
 
 1. **Di mana laju perubahan positif, negatif, atau nol.** $f'>0$ berarti $f$ naik, $f'<0$ berarti turun, $f'=0$ berarti titik datar, yang sering berupa puncak bukit atau dasar lembah.
 2. **Seberapa besar lajunya.** Makin jauh $f'$ dari sumbu, makin curam grafik $f$.
-3. **Di mana laju itu sendiri bertambah atau berkurang.** Di tempat grafik $f'$ naik, gradien $f$ membesar; grafik $f$ melengkung ke atas. Di tempat ia turun, grafik $f$ melengkung ke bawah. Laju perubahan $f'$ adalah *turunan kedua*, ditulis $f''$, yaitu fungsi turunan yang dikenakan dua kali.
+3. **Di mana laju itu sendiri bertambah atau berkurang.** Di tempat grafik $f'$ naik, gradien $f$ membesar; grafik $f$ melengkung ke atas. Di tempat ia turun, grafik $f$ melengkung ke bawah. Laju perubahan $f'$ adalah [turunan kedua](article:differentiation-rules#higher-order), ditulis $f''$, yaitu fungsi turunan yang dikenakan dua kali.
 
 Dua contoh untuk dibandingkan dengan alat di bawah. Untuk $f(x)=x^2$ gradiennya negatif di kiri puncak, nol di puncak, dan positif di kanan, bertambah secara tetap: $f'(x)=2x$, sebuah garis lurus. Untuk $f(x)=x^3-3x$ grafiknya naik ke puncak di $x=-1$, turun melewati $x=0$ dengan gradien $-3$ (penurunan paling curam) dan naik lagi setelah lembah di $x=1$, sehingga $f'(x)=3x^2-3$ adalah parabola yang memotong sumbu di $-1$ dan $1$ dan memiliki titik terendah di $x=0$.
 

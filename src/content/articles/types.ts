@@ -95,6 +95,9 @@ export type WidgetName =
   | 'derivgraph'
   | 'derivdef'
   | 'derivsteps'
+  | 'diffsteps'
+  | 'expbase'
+  | 'prodbox'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

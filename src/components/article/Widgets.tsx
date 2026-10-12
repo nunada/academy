@@ -23,6 +23,7 @@ import { CircleAngles, CircleCalc, CircleRelations, PiBounds } from './CircleWid
 import { PythagoreanTree, PythagoreanTriples, PythagorasProof, PythagorasSolver } from './PythagorasWidgets'
 import { TangentLineTool, TangentNoDerivative, TangentSecant, TangentZoom } from './TangentWidgets'
 import { DerivativeFromDefinition, DerivativeGraph, DerivativeSteps } from './DerivativeWidgets'
+import { DifferentiationSteps, ExponentialBase, ProductBox } from './RulesWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -904,6 +905,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <DerivativeFromDefinition />
     case 'derivsteps':
       return <DerivativeSteps />
+    case 'diffsteps':
+      return <DifferentiationSteps />
+    case 'expbase':
+      return <ExponentialBase />
+    case 'prodbox':
+      return <ProductBox />
   }
 }
 

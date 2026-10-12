@@ -495,6 +495,27 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Masukkan titik-titik sudut grafik yang tersusun dari ruas garis dan dapatkan turunannya, sebuah fungsi tangga tanpa nilai di sudut tajam; atau sebaliknya, bangun kembali grafik dari anak tangganya.',
     },
   },
+  diffsteps: {
+    title: { en: 'Interactive: differentiate step by step', id: 'Interaktif: menurunkan langkah demi langkah' },
+    description: {
+      en: 'Type a function made of powers of x, sqrt(x), e^x, sums, products and quotients, and see every rule applied in order, the derivative, its multiplied-out form, and higher derivatives up to the fourth.',
+      id: 'Ketik fungsi yang tersusun dari pangkat x, sqrt(x), e^x, jumlah, hasil kali, dan hasil bagi, lalu lihat setiap aturan yang dipakai berurutan, turunannya, bentuk terjabarnya, dan turunan tingkat tinggi sampai keempat.',
+    },
+  },
+  expbase: {
+    title: { en: 'Interactive: the base that makes a^x its own slope', id: 'Interaktif: basis yang membuat a^x menjadi gradiennya sendiri' },
+    description: {
+      en: 'Slide the base a and watch the slope of a^x where it crosses the y-axis change: it is 0.69 for a = 2, 1.10 for a = 3, and exactly 1 for the number e.',
+      id: 'Geser basis a dan lihat gradien a^x di tempat ia memotong sumbu y berubah: 0,69 untuk a = 2, 1,10 untuk a = 3, dan tepat 1 untuk bilangan e.',
+    },
+  },
+  prodbox: {
+    title: { en: 'Interactive: the picture of the product rule', id: 'Interaktif: gambar aturan hasil kali' },
+    description: {
+      en: 'Grow a rectangle u by v by small steps and see the extra area split into two strips and a tiny corner, which vanishes faster than the strips as the steps shrink.',
+      id: 'Perbesar persegi panjang u kali v dengan langkah kecil dan lihat luas tambahannya terbagi menjadi dua pita dan satu pojok kecil, yang menghilang lebih cepat daripada pita saat langkahnya mengecil.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

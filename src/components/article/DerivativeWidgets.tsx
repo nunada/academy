@@ -40,7 +40,7 @@ const PW = 440
 const PH = 210
 
 /** A plain graph, wider than tall: axes where they fall, curves cut where they break or run off the picture. */
-function Plot({ xr, yr, curves = [], segs = [], vlines = [], dots = [], label }: PlotProps) {
+export function Plot({ xr, yr, curves = [], segs = [], vlines = [], dots = [], label }: PlotProps) {
   const id = useId().replace(/:/g, '')
   const [x0, x1] = xr
   const [y0, y1] = yr

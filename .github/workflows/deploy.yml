@@ -107,6 +107,9 @@ jobs:
       # Derivative functions: the difference quotient as a polynomial in h, reduced derivatives of rational functions
       # and the order of the gap, polynomial division, step functions of polylines and the drawn graphs' derivatives.
       - run: npm run check:derivative
+      # Differentiation rules: the rules' result against the exact derivative of rational functions, central
+      # differences for every expression and step, and the print/parse round trip.
+      - run: npm run check:diffrules
 
       - name: Work out where the site will live
         id: base

@@ -25,8 +25,9 @@ import { meta as circles } from './circles.meta'
 import { meta as pythagoreanTheorem } from './pythagorean-theorem.meta'
 import { meta as tangentLines } from './tangent-lines-and-derivative-at-a-point.meta'
 import { meta as derivativeFunction } from './the-derivative-as-a-function.meta'
+import { meta as differentiationRules } from './differentiation-rules.meta'
 
-export const ARTICLES: ArticleMeta[] = [derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -45,6 +46,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'pythagorean-theorem': () => import('./pythagorean-theorem'),
   'tangent-lines-and-derivative-at-a-point': () => import('./tangent-lines-and-derivative-at-a-point'),
   'the-derivative-as-a-function': () => import('./the-derivative-as-a-function'),
+  'differentiation-rules': () => import('./differentiation-rules'),
 }
 
 export const articleById = (id: string): ArticleMeta | undefined => ARTICLES.find((a) => a.id === id)
