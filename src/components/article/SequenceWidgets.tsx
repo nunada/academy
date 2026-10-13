@@ -41,7 +41,8 @@ function Field({ label, value, set, width = '6em' }: { label: string; value: str
 /* -------------------------------------------------------------------- explorer */
 
 export function SequenceExplorer() {
-  const { tc } = useI18n()
+  const { tc, lang } = useI18n()
+  const dn = lang === 'id' ? 'b' : 'd' // the common difference: d in English, b (beda) in Indonesian
   const [sa, setSa] = useState('3')
   const [sd, setSd] = useState('4')
   const [n, setN] = useState(10)
@@ -70,7 +71,7 @@ export function SequenceExplorer() {
           <Tex src={`${shown}`} />
         </p>
         <p>
-          <Tex src={`a_n=a_1+(n-1)d=${ratTex(a1)}+(n-1)\\cdot${paren(d)}=${linTex(lf.slope, lf.intercept)}`} />
+          <Tex src={`a_n=a_1+(n-1)${dn}=${ratTex(a1)}+(n-1)\\cdot${paren(d)}=${linTex(lf.slope, lf.intercept)}`} />
         </p>
         <p>
           <Tex src={`S_{${n}}=\\frac{${n}}{2}\\left(a_1+a_{${n}}\\right)=\\frac{${n}}{2}\\left(${ratTex(a1)}+${paren(last)}\\right)=${ratTex(sum)}`} />
@@ -101,8 +102,8 @@ export function SequenceExplorer() {
           {isZero(d)
             ? tc(L('The difference is 0, so every term is the same: a constant sequence.', 'Bedanya 0, sehingga setiap suku sama: barisan konstan.'))
             : d.n > 0n
-              ? tc(L('The difference is positive, so the terms increase. The points lie on a straight line with slope d.', 'Bedanya positif, sehingga suku-sukunya naik. Titik-titiknya terletak pada garis lurus berkemiringan d.'))
-              : tc(L('The difference is negative, so the terms decrease. The points lie on a straight line with slope d.', 'Bedanya negatif, sehingga suku-sukunya turun. Titik-titiknya terletak pada garis lurus berkemiringan d.'))}
+              ? tc(L('The difference is positive, so the terms increase. The points lie on a straight line with slope d.', 'Bedanya positif, sehingga suku-sukunya naik. Titik-titiknya terletak pada garis lurus berkemiringan b.'))
+              : tc(L('The difference is negative, so the terms decrease. The points lie on a straight line with slope d.', 'Bedanya negatif, sehingga suku-sukunya turun. Titik-titiknya terletak pada garis lurus berkemiringan b.'))}
         </p>
       </>
     )
@@ -112,7 +113,7 @@ export function SequenceExplorer() {
     <Frame name="arithseq">
       <div className="inrow">
         <Field label="a₁" value={sa} set={setSa} />
-        <Field label="d" value={sd} set={setSd} />
+        <Field label={dn} value={sd} set={setSd} />
       </div>
       <label className="lbl slider">
         n = <b>{n}</b>
@@ -143,6 +144,7 @@ export function SequenceExplorer() {
 
 export function SequenceDetector() {
   const { tc, lang } = useI18n()
+  const dn = lang === 'id' ? 'b' : 'd'
   const [text, setText] = useState('3 7 11 15 19')
   // In Indonesian a comma is a decimal comma, so the numbers are separated by spaces or semicolons there.
   const tokens = text
@@ -188,7 +190,7 @@ export function SequenceDetector() {
           <>
             <p className="okline">{tc(L('Arithmetic: every difference is the same.', 'Aritmetika: setiap selisih sama.'))}</p>
             <p>
-              <Tex src={`d=${ratTex(a.d!)},\\quad a_n=${ratTex(vs[0])}+(n-1)\\cdot${paren(a.d!)}=${linTex(a.d!, ratSub(vs[0], a.d!))}`} />
+              <Tex src={`${dn}=${ratTex(a.d!)},\\quad a_n=${ratTex(vs[0])}+(n-1)\\cdot${paren(a.d!)}=${linTex(a.d!, ratSub(vs[0], a.d!))}`} />
             </p>
             <p className="small muted">
               {tc(L('Next terms', 'Suku berikutnya'))}: <Tex src={terms(ratAdd(vs[vs.length - 1], a.d!), a.d!, 3).map(ratTex).join(',\\ ')} />
@@ -237,7 +239,8 @@ export function SequenceDetector() {
 /* --------------------------------------------------------------- Gauss pairing */
 
 export function GaussPairing() {
-  const { tc } = useI18n()
+  const { tc, lang } = useI18n()
+  const dn = lang === 'id' ? 'b' : 'd'
   const [sa, setSa] = useState('2')
   const [sd, setSd] = useState('3')
   const [sn, setSn] = useState('10')
@@ -298,7 +301,7 @@ export function GaussPairing() {
     <Frame name="gauss">
       <div className="inrow">
         <Field label="a₁" value={sa} set={setSa} />
-        <Field label="d" value={sd} set={setSd} />
+        <Field label={dn} value={sd} set={setSd} />
         <Field label="n" value={sn} set={setSn} width="4em" />
       </div>
       <div className="chips">
@@ -326,7 +329,8 @@ export function GaussPairing() {
 /* ------------------------------------------------------------------ two terms */
 
 export function TwoTerms() {
-  const { tc } = useI18n()
+  const { tc, lang } = useI18n()
+  const dn = lang === 'id' ? 'b' : 'd'
   const [sp, setSp] = useState('3')
   const [sx, setSx] = useState('11')
   const [sq, setSq] = useState('7')
@@ -340,7 +344,7 @@ export function TwoTerms() {
 
   let body
   if (p === null || q === null || p < 1n || q < 1n || !small(x) || !small(y)) body = <p className="noline">{tc(L('Positions must be positive whole numbers and the terms whole numbers or fractions.', 'Posisi harus bilangan bulat positif dan sukunya bilangan bulat atau pecahan.'))}</p>
-  else if (p === q) body = <p className="noline">{tc(L('Use two different positions: one term cannot give both a₁ and d.', 'Pakai dua posisi berbeda: satu suku tidak dapat memberi a₁ dan d sekaligus.'))}</p>
+  else if (p === q) body = <p className="noline">{tc(L('Use two different positions: one term cannot give both a₁ and d.', 'Pakai dua posisi berbeda: satu suku tidak dapat memberi a₁ dan b sekaligus.'))}</p>
   else {
     const f = fromTwoTerms(p, x, q, y)!
     const lf = linearForm(f.a1, f.d)
@@ -348,10 +352,10 @@ export function TwoTerms() {
     body = (
       <>
         <p>
-          <Tex src={`d=\\frac{a_{${q}}-a_{${p}}}{${q}-${p}}=\\frac{${ratTex(y)}-${paren(x)}}{${q - p}}=\\frac{${ratTex(step)}}{${q - p}}=${ratTex(f.d)}`} />
+          <Tex src={`${dn}=\\frac{a_{${q}}-a_{${p}}}{${q}-${p}}=\\frac{${ratTex(y)}-${paren(x)}}{${q - p}}=\\frac{${ratTex(step)}}{${q - p}}=${ratTex(f.d)}`} />
         </p>
         <p>
-          <Tex src={`a_1=a_{${p}}-(${p}-1)d=${ratTex(x)}-${p - 1n}\\cdot${paren(f.d)}=${ratTex(f.a1)}`} />
+          <Tex src={`a_1=a_{${p}}-(${p}-1)${dn}=${ratTex(x)}-${p - 1n}\\cdot${paren(f.d)}=${ratTex(f.a1)}`} />
         </p>
         <p className="bigcn">
           <Tex src={`a_n=${linTex(lf.slope, lf.intercept)}`} />

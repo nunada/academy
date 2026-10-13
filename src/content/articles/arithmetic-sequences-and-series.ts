@@ -18,33 +18,33 @@ const T = (s: TemplateStringsArray): string =>
 export const body: ArticleBody = {
   answer: L(
     T`**An arithmetic sequence is a list of numbers in which each term is the previous one plus the same fixed amount $d$, the common difference: $3,7,11,15,\ldots$ has $d=4$.** Its $n$-th term is $a_n=a_1+(n-1)d$, and the sum of the first $n$ terms, an arithmetic series, is $S_n=\frac n2(a_1+a_n)$. The sum formula comes from Gauss's trick of pairing the first and last terms, which all add to the same number.`,
-    T`**Barisan aritmetika adalah daftar bilangan yang setiap sukunya sama dengan suku sebelumnya ditambah jumlah tetap $d$, yaitu beda: $3,7,11,15,\ldots$ memiliki $d=4$.** Suku ke-$n$-nya adalah $a_n=a_1+(n-1)d$, dan jumlah $n$ suku pertama, yaitu deret aritmetika, adalah $S_n=\frac n2(a_1+a_n)$. Rumus jumlah itu berasal dari trik Gauss memasangkan suku pertama dan terakhir, yang semuanya berjumlah sama.`,
+    T`**Barisan aritmetika adalah daftar bilangan yang setiap sukunya sama dengan suku sebelumnya ditambah jumlah tetap $b$, yaitu beda: $3,7,11,15,\ldots$ memiliki $b=4$.** Suku ke-$n$-nya adalah $a_n=a_1+(n-1)b$, dan jumlah $n$ suku pertama, yaitu deret aritmetika, adalah $S_n=\frac n2(a_1+a_n)$. Rumus jumlah itu berasal dari trik Gauss memasangkan suku pertama dan terakhir, yang semuanya berjumlah sama.`,
   ),
 
   keyPoints: [
     L(
       T`In an arithmetic sequence the difference between neighbors is constant: $a_{n+1}-a_n=d$ for every $n$, and each term is the average of the two beside it.`,
-      T`Pada barisan aritmetika selisih antartetangga konstan: $a_{n+1}-a_n=d$ untuk setiap $n$, dan setiap suku adalah rata-rata dari dua suku di sampingnya.`,
+      T`Pada barisan aritmetika selisih antartetangga konstan: $a_{n+1}-a_n=b$ untuk setiap $n$, dan setiap suku adalah rata-rata dari dua suku di sampingnya.`,
     ),
     L(
       T`The $n$-th term is $a_n=a_1+(n-1)d$, a linear function of $n$ with slope $d$, so its points lie on a straight line.`,
-      T`Suku ke-$n$ adalah $a_n=a_1+(n-1)d$, fungsi linear dari $n$ dengan kemiringan $d$, sehingga titik-titiknya terletak pada garis lurus.`,
+      T`Suku ke-$n$ adalah $a_n=a_1+(n-1)b$, fungsi linear dari $n$ dengan kemiringan $b$, sehingga titik-titiknya terletak pada garis lurus.`,
     ),
     L(
       T`Two terms are enough to find the whole sequence: $d=\dfrac{a_q-a_p}{q-p}$, then $a_1=a_p-(p-1)d$.`,
-      T`Dua suku cukup untuk menemukan seluruh barisan: $d=\dfrac{a_q-a_p}{q-p}$, lalu $a_1=a_p-(p-1)d$.`,
+      T`Dua suku cukup untuk menemukan seluruh barisan: $b=\dfrac{a_q-a_p}{q-p}$, lalu $a_1=a_p-(p-1)b$.`,
     ),
     L(
       T`The sum of the first $n$ terms is $S_n=\frac n2(a_1+a_n)=\frac n2\bigl(2a_1+(n-1)d\bigr)$; for example $1+2+\cdots+100=5050$.`,
-      T`Jumlah $n$ suku pertama adalah $S_n=\frac n2(a_1+a_n)=\frac n2\bigl(2a_1+(n-1)d\bigr)$; misalnya $1+2+\cdots+100=5050$.`,
+      T`Jumlah $n$ suku pertama adalah $S_n=\frac n2(a_1+a_n)=\frac n2\bigl(2a_1+(n-1)b\bigr)$; misalnya $1+2+\cdots+100=5050$.`,
     ),
     L(
       T`To count terms from $a_1$ to a last term $\ell$, use $n=\dfrac{\ell-a_1}{d}+1$ and check that $n$ is a whole number.`,
-      T`Untuk menghitung banyak suku dari $a_1$ sampai suku terakhir $\ell$, pakai $n=\dfrac{\ell-a_1}{d}+1$ dan periksa bahwa $n$ bilangan bulat.`,
+      T`Untuk menghitung banyak suku dari $a_1$ sampai suku terakhir $\ell$, pakai $n=\dfrac{\ell-a_1}{b}+1$ dan periksa bahwa $n$ bilangan bulat.`,
     ),
     L(
       T`An infinite arithmetic series with $d\neq0$ (or $a_1\neq0$) never settles on a total: its partial sums grow without bound.`,
-      T`Deret aritmetika tak hingga dengan $d\neq0$ (atau $a_1\neq0$) tidak pernah menetap pada suatu jumlah: jumlah parsialnya membesar tanpa batas.`,
+      T`Deret aritmetika tak hingga dengan $b\neq0$ (atau $a_1\neq0$) tidak pernah menetap pada suatu jumlah: jumlah parsialnya membesar tanpa batas.`,
     ),
   ],
 
@@ -75,16 +75,16 @@ That gives the rule $a_{n+1}=a_n+d$: to get the next term, add $d$. A **sequence
 Two useful facts follow at once. Each term is the average of its two neighbors, $a_n=\frac{a_{n-1}+a_{n+1}}{2}$, which is why the word *arithmetic* is used: the arithmetic mean sits in the middle. And differences may be negative or fractions, so the [integers](article:integers#add-subtract) rules for negative numbers and the [rational numbers](article:rational-numbers#add-subtract-fractions) rules for fractions apply.
 
 **Where they appear.** Equal steps are everywhere: the heights of the steps in a staircase, seats in rows that each have 3 more than the one in front, a monthly saving that rises by a fixed amount, a taxi fare that adds a fixed charge per kilometer, a simple (not compound) interest balance. Type a list of numbers below and see whether it is arithmetic.`,
-            T`**Barisan aritmetika (atau progresi aritmetika) adalah daftar bilangan $a_1,a_2,a_3,\ldots$ yang selisih antara tiap suku dan suku sebelumnya selalu bilangan yang sama $d$, yang disebut beda.** Notasinya $a_n$ untuk suku pada posisi $n$, dan di banyak buku sekolah $U_n$.
+            T`**Barisan aritmetika (atau progresi aritmetika) adalah daftar bilangan $a_1,a_2,a_3,\ldots$ yang selisih antara tiap suku dan suku sebelumnya selalu bilangan yang sama $b$, yang disebut beda.** Notasinya $a_n$ untuk suku pada posisi $n$, dan di banyak buku sekolah $U_n$.
 
-Itu memberi aturan $a_{n+1}=a_n+d$: untuk mendapat suku berikutnya, tambahkan $d$. **Barisan** adalah daftar itu sendiri; **deret** adalah hasil menjumlahkan suku-sukunya, yang dibahas pada bagian jumlah di bawah.
+Itu memberi aturan $a_{n+1}=a_n+b$: untuk mendapat suku berikutnya, tambahkan $b$. **Barisan** adalah daftar itu sendiri; **deret** adalah hasil menjumlahkan suku-sukunya, yang dibahas pada bagian jumlah di bawah.
 
 | Barisan | Beda | Jenis |
 |---|---|---|
-| $2,5,8,11,\ldots$ | $d=3$ | naik |
-| $20,15,10,5,\ldots$ | $d=-5$ | turun |
-| $\frac12,1,\frac32,2,\ldots$ | $d=\frac12$ | naik, dengan pecahan |
-| $7,7,7,7,\ldots$ | $d=0$ | konstan |
+| $2,5,8,11,\ldots$ | $b=3$ | naik |
+| $20,15,10,5,\ldots$ | $b=-5$ | turun |
+| $\frac12,1,\frac32,2,\ldots$ | $b=\frac12$ | naik, dengan pecahan |
+| $7,7,7,7,\ldots$ | $b=0$ | konstan |
 | $2,4,8,16,\ldots$ | selisih $2,4,8$ | **bukan** aritmetika: tiap suku dilipatduakan |
 | $1,4,9,16,\ldots$ | selisih $3,5,7$ | **bukan** aritmetika: selisihnya membesar |
 
@@ -132,13 +132,13 @@ For $5,9,13,\ldots$ the first term is 5 and $d=4$, so $a_n=5+(n-1)\cdot4=4n+1$ a
 **How many terms?** Solve $a_n=\ell$ for $n$: $n=\dfrac{\ell-a_1}{d}+1$. For $7,12,17,\ldots,102$ this is $\frac{102-7}{5}+1=20$. The answer must be a positive whole number, which also tells you whether a number belongs to the sequence: for 100 it is $\frac{100-7}{5}+1=19.6$, so 100 is not a term. The same count gives the number of multiples of 7 from 100 to 500: the first is $105=7\cdot15$ and the last $497=7\cdot71$, so $n=71-15+1=57$.
 
 Choose a first term, a difference and a length below, and watch the terms, the formula and the straight line.`,
-            T`**Suku ke-$n$ barisan aritmetika adalah $a_n=a_1+(n-1)d$: mulai dari suku pertama dan tambahkan beda sebanyak $n-1$ kali.** Alasan $n-1$ adalah bahwa dari suku 1 ke suku $n$ diperlukan $n-1$ langkah, bukan $n$.
+            T`**Suku ke-$n$ barisan aritmetika adalah $a_n=a_1+(n-1)b$: mulai dari suku pertama dan tambahkan beda sebanyak $n-1$ kali.** Alasan $n-1$ adalah bahwa dari suku 1 ke suku $n$ diperlukan $n-1$ langkah, bukan $n$.
 
-Untuk $5,9,13,\ldots$ suku pertamanya 5 dan $d=4$, sehingga $a_n=5+(n-1)\cdot4=4n+1$ dan $a_{20}=5+19\cdot4=81$.
+Untuk $5,9,13,\ldots$ suku pertamanya 5 dan $b=4$, sehingga $a_n=5+(n-1)\cdot4=4n+1$ dan $a_{20}=5+19\cdot4=81$.
 
-**Ia fungsi linear.** Menjabarkan memberi $a_n=dn+(a_1-d)$, yaitu garis lurus dalam $n$ dengan kemiringan $d$ dan, untuk $n=0$, perpotongan $a_1-d$. Itulah sebabnya titik-titik barisan aritmetika terletak pada garis, dan mengapa bagian [bentuk aljabar](article:algebraic-expressions#what-is-an-algebraic-expression) menyebutnya linear: ia berderajat 1. $d$ positif memiringkan garis ke atas, $d$ negatif memiringkannya ke bawah, dan $d=0$ membuatnya datar.
+**Ia fungsi linear.** Menjabarkan memberi $a_n=dn+(a_1-b)$, yaitu garis lurus dalam $n$ dengan kemiringan $b$ dan, untuk $n=0$, perpotongan $a_1-b$. Itulah sebabnya titik-titik barisan aritmetika terletak pada garis, dan mengapa bagian [bentuk aljabar](article:algebraic-expressions#what-is-an-algebraic-expression) menyebutnya linear: ia berderajat 1. $b$ positif memiringkan garis ke atas, $b$ negatif memiringkannya ke bawah, dan $b=0$ membuatnya datar.
 
-**Berapa banyak suku?** Selesaikan $a_n=\ell$ untuk $n$: $n=\dfrac{\ell-a_1}{d}+1$. Untuk $7,12,17,\ldots,102$ ini $\frac{102-7}{5}+1=20$. Jawabannya harus bilangan bulat positif, yang juga memberi tahu apakah suatu bilangan termasuk dalam barisan: untuk 100 hasilnya $\frac{100-7}{5}+1=19{,}6$, sehingga 100 bukan suku. Hitungan yang sama memberi banyak kelipatan 7 dari 100 sampai 500: yang pertama $105=7\cdot15$ dan yang terakhir $497=7\cdot71$, sehingga $n=71-15+1=57$.
+**Berapa banyak suku?** Selesaikan $a_n=\ell$ untuk $n$: $n=\dfrac{\ell-a_1}{b}+1$. Untuk $7,12,17,\ldots,102$ ini $\frac{102-7}{5}+1=20$. Jawabannya harus bilangan bulat positif, yang juga memberi tahu apakah suatu bilangan termasuk dalam barisan: untuk 100 hasilnya $\frac{100-7}{5}+1=19{,}6$, sehingga 100 bukan suku. Hitungan yang sama memberi banyak kelipatan 7 dari 100 sampai 500: yang pertama $105=7\cdot15$ dan yang terakhir $497=7\cdot71$, sehingga $n=71-15+1=57$.
 
 Pilih suku pertama, beda, dan panjang di bawah, dan perhatikan suku-sukunya, rumusnya, dan garis lurusnya.`,
           ),
@@ -151,7 +151,7 @@ Pilih suku pertama, beda, dan panjang di bawah, dan perhatikan suku-sukunya, rum
             kind: 'math',
             id: 'a2',
             hints: [
-              L('Here $a_1=5$ and $d=4$.', 'Di sini $a_1=5$ dan $d=4$.'),
+              L('Here $a_1=5$ and $d=4$.', 'Di sini $a_1=5$ dan $b=4$.'),
               L('$a_{20}=5+19\\cdot4$.', '$a_{20}=5+19\\cdot4$.'),
             ],
             explain: L('$a_{20}=5+(20-1)\\cdot4=5+76=81$.', '$a_{20}=5+(20-1)\\cdot4=5+76=81$.'),
@@ -167,7 +167,7 @@ Pilih suku pertama, beda, dan panjang di bawah, dan perhatikan suku-sukunya, rum
             kind: 'math',
             id: 'a3',
             hints: [
-              L('Use $n=\\frac{\\ell-a_1}{d}+1$ with $a_1=7$, $d=5$, $\\ell=102$.', 'Pakai $n=\\frac{\\ell-a_1}{d}+1$ dengan $a_1=7$, $d=5$, $\\ell=102$.'),
+              L('Use $n=\\frac{\\ell-a_1}{d}+1$ with $a_1=7$, $d=5$, $\\ell=102$.', 'Pakai $n=\\frac{\\ell-a_1}{b}+1$ dengan $a_1=7$, $b=5$, $\\ell=102$.'),
               L('$\\frac{95}{5}+1$.', '$\\frac{95}{5}+1$.'),
             ],
             explain: L('$n=\\frac{102-7}{5}+1=19+1=20$.', '$n=\\frac{102-7}{5}+1=19+1=20$.'),
@@ -198,15 +198,15 @@ The usual slip is to divide by the wrong number: divide by the number of *steps*
 **Arithmetic means.** Inserting $k$ numbers between $a$ and $b$ so that the whole list is arithmetic is the same problem with $q-p=k+1$ steps: $d=\frac{b-a}{k+1}$. Three means between 4 and 24 have $d=\frac{20}{4}=5$ and are 9, 14, 19. With one mean the answer is the plain average $\frac{a+b}{2}$.
 
 Give any two terms below and see the whole working.`,
-            T`**Dua suku beserta posisinya menentukan barisan aritmetika sepenuhnya: kurangkan keduanya untuk mendapat $d$, lalu mundur ke $a_1$.** Di antara suku $p$ dan suku $q$ ada $q-p$ langkah sebesar $d$, sehingga $a_q-a_p=(q-p)d$ dan
+            T`**Dua suku beserta posisinya menentukan barisan aritmetika sepenuhnya: kurangkan keduanya untuk mendapat $b$, lalu mundur ke $a_1$.** Di antara suku $p$ dan suku $q$ ada $q-p$ langkah sebesar $b$, sehingga $a_q-a_p=(q-p)b$ dan
 
-$d=\dfrac{a_q-a_p}{q-p},\qquad a_1=a_p-(p-1)d.$
+$b=\dfrac{a_q-a_p}{q-p},\qquad a_1=a_p-(p-1)b.$
 
-Contoh: $a_3=11$ dan $a_7=23$. Maka $d=\frac{23-11}{7-3}=\frac{12}{4}=3$ dan $a_1=11-2\cdot3=5$, sehingga barisannya $5,8,11,14,\ldots$ dengan $a_n=3n+2$. Periksa: $a_3=11$, $a_7=23$.
+Contoh: $a_3=11$ dan $a_7=23$. Maka $b=\frac{23-11}{7-3}=\frac{12}{4}=3$ dan $a_1=11-2\cdot3=5$, sehingga barisannya $5,8,11,14,\ldots$ dengan $a_n=3n+2$. Periksa: $a_3=11$, $a_7=23$.
 
 Kekeliruan yang biasa adalah membagi dengan bilangan yang salah: bagi dengan banyaknya *langkah* $q-p$ (di sini 4), bukan dengan $p$, $q$, atau $q+p$. Kedua posisi boleh diberikan dalam urutan apa pun, karena menukarnya mengubah tanda atas dan bawah sekaligus.
 
-**Rata-rata aritmetika (sisipan).** Menyisipkan $k$ bilangan di antara $a$ dan $b$ sehingga seluruh daftarnya aritmetika adalah masalah yang sama dengan $q-p=k+1$ langkah: $d=\frac{b-a}{k+1}$. Tiga sisipan di antara 4 dan 24 punya $d=\frac{20}{4}=5$ dan berupa 9, 14, 19. Dengan satu sisipan jawabannya rata-rata biasa $\frac{a+b}{2}$.
+**Rata-rata aritmetika (sisipan).** Menyisipkan $k$ bilangan di antara $a$ dan $c$ sehingga seluruh daftarnya aritmetika adalah masalah yang sama dengan $q-p=k+1$ langkah: $b=\frac{c-a}{k+1}$. Tiga sisipan di antara 4 dan 24 punya $b=\frac{20}{4}=5$ dan berupa 9, 14, 19. Dengan satu sisipan jawabannya rata-rata biasa $\frac{a+c}{2}$.
 
 Beri dua suku apa pun di bawah dan lihat seluruh langkahnya.`,
           ),
@@ -220,13 +220,13 @@ Beri dua suku apa pun di bawah dan lihat seluruh langkahnya.`,
             id: 'a4',
             hints: [
               L('From $a_3$ to $a_7$ there are $7-3=4$ steps, and the terms grow by $23-11=12$.', 'Dari $a_3$ ke $a_7$ ada $7-3=4$ langkah, dan suku-sukunya bertambah $23-11=12$.'),
-              L('$d=12\\div4=3$; then $a_1=a_3-2d$.', '$d=12\\div4=3$; lalu $a_1=a_3-2d$.'),
+              L('$d=12\\div4=3$; then $a_1=a_3-2d$.', '$b=12\\div4=3$; lalu $a_1=a_3-2b$.'),
             ],
-            explain: L('$d=\\frac{23-11}{4}=3$ and $a_1=11-2\\cdot3=5$.', '$d=\\frac{23-11}{4}=3$ dan $a_1=11-2\\cdot3=5$.'),
-            prompt: L('An arithmetic sequence has $a_3=11$ and $a_7=23$. Find $d$ and $a_1$.', 'Barisan aritmetika memiliki $a_3=11$ dan $a_7=23$. Tentukan $d$ dan $a_1$.'),
+            explain: L('$d=\\frac{23-11}{4}=3$ and $a_1=11-2\\cdot3=5$.', '$b=\\frac{23-11}{4}=3$ dan $a_1=11-2\\cdot3=5$.'),
+            prompt: L('An arithmetic sequence has $a_3=11$ and $a_7=23$. Find $d$ and $a_1$.', 'Barisan aritmetika memiliki $a_3=11$ dan $a_7=23$. Tentukan $b$ dan $a_1$.'),
             given: String.raw`a_3=11,\ a_7=23`,
             blanks: [
-              { label: 'd =', answer: 3 },
+              { label: { en: 'd =', id: 'b =' }, answer: 3 },
               { label: 'a₁ =', answer: 5 },
             ],
           },
@@ -238,10 +238,10 @@ Beri dua suku apa pun di bawah dan lihat seluruh langkahnya.`,
             kind: 'math',
             id: 'a5',
             hints: [
-              L('Between 4 and 24 there are 4 steps: $d=\\frac{24-4}{4}$.', 'Di antara 4 dan 24 ada 4 langkah: $d=\\frac{24-4}{4}$.'),
-              L('The terms are $4,9,14,19,24$; the middle one is $4+2d$.', 'Suku-sukunya $4,9,14,19,24$; yang di tengah adalah $4+2d$.'),
+              L('Between 4 and 24 there are 4 steps: $d=\\frac{24-4}{4}$.', 'Di antara 4 dan 24 ada 4 langkah: $b=\\frac{24-4}{4}$.'),
+              L('The terms are $4,9,14,19,24$; the middle one is $4+2d$.', 'Suku-sukunya $4,9,14,19,24$; yang di tengah adalah $4+2b$.'),
             ],
-            explain: L('$d=5$, so the sequence is $4,9,14,19,24$ and the middle term is 14, the average of 4 and 24.', '$d=5$, sehingga barisannya $4,9,14,19,24$ dan suku tengahnya 14, rata-rata dari 4 dan 24.'),
+            explain: L('$d=5$, so the sequence is $4,9,14,19,24$ and the middle term is 14, the average of 4 and 24.', '$b=5$, sehingga barisannya $4,9,14,19,24$ dan suku tengahnya 14, rata-rata dari 4 dan 24.'),
             prompt: L('Three numbers are inserted between 4 and 24 to make an arithmetic sequence. Find the middle one.', 'Tiga bilangan disisipkan di antara 4 dan 24 agar menjadi barisan aritmetika. Tentukan yang di tengah.'),
             given: String.raw`4,\ ?,\ v,\ ?,\ 24`,
             blanks: [{ label: 'v =', answer: 14 }],
@@ -281,7 +281,7 @@ In every column the sum is the same, $a_1+a_n$, because moving one place along a
 **$S_n$ is quadratic in $n$.** Expanding gives $S_n=\frac d2n^2+\bigl(a_1-\frac d2\bigr)n$, a quadratic with no constant term, which is how to recognize one. And you can run it backward: $a_n=S_n-S_{n-1}$ for $n\ge2$ (and $a_1=S_1$). If $S_n=2n^2+3n$ then $a_1=5$ and $a_n=\bigl(2n^2+3n\bigr)-\bigl(2(n-1)^2+3(n-1)\bigr)=4n+1$, which is the sequence $5,9,13,\ldots$ again.
 
 Try the pairing for your own sequence below.`,
-            T`**Jumlah $n$ suku pertama barisan aritmetika adalah $S_n=\dfrac n2(a_1+a_n)=\dfrac n2\bigl(2a_1+(n-1)d\bigr)$: banyak suku dikali rata-rata suku pertama dan suku terakhir.** Jumlah suku-suku seperti ini disebut *deret aritmetika*, dan $S_n$ adalah jumlah parsial ke-$n$-nya.
+            T`**Jumlah $n$ suku pertama barisan aritmetika adalah $S_n=\dfrac n2(a_1+a_n)=\dfrac n2\bigl(2a_1+(n-1)b\bigr)$: banyak suku dikali rata-rata suku pertama dan suku terakhir.** Jumlah suku-suku seperti ini disebut *deret aritmetika*, dan $S_n$ adalah jumlah parsial ke-$n$-nya.
 
 **Trik Gauss.** Tulis jumlahnya dua kali, sekali maju dan sekali mundur, lalu jumlahkan kolomnya:
 
@@ -289,7 +289,7 @@ $S_n=a_1+a_2+\cdots+a_n$
 
 $S_n=a_n+a_{n-1}+\cdots+a_1$
 
-Pada setiap kolom jumlahnya sama, $a_1+a_n$, karena bergeser satu tempat menambah $d$ pada satu suku dan mengambilnya dari yang lain. Ada $n$ kolom, sehingga $2S_n=n(a_1+a_n)$. Konon Gauss, sebagai anak sekolah, menemukan $1+2+\cdots+100$ dengan cara ini: 50 pasang 101, yaitu 5050.
+Pada setiap kolom jumlahnya sama, $a_1+a_n$, karena bergeser satu tempat menambah $b$ pada satu suku dan mengambilnya dari yang lain. Ada $n$ kolom, sehingga $2S_n=n(a_1+a_n)$. Konon Gauss, sebagai anak sekolah, menemukan $1+2+\cdots+100$ dengan cara ini: 50 pasang 101, yaitu 5050.
 
 **Contoh.**
 
@@ -299,9 +299,9 @@ Pada setiap kolom jumlahnya sama, $a_1+a_n$, karena bergeser satu tempat menamba
 
 **Tiga jumlah yang layak diketahui.** $1+2+\cdots+n=\frac{n(n+1)}{2}$ (bilangan segitiga 1, 3, 6, 10, 15); $n$ bilangan ganjil pertama berjumlah $n^2$, sebab $1+3+5+\cdots+(2n-1)=\frac n2\cdot2n$; dan $n$ bilangan genap pertama berjumlah $n(n+1)$.
 
-**Notasi sigma** menulis deret secara ringkas: $\sum_{k=1}^{n}(a_1+(k-1)d)$ berarti "jumlahkan suku-suku untuk $k=1$ sampai $k=n$". Misalnya $\sum_{k=1}^{10}(3k+2)=5+8+\cdots+32=\frac{10}{2}(5+32)=185$.
+**Notasi sigma** menulis deret secara ringkas: $\sum_{k=1}^{n}(a_1+(k-1)b)$ berarti "jumlahkan suku-suku untuk $k=1$ sampai $k=n$". Misalnya $\sum_{k=1}^{10}(3k+2)=5+8+\cdots+32=\frac{10}{2}(5+32)=185$.
 
-**$S_n$ kuadrat dalam $n$.** Menjabarkan memberi $S_n=\frac d2n^2+\bigl(a_1-\frac d2\bigr)n$, sebuah kuadrat tanpa suku konstanta, yang menjadi cara mengenalinya. Dan kamu dapat menjalankannya mundur: $a_n=S_n-S_{n-1}$ untuk $n\ge2$ (dan $a_1=S_1$). Jika $S_n=2n^2+3n$ maka $a_1=5$ dan $a_n=\bigl(2n^2+3n\bigr)-\bigl(2(n-1)^2+3(n-1)\bigr)=4n+1$, yaitu barisan $5,9,13,\ldots$ lagi.
+**$S_n$ kuadrat dalam $n$.** Menjabarkan memberi $S_n=\frac b2n^2+\bigl(a_1-\frac b2\bigr)n$, sebuah kuadrat tanpa suku konstanta, yang menjadi cara mengenalinya. Dan kamu dapat menjalankannya mundur: $a_n=S_n-S_{n-1}$ untuk $n\ge2$ (dan $a_1=S_1$). Jika $S_n=2n^2+3n$ maka $a_1=5$ dan $a_n=\bigl(2n^2+3n\bigr)-\bigl(2(n-1)^2+3(n-1)\bigr)=4n+1$, yaitu barisan $5,9,13,\ldots$ lagi.
 
 Coba pemasangan itu untuk barisanmu sendiri di bawah.`,
           ),
@@ -373,11 +373,11 @@ Coba pemasangan itu untuk barisanmu sendiri di bawah.`,
 - If $d=0$ and $a_1\neq0$ then $S_n=na_1$ also grows without bound.
 
 Such a series is said to **diverge**. This is a sharp contrast with a [geometric series](article:geometric-sequences-and-series#infinite-geometric-series) with a common ratio of size less than 1, such as $\frac12+\frac14+\frac18+\cdots$, whose terms shrink fast enough for the sum to settle at 1. In practice that means every question about an arithmetic series asks for a finite number of terms. If a problem seems to ask for the sum of an infinite arithmetic series, it is a geometric series in disguise or the answer is "it diverges".`,
-            T`**Deret aritmetika tak hingga tidak punya jumlah berhingga kecuali setiap sukunya 0: jumlah parsialnya membesar tanpa batas.** Menambah lebih banyak suku terus mengubah jumlah dengan nilai bukan nol, dan dengan $d\neq0$ sukunya sendiri makin besar ukurannya, sehingga jumlahnya tidak dapat menetap.
+            T`**Deret aritmetika tak hingga tidak punya jumlah berhingga kecuali setiap sukunya 0: jumlah parsialnya membesar tanpa batas.** Menambah lebih banyak suku terus mengubah jumlah dengan nilai bukan nol, dan dengan $b\neq0$ sukunya sendiri makin besar ukurannya, sehingga jumlahnya tidak dapat menetap.
 
-- Jika $d>0$ jumlah parsial $S_n=\frac d2n^2+\bigl(a_1-\frac d2\bigr)n$ akhirnya membesar menuju $+\infty$.
-- Jika $d<0$ jumlah itu akhirnya turun menuju $-\infty$.
-- Jika $d=0$ dan $a_1\neq0$ maka $S_n=na_1$ juga membesar tanpa batas.
+- Jika $b>0$ jumlah parsial $S_n=\frac b2n^2+\bigl(a_1-\frac b2\bigr)n$ akhirnya membesar menuju $+\infty$.
+- Jika $b<0$ jumlah itu akhirnya turun menuju $-\infty$.
+- Jika $b=0$ dan $a_1\neq0$ maka $S_n=na_1$ juga membesar tanpa batas.
 
 Deret seperti itu dikatakan **divergen**. Ini kontras tajam dengan [deret geometri](article:geometric-sequences-and-series#infinite-geometric-series) yang rasionya berukuran kurang dari 1, seperti $\frac12+\frac14+\frac18+\cdots$, yang sukunya mengecil cukup cepat sehingga jumlahnya menetap di 1. Dalam praktik itu berarti setiap pertanyaan tentang deret aritmetika meminta banyak suku yang berhingga. Jika suatu soal tampak meminta jumlah deret aritmetika tak hingga, itu deret geometri yang menyamar atau jawabannya "divergen".`,
           ),
@@ -406,9 +406,9 @@ Deret seperti itu dikatakan **divergen**. Ini kontras tajam dengan [deret geomet
 Notice that "each row has 3 more" and "50 more each month" give $d$ directly, and that a drop gives a negative $d$. Notice too that the term in position 15 is only 14 steps from the first, the same $n-1$ as in the formula.
 
 **Simple interest** is an arithmetic sequence: a deposit of $P$ earning a fixed amount $I$ a year is worth $P,\ P+I,\ P+2I,\ldots$, so after $n$ years it is $P+nI$. Compound interest multiplies by a fixed ratio instead and gives a geometric sequence.`,
-            T`**Bacalah soal untuk tiga hal, suku pertama $a_1$, beda $d$, dan yang ditanyakan (sebuah suku, banyaknya, atau jumlah), lalu pakai rumus yang sesuai.** Periksa di akhir bahwa jawabannya masuk akal dan bilangan bulat bila menghitung benda.
+            T`**Bacalah soal untuk tiga hal, suku pertama $a_1$, beda $b$, dan yang ditanyakan (sebuah suku, banyaknya, atau jumlah), lalu pakai rumus yang sesuai.** Periksa di akhir bahwa jawabannya masuk akal dan bilangan bulat bila menghitung benda.
 
-| Soal | $a_1$, $d$ | Jawaban |
+| Soal | $a_1$, $b$ | Jawaban |
 |---|---|---|
 | Gedung pertunjukan punya 20 kursi di baris 1 dan tiap baris berikutnya 3 kursi lebih banyak. Berapa kursi di baris 15? | $20$, $3$ | $20+14\cdot3=62$ kursi |
 | Berapa kursi di seluruh 15 baris? | sama | $\frac{15}{2}(20+62)=615$ kursi |
@@ -416,7 +416,7 @@ Notice that "each row has 3 more" and "50 more each month" give $d$ directly, an
 | Gaji Rp4.000.000 naik Rp250.000 tiap tahun. Berapa pada tahun ke-8, dan total 8 tahun? | $4000000$, $250000$ | $4000000+7\cdot250000=5750000$; $\frac82(4000000+5750000)=39000000$, yaitu Rp39.000.000 |
 | Kayu ditumpuk 10 pada baris bawah, satu lebih sedikit tiap baris sampai 1. Berapa batang kayu? | $10$, $-1$ | $10+9+\cdots+1=\frac{10}{2}(10+1)=55$ |
 
-Perhatikan bahwa "tiap baris 3 lebih banyak" dan "Rp50.000 lebih banyak tiap bulan" memberi $d$ langsung, dan penurunan memberi $d$ negatif. Perhatikan juga bahwa suku pada posisi 15 hanya 14 langkah dari yang pertama, $n-1$ yang sama seperti pada rumus.
+Perhatikan bahwa "tiap baris 3 lebih banyak" dan "Rp50.000 lebih banyak tiap bulan" memberi $b$ langsung, dan penurunan memberi $b$ negatif. Perhatikan juga bahwa suku pada posisi 15 hanya 14 langkah dari yang pertama, $n-1$ yang sama seperti pada rumus.
 
 **Bunga tunggal** adalah barisan aritmetika: simpanan $P$ yang menghasilkan jumlah tetap $I$ per tahun bernilai $P,\ P+I,\ P+2I,\ldots$, sehingga setelah $n$ tahun menjadi $P+nI$. Bunga majemuk mengalikan dengan rasio tetap dan menghasilkan barisan geometri.`,
           ),
@@ -571,13 +571,13 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
 
 | Kesalahan | Yang benar |
 |---|---|
-| ❌ $a_n=a_1+nd$ | $a_n=a_1+(n-1)d$: untuk $n=1$ sukunya $a_1$, bukan $a_1+d$. |
+| ❌ $a_n=a_1+nd$ | $a_n=a_1+(n-1)b$: untuk $n=1$ sukunya $a_1$, bukan $a_1+b$. |
 | ❌ $2,4,8,16$ aritmetika | Selisihnya $2,4,8$; ia geometri. |
-| ❌ Banyak suku adalah $\frac{\ell-a_1}{d}$ | Tambah 1: $\frac{102-7}{5}+1=20$, bukan 19. |
+| ❌ Banyak suku adalah $\frac{\ell-a_1}{b}$ | Tambah 1: $\frac{102-7}{5}+1=20$, bukan 19. |
 | ❌ $S_n=n(a_1+a_n)$ | Bagi dua: $S_n=\frac n2(a_1+a_n)$; $1+2+3$ adalah $\frac32\cdot4=6$, bukan 12. |
-| ❌ $d=a_n-a_{n+1}$ | Yang kemudian dikurangi yang lebih dulu: $d=a_{n+1}-a_n$; untuk $20,15,10$ ia $-5$. |
-| ❌ Membagi dengan $q$ atau $p$ untuk mencari $d$ | Bagi dengan banyak langkah: $d=\frac{a_q-a_p}{q-p}$. |
-| ❌ Barisan menurun tidak punya jumlah | $20+15+10+5=50$; $d$ negatif tidak masalah. |
+| ❌ $b=a_n-a_{n+1}$ | Yang kemudian dikurangi yang lebih dulu: $b=a_{n+1}-a_n$; untuk $20,15,10$ ia $-5$. |
+| ❌ Membagi dengan $q$ atau $p$ untuk mencari $b$ | Bagi dengan banyak langkah: $b=\frac{a_q-a_p}{q-p}$. |
+| ❌ Barisan menurun tidak punya jumlah | $20+15+10+5=50$; $b$ negatif tidak masalah. |
 | ❌ Deret aritmetika tak hingga punya jumlah | Ia divergen kecuali setiap sukunya 0. |
 | ❌ "Jumlah barisan" | Barisan adalah daftarnya; jumlah sukunya adalah deret. |`,
           ),
@@ -607,14 +607,14 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
             statements: [
               L('The sequence $6,6,6,6$ is arithmetic.', 'Barisan $6,6,6,6$ aritmetika.'),
               L('$2,4,8,16$ is arithmetic.', '$2,4,8,16$ aritmetika.'),
-              L('An infinite arithmetic series with $d\\neq0$ has a finite sum.', 'Deret aritmetika tak hingga dengan $d\\neq0$ punya jumlah berhingga.'),
+              L('An infinite arithmetic series with $d\\neq0$ has a finite sum.', 'Deret aritmetika tak hingga dengan $b\\neq0$ punya jumlah berhingga.'),
               L('Each term of an arithmetic sequence is the average of its two neighbors.', 'Setiap suku barisan aritmetika adalah rata-rata kedua tetangganya.'),
               L('$S_n=\\frac n2(a_1+a_n)$.', '$S_n=\\frac n2(a_1+a_n)$.'),
             ],
             answer: [true, false, false, true, true],
             explain: L(
               '$6,6,6,6$ has $d=0$. $2,4,8,16$ doubles. The partial sums of an infinite arithmetic series grow without bound. The average of $a_{n-1}$ and $a_{n+1}$ is $a_n$. And $S_n=\\frac n2(a_1+a_n)$ is the sum formula.',
-              '$6,6,6,6$ memiliki $d=0$. $2,4,8,16$ dilipatduakan. Jumlah parsial deret aritmetika tak hingga membesar tanpa batas. Rata-rata $a_{n-1}$ dan $a_{n+1}$ adalah $a_n$. Dan $S_n=\\frac n2(a_1+a_n)$ adalah rumus jumlah.',
+              '$6,6,6,6$ memiliki $b=0$. $2,4,8,16$ dilipatduakan. Jumlah parsial deret aritmetika tak hingga membesar tanpa batas. Rata-rata $a_{n-1}$ dan $a_{n+1}$ adalah $a_n$. Dan $S_n=\\frac n2(a_1+a_n)$ adalah rumus jumlah.',
             ),
             hint: L('Check the differences, and think about what the partial sums do as $n$ grows.', 'Periksa selisihnya, dan pikirkan apa yang dilakukan jumlah parsial saat $n$ membesar.'),
           },
@@ -630,7 +630,7 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
             answer: [0, 1, 3],
             explain: L(
               '$10,7,4,1$ has $d=-3$, $\\frac12,1,\\frac32,2$ has $d=\\frac12$ and $5,5,5,5$ has $d=0$. $1,2,4,7$ has differences $1,2,3$, and $1,3,9,27$ is geometric.',
-              '$10,7,4,1$ memiliki $d=-3$, $\\frac12,1,\\frac32,2$ memiliki $d=\\frac12$, dan $5,5,5,5$ memiliki $d=0$. $1,2,4,7$ selisihnya $1,2,3$, dan $1,3,9,27$ geometri.',
+              '$10,7,4,1$ memiliki $b=-3$, $\\frac12,1,\\frac32,2$ memiliki $b=\\frac12$, dan $5,5,5,5$ memiliki $b=0$. $1,2,4,7$ selisihnya $1,2,3$, dan $1,3,9,27$ geometri.',
             ),
             hint: L('Subtract each term from the next and see whether the differences agree.', 'Kurangkan tiap suku dari suku berikutnya dan lihat apakah selisihnya sama.'),
           },
@@ -642,12 +642,12 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
             kind: 'math',
             id: 'p3',
             hints: [
-              L('$a_{12}=a_1+11d$.', '$a_{12}=a_1+11d$.'),
+              L('$a_{12}=a_1+11d$.', '$a_{12}=a_1+11b$.'),
               L('$-4+11\\cdot7$.', '$-4+11\\cdot7$.'),
             ],
             explain: L('$a_{12}=-4+11\\cdot7=-4+77=73$.', '$a_{12}=-4+11\\cdot7=-4+77=73$.'),
-            prompt: L('The first term is $-4$ and $d=7$. Find $a_{12}$.', 'Suku pertamanya $-4$ dan $d=7$. Tentukan $a_{12}$.'),
-            given: String.raw`a_1=-4,\ d=7:\quad a_{12}=v`,
+            prompt: L('The first term is $-4$ and $d=7$. Find $a_{12}$.', 'Suku pertamanya $-4$ dan $b=7$. Tentukan $a_{12}$.'),
+            given: { en: String.raw`a_1=-4,\ d=7:\quad a_{12}=v`, id: String.raw`a_1=-4,\ b=7:\quad a_{12}=v` },
             blanks: [{ label: 'v =', answer: 73 }],
           },
         },
@@ -678,7 +678,7 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
             answer: 1,
             explain: L(
               '$d=\\frac{42-17}{9-4}=5$, and $a_1=17-3\\cdot5=2$. Check: $a_4=2+15=17$ and $a_9=2+40=42$.',
-              '$d=\\frac{42-17}{9-4}=5$, dan $a_1=17-3\\cdot5=2$. Periksa: $a_4=2+15=17$ dan $a_9=2+40=42$.',
+              '$b=\\frac{42-17}{9-4}=5$, dan $a_1=17-3\\cdot5=2$. Periksa: $a_4=2+15=17$ dan $a_9=2+40=42$.',
             ),
             hint: L('Divide the change in the terms by the number of steps between them.', 'Bagi perubahan suku dengan banyak langkah di antaranya.'),
           },
@@ -696,7 +696,7 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
               'The first is $105=7\\cdot15$ and the last is $497=7\\cdot71$, so $n=\\frac{497-105}{7}+1=57$.',
               'Yang pertama $105=7\\cdot15$ dan yang terakhir $497=7\\cdot71$, sehingga $n=\\frac{497-105}{7}+1=57$.',
             ),
-            hint: L('Find the first and the last multiple inside the range, then count with $n=\\frac{\\ell-a_1}{d}+1$.', 'Cari kelipatan pertama dan terakhir dalam rentang itu, lalu hitung dengan $n=\\frac{\\ell-a_1}{d}+1$.'),
+            hint: L('Find the first and the last multiple inside the range, then count with $n=\\frac{\\ell-a_1}{d}+1$.', 'Cari kelipatan pertama dan terakhir dalam rentang itu, lalu hitung dengan $n=\\frac{\\ell-a_1}{b}+1$.'),
           },
         },
       ],
@@ -718,11 +718,11 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
 - **Special sums:** $1+\cdots+n=\frac{n(n+1)}2$; the first $n$ odd numbers give $n^2$.
 - **Infinite series:** an arithmetic series diverges.
 - **Code:** ´range(first, stop, step)´ with the stop excluded; use integers or ´Fraction´, not repeated float steps.`,
-            T`- **Definisi:** $a_{n+1}-a_n=d$ konstan; setiap suku adalah rata-rata tetangganya.
-- **Suku ke-n:** $a_n=a_1+(n-1)d=dn+(a_1-d)$, garis lurus dalam $n$.
-- **Banyak suku:** $n=\dfrac{\ell-a_1}{d}+1$, yang harus bilangan bulat positif.
-- **Dari dua suku:** $d=\dfrac{a_q-a_p}{q-p}$, $a_1=a_p-(p-1)d$; $k$ sisipan di antara $a$ dan $b$ punya $d=\frac{b-a}{k+1}$.
-- **Jumlah:** $S_n=\frac n2(a_1+a_n)=\frac n2\bigl(2a_1+(n-1)d\bigr)$, kuadrat dalam $n$; $a_n=S_n-S_{n-1}$.
+            T`- **Definisi:** $a_{n+1}-a_n=b$ konstan; setiap suku adalah rata-rata tetangganya.
+- **Suku ke-n:** $a_n=a_1+(n-1)b=dn+(a_1-b)$, garis lurus dalam $n$.
+- **Banyak suku:** $n=\dfrac{\ell-a_1}{b}+1$, yang harus bilangan bulat positif.
+- **Dari dua suku:** $b=\dfrac{a_q-a_p}{q-p}$, $a_1=a_p-(p-1)b$; $k$ sisipan di antara $a$ dan $c$ punya $b=\frac{c-a}{k+1}$.
+- **Jumlah:** $S_n=\frac n2(a_1+a_n)=\frac n2\bigl(2a_1+(n-1)b\bigr)$, kuadrat dalam $n$; $a_n=S_n-S_{n-1}$.
 - **Jumlah khusus:** $1+\cdots+n=\frac{n(n+1)}2$; $n$ bilangan ganjil pertama memberi $n^2$.
 - **Deret tak hingga:** deret aritmetika divergen.
 - **Kode:** ´range(awal, berhenti, langkah)´ dengan nilai berhenti tidak termasuk; pakai bilangan bulat atau ´Fraction´, bukan langkah float berulang.`,
@@ -736,9 +736,9 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
     { term: L('Sequence', 'Barisan'), definition: L('An ordered list of numbers, called terms, written a1, a2, a3 and so on.', 'Daftar bilangan berurutan, yang disebut suku, ditulis a1, a2, a3 dan seterusnya.') },
     { term: L('Term', 'Suku'), definition: L('One number in a sequence; the n-th term is written a sub n.', 'Satu bilangan dalam barisan; suku ke-n ditulis a indeks n.') },
     { term: L('Arithmetic sequence', 'Barisan aritmetika'), definition: L('A sequence in which the difference between each term and the one before it is always the same, such as 3, 7, 11, 15.', 'Barisan yang selisih antara tiap suku dan suku sebelumnya selalu sama, seperti 3, 7, 11, 15.') },
-    { term: L('Common difference', 'Beda'), definition: L('The constant amount d added to each term of an arithmetic sequence to get the next; it can be positive, negative, zero or a fraction.', 'Jumlah tetap d yang ditambahkan pada tiap suku barisan aritmetika untuk mendapat suku berikutnya; ia dapat positif, negatif, nol, atau pecahan.') },
-    { term: L('Recursive formula', 'Rumus rekursif'), definition: L('A rule that gives each term from the one before it, such as a sub n plus 1 equals a sub n plus d.', 'Aturan yang memberi tiap suku dari suku sebelumnya, seperti a indeks n tambah 1 sama dengan a indeks n ditambah d.') },
-    { term: L('Explicit formula', 'Rumus eksplisit'), definition: L('A rule that gives the n-th term directly from n, such as a sub n equals a sub 1 plus n minus 1 times d.', 'Aturan yang memberi suku ke-n langsung dari n, seperti a indeks n sama dengan a indeks 1 ditambah n dikurangi 1 kali d.') },
+    { term: L('Common difference', 'Beda'), definition: L('The constant amount d added to each term of an arithmetic sequence to get the next; it can be positive, negative, zero or a fraction.', 'Jumlah tetap b yang ditambahkan pada tiap suku barisan aritmetika untuk mendapat suku berikutnya; ia dapat positif, negatif, nol, atau pecahan.') },
+    { term: L('Recursive formula', 'Rumus rekursif'), definition: L('A rule that gives each term from the one before it, such as a sub n plus 1 equals a sub n plus d.', 'Aturan yang memberi tiap suku dari suku sebelumnya, seperti a indeks n tambah 1 sama dengan a indeks n ditambah b.') },
+    { term: L('Explicit formula', 'Rumus eksplisit'), definition: L('A rule that gives the n-th term directly from n, such as a sub n equals a sub 1 plus n minus 1 times d.', 'Aturan yang memberi suku ke-n langsung dari n, seperti a indeks n sama dengan a indeks 1 ditambah n dikurangi 1 kali b.') },
     { term: L('Series', 'Deret'), definition: L('The sum of the terms of a sequence, such as 3 plus 7 plus 11 plus 15.', 'Jumlah suku-suku sebuah barisan, seperti 3 ditambah 7 ditambah 11 ditambah 15.') },
     { term: L('Partial sum', 'Jumlah parsial'), definition: L('The sum S sub n of the first n terms of a sequence.', 'Jumlah S indeks n dari n suku pertama sebuah barisan.') },
     { term: L('Sigma notation', 'Notasi sigma'), definition: L('A compact way to write a sum using the Greek letter sigma, with the first and last values of the index written below and above it.', 'Cara ringkas menulis jumlah memakai huruf Yunani sigma, dengan nilai pertama dan terakhir indeks ditulis di bawah dan di atasnya.') },
@@ -751,11 +751,11 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
   howTo: [
     {
       name: L('How to find the n-th term of an arithmetic sequence', 'Cara mencari suku ke-n barisan aritmetika'),
-      description: L('Find the first term and the common difference, then use a sub n equals a sub 1 plus n minus 1 times d.', 'Tentukan suku pertama dan beda, lalu pakai a indeks n sama dengan a indeks 1 ditambah n dikurangi 1 kali d.'),
+      description: L('Find the first term and the common difference, then use a sub n equals a sub 1 plus n minus 1 times d.', 'Tentukan suku pertama dan beda, lalu pakai a indeks n sama dengan a indeks 1 ditambah n dikurangi 1 kali b.'),
       steps: [
         { name: L('Find the first term', 'Tentukan suku pertama'), text: L('Read off the first term a1, for example 5 in 5, 9, 13.', 'Baca suku pertama a1, misalnya 5 pada 5, 9, 13.') },
         { name: L('Find the common difference', 'Tentukan beda'), text: L('Subtract a term from the next one: 9 minus 5 is 4, and check that the other differences agree.', 'Kurangkan sebuah suku dari suku berikutnya: 9 dikurangi 5 adalah 4, dan periksa bahwa selisih lainnya sama.') },
-        { name: L('Use the formula', 'Pakai rumusnya'), text: L('Put them in a sub n equals a1 plus n minus 1 times d, which gives 5 plus n minus 1 times 4.', 'Masukkan ke a indeks n sama dengan a1 ditambah n dikurangi 1 kali d, yang memberi 5 ditambah n dikurangi 1 kali 4.') },
+        { name: L('Use the formula', 'Pakai rumusnya'), text: L('Put them in a sub n equals a1 plus n minus 1 times d, which gives 5 plus n minus 1 times 4.', 'Masukkan ke a indeks n sama dengan a1 ditambah n dikurangi 1 kali b, yang memberi 5 ditambah n dikurangi 1 kali 4.') },
         { name: L('Substitute n', 'Substitusikan n'), text: L('Replace n by the position you want: for the 20th term, 5 plus 19 times 4 is 81.', 'Ganti n dengan posisi yang diinginkan: untuk suku ke-20, 5 ditambah 19 kali 4 adalah 81.') },
       ],
     },
@@ -763,7 +763,7 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
       name: L('How to find the sum of an arithmetic series', 'Cara mencari jumlah deret aritmetika'),
       description: L('Count the terms, then multiply by the average of the first and the last.', 'Hitung banyak suku, lalu kalikan dengan rata-rata suku pertama dan terakhir.'),
       steps: [
-        { name: L('Count the terms', 'Hitung banyak suku'), text: L('Use n equals the last term minus the first, divided by d, plus 1; for 3 to 98 in steps of 5 that is 20.', 'Pakai n sama dengan suku terakhir dikurangi suku pertama, dibagi d, ditambah 1; untuk 3 sampai 98 dengan langkah 5 itu 20.') },
+        { name: L('Count the terms', 'Hitung banyak suku'), text: L('Use n equals the last term minus the first, divided by d, plus 1; for 3 to 98 in steps of 5 that is 20.', 'Pakai n sama dengan suku terakhir dikurangi suku pertama, dibagi b, ditambah 1; untuk 3 sampai 98 dengan langkah 5 itu 20.') },
         { name: L('Add the first and the last', 'Jumlahkan yang pertama dan terakhir'), text: L('Add the first and the last term: 3 plus 98 is 101.', 'Jumlahkan suku pertama dan terakhir: 3 ditambah 98 adalah 101.') },
         { name: L('Multiply by half the count', 'Kalikan dengan setengah banyaknya'), text: L('Multiply by n over 2: 20 over 2 is 10, and 10 times 101 is 1010.', 'Kalikan dengan n per 2: 20 per 2 adalah 10, dan 10 kali 101 adalah 1010.') },
         { name: L('Check with a small case', 'Periksa dengan kasus kecil'), text: L('Test the formula on the first few terms by adding them: 3 plus 8 plus 13 is 24, and 3 over 2 times 3 plus 13 is also 24.', 'Uji rumus pada beberapa suku pertama dengan menjumlahkannya: 3 ditambah 8 ditambah 13 adalah 24, dan 3 per 2 kali 3 ditambah 13 juga 24.') },
@@ -775,7 +775,7 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
       steps: [
         { name: L('Subtract the terms', 'Kurangkan suku-sukunya'), text: L('Find how much the terms change: from a3 equals 11 to a7 equals 23 is 12.', 'Cari berapa suku-suku berubah: dari a3 sama dengan 11 ke a7 sama dengan 23 adalah 12.') },
         { name: L('Count the steps', 'Hitung langkahnya'), text: L('Count the steps between the positions: 7 minus 3 is 4.', 'Hitung langkah di antara posisinya: 7 dikurangi 3 adalah 4.') },
-        { name: L('Divide to get d', 'Bagi untuk mendapat d'), text: L('Divide the change by the steps: 12 over 4 gives d equal to 3.', 'Bagi perubahan dengan langkahnya: 12 per 4 memberi d sama dengan 3.') },
+        { name: L('Divide to get d', 'Bagi untuk mendapat b'), text: L('Divide the change by the steps: 12 over 4 gives d equal to 3.', 'Bagi perubahan dengan langkahnya: 12 per 4 memberi b sama dengan 3.') },
         { name: L('Step back to the first term', 'Mundur ke suku pertama'), text: L('Subtract p minus 1 steps from the known term: a1 is 11 minus 2 times 3, which is 5.', 'Kurangkan p dikurangi 1 langkah dari suku yang diketahui: a1 adalah 11 dikurangi 2 kali 3, yaitu 5.') },
       ],
     },
@@ -793,14 +793,14 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
       q: L('What is the formula for the n-th term of an arithmetic sequence?', 'Apa rumus suku ke-n barisan aritmetika?'),
       a: L(
         'The n-th term is the first term plus n minus 1 times the common difference, written a sub n equals a sub 1 plus n minus 1 times d. For 5, 9, 13 the 20th term is 5 plus 19 times 4, which is 81.',
-        'Suku ke-n adalah suku pertama ditambah n dikurangi 1 kali beda, ditulis a indeks n sama dengan a indeks 1 ditambah n dikurangi 1 kali d. Untuk 5, 9, 13 suku ke-20 adalah 5 ditambah 19 kali 4, yaitu 81.',
+        'Suku ke-n adalah suku pertama ditambah n dikurangi 1 kali beda, ditulis a indeks n sama dengan a indeks 1 ditambah n dikurangi 1 kali b. Untuk 5, 9, 13 suku ke-20 adalah 5 ditambah 19 kali 4, yaitu 81.',
       ),
     },
     {
       q: L('What is the formula for the sum of an arithmetic series?', 'Apa rumus jumlah deret aritmetika?'),
       a: L(
         'The sum of the first n terms is n over 2 times the first term plus the last term, or n over 2 times 2 times the first term plus n minus 1 times d. For 3 plus 8 up to 98, which has 20 terms, the sum is 10 times 101, which is 1010.',
-        'Jumlah n suku pertama adalah n per 2 kali suku pertama ditambah suku terakhir, atau n per 2 kali 2 kali suku pertama ditambah n dikurangi 1 kali d. Untuk 3 ditambah 8 sampai 98, yang punya 20 suku, jumlahnya 10 kali 101, yaitu 1010.',
+        'Jumlah n suku pertama adalah n per 2 kali suku pertama ditambah suku terakhir, atau n per 2 kali 2 kali suku pertama ditambah n dikurangi 1 kali b. Untuk 3 ditambah 8 sampai 98, yang punya 20 suku, jumlahnya 10 kali 101, yaitu 1010.',
       ),
     },
     {
@@ -828,7 +828,7 @@ Kata *aritmetika* berasal dari bahasa Yunani *arithmos*, bilangan.`,
       q: L('How do you find an arithmetic sequence from two terms?', 'Bagaimana menemukan barisan aritmetika dari dua suku?'),
       a: L(
         'Divide the difference of the two terms by the difference of their positions to get d, then subtract p minus 1 steps from the earlier term to get the first term. With the third term 11 and the seventh term 23, d is 12 over 4, which is 3, and the first term is 5.',
-        'Bagi selisih kedua suku dengan selisih posisinya untuk mendapat d, lalu kurangkan p dikurangi 1 langkah dari suku yang lebih awal untuk mendapat suku pertama. Dengan suku ketiga 11 dan suku ketujuh 23, d adalah 12 per 4, yaitu 3, dan suku pertamanya 5.',
+        'Bagi selisih kedua suku dengan selisih posisinya untuk mendapat b, lalu kurangkan p dikurangi 1 langkah dari suku yang lebih awal untuk mendapat suku pertama. Dengan suku ketiga 11 dan suku ketujuh 23, b adalah 12 per 4, yaitu 3, dan suku pertamanya 5.',
       ),
     },
     {
