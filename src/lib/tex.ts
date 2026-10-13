@@ -113,15 +113,34 @@ function skipSpace(p: P): void {
 const row = (parts: string[]): string =>
   parts.length === 1 ? parts[0] : `<mrow>${parts.join('')}</mrow>`
 
+const THIN = '<mspace width="0.17em"></mspace>'
+
+/** A thin gap on both sides of a function name (`\sin`, `\cos`, `\lim`, ...) so that `2x \sin x` does not run together.
+ *  None before an opening bracket, where the name applies to what follows (`\sin(x)`), and none beside a spacing
+ *  command the author already wrote. */
+const isName = (t: string | undefined): boolean => t !== undefined && t.startsWith('\\') && NAMES.has(t.slice(1))
+const isSpace = (t: string | undefined): boolean => t !== undefined && t.startsWith('\\') && SPACING.has(t.slice(1))
+const isOpen = (t: string | undefined): boolean => t === '(' || t === '[' || t === '\\left' || t === '\\bigl' || t === '\\Bigl'
+
 /** Everything up to — but not consuming — a token the caller stops at. */
 function parseList(p: P, stop: (t: string) => boolean): string {
   const parts: string[] = []
+  let afterName = false
+  let lastWasSpace = false
   for (;;) {
     skipSpace(p)
     const t = peek(p)
     if (t === undefined || stop(t)) break
+    if (afterName && !isOpen(t) && !isSpace(t) && t !== '^' && t !== '_') parts.push(THIN)
+    afterName = false
+    const name = isName(t)
+    if (name && parts.length > 0 && !lastWasSpace) parts.push(THIN)
     const atom = parseScripted(p)
-    if (atom) parts.push(atom)
+    if (atom) {
+      parts.push(atom)
+      lastWasSpace = isSpace(t)
+    }
+    afterName = name
   }
   return parts.length === 0 ? '<mrow></mrow>' : row(parts)
 }

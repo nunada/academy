@@ -227,7 +227,8 @@ Ketik fungsi apa saja di bawah yang dibangun dari bagian-bagian ini, dan baca ti
 **Example 5.** Find the derivative of $g(t)=\tan\left(5-\sin2t\right)$. The tangent is a function of $5-\sin2t$; the sine is a function of $2t$, which is itself a function of $t$. Peel the layers:
 $$g'(t)=\sec^2\left(5-\sin2t\right)$$
 $$\cdot\frac{d}{dt}\left(5-\sin2t\right)$$
-$$=\sec^2\left(5-\sin2t\right)\cdot\left(-\cos2t\cdot\frac{d}{dt}(2t)\right)$$
+$$=\sec^2\left(5-\sin2t\right)$$
+$$\cdot\left(-\cos2t\cdot\frac{d}{dt}(2t)\right)$$
 $$=-2\cos2t\,\sec^2\left(5-\sin2t\right).$$
 
 **Example 6.** The function $\sin\left(\cos(\tan x)\right)$ has three layers, so three factors:
@@ -246,7 +247,8 @@ Try the function of Example 5, and any of your own, in the tool of the previous 
 **Contoh 5.** Tentukan turunan $g(t)=\tan\left(5-\sin2t\right)$. Tangen adalah fungsi dari $5-\sin2t$; sinus adalah fungsi dari $2t$, yang sendiri adalah fungsi dari $t$. Kupas lapisannya:
 $$g'(t)=\sec^2\left(5-\sin2t\right)$$
 $$\cdot\frac{d}{dt}\left(5-\sin2t\right)$$
-$$=\sec^2\left(5-\sin2t\right)\cdot\left(-\cos2t\cdot\frac{d}{dt}(2t)\right)$$
+$$=\sec^2\left(5-\sin2t\right)$$
+$$\cdot\left(-\cos2t\cdot\frac{d}{dt}(2t)\right)$$
 $$=-2\cos2t\,\sec^2\left(5-\sin2t\right).$$
 
 **Contoh 6.** Fungsi $\sin\left(\cos(\tan x)\right)$ memiliki tiga lapisan, sehingga tiga faktor:

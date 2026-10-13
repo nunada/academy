@@ -216,7 +216,8 @@ Now substitute $y'=\frac{x^2}{y}$:
 $$y''=\frac{2xy-x^2\cdot\frac{x^2}{y}}{y^2}=\frac{2x}{y}-\frac{x^4}{y^3}.$$
 
 **Example 8: the circle.** For $x^2+y^2=25$ we found $y'=-\frac{x}{y}$. Then
-$$y''=-\frac{y-x\,y'}{y^2}=-\frac{y+\frac{x^2}{y}}{y^2}=-\frac{x^2+y^2}{y^3}.$$
+$$y''=-\frac{y-x\,y'}{y^2}=-\frac{y+\frac{x^2}{y}}{y^2}$$
+$$=-\frac{x^2+y^2}{y^3}.$$
 The original equation says $x^2+y^2=25$, so
 $$\frac{d^2y}{dx^2}=-\frac{25}{y^3}.$$
 At $(3,-4)$ that is $\frac{25}{64}>0$: the lower semicircle is bent upward there, like a bowl, as it should be. At $(0,5)$ it is $-\frac{25}{125}=-\frac15<0$: the top of the circle bends downward.
@@ -232,7 +233,8 @@ Sekarang substitusikan $y'=\frac{x^2}{y}$:
 $$y''=\frac{2xy-x^2\cdot\frac{x^2}{y}}{y^2}=\frac{2x}{y}-\frac{x^4}{y^3}.$$
 
 **Contoh 8: lingkaran.** Untuk $x^2+y^2=25$ kita menemukan $y'=-\frac{x}{y}$. Maka
-$$y''=-\frac{y-x\,y'}{y^2}=-\frac{y+\frac{x^2}{y}}{y^2}=-\frac{x^2+y^2}{y^3}.$$
+$$y''=-\frac{y-x\,y'}{y^2}=-\frac{y+\frac{x^2}{y}}{y^2}$$
+$$=-\frac{x^2+y^2}{y^3}.$$
 Persamaan semula menyatakan $x^2+y^2=25$, sehingga
 $$\frac{d^2y}{dx^2}=-\frac{25}{y^3}.$$
 Di $(3,-4)$ itu $\frac{25}{64}>0$: setengah lingkaran bawah melengkung ke atas di sana, seperti mangkuk, sebagaimana mestinya. Di $(0,5)$ itu $-\frac{25}{125}=-\frac15<0$: puncak lingkaran melengkung ke bawah.
