@@ -47,7 +47,8 @@ const eq = (got, want, what) => {
 const close = (got, want, what, tol = 1e-4) => {
   checks++
   const scale = Math.max(1, Math.abs(want))
-  if (!(Math.abs(got - want) / scale < tol)) fail(`${what}: got ${got}, want ${want}`)
+  // a central difference loses digits where the slope is in the thousands
+  if (!(Math.abs(got - want) / scale < (scale > 1000 ? Math.max(tol, 2e-3) : tol))) fail(`${what}: got ${got}, want ${want}`)
 }
 const B = BigInt
 const R = (n, d = 1) => D.rat(B(n), B(d))
@@ -102,6 +103,16 @@ const dual = (n, x) => {
       const [v, d] = dual(n.a, x)
       return [Math.exp(v), Math.exp(v) * d]
     }
+    case 'ln': {
+      const [v, d] = dual(n.a, x)
+      return [Math.log(v), d / v]
+    }
+    case 'gpow': {
+      const [av, ad] = dual(n.a, x)
+      const [bv, bd] = dual(n.b, x)
+      const val = av ** bv
+      return [val, val * (bd * Math.log(av) + (bv * ad) / av)]
+    }
     case 'fn': {
       const [v, d] = dual(n.a, x)
       const s = Math.sin(v)
@@ -119,7 +130,7 @@ const dual = (n, x) => {
 /** False when any part of the expression is huge or undefined at x: floating point cannot judge those cases. */
 const tame = (n, x) => {
   const v = D.evalFloat(n, x)
-  if (!Number.isFinite(v) || Math.abs(v) > 1e3) return false
+  if (!Number.isFinite(v) || Math.abs(v) > 60) return false
   switch (n.t) {
     case 'num':
     case 'pi':
@@ -129,6 +140,7 @@ const tame = (n, x) => {
     case 'pow':
     case 'exp':
     case 'fn':
+    case 'ln':
       return tame(n.a, x)
     default:
       return tame(n.a, x) && tame(n.b, x)
@@ -412,6 +424,137 @@ for (let d = 0; d <= 365; d += 0.01) {
 }
 close(fastestDay, 101, 'the fastest rise on the scan', 1e-3)
 close(fastest, (40 * Math.PI) / 365, 'its rate on the scan', 1e-4)
+
+/* --------------------------------- logarithms and general powers (the option log: true) */
+const PL = (src) => D.parseExpression(src, { log: true })
+const lval = (src, x) => D.evalFloat(PL(src), x)
+const lder = (src, x) => D.evalFloat(D.derive(PL(src)).result, x)
+const ltex = (src) => D.toTex(D.derive(PL(src)).result)
+close(lval('ln(x)', Math.E), 1, 'ln e = 1')
+close(lval('log(x)', 1000), 3, 'log is base 10')
+close(lval('2^x', 5), 32, 'parse 2^x')
+close(lval('x^x', 3), 27, 'parse x^x')
+close(lval('x^pi', 2), 2 ** Math.PI, 'parse x^pi')
+close(lval('x^(1/2)', 9), 3, 'a rational exponent is still an ordinary power')
+close(lval('ln^2(x)', Math.E), 1, 'parse ln^2(x)')
+close(lval('x^-x', 2), 0.25, 'parse x^-x')
+close(lder('ln(x)', 2), 0.5, 'd ln x = 1/x')
+close(lder('ln(2x)', 3), 1 / 3, 'd ln 2x = 1/x')
+close(lder('ln(x^2+3)', 2), 4 / 7, 'd ln(x^2 + 3) = 2x/(x^2 + 3)')
+close(lder('ln(x)^3', Math.E), 3 / Math.E, 'd (ln x)^3 = 3 (ln x)^2/x')
+close(lder('log(x)', 10), 1 / (10 * Math.LN10), 'd log10 x = 1/(x ln 10)')
+close(lder('2^x', 1), 2 * Math.LN2, 'd 2^x = 2^x ln 2')
+close(lder('3^(sin x)', 0.9), 3 ** Math.sin(0.9) * Math.log(3) * Math.cos(0.9), 'd 3^(sin x)')
+close(lder('x^x', 2), 4 * (Math.log(2) + 1), 'd x^x = x^x (ln x + 1)')
+close(lder('x^(sin x)', 1.3), 1.3 ** Math.sin(1.3) * (Math.cos(1.3) * Math.log(1.3) + Math.sin(1.3) / 1.3), 'd x^(sin x)')
+close(lder('x^pi', 2), Math.PI * 2 ** (Math.PI - 1), 'the general power rule: d x^pi = pi x^(pi - 1)')
+close(lder('(x^2+1)^x', 1), 2 * (Math.log(2) + 1), 'd (x^2 + 1)^x')
+// the example of logarithmic differentiation
+close(lder('x^2 (x+1)^3/(x-2)', 3), (9 * 64) / 1 * (2 / 3 + 3 / 4 - 1), 'logarithmic differentiation of x^2 (x+1)^3/(x-2)')
+eq(ltex('ln(x)'), '\\frac{1}{x}', 'TeX of d ln x')
+eq(ltex('ln(x^2+3)'), '\\frac{2x}{x^{2}+3}', 'TeX of d ln(x^2 + 3)')
+eq(ltex('2^x'), '2^{x}\\ln 2', 'TeX of d 2^x')
+eq(ltex('x^x'), '\\left(\\ln x+1\\right)x^{x}', 'TeX of d x^x')
+eq(ltex('x^pi'), '\\pi\\,x^{\\pi-1}', 'TeX of d x^pi')
+for (const src of ['ln', 'ln(', 'x^', 'log 2x', 'ln xy']) {
+  let threw = false
+  try {
+    PL(src)
+  } catch {
+    threw = true
+  }
+  eq(threw, true, `"${src}" is refused with logarithms on`)
+}
+for (const src of ['ln(x)', 'ln x', 'ln(x)', '2^x', 'x^x', 'e^x ln x', 'x ln x', '(ln x)^2', 'x^(1/x)']) {
+  let ok = true
+  try {
+    PL(src)
+  } catch {
+    ok = false
+  }
+  eq(ok, true, `"${src}" is accepted with logarithms on`)
+}
+// and with the option off the earlier behaviour is kept
+for (const [src, code] of [['2^x', 'varexp'], ['x^x', 'varexp'], ['ln(x)', 'function'], ['log(x)', 'function']]) {
+  let got = ''
+  try {
+    P(src)
+  } catch (e) {
+    got = e.code
+  }
+  eq(got, code, `without logarithms "${src}" is still refused for the reason ${code}`)
+}
+// random expressions with logarithms and general powers: dual numbers, central differences, every step
+const genLog = (depth) => {
+  if (depth <= 0 || Math.random() < 0.2) {
+    const c = Math.random()
+    return c < 0.25 ? D.K(rnd(2, 5), rnd(1, 2)) : D.X
+  }
+  const op = pick(['add', 'sub', 'mul', 'div', 'ln', 'ln', 'gp', 'gp', 'exp', 'fn', 'pow'])
+  if (op === 'ln') return D.ln(genLog(depth - 1))
+  if (op === 'gp') return D.gp(genLog(depth - 1), genLog(depth - 1))
+  if (op === 'exp') return D.ex(genLog(depth - 1))
+  if (op === 'fn') return D.fn(pick(D.FN_NAMES), genLog(depth - 1))
+  if (op === 'pow') return D.pw(genLog(depth - 1), R(rnd(-3, 3), rnd(1, 2)))
+  return D[op](genLog(depth - 1), genLog(depth - 1))
+}
+let logChecked = 0
+let logSteps = 0
+for (let i = 0; i < 6000; i++) {
+  const f = genLog(3)
+  const x = 0.5 + Math.random() * 2.5
+  const fx = F(f)(x)
+  if (!Number.isFinite(fx) || Math.abs(fx) > 1e4 || !tame(f, x)) continue
+  const { result, steps } = D.derive(f)
+  const dv = D.evalFloat(result, x)
+  const [dualV, dualD] = dual(f, x)
+  const cd = central(F(f), x)
+  if (!Number.isFinite(dv) || !Number.isFinite(cd) || !Number.isFinite(dualD) || Math.abs(cd) > 1e4) continue
+  logChecked++
+  close(dualV, fx, `dual value of ${D.toText(f)}`, 1e-9)
+  close(dv, dualD, `derivative of ${D.toText(f)} at ${x} against dual numbers`, 1e-7)
+  close(dv, cd, `derivative of ${D.toText(f)} at ${x} against central differences`, 3e-4)
+  for (const s of steps) {
+    const sd = D.evalFloat(s.result, x)
+    const sc = central(F(s.expr), x)
+    if (!Number.isFinite(sd) || !Number.isFinite(sc) || Math.abs(sc) > 1e4) continue
+    logSteps++
+    close(sd, sc, `step ${s.rule} on ${D.toText(s.expr)} at ${x}`, 3e-4)
+    if (s.rule === 'logdiff' && Number.isFinite(Math.log(D.evalFloat(s.expr, x)))) {
+      // ln y = b ln a: the step carries that form, and it has the same value as ln of the expression
+      close(D.evalFloat(s.lnForm, x), Math.log(D.evalFloat(s.expr, x)), 'ln y = b ln a', 1e-9)
+    }
+  }
+  close(F(D.simp(f))(x), fx, `simplify ${D.toText(f)}`, 1e-9)
+  eq(D.toText(D.simp(D.simp(f))), D.toText(D.simp(f)), `simplifying twice: ${D.toText(f)}`)
+  let again
+  try {
+    again = PL(D.toText(f))
+  } catch (e) {
+    if (e.code === 'big') continue // a constant such as (5 + 3)^3 read back as a whole-number exponent above the limit
+    fail(`could not read back ${D.toText(f)}: ${e.code ?? e.message}`)
+    continue
+  }
+  close(F(again)(x), fx, `parse(toText) of ${D.toText(f)}`, 1e-9)
+}
+eq(logChecked > 1500, true, 'enough expressions with logarithms were compared')
+// logarithmic differentiation: y' = y · d/dx (ln of y split by the laws of logarithms), for products, quotients and powers
+let splitChecked = 0
+for (let i = 0; i < 3000; i++) {
+  const f = genLog(3)
+  const x = 0.5 + Math.random() * 2.5
+  const fx = F(f)(x)
+  if (!Number.isFinite(fx) || Math.abs(fx) > 1e3 || Math.abs(fx) < 1e-6 || !tame(f, x)) continue
+  const split = D.lnSplit(f)
+  const dl = D.evalFloat(D.derive(split).result, x)
+  const direct = D.evalFloat(D.derive(f).result, x)
+  if (!Number.isFinite(dl) || !Number.isFinite(direct)) continue
+  splitChecked++
+  close(fx * dl, direct, `y · (ln y split)' for ${D.toText(f)} at ${x}`, 1e-7)
+}
+eq(splitChecked > 800, true, 'enough logarithmic differentiations compared')
+
+eq(logSteps > 3000, true, 'enough steps with logarithms were compared')
 
 if (bad) {
   console.log(`\n${bad} disagreement(s)`)

@@ -44,6 +44,7 @@ function linear(n: Node): { a: Node; b: Node | null } {
       case 'pow':
       case 'exp':
       case 'fn':
+      case 'ln':
         return noYp(m.a)
       default:
         return noYp(m.a) && noYp(m.b)
@@ -130,6 +131,8 @@ function putYp(n: Node, by: Node): Node {
       return { t: 'exp', a: putYp(n.a, by) }
     case 'fn':
       return { t: 'fn', f: n.f, a: putYp(n.a, by) }
+    case 'ln':
+      return { t: 'ln', a: putYp(n.a, by) }
     default:
       return { t: n.t, a: putYp(n.a, by), b: putYp(n.b, by) } as Node
   }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useI18n } from '../../i18n'
 import { parseRational } from '../../lib/realnum'
-import { derive, evalFloat, nth, parseExpression, ParseError, simp, size, subst, toTex, type Node, type RuleId } from '../../lib/chain'
+import { derive, evalFloat, lnSplit, nth, parseExpression, ParseError, simp, size, subst, toTex, type Node, type RuleId } from '../../lib/chain'
 import { pistonRates, sinKx, sinKxSlope } from '../../lib/chain'
 import { Tex } from '../ui'
 import { Frame, L, dec, useSep } from './widgetKit'
@@ -28,6 +28,8 @@ const RULE: Record<RuleId, { en: string; id: string }> = {
   quotient: { en: 'Quotient rule', id: 'Aturan hasil bagi' },
   chain: { en: 'Chain rule', id: 'Aturan rantai' },
   implicit: { en: 'y is a function of x', id: 'y adalah fungsi dari x' },
+  logarithm: { en: 'The derivative of ln x', id: 'Turunan ln x' },
+  logdiff: { en: 'Logarithmic differentiation', id: 'Diferensiasi logaritmik' },
 }
 
 const ERR: Record<ParseError['code'], { en: string; id: string }> = {
@@ -41,19 +43,26 @@ const ERR: Record<ParseError['code'], { en: string; id: string }> = {
   noy: { en: 'There is no y in this equation, so there is nothing to differentiate implicitly.', id: 'Tidak ada y dalam persamaan ini, sehingga tidak ada yang diturunkan secara implisit.' },
 }
 
+const ERR_LOG: Partial<Record<ParseError['code'], { en: string; id: string }>> = {
+  syntax: { en: 'I could not read that. Use x, numbers, + - * /, brackets, powers such as x^2, 2^x, x^x or x^pi, sqrt(…), sin(…), cos(…), tan(…), ln(…), log(…) (base 10), pi and e^(…), for example x^2 ln(x).', id: 'Saya tidak dapat membacanya. Pakai x, bilangan, + - * /, kurung, pangkat seperti x^2, 2^x, x^x, atau x^pi, sqrt(…), sin(…), cos(…), tan(…), ln(…), log(…) (basis 10), pi, dan e^(…), misalnya x^2 ln(x).' },
+  function: { en: 'Only sin, cos, tan, cot, sec, csc, sqrt, ln, log (base 10) and e^ are known here. Other bases are written with a power, such as 2^x, and inverse trigonometric functions come later.', id: 'Di sini hanya sin, cos, tan, cot, sec, csc, sqrt, ln, log (basis 10), dan e^ yang dikenal. Basis lain ditulis dengan pangkat, seperti 2^x, dan fungsi trigonometri invers dibahas kemudian.' },
+}
+
+const PRESETS_LOG = ['ln(x^2+3)', 'ln(sin(x))', 'x ln(x)', '2^x', '3^(sin x)', 'x^x', 'x^(sin x)', 'log(x)', 'x^2 (x+1)^3/(x-2)', 'x^pi']
+
 const PRESETS = ['sin(2x)', '(3x^2+1)^2', 'cos(x^2+1)', 'sin(x^2+e^x)', 'e^(cos x)', 'tan(5 - sin(2x))', 'sqrt(3x+1)', '1/(3x-2)', 'sin^5(x)', 'x sin(2x)']
 
-export function ChainSteps() {
+export function ChainSteps({ log = false }: { log?: boolean }) {
   const { tc, lang } = useI18n()
   const sep = useSep()
-  const [src, setSrc] = useState('sin(3x^2+1)')
+  const [src, setSrc] = useState(log ? 'x^x' : 'sin(3x^2+1)')
   const [order, setOrder] = useState(1)
   const [xs, setXs] = useState('1')
 
   let f: Node | null = null
   let err: ParseError['code'] | null = null
   try {
-    f = parseExpression(src)
+    f = parseExpression(src, { log })
     if (size(f) > 70) throw new ParseError('big')
   } catch (e) {
     f = null
@@ -63,7 +72,7 @@ export function ChainSteps() {
 
   let body
   if (!f) {
-    body = <p className="noline">{ERR[err ?? 'syntax'][lang]}</p>
+    body = <p className="noline">{((log && ERR_LOG[err ?? 'syntax']) || ERR[err ?? 'syntax'])[lang]}</p>
   } else {
     const F = f
     const { steps } = derive(F)
@@ -95,7 +104,12 @@ export function ChainSteps() {
             {shown.map((s, i) => (
               <li key={i}>
                 <b>{RULE[s.rule][lang]}:</b>{' '}
-                {s.rule === 'chain' && s.inner && s.outer && s.outerD ? (
+                {s.rule === 'logdiff' && s.lnForm ? (
+                  <>
+                    {tc(L('both the base and the exponent depend on x: take the logarithm first,', 'basis dan pangkatnya sama-sama bergantung pada x: ambil logaritmanya dulu,'))} <Tex src={`\\ln y=${toTex(s.lnForm)}`} />;{' '}
+                    <Tex src={`\\frac{d}{dx}\\left[${toTex(s.expr)}\\right]=${toTex(s.result)}`} />
+                  </>
+                ) : s.rule === 'chain' && s.inner && s.outer && s.outerD ? (
                   <>
                     {tc(L('outside', 'luar'))} <Tex src={`f(u)=${toTex(s.outer, 'u')}`} />, {tc(L('inside', 'dalam'))} <Tex src={`u=${toTex(s.inner)}`} />; <Tex src={`f'(u)=${toTex(s.outerD, 'u')}`} />, <Tex src={`u'=${toTex(derive(s.inner).result)}`} />:{' '}
                     <Tex src={`\\frac{d}{dx}\\left[${toTex(s.expr)}\\right]=${toTex(simp(subst(s.outerD, s.inner)))}\\cdot\\left(${toTex(derive(s.inner).result)}\\right)=${toTex(s.result)}`} />
@@ -107,6 +121,12 @@ export function ChainSteps() {
             ))}
             {steps.length > shown.length && <li className="muted">…</li>}
           </ol>
+        )}
+        {log && order === 1 && (F.t === 'mul' || F.t === 'div' || F.t === 'pow' || F.t === 'gpow') && (
+          <p className="small">
+            <b>{tc(L('The same by logarithmic differentiation', 'Hasil yang sama dengan diferensiasi logaritmik'))}:</b> <Tex src={`\\ln y=${toTex(lnSplit(F))}`} />, <Tex src={`\\frac{y'}{y}=${toTex(derive(lnSplit(F)).result)}`} />
+            {tc(L('; multiply by y to get', '; kalikan dengan y untuk mendapat'))} <Tex src={`y'=${toTex(F)}\\left(${toTex(derive(lnSplit(F)).result)}\\right)`} />.
+          </p>
         )}
         {tower.map((d, k) => (
           <p key={k} className={k === tower.length - 1 ? 'okline' : ''}>
@@ -127,7 +147,7 @@ export function ChainSteps() {
   }
 
   return (
-    <Frame name="chainsteps">
+    <Frame name={log ? 'logsteps' : 'chainsteps'}>
       <div className="inrow">
         <label className="lbl">
           f(x) = <input style={{ width: '15em', maxWidth: '100%' }} value={src} aria-label="f(x)" onChange={(e) => setSrc(e.target.value)} />
@@ -137,7 +157,7 @@ export function ChainSteps() {
         </label>
       </div>
       <div className="chips">
-        {PRESETS.map((p) => (
+        {(log ? PRESETS_LOG : PRESETS).map((p) => (
           <button key={p} className="chip ghost" onClick={() => setSrc(p)}>
             {p}
           </button>

@@ -110,6 +110,9 @@ export type WidgetName =
   | 'sinscale'
   | 'implicitsteps'
   | 'implicitslide'
+  | 'inverseslope'
+  | 'logsteps'
+  | 'loglimits'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

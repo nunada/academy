@@ -382,6 +382,22 @@ const implicitDifferentiation = (): string => {
   )
 }
 
+const inverseLogarithms = (): string => {
+  const X = (x: number) => 200 + x * 52
+  const Y = (y: number) => 100 - y * 52
+  return (
+    line(24, Y(0), 376, Y(0), 'sm', 2) +
+    line(X(0), 190, X(0), 10, 'sm', 2) +
+    line(X(-2.4), Y(-2.4), X(2.4), Y(2.4), 'sm', 1.6, '6 5') +
+    curve(Math.exp, -2.4, 1.85, X, Y, 'sa', 3.6, 100) +
+    curve(Math.log, 0.09, 3.4, X, Y, 'sb', 3.6, 100) +
+    dot(X(1), Y(Math.E), 'fr', 6) +
+    dot(X(Math.E), Y(1), 'fr', 6) +
+    text(X(1.35) + 8, Y(2.9), 'eˣ', 22) +
+    text(X(3.1), Y(0.75) + 12, 'ln x', 20)
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -410,6 +426,7 @@ const COVERS: Record<string, () => string> = {
   'derivatives-of-trigonometric-functions': trigonometry,
   'the-chain-rule': chainRule,
   'implicit-differentiation': implicitDifferentiation,
+  'derivatives-of-inverse-functions-and-logarithms': inverseLogarithms,
 }
 
 /** Ids that have their own drawing, for the checker. */

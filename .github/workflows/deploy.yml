@@ -125,6 +125,10 @@ jobs:
       # method and central differences for y' and y'', the chapter's examples and the rational power rule.
       - run: npm run check:implicit
 
+      # Inverses and logarithms: the rule for inverses against differences of numerical inverses, ln and a^x from their
+      # definitions, and the limits for e and ln a.
+      - run: npm run check:inverse
+
       - name: Work out where the site will live
         id: base
         run: |

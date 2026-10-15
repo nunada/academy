@@ -41,6 +41,10 @@ export type Node =
   /** e to the power a */
   | { t: 'exp'; a: Node }
   | { t: 'fn'; f: FnName; a: Node }
+  /** the natural logarithm of a */
+  | { t: 'ln'; a: Node }
+  /** a to the power b with b not a rational constant: a^x, x^x, x^π (a positive) */
+  | { t: 'gpow'; a: Node; b: Node }
 
 const ZERO = rat(0n, 1n)
 const ONE = rat(1n, 1n)
@@ -63,6 +67,8 @@ export const div = (a: Node, b: Node): Node => ({ t: 'div', a, b })
 export const pw = (a: Node, n: Rat | number | bigint, d = 1): Node => ({ t: 'pow', a, n: typeof n === 'object' ? n : rat(BigInt(n), BigInt(d)) })
 export const ex = (a: Node): Node => ({ t: 'exp', a })
 export const fn = (f: FnName, a: Node): Node => ({ t: 'fn', f, a })
+export const ln = (a: Node): Node => ({ t: 'ln', a })
+export const gp = (a: Node, b: Node): Node => ({ t: 'gpow', a, b })
 
 /** No x inside. */
 export function isConst(n: Node): boolean {
@@ -78,6 +84,7 @@ export function isConst(n: Node): boolean {
     case 'pow':
     case 'exp':
     case 'fn':
+    case 'ln':
       return isConst(n.a)
     default:
       return isConst(n.a) && isConst(n.b)
@@ -102,6 +109,8 @@ export function subst(n: Node, inner: Node): Node {
       return ex(subst(n.a, inner))
     case 'fn':
       return fn(n.f, subst(n.a, inner))
+    case 'ln':
+      return ln(subst(n.a, inner))
     default:
       return { t: n.t, a: subst(n.a, inner), b: subst(n.b, inner) } as Node
   }
@@ -120,6 +129,7 @@ export function size(n: Node): number {
     case 'pow':
     case 'exp':
     case 'fn':
+    case 'ln':
       return 1 + size(n.a)
     default:
       return 1 + size(n.a) + size(n.b)
@@ -162,6 +172,10 @@ export function evalFloat(n: Node, x: number, y = NaN, yp = NaN): number {
       return Math.exp(e(n.a))
     case 'fn':
       return fnValue(n.f, e(n.a))
+    case 'ln':
+      return Math.log(e(n.a))
+    case 'gpow':
+      return e(n.a) ** e(n.b)
   }
 }
 
@@ -185,6 +199,8 @@ export function evalExact(n: Node, x: Rat, y?: Rat): Rat | null {
     case 'exp':
     case 'fn':
     case 'yp':
+    case 'ln':
+    case 'gpow':
       return null
     case 'x':
       return x
@@ -225,6 +241,8 @@ export function toRational(n: Node): RationalFn | null {
     case 'fn':
     case 'y':
     case 'yp':
+    case 'ln':
+    case 'gpow':
       return null
     case 'neg': {
       const v = toRational(n.a)
@@ -337,7 +355,7 @@ function rebuildSum(ts: Term[]): Node {
   return acc as Node
 }
 
-const rank = (b: Node): number => (b.t === 'pi' ? 0 : b.t === 'x' || b.t === 'y' || b.t === 'yp' ? 1 : b.t === 'exp' ? 3 : b.t === 'fn' ? 4 : 2)
+const rank = (b: Node): number => (b.t === 'pi' ? 0 : b.t === 'x' || b.t === 'y' || b.t === 'yp' ? 1 : b.t === 'exp' || b.t === 'gpow' ? 3 : b.t === 'fn' || b.t === 'ln' ? 4 : 2)
 
 function facNode(f: Fac): Node {
   if (isOne(f.e)) return f.b
@@ -428,6 +446,18 @@ function normalize(n: Node): Term[] {
       }
       return [{ c: ONE, fs: [{ b: fn(n.f, arg), e: ONE }] }]
     }
+    case 'ln': {
+      const a = normalize(n.a)
+      if (a.length === 1 && a[0].fs.length === 0 && isOne(a[0].c)) return []
+      return [{ c: ONE, fs: [{ b: ln(rebuildSum(a)), e: ONE }] }]
+    }
+    case 'gpow': {
+      const a = normalize(n.a)
+      const b = normalize(n.b)
+      if (b.length === 0) return [termConst(ONE)]
+      if (a.length === 1 && a[0].fs.length === 0 && isOne(a[0].c)) return [termConst(ONE)]
+      return [{ c: ONE, fs: [{ b: gp(rebuildSum(a), rebuildSum(b)), e: ONE }] }]
+    }
   }
 }
 
@@ -473,7 +503,7 @@ export function simp(n: Node): Node {
 
 /* ------------------------------------------------------------------ differentiating */
 
-export type RuleId = 'constant' | 'power' | 'exponential' | 'trig' | 'multiple' | 'negative' | 'sum' | 'difference' | 'product' | 'quotient' | 'chain' | 'implicit'
+export type RuleId = 'constant' | 'power' | 'exponential' | 'trig' | 'multiple' | 'negative' | 'sum' | 'difference' | 'product' | 'quotient' | 'chain' | 'implicit' | 'logarithm' | 'logdiff'
 
 export interface Step {
   rule: RuleId
@@ -484,12 +514,15 @@ export interface Step {
   inner?: Node
   outer?: Node
   outerD?: Node
+  /** For logarithmic differentiation: ln y written as a sum, before it is differentiated. */
+  lnForm?: Node
 }
 
 const outerDerivative = (outer: Node): Node => {
   const t = outer
   if (t.t === 'pow') return mul(K(t.n), pw(X, ratSub(t.n, ONE)))
   if (t.t === 'exp') return ex(X)
+  if (t.t === 'ln') return div(K(1), X)
   if (t.t === 'fn') {
     const f = t.f
     return f === 'sin'
@@ -573,22 +606,63 @@ export function differentiate(n: Node, steps: Step[] = []): Node {
     }
     case 'pow':
     case 'exp':
+    case 'ln':
     case 'fn': {
       if (isConst(n.a)) {
         record('constant', K(0))
         return K(0)
       }
       const plain = n.a.t === 'x'
-      const outer: Node = n.t === 'pow' ? pw(X, n.n) : n.t === 'exp' ? ex(X) : fn(n.f, X)
+      const outer: Node = n.t === 'pow' ? pw(X, n.n) : n.t === 'exp' ? ex(X) : n.t === 'ln' ? ln(X) : fn(n.f, X)
       const outerD = outerDerivative(outer)
       if (plain) {
-        record(n.t === 'pow' ? 'power' : n.t === 'exp' ? 'exponential' : 'trig', outerD)
+        record(n.t === 'pow' ? 'power' : n.t === 'exp' ? 'exponential' : n.t === 'ln' ? 'logarithm' : 'trig', outerD)
         return outerD
       }
       const slot = steps.length
       steps.push({ rule: 'chain', expr: n, result: K(0), inner: n.a, outer, outerD: simp(outerD) })
       const dIn = differentiate(n.a, steps)
       const r = mul(subst(outerD, n.a), dIn)
+      steps[slot].result = simp(r)
+      return r
+    }
+    case 'gpow': {
+      if (isConst(n.a) && isConst(n.b)) {
+        record('constant', K(0))
+        return K(0)
+      }
+      const slot = steps.length
+      if (isConst(n.b)) {
+        // a power of a function with a constant exponent that is not rational, as x^π
+        if (n.a.t === 'x') {
+          const r = mul(n.b, gp(X, sub(n.b, K(1))))
+          steps.push({ rule: 'power', expr: n, result: simp(r) })
+          return r
+        }
+        steps.push({ rule: 'chain', expr: n, result: K(0), inner: n.a, outer: gp(X, n.b), outerD: simp(mul(n.b, gp(X, sub(n.b, K(1))))) })
+        const da = differentiate(n.a, steps)
+        const r = mul(mul(n.b, gp(n.a, sub(n.b, K(1)))), da)
+        steps[slot].result = simp(r)
+        return r
+      }
+      if (isConst(n.a)) {
+        // a^u with a constant base: a^u ln a · u'
+        if (n.b.t === 'x') {
+          const r = mul(n, ln(n.a))
+          steps.push({ rule: 'exponential', expr: n, result: simp(r) })
+          return r
+        }
+        steps.push({ rule: 'chain', expr: n, result: K(0), inner: n.b, outer: gp(n.a, X), outerD: simp(mul(gp(n.a, X), ln(n.a))) })
+        const db = differentiate(n.b, steps)
+        const r = mul(mul(n, ln(n.a)), db)
+        steps[slot].result = simp(r)
+        return r
+      }
+      // both the base and the exponent depend on x: logarithmic differentiation, ln y = b ln a, y'/y = b' ln a + b a'/a
+      steps.push({ rule: 'logdiff', expr: n, result: K(0), lnForm: mul(n.b, ln(n.a)) })
+      const da = differentiate(n.a, steps)
+      const db = differentiate(n.b, steps)
+      const r = mul(n, add(mul(db, ln(n.a)), div(mul(n.b, da), n.a)))
       steps[slot].result = simp(r)
       return r
     }
@@ -673,6 +747,12 @@ export function toTex(n: Node, v = 'x'): string {
       return `e^{${tex(n.a)}}`
     case 'fn':
       return `\\${n.f}${arg(n.a)}`
+    case 'ln':
+      return isAtom(n.a) ? `\\ln ${tex(n.a)}` : `\\ln${arg(n.a)}`
+    case 'gpow': {
+      const base = isAtom(n.a) ? tex(n.a) : wrapAll(n.a)
+      return `${base}^{${tex(n.b)}}`
+    }
   }
 }
 
@@ -706,6 +786,10 @@ export function toText(n: Node): string {
       return `(e^(${toText(n.a)}))`
     case 'fn':
       return `${n.f}(${toText(n.a)})`
+    case 'ln':
+      return `ln(${toText(n.a)})`
+    case 'gpow':
+      return `(${toText(n.a)}^(${toText(n.b)}))`
   }
 }
 
@@ -721,8 +805,8 @@ type Tok = { k: 'n'; v: string } | { k: 'id'; v: string } | { k: 'op'; v: string
 
 const NAMES = ['sqrt', 'sin', 'cos', 'tan', 'cot', 'sec', 'csc', 'pi', 'e', 'x']
 
-function tokenize(src: string, withY: boolean): Tok[] {
-  const names = withY ? [...NAMES, 'y'] : NAMES
+function tokenize(src: string, withY: boolean, withLog: boolean): Tok[] {
+  const names = [...NAMES, ...(withY ? ['y'] : []), ...(withLog ? ['ln', 'log'] : [])]
   const out: Tok[] = []
   const s = src.replace(/π/g, 'pi').replace(/−/g, '-').replace(/\s+/g, ' ').trim().toLowerCase()
   if (s.length === 0) throw new ParseError('syntax')
@@ -767,7 +851,10 @@ const decimalToRat = (s: string): Rat => {
 class Parser {
   i = 0
   depth = 0
-  constructor(private toks: Tok[]) {}
+  constructor(
+    private toks: Tok[],
+    private withLog = false,
+  ) {}
   peek(): Tok | undefined {
     return this.toks[this.i]
   }
@@ -866,24 +953,52 @@ class Parser {
       this.eat()
       return ex(this.expArg())
     }
-    // sin^2(x)
-    if (t && t.k === 'id' && (FN_NAMES as string[]).includes(t.v)) {
+    // sin^2(x), ln^2(x)
+    if (t && t.k === 'id' && (this.fnNames() as string[]).includes(t.v)) {
       const next = this.toks[this.i + 1]
       if (next && next.k === 'op' && next.v === '^') {
         this.eat()
         this.eat()
         const n = this.exponent()
-        return pw(this.fnArg(t.v as FnName), n)
+        return pw(this.fnArg(t.v), n)
       }
     }
     const base = this.atom()
     if (this.isOp('^')) {
       this.eat()
+      if (this.withLog) return this.generalPower(base, this.expNode())
       const n = this.exponent()
       if (isInt(n) && absR(n).n > 99n) throw new ParseError('big')
       return pw(base, n)
     }
     return base
+  }
+
+  /** The names of the one-argument functions: ln as well when logarithms are on. */
+  fnNames(): string[] {
+    return this.withLog ? [...FN_NAMES, 'ln'] : FN_NAMES
+  }
+
+  /** The exponent after ^ when logarithms are on: any power-level expression, with a sign. */
+  expNode(): Node {
+    if (this.isOp('-')) {
+      this.eat()
+      return neg(this.expNode())
+    }
+    if (this.isOp('+')) this.eat()
+    return this.power()
+  }
+
+  /** base^E: a rational constant exponent gives an ordinary power, anything else a general one (a^x, x^x, x^pi). */
+  generalPower(base: Node, E: Node): Node {
+    if (isConst(E)) {
+      const v = evalExact(E, ZERO)
+      if (v !== null) {
+        if (isInt(v) && absR(v).n > 99n) throw new ParseError('big')
+        return pw(base, v)
+      }
+    }
+    return gp(base, E)
   }
 
   /** What stands after e^: a bracket, x, pi, a number, or a minus sign and one of those. */
@@ -907,13 +1022,14 @@ class Parser {
   }
 
   /** The argument of a function whose name has been read: a bracket, or a bare x or pi (not followed by a power). */
-  fnArg(name: FnName): Node {
+  fnArg(name: string): Node {
+    const make = (a: Node): Node => (name === 'ln' ? ln(a) : fn(name as FnName, a))
     if (this.isOp('(')) {
       this.eat()
       const a = this.sum()
       if (!this.isOp(')')) throw new ParseError('syntax')
       this.eat()
-      return fn(name, a)
+      return make(a)
     }
     const t = this.peek()
     if (t && t.k === 'id' && (t.v === 'x' || t.v === 'y' || t.v === 'pi')) {
@@ -922,7 +1038,7 @@ class Parser {
       // sin xy would read as sin(x) times y, which nobody means: ask for brackets
       const next = this.peek()
       if (next && (next.k === 'n' || (next.k === 'id' && (next.v === 'x' || next.v === 'y' || next.v === 'pi')) || (next.k === 'op' && next.v === '('))) throw new ParseError('paren', name)
-      return fn(name, t.v === 'x' ? X : t.v === 'y' ? Y : PI)
+      return make(t.v === 'x' ? X : t.v === 'y' ? Y : PI)
     }
     throw new ParseError('paren', name)
   }
@@ -948,9 +1064,14 @@ class Parser {
         return PI
       }
       if (t.v === 'e') throw new ParseError('exp', 'e')
-      if ((FN_NAMES as string[]).includes(t.v)) {
+      if ((this.fnNames() as string[]).includes(t.v)) {
         this.eat()
-        return this.fnArg(t.v as FnName)
+        return this.fnArg(t.v)
+      }
+      if (this.withLog && t.v === 'log') {
+        // log is the common logarithm, base 10
+        this.eat()
+        return div(this.fnArg('ln'), ln(K(10)))
       }
       if (t.v === 'sqrt') {
         this.eat()
@@ -977,8 +1098,8 @@ class Parser {
 }
 
 /** Read an expression such as `sin(2x)`, `(3x^2+1)^2`, `e^(cos x)`, `tan(5 - sin(2x))`, `sqrt(3x+1)`, `sin^5(x)`. */
-export function parseExpression(src: string, opts: { y?: boolean } = {}): Node {
-  return new Parser(tokenize(src, opts.y === true)).parse()
+export function parseExpression(src: string, opts: { y?: boolean; log?: boolean } = {}): Node {
+  return new Parser(tokenize(src, opts.y === true, opts.log === true), opts.log === true).parse()
 }
 
 /* ------------------------------------------------------------ oscillations */
@@ -1031,4 +1152,28 @@ export function commonFactor(ns: Node[]): Rat {
 /** The node with every term divided by k. */
 export function divideTerms(n: Node, k: Rat): Node {
   return rebuildSum(termsOf(n).map((t) => ({ c: ratDiv(t.c, k), fs: t.fs })))
+}
+
+/* ------------------------------------------------------ logarithmic differentiation */
+
+/** ln of an expression split by the laws of logarithms: a product into a sum, a quotient into a difference, a power
+ *  into a multiple. Where a factor is negative this stands for ln of its absolute value, which has the same derivative.
+ *  Then y′/y is the derivative of this, and y′ = y · (y′/y). */
+export function lnSplit(n: Node): Node {
+  switch (n.t) {
+    case 'mul':
+      return add(lnSplit(n.a), lnSplit(n.b))
+    case 'div':
+      return sub(lnSplit(n.a), lnSplit(n.b))
+    case 'pow':
+      return mul(K(n.n), lnSplit(n.a))
+    case 'gpow':
+      return mul(n.b, lnSplit(n.a))
+    case 'neg':
+      return lnSplit(n.a)
+    case 'exp':
+      return n.a
+    default:
+      return ln(n)
+  }
 }

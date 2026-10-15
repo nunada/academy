@@ -28,6 +28,7 @@ import { GeometricRates, MarginalAnalysis, MotionAlongLine } from './RatesWidget
 import { SineLimit, SpringMotion, TrigSlope } from './TrigWidgets'
 import { ChainRates, ChainSteps, SineScale } from './ChainWidgets'
 import { ImplicitSlide, ImplicitSteps } from './ImplicitWidgets'
+import { InverseSlope, LogLimits } from './LogWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -939,6 +940,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <ImplicitSteps />
     case 'implicitslide':
       return <ImplicitSlide />
+    case 'inverseslope':
+      return <InverseSlope />
+    case 'logsteps':
+      return <ChainSteps log />
+    case 'loglimits':
+      return <LogLimits />
   }
 }
 

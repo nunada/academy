@@ -600,6 +600,27 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Gerakkan titik mengelilingi lingkaran, elips, atau persegi bulat dan lihat garis singgung dan garis normalnya berputar, dengan gradien dari y′ = −x/y dan kerabatnya, mendatar di tempat pembilang 0 dan tegak di tempat penyebut 0.',
     },
   },
+  inverseslope: {
+    title: { en: 'Interactive: the slopes of a function and its inverse', id: 'Interaktif: gradien suatu fungsi dan inversnya' },
+    description: {
+      en: 'Slide a point along a function and see its inverse, the mirror image in the line y = x, with the two tangent lines at corresponding points: their slopes are reciprocals, checked against a numerical inverse.',
+      id: 'Geser sebuah titik sepanjang suatu fungsi dan lihat inversnya, bayangan cermin dalam garis y = x, dengan kedua garis singgung di titik-titik yang bersesuaian: gradiennya saling berkebalikan, diperiksa dengan invers numerik.',
+    },
+  },
+  logsteps: {
+    title: { en: 'Interactive: differentiate with logarithms and general powers', id: 'Interaktif: menurunkan dengan logaritma dan pangkat umum' },
+    description: {
+      en: 'Type a function with ln, log, a^x, x^x or x^π, built from the functions of the earlier articles, and see each rule applied, logarithmic differentiation when the base and the exponent both change, and the derivative checked against a difference quotient.',
+      id: 'Ketik fungsi dengan ln, log, a^x, x^x, atau x^π, yang dibangun dari fungsi-fungsi artikel terdahulu, lalu lihat tiap aturan yang dipakai, diferensiasi logaritmik bila basis dan pangkatnya sama-sama berubah, dan turunan yang dicocokkan dengan hasil bagi selisih.',
+    },
+  },
+  loglimits: {
+    title: { en: 'Interactive: the limits behind e and ln a', id: 'Interaktif: limit di balik e dan ln a' },
+    description: {
+      en: 'Shrink h and watch (1 + h)^(1/h) settle at e, ln(1 + h)/h at 1 and (a^h − 1)/h at ln a, the slope of a^x at the y-axis.',
+      id: 'Kecilkan h dan lihat (1 + h)^(1/h) menetap di e, ln(1 + h)/h di 1, dan (a^h − 1)/h di ln a, gradien a^x di sumbu-y.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {
