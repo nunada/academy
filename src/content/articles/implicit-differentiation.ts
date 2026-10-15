@@ -739,5 +739,5 @@ print(round(slope(2, 4), 6))                                          # 0.8  (th
     { title: 'The Method of Fluxions and Infinite Series (translated by John Colson)', author: 'Isaac Newton', year: 1736, source: 'Henry Woodfall, London' },
   ],
 
-  related: ['the-chain-rule', 'differentiation-rules', 'derivatives-of-inverse-functions-and-logarithms', 'circles'],
+  related: ['the-chain-rule', 'differentiation-rules', 'derivatives-of-inverse-functions-and-logarithms', 'related-rates'],
 }

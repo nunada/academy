@@ -32,6 +32,7 @@ const RULE: Record<RuleId, { en: string; id: string }> = {
   logdiff: { en: 'Logarithmic differentiation', id: 'Diferensiasi logaritmik' },
   inverse: { en: 'Derivative of an inverse trigonometric function', id: 'Turunan fungsi trigonometri invers' },
   absolute: { en: 'Derivative of the absolute value', id: 'Turunan nilai mutlak' },
+  rate: { en: 'Rate of change in time', id: 'Laju perubahan terhadap waktu' },
 }
 
 const ERR: Record<ParseError['code'], { en: string; id: string }> = {

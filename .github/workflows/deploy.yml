@@ -133,6 +133,10 @@ jobs:
       # reference triangles and the viewing angle against a scan.
       - run: npm run check:invtrig
 
+      # Related rates: the textbook's six answers, the chain rule by hand with central-difference partial derivatives, a
+      # simulation with the quantities moving in time, and values worked out from the equation.
+      - run: npm run check:relatedrates
+
       - name: Work out where the site will live
         id: base
         run: |

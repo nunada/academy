@@ -649,6 +649,27 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Ketik fungsi dengan arcsin, arccos, arctan, arccot, arcsec, arccsc, atau abs dari fungsi lain, lalu lihat tiap aturan yang dipakai, dengan fungsi luar dan dalam pada setiap langkah rantai, turunan yang dicocokkan dengan hasil bagi selisih.',
     },
   },
+  ratestool: {
+    title: { en: 'Interactive: solve a related rates problem', id: 'Interaktif: selesaikan soal laju terkait' },
+    description: {
+      en: 'Pick one of the textbook problems or type your own equation, give the values and rates of one moment, choose the rate to find, and see the equation differentiated in time, the numbers put in, and the unknown rate solved.',
+      id: 'Pilih salah satu soal buku atau ketik persamaanmu sendiri, isi nilai dan laju pada satu saat, pilih laju yang dicari, lalu lihat persamaan diturunkan terhadap waktu, bilangan dimasukkan, dan laju yang dicari diselesaikan.',
+    },
+  },
+  ladder: {
+    title: { en: 'Interactive: a ladder sliding down a wall', id: 'Interaktif: tangga yang meluncur turun dari dinding' },
+    description: {
+      en: 'Pull the foot of a ladder away from a wall at a steady speed and watch the top slide down, faster and faster, with x dx/dt + y dy/dt = 0 giving its speed at every position.',
+      id: 'Tarik kaki tangga menjauhi dinding dengan kecepatan tetap dan lihat ujung atasnya meluncur turun, makin lama makin cepat, dengan x dx/dt + y dy/dt = 0 yang memberi kecepatannya di setiap posisi.',
+    },
+  },
+  conefill: {
+    title: { en: 'Interactive: water filling a conical tank', id: 'Interaktif: air mengisi tangki kerucut' },
+    description: {
+      en: 'Pour water into a cone at a steady rate and watch the level rise more and more slowly, with dy/dt = 4 (dV/dt) / (π y²) and the tangent line to the depth-against-time curve.',
+      id: 'Tuang air ke kerucut dengan laju tetap dan lihat permukaan naik makin lambat, dengan dy/dt = 4 (dV/dt) / (π y²) dan garis singgung pada kurva kedalaman terhadap waktu.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

@@ -35,7 +35,8 @@
     "check:chain": "node tools/check-chain.mjs",
     "check:implicit": "node tools/check-implicitdiff.mjs",
     "check:inverse": "node tools/check-inverse.mjs",
-    "check:invtrig": "node tools/check-invtrig.mjs"
+    "check:invtrig": "node tools/check-invtrig.mjs",
+    "check:relatedrates": "node tools/check-relatedrates.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

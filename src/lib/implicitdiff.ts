@@ -39,6 +39,8 @@ function linear(n: Node): { a: Node; b: Node | null } {
       case 'pi':
       case 'x':
       case 'y':
+      case 'var':
+      case 'dvar':
         return true
       case 'neg':
       case 'pow':
@@ -123,6 +125,8 @@ function putYp(n: Node, by: Node): Node {
     case 'pi':
     case 'x':
     case 'y':
+    case 'var':
+    case 'dvar':
       return n
     case 'neg':
       return neg(putYp(n.a, by))

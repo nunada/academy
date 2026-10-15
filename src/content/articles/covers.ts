@@ -416,6 +416,22 @@ const inverseTrig = (): string => {
   )
 }
 
+const relatedRates = (): string =>
+  // a ladder leaning on a wall: the foot slides out, the top slides down, and the triangle x, y, L that ties the two
+  line(70, 26, 70, 172, 'sm', 3) +
+  line(70, 172, 370, 172, 'sm', 3) +
+  poly([[70, 52], [70, 172], [236, 172]], 'pb') +
+  line(70, 52, 236, 172, 'sa', 5) +
+  line(236, 172, 312, 172, 'sr', 3.4) +
+  poly([[308, 163], [326, 172], [308, 181]], 'fr') +
+  line(70, 52, 70, 108, 'sr', 3.4) +
+  poly([[61, 104], [70, 122], [79, 104]], 'fr') +
+  dot(70, 52, 'fr', 6) +
+  dot(236, 172, 'fr', 6) +
+  text(153, 194, 'x', 17) +
+  text(50, 118, 'y', 17) +
+  text(176, 104, 'L', 17)
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -446,6 +462,7 @@ const COVERS: Record<string, () => string> = {
   'implicit-differentiation': implicitDifferentiation,
   'derivatives-of-inverse-functions-and-logarithms': inverseLogarithms,
   'inverse-trigonometric-functions': inverseTrig,
+  'related-rates': relatedRates,
 }
 
 /** Ids that have their own drawing, for the checker. */

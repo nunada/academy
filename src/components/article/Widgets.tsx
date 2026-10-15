@@ -30,6 +30,7 @@ import { ChainRates, ChainSteps, SineScale } from './ChainWidgets'
 import { ImplicitSlide, ImplicitSteps } from './ImplicitWidgets'
 import { InverseSlope, LogLimits } from './LogWidgets'
 import { InverseTrigSlope, ReferenceTriangle, ViewingAngle } from './InvTrigWidgets'
+import { ConeFill, Ladder, RatesTool } from './RelatedRatesWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -955,6 +956,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <ViewingAngle />
     case 'invsteps':
       return <ChainSteps inv />
+    case 'ratestool':
+      return <RatesTool />
+    case 'ladder':
+      return <Ladder />
+    case 'conefill':
+      return <ConeFill />
   }
 }
 

@@ -288,6 +288,8 @@ function parseCommand(p: P, cmd: string): string {
       return accent(parseGroup(p), '→')
     case 'hat':
       return accent(parseGroup(p), '^')
+    case 'dot':
+      return accent(parseGroup(p), '˙')
     case 'bar':
     case 'overline':
       return `<mover accent="true">${parseGroup(p)}<mo stretchy="true">‾</mo></mover>`
