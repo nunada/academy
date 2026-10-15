@@ -263,11 +263,14 @@ export const module3: Module = {
           id: 'Deret aritmetika punya suku pertama dan selisih tetap antar suku berurutan. Jumlahkan n suku pertamanya.',
         },
         requirements: [
-          { en: 'Read `a` (first term), `d` (common difference), and `n` (number of terms) — a and d may have a decimal point.', id: 'Baca `a` (suku pertama), `d` (beda), dan `n` (banyak suku) — a dan d bisa desimal.' },
-          { en: 'Term i (starting at 0) is `a + i * d`. Sum terms 0 through n-1.', id: 'Suku ke-i (mulai dari 0) adalah `a + i * d`. Jumlahkan suku 0 sampai n-1.' },
+          { en: 'Read `a` (first term), `d` (common difference), and `n` (number of terms) — a and d may have a decimal point.', id: 'Baca `a` (suku pertama), `b` (beda), dan `n` (banyak suku) — a dan b bisa desimal.' },
+          { en: 'Term i (starting at 0) is `a + i * d`. Sum terms 0 through n-1.', id: 'Suku ke-i (mulai dari 0) adalah `a + i * b`. Jumlahkan suku 0 sampai n-1.' },
           { en: 'Print the total rounded to 2 decimal places.', id: 'Cetak totalnya dibulatkan ke 2 angka desimal.' },
         ],
-        starter: 'a = float(input())\nd = float(input())\nn = int(input())\n',
+        starter: {
+          en: 'a = float(input())\nd = float(input())\nn = int(input())\n',
+          id: 'a = float(input())\nb = float(input())\nn = int(input())\n',
+        },
         tests: [
           { name: { en: '1, 1, 5 terms → 15.0', id: '1, 1, 5 suku → 15.0' }, stdin: ['1', '1', '5'], expectOutput: '15.0' },
           { name: { en: '2, 3, 4 terms → 26.0', id: '2, 3, 4 suku → 26.0' }, stdin: ['2', '3', '4'], expectOutput: '26.0' },
@@ -276,10 +279,12 @@ export const module3: Module = {
         ],
         hints: [
           { en: 'Loop i from 0 to n-1 with range(n).', id: 'Ulangi i dari 0 sampai n-1 dengan range(n).' },
-          { en: 'Accumulate a + i * d each pass.', id: 'Akumulasikan a + i * d tiap putaran.' },
+          { en: 'Accumulate a + i * d each pass.', id: 'Akumulasikan a + i * b tiap putaran.' },
         ],
-        solution:
-          'a = float(input())\nd = float(input())\nn = int(input())\ntotal = 0\nfor i in range(n):\n    total += a + i * d\nprint(round(total, 2))',
+        solution: {
+          en: 'a = float(input())\nd = float(input())\nn = int(input())\ntotal = 0\nfor i in range(n):\n    total += a + i * d\nprint(round(total, 2))',
+          id: 'a = float(input())\nb = float(input())\nn = int(input())\ntotal = 0\nfor i in range(n):\n    total += a + i * b\nprint(round(total, 2))',
+        },
         xp: 50,
       },
     },
