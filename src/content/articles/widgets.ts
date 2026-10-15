@@ -670,6 +670,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Tuang air ke kerucut dengan laju tetap dan lihat permukaan naik makin lambat, dengan dy/dt = 4 (dV/dt) / (π y²) dan garis singgung pada kurva kedalaman terhadap waktu.',
     },
   },
+  linearize: {
+    title: { en: 'Interactive: a function and its linearization', id: 'Interaktif: sebuah fungsi dan linearisasinya' },
+    description: {
+      en: 'Type a function and a center a, or pick one of the textbook examples, and see the tangent-line approximation L(x) = f(a) + f′(a)(x − a) with its formula, its values and the error, which is zero at a and flat there.',
+      id: 'Ketik sebuah fungsi dan pusat a, atau pilih salah satu contoh buku, dan lihat hampiran garis singgung L(x) = f(a) + f′(a)(x − a) dengan rumus, nilai, dan galatnya, yang nol di a dan mendatar di sana.',
+    },
+  },
+  zoomin: {
+    title: { en: 'Interactive: zoom in on a curve until it is a line', id: 'Interaktif: perbesar sebuah kurva sampai menjadi garis' },
+    description: {
+      en: 'Magnify the graph of a differentiable function around a point and watch it flatten into its tangent line, with a table showing the gap between curve and line shrinking a hundredfold for every tenfold magnification.',
+      id: 'Perbesar grafik fungsi terdiferensialkan di sekitar sebuah titik dan lihat ia mendatar menjadi garis singgungnya, dengan tabel yang menunjukkan selisih kurva dan garis mengecil seratus kali untuk setiap pembesaran sepuluh kali.',
+    },
+  },
+  diffgap: {
+    title: { en: 'Interactive: the differential df and the true change Δf', id: 'Interaktif: diferensial df dan perubahan sebenarnya Δf' },
+    description: {
+      en: 'Change x by dx and see the rise of the tangent line, df = f′(a) dx, next to the true change Δf of the function, with the error and the number ε that goes to 0 as dx does.',
+      id: 'Ubah x sebesar dx dan lihat kenaikan garis singgung, df = f′(a) dx, di samping perubahan sebenarnya Δf pada fungsi, dengan galat dan bilangan ε yang menuju 0 saat dx menuju 0.',
+    },
+  },
+  errpercent: {
+    title: { en: 'Interactive: how a measuring error spreads', id: 'Interaktif: bagaimana galat pengukuran menyebar' },
+    description: {
+      en: 'Choose a formula such as the area of a circle, the volume of a cube or the flow in an artery, and see that a p% error in the measured radius or edge becomes about n·p% in the result, exactly and by the estimate.',
+      id: 'Pilih rumus seperti luas lingkaran, volume kubus, atau aliran dalam arteri, dan lihat bahwa galat p% pada jari-jari atau rusuk yang diukur menjadi sekitar n·p% pada hasilnya, secara tepat dan menurut perkiraan.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

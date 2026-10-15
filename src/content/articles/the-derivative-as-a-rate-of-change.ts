@@ -722,5 +722,5 @@ print(round(float(np.std(a[4:-4] - 9.8)), 1))             # 62.7     acceleratio
     { title: 'NumPy reference: numpy.gradient', author: 'NumPy Developers', source: 'numpy.org', url: 'https://numpy.org/doc/stable/reference/generated/numpy.gradient.html' },
   ],
 
-  related: ['derivatives-of-trigonometric-functions', 'differentiation-rules', 'the-derivative-as-a-function', 'related-rates'],
+  related: ['derivatives-of-trigonometric-functions', 'differentiation-rules', 'linearization-and-differentials', 'related-rates'],
 }

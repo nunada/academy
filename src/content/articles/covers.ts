@@ -432,6 +432,25 @@ const relatedRates = (): string =>
   text(50, 118, 'y', 17) +
   text(176, 104, 'L', 17)
 
+const linearization = (): string => {
+  // y = sqrt(x) with its tangent line at x = 4, and the rise dy next to the true change
+  const X = (x: number) => 40 + x * 62
+  const Y = (y: number) => 176 - y * 62
+  const f = Math.sqrt
+  const L = (x: number) => 2 + (x - 4) / 4
+  return (
+    line(20, Y(0), 380, Y(0), 'sm', 2) +
+    line(X(0), 190, X(0), 10, 'sm', 2) +
+    line(X(0.6), Y(L(0.6)), X(5.7), Y(L(5.7)), 'sr', 3, '8 5') +
+    curve(f, 0.05, 5.8, X, Y, 'sa', 3.6, 100) +
+    line(X(4), Y(2), X(5), Y(2), 'sm', 2.4, '5 4') +
+    line(X(5), Y(2), X(5), Y(L(5)), 'sr', 4) +
+    line(X(5), Y(L(5)), X(5), Y(f(5)), 'sm', 4) +
+    dot(X(4), Y(2), 'fr', 6) +
+    dot(X(5), Y(f(5)), 'fr', 5)
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -463,6 +482,7 @@ const COVERS: Record<string, () => string> = {
   'derivatives-of-inverse-functions-and-logarithms': inverseLogarithms,
   'inverse-trigonometric-functions': inverseTrig,
   'related-rates': relatedRates,
+  'linearization-and-differentials': linearization,
 }
 
 /** Ids that have their own drawing, for the checker. */

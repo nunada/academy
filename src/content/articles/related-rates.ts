@@ -713,5 +713,5 @@ print(round((top(dt) - top(0)) / dt, 4), -(3 / 4) * 2)       # -1.5 -1.5`,
     { title: 'Nova methodus pro maximis et minimis, itemque tangentibus', author: 'Gottfried Wilhelm Leibniz', year: 1684, source: 'Acta Eruditorum' },
   ],
 
-  related: ['the-chain-rule', 'implicit-differentiation', 'the-derivative-as-a-rate-of-change', 'triangles'],
+  related: ['the-chain-rule', 'implicit-differentiation', 'the-derivative-as-a-rate-of-change', 'linearization-and-differentials'],
 }

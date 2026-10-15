@@ -137,6 +137,10 @@ jobs:
       # simulation with the quantities moving in time, and values worked out from the equation.
       - run: npm run check:relatedrates
 
+      # Linearization and differentials: the textbook's values, the error against the second-derivative estimate, the best linear
+      # approximation, differentials against real changes, and percentage errors against exact powers.
+      - run: npm run check:linearize
+
       - name: Work out where the site will live
         id: base
         run: |

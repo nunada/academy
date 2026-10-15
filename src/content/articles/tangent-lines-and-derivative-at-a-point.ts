@@ -829,5 +829,5 @@ print(shift([Fraction(4), 0, Fraction(1, 2)], Fraction(6))[1])   # 6, the slope 
     { title: 'The Python Standard Library: fractions (rational numbers)', author: 'Python Software Foundation', source: 'docs.python.org', url: 'https://docs.python.org/3/library/fractions.html' },
   ],
 
-  related: ['circles', 'algebraic-expressions', 'arithmetic-sequences-and-series', 'irrational-numbers'],
+  related: ['circles', 'linearization-and-differentials', 'arithmetic-sequences-and-series', 'irrational-numbers'],
 }

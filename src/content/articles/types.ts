@@ -120,6 +120,10 @@ export type WidgetName =
   | 'ratestool'
   | 'ladder'
   | 'conefill'
+  | 'linearize'
+  | 'zoomin'
+  | 'diffgap'
+  | 'errpercent'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */
