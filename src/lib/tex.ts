@@ -48,7 +48,7 @@ const DOUBLE_STRUCK: Record<string, string> = { N: 'ℕ', Z: 'ℤ', Q: 'ℚ', R:
 
 /** Multi-letter names that must stay upright: `\cos` is a name, not c·o·s. */
 const NAMES = new Set([
-  'sin', 'cos', 'tan', 'sec', 'csc', 'cot', 'arcsin', 'arccos', 'arctan',
+  'sin', 'cos', 'tan', 'sec', 'csc', 'cot', 'arcsin', 'arccos', 'arctan', 'arccot', 'arcsec', 'arccsc',
   'sinh', 'cosh', 'tanh', 'ln', 'log', 'exp', 'lim', 'max', 'min', 'det',
   'dim', 'ker', 'gcd', 'deg', 'proj', 'comp', 'span', 'rank',
 ])

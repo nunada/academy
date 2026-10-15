@@ -23,6 +23,10 @@ export { rat, type Rat }
 export type FnName = 'sin' | 'cos' | 'tan' | 'cot' | 'sec' | 'csc'
 export const FN_NAMES: FnName[] = ['sin', 'cos', 'tan', 'cot', 'sec', 'csc']
 
+export type UName = 'arcsin' | 'arccos' | 'arctan' | 'arccot' | 'arcsec' | 'arccsc' | 'abs'
+export const INV_NAMES: UName[] = ['arcsin', 'arccos', 'arctan', 'arccot', 'arcsec', 'arccsc']
+export const U_NAMES: UName[] = [...INV_NAMES, 'abs']
+
 export type Node =
   | { t: 'num'; v: Rat }
   | { t: 'pi' }
@@ -43,6 +47,8 @@ export type Node =
   | { t: 'fn'; f: FnName; a: Node }
   /** the natural logarithm of a */
   | { t: 'ln'; a: Node }
+  /** an inverse trigonometric function of a, or the absolute value of a */
+  | { t: 'ufn'; f: UName; a: Node }
   /** a to the power b with b not a rational constant: a^x, x^x, x^π (a positive) */
   | { t: 'gpow'; a: Node; b: Node }
 
@@ -68,6 +74,7 @@ export const pw = (a: Node, n: Rat | number | bigint, d = 1): Node => ({ t: 'pow
 export const ex = (a: Node): Node => ({ t: 'exp', a })
 export const fn = (f: FnName, a: Node): Node => ({ t: 'fn', f, a })
 export const ln = (a: Node): Node => ({ t: 'ln', a })
+export const ufn = (f: UName, a: Node): Node => ({ t: 'ufn', f, a })
 export const gp = (a: Node, b: Node): Node => ({ t: 'gpow', a, b })
 
 /** No x inside. */
@@ -85,6 +92,7 @@ export function isConst(n: Node): boolean {
     case 'exp':
     case 'fn':
     case 'ln':
+    case 'ufn':
       return isConst(n.a)
     default:
       return isConst(n.a) && isConst(n.b)
@@ -111,6 +119,8 @@ export function subst(n: Node, inner: Node): Node {
       return fn(n.f, subst(n.a, inner))
     case 'ln':
       return ln(subst(n.a, inner))
+    case 'ufn':
+      return ufn(n.f, subst(n.a, inner))
     default:
       return { t: n.t, a: subst(n.a, inner), b: subst(n.b, inner) } as Node
   }
@@ -130,6 +140,7 @@ export function size(n: Node): number {
     case 'exp':
     case 'fn':
     case 'ln':
+    case 'ufn':
       return 1 + size(n.a)
     default:
       return 1 + size(n.a) + size(n.b)
@@ -142,6 +153,21 @@ const ratValue = (r: Rat): number => Number(r.n) / Number(r.d)
 
 const fnValue = (f: FnName, x: number): number =>
   f === 'sin' ? Math.sin(x) : f === 'cos' ? Math.cos(x) : f === 'tan' ? Math.tan(x) : f === 'cot' ? 1 / Math.tan(x) : f === 'sec' ? 1 / Math.cos(x) : 1 / Math.sin(x)
+
+const ufnValue = (f: UName, x: number): number =>
+  f === 'arcsin'
+    ? Math.asin(x)
+    : f === 'arccos'
+      ? Math.acos(x)
+      : f === 'arctan'
+        ? Math.atan(x)
+        : f === 'arccot'
+          ? Math.PI / 2 - Math.atan(x)
+          : f === 'arcsec'
+            ? Math.acos(1 / x)
+            : f === 'arccsc'
+              ? Math.asin(1 / x)
+              : Math.abs(x)
 
 export function evalFloat(n: Node, x: number, y = NaN, yp = NaN): number {
   const e = (c: Node): number => evalFloat(c, x, y, yp)
@@ -174,6 +200,8 @@ export function evalFloat(n: Node, x: number, y = NaN, yp = NaN): number {
       return fnValue(n.f, e(n.a))
     case 'ln':
       return Math.log(e(n.a))
+    case 'ufn':
+      return ufnValue(n.f, e(n.a))
     case 'gpow':
       return e(n.a) ** e(n.b)
   }
@@ -200,6 +228,7 @@ export function evalExact(n: Node, x: Rat, y?: Rat): Rat | null {
     case 'fn':
     case 'yp':
     case 'ln':
+    case 'ufn':
     case 'gpow':
       return null
     case 'x':
@@ -242,6 +271,7 @@ export function toRational(n: Node): RationalFn | null {
     case 'y':
     case 'yp':
     case 'ln':
+    case 'ufn':
     case 'gpow':
       return null
     case 'neg': {
@@ -355,7 +385,7 @@ function rebuildSum(ts: Term[]): Node {
   return acc as Node
 }
 
-const rank = (b: Node): number => (b.t === 'pi' ? 0 : b.t === 'x' || b.t === 'y' || b.t === 'yp' ? 1 : b.t === 'exp' || b.t === 'gpow' ? 3 : b.t === 'fn' || b.t === 'ln' ? 4 : 2)
+const rank = (b: Node): number => (b.t === 'pi' ? 0 : b.t === 'x' || b.t === 'y' || b.t === 'yp' ? 1 : b.t === 'exp' || b.t === 'gpow' ? 3 : b.t === 'fn' || b.t === 'ln' || b.t === 'ufn' ? 4 : 2)
 
 function facNode(f: Fac): Node {
   if (isOne(f.e)) return f.b
@@ -446,6 +476,11 @@ function normalize(n: Node): Term[] {
       }
       return [{ c: ONE, fs: [{ b: fn(n.f, arg), e: ONE }] }]
     }
+    case 'ufn': {
+      const a = normalize(n.a)
+      if (a.length === 0 && (n.f === 'abs' || n.f === 'arcsin' || n.f === 'arctan')) return []
+      return [{ c: ONE, fs: [{ b: ufn(n.f, rebuildSum(a)), e: ONE }] }]
+    }
     case 'ln': {
       const a = normalize(n.a)
       if (a.length === 1 && a[0].fs.length === 0 && isOne(a[0].c)) return []
@@ -503,7 +538,7 @@ export function simp(n: Node): Node {
 
 /* ------------------------------------------------------------------ differentiating */
 
-export type RuleId = 'constant' | 'power' | 'exponential' | 'trig' | 'multiple' | 'negative' | 'sum' | 'difference' | 'product' | 'quotient' | 'chain' | 'implicit' | 'logarithm' | 'logdiff'
+export type RuleId = 'constant' | 'power' | 'exponential' | 'trig' | 'multiple' | 'negative' | 'sum' | 'difference' | 'product' | 'quotient' | 'chain' | 'implicit' | 'logarithm' | 'logdiff' | 'inverse' | 'absolute'
 
 export interface Step {
   rule: RuleId
@@ -523,6 +558,12 @@ const outerDerivative = (outer: Node): Node => {
   if (t.t === 'pow') return mul(K(t.n), pw(X, ratSub(t.n, ONE)))
   if (t.t === 'exp') return ex(X)
   if (t.t === 'ln') return div(K(1), X)
+  if (t.t === 'ufn') {
+    const root = pw(sub(K(1), pw(X, 2)), -1, 2)
+    const plus = pw(add(K(1), pw(X, 2)), -1)
+    const sec = div(K(1), mul(ufn('abs', X), pw(sub(pw(X, 2), K(1)), 1, 2)))
+    return t.f === 'arcsin' ? root : t.f === 'arccos' ? neg(root) : t.f === 'arctan' ? plus : t.f === 'arccot' ? neg(plus) : t.f === 'arcsec' ? sec : t.f === 'arccsc' ? neg(sec) : div(X, ufn('abs', X))
+  }
   if (t.t === 'fn') {
     const f = t.f
     return f === 'sin'
@@ -607,16 +648,17 @@ export function differentiate(n: Node, steps: Step[] = []): Node {
     case 'pow':
     case 'exp':
     case 'ln':
+    case 'ufn':
     case 'fn': {
       if (isConst(n.a)) {
         record('constant', K(0))
         return K(0)
       }
       const plain = n.a.t === 'x'
-      const outer: Node = n.t === 'pow' ? pw(X, n.n) : n.t === 'exp' ? ex(X) : n.t === 'ln' ? ln(X) : fn(n.f, X)
+      const outer: Node = n.t === 'pow' ? pw(X, n.n) : n.t === 'exp' ? ex(X) : n.t === 'ln' ? ln(X) : n.t === 'ufn' ? ufn(n.f, X) : fn(n.f, X)
       const outerD = outerDerivative(outer)
       if (plain) {
-        record(n.t === 'pow' ? 'power' : n.t === 'exp' ? 'exponential' : n.t === 'ln' ? 'logarithm' : 'trig', outerD)
+        record(n.t === 'pow' ? 'power' : n.t === 'exp' ? 'exponential' : n.t === 'ln' ? 'logarithm' : n.t === 'ufn' ? (n.f === 'abs' ? 'absolute' : 'inverse') : 'trig', outerD)
         return outerD
       }
       const slot = steps.length
@@ -727,7 +769,7 @@ export function toTex(n: Node, v = 'x'): string {
         if (i > 0) {
           const prev = parts[i - 1]
           const startsNumber = p.t === 'num' || (p.t === 'pow' && p.a.t === 'num')
-          const spaced = (prev.t === 'fn' && (prev.a.t === 'x' || prev.a.t === 'y' || prev.a.t === 'pi')) || prev.t === 'pi' || prev.t === 'exp' || (prev.t === 'pow' && prev.a.t === 'fn' && (prev.a.a.t === 'x' || prev.a.a.t === 'pi'))
+          const spaced = (prev.t === 'ufn' && prev.f !== 'abs' && (prev.a.t === 'x' || prev.a.t === 'y' || prev.a.t === 'pi')) || (prev.t === 'fn' && (prev.a.t === 'x' || prev.a.t === 'y' || prev.a.t === 'pi')) || prev.t === 'pi' || prev.t === 'exp' || (prev.t === 'pow' && prev.a.t === 'fn' && (prev.a.a.t === 'x' || prev.a.a.t === 'pi'))
           s += startsNumber ? '\\cdot ' : spaced ? '\\,' : ''
         }
         s += piece
@@ -749,6 +791,8 @@ export function toTex(n: Node, v = 'x'): string {
       return `\\${n.f}${arg(n.a)}`
     case 'ln':
       return isAtom(n.a) ? `\\ln ${tex(n.a)}` : `\\ln${arg(n.a)}`
+    case 'ufn':
+      return n.f === 'abs' ? `\\left|${tex(n.a)}\\right|` : `\\${n.f}${arg(n.a)}`
     case 'gpow': {
       const base = isAtom(n.a) ? tex(n.a) : wrapAll(n.a)
       return `${base}^{${tex(n.b)}}`
@@ -788,6 +832,8 @@ export function toText(n: Node): string {
       return `${n.f}(${toText(n.a)})`
     case 'ln':
       return `ln(${toText(n.a)})`
+    case 'ufn':
+      return `${n.f}(${toText(n.a)})`
     case 'gpow':
       return `(${toText(n.a)}^(${toText(n.b)}))`
   }
@@ -805,8 +851,8 @@ type Tok = { k: 'n'; v: string } | { k: 'id'; v: string } | { k: 'op'; v: string
 
 const NAMES = ['sqrt', 'sin', 'cos', 'tan', 'cot', 'sec', 'csc', 'pi', 'e', 'x']
 
-function tokenize(src: string, withY: boolean, withLog: boolean): Tok[] {
-  const names = [...NAMES, ...(withY ? ['y'] : []), ...(withLog ? ['ln', 'log'] : [])]
+function tokenize(src: string, withY: boolean, withLog: boolean, withInv: boolean): Tok[] {
+  const names = [...NAMES, ...(withY ? ['y'] : []), ...(withLog ? ['ln', 'log'] : []), ...(withInv ? (U_NAMES as string[]) : [])]
   const out: Tok[] = []
   const s = src.replace(/π/g, 'pi').replace(/−/g, '-').replace(/\s+/g, ' ').trim().toLowerCase()
   if (s.length === 0) throw new ParseError('syntax')
@@ -854,6 +900,7 @@ class Parser {
   constructor(
     private toks: Tok[],
     private withLog = false,
+    private withInv = false,
   ) {}
   peek(): Tok | undefined {
     return this.toks[this.i]
@@ -976,7 +1023,7 @@ class Parser {
 
   /** The names of the one-argument functions: ln as well when logarithms are on. */
   fnNames(): string[] {
-    return this.withLog ? [...FN_NAMES, 'ln'] : FN_NAMES
+    return [...FN_NAMES, ...(this.withLog ? ['ln'] : []), ...(this.withInv ? (U_NAMES as string[]) : [])]
   }
 
   /** The exponent after ^ when logarithms are on: any power-level expression, with a sign. */
@@ -1023,7 +1070,7 @@ class Parser {
 
   /** The argument of a function whose name has been read: a bracket, or a bare x or pi (not followed by a power). */
   fnArg(name: string): Node {
-    const make = (a: Node): Node => (name === 'ln' ? ln(a) : fn(name as FnName, a))
+    const make = (a: Node): Node => (name === 'ln' ? ln(a) : (U_NAMES as string[]).includes(name) ? ufn(name as UName, a) : fn(name as FnName, a))
     if (this.isOp('(')) {
       this.eat()
       const a = this.sum()
@@ -1098,8 +1145,8 @@ class Parser {
 }
 
 /** Read an expression such as `sin(2x)`, `(3x^2+1)^2`, `e^(cos x)`, `tan(5 - sin(2x))`, `sqrt(3x+1)`, `sin^5(x)`. */
-export function parseExpression(src: string, opts: { y?: boolean; log?: boolean } = {}): Node {
-  return new Parser(tokenize(src, opts.y === true, opts.log === true), opts.log === true).parse()
+export function parseExpression(src: string, opts: { y?: boolean; log?: boolean; inv?: boolean } = {}): Node {
+  return new Parser(tokenize(src, opts.y === true, opts.log === true, opts.inv === true), opts.log === true, opts.inv === true).parse()
 }
 
 /* ------------------------------------------------------------ oscillations */

@@ -621,6 +621,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Kecilkan h dan lihat (1 + h)^(1/h) menetap di e, ln(1 + h)/h di 1, dan (a^h − 1)/h di ln a, gradien a^x di sumbu-y.',
     },
   },
+  invtrigslope: {
+    title: { en: 'Interactive: an inverse trigonometric function and its slope', id: 'Interaktif: fungsi trigonometri invers dan gradiennya' },
+    description: {
+      en: 'Slide a point along the graph of arcsin, arccos, arctan, arccot, arcsec or arccsc and watch the slope of its tangent line trace out the graph of the derivative, with the domain and range of each.',
+      id: 'Geser sebuah titik sepanjang grafik arcsin, arccos, arctan, arccot, arcsec, atau arccsc dan lihat gradien garis singgungnya menggambar grafik turunan, dengan domain dan jangkauan masing-masing.',
+    },
+  },
+  reftriangle: {
+    title: { en: 'Interactive: the reference triangle of an inverse trigonometric function', id: 'Interaktif: segitiga acuan fungsi trigonometri invers' },
+    description: {
+      en: 'Move x and see the right triangle whose angle is arcsin x, arctan x or arcsec x, its third side from Pythagoras, and the derivative read straight off the triangle.',
+      id: 'Geser x dan lihat segitiga siku-siku yang sudutnya arcsin x, arctan x, atau arcsec x, sisi ketiganya dari Pythagoras, dan turunan yang dibaca langsung dari segitiga itu.',
+    },
+  },
+  viewangle: {
+    title: { en: 'Interactive: the best place to look at a picture', id: 'Interaktif: tempat terbaik untuk memandang sebuah lukisan' },
+    description: {
+      en: 'Choose how high the lower and upper edges of a picture hang above your eye and move away from the wall: the viewing angle is arctan(q/x) − arctan(p/x), and it is largest where its derivative is zero, at the geometric mean of the two heights.',
+      id: 'Pilih setinggi apa tepi bawah dan tepi atas lukisan menggantung di atas matamu dan menjauhlah dari dinding: sudut pandangnya arctan(q/x) − arctan(p/x), dan ia terbesar di tempat turunannya nol, yaitu di rata-rata geometri kedua tinggi.',
+    },
+  },
+  invsteps: {
+    title: { en: 'Interactive: differentiate with inverse trigonometric functions', id: 'Interaktif: menurunkan dengan fungsi trigonometri invers' },
+    description: {
+      en: 'Type a function with arcsin, arccos, arctan, arccot, arcsec, arccsc or abs of other functions, and see each rule applied, with the outside and inside function at every chain step, the derivative checked against a difference quotient.',
+      id: 'Ketik fungsi dengan arcsin, arccos, arctan, arccot, arcsec, arccsc, atau abs dari fungsi lain, lalu lihat tiap aturan yang dipakai, dengan fungsi luar dan dalam pada setiap langkah rantai, turunan yang dicocokkan dengan hasil bagi selisih.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

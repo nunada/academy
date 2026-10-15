@@ -796,5 +796,5 @@ print(round(math.e, 6), round(math.log(2), 6))                                  
     { title: 'e: The Story of a Number', author: 'Eli Maor', year: 1994, source: 'Princeton University Press' },
   ],
 
-  related: ['the-chain-rule', 'implicit-differentiation', 'differentiation-rules', 'derivatives-of-trigonometric-functions'],
+  related: ['the-chain-rule', 'implicit-differentiation', 'inverse-trigonometric-functions', 'derivatives-of-trigonometric-functions'],
 }

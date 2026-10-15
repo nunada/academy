@@ -29,6 +29,7 @@ import { SineLimit, SpringMotion, TrigSlope } from './TrigWidgets'
 import { ChainRates, ChainSteps, SineScale } from './ChainWidgets'
 import { ImplicitSlide, ImplicitSteps } from './ImplicitWidgets'
 import { InverseSlope, LogLimits } from './LogWidgets'
+import { InverseTrigSlope, ReferenceTriangle, ViewingAngle } from './InvTrigWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -946,6 +947,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <ChainSteps log />
     case 'loglimits':
       return <LogLimits />
+    case 'invtrigslope':
+      return <InverseTrigSlope />
+    case 'reftriangle':
+      return <ReferenceTriangle />
+    case 'viewangle':
+      return <ViewingAngle />
+    case 'invsteps':
+      return <ChainSteps inv />
   }
 }
 

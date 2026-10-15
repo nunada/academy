@@ -129,6 +129,10 @@ jobs:
       # definitions, and the limits for e and ln a.
       - run: npm run check:inverse
 
+      # Inverse trigonometric functions: the six against the trigonometric ones and the rule for inverses, the identities, the
+      # reference triangles and the viewing angle against a scan.
+      - run: npm run check:invtrig
+
       - name: Work out where the site will live
         id: base
         run: |

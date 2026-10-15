@@ -107,6 +107,25 @@ const dual = (n, x) => {
       const [v, d] = dual(n.a, x)
       return [Math.log(v), d / v]
     }
+    case 'ufn': {
+      const [v, d] = dual(n.a, x)
+      switch (n.f) {
+        case 'arcsin':
+          return [Math.asin(v), d / Math.sqrt(1 - v * v)]
+        case 'arccos':
+          return [Math.acos(v), -d / Math.sqrt(1 - v * v)]
+        case 'arctan':
+          return [Math.atan(v), d / (1 + v * v)]
+        case 'arccot':
+          return [Math.PI / 2 - Math.atan(v), -d / (1 + v * v)]
+        case 'arcsec':
+          return [Math.acos(1 / v), d / (Math.abs(v) * Math.sqrt(v * v - 1))]
+        case 'arccsc':
+          return [Math.asin(1 / v), -d / (Math.abs(v) * Math.sqrt(v * v - 1))]
+        default:
+          return [Math.abs(v), v === 0 ? NaN : (Math.sign(v) * d)]
+      }
+    }
     case 'gpow': {
       const [av, ad] = dual(n.a, x)
       const [bv, bd] = dual(n.b, x)
@@ -141,6 +160,7 @@ const tame = (n, x) => {
     case 'exp':
     case 'fn':
     case 'ln':
+    case 'ufn':
       return tame(n.a, x)
     default:
       return tame(n.a, x) && tame(n.b, x)
@@ -555,6 +575,119 @@ for (let i = 0; i < 3000; i++) {
 eq(splitChecked > 800, true, 'enough logarithmic differentiations compared')
 
 eq(logSteps > 3000, true, 'enough steps with logarithms were compared')
+
+/* ------------------------------ inverse trigonometric functions and the absolute value (the option inv: true) */
+const PI_ = (src) => D.parseExpression(src, { log: true, inv: true })
+const ival = (src, x) => D.evalFloat(PI_(src), x)
+const ider = (src, x) => D.evalFloat(D.derive(PI_(src)).result, x)
+const itex = (src) => D.toTex(D.derive(PI_(src)).result)
+close(ival('arcsin(x)', 0.5), Math.PI / 6, 'arcsin 1/2 = pi/6')
+close(ival('arccos(x)', -0.5), (2 * Math.PI) / 3, 'arccos(-1/2) = 2 pi/3, in [0, pi]')
+close(ival('arctan(x)', -Math.sqrt(3)), -Math.PI / 3, 'arctan(-sqrt 3) = -pi/3')
+close(ival('arccot(x)', 1), Math.PI / 4, 'arccot 1 = pi/4')
+close(ival('arccot(x)', -1), (3 * Math.PI) / 4, 'arccot(-1) = 3 pi/4, in (0, pi)')
+close(ival('arcsec(x)', -2), (2 * Math.PI) / 3, 'arcsec(-2) = 2 pi/3: second quadrant, as arccos(1/x)')
+close(ival('arccsc(x)', -2), -Math.PI / 6, 'arccsc(-2) = -pi/6')
+close(ival('abs(x)', -3), 3, '|x|')
+close(ival('arcsin x', 0.5), Math.PI / 6, 'arcsin x with a bare x')
+close(ider('arcsin(x)', 0.4), 1 / Math.sqrt(1 - 0.16), "d arcsin x = 1/sqrt(1 - x^2)")
+close(ider('arccos(x)', 0.4), -1 / Math.sqrt(1 - 0.16), "d arccos x is the negative")
+close(ider('arctan(x)', 1.3), 1 / (1 + 1.69), "d arctan x = 1/(1 + x^2)")
+close(ider('arccot(x)', 1.3), -1 / (1 + 1.69), "d arccot x is the negative")
+close(ider('arcsec(x)', 2.5), 1 / (2.5 * Math.sqrt(5.25)), 'd arcsec x for x > 1')
+close(ider('arcsec(x)', -2.5), 1 / (2.5 * Math.sqrt(5.25)), 'd arcsec x for x < -1 is also positive: the absolute value')
+close(ider('arccsc(x)', 2.5), -1 / (2.5 * Math.sqrt(5.25)), 'd arccsc x')
+close(ider('arccsc(x)', -2.5), -1 / (2.5 * Math.sqrt(5.25)), 'd arccsc x for x < -1')
+close(ider('arcsin(x^2)', 0.6), (2 * 0.6) / Math.sqrt(1 - 0.6 ** 4), 'Example 2: d arcsin(x^2)')
+close(ider('1/arctan(x)', 1.3), -1 / ((1 + 1.69) * Math.atan(1.3) ** 2), 'Example 3: the reciprocal of arctan is not its inverse')
+close(ider('arcsec(5x^4)', 0.9), 4 / (0.9 * Math.sqrt(25 * 0.9 ** 8 - 1)), 'Example 4: d arcsec(5x^4) = 4/(x sqrt(25x^8 - 1))')
+close(ider('arcsec(5x^4)', -0.9), 4 / (-0.9 * Math.sqrt(25 * 0.9 ** 8 - 1)), 'and for x < 0 the sign of x stays')
+close(ider('arctan(1/x)', 1.4), -1 / (1 + 1.4 * 1.4), 'd arctan(1/x) = -1/(1 + x^2) for x > 0')
+close(ider('x arcsin(x)+sqrt(1-x^2)', 0.3), Math.asin(0.3), 'd (x arcsin x + sqrt(1 - x^2)) = arcsin x')
+close(ider('arctan(3/x)-arctan(1/x)', 2), -3 / (4 + 9) + 1 / (4 + 1), 'the viewing angle: d/dx (arctan(3/x) - arctan(1/x))')
+close(ider('abs(x)', -2), -1, 'd |x| = -1 for x < 0')
+close(ider('abs(x)', 2), 1, 'd |x| = 1 for x > 0')
+eq(itex('arcsin(x)'), '\\frac{1}{\\sqrt{1-x^{2}}}', 'TeX of d arcsin x')
+eq(itex('arccos(x)'), '-\\frac{1}{\\sqrt{1-x^{2}}}', 'TeX of d arccos x')
+eq(itex('arctan(x)'), '\\frac{1}{1+x^{2}}', 'TeX of d arctan x')
+eq(itex('arccot(x)'), '-\\frac{1}{1+x^{2}}', 'TeX of d arccot x')
+eq(itex('arcsin(x^2)'), '\\frac{2x}{\\sqrt{1-x^{4}}}', 'TeX of Example 2')
+// without the option the names are unknown
+for (const src of ['arcsin(x)', 'arctan(x)', 'abs(x)']) {
+  let got = ''
+  try {
+    P(src)
+  } catch (e) {
+    got = e.code
+  }
+  eq(got, 'function', `without the inv option "${src}" is unknown`)
+}
+for (const src of ['arcsin', 'arcsin(', 'arctan 2x', 'arcsec xy']) {
+  let threw = false
+  try {
+    PI_(src)
+  } catch {
+    threw = true
+  }
+  eq(threw, true, `"${src}" is refused with inverse trigonometry on`)
+}
+// random expressions: each argument is kept inside the domain of its function
+const genInv = (depth) => {
+  if (depth <= 0 || Math.random() < 0.2) {
+    const c = Math.random()
+    return c < 0.2 ? D.K(rnd(1, 4), rnd(1, 2)) : D.X
+  }
+  const op = pick(['add', 'sub', 'mul', 'div', 'ufn', 'ufn', 'ufn', 'fn', 'ln', 'pow', 'exp'])
+  if (op === 'ufn') {
+    const f = pick(['arcsin', 'arccos', 'arctan', 'arccot', 'arcsec', 'arccsc', 'abs'])
+    const a = genInv(depth - 1)
+    // arcsin and arccos: a/(1 + a^2) lies in [-1/2, 1/2]; arcsec and arccsc: 3/2 + a^2 is at least 3/2
+    const arg = f === 'arcsin' || f === 'arccos' ? D.div(a, D.add(D.K(1), D.mul(a, a))) : f === 'arcsec' || f === 'arccsc' ? D.add(D.K(3, 2), D.mul(a, a)) : a
+    return D.ufn(f, arg)
+  }
+  if (op === 'fn') return D.fn(pick(D.FN_NAMES), genInv(depth - 1))
+  if (op === 'ln') return D.ln(D.add(D.K(1), D.mul(genInv(depth - 1), genInv(depth - 1))))
+  if (op === 'exp') return D.ex(D.div(genInv(depth - 1), D.K(3)))
+  if (op === 'pow') return D.pw(genInv(depth - 1), R(rnd(-2, 3), 1))
+  return D[op](genInv(depth - 1), genInv(depth - 1))
+}
+let invChecked = 0
+let invSteps = 0
+for (let i = 0; i < 6000; i++) {
+  const f = genInv(3)
+  const x = 0.4 + Math.random() * 2.2
+  const fx = F(f)(x)
+  if (!Number.isFinite(fx) || Math.abs(fx) > 1e4 || !tame(f, x)) continue
+  const { result, steps } = D.derive(f)
+  const dv = D.evalFloat(result, x)
+  const [dualV, dualD] = dual(f, x)
+  const cd = central(F(f), x)
+  if (!Number.isFinite(dv) || !Number.isFinite(cd) || !Number.isFinite(dualD) || Math.abs(cd) > 1e4) continue
+  invChecked++
+  close(dualV, fx, `dual value of ${D.toText(f)}`, 1e-9)
+  close(dv, dualD, `derivative of ${D.toText(f)} at ${x} against dual numbers`, 1e-7)
+  close(dv, cd, `derivative of ${D.toText(f)} at ${x} against central differences`, 3e-4)
+  for (const s of steps) {
+    const sd = D.evalFloat(s.result, x)
+    const sc = central(F(s.expr), x)
+    if (!Number.isFinite(sd) || !Number.isFinite(sc) || Math.abs(sc) > 1e4) continue
+    invSteps++
+    close(sd, sc, `step ${s.rule} on ${D.toText(s.expr)} at ${x}`, 3e-4)
+  }
+  close(F(D.simp(f))(x), fx, `simplify ${D.toText(f)}`, 1e-9)
+  eq(D.toText(D.simp(D.simp(f))), D.toText(D.simp(f)), `simplifying twice: ${D.toText(f)}`)
+  let again
+  try {
+    again = PI_(D.toText(f))
+  } catch (e) {
+    if (e.code === 'big') continue
+    fail(`could not read back ${D.toText(f)}: ${e.code ?? e.message}`)
+    continue
+  }
+  close(F(again)(x), fx, `parse(toText) of ${D.toText(f)}`, 1e-9)
+}
+eq(invChecked > 1200, true, 'enough expressions with inverse trigonometric functions were compared')
+eq(invSteps > 2500, true, 'enough steps with inverse trigonometric functions were compared')
 
 if (bad) {
   console.log(`\n${bad} disagreement(s)`)

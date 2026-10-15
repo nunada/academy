@@ -398,6 +398,24 @@ const inverseLogarithms = (): string => {
   )
 }
 
+const inverseTrig = (): string => {
+  // y = arctan x with its two horizontal asymptotes, and the right triangle that defines it
+  const X = (x: number) => 150 + x * 26
+  const Y = (y: number) => 100 - y * 46
+  return (
+    line(20, Y(0), 380, Y(0), 'sm', 2) +
+    line(X(0), 190, X(0), 10, 'sm', 2) +
+    line(20, Y(Math.PI / 2), 380, Y(Math.PI / 2), 'sm', 1.6, '6 5') +
+    line(20, Y(-Math.PI / 2), 380, Y(-Math.PI / 2), 'sm', 1.6, '6 5') +
+    curve(Math.atan, -5.6, 5.6, X, Y, 'sa', 3.6, 100) +
+    poly([[274, 150], [374, 150], [374, 92]], 'pb') +
+    path('M300,150 A26,26 0 0 0 297,139', 'sr', 3) +
+    text(311, 143, 'θ', 17) +
+    dot(X(1), Y(Math.PI / 4), 'fr', 5.5) +
+    text(86, Y(Math.PI / 2) - 8, 'π/2', 16, 'tm')
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -427,6 +445,7 @@ const COVERS: Record<string, () => string> = {
   'the-chain-rule': chainRule,
   'implicit-differentiation': implicitDifferentiation,
   'derivatives-of-inverse-functions-and-logarithms': inverseLogarithms,
+  'inverse-trigonometric-functions': inverseTrig,
 }
 
 /** Ids that have their own drawing, for the checker. */

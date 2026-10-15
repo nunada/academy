@@ -30,6 +30,8 @@ const RULE: Record<RuleId, { en: string; id: string }> = {
   implicit: { en: 'y is a function of x', id: 'y adalah fungsi dari x' },
   logarithm: { en: 'The derivative of ln x', id: 'Turunan ln x' },
   logdiff: { en: 'Logarithmic differentiation', id: 'Diferensiasi logaritmik' },
+  inverse: { en: 'Derivative of an inverse trigonometric function', id: 'Turunan fungsi trigonometri invers' },
+  absolute: { en: 'Derivative of the absolute value', id: 'Turunan nilai mutlak' },
 }
 
 const ERR: Record<ParseError['code'], { en: string; id: string }> = {
@@ -48,21 +50,29 @@ const ERR_LOG: Partial<Record<ParseError['code'], { en: string; id: string }>> =
   function: { en: 'Only sin, cos, tan, cot, sec, csc, sqrt, ln, log (base 10) and e^ are known here. Other bases are written with a power, such as 2^x, and inverse trigonometric functions come later.', id: 'Di sini hanya sin, cos, tan, cot, sec, csc, sqrt, ln, log (basis 10), dan e^ yang dikenal. Basis lain ditulis dengan pangkat, seperti 2^x, dan fungsi trigonometri invers dibahas kemudian.' },
 }
 
+const ERR_INV: Partial<Record<ParseError['code'], { en: string; id: string }>> = {
+  syntax: { en: 'I could not read that. Use x, numbers, + - * /, brackets, powers, sqrt(…), sin(…), ln(…), abs(…), arcsin(…), arccos(…), arctan(…), arccot(…), arcsec(…), arccsc(…), pi and e^(…), for example arctan(2x).', id: 'Saya tidak dapat membacanya. Pakai x, bilangan, + - * /, kurung, pangkat, sqrt(…), sin(…), ln(…), abs(…), arcsin(…), arccos(…), arctan(…), arccot(…), arcsec(…), arccsc(…), pi, dan e^(…), misalnya arctan(2x).' },
+  paren: { en: 'Write the argument of every function in brackets, for example arcsin(2x), arctan(1/x) or abs(x). (A bare x is fine: arctan x.)', id: 'Tulis argumen setiap fungsi dalam kurung, misalnya arcsin(2x), arctan(1/x), atau abs(x). (x polos boleh: arctan x.)' },
+  function: { en: 'Only the functions of the earlier articles, abs and the six inverse trigonometric functions arcsin, arccos, arctan, arccot, arcsec and arccsc are known here.', id: 'Di sini hanya fungsi artikel-artikel terdahulu, abs, dan keenam fungsi trigonometri invers arcsin, arccos, arctan, arccot, arcsec, dan arccsc yang dikenal.' },
+}
+
+const PRESETS_INV = ['arcsin(x)', 'arctan(x)', 'arcsec(x)', 'arcsin(x^2)', 'arctan(2x)', 'arcsec(5x^4)', '1/arctan(x)', 'arctan(1/x)', 'x arcsin(x)+sqrt(1-x^2)', 'arctan(3/x)-arctan(1/x)', 'abs(x)']
+
 const PRESETS_LOG = ['ln(x^2+3)', 'ln(sin(x))', 'x ln(x)', '2^x', '3^(sin x)', 'x^x', 'x^(sin x)', 'log(x)', 'x^2 (x+1)^3/(x-2)', 'x^pi']
 
 const PRESETS = ['sin(2x)', '(3x^2+1)^2', 'cos(x^2+1)', 'sin(x^2+e^x)', 'e^(cos x)', 'tan(5 - sin(2x))', 'sqrt(3x+1)', '1/(3x-2)', 'sin^5(x)', 'x sin(2x)']
 
-export function ChainSteps({ log = false }: { log?: boolean }) {
+export function ChainSteps({ log = false, inv = false }: { log?: boolean; inv?: boolean }) {
   const { tc, lang } = useI18n()
   const sep = useSep()
-  const [src, setSrc] = useState(log ? 'x^x' : 'sin(3x^2+1)')
+  const [src, setSrc] = useState(inv ? 'arcsin(x^2)' : log ? 'x^x' : 'sin(3x^2+1)')
   const [order, setOrder] = useState(1)
   const [xs, setXs] = useState('1')
 
   let f: Node | null = null
   let err: ParseError['code'] | null = null
   try {
-    f = parseExpression(src, { log })
+    f = parseExpression(src, { log: log || inv, inv })
     if (size(f) > 70) throw new ParseError('big')
   } catch (e) {
     f = null
@@ -72,7 +82,7 @@ export function ChainSteps({ log = false }: { log?: boolean }) {
 
   let body
   if (!f) {
-    body = <p className="noline">{((log && ERR_LOG[err ?? 'syntax']) || ERR[err ?? 'syntax'])[lang]}</p>
+    body = <p className="noline">{((inv && ERR_INV[err ?? 'syntax']) || (log && ERR_LOG[err ?? 'syntax']) || ERR[err ?? 'syntax'])[lang]}</p>
   } else {
     const F = f
     const { steps } = derive(F)
@@ -147,7 +157,7 @@ export function ChainSteps({ log = false }: { log?: boolean }) {
   }
 
   return (
-    <Frame name={log ? 'logsteps' : 'chainsteps'}>
+    <Frame name={inv ? 'invsteps' : log ? 'logsteps' : 'chainsteps'}>
       <div className="inrow">
         <label className="lbl">
           f(x) = <input style={{ width: '15em', maxWidth: '100%' }} value={src} aria-label="f(x)" onChange={(e) => setSrc(e.target.value)} />
@@ -157,7 +167,7 @@ export function ChainSteps({ log = false }: { log?: boolean }) {
         </label>
       </div>
       <div className="chips">
-        {(log ? PRESETS_LOG : PRESETS).map((p) => (
+        {(inv ? PRESETS_INV : log ? PRESETS_LOG : PRESETS).map((p) => (
           <button key={p} className="chip ghost" onClick={() => setSrc(p)}>
             {p}
           </button>
