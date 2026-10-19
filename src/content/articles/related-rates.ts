@@ -344,6 +344,46 @@ top = lambda time: math.sqrt(L**2 - foot(time) ** 2)
 dt = 1e-6
 print(round((top(dt) - top(0)) / dt, 4), -(3 / 4) * 2)       # -1.5 -1.5`,
         },
+        {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+const double PI = acos(-1.0);
+
+// The related rates answers by really moving the quantities in time and timing the unknown.
+// Example 1: water fills a cone, V = pi y^3 / 12, dV/dt = 0.25, at y = 1.8
+double yCone(double t) {
+  double v = PI * 1.8 * 1.8 * 1.8 / 12 + 0.25 * t;     // the volume at time t
+  return pow(12 * v / PI, 1.0 / 3);                    // the depth that holds it
+}
+// Example 2: y = 150 tan(theta), theta = pi/4 + 0.14 t
+double yBalloon(double t) { return 150 * tan(PI / 4 + 0.14 * t); }
+// Example 5: x = 10 cot(theta), theta = pi/6 + (20 pi / 3) t   (t in hours)
+double xJet(double t) { return 10 / tan(PI / 6 + 20 * PI / 3 * t); }
+// the ladder: L = 5, the foot at 3 m moving at 2 m/s
+double top(double t) { return sqrt(25 - (3 + 2 * t) * (3 + 2 * t)); }
+
+int main() {
+  double h = 1e-6;
+  printf("%.4f\\n", (yCone(h) - yCone(-h)) / (2 * h));          // 0.0982  (25 / (81 pi))
+  printf("%.4f\\n", (yBalloon(h) - yBalloon(-h)) / (2 * h));    // 42
+  printf("%.2f\\n", (xJet(h / 1000) - xJet(-h / 1000)) / (2 * h / 1000));   // -837.76  (-800 pi / 3)
+  printf("%.4f %.4f\\n", (top(h) - top(-h)) / (2 * h), -(3.0 / 4) * 2);     // -1.5 -1.5
+  return 0;
+}
+
+/* output:
+0.0982
+42.0000
+-837.76
+-1.5000 -1.5000
+*/`,
+        },
       ],
     },
 

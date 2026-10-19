@@ -37,7 +37,8 @@
     "check:inverse": "node tools/check-inverse.mjs",
     "check:invtrig": "node tools/check-invtrig.mjs",
     "check:relatedrates": "node tools/check-relatedrates.mjs",
-    "check:linearize": "node tools/check-linearize.mjs"
+    "check:linearize": "node tools/check-linearize.mjs",
+    "check:articlecpp": "node tools/check-article-cpp.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

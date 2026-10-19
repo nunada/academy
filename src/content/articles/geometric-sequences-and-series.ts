@@ -526,6 +526,48 @@ terms(3, 2, 10).reduce((s, x) => s + x, 0)  // 3069
 2n ** 64n - 1n                              // 18446744073709551615n (BigInt is exact)`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+int main() {
+  int a1 = 3, r = 2, n = 10;
+  int term = a1, sum = 0, rn = 1;
+  for (int i = 0; i < n; i++) {
+    if (i < 5) cout << term << " ";                    // the first five terms
+    sum += term;
+    term *= r;
+    rn *= r;
+  }
+  cout << endl;
+  cout << a1 * (rn / r) << endl;                       // the n-th term: a1 r^(n-1)
+  cout << sum << " " << a1 * (rn - 1) / (r - 1) << endl;   // the sum of n terms, by loop and by formula
+
+  int num = 0;
+  for (int i = 0; i < 10; i++) num += 1 << (9 - i);    // (1/2)^0 + ... + (1/2)^9 over the denominator 512
+  cout << num << "/512" << endl;
+
+  printf("%.0f\\n", pow(2, 64) - 1);                    // 18446744073709551616: a double cannot hold 2^64 - 1
+  printf("%.4f\\n", 1000 * pow(1.05, 10));              // compound interest
+  cout << (pow(2.0, 1024) > 1.7976931348623157e308) << endl;   // 1: beyond the largest double (inf)
+  return 0;
+}
+
+/* output:
+3 6 12 24 48
+1536
+3069 3069
+1023/512
+18446744073709551616
+1628.8946
+1
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

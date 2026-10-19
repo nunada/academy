@@ -442,6 +442,65 @@ for step in range(4):
 # 3 1.4142135623746899
 # 4 1.4142135623730951`,
         },
+        {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+const double PI = acos(-1.0);
+
+int main() {
+  // how good is sqrt(1 + x) = 1 + x/2 ?   (x, approximation, true value, error)
+  double xs[3] = {0.005, 0.05, 0.2};
+  for (int i = 0; i < 3; i++) {
+    double x = xs[i], approx = 1 + x / 2, truth = sqrt(1 + x);
+    printf("%.3f  %.4f  %.6f  %.1e\\n", x, approx, truth, fabs(approx - truth));
+  }
+
+  // differentials: the radius of a circle grows from 10 m to 10.1 m
+  double dA = 2 * PI * 10 * 0.1;
+  double trueChange = PI * 10.1 * 10.1 - PI * 10 * 10;
+  printf("%.4f %.4f %.4f %.4f\\n", dA, trueChange, trueChange - dA, PI * 0.01);
+
+  // estimates: the cube root of 7.97, and sin(pi/6 + 0.01)
+  printf("%.4f %.6f\\n", 2 + (-0.03) / 12, pow(7.97, 1.0 / 3));
+  printf("%.4f %.6f\\n", 0.5 + sqrt(3.0) / 2 * 0.01, sin(PI / 6 + 0.01));
+
+  // a measuring error spreads: y = x^n, p% in x gives about n p% in y   (n, p, estimate, exact)
+  int ns[3] = {2, 3, 4};
+  double ps[3] = {2, 0.5, 10};
+  for (int i = 0; i < 3; i++)
+    printf("%d %.1f %.1f %.4f\\n", ns[i], ps[i], ns[i] * ps[i], (pow(1 + ps[i] / 100, ns[i]) - 1) * 100);
+
+  // Newton's method is the zero of the linearization, again and again (f(x) = x^2 - 2)
+  double a = 1.5;
+  for (int step = 1; step <= 4; step++) {
+    a = a - (a * a - 2) / (2 * a);
+    printf("%d %.13f\\n", step, a);
+  }
+  return 0;
+}
+
+/* output:
+0.005  1.0025  1.002497  3.1e-06
+0.050  1.0250  1.024695  3.0e-04
+0.200  1.1000  1.095445  4.6e-03
+6.2832 6.3146 0.0314 0.0314
+1.9975 1.997497
+0.5087 0.508635
+2 2.0 4.0 4.0400
+3 0.5 1.5 1.5075
+4 10.0 40.0 46.4100
+1 1.4166666666667
+2 1.4142156862745
+3 1.4142135623747
+4 1.4142135623731
+*/`,
+        },
       ],
     },
 

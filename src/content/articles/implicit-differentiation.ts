@@ -353,6 +353,41 @@ print(round(solve_y(2, 4), 6))                                        # 4.0  (th
 slope = lambda x, y: (3 * y - x**2) / (y**2 - 3 * x)
 print(round(slope(2, 4), 6))                                          # 0.8  (the formula of Example 4)`,
         },
+        {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+using namespace std;
+
+// Newton's method on F(x, y) = x^3 + y^3 - 9xy = 0, for y, starting from a guess
+double solveY(double x, double y) {
+  for (int i = 0; i < 50; i++) {
+    double f = x * x * x + y * y * y - 9 * x * y;
+    double d = 3 * y * y - 9 * x;                      // the derivative of F with respect to y
+    y -= f / d;
+  }
+  return y;
+}
+
+// the implicit derivative: dy/dx = (3y - x^2) / (y^2 - 3x)
+double slope(double x, double y) { return (3 * y - x * x) / (y * y - 3 * x); }
+
+int main() {
+  double h = 1e-6;
+  printf("%.6f\\n", (solveY(2 + h, 4) - solveY(2 - h, 4)) / (2 * h));   // a difference quotient of the solutions
+  printf("%.6f\\n", solveY(2, 4));                                       // the point (2, 4) is on the curve
+  printf("%.6f\\n", slope(2, 4));                                        // the formula of Example 4
+  return 0;
+}
+
+/* output:
+0.800000
+4.000000
+0.800000
+*/`,
+        },
       ],
     },
 

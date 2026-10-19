@@ -334,6 +334,57 @@ print(round(float(np.std(s - 4.9*t**2)), 4))              # 0.0102   position er
 print(round(float(np.std(v[2:-2] - 9.8*t[2:-2])), 3))     # 0.716    velocity error, in m/s
 print(round(float(np.std(a[4:-4] - 9.8)), 1))             # 62.7     acceleration error, in m/s^2`,
         },
+        {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main() {
+  double t[7], s[7], v[7], a[7];                       // a reading every half second
+  for (int i = 0; i < 7; i++) { t[i] = 0.5 * i; s[i] = 4.9 * t[i] * t[i]; }   // distance fallen, in meters
+  v[0] = (s[1] - s[0]) / 0.5;                          // velocity: one-sided at the ends, central inside
+  v[6] = (s[6] - s[5]) / 0.5;
+  for (int i = 1; i < 6; i++) v[i] = (s[i + 1] - s[i - 1]) / 1.0;
+  a[0] = (v[1] - v[0]) / 0.5;                          // acceleration: the same, applied to the velocity
+  a[6] = (v[6] - v[5]) / 0.5;
+  for (int i = 1; i < 6; i++) a[i] = (v[i + 1] - v[i - 1]) / 1.0;
+  for (int i = 0; i < 7; i++) printf("%6.2f", v[i]);   // 2.45 4.9 9.8 14.7 19.6 24.5 26.95
+  cout << endl;
+  for (int i = 0; i < 7; i++) printf("%6.2f", 9.8 * t[i]);   // the exact velocities
+  cout << endl;
+  for (int i = 0; i < 7; i++) printf("%6.2f", a[i]);   // the exact acceleration is 9.8
+  cout << endl;
+
+  cout << (11 * 11 * 11 - 6 * 11 * 11 + 15 * 11) - (10 * 10 * 10 - 6 * 10 * 10 + 15 * 10) << " "
+       << 3 * 10 * 10 - 12 * 10 + 15 << endl;          // 220 195: the next unit against the marginal cost
+
+  // noise grows with every derivative: readings every 0.01 s, each off by 0, +0.01 or -0.01 m
+  double noise[3] = {0.01, -0.01, 0};
+  double e[40], ve[40], ae[40], h = 0.01;
+  for (int i = 0; i < 40; i++) e[i] = noise[i % 3];
+  for (int i = 1; i < 39; i++) ve[i] = (e[i + 1] - e[i - 1]) / (2 * h);
+  double maxS = 0, maxV = 0, maxA = 0;
+  for (int i = 0; i < 40; i++) if (e[i] > maxS) maxS = e[i];
+  for (int i = 2; i < 38; i++) {
+    ae[i] = (ve[i + 1] - ve[i - 1]) / (2 * h);
+    if (ve[i] > maxV) maxV = ve[i];
+    if (ae[i] > maxA) maxA = ae[i];
+  }
+  printf("%.2f %.1f %.1f\\n", maxS, maxV, maxA);          // the error in m, in m/s and in m/s^2
+  return 0;
+}
+
+/* output:
+  2.45  4.90  9.80 14.70 19.60 24.50 26.95
+  0.00  4.90  9.80 14.70 19.60 24.50 29.40
+  4.90  7.35  9.80  9.80  9.80  7.35  4.90
+220 195
+0.01 1.0 75.0
+*/`,
+        },
       ],
     },
 

@@ -141,6 +141,9 @@ jobs:
       # approximation, differentials against real changes, and percentage errors against exact powers.
       - run: npm run check:linearize
 
+      # The C++ program in each article: it runs in the interpreter of the C++ course and prints exactly the output shown.
+      - run: npm run check:articlecpp
+
       - name: Work out where the site will live
         id: base
         run: |

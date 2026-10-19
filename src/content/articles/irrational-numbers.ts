@@ -584,6 +584,42 @@ Math.sqrt(2) * Math.sqrt(8)   // 4.000000000000001, although the exact value is 
 Math.abs(Math.sqrt(2) ** 2 - 2) < 1e-12   // true: compare with a tolerance`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+const double PI = acos(-1.0);
+
+int main() {
+  printf("%.15f\\n", PI);                                  // 3.141592653589793
+  printf("%.16f\\n", sqrt(2) * sqrt(2));                   // rounding, not a bug
+  printf("%.15f\\n", sqrt(2) * sqrt(8));                   // 4.000000000000001, although the exact value is 4
+  printf("%d\\n", fabs(sqrt(2) * sqrt(2) - 2) < 1e-12);    // compare with a tolerance
+
+  int bestP = 0, bestQ = 1;                               // the best fraction p/q for pi with q <= 1000
+  for (int q = 1; q <= 1000; q++) {
+    int p = (int)floor(PI * q + 0.5);
+    if (fabs(PI - (double)p / q) < fabs(PI - (double)bestP / bestQ)) { bestP = p; bestQ = q; }
+  }
+  cout << bestP << "/" << bestQ << endl;                  // 355/113
+  printf("%.10f %.10f\\n", 22.0 / 7 - PI, (double)bestP / bestQ - PI);   // the errors of 22/7 and 355/113
+  return 0;
+}
+
+/* output:
+3.141592653589793
+2.0000000000000004
+4.000000000000001
+1
+355/113
+0.0012644893 0.0000002668
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

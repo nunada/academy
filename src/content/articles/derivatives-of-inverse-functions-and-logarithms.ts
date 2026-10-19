@@ -410,6 +410,51 @@ for h in (0.1, 0.01, 0.001, 0.0001, 0.000001):
 # 1e-06    2.71828   0.999999  0.693147
 print(round(math.e, 6), round(math.log(2), 6))                                   # 2.718282 0.693147`,
         },
+        {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+double f(double t) { return t * t * t - 2; }
+
+// f is increasing on [lo, hi]: find f^-1(b) by bisection
+double inverse(double b, double lo, double hi) {
+  for (int i = 0; i < 200; i++) {
+    double mid = (lo + hi) / 2;
+    if (f(mid) < b) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+int main() {
+  double h = 1e-6, a = inverse(6, 0, 3);
+  printf("%.6f %.6f\\n", a, 1 / (3 * a * a));                      // f^-1(6) = 2 and 1 / f'(2)
+  printf("%.6f\\n", (inverse(6 + h, 0, 3) - inverse(6 - h, 0, 3)) / (2 * h));   // the slope of the inverse
+
+  double hs[5] = {0.1, 0.01, 0.001, 0.0001, 0.000001};
+  for (int i = 0; i < 5; i++) {
+    double x = hs[i];
+    printf("%.6f  %.6f  %.6f  %.6f\\n", x, pow(1 + x, 1 / x), log(1 + x) / x, (pow(2, x) - 1) / x);
+  }
+  printf("%.6f %.6f\\n", exp(1.0), log(2.0));                      // e and ln 2
+  return 0;
+}
+
+/* output:
+2.000000 0.083333
+0.083333
+0.100000  2.593742  0.953102  0.717735
+0.010000  2.704814  0.995033  0.695555
+0.001000  2.716924  0.999500  0.693387
+0.000100  2.718146  0.999950  0.693171
+0.000001  2.718280  0.999999  0.693147
+2.718282 0.693147
+*/`,
+        },
       ],
     },
 

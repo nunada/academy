@@ -674,6 +674,30 @@ Math.abs(0.1 + 0.2 - 0.3) < Number.EPSILON // true
 2 ** 53 + 1 === 2 ** 53                    // true: integers lose exactness beyond 2^53`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+int main() {
+  printf("%.17f\\n", 0.1 + 0.2);                            // 0.30000000000000004
+  cout << (0.1 + 0.2 == 0.3) << endl;                      // 0
+  printf("%.16f\\n", sqrt(2) * sqrt(2));                    // 2.0000000000000004
+  cout << (fabs(0.1 + 0.2 - 0.3) < 1e-9) << endl;          // 1: compare with a tolerance
+  return 0;
+}
+
+/* output:
+0.30000000000000004
+0
+2.0000000000000004
+1
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`This is not a bug in Python or JavaScript, and it is not rare. It is the behavior of binary floating point everywhere, in every language that uses it. A useful fact follows from it: every number a computer can store as a float is a **rational** number (a fraction whose denominator is a power of 2). A computer never holds $\sqrt{2}$ or $\pi$ — only a nearby rational number.

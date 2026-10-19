@@ -373,6 +373,44 @@ best = max((k / 1000 for k in range(1, 20001)), key=angle)           # a scan, n
 print(best, round(math.degrees(angle(best)), 4))                     # 1.732 30.0
 print(round(math.sqrt(1 * 3), 4), round(math.degrees(math.atan((3 - 1) / (2 * math.sqrt(1 * 3)))), 4))   # 1.7321 30.0`,
         },
+        {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+const double PI = acos(-1.0);
+
+double angle(double t, double p, double q) {           // the viewing angle of a picture from p to q above the eye
+  return atan(q / t) - atan(p / t);
+}
+
+int main() {
+  printf("%.6f %.6f %.6f\\n", asin(sin(PI)), asin(sin(2.0)), PI - 2);        // 0 1.141593 1.141593
+  printf("%.6f %.6f\\n", cos(asin(0.6)), tan(asin(0.6)));                    // 0.8 0.75
+  printf("%.6f %.6f\\n", atan(1.0) * 180 / PI, acos(-0.5) * 180 / PI);      // 45 120
+
+  double best = 1, top = 0;                            // a scan, no derivative
+  for (int k = 1; k <= 20000; k++) {
+    double t = k / 1000.0;
+    if (angle(t, 1, 3) > top) { top = angle(t, 1, 3); best = t; }
+  }
+  printf("%.3f %.4f\\n", best, top * 180 / PI);                              // 1.732 30
+  printf("%.4f %.4f\\n", sqrt(1.0 * 3), atan((3 - 1) / (2 * sqrt(1.0 * 3))) * 180 / PI);   // 1.7321 30
+  return 0;
+}
+
+/* output:
+0.000000 1.141593 1.141593
+0.800000 0.750000
+45.000000 120.000000
+1.732 30.0000
+1.7321 30.0000
+*/`,
+        },
       ],
     },
 

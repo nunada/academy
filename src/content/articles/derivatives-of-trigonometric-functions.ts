@@ -449,6 +449,53 @@ for h in (0.1, 0.01, 0.001):
 print(math.cos(1))                                   # 0.5403023: the central difference reaches cos(1)`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+const double PI = acos(-1.0);
+
+int main() {
+  double hs[4] = {0.1, 0.01, 0.001, 0.0001};
+  for (int i = 0; i < 4; i++) {
+    double h = hs[i];
+    printf("%.4f  %.8f  %.8f\\n", h, sin(h) / h, (cos(h) - 1) / h);    // the two limits: 1 and 0
+  }
+  double d = PI / 180;                                  // one degree, in radians
+  double ds[3] = {1, 0.1, 0.01};
+  for (int i = 0; i < 3; i++) printf("%.2f  %.8f\\n", ds[i], sin(ds[i] * d) / ds[i]);
+  printf("%.8f\\n", d);                                  // the limit in degrees is pi/180, not 1
+
+  printf("%.6f %.6f\\n", sin(30.0), sin(30 * d));        // sin(30) treats 30 as radians
+  for (int i = 0; i < 3; i++) {
+    double h = hs[i];
+    printf("%.4f  %.7f\\n", h, (sin(1 + h) - sin(1 - h)) / (2 * h));  // the central difference of sin at 1
+  }
+  printf("%.7f\\n", cos(1.0));                           // ... reaches cos(1)
+  return 0;
+}
+
+/* output:
+0.1000  0.99833417  -0.04995835
+0.0100  0.99998333  -0.00499996
+0.0010  0.99999983  -0.00050000
+0.0001  1.00000000  -0.00005000
+1.00  0.01745241
+0.10  0.01745328
+0.01  0.01745329
+0.01745329
+-0.988032 0.500000
+0.1000  0.5394023
+0.0100  0.5402933
+0.0010  0.5403022
+0.5403023
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`**The trap in any language is the unit.** ´math.sin´, ´Math.sin´ and NumPy's ´np.sin´ all expect radians, so ´math.sin(30)´ is the sine of $30$ radians, $-0.988$, and not $0.5$. Convert with ´math.radians´ first. The same unit is behind the derivative formulas: the numbers ´cos(1)´ and the central difference above agree only because $x=1$ is a radian measure.`,

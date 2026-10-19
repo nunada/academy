@@ -541,6 +541,63 @@ Math.sin(30 * Math.PI / 180)                              // 0.49999999999999994
 a * a + b * b === c * c                                   // true: exact for integers, the right-angle test`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+const char* kind(int a, int b, int c) {
+  int t;                                               // sort so that a <= b <= c
+  if (a > b) { t = a; a = b; b = t; }
+  if (b > c) { t = b; b = c; c = t; }
+  if (a > b) { t = a; a = b; b = t; }
+  if (a + b <= c) return "not a triangle";
+  int d = a * a + b * b - c * c;                       // the sign of the cosine of the largest angle
+  if (a == b && b == c) return "equilateral acute";
+  if (a == b || b == c) {
+    if (d == 0) return "isosceles right";
+    if (d > 0) return "isosceles acute";
+    return "isosceles obtuse";
+  }
+  if (d == 0) return "scalene right";
+  if (d > 0) return "scalene acute";
+  return "scalene obtuse";
+}
+
+int areaSq16(int a, int b, int c) {                    // 16 A^2 by Heron's formula, in whole numbers
+  return (a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c);
+}
+
+int main() {
+  cout << kind(3, 4, 5) << endl;                       // scalene right
+  cout << kind(5, 5, 8) << endl;                       // isosceles obtuse
+  cout << kind(2, 3, 4) << endl;                       // scalene obtuse
+  cout << kind(1, 2, 3) << endl;                       // not a triangle
+  cout << areaSq16(13, 14, 15) / 16 << " " << sqrt(areaSq16(13, 14, 15) / 16.0) << endl;   // A^2 = 7056, A = 84
+  printf("%.4f\\n", acos(2.0 / 3) * 180 / acos(-1.0));  // angle A of the 7, 8, 9 triangle
+  // a needle-thin triangle: the textbook form of Heron's formula loses everything, the stable form does not
+  double a = 1e8, b = 1e8 - 1e-6, c = 1e-6;
+  double s = (a + b + c) / 2, naive = s * (s - a) * (s - b) * (s - c);
+  printf("%d\\n", naive <= 0);                          // 1: nothing is left of the area under the root
+  printf("%.6f\\n", 0.25 * sqrt((a + (b + c)) * (c - (a - b)) * (c + (a - b)) * (a + (b - c))));   // the stable form
+  return 0;
+}
+
+/* output:
+scalene right
+isosceles obtuse
+scalene obtuse
+not a triangle
+7056 84
+48.1897
+1
+2.846827
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

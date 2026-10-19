@@ -422,6 +422,51 @@ print(shift(f, Fraction(2)))                # [Fraction(2, 1), Fraction(9, 1), F
 print(shift(f, Fraction(2))[1])             # 9, the slope at 2
 print(shift([Fraction(4), 0, Fraction(1, 2)], Fraction(6))[1])   # 6, the slope of x^2/2 + 4 at 6`,
         },
+        {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+// the slope at a of c[0] + c[1] x + c[2] x^2 + ..., exactly, by Horner's rule on the polynomial and its derivative
+double slope(const double c[], int n, double a) {
+  double p = 0, dp = 0;
+  for (int i = n - 1; i >= 0; i--) {
+    dp = dp * a + p;
+    p = p * a + c[i];
+  }
+  return dp;
+}
+
+int main() {
+  double a = 1.0, truth = cos(1.0);                    // the derivative of sin at 1 is cos(1)
+  for (int k = 1; k <= 4; k++) {
+    double h = pow(10, -k);
+    double forward = (sin(a + h) - sin(a)) / h;        // the error shrinks like h
+    double central = (sin(a + h) - sin(a - h)) / (2 * h);   // the error shrinks like h squared
+    printf("h=1e-%d  forward %.1e   central %.1e\\n", k, fabs(forward - truth), fabs(central - truth));
+  }
+  // for much smaller h, rounding errors take over and both errors grow again
+
+  double f[4] = {0, -3, 0, 1};                         // x^3 - 3x
+  printf("%.0f\\n", slope(f, 4, 2));                     // 9, the slope at 2
+  double g[3] = {4, 0, 0.5};                           // x^2 / 2 + 4
+  printf("%.0f\\n", slope(g, 3, 6));                     // 6, the slope at 6
+  return 0;
+}
+
+/* output:
+h=1e-1  forward 4.3e-02   central 9.0e-04
+h=1e-2  forward 4.2e-03   central 9.0e-06
+h=1e-3  forward 4.2e-04   central 9.0e-08
+h=1e-4  forward 4.2e-05   central 9.0e-10
+9
+6
+*/`,
+        },
       ],
     },
 

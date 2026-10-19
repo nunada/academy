@@ -167,7 +167,7 @@ export type ArticleBlock =
   | { kind: 'text'; text: Loc }
   | { kind: 'callout'; tone: CalloutTone; title: Loc; text: Loc }
   | { kind: 'figure'; figure: Figure }
-  | { kind: 'code'; lang: 'python' | 'javascript'; code: string; caption?: Loc }
+  | { kind: 'code'; lang: 'python' | 'javascript' | 'cpp'; code: string; caption?: Loc }
   /** One of the lesson step types, used as a practice item with no hearts and
    *  no XP — a wrong answer costs nothing here. */
   | { kind: 'activity'; title: Loc; step: Step }

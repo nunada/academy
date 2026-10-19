@@ -389,6 +389,42 @@ print(dy)                                    # [ 6.25  4.    0.25 -2.   -2.75 -2
 print(3*xs**2 - 3)                           # [ 9.    3.75  0.   -2.25 -3.   -2.25  0.    3.75  9.  ]
 print(np.round(dy - (3*xs**2 - 3), 4))       # [-2.75  0.25  0.25  0.25  0.25  0.25  0.25  0.25 -2.75]`,
         },
+        {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+using namespace std;
+
+double f(double t) { return t * t * t - 3 * t; }
+double derivative(double x, double h) { return (f(x + h) - f(x - h)) / (2 * h); }   // central difference
+
+int main() {
+  for (int t = -2; t <= 2; t++) printf("%.4f ", derivative(t, 1e-5));   // 9 0 -3 0 9
+  cout << endl;
+
+  double xs[9], ys[9], dy[9];                          // a grid with spacing 0.5
+  for (int i = 0; i < 9; i++) { xs[i] = -2 + 0.5 * i; ys[i] = f(xs[i]); }
+  dy[0] = (ys[1] - ys[0]) / 0.5;                       // one-sided at the ends
+  dy[8] = (ys[8] - ys[7]) / 0.5;
+  for (int i = 1; i < 8; i++) dy[i] = (ys[i + 1] - ys[i - 1]) / 1.0;   // central inside
+  for (int i = 0; i < 9; i++) printf("%6.2f", dy[i]);
+  cout << endl;
+  for (int i = 0; i < 9; i++) printf("%6.2f", 3 * xs[i] * xs[i] - 3);   // the exact derivative
+  cout << endl;
+  for (int i = 0; i < 9; i++) printf("%6.2f", dy[i] - (3 * xs[i] * xs[i] - 3));   // the ends are worst
+  cout << endl;
+  return 0;
+}
+
+/* output:
+9.0000 0.0000 -3.0000 0.0000 9.0000
+  6.25  4.00  0.25 -2.00 -2.75 -2.00  0.25  4.00  6.25
+  9.00  3.75  0.00 -2.25 -3.00 -2.25  0.00  3.75  9.00
+ -2.75  0.25  0.25  0.25  0.25  0.25  0.25  0.25 -2.75
+*/`,
+        },
       ],
     },
 

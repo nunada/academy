@@ -714,6 +714,41 @@ Number.MAX_SAFE_INTEGER         // 9007199254740991
 7n / 2n                         // 3n   BigInt division truncates`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+using namespace std;
+
+int mod(int a, int b) { return ((a % b) + b) % b; }       // a non-negative remainder, for b > 0
+int floorDiv(int a, int b) { return (a - mod(a, b)) / b; }
+int gcd(int a, int b) {                                    // Euclid's algorithm
+  while (b != 0) { int t = a % b; a = b; b = t; }
+  return a < 0 ? -a : a;
+}
+int lcm(int a, int b) { return a / gcd(a, b) * b; }
+
+int main() {
+  cout << 7 / 2 << " " << 7 % 3 << endl;                   // 3 1
+  // C++ truncates toward zero: -7 / 2 is -3 and -7 % 3 is -1
+  cout << floorDiv(-7, 2) << " " << mod(-7, 3) << endl;    // floor division and the usual remainder
+  cout << gcd(48, 180) << " " << lcm(4, 6) << endl;
+  int n = 360;                                             // factorization by trial division
+  for (int p = 2; p * p <= n; p++)
+    while (n % p == 0) { cout << p << " "; n /= p; }
+  if (n > 1) cout << n;
+  cout << endl;
+  return 0;
+}
+
+/* output:
+3 1
+-4 2
+12 12
+2 2 2 3 3 5
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

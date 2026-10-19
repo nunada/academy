@@ -577,6 +577,48 @@ const add = ([a, b], [c, d]) => frac(a * d + c * b, b * d)
 add(frac(1n, 3n), frac(1n, 6n))   // [1n, 2n]`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int gcd(int a, int b) { return b == 0 ? (a < 0 ? -a : a) : gcd(b, a % b); }
+
+void show(int n, int d) {                                  // a fraction in lowest terms
+  if (d == 0) { cout << "undefined: the denominator is 0" << endl; return; }
+  if (d < 0) { n = -n; d = -d; }
+  int g = gcd(n, d);
+  cout << n / g << "/" << d / g << endl;
+}
+
+int main() {
+  show(6, 8);                                              // 3/4: reduced
+  show(1 * 6 + 1 * 3, 3 * 6);                              // 1/3 + 1/6 = 1/2
+  show(3 * 10, 4 * 9);                                     // (3/4) / (9/10) = 5/6
+  show(-7, 2);
+  show(1, 0);
+  printf("%.16f\\n", 1.0 / 3);                              // float(1/3)
+  cout << (0.1 + 0.2 == 0.3) << endl;                      // 0: the floats are not equal
+  cout << (1 * 10 + 2 * 10 == 3 * 10) << endl;             // 1: with whole numbers (tenths) they are
+  printf("%.20f\\n", 0.1);                                  // the float 0.1 is not one tenth
+  return 0;
+}
+
+/* output:
+3/4
+1/2
+5/6
+-7/2
+undefined: the denominator is 0
+0.3333333333333333
+0
+1
+0.10000000000000000555
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

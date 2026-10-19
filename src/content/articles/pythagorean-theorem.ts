@@ -390,6 +390,55 @@ isTriple(20, 21, 29)                               // true
 Math.sqrt(1.2 ** 2 + 3.5 ** 2) === 3.7             // false: the float sum rounds, as in Python`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+bool isTriple(int a, int b, int c) { return a * a + b * b == c * c; }   // exact for whole numbers
+
+int isqrt(int n) { int r = 0; while ((r + 1) * (r + 1) <= n) r++; return r; }
+
+int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
+
+int main() {
+  cout << isTriple(5, 12, 13) << " " << isTriple(4, 5, 6) << endl;      // 1 0
+  int s = 8 * 8 + 15 * 15, c = isqrt(s);
+  cout << c << " " << (c * c == s) << endl;                              // 17 1: the hypotenuse is whole
+
+  for (int h = 1; h <= 30; h++)                                          // primitive triples up to 30
+    for (int a = 1; a < h; a++)
+      for (int b = a + 1; b < h; b++)
+        if (isTriple(a, b, h) && gcd(a, b) == 1) cout << "(" << a << "," << b << "," << h << ") ";
+  cout << endl;
+
+  int count = 0;                                                         // Euclid's formula up to 100
+  for (int m = 2; m * m + 1 <= 100; m++)
+    for (int n = 1; n < m; n++)
+      if ((m - n) % 2 == 1 && gcd(m, n) == 1 && m * m + n * n <= 100) count++;
+  cout << count << endl;
+
+  printf("%.1f %.1f\\n", sqrt(3.0 * 3 + 4 * 4), sqrt(2.0 * 2 + 3 * 3 + 6 * 6));   // 2D and 3D lengths
+  cout << (sqrt(1.2 * 1.2 + 3.5 * 3.5) == 3.7) << endl;                  // 0: the float sum rounds
+  double big = 1e200;
+  cout << (big * big > 1e308) << endl;                                   // 1: squaring overflows to inf
+  return 0;
+}
+
+/* output:
+1 0
+17 1
+(3,4,5) (5,12,13) (8,15,17) (7,24,25) (20,21,29)
+16
+5.0 7.0
+0
+1
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

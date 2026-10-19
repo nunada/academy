@@ -632,6 +632,45 @@ Math.sqrt(2) ** 2     // 2.0000000000000004
 2n ** 100n            // 1267650600228229401496703205376n (BigInt stays exact)`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+int isqrt(int n) {                                   // the whole-number square root, rounded down
+  int r = 0;
+  while ((r + 1) * (r + 1) <= n) r++;
+  return r;
+}
+
+int main() {
+  printf("%.0f %.3f %.0f\\n", pow(2, 10), pow(2, -3), pow(16, 0.5));
+  printf("%.12f\\n", sqrt(72));
+  cout << isqrt(72) << endl;
+  printf("%.12f %.12f\\n", pow(27, 1.0 / 3), -pow(8, 1.0 / 3));   // a cube root of a negative: take the sign out
+  // pow(-8, 1.0 / 3) is nan: a negative base needs a whole-number exponent
+  cout << (2 ^ 3) << endl;                             // XOR, not a power
+  printf("%.16f\\n", sqrt(2) * sqrt(2));                // rounding, not a bug
+  int p = 1;
+  for (int i = 0; i < 30; i++) p *= 2;                 // 2^30 fits in an int; 2^31 would overflow
+  cout << p << endl;
+  return 0;
+}
+
+/* output:
+1024 0.125 4
+8.485281374239
+8
+3.000000000000 -2.000000000000
+1
+2.0000000000000004
+1073741824
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

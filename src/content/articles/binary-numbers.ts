@@ -612,6 +612,50 @@ parseInt('1011010', 2)       // 90
 2n ** 64n                    // 18446744073709551616n (BigInt has no 32-bit limit)`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+using namespace std;
+
+void printBinary(int n, int width) {                // the lowest \`width\` bits, high bit first
+  for (int i = width - 1; i >= 0; i--) cout << ((n >> i) & 1);
+  cout << endl;
+}
+
+int parseBinary(const char* s) {                    // "1011010" -> 90
+  int value = 0;
+  for (int i = 0; s[i] != 0; i++) value = value * 2 + (s[i] - '0');
+  return value;
+}
+
+int main() {
+  printBinary(90, 8);
+  printBinary(255, 8);
+  printf("%x %o\\n", 255, 64);                       // hexadecimal and octal
+  cout << parseBinary("1011010") << endl;
+  cout << (12 & 10) << " " << (12 | 10) << " " << (12 ^ 10) << endl;   // AND, OR, XOR
+  cout << (1 << 4) << " " << (100 >> 2) << endl;    // times 16, divide by 4
+  cout << ~5 << endl;                               // NOT: -x - 1
+  printBinary(-5, 8);                               // the low 8 bits of -5 (two's complement)
+  cout << ((-5) & 0xFF) << endl;
+  return 0;
+}
+
+/* output:
+01011010
+11111111
+ff 100
+90
+8 14 6
+16 25
+-6
+11111011
+251
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

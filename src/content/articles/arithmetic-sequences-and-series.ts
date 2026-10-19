@@ -486,6 +486,40 @@ terms(3, 4, 5).reduce((s, x) => s + x, 0)    // 55
 Array.from({ length: 4 }, (_, i) => i * 0.1) // [0, 0.1, 0.2, 0.30000000000000004]`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main() {
+  int a1 = 3, d = 4, n = 10;
+  for (int i = 0; i < n; i++) cout << a1 + i * d << " ";   // the first ten terms
+  cout << endl;
+  cout << a1 + (n - 1) * d << endl;                        // the n-th term
+  cout << n * (2 * a1 + (n - 1) * d) / 2 << endl;          // the sum of n terms, exactly
+  int gauss = 0;
+  for (int i = 1; i <= 100; i++) gauss += i;
+  cout << gauss << endl;                                   // Gauss's sum
+  int count = 0, total = 0;
+  for (int m = 105; m <= 497; m += 7) { count++; total += m; }
+  cout << count << " " << total << endl;                   // multiples of 7 from 105 to 497
+  for (int i = 0; i < 4; i++) printf("%.17f ", i * 0.1);   // a float step drifts
+  cout << endl;
+  return 0;
+}
+
+/* output:
+3 7 11 15 19 23 27 31 35 39
+39
+210
+5050
+57 17157
+0.00000000000000000 0.10000000000000001 0.20000000000000001 0.30000000000000004
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

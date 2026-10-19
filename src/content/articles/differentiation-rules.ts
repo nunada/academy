@@ -398,6 +398,63 @@ print(sp.diff(x**sp.pi, x))                                  # pi*x**pi/x
 print(sp.diff(x**3 - 3*x**2 + 2, x, 3), sp.diff(x**3 - 3*x**2 + 2, x, 4))   # 6 0`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+using namespace std;
+
+// A polynomial is its list of coefficients: c[0] + c[1] x + c[2] x^2 + ...
+int multiply(const int a[], int na, const int b[], int nb, int out[]) {
+  for (int i = 0; i < na + nb - 1; i++) out[i] = 0;
+  for (int i = 0; i < na; i++)
+    for (int j = 0; j < nb; j++) out[i + j] += a[i] * b[j];
+  return na + nb - 1;
+}
+
+void derivative(int c[], int n) {                    // c becomes c', the last coefficient 0
+  for (int i = 1; i < n; i++) c[i - 1] = i * c[i];
+  c[n - 1] = 0;
+}
+
+int value(const int c[], int n, int x) {             // Horner's rule
+  int s = 0;
+  for (int i = n - 1; i >= 0; i--) s = s * x + c[i];
+  return s;
+}
+
+int main() {
+  int u[3] = {1, 0, 1};                              // x^2 + 1
+  int v[4] = {0, -3, 0, 1};                          // x^3 - 3x
+  int f[6];
+  int n = multiply(u, 3, v, 4, f);                   // f = u v
+  derivative(f, n);
+  for (int i = 0; i < n; i++) cout << f[i] << " ";  // -3 0 -6 0 5 0: that is 5x^4 - 6x^2 - 3
+  cout << endl;
+
+  int du[3] = {0, 2, 0};                             // u' = 2x
+  int dv[4] = {-3, 0, 3, 0};                         // v' = 3x^2 - 3
+  int bad = 0;
+  for (int x = -5; x <= 5; x++)                      // the product rule against the derivative of the product
+    if (value(f, n, x) != value(du, 3, x) * value(v, 4, x) + value(u, 3, x) * value(dv, 4, x)) bad++;
+  cout << "product rule fails at " << bad << " points" << endl;
+
+  int g[4] = {2, 0, -3, 1};                          // x^3 - 3x^2 + 2
+  for (int k = 1; k <= 4; k++) {
+    derivative(g, 4);
+    cout << value(g, 4, 5) << " ";                   // the k-th derivative at 5
+  }
+  cout << endl;
+  return 0;
+}
+
+/* output:
+-3 0 -6 0 5 0
+product rule fails at 0 points
+45 24 6 0
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`**A rule is only as good as its use, so check an answer numerically.** Compare the formula you found with a difference quotient at a point: if $f'(x)$ is right, the central difference $\frac{f(x+h)-f(x-h)}{2h}$ with $h$ near $10^{-5}$ agrees with it to many digits, as in the [numerical derivative](article:the-derivative-as-a-function#derivative-functions-in-code) of the previous article. The tool above does exactly that check for you.`,

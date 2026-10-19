@@ -566,6 +566,35 @@ g(3)     // 0, the same as 3 - 3
 g(-3)    // NaN, because the original is 0 / 0 there`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+using namespace std;
+
+double f(double x) { return 3 * x * x - 5 * x + 1; }
+double g(double x) { return (x * x - 9) / (x + 3); }
+
+int main() {
+  cout << f(2) << " " << f(-2) << endl;          // 3 23
+  cout << g(2) << " " << g(3) << endl;           // -1 0
+  // A program cannot expand or factor for you, but it can test an identity at many points
+  int bad = 0;
+  for (int x = -10; x <= 10; x++) {
+    if ((x + 2) * (x - 3) != x * x - x - 6) bad++;        // expand
+    if (x * x - 5 * x + 6 != (x - 2) * (x - 3)) bad++;    // factor
+  }
+  cout << "failures: " << bad << endl;
+  return 0;
+}
+
+/* output:
+3 23
+-1 0
+failures: 0
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

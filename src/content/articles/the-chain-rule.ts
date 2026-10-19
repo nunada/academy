@@ -552,6 +552,47 @@ x = Dual(0.7, 1.0)                                                  # x has deri
 y = sin(x * x + exp(x))
 print(round(y.v, 6), round(y.d, 6))                                 # 0.595461 -2.742554`,
         },
+        {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+// A dual number is {value, derivative}: the two travel together through every operation.
+void add(const double a[], const double b[], double r[]) { r[0] = a[0] + b[0]; r[1] = a[1] + b[1]; }
+void mul(const double a[], const double b[], double r[]) {
+  r[0] = a[0] * b[0];
+  r[1] = a[1] * b[0] + a[0] * b[1];                    // the product rule
+}
+void dsin(const double u[], double r[]) { r[0] = sin(u[0]); r[1] = cos(u[0]) * u[1]; }   // the chain rule: f'(u) u'
+void dexp(const double u[], double r[]) { r[0] = exp(u[0]); r[1] = exp(u[0]) * u[1]; }
+
+double f(double x) { return sin(x * x + exp(x)); }
+
+int main() {
+  double x0 = 0.7;
+  double chain = cos(x0 * x0 + exp(x0)) * (2 * x0 + exp(x0));              // the formula
+  double central = (f(x0 + 1e-6) - f(x0 - 1e-6)) / 2e-6;                    // a difference quotient
+  printf("%.6f %.6f\\n", chain, central);
+
+  double x[2] = {0.7, 1};                              // x has derivative 1
+  double xx[2], e[2], s[2], y[2];
+  mul(x, x, xx);
+  dexp(x, e);
+  add(xx, e, s);
+  dsin(s, y);                                          // y = sin(x * x + exp(x))
+  printf("%.6f %.6f\\n", y[0], y[1]);
+  return 0;
+}
+
+/* output:
+-2.742554 -2.742554
+0.595461 -2.742554
+*/`,
+        },
       ],
     },
 

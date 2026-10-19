@@ -471,6 +471,60 @@ const shoelace = (pts) =>
 shoelace([[0, 0], [6, 0], [6, 4], [2, 6]])   // 26`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int cross(int ux, int uy, int vx, int vy) { return ux * vy - uy * vx; }
+int dot(int ux, int uy, int vx, int vy) { return ux * vx + uy * vy; }
+int d2(int px, int py, int qx, int qy) { return (px - qx) * (px - qx) + (py - qy) * (py - qy); }
+
+const char* kind(int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy) {
+  bool p1 = cross(bx - ax, by - ay, dx - cx, dy - cy) == 0;      // AB parallel to CD
+  bool p2 = cross(cx - bx, cy - by, ax - dx, ay - dy) == 0;      // BC parallel to DA
+  int s0 = d2(ax, ay, bx, by), s1 = d2(bx, by, cx, cy), s2 = d2(cx, cy, dx, dy), s3 = d2(dx, dy, ax, ay);
+  if (p1 && p2) {
+    bool rhombus = s0 == s1 && s1 == s2 && s2 == s3;
+    bool right = dot(bx - ax, by - ay, cx - bx, cy - by) == 0;
+    if (rhombus && right) return "square";
+    if (right) return "rectangle";
+    return rhombus ? "rhombus" : "parallelogram";
+  }
+  if (p1 || p2) return "trapezoid";
+  if ((s0 == s1 && s2 == s3) || (s0 == s3 && s1 == s2)) return "kite";
+  return "none of these";
+}
+
+int twiceArea(int x[], int y[], int n) {                          // the shoelace formula, doubled: whole numbers
+  int s = 0;
+  for (int i = 0; i < n; i++) s += x[i] * y[(i + 1) % n] - x[(i + 1) % n] * y[i];
+  return s < 0 ? -s : s;
+}
+
+int main() {
+  cout << kind(0, 0, 6, 0, 8, 4, 2, 4) << endl;                   // parallelogram
+  cout << kind(4, 0, 8, 3, 4, 6, 0, 3) << endl;                   // rhombus
+  cout << kind(0, 0, 3, 2, 0, 6, -3, 2) << endl;                  // kite
+  int x[4] = {0, 6, 6, 2}, y[4] = {0, 0, 4, 6};
+  cout << twiceArea(x, y, 4) / 2 << endl;                         // 26
+  printf("%.20f\\n", 0.7 * 0.3 - 0.1 * 2.1);                       // should be 0 ...
+  cout << 7 * 3 - 1 * 21 << endl;                                 // ... and with whole numbers (tenths) it is
+  return 0;
+}
+
+/* output:
+parallelogram
+rhombus
+kite
+26
+-0.00000000000000002776
+0
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:

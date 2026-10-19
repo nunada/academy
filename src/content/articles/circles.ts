@@ -420,6 +420,52 @@ const power = ([h, k, r2], [x, y]) => (x - h) ** 2 + (y - k) ** 2 - r2
 power([3, -2, 25], [9, 5])               // 60: outside, exact for whole numbers`,
         },
         {
+          kind: 'code',
+          lang: 'cpp',
+          caption: L('C++', 'C++'),
+          code: `#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+const double PI = acos(-1.0);
+
+// |PC|^2 - r^2: negative inside, 0 on the circle, positive outside
+int power(int h, int k, int r2, int x, int y) {
+  return (x - h) * (x - h) + (y - k) * (y - k) - r2;
+}
+
+// the line a x + b y = c against the circle with center (h, k) and radius^2 = r2:
+// compare d^2 = (a h + b k - c)^2 / (a^2 + b^2) with r2, in whole numbers
+const char* meets(int h, int k, int r2, int a, int b, int c) {
+  int num = (a * h + b * k - c) * (a * h + b * k - c);
+  int rhs = r2 * (a * a + b * b);
+  if (num > rhs) return "none";
+  if (num == rhs) return "tangent";
+  return "secant";
+}
+
+int main() {
+  cout << power(3, -2, 25, 0, 0) << " " << power(3, -2, 25, 8, -2) << " " << power(3, -2, 25, 9, 5) << endl;
+  cout << meets(0, 0, 25, 0, 1, 3) << " " << meets(0, 0, 25, 1, 0, 5) << " " << meets(0, 0, 25, 1, 0, 6) << endl;
+  printf("%.4f %.4f\\n", 2 * PI * 7, PI * 7 * 7);                      // circumference and area, r = 7
+  printf("%.10f %.10f %.10f\\n", 22.0 / 7, 355.0 / 113, PI);
+  double r = 10, t = 90 * PI / 180;                                    // a sector of 90 degrees
+  printf("%.4f %.4f %.4f\\n", r * t, r * r * t / 2, r * r * (t - sin(t)) / 2);   // arc, sector, segment
+  printf("%d\\n", fabs(sin(PI)) < 1e-12);                              // sin(pi) is 1.2e-16, not 0
+  return 0;
+}
+
+/* output:
+-12 0 60
+secant tangent none
+43.9823 153.9380
+3.1428571429 3.1415929204 3.1415926536
+15.7080 78.5398 28.5398
+1
+*/`,
+        },
+        {
           kind: 'text',
           text: L(
             T`The pitfalls, in order of how often they bite:
