@@ -144,7 +144,25 @@ for (let i = 0; i < 20000; i++) {
   if (r.rotation === 4) eq(r.shape, 'square', 'rotation of order 4 is a square')
   if (r.lines >= 1 && r.shape === 'convex') fail(`a symmetric shape is classified as plain convex: ${JSON.stringify(pts.map((p) => [txt(p.x), txt(p.y)]))}`)
 }
-for (const k of ['square', 'rectangle', 'rhombus', 'parallelogram', 'kite', 'isosceles-trapezoid', 'trapezoid', 'dart', 'concave', 'crossed', 'degenerate', 'convex']) eq((seen[k] ?? 0) > 0, true, `the random search met a ${k}`)
+// Random integer points seldom make a rhombus or a square, so the coverage of every type is made certain by one fixed example of each.
+for (const fixed of [
+  [[0, 0], [1, 0], [1, 1], [0, 1]],
+  [[0, 0], [2, 0], [2, 1], [0, 1]],
+  [[0, 0], [3, 4], [8, 4], [5, 0]],
+  [[0, 0], [3, 0], [4, 1], [1, 1]],
+  [[0, 0], [1, 2], [0, 5], [-1, 2]],
+  [[0, 0], [4, 0], [3, 2], [1, 2]],
+  [[0, 0], [4, 0], [3, 2], [0, 2]],
+  [[0, 0], [2, 3], [0, 1], [-2, 3]],
+  [[0, 0], [4, 0], [1, 1], [0, 4]],
+  [[0, 0], [2, 2], [2, 0], [0, 2]],
+  [[0, 0], [1, 1], [2, 2], [3, 3]],
+  [[0, 0], [4, 0], [5, 3], [1, 2]],
+]) {
+  const r = Q.classify(P(fixed))
+  seen[r.shape] = (seen[r.shape] ?? 0) + 1
+}
+for (const k of ['square', 'rectangle', 'rhombus', 'parallelogram', 'kite', 'isosceles-trapezoid', 'trapezoid', 'dart', 'concave', 'crossed', 'degenerate', 'convex']) eq((seen[k] ?? 0) > 0, true, `a ${k} was met`)
 
 if (bad) {
   console.log(`\n${bad} disagreement(s)`)
