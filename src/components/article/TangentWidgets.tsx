@@ -21,6 +21,7 @@ import {
 } from '../../lib/tangent'
 import { AlgebraError } from '../../lib/algebra'
 import { Tex } from '../ui'
+import { exprTex } from '../../lib/exprtex'
 import { Frame, L, dec, useSep } from './widgetKit'
 
 /* ------------------------------------------------------------------ helpers */
@@ -272,10 +273,10 @@ export function TangentSecant() {
       </div>
       <div className="chips">
         <button className={`chip ${side === 1 ? 'on' : ''}`} onClick={() => setSide(1)} aria-pressed={side === 1}>
-          {tc(L('h > 0 (to the right)', 'h > 0 (ke kanan)'))}
+          <Tex src="h>0" /> ({tc(L('to the right', 'ke kanan'))})
         </button>
         <button className={`chip ${side === -1 ? 'on' : ''}`} onClick={() => setSide(-1)} aria-pressed={side === -1}>
-          {tc(L('h < 0 (to the left)', 'h < 0 (ke kiri)'))}
+          <Tex src="h<0" /> ({tc(L('to the left', 'ke kiri'))})
         </button>
       </div>
       <Graph
@@ -542,7 +543,7 @@ export function TangentLineTool() {
                   setAx(aa)
                 }}
               >
-                {f}, a = {aa}
+                <Tex src={`${exprTex(f)},\\ a=${exprTex(aa)}`} />
               </button>
             ))
           : THROUGH_PRESETS.map(([f, xx, yy]) => (
@@ -555,7 +556,7 @@ export function TangentLineTool() {
                   setY0s(yy)
                 }}
               >
-                {f}, ({xx}, {yy})
+                <Tex src={`${exprTex(f)},\\ (${exprTex(xx)},\\ ${exprTex(yy)})`} />
               </button>
             ))}
       </div>

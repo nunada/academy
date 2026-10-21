@@ -5,6 +5,7 @@ import { AlgebraError } from '../../lib/algebra'
 import { GEO, analyzeMotion, breakEvenMarginal, marginalAt, motionOf, toNumber, type Poly, type Rat } from '../../lib/rates'
 import { parsePolynomialInX, polyTex } from '../../lib/tangent'
 import { Tex } from '../ui'
+import { exprTex } from '../../lib/exprtex'
 import { Frame, L, useSep } from './widgetKit'
 import { Plot } from './DerivativeWidgets'
 import { num, rt, show, small } from './TangentWidgets'
@@ -167,7 +168,7 @@ export function MotionAlongLine() {
               setA1(y)
             }}
           >
-            {f}
+            <Tex src={exprTex(f)} />
           </button>
         ))}
       </div>
@@ -290,7 +291,7 @@ export function MarginalAnalysis() {
               setXs(x)
             }}
           >
-            {c} | {r}
+            <Tex src={`${exprTex(c)}\\ \\mid\\ ${exprTex(r)}`} />
           </button>
         ))}
       </div>

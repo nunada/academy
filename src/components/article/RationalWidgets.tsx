@@ -18,6 +18,7 @@ import {
   type Rat,
 } from '../../lib/rationals'
 import { Tex } from '../ui'
+import { exprTex } from '../../lib/exprtex'
 import { Frame, L, useSep } from './widgetKit'
 
 /* ------------------------------------------------------------------ helpers */
@@ -183,7 +184,7 @@ export function SimplifyFraction() {
       <div className="chips">
         {['84/126', '18/24', '-6/8', '7/-21', '17/5', '5/9', '0/4'].map((p) => (
           <button key={p} className="chip ghost" onClick={() => setS(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>
@@ -281,7 +282,7 @@ export function CompareFractions() {
               setSc(y)
             }}
           >
-            {x}, {y}
+            <Tex src={`${exprTex(x)},\\ ${exprTex(y)}`} />
           </button>
         ))}
       </div>
@@ -394,7 +395,7 @@ export function FractionCalculator() {
               setSc(y)
             }}
           >
-            {x}, {y}
+            <Tex src={`${exprTex(x)},\\ ${exprTex(y)}`} />
           </button>
         ))}
       </div>
@@ -453,7 +454,7 @@ export function FractionToDecimal() {
       <div className="chips">
         {['5/12', '3/8', '1/7', '1/6', '7/20', '22/7', '1/97'].map((p) => (
           <button key={p} className="chip ghost" onClick={() => setS(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>

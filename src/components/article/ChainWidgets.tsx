@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { useI18n } from '../../i18n'
 import { parseRational } from '../../lib/realnum'
 import { derive, evalFloat, lnSplit, nth, parseExpression, ParseError, simp, size, subst, toTex, type Node, type RuleId } from '../../lib/chain'
 import { pistonRates, sinKx, sinKxSlope } from '../../lib/chain'
 import { Tex } from '../ui'
+import { exprTex } from '../../lib/exprtex'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { Plot } from './DerivativeWidgets'
 import { num, show } from './TangentWidgets'
@@ -170,7 +171,7 @@ export function ChainSteps({ log = false, inv = false }: { log?: boolean; inv?: 
       <div className="chips">
         {(inv ? PRESETS_INV : log ? PRESETS_LOG : PRESETS).map((p) => (
           <button key={p} className="chip ghost" onClick={() => setSrc(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>
@@ -421,9 +422,9 @@ export function SineScale() {
 
 function ScaleChips({ mode, setMode }: { mode: ScaleMode; setMode: (m: ScaleMode) => void }) {
   const { tc } = useI18n()
-  const items: [ScaleMode, string][] = [
-    ['k', tc(L('sin(kx), radians', 'sin(kx), radian'))],
-    ['deg', tc(L('sin(x°), degrees', 'sin(x°), derajat'))],
+  const items: [ScaleMode, ReactNode][] = [
+    ['k', <><Tex src={String.raw`\sin(kx)`} />, {tc(L('radians', 'radian'))}</>],
+    ['deg', <><Tex src={String.raw`\sin(x^\circ)`} />, {tc(L('degrees', 'derajat'))}</>],
     ['piston', tc(L('a piston', 'sebuah piston'))],
   ]
   return (

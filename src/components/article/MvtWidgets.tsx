@@ -5,6 +5,7 @@ import { polyTex } from '../../lib/tangent'
 import { toNumber } from '../../lib/rates'
 import { evalFloat, toTex } from '../../lib/chain'
 import { Tex } from '../ui'
+import { exprTex } from '../../lib/exprtex'
 import { Frame, L, useSep } from './widgetKit'
 import { Plot } from './DerivativeWidgets'
 import { show } from './TangentWidgets'
@@ -144,7 +145,7 @@ export function MvtExplorer() {
       <div className="chips">
         {PRESETS.map((p) => (
           <button key={p.src + p.a} className="chip ghost" onClick={() => { setSrc(p.src); setAStr(aText(p.a)); setBStr(aText(p.b)) }}>
-            {p.src.replace(/\*/g, '·')} [{aText(p.a).replace('pi', 'π')}, {aText(p.b).replace('pi', 'π')}]
+            <Tex src={`${exprTex(p.src)},\\ [${exprTex(aText(p.a))},\\ ${exprTex(aText(p.b))}]`} />
           </button>
         ))}
       </div>

@@ -3,6 +3,7 @@ import { useI18n } from '../../i18n'
 import { LIN_PRESETS, POWERS, differentialStep, linearize, maxGap, percentChange, tolerance, type Linearization, type Preset } from '../../lib/linearize'
 import { evalFloat, parseExpression, toTex } from '../../lib/chain'
 import { Tex } from '../ui'
+import { exprTex } from '../../lib/exprtex'
 import { Frame, L, useSep } from './widgetKit'
 import { Plot } from './DerivativeWidgets'
 import { show } from './TangentWidgets'
@@ -56,7 +57,7 @@ function lineTex(m: number, c: number): string {
   return `${mPart}${cr < 0 ? '-' : '+'}${Math.abs(cr)}`
 }
 
-const fnLabel = (p: Preset): string => `${p.src.replace(/\*/g, '·')}`
+const fnTex = (p: Preset): string => `${exprTex(p.src)},\\ a=${exprTex(aText(p.a))}`
 
 /* ------------------------------------------------ a function, its linearization and the error */
 
@@ -100,7 +101,7 @@ export function LinearizeTool() {
     <div className="chips">
       {LIN_PRESETS.map((p) => (
         <button key={p.id} className="chip ghost" onClick={() => pick(p)}>
-          {fnLabel(p)} @ {aText(p.a)}
+          <Tex src={fnTex(p)} />
         </button>
       ))}
     </div>
@@ -213,7 +214,7 @@ export function ZoomIn() {
       <div className="chips">
         {ZOOM_PRESETS.map((q) => (
           <button key={q.id} className={`chip ${id === q.id ? 'on' : ''}`} onClick={() => setId(q.id)} aria-pressed={id === q.id}>
-            {fnLabel(q)} @ {aText(q.a)}
+            <Tex src={fnTex(q)} />
           </button>
         ))}
       </div>
@@ -285,7 +286,7 @@ export function DifferentialGap() {
       <div className="chips">
         {DIFF_PRESETS.map((q) => (
           <button key={q.id} className={`chip ${id === q.id ? 'on' : ''}`} onClick={() => { setId(q.id); setD(0.5) }} aria-pressed={id === q.id}>
-            {fnLabel(q)} @ {aText(q.a)}
+            <Tex src={fnTex(q)} />
           </button>
         ))}
       </div>

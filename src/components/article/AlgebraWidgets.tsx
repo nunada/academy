@@ -19,6 +19,7 @@ import {
   type PolyKind,
 } from '../../lib/algebra'
 import { Tex } from '../ui'
+import { exprTex } from '../../lib/exprtex'
 import { Frame, L } from './widgetKit'
 
 /* ------------------------------------------------------------------ helpers */
@@ -127,7 +128,7 @@ export function ExpressionAnatomy() {
       <div className="chips">
         {['3x^2 - 5x + 7', '4xy + 2x - xy + 9', '2x + 3x - 7 + 4', 'a^2 - 2ab + b^2'].map((p) => (
           <button key={p} className="chip" onClick={() => setText(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>
@@ -153,7 +154,7 @@ export function ExpandSimplify() {
       <div className="chips">
         {['(x+2)(x-3)', '5x^2+3x-2x^2+7x-4', '(2x+3)^2', '3(x+2)-2(x-1)', '(a+b)(a-b)', '(x+1)^3'].map((p) => (
           <button key={p} className="chip" onClick={() => setText(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>
@@ -211,7 +212,7 @@ export function EvaluateExpression() {
       <div className="chips">
         {['3x^2 - 5x + 1', '2x^2 - 3x', 'a^2 + 2ab + b^2', 'x^3 - x'].map((p) => (
           <button key={p} className="chip" onClick={() => setText(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>
@@ -440,7 +441,7 @@ export function FactorWidget() {
       <div className="chips">
         {['x^2 - 5x + 6', 'x^2 - 25', '6x^2 + 9x', '2x^2 + 7x + 3', 'x^2 + 6x + 9', 'x^3 - x', 'x^2 + 1', '-x^2 + 4'].map((p) => (
           <button key={p} className="chip" onClick={() => setText(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>

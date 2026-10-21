@@ -5,6 +5,7 @@ import { derive, evalFloat, nth, parseExpression, ParseError, toRational, toTex,
 import { derivativeFn } from '../../lib/derivative'
 import { polyTex } from '../../lib/tangent'
 import { Tex } from '../ui'
+import { exprTex } from '../../lib/exprtex'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { Plot } from './DerivativeWidgets'
 import { num, show } from './TangentWidgets'
@@ -147,7 +148,7 @@ export function DifferentiationSteps({ trig = false }: { trig?: boolean }) {
       <div className="chips">
         {(trig ? TRIG_PRESETS : PRESETS).map((p) => (
           <button key={p} className="chip ghost" onClick={() => setSrc(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>

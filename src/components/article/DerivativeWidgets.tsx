@@ -21,6 +21,7 @@ import {
 } from '../../lib/derivative'
 import { polyTex } from '../../lib/tangent'
 import { Tex } from '../ui'
+import { exprTex } from '../../lib/exprtex'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { num, rt, show, small } from './TangentWidgets'
 
@@ -372,7 +373,7 @@ export function DerivativeFromDefinition() {
       <div className="chips">
         {DEF_PRESETS.map((p) => (
           <button key={p} className="chip ghost" onClick={() => setSrc(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>

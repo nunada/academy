@@ -152,6 +152,9 @@ jobs:
       # function, the cases of Rolle's Theorem, zeros of a polynomial and of its derivative, and the families y = g(x) + C.
       - run: npm run check:mvt
 
+      # The text of a formula as TeX, for the preset buttons of the widgets: exact cases for powers, products, fractions and functions.
+      - run: npm run check:exprtex
+
       - name: Work out where the site will live
         id: base
         run: |

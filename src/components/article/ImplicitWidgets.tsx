@@ -3,6 +3,7 @@ import { useI18n } from '../../i18n'
 import { evalFloat, neg, simp, size, toTex, type Node } from '../../lib/chain'
 import { contour, curveFn, implicitDerivative, parseEquation, secondDerivative, solveY, ParseError } from '../../lib/implicitdiff'
 import { Tex } from '../ui'
+import { exprTex } from '../../lib/exprtex'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { show } from './TangentWidgets'
 
@@ -213,7 +214,7 @@ export function ImplicitSteps() {
       <div className="chips">
         {PRESETS.map((p) => (
           <button key={p} className="chip ghost" onClick={() => setSrc(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>
@@ -271,7 +272,7 @@ export function ImplicitSlide() {
       <div className="chips">
         {ROUND.map((p, i) => (
           <button key={p} className={`chip ${ci === i ? 'on' : ''}`} onClick={() => setCi(i)} aria-pressed={ci === i}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>
