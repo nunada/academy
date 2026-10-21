@@ -14,7 +14,7 @@ import { aText, numOf } from './ExtremeWidgets'
 const four = (x: number, sep: string): string => show(Number(x.toPrecision(5)), sep)
 
 /** The range of a graph: every value, or, when the function has poles, the middle 94% of them. */
-function yRange(values: number[], clip: boolean): [number, number] {
+export function yRange(values: number[], clip: boolean): [number, number] {
   const v = values.filter((y) => Number.isFinite(y)).sort((p, q) => p - q)
   if (!v.length) return [-1, 1]
   const lo = clip ? v[Math.floor(v.length * 0.03)] : v[0]

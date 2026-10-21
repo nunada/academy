@@ -34,6 +34,7 @@ import { ConeFill, Ladder, RatesTool } from './RelatedRatesWidgets'
 import { DifferentialGap, ErrorPercent, LinearizeTool, ZoomIn } from './LinearizeWidgets'
 import { BoxVolume, EvtCases, ExtremeTool } from './ExtremeWidgets'
 import { MvtExplorer, RolleCases, RolleRoots, ShiftCurves } from './MvtWidgets'
+import { FirstTest, InequalityTool, MonoTool, SignChart } from './MonoWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -987,6 +988,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <RolleRoots />
     case 'shiftcurves':
       return <ShiftCurves />
+    case 'monotool':
+      return <MonoTool />
+    case 'firsttest':
+      return <FirstTest />
+    case 'signchart':
+      return <SignChart />
+    case 'inequality':
+      return <InequalityTool />
   }
 }
 

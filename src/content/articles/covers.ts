@@ -507,6 +507,28 @@ const meanValue = (): string => {
   )
 }
 
+const monotonic = (): string => {
+  // y = x^3 - 12x - 5: dark where it rises, orange where it falls, a dot at each turning point and the signs of f'
+  const f = (x: number) => x ** 3 - 12 * x - 5
+  const X = (x: number) => 200 + x * 46
+  const Y = (y: number) => 95 - y * 3.4
+  return (
+    axis(20, 390, Y(0)) +
+    line(X(-2), 24, X(-2), 188, 'sm', 2, '6 5') +
+    line(X(2), 24, X(2), 188, 'sm', 2, '6 5') +
+    line(X(-2) - 34, Y(f(-2)), X(-2) + 34, Y(f(-2)), 'sr', 3) +
+    line(X(2) - 34, Y(f(2)), X(2) + 34, Y(f(2)), 'sr', 3) +
+    curve(f, -4, -2, X, Y, 'sa', 4, 40) +
+    curve(f, -2, 2, X, Y, 'sb', 4, 60) +
+    curve(f, 2, 4, X, Y, 'sa', 4, 40) +
+    dot(X(-2), Y(f(-2)), 'fr', 6.5) +
+    dot(X(2), Y(f(2)), 'fr', 6.5) +
+    text(X(-3), 190, '+', 20) +
+    text(X(0), 190, '\u2212', 20) +
+    text(X(3), 190, '+', 20)
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -541,6 +563,7 @@ const COVERS: Record<string, () => string> = {
   'linearization-and-differentials': linearization,
   'extreme-values-on-closed-intervals': extremeValues,
   'the-mean-value-theorem': meanValue,
+  'monotonic-functions-and-the-first-derivative-test': monotonic,
 }
 
 /** Ids that have their own drawing, for the checker. */

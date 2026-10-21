@@ -155,6 +155,10 @@ jobs:
       # The text of a formula as TeX, for the preset buttons of the widgets: exact cases for powers, products, fractions and functions.
       - run: npm run check:exprtex
 
+      # Monotonic functions and the First Derivative Test: the textbook's examples by hand, random polynomials against exact roots and a scan,
+      # derivatives built from their factors, the patterns of the test, Corollary 3, and inequalities proved by monotonicity.
+      - run: npm run check:monotone
+
       - name: Work out where the site will live
         id: base
         run: |

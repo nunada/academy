@@ -131,6 +131,10 @@ export type WidgetName =
   | 'rollecases'
   | 'rolleroots'
   | 'shiftcurves'
+  | 'monotool'
+  | 'firsttest'
+  | 'signchart'
+  | 'inequality'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

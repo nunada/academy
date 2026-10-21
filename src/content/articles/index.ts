@@ -36,8 +36,9 @@ import { meta as relatedRates } from './related-rates.meta'
 import { meta as linearization } from './linearization-and-differentials.meta'
 import { meta as extremeValues } from './extreme-values-on-closed-intervals.meta'
 import { meta as meanValue } from './the-mean-value-theorem.meta'
+import { meta as monotonic } from './monotonic-functions-and-the-first-derivative-test.meta'
 
-export const ARTICLES: ArticleMeta[] = [meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -66,6 +67,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'linearization-and-differentials': () => import('./linearization-and-differentials'),
   'extreme-values-on-closed-intervals': () => import('./extreme-values-on-closed-intervals'),
   'the-mean-value-theorem': () => import('./the-mean-value-theorem'),
+  'monotonic-functions-and-the-first-derivative-test': () => import('./monotonic-functions-and-the-first-derivative-test'),
   'the-derivative-as-a-rate-of-change': () => import('./the-derivative-as-a-rate-of-change'),
 }
 

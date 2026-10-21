@@ -747,6 +747,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Pilih sebuah turunan dan lihat bahwa setiap fungsi dengan turunan itu adalah satu kurva yang digeser naik atau turun sebesar konstanta C; geser titik yang harus dilalui grafik dan lihat C berubah.',
     },
   },
+  monotool: {
+    title: { en: 'Interactive: where a function rises and falls', id: 'Interaktif: di mana fungsi naik dan turun' },
+    description: {
+      en: 'Type a function and a window, or pick a textbook example, and see the graph coloured by what it does, the graph of its derivative, the table of signs between the critical points, and the local and absolute extreme values.',
+      id: 'Ketik fungsi dan jendela, atau pilih salah satu contoh buku, dan lihat grafik yang diwarnai menurut perilakunya, grafik turunannya, tabel tanda di antara titik kritis, serta nilai ekstrem lokal dan mutlak.',
+    },
+  },
+  firsttest: {
+    title: { en: 'Interactive: the First Derivative Test, case by case', id: 'Interaktif: Uji Turunan Pertama, kasus demi kasus' },
+    description: {
+      en: 'Eight critical points: a minimum, a maximum, two that are not extreme values, a corner, a cusp, a vertical tangent and a very flat maximum. See the sign of f′ on each side and the verdict of the test.',
+      id: 'Delapan titik kritis: minimum, maksimum, dua yang bukan nilai ekstrem, sudut, titik puncak, garis singgung tegak, dan maksimum yang sangat datar. Lihat tanda f′ di setiap sisi dan putusan ujinya.',
+    },
+  },
+  signchart: {
+    title: { en: 'Interactive: from the derivative to the function', id: 'Interaktif: dari turunan ke fungsi' },
+    description: {
+      en: 'Type the derivative f′ (the textbook gives it in Exercises 1 to 14) and see the sign chart, where f rises and falls, and which critical points are local extremes, including double factors that do not change the sign.',
+      id: 'Ketik turunan f′ (buku memberikannya di Latihan 1 sampai 14) dan lihat bagan tanda, di mana f naik dan turun, serta titik kritis mana yang ekstrem lokal, termasuk faktor ganda yang tidak mengubah tanda.',
+    },
+  },
+  inequality: {
+    title: { en: 'Interactive: proving an inequality by monotonicity', id: 'Interaktif: membuktikan pertidaksamaan dengan kemonotonan' },
+    description: {
+      en: 'Pick two functions and an interval, such as e^x and 1 + x on [0, 3], and see the difference h = f − g: if h(a) ≥ 0 and h never decreases, then f ≥ g everywhere on the interval.',
+      id: 'Pilih dua fungsi dan selang, seperti e^x dan 1 + x pada [0, 3], dan lihat selisih h = f − g: jika h(a) ≥ 0 dan h tidak pernah turun, maka f ≥ g di seluruh selang.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {
