@@ -46,11 +46,23 @@ export function pageTitle(m: ArticleMeta, lang: Lang): string {
   return withSite.length <= 62 ? withSite : base
 }
 
+/** The size of the picture a shared link shows. 1200x630 is what Facebook, LinkedIn and X's large card all use. */
+export const OG_WIDTH = 1200
+export const OG_HEIGHT = 630
+
+/** Where the build writes the share pictures (tools/og-image.mjs). Raster, because the crawlers that make link
+ *  previews do not take SVG. */
+export const ogImageUrl = (site: string, lang: Lang, id: string) => join(site, 'og', lang, `${id}.png`)
+export const ogListImageUrl = (site: string, lang: Lang) => join(site, 'og', lang, 'articles.png')
+export const ogDefaultImageUrl = (site: string) => join(site, 'og', 'default.png')
+
 export interface Seo {
   title: string
   description: string
   canonical: string
   lang: Lang
+  /** The share picture (absolute URL) and what it shows, for `og:image` and `twitter:image`. */
+  image?: { url: string; alt: string }
   /** hreflang → URL, including `x-default`. */
   alternates: Record<string, string>
   ogType: 'article' | 'website'
@@ -75,6 +87,7 @@ export function listSeo(site: string, lang: Lang): Seo {
     description,
     canonical,
     lang,
+    image: { url: ogListImageUrl(site, lang), alt: title },
     alternates: { en: listUrl(site, 'en'), id: listUrl(site, 'id'), 'x-default': listUrl(site, 'en') },
     ogType: 'website',
     jsonLd: [
@@ -230,6 +243,7 @@ export function articleSeo(a: Article, site: string, lang: Lang): Seo {
     description,
     canonical,
     lang,
+    image: { url: ogImageUrl(site, lang, a.id), alt: pick(a.title, lang) },
     alternates: { [lang]: url(lang), [other]: url(other), 'x-default': url('en') },
     ogType: 'article',
     jsonLd,

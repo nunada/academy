@@ -24,6 +24,7 @@ import os from 'node:os'
 import path from 'node:path'
 import process from 'node:process'
 import { build } from 'esbuild'
+import { ogSvg, renderPng } from './og-image.mjs'
 
 const ROOT = process.cwd()
 const DIST = path.join(ROOT, 'dist')
@@ -67,7 +68,7 @@ export * from '${q('src/lib/articleSeo.ts')}'`,
 const out = path.join(tmp, 'entry.mjs')
 await build({ entryPoints: [entry], bundle: true, format: 'esm', platform: 'node', outfile: out, logLevel: 'error' })
 const lib = await import('file://' + out.replace(/\\/g, '/'))
-const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, coverSvg, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER } = lib
+const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, coverSvg, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER, OG_WIDTH, OG_HEIGHT, ogImageUrl, ogListImageUrl, ogDefaultImageUrl } = lib
 
 const LANGS = ['en', 'id']
 
@@ -216,8 +217,23 @@ function listBodyHtml(lang) {
 
 /* ------------------------------------------------------------- head, page */
 
+const m = (attr, key, content, seoAttr = ' data-seo="1"') => `<meta ${attr}="${key}" content="${esc(content)}"${seoAttr} />`
+
+/** The share picture's tags, and the card type that goes with it: a large image card when there is one. */
+function imageTags(image, seoAttr) {
+  if (!image) return [m('name', 'twitter:card', 'summary', seoAttr)]
+  return [
+    m('property', 'og:image', image.url, seoAttr),
+    m('property', 'og:image:type', 'image/png', seoAttr),
+    m('property', 'og:image:width', String(OG_WIDTH), seoAttr),
+    m('property', 'og:image:height', String(OG_HEIGHT), seoAttr),
+    m('property', 'og:image:alt', image.alt, seoAttr),
+    m('name', 'twitter:card', 'summary_large_image', seoAttr),
+    m('name', 'twitter:image', image.url, seoAttr),
+  ]
+}
+
 function headTags(seo) {
-  const m = (attr, key, content) => `<meta ${attr}="${key}" content="${esc(content)}" data-seo="1" />`
   const tags = [
     `<title data-seo="1">${esc(seo.title)}</title>`,
     m('name', 'description', seo.description),
@@ -230,7 +246,7 @@ function headTags(seo) {
     m('property', 'og:url', seo.canonical),
     m('property', 'og:site_name', SITE_NAME),
     m('property', 'og:locale', LOCALE[seo.lang]),
-    m('name', 'twitter:card', 'summary'),
+    ...imageTags(seo.image),
     m('name', 'twitter:title', seo.title),
     m('name', 'twitter:description', seo.description),
     seo.published ? m('property', 'article:published_time', seo.published) : '',
@@ -277,6 +293,62 @@ for (const lang of LANGS) {
     pages++
   }
 }
+
+/* ------------------------------------------------------------ share images */
+
+// The picture a shared link shows: 1200x630 PNG per article and language, one per list page, one for the home page.
+const domain = SITE.replace(/^https?:\/\//, '')
+const outPath = (url) => url.slice(SITE.length + 1)
+const pngTo = (url, svg) => {
+  write(outPath(url), renderPng(svg))
+  images++
+}
+let images = 0
+for (const lang of LANGS) {
+  for (const a of articles) {
+    pngTo(
+      ogImageUrl(SITE, lang, a.id),
+      ogSvg({ title: a.title[lang], kicker: `${a.level[lang]} · ${a.readingMinutes} ${T[lang].minutes}`, covers: [coverSvg(a.id)], domain, brand: SITE_NAME }),
+    )
+  }
+  pngTo(
+    ogListImageUrl(SITE, lang),
+    ogSvg({
+      title: lang === 'id' ? 'Artikel Matematika dan Coding' : 'Math and Coding Articles',
+      kicker: lang === 'id' ? `${articles.length} artikel gratis, dua bahasa` : `${articles.length} free articles, two languages`,
+      covers: articles.slice(0, 4).map((a) => coverSvg(a.id)),
+      domain,
+      brand: SITE_NAME,
+    }),
+  )
+}
+const HOME_TITLE = 'Nunada Academy: Coding & Matematika'
+const HOME_DESCRIPTION = 'Belajar coding dan matematika langkah demi langkah dengan scaffolding, mini proyek, XP, dan sertifikat.'
+const homeImage = { url: ogDefaultImageUrl(SITE), alt: HOME_TITLE }
+pngTo(
+  homeImage.url,
+  ogSvg({ title: 'Belajar coding dan matematika, langkah demi langkah', kicker: 'Learn coding and math, step by step', covers: articles.slice(0, 4).map((a) => coverSvg(a.id)), domain, brand: SITE_NAME }),
+)
+
+// The home page has the tags of a link preview too. They are not marked data-seo: nothing running replaces them, and an article page
+// opened from the home page overwrites the same tags and puts them back when it closes.
+fs.writeFileSync(
+  path.join(DIST, 'index.html'),
+  template.replace(
+    '</head>',
+    `    ${[
+      m('property', 'og:title', HOME_TITLE, ''),
+      m('property', 'og:description', HOME_DESCRIPTION, ''),
+      m('property', 'og:type', 'website', ''),
+      m('property', 'og:url', `${SITE}/`, ''),
+      m('property', 'og:site_name', SITE_NAME, ''),
+      m('property', 'og:locale', LOCALE.id, ''),
+      ...imageTags(homeImage, ''),
+      m('name', 'twitter:title', HOME_TITLE, ''),
+      m('name', 'twitter:description', HOME_DESCRIPTION, ''),
+    ].join('\n    ')}\n  </head>`,
+  ),
+)
 
 /* ---------------------------------------------------------------- sitemap */
 
@@ -370,4 +442,4 @@ const md = (a, lang) => {
 }
 write('llms-full.txt', articles.flatMap((a) => LANGS.map((l) => md(a, l))).join('\n\n---\n\n') + '\n')
 
-console.log(`prerendered ${pages} pages for ${articles.length} article(s) at ${SITE}; wrote sitemap.xml, robots.txt, llms.txt, llms-full.txt`)
+console.log(`prerendered ${pages} pages and ${images} share images for ${articles.length} article(s) at ${SITE}; wrote sitemap.xml, robots.txt, llms.txt, llms-full.txt`)

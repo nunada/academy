@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { LOCALE, SITE_NAME, jsonLdText, type Seo } from './articleSeo'
+import { LOCALE, OG_HEIGHT, OG_WIDTH, SITE_NAME, jsonLdText, type Seo } from './articleSeo'
 
 /** The site's own URL, without a trailing slash: the origin plus Vite's base
  *  (`/` locally, `/academy/` on a GitHub Pages project site). Read at run time,
@@ -63,9 +63,16 @@ export function useSeo(seo: Seo | null) {
     undo.push(upsertMeta('property', 'og:url', seo.canonical))
     undo.push(upsertMeta('property', 'og:site_name', SITE_NAME))
     undo.push(upsertMeta('property', 'og:locale', LOCALE[seo.lang]))
-    undo.push(upsertMeta('name', 'twitter:card', 'summary'))
+    undo.push(upsertMeta('name', 'twitter:card', seo.image ? 'summary_large_image' : 'summary'))
     undo.push(upsertMeta('name', 'twitter:title', seo.title))
     undo.push(upsertMeta('name', 'twitter:description', seo.description))
+    if (seo.image) {
+      undo.push(upsertMeta('property', 'og:image', seo.image.url))
+      undo.push(upsertMeta('property', 'og:image:width', String(OG_WIDTH)))
+      undo.push(upsertMeta('property', 'og:image:height', String(OG_HEIGHT)))
+      undo.push(upsertMeta('property', 'og:image:alt', seo.image.alt))
+      undo.push(upsertMeta('name', 'twitter:image', seo.image.url))
+    }
     if (seo.published) undo.push(upsertMeta('property', 'article:published_time', seo.published))
     if (seo.modified) undo.push(upsertMeta('property', 'article:modified_time', seo.modified))
 
