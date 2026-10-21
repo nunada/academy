@@ -36,17 +36,18 @@ const COVER_CSS = `
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
-/** Rough width of a string in em, for a bold serif face. Over-estimates a little, so a line never runs out of its box. */
+/** Rough width of a string in em, sized for the widest face the title may fall back to (DejaVu Sans Bold on the Ubuntu runner, which has no serif),
+ *  so a line never runs out of its box on either machine. */
 function emWidth(s) {
   let w = 0
   for (const ch of s) {
-    if (ch === ' ') w += 0.3
+    if (ch === ' ') w += 0.34
     else if ('ilj.,:;!|\'`tf()[]'.includes(ch)) w += 0.38
-    else if (/[A-Z]/.test(ch)) w += 0.76
-    else if (/[mw]/.test(ch)) w += 0.92
-    else if (/[0-9]/.test(ch)) w += 0.64
-    else if (/[a-z]/.test(ch)) w += 0.6
-    else w += 0.75
+    else if (/[A-Z]/.test(ch)) w += 0.84
+    else if (/[mw]/.test(ch)) w += 1.0
+    else if (/[0-9]/.test(ch)) w += 0.7
+    else if (/[a-z]/.test(ch)) w += 0.67
+    else w += 0.8
   }
   return w
 }
