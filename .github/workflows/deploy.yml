@@ -152,9 +152,17 @@ jobs:
         id: base
         run: |
           repo="${{ github.event.repository.name }}"
+          # A site with its own domain is served at the domain root, and public/CNAME is where the
+          # repository says which domain that is. It is the same file GitHub Pages reads, so the build
+          # and the Pages setting cannot disagree.
+          domain=""
+          if [ -s public/CNAME ]; then domain="$(tr -d '[:space:]' < public/CNAME)"; fi
+          if [ -n "$domain" ]; then
+            echo "value=/" >> "$GITHUB_OUTPUT"
+            echo "site=https://$domain" >> "$GITHUB_OUTPUT"
           # A repository named <user>.github.io is served at the domain root;
           # anything else is a project site under /<repo>/.
-          if [[ "$repo" == *.github.io ]]; then
+          elif [[ "$repo" == *.github.io ]]; then
             echo "value=/" >> "$GITHUB_OUTPUT"
           else
             echo "value=/$repo/" >> "$GITHUB_OUTPUT"
@@ -227,9 +235,9 @@ jobs:
       - name: Build
         env:
           VITE_BASE: ${{ steps.base.outputs.value }}
-          # Optional: the public address when the site has its own domain. Left empty,
-          # the build works it out from the repository (user.github.io/repo).
-          SITE_URL: ${{ vars.SITE_URL }}
+          # The public address: the domain in public/CNAME when there is one, else the optional
+          # SITE_URL variable, else it is worked out from the repository (user.github.io/repo).
+          SITE_URL: ${{ steps.base.outputs.site || vars.SITE_URL }}
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build

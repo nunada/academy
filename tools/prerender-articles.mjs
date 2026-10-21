@@ -36,6 +36,12 @@ if (!fs.existsSync(path.join(DIST, 'index.html'))) {
 
 function siteUrl() {
   if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/+$/, '')
+  // the domain the repository says the site has (public/CNAME is also what GitHub Pages reads)
+  const cname = path.join(ROOT, 'public', 'CNAME')
+  if (fs.existsSync(cname)) {
+    const domain = fs.readFileSync(cname, 'utf8').trim()
+    if (domain) return `https://${domain}`
+  }
   const repo = process.env.GITHUB_REPOSITORY // "owner/name"
   if (repo) {
     const [owner, name] = repo.split('/')

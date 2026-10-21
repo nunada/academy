@@ -123,6 +123,32 @@ tiap aset, dan router membacanya kembali lewat `import.meta.env.BASE_URL` sebaga
 `basename`. Satu setelan menggerakkan keduanya. Repositori bernama
 `<kamu>.github.io` dikenali dan memakai `/`.
 
+**Domain sendiri (`nunada.my.id`).** Domain situs ditulis di satu tempat,
+`public/CNAME`, berkas yang sama yang dibaca GitHub Pages. Kalau berkas itu ada,
+alur kerjanya memakai `VITE_BASE=/` (domain sendiri berada di akar) dan
+`SITE_URL=https://<domain>`, sehingga peta situs, tautan kanonis, `llms.txt`, dan
+data terstruktur semuanya memakai domain itu. Untuk kembali ke
+`<kamu>.github.io/<repo>/`, hapus berkas itu. Yang harus dilakukan di luar
+repositori, sekali saja:
+
+1. **DNS di registrar.** Untuk domain utama `nunada.my.id` buat empat rekaman A ke
+   `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   (dan, kalau registrar mendukung IPv6, empat AAAA ke `2606:50c0:8000::153`,
+   `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`). Untuk
+   `www` buat CNAME ke `nunada.github.io`.
+2. **GitHub → Settings → Pages → Custom domain.** Isi `nunada.my.id`, simpan,
+   tunggu pemeriksaan DNS selesai, lalu centang **Enforce HTTPS**. Disarankan
+   juga memverifikasi domain di *Settings → Pages* (rekaman TXT) agar tidak ada
+   orang lain yang dapat memakainya.
+3. **Supabase → Authentication → URL Configuration.** Setel **Site URL** ke
+   `https://nunada.my.id/` dan tambahkan `https://nunada.my.id/` dan
+   `https://nunada.my.id/reset-password` ke **Redirect URLs** (atau satu pola
+   `https://nunada.my.id/**`). Tanpa ini tautan konfirmasi pendaftaran dan
+   tautan lupa-sandi tidak berfungsi di alamat baru. Alamat `github.io` yang
+   lama boleh dibiarkan sampai peralihannya selesai.
+4. **Google Search Console.** Daftarkan `nunada.my.id` sebagai properti domain
+   (verifikasi lewat rekaman TXT di DNS) dan kirim ulang `sitemap.xml`.
+
 **Muat ulang di URL dalam.** Pages tidak punya aturan penulisan ulang, jadi
 menyegarkan `/course/sql/lesson/…` seharusnya 404 — berkasnya memang tidak ada;
 rutenya baru bermakna setelah aplikasinya berjalan. Yang dipunyai Pages adalah
