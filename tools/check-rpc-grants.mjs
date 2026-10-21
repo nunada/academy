@@ -24,9 +24,11 @@
 import fs from 'node:fs'
 import process from 'node:process'
 
+// The live keys live in .env.live (the ordinary `npm run dev` runs in local mode and never touches the live project);
+// an older checkout may still keep them in .env.
+const file = ['.env.live', '.env'].find((f) => fs.existsSync(f))
 const env = Object.fromEntries(
-  fs
-    .readFileSync('.env', 'utf8')
+  (file ? fs.readFileSync(file, 'utf8') : '')
     .split('\n')
     .filter((l) => l.includes('='))
     .map((l) => {
@@ -39,7 +41,7 @@ const URL_ = env.VITE_SUPABASE_URL
 const KEY = env.VITE_SUPABASE_ANON_KEY
 if (!URL_ || !KEY) {
   // Local mode is a legitimate way to run this app; there is nothing to check.
-  console.log('no Supabase keys in .env — nothing to check')
+  console.log('no Supabase keys in .env.live — nothing to check')
   process.exit(0)
 }
 console.log('project:', URL_.replace(/https:\/\/([^.]{6}).*/, 'https://$1…'))

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:live": "vite --mode live",
     "build": "tsc -b && vite build && node tools/prerender-articles.mjs",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",

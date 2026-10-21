@@ -50,14 +50,23 @@ papan peringkat tidak kosong. Berguna untuk mencoba, **bukan** untuk dipakai sun
    diisikan sendiri oleh berkas itu dari tabel `progress`.
 3. Di **Authentication → Providers**, pastikan Email aktif. Untuk pengembangan,
    matikan *Confirm email* agar bisa langsung masuk setelah mendaftar.
-4. Salin `.env.example` menjadi `.env`, lalu isi dari **Project Settings → API**:
+4. Salin `.env.example` menjadi `.env.live` (bukan `.env`), lalu isi dari
+   **Project Settings → API**:
 
    ```
    VITE_SUPABASE_URL=https://xxxx.supabase.co
    VITE_SUPABASE_ANON_KEY=eyJ...
    ```
 
-5. Jalankan ulang `npm run dev`. Badge "Mode lokal" di kanan atas akan hilang.
+5. Jalankan `npm run dev:live`. Badge "Mode lokal" di kanan atas akan hilang.
+
+**Dua cara menjalankan, dan hanya satu yang menyentuh proyek sungguhan.**
+`npm run dev` selalu berjalan dalam mode lokal: akun dan kemajuan hidup di
+`localStorage` browser, tidak ada yang dikirim ke Supabase, jadi pendaftaran,
+masuk, dan seluruh kursus bisa dicoba, termasuk oleh alat pengujian otomatis,
+tanpa meninggalkan akun di papan peringkat. `npm run dev:live` memakai
+`.env.live` dan proyek sungguhan; akun yang dibuat di sana nyata. Pengujian
+otomatis tidak boleh memakai `dev:live`.
 
 Kunci `anon` memang untuk dipakai di sisi klien; yang menjaga data adalah RLS di
 `schema.sql`, bukan kerahasiaan kunci itu. Jangan pernah menaruh `service_role` di sini.
