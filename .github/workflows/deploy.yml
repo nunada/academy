@@ -159,6 +159,10 @@ jobs:
       # derivatives built from their factors, the patterns of the test, Corollary 3, and inequalities proved by monotonicity.
       - run: npm run check:monotone
 
+      # Concavity and curve sketching: the textbook's seven examples and five graphs by hand, inflection points against exact roots of f'',
+      # the Second Derivative Test against the First, and asymptotes of rational functions in closed form.
+      - run: npm run check:concavity
+
       - name: Work out where the site will live
         id: base
         run: |

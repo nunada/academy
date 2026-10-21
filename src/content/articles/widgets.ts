@@ -775,6 +775,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Pilih dua fungsi dan selang, seperti e^x dan 1 + x pada [0, 3], dan lihat selisih h = f − g: jika h(a) ≥ 0 dan h tidak pernah turun, maka f ≥ g di seluruh selang.',
     },
   },
+  concavitytool: {
+    title: { en: 'Interactive: how a graph bends', id: 'Interaktif: bagaimana grafik melengkung' },
+    description: {
+      en: 'Type a function and a window, or pick an example, and see the graph coloured by its concavity, the graph of f″, the table of signs, and every point where f″ is zero or does not exist with the verdict on whether it is a point of inflection.',
+      id: 'Ketik fungsi dan jendela, atau pilih contoh, dan lihat grafik yang diwarnai menurut kecekungannya, grafik f″, tabel tanda, serta setiap titik tempat f″ nol atau tidak ada dengan putusan apakah itu titik belok.',
+    },
+  },
+  inflectioncases: {
+    title: { en: 'Interactive: points of inflection, case by case', id: 'Interaktif: titik belok, kasus demi kasus' },
+    description: {
+      en: 'Seven graphs: inflection points where f″ = 0, where f″ does not exist, at a vertical tangent, and at a corner of the second derivative, and two points that look like inflection points and are not (x⁴ and a cusp).',
+      id: 'Tujuh grafik: titik belok tempat f″ = 0, tempat f″ tidak ada, pada garis singgung tegak, dan di sudut turunan kedua, serta dua titik yang tampak seperti titik belok padahal bukan (x⁴ dan titik puncak).',
+    },
+  },
+  secondtest: {
+    title: { en: 'Interactive: the Second Derivative Test and where it fails', id: 'Interaktif: Uji Turunan Kedua dan di mana ia gagal' },
+    description: {
+      en: 'Eight critical points read by the Second Derivative Test and by the First side by side: where one derivative value decides, and where f″ = 0 or does not exist and the First Derivative Test has to take over.',
+      id: 'Delapan titik kritis dibaca oleh Uji Turunan Kedua dan Uji Turunan Pertama berdampingan: di mana satu nilai turunan memutuskan, dan di mana f″ = 0 atau tidak ada sehingga Uji Turunan Pertama harus mengambil alih.',
+    },
+  },
+  sketchtool: {
+    title: { en: 'Interactive: sketch a curve step by step', id: 'Interaktif: sketsa kurva langkah demi langkah' },
+    description: {
+      en: 'Type a function and a window, or pick one of the five graphed examples of the textbook, and get the seven steps of curve sketching: domain and symmetry, derivatives, critical points, rising and falling, inflection points, asymptotes and intercepts.',
+      id: 'Ketik fungsi dan jendela, atau pilih salah satu dari lima contoh grafik di buku, dan dapatkan tujuh langkah penggambaran kurva: domain dan simetri, turunan, titik kritis, naik dan turun, titik belok, asimtot, dan perpotongan.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

@@ -135,6 +135,10 @@ export type WidgetName =
   | 'firsttest'
   | 'signchart'
   | 'inequality'
+  | 'concavitytool'
+  | 'inflectioncases'
+  | 'secondtest'
+  | 'sketchtool'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

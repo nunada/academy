@@ -529,6 +529,24 @@ const monotonic = (): string => {
   )
 }
 
+const concavityCover = (): string => {
+  // y = x^3/4 + x/2: concave down (orange) before the inflection point and concave up (dark) after it, with the tangent that the curve crosses
+  const f = (x: number) => x ** 3 / 4 + x / 2
+  const X = (x: number) => 200 + x * 58
+  const Y = (y: number) => 100 - y * 9
+  const m = 0.5
+  return (
+    axis(20, 390, Y(0)) +
+    line(X(0), 20, X(0), 188, 'sm', 2, '6 5') +
+    line(X(-2.7), Y(-2.7 * m), X(2.7), Y(2.7 * m), 'sr', 3, '8 5') +
+    curve(f, -3, 0, X, Y, 'sb', 4.2, 50) +
+    curve(f, 0, 3, X, Y, 'sa', 4.2, 50) +
+    dot(X(0), Y(0), 'fr', 7) +
+    text(X(-1.7), Y(f(-1.7)) - 18, '\u2212', 20) +
+    text(X(1.7), Y(f(1.7)) + 30, '+', 20)
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -563,6 +581,7 @@ const COVERS: Record<string, () => string> = {
   'linearization-and-differentials': linearization,
   'extreme-values-on-closed-intervals': extremeValues,
   'the-mean-value-theorem': meanValue,
+  'concavity-and-curve-sketching': concavityCover,
   'monotonic-functions-and-the-first-derivative-test': monotonic,
 }
 

@@ -35,6 +35,7 @@ import { DifferentialGap, ErrorPercent, LinearizeTool, ZoomIn } from './Lineariz
 import { BoxVolume, EvtCases, ExtremeTool } from './ExtremeWidgets'
 import { MvtExplorer, RolleCases, RolleRoots, ShiftCurves } from './MvtWidgets'
 import { FirstTest, InequalityTool, MonoTool, SignChart } from './MonoWidgets'
+import { ConcavityTool, InflectionCases, SecondTestTool, SketchTool } from './ConcavityWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -996,6 +997,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <SignChart />
     case 'inequality':
       return <InequalityTool />
+    case 'concavitytool':
+      return <ConcavityTool />
+    case 'inflectioncases':
+      return <InflectionCases />
+    case 'secondtest':
+      return <SecondTestTool />
+    case 'sketchtool':
+      return <SketchTool />
   }
 }
 
