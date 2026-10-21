@@ -20,6 +20,7 @@ import {
   toBase,
   type BitOp,
 } from '../../lib/binary'
+import { exprTex } from '../../lib/exprtex'
 import { Tex } from '../ui'
 import { Frame, L, groupNumber, useSep } from './widgetKit'
 
@@ -147,7 +148,7 @@ export function BaseConverter() {
               setText(t as string)
             }}
           >
-            {t} ({b})
+            <Tex src={`${t}_{${b}}`} />
           </button>
         ))}
       </div>
@@ -230,9 +231,9 @@ export function BinaryArithmetic() {
         <TextInput label="b" value={sb} set={setSb} width="10em" />
       </div>
       <div className="chips">
-        {([['+', '+'], ['-', '−'], ['*', '×']] as [Arith, string][]).map(([id, sym]) => (
+        {([['+', '+', '+'], ['-', '−', '-'], ['*', '×', '\\times ']] as [Arith, string, string][]).map(([id, sym, tx]) => (
           <button key={id} className={`chip${op === id ? ' on' : ''}`} onClick={() => setOp(id)} aria-label={sym}>
-            a {sym} b
+            <Tex src={`a${tx}b`} />
           </button>
         ))}
         {[['1011', '110'], ['1111', '1'], ['101', '11'], ['10000', '1']].map(([x, y]) => (
@@ -531,7 +532,7 @@ export function BinaryFraction() {
         ))}
         {['0.1', '0.5', '0.75', '1/3', '3/8', '5.75', '0.2'].map((p) => (
           <button key={p} className="chip ghost" onClick={() => setS(p)}>
-            {p}
+            <Tex src={exprTex(p)} />
           </button>
         ))}
       </div>

@@ -104,10 +104,10 @@ export function IntegerNumberLine() {
       </div>
       <div className="chips">
         <button className={`chip${op === '+' ? ' on' : ''}`} onClick={() => setOp('+')}>
-          a + b
+          <Tex src="a+b" />
         </button>
         <button className={`chip${op === '-' ? ' on' : ''}`} onClick={() => setOp('-')}>
-          a − b
+          <Tex src="a-b" />
         </button>
       </div>
       <svg viewBox="0 0 520 134" className="nlsvg" role="img" aria-label={tc(L('A number line showing the sum or difference as two jumps', 'Garis bilangan yang menunjukkan jumlah atau selisih sebagai dua lompatan'))}>
@@ -206,9 +206,9 @@ export function IntegerOperations() {
         <NumberInput label="b" value={sb} set={setSb} />
       </div>
       <div className="chips">
-        {OPS.map(([id, sym]) => (
+        {OPS.map(([id, sym, tx]) => (
           <button key={id} className={`chip${op === id ? ' on' : ''}`} onClick={() => setOp(id)} aria-label={sym}>
-            a {sym} b
+            <Tex src={`a${tx}b`} />
           </button>
         ))}
         {[['-7', '-3'], ['6', '-4'], ['-12', '4'], ['0', '-5']].map(([x, y]) => (
@@ -306,7 +306,7 @@ export function DivisionWithRemainder() {
               setSn(y)
             }}
           >
-            {x} ÷ {y}
+            <Tex src={`${x}\\div${y.startsWith('-') ? `(${y})` : y}`} />
           </button>
         ))}
       </div>

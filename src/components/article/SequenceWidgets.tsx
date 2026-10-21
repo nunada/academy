@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useI18n } from '../../i18n'
 import { parseRational } from '../../lib/realnum'
+import { listTex, seqTex, twoTermsTex } from '../../lib/exprtex'
 import { parseInteger } from '../../lib/integers'
 import { ratAdd, ratMul, ratSub } from '../../lib/rationals'
 import { analyse, fromTwoTerms, geometricRatio, linearForm, nthTerm, partialSum, rat, sumFirstLast, terms, type Rat } from '../../lib/sequences'
@@ -129,7 +130,7 @@ export function SequenceExplorer() {
               setSd(y)
             }}
           >
-            {x}, {y}
+            <Tex src={listTex([x, y], lang === 'id')} />
           </button>
         ))}
       </div>
@@ -225,7 +226,7 @@ export function SequenceDetector() {
       <div className="chips">
         {['3 7 11 15 19', '20 17 14 11', '2 4 8 16', '1 4 9 16 25', '0.5 1 1.5 2', '5 5 5 5'].map((p) => (
           <button key={p} className="chip ghost" onClick={() => setText(lang === 'id' ? p.replace(/(\d)\.(\d)/g, '$1,$2') : p)}>
-            {lang === 'id' ? p.replace(/(\d)\.(\d)/g, '$1,$2') : p}
+            <Tex src={seqTex(p, lang === 'id')} />
           </button>
         ))}
       </div>
@@ -315,7 +316,7 @@ export function GaussPairing() {
               setSn(z)
             }}
           >
-            {x}, {y}, {z}
+            <Tex src={listTex([x, y, z], lang === 'id')} />
           </button>
         ))}
       </div>
@@ -391,7 +392,7 @@ export function TwoTerms() {
               setSy(e)
             }}
           >
-            a{a}={b}, a{c}={e}
+            <Tex src={twoTermsTex(a, b, c, e, lang === 'id')} />
           </button>
         ))}
       </div>

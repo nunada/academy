@@ -153,11 +153,11 @@ export function LogLimits() {
       <div className="chips">
         {[2, 3, 10].map((b) => (
           <button key={b} className="chip ghost" onClick={() => setA(b)}>
-            a = {b}
+            <Tex src={`a=${b}`} />
           </button>
         ))}
         <button className="chip ghost" onClick={() => setA(Math.E)}>
-          a = e
+          <Tex src="a=e" />
         </button>
       </div>
       <table className="small" style={{ borderCollapse: 'collapse' }}>

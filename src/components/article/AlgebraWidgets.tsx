@@ -317,7 +317,7 @@ export function AreaModel() {
             setD(b)
           }}
         >
-          {tc(L('Make it a square: c = a, d = b', 'Jadikan persegi: c = a, d = b'))}
+          {tc(L('Make it a square:', 'Jadikan persegi:'))} <Tex src={'c=a,\\ d=b'} />
         </button>
         <button className="chip" onClick={() => (setA(5), setB(3), setC(4), setD(2))}>
           {tc(L('Reset', 'Ulangi'))}

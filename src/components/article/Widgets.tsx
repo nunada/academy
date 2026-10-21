@@ -14,6 +14,7 @@ import {
   type Rat,
 } from '../../lib/realnum'
 import { Tex } from '../ui'
+import { exprTex, numberTex } from '../../lib/exprtex'
 import { Frame, L, dec, useSep } from './widgetKit'
 import { ChineseConvert, ChineseGrouping, ChineseRead, ChineseRods } from './ChineseWidgets'
 import { GeometricDetector, GeometricExplorer, GeometricSum, GeometricTwoTerms } from './GeometricWidgets'
@@ -162,7 +163,7 @@ function SetsWidget() {
             className={picked.includes(i) ? 'chip on' : 'chip'}
             onClick={() => setPicked((p) => (p.includes(i) ? p : [...p, i]))}
           >
-            {tc(s.label)}
+            <Tex src={numberTex(tc(s.label))} />
           </button>
         ))}
         {picked.length > 0 && (
@@ -260,7 +261,9 @@ function ClassifyWidget() {
       <p className="muted small">
         {i + 1} / {ITEMS.length} · {tc(L('Choose the smallest set that holds the number.', 'Pilih himpunan terkecil yang memuat bilangan itu.'))}
       </p>
-      <div className="bignum">{tc(item.label)}</div>
+      <div className="bignum">
+        <Tex src={numberTex(tc(item.label))} />
+      </div>
       <div className="chips" role="group">
         {CHOICES.map((c) => {
           const state = given === null ? '' : c.zone === item.zone ? ' right' : c.zone === given ? ' wrong' : ''
@@ -323,7 +326,7 @@ function DecimalWidget() {
       <div className="chips">
         {PRESETS_DEC.map(([a, b]) => (
           <button key={a + b} className="chip" onClick={() => (setNum(a), setDen(b))}>
-            {a}/{b}
+            <Tex src={`\\frac{${a}}{${b}}`} />
           </button>
         ))}
       </div>
@@ -386,7 +389,6 @@ function RepeatWidget() {
   const digits = (s: string) => /^\d*$/.test(s)
   const ok = digits(whole) && digits(pre) && digits(rep) && whole.length > 0 && whole.length <= 6 && pre.length <= 8 && rep.length <= 8
   const res = ok ? fromRepeating(whole.replace(/^0+(?=\d)/, ''), pre, rep) : null
-  const shown = (s: string) => dec(s, sep)
 
   return (
     <Frame name="repeat">
@@ -401,8 +403,7 @@ function RepeatWidget() {
       <div className="chips">
         {PRESETS_REP.map(([w, p, r]) => (
           <button key={w + p + r} className="chip" onClick={() => (setWhole(w), setPre(p), setRep(r))}>
-            {shown(`${w}.${p}`)}
-            <span className="over">{r}</span>
+            <Tex src={`${w}${sep === ',' ? '{,}' : '.'}${p}\\overline{${r}}`} />
           </button>
         ))}
       </div>
@@ -727,7 +728,7 @@ function FloatsWidget() {
       <div className="chips">
         {PRESETS_FLOAT.map(([x, y]) => (
           <button key={x} className="chip" onClick={() => (setA(x), setB(y))}>
-            {x} = {y}
+            <Tex src={`${exprTex(x)}=${exprTex(y)}`} />
           </button>
         ))}
       </div>

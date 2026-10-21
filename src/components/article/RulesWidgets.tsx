@@ -187,11 +187,11 @@ export function ExponentialBase() {
       <div className="chips">
         {[2, 2.5, 3].map((b) => (
           <button key={b} className="chip ghost" onClick={() => setA(b)}>
-            a = {show(b, sep)}
+            <Tex src={`a=${show(b, sep).replace(',', '{,}')}`} />
           </button>
         ))}
         <button className="chip ghost" onClick={() => setA(Math.E)}>
-          a = e
+          <Tex src="a=e" />
         </button>
       </div>
       <Plot
@@ -274,7 +274,7 @@ export function ProductBox() {
       <div className="chips">
         {ts.map((q) => (
           <button key={q} className={`chip ${t === q ? 'on' : ''}`} onClick={() => setT(q)} aria-pressed={t === q}>
-            {tc(L('step', 'langkah'))} t = {show(q, sep)}
+            {tc(L('step', 'langkah'))} <Tex src={`t=${show(q, sep).replace(',', '{,}')}`} />
           </button>
         ))}
       </div>

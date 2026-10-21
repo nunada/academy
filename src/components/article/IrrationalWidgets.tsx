@@ -141,19 +141,19 @@ export function RootChecker() {
 /* ---------------------------------------------------------------------- surds */
 
 type Op = '+' | '-' | '*' | '/'
-const OPS: [Op, string][] = [
-  ['+', '+'],
-  ['-', '−'],
-  ['*', '×'],
-  ['/', '÷'],
+const OPS: [Op, string, string][] = [
+  ['+', '+', '+'],
+  ['-', '−', '-'],
+  ['*', '×', '\\times'],
+  ['/', '÷', '\\div'],
 ]
-const PRESETS: { label: string; m: string; a: string; b: string; c: string; d: string; op: Op }[] = [
-  { label: '√2 + (−√2)', m: '2', a: '0', b: '1', c: '0', d: '-1', op: '+' },
-  { label: '√2 × √2', m: '2', a: '0', b: '1', c: '0', d: '1', op: '*' },
-  { label: '(1+√2)(1−√2)', m: '2', a: '1', b: '1', c: '1', d: '-1', op: '*' },
-  { label: '(1+√2) ÷ (1−√2)', m: '2', a: '1', b: '1', c: '1', d: '-1', op: '/' },
-  { label: '1 + √2', m: '2', a: '1', b: '1', c: '0', d: '0', op: '+' },
-  { label: '(½+½√5)²', m: '5', a: '1/2', b: '1/2', c: '1/2', d: '1/2', op: '*' },
+const PRESETS: { label: string; tex: string; m: string; a: string; b: string; c: string; d: string; op: Op }[] = [
+  { label: '√2 + (−√2)', tex: '\\sqrt2+(-\\sqrt2)', m: '2', a: '0', b: '1', c: '0', d: '-1', op: '+' },
+  { label: '√2 × √2', tex: '\\sqrt2\\times\\sqrt2', m: '2', a: '0', b: '1', c: '0', d: '1', op: '*' },
+  { label: '(1+√2)(1−√2)', tex: '(1+\\sqrt2)(1-\\sqrt2)', m: '2', a: '1', b: '1', c: '1', d: '-1', op: '*' },
+  { label: '(1+√2) ÷ (1−√2)', tex: '(1+\\sqrt2)\\div(1-\\sqrt2)', m: '2', a: '1', b: '1', c: '1', d: '-1', op: '/' },
+  { label: '1 + √2', tex: '1+\\sqrt2', m: '2', a: '1', b: '1', c: '0', d: '0', op: '+' },
+  { label: '(½+½√5)²', tex: '(\\frac12+\\frac12\\sqrt5)^2', m: '5', a: '1/2', b: '1/2', c: '1/2', d: '1/2', op: '*' },
 ]
 
 export function SurdCalculator() {
@@ -235,14 +235,14 @@ export function SurdCalculator() {
         <Tex src={`(a+b\\sqrt{m})\\;\\square\\;(c+d\\sqrt{m})`} />
       </p>
       <div className="chips">
-        {OPS.map(([id, symbol]) => (
+        {OPS.map(([id, symbol, tex]) => (
           <button key={id} className={`chip${op === id ? ' on' : ''}`} onClick={() => setOp(id)} aria-label={symbol}>
-            {symbol}
+            <Tex src={tex} />
           </button>
         ))}
         {PRESETS.map((p) => (
-          <button key={p.label} className="chip ghost" onClick={() => load(p)}>
-            {p.label}
+          <button key={p.label} className="chip ghost" onClick={() => load(p)} aria-label={p.label}>
+            <Tex src={p.tex} />
           </button>
         ))}
       </div>
@@ -291,8 +291,8 @@ export function Convergents() {
     <Frame name="convergents">
       <div className="chips">
         {CONSTANTS.map((c) => (
-          <button key={c.id} className={`chip${id === c.id ? ' on' : ''}`} onClick={() => setId(c.id)}>
-            {c.label}
+          <button key={c.id} className={`chip${id === c.id ? ' on' : ''}`} onClick={() => setId(c.id)} aria-label={c.label}>
+            <Tex src={c.tex} />
           </button>
         ))}
       </div>

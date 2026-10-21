@@ -8,6 +8,27 @@ import { Frame, L, useSep } from './widgetKit'
 import { Plot } from './DerivativeWidgets'
 import { show } from './TangentWidgets'
 
+/** The formula inside a chip label of the power examples, typeset as TeX. */
+const POWER_FORMULAS: Record<string, [string, string]> = {
+  circumference: ['C = 2πr', 'C=2\\pi r'],
+  area: ['A = πr²', 'A=\\pi r^2'],
+  volume: ['V = x³', 'V=x^3'],
+  flow: ['V = kr⁴', 'V=kr^4'],
+  period: ['T = 2π√(L/g)', 'T=2\\pi\\sqrt{L/g}'],
+}
+function PowerLabel({ text, id }: { text: string; id: string }) {
+  const f = POWER_FORMULAS[id]
+  const parts = f ? text.split(f[0]) : [text]
+  if (!f || parts.length !== 2) return <>{text}</>
+  return (
+    <>
+      {parts[0]}
+      <Tex src={f[1]} />
+      {parts[1]}
+    </>
+  )
+}
+
 /** A number for a formula: the reader's decimal mark and an ASCII minus. */
 const tx = (x: number, sep: string): string => show(Number(x.toPrecision(4)), sep).replace('−', '-')
 const four = (x: number, sep: string): string => show(Number(x.toPrecision(4)), sep)
@@ -350,7 +371,7 @@ export function ErrorPercent() {
       <div className="chips">
         {POWERS.map((k) => (
           <button key={k.id} className={`chip ${id === k.id ? 'on' : ''}`} onClick={() => setId(k.id)} aria-pressed={id === k.id}>
-            {lang === 'id' ? k.id_ : k.en}
+            <PowerLabel text={lang === 'id' ? k.id_ : k.en} id={k.id} />
           </button>
         ))}
       </div>

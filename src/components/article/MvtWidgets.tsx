@@ -317,7 +317,7 @@ export function RolleRoots() {
       <div className="chips">
         {ROOT_PRESETS.map((p) => (
           <button key={p} className="chip ghost" onClick={() => setTxt(p)}>
-            {p}
+            <Tex src={exprTex(p).replace(/,/g, ',\\ ')} />
           </button>
         ))}
       </div>

@@ -236,7 +236,7 @@ export function ExponentPattern() {
       <div className="chips">
         {['2', '3', '5', '10', '1/2'].map((p) => (
           <button key={p} className={bT === p ? 'chip on' : 'chip'} onClick={() => setB(p)}>
-            {p}
+            <Tex src={p === '1/2' ? '\\frac12' : p} />
           </button>
         ))}
       </div>
@@ -478,7 +478,7 @@ export function Rationalise() {
               else (setP(c[1]), setQ(c[2]))
             }}
           >
-            {mode === 'simple' ? `${c[0]}/√${c[1]}` : `${c[0]}/(${c[1]}${signChar}√${c[2]})`}
+            <Tex src={mode === 'simple' ? `\\frac{${c[0]}}{\\sqrt{${c[1]}}}` : `\\frac{${c[0]}}{${c[1]}${signChar}\\sqrt{${c[2]}}}`} />
           </button>
         ))}
       </div>
@@ -556,7 +556,7 @@ export function RootExponent() {
       <div className="chips" role="group" aria-label={tc(L('Index n', 'Indeks n'))}>
         {[2, 3, 4, 5, 6].map((i) => (
           <button key={i} className={n === i ? 'chip on' : 'chip'} onClick={() => setN(i)}>
-            n = {i}
+            <Tex src={`n=${i}`} />
           </button>
         ))}
       </div>
@@ -577,7 +577,7 @@ export function RootExponent() {
               setN(Number(z))
             }}
           >
-            {x}^({y}/{z})
+            <Tex src={`${x}^{${String(y).startsWith('-') ? '-' : ''}\\frac{${String(y).replace('-', '')}}{${z}}}`} />
           </button>
         ))}
       </div>

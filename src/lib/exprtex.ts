@@ -182,3 +182,26 @@ export function exprTex(src: string): string {
   }
   return tex.replace(/\s+$/, '')
 }
+
+/** A decimal point written as a comma in the Indonesian pages: `0.5` becomes `0{,}5`. */
+export const decTex = (tex: string, id: boolean): string => (id ? tex.replace(/(\d)\.(\d)/g, '$1{,}$2') : tex)
+
+/** Typed values (numbers or fractions) as TeX, separated by commas (semicolons where the decimal mark is a comma): `1/2, -3` gives `\frac12,\ -3`. */
+export const listTex = (items: string[], id: boolean): string => items.map((t) => decTex(exprTex(t), id)).join(id ? ';\\ ' : ',\\ ')
+
+/** The terms of a sequence typed with spaces (`3 6 12 24`) as TeX. */
+export const seqTex = (src: string, id: boolean): string => listTex(src.trim().split(/\s+/), id)
+
+/** Two known terms of a sequence as TeX: `a_{2}=6,\ a_{5}=48`. */
+export const twoTermsTex = (p: string, x: string, q: string, y: string, id: boolean): string =>
+  `a_{${p}}=${decTex(exprTex(x), id)}${id ? ';' : ','}\\ a_{${q}}=${decTex(exprTex(y), id)}`
+
+/** A number written the way the pages show it (`√9`, `2/3`, `−4`, `0,75`, `0.333…`, `π`) as TeX. */
+export const numberTex = (label: string): string =>
+  label
+    .replace(/−/g, '-')
+    .replace(/√(\d+)/g, '\\sqrt{$1}')
+    .replace(/(\d+)\/(\d+)/g, '\\frac{$1}{$2}')
+    .replace(/(\d),(\d)/g, '$1{,}$2')
+    .replace(/…/g, '\\ldots')
+    .replace(/π/g, '\\pi')

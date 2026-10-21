@@ -6,6 +6,7 @@ import { ratMul, ratSub } from '../../lib/rationals'
 import { analyse as arithmeticAnalyse } from '../../lib/sequences'
 import { analyse, firstTerm, infiniteSum, partialSum, partialSums, ratioFromTwoTerms, ratPow, rat, terms, type Rat } from '../../lib/geometric'
 import { Tex } from '../ui'
+import { listTex, seqTex, twoTermsTex } from '../../lib/exprtex'
 import { Frame, L } from './widgetKit'
 
 /* ------------------------------------------------------------------ helpers */
@@ -120,7 +121,7 @@ export function GeometricDetector() {
           const label = lang === 'id' ? p.replace(/(\d)\.(\d)/g, '$1,$2') : p
           return (
             <button key={p} className="chip ghost" onClick={() => setText(label)}>
-              {label}
+              <Tex src={seqTex(p, lang === 'id')} />
             </button>
           )
         })}
@@ -135,7 +136,7 @@ export function GeometricDetector() {
 /* ------------------------------------------------------------------- explorer */
 
 export function GeometricExplorer() {
-  const { tc } = useI18n()
+  const { tc, lang } = useI18n()
   const [sa, setSa] = useState('3')
   const [sr, setSr] = useState('2')
   const [n, setN] = useState(8)
@@ -218,7 +219,7 @@ export function GeometricExplorer() {
               setSr(y)
             }}
           >
-            {x}, {y}
+            <Tex src={listTex([x, y], lang === 'id')} />
           </button>
         ))}
       </div>
@@ -232,7 +233,7 @@ export function GeometricExplorer() {
 /* ------------------------------------------------------------------ two terms */
 
 export function GeometricTwoTerms() {
-  const { tc } = useI18n()
+  const { tc, lang } = useI18n()
   const [sp, setSp] = useState('2')
   const [sx, setSx] = useState('6')
   const [sq, setSq] = useState('5')
@@ -308,7 +309,7 @@ export function GeometricTwoTerms() {
               setSy(e)
             }}
           >
-            a{a}={b}, a{c}={e}
+            <Tex src={twoTermsTex(a, b, c, e, lang === 'id')} />
           </button>
         ))}
       </div>
@@ -325,7 +326,7 @@ const ratTexPlain = (r: Rat): string => (r.d === 1n ? `${r.n}` : `${r.n}/${r.d}`
 /* ------------------------------------------------------------------------ sum */
 
 export function GeometricSum() {
-  const { tc } = useI18n()
+  const { tc, lang } = useI18n()
   const [sa, setSa] = useState('3')
   const [sr, setSr] = useState('2')
   const [sn, setSn] = useState('10')
@@ -419,7 +420,7 @@ export function GeometricSum() {
               setSn(z)
             }}
           >
-            {x}, {y}, {z}
+            <Tex src={listTex([x, y, z], lang === 'id')} />
           </button>
         ))}
       </div>

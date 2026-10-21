@@ -381,9 +381,9 @@ export function FractionCalculator() {
         <FracInput label="b" value={sc} set={setSc} />
       </div>
       <div className="chips">
-        {OPS.map(([id, symbol]) => (
+        {OPS.map(([id, symbol, tx]) => (
           <button key={id} className={`chip${op === id ? ' on' : ''}`} onClick={() => setOp(id)} aria-label={symbol}>
-            a {symbol} b
+            <Tex src={`a${tx}b`} />
           </button>
         ))}
         {[['2/3', '3/4'], ['1/2', '-1/3'], ['5/6', '5/9'], ['3/4', '9/10']].map(([x, y]) => (

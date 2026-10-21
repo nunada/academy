@@ -17,7 +17,7 @@ const ROOT = process.cwd()
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'exprtex-'))
 const out = path.join(tmp, 'a.mjs')
 await build({ entryPoints: [path.join(ROOT, 'src/lib/exprtex.ts')], bundle: true, format: 'esm', platform: 'node', outfile: out, logLevel: 'error' })
-const { exprTex } = await import(pathToFileURL(out).href)
+const { exprTex, decTex, listTex, seqTex, twoTermsTex, numberTex } = await import(pathToFileURL(out).href)
 
 const BS = String.fromCharCode(92)
 // write expected TeX with ~ standing for a backslash, so that this file has no escaping to get wrong
@@ -84,5 +84,28 @@ for (const [src] of CASES) {
     console.log(`${src}: a raw operator is left in ${got}`)
   }
 }
-console.log(`exprtex check: ${CASES.length * 2} checks, ${bad} failure(s)`)
+// the helpers of the sequence and pair buttons, in both languages
+const HELPERS = [
+  [decTex('0.5', true), '0{,}5'],
+  [decTex('0.5', false), '0.5'],
+  [listTex(['1/2', '-3'], false), T('~frac{1}{2},~ -3')],
+  [listTex(['3', '2.5'], true), T('3;~ 2{,}5')],
+  [seqTex('3 6 12', false), T('3,~ 6,~ 12')],
+  [seqTex('1 0.5 0.25', true), T('1;~ 0{,}5;~ 0{,}25')],
+  [twoTermsTex('2', '6', '5', '4/27', false), T('a_{2}=6,~ a_{5}=~frac{4}{27}')],
+  [numberTex('√9'), T('~sqrt{9}')],
+  [numberTex('2/3'), T('~frac{2}{3}')],
+  [numberTex('−4'), '-4'],
+  [numberTex('0,75'), '0{,}75'],
+  [numberTex('0.333…'), T('0.333~ldots')],
+  [numberTex('π'), T('~pi')],
+  [twoTermsTex('3', '-5', '7', '2.5', true), T('a_{3}=-5;~ a_{7}=2{,}5')],
+]
+for (const [got, want] of HELPERS) {
+  if (got !== want) {
+    bad++
+    console.log(`helper: got ${got}, want ${want}`)
+  }
+}
+console.log(`exprtex check: ${CASES.length * 2 + HELPERS.length} checks, ${bad} failure(s)`)
 process.exit(bad ? 1 : 0)

@@ -432,7 +432,7 @@ export function TriangleSolver() {
       <div className="chips">
         {[m.preset, ...m.more].map((pr) => (
           <button key={pr.join()} className="chip ghost" onClick={() => setVals(pr.map((x) => (sep === ',' ? x.replace('.', ',') : x)))}>
-            {pr.map((x) => (sep === ',' ? x.replace('.', ',') : x)).join(' · ')}
+            <Tex src={pr.map((x, i) => `${m.fields[i].key}=${sep === ',' ? x.replace('.', '{,}') : x}${/[A-Z]/.test(m.fields[i].key) ? '^{\\circ}' : ''}`).join(sep === ',' ? ';\\ ' : ',\\ ')} />
           </button>
         ))}
       </div>
