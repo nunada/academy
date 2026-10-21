@@ -258,6 +258,8 @@ for (let i = 0; i < 20000; i++) {
     const sq = Math.sqrt(Math.max(0, disc))
     for (const rt of [b * cosA - sq, b * cosA + sq]) if (rt > 1e-9 && !roots.some((x) => near(x, rt, 1e-7))) roots.push(rt)
   }
+  // a random triangle can land on the border between one and two solutions (the discriminant is rounding noise): the count is not decided there
+  if (Math.abs(disc) < 1e-7 * (1 + b * b)) continue
   eq(sols.length, roots.length, `SSA solution count for a=${a} b=${b} A=${truth.A}`)
   eq(sols.some((s) => near(s.c, c, 1e-7)), true, 'SSA includes the true triangle')
   for (const s of sols) {
