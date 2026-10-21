@@ -206,7 +206,7 @@ export function Ladder() {
   const at = (t: number) => Math.sqrt(Math.max(0, len * len - (xv + v * t) ** 2))
   const cd = (at(dt) - at(-dt)) / (2 * dt)
   const s = 150 / len
-  const fx = 46 + xv * s
+  const fx = 80 + xv * s
   const ty = 186 - y * s
   const crossing = len / Math.SQRT2
   const dx = (t: number) => (t < len - 1e-9 ? -(t / Math.sqrt(len * len - t * t)) * v : NaN)
@@ -229,21 +229,23 @@ export function Ladder() {
       </div>
       <svg viewBox="0 0 440 210" className="dersvg" role="img" aria-label={tc(L('A ladder leaning on a wall with its foot being pulled away', 'Tangga bersandar pada dinding dengan kakinya ditarik menjauh'))}>
         <rect x={0} y={0} width={440} height={210} className="tanframe" />
-        <line x1={46} y1={10} x2={46} y2={186} className="tanaxis" style={{ strokeWidth: 3 }} />
-        <line x1={46} y1={186} x2={430} y2={186} className="tanaxis" style={{ strokeWidth: 3 }} />
-        <line x1={46} y1={ty} x2={fx} y2={186} className="tantan wide" style={{ opacity: 1, stroke: 'var(--fig-a)' }} />
-        <line x1={46} y1={186} x2={fx} y2={186} className="tantan" style={{ stroke: 'var(--fig-b)', strokeWidth: 3 }} />
-        <line x1={46} y1={ty} x2={46} y2={186} className="tantan" style={{ stroke: 'var(--fig-result)', strokeWidth: 3 }} />
+        <line x1={80} y1={10} x2={80} y2={186} className="tanaxis" style={{ strokeWidth: 3 }} />
+        <line x1={80} y1={186} x2={430} y2={186} className="tanaxis" style={{ strokeWidth: 3 }} />
+        <line x1={80} y1={ty} x2={fx} y2={186} className="tantan wide" style={{ opacity: 1, stroke: 'var(--fig-a)' }} />
+        <line x1={80} y1={186} x2={fx} y2={186} className="tantan" style={{ stroke: 'var(--fig-b)', strokeWidth: 3 }} />
+        <line x1={80} y1={ty} x2={80} y2={186} className="tantan" style={{ stroke: 'var(--fig-result)', strokeWidth: 3 }} />
         <circle cx={fx} cy={186} r={4.5} className="tandot sec" />
-        <circle cx={46} cy={ty} r={4.5} className="tandot" />
-        <text x={(46 + fx) / 2} y={203} textAnchor="middle" className="tanlabel">
+        <circle cx={80} cy={ty} r={4.5} className="tandot" />
+        <text x={(80 + fx) / 2} y={203} textAnchor="middle" className="tanlabel">
           x = {show(xv, sep)} m
         </text>
-        <text x={52} y={(ty + 186) / 2} className="tanlabel">
+        <text x={72} y={(ty + 186) / 2 + 5} textAnchor="end" className="tanlabel">
           y = {show(y, sep)} m
         </text>
-        <text x={fx + 8} y={176} className="tanlabel" style={{ fill: 'var(--fig-b)' }}>
-          →
+        <line x1={fx + 10} y1={168} x2={fx + 46} y2={168} style={{ stroke: 'var(--fig-b)', strokeWidth: 3 }} />
+        <polygon points={`${fx + 46},161 ${fx + 58},168 ${fx + 46},175`} style={{ fill: 'var(--fig-b)' }} />
+        <text x={fx + 10} y={156} className="tanlabel" style={{ fill: 'var(--fig-b)' }}>
+          dx/dt
         </text>
       </svg>
       <p className="small muted">{tc(L('The speed of the top of the ladder against the position of the foot (negative: moving down)', 'Kecepatan ujung atas tangga terhadap posisi kaki (negatif: bergerak turun)'))}</p>

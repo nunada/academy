@@ -1402,8 +1402,8 @@ a.chip.static { cursor: pointer; }
 .rtable tr.grp4 td { background: color-mix(in srgb, var(--fig-muted) 22%, transparent); }
 .rtable tr.grp5 td { background: color-mix(in srgb, var(--brand) 14%, transparent); }
 .amctl { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px 16px; margin-bottom: 6px; }
-.amctl .lbl.slider { display: flex; flex-direction: column; gap: 2px; }
-.amctl input[type=range] { width: 100%; }
+.amctl .lbl.slider { display: block; line-height: 1.35; }
+.amctl input[type=range] { width: 100%; display: block; margin: 6px 0 0; }
 .amsvg { width: 100%; max-width: 380px; display: block; margin: 8px auto; }
 .amrect { stroke: var(--text); stroke-width: 1; fill-opacity: 0.28; }
 .amrect.am0 { fill: var(--fig-a); }

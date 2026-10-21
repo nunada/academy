@@ -542,7 +542,7 @@ function DensityWidget() {
     <Frame name="density">
       <div className="inrow">
         <input aria-label={tc(L('First number', 'Bilangan pertama'))} value={aText} onChange={(e) => setA(e.target.value)} />
-        <span className="slash">&lt;</span>
+        <span className="slash">{a && b ? (ratCmp(a, b) < 0 ? '<' : ratCmp(a, b) > 0 ? '>' : '=') : '?'}</span>
         <input aria-label={tc(L('Second number', 'Bilangan kedua'))} value={bText} onChange={(e) => setB(e.target.value)} />
       </div>
       <p className="muted small">{tc(L('Type whole numbers, decimals or fractions such as 1/3.', 'Ketik bilangan bulat, desimal, atau pecahan seperti 1/3.'))}</p>
