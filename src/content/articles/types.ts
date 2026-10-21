@@ -127,6 +127,10 @@ export type WidgetName =
   | 'extremetool'
   | 'evtcases'
   | 'boxvolume'
+  | 'mvtexplorer'
+  | 'rollecases'
+  | 'rolleroots'
+  | 'shiftcurves'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

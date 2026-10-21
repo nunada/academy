@@ -148,6 +148,10 @@ jobs:
       # the cases of the Extreme Value Theorem and the box of the exercises.
       - run: npm run check:extrema
 
+      # The Mean Value Theorem: the textbook's c worked out by hand, six hundred random functions against a scan and the proof's auxiliary
+      # function, the cases of Rolle's Theorem, zeros of a polynomial and of its derivative, and the families y = g(x) + C.
+      - run: npm run check:mvt
+
       - name: Work out where the site will live
         id: base
         run: |

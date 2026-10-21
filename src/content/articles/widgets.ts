@@ -719,6 +719,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Potong sebuah persegi dari setiap sudut karton persegi panjang dan lipat sisinya: ubah karton dan potongannya dan lihat volumenya, yang nilai terbesarnya ada di satu titik kritis V′(x) = 0 di dalam selang.',
     },
   },
+  mvtexplorer: {
+    title: { en: 'Interactive: the Mean Value Theorem', id: 'Interaktif: Teorema Nilai Rata-rata' },
+    description: {
+      en: 'Type a function and the ends of an interval, or pick a textbook example, and see the secant through the two ends, every tangent line parallel to it, and whether the two hypotheses (continuous, differentiable inside) hold.',
+      id: 'Ketik fungsi dan ujung selang, atau pilih salah satu contoh buku, dan lihat tali busur melalui kedua ujung, setiap garis singgung yang sejajar dengannya, serta apakah kedua syarat (kontinu, terdiferensialkan di dalam) terpenuhi.',
+    },
+  },
+  rollecases: {
+    title: { en: 'Interactive: Rolle’s Theorem, case by case', id: 'Interaktif: Teorema Rolle, kasus demi kasus' },
+    description: {
+      en: 'Seven functions with f(a) = f(b): three where the theorem gives horizontal tangents, and four where a jump, a corner or a cusp breaks a hypothesis and no tangent is horizontal.',
+      id: 'Tujuh fungsi dengan f(a) = f(b): tiga yang memberi garis singgung mendatar menurut teorema, dan empat yang lompatan, sudut, atau titik puncaknya melanggar syarat sehingga tidak ada garis singgung mendatar.',
+    },
+  },
+  rolleroots: {
+    title: { en: 'Interactive: between two zeros, a zero of the derivative', id: 'Interaktif: di antara dua nol, ada nol turunan' },
+    description: {
+      en: 'Choose the zeros of a polynomial and see its graph, its derivative and the point with a horizontal tangent that Rolle’s Theorem puts between every two consecutive zeros.',
+      id: 'Pilih nol-nol sebuah polinom dan lihat grafiknya, turunannya, serta titik dengan garis singgung mendatar yang menurut teorema Rolle berada di antara setiap dua nol berurutan.',
+    },
+  },
+  shiftcurves: {
+    title: { en: 'Interactive: functions with the same derivative', id: 'Interaktif: fungsi dengan turunan yang sama' },
+    description: {
+      en: 'Pick a derivative and see that every function with that derivative is one curve shifted up or down by a constant C; move the point the graph must pass through and watch C change.',
+      id: 'Pilih sebuah turunan dan lihat bahwa setiap fungsi dengan turunan itu adalah satu kurva yang digeser naik atau turun sebesar konstanta C; geser titik yang harus dilalui grafik dan lihat C berubah.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

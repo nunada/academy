@@ -471,6 +471,42 @@ const extremeValues = (): string => {
   )
 }
 
+const meanValue = (): string => {
+  // a curve, the secant through its two ends, and the tangent parallel to it where the theorem puts the point c
+  const f = (x: number) => 0.55 * x + 0.9 * Math.sin(1.25 * x) + 0.8
+  const df = (x: number) => 0.55 + 1.125 * Math.cos(1.25 * x)
+  const X = (x: number) => 36 + x * 84
+  const Y = (y: number) => 176 - y * 38
+  const a = 0.3
+  const b = 3.9
+  const m = (f(b) - f(a)) / (b - a)
+  let c = a
+  for (let i = 1; i <= 2000; i++) {
+    const x0 = a + ((b - a) * (i - 1)) / 2000
+    const x1 = a + ((b - a) * i) / 2000
+    if ((df(x0) - m) * (df(x1) - m) <= 0) {
+      c = (x0 + x1) / 2
+      break
+    }
+  }
+  const L = (x: number) => f(a) + m * (x - a)
+  const T = (x: number) => f(c) + m * (x - c)
+  return (
+    axis(20, 390, 182) +
+    line(X(a), Y(f(a)), X(a), 182, 'sm', 2, '5 4') +
+    line(X(b), Y(f(b)), X(b), 182, 'sm', 2, '5 4') +
+    line(X(a - 0.15), Y(L(a - 0.15)), X(b + 0.15), Y(L(b + 0.15)), 'sb', 3) +
+    line(X(c - 1.5), Y(T(c - 1.5)), X(c + 1.5), Y(T(c + 1.5)), 'sr', 3, '8 5') +
+    curve(f, 0, 4.1, X, Y, 'sa', 3.8, 100) +
+    dot(X(a), Y(f(a)), 'fb', 6) +
+    dot(X(b), Y(f(b)), 'fb', 6) +
+    dot(X(c), Y(f(c)), 'fr', 6.5) +
+    text(X(a) - 4, 198, 'a', 15) +
+    text(X(b) + 4, 198, 'b', 15) +
+    text(X(c) + 14, Y(f(c)) + 22, 'c', 16)
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -504,6 +540,7 @@ const COVERS: Record<string, () => string> = {
   'related-rates': relatedRates,
   'linearization-and-differentials': linearization,
   'extreme-values-on-closed-intervals': extremeValues,
+  'the-mean-value-theorem': meanValue,
 }
 
 /** Ids that have their own drawing, for the checker. */

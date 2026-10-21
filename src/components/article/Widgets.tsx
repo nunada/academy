@@ -33,6 +33,7 @@ import { InverseTrigSlope, ReferenceTriangle, ViewingAngle } from './InvTrigWidg
 import { ConeFill, Ladder, RatesTool } from './RelatedRatesWidgets'
 import { DifferentialGap, ErrorPercent, LinearizeTool, ZoomIn } from './LinearizeWidgets'
 import { BoxVolume, EvtCases, ExtremeTool } from './ExtremeWidgets'
+import { MvtExplorer, RolleCases, RolleRoots, ShiftCurves } from './MvtWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -978,6 +979,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <EvtCases />
     case 'boxvolume':
       return <BoxVolume />
+    case 'mvtexplorer':
+      return <MvtExplorer />
+    case 'rollecases':
+      return <RolleCases />
+    case 'rolleroots':
+      return <RolleRoots />
+    case 'shiftcurves':
+      return <ShiftCurves />
   }
 }
 

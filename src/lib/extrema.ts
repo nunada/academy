@@ -38,9 +38,11 @@ export interface ExtremaFailed {
 
 const N = 4001
 
-/** Every place in (a, b) where the derivative is zero or does not exist, found on a grid and refined by bisection. */
-export function criticalPoints(f: Node, df: Node, a: number, b: number): { x: number; kind: 'zero' | 'undefined' }[] {
-  const g = (x: number) => evalFloat(df, x)
+/** Every place in (a, b) where the derivative is zero or does not exist, found on a grid and refined by bisection.
+ *  With `level` it is the places where the derivative equals that number (the Mean Value Theorem asks for f′ = the
+ *  slope of the secant); `kind` 'zero' then means "equals the level". */
+export function criticalPoints(f: Node, df: Node, a: number, b: number, level = 0): { x: number; kind: 'zero' | 'undefined' }[] {
+  const g = (x: number) => evalFloat(df, x) - level
   const out: { x: number; kind: 'zero' | 'undefined' }[] = []
   const push = (x: number, kind: 'zero' | 'undefined') => {
     if (x <= a + 1e-9 * (b - a) || x >= b - 1e-9 * (b - a)) return

@@ -10,7 +10,7 @@ import { show } from './TangentWidgets'
 const four = (x: number, sep: string): string => show(Number(x.toPrecision(5)), sep)
 
 /** A typed number or a multiple of pi or e, such as "pi/2" or "e^2". */
-function numOf(s: string): number | null {
+export function numOf(s: string): number | null {
   try {
     const node = parseExpression(s)
     const v = evalFloat(node, NaN)
@@ -20,7 +20,7 @@ function numOf(s: string): number | null {
   }
 }
 
-const aText = (a: number): string => {
+export const aText = (a: number): string => {
   for (const k of [1, 2, 3, 4, 6]) {
     const n = (a * k) / Math.PI
     if (Math.abs(n - Math.round(n)) < 1e-9 && Math.round(n) !== 0) return `${Math.round(n) === 1 ? '' : Math.round(n)}pi${k === 1 ? '' : `/${k}`}`
