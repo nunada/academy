@@ -166,7 +166,10 @@ for (const eq of EQS) {
   for (let i = 0; i < 120; i++) {
     const q0 = eq.make()
     const dep = vars[Math.floor(Math.random() * vars.length)]
-    if (Math.abs(partial(eq, q0, dep)) < 0.3) continue
+    // a partial derivative that is small next to the others makes the simulation ill-conditioned (the rate of the dependent
+    // quantity is then a small difference of large terms): such draws test the arithmetic of the reference, not the code
+    const big = Math.max(...vars.map((v) => Math.abs(partial(eq, q0, v))))
+    if (Math.abs(partial(eq, q0, dep)) < Math.max(0.3, 0.3 * big)) continue
     const slopes = Object.fromEntries(vars.filter((v) => v !== dep).map((v) => [v, rnd(-3, 3)]))
     const at = (t) => {
       const q = { ...q0 }
@@ -184,7 +187,7 @@ for (const eq of EQS) {
     const rates = { ...slopes, [dep]: (-p2[dep] + 8 * p1[dep] - 8 * m1[dep] + m2[dep]) / (12 * h) }
     // ask for the rate of any one quantity, giving all the others
     const find = vars[Math.floor(Math.random() * vars.length)]
-    if (Math.abs(partial(eq, q0, find)) < 0.3) continue
+    if (Math.abs(partial(eq, q0, find)) < Math.max(0.3, 0.3 * big)) continue
     const given = Object.fromEntries(vars.filter((v) => v !== find).map((v) => [v, str(rates[v])]))
     const res = R.solveRates({ equation: eq.s, values: Object.fromEntries(vars.map((v) => [v, str(q0[v])])), rates: given, find })
     ok(res.ok, `${eq.s}: the simulation case solves`)
