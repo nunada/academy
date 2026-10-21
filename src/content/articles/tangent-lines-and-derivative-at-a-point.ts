@@ -874,5 +874,5 @@ h=1e-4  forward 4.2e-05   central 9.0e-10
     { title: 'The Python Standard Library: fractions (rational numbers)', author: 'Python Software Foundation', source: 'docs.python.org', url: 'https://docs.python.org/3/library/fractions.html' },
   ],
 
-  related: ['circles', 'linearization-and-differentials', 'arithmetic-sequences-and-series', 'irrational-numbers'],
+  related: ['circles', 'linearization-and-differentials', 'extreme-values-on-closed-intervals', 'irrational-numbers'],
 }

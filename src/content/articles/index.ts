@@ -34,8 +34,9 @@ import { meta as inverseLogs } from './derivatives-of-inverse-functions-and-loga
 import { meta as inverseTrig } from './inverse-trigonometric-functions.meta'
 import { meta as relatedRates } from './related-rates.meta'
 import { meta as linearization } from './linearization-and-differentials.meta'
+import { meta as extremeValues } from './extreme-values-on-closed-intervals.meta'
 
-export const ARTICLES: ArticleMeta[] = [linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -62,6 +63,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'inverse-trigonometric-functions': () => import('./inverse-trigonometric-functions'),
   'related-rates': () => import('./related-rates'),
   'linearization-and-differentials': () => import('./linearization-and-differentials'),
+  'extreme-values-on-closed-intervals': () => import('./extreme-values-on-closed-intervals'),
   'the-derivative-as-a-rate-of-change': () => import('./the-derivative-as-a-rate-of-change'),
 }
 

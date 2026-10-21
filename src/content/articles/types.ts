@@ -124,6 +124,9 @@ export type WidgetName =
   | 'zoomin'
   | 'diffgap'
   | 'errpercent'
+  | 'extremetool'
+  | 'evtcases'
+  | 'boxvolume'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

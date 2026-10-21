@@ -32,6 +32,7 @@ import { InverseSlope, LogLimits } from './LogWidgets'
 import { InverseTrigSlope, ReferenceTriangle, ViewingAngle } from './InvTrigWidgets'
 import { ConeFill, Ladder, RatesTool } from './RelatedRatesWidgets'
 import { DifferentialGap, ErrorPercent, LinearizeTool, ZoomIn } from './LinearizeWidgets'
+import { BoxVolume, EvtCases, ExtremeTool } from './ExtremeWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -971,6 +972,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <DifferentialGap />
     case 'errpercent':
       return <ErrorPercent />
+    case 'extremetool':
+      return <ExtremeTool />
+    case 'evtcases':
+      return <EvtCases />
+    case 'boxvolume':
+      return <BoxVolume />
   }
 }
 

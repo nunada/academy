@@ -698,6 +698,27 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Pilih rumus seperti luas lingkaran, volume kubus, atau aliran dalam arteri, dan lihat bahwa galat p% pada jari-jari atau rusuk yang diukur menjadi sekitar n·p% pada hasilnya, secara tepat dan menurut perkiraan.',
     },
   },
+  extremetool: {
+    title: { en: 'Interactive: the closed interval method', id: 'Interaktif: metode selang tertutup' },
+    description: {
+      en: 'Type a function and the ends of a closed interval, or pick a textbook example, and see its critical points and endpoints, the value of the function at each, and the absolute maximum and minimum marked on the graph.',
+      id: 'Ketik fungsi dan ujung selang tertutup, atau pilih salah satu contoh buku, dan lihat titik kritis dan ujungnya, nilai fungsi di masing-masing, serta maksimum dan minimum mutlak yang ditandai pada grafik.',
+    },
+  },
+  evtcases: {
+    title: { en: 'Interactive: when a function has a maximum and a minimum', id: 'Interaktif: kapan fungsi memiliki maksimum dan minimum' },
+    description: {
+      en: 'The same function y = x² on four different domains, e^x on the whole line and a function with a jump: see which of them has a maximum and a minimum, and which of the three conditions of the Extreme Value Theorem each one breaks.',
+      id: 'Fungsi y = x² yang sama pada empat domain berbeda, e^x pada seluruh garis, dan fungsi dengan lompatan: lihat mana yang punya maksimum dan minimum, dan syarat mana dari Teorema Nilai Ekstrem yang dilanggar masing-masing.',
+    },
+  },
+  boxvolume: {
+    title: { en: 'Interactive: the biggest box from a sheet of card', id: 'Interaktif: kotak terbesar dari selembar karton' },
+    description: {
+      en: 'Cut a square from each corner of a rectangular sheet and fold up the sides: change the sheet and the cut and watch the volume, whose largest value is at the one critical point V′(x) = 0 inside the interval.',
+      id: 'Potong sebuah persegi dari setiap sudut karton persegi panjang dan lipat sisinya: ubah karton dan potongannya dan lihat volumenya, yang nilai terbesarnya ada di satu titik kritis V′(x) = 0 di dalam selang.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

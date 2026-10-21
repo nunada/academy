@@ -144,6 +144,10 @@ jobs:
       # The C++ program in each article: it runs in the interpreter of the C++ course and prints exactly the output shown.
       - run: npm run check:articlecpp
 
+      # Extreme values on a closed interval: the textbook's examples, a scan of a million points, the First Derivative Theorem,
+      # the cases of the Extreme Value Theorem and the box of the exercises.
+      - run: npm run check:extrema
+
       - name: Work out where the site will live
         id: base
         run: |

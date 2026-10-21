@@ -208,8 +208,15 @@ export function evalFloat(n: Node, x: number, y = NaN, yp = NaN, env?: Record<st
       return e(n.a) * e(n.b)
     case 'div':
       return e(n.a) / e(n.b)
-    case 'pow':
-      return e(n.a) ** ratValue(n.n)
+    case 'pow': {
+      const base = e(n.a)
+      // a power with an odd denominator is real for a negative base too: (-8)^(1/3) = -2, (-8)^(2/3) = 4
+      if (base < 0 && n.n.d % 2n === 1n && n.n.d > 1n) {
+        const mag = (-base) ** ratValue(n.n)
+        return n.n.n % 2n === 0n ? mag : -mag
+      }
+      return base ** ratValue(n.n)
+    }
     case 'exp':
       return Math.exp(e(n.a))
     case 'fn':

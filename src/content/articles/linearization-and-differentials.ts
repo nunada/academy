@@ -883,5 +883,5 @@ int main() {
     { title: "Résumé des leçons données à l'École royale polytechnique sur le calcul infinitésimal", author: 'Augustin-Louis Cauchy', year: 1823, source: 'Paris' },
   ],
 
-  related: ['the-derivative-as-a-rate-of-change', 'related-rates', 'tangent-lines-and-derivative-at-a-point', 'the-chain-rule'],
+  related: ['the-derivative-as-a-rate-of-change', 'related-rates', 'tangent-lines-and-derivative-at-a-point', 'extreme-values-on-closed-intervals'],
 }

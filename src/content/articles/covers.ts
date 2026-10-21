@@ -451,6 +451,26 @@ const linearization = (): string => {
   )
 }
 
+const extremeValues = (): string => {
+  // y = x^3 - 3x on [-2, 3]: the largest and the smallest value, taken at the right end and at two places
+  const X = (x: number) => 50 + (x + 2) * 60
+  const Y = (y: number) => 172 - (y + 2) * 7.6
+  const f = (x: number) => x ** 3 - 3 * x
+  return (
+    line(X(-2), 16, X(-2), 188, 'sm', 2, '6 5') +
+    line(X(3), 16, X(3), 188, 'sm', 2, '6 5') +
+    line(30, Y(18), X(3), Y(18), 'sr', 2.4, '8 5') +
+    line(30, Y(-2), X(3), Y(-2), 'sr', 2.4, '8 5') +
+    curve(f, -2, 3, X, Y, 'sa', 3.8, 100) +
+    dot(X(3), Y(18), 'fr', 6.5) +
+    dot(X(1), Y(-2), 'fr', 6.5) +
+    dot(X(-2), Y(-2), 'fr', 6.5) +
+    dot(X(-1), Y(2), 'fr', 4.5) +
+    text(X(3) + 20, Y(18) + 5, 'M', 16) +
+    text(X(3) + 20, Y(-2) + 5, 'm', 16)
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -483,6 +503,7 @@ const COVERS: Record<string, () => string> = {
   'inverse-trigonometric-functions': inverseTrig,
   'related-rates': relatedRates,
   'linearization-and-differentials': linearization,
+  'extreme-values-on-closed-intervals': extremeValues,
 }
 
 /** Ids that have their own drawing, for the checker. */

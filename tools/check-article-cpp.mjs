@@ -60,6 +60,9 @@ for (const f of files) {
     // what the interpreter does not have: struct, vector, string and references
     const bare = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '')
     if (/\bstruct\b|\bvector\b|\bstring\b|\b(?:int|double|char|bool)\s*&\s*\w+/.test(bare)) problems.push(`${id}: uses a feature the interpreter does not have (struct, vector, string or a reference)`)
+    // JSCPP drops a space that follows "," or ")" inside a printf format, so the output it shows would not be the output
+    // of a real compiler: write such a string without that space
+    for (const [, lit] of bare.matchAll(/printf\s*\(\s*("(?:[^"\\]|\\.)*")/g)) if (/[,)]\s/.test(lit)) problems.push(`${id}: the string ${lit} has a space after "," or ")", which the interpreter drops`)
     let got = ''
     try {
       JSCPP.run(code.replace(/\/\* output:[\s\S]*$/, '') + '\n', '', { stdio: { write: (s) => (got += s) }, maxTimeout: 8000 })
