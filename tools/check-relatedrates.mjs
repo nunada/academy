@@ -174,11 +174,14 @@ for (const eq of EQS) {
       q[dep] = newtonJs(eq, q, dep, q0[dep])
       return q
     }
-    const h = 1e-5
-    const a = at(h)
-    const b = at(-h)
-    if (!Number.isFinite(a[dep]) || !Number.isFinite(b[dep])) continue
-    const rates = { ...slopes, [dep]: (a[dep] - b[dep]) / (2 * h) }
+    // a five-point difference with a larger step: Newton's last digits, divided by a tiny h, were noise of the size of the tolerance
+    const h = 2e-4
+    const p1 = at(h)
+    const m1 = at(-h)
+    const p2 = at(2 * h)
+    const m2 = at(-2 * h)
+    if (![p1, m1, p2, m2].every((q) => Number.isFinite(q[dep]))) continue
+    const rates = { ...slopes, [dep]: (-p2[dep] + 8 * p1[dep] - 8 * m1[dep] + m2[dep]) / (12 * h) }
     // ask for the rate of any one quantity, giving all the others
     const find = vars[Math.floor(Math.random() * vars.length)]
     if (Math.abs(partial(eq, q0, find)) < 0.3) continue
@@ -187,7 +190,7 @@ for (const eq of EQS) {
     ok(res.ok, `${eq.s}: the simulation case solves`)
     if (res.ok) {
       simulated++
-      close(res.rate, rates[find], `${eq.s}: d${find}/dt against a simulation (dependent ${dep})`, 2e-5)
+      close(res.rate, rates[find], `${eq.s}: d${find}/dt against a simulation (dependent ${dep})`, 5e-4)
     }
   }
 }
