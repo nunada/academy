@@ -139,6 +139,10 @@ export type WidgetName =
   | 'inflectioncases'
   | 'secondtest'
   | 'sketchtool'
+  | 'lhopitaltool'
+  | 'formstool'
+  | 'lhopitalfail'
+  | 'cauchytool'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

@@ -803,6 +803,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Ketik fungsi dan jendela, atau pilih salah satu dari lima contoh grafik di buku, dan dapatkan tujuh langkah penggambaran kurva: domain dan simetri, turunan, titik kritis, naik dan turun, titik belok, asimtot, dan perpotongan.',
     },
   },
+  lhopitaltool: {
+    title: { en: 'Interactive: l’Hôpital’s Rule, round by round', id: 'Interaktif: Aturan l’Hôpital, putaran demi putaran' },
+    description: {
+      en: 'Type a numerator, a denominator and the point (a number, inf or -inf), or pick a textbook example, and watch the rule applied round by round: the form at each step, the quotient of derivatives, and the limit where it stops.',
+      id: 'Ketik pembilang, penyebut, dan titiknya (bilangan, inf, atau -inf), atau pilih contoh buku, dan lihat aturan diterapkan putaran demi putaran: bentuk di tiap langkah, hasil bagi turunan, dan limit di tempat ia berhenti.',
+    },
+  },
+  formstool: {
+    title: { en: 'Interactive: the other indeterminate forms', id: 'Interaktif: bentuk tak tentu lainnya' },
+    description: {
+      en: 'Products 0·∞, differences ∞−∞ and powers 1^∞, 0^0, ∞^0: see each one rewritten as a quotient (or through a logarithm) and the rule applied to it.',
+      id: 'Hasil kali 0·∞, selisih ∞−∞, dan pangkat 1^∞, 0^0, ∞^0: lihat masing-masing ditulis ulang sebagai hasil bagi (atau lewat logaritma) dan aturan diterapkan padanya.',
+    },
+  },
+  lhopitalfail: {
+    title: { en: 'Interactive: when the rule does not help', id: 'Interaktif: ketika aturan tidak membantu' },
+    description: {
+      en: 'A quotient that is not indeterminate (where the rule gives a wrong number), one that cycles, one whose derivatives have no limit, and one-sided limits that differ: see what the stepper reports and what to do instead.',
+      id: 'Hasil bagi yang bukan bentuk tak tentu (tempat aturan memberi bilangan yang salah), yang berputar-putar, yang turunannya tidak punya limit, dan limit satu sisi yang berbeda: lihat apa yang dilaporkan dan apa yang dilakukan sebagai gantinya.',
+    },
+  },
+  cauchytool: {
+    title: { en: 'Interactive: Cauchy’s Mean Value Theorem', id: 'Interaktif: Teorema Nilai Rata-rata Cauchy' },
+    description: {
+      en: 'Two functions f and g on an interval give a curve (g(t), f(t)): see the secant through its ends and every tangent parallel to it, where f′(c)/g′(c) equals the secant slope, the fact behind l’Hôpital’s Rule.',
+      id: 'Dua fungsi f dan g pada suatu selang memberi kurva (g(t), f(t)): lihat tali busur melalui ujungnya dan setiap garis singgung yang sejajar dengannya, tempat f′(c)/g′(c) sama dengan gradien tali busur, fakta di balik Aturan l’Hôpital.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

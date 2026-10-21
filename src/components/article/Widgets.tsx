@@ -36,6 +36,7 @@ import { BoxVolume, EvtCases, ExtremeTool } from './ExtremeWidgets'
 import { MvtExplorer, RolleCases, RolleRoots, ShiftCurves } from './MvtWidgets'
 import { FirstTest, InequalityTool, MonoTool, SignChart } from './MonoWidgets'
 import { ConcavityTool, InflectionCases, SecondTestTool, SketchTool } from './ConcavityWidgets'
+import { CauchyTool, FormsTool, LhopitalFail, LhopitalTool } from './LhopitalWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -1005,6 +1006,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <SecondTestTool />
     case 'sketchtool':
       return <SketchTool />
+    case 'lhopitaltool':
+      return <LhopitalTool />
+    case 'formstool':
+      return <FormsTool />
+    case 'lhopitalfail':
+      return <LhopitalFail />
+    case 'cauchytool':
+      return <CauchyTool />
   }
 }
 

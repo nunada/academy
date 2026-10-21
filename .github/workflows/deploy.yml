@@ -163,6 +163,10 @@ jobs:
       # the Second Derivative Test against the First, and asymptotes of rational functions in closed form.
       - run: npm run check:concavity
 
+      # Indeterminate forms and l'Hopital's Rule: the textbook's examples against SymPy limits, the rule round by round, cycles and missing limits,
+      # products, differences and powers, Cauchy's Mean Value Theorem against a scan, and the TeX of every answer.
+      - run: npm run check:lhopital
+
       - name: Work out where the site will live
         id: base
         run: |

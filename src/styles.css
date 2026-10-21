@@ -1500,6 +1500,9 @@ a.chip.static { cursor: pointer; }
 .wgt table.rtable tr.hi td { background: var(--brand-soft); font-weight: 700; }
 .dersvg { width: 100%; max-width: 520px; display: block; margin: 6px auto; }
 .tancurve.faint { opacity: 0.3; }
+.lhsteps { margin: 10px 0; padding-left: 1.3em; }
+.lhsteps li { margin-bottom: 10px; }
+.lhsteps li .tex { overflow-x: auto; max-width: 100%; }
 .tancurve.sec { stroke: var(--fig-b); }
 
 /* Theme switch in the top bar: light, dark, or follow the system. */

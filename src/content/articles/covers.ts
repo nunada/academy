@@ -547,6 +547,23 @@ const concavityCover = (): string => {
   )
 }
 
+const lhopitalCover = (): string => {
+  // y = sin x / x: the 0/0 form at the origin is a hole, filled by the limit 1; the curve's two sides are dark, the limit line orange
+  const f = (x: number) => (Math.abs(x) < 1e-9 ? 1 : Math.sin(x) / x)
+  const X = (x: number) => 200 + x * 24
+  const Y = (y: number) => 160 - y * 100
+  return (
+    axis(20, 390, Y(0)) +
+    line(X(0), 20, X(0), 188, 'sm', 2, '6 5') +
+    line(20, Y(1), 390, Y(1), 'sr', 2.5, '8 5') +
+    curve(f, -7.5, -0.12, X, Y, 'sa', 4.2, 90) +
+    curve(f, 0.12, 7.5, X, Y, 'sa', 4.2, 90) +
+    dot(X(0), Y(1), 'fr', 8) +
+    dot(X(0), Y(1), 'bg', 4.2) +
+    text(X(0) + 20, Y(1) - 10, '1', 17)
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -554,6 +571,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'indeterminate-forms-and-lhopitals-rule': lhopitalCover,
   'real-numbers': realNumbers,
   'chinese-numbers': chineseNumbers,
   'exponents-and-radicals': exponents,

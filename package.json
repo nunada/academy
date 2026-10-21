@@ -44,7 +44,8 @@
     "check:mvt": "node tools/check-mvt.mjs",
     "check:exprtex": "node tools/check-exprtex.mjs",
     "check:monotone": "node tools/check-monotone.mjs",
-    "check:concavity": "node tools/check-concavity.mjs"
+    "check:concavity": "node tools/check-concavity.mjs",
+    "check:lhopital": "node tools/check-lhopital.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",
