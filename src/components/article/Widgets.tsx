@@ -41,6 +41,7 @@ import { CauchyTool, FormsTool, LhopitalFail, LhopitalTool } from './LhopitalWid
 import { CanDesigner, DeliveryTool, LightPath, OptProblems, ProfitTool } from './OptimizeWidgets'
 import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from './NewtonWidgets'
 import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
+import { BigOCounter, BigOGrowth, BigORecurrence, BigOWitness } from './BigOWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -1046,6 +1047,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <FloatSum />
     case 'fpcancel':
       return <FloatCancel />
+    case 'bigowitness':
+      return <BigOWitness />
+    case 'bigogrowth':
+      return <BigOGrowth />
+    case 'bigocounter':
+      return <BigOCounter />
+    case 'bigorecur':
+      return <BigORecurrence />
   }
 }
 

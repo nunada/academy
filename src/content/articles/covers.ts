@@ -607,6 +607,20 @@ const floatCover = (): string => {
   return art + dot(X(0), 120, 'fb', 5.2) + text(X(1) - 4, 172, '1', 16) + text(X(8) - 4, 172, '8', 16)
 }
 
+const bigOCover = (): string => {
+  // the growth classes on one picture: log n and n (dark and blue), n log n, n^2 (orange) and 2^n (red) leaving the frame one after another
+  const X = (x: number) => 40 + x * 66
+  const Y = (y: number) => 188 - y * 16
+  return (
+    axis(20, 390, 188) +
+    curve((x) => Math.log2(x + 1) * 1.2, 0, 5.3, X, Y, 'sm', 3.4, 60) +
+    curve((x) => x * 0.9, 0, 5.3, X, Y, 'sb', 3.6, 40) +
+    curve((x) => (x * Math.log2(x + 1)) * 0.55, 0, 5.3, X, Y, 'sa', 3.8, 60) +
+    curve((x) => (x * x) * 0.32, 0, 5.3, X, Y, 'sr', 3.8, 60) +
+    curve((x) => 2 ** x * 0.18, 0, 5.3, X, Y, 'sr', 4.4, 80, '9 6')
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -614,6 +628,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'big-o-notation': bigOCover,
   'floating-point-numbers': floatCover,
   'newtons-method': newtonCover,
   'applied-optimization': optimizationCover,

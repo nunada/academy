@@ -929,6 +929,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Empat ungkapan yang ditulis dengan dua cara, yang lazim dan yang stabil: geser x dan lihat berapa angka benar yang dipertahankan tiap bentuk ketika pengurangan menghapus angka terdepan.',
     },
   },
+  bigowitness: {
+    title: { en: 'Interactive: the definition of O(g), with c and n₀', id: 'Interaktif: definisi O(g), dengan c dan n₀' },
+    description: {
+      en: 'Type two functions f(n) and g(n) and a constant c, and find the threshold n₀ from which f(n) ≤ c·g(n): see the two curves, the crossing and the ratio f/g at the end of the scan.',
+      id: 'Ketik dua fungsi f(n) dan g(n) dan sebuah konstanta c, dan cari ambang n₀ yang membuat f(n) ≤ c·g(n): lihat kedua kurva, titik potongnya, dan rasio f/g di ujung pemindaian.',
+    },
+  },
+  bigogrowth: {
+    title: { en: 'Interactive: how long do the growth classes take?', id: 'Interaktif: berapa lama tiap kelas pertumbuhan?' },
+    description: {
+      en: 'Slide the input size n from 1 to ten million and read the number of steps and the time of every class from 1 to n!, at the speed you choose, and the largest n that finishes in a second, a minute, an hour or a day.',
+      id: 'Geser ukuran masukan n dari 1 sampai sepuluh juta dan baca banyaknya langkah dan waktu setiap kelas dari 1 sampai n!, pada kecepatan yang kamu pilih, dan n terbesar yang selesai dalam satu detik, menit, jam, atau hari.',
+    },
+  },
+  bigocounter: {
+    title: { en: 'Interactive: count the steps of an algorithm', id: 'Interaktif: hitung langkah sebuah algoritma' },
+    description: {
+      en: 'Twelve algorithms run on inputs of size 1, 2, 4, 8, …: see the counted steps, the ratio each time n doubles, and the steps divided by the growth class that fits, which settles on a constant.',
+      id: 'Dua belas algoritma dijalankan pada masukan berukuran 1, 2, 4, 8, …: lihat langkah yang dihitung, rasio setiap n berlipat dua, dan langkah dibagi kelas pertumbuhan yang cocok, yang menuju konstanta.',
+    },
+  },
+  bigorecur: {
+    title: { en: 'Interactive: solve T(n) = a·T(n/b) + nᵈ', id: 'Interaktif: selesaikan T(n) = a·T(n/b) + nᵈ' },
+    description: {
+      en: 'Choose a, b and d, or a famous algorithm (merge sort, binary search, Karatsuba, Strassen), and see the case of the Master theorem, the solution, and the table of T(n) divided by the predicted growth.',
+      id: 'Pilih a, b, dan d, atau sebuah algoritma terkenal (merge sort, pencarian biner, Karatsuba, Strassen), dan lihat kasus teorema Master, solusinya, dan tabel T(n) dibagi pertumbuhan yang diramalkan.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

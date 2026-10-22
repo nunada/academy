@@ -179,6 +179,10 @@ jobs:
       # decimals against Python, every number of small formats against the definition, sums and cancellation.
       - run: npm run check:floatbits
 
+      # Big-O notation: the definition with its constants, the growth classes in exact integers, the steps of twelve algorithms against their closed forms,
+      # and divide-and-conquer recurrences against the Master theorem.
+      - run: npm run check:bigo
+
       - name: Work out where the site will live
         id: base
         run: |

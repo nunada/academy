@@ -48,7 +48,8 @@
     "check:lhopital": "node tools/check-lhopital.mjs",
     "check:optimize": "node tools/check-optimize.mjs",
     "check:newton": "node tools/check-newton.mjs",
-    "check:floatbits": "node tools/check-floatbits.mjs"
+    "check:floatbits": "node tools/check-floatbits.mjs",
+    "check:bigo": "node tools/check-bigo.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",
