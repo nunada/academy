@@ -18,6 +18,8 @@ import { ResultList, fromPython, fromWeb, fromSql, fromTs, fromCpp } from './res
 import { ResultTable } from './ResultTable'
 import { CompileReport } from './CompileReport'
 import { GamePreview } from './GamePreview'
+import { BlocksBoard, ProgramView } from './BlocksBoard'
+import { checkLevel, emptyProgram, type LevelReport, type Program } from '../lib/blocks'
 
 interface Props {
   step: Step
@@ -60,7 +62,89 @@ export default function StepView(props: Props) {
       return <GameStep {...props} step={props.step} />
     case 'math':
       return <MathStep {...props} step={props.step} />
+    case 'blocks':
+      return <BlocksStep {...props} step={props.step} />
   }
+}
+
+/* ---------------------------------------------------------------- blocks */
+
+function BlocksStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props & { step: Extract<Step, { kind: 'blocks' }> }) {
+  const { t, tc } = useI18n()
+  const [program, setProgram] = useState<Program>(() => JSON.parse(JSON.stringify(step.starter ?? emptyProgram())) as Program)
+  const [report, setReport] = useState<LevelReport | null>(null)
+  const [hintsShown, setHintsShown] = useState(0)
+  const [showSolution, setShowSolution] = useState(false)
+
+  function check() {
+    const r = checkLevel(step.level, program)
+    setReport(r)
+    if (r.ok) onSolved()
+    else onWrong()
+  }
+
+  return (
+    <div className="card">
+      <h3>
+        <Rich text={tc(step.prompt)} />
+      </h3>
+      <BlocksBoard
+        level={step.level}
+        program={program}
+        disabled={solved}
+        report={report}
+        onChange={(p) => {
+          setProgram(p)
+          // A verdict belongs to the program that earned it, not to the next one.
+          setReport(null)
+        }}
+      />
+
+      <div className="row" style={{ marginTop: 12 }}>
+        {!solved && (
+          <button className="btn sm" onClick={check} disabled={blocked}>
+            {t('check')}
+          </button>
+        )}
+        {step.hints.length > 0 && hintsShown < step.hints.length && !solved && (
+          <button className="btn ghost sm" onClick={() => setHintsShown((n) => n + 1)}>
+            💡 {t('hint')} ({hintsShown}/{step.hints.length})
+          </button>
+        )}
+        {(hintsShown >= step.hints.length || isTeacher) && !solved && !showSolution && (
+          <button className="btn ghost sm" onClick={() => setShowSolution(true)}>
+            {t('showSolution')}
+          </button>
+        )}
+      </div>
+
+      {step.hints.slice(0, hintsShown).map((h, i) => (
+        <div className="banner" key={i} style={{ marginTop: 10, marginBottom: 0 }}>
+          <span>💡</span>
+          <span>
+            <Rich text={tc(h)} />
+          </span>
+        </div>
+      ))}
+
+      {showSolution && (
+        <div style={{ marginTop: 12 }}>
+          <div className="io-label">{t('showSolution')}</div>
+          <ProgramView program={step.solution} level={step.level} />
+          <button
+            className="btn ghost sm"
+            style={{ marginTop: 8 }}
+            onClick={() => {
+              setProgram(JSON.parse(JSON.stringify(step.solution)) as Program)
+              setReport(null)
+            }}
+          >
+            ↧ {tc({ en: 'Copy into the workspace', id: 'Salin ke ruang kerja' })}
+          </button>
+        </div>
+      )}
+    </div>
+  )
 }
 
 /* ------------------------------------------------------------------ math */

@@ -17,6 +17,8 @@ import { MathBoard, MathInputNote, emptyValues, markTask } from '../components/M
 import { ResultTable } from '../components/ResultTable'
 import { CompileReport } from '../components/CompileReport'
 import { GamePreview } from '../components/GamePreview'
+import { BlocksBoard, ProgramView } from '../components/BlocksBoard'
+import { checkLevel, emptyProgram, type LevelReport, type Program } from '../lib/blocks'
 
 function findProject(course: Course | undefined, projectId: string): MiniProject | undefined {
   if (!course) return undefined
@@ -42,6 +44,9 @@ export default function ProjectPage() {
   // One row of typed answers per part, for a mathematics problem set.
   const [answers, setAnswers] = useState<string[][]>([])
   const [answerMarks, setAnswerMarks] = useState<(boolean[] | null)[]>([])
+  // One program and one verdict per level, for a Code Blocks project.
+  const [programs, setPrograms] = useState<Program[]>([])
+  const [reports, setReports] = useState<(LevelReport | null)[]>([])
   const [busy, setBusy] = useState(false)
   const [rows, setRows] = useState<ResultRow[] | null>(null)
   const [runOut, setRunOut] = useState<{ text: string; error: boolean } | null>(null)
@@ -67,6 +72,9 @@ export default function ProjectPage() {
     if (project.runtime === 'math') {
       setAnswers(project.tasks.map(emptyValues))
       setAnswerMarks(project.tasks.map(() => null))
+    } else if (project.runtime === 'blocks') {
+      setPrograms(project.tasks.map((task) => JSON.parse(JSON.stringify(task.starter ?? emptyProgram())) as Program))
+      setReports(project.tasks.map(() => null))
     } else {
       setCode(resolveBi(project.starter, lang))
     }
@@ -103,8 +111,10 @@ export default function ProjectPage() {
   const isCpp = project.runtime === 'cpp'
   // A mathematics project is a problem set: no editor, no runtime, just boxes.
   const isMath = project.runtime === 'math'
+  // A Code Blocks project is a set of robot levels, solved with blocks.
+  const isBlocks = project.runtime === 'blocks'
   // Every other project runtime is a plain Python program.
-  const isPython = !isWeb && !isSql && !isTs && !isGame && !isCpp && !isMath
+  const isPython = !isWeb && !isSql && !isTs && !isGame && !isCpp && !isMath && !isBlocks
 
   const items = courseItems(course)
   const pos = items.findIndex((i) => i.id === project.id)
@@ -120,7 +130,7 @@ export default function ProjectPage() {
   }
 
   async function doRun() {
-    if (!project) return
+    if (!project || project.runtime === 'blocks') return
     setBusy(true)
     try {
       if (project.runtime === 'sql') {
@@ -190,6 +200,19 @@ export default function ProjectPage() {
         }))
         setRows(next)
         if (next.every((o) => o.passed)) {
+          const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: isTeacher ? 0 : project.xp })
+          setAwarded(xp)
+          setFinished(true)
+        }
+        return
+      }
+
+      // The robot levels are checked here too: each one runs its own program.
+      if (project.runtime === 'blocks') {
+        const next = project.tasks.map((task, i) => checkLevel(task.level, programs[i] ?? emptyProgram()))
+        setReports(next)
+        setRows(project.tasks.map((task, i) => ({ name: task.prompt, passed: next[i].ok })))
+        if (next.every((r) => r.ok)) {
           const xp = await complete({ courseId, itemId: project.id, kind: 'project', xp: isTeacher ? 0 : project.xp })
           setAwarded(xp)
           setFinished(true)
@@ -310,6 +333,35 @@ export default function ProjectPage() {
               </div>
             ))}
           </>
+        ) : isBlocks ? (
+          <>
+            {project.tasks.map((task, i) => (
+              <div className="part" key={i}>
+                <span className="partno">{i + 1}</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <p style={{ marginTop: 0 }}>
+                    <Rich text={tc(task.prompt)} />
+                  </p>
+                  <BlocksBoard
+                    level={task.level}
+                    program={programs[i] ?? emptyProgram()}
+                    onChange={(p) => {
+                      setPrograms((prev) => prev.map((q, j) => (j === i ? p : q)))
+                      setReports((prev) => prev.map((r, j) => (j === i ? null : r)))
+                    }}
+                    disabled={false}
+                    report={reports[i] ?? null}
+                  />
+                  {showSolution && (
+                    <div style={{ marginTop: 10 }}>
+                      <div className="io-label">{t('showSolution')}</div>
+                      <ProgramView program={task.solution} level={task.level} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </>
         ) : isWeb ? (
           <>
             {hasGivenMarkup && (
@@ -370,14 +422,14 @@ export default function ProjectPage() {
           </>
         )}
 
-        <div className="row" style={{ marginTop: isWeb || isMath ? 12 : 0 }}>
-          {!isWeb && !isMath && (
+        <div className="row" style={{ marginTop: isWeb || isMath || isBlocks ? 12 : 0 }}>
+          {!isWeb && !isMath && !isBlocks && (
             <button className="btn soft sm" onClick={() => void doRun()} disabled={busy}>
               ▶ {t('runCode')}
             </button>
           )}
           <button className="btn sm" onClick={() => void doCheck()} disabled={busy}>
-            ✓ {isMath ? t('check') : t('runTests')}
+            ✓ {isMath || isBlocks ? t('check') : t('runTests')}
           </button>
           {hintsShown < project.hints.length && (
             <button className="btn ghost sm" onClick={() => setHintsShown((n) => n + 1)}>
@@ -431,7 +483,7 @@ export default function ProjectPage() {
         ))}
 
         {/* A problem set shows its working beside each part, not in one block. */}
-        {showSolution && !isMath && (
+        {showSolution && !isMath && !isBlocks && (
           <div style={{ marginTop: 12 }}>
             <div className="io-label">{t('showSolution')}</div>
             <CodeBlock>{resolveBi(project.solution, lang)}</CodeBlock>

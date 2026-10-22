@@ -19,6 +19,23 @@ import type { CareerPath, Course, CourseInfo, Module } from './types'
 
 export const COURSES: CourseInfo[] = [
   {
+    id: 'code-blocks',
+    title: { en: 'Code Blocks', id: 'Code Blocks' },
+    tagline: {
+      en: 'Your first programming course, built from blocks: steer a robot with orders, loops, decisions, variables and blocks of your own.',
+      id: 'Kursus pemrograman pertamamu, disusun dari blok: kendalikan robot dengan perintah, perulangan, keputusan, variabel, dan blok buatanmu sendiri.',
+    },
+    icon: '🧩',
+    color: '#3b7fb0',
+    level: { en: 'Beginner', id: 'Pemula' },
+    language: 'blocks',
+    track: 'code',
+    requires: [],
+    available: true,
+    lessons: 16,
+    projects: 8,
+  },
+  {
     id: 'python',
     title: { en: 'Python', id: 'Python' },
     tagline: {
@@ -545,6 +562,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   'tka-smp-matematika': () => import('./tka-smp-matematika'),
   'tka-sma-matematika': () => import('./tka-sma-matematika'),
   'tka-sma-matematika-lanjut': () => import('./tka-sma-matematika-lanjut'),
+  'code-blocks': () => import('./code-blocks'),
 }
 
 /** Fetched curricula, kept for the session. A course is a few dozen kilobytes
