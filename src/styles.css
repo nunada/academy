@@ -1565,3 +1565,48 @@ a.chip.static { cursor: pointer; }
 @media (max-width: 480px) {
   .brand-name { display: none; }
 }
+
+/* ---------- Code Blocks: the block editor and the robot's grid ---------- */
+.bk { --bk-motion: #3b7fb0; --bk-look: #4f8b56; --bk-control: #c0852a; --bk-data: #8a5a9c; --bk-custom: #c0492b; }
+:root[data-theme="dark"] .bk { --bk-motion: #6fb0dd; --bk-look: #86c08b; --bk-control: #e0b25c; --bk-data: #bf94d1; --bk-custom: #ef8f70; }
+.bk-palette { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.bk-pal { font: inherit; font-weight: 700; font-size: 0.85rem; padding: 6px 11px; border-radius: 8px; cursor: pointer; color: var(--text); border: 1px solid var(--border); border-left: 5px solid var(--c, var(--brand)); background: color-mix(in srgb, var(--c, var(--brand)) 14%, var(--surface)); }
+.bk-pal:hover { background: color-mix(in srgb, var(--c, var(--brand)) 26%, var(--surface)); }
+.bk-pal.motion, .bk-block.motion { --c: var(--bk-motion); }
+.bk-pal.look, .bk-block.look { --c: var(--bk-look); }
+.bk-pal.control, .bk-block.control { --c: var(--bk-control); }
+.bk-pal.data, .bk-block.data { --c: var(--bk-data); }
+.bk-pal.custom, .bk-block.custom { --c: var(--bk-custom); }
+.bk-work { display: flex; flex-direction: column; gap: 10px; }
+.bk-stack { display: flex; flex-direction: column; gap: 5px; padding: 8px; border: 1px dashed var(--border); border-radius: 10px; background: var(--surface); }
+.bk-stack.here { border-color: var(--brand); border-style: solid; }
+.bk-stack .bk-stack { margin: 6px 0 2px 14px; background: var(--surface-2); }
+.bk-stack-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.bk-block { border: 1px solid var(--border); border-left: 5px solid var(--c, var(--brand)); border-radius: 8px; padding: 6px 8px; background: color-mix(in srgb, var(--c, var(--brand)) 12%, var(--surface)); }
+.bk-block.active { outline: 3px solid var(--sun); outline-offset: 1px; }
+.bk-line { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.bk-head { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 0.9rem; }
+.bk-field { display: inline-flex; gap: 4px; align-items: center; }
+.bk-field:has(.bk-cond) { flex-wrap: wrap; }
+.bk-mini { width: 4.2em; }
+.bk-input { font: inherit; font-size: 0.85rem; padding: 2px 6px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); max-width: 100%; }
+.bk-num { width: 4.2em; }
+.bk-text { width: 7em; }
+.bk-tools { display: inline-flex; gap: 3px; }
+.bk-tool { font: inherit; width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; line-height: 1; }
+.bk-tool:disabled { opacity: 0.35; cursor: default; }
+.bk-slot { font: inherit; font-size: 0.8rem; padding: 5px 8px; border-radius: 8px; border: 1px dashed var(--border); background: none; color: var(--muted); cursor: pointer; text-align: left; }
+.bk-slot:hover, .bk-slot.on { border-color: var(--brand); color: var(--brand); }
+.bk-def { border-top: 1px solid var(--border); padding-top: 8px; }
+.bk-def-head { margin-bottom: 6px; }
+.bk-grid { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); }
+.bk-floor { fill: var(--surface); stroke: var(--border); stroke-width: 1; }
+.bk-wall { fill: var(--forest); stroke: var(--border); stroke-width: 1; }
+:root[data-theme="dark"] .bk-wall { fill: #0e1815; }
+.bk-goal { fill: none; stroke: var(--good); stroke-width: 3; }
+.bk-goal-line { stroke: var(--good); stroke-width: 2; }
+.bk-star { fill: var(--sun); stroke: #b8892a; stroke-width: 1; }
+.bk-bot polygon { fill: var(--bk-motion); stroke: var(--text); stroke-width: 1.5; }
+.bk-bot .bk-eye { fill: #fff; stroke: none; }
+.bk-bot.bump polygon { fill: var(--bad); }
+.bk-said { font-weight: 700; font-size: 1.05rem; padding: 8px 10px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--border); word-break: break-word; }

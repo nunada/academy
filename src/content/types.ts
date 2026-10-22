@@ -4,6 +4,7 @@
 
 import type { Figure } from '../lib/figure'
 import type { Solid3D } from '../lib/solid3d'
+import type { BlocksLevel, Program } from '../lib/blocks'
 
 export type Lang = 'en' | 'id'
 
@@ -398,6 +399,21 @@ export type Step =
       hints: Loc[]
       solution: Bi<string>
     }
+  | {
+      /** The robot rung of a Code Blocks lesson: build a program out of blocks
+       *  and make the robot do what the prompt says, on every map in the level.
+       *  There is nothing to type — the blocks are pressed into place. */
+      kind: 'blocks'
+      id: string
+      prompt: Loc
+      level: BlocksLevel
+      /** Blocks already in the workspace when the step opens. */
+      starter?: Program
+      hints: Loc[]
+      /** A program that passes. The course's own check runs it, so a level
+       *  that cannot be solved never ships. */
+      solution: Program
+    }
   | ({
       /** The last rung of a mathematics lesson. There is nothing to pick from
        *  and no template to complete: work it out, type the number. */
@@ -432,6 +448,14 @@ type CodeProject = MiniProjectBase & { starter: Bi<string>; solution: Bi<string>
 
 /** Discriminated by `runtime` so each kind carries only the tests it can run.
  *  Python is the default, which keeps every existing project unchanged. */
+/** One level of a blocks project. */
+export interface BlocksTask {
+  prompt: Loc
+  level: BlocksLevel
+  starter?: Program
+  solution: Program
+}
+
 export type MiniProject =
   | (CodeProject & { runtime?: 'python'; tests: Bi<PyTest[]> })
   | (CodeProject & { runtime: 'web'; tests: Bi<WebTest[]>; html?: Bi<string>; js?: boolean; react?: boolean })
@@ -443,6 +467,9 @@ export type MiniProject =
    *  No starter and no single solution string — each part carries its own
    *  working instead. */
   | (MiniProjectBase & { runtime: 'math'; tasks: MathTask[] })
+  /** A set of robot levels, each solved with blocks. Like a problem set, every
+   *  level has to pass before the project counts. */
+  | (MiniProjectBase & { runtime: 'blocks'; tasks: BlocksTask[] })
 
 export interface Submodule {
   id: string
@@ -476,7 +503,7 @@ export interface CourseInfo {
   level: Loc
   /** What the learner writes. `math` is the one that is not a programming
    *  language: those courses are worked on paper and answered in a box. */
-  language: 'python' | 'html' | 'css' | 'javascript' | 'typescript' | 'sql' | 'react' | 'cpp' | 'mixed' | 'math'
+  language: 'python' | 'html' | 'css' | 'javascript' | 'typescript' | 'sql' | 'react' | 'cpp' | 'mixed' | 'math' | 'blocks'
   /** Which half of the catalog this belongs under.
    *
    *  Not the same question as `language`. The three Python-for-mathematics
