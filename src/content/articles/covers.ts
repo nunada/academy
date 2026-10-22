@@ -687,6 +687,19 @@ const hanoiCover = (): string => {
   return art
 }
 
+const latexCover = (): string => {
+  // a typeset page: a title bar, lines of text, and the displayed formula  ∑ 1/k² = π²/6
+  let art = rect(64, 16, 272, 168, 'pm', 6)
+  art += line(96, 40, 304, 40, 'sm', 5) + line(96, 58, 262, 58, 'sm', 3) + line(96, 70, 290, 70, 'sm', 3)
+  art += text(116, 128, '∑', 58)
+  art += text(116, 82, '∞', 15) + text(116, 152, 'k=1', 14)
+  art += text(170, 106, '1', 22) + line(158, 112, 182, 112, 'st', 2.4) + text(170, 134, 'k²', 22)
+  art += text(206, 120, '=', 26)
+  art += text(246, 106, 'π²', 22) + line(232, 112, 262, 112, 'st', 2.4) + text(246, 134, '6', 22)
+  art += line(96, 164, 250, 164, 'sm', 3)
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -694,6 +707,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  latex: latexCover,
   'tower-of-hanoi': hanoiCover,
   'fibonacci-numbers': fibonacciCover,
   'binary-search-and-sorting': sortingCover,

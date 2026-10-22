@@ -41,6 +41,7 @@ import { CauchyTool, FormsTool, LhopitalFail, LhopitalTool } from './LhopitalWid
 import { CanDesigner, DeliveryTool, LightPath, OptProblems, ProfitTool } from './OptimizeWidgets'
 import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from './NewtonWidgets'
 import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
+import { LatexBuilder, LatexDocument, LatexLive, LatexSymbols } from './LatexWidgets'
 import { HanoiGraphView, HanoiPegs, HanoiPlay, HanoiState, HanoiTime } from './HanoiWidgets'
 import { FibCompute, FibExplore, FibIdentities, FibPisano, FibZeckendorf } from './FibonacciWidgets'
 import { BinarySearchViz, BisectAnswer, SortRace, SortViz } from './SortingWidgets'
@@ -1086,6 +1087,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <HanoiGraphView />
     case 'hanoipegs':
       return <HanoiPegs />
+    case 'texlive':
+      return <LatexLive />
+    case 'texsymbols':
+      return <LatexSymbols />
+    case 'texgen':
+      return <LatexBuilder />
+    case 'texdoc':
+      return <LatexDocument />
   }
 }
 

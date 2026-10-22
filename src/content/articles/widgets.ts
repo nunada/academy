@@ -1055,6 +1055,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Pilih tiga sampai enam tiang dan sampai 64 cakram dan baca bilangan Frame–Stewart untuk banyak langkah, banyak cakram yang dipindah lebih dulu ke tiang cadangan, dan tabel yang memperlihatkan seberapa cepat tiang tambahan memperpendek solusi.',
     },
   },
+  texlive: {
+    title: { en: 'Interactive: type LaTeX and see the formula', id: 'Interaktif: ketik LaTeX dan lihat rumusnya' },
+    description: {
+      en: 'Type a formula in LaTeX and watch it appear, with a linter that points at the usual mistakes (a missing brace, x^10, a mismatched environment, an undefined command) in the words LaTeX itself would use.',
+      id: 'Ketik rumus dalam LaTeX dan lihat ia muncul, dengan linter yang menunjuk kesalahan yang lazim (kurung kurawal hilang, x^10, lingkungan yang tidak cocok, perintah tak terdefinisi) dalam kata-kata yang akan dipakai LaTeX sendiri.',
+    },
+  },
+  texsymbols: {
+    title: { en: 'Interactive: find the command for a symbol', id: 'Interaktif: cari perintah untuk sebuah simbol' },
+    description: {
+      en: 'Search more than a hundred symbols by name, in English or Indonesian, or by part of the command, filter by kind (Greek letters, relations, arrows, brackets) and see which ones need the amsmath or amssymb package.',
+      id: 'Cari lebih dari seratus simbol menurut nama, dalam bahasa Inggris atau Indonesia, atau menurut sebagian perintah, saring menurut jenis (huruf Yunani, relasi, panah, kurung) dan lihat mana yang memerlukan paket amsmath atau amssymb.',
+    },
+  },
+  texgen: {
+    title: { en: 'Interactive: build a formula from a form', id: 'Interaktif: susun rumus dari sebuah formulir' },
+    description: {
+      en: 'Fill in the fields of a fraction, root, power, sum, product, integral, limit, matrix or piecewise function and get the LaTeX code and the drawn result, ready to copy, with the linter checking it.',
+      id: 'Isi kolom sebuah pecahan, akar, pangkat, jumlah, hasil kali, integral, limit, matriks, atau fungsi sepotong-sepotong dan dapatkan kode LaTeX dan hasil gambarnya, siap disalin, dengan linter yang memeriksanya.',
+    },
+  },
+  texdoc: {
+    title: { en: 'Interactive: assemble a LaTeX document', id: 'Interaktif: rakit dokumen LaTeX' },
+    description: {
+      en: 'Choose the class, font size, paper, packages, margins and parts (abstract, equation, table, figure, bibliography) and get a complete main.tex with the commands to compile it and the rules that were applied.',
+      id: 'Pilih kelas, ukuran huruf, kertas, paket, margin, dan bagian (abstrak, persamaan, tabel, gambar, daftar pustaka) dan dapatkan main.tex lengkap dengan perintah untuk mengompilasinya dan aturan yang diterapkan.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {
