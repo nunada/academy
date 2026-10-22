@@ -176,7 +176,7 @@ function NumEdit({ value, vars, onChange, disabled }: { value: Num; vars: string
     <span className="bk-field">
       {vars.length > 0 && (
         <select
-          className="bk-input"
+          className="bk-input bk-mini"
           aria-label={tc(L('number or variable', 'bilangan atau variabel'))}
           value={isVar ? (value as { var: string }).var : '#'}
           disabled={disabled}
@@ -210,7 +210,7 @@ function CondEdit({ cond, level, onChange, disabled }: { cond: Cond; level: Bloc
   const kinds = levelConds(level)
   const vars = level.vars ?? []
   return (
-    <span className="bk-field">
+    <span className="bk-field bk-cond">
       <select
         className="bk-input"
         aria-label={tc(L('condition', 'syarat'))}
@@ -466,7 +466,7 @@ function Grid({ rows, frame, label }: { rows: string[]; frame: Frame | null; lab
   const cy = f.y * CELL + CELL / 2
   const bump = frame?.bump === true
   return (
-    <svg className="bk-grid" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={label} style={{ maxWidth: Math.min(W, 420) }}>
+    <svg className="bk-grid" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={label} style={{ maxWidth: Math.min(W * 1.7, 440) }}>
       {w.cells.map((line, y) =>
         line.map((c, x) => (
           <rect key={`${x},${y}`} x={x * CELL} y={y * CELL} width={CELL} height={CELL} className={c === '#' ? 'bk-wall' : 'bk-floor'} />

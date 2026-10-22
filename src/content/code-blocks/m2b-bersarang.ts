@@ -22,8 +22,8 @@ export const m2s2: Submodule = {
           'c1',
           L('Look Closely: The Inner Loop Runs in Full Every Time', 'Ayo Amati: Perulangan Dalam Berjalan Penuh Tiap Kali'),
           L(
-            'A repeat block can hold **another repeat block**. The inner one runs **completely** each time the outer one goes round.\n\nTo walk along the edges of a rectangle: *a side, then a turn*, repeated; and each side is itself *a step, repeated*.\n\nThe outer loop counts the **sides**. The inner loop counts the **steps along one side**.',
-            'Blok ulangi dapat memuat **blok ulangi lain**. Yang di dalam berjalan **sampai tuntas** setiap kali yang di luar berputar.\n\nUntuk menyusuri tepi persegi panjang: *satu sisi, lalu belok*, diulang; dan tiap sisi sendiri adalah *satu langkah, diulang*.\n\nPerulangan luar menghitung **sisi**. Perulangan dalam menghitung **langkah sepanjang satu sisi**.',
+            'A repeat block can hold **another repeat block**. The inner one runs **completely** each time the outer one goes round.\n\nTo walk along the edges of a rectangle: “a side, then a turn”, repeated; and each side is itself “a step, repeated”.\n\nThe outer loop counts the **sides**. The inner loop counts the **steps along one side**.',
+            'Blok ulangi dapat memuat **blok ulangi lain**. Yang di dalam berjalan **sampai tuntas** setiap kali yang di luar berputar.\n\nUntuk menyusuri tepi persegi panjang: “satu sisi, lalu belok”, diulang; dan tiap sisi sendiri adalah “satu langkah, diulang”.\n\nPerulangan luar menghitung **sisi**. Perulangan dalam menghitung **langkah sepanjang satu sisi**.',
           ),
           L('repeat 2 times\n  repeat 3 times\n    move 1\n    pick up the star\n  turn right', 'ulangi 2 kali\n  ulangi 3 kali\n    maju 1\n    ambil bintang\n  belok kanan'),
         ),

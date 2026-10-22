@@ -96,8 +96,8 @@ export const m3s2: Submodule = {
           'c1',
           L('Look Closely: Stop When You Arrive', 'Ayo Amati: Berhenti Ketika Tiba'),
           L(
-            'A while block can also test whether the robot **has arrived**. The condition “**not on the goal yet**” is true until the robot stands on the goal, and then the loop ends by itself.\n\nPut an **if … otherwise** block inside it, and you get a program that follows a road of **any length** to the goal:\n\n*while not on the goal yet: if the way ahead is clear, move; otherwise, turn right.*',
-            'Blok selama juga dapat menguji apakah robot **sudah tiba**. Syarat “**belum di garis finis**” benar sampai robot berdiri di garis finis, lalu perulangan berakhir dengan sendirinya.\n\nTaruh blok **jika … jika tidak** di dalamnya, dan kamu mendapat program yang menyusuri jalan **sepanjang apa pun** sampai garis finis:\n\n*selama belum di garis finis: jika jalan di depan terbuka, maju; jika tidak, belok kanan.*',
+            'A while block can also test whether the robot **has arrived**. The condition “**not on the goal yet**” is true until the robot stands on the goal, and then the loop ends by itself.\n\nPut an **if … otherwise** block inside it, and you get a program that follows a road of **any length** to the goal:\n\n“while not on the goal yet: if the way ahead is clear, move; otherwise, turn right.”',
+            'Blok selama juga dapat menguji apakah robot **sudah tiba**. Syarat “**belum di garis finis**” benar sampai robot berdiri di garis finis, lalu perulangan berakhir dengan sendirinya.\n\nTaruh blok **jika … jika tidak** di dalamnya, dan kamu mendapat program yang menyusuri jalan **sepanjang apa pun** sampai garis finis:\n\n“selama belum di garis finis: jika jalan di depan terbuka, maju; jika tidak, belok kanan.”',
           ),
           L('while not on the goal yet\n  if the way ahead is clear\n    move 1\n  otherwise\n    turn right', 'selama belum di garis finis\n  jika jalan di depan terbuka\n    maju 1\n  jika tidak\n    belok kanan'),
         ),
@@ -105,8 +105,8 @@ export const m3s2: Submodule = {
           'c2',
           L('Step by Step: Which Way to Turn?', 'Contoh Bertahap: Belok ke Arah Mana?'),
           L(
-            'If the road can turn **both** ways, the robot has to look to the side. The two side conditions are *the way on the right is clear* and *the way on the left is clear*.\n\n1. Step 1: if the way ahead is clear, move 1.\n2. Step 2: otherwise, if the way on the **right** is clear, turn right.\n3. Step 3: otherwise turn left.\n\nA second if inside the “otherwise” is called **nesting**. The order of the questions matters: the program asks about the right side first.',
-            'Bila jalan dapat berbelok ke **kedua** arah, robot harus melihat ke samping. Kedua syarat samping adalah *jalan di kanan terbuka* dan *jalan di kiri terbuka*.\n\n1. Langkah 1: jika jalan di depan terbuka, maju 1.\n2. Langkah 2: jika tidak, jika jalan di **kanan** terbuka, belok kanan.\n3. Langkah 3: jika tidak, belok kiri.\n\nJika kedua di dalam “jika tidak” disebut **bersarang**. Urutan pertanyaan penting: program menanyakan sisi kanan lebih dulu.',
+            'If the road can turn **both** ways, the robot has to look to the side. The two side conditions are “the way on the right is clear” and “the way on the left is clear”.\n\n1. Step 1: if the way ahead is clear, move 1.\n2. Step 2: otherwise, if the way on the **right** is clear, turn right.\n3. Step 3: otherwise turn left.\n\nA second if inside the “otherwise” is called **nesting**. The order of the questions matters: the program asks about the right side first.',
+            'Bila jalan dapat berbelok ke **kedua** arah, robot harus melihat ke samping. Kedua syarat samping adalah “jalan di kanan terbuka” dan “jalan di kiri terbuka”.\n\n1. Langkah 1: jika jalan di depan terbuka, maju 1.\n2. Langkah 2: jika tidak, jika jalan di **kanan** terbuka, belok kanan.\n3. Langkah 3: jika tidak, belok kiri.\n\nJika kedua di dalam “jika tidak” disebut **bersarang**. Urutan pertanyaan penting: program menanyakan sisi kanan lebih dulu.',
           ),
         ),
         quiz(
@@ -126,15 +126,15 @@ export const m3s2: Submodule = {
         ),
         multi(
           'm1',
-          L('The robot follows a road with `if the way ahead is clear: move 1, otherwise: if the right is clear turn right, otherwise turn left`. Choose ALL the places where the robot turns LEFT.', 'Robot menyusuri jalan dengan `jika jalan di depan terbuka: maju 1, jika tidak: jika kanan terbuka belok kanan, jika tidak belok kiri`. Pilih SEMUA tempat robot berbelok KIRI.'),
+          L('The robot follows a road with `if the way ahead is clear: move 1, otherwise: if the right is clear turn right, otherwise turn left`. Choose ALL the situations in which the robot TURNS (and so does not move).', 'Robot menyusuri jalan dengan `jika jalan di depan terbuka: maju 1, jika tidak: jika kanan terbuka belok kanan, jika tidak belok kiri`. Pilih SEMUA keadaan saat robot BELOK (dan jadi tidak maju).'),
           [
-            L('The way ahead is blocked and only the left side is open', 'Jalan di depan tertutup dan hanya sisi kiri yang terbuka'),
+            L('The way ahead is blocked and only the left side is open (it turns left)', 'Jalan di depan tertutup dan hanya sisi kiri yang terbuka (ia belok kiri)'),
             L('The way ahead is clear', 'Jalan di depan terbuka'),
-            L('The way ahead is blocked and both sides are open', 'Jalan di depan tertutup dan kedua sisi terbuka'),
-            L('The way ahead is blocked and only the right side is open', 'Jalan di depan tertutup dan hanya sisi kanan yang terbuka'),
+            L('The way ahead is blocked and both sides are open (it turns right)', 'Jalan di depan tertutup dan kedua sisi terbuka (ia belok kanan)'),
+            L('The way ahead is blocked and only the right side is open (it turns right)', 'Jalan di depan tertutup dan hanya sisi kanan yang terbuka (ia belok kanan)'),
           ],
-          [0],
-          L('The robot asks about the right side first. It turns left only when the front is blocked **and** the right is not open. With both sides open it turns right.', 'Robot menanyakan sisi kanan lebih dulu. Ia berbelok kiri hanya bila depan tertutup **dan** kanan tidak terbuka. Bila kedua sisi terbuka ia berbelok kanan.'),
+          [0, 2, 3],
+          L('The robot turns whenever the way ahead is blocked. It asks about the right side first, so it turns left only when the right is not open. When the way ahead is clear it moves.', 'Robot belok setiap kali jalan di depan tertutup. Ia menanyakan sisi kanan lebih dulu, jadi ia belok kiri hanya bila kanan tidak terbuka. Bila jalan di depan terbuka ia maju.'),
           L('Follow the questions in order: front, then right.', 'Ikuti pertanyaannya berurutan: depan, lalu kanan.'),
         ),
         robot(

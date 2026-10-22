@@ -22,8 +22,8 @@ export const m2s1: Submodule = {
           'c1',
           L('Look Closely: Do Not Write It Twice', 'Ayo Amati: Jangan Menulis Dua Kali'),
           L(
-            'Some paths are made of the **same piece** again and again, like a staircase. Writing every block out is long and easy to get wrong.\n\nA **repeat** block says: *do everything inside me this many times*. The orders go **inside** the block, and the number says how often.\n\nThis staircase is “1 step, turn right, 1 step, turn left”, three times:',
-            'Sebagian jalur tersusun dari **potongan yang sama** berulang-ulang, seperti tangga. Menulis setiap blok sangat panjang dan mudah salah.\n\nBlok **ulangi** berkata: *kerjakan semua yang ada di dalamku sebanyak ini*. Perintahnya masuk **ke dalam** blok, dan angkanya menyatakan berapa kali.\n\nTangga ini adalah “1 langkah, belok kanan, 1 langkah, belok kiri”, sebanyak tiga kali:',
+            'Some paths are made of the **same piece** again and again, like a staircase. Writing every block out is long and easy to get wrong.\n\nA **repeat** block says: “do everything inside me this many times”. The orders go **inside** the block, and the number says how often.\n\nThis staircase is “1 step, turn right, 1 step, turn left”, three times:',
+            'Sebagian jalur tersusun dari **potongan yang sama** berulang-ulang, seperti tangga. Menulis setiap blok sangat panjang dan mudah salah.\n\nBlok **ulangi** berkata: “kerjakan semua yang ada di dalamku sebanyak ini”. Perintahnya masuk **ke dalam** blok, dan angkanya menyatakan berapa kali.\n\nTangga ini adalah “1 langkah, belok kanan, 1 langkah, belok kiri”, sebanyak tiga kali:',
           ),
           L('repeat 3 times\n  move 1\n  turn right\n  move 1\n  turn left', 'ulangi 3 kali\n  maju 1\n  belok kanan\n  maju 1\n  belok kiri'),
         ),

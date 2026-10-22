@@ -1580,7 +1580,9 @@ a.chip.static { cursor: pointer; }
 .bk-block.active { outline: 3px solid var(--sun); outline-offset: 1px; }
 .bk-line { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 .bk-head { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 0.9rem; }
-.bk-field { display: inline-flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.bk-field { display: inline-flex; gap: 4px; align-items: center; }
+.bk-field:has(.bk-cond) { flex-wrap: wrap; }
+.bk-mini { width: 4.2em; }
 .bk-input { font: inherit; font-size: 0.85rem; padding: 2px 6px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); max-width: 100%; }
 .bk-num { width: 4.2em; }
 .bk-text { width: 7em; }
