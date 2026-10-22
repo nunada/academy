@@ -187,6 +187,10 @@ jobs:
       # six sorts against the native sort, inversions against swaps and shifts, closed forms of the comparison counts, quicksort's average, stability.
       - run: npm run check:sorting
 
+      # Fibonacci numbers: the numbers, the identities, the ratios and the golden ratio against Python's big integers and decimals, Zeckendorf's theorem
+      # and the number of representations against every subset, the Pisano periods against OEIS and a walk over residues, Euclid's worst case.
+      - run: npm run check:fibonacci
+
       - name: Work out where the site will live
         id: base
         run: |

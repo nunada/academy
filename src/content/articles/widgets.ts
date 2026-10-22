@@ -985,6 +985,41 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Bagi dua sebuah selang untuk menjebak akar f(x) = 0 angka demi angka, atau cari akar kuadrat bulat sebuah bilangan sampai satu triliun dengan sekitar empat puluh pengujian, dan lihat apa yang membuat suatu pertanyaan cocok untuk pencarian biner.',
     },
   },
+  fibexplore: {
+    title: { en: 'Interactive: Fibonacci numbers and their ratios', id: 'Interaktif: bilangan Fibonacci dan perbandingannya' },
+    description: {
+      en: 'Slide n up to 120 and read the exact Fibonacci number, the ratio of neighbors with the decimals of the golden ratio it gets right, and the point where the Binet formula in floating point first goes wrong.',
+      id: 'Geser n sampai 120 dan baca bilangan Fibonacci yang eksak, perbandingan tetangga dengan desimal rasio emas yang sudah benar, dan titik ketika rumus Binet dalam titik mengambang mulai salah.',
+    },
+  },
+  fibcompute: {
+    title: { en: 'Interactive: four ways to compute F(n)', id: 'Interaktif: empat cara menghitung F(n)' },
+    description: {
+      en: 'Slide n from 1 to 100 000 and compare the steps of the plain recursion, the memo, the loop and fast doubling, with the number of digits and the first and last digits of the exact answer.',
+      id: 'Geser n dari 1 sampai 100.000 dan bandingkan langkah rekursi biasa, memo, perulangan, dan penggandaan cepat, dengan banyak angka serta angka pertama dan terakhir dari jawaban eksak.',
+    },
+  },
+  fibidentity: {
+    title: { en: 'Interactive: check the Fibonacci identities', id: 'Interaktif: periksa identitas Fibonacci' },
+    description: {
+      en: 'Pick n and see seven identities (sums, sums of squares, Cassini, doubling) hold with exact numbers, each side computed independently, and check that gcd(F(m), F(n)) equals F(gcd(m, n)).',
+      id: 'Pilih n dan lihat tujuh identitas (jumlah, jumlah kuadrat, Cassini, penggandaan) berlaku dengan bilangan eksak, tiap ruas dihitung terpisah, dan periksa bahwa gcd(F(m), F(n)) sama dengan F(gcd(m, n)).',
+    },
+  },
+  fibzeck: {
+    title: { en: 'Interactive: write a number with Fibonacci numbers', id: 'Interaktif: tulis bilangan dengan bilangan Fibonacci' },
+    description: {
+      en: 'Type a number and get its Zeckendorf sum of non-neighboring Fibonacci numbers, its string of Fibonacci digits next to its binary form, and how many other sums of different Fibonacci numbers it has.',
+      id: 'Ketik sebuah bilangan dan dapatkan jumlah Zeckendorf-nya dari bilangan Fibonacci yang tidak bertetangga, untaian angka Fibonacci di samping bentuk binernya, dan berapa jumlah lain dari bilangan Fibonacci berbeda yang dimilikinya.',
+    },
+  },
+  fibpisano: {
+    title: { en: 'Interactive: the period of Fibonacci numbers mod m', id: 'Interaktif: periode bilangan Fibonacci mod m' },
+    description: {
+      en: 'Choose a modulus m and see the Pisano period after which the remainders repeat, then find F(n) mod m for an n of up to 30 digits by reducing n modulo the period.',
+      id: 'Pilih modulus m dan lihat periode Pisano yang setelahnya sisa-sisa berulang, lalu cari F(n) mod m untuk n sampai 30 angka dengan mereduksi n modulo periode.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

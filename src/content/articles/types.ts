@@ -165,6 +165,11 @@ export type WidgetName =
   | 'sortviz'
   | 'sortrace'
   | 'bisectanswer'
+  | 'fibexplore'
+  | 'fibcompute'
+  | 'fibidentity'
+  | 'fibzeck'
+  | 'fibpisano'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

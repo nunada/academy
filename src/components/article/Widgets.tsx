@@ -41,6 +41,7 @@ import { CauchyTool, FormsTool, LhopitalFail, LhopitalTool } from './LhopitalWid
 import { CanDesigner, DeliveryTool, LightPath, OptProblems, ProfitTool } from './OptimizeWidgets'
 import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from './NewtonWidgets'
 import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
+import { FibCompute, FibExplore, FibIdentities, FibPisano, FibZeckendorf } from './FibonacciWidgets'
 import { BinarySearchViz, BisectAnswer, SortRace, SortViz } from './SortingWidgets'
 import { BigOCounter, BigOGrowth, BigORecurrence, BigOWitness } from './BigOWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
@@ -1064,6 +1065,16 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <SortRace />
     case 'bisectanswer':
       return <BisectAnswer />
+    case 'fibexplore':
+      return <FibExplore />
+    case 'fibcompute':
+      return <FibCompute />
+    case 'fibidentity':
+      return <FibIdentities />
+    case 'fibzeck':
+      return <FibZeckendorf />
+    case 'fibpisano':
+      return <FibPisano />
   }
 }
 

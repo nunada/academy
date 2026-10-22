@@ -638,6 +638,34 @@ const sortingCover = (): string => {
   return art
 }
 
+const fibonacciCover = (): string => {
+  // squares of side 1, 1, 2, 3, 5, 8 laid around each other, and the quarter circles that make the spiral
+  const k = 15
+  const X = (x: number) => 200 + (x - 3.5) * k
+  const Y = (y: number) => 100 + (y - 2) * k
+  const squares: [number, number, number, string][] = [
+    [0, 0, 1, 'pr'],
+    [1, 0, 1, 'pa'],
+    [0, -2, 2, 'pb'],
+    [-3, -2, 3, 'pc'],
+    [-3, 1, 5, 'pa'],
+    [2, -2, 8, 'pb'],
+  ]
+  let art = ''
+  for (const [x, y, s, cls] of squares) art += rect(X(x), Y(y), s * k, s * k, cls, 2)
+  const arcs: [number, number, number, number, number][] = [
+    [0, 0, 1, 1, 1],
+    [1, 1, 2, 0, 1],
+    [2, 0, 0, -2, 2],
+    [0, -2, -3, 1, 3],
+    [-3, 1, 2, 6, 5],
+    [2, 6, 10, -2, 8],
+  ]
+  let d = `M${n1(X(arcs[0][0]))},${n1(Y(arcs[0][1]))}`
+  for (const [, , x2, y2, r] of arcs) d += `A${n1(r * k)},${n1(r * k)} 0 0 0 ${n1(X(x2))},${n1(Y(y2))}`
+  return art + path(d, 'st', 3.2)
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -645,6 +673,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'fibonacci-numbers': fibonacciCover,
   'binary-search-and-sorting': sortingCover,
   'big-o-notation': bigOCover,
   'floating-point-numbers': floatCover,

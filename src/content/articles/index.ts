@@ -44,8 +44,9 @@ import { meta as newtonsMethod } from './newtons-method.meta'
 import { meta as floatingPoint } from './floating-point-numbers.meta'
 import { meta as bigO } from './big-o-notation.meta'
 import { meta as binarySearch } from './binary-search-and-sorting.meta'
+import { meta as fibonacci } from './fibonacci-numbers.meta'
 
-export const ARTICLES: ArticleMeta[] = [binarySearch, bigO, floatingPoint, newtonsMethod, optimization, lhopital, concavity, monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [fibonacci, binarySearch, bigO, floatingPoint, newtonsMethod, optimization, lhopital, concavity, monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -81,6 +82,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'floating-point-numbers': () => import('./floating-point-numbers'),
   'big-o-notation': () => import('./big-o-notation'),
   'binary-search-and-sorting': () => import('./binary-search-and-sorting'),
+  'fibonacci-numbers': () => import('./fibonacci-numbers'),
   'monotonic-functions-and-the-first-derivative-test': () => import('./monotonic-functions-and-the-first-derivative-test'),
   'the-derivative-as-a-rate-of-change': () => import('./the-derivative-as-a-rate-of-change'),
 }
