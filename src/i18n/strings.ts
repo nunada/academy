@@ -91,24 +91,24 @@ export const ui = {
   },
   heroBody: {
     en: 'Programming courses and mathematics courses, built the same way: guided lessons that hand over control step by step, a mini project at the end of every submodule, and a certificate when you finish.',
-    id: 'Kursus pemrograman dan kursus matematika, disusun dengan cara yang sama: pelajaran terbimbing yang melepas bantuan selangkah demi selangkah, mini proyek di akhir tiap submateri, dan sertifikat saat kamu selesai.',
+    id: 'Kuasai matematika dan coding selangkah demi selangkah melalui pelajaran interaktif dan mini proyek di setiap submateri. Selesaikan kursus dan raih sertifikat sebagai pencapaian belajarmu.',
   },
   getStarted: { en: 'Get started — free', id: 'Mulai — gratis' },
   iHaveAccount: { en: 'I already have an account', id: 'Saya sudah punya akun' },
-  featScaffold: { en: 'Scaffolded practice', id: 'Latihan berjenjang' },
+  featScaffold: { en: 'Scaffolded practice', id: 'Latihan bertahap' },
   featScaffoldBody: {
     en: 'Watch a worked example, predict the answer, fill the blanks, put the steps in order, then do it yourself.',
-    id: 'Lihat contoh, tebak jawabannya, isi bagian kosong, susun langkahnya, lalu kerjakan sendiri.',
+    id: 'Mulai dari contoh yang dipandu, lengkapi bagian yang kosong, susun langkah penyelesaian, lalu kerjakan secara mandiri.',
   },
-  featProjects: { en: 'A mini project every submodule', id: 'Mini proyek tiap submateri' },
+  featProjects: { en: 'A mini project every submodule', id: 'Mini proyek di setiap submateri' },
   featProjectsBody: {
     en: 'Real code running in your browser, or a problem set marked box by box — either way, checked properly.',
-    id: 'Kode sungguhan berjalan di peramban, atau kumpulan soal yang diperiksa kotak demi kotak — keduanya dinilai sungguhan.',
+    id: 'Terapkan konsep yang baru dipelajari melalui mini proyek. Untuk coding, tulis dan jalankan kode langsung di peramban.',
   },
-  featCompete: { en: 'XP, hearts & weekly leaderboard', id: 'XP, hearts & papan peringkat mingguan' },
+  featCompete: { en: 'XP, hearts & weekly leaderboard', id: 'XP, nyawa, dan peringkat mingguan' },
   featCompeteBody: {
     en: 'Weekly XP resets so a fresh week is always a fair race.',
-    id: 'XP mingguan direset agar tiap minggu jadi lomba yang adil.',
+    id: 'Kumpulkan XP dari aktivitas belajar, jaga nyawa saat berlatih, dan pantau posisimu di papan peringkat mingguan.',
   },
 
   // dashboard
