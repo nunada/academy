@@ -55,7 +55,7 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={ready && user ? <Navigate to="/learn" replace /> : <Landing />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/auth" element={ready && user ? <Navigate to="/learn" replace /> : <Auth />} />
         {/* No auth guard and no redirect-if-signed-in. A recovery link signs
             you in on arrival, so both would bounce the visitor away from the

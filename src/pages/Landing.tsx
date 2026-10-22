@@ -3,9 +3,11 @@ import type { CourseInfo } from '../content/types'
 import { useI18n } from '../i18n'
 import { COURSES, PATHS, coursesIn } from '../content/catalog'
 import { Logo } from '../components/Logo'
+import { useStore } from '../app/store'
 
 export default function Landing() {
   const { t, tc } = useI18n()
+  const { user, ready } = useStore()
   const live = (track: 'code' | 'math'): CourseInfo[] => coursesIn(track).filter((c) => c.available)
   // Derived, not written out by hand: the sentence went stale every time a
   // course moved from the roadmap into the catalogue.
@@ -41,12 +43,20 @@ export default function Landing() {
         <h1 style={{ marginTop: 16 }}>{t('heroTitle')}</h1>
         <p>{t('heroBody')}</p>
         <div className="row" style={{ justifyContent: 'center', marginTop: 20 }}>
-          <Link className="btn" to="/auth?mode=signup">
-            {t('getStarted')}
-          </Link>
-          <Link className="btn ghost" to="/auth">
-            {t('iHaveAccount')}
-          </Link>
+          {ready && user ? (
+            <Link className="btn" to="/learn">
+              {t('continueLearning')}
+            </Link>
+          ) : (
+            <>
+              <Link className="btn" to="/auth?mode=signup">
+                {t('getStarted')}
+              </Link>
+              <Link className="btn ghost" to="/auth">
+                {t('iHaveAccount')}
+              </Link>
+            </>
+          )}
         </div>
       </section>
 
