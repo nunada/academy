@@ -41,6 +41,7 @@ import { CauchyTool, FormsTool, LhopitalFail, LhopitalTool } from './LhopitalWid
 import { CanDesigner, DeliveryTool, LightPath, OptProblems, ProfitTool } from './OptimizeWidgets'
 import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from './NewtonWidgets'
 import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
+import { BinarySearchViz, BisectAnswer, SortRace, SortViz } from './SortingWidgets'
 import { BigOCounter, BigOGrowth, BigORecurrence, BigOWitness } from './BigOWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
@@ -1055,6 +1056,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <BigOCounter />
     case 'bigorecur':
       return <BigORecurrence />
+    case 'bsearch':
+      return <BinarySearchViz />
+    case 'sortviz':
+      return <SortViz />
+    case 'sortrace':
+      return <SortRace />
+    case 'bisectanswer':
+      return <BisectAnswer />
   }
 }
 

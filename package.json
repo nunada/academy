@@ -49,7 +49,8 @@
     "check:optimize": "node tools/check-optimize.mjs",
     "check:newton": "node tools/check-newton.mjs",
     "check:floatbits": "node tools/check-floatbits.mjs",
-    "check:bigo": "node tools/check-bigo.mjs"
+    "check:bigo": "node tools/check-bigo.mjs",
+    "check:sorting": "node tools/check-sorting.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

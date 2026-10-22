@@ -621,6 +621,23 @@ const bigOCover = (): string => {
   )
 }
 
+const sortingCover = (): string => {
+  // twelve bars in order, the search window around the middle bar (orange), the bars already thrown away faint
+  const hs = [18, 26, 34, 44, 52, 62, 72, 84, 96, 108, 122, 136]
+  const lo = 3
+  const hi = 8
+  const mid = 5
+  const X = (i: number) => 28 + i * 29
+  let art = axis(16, 384, 176)
+  hs.forEach((h, i) => {
+    const inside = i >= lo && i <= hi
+    art += rect(X(i), 176 - h, 22, h, i === mid ? 'fr' : inside ? 'fb' : 'pb', 3)
+  })
+  art += line(X(lo) - 3.5, 30, X(lo) - 3.5, 176, 'sm', 2, '5 4') + line(X(hi) + 25.5, 30, X(hi) + 25.5, 176, 'sm', 2, '5 4')
+  art += path(`M${n1(X(lo) - 3.5)},38L${n1(X(mid) + 11)},22L${n1(X(hi) + 25.5)},38`, 'sa', 2.4)
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -628,6 +645,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'binary-search-and-sorting': sortingCover,
   'big-o-notation': bigOCover,
   'floating-point-numbers': floatCover,
   'newtons-method': newtonCover,

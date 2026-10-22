@@ -183,6 +183,10 @@ jobs:
       # and divide-and-conquer recurrences against the Master theorem.
       - run: npm run check:bigo
 
+      # Binary search and sorting: the three kinds of binary search against linear scans and Python's bisect, integer square roots against BigInt,
+      # six sorts against the native sort, inversions against swaps and shifts, closed forms of the comparison counts, quicksort's average, stability.
+      - run: npm run check:sorting
+
       - name: Work out where the site will live
         id: base
         run: |

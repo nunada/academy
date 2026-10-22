@@ -1610,3 +1610,19 @@ a.chip.static { cursor: pointer; }
 .bk-bot .bk-eye { fill: #fff; stroke: none; }
 .bk-bot.bump polygon { fill: var(--bad); }
 .bk-said { font-weight: 700; font-size: 1.05rem; padding: 8px 10px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--border); word-break: break-word; }
+
+/* Binary search and sorting widgets. */
+.bsrow { display: flex; flex-wrap: wrap; gap: 4px; margin: 10px 0; }
+.bscell { min-width: 2.3em; padding: 4px 3px 2px; text-align: center; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); font-family: var(--mono); font-size: 0.9rem; line-height: 1.15; }
+.bscell small { display: block; font-size: 0.65rem; color: var(--muted); }
+.bscell em { display: block; font-style: normal; font-size: 0.6rem; color: var(--muted); min-height: 1em; }
+.bscell.out { opacity: 0.3; }
+.bscell.mid { background: color-mix(in srgb, var(--gold) 45%, transparent); border-color: var(--gold); font-weight: 700; }
+.bscell.res { background: color-mix(in srgb, var(--good) 28%, transparent); border-color: var(--good); font-weight: 700; }
+.bscell.ins { box-shadow: -4px 0 0 var(--bad); }
+.bscell.insend { box-shadow: 4px 0 0 var(--bad); }
+.sortbars { display: flex; align-items: flex-end; gap: 2px; height: 150px; margin: 10px 0; }
+.sortbars i { flex: 1 1 0; min-width: 0; background: color-mix(in srgb, var(--brand) 45%, var(--surface)); border-radius: 2px 2px 0 0; }
+.sortbars i.cmp { background: var(--gold); }
+.sortbars i.mv { background: var(--bad); }
+.sortbars i.done { background: var(--good); }

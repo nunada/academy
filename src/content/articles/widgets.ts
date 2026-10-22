@@ -957,6 +957,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Pilih a, b, dan d, atau sebuah algoritma terkenal (merge sort, pencarian biner, Karatsuba, Strassen), dan lihat kasus teorema Master, solusinya, dan tabel T(n) dibagi pertumbuhan yang diramalkan.',
     },
   },
+  bsearch: {
+    title: { en: 'Interactive: watch a binary search halve the list', id: 'Interaktif: lihat pencarian biner membelah daftar' },
+    description: {
+      en: 'Type a list and a target x and step through the search: the open interval lo to hi, the middle element looked at, and the answer for finding x, the first index with a[i] ≥ x, or the first with a[i] > x.',
+      id: 'Ketik sebuah daftar dan target x lalu telusuri pencariannya langkah demi langkah: selang terbuka lo sampai hi, elemen tengah yang dilihat, dan jawaban untuk mencari x, indeks pertama dengan a[i] ≥ x, atau yang pertama dengan a[i] > x.',
+    },
+  },
+  sortviz: {
+    title: { en: 'Interactive: six sorting algorithms, move by move', id: 'Interaktif: enam algoritma pengurutan, gerakan demi gerakan' },
+    description: {
+      en: 'Pick selection, insertion, bubble, merge, quick or heap sort and an input (random, sorted, reversed, few values, nearly sorted), then play the bars and read the comparisons and moves it needs.',
+      id: 'Pilih selection, insertion, bubble, merge, quick, atau heap sort dan sebuah masukan (acak, terurut, terbalik, sedikit nilai, hampir terurut), lalu putar batangnya dan baca perbandingan serta perpindahan yang dibutuhkan.',
+    },
+  },
+  sortrace: {
+    title: { en: 'Interactive: the sorting race', id: 'Interaktif: balapan pengurutan' },
+    description: {
+      en: 'Run all six algorithms on the same input of 16 to 1024 numbers and compare the counted comparisons and moves, to see why the best choice depends on the input, not only on the Big-O class.',
+      id: 'Jalankan keenam algoritma pada masukan yang sama berukuran 16 sampai 1024 bilangan dan bandingkan perbandingan serta perpindahan yang dihitung, untuk melihat mengapa pilihan terbaik bergantung pada masukan, bukan hanya kelas Big-O.',
+    },
+  },
+  bisectanswer: {
+    title: { en: 'Interactive: binary search on the answer', id: 'Interaktif: pencarian biner pada jawaban' },
+    description: {
+      en: 'Halve an interval to trap a root of f(x) = 0 digit by digit, or find the integer square root of a number up to a trillion with about forty tests, and see what makes a question suitable for binary search.',
+      id: 'Bagi dua sebuah selang untuk menjebak akar f(x) = 0 angka demi angka, atau cari akar kuadrat bulat sebuah bilangan sampai satu triliun dengan sekitar empat puluh pengujian, dan lihat apa yang membuat suatu pertanyaan cocok untuk pencarian biner.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {
