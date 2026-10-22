@@ -1,4 +1,5 @@
-import { NavLink, Link, Outlet } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { NavLink, Link, Outlet, useLocation } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
 import { useAllCourses } from '../app/curriculum'
@@ -124,7 +125,7 @@ export function TopBar({ signedIn, isTeacher, xp, hearts, nextHeartIn, localMode
       </Link>
 
       {signedIn && (
-        <nav className="nav">
+        <nav className="nav" aria-label={t('mainNavLabel')}>
           <NavLink to="/learn">{t('navLearn')}</NavLink>
           <NavLink to="/catalog">{t('navCatalog')}</NavLink>
           <NavLink to="/playground">{t('navPlayground')}</NavLink>
@@ -175,11 +176,57 @@ export function TopBar({ signedIn, isTeacher, xp, hearts, nextHeartIn, localMode
   )
 }
 
+/** The first stop of the keyboard: a link that jumps over the menu to the page's main region. A single-page app does not reload, so the
+ *  same component also tells a screen reader that the page changed, by reading the new title in a polite live region. */
+function SkipLinkAndAnnouncer() {
+  const { t } = useI18n()
+  const { pathname } = useLocation()
+  const [said, setSaid] = useState('')
+  useEffect(() => {
+    // a page sets its title when it has loaded, which can be after the route changed: say the title once it has settled
+    let id: ReturnType<typeof setTimeout>
+    const say = () => {
+      clearTimeout(id)
+      id = setTimeout(() => setSaid(document.title), 600)
+    }
+    say()
+    const titleEl = document.querySelector('title')
+    const watcher = new MutationObserver(say)
+    if (titleEl) watcher.observe(titleEl, { childList: true, characterData: true, subtree: true })
+    return () => {
+      clearTimeout(id)
+      watcher.disconnect()
+    }
+  }, [pathname])
+  return (
+    <>
+      <a
+        className="skip"
+        href="#main"
+        onClick={(e) => {
+          e.preventDefault()
+          const target = document.querySelector<HTMLElement>('main, .page')
+          if (!target) return
+          target.setAttribute('tabindex', '-1')
+          target.focus()
+          target.scrollIntoView()
+        }}
+      >
+        {t('skipToContent')}
+      </a>
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {said}
+      </div>
+    </>
+  )
+}
+
 export default function Layout() {
   const { user, state, signOut, hearts, nextHeartIn, xpTotal, mode } = useStore()
 
   return (
     <div className="app">
+      <SkipLinkAndAnnouncer />
       <TopBar
         signedIn={Boolean(user)}
         isTeacher={state?.profile.role === 'teacher'}

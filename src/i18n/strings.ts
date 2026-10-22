@@ -10,6 +10,10 @@ export const ui = {
   themeDark: { en: 'Dark', id: 'Gelap' },
   themeSystem: { en: 'Follow the system', id: 'Ikuti sistem' },
 
+  // accessibility
+  skipToContent: { en: 'Skip to the main content', id: 'Lompat ke konten utama' },
+  mainNavLabel: { en: 'Main menu', id: 'Menu utama' },
+
   // nav
   navLearn: { en: 'Learn', id: 'Belajar' },
   navCatalog: { en: 'Catalog', id: 'Katalog' },

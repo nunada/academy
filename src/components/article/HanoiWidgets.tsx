@@ -8,13 +8,16 @@ const DISC_COLORS = ['var(--coral)', 'var(--sun)', 'var(--leaf)', 'var(--fig-b, 
 
 /** The discs on each peg as an SVG: peg columns at x = 50, 150, 250. */
 function Tower({ state, n, label, onPeg, selected }: { state: number[]; n: number; label: string; onPeg?: (p: number) => void; selected?: number | null }) {
+  const { tc } = useI18n()
   const H = 22
   const base = 20 + n * H + 14
   const pegs: number[][] = [[], [], []]
   for (let k = n - 1; k >= 0; k--) pegs[state[k]].push(k) // bottom (largest) first
   const widthOf = (k: number) => 22 + (k * (86 - 22)) / Math.max(1, n - 1)
+  // the picture, said in words: the discs on each peg from the biggest (bottom) to the smallest (top), disc 1 being the smallest
+  const said = `${label}. ${PEG.map((name, p) => `${name}: ${describePeg(pegs[p], tc)}`).join('. ')}.`
   return (
-    <svg viewBox={`0 0 300 ${base + 18}`} className="hanoi" role="img" aria-label={label} style={{ width: '100%', maxWidth: 440, display: 'block', margin: '8px auto' }}>
+    <svg viewBox={`0 0 300 ${base + 18}`} className="hanoi" role="img" aria-label={said} style={{ width: '100%', maxWidth: 440, display: 'block', margin: '8px auto' }}>
       <rect x={4} y={base} width={292} height={6} rx={3} fill="var(--border)" />
       {[0, 1, 2].map((p) => {
         const cx = 50 + p * 100
@@ -275,10 +278,10 @@ export function HanoiState() {
         </label>
       </div>
       <div className="inrow">
-        <button className="btn soft" onClick={() => setM(m - 1n)} disabled={!valid || m === 0n}>
+        <button className="btn soft" onClick={() => setM(m - 1n)} disabled={!valid || m === 0n} aria-label={tc(L('Previous move', 'Langkah sebelumnya'))}>
           ◀
         </button>
-        <button className="btn soft" onClick={() => setM(m + 1n)} disabled={!valid || m === total}>
+        <button className="btn soft" onClick={() => setM(m + 1n)} disabled={!valid || m === total} aria-label={tc(L('Next move', 'Langkah berikutnya'))}>
           ▶
         </button>
         <button className="btn ghost" onClick={() => setM(0n)}>
@@ -363,7 +366,7 @@ export function HanoiGraphView() {
           <line key={i} x1={px(g.points[a][0])} y1={py(g.points[a][1])} x2={px(g.points[b][0])} y2={py(g.points[b][1])} stroke={pathSet.has(`${a},${b}`) ? 'var(--bad)' : 'var(--muted)'} strokeWidth={pathSet.has(`${a},${b}`) ? 3 : 1} opacity={pathSet.has(`${a},${b}`) ? 1 : 0.6} />
         ))}
         {g.points.map((p, v) => (
-          <circle key={v} cx={px(p[0])} cy={py(p[1])} r={sel === v ? r + 2.5 : r} fill={sel === v ? 'var(--gold)' : 'var(--brand)'} stroke="var(--surface)" strokeWidth={1} onClick={() => setSel(v)} style={{ cursor: 'pointer' }} />
+          <circle key={v} aria-hidden="true" cx={px(p[0])} cy={py(p[1])} r={sel === v ? r + 2.5 : r} fill={sel === v ? 'var(--gold)' : 'var(--brand)'} stroke="var(--surface)" strokeWidth={1} onClick={() => setSel(v)} style={{ cursor: 'pointer' }} />
         ))}
         <text x={px(0.5)} y={py(0) - 1} textAnchor="middle" fontSize={11} fontWeight={700} fill="var(--text)">
           A
@@ -375,8 +378,22 @@ export function HanoiGraphView() {
           C
         </text>
       </svg>
+      <label className="lbl">
+        {tc(L('Position number', 'Nomor posisi'))} (0–{3 ** n - 1}){' '}
+        <input
+          type="number"
+          min={0}
+          max={3 ** n - 1}
+          value={sel === null ? '' : sel}
+          style={{ width: '7em' }}
+          onChange={(e) => {
+            const k = Number(e.target.value)
+            setSel(e.target.value !== '' && Number.isInteger(k) && k >= 0 && k < 3 ** n ? k : null)
+          }}
+        />
+      </label>
       <div className="wgtout" aria-live="polite">
-        <p className="small">{tc(L(`Each dot is a position, each line a legal move. The red line is the best solution from "everything on A" (top corner) to "everything on C" (bottom right corner): ${2 ** n - 1} moves along the edge, and no other path is as short. Click a dot to see it.`, `Setiap titik adalah posisi, setiap garis langkah yang sah. Garis merah adalah solusi terbaik dari "semua di A" (sudut atas) ke "semua di C" (sudut kanan bawah): ${2 ** n - 1} langkah menyusuri tepi, dan tidak ada jalur lain sependek itu. Klik sebuah titik untuk melihatnya.`))}</p>
+        <p className="small">{tc(L(`Each dot is a position, each line a legal move. The red line is the best solution from "everything on A" (top corner) to "everything on C" (bottom right corner): ${2 ** n - 1} moves along the edge, and no other path is as short. Click a dot, or type its number, to see it.`, `Setiap titik adalah posisi, setiap garis langkah yang sah. Garis merah adalah solusi terbaik dari "semua di A" (sudut atas) ke "semua di C" (sudut kanan bawah): ${2 ** n - 1} langkah menyusuri tepi, dan tidak ada jalur lain sependek itu. Klik sebuah titik, atau ketik nomornya, untuk melihatnya.`))}</p>
         {selState && dist && (
           <>
             <p className="okline" style={{ overflowWrap: 'anywhere' }}>

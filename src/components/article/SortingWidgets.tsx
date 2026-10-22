@@ -115,7 +115,7 @@ export function BinarySearchViz() {
             })}
           </div>
           <div className="inrow">
-            <button className="btn soft" onClick={() => setK(Math.max(0, pos - 1))} disabled={pos === 0}>
+            <button className="btn soft" onClick={() => setK(Math.max(0, pos - 1))} disabled={pos === 0} aria-label={tc(L('Previous look', 'Lihat sebelumnya'))}>
               ◀
             </button>
             <button className="btn soft" onClick={() => setK(Math.min(K, pos + 1))} disabled={atEnd}>
@@ -242,7 +242,7 @@ export function SortViz() {
         n = <b>{n}</b>
         <input type="range" min={4} max={40} value={n} aria-label="n" onChange={(e) => { setN(Number(e.target.value)); reset() }} />
       </label>
-      <div className="sortbars" role="img" aria-label={tc(L('Bars: the height is the number', 'Batang: tinggi adalah bilangannya'))}>
+      <div className="sortbars" role="img" aria-label={`${tc(L('Bars: the height is the number', 'Batang: tinggi adalah bilangannya'))}: ${f.arr.join(', ')}`}>
         {f.arr.map((v, i) => (
           <i key={i} className={f.mv.includes(i) ? 'mv' : f.cmp.includes(i) ? 'cmp' : f.done.includes(i) ? 'done' : ''} style={{ height: `${(v / top) * 100}%` }} />
         ))}
@@ -251,10 +251,10 @@ export function SortViz() {
         <button className="btn soft" onClick={() => { if (pos >= last) setPos(0); setPlaying(!playing) }}>
           {playing ? tc(L('Pause', 'Jeda')) : tc(L('Play', 'Putar'))}
         </button>
-        <button className="btn ghost" onClick={() => { setPlaying(false); setPos(Math.max(0, pos - 1)) }} disabled={pos === 0}>
+        <button className="btn ghost" onClick={() => { setPlaying(false); setPos(Math.max(0, pos - 1)) }} disabled={pos === 0} aria-label={tc(L('Previous step', 'Langkah sebelumnya'))}>
           ◀
         </button>
-        <button className="btn ghost" onClick={() => { setPlaying(false); setPos(Math.min(last, pos + 1)) }} disabled={pos >= last}>
+        <button className="btn ghost" onClick={() => { setPlaying(false); setPos(Math.min(last, pos + 1)) }} disabled={pos >= last} aria-label={tc(L('Next step', 'Langkah berikutnya'))}>
           ▶
         </button>
         <button className="btn ghost" onClick={reset}>

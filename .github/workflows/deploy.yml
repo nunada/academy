@@ -203,6 +203,10 @@ jobs:
       # transversal and all 28 pairs among them, regular polygons from coordinates, vectors by atan2 against the arc cosine, the inscribed angle.
       - run: npm run check:angles
 
+      # Accessibility: the formulas of the whole site read aloud for screen readers (hand-written phrases, and every one of the ~20,000 formulas
+      # must come out as plain words without a backslash, brace, caret or underscore).
+      - run: npm run check:texspeech
+
       - name: Work out where the site will live
         id: base
         run: |

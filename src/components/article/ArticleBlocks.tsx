@@ -20,7 +20,9 @@ function Activity({ title, step }: { title: Loc; step: Extract<ArticleBlock, { k
   const [round, setRound] = useState(0)
   return (
     <div className="wgt activity">
-      <h4>🎯 {tc(title)}</h4>
+      <h4>
+        <span aria-hidden="true">🎯</span> {tc(title)}
+      </h4>
       <Suspense fallback={<p className="muted">…</p>}>
         <StepView key={round} step={step} solved={solved} onSolved={() => setSolved(true)} onWrong={() => {}} blocked={false} />
       </Suspense>

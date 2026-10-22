@@ -54,7 +54,8 @@
     "check:fibonacci": "node tools/check-fibonacci.mjs",
     "check:hanoi": "node tools/check-hanoi.mjs",
     "check:latex": "node tools/check-latex.mjs",
-    "check:angles": "node tools/check-angles.mjs"
+    "check:angles": "node tools/check-angles.mjs",
+    "check:texspeech": "node tools/check-texspeech.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

@@ -143,7 +143,7 @@ export default function ArticlePage({ routeLang }: { routeLang: Lang }) {
     <>
       <ReadingBar />
       <main className="page article">
-        <nav className="crumbs" aria-label="Breadcrumb">
+        <nav className="crumbs" aria-label={lang === 'id' ? 'Jejak halaman' : 'Breadcrumb'}>
           <Link to="/">{lang === 'id' ? 'Beranda' : 'Home'}</Link>
           <span aria-hidden="true">›</span>
           <Link to={listPath(lang)}>{lang === 'id' ? 'Artikel' : 'Articles'}</Link>

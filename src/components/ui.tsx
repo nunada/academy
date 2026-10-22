@@ -4,17 +4,26 @@ import { useI18n } from '../i18n'
 import { previewDocument, previewReactDocument } from '../lib/web'
 import { Link } from 'react-router-dom'
 import { tex } from '../lib/tex'
+import { texSpeech } from '../lib/texspeech'
 import { articleById } from '../content/articles'
 import { articlePath } from '../lib/articleSeo'
 
 /** One formula. MathML is markup, not React elements, so it goes in as HTML —
  *  from `tex()`, which escapes what it emits and only ever sees strings this
- *  repository wrote. */
+ *  repository wrote.
+ *
+ *  Screen readers do not all read MathML, so the wrapper is a role="math" with
+ *  the formula in words as its label (src/lib/texspeech.ts), and the drawn
+ *  MathML is hidden from the accessibility tree so the formula is not read twice. */
 export function Tex({ src, display = false }: { src: string; display?: boolean }) {
+  const { lang } = useI18n()
+  const label = useMemo(() => texSpeech(src, lang), [src, lang])
   return (
     <span
       className={display ? 'tex block' : 'tex'}
-      dangerouslySetInnerHTML={{ __html: tex(src, display) }}
+      role="math"
+      aria-label={label}
+      dangerouslySetInnerHTML={{ __html: tex(src, display).replace('<math ', '<math aria-hidden="true" ') }}
     />
   )
 }
