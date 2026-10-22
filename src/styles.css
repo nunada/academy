@@ -1503,6 +1503,12 @@ a.chip.static { cursor: pointer; }
 .lhsteps { margin: 10px 0; padding-left: 1.3em; }
 .lhsteps li { margin-bottom: 10px; }
 .lhsteps li .tex { overflow-x: auto; max-width: 100%; }
+.fpgroup { margin: 6px 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.fpgroup b { font-size: 0.85em; color: var(--muted); min-width: 8.5em; font-weight: 600; }
+.fpbit { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; padding: 2px 7px; border-radius: 6px; letter-spacing: 0.04em; }
+.fpbit.s { background: color-mix(in srgb, var(--bad) 22%, transparent); }
+.fpbit.e { background: color-mix(in srgb, var(--fig-b) 30%, transparent); }
+.fpbit.m { background: color-mix(in srgb, var(--fig-a) 22%, transparent); }
 .tancurve.sec { stroke: var(--fig-b); }
 
 /* Theme switch in the top bar: light, dark, or follow the system. */

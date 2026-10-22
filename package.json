@@ -47,7 +47,8 @@
     "check:concavity": "node tools/check-concavity.mjs",
     "check:lhopital": "node tools/check-lhopital.mjs",
     "check:optimize": "node tools/check-optimize.mjs",
-    "check:newton": "node tools/check-newton.mjs"
+    "check:newton": "node tools/check-newton.mjs",
+    "check:floatbits": "node tools/check-floatbits.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

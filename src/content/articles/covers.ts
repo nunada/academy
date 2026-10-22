@@ -595,6 +595,18 @@ const newtonCover = (): string => {
   return art + dot(X(1.3247), Y(0), 'fr', 7)
 }
 
+const floatCover = (): string => {
+  // the numbers of a tiny format on a line: crowded near zero, twice as far apart at every power of two, alternating colours by binade
+  const vals: { v: number; k: number }[] = []
+  for (let k = 0; k < 7; k++)
+    for (let m = 0; m < 4; m++) vals.push({ v: (4 + m) * 2 ** (k - 2 - 2), k })
+  const X = (v: number) => 30 + (v / 14) * 350
+  let art = axis(20, 390, 120)
+  for (const q of vals) art += dot(X(q.v), 120, q.k % 2 === 0 ? 'fa' : 'fr', 5.2)
+  for (let k = 0; k <= 3; k++) art += line(X(2 ** k), 98, X(2 ** k), 142, 'sm', 2, '5 4')
+  return art + dot(X(0), 120, 'fb', 5.2) + text(X(1) - 4, 172, '1', 16) + text(X(8) - 4, 172, '8', 16)
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -602,6 +614,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'floating-point-numbers': floatCover,
   'newtons-method': newtonCover,
   'applied-optimization': optimizationCover,
   'indeterminate-forms-and-lhopitals-rule': lhopitalCover,

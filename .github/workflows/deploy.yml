@@ -175,6 +175,10 @@ jobs:
       # reciprocals, the failures (cycle, escape, flat tangent, wrong root), and the basins of attraction against a plain loop.
       - run: npm run check:newton
 
+      # Floating-point numbers: the bits of doubles against DataView, single precision against Math.fround, half precision, neighbours and
+      # decimals against Python, every number of small formats against the definition, sums and cancellation.
+      - run: npm run check:floatbits
+
       - name: Work out where the site will live
         id: base
         run: |

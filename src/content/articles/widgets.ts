@@ -901,6 +901,34 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Metode Newton untuk xⁿ − a = 0 tidak memerlukan turunan: x ← ((n − 1)x + a/xⁿ⁻¹)/n, aturan Babilonia untuk n = 2; dan untuk 1/x − a = 0 ia memberi x(2 − a x), cara membagi tanpa membagi.',
     },
   },
+  fpbits: {
+    title: { en: 'Interactive: the bits of a floating-point number', id: 'Interaktif: bit sebuah bilangan floating-point' },
+    description: {
+      en: 'Type a number and a format (float16, bfloat16, float32, float64) and see its sign, exponent and fraction bits, the formula they stand for, the exact value stored, the rounding error and the gap to its neighbours.',
+      id: 'Ketik sebuah bilangan dan format (float16, bfloat16, float32, float64) dan lihat bit tanda, eksponen, dan pecahannya, rumus yang diwakilinya, nilai tepat yang tersimpan, galat pembulatan, dan jarak ke tetangganya.',
+    },
+  },
+  fptoy: {
+    title: { en: 'Interactive: every number of a tiny format', id: 'Interaktif: semua bilangan pada format mini' },
+    description: {
+      en: 'Choose a format with 2 to 4 exponent bits and 1 to 4 fraction bits and see all of its numbers on a line: crowded near zero, twice as far apart at each power of two, with the subnormal numbers filling the gap next to zero.',
+      id: 'Pilih format dengan 2 sampai 4 bit eksponen dan 1 sampai 4 bit pecahan dan lihat semua bilangannya pada satu garis: rapat di dekat nol, dua kali lebih renggang di setiap pangkat dua, dengan bilangan subnormal mengisi celah di sebelah nol.',
+    },
+  },
+  fpsum: {
+    title: { en: 'Interactive: errors that add up', id: 'Interaktif: galat yang menumpuk' },
+    description: {
+      en: 'Add a value n times, one at a time, with Kahan’s compensation and exactly, in float32 or float64, and see the error grow with n; or add ones to 2^53 and watch them being absorbed.',
+      id: 'Jumlahkan satu nilai n kali, satu per satu, dengan kompensasi Kahan, dan secara tepat, dalam float32 atau float64, dan lihat galat tumbuh bersama n; atau tambahkan satu-satu pada 2^53 dan perhatikan mereka terserap.',
+    },
+  },
+  fpcancel: {
+    title: { en: 'Interactive: when subtraction destroys digits', id: 'Interaktif: ketika pengurangan menghancurkan angka' },
+    description: {
+      en: 'Four expressions written in two ways, the obvious one and a stable one: move x and see how many correct digits each form keeps when the subtraction cancels the leading digits.',
+      id: 'Empat ungkapan yang ditulis dengan dua cara, yang lazim dan yang stabil: geser x dan lihat berapa angka benar yang dipertahankan tiap bentuk ketika pengurangan menghapus angka terdepan.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {
