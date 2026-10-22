@@ -2,7 +2,7 @@
 
 export const ui = {
   appName: { en: 'Nunada Academy', id: 'Nunada Academy' },
-  appTagline: { en: 'Code & Mathematics', id: 'Coding & Matematika' },
+  appTagline: { en: 'Mathematics & Code', id: 'Matematika & Coding' },
 
   // color theme
   themeLabel: { en: 'Color theme', id: 'Tema warna' },
@@ -86,8 +86,8 @@ export const ui = {
 
   // landing
   heroTitle: {
-    en: 'Code and mathematics, one small win at a time.',
-    id: 'Coding dan matematika, satu kemenangan kecil setiap kali.',
+    en: 'Mathematics and code, one small win at a time.',
+    id: 'Matematika dan coding, satu kemenangan kecil setiap kali.',
   },
   heroBody: {
     en: 'Programming courses and mathematics courses, built the same way: guided lessons that hand over control step by step, a mini project at the end of every submodule, and a certificate when you finish.',

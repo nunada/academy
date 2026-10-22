@@ -1,4 +1,4 @@
-# Nunada Academy: Coding & Matematika
+# Nunada Academy: Matematika & Coding
 
 Aplikasi belajar berbasis web dengan pendekatan *scaffolding*: bantuan dilepas
 selangkah demi selangkah, dan tiap submateri ditutup satu mini proyek yang diperiksa

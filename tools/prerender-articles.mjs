@@ -322,12 +322,12 @@ for (const lang of LANGS) {
     }),
   )
 }
-const HOME_TITLE = 'Nunada Academy: Coding & Matematika'
-const HOME_DESCRIPTION = 'Belajar coding dan matematika langkah demi langkah dengan scaffolding, mini proyek, XP, dan sertifikat.'
+const HOME_TITLE = 'Nunada Academy: Matematika & Coding'
+const HOME_DESCRIPTION = 'Belajar matematika dan coding langkah demi langkah dengan scaffolding, mini proyek, XP, dan sertifikat.'
 const homeImage = { url: ogDefaultImageUrl(SITE), alt: HOME_TITLE }
 pngTo(
   homeImage.url,
-  ogSvg({ title: 'Belajar coding dan matematika, langkah demi langkah', kicker: 'Learn coding and math, step by step', covers: articles.slice(0, 4).map((a) => coverSvg(a.id)), domain, brand: SITE_NAME }),
+  ogSvg({ title: 'Belajar matematika dan coding, langkah demi langkah', kicker: 'Learn math and coding, step by step', covers: articles.slice(0, 4).map((a) => coverSvg(a.id)), domain, brand: SITE_NAME }),
 )
 
 // The home page has the tags of a link preview too. They are not marked data-seo: nothing running replaces them, and an article page
@@ -399,7 +399,7 @@ write(
   [
     `# ${SITE_NAME}`,
     '',
-    `> ${SITE_NAME} teaches coding and mathematics step by step, in English and Bahasa Indonesia. The articles below are free, need no account, and can be read in any order. Each has a quick answer, a table of contents, interactive practice, a FAQ and references.`,
+    `> ${SITE_NAME} teaches mathematics and coding step by step, in English and Bahasa Indonesia. The articles below are free, need no account, and can be read in any order. Each has a quick answer, a table of contents, interactive practice, a FAQ and references.`,
     '',
     '## Articles (English)',
     '',
