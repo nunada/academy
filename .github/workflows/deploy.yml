@@ -191,6 +191,10 @@ jobs:
       # and the number of representations against every subset, the Pisano periods against OEIS and a walk over residues, Euclid's worst case.
       - run: npm run check:fibonacci
 
+      # Tower of Hanoi: the moves against Python's recursion, the shortest solution and its uniqueness against a search over every position, the distance
+      # from any position, the position after m moves, the Frame-Stewart numbers against a search with 4 to 6 pegs, and the Sierpinski graph of positions.
+      - run: npm run check:hanoi
+
       - name: Work out where the site will live
         id: base
         run: |

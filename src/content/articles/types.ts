@@ -170,6 +170,11 @@ export type WidgetName =
   | 'fibidentity'
   | 'fibzeck'
   | 'fibpisano'
+  | 'hanoiplay'
+  | 'hanoitime'
+  | 'hanoistate'
+  | 'hanoigraph'
+  | 'hanoipegs'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

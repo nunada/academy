@@ -1020,6 +1020,41 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Pilih modulus m dan lihat periode Pisano yang setelahnya sisa-sisa berulang, lalu cari F(n) mod m untuk n sampai 30 angka dengan mereduksi n modulo periode.',
     },
   },
+  hanoiplay: {
+    title: { en: 'Interactive: play the Tower of Hanoi', id: 'Interaktif: mainkan Menara Hanoi' },
+    description: {
+      en: 'Move three to seven discs from peg A to peg C by taking from one peg and putting on another, with the move counter, the best possible number, and a hint that always gives the best next move from the current position.',
+      id: 'Pindahkan tiga sampai tujuh cakram dari tiang A ke tiang C dengan mengambil dari satu tiang dan menaruh di tiang lain, dengan penghitung langkah, jumlah terbaik, dan petunjuk yang selalu memberi langkah terbaik berikutnya dari posisi sekarang.',
+    },
+  },
+  hanoitime: {
+    title: { en: 'Interactive: how long does the tower take?', id: 'Interaktif: berapa lama menara itu?' },
+    description: {
+      en: 'Slide the number of discs up to 64 and read the number of moves 2ⁿ − 1, the time at one move a second, a thousand or a billion, how often each disc moves, and the comparison with the age of the universe.',
+      id: 'Geser banyak cakram sampai 64 dan baca banyak langkah 2ⁿ − 1, waktu pada satu langkah per detik, seribu, atau semiliar, seberapa sering tiap cakram bergerak, dan perbandingan dengan usia alam semesta.',
+    },
+  },
+  hanoistate: {
+    title: { en: 'Interactive: the position after any move', id: 'Interaktif: posisi setelah langkah mana pun' },
+    description: {
+      en: 'Type a move number for a tower of up to 64 discs and see the position after it, which disc moved, and the binary and Gray code of the move number, computed directly without making the earlier moves.',
+      id: 'Ketik nomor langkah untuk menara sampai 64 cakram dan lihat posisi setelahnya, cakram mana yang dipindah, serta biner dan kode Gray dari nomor langkah itu, dihitung langsung tanpa melakukan langkah sebelumnya.',
+    },
+  },
+  hanoigraph: {
+    title: { en: 'Interactive: the graph of all positions', id: 'Interaktif: graf semua posisi' },
+    description: {
+      en: 'See every position of up to five discs as a dot and every legal move as a line: a Sierpiński triangle with the single shortest solution along its edge, and click a dot to read its position and its distance from a finished tower.',
+      id: 'Lihat setiap posisi sampai lima cakram sebagai titik dan setiap langkah sah sebagai garis: segitiga Sierpiński dengan satu solusi terpendek menyusuri tepinya, dan klik sebuah titik untuk membaca posisinya dan jaraknya dari menara yang selesai.',
+    },
+  },
+  hanoipegs: {
+    title: { en: 'Interactive: more than three pegs', id: 'Interaktif: lebih dari tiga tiang' },
+    description: {
+      en: 'Choose three to six pegs and up to 64 discs and read the Frame–Stewart number of moves, the number of discs it moves first to a spare peg, and a table that shows how fast extra pegs shorten the solution.',
+      id: 'Pilih tiga sampai enam tiang dan sampai 64 cakram dan baca bilangan Frame–Stewart untuk banyak langkah, banyak cakram yang dipindah lebih dulu ke tiang cadangan, dan tabel yang memperlihatkan seberapa cepat tiang tambahan memperpendek solusi.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

@@ -666,6 +666,27 @@ const fibonacciCover = (): string => {
   return art + path(d, 'st', 3.2)
 }
 
+const hanoiCover = (): string => {
+  // three pegs in the middle of a solution: the largest disc alone on the first, the smallest on the second, three on the third
+  const base = 172
+  const xs = [76, 200, 324]
+  const width = (k: number) => 28 + k * 17
+  const cls = ['pr', 'pa', 'pb', 'pc', 'pa']
+  let art = line(20, base, 380, base, 'sm', 3)
+  for (const x of xs) art += line(x, base, x, 44, 'sm', 4)
+  const stacks: number[][] = [[5], [1], [4, 3, 2]]
+  stacks.forEach((discs, p) => {
+    discs.forEach((k, i) => {
+      const w = width(k - 1)
+      art += rect(xs[p] - w / 2, base - 20 * (i + 1), w, 18, cls[k - 1], 5)
+    })
+  })
+  // the next move, a dashed arc from the top of the second peg to the top of the third
+  art += path(`M${xs[1]},${base - 28}Q${(xs[1] + xs[2]) / 2},${base - 100} ${xs[2]},${base - 88}`, 'sr', 3, '7 6')
+  art += path(`M${xs[2] - 9},${base - 98}L${xs[2]},${base - 88}L${xs[2] - 12},${base - 82}`, 'sr', 3)
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -673,6 +694,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'tower-of-hanoi': hanoiCover,
   'fibonacci-numbers': fibonacciCover,
   'binary-search-and-sorting': sortingCover,
   'big-o-notation': bigOCover,
