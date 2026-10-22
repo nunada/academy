@@ -564,6 +564,21 @@ const lhopitalCover = (): string => {
   )
 }
 
+const optimizationCover = (): string => {
+  // A(r) = 2 pi r^2 + 2000 / r, the metal in a one-liter can: the dark curve falls, reaches its lowest point (orange) where the tangent is flat, and rises again
+  const f = (x: number) => 2 * x * x + 6 / x
+  const X = (x: number) => 40 + x * 108
+  const Y = (y: number) => 192 - y * 11.2
+  const xm = Math.cbrt(1.5)
+  return (
+    axis(20, 390, 192) +
+    line(X(xm), 20, X(xm), 192, 'sm', 2, '6 5') +
+    line(X(xm) - 78, Y(f(xm)), X(xm) + 78, Y(f(xm)), 'sr', 3, '8 5') +
+    curve(f, 0.58, 2.98, X, Y, 'sa', 4.2, 80) +
+    dot(X(xm), Y(f(xm)), 'fr', 7.5)
+  )
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -571,6 +586,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'applied-optimization': optimizationCover,
   'indeterminate-forms-and-lhopitals-rule': lhopitalCover,
   'real-numbers': realNumbers,
   'chinese-numbers': chineseNumbers,

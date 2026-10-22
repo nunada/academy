@@ -143,6 +143,11 @@ export type WidgetName =
   | 'formstool'
   | 'lhopitalfail'
   | 'cauchytool'
+  | 'optproblems'
+  | 'optcan'
+  | 'snell'
+  | 'profittool'
+  | 'deliverytool'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

@@ -167,6 +167,10 @@ jobs:
       # products, differences and powers, Cauchy's Mean Value Theorem against a scan, and the TeX of every answer.
       - run: npm run check:lhopital
 
+      # Applied optimization: the textbook's fifteen problems against SymPy and a scan, closed forms of the box, can, fence, rectangle and delivery
+      # schedule at random, Snell's law against a ternary search, and marginal revenue = marginal cost against a scan of the profit.
+      - run: npm run check:optimize
+
       - name: Work out where the site will live
         id: base
         run: |

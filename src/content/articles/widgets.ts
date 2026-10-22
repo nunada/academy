@@ -831,6 +831,41 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Dua fungsi f dan g pada suatu selang memberi kurva (g(t), f(t)): lihat tali busur melalui ujungnya dan setiap garis singgung yang sejajar dengannya, tempat f′(c)/g′(c) sama dengan gradien tali busur, fakta di balik Aturan l’Hôpital.',
     },
   },
+  optproblems: {
+    title: { en: 'Interactive: fifteen textbook optimization problems', id: 'Interaktif: lima belas soal optimisasi dari buku' },
+    description: {
+      en: 'Pick a textbook problem and see the four steps: what x stands for, the relations that reduce the problem to one variable, the domain, the graph, a table of the critical points and ends with the best marked, and the answer in the words of the problem.',
+      id: 'Pilih satu soal dari buku dan lihat empat langkahnya: arti x, hubungan yang mengubah soal menjadi satu peubah, domain, grafik, tabel titik kritis dan ujung dengan yang terbaik ditandai, dan jawaban dalam kata-kata soal.',
+    },
+  },
+  optcan: {
+    title: { en: 'Interactive: the can that uses the least metal', id: 'Interaktif: kaleng yang memakai logam paling sedikit' },
+    description: {
+      en: 'Choose a closed can, an open one or one cut with waste, set the volume and drag the radius: see the can, the metal used as a function of the radius, and the best radius and height, which keep the same ratio at every volume.',
+      id: 'Pilih kaleng tertutup, tanpa tutup, atau dengan sisa potongan, atur volumenya, dan geser jari-jarinya: lihat kalengnya, logam yang terpakai sebagai fungsi jari-jari, serta jari-jari dan tinggi terbaik, yang perbandingannya sama untuk setiap volume.',
+    },
+  },
+  snell: {
+    title: { en: 'Interactive: the quickest path of light', id: 'Interaktif: jalur tercepat cahaya' },
+    description: {
+      en: 'Move the point where a ray crosses a surface and watch the travel time; the minimum of t(x) is where sin θ₁ / c₁ = sin θ₂ / c₂ (Snell’s law), and with one medium and a mirror the angles of incidence and reflection are equal.',
+      id: 'Geser titik tempat sinar memotong permukaan dan amati waktu tempuhnya; minimum t(x) ada di tempat sin θ₁ / c₁ = sin θ₂ / c₂ (hukum Snell), dan dengan satu medium dan cermin sudut datang sama dengan sudut pantul.',
+    },
+  },
+  profittool: {
+    title: { en: 'Interactive: marginal revenue equals marginal cost', id: 'Interaktif: pendapatan marjinal sama dengan biaya marjinal' },
+    description: {
+      en: 'With revenue px and the textbook cost curve, change the price and the production level: the profit peaks where marginal cost equals marginal revenue, there is a maximum loss at the other solution, and below a price of 3 there is none.',
+      id: 'Dengan pendapatan px dan kurva biaya dari buku, ubah harga dan tingkat produksi: laba mencapai puncak di tempat biaya marjinal sama dengan pendapatan marjinal, rugi terbesar ada di penyelesaian lainnya, dan di bawah harga 3 tidak ada keduanya.',
+    },
+  },
+  deliverytool: {
+    title: { en: 'Interactive: how often to order', id: 'Interaktif: seberapa sering memesan' },
+    description: {
+      en: 'The average daily cost of a delivery every x days is a hyperbola plus a line: change the delivery and storage costs and see that the best cycle is where the two parts are equal, with the Wilson lot size formula as the same result.',
+      id: 'Biaya harian rata-rata pengiriman setiap x hari adalah hiperbola ditambah garis: ubah biaya pengiriman dan penyimpanan dan lihat bahwa siklus terbaik ada di tempat kedua bagian sama besar, dengan rumus ukuran lot Wilson sebagai hasil yang sama.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {
