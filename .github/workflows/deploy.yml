@@ -171,6 +171,10 @@ jobs:
       # schedule at random, Snell's law against a ternary search, and marginal revenue = marginal cost against a scan of the profit.
       - run: npm run check:optimize
 
+      # Newton's method: the textbook's tables and exercises, roots against mpmath, the order of convergence, the closed forms of square roots and
+      # reciprocals, the failures (cycle, escape, flat tangent, wrong root), and the basins of attraction against a plain loop.
+      - run: npm run check:newton
+
       - name: Work out where the site will live
         id: base
         run: |

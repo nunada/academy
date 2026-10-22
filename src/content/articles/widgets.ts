@@ -866,6 +866,41 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Biaya harian rata-rata pengiriman setiap x hari adalah hiperbola ditambah garis: ubah biaya pengiriman dan penyimpanan dan lihat bahwa siklus terbaik ada di tempat kedua bagian sama besar, dengan rumus ukuran lot Wilson sebagai hasil yang sama.',
     },
   },
+  newtontool: {
+    title: { en: 'Interactive: Newton’s method, step by step', id: 'Interaktif: metode Newton, langkah demi langkah' },
+    description: {
+      en: 'Type a function and a starting value, or pick a textbook example, and watch the tangent lines: from each approximation up to the curve, along the tangent down to the x-axis, with the table of xₙ, f(xₙ), f′(xₙ) and xₙ₊₁.',
+      id: 'Ketik sebuah fungsi dan nilai awal, atau pilih contoh buku, dan amati garis singgungnya: dari setiap hampiran naik ke kurva, menyusuri garis singgung ke sumbu-x, dengan tabel xₙ, f(xₙ), f′(xₙ), dan xₙ₊₁.',
+    },
+  },
+  newtonspeed: {
+    title: { en: 'Interactive: how fast does it converge?', id: 'Interaktif: seberapa cepat konvergensinya?' },
+    description: {
+      en: 'See the error at each step, the number of correct digits (it doubles for a simple root), the ratio e(n+1)/e(n)² against f″/(2f′), the slow constant factor for a multiple root, and bisection for comparison.',
+      id: 'Lihat galat di setiap langkah, banyaknya angka benar (berlipat dua untuk akar sederhana), perbandingan e(n+1)/e(n)² terhadap f″/(2f′), faktor tetap yang lambat untuk akar ganda, dan bisection sebagai pembanding.',
+    },
+  },
+  newtonfail: {
+    title: { en: 'Interactive: when Newton’s method fails', id: 'Interaktif: ketika metode Newton gagal' },
+    description: {
+      en: 'Seven starting points that go wrong in different ways: a cycle, an escape to infinity, a start that is too far out, a horizontal tangent, the wrong root and a root that is too flat, each with its steps and picture.',
+      id: 'Tujuh titik awal yang gagal dengan cara berbeda: siklus, lari ke tak hingga, awal yang terlalu jauh, garis singgung mendatar, akar yang keliru, dan akar yang terlalu datar, masing-masing dengan langkah dan gambarnya.',
+    },
+  },
+  newtonbasin: {
+    title: { en: 'Interactive: which root do you reach?', id: 'Interaktif: akar mana yang kamu capai?' },
+    description: {
+      en: 'A strip of 480 starting values, each coloured by the root that Newton’s method reaches, with the share of each root and the starts that reach none: the boundaries between colours are where tiny changes in the start matter.',
+      id: 'Pita 480 nilai awal, masing-masing diwarnai oleh akar yang dicapai metode Newton, dengan bagian tiap akar dan awal yang tidak mencapai akar mana pun: batas antarwarna adalah tempat perubahan kecil pada awal berpengaruh.',
+    },
+  },
+  newtonroots: {
+    title: { en: 'Interactive: square roots and reciprocals by hand', id: 'Interaktif: akar kuadrat dan kebalikan dengan tangan' },
+    description: {
+      en: 'Newton’s method for xⁿ − a = 0 needs no derivative: x ← ((n − 1)x + a/xⁿ⁻¹)/n, the Babylonian rule for n = 2; and for 1/x − a = 0 it gives x(2 − a x), a way to divide without dividing.',
+      id: 'Metode Newton untuk xⁿ − a = 0 tidak memerlukan turunan: x ← ((n − 1)x + a/xⁿ⁻¹)/n, aturan Babilonia untuk n = 2; dan untuk 1/x − a = 0 ia memberi x(2 − a x), cara membagi tanpa membagi.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

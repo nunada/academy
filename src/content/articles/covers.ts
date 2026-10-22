@@ -579,6 +579,22 @@ const optimizationCover = (): string => {
   )
 }
 
+const newtonCover = (): string => {
+  // y = x^3 - x - 1: Newton's method from x0 = 2.4 (orange: the tangent lines going down to the axis, the dark curve above) with the root marked where the steps end
+  const f = (x: number) => x * x * x - x - 1
+  const df = (x: number) => 3 * x * x - 1
+  const X = (x: number) => 70 + x * 112
+  const Y = (y: number) => 150 - y * 9
+  let art = axis(20, 390, Y(0)) + curve(f, 0.35, 2.55, X, Y, 'sa', 4.2, 80)
+  let x = 2.4
+  for (let i = 0; i < 3; i++) {
+    const next = x - f(x) / df(x)
+    art += line(X(x), Y(0), X(x), Y(f(x)), 'sm', 2, '5 4') + line(X(x), Y(f(x)), X(next), Y(0), 'sr', 3) + dot(X(x), Y(0), 'fb', 5.5)
+    x = next
+  }
+  return art + dot(X(1.3247), Y(0), 'fr', 7)
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -586,6 +602,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'newtons-method': newtonCover,
   'applied-optimization': optimizationCover,
   'indeterminate-forms-and-lhopitals-rule': lhopitalCover,
   'real-numbers': realNumbers,

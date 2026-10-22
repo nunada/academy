@@ -39,6 +39,7 @@ import { FirstTest, InequalityTool, MonoTool, SignChart } from './MonoWidgets'
 import { ConcavityTool, InflectionCases, SecondTestTool, SketchTool } from './ConcavityWidgets'
 import { CauchyTool, FormsTool, LhopitalFail, LhopitalTool } from './LhopitalWidgets'
 import { CanDesigner, DeliveryTool, LightPath, OptProblems, ProfitTool } from './OptimizeWidgets'
+import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from './NewtonWidgets'
 import { GaussPairing, SequenceDetector, SequenceExplorer, TwoTerms } from './SequenceWidgets'
 import { BaseConverter, BinaryArithmetic, BinaryFraction, BitEditor, BitwiseOperations } from './BinaryWidgets'
 import { Convergents, RootChecker, SurdCalculator } from './IrrationalWidgets'
@@ -1026,6 +1027,16 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <ProfitTool />
     case 'deliverytool':
       return <DeliveryTool />
+    case 'newtontool':
+      return <NewtonTool />
+    case 'newtonspeed':
+      return <NewtonSpeed />
+    case 'newtonfail':
+      return <NewtonFail />
+    case 'newtonbasin':
+      return <NewtonBasin />
+    case 'newtonroots':
+      return <NewtonRoots />
   }
 }
 

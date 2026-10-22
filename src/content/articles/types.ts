@@ -148,6 +148,11 @@ export type WidgetName =
   | 'snell'
   | 'profittool'
   | 'deliverytool'
+  | 'newtontool'
+  | 'newtonspeed'
+  | 'newtonfail'
+  | 'newtonbasin'
+  | 'newtonroots'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

@@ -46,7 +46,8 @@
     "check:monotone": "node tools/check-monotone.mjs",
     "check:concavity": "node tools/check-concavity.mjs",
     "check:lhopital": "node tools/check-lhopital.mjs",
-    "check:optimize": "node tools/check-optimize.mjs"
+    "check:optimize": "node tools/check-optimize.mjs",
+    "check:newton": "node tools/check-newton.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",
