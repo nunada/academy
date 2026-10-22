@@ -700,6 +700,23 @@ const latexCover = (): string => {
   return art
 }
 
+const anglesCover = (): string => {
+  // two rays from a vertex with the angle shaded and marked, and a square right angle beside it
+  const O = { x: 96, y: 152 }
+  const at = (r: number, deg: number): [number, number] => [O.x + r * Math.cos((deg * Math.PI) / 180), O.y - r * Math.sin((deg * Math.PI) / 180)]
+  const [tx, ty] = at(170, 58)
+  const [wx, wy] = at(64, 58)
+  let art = line(40, O.y, 240, O.y, 'st', 4) + line(O.x, O.y, tx, ty, 'sr', 4)
+  art += path(`M${n1(O.x)},${n1(O.y)}L${n1(O.x + 64)},${n1(O.y)}A64,64 0 0 0 ${n1(wx)},${n1(wy)}Z`, 'pa')
+  art += path(`M${n1(O.x + 92)},${n1(O.y)}A92,92 0 0 0 ${n1(at(92, 58)[0])},${n1(at(92, 58)[1])}`, 'sb', 2.5, '5 5')
+  art += dot(O.x, O.y, 'fr', 6)
+  art += text(O.x + 40, O.y - 20, 'θ', 24)
+  // the right angle: two perpendicular sides and the little square
+  art += line(290, 40, 290, 152, 'sm', 4) + line(290, 152, 372, 152, 'sm', 4) + rect(290, 134, 18, 18, 'pb', 1)
+  art += text(330, 130, '90°', 16, 'tm')
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -707,6 +724,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  angles: anglesCover,
   latex: latexCover,
   'tower-of-hanoi': hanoiCover,
   'fibonacci-numbers': fibonacciCover,

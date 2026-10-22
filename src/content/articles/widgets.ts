@@ -1083,6 +1083,48 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Pilih kelas, ukuran huruf, kertas, paket, margin, dan bagian (abstrak, persamaan, tabel, gambar, daftar pustaka) dan dapatkan main.tex lengkap dengan perintah untuk mengompilasinya dan aturan yang diterapkan.',
     },
   },
+  angleconvert: {
+    title: { en: 'Interactive: one angle in every unit', id: 'Interaktif: satu sudut dalam setiap satuan' },
+    description: {
+      en: 'Type an angle in degrees, radians, gradians or turns and read it in all four, as a fraction of π, in degrees, minutes and seconds, with its name and its complement, supplement and explement, drawn on a circle.',
+      id: 'Ketik sebuah sudut dalam derajat, radian, gradian, atau putaran dan baca dalam keempatnya, sebagai pecahan π, dalam derajat, menit, dan detik, dengan namanya serta penyiku, pelurus, dan pelengkap penuhnya, digambar pada lingkaran.',
+    },
+  },
+  angletransversal: {
+    title: { en: 'Interactive: a line across two parallel lines', id: 'Interaktif: garis memotong dua garis sejajar' },
+    description: {
+      en: 'Move the transversal and see the eight angles; choose corresponding, alternate, co-interior, vertical or linear pairs to highlight them and see which are equal and which add up to 180°.',
+      id: 'Gerakkan garis lintang dan lihat kedelapan sudutnya; pilih pasangan sehadap, berseberangan, sepihak, bertolak belakang, atau berpelurus untuk menyorotnya dan lihat mana yang sama besar dan mana yang berjumlah 180°.',
+    },
+  },
+  anglepolygon: {
+    title: { en: 'Interactive: the angles of a regular polygon', id: 'Interaktif: sudut-sudut segi banyak beraturan' },
+    description: {
+      en: 'Slide the number of sides from 3 to 20 and read the sum of the interior angles, each interior and exterior angle and the diagonals, see whether the polygon tiles the plane, and find the polygon from its angle.',
+      id: 'Geser banyak sisi dari 3 sampai 20 dan baca jumlah sudut dalam, tiap sudut dalam dan luar serta diagonalnya, lihat apakah segi banyak itu mengubin bidang, dan cari segi banyaknya dari sudutnya.',
+    },
+  },
+  angleclock: {
+    title: { en: 'Interactive: the angle between the hands of a clock', id: 'Interaktif: sudut di antara jarum jam' },
+    description: {
+      en: 'Set the hour, minute and second and see the angle between the hands, then pick an angle and list the 22 (or 11) exact times in twelve hours at which the hands make it, to the fraction of a second.',
+      id: 'Atur jam, menit, dan detik dan lihat sudut di antara jarumnya, lalu pilih sebuah sudut dan daftarkan 22 (atau 11) waktu tepat dalam dua belas jam ketika jarum membentuknya, sampai pecahan detik.',
+    },
+  },
+  anglecircle: {
+    title: { en: 'Interactive: angles at the center and on a circle', id: 'Interaktif: sudut di pusat dan pada lingkaran' },
+    description: {
+      en: 'Move a central angle and a point P on the circle, and see the angle at P measured from coordinates against half the central angle, with the arc, sector area and chord for a radius you choose.',
+      id: 'Gerakkan sudut pusat dan titik P pada lingkaran, dan lihat sudut di P yang diukur dari koordinat dibandingkan setengah sudut pusat, dengan busur, luas juring, dan tali busur untuk jari-jari yang kamu pilih.',
+    },
+  },
+  anglevector: {
+    title: { en: 'Interactive: the angle between two vectors, and bearings', id: 'Interaktif: sudut antara dua vektor, dan bearing' },
+    description: {
+      en: 'Enter two vectors and compare the angle from atan2 with the arc cosine formula, which fails for very small angles; or turn a mathematical direction into a compass bearing and the other way round.',
+      id: 'Masukkan dua vektor dan bandingkan sudut dari atan2 dengan rumus arc kosinus, yang gagal untuk sudut yang sangat kecil; atau ubah arah matematika menjadi bearing kompas dan sebaliknya.',
+    },
+  },
   rods: {
     title: { en: 'Interactive: counting rods', id: 'Interaktif: batang hitung' },
     description: {

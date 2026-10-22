@@ -199,6 +199,10 @@ jobs:
       # characters, the Unicode names of the symbols against unicodedata, and what the page's own renderer can and cannot draw.
       - run: npm run check:latex
 
+      # Angles: whole degrees as fractions of pi, the clock against exact fractions and a count over every 1/11 of a second, the eight angles at a
+      # transversal and all 28 pairs among them, regular polygons from coordinates, vectors by atan2 against the arc cosine, the inscribed angle.
+      - run: npm run check:angles
+
       - name: Work out where the site will live
         id: base
         run: |

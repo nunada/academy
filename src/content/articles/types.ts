@@ -179,6 +179,12 @@ export type WidgetName =
   | 'texsymbols'
   | 'texgen'
   | 'texdoc'
+  | 'angleconvert'
+  | 'angletransversal'
+  | 'anglepolygon'
+  | 'angleclock'
+  | 'anglecircle'
+  | 'anglevector'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

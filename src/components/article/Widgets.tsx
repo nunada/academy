@@ -41,6 +41,7 @@ import { CauchyTool, FormsTool, LhopitalFail, LhopitalTool } from './LhopitalWid
 import { CanDesigner, DeliveryTool, LightPath, OptProblems, ProfitTool } from './OptimizeWidgets'
 import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from './NewtonWidgets'
 import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
+import { AngleCircle, AngleClock, AngleConvert, AnglePolygon, AngleTransversal, AngleVectors } from './AngleWidgets'
 import { LatexBuilder, LatexDocument, LatexLive, LatexSymbols } from './LatexWidgets'
 import { HanoiGraphView, HanoiPegs, HanoiPlay, HanoiState, HanoiTime } from './HanoiWidgets'
 import { FibCompute, FibExplore, FibIdentities, FibPisano, FibZeckendorf } from './FibonacciWidgets'
@@ -1095,6 +1096,18 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <LatexBuilder />
     case 'texdoc':
       return <LatexDocument />
+    case 'angleconvert':
+      return <AngleConvert />
+    case 'angletransversal':
+      return <AngleTransversal />
+    case 'anglepolygon':
+      return <AnglePolygon />
+    case 'angleclock':
+      return <AngleClock />
+    case 'anglecircle':
+      return <AngleCircle />
+    case 'anglevector':
+      return <AngleVectors />
   }
 }
 
