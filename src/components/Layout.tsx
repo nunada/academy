@@ -113,7 +113,7 @@ export function TopBar({ signedIn, isTeacher, xp, hearts, nextHeartIn, localMode
 
   return (
     <header className="topbar">
-      <Link className="brand" to={signedIn ? '/learn' : '/'}>
+      <Link className="brand" to="/">
         <span className="mark">
           <Logo size={30} />
         </span>
