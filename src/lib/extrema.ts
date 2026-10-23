@@ -117,8 +117,10 @@ export function criticalPoints(f: Node, df: Node, a: number, b: number, level = 
       }
       const x = (lo + hi) / 2
       const gx = Math.abs(g(x))
-      // a steep but smooth peak levels off; a vertical tangent or a cusp does not
-      if (!Number.isFinite(gx) || gx > 1e8) push(x, 'undefined')
+      // a steep but smooth peak levels off, however tall it is (a product of cubes reaches 1e8 between two roots); a
+      // vertical tangent or a cusp keeps growing as the bracket closes, far above its neighbours on the grid
+      const around = Math.max(m, Math.abs(gs[i - 1]), Math.abs(gs[i + 1]))
+      if (!Number.isFinite(gx) || (gx > 1e8 && gx > 100 * around)) push(x, 'undefined')
     }
   }
   return out.sort((p, q) => p.x - q.x)

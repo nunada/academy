@@ -53,7 +53,15 @@ const ok = (cond, what) => {
   checks++
   if (!cond) fail(what)
 }
-const rnd = (a, b) => a + Math.random() * (b - a)
+// a reproducible random source (mulberry32): every run checks the same cases; MONO_SEED=n tries other ones
+let seed = Number(process.env.MONO_SEED ?? 20261024) | 0
+const rand = () => {
+  seed = (seed + 0x6d2b79f5) | 0
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed)
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+}
+const rnd = (a, b) => a + rand() * (b - a)
 const PI = Math.PI
 const mono = (src, a, b) => {
   const r = M.monotone(src, a, b)
@@ -168,7 +176,7 @@ const eq = (got, want, what) => ok(got === want, `${what}: got "${got}", want "$
   close(M.PARTICLE.a(7 / 3), 0, 'Example 7: a(7/3) = 0')
   // Exercise 78: ax² + bx + c turns at −b/(2a)
   for (let i = 0; i < 200; i++) {
-    const a = rnd(0.3, 4) * (Math.random() < 0.5 ? -1 : 1)
+    const a = rnd(0.3, 4) * (rand() < 0.5 ? -1 : 1)
     const b = rnd(-6, 6)
     const k = rnd(-5, 5)
     const turn = -b / (2 * a)
@@ -184,7 +192,7 @@ const eq = (got, want, what) => ok(got === want, `${what}: got "${got}", want "$
   const poly = (cs) => cs.map((c, k) => `(${c})*x^${k}`).join('+')
   let tested = 0
   for (let t = 0; t < 500; t++) {
-    const deg = 2 + Math.floor(Math.random() * 4)
+    const deg = 2 + Math.floor(rand() * 4)
     const cs = Array.from({ length: deg + 1 }, () => Math.round(rnd(-9, 9) * 4) / 4)
     if (cs[deg] === 0) cs[deg] = 1
     const a = rnd(-5, -0.5)
@@ -239,15 +247,15 @@ const eq = (got, want, what) => ok(got === want, `${what}: got "${got}", want "$
 {
   let tested = 0
   for (let t = 0; t < 400; t++) {
-    const n = 1 + Math.floor(Math.random() * 4)
+    const n = 1 + Math.floor(rand() * 4)
     const roots = []
     while (roots.length < n) {
       const r = Math.round(rnd(-5, 5) * 4) / 4
       if (roots.every((q) => Math.abs(q - r) >= 0.5)) roots.push(r)
     }
     roots.sort((q, w) => q - w)
-    const mult = roots.map(() => 1 + Math.floor(Math.random() * 3))
-    const s = Math.random() < 0.5 ? 1 : -1
+    const mult = roots.map(() => 1 + Math.floor(rand() * 3))
+    const s = rand() < 0.5 ? 1 : -1
     const src = `${s < 0 ? '-' : ''}${roots.map((r, i) => `(x-(${r}))^${mult[i]}`).join('*')}`
     const r = chart(src, -6.5, 6.5)
     tested++
@@ -270,11 +278,23 @@ const eq = (got, want, what) => ok(got === want, `${what}: got "${got}", want "$
   ok(tested === 400, 'four hundred derivatives from factors')
 }
 
+/* a case that failed once in CI with a random source: f′ = −(x + 4.75)³ (x − 2.25)³ (x − 3.75)³ (x − 5)³ has only these four
+   roots (the string is f′ itself), but between the first two it rises to 1.28e8, which the engine once took for a vertical tangent */
+{
+  const src = '-(x-(-4.75))^3*(x-(2.25))^3*(x-(3.75))^3*(x-(5))^3'
+  const r = chart(src, -6.5, 6.5)
+  same(xs(r), [-4.75, 2.25, 3.75, 5], 'all multiplicities 3: only the four roots are critical')
+  eq(trends(r), 'down up down up down', 'all multiplicities 3: the sign pattern')
+  eq(verdicts(r), 'min max min max', 'all multiplicities 3: the verdicts')
+  ok(r.crit.every((c) => c.kind === 'zero'), 'all multiplicities 3: f′ is zero at each, nowhere undefined')
+  ok(Math.abs(M.evalFloat(r.df, -2.697257893)) > 1e8, 'all multiplicities 3: f′ really is above 1e8 between the first two roots')
+}
+
 /* ------------------------------------------------------------------ 4: c (x − r)^k */
 {
   for (let t = 0; t < 300; t++) {
-    const k = 2 + Math.floor(Math.random() * 4)
-    const c = rnd(0.5, 4) * (Math.random() < 0.5 ? -1 : 1)
+    const k = 2 + Math.floor(rand() * 4)
+    const c = rnd(0.5, 4) * (rand() < 0.5 ? -1 : 1)
     const rt = Math.round(rnd(-3, 3) * 4) / 4
     const d = rnd(-3, 3)
     const r = mono(`(${c})*(x-(${rt}))^${k}+(${d})`, rt - 2, rt + 2.5)
@@ -329,7 +349,7 @@ const eq = (got, want, what) => ok(got === want, `${what}: got "${got}", want "$
 /* ------------------------------------------------------------- 6: Corollary 3 and the runs */
 {
   for (let t = 0; t < 300; t++) {
-    const deg = 3 + Math.floor(Math.random() * 3)
+    const deg = 3 + Math.floor(rand() * 3)
     const cs = Array.from({ length: deg + 1 }, () => Math.round(rnd(-6, 6) * 4) / 4)
     if (cs[deg] === 0) cs[deg] = 1
     const f = (x) => cs.reduceRight((acc, c) => acc * x + c, 0)
