@@ -110,15 +110,15 @@ export const module3: Module = {
                 en: 'Complete the dot product of $\\vec{a} = (2, -1, 3)$ and $\\vec{b} = (4, 5, -2)$.',
                 id: 'Lengkapi perkalian titik dari $\\vec{a} = (2, -1, 3)$ dan $\\vec{b} = (4, 5, -2)$.',
               },
-              template: '\\vec{a} \\cdot \\vec{b} = (2)(4) + (-1)(5) + (3)(-2) = 8 - 5 - 6 = ___',
-              blanks: ['-3'],
+              template: '\\vec{a} \\cdot \\vec{b} = a_1 b_1 + a_2 b_2 + a_3 b_3 = ___ + ___ + ___ = ___',
+              blanks: ['8', '-5', '-6', '-3'],
               explain: {
-                en: 'Two of the three products are negative, and $8 - 5 - 6 = -3$. A negative dot product is perfectly ordinary — the next lesson says what it means.',
-                id: 'Dua dari tiga hasil kalinya negatif, dan $8 - 5 - 6 = -3$. Perkalian titik yang negatif itu biasa saja — pelajaran berikutnya menjelaskan artinya.',
+                en: 'The products of matching slots are $(2)(4) = 8$, $(-1)(5) = -5$ and $(3)(-2) = -6$, and $8 - 5 - 6 = -3$. A negative dot product is perfectly ordinary — the next lesson says what it means.',
+                id: 'Hasil kali slot yang bersesuaian adalah $(2)(4) = 8$, $(-1)(5) = -5$, dan $(3)(-2) = -6$, dan $8 - 5 - 6 = -3$. Perkalian titik yang negatif itu biasa saja — pelajaran berikutnya menjelaskan artinya.',
               },
               hint: {
-                en: 'The three products are already worked out for you in the template — just carry out the subtraction left to right, the way it\'s written.',
-                id: 'Ketiga hasil kalinya sudah dikerjakan dalam templatenya — tinggal lakukan pengurangan dari kiri ke kanan, sesuai yang tertulis.',
+                en: 'Multiply the first components together, then the second with the second, then the third with the third, and keep each sign with its product before you add.',
+                id: 'Kalikan komponen pertama dengan komponen pertama, lalu kedua dengan kedua, lalu ketiga dengan ketiga, dan bawa tiap tanda bersama hasil kalinya sebelum menjumlahkan.',
               },
             },
             {

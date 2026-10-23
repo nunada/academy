@@ -81,18 +81,18 @@ export const module2: Module = {
               id: 'f1',
               math: true,
               prompt: {
-                en: 'Complete the direct substitution for $\\lim_{x \\to 3}(2x^2 - 5x + 1)$.',
-                id: 'Lengkapi substitusi langsung untuk $\\lim_{x \\to 3}(2x^2 - 5x + 1)$.',
+                en: 'Complete the direct substitution for $\\lim_{x \\to -2}(2x^2 - 5x + 1)$. Watch the signs.',
+                id: 'Lengkapi substitusi langsung untuk $\\lim_{x \\to -2}(2x^2 - 5x + 1)$. Perhatikan tandanya.',
               },
-              template: '\\lim_{x \\to 3}(2x^2 - 5x + 1) = 2(3)^2 - 5(3) + 1 = 18 - 15 + 1 = ___',
-              blanks: ['4'],
+              template: '\\lim_{x \\to -2}(2x^2 - 5x + 1) = 2(-2)^2 - 5(-2) + 1 = ___ + ___ + 1 = ___',
+              blanks: ['8', '10', '19'],
               explain: {
-                en: '$18 - 15 + 1 = 4$. A polynomial never needs anything more than this.',
-                id: '$18 - 15 + 1 = 4$. Polinom tak pernah butuh apa pun lebih dari ini.',
+                en: 'The square of a negative number is positive, so $2(-2)^2 = 2(4) = 8$; and $-5(-2) = +10$, because two negatives multiply to a positive. The limit is $8 + 10 + 1 = 19$. A polynomial never needs anything more than this.',
+                id: 'Kuadrat bilangan negatif itu positif, jadi $2(-2)^2 = 2(4) = 8$; dan $-5(-2) = +10$, karena dua bilangan negatif jika dikalikan menjadi positif. Limitnya $8 + 10 + 1 = 19$. Polinom tak pernah butuh apa pun lebih dari ini.',
               },
               hint: {
-                en: 'The three numbers $18$, $-15$ and $1$ are already computed for you — just combine them in order.',
-                id: 'Ketiga bilangan $18$, $-15$, dan $1$ sudah dihitung untukmu — tinggal gabungkan berurutan.',
+                en: 'Square the bracket first, then multiply by $2$. For the middle term multiply $-5$ by $-2$: what sign does a product of two negatives have?',
+                id: 'Kuadratkan dulu kurungnya, baru kalikan dengan $2$. Untuk suku tengah kalikan $-5$ dengan $-2$: bertanda apa hasil kali dua bilangan negatif?',
               },
             },
             {

@@ -533,15 +533,15 @@ export const module5: Module = {
                 en: 'Complete the constant for the plane through $P(2, -1, 3)$ with normal $\\vec{n} = (4, 2, -5)$.',
                 id: 'Lengkapi konstanta bidang melalui $P(2, -1, 3)$ dengan normal $\\vec{n} = (4, 2, -5)$.',
               },
-              template: 'd = (4)(2) + (2)(-1) + (-5)(3) = 8 - 2 - 15 = ___',
-              blanks: ['-9'],
+              template: 'd = n_1 x_0 + n_2 y_0 + n_3 z_0 = ___ + ___ + ___ = ___',
+              blanks: ['8', '-2', '-15', '-9'],
               explain: {
-                en: '$8 - 2 - 15 = -9$, so the plane is $4x + 2y - 5z = -9$. A negative constant is nothing unusual — it just means the plane passes on the far side of the origin.',
-                id: '$8 - 2 - 15 = -9$, jadi bidangnya adalah $4x + 2y - 5z = -9$. Konstanta negatif bukan hal aneh — ia hanya berarti bidangnya melewati sisi seberang titik asal.',
+                en: 'Multiply each component of $\\vec{n}$ by the matching coordinate of $P$: $(4)(2) = 8$, $(2)(-1) = -2$ and $(-5)(3) = -15$. Then $8 - 2 - 15 = -9$, so the plane is $4x + 2y - 5z = -9$. A negative constant is nothing unusual — it just means the plane passes on the far side of the origin.',
+                id: 'Kalikan tiap komponen $\\vec{n}$ dengan koordinat $P$ yang bersesuaian: $(4)(2) = 8$, $(2)(-1) = -2$, dan $(-5)(3) = -15$. Lalu $8 - 2 - 15 = -9$, jadi bidangnya adalah $4x + 2y - 5z = -9$. Konstanta negatif bukan hal aneh — ia hanya berarti bidangnya melewati sisi seberang titik asal.',
               },
               hint: {
-                en: 'The three products are already spelled out for you — just carry out the subtraction left to right and watch how the signs stack up.',
-                id: 'Ketiga hasil kalinya sudah dijabarkan untukmu — tinggal lakukan pengurangan dari kiri ke kanan dan perhatikan bagaimana tandanya bertumpuk.',
+                en: 'The constant is the dot product of the normal with the point $P$: pair the first with the first, the second with the second, the third with the third, and keep each sign.',
+                id: 'Konstantanya adalah perkalian titik normal dengan titik $P$: pasangkan yang pertama dengan yang pertama, kedua dengan kedua, ketiga dengan ketiga, dan bawa tiap tanda.',
               },
             },
             {

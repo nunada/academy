@@ -296,18 +296,18 @@ export const m10s2: Submodule = {
           id: 'f1',
           math: true,
           prompt: L(
-            'Try it together: the range of the five scores.',
-            'Coba bersama: jangkauan kelima nilai.',
+            'Try it together: the range of the scores 12, 4, 9, 15, 7 and 11.',
+            'Coba bersama: jangkauan nilai 12, 4, 9, 15, 7, dan 11.',
           ),
-          template: '\\text{max}-\\text{min}=10-3=___',
-          blanks: ['7'],
+          template: '\\text{max}-\\text{min}=___-___=___',
+          blanks: ['15', '4', '11'],
           explain: L(
-            'The range is the biggest value minus the smallest: $10-3=7$.',
-            'Jangkauan adalah nilai terbesar dikurangi nilai terkecil: $10-3=7$.',
+            'The biggest score is 15 and the smallest is 4, so the range is $15-4=11$. The range ignores every score in between.',
+            'Nilai terbesar adalah 15 dan terkecil 4, jadi jangkauannya $15-4=11$. Jangkauan mengabaikan semua nilai di antaranya.',
           ),
           hint: L(
-            'Find the highest and the lowest bar, then subtract.',
-            'Cari batang tertinggi dan terendah, lalu kurangkan.',
+            'Look for the biggest and the smallest of the six scores first; they are not necessarily at the ends of the list.',
+            'Cari dulu nilai terbesar dan terkecil dari keenam nilai; keduanya belum tentu berada di ujung daftar.',
           ),
         },
         {
