@@ -201,6 +201,10 @@ export type WidgetName =
   | 'idrotate'
   | 'idexact'
   | 'idharmonic'
+  | 'eqsolve'
+  | 'eqquad'
+  | 'eqsteps'
+  | 'eqnumeric'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

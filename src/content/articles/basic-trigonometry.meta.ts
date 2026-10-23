@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'trigonometri, trigonometri dasar, sin cos tan, sin de mi cos sa mi tan de sa, sinus kosinus tangen, perbandingan trigonometri, sudut istimewa, nilai sinus 30 derajat, trigonometri segitiga siku-siku, cara mencari sisi segitiga siku-siku, sudut elevasi, sudut depresi, nilai eksak sinus dan kosinus, lingkaran satuan, sudut acuan, tanda sinus kosinus tangen tiap kuadran, identitas dasar, menyelesaikan persamaan sin x = 1/2, grafik sinus dan kosinus, amplitudo dan periode, kosekan sekan kotangen, mode derajat dan radian kalkulator',
   },
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-26',
   readingMinutes: 20,
   about: [
     { name: { en: 'Trigonometry', id: 'Trigonometri' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Trigonometry', id: 'https://id.wikipedia.org/wiki/Trigonometri' } },

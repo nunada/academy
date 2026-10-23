@@ -766,6 +766,20 @@ const identitiesCover = (): string => {
   return art
 }
 
+const equationsCover = (): string => {
+  // sin 2x (thick) cut by the line y = 1/2: four crossings in one turn, the ones a hasty solution misses
+  const X = (a: number) => 28 + (a / 360) * 344
+  const Y = (v: number) => 92 - v * 62
+  const s = (a: number) => Math.sin((a * Math.PI) / 180)
+  let art = line(18, Y(0), 384, Y(0), 'sm', 2) + line(X(0), 20, X(0), 170, 'sm', 2)
+  art += curve((a) => s(a), 0, 360, X, Y, 'sm', 3, 90, '7 5')
+  art += line(X(0), Y(0.5), X(360), Y(0.5), 'sr', 3, '8 6')
+  art += curve((a) => s(2 * a), 0, 360, X, Y, 'st', 5.5, 140)
+  for (const a of [15, 75, 195, 255]) art += dot(X(a), Y(0.5), 'fr', 6.5)
+  art += text(200, 190, 'sin 2x = 1/2', 16, 'tm')
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -773,6 +787,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'trigonometric-equations': equationsCover,
   'trigonometric-identities': identitiesCover,
   'basic-trigonometry': basicTrigCover,
   'constructing-segments-and-angles': constructionsCover,

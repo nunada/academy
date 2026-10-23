@@ -42,6 +42,7 @@ import { CanDesigner, DeliveryTool, LightPath, OptProblems, ProfitTool } from '.
 import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from './NewtonWidgets'
 import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
 import { AngleCircle, AngleClock, AngleConvert, AnglePolygon, AngleTransversal, AngleVectors } from './AngleWidgets'
+import { TrigEqNumeric, TrigEqQuad, TrigEqSolve, TrigEqSteps } from './TrigEqWidgets'
 import { TrigIdentExact, TrigIdentHarmonic, TrigIdentProof, TrigIdentRotate, TrigIdentTest } from './TrigIdentWidgets'
 import { TrigCircle, TrigEquation, TrigIdentity, TrigRatio, TrigRight, TrigWave } from './TrigBasicWidgets'
 import { ConstructAngle, ConstructDivide, ConstructPlay, ConstructPolygon, ConstructTrisect } from './ConstructWidgets'
@@ -1143,6 +1144,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <TrigIdentExact />
     case 'idharmonic':
       return <TrigIdentHarmonic />
+    case 'eqsolve':
+      return <TrigEqSolve />
+    case 'eqquad':
+      return <TrigEqQuad />
+    case 'eqsteps':
+      return <TrigEqSteps />
+    case 'eqnumeric':
+      return <TrigEqNumeric />
   }
 }
 

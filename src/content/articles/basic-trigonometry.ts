@@ -552,7 +552,7 @@ Geser sudut di bawah, dari $-360^\circ$ sampai $720^\circ$, dan lihat titik, tan
 
 **Example.** $\sin x=\frac12$. The principal angle is $\alpha=30^\circ$, so the solutions between $0^\circ$ and $360^\circ$ are $30^\circ$ and $180^\circ-30^\circ=150^\circ$; in general $x=30^\circ+360^\circ k$ or $x=150^\circ+360^\circ k$. For $\cos x=-\frac{\sqrt2}{2}$ the principal angle is $135^\circ$, and the solutions are $135^\circ$ and $225^\circ$. For $\tan x=\sqrt3$ they are $60^\circ$ and $240^\circ$.
 
-A calculator or program gives only the principal value ($\arcsin$ returns an angle between $-90^\circ$ and $90^\circ$), so the second solution is yours to find. The same method solves harder equations once they are brought to this form, for instance $2\sin^2x=\sin x$ becomes $\sin x\,(2\sin x-1)=0$, so $\sin x=0$ or $\sin x=\frac12$.`,
+A calculator or program gives only the principal value ($\arcsin$ returns an angle between $-90^\circ$ and $90^\circ$), so the second solution is yours to find. The same method solves harder equations once they are brought to this form, for instance $2\sin^2x=\sin x$ becomes $\sin x\,(2\sin x-1)=0$, so $\sin x=0$ or $\sin x=\frac12$. Multiple angles, quadratic equations and false roots are in [the article on trigonometric equations](article:trigonometric-equations).`,
             T`**Untuk menyelesaikan $\sin x=c$, $\cos x=c$, atau $\tan x=c$, cari satu sudut dengan fungsi invers, cari bayangan cerminnya pada lingkaran satuan, dan tambahkan putaran penuh pada keduanya.** Alasan adanya sudut kedua adalah bahwa dua titik pada lingkaran satuan memiliki tinggi yang sama (sinus yang sama), dua titik memiliki koordinat-$x$ yang sama (kosinus yang sama), dan dua titik berlawanan memberi tangen yang sama.
 
 1. Bila $c$ di luar $-1\le c\le1$ untuk sinus atau kosinus, tidak ada penyelesaian.
@@ -566,7 +566,7 @@ A calculator or program gives only the principal value ($\arcsin$ returns an ang
 
 **Contoh.** $\sin x=\frac12$. Sudut pokoknya $\alpha=30^\circ$, sehingga penyelesaian di antara $0^\circ$ dan $360^\circ$ adalah $30^\circ$ dan $180^\circ-30^\circ=150^\circ$; secara umum $x=30^\circ+360^\circ k$ atau $x=150^\circ+360^\circ k$. Untuk $\cos x=-\frac{\sqrt2}{2}$ sudut pokoknya $135^\circ$, dan penyelesaiannya $135^\circ$ dan $225^\circ$. Untuk $\tan x=\sqrt3$ penyelesaiannya $60^\circ$ dan $240^\circ$.
 
-Kalkulator atau program hanya memberi nilai pokok ($\arcsin$ mengembalikan sudut di antara $-90^\circ$ dan $90^\circ$), sehingga penyelesaian kedua harus dicari sendiri. Cara yang sama menyelesaikan persamaan yang lebih sulit setelah dibawa ke bentuk ini, misalnya $2\sin^2x=\sin x$ menjadi $\sin x\,(2\sin x-1)=0$, sehingga $\sin x=0$ atau $\sin x=\frac12$.`,
+Kalkulator atau program hanya memberi nilai pokok ($\arcsin$ mengembalikan sudut di antara $-90^\circ$ dan $90^\circ$), sehingga penyelesaian kedua harus dicari sendiri. Cara yang sama menyelesaikan persamaan yang lebih sulit setelah dibawa ke bentuk ini, misalnya $2\sin^2x=\sin x$ menjadi $\sin x\,(2\sin x-1)=0$, sehingga $\sin x=0$ atau $\sin x=\frac12$. Sudut kelipatan, persamaan kuadrat, dan akar palsu ada di [artikel tentang persamaan trigonometri](article:trigonometric-equations).`,
           ),
         },
         FIG_EQUATION,

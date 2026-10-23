@@ -58,7 +58,8 @@
     "check:texspeech": "node tools/check-texspeech.mjs",
     "check:construct": "node tools/check-construct.mjs",
     "check:trigbasic": "node tools/check-trigbasic.mjs",
-    "check:trigident": "node tools/check-trigident.mjs"
+    "check:trigident": "node tools/check-trigident.mjs",
+    "check:trigeq": "node tools/check-trigeq.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

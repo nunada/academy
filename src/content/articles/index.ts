@@ -51,8 +51,9 @@ import { meta as angles } from './angles.meta'
 import { meta as constructions } from './constructing-segments-and-angles.meta'
 import { meta as basicTrig } from './basic-trigonometry.meta'
 import { meta as identities } from './trigonometric-identities.meta'
+import { meta as equations } from './trigonometric-equations.meta'
 
-export const ARTICLES: ArticleMeta[] = [identities, basicTrig, constructions, angles, latex, hanoi, fibonacci, binarySearch, bigO, floatingPoint, newtonsMethod, optimization, lhopital, concavity, monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [equations, identities, basicTrig, constructions, angles, latex, hanoi, fibonacci, binarySearch, bigO, floatingPoint, newtonsMethod, optimization, lhopital, concavity, monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -95,6 +96,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'constructing-segments-and-angles': () => import('./constructing-segments-and-angles'),
   'basic-trigonometry': () => import('./basic-trigonometry'),
   'trigonometric-identities': () => import('./trigonometric-identities'),
+  'trigonometric-equations': () => import('./trigonometric-equations'),
   'monotonic-functions-and-the-first-derivative-test': () => import('./monotonic-functions-and-the-first-derivative-test'),
   'the-derivative-as-a-rate-of-change': () => import('./the-derivative-as-a-rate-of-change'),
 }

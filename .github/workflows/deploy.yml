@@ -220,6 +220,11 @@ jobs:
       # where an expression is undefined), every line of every proof against the one before it, and the exact values to 55 digits.
       - run: npm run check:trigident
 
+      # Trigonometric equations: every solution of sin, cos and tan of kx + b = c in several intervals and of every quadratic in one function
+      # against a scan of the interval for crossings (Python's math module), every line of the eleven solved examples against the line before
+      # it (same solutions, or more where it squares), and bisection and Newton's method against mpmath's root finder.
+      - run: npm run check:trigeq
+
       - name: Work out where the site will live
         id: base
         run: |

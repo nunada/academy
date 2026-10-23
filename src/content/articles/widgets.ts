@@ -1244,4 +1244,32 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Pilih a dan b dan lihat a sin x + b cos x menjadi R sin(x + φ), dengan amplitudo R, pergeseran φ, kedua kurva saling menumpuk, dan penyelesaian persamaan untuk nilai apa pun.',
     },
   },
+  eqsolve: {
+    title: { en: 'Interactive: solve sin(kx + b) = c, cos(kx + b) = c and tan(kx + b) = c', id: 'Interaktif: selesaikan sin(kx + b) = c, cos(kx + b) = c, dan tan(kx + b) = c' },
+    description: {
+      en: 'Choose a function, the multiple k, the shift b, the level c and an interval, and see every solution as a crossing of a graph and a line, with the general solution and the count per turn.',
+      id: 'Pilih sebuah fungsi, kelipatan k, pergeseran b, tingkat c, dan sebuah interval, dan lihat setiap penyelesaian sebagai titik potong grafik dan garis, beserta penyelesaian umum dan banyaknya per putaran.',
+    },
+  },
+  eqquad: {
+    title: { en: 'Interactive: an equation that is quadratic in sin x, cos x or tan x', id: 'Interaktif: persamaan yang kuadrat dalam sin x, cos x, atau tan x' },
+    description: {
+      en: 'Set a, b and c in a·u² + b·u + c = 0 with u = sin x, cos x or tan x, and see the roots u, which of them an angle can reach, and the angles between 0° and 360°.',
+      id: 'Atur a, b, dan c dalam a·u² + b·u + c = 0 dengan u = sin x, cos x, atau tan x, dan lihat akar u, mana yang dapat dicapai sebuah sudut, dan sudut di antara 0° dan 360°.',
+    },
+  },
+  eqsteps: {
+    title: { en: 'Interactive: eleven equations solved line by line', id: 'Interaktif: sebelas persamaan diselesaikan baris demi baris' },
+    description: {
+      en: 'Eleven trigonometric equations, each solved one line at a time with the reason for every step and a graph of both sides, including the one where squaring adds roots that are not solutions.',
+      id: 'Sebelas persamaan trigonometri, masing-masing diselesaikan satu baris demi satu baris dengan alasan setiap langkah dan grafik kedua ruas, termasuk yang pengkuadratannya menambah akar yang bukan penyelesaian.',
+    },
+  },
+  eqnumeric: {
+    title: { en: "Interactive: solve cos x = x by bisection and by Newton's method", id: 'Interaktif: selesaikan cos x = x dengan bisection dan metode Newton' },
+    description: {
+      en: "Watch bisection halve an interval and Newton's method follow tangent lines to the root of five equations that no formula can solve, and see how many decimals each step gains.",
+      id: 'Lihat bisection membelah dua sebuah interval dan metode Newton mengikuti garis singgung menuju akar dari lima persamaan yang tak dapat diselesaikan rumus mana pun, dan lihat berapa desimal yang didapat tiap langkah.',
+    },
+  },
 }

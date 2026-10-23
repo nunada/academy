@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'identitas trigonometri, cara membuktikan identitas trigonometri, rumus jumlah dan selisih sudut, rumus sin(a+b), rumus cos(a+b), rumus sudut ganda, cos 2x tiga bentuk, rumus sudut rangkap tiga, rumus sudut paruh, rumus pengurangan pangkat, rumus hasil kali menjadi jumlah, rumus jumlah menjadi hasil kali, a sin x + b cos x menjadi satu sinus, R sin(x + phi), nilai eksak sin 15, nilai eksak sin 75, tan 22,5 derajat, memeriksa identitas, strategi pembuktian identitas trigonometri, identitas komplemen, identitas genap dan ganjil, rumus Euler dan identitas trigonometri, prostaferesis',
   },
   published: '2026-10-25',
-  updated: '2026-10-25',
+  updated: '2026-10-26',
   readingMinutes: 18,
   about: [
     { name: { en: 'Trigonometric identities', id: 'Identitas trigonometri' }, sameAs: { en: 'https://en.wikipedia.org/wiki/List_of_trigonometric_identities', id: 'https://id.wikipedia.org/wiki/Identitas_trigonometri' } },
