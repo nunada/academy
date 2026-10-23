@@ -55,7 +55,8 @@
     "check:hanoi": "node tools/check-hanoi.mjs",
     "check:latex": "node tools/check-latex.mjs",
     "check:angles": "node tools/check-angles.mjs",
-    "check:texspeech": "node tools/check-texspeech.mjs"
+    "check:texspeech": "node tools/check-texspeech.mjs",
+    "check:construct": "node tools/check-construct.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

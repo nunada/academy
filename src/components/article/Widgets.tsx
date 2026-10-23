@@ -42,6 +42,7 @@ import { CanDesigner, DeliveryTool, LightPath, OptProblems, ProfitTool } from '.
 import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from './NewtonWidgets'
 import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
 import { AngleCircle, AngleClock, AngleConvert, AnglePolygon, AngleTransversal, AngleVectors } from './AngleWidgets'
+import { ConstructAngle, ConstructDivide, ConstructPlay, ConstructPolygon, ConstructTrisect } from './ConstructWidgets'
 import { LatexBuilder, LatexDocument, LatexLive, LatexSymbols } from './LatexWidgets'
 import { HanoiGraphView, HanoiPegs, HanoiPlay, HanoiState, HanoiTime } from './HanoiWidgets'
 import { FibCompute, FibExplore, FibIdentities, FibPisano, FibZeckendorf } from './FibonacciWidgets'
@@ -1108,6 +1109,16 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <AngleCircle />
     case 'anglevector':
       return <AngleVectors />
+    case 'constructplay':
+      return <ConstructPlay />
+    case 'constructangle':
+      return <ConstructAngle />
+    case 'constructdivide':
+      return <ConstructDivide />
+    case 'constructtrisect':
+      return <ConstructTrisect />
+    case 'constructpoly':
+      return <ConstructPolygon />
   }
 }
 

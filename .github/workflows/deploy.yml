@@ -207,6 +207,11 @@ jobs:
       # must come out as plain words without a backslash, brace, caret or underscore).
       - run: npm run check:texspeech
 
+      # Constructions with a ruler and compass: the rules of the three moves, the eleven textbook constructions on 60 random inputs each, the
+      # division of a segment, the buildable angles and polygons against SymPy, and Archimedes' trisection. Needs Python with SymPy.
+      - run: python -m pip install sympy
+      - run: npm run check:construct
+
       - name: Work out where the site will live
         id: base
         run: |

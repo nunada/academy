@@ -717,6 +717,20 @@ const anglesCover = (): string => {
   return art
 }
 
+const constructionsCover = (): string => {
+  // the lens of a perpendicular bisector: a segment AB, an arc around each end through the other, and the line through the crossings
+  const A = { x: 140, y: 118 }
+  const B = { x: 260, y: 118 }
+  const r = 90
+  const at = (c: { x: number; y: number }, deg: number): string => `${n1(c.x + r * Math.cos((deg * Math.PI) / 180))},${n1(c.y + r * Math.sin((deg * Math.PI) / 180))}`
+  let art = path(`M${at(A, -64)}A${r},${r} 0 0 1 ${at(A, 64)}`, 'sb', 3) + path(`M${at(B, 244)}A${r},${r} 0 0 0 ${at(B, 116)}`, 'sa', 3)
+  art += line(200, 22, 200, 196, 'sr', 3.5, '8 6') + line(A.x, A.y, B.x, B.y, 'st', 5)
+  art += rect(200, 104, 14, 14, 'pb', 1)
+  art += dot(A.x, A.y, 'fr', 6) + dot(B.x, B.y, 'fr', 6) + dot(200, 118, 'fa', 6) + dot(200, 51, 'fb', 5.5) + dot(200, 185, 'fb', 5.5)
+  art += text(A.x - 14, A.y + 24, 'A', 18) + text(B.x + 14, B.y + 24, 'B', 18) + text(222, 46, 'P', 18) + text(222, 196, 'Q', 18)
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -724,6 +738,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'constructing-segments-and-angles': constructionsCover,
   angles: anglesCover,
   latex: latexCover,
   'tower-of-hanoi': hanoiCover,

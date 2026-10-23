@@ -1132,4 +1132,39 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Ketik sebuah bilangan dan lihat ia disusun dengan batang hitung, arah batang bergantian antartempat dan nol dibiarkan kosong, di samping angka Suzhou-nya.',
     },
   },
+  constructplay: {
+    title: { en: 'Interactive: draw with a ruler and compass, step by step', id: 'Interaktif: melukis dengan penggaris dan jangka, langkah demi langkah' },
+    description: {
+      en: 'Choose one of eleven constructions (copy a segment, midpoint, perpendicular, parallel, 60°, 90°, 30°, 45°, copy or bisect an angle) and step through every circle and line, then measure the finished drawing.',
+      id: 'Pilih salah satu dari sebelas lukisan (menyalin ruas garis, titik tengah, tegak lurus, sejajar, 60°, 90°, 30°, 45°, menyalin atau membagi dua sudut) dan ikuti setiap lingkaran dan garis, lalu ukur gambar yang sudah jadi.',
+    },
+  },
+  constructangle: {
+    title: { en: 'Interactive: which angles can you build?', id: 'Interaktif: sudut mana yang dapat dilukis?' },
+    description: {
+      en: 'Type a whole number of degrees from 1 to 179: if a ruler and compass can build it you get the shortest recipe of 60°, 90°, 72°, halving, adding and subtracting, and the drawing; if not, you see why.',
+      id: 'Ketik bilangan bulat derajat dari 1 sampai 179: jika penggaris dan jangka dapat membangunnya Anda mendapat resep terpendek dari 60°, 90°, 72°, membagi dua, menambah, dan mengurangi, beserta gambarnya; jika tidak, Anda melihat sebabnya.',
+    },
+  },
+  constructdivide: {
+    title: { en: 'Interactive: divide a segment into equal parts', id: 'Interaktif: membagi ruas garis menjadi bagian-bagian sama' },
+    description: {
+      en: 'Cut a segment into 2 to 10 equal parts with steps on a ray and parallel lines, play every circle and line, and measure each mark against k/n of the way.',
+      id: 'Potong sebuah ruas garis menjadi 2 sampai 10 bagian sama dengan langkah-langkah pada sebuah sinar dan garis-garis sejajar, putar setiap lingkaran dan garis, dan ukur tiap tanda terhadap k/n dari panjangnya.',
+    },
+  },
+  constructtrisect: {
+    title: { en: 'Interactive: trisecting an angle', id: 'Interaktif: membagi tiga sebuah sudut' },
+    description: {
+      en: 'Slide an angle and see Archimedes’ trisection with a ruler that has two marks, and whether a plain ruler and compass could trisect that angle too (they cannot for 60°).',
+      id: 'Geser sebuah sudut dan lihat pembagian tiga Archimedes dengan penggaris yang memiliki dua tanda, serta apakah penggaris dan jangka biasa juga dapat membagi tiga sudut itu (tidak dapat untuk 60°).',
+    },
+  },
+  constructpoly: {
+    title: { en: 'Interactive: which regular polygons can be built?', id: 'Interaktif: segi banyak beraturan mana yang dapat dilukis?' },
+    description: {
+      en: 'Type the number of sides from 3 to 65537 and see whether the regular polygon can be built with a ruler and compass, with the factors that decide it, Euler’s φ and the central angle.',
+      id: 'Ketik banyak sisi dari 3 sampai 65537 dan lihat apakah segi banyak beraturannya dapat dilukis dengan penggaris dan jangka, beserta faktor-faktor penentunya, φ Euler, dan sudut pusatnya.',
+    },
+  },
 }

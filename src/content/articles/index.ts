@@ -48,8 +48,9 @@ import { meta as fibonacci } from './fibonacci-numbers.meta'
 import { meta as hanoi } from './tower-of-hanoi.meta'
 import { meta as latex } from './latex.meta'
 import { meta as angles } from './angles.meta'
+import { meta as constructions } from './constructing-segments-and-angles.meta'
 
-export const ARTICLES: ArticleMeta[] = [angles, latex, hanoi, fibonacci, binarySearch, bigO, floatingPoint, newtonsMethod, optimization, lhopital, concavity, monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [constructions, angles, latex, hanoi, fibonacci, binarySearch, bigO, floatingPoint, newtonsMethod, optimization, lhopital, concavity, monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -89,6 +90,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'tower-of-hanoi': () => import('./tower-of-hanoi'),
   latex: () => import('./latex'),
   angles: () => import('./angles'),
+  'constructing-segments-and-angles': () => import('./constructing-segments-and-angles'),
   'monotonic-functions-and-the-first-derivative-test': () => import('./monotonic-functions-and-the-first-derivative-test'),
   'the-derivative-as-a-rate-of-change': () => import('./the-derivative-as-a-rate-of-change'),
 }

@@ -185,6 +185,11 @@ export type WidgetName =
   | 'angleclock'
   | 'anglecircle'
   | 'anglevector'
+  | 'constructplay'
+  | 'constructangle'
+  | 'constructdivide'
+  | 'constructtrisect'
+  | 'constructpoly'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */
