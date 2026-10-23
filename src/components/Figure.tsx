@@ -28,6 +28,7 @@ import {
 } from '../lib/figure'
 import { evaluateAt } from '../lib/expr'
 import { useI18n } from '../i18n'
+import { texSpeech } from '../lib/texspeech'
 import { Rich } from './ui'
 
 type P = [number, number]
@@ -276,8 +277,11 @@ const tickText = (v: number, step: number): string => {
   return v.toFixed(dp)
 }
 
+/** A caption as a screen reader should hear it: the TeX between dollar signs spoken as words. */
+const spoken = (text: string, lang: 'en' | 'id'): string => text.replace(/\$\$([^$]+)\$\$|\$([^$]+)\$/g, (_, d: string | undefined, m: string | undefined) => texSpeech((d ?? m ?? '').trim(), lang))
+
 export function FigureView({ figure }: { figure: Figure }) {
-  const { tc } = useI18n()
+  const { tc, lang } = useI18n()
   const dim = figure.dim
   const range = figure.range ?? 5
   const [vars, setVars] = useState<Record<string, Vec>>(() => ({ ...(figure.vars ?? {}) }))
@@ -926,7 +930,7 @@ export function FigureView({ figure }: { figure: Figure }) {
         // height cap — a cap would letterbox it inside a much wider box.
         style={{ width: `min(100%, ${figure.height ?? Math.round(380 * Math.min(aspect, 1.5))}px)` }}
         role="img"
-        aria-label={figure.caption ? tc(figure.caption) : undefined}
+        aria-label={figure.caption ? spoken(tc(figure.caption), lang) : undefined}
         onPointerDown={startRotate}
         onPointerMove={move}
         onPointerUp={end}

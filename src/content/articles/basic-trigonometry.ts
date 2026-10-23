@@ -1,5 +1,6 @@
+import type { FigItem, Figure } from '../../lib/figure'
 import type { Loc } from '../types'
-import type { ArticleBody } from './types'
+import type { ArticleBlock, ArticleBody } from './types'
 import { meta } from './basic-trigonometry.meta'
 
 export { meta }
@@ -14,6 +15,254 @@ const T = (s: TemplateStringsArray): string =>
     .replace(/´([^´\n]+)´/g, '`$1`')
     .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '$1')
     .replace(/^\s+|\s+$/g, '')
+
+/** A static drawing on a plain canvas: the figure items are the only things in it, with no sliders and nothing to drag. The labels inside a
+ *  drawing are letters, numbers and symbols, which read the same in both languages; the words are in the caption. */
+const fig = (f: Omit<Figure, 'dim' | 'axes'>): ArticleBlock => {
+  // With both spans given and no aspect, choose the frame that gives one scale on both axes (a 460-wide drawing with 26 of margin all round), so that circles are round and right angles look right
+  const aspect = f.aspect ?? (f.xSpan && f.ySpan ? Math.min(3, Math.max(0.5, 460 / (52 + (460 - 52) * ((f.ySpan[1] - f.ySpan[0]) / (f.xSpan[1] - f.xSpan[0]))))) : 1)
+  return { kind: 'figure', figure: { dim: 2, axes: false, ...f, aspect } }
+}
+const TURN = 6.2832
+
+/** The unit circle with its two axes, for the figures that need them. */
+const circleAndAxes = (): FigItem[] => [
+  { t: 'seg', from: [-1.35, 0], to: [1.35, 0], color: 'muted' },
+  { t: 'seg', from: [0, -1.35], to: [0, 1.35], color: 'muted' },
+  { t: 'param', x: 'cos(t)', y: 'sin(t)', from: 0, to: TURN, color: 'muted' },
+]
+
+/** The right triangle with its sides named from the angle θ. */
+const FIG_TRIANGLE = fig({
+  xSpan: [-1, 5.4],
+  ySpan: [-0.9, 3.9],
+  items: [
+    { t: 'poly', pts: [[0, 0], [4, 0], [4, 3]], color: 'a' },
+    { t: 'seg', from: [0, 0], to: [4, 0], color: 'b', width: 2.6, label: 'b' },
+    { t: 'seg', from: [4, 0], to: [4, 3], color: 'c', width: 2.6, label: 'a' },
+    { t: 'seg', from: [0, 0], to: [4, 3], color: 'result', width: 2.6, label: 'c' },
+    { t: 'angle', at: [0, 0], from: [1, 0], to: [4, 3], label: 'θ' },
+    { t: 'right', at: [4, 0], from: [0, 0], to: [4, 3] },
+  ],
+  caption: L(
+    T`The sides of a right triangle named from the angle $\theta$: $a$ is the opposite side, $b$ the adjacent side and $c$ the hypotenuse. Then $\sin\theta=\frac{a}{c}$, $\cos\theta=\frac{b}{c}$ and $\tan\theta=\frac{a}{b}$.`,
+    T`Sisi-sisi segitiga siku-siku diberi nama dari sudut $\theta$: $a$ adalah sisi depan, $b$ sisi samping, dan $c$ sisi miring. Maka $\sin\theta=\frac{a}{c}$ (sin-de-mi), $\cos\theta=\frac{b}{c}$ (cos-sa-mi), dan $\tan\theta=\frac{a}{b}$ (tan-de-sa).`,
+  ),
+})
+
+/** Two similar right triangles. */
+const FIG_SIMILAR = fig({
+  xSpan: [-1, 9.6],
+  ySpan: [-1, 7.2],
+  items: [
+    { t: 'poly', pts: [[0, 0], [8, 0], [8, 6]], color: 'muted', look: 'outline' },
+    { t: 'poly', pts: [[0, 0], [4, 0], [4, 3]], color: 'a' },
+    { t: 'angle', at: [0, 0], from: [1, 0], to: [8, 6], label: 'θ' },
+    { t: 'right', at: [8, 0], from: [0, 0], to: [8, 6] },
+    { t: 'right', at: [4, 0], from: [0, 0], to: [4, 3] },
+    { t: 'text', at: [2, -0.55], text: '4', color: 'a' },
+    { t: 'text', at: [4.55, 1.5], text: '3', color: 'a' },
+    { t: 'text', at: [1.6, 2.1], text: '5', color: 'a' },
+    { t: 'text', at: [6, -0.55], text: '8', color: 'muted' },
+    { t: 'text', at: [8.6, 3], text: '6', color: 'muted' },
+    { t: 'text', at: [5.6, 4.9], text: '10', color: 'muted' },
+    { t: 'text', at: [2.4, 6.2], text: 'sin θ = 3/5 = 6/10', size: 'lg', color: 'result' },
+  ],
+  caption: L(
+    T`Two right triangles with the same angle $\theta$. Every side of the larger one is twice the matching side of the smaller one, so $\sin\theta=\frac35=\frac{6}{10}$ in both: the ratio belongs to the angle, not to the size of the triangle.`,
+    T`Dua segitiga siku-siku dengan sudut $\theta$ yang sama. Setiap sisi segitiga yang lebih besar dua kali sisi yang bersesuaian pada yang lebih kecil, sehingga $\sin\theta=\frac35=\frac{6}{10}$ pada keduanya: perbandingan itu milik sudutnya, bukan ukuran segitiganya.`,
+  ),
+})
+
+/** The tower seen at an angle of elevation. */
+const FIG_TOWER = fig({
+  xSpan: [-1.6, 12],
+  ySpan: [-1.6, 8.4],
+  items: [
+    { t: 'seg', from: [-1, 0], to: [11.2, 0], color: 'muted', width: 2 },
+    { t: 'seg', from: [10, 0], to: [10, 7], color: 'b', width: 5 },
+    { t: 'seg', from: [0, 0], to: [10, 7], color: 'result', width: 2.2 },
+    { t: 'seg', from: [0, 0], to: [10, 0], color: 'muted', dashed: true },
+    { t: 'angle', at: [0, 0], from: [1, 0], to: [10, 7], label: '35°' },
+    { t: 'right', at: [10, 0], from: [0, 0], to: [10, 7] },
+    { t: 'point', at: [0, 0], color: 'a' },
+    { t: 'point', at: [10, 7], color: 'b' },
+    { t: 'text', at: [5, -0.7], text: '40 m', color: 'a' },
+    { t: 'text', at: [10.9, 3.5], text: 'h', size: 'lg', color: 'b' },
+  ],
+  caption: L(
+    T`The tower problem: from $40$ m away you see the top at an angle of elevation of $35^\circ$. The height above your eye is $h=40\tan35^\circ\approx28$ m. (The drawing uses $10$ units for $40$ m.)`,
+    T`Soal menara: dari jarak $40$ m Anda melihat puncaknya dengan sudut elevasi $35^\circ$. Tinggi di atas mata Anda adalah $h=40\tan35^\circ\approx28$ m. (Gambar memakai $10$ satuan untuk $40$ m.)`,
+  ),
+})
+
+/** Half of an equilateral triangle. */
+const FIG_HALF_EQUILATERAL = fig({
+  range: 1.6, // the size of the angle arcs and of the right-angle marks follows this, and these drawings are small in graph units
+  xSpan: [-0.7, 2.7],
+  ySpan: [-0.6, 2.25],
+  items: [
+    { t: 'poly', pts: [[0, 0], [2, 0], [1, 1.732]], color: 'muted', look: 'outline' },
+    { t: 'poly', pts: [[0, 0], [1, 0], [1, 1.732]], color: 'a' },
+    { t: 'seg', from: [0, 0], to: [1, 0], color: 'b', width: 2.6, label: '1' },
+    { t: 'seg', from: [1, 0], to: [1, 1.732], color: 'c', width: 2.6, label: '√3' },
+    { t: 'seg', from: [0, 0], to: [1, 1.732], color: 'result', width: 2.6, label: '2' },
+    { t: 'angle', at: [0, 0], from: [1, 0], to: [1, 1.732], label: '60°' },
+    { t: 'angle', at: [1, 1.732], from: [1, 0], to: [0, 0], label: '30°' },
+    { t: 'right', at: [1, 0], from: [0, 0], to: [1, 1.732] },
+  ],
+  caption: L(
+    T`An equilateral triangle of side $2$ cut along its height. Each half is a right triangle with angles $30^\circ$, $60^\circ$, $90^\circ$ and sides $1$, $\sqrt3$, $2$ (the long leg is $\sqrt{2^2-1^2}=\sqrt3$).`,
+    T`Segitiga sama sisi bersisi $2$ yang dibelah sepanjang tingginya. Setiap belahan adalah segitiga siku-siku dengan sudut $30^\circ$, $60^\circ$, $90^\circ$ dan sisi $1$, $\sqrt3$, $2$ (sisi tegak panjangnya $\sqrt{2^2-1^2}=\sqrt3$).`,
+  ),
+})
+
+/** Half of a square. */
+const FIG_HALF_SQUARE = fig({
+  range: 1.2, // the size of the angle arcs and of the right-angle marks follows this, and these drawings are small in graph units
+  xSpan: [-0.6, 1.7],
+  ySpan: [-0.5, 1.4],
+  items: [
+    { t: 'poly', pts: [[0, 0], [1, 0], [1, 1], [0, 1]], color: 'muted', look: 'outline' },
+    { t: 'poly', pts: [[0, 0], [1, 0], [1, 1]], color: 'a' },
+    { t: 'seg', from: [0, 0], to: [1, 0], color: 'b', width: 2.6, label: '1' },
+    { t: 'seg', from: [1, 0], to: [1, 1], color: 'c', width: 2.6, label: '1' },
+    { t: 'seg', from: [0, 0], to: [1, 1], color: 'result', width: 2.6, label: '√2' },
+    { t: 'angle', at: [0, 0], from: [1, 0], to: [1, 1], label: '45°' },
+    { t: 'angle', at: [1, 1], from: [1, 0], to: [0, 0], label: '45°' },
+    { t: 'right', at: [1, 0], from: [0, 0], to: [1, 1] },
+  ],
+  caption: L(
+    T`A square of side $1$ cut along a diagonal. Each half is a right triangle with two angles of $45^\circ$ and sides $1$, $1$, $\sqrt2$, so $\sin45^\circ=\cos45^\circ=\frac{1}{\sqrt2}=\frac{\sqrt2}{2}$ and $\tan45^\circ=1$.`,
+    T`Persegi bersisi $1$ yang dibelah sepanjang diagonalnya. Setiap belahan adalah segitiga siku-siku dengan dua sudut $45^\circ$ dan sisi $1$, $1$, $\sqrt2$, sehingga $\sin45^\circ=\cos45^\circ=\frac{1}{\sqrt2}=\frac{\sqrt2}{2}$ dan $\tan45^\circ=1$.`,
+  ),
+})
+
+/** The unit circle with the right triangle of an angle in the first quadrant. */
+const FIG_UNIT_CIRCLE = fig({
+  range: 1.5, // the size of the angle arcs and of the right-angle marks follows this, and these drawings are small in graph units
+  xSpan: [-1.45, 2.7],
+  ySpan: [-1.4, 1.4],
+  items: [
+    ...circleAndAxes(),
+    { t: 'seg', from: [0, 0], to: [0.766, 0.6428], color: 'a', width: 2.8, label: '1' },
+    { t: 'seg', from: [0, 0], to: [0.766, 0], color: 'b', width: 3.2, label: 'cos θ' },
+    { t: 'seg', from: [0.766, 0], to: [0.766, 0.6428], color: 'c', width: 3.2, label: 'sin θ' },
+    { t: 'angle', at: [0, 0], from: [1, 0], to: [0.766, 0.6428], label: 'θ' },
+    { t: 'right', at: [0.766, 0], from: [0, 0], to: [0.766, 0.6428] },
+    { t: 'point', at: [0.766, 0.6428], label: '(cos θ, sin θ)', color: 'result' },
+  ],
+  caption: L(
+    T`The unit circle. The point at the angle $\theta$ is $(\cos\theta,\sin\theta)$: the radius is the hypotenuse, of length $1$, the horizontal leg is $\cos\theta$ and the vertical leg is $\sin\theta$. Pythagoras gives $\sin^2\theta+\cos^2\theta=1$.`,
+    T`Lingkaran satuan. Titik pada sudut $\theta$ adalah $(\cos\theta,\sin\theta)$: jari-jari adalah sisi miring, berpanjang $1$, sisi tegak mendatar adalah $\cos\theta$ dan sisi tegak vertikal adalah $\sin\theta$. Pythagoras memberi $\sin^2\theta+\cos^2\theta=1$.`,
+  ),
+})
+
+/** An angle in the second quadrant, its reference angle, and the signs of the four quadrants. */
+const FIG_QUADRANTS = fig({
+  range: 1.5, // the size of the angle arcs and of the right-angle marks follows this, and these drawings are small in graph units
+  xSpan: [-2.45, 2.45],
+  ySpan: [-1.3, 1.3],
+  items: [
+    ...circleAndAxes(),
+    { t: 'seg', from: [0, 0], to: [-0.866, 0.5], color: 'a', width: 2.8 },
+    { t: 'seg', from: [-0.866, 0.5], to: [-0.866, 0], color: 'c', dashed: true },
+    { t: 'angle', at: [0, 0], from: [-1, 0], to: [-0.866, 0.5], label: '30°' },
+    { t: 'param', x: '0.3*cos(t)', y: '0.3*sin(t)', from: 0, to: 2.618, color: 'result', dashed: true },
+    { t: 'text', at: [0.55, 0.17], text: '150°', size: 'sm', color: 'result' },
+    { t: 'point', at: [-0.866, 0.5], color: 'a' },
+    { t: 'text', at: [1.65, 0.8], text: 'I:  + + +', size: 'lg', color: 'muted' },
+    { t: 'text', at: [-1.65, 0.8], text: 'II:  + − −', size: 'lg', color: 'a' },
+    { t: 'text', at: [-1.65, -0.8], text: 'III:  − − +', size: 'lg', color: 'muted' },
+    { t: 'text', at: [1.65, -0.8], text: 'IV:  − + −', size: 'lg', color: 'muted' },
+  ],
+  caption: L(
+    T`The angle $150^\circ$ is in quadrant II. Its reference angle is $180^\circ-150^\circ=30^\circ$, so $\sin150^\circ=\sin30^\circ=\frac12$ (positive there) and $\cos150^\circ=-\cos30^\circ=-\frac{\sqrt3}{2}$ (negative there). The signs written in each quadrant are those of $\sin$, $\cos$ and $\tan$, in that order.`,
+    T`Sudut $150^\circ$ berada di kuadran II. Sudut acuannya adalah $180^\circ-150^\circ=30^\circ$, sehingga $\sin150^\circ=\sin30^\circ=\frac12$ (positif di sana) dan $\cos150^\circ=-\cos30^\circ=-\frac{\sqrt3}{2}$ (negatif di sana). Tanda yang tertulis di tiap kuadran adalah tanda $\sin$, $\cos$, dan $\tan$, dalam urutan itu.`,
+  ),
+})
+
+/** One turn of the sine wave and the cosine wave. */
+const FIG_WAVES = fig({
+  xSpan: [-0.8, 7.1],
+  ySpan: [-1.9, 1.7],
+  items: [
+    { t: 'seg', from: [-0.5, 0], to: [6.9, 0], color: 'muted' },
+    { t: 'seg', from: [0, -1.5], to: [0, 1.5], color: 'muted' },
+    { t: 'seg', from: [1.5708, 0], to: [1.5708, -1.35], color: 'muted', dashed: true },
+    { t: 'seg', from: [3.1416, 0], to: [3.1416, -1.35], color: 'muted', dashed: true },
+    { t: 'seg', from: [4.7124, 0], to: [4.7124, -1.35], color: 'muted', dashed: true },
+    { t: 'seg', from: [TURN, 0], to: [TURN, -1.35], color: 'muted', dashed: true },
+    { t: 'curve', f: 'cos(x)', from: 0, to: TURN, color: 'b', dashed: true },
+    { t: 'curve', f: 'sin(x)', from: 0, to: TURN, color: 'a' },
+    { t: 'dot', x: 1.5708, y: 1, color: 'result' },
+    { t: 'dot', x: 3.1416, y: 0, color: 'result' },
+    { t: 'dot', x: 4.7124, y: -1, color: 'result' },
+    { t: 'dot', x: TURN, y: 0, color: 'result' },
+    { t: 'text', at: [1.5708, -1.62], text: '90°', size: 'sm', color: 'muted' },
+    { t: 'text', at: [3.1416, -1.62], text: '180°', size: 'sm', color: 'muted' },
+    { t: 'text', at: [4.7124, -1.62], text: '270°', size: 'sm', color: 'muted' },
+    { t: 'text', at: [TURN, -1.62], text: '360°', size: 'sm', color: 'muted' },
+    { t: 'text', at: [-0.4, 1], text: '1', size: 'sm', color: 'muted' },
+    { t: 'text', at: [-0.45, -1], text: '−1', size: 'sm', color: 'muted' },
+    { t: 'text', at: [2.2, 1.3], text: 'sin', color: 'a' },
+    { t: 'text', at: [0.55, 1.3], text: 'cos', color: 'b' },
+  ],
+  caption: L(
+    T`One turn of the sine wave (solid) and of the cosine wave (dashed). The cosine is the sine shifted $90^\circ$ to the left. Both oscillate between $-1$ and $1$ and repeat every $360^\circ$.`,
+    T`Satu putaran gelombang sinus (garis penuh) dan gelombang kosinus (putus-putus). Kosinus adalah sinus yang digeser $90^\circ$ ke kiri. Keduanya berosilasi di antara $-1$ dan $1$ dan berulang setiap $360^\circ$.`,
+  ),
+})
+
+/** The graph of y = 2 sin 3x + 1 with its amplitude, period and midline marked. */
+const FIG_WAVE_PARTS = fig({
+  xSpan: [-40, 410],
+  ySpan: [-2.5, 4],
+  aspect: 2.3,
+  items: [
+    { t: 'seg', from: [-20, 0], to: [380, 0], color: 'muted' },
+    { t: 'seg', from: [0, -2.1], to: [0, 3.8], color: 'muted' },
+    { t: 'hline', y: 1, color: 'b', dashed: true },
+    { t: 'vline', x: 120, color: 'muted', dashed: true },
+    { t: 'curve', f: '2*sin(3*x*pi/180)+1', from: 0, to: 360, color: 'a' },
+    { t: 'dot', x: 30, y: 3, color: 'result' },
+    { t: 'dot', x: 90, y: -1, color: 'result' },
+    { t: 'seg', from: [30, 1], to: [30, 3], color: 'result', width: 3 },
+    { t: 'text', at: [78, 2.35], text: '|a| = 2', color: 'result' },
+    { t: 'seg', from: [0, -1.8], to: [120, -1.8], color: 'c', width: 3 },
+    { t: 'text', at: [60, -2.25], text: '120°', color: 'c' },
+    { t: 'text', at: [-22, 1.3], text: 'd = 1', size: 'sm', color: 'b' },
+    { t: 'text', at: [330, 3.5], text: 'y = 2 sin 3x + 1', size: 'lg', color: 'a' },
+  ],
+  caption: L(
+    T`The graph of $y=2\sin3x+1$. The midline is $y=1$ (dashed), the amplitude is $2$ (from the midline up to the peak at $y=3$) and the period is $\frac{360^\circ}{3}=120^\circ$ (the bar at the bottom).`,
+    T`Grafik $y=2\sin3x+1$. Garis tengahnya $y=1$ (putus-putus), amplitudonya $2$ (dari garis tengah ke puncak di $y=3$), dan periodenya $\frac{360^\circ}{3}=120^\circ$ (batang di bagian bawah).`,
+  ),
+})
+
+/** The equation sin x = 1/2 as the crossings of a wave and a line. */
+const FIG_EQUATION = fig({
+  xSpan: [-40, 410],
+  ySpan: [-1.5, 1.5],
+  aspect: 2.5,
+  items: [
+    { t: 'seg', from: [-20, 0], to: [380, 0], color: 'muted' },
+    { t: 'seg', from: [0, -1.2], to: [0, 1.25], color: 'muted' },
+    { t: 'curve', f: 'sin(x*pi/180)', from: 0, to: 360, color: 'a' },
+    { t: 'hline', y: 0.5, color: 'result', dashed: true },
+    { t: 'seg', from: [30, 0.5], to: [30, 0], color: 'muted', dashed: true },
+    { t: 'seg', from: [150, 0.5], to: [150, 0], color: 'muted', dashed: true },
+    { t: 'dot', x: 30, y: 0.5, color: 'result' },
+    { t: 'dot', x: 150, y: 0.5, color: 'result' },
+    { t: 'text', at: [30, -0.22], text: '30°', size: 'sm', color: 'result' },
+    { t: 'text', at: [150, -0.22], text: '150°', size: 'sm', color: 'result' },
+    { t: 'text', at: [-24, 0.68], text: '1/2', size: 'sm', color: 'result' },
+  ],
+  caption: L(
+    T`The equation $\sin x=\frac12$. The line $y=\frac12$ cuts the sine wave between $0^\circ$ and $360^\circ$ at two points, $x=30^\circ$ and $x=180^\circ-30^\circ=150^\circ$; every further turn adds $360^\circ$.`,
+    T`Persamaan $\sin x=\frac12$. Garis $y=\frac12$ memotong gelombang sinus di antara $0^\circ$ dan $360^\circ$ di dua titik, $x=30^\circ$ dan $x=180^\circ-30^\circ=150^\circ$; setiap putaran berikutnya menambah $360^\circ$.`,
+  ),
+})
 
 export const body: ArticleBody = {
   answer: L(
@@ -63,36 +312,44 @@ Pick one of the two acute angles and call it $\theta$. The three sides now have 
 
 - the **hypotenuse** is the side opposite the right angle, always the longest;
 - the **opposite** side is the one across from $\theta$;
-- the **adjacent** side is the other leg, the one that touches $\theta$.
-
-Then the three ratios are
-
-$$\sin\theta=\frac{\text{opposite}}{\text{hypotenuse}},\qquad \cos\theta=\frac{\text{adjacent}}{\text{hypotenuse}},\qquad \tan\theta=\frac{\text{opposite}}{\text{adjacent}}.$$
-
-A way to remember them is *SOH-CAH-TOA*: Sine is Opposite over Hypotenuse, Cosine is Adjacent over Hypotenuse, Tangent is Opposite over Adjacent. There are also three reciprocals: the cosecant $\csc\theta=\frac{1}{\sin\theta}$, the secant $\sec\theta=\frac{1}{\cos\theta}$ and the cotangent $\cot\theta=\frac{1}{\tan\theta}$.
-
-**Why does this make sense?** Two right triangles that share the angle $\theta$ have all three angles equal, so they are *similar*: one is an enlargement of the other, and the ratio of two sides stays the same. So $\sin\theta$ is a number that belongs to the angle, not to the triangle: it is the same for a triangle on paper and for one the size of a tower. Because the hypotenuse is the longest side, $\sin\theta$ and $\cos\theta$ of an acute angle are always between $0$ and $1$.
-
-Two more facts follow at once. The other acute angle is $90^\circ-\theta$, and the opposite and adjacent sides swap when you look from it, so $\sin(90^\circ-\theta)=\cos\theta$. And by the [Pythagorean theorem](article:pythagorean-theorem#what-is-the-theorem), $\text{opposite}^2+\text{adjacent}^2=\text{hypotenuse}^2$; divide by the hypotenuse squared and you get $\sin^2\theta+\cos^2\theta=1$.
-
-Try it: move the angle and the size, and switch the angle you look from.`,
+- the **adjacent** side is the other leg, the one that touches $\theta$.`,
             T`**Trigonometri adalah bagian matematika yang menghubungkan sudut segitiga dengan panjang sisinya; tiga alat dasarnya adalah sinus, kosinus, dan tangen sebuah sudut.** Namanya berasal dari bahasa Yunani yang berarti *pengukuran segitiga*. Ia bermula dari segitiga siku-siku, yang memiliki sudut $90^\circ$.
 
 Pilih satu dari dua sudut lancipnya dan sebut $\theta$. Ketiga sisi sekarang memiliki nama *relatif terhadap $\theta$*:
 
 - **sisi miring** (hipotenusa) adalah sisi di depan sudut siku-siku, selalu yang terpanjang;
 - **sisi depan** adalah sisi yang berseberangan dengan $\theta$;
-- **sisi samping** adalah sisi tegak lainnya, yang menyentuh $\theta$.
+- **sisi samping** adalah sisi tegak lainnya, yang menyentuh $\theta$.`,
+          ),
+        },
+        FIG_TRIANGLE,
+        {
+          kind: 'text',
+          text: L(
+            T`Then the three ratios are
 
-Maka ketiga perbandingannya adalah
+$$\sin\theta=\frac{\text{opposite}}{\text{hypotenuse}},\qquad \cos\theta=\frac{\text{adjacent}}{\text{hypotenuse}},\qquad \tan\theta=\frac{\text{opposite}}{\text{adjacent}}.$$
+
+A way to remember them is *SOH-CAH-TOA*: Sine is Opposite over Hypotenuse, Cosine is Adjacent over Hypotenuse, Tangent is Opposite over Adjacent. There are also three reciprocals: the cosecant $\csc\theta=\frac{1}{\sin\theta}$, the secant $\sec\theta=\frac{1}{\cos\theta}$ and the cotangent $\cot\theta=\frac{1}{\tan\theta}$.
+
+**Why does this make sense?** Two right triangles that share the angle $\theta$ have all three angles equal, so they are *similar*: one is an enlargement of the other, and the ratio of two sides stays the same. So $\sin\theta$ is a number that belongs to the angle, not to the triangle: it is the same for a triangle on paper and for one the size of a tower. Because the hypotenuse is the longest side, $\sin\theta$ and $\cos\theta$ of an acute angle are always between $0$ and $1$.`,
+            T`Maka ketiga perbandingannya adalah
 
 $$\sin\theta=\frac{\text{depan}}{\text{miring}},\qquad \cos\theta=\frac{\text{samping}}{\text{miring}},\qquad \tan\theta=\frac{\text{depan}}{\text{samping}}.$$
 
 Cara mengingatnya adalah *sin-de-mi, cos-sa-mi, tan-de-sa*: Sinus adalah sisi DEpan per sisi MIring, Kosinus adalah sisi SAmping per sisi MIring, Tangen adalah sisi DEpan per sisi SAmping. Ada pula tiga kebalikannya: kosekan $\csc\theta=\frac{1}{\sin\theta}$, sekan $\sec\theta=\frac{1}{\cos\theta}$, dan kotangen $\cot\theta=\frac{1}{\tan\theta}$.
 
-**Mengapa ini masuk akal?** Dua segitiga siku-siku yang sama-sama memiliki sudut $\theta$ memiliki ketiga sudut sama, sehingga *sebangun*: yang satu adalah pembesaran yang lain, dan perbandingan dua sisi tetap sama. Jadi $\sin\theta$ adalah bilangan milik sudut, bukan milik segitiga: ia sama untuk segitiga di atas kertas dan untuk segitiga sebesar menara. Karena sisi miring adalah sisi terpanjang, $\sin\theta$ dan $\cos\theta$ sebuah sudut lancip selalu di antara $0$ dan $1$.
+**Mengapa ini masuk akal?** Dua segitiga siku-siku yang sama-sama memiliki sudut $\theta$ memiliki ketiga sudut sama, sehingga *sebangun*: yang satu adalah pembesaran yang lain, dan perbandingan dua sisi tetap sama. Jadi $\sin\theta$ adalah bilangan milik sudut, bukan milik segitiga: ia sama untuk segitiga di atas kertas dan untuk segitiga sebesar menara. Karena sisi miring adalah sisi terpanjang, $\sin\theta$ dan $\cos\theta$ sebuah sudut lancip selalu di antara $0$ dan $1$.`,
+          ),
+        },
+        FIG_SIMILAR,
+        {
+          kind: 'text',
+          text: L(
+            T`Two more facts follow at once. The other acute angle is $90^\circ-\theta$, and the opposite and adjacent sides swap when you look from it, so $\sin(90^\circ-\theta)=\cos\theta$. And by the [Pythagorean theorem](article:pythagorean-theorem#what-is-the-theorem), $\text{opposite}^2+\text{adjacent}^2=\text{hypotenuse}^2$; divide by the hypotenuse squared and you get $\sin^2\theta+\cos^2\theta=1$.
 
-Dua fakta lagi mengikuti. Sudut lancip yang lain adalah $90^\circ-\theta$, dan sisi depan dan samping bertukar bila kita melihat darinya, sehingga $\sin(90^\circ-\theta)=\cos\theta$. Dan menurut [teorema Pythagoras](article:pythagorean-theorem#what-is-the-theorem), $\text{depan}^2+\text{samping}^2=\text{miring}^2$; bagi dengan kuadrat sisi miring dan diperoleh $\sin^2\theta+\cos^2\theta=1$.
+Try it: move the angle and the size, and switch the angle you look from.`,
+            T`Dua fakta lagi mengikuti. Sudut lancip yang lain adalah $90^\circ-\theta$, dan sisi depan dan samping bertukar bila kita melihat darinya, sehingga $\sin(90^\circ-\theta)=\cos\theta$. Dan menurut [teorema Pythagoras](article:pythagorean-theorem#what-is-the-theorem), $\text{depan}^2+\text{samping}^2=\text{miring}^2$; bagi dengan kuadrat sisi miring dan diperoleh $\sin^2\theta+\cos^2\theta=1$.
 
 Cobalah: geser sudut dan ukurannya, dan ganti sudut yang dilihat.`,
           ),
@@ -117,13 +374,7 @@ Cobalah: geser sudut dan ukurannya, dan ganti sudut yang dilihat.`,
 4. Write the equation, for example $\sin\theta=\frac{\text{opposite}}{\text{hypotenuse}}$, and solve it: multiply to find a side, or take the inverse function ($\arcsin$, $\arccos$, $\arctan$) to find an angle.
 5. Check that the hypotenuse is the longest side, and that $\text{opposite}^2+\text{adjacent}^2=\text{hypotenuse}^2$.
 
-**Example, a side.** You stand $40$ m from the foot of a tower and see its top at an *angle of elevation* of $35^\circ$ (the angle above the horizontal). The known side is the adjacent $40$ and the unknown is the opposite, so the tangent is the right ratio: $\tan35^\circ=\frac{h}{40}$, hence $h=40\tan35^\circ\approx28.01$ m. (Add the height of your eye to get the height of the tower.) Looking *down* from a tower to a boat uses the *angle of depression*, measured below the horizontal; it equals the angle of elevation seen from the boat.
-
-**Example, an angle.** A road rises $8$ m over a horizontal distance of $100$ m. Then $\tan\theta=\frac{8}{100}$, so $\theta=\arctan0.08\approx4.57^\circ$. A grade of $8\%$ is exactly this tangent.
-
-**Example, a ladder.** A $5$ m ladder leans against a wall at $70^\circ$ to the ground. The hypotenuse is $5$, so it reaches $5\sin70^\circ\approx4.70$ m up the wall, and its foot is $5\cos70^\circ\approx1.71$ m from the wall.
-
-The inverse functions are the subject of [their own article](article:inverse-trigonometric-functions#definitions): $\arcsin x$ is the angle between $-90^\circ$ and $90^\circ$ whose sine is $x$. For a triangle that is not a right triangle, use the law of sines and the law of cosines ([solving a triangle](article:triangles#solve-a-triangle)). The solver below takes any pair of measurements and also has these examples ready.`,
+**Example, a side.** You stand $40$ m from the foot of a tower and see its top at an *angle of elevation* of $35^\circ$ (the angle above the horizontal). The known side is the adjacent $40$ and the unknown is the opposite, so the tangent is the right ratio: $\tan35^\circ=\frac{h}{40}$, hence $h=40\tan35^\circ\approx28.01$ m. (Add the height of your eye to get the height of the tower.) Looking *down* from a tower to a boat uses the *angle of depression*, measured below the horizontal; it equals the angle of elevation seen from the boat.`,
             T`**Untuk mencari sisi yang hilang, pilih perbandingan yang memuat sisi yang diketahui dan sisi yang dicari, tulis, lalu selesaikan untuk bilangan yang tidak diketahui; untuk mencari sudut yang hilang, pakai fungsi invers dari perbandingan itu.** Setiap segitiga siku-siku dapat dipecahkan dari satu sudut dan satu sisi, atau dari dua sisi.
 
 1. Gambar segitiganya dan tandai sudut $\theta$ yang dipakai.
@@ -132,9 +383,19 @@ The inverse functions are the subject of [their own article](article:inverse-tri
 4. Tulis persamaannya, misalnya $\sin\theta=\frac{\text{depan}}{\text{miring}}$, dan selesaikan: kalikan untuk mencari sisi, atau ambil fungsi invers ($\arcsin$, $\arccos$, $\arctan$) untuk mencari sudut.
 5. Periksa bahwa sisi miring adalah sisi terpanjang, dan bahwa $\text{depan}^2+\text{samping}^2=\text{miring}^2$.
 
-**Contoh, sebuah sisi.** Anda berdiri $40$ m dari kaki sebuah menara dan melihat puncaknya dengan *sudut elevasi* $35^\circ$ (sudut di atas garis mendatar). Sisi yang diketahui adalah sisi samping $40$ dan yang tidak diketahui sisi depan, jadi tangen adalah perbandingan yang tepat: $\tan35^\circ=\frac{h}{40}$, sehingga $h=40\tan35^\circ\approx28{,}01$ m. (Tambahkan tinggi mata Anda untuk mendapat tinggi menara.) Memandang *ke bawah* dari menara ke sebuah perahu memakai *sudut depresi*, diukur di bawah garis mendatar; ia sama dengan sudut elevasi yang dilihat dari perahu.
+**Contoh, sebuah sisi.** Anda berdiri $40$ m dari kaki sebuah menara dan melihat puncaknya dengan *sudut elevasi* $35^\circ$ (sudut di atas garis mendatar). Sisi yang diketahui adalah sisi samping $40$ dan yang tidak diketahui sisi depan, jadi tangen adalah perbandingan yang tepat: $\tan35^\circ=\frac{h}{40}$, sehingga $h=40\tan35^\circ\approx28{,}01$ m. (Tambahkan tinggi mata Anda untuk mendapat tinggi menara.) Memandang *ke bawah* dari menara ke sebuah perahu memakai *sudut depresi*, diukur di bawah garis mendatar; ia sama dengan sudut elevasi yang dilihat dari perahu.`,
+          ),
+        },
+        FIG_TOWER,
+        {
+          kind: 'text',
+          text: L(
+            T`**Example, an angle.** A road rises $8$ m over a horizontal distance of $100$ m. Then $\tan\theta=\frac{8}{100}$, so $\theta=\arctan0.08\approx4.57^\circ$. A grade of $8\%$ is exactly this tangent.
 
-**Contoh, sebuah sudut.** Sebuah jalan naik $8$ m pada jarak mendatar $100$ m. Maka $\tan\theta=\frac{8}{100}$, sehingga $\theta=\arctan0{,}08\approx4{,}57^\circ$. Kemiringan $8\%$ tepat adalah tangen ini.
+**Example, a ladder.** A $5$ m ladder leans against a wall at $70^\circ$ to the ground. The hypotenuse is $5$, so it reaches $5\sin70^\circ\approx4.70$ m up the wall, and its foot is $5\cos70^\circ\approx1.71$ m from the wall.
+
+The inverse functions are the subject of [their own article](article:inverse-trigonometric-functions#definitions): $\arcsin x$ is the angle between $-90^\circ$ and $90^\circ$ whose sine is $x$. For a triangle that is not a right triangle, use the law of sines and the law of cosines ([solving a triangle](article:triangles#solve-a-triangle)). The solver below takes any pair of measurements and also has these examples ready.`,
+            T`**Contoh, sebuah sudut.** Sebuah jalan naik $8$ m pada jarak mendatar $100$ m. Maka $\tan\theta=\frac{8}{100}$, sehingga $\theta=\arctan0{,}08\approx4{,}57^\circ$. Kemiringan $8\%$ tepat adalah tangen ini.
 
 **Contoh, sebuah tangga.** Tangga $5$ m bersandar pada dinding dengan sudut $70^\circ$ terhadap tanah. Sisi miringnya $5$, jadi ia mencapai $5\sin70^\circ\approx4{,}70$ m ke atas dinding, dan kakinya $5\cos70^\circ\approx1{,}71$ m dari dinding.
 
@@ -155,11 +416,25 @@ Fungsi invers adalah topik [artikelnya sendiri](article:inverse-trigonometric-fu
           text: L(
             T`**The exact values at $30^\circ$, $45^\circ$ and $60^\circ$ come from two triangles you can draw: half of an equilateral triangle, and half of a square.**
 
-*Half of an equilateral triangle.* Take an equilateral triangle with side $2$ and cut it in half along a height. You get a right triangle with angles $30^\circ$, $60^\circ$ and $90^\circ$, hypotenuse $2$, the short leg $1$ (half of the base) and the long leg $\sqrt{2^2-1^2}=\sqrt3$. Read the ratios: $\sin30^\circ=\frac12$, $\cos30^\circ=\frac{\sqrt3}{2}$, $\tan30^\circ=\frac{1}{\sqrt3}=\frac{\sqrt3}{3}$, and from the other angle $\sin60^\circ=\frac{\sqrt3}{2}$, $\cos60^\circ=\frac12$, $\tan60^\circ=\sqrt3$.
+*Half of an equilateral triangle.* Take an equilateral triangle with side $2$ and cut it in half along a height. You get a right triangle with angles $30^\circ$, $60^\circ$ and $90^\circ$, hypotenuse $2$, the short leg $1$ (half of the base) and the long leg $\sqrt{2^2-1^2}=\sqrt3$. Read the ratios: $\sin30^\circ=\frac12$, $\cos30^\circ=\frac{\sqrt3}{2}$, $\tan30^\circ=\frac{1}{\sqrt3}=\frac{\sqrt3}{3}$, and from the other angle $\sin60^\circ=\frac{\sqrt3}{2}$, $\cos60^\circ=\frac12$, $\tan60^\circ=\sqrt3$.`,
+            T`**Nilai eksak pada $30^\circ$, $45^\circ$, dan $60^\circ$ berasal dari dua segitiga yang dapat digambar: setengah segitiga sama sisi, dan setengah persegi.**
 
-*Half of a square.* Cut a square of side $1$ along a diagonal. You get a right triangle with two angles of $45^\circ$, legs $1$ and hypotenuse $\sqrt2$. So $\sin45^\circ=\cos45^\circ=\frac{1}{\sqrt2}=\frac{\sqrt2}{2}$ and $\tan45^\circ=1$.
-
-| $\theta$ | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
+*Setengah segitiga sama sisi.* Ambil segitiga sama sisi dengan sisi $2$ dan belah menjadi dua sepanjang tingginya. Diperoleh segitiga siku-siku dengan sudut $30^\circ$, $60^\circ$, dan $90^\circ$, sisi miring $2$, sisi tegak pendek $1$ (setengah alas), dan sisi tegak panjang $\sqrt{2^2-1^2}=\sqrt3$. Baca perbandingannya: $\sin30^\circ=\frac12$, $\cos30^\circ=\frac{\sqrt3}{2}$, $\tan30^\circ=\frac{1}{\sqrt3}=\frac{\sqrt3}{3}$, dan dari sudut yang lain $\sin60^\circ=\frac{\sqrt3}{2}$, $\cos60^\circ=\frac12$, $\tan60^\circ=\sqrt3$.`,
+          ),
+        },
+        FIG_HALF_EQUILATERAL,
+        {
+          kind: 'text',
+          text: L(
+            T`*Half of a square.* Cut a square of side $1$ along a diagonal. You get a right triangle with two angles of $45^\circ$, legs $1$ and hypotenuse $\sqrt2$. So $\sin45^\circ=\cos45^\circ=\frac{1}{\sqrt2}=\frac{\sqrt2}{2}$ and $\tan45^\circ=1$.`,
+            T`*Setengah persegi.* Belah persegi bersisi $1$ sepanjang diagonalnya. Diperoleh segitiga siku-siku dengan dua sudut $45^\circ$, sisi tegak $1$, dan sisi miring $\sqrt2$. Jadi $\sin45^\circ=\cos45^\circ=\frac{1}{\sqrt2}=\frac{\sqrt2}{2}$ dan $\tan45^\circ=1$.`,
+          ),
+        },
+        FIG_HALF_SQUARE,
+        {
+          kind: 'text',
+          text: L(
+            T`| $\theta$ | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
 |---|---|---|---|---|---|
 | $\sin\theta$ | $0$ | $\frac12$ | $\frac{\sqrt2}{2}$ | $\frac{\sqrt3}{2}$ | $1$ |
 | $\cos\theta$ | $1$ | $\frac{\sqrt3}{2}$ | $\frac{\sqrt2}{2}$ | $\frac12$ | $0$ |
@@ -168,13 +443,7 @@ Fungsi invers adalah topik [artikelnya sendiri](article:inverse-trigonometric-fu
 **A pattern to remember.** Write the sines of $0^\circ,30^\circ,45^\circ,60^\circ,90^\circ$ as $\frac{\sqrt0}{2},\frac{\sqrt1}{2},\frac{\sqrt2}{2},\frac{\sqrt3}{2},\frac{\sqrt4}{2}$; the cosines are the same list backwards, and the tangent is the sine divided by the cosine. The angle $0^\circ$ is a degenerate triangle with no height ($\sin0^\circ=0$) and at $90^\circ$ the adjacent side shrinks to nothing, so $\tan90^\circ=\frac{1}{0}$ has no value.
 
 The multiples of $15^\circ$ need a little more: $\sin15^\circ=\frac{\sqrt6-\sqrt2}{4}$, $\cos15^\circ=\frac{\sqrt6+\sqrt2}{4}$ and $\tan15^\circ=2-\sqrt3$, which follow from the angle formulas below ($15^\circ=45^\circ-30^\circ$). The unit circle further down gives the exact value of all of them. These triangles are also the ones from [right triangles](article:triangles#right-triangles), where their sides appear as the ratios $1:1:\sqrt2$ and $1:\sqrt3:2$.`,
-            T`**Nilai eksak pada $30^\circ$, $45^\circ$, dan $60^\circ$ berasal dari dua segitiga yang dapat digambar: setengah segitiga sama sisi, dan setengah persegi.**
-
-*Setengah segitiga sama sisi.* Ambil segitiga sama sisi dengan sisi $2$ dan belah menjadi dua sepanjang tingginya. Diperoleh segitiga siku-siku dengan sudut $30^\circ$, $60^\circ$, dan $90^\circ$, sisi miring $2$, sisi tegak pendek $1$ (setengah alas), dan sisi tegak panjang $\sqrt{2^2-1^2}=\sqrt3$. Baca perbandingannya: $\sin30^\circ=\frac12$, $\cos30^\circ=\frac{\sqrt3}{2}$, $\tan30^\circ=\frac{1}{\sqrt3}=\frac{\sqrt3}{3}$, dan dari sudut yang lain $\sin60^\circ=\frac{\sqrt3}{2}$, $\cos60^\circ=\frac12$, $\tan60^\circ=\sqrt3$.
-
-*Setengah persegi.* Belah persegi bersisi $1$ sepanjang diagonalnya. Diperoleh segitiga siku-siku dengan dua sudut $45^\circ$, sisi tegak $1$, dan sisi miring $\sqrt2$. Jadi $\sin45^\circ=\cos45^\circ=\frac{1}{\sqrt2}=\frac{\sqrt2}{2}$ dan $\tan45^\circ=1$.
-
-| $\theta$ | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
+            T`| $\theta$ | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
 |---|---|---|---|---|---|
 | $\sin\theta$ | $0$ | $\frac12$ | $\frac{\sqrt2}{2}$ | $\frac{\sqrt3}{2}$ | $1$ |
 | $\cos\theta$ | $1$ | $\frac{\sqrt3}{2}$ | $\frac{\sqrt2}{2}$ | $\frac12$ | $0$ |
@@ -196,9 +465,15 @@ Kelipatan $15^\circ$ memerlukan sedikit lebih banyak: $\sin15^\circ=\frac{\sqrt6
         {
           kind: 'text',
           text: L(
-            T`**On the unit circle, the circle of radius $1$ around the origin, the point reached by turning through an angle $\theta$ from the positive $x$-axis is $(\cos\theta,\sin\theta)$.** This is the definition that works for every angle. For an acute angle it agrees with the triangle: drop a perpendicular from the point to the $x$-axis, and the right triangle has hypotenuse $1$, so the adjacent side is $\cos\theta$ and the opposite side is $\sin\theta$. Positive angles turn counterclockwise, negative angles clockwise (see [how angles are measured](article:angles#units)), and $\tan\theta=\frac{\sin\theta}{\cos\theta}$ wherever the cosine is not $0$.
-
-Three things follow.
+            T`**On the unit circle, the circle of radius $1$ around the origin, the point reached by turning through an angle $\theta$ from the positive $x$-axis is $(\cos\theta,\sin\theta)$.** This is the definition that works for every angle. For an acute angle it agrees with the triangle: drop a perpendicular from the point to the $x$-axis, and the right triangle has hypotenuse $1$, so the adjacent side is $\cos\theta$ and the opposite side is $\sin\theta$. Positive angles turn counterclockwise, negative angles clockwise (see [how angles are measured](article:angles#units)), and $\tan\theta=\frac{\sin\theta}{\cos\theta}$ wherever the cosine is not $0$.`,
+            T`**Pada lingkaran satuan, lingkaran berjari-jari $1$ berpusat di titik asal, titik yang dicapai dengan berputar sebesar sudut $\theta$ dari sumbu-$x$ positif adalah $(\cos\theta,\sin\theta)$.** Inilah definisi yang berlaku untuk setiap sudut. Untuk sudut lancip ia sesuai dengan segitiga: jatuhkan garis tegak lurus dari titik itu ke sumbu-$x$, dan segitiga siku-sikunya memiliki sisi miring $1$, sehingga sisi samping adalah $\cos\theta$ dan sisi depan adalah $\sin\theta$. Sudut positif berputar berlawanan arah jarum jam, sudut negatif searah jarum jam (lihat [cara sudut diukur](article:angles#units)), dan $\tan\theta=\frac{\sin\theta}{\cos\theta}$ di mana pun kosinus bukan $0$.`,
+          ),
+        },
+        FIG_UNIT_CIRCLE,
+        {
+          kind: 'text',
+          text: L(
+            T`Three things follow.
 
 **Signs by quadrant.** The sign of $\cos\theta$ is the sign of the $x$-coordinate and the sign of $\sin\theta$ that of the $y$-coordinate:
 
@@ -217,14 +492,8 @@ In words: all three are positive in I, only sine in II, only tangent in III and 
 2. Read the value at the reference angle (the table in the previous section).
 3. Put the sign of the quadrant in front.
 
-For example $\sin210^\circ$: it is in quadrant III, the reference angle is $30^\circ$, and sine is negative there, so $\sin210^\circ=-\frac12$. And $\cos120^\circ=-\cos60^\circ=-\frac12$, $\tan135^\circ=-\tan45^\circ=-1$.
-
-**Periodicity and negative angles.** A full turn changes nothing, so $\sin(\theta+360^\circ)=\sin\theta$ and the same for cosine; the tangent repeats after a half turn, $\tan(\theta+180^\circ)=\tan\theta$. Turning the other way mirrors the point in the $x$-axis: $\sin(-\theta)=-\sin\theta$ and $\cos(-\theta)=\cos\theta$. So $\sin(-30^\circ)=-\frac12$ and $\cos(-30^\circ)=\frac{\sqrt3}{2}$. (Mathematicians measure the same turn in radians, where $360^\circ=2\pi$.)
-
-Move the angle below, from $-360^\circ$ to $720^\circ$, and watch the point, the signs and the exact values.`,
-            T`**Pada lingkaran satuan, lingkaran berjari-jari $1$ berpusat di titik asal, titik yang dicapai dengan berputar sebesar sudut $\theta$ dari sumbu-$x$ positif adalah $(\cos\theta,\sin\theta)$.** Inilah definisi yang berlaku untuk setiap sudut. Untuk sudut lancip ia sesuai dengan segitiga: jatuhkan garis tegak lurus dari titik itu ke sumbu-$x$, dan segitiga siku-sikunya memiliki sisi miring $1$, sehingga sisi samping adalah $\cos\theta$ dan sisi depan adalah $\sin\theta$. Sudut positif berputar berlawanan arah jarum jam, sudut negatif searah jarum jam (lihat [cara sudut diukur](article:angles#units)), dan $\tan\theta=\frac{\sin\theta}{\cos\theta}$ di mana pun kosinus bukan $0$.
-
-Tiga hal mengikuti.
+For example $\sin210^\circ$: it is in quadrant III, the reference angle is $30^\circ$, and sine is negative there, so $\sin210^\circ=-\frac12$. And $\cos120^\circ=-\cos60^\circ=-\frac12$, $\tan135^\circ=-\tan45^\circ=-1$.`,
+            T`Tiga hal mengikuti.
 
 **Tanda menurut kuadran.** Tanda $\cos\theta$ adalah tanda koordinat-$x$ dan tanda $\sin\theta$ adalah tanda koordinat-$y$:
 
@@ -243,9 +512,17 @@ Dengan kata-kata: ketiganya positif di I, hanya sinus di II, hanya tangen di III
 2. Baca nilai pada sudut acuan (tabel di bagian sebelumnya).
 3. Pasang tanda kuadran di depannya.
 
-Misalnya $\sin210^\circ$: ia di kuadran III, sudut acuannya $30^\circ$, dan sinus negatif di sana, jadi $\sin210^\circ=-\frac12$. Dan $\cos120^\circ=-\cos60^\circ=-\frac12$, $\tan135^\circ=-\tan45^\circ=-1$.
+Misalnya $\sin210^\circ$: ia di kuadran III, sudut acuannya $30^\circ$, dan sinus negatif di sana, jadi $\sin210^\circ=-\frac12$. Dan $\cos120^\circ=-\cos60^\circ=-\frac12$, $\tan135^\circ=-\tan45^\circ=-1$.`,
+          ),
+        },
+        FIG_QUADRANTS,
+        {
+          kind: 'text',
+          text: L(
+            T`**Periodicity and negative angles.** A full turn changes nothing, so $\sin(\theta+360^\circ)=\sin\theta$ and the same for cosine; the tangent repeats after a half turn, $\tan(\theta+180^\circ)=\tan\theta$. Turning the other way mirrors the point in the $x$-axis: $\sin(-\theta)=-\sin\theta$ and $\cos(-\theta)=\cos\theta$. So $\sin(-30^\circ)=-\frac12$ and $\cos(-30^\circ)=\frac{\sqrt3}{2}$. (Mathematicians measure the same turn in radians, where $360^\circ=2\pi$.)
 
-**Periodisitas dan sudut negatif.** Satu putaran penuh tidak mengubah apa pun, sehingga $\sin(\theta+360^\circ)=\sin\theta$ dan hal yang sama untuk kosinus; tangen berulang setelah setengah putaran, $\tan(\theta+180^\circ)=\tan\theta$. Berputar ke arah sebaliknya mencerminkan titik pada sumbu-$x$: $\sin(-\theta)=-\sin\theta$ dan $\cos(-\theta)=\cos\theta$. Jadi $\sin(-30^\circ)=-\frac12$ dan $\cos(-30^\circ)=\frac{\sqrt3}{2}$. (Ahli matematika mengukur putaran yang sama dalam radian, dengan $360^\circ=2\pi$.)
+Move the angle below, from $-360^\circ$ to $720^\circ$, and watch the point, the signs and the exact values.`,
+            T`**Periodisitas dan sudut negatif.** Satu putaran penuh tidak mengubah apa pun, sehingga $\sin(\theta+360^\circ)=\sin\theta$ dan hal yang sama untuk kosinus; tangen berulang setelah setengah putaran, $\tan(\theta+180^\circ)=\tan\theta$. Berputar ke arah sebaliknya mencerminkan titik pada sumbu-$x$: $\sin(-\theta)=-\sin\theta$ dan $\cos(-\theta)=\cos\theta$. Jadi $\sin(-30^\circ)=-\frac12$ dan $\cos(-30^\circ)=\frac{\sqrt3}{2}$. (Ahli matematika mengukur putaran yang sama dalam radian, dengan $360^\circ=2\pi$.)
 
 Geser sudut di bawah, dari $-360^\circ$ sampai $720^\circ$, dan lihat titik, tanda, dan nilai eksaknya.`,
           ),
@@ -292,6 +569,7 @@ A calculator or program gives only the principal value ($\arcsin$ returns an ang
 Kalkulator atau program hanya memberi nilai pokok ($\arcsin$ mengembalikan sudut di antara $-90^\circ$ dan $90^\circ$), sehingga penyelesaian kedua harus dicari sendiri. Cara yang sama menyelesaikan persamaan yang lebih sulit setelah dibawa ke bentuk ini, misalnya $2\sin^2x=\sin x$ menjadi $\sin x\,(2\sin x-1)=0$, sehingga $\sin x=0$ atau $\sin x=\frac12$.`,
           ),
         },
+        FIG_EQUATION,
         { kind: 'widget', name: 'trigequation' },
       ],
     },
@@ -346,30 +624,38 @@ Asalnya. Identitas Pythagoras adalah persamaan lingkaran satuan, $x^2+y^2=1$, de
         {
           kind: 'text',
           text: L(
-            T`**The graphs of $y=\sin x$ and $y=\cos x$ are waves that repeat every $360^\circ$ and oscillate between $-1$ and $1$; the cosine is the sine shifted left by $90^\circ$.** Plot the height of the point on the unit circle against the angle and you get the sine wave: it starts at $0$, rises to $1$ at $90^\circ$, falls through $0$ at $180^\circ$ to $-1$ at $270^\circ$ and is back at $0$ at $360^\circ$. The tangent has a different shape: it repeats every $180^\circ$ and blows up near $90^\circ$ and $270^\circ$, where the cosine is $0$.
-
-Every wave of the form $y=a\sin(b(x-c))+d$ (or with the cosine) is described by four numbers:
+            T`**The graphs of $y=\sin x$ and $y=\cos x$ are waves that repeat every $360^\circ$ and oscillate between $-1$ and $1$; the cosine is the sine shifted left by $90^\circ$.** Plot the height of the point on the unit circle against the angle and you get the sine wave: it starts at $0$, rises to $1$ at $90^\circ$, falls through $0$ at $180^\circ$ to $-1$ at $270^\circ$ and is back at $0$ at $360^\circ$. The tangent has a different shape: it repeats every $180^\circ$ and blows up near $90^\circ$ and $270^\circ$, where the cosine is $0$.`,
+            T`**Grafik $y=\sin x$ dan $y=\cos x$ adalah gelombang yang berulang setiap $360^\circ$ dan berosilasi di antara $-1$ dan $1$; kosinus adalah sinus yang digeser $90^\circ$ ke kiri.** Gambarkan tinggi titik pada lingkaran satuan terhadap sudutnya dan diperoleh gelombang sinus: ia mulai dari $0$, naik ke $1$ pada $90^\circ$, turun melewati $0$ pada $180^\circ$ ke $-1$ pada $270^\circ$, dan kembali di $0$ pada $360^\circ$. Tangen memiliki bentuk lain: ia berulang setiap $180^\circ$ dan meledak di dekat $90^\circ$ dan $270^\circ$, tempat kosinus bernilai $0$.`,
+          ),
+        },
+        FIG_WAVES,
+        {
+          kind: 'text',
+          text: L(
+            T`Every wave of the form $y=a\sin(b(x-c))+d$ (or with the cosine) is described by four numbers:
 
 - the **amplitude** $|a|$, the distance from the middle line to a peak; a negative $a$ flips the wave upside down;
 - the **period** $\frac{360^\circ}{b}$, the length of one full cycle (in radians, $\frac{2\pi}{b}$); a larger $b$ squeezes the wave;
 - the **phase shift** $c$, how far the wave is moved to the right;
 - the **midline** $y=d$, the height around which it oscillates; the maximum is $d+|a|$ and the minimum $d-|a|$.
 
-**Example.** $y=2\sin(3x)+1$: amplitude $2$, period $\frac{360^\circ}{3}=120^\circ$, no shift, midline $y=1$, maximum $3$, minimum $-1$. The zeros are where $\sin3x=-\frac12$.
-
-Waves of this shape describe anything that goes round and round or back and forth: the height of a tide, a swinging pendulum, a sound of one pure pitch, alternating current, the seasons of daylight. Their slopes are another wave, which is the subject of [the derivatives of sine and cosine](article:derivatives-of-trigonometric-functions#sine-and-cosine). Change the four numbers below and watch the table.`,
-            T`**Grafik $y=\sin x$ dan $y=\cos x$ adalah gelombang yang berulang setiap $360^\circ$ dan berosilasi di antara $-1$ dan $1$; kosinus adalah sinus yang digeser $90^\circ$ ke kiri.** Gambarkan tinggi titik pada lingkaran satuan terhadap sudutnya dan diperoleh gelombang sinus: ia mulai dari $0$, naik ke $1$ pada $90^\circ$, turun melewati $0$ pada $180^\circ$ ke $-1$ pada $270^\circ$, dan kembali di $0$ pada $360^\circ$. Tangen memiliki bentuk lain: ia berulang setiap $180^\circ$ dan meledak di dekat $90^\circ$ dan $270^\circ$, tempat kosinus bernilai $0$.
-
-Setiap gelombang berbentuk $y=a\sin(b(x-c))+d$ (atau dengan kosinus) diuraikan oleh empat bilangan:
+**Example.** $y=2\sin(3x)+1$: amplitude $2$, period $\frac{360^\circ}{3}=120^\circ$, no shift, midline $y=1$, maximum $3$, minimum $-1$. The zeros are where $\sin3x=-\frac12$.`,
+            T`Setiap gelombang berbentuk $y=a\sin(b(x-c))+d$ (atau dengan kosinus) diuraikan oleh empat bilangan:
 
 - **amplitudo** $|a|$, jarak dari garis tengah ke puncak; $a$ negatif membalik gelombang;
 - **periode** $\frac{360^\circ}{b}$, panjang satu siklus penuh (dalam radian, $\frac{2\pi}{b}$); $b$ yang lebih besar merapatkan gelombang;
 - **pergeseran fase** $c$, seberapa jauh gelombang digeser ke kanan;
 - **garis tengah** $y=d$, tinggi tempat gelombang berosilasi; maksimumnya $d+|a|$ dan minimumnya $d-|a|$.
 
-**Contoh.** $y=2\sin(3x)+1$: amplitudo $2$, periode $\frac{360^\circ}{3}=120^\circ$, tanpa pergeseran, garis tengah $y=1$, maksimum $3$, minimum $-1$. Nolnya ada di tempat $\sin3x=-\frac12$.
-
-Gelombang berbentuk ini menggambarkan apa pun yang berputar atau bolak-balik: tinggi pasang surut, bandul yang berayun, bunyi satu nada murni, arus bolak-balik, pergantian panjang siang. Gradiennya adalah gelombang lain, yang menjadi topik [turunan sinus dan kosinus](article:derivatives-of-trigonometric-functions#sine-and-cosine). Ubah keempat bilangan di bawah dan lihat tabelnya.`,
+**Contoh.** $y=2\sin(3x)+1$: amplitudo $2$, periode $\frac{360^\circ}{3}=120^\circ$, tanpa pergeseran, garis tengah $y=1$, maksimum $3$, minimum $-1$. Nolnya ada di tempat $\sin3x=-\frac12$.`,
+          ),
+        },
+        FIG_WAVE_PARTS,
+        {
+          kind: 'text',
+          text: L(
+            T`Waves of this shape describe anything that goes round and round or back and forth: the height of a tide, a swinging pendulum, a sound of one pure pitch, alternating current, the seasons of daylight. Their slopes are another wave, which is the subject of [the derivatives of sine and cosine](article:derivatives-of-trigonometric-functions#sine-and-cosine). Change the four numbers below and watch the table.`,
+            T`Gelombang berbentuk ini menggambarkan apa pun yang berputar atau bolak-balik: tinggi pasang surut, bandul yang berayun, bunyi satu nada murni, arus bolak-balik, pergantian panjang siang. Gradiennya adalah gelombang lain, yang menjadi topik [turunan sinus dan kosinus](article:derivatives-of-trigonometric-functions#sine-and-cosine). Ubah keempat bilangan di bawah dan lihat tabelnya.`,
           ),
         },
         { kind: 'widget', name: 'trigwave' },
