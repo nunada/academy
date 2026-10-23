@@ -39,7 +39,15 @@ const ok = (cond, what) => {
 }
 const near = (a, b, tol = 1e-9) => Math.abs(a - b) <= tol * Math.max(1, Math.abs(a), Math.abs(b))
 const same = (a, b, tol) => a.length === b.length && a.every((x, i) => Math.abs(x - b[i]) < tol)
-const rnd = (a, b) => a + Math.random() * (b - a)
+// a reproducible random source (mulberry32), so that a failure can be repeated
+let seed = 20261024
+const random = () => {
+  seed = (seed + 0x6d2b79f5) | 0
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed)
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+}
+const rnd = (a, b) => a + random() * (b - a)
 
 /* ----------------------------------------------------------------------------------- test cases */
 const FNS = ['sin', 'cos', 'tan']
@@ -50,19 +58,19 @@ for (const fn of FNS)
     for (const b of [0, 30, -45, 100])
       for (const c of LEVELS[fn])
         for (const [lo, hi] of [[0, 360], [-180, 540], [100, 460.5]]) {
-          if (Math.random() < (FAST ? 0.97 : 0.8)) continue // a fifth of them is plenty
+          if (random() < (FAST ? 0.97 : 0.8)) continue // a fifth of them is plenty
           multi.push({ fn, k, b, c, lo, hi, touch: (fn !== 'tan' && Math.abs(Math.abs(c) - 1) < 1e-12) })
         }
 const quad = []
 for (let i = 0; i < (FAST ? 12 : 160); i++) {
   const fn = FNS[i % 3]
-  const a = [-3, -2, -1, 1, 2, 3, 0][Math.floor(Math.random() * 7)]
+  const a = [-3, -2, -1, 1, 2, 3, 0][Math.floor(random() * 7)]
   const b = Math.round(rnd(-6, 6))
   const c = Math.round(rnd(-6, 6))
   quad.push({ fn, a, b, c })
 }
 // roots that are exact, so that the solutions are known angles
-quad.push({ fn: 'sin', a: 2, b: -1, c: -1 }, { fn: 'cos', a: 2, b: -1, c: -1 }, { fn: 'tan', a: 1, b: 0, c: -3 }, { fn: 'sin', a: 4, b: 0, c: -1 }, { fn: 'cos', a: 1, b: 0, c: 0 })
+quad.push({ fn: 'sin', a: 2, b: -1, c: -1 }, { fn: 'cos', a: 2, b: -1, c: -1 }, { fn: 'tan', a: 1, b: 0, c: -3 }, { fn: 'sin', a: 4, b: 0, c: -1 }, { fn: 'cos', a: 1, b: 0, c: 0 }, { fn: 'tan', a: 1, b: -4, c: 4 }, { fn: 'tan', a: 2, b: -4, c: 2 }, { fn: 'sin', a: 4, b: -4, c: 1 }, { fn: 'cos', a: 1, b: 2, c: 1 })
 const eqRows = M.EQUATIONS.map((e) => ({ id: e.id, le: e.le, re: e.re, steps: e.steps.map((s) => s.eq ?? null) }))
 const numRows = [
   { id: 'cos-x', f: 'cos(x) - x', x0: 0.7 },
@@ -132,9 +140,13 @@ def scan(g, lo, hi, step=0.05):
 res = {}
 res['multi'] = [scan(lambda x, c=c: (None if value('%s(%r*x+%r)' % (c['fn'], c['k'], c['b']), x) is None else value('%s(%r*x+%r)' % (c['fn'], c['k'], c['b']), x) - c['c']), c['lo'], c['hi']) for c in data['multi']]
 def qg(c):
+    # a double root only touches the axis, which a change of sign cannot see: scan the function minus that root instead
+    root = -c['b'] / (2 * c['a']) if c['a'] != 0 and c['b'] * c['b'] - 4 * c['a'] * c['c'] == 0 else None
     def g(x):
         v = value('%s(x)' % c['fn'], x)
-        return None if v is None else c['a'] * v * v + c['b'] * v + c['c']
+        if v is None: return None
+        if root is not None: return v - root
+        return c['a'] * v * v + c['b'] * v + c['c']
     return g
 res['quad'] = [scan(qg(c), 0.0, 360.0) for c in data['quad']]
 
@@ -215,7 +227,7 @@ ok(M.PERIOD.sin === 360 && M.PERIOD.cos === 360 && M.PERIOD.tan === 180, 'period
 quad.forEach((c, i) => {
   const s = M.solveQuadratic(c.fn, c.a, c.b, c.c)
   const label = `${c.a} ${c.fn}² + ${c.b} ${c.fn} + ${c.c} = 0`
-  ok(same(s.solutions, R.quad[i], c.b * c.b - 4 * c.a * c.c === 0 ? 0.3 : 1e-4) || (c.a === 0 && c.b === 0), `${label}: ${JSON.stringify(s.solutions)} against a scan ${JSON.stringify(R.quad[i])}`)
+  ok(same(s.solutions, R.quad[i], c.b * c.b - 4 * c.a * c.c === 0 && c.a !== 0 && Math.abs(Math.abs(c.b / (2 * c.a)) - 1) < 1e-12 ? 0.3 : 1e-4) || (c.a === 0 && c.b === 0), `${label}: ${JSON.stringify(s.solutions)} against a scan ${JSON.stringify(R.quad[i])}`)
   ok(s.roots.every((u) => Math.abs(c.a * u * u + c.b * u + c.c) < 1e-9), `${label}: a root that is not a root`)
   ok(s.admissible.length === s.roots.length && s.byRoot.length === s.roots.length, `${label}: shapes`)
   s.roots.forEach((u, j) => ok(s.admissible[j] === (c.fn === 'tan' || Math.abs(u) <= 1 + 1e-12) && (s.admissible[j] ? s.byRoot[j].length > 0 : s.byRoot[j].length === 0), `${label}: admissibility of ${u}`))
