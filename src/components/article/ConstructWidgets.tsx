@@ -224,15 +224,11 @@ const stepCounts = (c: Construction): { circles: number; lines: number; points: 
   points: c.steps.filter((s) => s.kind === 'point').length,
 })
 
-/** The player: back and forward through the steps, a slider, the current step in words and every step in a list. */
-function Player({ c, built, k, setK, title }: { c: Construction; built: Built; k: number; setK: (k: number) => void; title: string }) {
-  const { tc, lang } = useI18n()
-  const N = c.steps.length
-  const text = k === 0 ? tc(L('Start: only the given points and segments are drawn.', 'Mulai: baru titik dan ruas garis yang diberikan yang tergambar.')) : stepText(c, built, k - 1, lang)
-  const label = `${title}. ${tc(L('Step', 'Langkah'))} ${k} ${tc(L('of', 'dari'))} ${N}. ${text}`
+/** The buttons and the slider that move through the steps of a construction: start, back, forward, finish, and a slider with the step number. */
+function StepBar({ k, N, setK }: { k: number; N: number; setK: (k: number) => void }) {
+  const { tc } = useI18n()
   return (
     <>
-      <ConstructFigure c={c} built={built} upto={k} label={label} />
       <div className="inrow">
         <button className="btn ghost" onClick={() => setK(0)} disabled={k === 0}>
           {tc(L('start', 'awal'))}
@@ -251,6 +247,20 @@ function Player({ c, built, k, setK, title }: { c: Construction; built: Built; k
         {tc(L('step', 'langkah'))} <b>{k}</b> / {N}
         <input type="range" min={0} max={N} value={k} aria-label={tc(L('step', 'langkah'))} aria-valuetext={`${tc(L('step', 'langkah'))} ${k} ${tc(L('of', 'dari'))} ${N}`} onChange={(e) => setK(Number(e.target.value))} />
       </label>
+    </>
+  )
+}
+
+/** The player: back and forward through the steps, a slider, the current step in words and every step in a list. */
+function Player({ c, built, k, setK, title }: { c: Construction; built: Built; k: number; setK: (k: number) => void; title: string }) {
+  const { tc, lang } = useI18n()
+  const N = c.steps.length
+  const text = k === 0 ? tc(L('Start: only the given points and segments are drawn.', 'Mulai: baru titik dan ruas garis yang diberikan yang tergambar.')) : stepText(c, built, k - 1, lang)
+  const label = `${title}. ${tc(L('Step', 'Langkah'))} ${k} ${tc(L('of', 'dari'))} ${N}. ${text}`
+  return (
+    <>
+      <ConstructFigure c={c} built={built} upto={k} label={label} />
+      <StepBar k={k} N={N} setK={setK} />
       <div className="wgtout" aria-live="polite">
         <p className="okline" style={{ overflowWrap: 'anywhere' }}>
           {text}
@@ -490,10 +500,7 @@ export function ConstructAngle() {
             labels="few"
             label={`${n}°. ${shownK === 0 ? tc(L('Only the starting ray is drawn.', 'Baru sinar awal yang tergambar.')) : `${tc(L('Step', 'Langkah'))} ${shownK} ${tc(L('of', 'dari'))} ${c.steps.length}. ${stepText(c, built, shownK - 1, lang)}`}`}
           />
-          <label className="lbl slider">
-            {tc(L('step', 'langkah'))} <b>{shownK}</b> / {c.steps.length}
-            <input type="range" min={0} max={c.steps.length} value={shownK} aria-label={tc(L('step', 'langkah'))} aria-valuetext={`${tc(L('step', 'langkah'))} ${shownK} ${tc(L('of', 'dari'))} ${c.steps.length}`} onChange={(e) => setK(Number(e.target.value))} />
-          </label>
+          <StepBar k={shownK} N={c.steps.length} setK={setK} />
           {shownK === c.steps.length && <ClaimTable claims={c.claims(built.points)} />}
           <p className="small">
             {tc(L(`${stepCounts(c).circles} circles and ${stepCounts(c).lines} lines in all.`, `Seluruhnya ${stepCounts(c).circles} lingkaran dan ${stepCounts(c).lines} garis.`))}
@@ -568,10 +575,7 @@ export function ConstructDivide() {
         upto={shown}
         label={`${tc(L(`Dividing the segment AB into ${n} equal parts.`, `Membagi ruas garis AB menjadi ${n} bagian sama.`))} ${shown === 0 ? '' : `${tc(L('Step', 'Langkah'))} ${shown} ${tc(L('of', 'dari'))} ${N}. ${stepText(c, built, shown - 1, lang)}`}`}
       />
-      <label className="lbl slider">
-        {tc(L('step', 'langkah'))} <b>{shown}</b> / {N}
-        <input type="range" min={0} max={N} value={shown} aria-label={tc(L('step', 'langkah'))} aria-valuetext={`${tc(L('step', 'langkah'))} ${shown} ${tc(L('of', 'dari'))} ${N}`} onChange={(e) => setK(Number(e.target.value))} />
-      </label>
+      <StepBar k={shown} N={N} setK={setK} />
       <div className="wgtout" aria-live="polite">
         <p className="okline" style={{ overflowWrap: 'anywhere' }}>
           {shown === 0 ? tc(L('Start: the segment AB and the first mark D₁ on a ray from A.', 'Mulai: ruas garis AB dan tanda pertama D₁ pada sebuah sinar dari A.')) : stepText(c, built, shown - 1, lang)}
