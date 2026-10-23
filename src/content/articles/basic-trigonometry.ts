@@ -24,7 +24,7 @@ export const body: ArticleBody = {
   keyPoints: [
     L(
       T`For an acute angle $\theta$ of a right triangle: $\sin\theta=\frac{\text{opposite}}{\text{hypotenuse}}$, $\cos\theta=\frac{\text{adjacent}}{\text{hypotenuse}}$, $\tan\theta=\frac{\text{opposite}}{\text{adjacent}}$ (SOH-CAH-TOA). Their reciprocals are $\csc\theta$, $\sec\theta$ and $\cot\theta$. Two right triangles with the same angle are similar, so the ratios do not depend on the size.`,
-      T`Untuk sudut lancip $\theta$ pada segitiga siku-siku: $\sin\theta=\frac{\text{depan}}{\text{miring}}$, $\cos\theta=\frac{\text{samping}}{\text{miring}}$, $\tan\theta=\frac{\text{depan}}{\text{samping}}$ (SOH-CAH-TOA). Kebalikannya adalah $\csc\theta$, $\sec\theta$, dan $\cot\theta$. Dua segitiga siku-siku dengan sudut sama sebangun, sehingga perbandingannya tidak bergantung pada ukuran.`,
+      T`Untuk sudut lancip $\theta$ pada segitiga siku-siku: $\sin\theta=\frac{\text{depan}}{\text{miring}}$, $\cos\theta=\frac{\text{samping}}{\text{miring}}$, $\tan\theta=\frac{\text{depan}}{\text{samping}}$ (sin-de-mi, cos-sa-mi, tan-de-sa). Kebalikannya adalah $\csc\theta$, $\sec\theta$, dan $\cot\theta$. Dua segitiga siku-siku dengan sudut sama sebangun, sehingga perbandingannya tidak bergantung pada ukuran.`,
     ),
     L(
       T`To find a missing side, pick the ratio that holds the side you know and the side you want, and solve; to find an angle, use the inverse function ($\arcsin$, $\arccos$, $\arctan$). Always check the calculator mode: degrees for a problem in degrees.`,
@@ -88,7 +88,7 @@ Maka ketiga perbandingannya adalah
 
 $$\sin\theta=\frac{\text{depan}}{\text{miring}},\qquad \cos\theta=\frac{\text{samping}}{\text{miring}},\qquad \tan\theta=\frac{\text{depan}}{\text{samping}}.$$
 
-Cara mengingatnya adalah *SOH-CAH-TOA*: Sinus adalah sisi depan (Opposite) per sisi miring (Hypotenuse), Kosinus adalah sisi samping (Adjacent) per sisi miring, Tangen adalah sisi depan per sisi samping. Ada pula tiga kebalikannya: kosekan $\csc\theta=\frac{1}{\sin\theta}$, sekan $\sec\theta=\frac{1}{\cos\theta}$, dan kotangen $\cot\theta=\frac{1}{\tan\theta}$.
+Cara mengingatnya adalah *sin-de-mi, cos-sa-mi, tan-de-sa*: Sinus adalah sisi DEpan per sisi MIring, Kosinus adalah sisi SAmping per sisi MIring, Tangen adalah sisi DEpan per sisi SAmping. Ada pula tiga kebalikannya: kosekan $\csc\theta=\frac{1}{\sin\theta}$, sekan $\sec\theta=\frac{1}{\cos\theta}$, dan kotangen $\cot\theta=\frac{1}{\tan\theta}$.
 
 **Mengapa ini masuk akal?** Dua segitiga siku-siku yang sama-sama memiliki sudut $\theta$ memiliki ketiga sudut sama, sehingga *sebangun*: yang satu adalah pembesaran yang lain, dan perbandingan dua sisi tetap sama. Jadi $\sin\theta$ adalah bilangan milik sudut, bukan milik segitiga: ia sama untuk segitiga di atas kertas dan untuk segitiga sebesar menara. Karena sisi miring adalah sisi terpanjang, $\sin\theta$ dan $\cos\theta$ sebuah sudut lancip selalu di antara $0$ dan $1$.
 
@@ -235,7 +235,7 @@ Tiga hal mengikuti.
 | III | $180^\circ$ sampai $270^\circ$ | $-$ | $-$ | $+$ |
 | IV | $270^\circ$ sampai $360^\circ$ | $-$ | $+$ | $-$ |
 
-Dengan kata-kata: ketiganya positif di I, hanya sinus di II, hanya tangen di III, dan hanya kosinus di IV (penutur bahasa Inggris mengingatnya sebagai "All Students Take Calculus").
+Dengan kata-kata: ketiganya positif di I, hanya sinus di II, hanya tangen di III, dan hanya kosinus di IV (urutan kuadran I sampai IV: semua, sin, tan, cos).
 
 **Sudut acuan.** *Sudut acuan* $\theta$ adalah sudut lancip antara kaki terminalnya dan sumbu-$x$. Karena kesimetrian, setiap fungsi di $\theta$ memiliki nilai mutlak yang sama dengan nilainya pada sudut acuan, dan tandanya ditentukan kuadran.
 
@@ -802,8 +802,8 @@ int main() {
               id: 'Pada segitiga siku-siku, tan A = depan / ___ dan sin A = depan / ___.',
             },
             blanks: { en: ['adjacent', 'hypotenuse'], id: ['samping', 'miring'] },
-            explain: L(T`SOH-CAH-TOA: sine is opposite over hypotenuse, tangent is opposite over adjacent.`, T`SOH-CAH-TOA: sinus adalah depan per miring, tangen adalah depan per samping.`),
-            hint: L(T`Recall SOH-CAH-TOA.`, T`Ingat SOH-CAH-TOA.`),
+            explain: L(T`SOH-CAH-TOA: sine is opposite over hypotenuse, tangent is opposite over adjacent.`, T`Sin-de-mi, tan-de-sa: sinus adalah depan per miring, tangen adalah depan per samping.`),
+            hint: L(T`Recall SOH-CAH-TOA.`, T`Ingat sin-de-mi, cos-sa-mi, tan-de-sa.`),
           },
         },
       ],
@@ -825,7 +825,7 @@ int main() {
 - **Identities:** $\sin^2x+\cos^2x=1$, $\tan x=\frac{\sin x}{\cos x}$, $\sin(90^\circ-x)=\cos x$, $\sin2x=2\sin x\cos x$, $\sin(x+y)=\sin x\cos y+\cos x\sin y$; a counterexample refutes, a proof is needed to confirm.
 - **Graphs:** $y=a\sin(b(x-c))+d$ has amplitude $|a|$, period $\frac{360^\circ}{b}$, phase shift $c$, midline $d$.
 - **Code:** radians for ´sin´ and ´cos´; compare with a tolerance; ´atan2´ for angles; the inverse functions give only one solution.`,
-            T`- **Perbandingan:** $\sin\theta=\frac{\text{dep}}{\text{mir}}$, $\cos\theta=\frac{\text{sam}}{\text{mir}}$, $\tan\theta=\frac{\text{dep}}{\text{sam}}$ (SOH-CAH-TOA); kebalikan $\csc$, $\sec$, $\cot$; hanya bergantung pada sudut (segitiga sebangun).
+            T`- **Perbandingan:** $\sin\theta=\frac{\text{dep}}{\text{mir}}$, $\cos\theta=\frac{\text{sam}}{\text{mir}}$, $\tan\theta=\frac{\text{dep}}{\text{sam}}$ (sin-de-mi, cos-sa-mi, tan-de-sa); kebalikan $\csc$, $\sec$, $\cot$; hanya bergantung pada sudut (segitiga sebangun).
 - **Memecahkan segitiga siku-siku:** satu sudut dan satu sisi, atau dua sisi; pilih perbandingan dengan sisi yang diketahui dan dicari; fungsi invers untuk sudut; periksa dengan Pythagoras.
 - **Sudut istimewa:** $\sin30^\circ=\frac12$, $\sin45^\circ=\frac{\sqrt2}{2}$, $\sin60^\circ=\frac{\sqrt3}{2}$; kosinus terbalik; $\tan$: $\frac{\sqrt3}{3}$, $1$, $\sqrt3$; $\tan90^\circ$ tak terdefinisi.
 - **Lingkaran satuan:** titik pada sudut $\theta$ adalah $(\cos\theta,\sin\theta)$; tanda: semua, sinus, tangen, kosinus di kuadran I sampai IV; sudut acuan; periode $360^\circ$ (tangen $180^\circ$); $\sin(-\theta)=-\sin\theta$, $\cos(-\theta)=\cos\theta$.
@@ -894,10 +894,10 @@ int main() {
       ),
     },
     {
-      q: L('What does SOH-CAH-TOA mean?', 'Apa arti SOH-CAH-TOA?'),
+      q: L('What does SOH-CAH-TOA mean?', 'Apa arti sin-de-mi, cos-sa-mi, tan-de-sa?'),
       a: L(
         'It is a memory aid: Sine is Opposite over Hypotenuse, Cosine is Adjacent over Hypotenuse, Tangent is Opposite over Adjacent. The sides are named from the angle you are looking at.',
-        'Itu alat bantu ingatan: Sinus adalah depan (Opposite) per miring (Hypotenuse), Kosinus adalah samping (Adjacent) per miring, Tangen adalah depan per samping. Sisi-sisi dinamai dari sudut yang dilihat.',
+        'Itu alat bantu ingatan: sin-de-mi berarti sinus adalah sisi depan per sisi miring, cos-sa-mi berarti kosinus adalah sisi samping per sisi miring, dan tan-de-sa berarti tangen adalah sisi depan per sisi samping. Sisi-sisi dinamai dari sudut yang dilihat.',
       ),
     },
     {
