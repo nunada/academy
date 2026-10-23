@@ -42,8 +42,8 @@ export const m2s1: Submodule = {
           id: 'c2',
           title: L('Step by Step: Add, Subtract and Multiply', 'Contoh Bertahap: Jumlah, Selisih, dan Hasil Kali'),
           body: L(
-            'Let $P=2x^2+3x-1$ and $Q=x^2-x+4$.\n\n1. Step 1: Add like terms: $P+Q=3x^2+2x+3$.\n2. Step 2: Subtract, changing every sign of $Q$: $P-Q=x^2+4x-5$.\n3. Step 3: Multiply every term of $P$ by every term of $Q$:\n$$PQ=2x^4-2x^3+8x^2+3x^3-3x^2+12x-x^2+x-4=2x^4+x^3+4x^2+13x-4$$\n\nDegrees: $\\deg(PQ)=\\deg P+\\deg Q=4$, but $\\deg(P+Q)\\le\\max(\\deg P,\\deg Q)$ and can be lower.',
-            'Misalkan $P=2x^2+3x-1$ dan $Q=x^2-x+4$.\n\n1. Langkah 1: Jumlahkan suku sejenis: $P+Q=3x^2+2x+3$.\n2. Langkah 2: Kurangkan, ubah setiap tanda $Q$: $P-Q=x^2+4x-5$.\n3. Langkah 3: Kalikan setiap suku $P$ dengan setiap suku $Q$:\n$$PQ=2x^4-2x^3+8x^2+3x^3-3x^2+12x-x^2+x-4=2x^4+x^3+4x^2+13x-4$$\n\nDerajat: $\\deg(PQ)=\\deg P+\\deg Q=4$, tetapi $\\deg(P+Q)\\le\\max(\\deg P,\\deg Q)$ dan bisa lebih rendah.',
+            'Let $P=2x^2+3x-1$ and $Q=x^2-x+4$.\n\n1. Step 1: Add like terms: $P+Q=3x^2+2x+3$.\n2. Step 2: Subtract, changing every sign of $Q$: $P-Q=x^2+4x-5$.\n3. Step 3: Multiply every term of $P$ by every term of $Q$:\n\n$$PQ=2x^4-2x^3+8x^2+3x^3-3x^2+12x-x^2+x-4=2x^4+x^3+4x^2+13x-4$$\n\nDegrees: $\\deg(PQ)=\\deg P+\\deg Q=4$, but $\\deg(P+Q)\\le\\max(\\deg P,\\deg Q)$ and can be lower.',
+            'Misalkan $P=2x^2+3x-1$ dan $Q=x^2-x+4$.\n\n1. Langkah 1: Jumlahkan suku sejenis: $P+Q=3x^2+2x+3$.\n2. Langkah 2: Kurangkan, ubah setiap tanda $Q$: $P-Q=x^2+4x-5$.\n3. Langkah 3: Kalikan setiap suku $P$ dengan setiap suku $Q$:\n\n$$PQ=2x^4-2x^3+8x^2+3x^3-3x^2+12x-x^2+x-4=2x^4+x^3+4x^2+13x-4$$\n\nDerajat: $\\deg(PQ)=\\deg P+\\deg Q=4$, tetapi $\\deg(P+Q)\\le\\max(\\deg P,\\deg Q)$ dan bisa lebih rendah.',
           ),
         },
         {

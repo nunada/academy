@@ -20,6 +20,15 @@ kumpulan soal): dari notasi dan komponen sampai perkalian titik, perkalian silan
 serta garis dan bidang di ruang. Keduanya berdiri sendiri; mesinnya dijelaskan di
 [Kursus matematika](#kursus-matematika).
 
+**Persiapan TKA.** Empat kursus matematika mengikuti kerangka asesmen resmi (Perkaban
+45/2025): **TKA Matematika SD** (59 pelajaran), **SMP** (41), **SMA** (47), dan
+**SMA Tingkat Lanjut** (26), dengan tiga bentuk soal tes aslinya — satu jawaban, pilih
+semua yang benar, dan tabel Benar/Salah. Lihat [Kursus TKA](#kursus-tka).
+
+**Code Blocks.** Kursus pemrograman pertama dari blok, tanpa mengetik: pembelajar
+menyusun blok dan seorang robot menjalankannya di peta. 4 modul, 16 pelajaran, 8
+proyek. Lihat [Kursus Code Blocks](#kursus-code-blocks).
+
 Katalog dan halaman depan memisahkan keduanya: matematika satu baris, pemrograman
 satu baris lagi. `CourseInfo.track` yang menentukannya, dan itu pertanyaan yang
 berbeda dari `language` — ketiga kursus Python-bercita-rasa-matematika tetap masuk
@@ -817,6 +826,114 @@ npm run check:math
 ```
 
 
+## Kursus TKA
+
+Empat kursus matematika untuk Tes Kemampuan Akademik, disusun dari kerangka
+asesmennya (Peraturan Badan 45/2025): `tka-sd-matematika`, `tka-smp-matematika`,
+`tka-sma-matematika`, dan `tka-sma-matematika-lanjut`. Mesinnya sama dengan
+[Kursus matematika](#kursus-matematika) — rumus, kotak jawaban, gambar — sehingga
+yang khas hanya isinya.
+
+- **Cakupan mengikuti kerangka.** Tiap modul memetakan satu elemen kerangka, dan materi
+  di luar kerangka sengaja tidak ada. Kursus SMA memuat bilangan real, persamaan dan
+  sistem linear, fungsi, barisan dan deret, geometri dan transformasi, pengukuran,
+  trigonometri, serta data dan peluang. Kursus Tingkat Lanjut memuat matriks,
+  polinomial, fungsi dan grafiknya, vektor, lingkaran, transformasi dengan matriks, dan
+  limit.
+- **Tiga bentuk soal.** Pilihan ganda sederhana (`quiz`; lima pilihan di kursus SMA),
+  pilihan ganda kompleks "pilih semua" (`multi`), dan tabel Benar/Salah (`judge`). Soal
+  *kecukupan data* dari contoh resmi punya pelajarannya sendiri di kursus SMA.
+- **Dua simulasi dan try-out akhir** menutup tiap kursus, dengan soal dari semua bab.
+- **Dwibahasa.** Setiap kalimat yang dibaca pembelajar adalah `Loc { en, id }`. String
+  polos hanya untuk notasi murni; desimal ditulis `0.5` di `en` dan `0{,}5` di `id`.
+
+Pemeriksaannya, dari akar repo:
+
+```bash
+node tools/audit-course.mjs tka-sma-matematika --max-options=5
+node tools/check-figures.mjs tka-sma-matematika
+node tools/check-figure-colors.mjs tka-sma-matematika
+node tools/check-plain-words.mjs tka-sma-matematika
+npm run check:math
+npm run check:fill
+```
+
+- `audit-course` memastikan tiap soal punya petunjuk, tiap soal ketik punya tiga
+  petunjuk, penjelasan, dan jalan penyelesaian, tiap pelajaran punya gambar pada konsep
+  dan kuisnya, tiap proyek punya cukup soal, jawaban pilihan ganda dalam jangkauan, dan
+  teks `en` bebas dari kata Indonesia. `--max-options` menaikkan batas banyak pilihan
+  (bawaannya 4).
+- `check-figures` memastikan titik yang digambar memang ada pada kurvanya, dan
+  `check-figure-colors` memastikan kata warna pada teks sesuai dengan warna gambar.
+- `check-plain-words` menangkap kata yang terselip di string polos, yang akan tampil
+  sama di kedua bahasa. Nama lingkungan matriks (`pmatrix`) tidak dihitung kata.
+- `check:fill` memastikan tiap kotak isian bisa ditempatkan: kotak di dalam pecahan
+  dipahami, tetapi kotak di dalam akar, pangkat, atau matriks meninggalkan TeX yang
+  rusak di kedua sisinya.
+
+## Kursus Code Blocks
+
+Kursus pemrograman yang tidak mengetik kode. Pembelajar menyusun **blok**, dan seorang
+robot melaksanakannya di atas peta kotak-kotak: perintah berurutan, perulangan,
+`jika`/`jika tidak`/`selama`, variabel, dan blok buatan sendiri. Id kursusnya
+`code-blocks`; `CourseInfo.language` bernilai `blocks`, `track` bernilai `code`.
+
+Tiga bagian yang dibangun sendiri:
+
+**Bahasa dan interpreternya.** [`src/lib/blocks.ts`](src/lib/blocks.ts) mendefinisikan
+program sebagai data murni — `Program { main, defs }` dengan `Block` bersarang — dan
+`runProgram` menjalankannya menjadi daftar *bingkai* (posisi, arah, bintang yang
+tersisa, apa yang diucapkan, dan blok mana yang sedang dikerjakan). Tak ada yang
+dieksekusi sebagai JavaScript. Pengaman: batas langkah, bingkai, kedalaman panggilan,
+dan besar hitungan, sehingga perulangan yang tak berakhir berhenti dengan pesan,
+bukan membekukan halaman.
+
+Sebuah level (`BlocksLevel`) memuat satu atau beberapa peta, blok yang ditawarkan,
+batas jumlah blok (`maxBlocks`), jenis blok yang wajib dipakai (`mustUse`), nama
+variabel dan blok buatan yang boleh dipakai, serta tujuannya (`reach`, `collectAll`,
+`say`). Petanya teks, satu string per baris:
+
+| Huruf | Arti |
+| --- | --- |
+| `#` | tembok |
+| `.` | lantai |
+| `*` | bintang |
+| `G` | garis finis |
+| `^ > v <` | robot di lantai, menghadap ke arah itu |
+
+`checkLevel` menjalankan program di **setiap** peta level, jadi soal yang meminta
+"satu program untuk dua peta" tidak bisa lolos dengan menghafal salah satunya.
+
+**Penyuntingnya.** [`components/BlocksBoard.tsx`](src/components/BlocksBoard.tsx):
+palet, tumpukan blok bersarang, jalankan dengan animasi (blok yang sedang dikerjakan
+menyala), satu tab per peta, dan pesan salah dwibahasa. Blok **ditekan**, bukan
+diseret: begitu bisa dipakai dengan papan ketik maupun jari, dan tumpukan tujuannya
+selalu terlihat. Komponen ini terkendali — halaman di atasnya memegang program dan
+vonisnya — sehingga langkah pelajaran dan proyek memakai komponen yang sama.
+
+**Jenis langkah dan proyek.** Langkah `blocks` di pelajaran, dan proyek dengan
+`runtime: 'blocks'` yang berisi daftar `tasks` (satu level per tugas, semuanya harus
+lulus), dipasang di [`StepView`](src/components/StepView.tsx) dan
+[`ProjectPage`](src/pages/ProjectPage.tsx). Seperti `math`, memeriksa tidak memakan
+heart pada proyek.
+
+Menulis kursusnya dipermudah [`src/content/code-blocks/b.ts`](src/content/code-blocks/b.ts):
+pembuat blok (`move`, `repeat`, `when`, `call`, …), pembuat level (`level`), dan
+pembuat langkah (`concept`, `quiz`, `robot`, `task`).
+
+**Memeriksanya.**
+
+```bash
+node tools/check-blocks.mjs code-blocks
+```
+
+Skrip itu menjalankan solusi acuan **setiap** level robot — solusinya harus lolos,
+dan program kosong tidak boleh lolos — lalu memeriksa bahwa solusi hanya memakai blok
+yang ditawarkan palet, bahwa variabel dan blok buatan yang dipakai sudah dideklarasikan
+levelnya, dan bahwa setiap peta punya robot dan, bila diminta, garis finis. Ia juga
+memeriksa langkah di sekitar level: jawaban dalam jangkauan, satu jawaban per `___`,
+ada petunjuk, dan tak ada kata Indonesia di teks `en`.
+
 ## Artikel
 
 Halaman penjelasan yang berdiri sendiri, terbuka tanpa akun dan tanpa urutan —
@@ -935,6 +1052,8 @@ src/
     sql/            kursus SQL: m1-select … m4-writing
     typescript/     kursus TypeScript: m1-annotations … m4-holding
     gamedev/        kursus Game Development: m1-loop … m4-whole
+    code-blocks/    kursus Code Blocks: m1-urutan … m4-variabel-blok, dan b.ts
+    tka-*-matematika/  kursus persiapan TKA (SD, SMP, SMA) dan tka-sma-matematika-lanjut
     playground.ts   mode dan templat Playground
   lib/
     db.ts           kontrak yang harus dipenuhi setiap backend
@@ -946,6 +1065,7 @@ src/
     ts.ts           kompiler TypeScript sungguhan, dimuat malas, untuk diagnostik
     tsLib.ts        rantai lib.es*.d.ts sebagai teks (dibangkitkan)
     game.ts         sesi game Python: namespace bertahan + jembatan JSON per bingkai
+    blocks.ts       bahasa blok, interpreter robot, dan pemeriksa level
     pythonModules.ts modul Python yang ditanam ke filesystem Pyodide (API tiruan)
     hearts.ts       ekonomi heart
     progress.ts     turunan: apa yang terbuka, tuntas, dan diperoleh
@@ -955,7 +1075,8 @@ src/
   components/       Layout, StepView (pemutar langkah), results.tsx, ui.tsx,
                     ResultTable.tsx (kisi hasil SQL),
                     CompileReport.tsx (keberatan kompiler TypeScript),
-                    GamePreview.tsx (kanvas dan loop bingkainya)
+                    GamePreview.tsx (kanvas dan loop bingkainya),
+                    BlocksBoard.tsx (penyunting blok dan peta robot)
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
                     Project, Playground, Leaderboard, Profile, Certificate,
                     Teacher (halaman Kelas, hanya untuk akun guru),
@@ -964,6 +1085,8 @@ src/
 supabase/schema.sql skema, RPC, dan RLS
 supabase/reports.sql  capaian tiap pembelajar, untuk SQL Editor
 tools/check-curriculum.mjs  menghitung kurikulum sungguhan lalu mencocokkannya
+tools/audit-course.mjs      memeriksa kursus persiapan TKA (petunjuk, gambar, pilihan)
+tools/check-blocks.mjs      menjalankan solusi tiap level robot di kursus Code Blocks
 tools/check-rpc-grants.mjs  siapa boleh memanggil RPC apa, diuji ke proyek langsung
 ```
 
@@ -1033,6 +1156,11 @@ Tiap pelajaran menurunkan bantuan secara bertahap lewat lima jenis langkah
 | `sql` | sama seperti `code`, tetapi menulis pernyataan SQL dan melihat baris yang kembali | minimal |
 | `ts` | sama seperti `code`, tetapi menulis TypeScript dan melihat apa kata kompilernya | minimal |
 | `game` | sama seperti `code`, tetapi menulis game Python dan benar-benar memainkannya | minimal |
+| `cpp` | sama seperti `code`, tetapi menulis C++ yang dijalankan JSCPP | minimal |
+| `multi` | memilih **semua** jawaban yang benar (pilihan ganda kompleks) | sedang |
+| `judge` | menandai tiap pernyataan Benar atau Salah | sedang |
+| `math` | mengerjakan di kertas lalu mengetik hasilnya di kotak jawaban | minimal |
+| `blocks` | menyusun blok agar robot mencapai tujuan di setiap peta | minimal |
 
 Mini proyek di akhir submateri adalah tahap tanpa penopang: hanya daftar syarat,
 editor kosong, dan tes.
@@ -1206,6 +1334,13 @@ Untuk kursus C++, jalankan `npm run check:cpp` alih-alih menempel apa pun di
 konsol — JSCPP adalah paket npm sungguhan, jadi pemeriksanya berjalan di Node dan
 menjalankan **setiap** contoh kerja langkah `concept`, tiap `solution` langkah
 `cpp`, dan tiap `solution` proyek, melawan tesnya masing-masing.
+
+Untuk kursus Code Blocks, `node tools/check-blocks.mjs code-blocks` menjalankan
+solusi **setiap** level robot (harus lolos; program kosong tidak boleh lolos) dan
+memeriksa palet serta deklarasi level. Untuk kursus matematika, `npm run check:math`,
+`npm run check:fill`, `node tools/audit-course.mjs <folder>`, dan
+`node tools/check-lesson-blocks.mjs <kursus>` (paritas struktur blok EN/ID) dijelaskan
+di bagian [Kursus TKA](#kursus-tka).
 
 ## Isi kursus Python
 
