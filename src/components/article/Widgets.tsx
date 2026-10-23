@@ -42,6 +42,7 @@ import { CanDesigner, DeliveryTool, LightPath, OptProblems, ProfitTool } from '.
 import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from './NewtonWidgets'
 import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
 import { AngleCircle, AngleClock, AngleConvert, AnglePolygon, AngleTransversal, AngleVectors } from './AngleWidgets'
+import { TrigCircle, TrigEquation, TrigIdentity, TrigRatio, TrigRight, TrigWave } from './TrigBasicWidgets'
 import { ConstructAngle, ConstructDivide, ConstructPlay, ConstructPolygon, ConstructTrisect } from './ConstructWidgets'
 import { LatexBuilder, LatexDocument, LatexLive, LatexSymbols } from './LatexWidgets'
 import { HanoiGraphView, HanoiPegs, HanoiPlay, HanoiState, HanoiTime } from './HanoiWidgets'
@@ -1119,6 +1120,18 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <ConstructTrisect />
     case 'constructpoly':
       return <ConstructPolygon />
+    case 'trigratio':
+      return <TrigRatio />
+    case 'trigright':
+      return <TrigRight />
+    case 'trigcircle':
+      return <TrigCircle />
+    case 'trigequation':
+      return <TrigEquation />
+    case 'trigwave':
+      return <TrigWave />
+    case 'trigidentity':
+      return <TrigIdentity />
   }
 }
 

@@ -1167,4 +1167,46 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Ketik banyak sisi dari 3 sampai 65537 dan lihat apakah segi banyak beraturannya dapat dilukis dengan penggaris dan jangka, beserta faktor-faktor penentunya, φ Euler, dan sudut pusatnya.',
     },
   },
+  trigratio: {
+    title: { en: 'Interactive: the ratios of a right triangle', id: 'Interaktif: perbandingan pada segitiga siku-siku' },
+    description: {
+      en: 'Slide an angle and the hypotenuse of a right triangle and read sine, cosine, tangent and their reciprocals as ratios of sides: the sides grow, the ratios do not.',
+      id: 'Geser sebuah sudut dan sisi miring segitiga siku-siku dan baca sinus, kosinus, tangen, dan kebalikannya sebagai perbandingan sisi: sisinya membesar, perbandingannya tidak.',
+    },
+  },
+  trigright: {
+    title: { en: 'Interactive: solve a right triangle', id: 'Interaktif: pecahkan segitiga siku-siku' },
+    description: {
+      en: 'Give an angle and a side, or two sides, and get every side and angle with the formula used; five everyday problems (a tower, a ladder, a ramp, a road, a shadow) are ready to try.',
+      id: 'Berikan satu sudut dan satu sisi, atau dua sisi, dan dapatkan setiap sisi dan sudut beserta rumus yang dipakai; lima soal sehari-hari (menara, tangga, landasan, jalan, bayangan) siap dicoba.',
+    },
+  },
+  trigcircle: {
+    title: { en: 'Interactive: the unit circle', id: 'Interaktif: lingkaran satuan' },
+    description: {
+      en: 'Turn an angle from −360° to 720° and watch the point (cos, sin) move on the unit circle, with its quadrant, reference angle, signs, exact values for multiples of 15° and all six functions.',
+      id: 'Putar sebuah sudut dari −360° sampai 720° dan lihat titik (cos, sin) bergerak pada lingkaran satuan, beserta kuadran, sudut acuan, tanda, nilai eksak untuk kelipatan 15°, dan keenam fungsinya.',
+    },
+  },
+  trigequation: {
+    title: { en: 'Interactive: solve sin x = c, cos x = c and tan x = c', id: 'Interaktif: selesaikan sin x = c, cos x = c, dan tan x = c' },
+    description: {
+      en: 'Choose a function and a level c and see every angle between 0° and 360° that reaches it as the crossings of a graph and a line, with the general solution for all turns.',
+      id: 'Pilih sebuah fungsi dan tingkat c dan lihat setiap sudut di antara 0° dan 360° yang mencapainya sebagai titik potong grafik dan garis, beserta penyelesaian umum untuk semua putaran.',
+    },
+  },
+  trigwave: {
+    title: { en: 'Interactive: the graph of a sine or cosine wave', id: 'Interaktif: grafik gelombang sinus atau kosinus' },
+    description: {
+      en: 'Change a, b, c and d in y = a sin(b(x − c)) + d and watch the amplitude, period, phase shift and midline change, with the maximum, the minimum and where the wave crosses zero.',
+      id: 'Ubah a, b, c, dan d dalam y = a sin(b(x − c)) + d dan lihat amplitudo, periode, pergeseran fase, dan garis tengah berubah, beserta maksimum, minimum, dan tempat gelombang memotong nol.',
+    },
+  },
+  trigidentity: {
+    title: { en: 'Interactive: test a trigonometric identity', id: 'Interaktif: uji sebuah identitas trigonometri' },
+    description: {
+      en: 'Pick one of eleven true identities or six tempting false ones, move the angles, and compare both sides over all 360 whole degrees: an identity never fails, and a false one fails at a counterexample.',
+      id: 'Pilih salah satu dari sebelas identitas yang benar atau enam yang menggoda tetapi salah, gerakkan sudutnya, dan bandingkan kedua ruas pada semua 360 derajat bulat: identitas tidak pernah gagal, dan yang salah gagal pada contoh penyangkal.',
+    },
+  },
 }

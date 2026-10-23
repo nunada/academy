@@ -190,6 +190,12 @@ export type WidgetName =
   | 'constructdivide'
   | 'constructtrisect'
   | 'constructpoly'
+  | 'trigratio'
+  | 'trigright'
+  | 'trigcircle'
+  | 'trigequation'
+  | 'trigwave'
+  | 'trigidentity'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

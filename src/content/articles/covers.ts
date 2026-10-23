@@ -731,6 +731,27 @@ const constructionsCover = (): string => {
   return art
 }
 
+const basicTrigCover = (): string => {
+  // the unit circle with a right triangle (cos along the axis, sin upright) and, beside it, the sine wave with the same height marked
+  const O = { x: 104, y: 118 }
+  const r = 78
+  const deg = 40
+  const px = O.x + r * Math.cos((deg * Math.PI) / 180)
+  const py = O.y - r * Math.sin((deg * Math.PI) / 180)
+  let art = line(20, O.y, 196, O.y, 'sm', 2) + line(O.x, 28, O.x, 208, 'sm', 2)
+  art += `<circle cx="${O.x}" cy="${O.y}" r="${r}" class="sm" fill="none" stroke-width="2.5"/>`
+  art += path(`M${n1(O.x + 30)},${n1(O.y)}A30,30 0 0 0 ${n1(O.x + 30 * Math.cos((deg * Math.PI) / 180))},${n1(O.y - 30 * Math.sin((deg * Math.PI) / 180))}`, 'sa', 3)
+  art += line(O.x, O.y, px, py, 'st', 4) + line(px, py, px, O.y, 'sr', 5) + line(O.x, O.y, px, O.y, 'sb', 5)
+  art += dot(px, py, 'fr', 6.5) + text(O.x + 44, O.y - 8, 'θ', 17)
+  // the wave: x from 232 to 384 is one full turn, height the same scale as the circle
+  const X = (a: number) => 232 + (a / 360) * 152
+  const Y = (v: number) => O.y - v * r
+  art += line(222, O.y, 392, O.y, 'sm', 2) + curve((a) => Math.sin((a * Math.PI) / 180), 0, 360, X, Y, 'sr', 4, 90)
+  art += line(X(deg), Y(Math.sin((deg * Math.PI) / 180)), X(deg), O.y, 'sr', 2.4, '5 4') + line(px, py, X(deg), Y(Math.sin((deg * Math.PI) / 180)), 'sm', 1.6, '4 4')
+  art += dot(X(deg), Y(Math.sin((deg * Math.PI) / 180)), 'fr', 6)
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -738,6 +759,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'basic-trigonometry': basicTrigCover,
   'constructing-segments-and-angles': constructionsCover,
   angles: anglesCover,
   latex: latexCover,

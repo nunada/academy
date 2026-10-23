@@ -212,6 +212,10 @@ jobs:
       - run: python -m pip install sympy
       - run: npm run check:construct
 
+      # Basic trigonometry: sin and cos of every degree against mpmath, the exact values of the multiples of 15 degrees to 55 digits, right
+      # triangles, the unit circle, the basic equations by a scan, waves, and every identity (true or false) against SymPy.
+      - run: npm run check:trigbasic
+
       - name: Work out where the site will live
         id: base
         run: |
