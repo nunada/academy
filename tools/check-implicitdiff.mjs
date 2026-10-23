@@ -47,7 +47,28 @@ const close = (got, want, what, tol = 1e-5) => {
 const B = BigInt
 const R = (n, d = 1) => D.rat(B(n), B(d))
 const txt = (r) => (r === null ? 'null' : `${r.n}/${r.d}`)
-const rnd = (lo, hi) => lo + Math.floor(Math.random() * (hi - lo + 1))
+// a reproducible random source (mulberry32), so every run checks the same curves and points
+let seed = 20261024
+const rand = () => {
+  seed = (seed + 0x6d2b79f5) | 0
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed)
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+}
+const rnd = (lo, hi) => lo + Math.floor(rand() * (hi - lo + 1))
+// derivative of g at x by Richardson extrapolation of the central difference (error O(h^4), not O(h^2)). The step is
+// halved until two successive estimates agree to 1e-8, which a point near a vertical tangent needs; NaN if they never do
+const deriv = (g, x, h0) => {
+  const c = (k) => (g(x + k) - g(x - k)) / (2 * k)
+  const est = (h) => (4 * c(h / 2) - c(h)) / 3
+  let prev = est(h0)
+  for (let h = h0 / 2; h >= 2e-5; h /= 2) {
+    const cur = est(h)
+    if (Math.abs(cur - prev) < 1e-8 * Math.max(1, Math.abs(cur))) return cur
+    prev = cur
+  }
+  return NaN
+}
 const pick = (a) => a[rnd(0, a.length - 1)]
 const imp = (src) => D.implicitDerivative(D.parseEquation(src))
 const tex = (src) => D.toTex(imp(src).slope)
@@ -55,15 +76,15 @@ const at = (src, x, y) => D.slopeAt(imp(src), x, y)
 
 /* ------------------------------------------- 1. curves around a known function */
 const genRational = (depth) => {
-  if (depth <= 0 || Math.random() < 0.25) return Math.random() < 0.3 ? D.K(rnd(-4, 4), rnd(1, 3)) : D.X
+  if (depth <= 0 || rand() < 0.25) return rand() < 0.3 ? D.K(rnd(-4, 4), rnd(1, 3)) : D.X
   const op = pick(['add', 'sub', 'mul', 'div', 'neg', 'pow', 'pow'])
   if (op === 'neg') return D.neg(genRational(depth - 1))
   if (op === 'pow') return D.pw(genRational(depth - 1), pick([-2, 2, 3]))
   return D[op](genRational(depth - 1), genRational(depth - 1))
 }
 const genR = (depth) => {
-  if (depth <= 0 || Math.random() < 0.3) {
-    const c = Math.random()
+  if (depth <= 0 || rand() < 0.3) {
+    const c = rand()
     return c < 0.3 ? D.K(rnd(1, 4)) : c < 0.65 ? D.X : D.Y
   }
   const op = pick(['add', 'sub', 'mul', 'pow'])
@@ -124,24 +145,27 @@ for (const src of CURVES) {
   const H = D.curveFn(r.eq)
   const sec = D.secondDerivative(r)
   for (let k = 0; k < 160; k++) {
-    const x = (Math.random() - 0.5) * 6
-    const g = (Math.random() - 0.5) * 8
+    const x = (rand() - 0.5) * 6
+    const g = (rand() - 0.5) * 8
     const y = D.solveY(H, x, g)
     if (y === null || Math.abs(y) > 20 || Math.hypot(x, y) < 0.2) continue // the origin is a singular point of several of these curves
     const m = D.slopeAt(r, x, y)
     if (!Number.isFinite(m) || Math.abs(m) > 8) continue
-    const h = 1e-4
-    const yp = D.solveY(H, x + h, y)
-    const ym = D.solveY(H, x - h, y)
-    if (yp === null || ym === null || Math.abs(yp - y) > 0.5 || Math.abs(ym - y) > 0.5) continue
+    // y(x ± h) by Newton's method; a step that leaves the branch (or the curve) gives NaN and the step is halved
+    const yAt = (xx) => {
+      const yy = D.solveY(H, xx, y)
+      return yy === null || Math.abs(yy - y) > 0.5 ? NaN : yy
+    }
+    const ref = deriv(yAt, x, 4e-3)
+    if (!Number.isFinite(ref)) continue
     newton++
-    close(m, (yp - ym) / (2 * h), `slope of ${src} at (${x}, ${y})`, 3e-4)
+    close(m, ref, `slope of ${src} at (${x}, ${y})`, 1e-5)
     const slopeAt = (xx) => {
       const yy = D.solveY(H, xx, y)
       return yy === null ? NaN : D.slopeAt(r, xx, yy)
     }
     const s = D.evalFloat(sec, x, y)
-    const cd = (slopeAt(x + 1e-3) - slopeAt(x - 1e-3)) / 2e-3
+    const cd = deriv(slopeAt, x, 4e-3)
     if (Number.isFinite(s) && Number.isFinite(cd) && Math.abs(s) < 60 && Math.abs(m) < 5) {
       second++
       close(s, cd, `second derivative of ${src} at (${x}, ${y})`, 3e-3)
@@ -190,8 +214,8 @@ for (const [src, f] of [
   const sec = D.secondDerivative(r)
   const H = D.curveFn(r.eq)
   for (let k = 0; k < 40; k++) {
-    const x = 0.5 + Math.random() * 3
-    const y = D.solveY(H, x, 1 + Math.random() * 2)
+    const x = 0.5 + rand() * 3
+    const y = D.solveY(H, x, 1 + rand() * 2)
     if (y === null) continue
     close(D.evalFloat(sec, x, y), f(x, y), `y'' of ${src} at (${x}, ${y})`, 1e-7)
   }
@@ -201,7 +225,7 @@ for (const [pp, q] of [[1, 2], [2, 3], [3, 4], [-1, 2], [-2, 3], [5, 3], [3, 2],
   const src = `y^${q}=x^(${pp})`
   const r = imp(src)
   for (let k = 0; k < 20; k++) {
-    const x = 0.3 + Math.random() * 4
+    const x = 0.3 + rand() * 4
     const y = x ** (pp / q)
     close(D.slopeAt(r, x, y), (pp / q) * x ** (pp / q - 1), `d/dx x^(${pp}/${q}) from ${src}`, 1e-9)
   }
