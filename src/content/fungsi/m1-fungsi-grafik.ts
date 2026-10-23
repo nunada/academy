@@ -116,18 +116,18 @@ export const module1: Module = {
               id: 'f1',
               math: true,
               prompt: {
-                en: 'Complete the evaluation of $f(x) = x^2 - 3x$ at $x = 2$.',
-                id: 'Lengkapi penghitungan $f(x) = x^2 - 3x$ pada $x = 2$.',
+                en: 'Complete the evaluation of $f(x) = x^2 - 3x$ at $x = -2$. Watch the signs.',
+                id: 'Lengkapi penghitungan $f(x) = x^2 - 3x$ pada $x = -2$. Perhatikan tandanya.',
               },
-              template: 'f(2) = 2^2 - 3(2) = 4 - 6 = ___',
-              blanks: ['-2'],
+              template: 'f(-2) = (-2)^2 - 3(___) = 4 - (___) = ___',
+              blanks: ['-2', '-6', '10'],
               explain: {
-                en: '$4 - 6 = -2$. A function may perfectly well return a negative value at a positive input.',
-                id: '$4 - 6 = -2$. Fungsi boleh saja menghasilkan nilai negatif pada masukan yang positif.',
+                en: 'Every $x$ becomes $-2$, so the middle term is $-3(-2)$: first $3(-2) = -6$, then $4 - (-6) = 4 + 6 = 10$. Subtracting a negative number adds, and this sign slip is the commonest error when evaluating a function at a negative input.',
+                id: 'Setiap $x$ menjadi $-2$, jadi suku tengahnya $-3(-2)$: pertama $3(-2) = -6$, lalu $4 - (-6) = 4 + 6 = 10$. Mengurangi bilangan negatif berarti menambah, dan kesalahan tanda ini adalah yang paling umum saat menghitung fungsi pada masukan negatif.',
               },
               hint: {
-                en: 'You are subtracting a bigger number from a smaller one — which direction on the number line does that push the result?',
-                id: 'Kamu mengurangkan bilangan yang lebih besar dari yang lebih kecil — ke arah mana hasilnya terdorong pada garis bilangan?',
+                en: 'Put the input in the bracket for the $x$ in $3x$ too, and multiply before you subtract. Then ask what taking away a negative number does on the number line.',
+                id: 'Masukkan juga masukannya ke dalam kurung untuk $x$ pada $3x$, dan kalikan sebelum mengurangkan. Lalu tanyakan apa yang dilakukan pengambilan bilangan negatif pada garis bilangan.',
               },
             },
             {
