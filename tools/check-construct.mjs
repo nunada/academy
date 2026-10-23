@@ -273,7 +273,8 @@ const askDegs = [...new Set([...reps.values(), ...extra.filter((_, i) => i < 10)
 const thirds = [...repsThird.values()]
 const polys = Array.from({ length: 126 }, (_, i) => i + 3)
 const PHIMAX = 3000
-const py = spawnSync('python', ['-I', '-X', 'utf8', '-c', PY], { input: JSON.stringify({ degs: askDegs, thirds, polys, phimax: PHIMAX }), encoding: 'utf8', maxBuffer: 1 << 27, timeout: 560000 })
+// no -I here: on a CI runner `pip install` puts SymPy in the user site, which isolated mode ignores
+const py = spawnSync('python', ['-X', 'utf8', '-c', PY], { input: JSON.stringify({ degs: askDegs, thirds, polys, phimax: PHIMAX }), encoding: 'utf8', maxBuffer: 1 << 27, timeout: 560000 })
 if (py.status !== 0) {
   console.log('python failed:', py.stderr || py.error)
   process.exit(1)
