@@ -1272,4 +1272,39 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Lihat bisection membelah dua sebuah interval dan metode Newton mengikuti garis singgung menuju akar dari lima persamaan yang tak dapat diselesaikan rumus mana pun, dan lihat berapa desimal yang didapat tiap langkah.',
     },
   },
+  gfsix: {
+    title: { en: 'Interactive: the graphs of the six trigonometric functions', id: 'Interaktif: grafik keenam fungsi trigonometri' },
+    description: {
+      en: 'Pick sine, cosine, tangent, cosecant, secant or cotangent, move a point along its graph, and read its period, domain, range, symmetry, zeros and asymptotes in degrees or radians.',
+      id: 'Pilih sinus, kosinus, tangen, kosekan, sekan, atau kotangen, geser sebuah titik di sepanjang grafiknya, dan baca periode, daerah asal, daerah hasil, simetri, nol, dan asimtotnya dalam derajat atau radian.',
+    },
+  },
+  gftrans: {
+    title: { en: 'Interactive: a, b, c and d for any trigonometric graph', id: 'Interaktif: a, b, c, dan d untuk grafik trigonometri apa pun' },
+    description: {
+      en: 'Stretch, squeeze, shift and lift the graph of any of the six functions with y = a f(b(x − c)) + d, with the parent drawn faintly, the asymptotes, the points to plot and the equation in both forms.',
+      id: 'Regangkan, rapatkan, geser, dan angkat grafik salah satu dari enam fungsi dengan y = a f(b(x − c)) + d, dengan fungsi induk digambar samar, asimtot, titik yang digambar, dan persamaan dalam kedua bentuk.',
+    },
+  },
+  gfread: {
+    title: { en: 'Interactive: find the equation of a wave from its graph', id: 'Interaktif: temukan persamaan gelombang dari grafiknya' },
+    description: {
+      en: 'Enter the highest and lowest values and the x of two successive peaks, and get a, d, the period and the sine and cosine equations, for a tide, the mains voltage or a wave of your own.',
+      id: 'Masukkan nilai tertinggi dan terendah dan x dua puncak berurutan, dan dapatkan a, d, periode, serta persamaan sinus dan kosinus, untuk pasang surut, tegangan listrik, atau gelombang buatan sendiri.',
+    },
+  },
+  gfsum: {
+    title: { en: 'Interactive: adding two sine waves', id: 'Interaktif: menjumlahkan dua gelombang sinus' },
+    description: {
+      en: 'Choose two frequencies, amplitudes and a phase and see when the sum repeats, when it never does (the ratio is irrational), and how close frequencies beat.',
+      id: 'Pilih dua frekuensi, amplitudo, dan fase dan lihat kapan jumlahnya berulang, kapan tidak pernah (perbandingannya irasional), dan bagaimana frekuensi yang berdekatan menghasilkan layangan.',
+    },
+  },
+  gffit: {
+    title: { en: 'Interactive: fit a sine wave to measurements', id: 'Interaktif: cocokkan gelombang sinus dengan pengukuran' },
+    description: {
+      en: 'Fit the best wave of a chosen period to monthly temperatures, daylight or a tide by least squares, see the errors as red segments, and search for the period that explains the most.',
+      id: 'Cocokkan gelombang terbaik berperiode tertentu dengan suhu bulanan, jam siang, atau pasang surut dengan kuadrat terkecil, lihat galatnya sebagai ruas merah, dan cari periode yang menjelaskan paling banyak.',
+    },
+  },
 }

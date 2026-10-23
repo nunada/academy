@@ -205,6 +205,11 @@ export type WidgetName =
   | 'eqquad'
   | 'eqsteps'
   | 'eqnumeric'
+  | 'gfsix'
+  | 'gftrans'
+  | 'gfread'
+  | 'gfsum'
+  | 'gffit'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

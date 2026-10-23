@@ -29,6 +29,5 @@ export const meta: ArticleMeta = {
     { name: { en: 'Trigonometry', id: 'Trigonometri' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Trigonometry', id: 'https://id.wikipedia.org/wiki/Trigonometri' } },
     { name: { en: 'Unit circle', id: 'Lingkaran satuan' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Unit_circle', id: 'https://id.wikipedia.org/wiki/Lingkaran_satuan' } },
     { name: { en: 'Sine and cosine', id: 'Sinus dan kosinus' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Sine_and_cosine', id: 'https://id.wikipedia.org/wiki/Sinus' } },
-    { name: { en: 'Sine wave', id: 'Gelombang sinus' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Sine_wave', id: 'https://id.wikipedia.org/wiki/Gelombang_sinus' } },
   ],
 }

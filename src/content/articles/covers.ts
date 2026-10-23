@@ -780,6 +780,21 @@ const equationsCover = (): string => {
   return art
 }
 
+const graphsCover = (): string => {
+  // the tangent in thick branches between dashed asymptotes, over a thin dashed sine wave
+  const X = (a: number) => 200 + (a / 360) * 330
+  const Y = (v: number) => 98 - v * 30
+  const s = (a: number) => Math.sin((a * Math.PI) / 180)
+  const t = (a: number) => Math.tan((a * Math.PI) / 180)
+  let art = line(18, Y(0), 384, Y(0), 'sm', 2) + line(X(0), 14, X(0), 184, 'sm', 2)
+  for (const a of [-90, 90]) art += line(X(a), 12, X(a), 186, 'sr', 2.4, '7 5')
+  art += curve(s, -180, 180, X, Y, 'sb', 2.6, 120, '6 5')
+  art += curve(t, -84, 84, X, Y, 'st', 5.5, 140)
+  for (const a of [-45, 0, 45]) art += dot(X(a), Y(t(a)), 'fr', 6)
+  art += text(200, 192, 'tan x', 16, 'tm')
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -787,6 +802,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'trigonometric-graphs': graphsCover,
   'trigonometric-equations': equationsCover,
   'trigonometric-identities': identitiesCover,
   'basic-trigonometry': basicTrigCover,

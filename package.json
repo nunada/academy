@@ -59,7 +59,8 @@
     "check:construct": "node tools/check-construct.mjs",
     "check:trigbasic": "node tools/check-trigbasic.mjs",
     "check:trigident": "node tools/check-trigident.mjs",
-    "check:trigeq": "node tools/check-trigeq.mjs"
+    "check:trigeq": "node tools/check-trigeq.mjs",
+    "check:triggraph": "node tools/check-triggraph.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

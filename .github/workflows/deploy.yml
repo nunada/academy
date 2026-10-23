@@ -225,6 +225,11 @@ jobs:
       # it (same solutions, or more where it squares), and bisection and Newton's method against mpmath's root finder.
       - run: npm run check:trigeq
 
+      # Graphs of trigonometric functions: the six functions against mpmath, then for a few hundred graphs y = a f(b(x - c)) + d the asymptotes,
+      # zeros, levels, extreme points, range and smallest period against a dense scan, the table of the six parents and its TeX, reading a wave off
+      # its peaks, the period and beats of a sum of two waves, and the least-squares fit against mpmath.
+      - run: npm run check:triggraph
+
       - name: Work out where the site will live
         id: base
         run: |
