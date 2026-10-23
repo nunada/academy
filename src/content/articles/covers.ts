@@ -752,6 +752,20 @@ const basicTrigCover = (): string => {
   return art
 }
 
+const identitiesCover = (): string => {
+  // sin x (red) and cos x (blue) added: the sum, thick, is one wave of height √2 shifted by 45°, with the equation under it
+  const X = (a: number) => 28 + (a / 360) * 344
+  const Y = (v: number) => 98 - v * 62
+  const s = (a: number) => Math.sin((a * Math.PI) / 180)
+  const c = (a: number) => Math.cos((a * Math.PI) / 180)
+  let art = line(18, Y(0), 384, Y(0), 'sm', 2) + line(X(0), 20, X(0), 176, 'sm', 2)
+  art += curve(s, 0, 360, X, Y, 'sr', 3, 90, '7 5') + curve(c, 0, 360, X, Y, 'sb', 3, 90, '7 5')
+  art += curve((a) => s(a) + c(a), 0, 360, X, Y, 'st', 5.5, 120)
+  art += dot(X(45), Y(Math.SQRT2), 'fr', 6.5) + text(X(45) + 16, Y(Math.SQRT2) - 10, '√2', 20)
+  art += text(200, 190, 'sin x + cos x = √2 sin(x + 45°)', 15, 'tm')
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -759,6 +773,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'trigonometric-identities': identitiesCover,
   'basic-trigonometry': basicTrigCover,
   'constructing-segments-and-angles': constructionsCover,
   angles: anglesCover,

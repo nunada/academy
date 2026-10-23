@@ -216,6 +216,10 @@ jobs:
       # triangles, the unit circle, the basic equations by a scan, waves, and every identity (true or false) against SymPy.
       - run: npm run check:trigbasic
 
+      # Trigonometric identities: the expression parser, the tester's verdicts and every catalog identity against mpmath (with Python's own idea of
+      # where an expression is undefined), every line of every proof against the one before it, and the exact values to 55 digits.
+      - run: npm run check:trigident
+
       - name: Work out where the site will live
         id: base
         run: |

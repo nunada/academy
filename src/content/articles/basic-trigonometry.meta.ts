@@ -19,8 +19,8 @@ export const meta: ArticleMeta = {
   tags: ['geometry', 'algebra', 'computing', 'python', 'javascript'],
   level: { en: 'Beginner to intermediate', id: 'Pemula hingga menengah' },
   keywords: {
-    en: 'trigonometry, basic trigonometry, sin cos tan, sine cosine tangent, SOH CAH TOA, trigonometric ratios, right triangle trigonometry, how to find a side of a right triangle, angle of elevation, angle of depression, special angles 30 45 60, exact values of sine and cosine, sin 30 equals 1/2, unit circle, reference angle, quadrants signs of sine cosine tangent, trigonometric identities, sin squared plus cos squared, double angle formula, solve sin x = 1/2, graph of sine and cosine, amplitude and period, cosecant secant cotangent, degrees and radians calculator mode',
-    id: 'trigonometri, trigonometri dasar, sin cos tan, sin de mi cos sa mi tan de sa, sinus kosinus tangen, perbandingan trigonometri, sudut istimewa, nilai sinus 30 derajat, trigonometri segitiga siku-siku, cara mencari sisi segitiga siku-siku, sudut elevasi, sudut depresi, nilai eksak sinus dan kosinus, lingkaran satuan, sudut acuan, tanda sinus kosinus tangen tiap kuadran, identitas trigonometri, sin kuadrat ditambah cos kuadrat, rumus sudut ganda, menyelesaikan persamaan sin x = 1/2, grafik sinus dan kosinus, amplitudo dan periode, kosekan sekan kotangen, mode derajat dan radian kalkulator',
+    en: 'trigonometry, basic trigonometry, sin cos tan, sine cosine tangent, SOH CAH TOA, trigonometric ratios, right triangle trigonometry, how to find a side of a right triangle, angle of elevation, angle of depression, special angles 30 45 60, exact values of sine and cosine, sin 30 equals 1/2, unit circle, reference angle, quadrants signs of sine cosine tangent, basic identities, solve sin x = 1/2, graph of sine and cosine, amplitude and period, cosecant secant cotangent, degrees and radians calculator mode',
+    id: 'trigonometri, trigonometri dasar, sin cos tan, sin de mi cos sa mi tan de sa, sinus kosinus tangen, perbandingan trigonometri, sudut istimewa, nilai sinus 30 derajat, trigonometri segitiga siku-siku, cara mencari sisi segitiga siku-siku, sudut elevasi, sudut depresi, nilai eksak sinus dan kosinus, lingkaran satuan, sudut acuan, tanda sinus kosinus tangen tiap kuadran, identitas dasar, menyelesaikan persamaan sin x = 1/2, grafik sinus dan kosinus, amplitudo dan periode, kosekan sekan kotangen, mode derajat dan radian kalkulator',
   },
   published: '2026-10-24',
   updated: '2026-10-24',
@@ -28,7 +28,7 @@ export const meta: ArticleMeta = {
   about: [
     { name: { en: 'Trigonometry', id: 'Trigonometri' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Trigonometry', id: 'https://id.wikipedia.org/wiki/Trigonometri' } },
     { name: { en: 'Unit circle', id: 'Lingkaran satuan' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Unit_circle', id: 'https://id.wikipedia.org/wiki/Lingkaran_satuan' } },
-    { name: { en: 'Trigonometric identities', id: 'Identitas trigonometri' }, sameAs: { en: 'https://en.wikipedia.org/wiki/List_of_trigonometric_identities', id: 'https://id.wikipedia.org/wiki/Identitas_trigonometri' } },
+    { name: { en: 'Sine and cosine', id: 'Sinus dan kosinus' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Sine_and_cosine', id: 'https://id.wikipedia.org/wiki/Sinus' } },
     { name: { en: 'Sine wave', id: 'Gelombang sinus' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Sine_wave', id: 'https://id.wikipedia.org/wiki/Gelombang_sinus' } },
   ],
 }

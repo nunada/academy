@@ -57,7 +57,8 @@
     "check:angles": "node tools/check-angles.mjs",
     "check:texspeech": "node tools/check-texspeech.mjs",
     "check:construct": "node tools/check-construct.mjs",
-    "check:trigbasic": "node tools/check-trigbasic.mjs"
+    "check:trigbasic": "node tools/check-trigbasic.mjs",
+    "check:trigident": "node tools/check-trigident.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

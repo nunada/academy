@@ -1209,4 +1209,39 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Pilih salah satu dari sebelas identitas yang benar atau enam yang menggoda tetapi salah, gerakkan sudutnya, dan bandingkan kedua ruas pada semua 360 derajat bulat: identitas tidak pernah gagal, dan yang salah gagal pada contoh penyangkal.',
     },
   },
+  idtest: {
+    title: { en: 'Interactive: test an identity before you prove it', id: 'Interaktif: uji sebuah identitas sebelum membuktikannya' },
+    description: {
+      en: 'Type the two sides of a claimed identity and compare them at hundreds of angles: you get a counterexample if it is false, or a note when the sides agree only where both are defined.',
+      id: 'Ketik kedua ruas sebuah identitas yang diklaim dan bandingkan pada ratusan sudut: Anda mendapat contoh penyangkal bila salah, atau catatan bila kedua ruas sama hanya di tempat keduanya terdefinisi.',
+    },
+  },
+  idproof: {
+    title: { en: 'Interactive: proofs, one line at a time', id: 'Interaktif: pembuktian, satu baris demi satu baris' },
+    description: {
+      en: 'Nine proofs of identities, from tan x + cot x = sec x csc x to sin 3x, each shown line by line with the reason for every step, and every line checked against the one before it.',
+      id: 'Sembilan pembuktian identitas, dari tan x + cot x = sec x csc x sampai sin 3x, masing-masing ditampilkan baris demi baris dengan alasan setiap langkah, dan setiap baris diperiksa terhadap baris sebelumnya.',
+    },
+  },
+  idrotate: {
+    title: { en: 'Interactive: the sum formula as a rotation', id: 'Interaktif: rumus jumlah sebagai rotasi' },
+    description: {
+      en: 'Turn the point at x through y on the unit circle and see its new coordinates built from the four products cos x cos y, sin x sin y, sin x cos y and cos x sin y.',
+      id: 'Putar titik pada x sebesar y pada lingkaran satuan dan lihat koordinat barunya tersusun dari empat hasil kali cos x cos y, sin x sin y, sin x cos y, dan cos x sin y.',
+    },
+  },
+  idexact: {
+    title: { en: 'Interactive: exact values from the formulas', id: 'Interaktif: nilai eksak dari rumus-rumus' },
+    description: {
+      en: 'Pick 15°, 75°, 105°, 165°, 22.5°, 67.5°, 18°, 36°, 54° or 72° and read how the sum, difference and half-angle formulas give its sine, cosine and tangent exactly.',
+      id: 'Pilih 15°, 75°, 105°, 165°, 22,5°, 67,5°, 18°, 36°, 54°, atau 72° dan baca bagaimana rumus jumlah, selisih, dan sudut paruh memberi sinus, kosinus, dan tangennya secara eksak.',
+    },
+  },
+  idharmonic: {
+    title: { en: 'Interactive: a sin x + b cos x as one wave', id: 'Interaktif: a sin x + b cos x sebagai satu gelombang' },
+    description: {
+      en: 'Choose a and b and see a sin x + b cos x become R sin(x + φ), with the amplitude R, the shift φ, the two curves lying on top of each other, and the solutions of the equation for any value.',
+      id: 'Pilih a dan b dan lihat a sin x + b cos x menjadi R sin(x + φ), dengan amplitudo R, pergeseran φ, kedua kurva saling menumpuk, dan penyelesaian persamaan untuk nilai apa pun.',
+    },
+  },
 }

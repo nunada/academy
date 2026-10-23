@@ -196,6 +196,11 @@ export type WidgetName =
   | 'trigequation'
   | 'trigwave'
   | 'trigidentity'
+  | 'idtest'
+  | 'idproof'
+  | 'idrotate'
+  | 'idexact'
+  | 'idharmonic'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */
