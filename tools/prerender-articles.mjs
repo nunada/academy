@@ -368,10 +368,11 @@ for (const a of articles) {
     )
   }
 }
-write(
-  'sitemap.xml',
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${entries.join('\n')}\n</urlset>\n`,
-)
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${entries.join('\n')}\n</urlset>\n`
+write('sitemap.xml', sitemap)
+// The same file under a second name, only for Search Console: when it reports "Sitemap could not be read" for sitemap.xml and the file
+// is fine, deleting that entry and submitting this one gets past the stuck status. robots.txt keeps naming sitemap.xml.
+write('sitemap-1.xml', sitemap)
 
 /* ----------------------------------------------------------------- robots */
 
