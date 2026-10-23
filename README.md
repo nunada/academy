@@ -29,6 +29,10 @@ semua yang benar, dan tabel Benar/Salah. Lihat [Kursus TKA](#kursus-tka).
 menyusun blok dan seorang robot menjalankannya di peta. 4 modul, 16 pelajaran, 8
 proyek. Lihat [Kursus Code Blocks](#kursus-code-blocks).
 
+**Artikel.** 39 penjelasan yang berdiri sendiri, terbuka tanpa akun, dengan
+widget interaktif, dua bahasa, dan HTML statis untuk mesin pencari. Lihat
+[Artikel](#artikel).
+
 Katalog dan halaman depan memisahkan keduanya: matematika satu baris, pemrograman
 satu baris lagi. `CourseInfo.track` yang menentukannya, dan itu pertanyaan yang
 berbeda dari `language` — ketiga kursus Python-bercita-rasa-matematika tetap masuk
@@ -943,12 +947,26 @@ kebalikan dari kursus. Daftarnya di `/articles` (Inggris) dan `/artikel`
 itu dua halaman. Alamat menentukan bahasa saat orang datang, dan tombol EN/ID di
 halaman artikel memindahkan ke alamat saudaranya.
 
-**Berkas.** Semuanya di `src/content/articles/`: `<id>.meta.ts` (judul,
-deskripsi, tag, kata kunci, tanggal), `<id>.ts` (isi), `tags.ts`, `widgets.ts`,
-dan `index.ts` yang memuat dua tabel — daftar metadata (dimuat sekaligus) dan
-daftar pemuat isi (dimuat per artikel, supaya membuka satu artikel tidak
-mengunduh lima puluh). Menambah artikel berarti dua berkas baru dan satu baris
-di tiap tabel.
+Saat ini ada **39 artikel** di dua jalur (`track`): 34 matematika (bilangan,
+aljabar, barisan dan deret, geometri, sudut, kalkulus dari garis singgung sampai
+metode Newton dan optimasi, Fibonacci, LaTeX) dan 5 pemrograman (bilangan biner,
+bilangan floating point, notasi Big-O, pencarian biner dan pengurutan, Menara
+Hanoi). Daftarnya bisa disaring per jalur dan tag, dan dicari (lihat *Pencarian*
+di bawah).
+
+**Berkas.** Semuanya di `src/content/articles/`:
+
+| Berkas | Isinya |
+| --- | --- |
+| `<id>.meta.ts` | metadata: `id`, `slug` per bahasa, `title`, `seoTitle` (untuk judul panjang), `description`, `track` (`math` / `code`), `tags`, `level`, `keywords`, `published`, `updated`, `readingMinutes`, dan `about` (entitas yang dibahas, masing-masing dengan tautan `sameAs` ke Wikipedia) |
+| `<id>.ts` | isi: jawaban singkat, poin penting, bagian-bagian, FAQ, referensi |
+| `tags.ts` | daftar tag dan namanya di kedua bahasa; ganti nama di sini sekali |
+| `widgets.ts` | judul dan deskripsi tiap widget (dipakai halaman statis) |
+| `covers.ts` | sampul tiap artikel |
+| `index.ts` | dua tabel: daftar metadata (dimuat sekaligus, terbaru di depan) dan daftar pemuat isi (dimuat per artikel, supaya membuka satu artikel tidak mengunduh seluruhnya) |
+
+Menambah artikel berarti dua berkas baru, satu baris di tiap tabel `index.ts`,
+satu sampul di `covers.ts`, dan — bila ada widget baru — komponennya.
 
 **Isi sebuah artikel**, berurutan: *jawaban singkat* (2–3 kalimat yang bisa
 berdiri sendiri — inilah yang dikutip cuplikan unggulan dan jawaban AI), poin
@@ -960,13 +978,26 @@ yang sama dengan pelajaran: paragraf, daftar, tabel, `$rumus$`), `callout`,
 **Aktivitas interaktif** ada dua macam. `activity` memakai ulang langkah
 pelajaran (`quiz`, `multi`, `judge`, `fill`, `order`, `math`) tanpa heart dan
 tanpa XP: salah tidak merugikan, dan yang selesai bisa diulang. `widget` adalah
-komponen khusus di `components/article/Widgets.tsx` — untuk artikel pertama:
-diagram himpunan bilangan, pengelompokan bilangan, pecahan ke desimal, desimal
-berulang ke pecahan, penebak digit √2, titik tengah, pembuat interval, dan
-perbandingan floating point. Hitungannya memakai BigInt (`lib/realnum.ts`)
-supaya yang diperlihatkan benar-benar eksak. Widget baru: tulis komponennya,
-tambahkan namanya ke `WidgetName` dan satu entri ke `WIDGETS` (judul dan
-deskripsinya dipakai halaman statis).
+komponen khusus; kini ada lebih dari 160, dikelompokkan per artikel
+(`components/article/RationalWidgets.tsx`, `SortingWidgets.tsx`,
+`HanoiWidgets.tsx`, dan seterusnya) dengan alat bersama di `widgetKit.tsx` dan
+daftar pemetanya di `Widgets.tsx`. Contohnya: diagram himpunan bilangan, pecahan
+ke desimal, pengubah basis dan bit, deret aritmetika dan geometri, penggambar
+garis singgung, pengurut langkah demi langkah, pemecah Menara Hanoi, dan
+pengamat galat floating point. Hitungannya tidak ditulis di komponen, melainkan
+di modul `lib/` (`realnum.ts` memakai BigInt supaya yang diperlihatkan benar-benar
+eksak; lalu `hanoi.ts`, `sorting.ts`, `newton.ts`, `angles.ts`, dan lainnya),
+supaya bisa diuji tanpa browser. Widget baru: tulis komponennya, tambahkan
+namanya ke `WidgetName` dan satu entri ke `WIDGETS` (judul dan deskripsinya
+dipakai halaman statis).
+
+**Sampul.** Tiap artikel punya gambar kecil dari subjeknya sendiri — garis
+bilangan dengan π dan √2, persegi pada sisi miring, garis singgung pada parabola.
+`covers.ts` menggambarnya sebagai string SVG (bukan pohon React) supaya satu
+gambar melayani dua tempat: halaman daftar yang berjalan dan langkah build yang
+menulis HTML statis daftarnya. Warnanya kelas CSS, jadi mengikuti tema terang
+dan gelap; teks di dalamnya hanya simbol dan angka sehingga tak perlu
+diterjemahkan. Artikel tanpa sampul mendapat gambar `generic`.
 
 **Menulis.** Prosa ditulis di antara backtick dengan TeX apa adanya (`\frac`
 tidak perlu digandakan) lewat tag `T`; tanda kode di dalamnya adalah `´`, bukan
@@ -990,8 +1021,18 @@ yang sama yang dipakai halaman saat berjalan (`lib/useSeo.ts`), jadi keduanya
 tidak bisa berbeda. Alamat canonical berakhir dengan garis miring, karena begitu
 alamat yang dijawab 200 oleh hosting statis.
 
-Dua hal yang perlu diketahui. Alamat situs diambil dari `SITE_URL` bila ada,
-bila tidak dari `GITHUB_REPOSITORY`; kalau situs memakai domain sendiri, isi
+**Gambar bagikan.** Facebook, WhatsApp, LinkedIn, dan X memerlukan berkas raster
+untuk `og:image`, bukan SVG. Maka `tools/og-image.mjs` menggambar kartu 1200×630
+(merek dan judul di kiri, sampul artikel di kanan, alamat dan satu baris
+keterangan di bawah) dan merasterisasinya dengan `@resvg/resvg-js` saat build.
+Hasilnya `og/<bahasa>/<id>.png` untuk tiap artikel dan bahasa, `og/<bahasa>/articles.png`
+untuk daftar, dan `og/default.png` untuk halaman lain; kartu Twitter memakai
+`summary_large_image` bila ada gambarnya. Font diambil dari mesin yang membangun
+(Segoe UI atau Georgia di Windows dan macOS; DejaVu atau Liberation di runner
+Ubuntu milik workflow deploy).
+
+Dua hal yang perlu diketahui. Alamat situs diambil dari `SITE_URL` bila ada
+(situs ini memakai `nunada.my.id`), bila tidak dari `GITHUB_REPOSITORY`; kalau situs memakai domain sendiri, isi
 *Repository variable* `SITE_URL` di GitHub. Dan `robots.txt` hanya berlaku di
 akar sebuah host: di situs proyek GitHub Pages (`user.github.io/repo/`) berkas
 itu tidak dibaca perayap, jadi kirim `sitemap.xml` sendiri lewat Google Search
@@ -1007,6 +1048,36 @@ ketikan, dan semua kata kueri harus cocok. Daftar bisa disaring per jalur dan
 tag, dan tombol `/` memindahkan fokus ke kotak cari. Pencarian teks penuh, bila
 nanti perlu, ditambahkan sebagai kolom `body` berbobot rendah dari ekstrak saat
 build.
+
+**Aksesibilitas.** Rumus digambar sebagai MathML, yang tidak dibaca sama baik oleh
+semua pasangan browser dan pembaca layar. Karena itu `lib/texspeech.ts` mengubah
+tiap rumus menjadi kata-kata (`\frac{a+b}{2}` menjadi "fraction, a plus b, over 2,
+end fraction", dan padanannya dalam bahasa Indonesia), dan komponen rumus menaruhnya
+di `aria-label` pada pembungkus `role="math"`, sehingga semua pembaca layar
+mengucapkan hal yang sama. Selain itu situs punya tautan *lompat ke konten*,
+pengumuman perubahan halaman, gaya fokus yang jelas, dan label pada widget.
+
+**Pemeriksa.** Selain `npm run check:articles` (yang memeriksa semua artikel
+sekaligus), tiap artikel dengan hitungan di balik widget-nya punya pemeriksa
+sendiri, `npm run check:<topik>` — misalnya `check:hanoi`, `check:sorting`,
+`check:newton`, `check:angles`, `check:fibonacci`, `check:bigo`, `check:latex`.
+Pemeriksa itu membandingkan modul `lib/` dengan acuan yang **tidak memakai kode
+yang diuji**: rekursi Python, pencarian menyeluruh (BFS) atas semua posisi,
+rumus tertutup yang ditulis ulang, atau bilangan yang dikenal dari OEIS.
+`check:texspeech` menguji pengucapan rumus, dan `check:articlecpp` menjalankan
+contoh C++ di dalam artikel.
+
+**Alur menambah artikel.**
+
+1. Tulis modul hitungannya di `lib/` bila artikel punya widget yang menghitung,
+   dan pemeriksanya di `tools/check-<topik>.mjs` (tambahkan skrip `check:<topik>`
+   ke `package.json`).
+2. Tulis `<id>.meta.ts` dan `<id>.ts`, lalu daftarkan di kedua tabel `index.ts`.
+3. Tambahkan sampul di `covers.ts`, serta widget di `components/article/`,
+   `WidgetName`, dan `WIDGETS` bila ada.
+4. Jalankan `npm run check:articles`, `npm run check:texspeech`, pemeriksa topiknya,
+   `npx tsc -b`, dan `npm run build` (langkah terakhir ini membangun HTML statis,
+   peta situs, `llms.txt`, dan gambar bagikan).
 
 ## Playground
 
@@ -1044,6 +1115,7 @@ src/
     types.ts        model CourseInfo / Course → Module → Submodule → Lesson → Step
     catalog.ts      metadata kursus & jalur karier, dan pemuat malas kurikulumnya
     trophies.ts     trofi statis
+    articles/       39 artikel: <id>.meta.ts + <id>.ts, tags, widgets, covers, index
     python/         kursus Python: m1-basics … m9-private-apis
     html/           kursus HTML: m1-document … m4-semantics
     css/            kursus CSS: m1-rules … m4-states
@@ -1076,7 +1148,8 @@ src/
                     ResultTable.tsx (kisi hasil SQL),
                     CompileReport.tsx (keberatan kompiler TypeScript),
                     GamePreview.tsx (kanvas dan loop bingkainya),
-                    BlocksBoard.tsx (penyunting blok dan peta robot)
+                    BlocksBoard.tsx (penyunting blok dan peta robot),
+                    article/ (blok artikel dan widget interaktifnya)
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
                     Project, Playground, Leaderboard, Profile, Certificate,
                     Teacher (halaman Kelas, hanya untuk akun guru),
@@ -1087,6 +1160,11 @@ supabase/reports.sql  capaian tiap pembelajar, untuk SQL Editor
 tools/check-curriculum.mjs  menghitung kurikulum sungguhan lalu mencocokkannya
 tools/audit-course.mjs      memeriksa kursus persiapan TKA (petunjuk, gambar, pilihan)
 tools/check-blocks.mjs      menjalankan solusi tiap level robot di kursus Code Blocks
+tools/check-articles.mjs    memeriksa semua artikel (SEO, rumus, latihan, paritas EN/ID)
+tools/check-<topik>.mjs     menguji hitungan di balik widget satu artikel (npm run check:<topik>)
+tools/check-texspeech.mjs   menguji pengucapan rumus untuk pembaca layar
+tools/prerender-articles.mjs HTML statis, peta situs, llms.txt, dan gambar bagikan saat build
+tools/og-image.mjs          kartu 1200×630 untuk og:image, dirasterisasi dengan resvg
 tools/check-rpc-grants.mjs  siapa boleh memanggil RPC apa, diuji ke proyek langsung
 ```
 
