@@ -42,7 +42,15 @@ const ok = (cond, what) => {
   checks++
   if (!cond) fail(what)
 }
-const rnd = (a, b) => a + Math.random() * (b - a)
+// a reproducible random source (mulberry32): every run checks the same cases; LH_SEED=n tries other ones
+let seed = Number(process.env.LH_SEED ?? 20261024) | 0
+const rand = () => {
+  seed = (seed + 0x6d2b79f5) | 0
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed)
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+}
+const rnd = (a, b) => a + rand() * (b - a)
 const PI = Math.PI
 const parsePoint = (a) => (a === 'inf' ? Infinity : a === '-inf' ? -Infinity : Number(a))
 const sideOf = (d) => (d === '+' ? 'plus' : d === '-' ? 'minus' : 'both')
@@ -194,7 +202,7 @@ for (const [f, g, a, d, want] of SYMPY.power) {
 {
   for (let t = 0; t < 300; t++) {
     const pp = Math.round(rnd(1, 6) * 4) / 4
-    const q = Math.round(rnd(0.5, 5) * 4) / 4 * (Math.random() < 0.5 ? 1 : -1)
+    const q = Math.round(rnd(0.5, 5) * 4) / 4 * (rand() < 0.5 ? 1 : -1)
     let r = M.lhopital(`e^(${pp}*x)-e^(${q}*x)`, 'x', 0)
     ok(r.ok && matches(answer(r), pp - q), `(e^(${pp}x) − e^(${q}x))/x → ${pp - q}: got ${r.ok ? show(answer(r)) : r.error}`)
     r = M.lhopital(`sin(${pp}*x)`, `sin(${Math.abs(q)}*x)`, 0)
@@ -231,14 +239,13 @@ for (const [f, g, a, d, want] of SYMPY.power) {
   ok(M.cauchy('x^2', 'x^2', -1, 1).ok === false || M.cauchy('x^2', 'x^2', -1, 1).gPrimeNonzero === false, 'g′ = 2x vanishes inside (−1, 1): the hypothesis fails')
   const c4 = M.cauchy('x', 'x^2', -1, 1)
   ok(c4.ok && c4.gPrimeNonzero === false, 'g(x) = x² on [−1, 1]: g′ is zero at 0')
-  // random pairs: f polynomial, g = e^(kx) + x with g′ > 0
-  for (let t = 0; t < 300; t++) {
-    const u = rnd(-3, 3)
-    const v = rnd(-3, 3)
-    const w = rnd(-2, 2)
-    const k = rnd(0.2, 1.5)
-    const a = rnd(-2, 1)
-    const b = a + rnd(0.5, 3)
+  // random pairs: f polynomial, g = e^(kx) + x with g′ > 0. The first pair is a fixed regression case (LH_SEED=33 once drew it):
+  // f′ − m g′ has a second zero 0.0002 below b, in the last half cell of the tool's scan, which the tool used to skip.
+  const FIXED = [0.2163721933029592, -1.1526546394452453, -1.498770055361092, 0.8907241164473818, -0.9877728563733399, 1.6441487210104242]
+  for (let t = -1; t < 300; t++) {
+    const drawn = t < 0 ? FIXED : [rnd(-3, 3), rnd(-3, 3), rnd(-2, 2), rnd(0.2, 1.5), rnd(-2, 1), rnd(0.5, 3)]
+    const [u, v, w, k, a] = drawn
+    const b = t < 0 ? drawn[5] : a + drawn[5]
     const f = (x) => u * x ** 3 + v * x * x + w * x
     const df = (x) => 3 * u * x * x + 2 * v * x + w
     const g = (x) => Math.exp(k * x) + x

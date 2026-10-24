@@ -300,12 +300,17 @@ export function cauchy(fSrc: string, gSrc: string, a: number, b: number): Cauchy
   // F(c) = f′(c) − slope g′(c) is zero where f′/g′ equals the slope
   const F = (x: number) => evalFloat(df, x) - slope * evalFloat(dg, x)
   const points: number[] = []
-  let prev = Math.sign(F(a + (b - a) / (2 * N)))
-  for (let i = 1; i < N; i++) {
-    const x1 = a + ((b - a) * (i + 0.5)) / N
+  // cell midpoints, plus a sample just inside each end so that a root in the first or last half cell is bracketed too
+  const edge = (b - a) * 1e-9
+  const xs = [a + edge]
+  for (let i = 0; i < N; i++) xs.push(a + ((b - a) * (i + 0.5)) / N)
+  xs.push(b - edge)
+  let prev = Math.sign(F(xs[0]))
+  for (let i = 1; i < xs.length; i++) {
+    const x1 = xs[i]
     const s = Math.sign(F(x1))
     if (s !== 0 && prev !== 0 && s !== prev) {
-      let lo = a + ((b - a) * (i - 0.5)) / N
+      let lo = xs[i - 1]
       let hi = x1
       let flo = F(lo)
       for (let k = 0; k < 100; k++) {
