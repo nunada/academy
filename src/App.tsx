@@ -20,6 +20,7 @@ import Teacher from './pages/Teacher'
 import ResetPassword from './pages/ResetPassword'
 import Help from './pages/Help'
 import Articles from './pages/Articles'
+import About from './pages/About'
 
 // An article pulls in the figure drawing and the interactive widgets; nobody
 // who is not reading one needs them.
@@ -64,6 +65,9 @@ export default function App() {
         {/* Open to everybody, signed in or not: a visitor deciding whether to
             sign up is exactly who the guide is for. */}
         <Route path="/help" element={<Help />} />
+        {/* What the site is, one address per language like an article: /about and /tentang. Open to everybody. */}
+        <Route path="/about" element={<About routeLang="en" />} />
+        <Route path="/tentang" element={<About routeLang="id" />} />
         {/* Articles are public and unordered, unlike a course, and each has an
             address per language: /articles/real-numbers, /artikel/bilangan-real. */}
         <Route path="/articles" element={<Articles routeLang="en" />} />

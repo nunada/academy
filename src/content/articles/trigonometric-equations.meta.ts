@@ -19,7 +19,7 @@ export const meta: ArticleMeta = {
   tags: ['geometry', 'algebra', 'computing', 'python', 'javascript'],
   level: { en: 'Intermediate', id: 'Menengah' },
   keywords: {
-    en: 'trigonometric equations, solve trig equations, general solution of a trigonometric equation, solutions in an interval, sin 2x = 1/2, multiple angle equations, quadratic in sine, 2 sin^2 x - sin x - 1 = 0, why not divide by cos x, lost solutions, extraneous roots, squaring both sides, sin x + cos x = 1, a sin x + b cos x = c, no solution sin x = 2, cos x = x, solve trig equation numerically, bisection method, Dottie number, Kepler equation, how many solutions',
+    en: 'trigonometric equations, solve trigonometric equations, general solution of a trigonometric equation, solutions in an interval, sin 2x = 1/2, multiple angle equations, quadratic in sine, 2 sin^2 x - sin x - 1 = 0, why not divide by cos x, lost solutions, extraneous roots, squaring both sides, sin x + cos x = 1, a sin x + b cos x = c, no solution sin x = 2, cos x = x, solve trig equation numerically, bisection method, Dottie number, Kepler equation, how many solutions',
     id: 'persamaan trigonometri, menyelesaikan persamaan trigonometri, penyelesaian umum persamaan trigonometri, penyelesaian dalam interval, sin 2x = 1/2, persamaan sudut kelipatan, kuadrat dalam sinus, 2 sin^2 x - sin x - 1 = 0, mengapa tidak boleh membagi dengan cos x, penyelesaian yang hilang, akar palsu, mengkuadratkan kedua ruas, sin x + cos x = 1, a sin x + b cos x = c, tak ada penyelesaian sin x = 2, cos x = x, menyelesaikan persamaan trigonometri secara numerik, metode bisection, bilangan Dottie, persamaan Kepler, ada berapa penyelesaian',
   },
   published: '2026-10-26',

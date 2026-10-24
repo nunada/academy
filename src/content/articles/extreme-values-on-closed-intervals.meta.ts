@@ -19,8 +19,8 @@ export const meta: ArticleMeta = {
   tags: ['calculus', 'proof', 'computing'],
   level: { en: 'Intermediate', id: 'Menengah' },
   keywords: {
-    en: 'extreme values, absolute maximum and minimum, global maximum, local maximum and minimum, extreme value theorem, critical points, critical number, closed interval method, finding absolute extrema, first derivative theorem for local extreme values, Fermat theorem stationary points, maximum volume of a box, peak alternating current, maximum height of a projectile, cusp and corner extreme, sympy maximum minimum interval',
-    id: 'nilai ekstrem, maksimum dan minimum mutlak, maksimum global, maksimum dan minimum lokal, teorema nilai ekstrem, titik kritis, bilangan kritis, metode selang tertutup, mencari ekstrem mutlak, teorema turunan pertama untuk ekstrem lokal, teorema Fermat titik stasioner, volume kotak maksimum, arus bolak-balik puncak, tinggi maksimum peluru, ekstrem pada sudut dan titik puncak, sympy maksimum minimum selang',
+    en: 'extreme values, absolute maximum and minimum, global maximum, local maximum and minimum, extreme value theorem, critical points, critical number, closed interval method, finding absolute extrema, first derivative theorem for local extreme values, Fermat theorem stationary points, maximum volume of a box, peak alternating current, maximum height of a thrown ball, cusp and corner extreme, sympy maximum minimum interval',
+    id: 'nilai ekstrem, maksimum dan minimum mutlak, maksimum global, maksimum dan minimum lokal, teorema nilai ekstrem, titik kritis, bilangan kritis, metode selang tertutup, mencari ekstrem mutlak, teorema turunan pertama untuk ekstrem lokal, teorema Fermat titik stasioner, volume kotak maksimum, arus bolak-balik puncak, tinggi maksimum bola yang dilempar, ekstrem pada sudut dan titik puncak, sympy maksimum minimum selang',
   },
   published: '2026-10-21',
   updated: '2026-10-21',

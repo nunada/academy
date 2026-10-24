@@ -19,8 +19,8 @@ export const meta: ArticleMeta = {
   tags: ['computing', 'proof', 'python', 'javascript'],
   level: { en: 'Intermediate', id: 'Menengah' },
   keywords: {
-    en: 'tower of hanoi, tower of hanoi solution, tower of hanoi recursion, tower of hanoi minimum moves, tower of hanoi 2^n - 1, tower of hanoi algorithm, tower of hanoi python, tower of hanoi iterative, tower of hanoi four pegs, frame-stewart conjecture, tower of hanoi gray code, tower of hanoi sierpinski triangle, tower of hanoi 64 discs legend, recursion example',
-    id: 'menara hanoi, solusi menara hanoi, rekursi menara hanoi, langkah minimum menara hanoi, menara hanoi 2^n - 1, algoritma menara hanoi, menara hanoi python, menara hanoi iteratif, menara hanoi empat tiang, dugaan frame-stewart, menara hanoi kode gray, menara hanoi segitiga sierpinski, legenda menara hanoi 64 cakram, contoh rekursi',
+    en: 'tower of hanoi, tower of hanoi solution, tower of hanoi recursion, tower of hanoi minimum moves, tower of hanoi 2^n - 1, tower of hanoi recursive solution, tower of hanoi python, tower of hanoi iterative, tower of hanoi four pegs, frame-stewart conjecture, tower of hanoi gray code, tower of hanoi sierpinski triangle, tower of hanoi 64 discs legend, recursion example',
+    id: 'menara hanoi, solusi menara hanoi, rekursi menara hanoi, langkah minimum menara hanoi, menara hanoi 2^n - 1, solusi rekursif menara hanoi, menara hanoi python, menara hanoi iteratif, menara hanoi empat tiang, dugaan frame-stewart, menara hanoi kode gray, menara hanoi segitiga sierpinski, legenda menara hanoi 64 cakram, contoh rekursi',
   },
   published: '2026-10-22',
   updated: '2026-10-22',

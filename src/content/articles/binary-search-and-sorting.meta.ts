@@ -19,8 +19,8 @@ export const meta: ArticleMeta = {
   tags: ['computing', 'python', 'javascript', 'proof'],
   level: { en: 'Intermediate', id: 'Menengah' },
   keywords: {
-    en: 'binary search, binary search algorithm, how binary search works, lower bound and upper bound, bisect_left bisect_right, sorting algorithms, selection sort insertion sort bubble sort, merge sort, quicksort, heapsort, stable sort, inversions, binary search on the answer, bisection method, timsort, sort in python and javascript',
-    id: 'pencarian biner, algoritma pencarian biner, cara kerja pencarian biner, batas bawah dan batas atas, bisect_left bisect_right, algoritma pengurutan, selection sort insertion sort bubble sort, merge sort, quicksort, heapsort, pengurutan stabil, inversi, pencarian biner pada jawaban, metode bisection, timsort, mengurutkan di python dan javascript',
+    en: 'binary search, binary search algorithm, how binary search works, lower bound and upper bound, bisect_left bisect_right, sorting algorithms, selection sort insertion sort bubble sort, merge sort, quicksort, heapsort, stable sort, inversions, binary search on the answer, bisection method, timsort, sort in python and javascript, how to avoid off by one errors in binary search, how to choose a sorting algorithm, difference between quicksort and merge sort',
+    id: 'pencarian biner, algoritma pencarian biner, cara kerja pencarian biner, batas bawah dan batas atas, bisect_left bisect_right, algoritma pengurutan, selection sort insertion sort bubble sort, merge sort, quicksort, heapsort, pengurutan stabil, inversi, pencarian biner pada jawaban, metode bisection, timsort, mengurutkan di python dan javascript, cara menghindari galat selisih satu pada pencarian biner, cara memilih algoritma pengurutan, beda quicksort dan merge sort',
   },
   published: '2026-10-22',
   updated: '2026-10-22',

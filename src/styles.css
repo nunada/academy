@@ -1640,3 +1640,11 @@ main:focus, .page:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+/* The line of links at the bottom of every page: what the site is, the articles, the guide. Colors are the semantic tokens, so both themes follow. */
+.sitefoot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 18px 20px 26px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+.sitefoot nav { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.sitefoot a { color: var(--muted); }
+.sitefoot a:hover { color: var(--brand); }
+.about .artcard h3 { margin: 0; font-size: 1.05rem; }
+.about .artcard p { margin: 4px 0 0; }

@@ -19,8 +19,8 @@ export const meta: ArticleMeta = {
   tags: ['numbers', 'proof', 'computing', 'python', 'javascript'],
   level: { en: 'Intermediate', id: 'Menengah' },
   keywords: {
-    en: 'fibonacci numbers, fibonacci sequence, fibonacci formula, binet formula, nth fibonacci number, fibonacci in python, fast doubling fibonacci, matrix exponentiation fibonacci, cassini identity, zeckendorf theorem, pisano period, fibonacci mod m, climbing stairs fibonacci, fibonacci in nature, fibonacci spiral, fibonacci and euclid algorithm, lucas numbers',
-    id: 'bilangan fibonacci, barisan fibonacci, rumus fibonacci, rumus binet, suku ke-n fibonacci, fibonacci di python, penggandaan cepat fibonacci, perpangkatan matriks fibonacci, identitas cassini, teorema zeckendorf, periode pisano, fibonacci mod m, menaiki tangga fibonacci, fibonacci di alam, spiral fibonacci, fibonacci dan algoritma euclid, bilangan lucas',
+    en: 'fibonacci numbers, fibonacci sequence, fibonacci formula, binet formula, nth fibonacci number, fibonacci in python, fast doubling fibonacci, matrix exponentiation fibonacci, cassini identity, zeckendorf theorem, pisano period, climbing stairs fibonacci, fibonacci in nature, fibonacci spiral, fibonacci and euclid algorithm, lucas numbers, nth fibonacci number formula, how to calculate fibonacci numbers quickly, ratio of fibonacci numbers and the golden ratio, ways to climb n stairs with one or two steps',
+    id: 'bilangan fibonacci, barisan fibonacci, rumus fibonacci, rumus binet, suku ke-n fibonacci, fibonacci di python, penggandaan cepat fibonacci, perpangkatan matriks fibonacci, identitas cassini, teorema zeckendorf, periode pisano, menaiki tangga fibonacci, fibonacci di alam, spiral fibonacci, fibonacci dan algoritma euclid, bilangan lucas, rumus bilangan fibonacci ke-n, cara menghitung bilangan fibonacci dengan cepat, perbandingan bilangan fibonacci dan rasio emas, cara menaiki n anak tangga dengan satu atau dua langkah',
   },
   published: '2026-10-22',
   updated: '2026-10-22',

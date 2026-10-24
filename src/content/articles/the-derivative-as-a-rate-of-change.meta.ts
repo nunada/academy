@@ -19,7 +19,7 @@ export const meta: ArticleMeta = {
   tags: ['calculus', 'computing'],
   level: { en: 'Intermediate', id: 'Menengah' },
   keywords: {
-    en: 'derivative as a rate of change, velocity and speed, acceleration, jerk, free fall equation, object thrown upward, displacement and total distance, motion along a line, marginal cost, marginal revenue, marginal profit, marginal tax rate, sensitivity to change, rate of change of area, rate of change of volume, velocity from position data, np gradient, units of a derivative, instantaneous rate of change, speeding up and slowing down',
+    en: 'derivative as a rate of change, velocity and speed, acceleration, jerk, free fall height function, object thrown upward, displacement and total distance, motion along a line, marginal cost, marginal revenue, marginal profit, marginal tax rate, sensitivity to change, rate of change of area, rate of change of volume, velocity from position data, np gradient, units of a derivative, instantaneous rate of change, speeding up and slowing down',
     id: 'turunan sebagai laju perubahan, kecepatan dan laju, percepatan, sentakan, rumus jatuh bebas, benda dilempar ke atas, perpindahan dan jarak total, gerak sepanjang garis lurus, biaya marjinal, pendapatan marjinal, laba marjinal, tarif pajak marjinal, kepekaan terhadap perubahan, laju perubahan luas, laju perubahan volume, kecepatan dari data posisi, np gradient, satuan turunan, laju perubahan sesaat, makin cepat dan makin lambat',
   },
   published: '2026-10-14',

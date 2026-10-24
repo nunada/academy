@@ -19,8 +19,8 @@ export const meta: ArticleMeta = {
   tags: ['calculus', 'computing'],
   level: { en: 'Intermediate', id: 'Menengah' },
   keywords: {
-    en: 'newton method, newton raphson method, how to solve f(x)=0 numerically, newton iteration formula, newton method examples, quadratic convergence, newton method fails, newton method cycle, newton method multiple roots, basin of attraction, newton method square root, babylonian method, reciprocal without division, newton method in python, bisection versus newton, root finding algorithm',
-    id: 'metode newton, metode newton raphson, cara menyelesaikan f(x)=0 secara numerik, rumus iterasi newton, contoh metode newton, konvergensi kuadrat, metode newton gagal, metode newton siklus, metode newton akar ganda, daerah tarikan akar, metode newton akar kuadrat, metode babilonia, kebalikan tanpa pembagian, metode newton di python, bisection dan newton, algoritma pencarian akar',
+    en: 'newton method, newton raphson method, how to solve f(x)=0 numerically, newton iteration formula, newton method examples, quadratic convergence, newton method fails, newton method cycle, newton method multiple roots, basin of attraction, newton method square root, babylonian method, reciprocal without division, newton method in python, bisection method or newton method, root finding algorithm',
+    id: 'metode newton, metode newton raphson, cara menyelesaikan f(x)=0 secara numerik, rumus iterasi newton, contoh metode newton, konvergensi kuadrat, metode newton gagal, metode newton siklus, metode newton akar ganda, daerah tarikan akar, metode newton akar kuadrat, metode babilonia, kebalikan tanpa pembagian, metode newton di python, bisection dan newton, pencarian akar persamaan',
   },
   published: '2026-10-22',
   updated: '2026-10-22',

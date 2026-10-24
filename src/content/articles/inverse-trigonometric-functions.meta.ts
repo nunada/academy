@@ -19,8 +19,8 @@ export const meta: ArticleMeta = {
   tags: ['calculus', 'proof', 'computing'],
   level: { en: 'Intermediate', id: 'Menengah' },
   keywords: {
-    en: 'inverse trigonometric functions, arcsin, arccos, arctan, arccot, arcsec, arccsc, sin inverse, derivative of arcsin, derivative of arctan, derivative of arcsec, derivative of inverse sine, derivative of inverse tangent, domain and range of arcsine, arcsin of sin x, cos of arcsin x, reference triangle, cofunction identities for inverse trig, one over one plus x squared, one over square root of one minus x squared, viewing angle maximum, arctan limit infinity, sympy asin atan',
-    id: 'fungsi trigonometri invers, arcsin, arccos, arctan, arccot, arcsec, arccsc, sin invers, turunan arcsin, turunan arctan, turunan arcsec, turunan invers sinus, turunan invers tangen, domain dan jangkauan arkus sinus, arcsin dari sin x, cos dari arcsin x, segitiga acuan, identitas kofungsi trigonometri invers, satu per satu tambah x kuadrat, satu per akar satu kurang x kuadrat, sudut pandang maksimum, limit arctan tak hingga, sympy asin atan',
+    en: 'inverse trigonometric functions, arcsin, arccos, arctan, arccot, arcsec, arccsc, sin inverse, derivative of arcsin, derivative of arctan, derivative of arcsec, derivative of inverse sine, derivative of inverse tangent, domain and range of arcsine, arcsin of sin x, cos of arcsin x, reference triangle, cofunction identities for inverse trig, one over one plus x squared, one over square root of one minus x squared, largest viewing angle, arctan limit infinity, sympy asin atan',
+    id: 'fungsi trigonometri invers, arcsin, arccos, arctan, arccot, arcsec, arccsc, sin invers, turunan arcsin, turunan arctan, turunan arcsec, turunan invers sinus, turunan invers tangen, domain dan jangkauan arkus sinus, arcsin dari sin x, cos dari arcsin x, segitiga acuan, identitas kofungsi trigonometri invers, satu per satu tambah x kuadrat, satu per akar satu kurang x kuadrat, sudut pandang terbesar, limit arctan tak hingga, sympy asin atan',
   },
   published: '2026-10-18',
   updated: '2026-10-18',

@@ -19,7 +19,7 @@ export const meta: ArticleMeta = {
   tags: ['calculus', 'proof', 'computing'],
   level: { en: 'Intermediate', id: 'Menengah' },
   keywords: {
-    en: 'linearization, linear approximation, tangent line approximation, standard linear approximation, differentials, dy = f prime of x dx, differential of a function, estimating with differentials, approximation error, relative change, percentage change, percentage error in measurement, propagation of error, small angle approximation, one plus x to the k, Newton method as linearization, mass energy equivalence approximation, sympy linearize',
+    en: 'linearization, linear approximation, tangent line approximation, standard linear approximation, differentials, dy = f prime of x dx, differential of a function, estimating with differentials, approximation error, relative change, percentage change, percentage error in measurement, estimate the error in a measurement, small angle approximation, one plus x to the k, Newton method as linearization, mass energy equivalence approximation, sympy linearize',
     id: 'linearisasi, hampiran linear, hampiran garis singgung, hampiran linear baku, diferensial, dy = f aksen x dx, diferensial fungsi, memperkirakan dengan diferensial, galat hampiran, perubahan relatif, perubahan persen, galat persen pengukuran, perambatan galat, hampiran sudut kecil, satu tambah x pangkat k, metode Newton sebagai linearisasi, hampiran kesetaraan massa energi, sympy linearisasi',
   },
   published: '2026-10-20',

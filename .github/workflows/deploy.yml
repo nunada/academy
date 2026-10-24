@@ -332,6 +332,10 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build
 
+      # What the build wrote, read the way a crawler reads it: Article and FAQPage data, hreflang pairs, alt text, the organization entity,
+      # and an answer on the first request.
+      - run: npm run check:seo
+
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

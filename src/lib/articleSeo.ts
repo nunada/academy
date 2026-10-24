@@ -11,6 +11,7 @@
 
 import type { Lang, Loc } from '../content/types'
 import type { Article, ArticleMeta } from '../content/articles/types'
+import { orgRef, websiteId } from './orgSeo'
 
 export const SITE_NAME = 'Nunada Academy'
 
@@ -98,7 +99,7 @@ export function listSeo(site: string, lang: Lang): Seo {
         description,
         url: canonical,
         inLanguage: lang,
-        isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: site },
+        isPartOf: { '@type': 'WebSite', '@id': websiteId(site), name: SITE_NAME, url: site },
       },
       breadcrumbs(site, lang, null),
     ],
@@ -186,8 +187,9 @@ export function articleSeo(a: Article, site: string, lang: Lang): Seo {
       mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
       datePublished: a.published,
       dateModified: a.updated,
-      author: { '@type': 'Organization', name: SITE_NAME, url: site },
-      publisher: { '@type': 'Organization', name: SITE_NAME, url: site },
+      // The organization is described once, in full, on the home page and the About page; here it is a reference to that entity.
+      author: orgRef(site),
+      publisher: orgRef(site),
       keywords: pick(a.keywords, lang),
       articleSection: a.track === 'math' ? (lang === 'id' ? 'Matematika' : 'Mathematics') : 'Coding',
       timeRequired: `PT${a.readingMinutes}M`,

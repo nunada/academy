@@ -63,12 +63,26 @@ fs.writeFileSync(
 export { tagLabel } from '${q('src/content/articles/tags.ts')}'
 export { WIDGETS } from '${q('src/content/articles/widgets.ts')}'
 export { coverSvg } from '${q('src/content/articles/covers.ts')}'
-export * from '${q('src/lib/articleSeo.ts')}'`,
+export * from '${q('src/lib/articleSeo.ts')}'
+export * from '${q('src/lib/aboutSeo.ts')}'
+export * from '${q('src/lib/orgSeo.ts')}'
+export { ABOUT, aboutStats, fillStats } from '${q('src/content/about.ts')}'
+export { ORG } from '${q('src/content/org.ts')}'
+export { COURSES, coursesIn } from '${q('src/content/catalog.ts')}'`,
 )
 const out = path.join(tmp, 'entry.mjs')
-await build({ entryPoints: [entry], bundle: true, format: 'esm', platform: 'node', outfile: out, logLevel: 'error' })
+// The catalog file names the course curricula it loads lazily (`import('./python')`). The About page needs only the catalog's metadata, so those
+// imports are given an empty module instead of pulling a megabyte of lessons into the bundle.
+const stubCurricula = {
+  name: 'stub-curricula',
+  setup(b) {
+    b.onResolve({ filter: /^\.\/[a-z0-9-]+$/ }, (args) => (args.importer.endsWith('catalog.ts') ? { path: args.path, namespace: 'stub' } : undefined))
+    b.onLoad({ filter: /.*/, namespace: 'stub' }, () => ({ contents: 'export const modules = []', loader: 'js' }))
+  },
+}
+await build({ entryPoints: [entry], bundle: true, format: 'esm', platform: 'node', outfile: out, logLevel: 'error', plugins: [stubCurricula] })
 const lib = await import('file://' + out.replace(/\\/g, '/'))
-const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, coverSvg, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER, OG_WIDTH, OG_HEIGHT, ogImageUrl, ogListImageUrl, ogDefaultImageUrl } = lib
+const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, coverSvg, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER, OG_WIDTH, OG_HEIGHT, ogImageUrl, ogListImageUrl, ogDefaultImageUrl, aboutSeo, aboutUrl, ABOUT_PATH, ABOUT, aboutStats, fillStats, ORG, COURSES, coursesIn, organizationNode, websiteNode, homeUrl } = lib
 
 const LANGS = ['en', 'id']
 
@@ -84,8 +98,10 @@ let curLang = 'en'
 
 function inline(text) {
   return text
-    .split(/(\$\$[^$]+\$\$|\$[^$]+\$|`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\(article:[a-z0-9#-]+\))/g)
+    .split(/(\$\$[^$]+\$\$|\$[^$]+\$|`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\(article:[a-z0-9#-]+\)|\[[^\]]+\]\((?:\/[^)\s]*|https?:\/\/[^)\s]+)\))/g)
     .map((part) => {
+      const plainLink = /^\[([^\]]+)\]\((\/[^)\s]*|https?:\/\/[^)\s]+)\)$/.exec(part)
+      if (plainLink) return `<a href="${esc(plainLink[2].startsWith('/') ? SITE + plainLink[2] : plainLink[2])}">${esc(plainLink[1])}</a>`
       const link = /^\[([^\]]+)\]\(article:([a-z0-9-]+)(?:#([a-z0-9-]+))?\)$/.exec(part)
       if (link) {
         const target = articleById(link[2])
@@ -205,14 +221,55 @@ ${a.glossary?.length ? `<section class="artsection" aria-labelledby="glossary"><
 <section class="artsection" aria-labelledby="faq"><h2 id="faq">${t.faq}</h2><div class="faq">${a.faq.map((f) => `<details open><summary>${inline(f.q[lang])}</summary><p>${inline(f.a[lang])}</p></details>`).join('')}</div></section>
 <section class="artsection" aria-labelledby="references"><h2 id="references">${t.refs}</h2><ol class="refs">${a.references.map(refHtml).join('')}</ol></section>
 ${related.length ? `<section class="artsection" aria-labelledby="related"><h2 id="related">${t.related}</h2><ul>${related.map((r) => `<li><a href="${esc(articleUrl(SITE, lang, r))}">${esc(r.title[lang])}</a>: ${esc(r.description[lang])}</li>`).join('')}</ul></section>` : ''}
-</article></div></main>`
+</article></div></main>${footerHtml(lang)}`
 }
 
 function listBodyHtml(lang) {
   const t = T[lang]
   return `<main class="page"><h1>${t.articles}</h1><div class="grid two">${ARTICLES.map(
     (a) => `<a class="card artcard" href="${esc(articleUrl(SITE, lang, a))}"><div class="artcover" aria-hidden="true">${coverSvg(a.id)}</div><span class="small muted">${a.readingMinutes} ${t.minutes}</span><h2>${esc(a.title[lang])}</h2><p class="small">${esc(a.description[lang])}</p></a>`,
-  ).join('')}</div></main>`
+  ).join('')}</div></main>${footerHtml(lang)}`
+}
+
+/* --------------------------------------------------------- footer, about */
+
+const FOOT = {
+  en: { about: 'About', articles: 'Articles', guide: 'Guide', tagline: 'Learn math and coding, step by step.', nav: 'About and links' },
+  id: { about: 'Tentang', articles: 'Artikel', guide: 'Panduan', tagline: 'Belajar matematika dan coding, langkah demi langkah.', nav: 'Tentang dan tautan' },
+}
+
+/** The line of links the running app shows at the bottom of every page, so a crawler that lands on any page can reach the About page. */
+function footerHtml(lang) {
+  const f = FOOT[lang]
+  return `<footer class="sitefoot"><span>© ${new Date().getFullYear()} ${esc(ORG.name)} · ${esc(f.tagline)}</span><nav aria-label="${esc(f.nav)}"><a href="${esc(aboutUrl(SITE, lang))}">${f.about}</a><a href="${esc(listUrl(SITE, lang))}">${f.articles}</a><a href="${esc(SITE)}/help">${f.guide}</a><a href="${esc(ORG.sameAs[0])}">GitHub</a></nav></footer>`
+}
+
+const WORDS = { en: { lessons: 'lessons', projects: 'mini projects' }, id: { lessons: 'pelajaran', projects: 'mini proyek' } }
+
+function courseCardHtml(c, lang) {
+  return `<div class="card" id="course-${esc(c.id)}"><div class="row"><span aria-hidden="true">${esc(c.icon)}</span><div><b>${esc(c.title[lang])}</b><div class="small muted">${esc(c.level[lang])}</div></div></div><p class="small muted">${esc(c.tagline[lang])}</p><div class="row small muted"><span class="pill">${c.lessons} ${WORDS[lang].lessons}</span> <span class="pill">${c.projects} ${WORDS[lang].projects}</span></div></div>`
+}
+
+function aboutBodyHtml(articles, lang) {
+  curLang = lang
+  const stats = aboutStats(COURSES, articles.length)
+  const t = T[lang]
+  const block = (b) => {
+    if (b.kind === 'text') return rich(fillStats(b.text[lang], stats))
+    if (b.kind === 'courses') return `<h3>${esc(b.heading[lang])}</h3><div class="grid two">${coursesIn(b.track).filter((c) => c.available).map((c) => courseCardHtml(c, lang)).join('')}</div>`
+    const newest = [...articles].sort((a, z) => z.published.localeCompare(a.published)).slice(0, b.count)
+    return `<div class="grid two">${newest.map((a) => `<a class="card artcard" href="${esc(articleUrl(SITE, lang, a))}"><h3>${esc(a.title[lang])}</h3><p class="small muted">${esc(a.description[lang])}</p></a>`).join('')}</div>`
+  }
+  const other = OTHER[lang]
+  return `<main class="page article about">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="${esc(SITE)}/">${t.home}</a> › <span>${esc(ABOUT.title[lang])}</span></nav>
+<article class="article-body" lang="${lang}">
+<header><h1>${esc(ABOUT.title[lang])}</h1></header>
+<section class="answerbox" aria-labelledby="quick-answer"><h2 id="quick-answer">${t.quick}</h2><p>${esc(ABOUT.answer[lang])}</p></section>
+${ABOUT.sections.map((s) => `<section class="artsection" aria-labelledby="${s.id}"><h2 id="${s.id}">${esc(s.heading[lang])}</h2>\n${s.blocks.map(block).join('\n')}</section>`).join('\n')}
+<section class="artsection" aria-labelledby="faq"><h2 id="faq">${t.faq}</h2><div class="faq">${ABOUT.faq.map((f) => `<details open><summary>${inline(f.q[lang])}</summary><p>${inline(f.a[lang])}</p></details>`).join('')}</div></section>
+<p class="small muted"><a href="${esc(aboutUrl(SITE, other))}" hreflang="${other}">${t.other}</a></p>
+</article></main>${footerHtml(lang)}`
 }
 
 /* ------------------------------------------------------------- head, page */
@@ -285,13 +342,50 @@ for (const m of ARTICLES) {
 }
 
 let pages = 0
-for (const lang of LANGS) {
-  write(`${LIST_PATH[lang]}/index.html`, page(listSeo(SITE, lang), listBodyHtml(lang)))
+let twins = 0
+let aliases = 0
+
+/** Writes a page at `dir/index.html` and again at `dir.html`.
+ *
+ *  A static host answers `/articles/real-numbers` (no trailing slash) with a 301 to `/articles/real-numbers/` when the page is a folder, and a
+ *  reader or crawler that does not follow redirects gets an empty body on the first request and the page only on the second. With the same file
+ *  also at `real-numbers.html`, the host serves it straight away at the slash-less address, with a 200. Both copies name the slash address as
+ *  canonical, so there is still one page as far as a search engine is concerned. */
+function writeWithTwin(dir, html) {
+  write(`${dir}/index.html`, html)
+  write(`${dir}.html`, html)
   pages++
+  twins++
+}
+
+for (const lang of LANGS) {
+  writeWithTwin(LIST_PATH[lang], page(listSeo(SITE, lang), listBodyHtml(lang)))
+  for (const a of articles) writeWithTwin(`${LIST_PATH[lang]}/${a.slug[lang]}`, page(articleSeo(a, SITE, lang), articleBodyHtml(a, lang)))
+  // The About page, one address per language (/about, /tentang).
+  writeWithTwin(ABOUT_PATH[lang], page(aboutSeo(SITE, lang, COURSES), aboutBodyHtml(articles, lang)))
+}
+
+/* ------------------------------------------------------------ short aliases */
+
+// People type and share `nunada.my.id/real-numbers`. There is no such route in the app, and the host would answer 404 and leave the work to a
+// script in the 404 page: the reader's browser gets there on a second request, a crawler does not. So the short address is a real page too: the
+// full article, one request, with the real address as canonical, and a line of script that moves a browser to the real address.
+const TAKEN = new Set(['articles', 'artikel', 'about', 'tentang', 'help', 'learn', 'catalog', 'course', 'auth', 'playground', 'leaderboard', 'profile', 'u', 'teacher', 'certificate', 'reset-password', 'og', 'assets', 'sitemap', 'sitemap-1', 'robots', 'llms', 'llms-full', 'index', '404', 'favicon-16', 'favicon-32', 'nunada-128'])
+const aliasOf = new Map() // short slug -> { lang, article }
+for (const lang of LANGS)
   for (const a of articles) {
-    write(`${LIST_PATH[lang]}/${a.slug[lang]}/index.html`, page(articleSeo(a, SITE, lang), articleBodyHtml(a, lang)))
-    pages++
+    const slug = a.slug[lang]
+    if (TAKEN.has(slug) || aliasOf.has(slug) || fs.existsSync(path.join(DIST, slug)) || fs.existsSync(path.join(DIST, slug + '.html'))) continue
+    aliasOf.set(slug, { lang, article: a })
   }
+for (const [slug, { lang, article }] of aliasOf) {
+  const real = articleUrl(SITE, lang, article)
+  const hop = `<script>location.replace(${JSON.stringify(new URL(real).pathname)} + location.search + location.hash)</script>`
+  const html = page(articleSeo(article, SITE, lang), articleBodyHtml(article, lang)).replace('</head>', `    ${hop}
+  </head>`)
+  write(`${slug}/index.html`, html)
+  write(`${slug}.html`, html)
+  aliases++
 }
 
 /* ------------------------------------------------------------ share images */
@@ -346,6 +440,8 @@ fs.writeFileSync(
       ...imageTags(homeImage, ''),
       m('name', 'twitter:title', HOME_TITLE, ''),
       m('name', 'twitter:description', HOME_DESCRIPTION, ''),
+      // The organization and the website, in full, once: every article's author and publisher refers to these by id.
+      ...[organizationNode(SITE, 'id', COURSES, aboutUrl(SITE, 'id')), websiteNode(SITE, 'id')].map((d) => `<script type="application/ld+json">${jsonLdText(d)}</script>`),
     ].join('\n    ')}\n  </head>`,
   ),
 )
@@ -360,6 +456,9 @@ const urlEntry = (loc, alts, lastmod) =>
 const entries = [urlEntry(`${SITE}/`, {}, undefined)]
 for (const lang of LANGS) {
   entries.push(urlEntry(listUrl(SITE, lang), { en: listUrl(SITE, 'en'), id: listUrl(SITE, 'id'), 'x-default': listUrl(SITE, 'en') }, undefined))
+}
+for (const lang of LANGS) {
+  entries.push(urlEntry(aboutUrl(SITE, lang), { en: aboutUrl(SITE, 'en'), id: aboutUrl(SITE, 'id'), 'x-default': aboutUrl(SITE, 'en') }, undefined))
 }
 for (const a of articles) {
   for (const lang of LANGS) {
@@ -402,6 +501,11 @@ write(
     '',
     `> ${SITE_NAME} teaches mathematics and coding step by step, in English and Bahasa Indonesia. The articles below are free, need no account, and can be read in any order. Each has a quick answer, a table of contents, interactive practice, a FAQ and references.`,
     '',
+    '## About',
+    '',
+    `- [About ${SITE_NAME}](${aboutUrl(SITE, 'en')}): ${ORG.description.en}`,
+    `- [Tentang ${SITE_NAME}](${aboutUrl(SITE, 'id')}): ${ORG.description.id}`,
+    '',
     '## Articles (English)',
     '',
     ...articles.map((a) => `- [${a.title.en}](${articleUrl(SITE, 'en', a)}): ${a.description.en}`),
@@ -443,4 +547,4 @@ const md = (a, lang) => {
 }
 write('llms-full.txt', articles.flatMap((a) => LANGS.map((l) => md(a, l))).join('\n\n---\n\n') + '\n')
 
-console.log(`prerendered ${pages} pages and ${images} share images for ${articles.length} article(s) at ${SITE}; wrote sitemap.xml, robots.txt, llms.txt, llms-full.txt`)
+console.log(`prerendered ${pages} pages (+${twins} slash-less twins, ${aliases} short aliases) and ${images} share images for ${articles.length} article(s) at ${SITE}; wrote sitemap.xml, robots.txt, llms.txt, llms-full.txt`)

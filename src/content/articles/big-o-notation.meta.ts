@@ -19,8 +19,8 @@ export const meta: ArticleMeta = {
   tags: ['computing', 'proof', 'python', 'javascript'],
   level: { en: 'Intermediate', id: 'Menengah' },
   keywords: {
-    en: 'big o notation, time complexity, algorithm complexity, big o cheat sheet, o(n) o(log n) o(n log n) o(n^2), how to calculate time complexity, big omega and big theta, best worst and average case, amortized analysis, space complexity, master theorem, recurrence relation divide and conquer, analysis of algorithms, why binary search is log n, complexity of merge sort',
-    id: 'notasi big o, kompleksitas waktu, kompleksitas algoritma, contekan big o, o(n) o(log n) o(n log n) o(n^2), cara menghitung kompleksitas waktu, big omega dan big theta, kasus terbaik terburuk dan rata-rata, analisis teramortisasi, kompleksitas ruang, teorema master, relasi rekurensi bagi dan taklukkan, analisis algoritma, mengapa pencarian biner log n, kompleksitas merge sort',
+    en: 'big o notation, time complexity, algorithm complexity, big o complexity table, o(n) o(log n) o(n log n) o(n^2), how to calculate time complexity, big omega and big theta, best worst and average case, amortized analysis, space complexity, master theorem, recurrence relation divide and conquer, analysis of algorithms, why binary search is log n, complexity of merge sort',
+    id: 'notasi big o, kompleksitas waktu, kompleksitas algoritma, tabel kompleksitas big o, o(n) o(log n) o(n log n) o(n^2), cara menghitung kompleksitas waktu, big omega dan big theta, kasus terbaik terburuk dan rata-rata, analisis teramortisasi, kompleksitas ruang, teorema master, relasi rekurensi bagi dan taklukkan, analisis algoritma, mengapa pencarian biner log n, kompleksitas merge sort',
   },
   published: '2026-10-22',
   updated: '2026-10-22',

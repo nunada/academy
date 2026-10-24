@@ -52,15 +52,29 @@ function ArticleLink({ label, id, hash }: { label: string; id: string; hash?: st
 }
 
 /** Minimal inline formatting for lesson prose: `code`, **bold**, $maths$,
- *  $$a displayed equation$$ on a line of its own, and `[words](article:id)` links.
+ *  $$a displayed equation$$ on a line of its own, `[words](article:id)` links, and `[words](/route)` or
+ *  `[words](https://…)` links to a page of this site or of another.
  *  A full markdown dependency would be far more than the content needs. */
 export function Rich({ text }: { text: string }) {
-  const parts = text.split(/(\$\$[^$]+\$\$|\$[^$]+\$|`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\(article:[a-z0-9#-]+\))/g)
+  const parts = text.split(/(\$\$[^$]+\$\$|\$[^$]+\$|`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\(article:[a-z0-9#-]+\)|\[[^\]]+\]\((?:\/[^)\s]*|https?:\/\/[^)\s]+)\))/g)
   return (
     <>
       {parts.map((part, i) => {
         const link = /^\[([^\]]+)\]\(article:([a-z0-9-]+)(?:#([a-z0-9-]+))?\)$/.exec(part)
         if (link) return <ArticleLink label={link[1]} id={link[2]} hash={link[3]} key={i} />
+        const plainLink = /^\[([^\]]+)\]\((\/[^)\s]*|https?:\/\/[^)\s]+)\)$/.exec(part)
+        if (plainLink) {
+          // an address on this site is a route; anything else is another site
+          return plainLink[2].startsWith('/') ? (
+            <Link to={plainLink[2]} key={i}>
+              {plainLink[1]}
+            </Link>
+          ) : (
+            <a href={plainLink[2]} rel="noopener" key={i}>
+              {plainLink[1]}
+            </a>
+          )
+        }
         if (part.startsWith('$$') && part.endsWith('$$') && part.length > 4) {
           return <Tex src={part.slice(2, -2)} display key={i} />
         }

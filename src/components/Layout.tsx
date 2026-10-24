@@ -8,6 +8,8 @@ import { useTheme, type ThemePref } from '../lib/theme'
 import { Hearts, ShareButton } from './ui'
 import { Logo } from './Logo'
 import { FeedbackWidget } from './FeedbackWidget'
+import { aboutPath } from '../lib/aboutSeo'
+import { ORG } from '../content/org'
 
 function LangToggle() {
   const { lang, setLang } = useI18n()
@@ -221,6 +223,27 @@ function SkipLinkAndAnnouncer() {
   )
 }
 
+/** A line of links at the bottom of every page, so that the page that says what the site is, and the articles, are one click from anywhere
+ *  (and a crawler that reaches any page can reach them). */
+function SiteFooter() {
+  const { t, lang } = useI18n()
+  return (
+    <footer className="sitefoot">
+      <span>
+        © {new Date().getFullYear()} {ORG.name} · {t('footerTagline')}
+      </span>
+      <nav aria-label={t('footerNavLabel')}>
+        <Link to={aboutPath(lang)}>{t('navAbout')}</Link>
+        <Link to={lang === 'id' ? '/artikel' : '/articles'}>{t('navArticles')}</Link>
+        <Link to="/help">{t('navHelp')}</Link>
+        <a href={ORG.sameAs[0]} rel="noopener">
+          GitHub
+        </a>
+      </nav>
+    </footer>
+  )
+}
+
 export default function Layout() {
   const { user, state, signOut, hearts, nextHeartIn, xpTotal, mode } = useStore()
 
@@ -238,6 +261,7 @@ export default function Layout() {
       />
 
       <Outlet />
+      <SiteFooter />
       <TrophyToasts />
       <FeedbackWidget />
     </div>

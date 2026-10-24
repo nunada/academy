@@ -386,6 +386,49 @@ for (let i = 0; i < L.ARTICLES.length; i++)
     }
   }
 
+/* ------------------------------------------------------ long-tail keywords */
+
+// A page ranks for what it is specific about. "triangle" is a head term every site on the web is
+// chasing; "how to find the third side of a triangle from two sides and an angle" is a question a
+// person types, and the page that answers it exactly can win it. So every article carries a good
+// share of long-tail search phrases (three words or more, some of four or more), and each of them
+// must be *used*: its words have to occur in the article's own text, or the keyword promises
+// something the page does not say.
+const MIN_LONG_TAIL = 8
+const MIN_LONG_TAIL_4 = 3
+const MIN_LONG_TAIL_SHARE = 0.4
+const MIN_USED = 0.75
+const STOP_WORDS = {
+  en: new Set('a an the of for in on to and or is are by with from how what why do does i it you your into as at be can vs'.split(' ')),
+  id: new Set('a yang di ke dari dan atau untuk dengan pada ini itu adalah apa bagaimana mengapa cara dalam sebagai oleh tentang agar dapat se'.split(' ')),
+}
+const fold = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+const tokens = (s, lang) =>
+  fold(s)
+    .replace(/\\([a-z]+)/g, ' $1 ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .split(/\s+/)
+    .filter((w) => w && !STOP_WORDS[lang].has(w))
+const stem = (w) => w.replace(/(ing|ed|es|s|an|kan|nya|i)$/, '')
+for (const a of loaded) {
+  const { keywords: _kw, ...rest } = a
+  for (const lang of LANGS) {
+    const terms = a.keywords[lang].split(',').map((s) => s.trim()).filter(Boolean)
+    const long = terms.filter((k) => k.split(/\s+/).length >= 3)
+    const long4 = terms.filter((k) => k.split(/\s+/).length >= 4)
+    if (long.length < MIN_LONG_TAIL) flag(a.id, `keywords.${lang} has ${long.length} long-tail phrases of 3+ words; at least ${MIN_LONG_TAIL}`)
+    if (long4.length < MIN_LONG_TAIL_4) flag(a.id, `keywords.${lang} has ${long4.length} phrases of 4+ words; at least ${MIN_LONG_TAIL_4}`)
+    if (long.length / terms.length < MIN_LONG_TAIL_SHARE) flag(a.id, `keywords.${lang}: only ${long.length} of ${terms.length} are long-tail (3+ words); at least ${Math.round(MIN_LONG_TAIL_SHARE * 100)}%`)
+    const pieces = []
+    for (const [, v] of locs(rest)) pieces.push(v[lang])
+    const have = new Set(tokens(pieces.join(' '), lang).map(stem))
+    for (const k of long) {
+      const t = tokens(k, lang).map(stem)
+      if (t.length && t.filter((w) => have.has(w)).length / t.length < MIN_USED) flag(a.id, `keywords.${lang} "${k}": its words are not in the article's text; say it on the page or take it out`)
+    }
+  }
+}
+
 /* --------------------------------------------------------------- search */
 
 if (L.ARTICLES.length) {

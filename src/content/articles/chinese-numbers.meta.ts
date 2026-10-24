@@ -19,8 +19,8 @@ export const meta: ArticleMeta = {
   tags: ['numbers', 'numeral-systems', 'history', 'languages'],
   level: { en: 'Beginner', id: 'Pemula' },
   keywords: {
-    en: 'numbers in chinese, chinese numbers, mandarin numbers, how to count in chinese, chinese numerals, chinese numbers 1 to 10, 0 to 100 in chinese, how to say 100 in chinese, how to say 10000 in chinese, 万 wan, 亿 yi, 零 ling, 两 vs 二, liang er difference, pinyin numbers, chinese number converter, formal chinese numerals 壹贰叁, chinese counting rods, suzhou numerals, lucky numbers in china, 520 chinese, myriad, numeral system',
-    id: 'bilangan dalam bahasa china, angka mandarin, angka bahasa china, angka bahasa mandarin, cara menghitung dalam bahasa mandarin, angka 1 sampai 10 bahasa mandarin, angka mandarin 1-100, cara menyebut angka mandarin, pinyin angka, 万 wan, 亿 yi, perbedaan er dan liang, sistem bilangan china, konverter angka mandarin, angka formal china 壹贰叁, batang hitung, angka suzhou, angka keberuntungan china, angka 8 keberuntungan, sistem numerasi',
+    en: 'numbers in chinese, chinese numbers, mandarin numbers, how to count in chinese, chinese numerals, chinese numbers 1 to 10, 0 to 100 in chinese, how to say 100 in chinese, how to say ten thousand in chinese, 万 wan, 亿 yi, 零 ling, 两 vs 二, liang er difference, pinyin numbers, chinese number converter, formal chinese numerals 壹贰叁, chinese counting rods, suzhou numerals, lucky numbers in china, 520 chinese, myriad, numeral system',
+    id: 'bilangan dalam bahasa china, angka mandarin, angka bahasa china, angka bahasa mandarin, cara menghitung dalam bahasa mandarin, angka 1 sampai 10 bahasa mandarin, angka mandarin 1-100, cara menyebut angka mandarin, pinyin angka, 万 wan, 亿 yi, perbedaan er dan liang, sistem bilangan china, konverter angka mandarin, angka formal china 壹贰叁, batang hitung, angka suzhou, sistem numerasi',
   },
   published: '2026-10-09',
   updated: '2026-10-09',

@@ -22,6 +22,9 @@ export const ui = {
   navProfile: { en: 'Profile', id: 'Profil' },
   navHelp: { en: 'Guide', id: 'Panduan' },
   navArticles: { en: 'Articles', id: 'Artikel' },
+  footerNavLabel: { en: 'About and links', id: 'Tentang dan tautan' },
+  navAbout: { en: 'About', id: 'Tentang' },
+  footerTagline: { en: 'Learn math and coding, step by step.', id: 'Belajar matematika dan coding, langkah demi langkah.' },
   signOut: { en: 'Sign out', id: 'Keluar' },
 
   // auth

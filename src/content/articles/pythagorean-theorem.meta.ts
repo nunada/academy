@@ -20,7 +20,7 @@ export const meta: ArticleMeta = {
   level: { en: 'Beginner to intermediate', id: 'Pemula hingga menengah' },
   keywords: {
     en: 'Pythagorean theorem, Pythagoras theorem, a squared plus b squared equals c squared, proof of the Pythagorean theorem, Garfield proof, proof by rearrangement, converse of the Pythagorean theorem, 3-4-5 rule for builders, find the hypotenuse, find the missing side, Pythagorean triples, primitive Pythagorean triple, Euclid formula for triples, Berggren tree, distance formula, diagonal of a box, 3D distance, ladder problem, Fermat last theorem, Plimpton 322, Zhoubi Suanjing, hypot in python',
-    id: 'teorema Pythagoras, dalil Pythagoras, a kuadrat ditambah b kuadrat sama dengan c kuadrat, bukti teorema Pythagoras, bukti Garfield, bukti dengan menata ulang, kebalikan teorema Pythagoras, aturan 3-4-5 tukang bangunan, mencari sisi miring, mencari sisi yang hilang, tripel Pythagoras, tripel Pythagoras primitif, rumus Euclid untuk tripel, pohon Berggren, rumus jarak, diagonal ruang balok, jarak tiga dimensi, soal tangga, teorema terakhir Fermat, Plimpton 322, Zhoubi Suanjing, soal cerita Pythagoras',
+    id: 'teorema Pythagoras, dalil Pythagoras, a kuadrat ditambah b kuadrat sama dengan c kuadrat, bukti teorema Pythagoras, bukti Garfield, bukti dengan menata ulang, kebalikan teorema Pythagoras, aturan 3-4-5 tukang bangunan, mencari sisi miring, mencari sisi yang hilang, tripel Pythagoras, tripel Pythagoras primitif, rumus Euclid untuk tripel, pohon Berggren, rumus jarak, diagonal ruang balok, jarak tiga dimensi, soal tangga, teorema terakhir Fermat, Plimpton 322, Zhoubi Suanjing',
   },
   published: '2026-10-10',
   updated: '2026-10-29',

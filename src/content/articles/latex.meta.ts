@@ -19,8 +19,8 @@ export const meta: ArticleMeta = {
   tags: ['fundamentals', 'computing', 'python', 'javascript'],
   level: { en: 'Beginner', id: 'Pemula' },
   keywords: {
-    en: 'latex, latex tutorial, latex for beginners, what is latex, latex math, latex symbols list, latex fraction, latex matrix, latex align, latex equation numbering, latex document structure, latex packages amsmath, latex bibliography bibtex, latex errors, undefined control sequence, overleaf, mathjax and katex, latex in python sympy, latex in markdown',
-    id: 'latex, tutorial latex, latex untuk pemula, apa itu latex, matematika di latex, daftar simbol latex, pecahan latex, matriks latex, align latex, penomoran persamaan latex, struktur dokumen latex, paket amsmath, daftar pustaka latex bibtex, galat latex, undefined control sequence, overleaf, mathjax dan katex, latex di python sympy, latex di markdown',
+    en: 'latex, latex tutorial, latex for beginners, what is latex, latex math, latex symbols list, latex fraction, latex matrix, latex align, latex equation numbering, latex document structure, latex packages amsmath, latex bibliography bibtex, latex errors, undefined control sequence, overleaf, mathjax and katex, latex in python sympy, latex in markdown, what is the difference between tex and latex, how to write a fraction in latex, how to compile a latex document',
+    id: 'latex, tutorial latex, latex untuk pemula, apa itu latex, matematika di latex, daftar simbol latex, pecahan latex, matriks latex, align latex, penomoran persamaan latex, struktur dokumen latex, paket amsmath, daftar pustaka latex bibtex, galat latex, undefined control sequence, overleaf, mathjax dan katex, latex di python sympy, latex di markdown, apa beda tex dan latex, cara menulis pecahan di latex, cara mengompilasi dokumen latex',
   },
   published: '2026-10-23',
   updated: '2026-10-23',
