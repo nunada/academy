@@ -210,6 +210,9 @@ export type WidgetName =
   | 'gfread'
   | 'gfsum'
   | 'gffit'
+  | 'lsratio'
+  | 'lsambig'
+  | 'lssurvey'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

@@ -230,6 +230,10 @@ jobs:
       # its peaks, the period and beats of a sum of two waves, and the least-squares fit against mpmath.
       - run: npm run check:triggraph
 
+      # The law of sines: measured triangles (from coordinates) against the three equal ratios, the circumradius and the area three ways, the
+      # ambiguous case counted by sliding a point along a ray, and the survey by intersecting two lines.
+      - run: npm run check:sinelaw
+
       - name: Work out where the site will live
         id: base
         run: |

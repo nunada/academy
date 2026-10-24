@@ -1307,4 +1307,25 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Cocokkan gelombang terbaik berperiode tertentu dengan suhu bulanan, jam siang, atau pasang surut dengan kuadrat terkecil, lihat galatnya sebagai ruas merah, dan cari periode yang menjelaskan paling banyak.',
     },
   },
+  lsratio: {
+    title: { en: 'Interactive: the law of sines in any triangle', id: 'Interaktif: aturan sinus pada segitiga apa pun' },
+    description: {
+      en: 'Set two angles and a side and see the triangle with the circle through its vertices, the three ratios side over sine of the opposite angle all equal to the diameter, and the area three ways.',
+      id: 'Atur dua sudut dan satu sisi dan lihat segitiganya beserta lingkaran yang melalui titik-titik sudutnya, ketiga perbandingan sisi per sinus sudut di depannya yang semuanya sama dengan diameter, dan luas dengan tiga cara.',
+    },
+  },
+  lsambig: {
+    title: { en: 'Interactive: the ambiguous case, zero, one or two triangles', id: 'Interaktif: kasus ambigu, nol, satu, atau dua segitiga' },
+    description: {
+      en: 'Slide the side a while b and the angle A stay fixed, and watch the circle of radius a around C meet the ray at zero, one or two points, with both triangles solved.',
+      id: 'Geser sisi a sementara b dan sudut A tetap, dan lihat lingkaran berjari-jari a di sekitar C memotong sinar di nol, satu, atau dua titik, dengan kedua segitiga terpecahkan.',
+    },
+  },
+  lssurvey: {
+    title: { en: 'Interactive: the width of a river from a baseline and two angles', id: 'Interaktif: lebar sungai dari garis dasar dan dua sudut' },
+    description: {
+      en: 'Two observers read the angles to a tree on the far bank: get the distances and the width of the river, and see how an error of a degree in each reading moves the answer.',
+      id: 'Dua pengamat membaca sudut ke pohon di seberang: dapatkan jarak dan lebar sungai, dan lihat bagaimana galat satu derajat pada tiap bacaan menggeser jawabannya.',
+    },
+  },
 }

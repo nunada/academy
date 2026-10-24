@@ -795,6 +795,23 @@ const graphsCover = (): string => {
   return art
 }
 
+const lawOfSinesCover = (): string => {
+  // a triangle inscribed in its circle: a / sin A = b / sin B = c / sin C = 2R
+  const cx = 200
+  const cy = 90
+  const R = 70
+  const at = (deg: number): [number, number] => [cx + R * Math.cos((deg * Math.PI) / 180), cy - R * Math.sin((deg * Math.PI) / 180)]
+  const A = at(215)
+  const B = at(-40)
+  const C = at(95)
+  let art = path(`M${cx - R},${cy}a${R},${R} 0 1,0 ${2 * R},0a${R},${R} 0 1,0 ${-2 * R},0`, 'sm', 2.4, '7 5')
+  art += poly([A, B, C], 'fa')
+  art += line(A[0], A[1], B[0], B[1], 'st', 4.5) + line(B[0], B[1], C[0], C[1], 'st', 4.5) + line(C[0], C[1], A[0], A[1], 'st', 4.5)
+  for (const p of [A, B, C]) art += dot(p[0], p[1], 'fr', 6.5)
+  art += text(200, 190, 'a / sin A = b / sin B = 2R', 15, 'tm')
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -802,6 +819,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'law-of-sines': lawOfSinesCover,
   'trigonometric-graphs': graphsCover,
   'trigonometric-equations': equationsCover,
   'trigonometric-identities': identitiesCover,

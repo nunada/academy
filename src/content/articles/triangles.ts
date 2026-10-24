@@ -438,7 +438,7 @@ Jika dua segitiga sebangun dengan faktor skala $k$, setiap panjang dikalikan $k$
           text: L(
             T`**To solve a triangle means to find all three sides and all three angles from three measurements, using the law of cosines, $c^2=a^2+b^2-2ab\cos C$, and the law of sines, $\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}$.**
 
-The law of cosines is the [Pythagorean theorem](article:pythagorean-theorem#generalizations) with a correction: at $C=90^\circ$ the cosine is $0$ and it becomes $c^2=a^2+b^2$. Its sign decides the type: $\cos C>0$ (acute), $=0$ (right) or $<0$ (obtuse), which is the test in the section on types. The law of sines says that each side is proportional to the sine of the opposite angle.
+The law of cosines is the [Pythagorean theorem](article:pythagorean-theorem#generalizations) with a correction: at $C=90^\circ$ the cosine is $0$ and it becomes $c^2=a^2+b^2$. Its sign decides the type: $\cos C>0$ (acute), $=0$ (right) or $<0$ (obtuse), which is the test in the section on types. The law of sines says that each side is proportional to the sine of the opposite angle (see [the article on the law of sines](article:law-of-sines) for the proof, the circle and the ambiguous case).
 
 | Given | How to solve |
 |---|---|
@@ -454,7 +454,7 @@ The law of cosines is the [Pythagorean theorem](article:pythagorean-theorem#gene
 Try every case below. A calculator or a program must be in *degree* mode for these formulas, or the angles must be converted to radians.`,
             T`**Memecahkan segitiga berarti mencari ketiga sisi dan ketiga sudut dari tiga ukuran, dengan aturan kosinus, $c^2=a^2+b^2-2ab\cos C$, dan aturan sinus, $\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}$.**
 
-Aturan kosinus adalah [teorema Pythagoras](article:pythagorean-theorem#generalizations) dengan koreksi: pada $C=90^\circ$ kosinusnya $0$ dan ia menjadi $c^2=a^2+b^2$. Tandanya menentukan jenis: $\cos C>0$ (lancip), $=0$ (siku-siku), atau $<0$ (tumpul), yaitu uji pada bagian jenis segitiga. Aturan sinus mengatakan bahwa tiap sisi sebanding dengan sinus sudut di depannya.
+Aturan kosinus adalah [teorema Pythagoras](article:pythagorean-theorem#generalizations) dengan koreksi: pada $C=90^\circ$ kosinusnya $0$ dan ia menjadi $c^2=a^2+b^2$. Tandanya menentukan jenis: $\cos C>0$ (lancip), $=0$ (siku-siku), atau $<0$ (tumpul), yaitu uji pada bagian jenis segitiga. Aturan sinus mengatakan bahwa tiap sisi sebanding dengan sinus sudut di depannya (lihat [artikel tentang aturan sinus](article:law-of-sines) untuk bukti, lingkaran, dan kasus ambigunya).
 
 | Diketahui | Cara memecahkan |
 |---|---|

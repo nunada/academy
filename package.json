@@ -60,7 +60,8 @@
     "check:trigbasic": "node tools/check-trigbasic.mjs",
     "check:trigident": "node tools/check-trigident.mjs",
     "check:trigeq": "node tools/check-trigeq.mjs",
-    "check:triggraph": "node tools/check-triggraph.mjs"
+    "check:triggraph": "node tools/check-triggraph.mjs",
+    "check:sinelaw": "node tools/check-sinelaw.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

@@ -42,6 +42,7 @@ import { CanDesigner, DeliveryTool, LightPath, OptProblems, ProfitTool } from '.
 import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from './NewtonWidgets'
 import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
 import { AngleCircle, AngleClock, AngleConvert, AnglePolygon, AngleTransversal, AngleVectors } from './AngleWidgets'
+import { SineLawAmbiguous, SineLawRatio, SineLawSurvey } from './SineLawWidgets'
 import { TrigGraphFit, TrigGraphRead, TrigGraphSix, TrigGraphSum, TrigGraphTransform } from './TrigGraphWidgets'
 import { TrigEqNumeric, TrigEqQuad, TrigEqSolve, TrigEqSteps } from './TrigEqWidgets'
 import { TrigIdentExact, TrigIdentHarmonic, TrigIdentProof, TrigIdentRotate, TrigIdentTest } from './TrigIdentWidgets'
@@ -1163,6 +1164,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <TrigGraphSum />
     case 'gffit':
       return <TrigGraphFit />
+    case 'lsratio':
+      return <SineLawRatio />
+    case 'lsambig':
+      return <SineLawAmbiguous />
+    case 'lssurvey':
+      return <SineLawSurvey />
   }
 }
 

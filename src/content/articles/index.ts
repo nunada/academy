@@ -53,8 +53,9 @@ import { meta as basicTrig } from './basic-trigonometry.meta'
 import { meta as identities } from './trigonometric-identities.meta'
 import { meta as equations } from './trigonometric-equations.meta'
 import { meta as graphs } from './trigonometric-graphs.meta'
+import { meta as lawOfSines } from './law-of-sines.meta'
 
-export const ARTICLES: ArticleMeta[] = [graphs, equations, identities, basicTrig, constructions, angles, latex, hanoi, fibonacci, binarySearch, bigO, floatingPoint, newtonsMethod, optimization, lhopital, concavity, monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [lawOfSines, graphs, equations, identities, basicTrig, constructions, angles, latex, hanoi, fibonacci, binarySearch, bigO, floatingPoint, newtonsMethod, optimization, lhopital, concavity, monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -99,6 +100,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'trigonometric-identities': () => import('./trigonometric-identities'),
   'trigonometric-equations': () => import('./trigonometric-equations'),
   'trigonometric-graphs': () => import('./trigonometric-graphs'),
+  'law-of-sines': () => import('./law-of-sines'),
   'monotonic-functions-and-the-first-derivative-test': () => import('./monotonic-functions-and-the-first-derivative-test'),
   'the-derivative-as-a-rate-of-change': () => import('./the-derivative-as-a-rate-of-change'),
 }

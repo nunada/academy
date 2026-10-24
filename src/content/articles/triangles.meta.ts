@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'segitiga, jenis-jenis segitiga, segitiga sama sisi, segitiga sama kaki, segitiga sembarang, segitiga lancip, segitiga siku-siku, segitiga tumpul, jumlah sudut segitiga, 180 derajat, sudut luar segitiga, ketaksamaan segitiga, segitiga 30-60-90, segitiga 45-45-90, luas segitiga, rumus Heron, titik berat, pusat lingkaran luar, titik tinggi, pusat lingkaran dalam, garis Euler, garis berat dan garis tinggi, segitiga kongruen, segitiga sebangun, aturan sinus, aturan kosinus, soal cerita segitiga',
   },
   published: '2026-10-10',
-  updated: '2026-10-10',
+  updated: '2026-10-28',
   readingMinutes: 20,
   about: [
     { name: { en: 'Triangle', id: 'Segitiga' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Triangle', id: 'https://id.wikipedia.org/wiki/Segitiga' } },
