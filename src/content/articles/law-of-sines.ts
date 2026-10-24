@@ -403,7 +403,7 @@ $$\frac{PT}{\sin\beta}=\frac{L}{\sin\gamma}\quad\Rightarrow\quad PT=\frac{L\sin\
 | two sides and the angle between them (SAS) | no | law of cosines for the third side |
 | three sides (SSS) | no | law of cosines for an angle |
 
-The law of cosines, $c^2=a^2+b^2-2ab\cos C$, is the [Pythagorean theorem](article:pythagorean-theorem#generalizations) with a correction. It is the safer tool for finding an angle, since the arccosine returns a single angle between $0^\circ$ and $180^\circ$ and so tells acute from obtuse, while the arcsine cannot. A common plan for SAS: use the law of cosines for the third side, then find the *smaller* of the two other angles with the law of sines, because the smaller angle is always acute and the arcsine is then right.`,
+[The law of cosines](article:law-of-cosines#what-it-says), $c^2=a^2+b^2-2ab\cos C$, is the [Pythagorean theorem](article:pythagorean-theorem#generalizations) with a correction. It is the safer tool for finding an angle, since the arccosine returns a single angle between $0^\circ$ and $180^\circ$ and so tells acute from obtuse, while the arcsine cannot. A common plan for SAS: use the law of cosines for the third side, then find the *smaller* of the two other angles with the law of sines, because the smaller angle is always acute and the arcsine is then right.`,
             T`**Pakai aturan sinus bila kita tahu sebuah sisi dan sudut di depannya (sebuah pasangan), dan aturan kosinus bila tidak.** Lihat apa ketiga ukuran yang diberikan:
 
 | Diketahui | Ada pasangan? | Mulai dengan |
@@ -413,7 +413,7 @@ The law of cosines, $c^2=a^2+b^2-2ab\cos C$, is the [Pythagorean theorem](articl
 | dua sisi dan sudut apitnya (SAS) | tidak | aturan kosinus untuk sisi ketiga |
 | tiga sisi (SSS) | tidak | aturan kosinus untuk sebuah sudut |
 
-Aturan kosinus, $c^2=a^2+b^2-2ab\cos C$, adalah [teorema Pythagoras](article:pythagorean-theorem#generalizations) dengan koreksi. Ia alat yang lebih aman untuk mencari sudut, karena arkus kosinus mengembalikan satu sudut di antara $0^\circ$ dan $180^\circ$ sehingga membedakan lancip dari tumpul, sedangkan arkus sinus tidak. Rencana yang umum untuk SAS: pakai aturan kosinus untuk sisi ketiga, lalu cari sudut yang *lebih kecil* dari dua sudut lainnya dengan aturan sinus, karena sudut yang lebih kecil selalu lancip dan arkus sinusnya lalu benar.`,
+[Aturan kosinus](article:law-of-cosines#what-it-says), $c^2=a^2+b^2-2ab\cos C$, adalah [teorema Pythagoras](article:pythagorean-theorem#generalizations) dengan koreksi. Ia alat yang lebih aman untuk mencari sudut, karena arkus kosinus mengembalikan satu sudut di antara $0^\circ$ dan $180^\circ$ sehingga membedakan lancip dari tumpul, sedangkan arkus sinus tidak. Rencana yang umum untuk SAS: pakai aturan kosinus untuk sisi ketiga, lalu cari sudut yang *lebih kecil* dari dua sudut lainnya dengan aturan sinus, karena sudut yang lebih kecil selalu lancip dan arkus sinusnya lalu benar.`,
           ),
         },
       ],

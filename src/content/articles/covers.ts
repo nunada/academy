@@ -812,6 +812,22 @@ const lawOfSinesCover = (): string => {
   return art
 }
 
+const lawOfCosinesCover = (): string => {
+  // two sides opening like a hinge from the vertex C, the third side dashed between their ends, with the law under it
+  const C: [number, number] = [120, 140]
+  const a = 170
+  const b = 120
+  const ang = (62 * Math.PI) / 180
+  const B: [number, number] = [C[0] + a, C[1]]
+  const A: [number, number] = [C[0] + b * Math.cos(ang), C[1] - b * Math.sin(ang)]
+  let art = poly([C, B, A], 'fa')
+  art += line(C[0], C[1], B[0], B[1], 'st', 5) + line(C[0], C[1], A[0], A[1], 'st', 5) + line(A[0], A[1], B[0], B[1], 'sr', 4.5, '9 6')
+  art += path(`M${C[0] + 36},${C[1]}A36,36 0 0,0 ${C[0] + 36 * Math.cos(ang)},${C[1] - 36 * Math.sin(ang)}`, 'sb', 3.5)
+  for (const p of [C, B, A]) art += dot(p[0], p[1], 'fr', 6.5)
+  art += text(200, 184, 'c² = a² + b² − 2ab cos C', 15, 'tm')
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -819,6 +835,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'law-of-cosines': lawOfCosinesCover,
   'law-of-sines': lawOfSinesCover,
   'trigonometric-graphs': graphsCover,
   'trigonometric-equations': equationsCover,

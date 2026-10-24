@@ -20,7 +20,7 @@ const RAD = Math.PI / 180
 type P = [number, number]
 
 /** The map from graph coordinates to the picture: one scale on both axes, the y-axis pointing up, with a margin. */
-function frame(minX: number, maxX: number, minY: number, maxY: number, W = 340, H = 250, pad = 22) {
+export function frame(minX: number, maxX: number, minY: number, maxY: number, W = 340, H = 250, pad = 22) {
   const sx = (W - 2 * pad) / (maxX - minX || 1)
   const sy = (H - 2 * pad) / (maxY - minY || 1)
   const s = Math.min(sx, sy)
@@ -30,7 +30,7 @@ function frame(minX: number, maxX: number, minY: number, maxY: number, W = 340, 
 }
 
 /** An angle arc at (cx, cy) in picture coordinates from direction a0 to a1 (degrees, counterclockwise on the page). */
-function arc(cx: number, cy: number, r: number, a0: number, a1: number): string {
+export function arc(cx: number, cy: number, r: number, a0: number, a1: number): string {
   const p = (a: number): string => `${(cx + r * Math.cos(a * RAD)).toFixed(1)},${(cy - r * Math.sin(a * RAD)).toFixed(1)}`
   return `M${p(a0)}A${r},${r} 0 ${Math.abs(a1 - a0) > 180 ? 1 : 0} ${a1 > a0 ? 0 : 1} ${p(a1)}`
 }

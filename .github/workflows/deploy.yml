@@ -234,6 +234,10 @@ jobs:
       # ambiguous case counted by sliding a point along a ray, and the survey by intersecting two lines.
       - run: npm run check:sinelaw
 
+      # The law of cosines: triangles built from coordinates against the third side, the angles, the median and the area; the kinds of angle against
+      # exact fractions; thin triangles against 60-digit arccosines (the half-angle form must keep its digits); forces and journeys against vectors.
+      - run: npm run check:cosinelaw
+
       - name: Work out where the site will live
         id: base
         run: |

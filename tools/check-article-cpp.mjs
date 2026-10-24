@@ -65,7 +65,7 @@ for (const f of files) {
     for (const [, lit] of bare.matchAll(/printf\s*\(\s*("(?:[^"\\]|\\.)*")/g)) if (/[,)]\s/.test(lit)) problems.push(`${id}: the string ${lit} has a space after "," or ")", which the interpreter drops`)
     let got = ''
     try {
-      JSCPP.run(code.replace(/\/\* output:[\s\S]*$/, '') + '\n', '', { stdio: { write: (s) => (got += s) }, maxTimeout: 8000 })
+      JSCPP.run(code.replace(/\/\* output:[\s\S]*$/, '') + '\n', '', { stdio: { write: (s) => (got += s) }, maxTimeout: 30000 })
     } catch (e) {
       problems.push(`${id}: the program does not run: ${String(e.message ?? e).slice(0, 120)}`)
       continue

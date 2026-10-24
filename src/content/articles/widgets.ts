@@ -1328,4 +1328,25 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Dua pengamat membaca sudut ke pohon di seberang: dapatkan jarak dan lebar sungai, dan lihat bagaimana galat satu derajat pada tiap bacaan menggeser jawabannya.',
     },
   },
+  lchinge: {
+    title: { en: 'Interactive: the hinge, how the third side grows with the angle', id: 'Interaktif: engsel, bagaimana sisi ketiga bertambah dengan sudutnya' },
+    description: {
+      en: 'Open two sides of lengths a and b like a hinge and watch c² = a² + b² − 2ab cos C: the correction term, the right angle where it vanishes, and the limits |a − b| and a + b.',
+      id: 'Buka dua sisi berpanjang a dan b seperti engsel dan lihat c² = a² + b² − 2ab cos C: suku koreksi, sudut siku-siku tempat ia lenyap, dan batas |a − b| dan a + b.',
+    },
+  },
+  lcsss: {
+    title: { en: 'Interactive: the three angles from three sides, and the thin triangle', id: 'Interaktif: ketiga sudut dari tiga sisi, dan segitiga tipis' },
+    description: {
+      en: 'Type three side lengths and get the angles two ways, by the arccosine and by the half-angle form, with the kind of each angle; a triangle with two very long sides shows where the plain arccosine fails.',
+      id: 'Ketik tiga panjang sisi dan dapatkan sudutnya dengan dua cara, lewat arkus kosinus dan bentuk setengah sudut, beserta jenis tiap sudut; segitiga dengan dua sisi sangat panjang memperlihatkan di mana arkus kosinus biasa gagal.',
+    },
+  },
+  lctrip: {
+    title: { en: 'Interactive: a ship on two bearings, how far and in which direction', id: 'Interaktif: kapal pada dua arah, seberapa jauh dan ke arah mana' },
+    description: {
+      en: 'Sail a distance on one bearing and then another and get the straight-line distance, the bearing of the end and the bearing home, with the law of cosines on the triangle of the journey.',
+      id: 'Berlayarlah sejauh tertentu pada satu arah lalu arah lain dan dapatkan jarak garis lurus, arah akhir, dan arah pulang, dengan aturan kosinus pada segitiga perjalanan itu.',
+    },
+  },
 }

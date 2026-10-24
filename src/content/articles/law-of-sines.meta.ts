@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'aturan sinus, rumus sinus, a per sin A sama dengan b per sin B, bukti aturan sinus, aturan sinus dan lingkaran luar, rumus jari-jari lingkaran luar, memecahkan segitiga dari dua sudut dan satu sisi, segitiga ASA dan AAS, kasus ambigu SSA, berapa segitiga dari dua sisi dan satu sudut, luas segitiga dengan sinus, setengah a b sin C, jarak menyeberangi sungai, triangulasi garis dasar dan sudut, aturan sinus atau aturan kosinus, aturan sinus untuk sudut tumpul, mencari sudut kedua, sin B lebih dari 1 tidak ada segitiga',
   },
   published: '2026-10-28',
-  updated: '2026-10-28',
+  updated: '2026-10-29',
   readingMinutes: 19,
   about: [
     { name: { en: 'Law of sines', id: 'Aturan sinus' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Law_of_sines', id: 'https://id.wikipedia.org/wiki/Aturan_sinus' } },

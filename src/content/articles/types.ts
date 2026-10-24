@@ -213,6 +213,9 @@ export type WidgetName =
   | 'lsratio'
   | 'lsambig'
   | 'lssurvey'
+  | 'lchinge'
+  | 'lcsss'
+  | 'lctrip'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */
