@@ -469,6 +469,13 @@ for (const a of articles) {
 }
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${entries.join('\n')}\n</urlset>\n`
 write('sitemap.xml', sitemap)
+// The same addresses with nothing else in them: no hreflang links, no dates. The full sitemap above is the one robots.txt names; this plainer
+// file exists to submit to Search Console if the full one is reported as unreadable, to tell whether the extra markup is what it dislikes. It lists
+// exactly the canonical address of every page, the ones with the trailing slash.
+write(
+  'sitemap-simple.xml',
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => `  <url><loc>${m[1]}</loc></url>`).join('\n')}\n</urlset>\n`,
+)
 
 /* ----------------------------------------------------------------- robots */
 

@@ -234,6 +234,14 @@ for (const f of fs.readdirSync(DIST)) {
 }
 ok(aliasCount >= 40, 'aliases', `only ${aliasCount} short aliases were written`)
 
+// the plain sitemap lists exactly the canonical addresses of the full one, and nothing else in them
+const locs = (xml) => [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
+const simple = read('sitemap-simple.xml')
+ok(JSON.stringify(locs(simple)) === JSON.stringify(locs(sitemap)), 'sitemap-simple.xml', 'must list the same addresses, in the same order, as sitemap.xml')
+ok(!/xhtml:|<lastmod|hreflang/.test(simple), 'sitemap-simple.xml', 'must have no hreflang links or dates in it')
+ok(/^<\?xml version="1.0" encoding="UTF-8"\?>\n<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/.test(simple)&& simple.trimEnd().endsWith('</urlset>'), 'sitemap-simple.xml', 'wrong header or no closing urlset')
+for (const p of pages) ok(locs(simple).includes(byRel.get(p.rel).canonical), p.rel, 'canonical address is not in sitemap-simple.xml')
+ok(locs(simple).every((u) => u.endsWith('/') || u === new URL(u).origin), 'sitemap-simple.xml', 'every address must end with a slash, like its canonical link')
 ok(read('llms.txt').includes('/about/') && read('llms.txt').includes('/tentang/'), 'llms.txt', 'does not name the About pages')
 
 console.log(`seo check: ${pages.length} pages, ${checks} checks, ${bad} problem(s)`)
