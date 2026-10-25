@@ -63,7 +63,8 @@
     "check:triggraph": "node tools/check-triggraph.mjs",
     "check:sinelaw": "node tools/check-sinelaw.mjs",
     "check:cosinelaw": "node tools/check-cosinelaw.mjs",
-    "check:seo": "node tools/check-seo.mjs"
+    "check:seo": "node tools/check-seo.mjs",
+    "check:linsys": "node tools/check-linsys.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

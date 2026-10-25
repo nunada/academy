@@ -1349,4 +1349,25 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Berlayarlah sejauh tertentu pada satu arah lalu arah lain dan dapatkan jarak garis lurus, arah akhir, dan arah pulang, dengan aturan kosinus pada segitiga perjalanan itu.',
     },
   },
+  lsgraph: {
+    title: { en: 'Interactive: two lines, one system', id: 'Interaktif: dua garis, satu sistem' },
+    description: {
+      en: 'Type two linear equations and watch their lines: they cross at one point, never meet, or are the same line, with the exact crossing point and the determinants D, Dx and Dy that decide which.',
+      id: 'Ketik dua persamaan linear dan lihat garisnya: keduanya berpotongan di satu titik, tak pernah bertemu, atau garis yang sama, dengan titik potong eksak dan determinan D, Dx, dan Dy yang menentukannya.',
+    },
+  },
+  lselim: {
+    title: { en: 'Interactive: solve it step by step', id: 'Interaktif: selesaikan langkah demi langkah' },
+    description: {
+      en: 'Type a system and see it solved by elimination, by substitution or by Cramer’s rule, every step written out with exact fractions, including the systems that cancel to 0 = 0 or to 0 = 5.',
+      id: 'Ketik sebuah sistem dan lihat ia diselesaikan dengan eliminasi, substitusi, atau aturan Cramer, setiap langkah ditulis dengan pecahan eksak, termasuk sistem yang habis menjadi 0 = 0 atau 0 = 5.',
+    },
+  },
+  lsill: {
+    title: { en: 'Interactive: almost parallel lines', id: 'Interaktif: garis yang hampir sejajar' },
+    description: {
+      en: 'Two lines at a tiny angle: nudge one right-hand side by a hair and the crossing point jumps, and below about 10⁻¹⁶ double precision cannot tell the lines apart at all, while exact fractions can.',
+      id: 'Dua garis dengan sudut sangat kecil: geser satu ruas kanan sehelai rambut dan titik potongnya melompat, dan di bawah sekitar 10⁻¹⁶ presisi ganda sama sekali tak dapat membedakan kedua garis, sedangkan pecahan eksak bisa.',
+    },
+  },
 }

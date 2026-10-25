@@ -216,6 +216,9 @@ export type WidgetName =
   | 'lchinge'
   | 'lcsss'
   | 'lctrip'
+  | 'lsgraph'
+  | 'lselim'
+  | 'lsill'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

@@ -278,7 +278,7 @@ Cobalah di bawah: pilih nilai, jumlah, dan ketelitian.`,
 - $\sqrt{x^2+1}-x$ for large $x$: for $x=10^8$ the naive formula gives $0$; the stable form $\dfrac1{\sqrt{x^2+1}+x}$ gives $5\times10^{-9}$.
 - The small root of $x^2-bx+1=0$ for $b=10^8$: $\frac{b-\sqrt{b^2-4}}{2}$ gives $7.45\times10^{-9}$, while the stable form $\frac{2}{b+\sqrt{b^2-4}}$ gives the correct $10^{-8}$.
 
-**The cure** is almost never more precision: it is to avoid the subtraction by algebra (a conjugate, an identity), by a series for small $x$, or by a library function made for it (´expm1´, ´log1p´, ´hypot´). Cancellation also explains why the difference quotient with a tiny $h$ in numerical differentiation gets worse, not better, below $h\approx10^{-8}$.
+**The cure** is almost never more precision: it is to avoid the subtraction by algebra (a conjugate, an identity), by a series for small $x$, or by a library function made for it (´expm1´, ´log1p´, ´hypot´). Cancellation also explains why the difference quotient with a tiny $h$ in numerical differentiation gets worse, not better, below $h\approx10^{-8}$. A system of equations whose lines are almost parallel suffers the same way, in its determinant: see [nearly parallel lines](article:linear-systems-two-variables#nearly-parallel-lines).
 
 Move $x$ in each of the four cases below and read the number of correct digits.`,
             T`**Ketika dua bilangan yang hampir sama dikurangkan, angka terdepan saling menghapus dan yang tersisa kebanyakan galat pembulatan lama: hasilnya eksak, tetapi informasi di dalamnya hilang.** Ambil dua bilangan hasil hitung $a\approx1{,}0000000000000002$ dan $b\approx1$. Masing-masing membawa galat relatif sampai $10^{-16}$, dan selisihnya $2{,}2\times10^{-16}$ dihitung tanpa galat baru, tetapi ia sebesar galat yang sudah dimiliki $a$ dan $b$, sehingga selisihnya mungkin tidak memiliki satu pun angka benar. Galat relatif pengurangan diperbesar sekitar $\frac{|a|+|b|}{|a-b|}$.
@@ -289,7 +289,7 @@ Move $x$ in each of the four cases below and read the number of correct digits.`
 - $\sqrt{x^2+1}-x$ untuk $x$ besar: untuk $x=10^8$ rumus naif memberi $0$; bentuk stabil $\dfrac1{\sqrt{x^2+1}+x}$ memberi $5\times10^{-9}$.
 - Akar kecil $x^2-bx+1=0$ untuk $b=10^8$: $\frac{b-\sqrt{b^2-4}}{2}$ memberi $7{,}45\times10^{-9}$, sedangkan bentuk stabil $\frac{2}{b+\sqrt{b^2-4}}$ memberi $10^{-8}$ yang benar.
 
-**Obatnya** hampir tidak pernah ketelitian lebih besar: ia menghindari pengurangan dengan aljabar (sekawan, identitas), dengan deret untuk $x$ kecil, atau dengan fungsi pustaka yang dibuat untuknya (´expm1´, ´log1p´, ´hypot´). Pembatalan juga menjelaskan mengapa hasil bagi selisih dengan $h$ sangat kecil pada diferensiasi numerik justru memburuk, bukan membaik, di bawah $h\approx10^{-8}$.
+**Obatnya** hampir tidak pernah ketelitian lebih besar: ia menghindari pengurangan dengan aljabar (sekawan, identitas), dengan deret untuk $x$ kecil, atau dengan fungsi pustaka yang dibuat untuknya (´expm1´, ´log1p´, ´hypot´). Pembatalan juga menjelaskan mengapa hasil bagi selisih dengan $h$ sangat kecil pada diferensiasi numerik justru memburuk, bukan membaik, di bawah $h\approx10^{-8}$. Sistem persamaan yang garisnya hampir sejajar mengalami hal yang sama, pada determinannya: lihat [garis yang hampir sejajar](article:linear-systems-two-variables#nearly-parallel-lines).
 
 Geser $x$ pada tiap empat kasus di bawah dan baca banyaknya angka benar.`,
           ),

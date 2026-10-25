@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'ieee 754, float dan double, cara float disimpan, bit tanda eksponen dan pecahan, epsilon mesin, ulp unit pada tempat terakhir, bilangan subnormal, nan dan tak hingga, nol negatif, pembatalan katastrofik, penjumlahan kahan, float16 bfloat16 float32 float64, pembulatan ke genap terdekat, ketelitian floating point, python math isclose dan math ulp',
   },
   published: '2026-10-22',
-  updated: '2026-10-22',
+  updated: '2026-10-30',
   readingMinutes: 20,
   about: [
     { name: { en: 'IEEE 754', id: 'IEEE 754' }, sameAs: { en: 'https://en.wikipedia.org/wiki/IEEE_754', id: 'https://en.wikipedia.org/wiki/IEEE_754' } },

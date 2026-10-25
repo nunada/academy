@@ -43,6 +43,7 @@ import { NewtonBasin, NewtonFail, NewtonRoots, NewtonSpeed, NewtonTool } from '.
 import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
 import { AngleCircle, AngleClock, AngleConvert, AnglePolygon, AngleTransversal, AngleVectors } from './AngleWidgets'
 import { CosineLawAngles, CosineLawHinge, CosineLawTrip } from './CosineLawWidgets'
+import { LinSysGraph, LinSysIll, LinSysSteps } from './LinSysWidgets'
 import { SineLawAmbiguous, SineLawRatio, SineLawSurvey } from './SineLawWidgets'
 import { TrigGraphFit, TrigGraphRead, TrigGraphSix, TrigGraphSum, TrigGraphTransform } from './TrigGraphWidgets'
 import { TrigEqNumeric, TrigEqQuad, TrigEqSolve, TrigEqSteps } from './TrigEqWidgets'
@@ -1177,6 +1178,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <CosineLawAngles />
     case 'lctrip':
       return <CosineLawTrip />
+    case 'lsgraph':
+      return <LinSysGraph />
+    case 'lselim':
+      return <LinSysSteps />
+    case 'lsill':
+      return <LinSysIll />
   }
 }
 

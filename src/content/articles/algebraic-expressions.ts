@@ -485,7 +485,7 @@ Penyebut bersamanya adalah hasil kali faktor-faktor yang berbeda, di sini $x(x+1
 
 "Less than" and "from" reverse the order: "7 less than $n$" starts from $n$, so it is $n-7$, not $7-n$.
 
-**A worked example.** A notebook costs 5 dollars and a pen costs 3 dollars. For $x$ notebooks and $y$ pens the total is $5x+3y$ dollars. With 3 notebooks and 2 pens, substitute: $5\cdot3+3\cdot2=21$ dollars. The expression is a recipe that works for any quantities, and that is the point of using letters.`,
+**A worked example.** A notebook costs 5 dollars and a pen costs 3 dollars. For $x$ notebooks and $y$ pens the total is $5x+3y$ dollars. With 3 notebooks and 2 pens, substitute: $5\cdot3+3\cdot2=21$ dollars. The expression is a recipe that works for any quantities, and that is the point of using letters. When a problem has two unknown quantities, you write two equations and solve them together: see [systems of linear equations](article:linear-systems-two-variables#word-problems).`,
             T`**Untuk mengubah kalimat menjadi aljabar, namai besaran yang tidak diketahui dengan sebuah huruf dan terjemahkan tiap frasa menjadi operasi, dengan teliti pada urutan "kurangnya dari" dan "dikurangi dari".** Aljabar adalah cara singkat menulis sebuah kalimat.
 
 | Dalam kata | Dalam aljabar |
@@ -501,7 +501,7 @@ Penyebut bersamanya adalah hasil kali faktor-faktor yang berbeda, di sini $x(x+1
 
 "Kurangnya dari" dan "dikurangkan dari" membalik urutan: "7 kurangnya dari $n$" bermula dari $n$, sehingga $n-7$, bukan $7-n$.
 
-**Contoh.** Sebuah buku tulis berharga Rp5.000 dan sebuah pena Rp3.000. Untuk $x$ buku tulis dan $y$ pena, totalnya $5000x+3000y$ rupiah. Dengan 3 buku tulis dan 2 pena, substitusikan: $5000\cdot3+3000\cdot2=21000$ rupiah, yaitu Rp21.000. Bentuk aljabar itu adalah resep yang berlaku untuk jumlah berapa pun, dan itulah gunanya memakai huruf.`,
+**Contoh.** Sebuah buku tulis berharga Rp5.000 dan sebuah pena Rp3.000. Untuk $x$ buku tulis dan $y$ pena, totalnya $5000x+3000y$ rupiah. Dengan 3 buku tulis dan 2 pena, substitusikan: $5000\cdot3+3000\cdot2=21000$ rupiah, yaitu Rp21.000. Bentuk aljabar itu adalah resep yang berlaku untuk jumlah berapa pun, dan itulah gunanya memakai huruf. Bila sebuah soal memiliki dua besaran yang tidak diketahui, kamu menulis dua persamaan dan menyelesaikannya bersama: lihat [sistem persamaan linear](article:linear-systems-two-variables#word-problems).`,
           ),
         },
         {

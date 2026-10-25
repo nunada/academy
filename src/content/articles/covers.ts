@@ -828,6 +828,18 @@ const lawOfCosinesCover = (): string => {
   return art
 }
 
+const linearSystemCover = (): string => {
+  // two lines crossing at the solution, the point marked and the system written under them
+  const X = (x: number) => 110 + x * 22
+  const Y = (y: number) => 150 - y * 12
+  let art = axis(70, 330, Y(0)) + line(X(0), 14, X(0), 158, 'sm', 2)
+  art += line(X(1), Y(9), X(11), Y(-1), 'sr', 5) + line(X(1), Y(-1), X(11), Y(9), 'st', 5)
+  art += line(X(6), Y(4), X(6), Y(0), 'sm', 1.8, '5 5') + line(X(6), Y(4), X(0), Y(4), 'sm', 1.8, '5 5')
+  art += dot(X(6), Y(4), 'fr', 7.5) + text(X(6) + 12, Y(4) - 10, '(6, 4)', 15, 'tm', 'start')
+  art += text(200, 190, 'x + y = 10   x − y = 2', 14, 'tm')
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -835,6 +847,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'linear-systems-two-variables': linearSystemCover,
   'law-of-cosines': lawOfCosinesCover,
   'law-of-sines': lawOfSinesCover,
   'trigonometric-graphs': graphsCover,
