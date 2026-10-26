@@ -43,7 +43,8 @@ function viewOf(size: number, pad = 16) {
 
 /* -------------------------------------------------------------------------------- the net */
 
-const COLS = 6
+/** The grid has room for the longest preset (a row of six, moved one in from the corner) with a column to spare. */
+const COLS = 8
 const ROWS = 6
 
 /** A net as the grid shows it: moved so that it sits a little in from the corner. */
@@ -81,7 +82,8 @@ export function CubeNet() {
   const { tc } = useI18n()
   const presets = useMemo(buildPresets, [])
   const [on, setOn] = useState<Set<string>>(presets.nets[0].cells)
-  const cells: Cell[] = [...on].map((k) => k.split(',').map(Number) as Cell)
+  // only squares that are on the grid count: nothing can be filled out of sight
+  const cells: Cell[] = [...on].map((k) => k.split(',').map(Number) as Cell).filter(([r, c]) => r >= 0 && r < ROWS && c >= 0 && c < COLS)
   const result = foldNet(cells)
   const toggle = (r: number, c: number) => {
     const next = new Set(on)
@@ -90,7 +92,7 @@ export function CubeNet() {
     else next.add(k)
     setOn(next)
   }
-  const size = 40
+  const size = 36
   const W = COLS * size
   const H = ROWS * size
   const same = (a: Set<string>, b: Set<string>): boolean => a.size === b.size && [...a].every((k) => b.has(k))
@@ -122,7 +124,7 @@ export function CubeNet() {
           {tc(L('clear', 'kosongkan'))}
         </button>
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={tc(L('A grid: press a square to add or remove it', 'Sebuah kisi: tekan persegi untuk menambah atau menghapusnya'))} style={{ width: '100%', maxWidth: 300, display: 'block', margin: '8px auto' }}>
+      <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={tc(L('A grid: press a square to add or remove it', 'Sebuah kisi: tekan persegi untuk menambah atau menghapusnya'))} style={{ width: '100%', maxWidth: 320, display: 'block', margin: '8px auto' }}>
         {Array.from({ length: ROWS }, (_, r) =>
           Array.from({ length: COLS }, (_, c) => {
             const k = gridKey(r, c)
