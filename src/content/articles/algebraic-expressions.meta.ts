@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'bentuk aljabar, aljabar dasar, suku dan koefisien, suku sejenis, menyederhanakan bentuk aljabar, menghitung nilai bentuk aljabar, substitusi, menjabarkan kurung, sifat distributif, hasil kali istimewa, selisih dua kuadrat, kuadrat sempurna, pemfaktoran, memfaktorkan, faktor persekutuan, polinomial, suku banyak, binomial, trinomial, derajat polinomial, pecahan aljabar, mengubah kalimat menjadi aljabar, variabel, konstanta, koefisien, cara menggabungkan suku sejenis, cara menjabarkan dua kurung, cara memfaktorkan trinomial kuadrat, beda bentuk aljabar dan persamaan, cara menyederhanakan bentuk aljabar, cara memeriksa hasil pemfaktoran, bolehkah mencoret suku pada pecahan, cara mengubah kalimat menjadi aljabar',
   },
   published: '2026-10-09',
-  updated: '2026-10-30',
+  updated: '2026-10-31',
   readingMinutes: 16,
   about: [
     { name: { en: 'Algebraic expression', id: 'Bentuk aljabar' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Algebraic_expression', id: 'https://en.wikipedia.org/wiki/Algebraic_expression' } },

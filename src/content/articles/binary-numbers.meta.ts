@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'bilangan biner, apa itu biner, cara mengubah biner ke desimal, desimal ke biner, penjumlahan biner, pengurangan biner, perkalian biner, bit dan byte, heksadesimal, oktal, basis 2, basis 16, nilai tempat, komplemen dua, bilangan negatif dalam biner, bilangan bulat bertanda dan tanpa tanda, overflow, operator bitwise, AND OR XOR NOT, geser bit, topeng bit, ASCII, kibibyte, KiB dan KB, pecahan biner, 0, 1 dalam biner, floating point IEEE 754, python bin, int basis 2, javascript toString(2), cara mengubah bilangan desimal menjadi biner, cara menjumlahkan dua bilangan biner, cara mencari komplemen dua suatu bilangan, mengapa komputer memakai biner',
   },
   published: '2026-10-10',
-  updated: '2026-10-10',
+  updated: '2026-10-31',
   readingMinutes: 19,
   about: [
     { name: { en: 'Binary number', id: 'Bilangan biner' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Binary_number', id: 'https://id.wikipedia.org/wiki/Sistem_bilangan_biner' } },

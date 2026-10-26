@@ -219,6 +219,9 @@ export type WidgetName =
   | 'lsgraph'
   | 'lselim'
   | 'lsill'
+  | 'cbnet'
+  | 'cbmeasure'
+  | 'cbcut'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

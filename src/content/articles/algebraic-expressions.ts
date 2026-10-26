@@ -273,7 +273,9 @@ Three products come up so often that they are worth recognizing:
 | Square of a difference | $(a-b)^2=a^2-2ab+b^2$ | $(x-5)^2=x^2-10x+25$ |
 | Difference of squares | $(a+b)(a-b)=a^2-b^2$ | $(x+5)(x-5)=x^2-25$ |
 
-In the difference of squares the two middle terms $-ab$ and $+ab$ cancel, which is why no $x$ term is left. A square is never just the squares of the parts: $(a+b)^2$ is a product of two brackets, $(a+b)(a+b)$, and the cross terms $ab$ appear twice.`,
+In the difference of squares the two middle terms $-ab$ and $+ab$ cancel, which is why no $x$ term is left. A square is never just the squares of the parts: $(a+b)^2$ is a product of two brackets, $(a+b)(a+b)$, and the cross terms $ab$ appear twice.
+
+The same idea in three dimensions gives the cube of a sum: a cube of edge $a+b$ breaks into one cube $a^3$, three slabs $a^2b$, three rods $ab^2$ and one cube $b^3$, so $(a+b)^3=a^3+3a^2b+3ab^2+b^3$ (see [the cube of a sum](article:cube#cube-numbers)).`,
             T`**Untuk menjabarkan kurung, kalikan setiap suku di dalam dengan apa yang ada di luar, memakai sifat distributif $a(b+c)=ab+ac$; untuk dua kurung, kalikan setiap suku dari kurung pertama dengan setiap suku dari kurung kedua.**
 
 Untuk bilangan di luar: $3(x+2)=3x+6$. Tanda minus di depan kurung mengalikan dengan −1 dan membalik setiap tanda di dalamnya: $-(x-4)=-x+4$.
@@ -292,7 +294,9 @@ Tiga hasil kali begitu sering muncul sehingga layak dikenali:
 | Kuadrat selisih | $(a-b)^2=a^2-2ab+b^2$ | $(x-5)^2=x^2-10x+25$ |
 | Selisih dua kuadrat | $(a+b)(a-b)=a^2-b^2$ | $(x+5)(x-5)=x^2-25$ |
 
-Pada selisih dua kuadrat, dua suku tengah $-ab$ dan $+ab$ saling meniadakan, itulah sebabnya tidak ada suku $x$ yang tersisa. Kuadrat tidak pernah sekadar kuadrat dari bagian-bagiannya: $(a+b)^2$ adalah hasil kali dua kurung, $(a+b)(a+b)$, dan suku silang $ab$ muncul dua kali.`,
+Pada selisih dua kuadrat, dua suku tengah $-ab$ dan $+ab$ saling meniadakan, itulah sebabnya tidak ada suku $x$ yang tersisa. Kuadrat tidak pernah sekadar kuadrat dari bagian-bagiannya: $(a+b)^2$ adalah hasil kali dua kurung, $(a+b)(a+b)$, dan suku silang $ab$ muncul dua kali.
+
+Gagasan yang sama dalam tiga dimensi memberi pangkat tiga suatu jumlah: kubus berusuk $a+b$ terpecah menjadi satu kubus $a^3$, tiga lempeng $a^2b$, tiga batang $ab^2$, dan satu kubus $b^3$, sehingga $(a+b)^3=a^3+3a^2b+3ab^2+b^3$ (lihat [pangkat tiga suatu jumlah](article:cube#cube-numbers)).`,
           ),
         },
         { kind: 'widget', name: 'areamodel' },

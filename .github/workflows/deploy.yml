@@ -238,6 +238,7 @@ jobs:
       # exact fractions; thin triangles against 60-digit arccosines (the half-angle form must keep its digits); forces and journeys against vectors.
       - run: npm run check:cosinelaw
       - run: npm run check:linsys
+      - run: npm run check:cube
 
       - name: Work out where the site will live
         id: base

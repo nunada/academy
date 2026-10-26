@@ -64,7 +64,8 @@
     "check:sinelaw": "node tools/check-sinelaw.mjs",
     "check:cosinelaw": "node tools/check-cosinelaw.mjs",
     "check:seo": "node tools/check-seo.mjs",
-    "check:linsys": "node tools/check-linsys.mjs"
+    "check:linsys": "node tools/check-linsys.mjs",
+    "check:cube": "node tools/check-cube.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

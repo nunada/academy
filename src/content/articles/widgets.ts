@@ -1370,4 +1370,25 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Dua garis dengan sudut sangat kecil: geser satu ruas kanan sehelai rambut dan titik potongnya melompat, dan di bawah sekitar 10⁻¹⁶ presisi ganda sama sekali tak dapat membedakan kedua garis, sedangkan pecahan eksak bisa.',
     },
   },
+  cbnet: {
+    title: { en: 'Interactive: which arrangements of six squares fold into a cube?', id: 'Interaktif: susunan enam persegi mana yang terlipat menjadi kubus?' },
+    description: {
+      en: 'Press squares on a grid to build a net, or load one of the 11 nets of the cube; see whether it folds, which face each square becomes, and why a row of six or a 2 × 3 block does not.',
+      id: 'Tekan persegi pada kisi untuk menyusun jaring, atau muat salah satu dari 11 jaring kubus; lihat apakah ia terlipat, sisi mana yang menjadi tiap persegi, dan mengapa satu baris enam atau blok 2 × 3 tidak bisa.',
+    },
+  },
+  cbmeasure: {
+    title: { en: 'Interactive: edge, area, volume and diagonals of a cube', id: 'Interaktif: rusuk, luas, volume, dan diagonal kubus' },
+    description: {
+      en: 'Slide the edge of a cube and read its face area, surface area, volume, face diagonal and space diagonal, and see what doubling the edge does to the area and the volume.',
+      id: 'Geser rusuk sebuah kubus dan baca luas sisi, luas permukaan, volume, diagonal sisi, dan diagonal ruangnya, dan lihat apa yang dilakukan penggandaan rusuk pada luas dan volume.',
+    },
+  },
+  cbcut: {
+    title: { en: 'Interactive: slice a cube with a plane', id: 'Interaktif: mengiris kubus dengan bidang' },
+    description: {
+      en: 'Move a plane through a cube and watch the shape of the cut change from a triangle to a regular hexagon and back, laid flat with its side lengths and area.',
+      id: 'Gerakkan sebuah bidang melewati kubus dan lihat bentuk irisannya berubah dari segitiga ke segienam beraturan dan kembali, dibentangkan dengan panjang sisi dan luasnya.',
+    },
+  },
 }

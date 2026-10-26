@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'teorema Pythagoras, dalil Pythagoras, a kuadrat ditambah b kuadrat sama dengan c kuadrat, bukti teorema Pythagoras, bukti Garfield, bukti dengan menata ulang, kebalikan teorema Pythagoras, aturan 3-4-5 tukang bangunan, mencari sisi miring, mencari sisi yang hilang, tripel Pythagoras, tripel Pythagoras primitif, rumus Euclid untuk tripel, pohon Berggren, rumus jarak, diagonal ruang balok, jarak tiga dimensi, soal tangga, teorema terakhir Fermat, Plimpton 322, Zhoubi Suanjing',
   },
   published: '2026-10-10',
-  updated: '2026-10-29',
+  updated: '2026-10-31',
   readingMinutes: 18,
   about: [
     { name: { en: 'Pythagorean theorem', id: 'Teorema Pythagoras' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Pythagorean_theorem', id: 'https://id.wikipedia.org/wiki/Teorema_Pythagoras' } },

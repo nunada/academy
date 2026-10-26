@@ -291,7 +291,7 @@ Coba penjumlahan buatanmu sendiri; langkahnya ditampilkan sebagai susunan kolom.
         {
           kind: 'text',
           text: L(
-            T`**$n$ bits can hold $2^n$ different values, the numbers from 0 to $2^n-1$, because each extra bit doubles the number of patterns.** A **byte** is 8 bits and so holds $2^8=256$ values, 0 to 255.
+            T`**$n$ bits can hold $2^n$ different values, the numbers from 0 to $2^n-1$, because each extra bit doubles the number of patterns.** A **byte** is 8 bits and so holds $2^8=256$ values, 0 to 255. Three bits give $2^3=8$ patterns, the eight corners of a cube ([see the cube](article:cube#what-is-a-cube)).
 
 | Bits | Values | Range as unsigned | Common name |
 |---|---|---|---|
@@ -307,7 +307,7 @@ Coba penjumlahan buatanmu sendiri; langkahnya ditampilkan sebagai susunan kolom.
 **Text.** A character is stored as a number. ASCII, from 1963, assigns the codes 0 to 127 to English letters, digits, punctuation and control codes, and fits in 7 bits. The letter A is 65, which is $01000001_2$, and a is 97, which is $01100001_2$. The two differ in exactly one bit, the one worth 32, so changing the case of an ASCII letter is flipping that bit. Unicode extends the idea to all writing systems, and UTF-8 stores each code point in 1 to 4 bytes.
 
 Click the bits of a byte below and watch the number, its two readings and the character change.`,
-            T`**$n$ bit dapat memuat $2^n$ nilai berbeda, yaitu bilangan dari 0 sampai $2^n-1$, karena tiap bit tambahan menggandakan banyak pola.** Satu **byte** adalah 8 bit sehingga memuat $2^8=256$ nilai, 0 sampai 255.
+            T`**$n$ bit dapat memuat $2^n$ nilai berbeda, yaitu bilangan dari 0 sampai $2^n-1$, karena tiap bit tambahan menggandakan banyak pola.** Satu **byte** adalah 8 bit sehingga memuat $2^8=256$ nilai, 0 sampai 255. Tiga bit memberi $2^3=8$ pola, delapan titik sudut sebuah kubus ([lihat kubus](article:cube#what-is-a-cube)).
 
 | Bit | Nilai | Rentang tanpa tanda | Nama umum |
 |---|---|---|---|

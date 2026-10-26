@@ -44,6 +44,7 @@ import { FloatBits, FloatCancel, FloatSum, FloatToy } from './FloatWidgets'
 import { AngleCircle, AngleClock, AngleConvert, AnglePolygon, AngleTransversal, AngleVectors } from './AngleWidgets'
 import { CosineLawAngles, CosineLawHinge, CosineLawTrip } from './CosineLawWidgets'
 import { LinSysGraph, LinSysIll, LinSysSteps } from './LinSysWidgets'
+import { CubeMeasure, CubeNet, CubeSlice } from './CubeWidgets'
 import { SineLawAmbiguous, SineLawRatio, SineLawSurvey } from './SineLawWidgets'
 import { TrigGraphFit, TrigGraphRead, TrigGraphSix, TrigGraphSum, TrigGraphTransform } from './TrigGraphWidgets'
 import { TrigEqNumeric, TrigEqQuad, TrigEqSolve, TrigEqSteps } from './TrigEqWidgets'
@@ -1184,6 +1185,12 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <LinSysSteps />
     case 'lsill':
       return <LinSysIll />
+    case 'cbnet':
+      return <CubeNet />
+    case 'cbmeasure':
+      return <CubeMeasure />
+    case 'cbcut':
+      return <CubeSlice />
   }
 }
 
