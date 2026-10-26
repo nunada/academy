@@ -242,6 +242,13 @@ ok(!/xhtml:|<lastmod|hreflang/.test(simple), 'sitemap-simple.xml', 'must have no
 ok(/^<\?xml version="1.0" encoding="UTF-8"\?>\n<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/.test(simple)&& simple.trimEnd().endsWith('</urlset>'), 'sitemap-simple.xml', 'wrong header or no closing urlset')
 for (const p of pages) ok(locs(simple).includes(byRel.get(p.rel).canonical), p.rel, 'canonical address is not in sitemap-simple.xml')
 ok(locs(simple).every((u) => u.endsWith('/') || u === new URL(u).origin), 'sitemap-simple.xml', 'every address must end with a slash, like its canonical link')
+// Crawlers ask for /favicon.ico whatever the page says: it has to exist, be a real icon file, and every page has to name an icon
+{
+  const ico = fs.existsSync(path.join(DIST, 'favicon.ico')) ? fs.readFileSync(path.join(DIST, 'favicon.ico')) : null
+  ok(ico && ico.length > 100 && ico.readUInt16LE(0) === 0 && ico.readUInt16LE(2) === 1 && ico.readUInt16LE(4) >= 1, 'favicon.ico', 'missing, or not an ICO file: a crawler asking for /favicon.ico would get a 404')
+  for (const p of pages) ok(/<link rel="icon"[^>]*href="\/favicon\.ico"/.test(byRel.get(p.rel).html), p.rel, 'does not link /favicon.ico')
+  for (const f of ['favicon-16.png', 'favicon-32.png', 'favicon-48.png', 'nunada-128.png']) ok(fs.existsSync(path.join(DIST, f)), f, 'missing from dist')
+}
 ok(read('llms.txt').includes('/about/') && read('llms.txt').includes('/tentang/'), 'llms.txt', 'does not name the About pages')
 
 console.log(`seo check: ${pages.length} pages, ${checks} checks, ${bad} problem(s)`)
