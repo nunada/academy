@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'kubus, cara mencari volume kubus, rumus luas permukaan kubus, cara mencari diagonal ruang kubus, rumus diagonal ruang kubus, ada berapa jaring-jaring kubus, jaring-jaring mana yang dapat dilipat menjadi kubus, sisi rusuk dan titik sudut kubus, irisan kubus, irisan kubus berbentuk segi enam beraturan, volume kubus bila rusuk digandakan, bola di dalam kubus, menggandakan kubus, akar pangkat tiga dengan metode Newton, bilangan kubik dan jumlah kubik, dadu dengan sisi berhadapan berjumlah 7, banyak posisi kubus Rubik, titik sudut kubus di python, jalan kode Gray menyusuri rusuk kubus',
   },
   published: '2026-10-31',
-  updated: '2026-10-31',
+  updated: '2026-11-01',
   readingMinutes: 18,
   about: [
     { name: { en: 'Cube', id: 'Kubus' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Cube', id: 'https://en.wikipedia.org/wiki/Cube' } },

@@ -864,6 +864,28 @@ const cubeCover = (): string => {
   return art
 }
 
+const cuboidCover = (): string => {
+  // an oblique box, longer than it is high, with the space diagonal, and its three formulas
+  const P = (x: number, y: number, z: number): [number, number] => [60 + 120 * x + 50 * y, 150 - 70 * z - 40 * y]
+  const front = [P(0, 0, 0), P(1, 0, 0), P(1, 0, 1), P(0, 0, 1)] as [number, number][]
+  let art = poly(front, 'fa')
+  const edges: [[number, number, number], [number, number, number], boolean][] = [
+    [[0, 0, 0], [1, 0, 0], false], [[1, 0, 0], [1, 0, 1], false], [[1, 0, 1], [0, 0, 1], false], [[0, 0, 1], [0, 0, 0], false],
+    [[0, 1, 0], [1, 1, 0], true], [[0, 1, 0], [0, 1, 1], true], [[0, 1, 0], [0, 0, 0], true],
+    [[1, 1, 0], [1, 1, 1], false], [[0, 1, 1], [1, 1, 1], false], [[1, 1, 0], [1, 0, 0], false], [[1, 1, 1], [1, 0, 1], false], [[0, 1, 1], [0, 0, 1], false],
+  ]
+  for (const [p, q, hidden] of edges) {
+    const [x1, y1] = P(...p)
+    const [x2, y2] = P(...q)
+    art += line(x1, y1, x2, y2, hidden ? 'sm' : 'st', hidden ? 2 : 4.5, hidden ? '5 5' : '')
+  }
+  const [ox, oy] = P(0, 0, 0)
+  const [sx, sy] = P(1, 1, 1)
+  art += line(ox, oy, sx, sy, 'sr', 4) + dot(ox, oy, 'fr', 5.5) + dot(sx, sy, 'fr', 5.5)
+  art += text(255, 60, 'V = lwh', 17, 'tm', 'start') + text(255, 92, 'S = 2(lw+lh+wh)', 15, 'tm', 'start') + text(255, 124, 'd = √(l²+w²+h²)', 15, 'tm', 'start')
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -871,6 +893,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  cuboid: cuboidCover,
   cube: cubeCover,
   'linear-systems-two-variables': linearSystemCover,
   'law-of-cosines': lawOfCosinesCover,

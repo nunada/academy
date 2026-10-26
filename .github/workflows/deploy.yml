@@ -239,6 +239,7 @@ jobs:
       - run: npm run check:cosinelaw
       - run: npm run check:linsys
       - run: npm run check:cube
+      - run: npm run check:cuboid
 
       - name: Work out where the site will live
         id: base

@@ -1391,4 +1391,25 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Gerakkan sebuah bidang melewati kubus dan lihat bentuk irisannya berubah dari segitiga ke segienam beraturan dan kembali, dibentangkan dengan panjang sisi dan luasnya.',
     },
   },
+  bxmeasure: {
+    title: { en: 'Interactive: the measures of a box', id: 'Interaktif: ukuran-ukuran sebuah balok' },
+    description: {
+      en: 'Slide the length, width and height of a box and read its volume, surface area, lateral area, the three face diagonals, the space diagonal and the angles it makes with the edges.',
+      id: 'Geser panjang, lebar, dan tinggi sebuah balok dan baca volume, luas permukaan, luas selimut, ketiga diagonal sisi, diagonal ruang, dan sudut yang dibentuknya dengan rusuk.',
+    },
+  },
+  bxsame: {
+    title: { en: 'Interactive: boxes with the same surface area', id: 'Interaktif: balok dengan luas permukaan yang sama' },
+    description: {
+      en: 'Fix a surface area, change the base of a box, and watch the height and the volume follow: the cube is the box that holds the most, and the bar shows how close you are.',
+      id: 'Tetapkan luas permukaan, ubah alas sebuah balok, dan lihat tinggi serta volumenya mengikuti: kubus adalah balok yang memuat paling banyak, dan batang menunjukkan seberapa dekat kamu.',
+    },
+  },
+  bxfit: {
+    title: { en: 'Interactive: does a rod fit inside the box?', id: 'Interaktif: apakah batang muat di dalam balok?' },
+    description: {
+      en: 'Type the edges of a box and the length of a rod: it fits when it is not longer than the space diagonal; whole-number boxes are checked for whole diagonals, the Euler bricks and the Pythagorean quadruples.',
+      id: 'Ketik rusuk sebuah balok dan panjang sebuah batang: ia muat bila tidak lebih panjang daripada diagonal ruang; balok bilangan bulat diperiksa untuk diagonal bulat, bata Euler, dan kuadrupel Pythagoras.',
+    },
+  },
 }

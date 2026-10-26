@@ -154,7 +154,7 @@ export const body: ArticleBody = {
         {
           kind: 'text',
           text: L(
-            T`**A cube is a solid bounded by six identical squares, with $12$ edges all of the same length $a$ and $8$ corners, and three squares meeting at each corner.** It is the regular hexahedron, and one of the five Platonic solids: the only one whose faces are squares. Opposite faces are parallel, every angle between two edges that meet is a right angle, and the length of the edge fixes everything else.
+            T`**A cube is a solid bounded by six identical squares, with $12$ edges all of the same length $a$ and $8$ corners, and three squares meeting at each corner.** It is the regular hexahedron, and one of the five Platonic solids: the only one whose faces are squares. A cube is the special case of a [cuboid](article:cuboid#what-is-a-cuboid), the box whose three edges may all differ. Opposite faces are parallel, every angle between two edges that meet is a right angle, and the length of the edge fixes everything else.
 
 | Part | English | Indonesian | How many |
 |---|---|---|---|
@@ -163,7 +163,7 @@ export const body: ArticleBody = {
 | where three edges meet | vertex (corner) | titik sudut | $8$ |
 
 The counts obey Euler’s formula: $V-E+F=8-12+6=2$, the same for every solid without holes, whether a cube, a pyramid or a soccer ball. Put the cube in coordinates with one corner at the origin and the opposite corner at $(1,1,1)$, and the eight corners are exactly the eight triples of $0$s and $1$s. An edge joins two corners that differ in *one* coordinate, so each corner has $3$ edges, and $\frac{8\cdot3}{2}=12$. That small fact, that a cube is the three-bit binary numbers drawn in space, is used again in the code below ([binary numbers](article:binary-numbers#what-is-binary) explains bits).`,
-            T`**Kubus adalah bangun ruang yang dibatasi enam persegi yang kongruen, dengan $12$ rusuk yang semuanya sama panjang $a$ dan $8$ titik sudut, dan tiga persegi bertemu di setiap titik sudut.** Ia adalah heksahedron beraturan, dan satu dari lima bangun ruang Platonik: satu-satunya yang sisinya persegi. Sisi yang berhadapan sejajar, setiap sudut antara dua rusuk yang bertemu adalah sudut siku-siku, dan panjang rusuk menentukan segala hal lainnya.
+            T`**Kubus adalah bangun ruang yang dibatasi enam persegi yang kongruen, dengan $12$ rusuk yang semuanya sama panjang $a$ dan $8$ titik sudut, dan tiga persegi bertemu di setiap titik sudut.** Ia adalah heksahedron beraturan, dan satu dari lima bangun ruang Platonik: satu-satunya yang sisinya persegi. Kubus adalah kasus khusus [balok](article:cuboid#what-is-a-cuboid), kotak yang ketiga rusuknya boleh berbeda semua. Sisi yang berhadapan sejajar, setiap sudut antara dua rusuk yang bertemu adalah sudut siku-siku, dan panjang rusuk menentukan segala hal lainnya.
 
 | Bagian | Bahasa Inggris | Bahasa Indonesia | Banyaknya |
 |---|---|---|---|

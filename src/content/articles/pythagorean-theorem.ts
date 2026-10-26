@@ -269,7 +269,7 @@ Tripel bukan sekadar keanehan: $\left(\frac35,\frac45\right)$ adalah titik pada 
 
 **In space.** Use the theorem twice. The diagonal of the floor of a box $l\times w$ is $\sqrt{l^2+w^2}$, and this diagonal and the height $h$ are the legs of a second right triangle whose hypotenuse is the diagonal of the box:
 $$d=\sqrt{l^2+w^2+h^2}.$$
-A box $2\times3\times6$ has diagonal $\sqrt{4+9+36}=7$, and the longest rod that fits in a box $3\times4\times12$ is $\sqrt{9+16+144}=13$. A unit cube has diagonal $\sqrt3$ (more in [the cube](article:cube#diagonals)). The same pattern, a sum of squared differences under a root, gives the distance in any number of dimensions.
+A box $2\times3\times6$ has diagonal $\sqrt{4+9+36}=7$, and the longest rod that fits in a box $3\times4\times12$ is $\sqrt{9+16+144}=13$. A unit cube has diagonal $\sqrt3$ (more in [the cube](article:cube#diagonals) and [the cuboid](article:cuboid#diagonals-and-angles)). The same pattern, a sum of squared differences under a root, gives the distance in any number of dimensions.
 
 **Everyday uses.**
 
@@ -283,7 +283,7 @@ A box $2\times3\times6$ has diagonal $\sqrt{4+9+36}=7$, and the longest rod that
 
 **Di ruang.** Pakai teorema dua kali. Diagonal alas balok $l\times w$ adalah $\sqrt{l^2+w^2}$, dan diagonal ini bersama tinggi $h$ adalah sisi tegak segitiga siku-siku kedua yang hipotenusanya diagonal ruang balok:
 $$d=\sqrt{l^2+w^2+h^2}.$$
-Balok $2\times3\times6$ memiliki diagonal ruang $\sqrt{4+9+36}=7$, dan batang terpanjang yang muat dalam balok $3\times4\times12$ adalah $\sqrt{9+16+144}=13$. Kubus satuan memiliki diagonal ruang $\sqrt3$ (lebih lanjut di [kubus](article:cube#diagonals)). Pola yang sama, jumlah kuadrat selisih di bawah akar, memberi jarak dalam dimensi sebanyak apa pun.
+Balok $2\times3\times6$ memiliki diagonal ruang $\sqrt{4+9+36}=7$, dan batang terpanjang yang muat dalam balok $3\times4\times12$ adalah $\sqrt{9+16+144}=13$. Kubus satuan memiliki diagonal ruang $\sqrt3$ (lebih lanjut di [kubus](article:cube#diagonals) dan [balok](article:cuboid#diagonals-and-angles)). Pola yang sama, jumlah kuadrat selisih di bawah akar, memberi jarak dalam dimensi sebanyak apa pun.
 
 **Pemakaian sehari-hari.**
 
