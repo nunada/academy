@@ -209,7 +209,7 @@ jobs:
 
       # Constructions with a ruler and compass: the rules of the three moves, the eleven textbook constructions on 60 random inputs each, the
       # division of a segment, the buildable angles and polygons against SymPy, and Archimedes' trisection. Needs Python with SymPy.
-      - run: python -m pip install sympy numpy
+      - run: python -m pip install sympy numpy scipy mpmath
       - run: npm run check:construct
 
       # Basic trigonometry: sin and cos of every degree against mpmath, the exact values of the multiples of 15 degrees to 55 digits, right
