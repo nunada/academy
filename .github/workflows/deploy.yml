@@ -240,6 +240,7 @@ jobs:
       - run: npm run check:linsys
       - run: npm run check:cube
       - run: npm run check:cuboid
+      - run: npm run check:prism
 
       - name: Work out where the site will live
         id: base

@@ -886,6 +886,26 @@ const cuboidCover = (): string => {
   return art
 }
 
+const prismCover = (): string => {
+  // a hexagonal prism seen from above and the front, with the three formulas of the right prism
+  const cx = 120
+  const R = 62
+  const flat = 0.38
+  const h = 78
+  const vx = (k: number): number => cx + R * Math.cos((k * Math.PI) / 3)
+  const vy = (k: number, z: number): number => 118 + flat * R * Math.sin((k * Math.PI) / 3) - z
+  const topPoly = Array.from({ length: 6 }, (_, k) => [vx(k), vy(k, h)] as [number, number])
+  let art = poly([[vx(0), vy(0, 0)], [vx(1), vy(1, 0)], [vx(2), vy(2, 0)], [vx(3), vy(3, 0)], [vx(3), vy(3, h)], [vx(2), vy(2, h)], [vx(1), vy(1, h)], [vx(0), vy(0, h)]], 'fa')
+  art += poly(topPoly, 'fb')
+  for (const k of [3, 4, 5]) art += line(vx(k), vy(k, 0), vx((k + 1) % 6), vy((k + 1) % 6, 0), 'sm', 2, '5 5')
+  for (const k of [4, 5]) art += line(vx(k), vy(k, 0), vx(k), vy(k, h), 'sm', 2, '5 5')
+  for (const k of [0, 1, 2]) art += line(vx(k), vy(k, 0), vx(k + 1), vy(k + 1, 0), 'st', 4.5)
+  for (const k of [0, 1, 2, 3]) art += line(vx(k), vy(k, 0), vx(k), vy(k, h), 'st', 4.5)
+  for (let k = 0; k < 6; k++) art += line(vx(k), vy(k, h), vx((k + 1) % 6), vy((k + 1) % 6, h), 'st', 4.5)
+  art += text(262, 62, 'V = B·h', 18, 'tm', 'start') + text(262, 94, 'S = 2B + P·h', 16, 'tm', 'start') + text(262, 126, 'V − E + F = 2', 16, 'tm', 'start')
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -893,6 +913,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  prism: prismCover,
   cuboid: cuboidCover,
   cube: cubeCover,
   'linear-systems-two-variables': linearSystemCover,

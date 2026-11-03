@@ -46,6 +46,7 @@ import { CosineLawAngles, CosineLawHinge, CosineLawTrip } from './CosineLawWidge
 import { LinSysGraph, LinSysIll, LinSysSteps } from './LinSysWidgets'
 import { CubeMeasure, CubeNet, CubeSlice } from './CubeWidgets'
 import { BoxFit, BoxMeasure, BoxSameSurface } from './BoxWidgets'
+import { PrismBuild, PrismCylinder, PrismLight, PrismNet } from './PrismWidgets'
 import { SineLawAmbiguous, SineLawRatio, SineLawSurvey } from './SineLawWidgets'
 import { TrigGraphFit, TrigGraphRead, TrigGraphSix, TrigGraphSum, TrigGraphTransform } from './TrigGraphWidgets'
 import { TrigEqNumeric, TrigEqQuad, TrigEqSolve, TrigEqSteps } from './TrigEqWidgets'
@@ -1198,6 +1199,14 @@ export function ArticleWidget({ name }: { name: WidgetName }) {
       return <BoxSameSurface />
     case 'bxfit':
       return <BoxFit />
+    case 'prbuild':
+      return <PrismBuild />
+    case 'prnet':
+      return <PrismNet />
+    case 'prcyl':
+      return <PrismCylinder />
+    case 'prlight':
+      return <PrismLight />
   }
 }
 

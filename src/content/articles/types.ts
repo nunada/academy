@@ -225,6 +225,10 @@ export type WidgetName =
   | 'bxmeasure'
   | 'bxsame'
   | 'bxfit'
+  | 'prbuild'
+  | 'prnet'
+  | 'prcyl'
+  | 'prlight'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

@@ -117,7 +117,7 @@ export const body: ArticleBody = {
         {
           kind: 'text',
           text: L(
-            T`**A cuboid, also called a rectangular box or a rectangular prism, is a solid bounded by six rectangles that meet at right angles; its opposite faces are equal and parallel.** Every corner is a right-angled corner, with three faces and three edges meeting there. The $12$ edges come in three groups of four equal parallel edges, called the *length* $l$, the *width* $w$ and the *height* $h$, and the whole solid is fixed by those three numbers.
+            T`**A cuboid, also called a rectangular box or a [rectangular prism](article:prism#what-is-a-prism), is a solid bounded by six rectangles that meet at right angles; its opposite faces are equal and parallel.** Every corner is a right-angled corner, with three faces and three edges meeting there. The $12$ edges come in three groups of four equal parallel edges, called the *length* $l$, the *width* $w$ and the *height* $h$, and the whole solid is fixed by those three numbers.
 
 | Part | How many | What they are |
 |---|---|---|
@@ -126,7 +126,7 @@ export const body: ArticleBody = {
 | vertices (*titik sudut*) | $8$ | the corners, where three edges meet |
 
 The count obeys Euler’s formula, $V-E+F=8-12+6=2$, exactly as for the cube. The difference between the two is only in the edges: **a cube is a cuboid whose three edges are equal**, so every cube is a cuboid, and a cuboid is a cube only when $l=w=h$. In Indonesian the box is *balok* and the cube *kubus*, and schools write its edges as *panjang* $p$, *lebar* $l$ and *tinggi* $t$. Place a corner at the origin and the opposite corner is $(l,w,h)$: the eight corners are all the points whose coordinates are $0$ or the full edge, which is why the [cube](article:cube#what-is-a-cube) and the box share their counts. A brick, a book, a shoe box, a room and a shipping container are all cuboids.`,
-            T`**Balok, disebut juga prisma persegi panjang, adalah bangun ruang yang dibatasi enam persegi panjang yang bertemu pada sudut siku-siku; sisi-sisi yang berhadapan sama dan sejajar.** Setiap titik sudut adalah sudut siku-siku, dengan tiga sisi dan tiga rusuk bertemu di sana. Kedua belas rusuknya terbagi dalam tiga kelompok yang masing-masing empat rusuk sejajar sama panjang, disebut *panjang* $p$, *lebar* $l$, dan *tinggi* $t$, dan seluruh bangun itu ditentukan oleh tiga bilangan tersebut.
+            T`**Balok, disebut juga [prisma persegi panjang](article:prism#what-is-a-prism), adalah bangun ruang yang dibatasi enam persegi panjang yang bertemu pada sudut siku-siku; sisi-sisi yang berhadapan sama dan sejajar.** Setiap titik sudut adalah sudut siku-siku, dengan tiga sisi dan tiga rusuk bertemu di sana. Kedua belas rusuknya terbagi dalam tiga kelompok yang masing-masing empat rusuk sejajar sama panjang, disebut *panjang* $p$, *lebar* $l$, dan *tinggi* $t$, dan seluruh bangun itu ditentukan oleh tiga bilangan tersebut.
 
 | Bagian | Banyaknya | Apa mereka |
 |---|---|---|

@@ -66,7 +66,8 @@
     "check:seo": "node tools/check-seo.mjs",
     "check:linsys": "node tools/check-linsys.mjs",
     "check:cube": "node tools/check-cube.mjs",
-    "check:cuboid": "node tools/check-cuboid.mjs"
+    "check:cuboid": "node tools/check-cuboid.mjs",
+    "check:prism": "node tools/check-prism.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

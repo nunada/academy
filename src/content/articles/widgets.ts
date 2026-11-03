@@ -1412,4 +1412,32 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Ketik rusuk sebuah balok dan panjang sebuah batang: ia muat bila tidak lebih panjang daripada diagonal ruang; balok bilangan bulat diperiksa untuk diagonal bulat, bata Euler, dan kuadrupel Pythagoras.',
     },
   },
+  prbuild: {
+    title: { en: 'Interactive: build a prism and tilt it', id: 'Interaktif: bangun prisma dan miringkan' },
+    description: {
+      en: 'Choose the polygon of the base, its side and the height: see the volume, the lateral and total surface, the corners, edges and faces, the diagonals, and what happens to them when the prism leans.',
+      id: 'Pilih segi banyak alas, sisinya, dan tingginya: lihat volume, luas selimut dan luas permukaan, titik sudut, rusuk, dan sisi, diagonal, dan apa yang terjadi pada semuanya saat prisma dimiringkan.',
+    },
+  },
+  prnet: {
+    title: { en: 'Interactive: unfold a prism into its net', id: 'Interaktif: buka prisma menjadi jaring-jaringnya' },
+    description: {
+      en: 'The net of a right prism is one long rectangle of side faces and two bases: change the base and the height and watch the lateral area stay perimeter times height.',
+      id: 'Jaring-jaring prisma tegak adalah satu persegi panjang panjang berisi sisi tegak dan dua alas: ubah alas dan tinggi, dan lihat luas selimut tetap keliling kali tinggi.',
+    },
+  },
+  prcyl: {
+    title: { en: 'Interactive: from a prism to a cylinder', id: 'Interaktif: dari prisma menuju tabung' },
+    description: {
+      en: 'Give the base more and more sides inside a fixed circle and watch the volume and the surface of the prism climb towards those of the cylinder.',
+      id: 'Beri alas makin banyak sisi di dalam lingkaran yang tetap dan lihat volume dan luas permukaan prisma naik menuju milik tabung.',
+    },
+  },
+  prlight: {
+    title: { en: 'Interactive: light through a glass prism', id: 'Interaktif: cahaya melalui prisma kaca' },
+    description: {
+      en: 'Send a ray into a prism: change the apex angle, the refractive index and the angle of incidence, and see the deviation, the minimum deviation, total internal reflection, and two colors drawn apart.',
+      id: 'Kirim sinar ke dalam prisma: ubah sudut puncak, indeks bias, dan sudut datang, dan lihat deviasi, deviasi minimum, pemantulan sempurna, dan dua warna yang terpisah.',
+    },
+  },
 }

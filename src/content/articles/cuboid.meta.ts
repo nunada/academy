@@ -23,7 +23,7 @@ export const meta: ArticleMeta = {
     id: 'balok, cara mencari volume balok, rumus luas permukaan balok, luas selimut balok, beda kubus dan balok, rumus diagonal ruang balok, diagonal sisi balok, apakah batang muat di dalam balok, berapa balok kecil muat dalam balok besar, balok dengan volume terbesar untuk luas permukaan tertentu, mengapa kubus memuat paling banyak, kuadrupel Pythagoras, bata Euler, masalah balok sempurna, sudut diagonal ruang dengan rusuk, sudut antara dua diagonal ruang balok, jaring-jaring balok, soal cerita mengecat dinding ruangan, balok di python, balok dengan diagonal bilangan bulat',
   },
   published: '2026-11-01',
-  updated: '2026-11-01',
+  updated: '2026-11-03',
   readingMinutes: 15,
   about: [
     { name: { en: 'Cuboid', id: 'Balok' }, sameAs: { en: 'https://en.wikipedia.org/wiki/Cuboid', id: 'https://en.wikipedia.org/wiki/Cuboid' } },
