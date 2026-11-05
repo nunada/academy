@@ -1,13 +1,75 @@
+import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../app/store'
 import { useI18n } from '../i18n'
+import { AuthError, authErrors } from '../lib/db'
 import type { CourseInfo } from '../content/types'
 import { PATHS, courseInfo, coursesIn } from '../content/catalog'
 import { courseProgress } from '../lib/progress'
 import { Bar } from '../components/ui'
 
+/** The Enroll button. The first time a learner takes anything they are asked, once, for their teacher's username — optional:
+ *  left empty they study with Nunada (the admin), which is what an empty `teacher_id` already means, so nothing is written
+ *  for it. Later enrollments go straight through; the teacher can be changed from the profile page. */
+function EnrollControl({ kind, refId }: { kind: 'course' | 'path'; refId: string }) {
+  const { state, enroll, chooseTeacher } = useStore()
+  const { t, lang } = useI18n()
+  const [asking, setAsking] = useState(false)
+  const [name, setName] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [busy, setBusy] = useState(false)
+
+  const firstTime = state?.profile.role === 'learner' && !state.profile.teacher_id && state.enrollments.length === 0
+
+  if (!asking) {
+    return (
+      <button className="btn wide" onClick={() => (firstTime ? setAsking(true) : void enroll(kind, refId))}>
+        {t('enroll')}
+      </button>
+    )
+  }
+
+  async function submit(e: FormEvent) {
+    e.preventDefault()
+    setBusy(true)
+    setError(null)
+    try {
+      const teacher = name.trim().replace(/^@/, '')
+      if (teacher) await chooseTeacher(teacher)
+      await enroll(kind, refId)
+    } catch (err) {
+      const code = err instanceof AuthError ? err.code : 'unknown'
+      setError(authErrors[code][lang])
+      setBusy(false)
+    }
+  }
+
+  return (
+    <form onSubmit={submit}>
+      <label className="field" style={{ marginBottom: 8 }}>
+        <span>{t('teacherPromptLabel')}</span>
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} autoComplete="off" autoCapitalize="none" spellCheck={false} maxLength={24} />
+        <small className="muted">{t('teacherPromptHint')}</small>
+      </label>
+      {error && (
+        <div className="verdict no" style={{ marginBottom: 8 }}>
+          {error}
+        </div>
+      )}
+      <div className="row" style={{ gap: 8 }}>
+        <button className="btn" disabled={busy}>
+          {busy ? t('working') : t('teacherPromptGo')}
+        </button>
+        <button type="button" className="btn ghost" onClick={() => setAsking(false)} disabled={busy}>
+          {t('cancel')}
+        </button>
+      </div>
+    </form>
+  )
+}
+
 export default function Catalog() {
-  const { state, enroll, isEnrolled } = useStore()
+  const { state, isEnrolled } = useStore()
   const { t, tc } = useI18n()
 
   const card = (c: CourseInfo) => {
@@ -60,9 +122,7 @@ export default function Catalog() {
                 {st && st.done > 0 ? t('continueBtn') : t('startCourse')}
               </Link>
             ) : (
-              <button className="btn wide" onClick={() => void enroll('course', c.id)}>
-                {t('enroll')}
-              </button>
+              <EnrollControl kind="course" refId={c.id} />
             )}
           </div>
         )}
@@ -105,9 +165,7 @@ export default function Catalog() {
                 (enrolled ? (
                   <span className="pill good">✓ {t('enrolled')}</span>
                 ) : (
-                  <button className="btn wide" onClick={() => void enroll('path', p.id)}>
-                    {t('enroll')}
-                  </button>
+                  <EnrollControl kind="path" refId={p.id} />
                 ))}
             </div>
           )

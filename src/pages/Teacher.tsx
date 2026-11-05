@@ -1,14 +1,17 @@
-/** What every learner has done, for whoever is teaching them.
+/** What the learners in a class have done, for whoever is teaching them.
  *
- *  The two reads behind this page are refused by the database to anybody whose
- *  profile role is not 'teacher'. The route guard in App.tsx only decides
- *  whether to render — it is not what protects the rows. */
+ *  An approved teacher sees the learners who chose them; an admin sees every class, and also approves the teachers who
+ *  signed up. The reads behind this page are refused by the database to anybody else, and answer for the caller's own
+ *  class only. The route guard in App.tsx only decides whether to render — it is not what protects the rows.
+ *
+ *  A teacher who is still waiting for approval, or was turned down, gets a page that says so and loads nothing. */
 
 import { useEffect, useMemo, useState } from 'react'
 import { useStore } from '../app/store'
 import { formatDate, useI18n } from '../i18n'
 import { getBackend } from '../lib/backends'
-import type { CourseProgressRow, RosterRow } from '../lib/db'
+import type { Approval, CourseProgressRow, RosterRow, TeacherAccountRow } from '../lib/db'
+import { isAdmin, isStaff } from '../lib/roles'
 import { COURSES } from '../content/catalog'
 import { Bar } from '../components/ui'
 
@@ -42,31 +45,46 @@ function LastActive({ iso }: { iso: string | null }) {
 }
 
 export default function Teacher() {
-  const { mode } = useStore()
+  const { mode, state } = useStore()
   const { t, tc, lang } = useI18n()
+  const profile = state?.profile
+  const admin = isAdmin(profile)
+  const staff = isStaff(profile)
 
   const [roster, setRoster] = useState<RosterRow[] | null>(null)
+  const [teachers, setTeachers] = useState<TeacherAccountRow[] | null>(null)
   const [perCourse, setPerCourse] = useState<CourseProgressRow[] | null>(null)
   const [failed, setFailed] = useState(false)
 
-  const [tab, setTab] = useState<'roster' | 'course'>('roster')
+  const [tab, setTab] = useState<'roster' | 'course' | 'teachers'>('roster')
   const [courseId, setCourseId] = useState(COURSES[0].id)
   const [sort, setSort] = useState<SortKey>('xp')
 
   useEffect(() => {
+    if (!staff) return
     let alive = true
     const backend = getBackend()
-    Promise.all([backend.teacherRoster(), backend.teacherCourseProgress()])
-      .then(([r, c]) => {
+    Promise.all([backend.teacherRoster(), backend.teacherCourseProgress(), admin ? backend.adminTeachers() : Promise.resolve(null)])
+      .then(([r, c, tl]) => {
         if (!alive) return
         setRoster(r)
         setPerCourse(c)
+        setTeachers(tl)
       })
       .catch(() => alive && setFailed(true))
     return () => {
       alive = false
     }
-  }, [])
+  }, [staff, admin])
+
+  const decide = async (userId: string, approval: Approval) => {
+    try {
+      await getBackend().setTeacherApproval(userId, approval)
+      setTeachers(await getBackend().adminTeachers())
+    } catch {
+      setFailed(true)
+    }
+  }
 
   const sorted = useMemo(() => {
     if (!roster) return null
@@ -131,6 +149,16 @@ export default function Teacher() {
       .sort((a, b) => b.done - a.done || a.username.localeCompare(b.username))
   }, [roster, perCourse, courseId, courseTotal])
 
+  // A teacher who has not been approved sees where they stand, and nobody's progress.
+  if (profile && !staff) {
+    return (
+      <main className="page narrow">
+        <h1>{t('pendingTitle')}</h1>
+        <div className="card">{profile.approval === 'rejected' ? t('rejectedBody') : t('pendingBody')}</div>
+      </main>
+    )
+  }
+
   if (failed) {
     return (
       <main className="page narrow">
@@ -154,8 +182,13 @@ export default function Teacher() {
 
   return (
     <main className="page">
-      <h1>{t('teacherTitle')}</h1>
-      <p className="small muted">{t('teacherIntro')}</p>
+      <h1>{admin ? t('adminTitle') : t('teacherTitle')}</h1>
+      <p className="small muted">{admin ? t('adminIntro') : t('teacherIntroOwn')}</p>
+      {!admin && profile && (
+        <p className="small">
+          {t('classCodeHint')} <b>@{profile.username}</b>
+        </p>
+      )}
       {mode === 'local' && <p className="small muted">{t('teacherLocalNote')}</p>}
 
       <div className="grid three" style={{ marginBottom: 18 }}>
@@ -180,9 +213,70 @@ export default function Teacher() {
         <button className={tab === 'course' ? 'on' : ''} onClick={() => setTab('course')}>
           {t('tabByCourse')}
         </button>
+        {admin && (
+          <button className={tab === 'teachers' ? 'on' : ''} onClick={() => setTab('teachers')}>
+            {t('tabTeachers')}
+            {(teachers ?? []).some((x) => x.approval === 'pending') && (
+              <span className="pill warn" style={{ marginLeft: 6 }}>
+                {(teachers ?? []).filter((x) => x.approval === 'pending').length}
+              </span>
+            )}
+          </button>
+        )}
       </div>
 
-      {sorted.length === 0 ? (
+      {tab === 'teachers' && admin ? (
+        (teachers ?? []).length === 0 ? (
+          <div className="card center muted">{t('noTeachers')}</div>
+        ) : (
+          <div className="gridwrap">
+            <table className="roster">
+              <thead>
+                <tr>
+                  <th>{t('thTeacher')}</th>
+                  <th>{t('thJoined')}</th>
+                  <th>{t('thStudents')}</th>
+                  <th>{t('thStatus')}</th>
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                {(teachers ?? []).map((x) => (
+                  <tr key={x.user_id}>
+                    <td>
+                      <b>{x.display_name}</b>
+                      <span className="small muted" style={{ display: 'block' }}>
+                        @{x.username}
+                      </span>
+                    </td>
+                    <td className="small muted">{formatDate(x.created_at, lang)}</td>
+                    <td>{x.students}</td>
+                    <td>
+                      <span className={`pill ${x.approval === 'approved' ? 'good' : x.approval === 'pending' ? 'warn' : ''}`}>
+                        {x.approval === 'approved' ? t('approvalApproved') : x.approval === 'pending' ? t('approvalPending') : t('approvalRejected')}
+                      </span>
+                    </td>
+                    <td>
+                      <div className="row" style={{ gap: 6, flexWrap: 'wrap' }}>
+                        {x.approval !== 'approved' && (
+                          <button className="btn sm good" onClick={() => void decide(x.user_id, 'approved')}>
+                            {t('approveBtn')}
+                          </button>
+                        )}
+                        {x.approval !== 'rejected' && (
+                          <button className="btn sm ghost" onClick={() => void decide(x.user_id, 'rejected')}>
+                            {t('rejectBtn')}
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
+      ) : sorted.length === 0 ? (
         <div className="card center muted">{t('noLearners')}</div>
       ) : tab === 'roster' ? (
         <div className="gridwrap">
@@ -190,6 +284,7 @@ export default function Teacher() {
             <thead>
               <tr>
                 {th('name', t('thLearner'))}
+                {admin && <th>{t('thTeacher')}</th>}
                 <th>{t('thJoined')}</th>
                 {th('xp', 'XP')}
                 {th('lessons', t('thLessons'))}
@@ -213,6 +308,7 @@ export default function Teacher() {
                       @{r.username}
                     </span>
                   </td>
+                  {admin && <td className="small">{r.teacher_name ? `${r.teacher_name} (@${r.teacher_username})` : '–'}</td>}
                   <td className="small muted">{formatDate(r.created_at, lang)}</td>
                   <td>
                     <b>{r.xp}</b>

@@ -14,6 +14,10 @@ create table if not exists public.profiles (
   created_at  timestamptz not null default now()
 );
 
+-- `role` is used by the leaderboard functions further down, and a SQL function is checked when it is created, so on a
+-- fresh project the column has to exist before them. The teachers section below adds it again, harmlessly.
+alter table public.profiles add column if not exists role text not null default 'learner' check (role in ('learner', 'teacher'));
+
 -- ------------------------------------------------------------ enrollments
 
 create table if not exists public.enrollments (

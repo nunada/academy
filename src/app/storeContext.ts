@@ -26,11 +26,16 @@ export interface StoreValue {
     password: string
     username: string
     displayName: string
+    /** 'teacher' asks for a teacher account, which an admin has to approve. */
+    role?: 'learner' | 'teacher'
   }) => Promise<{ needsConfirmation: boolean }>
   signOut: () => Promise<void>
   /** Throws AuthError('username-taken') if the new username is somebody
    *  else's already. */
   updateProfile: (changes: { username?: string; displayName?: string }) => Promise<void>
+  /** A learner joins the class of the teacher with this username (blank: the Nunada admin). Throws
+   *  AuthError('teacher-not-found') for a name that is no approved teacher's. */
+  chooseTeacher: (username: string | null) => Promise<void>
   submitFeedback: (rating: number, comment?: string) => Promise<void>
   enroll: (kind: 'course' | 'path', refId: string) => Promise<void>
   isEnrolled: (kind: 'course' | 'path', refId: string) => boolean

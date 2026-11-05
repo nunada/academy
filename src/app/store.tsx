@@ -154,8 +154,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       await loadState(u.id)
     },
 
-    async signUp({ email, password, username, displayName }) {
-      const { user: u, needsConfirmation } = await backend.signUp({ email, password, username, displayName, lang })
+    async signUp({ email, password, username, displayName, role }) {
+      const { user: u, needsConfirmation } = await backend.signUp({ email, password, username, displayName, lang, role })
 
       // With email confirmation switched on — the default — Supabase creates
       // the account but hands back no session, and won't until the link in
@@ -190,6 +190,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       if (!user) return
       const profile = await backend.updateProfile(user.id, changes)
       setState((s) => (s ? { ...s, profile } : s))
+    },
+
+    async chooseTeacher(username) {
+      if (!user) return
+      const { profile, teacher } = await backend.setMyTeacher(user.id, username)
+      setState((s) => (s ? { ...s, profile, teacher } : s))
     },
 
     async submitFeedback(rating, comment) {

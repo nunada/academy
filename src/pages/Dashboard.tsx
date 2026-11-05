@@ -6,6 +6,7 @@ import { useCourse } from '../app/curriculum'
 import { courseItems, type Course } from '../content/types'
 import { courseProgress, courseStatus } from '../lib/progress'
 import { Bar, Stat } from '../components/ui'
+import { isStaff, staffXpLabel } from '../lib/roles'
 
 export default function Dashboard() {
   const { state, xpTotal, xpWeek, isEnrolled } = useStore()
@@ -54,8 +55,8 @@ export default function Dashboard() {
         </div>
         <div className="row">
           <div className="card" style={{ padding: 4, display: 'flex' }}>
-            <Stat value={xpWeek} label={t('weekXp')} />
-            <Stat value={xpTotal} label={t('totalXpLabel')} />
+            <Stat value={isStaff(state.profile) ? staffXpLabel(state.profile) : xpWeek} label={t('weekXp')} />
+            <Stat value={isStaff(state.profile) ? staffXpLabel(state.profile) : xpTotal} label={t('totalXpLabel')} />
             <Stat value={state.trophies.length} label={t('trophies')} />
           </div>
         </div>

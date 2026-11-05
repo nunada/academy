@@ -5,6 +5,7 @@ import { courseInfo } from '../content/catalog'
 import { useCourse } from '../app/curriculum'
 import { courseStatus, doneIds, isUnlocked } from '../lib/progress'
 import { Bar } from '../components/ui'
+import { isStaff } from '../lib/roles'
 
 export default function CourseMap() {
   const { courseId = '' } = useParams()
@@ -20,8 +21,8 @@ export default function CourseMap() {
 
   const done = doneIds(state.progress)
   const st = courseStatus(course, state.progress)
-  // A teacher can open any lesson or project to preview it, regardless of order.
-  const isTeacher = state.profile.role === 'teacher'
+  // Staff (an approved teacher or an admin) can open any lesson or project to preview it, regardless of order.
+  const isTeacher = isStaff(state.profile)
 
   return (
     <main className="page narrow">

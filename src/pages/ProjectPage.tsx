@@ -19,6 +19,7 @@ import { CompileReport } from '../components/CompileReport'
 import { GamePreview } from '../components/GamePreview'
 import { BlocksBoard, ProgramView } from '../components/BlocksBoard'
 import { checkLevel, emptyProgram, type LevelReport, type Program } from '../lib/blocks'
+import { isStaff } from '../lib/roles'
 
 function findProject(course: Course | undefined, projectId: string): MiniProject | undefined {
   if (!course) return undefined
@@ -84,8 +85,8 @@ export default function ProjectPage() {
   if (!state || !course) return <main className="page muted">{t('loading')}</main>
   if (!project) return <Navigate to={`/course/${courseId}`} replace />
   if (!state) return <main className="page muted">{t('loading')}</main>
-  // A teacher previews material out of order — a learner still climbs the ladder.
-  const isTeacher = state.profile.role === 'teacher'
+  // Staff (an approved teacher or an admin) preview material out of order — a learner still climbs the ladder.
+  const isTeacher = isStaff(state.profile)
   if (!isTeacher && !isUnlocked(course, project.id, state.progress)) {
     return <Navigate to={`/course/${courseId}`} replace />
   }

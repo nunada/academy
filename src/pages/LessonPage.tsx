@@ -9,6 +9,7 @@ import { isUnlocked } from '../lib/progress'
 import { formatCountdown } from '../lib/hearts'
 import StepView from '../components/StepView'
 import { Modal } from '../components/ui'
+import { isStaff } from '../lib/roles'
 
 function findLesson(course: Course | undefined, lessonId: string): Lesson | undefined {
   if (!course) return undefined
@@ -41,8 +42,8 @@ export default function LessonPage() {
   if (!info || !info.available) return <Navigate to="/catalog" replace />
   if (!state || !course) return <main className="page muted">{t('loading')}</main>
   if (!lesson) return <Navigate to={`/course/${courseId}`} replace />
-  // A teacher previews material out of order — a learner still climbs the ladder.
-  const isTeacher = state.profile.role === 'teacher'
+  // Staff (an approved teacher or an admin) preview material out of order — a learner still climbs the ladder.
+  const isTeacher = isStaff(state.profile)
   if (!isTeacher && !isUnlocked(course, lesson.id, state.progress)) {
     return <Navigate to={`/course/${courseId}`} replace />
   }

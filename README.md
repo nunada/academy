@@ -61,6 +61,11 @@ papan peringkat tidak kosong. Berguna untuk mencoba, **bukan** untuk dipakai sun
    terpasang sebelum pemisahan papan peringkat: `xp_events` mendapat kolom
    `course_id`, dan kedua fungsi papan XP berganti tanda tangan. Baris lama
    diisikan sendiri oleh berkas itu dari tabel `progress`.
+   Lalu jalankan [`supabase/public-profile.sql`](supabase/public-profile.sql) dan
+   [`supabase/roles.sql`](supabase/roles.sql) dengan cara yang sama (peran siswa,
+   guru, admin, dan kelas; lihat "Melihat capaian pembelajar" di bawah). Untuk
+   proyek yang sudah berjalan, `roles.sql` **harus** dijalankan sebelum akun guru
+   baru mendaftar: tanpa itu pendaftaran "guru" diam-diam menjadi siswa.
 3. Di **Authentication → Providers**, pastikan Email aktif. Untuk pengembangan,
    matikan *Confirm email* agar bisa langsung masuk setelah mendaftar.
 4. Salin `.env.example` menjadi `.env.live` (bukan `.env`), lalu isi dari
@@ -276,22 +281,42 @@ Supabase tidak ada, dan build yang terbit selalu punya kuncinya.
 
 Dua cara. Keduanya membaca baris yang sama, dan tak satu pun menulis apa pun.
 
-**Halaman Kelas, di dalam aplikasi.** Muncul di navigasi hanya untuk akun
-bertanda guru. Isinya satu baris per pembelajar — XP, pelajaran, proyek, trofi,
-sertifikat, dan kapan terakhir ia menyelesaikan sesuatu — plus tab kedua yang
-menunjukkan sejauh mana tiap orang di satu kursus. Kolom yang paling berguna
-biasanya yang paling kanan: "Belum mulai" dan "10 hari lalu" ditandai warna,
-karena itulah yang dicari saat kamu memindai daftarnya.
+**Halaman Kelas, di dalam aplikasi.** Muncul di navigasi untuk guru dan admin
+(untuk admin namanya "Admin"). Isinya satu baris per siswa — XP, pelajaran,
+proyek, trofi, sertifikat, dan kapan terakhir ia menyelesaikan sesuatu — plus tab
+kedua yang menunjukkan sejauh mana tiap orang di satu kursus. Kolom yang paling
+berguna biasanya yang paling kanan: "Belum mulai" dan "10 hari lalu" ditandai
+warna, karena itulah yang dicari saat kamu memindai daftarnya.
 
-Angkat seseorang jadi guru dari **SQL Editor**:
+**Tiga jenis akun.** Dijalankan oleh [`supabase/roles.sql`](supabase/roles.sql),
+setelah `schema.sql` dan `public-profile.sql` (aman diulang):
+
+- **Siswa** (`learner`). Saat pertama kali mengambil kursus ia diminta, sekali,
+  mengetik username gurunya — boleh dikosongkan. Kosong berarti ia siswa admin
+  Nunada. Gurunya bisa diganti dari halaman Profil.
+- **Guru** (`teacher`). Mendaftar lewat pilihan "guru" di formulir pendaftaran,
+  tetapi akunnya `pending` sampai admin menyetujuinya di tab **Guru** pada
+  halaman Admin. Guru yang disetujui hanya melihat siswa yang memilihnya; guru
+  yang belum disetujui atau ditolak tidak melihat siapa pun. Guru dan admin tidak
+  mengumpulkan XP (penghitung di bilah atas: 9999 untuk guru, ♾️ untuk admin),
+  tidak kehabisan heart, dan tidak muncul di papan peringkat.
+- **Admin** (`admin`). Melihat semua kelas dan menyetujui guru. Tidak pernah
+  dibuat dari aplikasi: pernyataan terakhir `roles.sql` mengangkat akun
+  berusername `nunada`, dan admin lain diangkat dengan pernyataan yang sama dari
+  **SQL Editor**:
 
 ```sql
-update public.profiles set role = 'teacher' where username = 'nama_penggunanya';
+update public.profiles set role = 'admin', approval = 'approved' where username = 'nama_penggunanya';
 ```
 
-Hanya dari sana. Basis datanya menolak pernyataan itu kalau datang dari
-aplikasi — dua kali, lewat hibah kolom dan lewat trigger — supaya tidak ada
-pembelajar yang bisa mengangkat dirinya sendiri lalu membaca data satu kelas.
+Hanya dari sana. Basis datanya menolak perubahan `role` kalau datang dari
+aplikasi, dan `approval` serta `teacher_id` hanya bisa diubah oleh fungsi di
+`roles.sql` — dua kali, lewat hibah kolom dan lewat trigger — supaya tidak ada
+orang yang bisa mengangkat atau menyetujui dirinya sendiri lalu membaca data
+sebuah kelas. Aturannya diuji pada Postgres sungguhan oleh `npm run check:rolessql`
+(PGlite), dan padanannya di mode lokal oleh `npm run check:roles`.
+
+Di mode lokal, akun pertama di peramban adalah admin.
 
 **Empat kueri di SQL Editor**, untuk yang tidak muat di halaman:
 [`supabase/reports.sql`](supabase/reports.sql) — satu baris per pembelajar,

@@ -12,7 +12,12 @@ export interface AuthUser {
   email: string
 }
 
-export type Role = 'learner' | 'teacher'
+/** A learner is a student. A teacher signs up as one and waits for an admin's approval. An admin is made by hand in the
+ *  SQL editor (`supabase/roles.sql`), never from the app. */
+export type Role = 'learner' | 'teacher' | 'admin'
+
+/** A learner is always 'approved'. A teacher starts 'pending'; only an admin changes it. */
+export type Approval = 'pending' | 'approved' | 'rejected'
 
 export interface Profile {
   id: string
@@ -20,9 +25,31 @@ export interface Profile {
   display_name: string
   lang: Lang
   created_at: string
-  /** Only a teacher may read the roster. Set by hand from the SQL editor —
-   *  the database refuses to let anybody assign it to themselves. */
+  /** Only an approved teacher or an admin may read a roster. Set by the database
+   *  and the SQL editor — it refuses to let anybody assign it to themselves. */
   role: Role
+  /** Whether a teacher account has been approved. Meaningless for a learner (always 'approved'). */
+  approval: Approval
+  /** The teacher or admin this learner studies with; null until chosen, which is read as the Nunada admin. */
+  teacher_id: string | null
+}
+
+/** Who a learner studies with. */
+export interface TeacherInfo {
+  id: string
+  username: string
+  display_name: string
+  role: 'teacher' | 'admin'
+}
+
+/** A teacher account, as the admin lists them for approval. */
+export interface TeacherAccountRow {
+  user_id: string
+  username: string
+  display_name: string
+  approval: Approval
+  created_at: string
+  students: number
 }
 
 export interface ProgressItem {
@@ -68,6 +95,8 @@ export interface UserState {
   trophies: TrophyRow[]
   certificates: CertificateRow[]
   hearts: { hearts: number; updated_at: string }
+  /** The learner's teacher (the Nunada admin when none was chosen). Null for a teacher or an admin. */
+  teacher: TeacherInfo | null
 }
 
 export interface LeaderRow {
@@ -139,6 +168,9 @@ export interface RosterRow {
   trophies: number
   certificates: number
   last_active: string | null
+  /** The class the learner belongs to; an admin's roster shows it, a teacher's is all their own. */
+  teacher_username: string | null
+  teacher_name: string | null
 }
 
 /** Counts only. How many items a course holds belongs to the curriculum, and
@@ -169,6 +201,9 @@ export interface Backend {
     username: string
     displayName: string
     lang: Lang
+    /** 'teacher' asks for a teacher account, which waits for an admin's approval. Anything else is a learner;
+     *  an admin cannot be asked for. */
+    role?: 'learner' | 'teacher'
   }): Promise<{ user: AuthUser; needsConfirmation: boolean }>
   signIn(input: { email: string; password: string }): Promise<AuthUser>
   signOut(): Promise<void>
@@ -196,6 +231,11 @@ export interface Backend {
    *  someone else already; changing only the case of your own username, or
    *  passing the same one back, is not a conflict with yourself. */
   updateProfile(userId: string, changes: { username?: string; displayName?: string }): Promise<Profile>
+  /** Joins the class of the teacher with this username; blank or null means the Nunada admin. Only an approved
+   *  teacher or an admin can be named, and a learner is the only one who may choose.
+   *  Throws AuthError('teacher-not-found') for any other name — the same answer for a name that does not exist and
+   *  for a teacher who has not been approved. */
+  setMyTeacher(userId: string, username: string | null): Promise<{ profile: Profile; teacher: TeacherInfo | null }>
   enroll(userId: string, kind: 'course' | 'path', refId: string): Promise<Enrollment[]>
   /** Idempotent: completing an already-finished item awards no extra XP. */
   completeItem(
@@ -219,10 +259,16 @@ export interface Backend {
    *  an unknown id and a teacher's id look the same from here, deliberately. */
   publicProfile(userId: string): Promise<PublicProfile | null>
 
-  /** Both are teachers-only. The check lives in the database, not here: these
-   *  read every learner's rows, so a client-side guard would be decoration. */
+  /** Both are for staff only, and both answer for the caller's own class: an approved teacher gets the learners who
+   *  chose them, an admin gets everybody. The check and the scope live in the database, not here: these read other
+   *  people's rows, so a client-side guard would be decoration. */
   teacherRoster(): Promise<RosterRow[]>
   teacherCourseProgress(): Promise<CourseProgressRow[]>
+
+  /** Admin only: every teacher account, those waiting for approval first. */
+  adminTeachers(): Promise<TeacherAccountRow[]>
+  /** Admin only: approve or turn down a teacher account. */
+  setTeacherApproval(userId: string, approval: Approval): Promise<void>
 }
 
 export class AuthError extends Error {
@@ -236,6 +282,7 @@ export class AuthError extends Error {
       | 'weak-password'
       | 'invalid'
       | 'link-expired'
+      | 'teacher-not-found'
       | 'unknown' = 'unknown',
   ) {
     super(message)
@@ -251,6 +298,10 @@ export const authErrors: Record<string, { en: string; id: string }> = {
   'link-expired': {
     en: 'That link has expired or has already been used. Ask for a new one.',
     id: 'Tautan itu sudah kedaluwarsa atau sudah dipakai. Minta yang baru.',
+  },
+  'teacher-not-found': {
+    en: 'No teacher has that username. Check the spelling, or leave it empty to study with Nunada.',
+    id: 'Tidak ada guru dengan username itu. Periksa ejaannya, atau kosongkan untuk belajar bersama Nunada.',
   },
   unknown: { en: 'Something went wrong. Try again.', id: 'Terjadi kesalahan. Coba lagi.' },
 }

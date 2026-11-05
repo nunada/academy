@@ -16,6 +16,8 @@ export default function Auth() {
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
   const [displayName, setDisplayName] = useState('')
+  /** Who is signing up. A teacher account has to be approved by an admin before it can see a class. */
+  const [role, setRole] = useState<'learner' | 'teacher'>('learner')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   /** Set once a reset has been asked for. Says the same thing whether or not
@@ -33,7 +35,7 @@ export default function Auth() {
       if (mode === 'reset') {
         setSent(await getBackend().requestPasswordReset(email))
       } else if (mode === 'signup') {
-        const { needsConfirmation } = await signUp({ email, password, username, displayName })
+        const { needsConfirmation } = await signUp({ email, password, username, displayName, role })
         setAwaitingConfirm(needsConfirmation)
       } else {
         await signIn(email, password)
@@ -87,6 +89,7 @@ export default function Auth() {
           <>
             <div className="verdict ok" style={{ marginBottom: 14 }}>
               {t('signupConfirmBody')}
+              {role === 'teacher' && <> {t('teacherConfirmNote')}</>}
             </div>
             <p className="small muted center" style={{ marginTop: 16, marginBottom: 0 }}>
               <button className="btn ghost sm" type="button" onClick={backToSignIn}>
@@ -110,6 +113,17 @@ export default function Auth() {
             <form onSubmit={submit}>
               {mode === 'signup' && (
                 <>
+                  <fieldset className="field rolepick" style={{ border: 0, padding: 0, margin: '0 0 14px' }}>
+                    <legend style={{ padding: 0, marginBottom: 6 }}>{t('signUpAs')}</legend>
+                    <div className="chips" style={{ margin: 0 }}>
+                      {(['learner', 'teacher'] as const).map((r) => (
+                        <button key={r} type="button" className={`chip ${role === r ? 'on' : ''}`} aria-pressed={role === r} onClick={() => setRole(r)}>
+                          {r === 'learner' ? t('asStudent') : t('asTeacher')}
+                        </button>
+                      ))}
+                    </div>
+                    {role === 'teacher' && <small className="muted">{t('teacherSignupNote')}</small>}
+                  </fieldset>
                   <label className="field">
                     <span>{t('username')}</span>
                     <input

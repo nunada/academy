@@ -8,6 +8,8 @@ import { useTheme, type ThemePref } from '../lib/theme'
 import { Hearts, ShareButton } from './ui'
 import { Logo } from './Logo'
 import { FeedbackWidget } from './FeedbackWidget'
+import type { Profile } from '../lib/db'
+import { hasClassPage, isAdmin, isStaff, staffXpLabel } from '../lib/roles'
 import { aboutPath } from '../lib/aboutSeo'
 import { gamesPath } from '../lib/gameSeo'
 import { ORG } from '../content/org'
@@ -100,7 +102,8 @@ function TrophyList({ ids }: { ids: string[] }) {
 
 export interface TopBarProps {
   signedIn: boolean
-  isTeacher: boolean
+  /** The signed-in account's role and approval, which decide the menu and what the XP counter says. */
+  profile: Pick<Profile, 'role' | 'approval'> | null
   xp: number
   hearts: number
   nextHeartIn: number | null
@@ -110,8 +113,10 @@ export interface TopBarProps {
 
 /** The brand, the menu, and the controls. On a phone the controls share one row with the logo and the
  *  menu scrolls sideways on a second row (see the max-width rules in styles.css). */
-export function TopBar({ signedIn, isTeacher, xp, hearts, nextHeartIn, localMode, onSignOut }: TopBarProps) {
+export function TopBar({ signedIn, profile, xp, hearts, nextHeartIn, localMode, onSignOut }: TopBarProps) {
   const { t, lang } = useI18n()
+  const staff = isStaff(profile)
+  const classPage = hasClassPage(profile)
   // The article list has one address per language.
   const articlesPath = lang === 'id' ? '/artikel' : '/articles'
 
@@ -137,7 +142,7 @@ export function TopBar({ signedIn, isTeacher, xp, hearts, nextHeartIn, localMode
           <NavLink to={articlesPath}>{t('navArticles')}</NavLink>
           <NavLink to={gamesPath(lang)}>{t('navGames')}</NavLink>
           <NavLink to="/help">{t('navHelp')}</NavLink>
-          {isTeacher && <NavLink to="/teacher">{t('navTeacher')}</NavLink>}
+          {classPage && <NavLink to="/teacher">{isAdmin(profile) ? t('navAdmin') : t('navTeacher')}</NavLink>}
         </nav>
       )}
 
@@ -146,9 +151,9 @@ export function TopBar({ signedIn, isTeacher, xp, hearts, nextHeartIn, localMode
       {signedIn && (
         <>
           <span className="pill brand" title={t('totalXpLabel')}>
-            ⚡ {isTeacher ? 99999 : xp}
+            ⚡ {staff && profile ? staffXpLabel(profile) : xp}
           </span>
-          <Hearts count={hearts} nextIn={nextHeartIn} infinite={isTeacher} />
+          <Hearts count={hearts} nextIn={nextHeartIn} infinite={staff} />
         </>
       )}
       {localMode && (
@@ -258,7 +263,7 @@ export default function Layout() {
       <SkipLinkAndAnnouncer />
       <TopBar
         signedIn={Boolean(user)}
-        isTeacher={state?.profile.role === 'teacher'}
+        profile={state?.profile ?? null}
         xp={xpTotal}
         hearts={hearts}
         nextHeartIn={nextHeartIn}

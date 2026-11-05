@@ -15,6 +15,8 @@ import type {
   ProgressItem,
   PublicProfile,
   RosterRow,
+  TeacherAccountRow,
+  TeacherInfo,
   TrophyRow,
   UserState,
   XpEvent,
@@ -55,7 +57,7 @@ export function createSupabaseBackend(): Backend {
       return () => data.subscription.unsubscribe()
     },
 
-    async signUp({ email, password, username, displayName, lang }) {
+    async signUp({ email, password, username, displayName, lang, role }) {
       if (password.length < 6) throw new AuthError('weak', 'weak-password')
 
       // Check the name first: a unique-violation inside the profile trigger would
@@ -68,7 +70,9 @@ export function createSupabaseBackend(): Backend {
         email,
         password,
         options: {
-          data: { username, display_name: displayName || username, lang },
+          // `role` is only ever 'teacher' or absent: the database turns anything else into a learner, and a teacher
+          // into a pending one that an admin has to approve.
+          data: { username, display_name: displayName || username, lang, ...(role === 'teacher' ? { role: 'teacher' } : {}) },
           // Without this, the confirmation link points at whatever the project's
           // Site URL happens to be — which is localhost until somebody
           // remembers to change it, and then nobody can confirm an account.
@@ -133,7 +137,7 @@ export function createSupabaseBackend(): Backend {
     },
 
     async getState(userId): Promise<UserState> {
-      const [profileRes, progressRes, xpRes, enrollRes, trophyRes, certRes, heartsRes] = await Promise.all([
+      const [profileRes, progressRes, xpRes, enrollRes, trophyRes, certRes, heartsRes, teacherRes] = await Promise.all([
         sb.from('profiles').select('*').eq('id', userId).single(),
         sb.from('progress').select('course_id,item_id,kind,xp,completed_at').eq('user_id', userId),
         sb.from('xp_events').select('amount,source,created_at').eq('user_id', userId),
@@ -141,13 +145,19 @@ export function createSupabaseBackend(): Backend {
         sb.from('trophies').select('trophy_id,earned_at').eq('user_id', userId),
         sb.from('certificates').select('kind,ref_id,serial,issued_at').eq('user_id', userId),
         sb.rpc('resolve_hearts'),
+        sb.rpc('my_teacher'),
       ])
 
       if (profileRes.error) throw profileRes.error
 
       const heartsRow = (heartsRes.data ?? null) as { hearts: number; updated_at: string } | null
 
+      // No row for a teacher or an admin (and an error is read the same way: it only means the project has not run
+      // supabase/roles.sql yet, and a learner without a named teacher simply has none to show).
+      const teacher = ((teacherRes.data ?? [])[0] ?? null) as TeacherInfo | null
+
       return {
+        teacher,
         profile: profileRes.data as Profile,
         progress: (progressRes.data ?? []) as ProgressItem[],
         xpEvents: (xpRes.data ?? []) as XpEvent[],
@@ -189,6 +199,17 @@ export function createSupabaseBackend(): Backend {
         throw new AuthError(error.message, 'unknown')
       }
       return data as Profile
+    },
+
+    async setMyTeacher(userId, username) {
+      const { error } = await sb.rpc('set_my_teacher', { p_username: username ?? '' })
+      if (error) {
+        // P0002 is "teacher not found": a name that is nobody's, a teacher not yet approved, or somebody who is not a teacher.
+        if (error.code === 'P0002') throw new AuthError(error.message, 'teacher-not-found')
+        throw new AuthError(error.message, 'unknown')
+      }
+      const [{ data: profile }, { data: teacher }] = await Promise.all([sb.from('profiles').select('*').eq('id', userId).single(), sb.rpc('my_teacher')])
+      return { profile: profile as Profile, teacher: ((teacher ?? [])[0] ?? null) as TeacherInfo | null }
     },
 
     async enroll(userId, kind, refId) {
@@ -328,6 +349,17 @@ export function createSupabaseBackend(): Backend {
       const { data, error } = await sb.rpc('teacher_course_progress')
       if (error) throw error
       return (data ?? []) as CourseProgressRow[]
+    },
+
+    async adminTeachers() {
+      const { data, error } = await sb.rpc('admin_teachers')
+      if (error) throw error
+      return ((data ?? []) as (Omit<TeacherAccountRow, 'students'> & { students: number | string })[]).map((r) => ({ ...r, students: Number(r.students) }))
+    },
+
+    async setTeacherApproval(userId, approval) {
+      const { error } = await sb.rpc('set_teacher_approval', { p_user: userId, p_approval: approval })
+      if (error) throw error
     },
   }
 }

@@ -208,7 +208,7 @@ export function Hearts({ count, nextIn, infinite = false }: { count: number; nex
   const { t, tc } = useI18n()
   if (infinite) {
     return (
-      <span className="hearts" title={tc({ en: 'Unlimited — teacher accounts never lose hearts.', id: 'Tanpa batas — akun guru tidak pernah kehilangan heart.' })}>
+      <span className="hearts" title={tc({ en: 'Unlimited — teacher and admin accounts never lose hearts.', id: 'Tanpa batas — akun guru dan admin tidak pernah kehilangan heart.' })}>
         <span className="h on">❤️♾️</span>
       </span>
     )

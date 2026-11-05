@@ -7,6 +7,7 @@ import { allTrophyIds, certificateTitle, describeTrophy } from '../lib/progress'
 import { AuthError, authErrors, type MedalCounts } from '../lib/db'
 import { getBackend } from '../lib/backends'
 import { Stat, MedalCard } from '../components/ui'
+import { isStaff, staffXpLabel } from '../lib/roles'
 
 const MEDAL_RANK_LABELS = ['medalRank1', 'medalRank2', 'medalRank3'] as const
 
@@ -103,6 +104,8 @@ function ProfileIdentity() {
             <h1 style={{ marginBottom: 4 }}>{profile.display_name}</h1>
             <p className="muted" style={{ margin: 0 }}>
               @{profile.username}
+              {profile.role === 'admin' && <span className="pill brand" style={{ marginLeft: 8 }}>{t('roleAdminBadge')}</span>}
+              {profile.role === 'teacher' && <span className="pill brand" style={{ marginLeft: 8 }}>{t('roleTeacherBadge')}</span>}
             </p>
           </div>
           <button className="btn ghost sm" onClick={open}>
@@ -160,6 +163,67 @@ function ProfileIdentity() {
   )
 }
 
+/** A learner's teacher: who it is now, and a field to change it. Blank means the Nunada admin. Only a learner has one. */
+function MyTeacher() {
+  const { state, chooseTeacher } = useStore()
+  const { t, lang } = useI18n()
+  const [name, setName] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [saved, setSaved] = useState(false)
+  const teacher = state!.teacher
+
+  async function submit(e: FormEvent) {
+    e.preventDefault()
+    setBusy(true)
+    setError(null)
+    setSaved(false)
+    try {
+      await chooseTeacher(name.trim().replace(/^@/, '') || null)
+      setName('')
+      setSaved(true)
+    } catch (err) {
+      const code = err instanceof AuthError ? err.code : 'unknown'
+      setError(authErrors[code][lang])
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <form className="card" style={{ marginBottom: 24 }} onSubmit={submit}>
+      <div className="between" style={{ flexWrap: 'wrap', gap: 6 }}>
+        <b>{t('myTeacher')}</b>
+        <span>
+          {teacher ? (
+            <>
+              {teacher.display_name} <span className="muted small">@{teacher.username}</span>
+            </>
+          ) : (
+            <span className="muted small">{t('myTeacherDefault')}</span>
+          )}
+        </span>
+      </div>
+      <label className="field" style={{ marginTop: 12 }}>
+        <span>{t('myTeacherChange')}</span>
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} autoComplete="off" autoCapitalize="none" spellCheck={false} maxLength={24} />
+        <small className="muted">{t('myTeacherHint')}</small>
+      </label>
+      {error && (
+        <div className="verdict no" style={{ marginBottom: 10 }}>
+          {error}
+        </div>
+      )}
+      <div className="row">
+        <button className="btn sm" disabled={busy}>
+          {busy ? t('working') : t('myTeacherSave')}
+        </button>
+        {saved && <span className="small" style={{ color: 'var(--good)' }}>{t('myTeacherSaved')}</span>}
+      </div>
+    </form>
+  )
+}
+
 export default function Profile() {
   const { state, user, xpTotal, xpWeek } = useStore()
   const { t, tc, lang, setLang } = useI18n()
@@ -177,6 +241,8 @@ export default function Profile() {
 
   const earned = new Set(state.trophies.map((x) => x.trophy_id))
   const all = allTrophyIds(courses)
+  // Staff earn no XP: the counters show a fixed 9999 for a teacher and an unlimited sign for an admin.
+  const staff = isStaff(state.profile)
 
   const allTimePlaced = allTimeRank !== null && allTimeRank >= 0 && allTimeRank < 3
   const stillLoadingMedals = allTimeRank === null || weeklyMedals === null
@@ -196,8 +262,8 @@ export default function Profile() {
       </p>
 
       <div className="card" style={{ display: 'flex', padding: 6, marginBottom: 20 }}>
-        <Stat value={xpWeek} label={t('weekXp')} />
-        <Stat value={xpTotal} label={t('totalXpLabel')} />
+        <Stat value={staff ? staffXpLabel(state.profile) : xpWeek} label={t('weekXp')} />
+        <Stat value={staff ? staffXpLabel(state.profile) : xpTotal} label={t('totalXpLabel')} />
         <Stat value={state.trophies.length} label={t('trophies')} />
         <Stat value={state.certificates.length} label={t('certificates')} />
       </div>
@@ -261,6 +327,8 @@ export default function Profile() {
           </div>
         </div>
       </div>
+
+      {state.profile.role === 'learner' && <MyTeacher />}
 
       <div className="card between" style={{ marginBottom: 24 }}>
         <b>{t('password')}</b>

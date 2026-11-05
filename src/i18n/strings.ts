@@ -323,6 +323,72 @@ export const ui = {
   noLearners: { en: 'Nobody has signed up yet.', id: 'Belum ada yang mendaftar.' },
   notStartedCourse: { en: 'Not started', id: 'Belum dimulai' },
 
+  // roles: students, teachers (approved by an admin) and the admin
+  navAdmin: { en: 'Admin', id: 'Admin' },
+  adminTitle: { en: 'Admin', id: 'Admin' },
+  teacherIntroOwn: {
+    en: 'The students who chose you as their teacher, and what they have finished. You see nobody else.',
+    id: 'Siswa yang memilihmu sebagai guru, dan apa saja yang sudah mereka selesaikan. Kamu tidak melihat siswa lain.',
+  },
+  adminIntro: {
+    en: 'Every student in every class, and the teachers waiting for your approval.',
+    id: 'Semua siswa di semua kelas, dan guru yang menunggu persetujuanmu.',
+  },
+  classCodeHint: {
+    en: 'Students join your class by typing your username when they take a course:',
+    id: 'Siswa bergabung ke kelasmu dengan mengetik username-mu saat mengambil kursus:',
+  },
+  pendingTitle: { en: 'Waiting for approval', id: 'Menunggu persetujuan' },
+  pendingBody: {
+    en: 'Your teacher account has been created. An admin has to approve it before you can see a class. Until then you can use the courses like a student.',
+    id: 'Akun gurumu sudah dibuat. Admin perlu menyetujuinya sebelum kamu dapat melihat kelas. Sampai saat itu kamu bisa memakai kursus seperti siswa.',
+  },
+  rejectedBody: {
+    en: 'Your teacher account was not approved. If that is a mistake, ask the admin of Nunada Academy.',
+    id: 'Akun gurumu tidak disetujui. Jika itu keliru, tanyakan kepada admin Nunada Academy.',
+  },
+  tabTeachers: { en: 'Teachers', id: 'Guru' },
+  thTeacher: { en: 'Teacher', id: 'Guru' },
+  thStudents: { en: 'Students', id: 'Siswa' },
+  thStatus: { en: 'Status', id: 'Status' },
+  approvalPending: { en: 'Waiting', id: 'Menunggu' },
+  approvalApproved: { en: 'Approved', id: 'Disetujui' },
+  approvalRejected: { en: 'Not approved', id: 'Ditolak' },
+  approveBtn: { en: 'Approve', id: 'Setujui' },
+  rejectBtn: { en: 'Turn down', id: 'Tolak' },
+  noTeachers: { en: 'No teacher has signed up yet.', id: 'Belum ada guru yang mendaftar.' },
+  allTeachers: { en: 'All teachers', id: 'Semua guru' },
+  // sign-up
+  signUpAs: { en: 'I am signing up as', id: 'Saya mendaftar sebagai' },
+  asStudent: { en: 'a student', id: 'siswa' },
+  asTeacher: { en: 'a teacher', id: 'guru' },
+  teacherSignupNote: {
+    en: 'A teacher account has to be approved by an admin before it can see a class.',
+    id: 'Akun guru harus disetujui admin sebelum dapat melihat kelas.',
+  },
+  teacherConfirmNote: {
+    en: 'After you confirm your email, an admin still has to approve your teacher account.',
+    id: 'Setelah kamu mengonfirmasi email, admin masih harus menyetujui akun gurumu.',
+  },
+  // choosing a teacher
+  teacherPromptLabel: { en: "Your teacher's username (optional)", id: 'Username gurumu (opsional)' },
+  teacherPromptHint: {
+    en: 'If your teacher gave you a username, type it here. Leave it empty to study with Nunada.',
+    id: 'Kalau gurumu memberimu username, ketik di sini. Kosongkan untuk belajar bersama Nunada.',
+  },
+  teacherPromptGo: { en: 'Enroll', id: 'Ambil' },
+  myTeacher: { en: 'My teacher', id: 'Guruku' },
+  myTeacherDefault: { en: '(you study with Nunada)', id: '(kamu belajar bersama Nunada)' },
+  myTeacherChange: { en: 'Change teacher', id: 'Ganti guru' },
+  myTeacherSave: { en: 'Save', id: 'Simpan' },
+  myTeacherSaved: { en: 'Saved.', id: 'Tersimpan.' },
+  myTeacherHint: {
+    en: 'Your teacher sees your progress in the courses. Leave it empty to study with Nunada.',
+    id: 'Gurumu melihat kemajuanmu di kursus. Kosongkan untuk belajar bersama Nunada.',
+  },
+  roleAdminBadge: { en: 'Admin', id: 'Admin' },
+  roleTeacherBadge: { en: 'Teacher', id: 'Guru' },
+
   // misc
   loading: { en: 'Loading…', id: 'Memuat…' },
   errorGeneric: { en: 'Something went wrong.', id: 'Terjadi kesalahan.' },

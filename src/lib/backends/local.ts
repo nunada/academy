@@ -16,12 +16,16 @@ import type {
   MedalCounts,
   Profile,
   ProgressItem,
+  Approval,
   Role,
   RosterRow,
+  TeacherAccountRow,
+  TeacherInfo,
   TrophyRow,
   UserState,
   XpEvent,
 } from '../db'
+import { isStaff } from '../roles'
 import { AuthError } from '../db'
 import type { Lang } from '../../content/types'
 import { MAX_HEARTS, loseHeart, resolveHearts } from '../hearts'
@@ -95,12 +99,13 @@ function blankAccount(
   displayName: string,
   lang: Lang,
   role: Role = 'learner',
+  approval: Approval = 'approved',
 ): Account {
   return {
     id,
     email,
     passwordHash,
-    profile: { id, username, display_name: displayName, lang, created_at: now(), role },
+    profile: { id, username, display_name: displayName, lang, created_at: now(), role, approval, teacher_id: null },
     progress: [],
     xpEvents: [],
     enrollments: [],
@@ -137,12 +142,40 @@ function normalise(db: Db): boolean {
       a.feedback = []
       changed = true
     }
+    // A store written before approval and classes existed: teachers stay approved, nobody has chosen a teacher yet.
+    if (!(a.profile as Partial<Profile>).approval) {
+      a.profile.approval = 'approved'
+      changed = true
+    }
+    if ((a.profile as Partial<Profile>).teacher_id === undefined) {
+      a.profile.teacher_id = null
+      changed = true
+    }
     if ((a.profile as Partial<Profile>).role) continue
-    a.profile.role = owner && !a.seeded ? 'teacher' : 'learner'
+    a.profile.role = owner && !a.seeded ? 'admin' : 'learner'
     if (!a.seeded) owner = false
     changed = true
   }
   return changed
+}
+
+/** The admin a learner belongs to when they chose nobody: the account named "nunada", or else the oldest admin. */
+function defaultAdmin(db: Db): Account | undefined {
+  const admins = db.accounts.filter((a) => a.profile.role === 'admin')
+  return admins.find((a) => a.profile.username.toLowerCase() === 'nunada') ?? admins.sort((x, y) => x.profile.created_at.localeCompare(y.profile.created_at))[0]
+}
+
+/** Whom a learner studies with; nobody for a teacher or an admin. */
+function teacherOf(db: Db, a: Account): TeacherInfo | null {
+  if (a.profile.role !== 'learner') return null
+  const t = (a.profile.teacher_id && db.accounts.find((x) => x.id === a.profile.teacher_id)) || defaultAdmin(db)
+  return t ? { id: t.id, username: t.profile.username, display_name: t.profile.display_name, role: t.profile.role === 'admin' ? 'admin' : 'teacher' } : null
+}
+
+/** The learners a member of staff may see: an admin sees all of them, an approved teacher the ones who chose them. */
+function classOf(db: Db, me: Account | undefined): Account[] {
+  if (!me || !isStaff(me.profile)) throw new AuthError('teachers only', 'invalid')
+  return db.accounts.filter((a) => a.profile.role === 'learner' && (me.profile.role === 'admin' || a.profile.teacher_id === me.id))
 }
 
 function load(): Db {
@@ -199,7 +232,7 @@ function weeklyMedalsOf(db: Db, who: Account): MedalCounts {
   let bronze = 0
   for (const wk of pastWeeks) {
     const totals = db.accounts
-      .filter((a) => a.profile.role !== 'teacher')
+      .filter((a) => a.profile.role === 'learner')
       .map((a) => ({
         user_id: a.id,
         // A rival's seeded weekly figure stands in for every week alike —
@@ -234,6 +267,7 @@ export function createLocalBackend(): Backend {
     trophies: a.trophies,
     certificates: a.certificates,
     hearts: a.hearts,
+    teacher: teacherOf(load(), a),
   })
 
   return {
@@ -252,7 +286,7 @@ export function createLocalBackend(): Backend {
       return () => listeners.delete(cb)
     },
 
-    async signUp({ email, password, username, displayName, lang }) {
+    async signUp({ email, password, username, displayName, lang, role }) {
       const db = load()
       const mail = email.trim().toLowerCase()
       const user = username.trim()
@@ -262,19 +296,23 @@ export function createLocalBackend(): Backend {
       if (db.accounts.some((a) => a.profile.username.toLowerCase() === user.toLowerCase()))
         throw new AuthError('taken', 'username-taken')
 
-      // The first real account in this browser is the teacher. Local mode is a
+      // The first real account in this browser is the admin. Local mode is a
       // one-person sandbox seeded with six invented rivals, so whoever opens it
-      // is the owner — and without this the teacher page could only ever be
-      // seen against a live Supabase project.
+      // is the owner — and without this the admin and teacher pages could only
+      // ever be seen against a live Supabase project. Everybody after that is a
+      // learner, or a teacher waiting for the admin's approval, as in the database.
       const firstReal = !db.accounts.some((a) => !a.seeded)
+      const wantsTeacher = role === 'teacher'
       const acc = blankAccount(
-        `u_${Date.now().toString(36)}`,
+        // the clock alone gives two accounts made in the same millisecond one id
+        `u_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`,
         mail,
         hash(password),
         user,
         displayName.trim() || user,
         lang,
-        firstReal ? 'teacher' : 'learner',
+        firstReal ? 'admin' : wantsTeacher ? 'teacher' : 'learner',
+        wantsTeacher && !firstReal ? 'pending' : 'approved',
       )
       db.accounts.push(acc)
       save(db)
@@ -376,6 +414,26 @@ export function createLocalBackend(): Backend {
       return a.profile
     },
 
+    async setMyTeacher(userId, username) {
+      const db = load()
+      const a = find(db, userId)
+      if (a.profile.role !== 'learner') throw new AuthError('learners only', 'invalid')
+      const name = (username ?? '').trim()
+      let target: Account | undefined
+      if (!name) target = defaultAdmin(db)
+      else {
+        // Only an admin or an approved teacher can be named; a name that is nobody's and a teacher who is not
+        // approved get the same answer, as in the database.
+        target = db.accounts.find(
+          (x) => x.profile.username.toLowerCase() === name.toLowerCase() && (x.profile.role === 'admin' || (x.profile.role === 'teacher' && x.profile.approval === 'approved')),
+        )
+      }
+      if (!target) throw new AuthError('teacher not found', 'teacher-not-found')
+      a.profile.teacher_id = target.id
+      save(db)
+      return { profile: a.profile, teacher: teacherOf(db, a) }
+    },
+
     async enroll(userId, kind, refId) {
       const db = load()
       const a = find(db, userId)
@@ -400,12 +458,15 @@ export function createLocalBackend(): Backend {
         xp: item.xp,
         completed_at: stamp,
       })
-      a.xpEvents.push({
-        amount: item.xp,
-        source: `${item.kind}:${item.itemId}`,
-        course_id: item.courseId,
-        created_at: stamp,
-      })
+      // Staff finish items worth 0 XP: the progress row is kept, and no XP event is written (the database does the same).
+      if (item.xp > 0) {
+        a.xpEvents.push({
+          amount: item.xp,
+          source: `${item.kind}:${item.itemId}`,
+          course_id: item.courseId,
+          created_at: stamp,
+        })
+      }
       save(db)
       return { progress: a.progress, xpEvents: a.xpEvents, awardedXp: item.xp }
     },
@@ -479,7 +540,7 @@ export function createLocalBackend(): Backend {
       // get written — so this filters on role directly rather than trusting
       // every value to already be zero.
       const rows: LeaderRow[] = db.accounts
-        .filter((a) => a.profile.role !== 'teacher')
+        .filter((a) => a.profile.role === 'learner')
         .map((a) => {
           let value: number
           if (kind === 'trophies') {
@@ -521,10 +582,10 @@ export function createLocalBackend(): Backend {
     async publicProfile(userId) {
       const db = load()
       const a = db.accounts.find((x) => x.id === userId)
-      if (!a || a.profile.role === 'teacher') return null
+      if (!a || a.profile.role !== 'learner') return null
 
       const place = db.accounts
-        .filter((x) => x.profile.role !== 'teacher')
+        .filter((x) => x.profile.role === 'learner')
         .map((x) => ({ id: x.id, xp: alltimeXpOf(x), name: x.profile.username }))
         .filter((r) => r.xp > 0)
         .sort((p, q) => q.xp - p.xp || p.name.localeCompare(q.name))
@@ -553,9 +614,11 @@ export function createLocalBackend(): Backend {
       // Not a security boundary — everything here is in one browser already —
       // but refusing mirrors what the database does, so the page's error path
       // is the same one in both modes.
-      if (me?.profile.role !== 'teacher') throw new AuthError('teachers only', 'invalid')
+      const mine = classOf(db, me)
 
-      const rows: RosterRow[] = db.accounts.map((a) => ({
+      const rows: RosterRow[] = mine.map((a) => ({
+        teacher_username: teacherOf(db, a)?.username ?? null,
+        teacher_name: teacherOf(db, a)?.display_name ?? null,
         user_id: a.id,
         username: a.profile.username,
         display_name: a.profile.display_name,
@@ -585,10 +648,8 @@ export function createLocalBackend(): Backend {
     async teacherCourseProgress() {
       const db = load()
       const me = db.accounts.find((a) => a.id === localStorage.getItem(SESSION_KEY))
-      if (me?.profile.role !== 'teacher') throw new AuthError('teachers only', 'invalid')
-
       const out: CourseProgressRow[] = []
-      for (const a of db.accounts) {
+      for (const a of classOf(db, me)) {
         const byCourse = new Map<string, ProgressItem[]>()
         for (const p of a.progress) {
           const list = byCourse.get(p.course_id)
@@ -606,6 +667,34 @@ export function createLocalBackend(): Backend {
         }
       }
       return out
+    },
+
+    async adminTeachers() {
+      const db = load()
+      const me = db.accounts.find((a) => a.id === localStorage.getItem(SESSION_KEY))
+      if (me?.profile.role !== 'admin') throw new AuthError('admins only', 'invalid')
+      const rows: TeacherAccountRow[] = db.accounts
+        .filter((a) => a.profile.role === 'teacher')
+        .map((a) => ({
+          user_id: a.id,
+          username: a.profile.username,
+          display_name: a.profile.display_name,
+          approval: a.profile.approval,
+          created_at: a.profile.created_at,
+          students: db.accounts.filter((s) => s.profile.role === 'learner' && s.profile.teacher_id === a.id).length,
+        }))
+      // those waiting come first, then the newest
+      return rows.sort((x, y) => Number(y.approval === 'pending') - Number(x.approval === 'pending') || y.created_at.localeCompare(x.created_at))
+    },
+
+    async setTeacherApproval(userId, approval) {
+      const db = load()
+      const me = db.accounts.find((a) => a.id === localStorage.getItem(SESSION_KEY))
+      if (me?.profile.role !== 'admin') throw new AuthError('admins only', 'invalid')
+      const target = db.accounts.find((a) => a.id === userId)
+      if (!target || target.profile.role !== 'teacher') throw new AuthError('not a teacher account', 'invalid')
+      target.profile.approval = approval
+      save(db)
     },
   }
 }

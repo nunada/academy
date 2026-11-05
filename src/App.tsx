@@ -3,6 +3,7 @@ import { Suspense, lazy, type ReactNode } from 'react'
 import Layout from './components/Layout'
 import { useStore } from './app/store'
 import { useI18n } from './i18n'
+import { hasClassPage } from './lib/roles'
 
 import Landing from './pages/Landing'
 import Auth from './pages/Auth'
@@ -49,7 +50,8 @@ function RequireTeacher({ children }: { children: ReactNode }) {
   const { t } = useI18n()
 
   if (!ready || !state) return <main className="page center muted">{t('loading')}</main>
-  if (state.profile.role !== 'teacher') return <Navigate to="/learn" replace />
+  // A teacher gets the page whether or not they have been approved yet: it tells a pending one where they stand.
+  if (!hasClassPage(state.profile)) return <Navigate to="/learn" replace />
   return <>{children}</>
 }
 
