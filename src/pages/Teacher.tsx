@@ -10,7 +10,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useStore } from '../app/store'
 import { formatDate, useI18n } from '../i18n'
 import { getBackend } from '../lib/backends'
-import type { Approval, CourseProgressRow, RosterRow, TeacherAccountRow } from '../lib/db'
+import type { Approval, CourseProgressRow, FeedbackRow, RosterRow, TeacherAccountRow } from '../lib/db'
 import { isAdmin, isStaff } from '../lib/roles'
 import { COURSES } from '../content/catalog'
 import { Bar } from '../components/ui'
@@ -53,10 +53,20 @@ export default function Teacher() {
 
   const [roster, setRoster] = useState<RosterRow[] | null>(null)
   const [teachers, setTeachers] = useState<TeacherAccountRow[] | null>(null)
+  /** Feedback is read when its tab is opened, on its own: a database that has not been given the newest roles.sql
+   *  fails here only, not on the whole page. */
+  const [feedback, setFeedback] = useState<FeedbackRow[] | null>(null)
+  const [feedbackFailed, setFeedbackFailed] = useState(false)
+  /** Moving a student: the teacher picked in each row's menu, the row being moved, the row just moved, and whether the last try failed. */
+  const [pick, setPick] = useState<Record<string, string>>({})
+  const [moving, setMoving] = useState<string | null>(null)
+  const [movedId, setMovedId] = useState<string | null>(null)
+  const [moveError, setMoveError] = useState(false)
+  const [reloadKey, setReloadKey] = useState(0)
   const [perCourse, setPerCourse] = useState<CourseProgressRow[] | null>(null)
   const [failed, setFailed] = useState(false)
 
-  const [tab, setTab] = useState<'roster' | 'course' | 'teachers'>('roster')
+  const [tab, setTab] = useState<'roster' | 'course' | 'teachers' | 'feedback'>('roster')
   const [courseId, setCourseId] = useState(COURSES[0].id)
   const [sort, setSort] = useState<SortKey>('xp')
 
@@ -75,7 +85,50 @@ export default function Teacher() {
     return () => {
       alive = false
     }
-  }, [staff, admin])
+  }, [staff, admin, reloadKey])
+
+  useEffect(() => {
+    if (!admin || tab !== 'feedback' || feedback !== null) return
+    let alive = true
+    getBackend()
+      .adminFeedback()
+      .then((rows) => alive && setFeedback(rows))
+      .catch(() => alive && setFeedbackFailed(true))
+    return () => {
+      alive = false
+    }
+  }, [admin, tab, feedback])
+
+  /** Who a student can be moved to: the admin (that is "study with Nunada") and every approved teacher. */
+  const moveOptions = useMemo(() => {
+    if (!admin || !profile) return []
+    return [
+      { id: profile.id, username: profile.username, label: `${profile.display_name} (@${profile.username}) · ${t('roleAdminBadge')}` },
+      ...(teachers ?? []).filter((x) => x.approval === 'approved').map((x) => ({ id: x.user_id, username: x.username, label: `${x.display_name} (@${x.username})` })),
+    ]
+  }, [admin, profile, teachers, t])
+  const teacherIdOf = (r: RosterRow) => moveOptions.find((o) => o.username.toLowerCase() === (r.teacher_username ?? '').toLowerCase())?.id ?? ''
+
+  const move = async (r: RosterRow) => {
+    const to = pick[r.user_id]
+    if (!to || to === teacherIdOf(r)) return
+    setMoving(r.user_id)
+    setMoveError(false)
+    try {
+      await getBackend().adminSetStudentTeacher(r.user_id, to)
+      setMovedId(r.user_id)
+      setPick((m) => {
+        const next = { ...m }
+        delete next[r.user_id]
+        return next
+      })
+      setReloadKey((k) => k + 1)
+    } catch {
+      setMoveError(true)
+    } finally {
+      setMoving(null)
+    }
+  }
 
   const decide = async (userId: string, approval: Approval) => {
     try {
@@ -214,6 +267,11 @@ export default function Teacher() {
           {t('tabByCourse')}
         </button>
         {admin && (
+          <button className={tab === 'feedback' ? 'on' : ''} onClick={() => setTab('feedback')}>
+            {t('tabFeedback')}
+          </button>
+        )}
+        {admin && (
           <button className={tab === 'teachers' ? 'on' : ''} onClick={() => setTab('teachers')}>
             {t('tabTeachers')}
             {(teachers ?? []).some((x) => x.approval === 'pending') && (
@@ -225,7 +283,87 @@ export default function Teacher() {
         )}
       </div>
 
-      {tab === 'teachers' && admin ? (
+      {admin && tab === 'roster' && moveError && (
+        <div className="verdict no" style={{ marginBottom: 10 }}>
+          {t('moveFailed')}
+        </div>
+      )}
+      {admin && tab === 'roster' && <p className="small muted">{t('moveHint')}</p>}
+
+      {tab === 'feedback' && admin ? (
+        feedbackFailed ? (
+          <div className="card">{t('feedbackFailed')}</div>
+        ) : feedback === null ? (
+          <div className="card center muted">{t('loading')}</div>
+        ) : feedback.length === 0 ? (
+          <div className="card center muted">{t('feedbackNone')}</div>
+        ) : (
+          <>
+            <div className="grid three" style={{ marginBottom: 14 }}>
+              <div className="card stat">
+                <b>{feedback.length}</b>
+                <span>{t('feedbackCount')}</span>
+              </div>
+              <div className="card stat">
+                <b>{(feedback.reduce((n, f) => n + f.rating, 0) / feedback.length).toFixed(1).replace('.', lang === 'id' ? ',' : '.')}</b>
+                <span>{t('feedbackAverage')}</span>
+              </div>
+              <div className="card stat">
+                <b>{feedback.filter((f) => (f.comment ?? '').trim() !== '').length}</b>
+                <span>{t('feedbackCommented')}</span>
+              </div>
+            </div>
+            <div className="card" style={{ marginBottom: 14 }}>
+              {[5, 4, 3, 2, 1].map((star) => {
+                const n = feedback.filter((f) => f.rating === star).length
+                return (
+                  <div className="row" key={star} style={{ gap: 10, alignItems: 'center' }}>
+                    <span style={{ width: 28 }} aria-label={`${star}`}>
+                      {star}★
+                    </span>
+                    <div style={{ flex: 1 }}>
+                      <Bar percent={Math.round((n / feedback.length) * 100)} />
+                    </div>
+                    <span className="small muted" style={{ width: 28, textAlign: 'right' }}>
+                      {n}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="lb">
+              {feedback.map((f) => (
+                <div className="card" key={f.id} style={{ marginBottom: 10 }}>
+                  <div className="between" style={{ flexWrap: 'wrap', gap: 6 }}>
+                    <span>
+                      <b aria-label={`${f.rating} / 5`}>
+                        {'★'.repeat(f.rating)}
+                        <span className="muted">{'☆'.repeat(Math.max(0, 5 - f.rating))}</span>
+                      </b>{' '}
+                      <span className="small">
+                        {f.display_name ? (
+                          <>
+                            {f.display_name} <span className="muted">@{f.username}</span>
+                          </>
+                        ) : (
+                          <span className="muted">{t('feedbackDeleted')}</span>
+                        )}
+                        {f.role && f.role !== 'learner' && (
+                          <span className="pill brand" style={{ marginLeft: 6 }}>
+                            {f.role === 'admin' ? t('roleAdminBadge') : t('roleTeacherBadge')}
+                          </span>
+                        )}
+                      </span>
+                    </span>
+                    <span className="small muted">{formatDate(f.created_at, lang)}</span>
+                  </div>
+                  <p style={{ margin: '8px 0 0', overflowWrap: 'anywhere' }}>{(f.comment ?? '').trim() ? f.comment : <span className="muted">{t('feedbackNoComment')}</span>}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )
+      ) : tab === 'teachers' && admin ? (
         (teachers ?? []).length === 0 ? (
           <div className="card center muted">{t('noTeachers')}</div>
         ) : (
@@ -292,6 +430,7 @@ export default function Teacher() {
                 <th title={t('trophies')}>🏆</th>
                 <th title={t('certificates')}>📜</th>
                 {th('active', t('thLastActive'))}
+                {admin && <th>{t('moveStudent')}</th>}
               </tr>
             </thead>
             <tbody>
@@ -320,6 +459,35 @@ export default function Teacher() {
                   <td>
                     <LastActive iso={r.last_active} />
                   </td>
+                  {admin && (
+                    <td>
+                      <div className="row" style={{ gap: 6, flexWrap: 'nowrap' }}>
+                        <select
+                          aria-label={`${t('moveStudent')} — ${r.display_name}`}
+                          value={pick[r.user_id] ?? teacherIdOf(r)}
+                          onChange={(e) => {
+                            setMovedId(null)
+                            setPick((m) => ({ ...m, [r.user_id]: e.target.value }))
+                          }}
+                          style={{ maxWidth: 190 }}
+                        >
+                          {moveOptions.map((o) => (
+                            <option key={o.id} value={o.id}>
+                              {o.label}
+                            </option>
+                          ))}
+                        </select>
+                        <button className="btn sm ghost" disabled={moving === r.user_id || !pick[r.user_id] || pick[r.user_id] === teacherIdOf(r)} onClick={() => void move(r)}>
+                          {moving === r.user_id ? t('working') : t('moveBtn')}
+                        </button>
+                        {movedId === r.user_id && (
+                          <span className="small" style={{ color: 'var(--good)' }} role="status">
+                            {t('moveDone')}
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

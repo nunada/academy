@@ -121,7 +121,7 @@ ok((await denied('stu1', `update public.profiles set teacher_id = '${uid.tea1}' 
 await db.exec(`revoke update on public.profiles from authenticated; grant update (username, display_name, lang) on public.profiles to authenticated`)
 
 // anon reaches none of the new functions
-for (const fn of ['is_admin()', 'is_teacher()', 'is_staff()', 'my_teacher()', "set_my_teacher('x')", 'admin_teachers()', "set_teacher_approval('" + uid.tea1 + "', 'approved')", 'teacher_roster()', 'teacher_course_progress()', "complete_item('a','b','lesson',1)"]) {
+for (const fn of ['is_admin()', 'is_teacher()', 'is_staff()', 'my_teacher()', "set_my_teacher('x')", 'admin_teachers()', "set_teacher_approval('" + uid.tea1 + "', 'approved')", 'teacher_roster()', 'teacher_course_progress()', "complete_item('a','b','lesson',1)", "admin_set_student_teacher('" + uid.stu1 + "', '" + uid.tea1 + "')", 'admin_feedback()']) {
   let code = null
   await db.exec(`set role anon`)
   try {
@@ -133,7 +133,7 @@ for (const fn of ['is_admin()', 'is_teacher()', 'is_staff()', 'my_teacher()', "s
   ok(code === '42501', `anon must not execute ${fn} (got ${code})`)
 }
 // ... and that is the privilege itself, not only the function refusing: a staff function answers 42501 to anon either way
-for (const sig of ['is_admin()', 'is_teacher()', 'is_staff()', 'my_teacher()', 'set_my_teacher(text)', 'admin_teachers()', 'set_teacher_approval(uuid, text)', 'teacher_roster()', 'teacher_course_progress()', 'complete_item(text, text, text, integer)']) {
+for (const sig of ['is_admin()', 'is_teacher()', 'is_staff()', 'my_teacher()', 'set_my_teacher(text)', 'admin_teachers()', 'set_teacher_approval(uuid, text)', 'teacher_roster()', 'teacher_course_progress()', 'complete_item(text, text, text, integer)', 'admin_set_student_teacher(uuid, uuid)', 'admin_feedback(integer)']) {
   const r = await db.query(`select has_function_privilege('anon', 'public.${sig}', 'execute') as anon, has_function_privilege('authenticated', 'public.${sig}', 'execute') as authed`)
   ok(r.rows[0].anon === false && r.rows[0].authed === true, `${sig}: anon must have no EXECUTE and signed-in users must (anon ${r.rows[0].anon}, authenticated ${r.rows[0].authed})`)
 }
@@ -240,6 +240,45 @@ await rows('Nunada', `select public.set_teacher_approval('${uid.tea1}', 'rejecte
 ok((await denied('tea1', 'select * from public.teacher_roster()')) === '42501', 'a teacher who is no longer approved loses the roster')
 await rows('Nunada', `select public.set_teacher_approval('${uid.tea1}', 'approved')`)
 ok(names(await rosterOf('tea1')) === 'stu1,stu2', 'and gets it back when approved again')
+
+// ---------------------------------------------------------------- the admin moves a student
+const move = (student, teacher) => `select public.admin_set_student_teacher('${student}', '${teacher}')`
+ok((await denied('stu1', move(uid.stu1, uid.oldteacher))) === '42501', 'a learner cannot move themselves with the admin function')
+ok((await denied('tea1', move(uid.stu1, uid.oldteacher))) === '42501', 'a teacher cannot move a student')
+ok((await prof('stu1')).teacher_id === uid.tea1, 'a refused move changes nothing')
+await rows('Nunada', move(uid.stu1, uid.oldteacher))
+ok((await prof('stu1')).teacher_id === uid.oldteacher, 'the admin moves a student to another approved teacher')
+ok(names(await rosterOf('oldteacher')) === 'stu1' && names(await rosterOf('tea1')) === 'stu2', 'the student leaves one class and joins the other')
+ok((await mine('stu1')).username === 'oldteacher', 'and the student sees the new teacher')
+await rows('Nunada', move(uid.stu1, uid.Nunada))
+ok((await prof('stu1')).teacher_id === uid.Nunada, 'the admin can move a student to the admin')
+ok((await denied('Nunada', move(uid.stu1, uid.tea2))) === 'P0002', 'not to a teacher who was turned down')
+ok((await denied('Nunada', move(uid.stu1, uid.tea3))) === 'P0002', 'not to a teacher who is pending')
+ok((await denied('Nunada', move(uid.stu1, uid.stu2))) === 'P0002', 'not to a learner')
+ok((await denied('Nunada', move(uid.stu1, '00000000-0000-0000-0000-000000000000'))) === 'P0002', 'not to nobody')
+ok((await denied('Nunada', move(uid.tea1, uid.oldteacher))) === 'P0002', 'a teacher is not a student to move')
+ok((await denied('Nunada', move(uid.Nunada, uid.oldteacher))) === 'P0002', 'nor is the admin')
+ok((await prof('stu1')).teacher_id === uid.Nunada, 'refused moves change nothing')
+await rows('Nunada', move(uid.stu1, uid.tea1))
+ok(names(await rosterOf('tea1')) === 'stu1,stu2', 'moved back')
+
+// ------------------------------------------------------------------- feedback for the admin
+const say = (name, rating, comment) => rows(name, `insert into public.feedback (user_id, rating, comment) values ('${uid[name]}', ${rating}, ${comment === null ? 'null' : "'" + comment + "'"})`)
+await say('stu1', 5, 'great lessons')
+await say('stu2', 2, null)
+await say('Nunada', 4, 'ok')
+await say('tea1', 3, 'class page is clear')
+const fb = await rows('Nunada', 'select username, role, rating, comment from public.admin_feedback()')
+ok(fb.length === 4, `the admin reads all feedback, got ${fb.length}`)
+ok(fb[0].username === 'tea1' && fb[3].username === 'stu1', `newest first, got ${fb.map((r) => r.username).join(',')}`)
+ok(fb[0].role === 'teacher' && fb[3].comment === 'great lessons' && fb[3].rating === 5, 'with who wrote it, the rating and the comment')
+ok(fb.find((r) => r.username === 'stu2').comment === null, 'an empty comment stays empty')
+ok((await rows('Nunada', 'select * from public.admin_feedback(2)')).length === 2, 'the limit is honoured')
+ok((await rows('Nunada', 'select * from public.admin_feedback(0)')).length === 1, 'and never below one')
+ok((await denied('stu1', 'select * from public.admin_feedback()')) === '42501', 'a learner cannot read the feedback')
+ok((await denied('tea1', 'select * from public.admin_feedback()')) === '42501', 'nor an approved teacher')
+ok((await rows('tea1', 'select count(*)::int n from public.feedback'))[0].n === 1, 'a teacher still reads only their own feedback row')
+ok((await rows('stu1', 'select count(*)::int n from public.feedback'))[0].n === 1, 'and so does a learner')
 
 // ------------------------------------------------------------------ boards leave staff out
 await db.exec(`reset role`)

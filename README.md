@@ -300,7 +300,11 @@ setelah `schema.sql` dan `public-profile.sql` (aman diulang):
   yang belum disetujui atau ditolak tidak melihat siapa pun. Guru dan admin tidak
   mengumpulkan XP (penghitung di bilah atas: 9999 untuk guru, ♾️ untuk admin),
   tidak kehabisan heart, dan tidak muncul di papan peringkat.
-- **Admin** (`admin`). Melihat semua kelas dan menyetujui guru. Tidak pernah
+- **Admin** (`admin`). Melihat semua kelas, menyetujui guru, memindahkan seorang
+  siswa ke guru lain (menu di kolom terakhir tabel siswa; tujuannya guru yang
+  sudah disetujui atau admin sendiri), dan membaca masukan yang dikirim semua
+  pengguna lewat tombol 💬 (tab **Masukan**, terbaru di atas, dengan nilai
+  rata-rata). Tidak pernah
   dibuat dari aplikasi: pernyataan terakhir `roles.sql` mengangkat akun
   berusername `nunada`, dan admin lain diangkat dengan pernyataan yang sama dari
   **SQL Editor**:

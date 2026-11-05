@@ -8,6 +8,7 @@ import type {
   CertificateRow,
   CourseProgressRow,
   Enrollment,
+  FeedbackRow,
   LeaderRow,
   LeaderboardKind,
   MedalCounts,
@@ -360,6 +361,17 @@ export function createSupabaseBackend(): Backend {
     async setTeacherApproval(userId, approval) {
       const { error } = await sb.rpc('set_teacher_approval', { p_user: userId, p_approval: approval })
       if (error) throw error
+    },
+
+    async adminSetStudentTeacher(studentId, teacherId) {
+      const { error } = await sb.rpc('admin_set_student_teacher', { p_student: studentId, p_teacher: teacherId })
+      if (error) throw error
+    },
+
+    async adminFeedback() {
+      const { data, error } = await sb.rpc('admin_feedback', { p_limit: 500 })
+      if (error) throw error
+      return ((data ?? []) as (Omit<FeedbackRow, 'id' | 'rating'> & { id: number | string; rating: number | string })[]).map((r) => ({ ...r, id: Number(r.id), rating: Number(r.rating) }))
     },
   }
 }

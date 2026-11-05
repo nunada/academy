@@ -183,6 +183,47 @@ await b.setTeacherApproval(tea1.id, 'approved')
 await login('tea1')
 ok(names(await b.teacherRoster()) === 'stu1,stu2', 'and gets it back when approved again')
 
+/* ------------------------------------------------------- the admin moves a student */
+
+await login('stu1')
+ok((await fails(() => b.adminSetStudentTeacher(stu1.id, tea1.id))) === 'invalid', 'a learner cannot use the admin move')
+await login('tea1')
+ok((await fails(() => b.adminSetStudentTeacher(stu1.id, nunada.id))) === 'invalid', 'a teacher cannot move a student')
+await login('Nunada')
+await b.adminSetStudentTeacher(stu1.id, nunada.id)
+ok((await state(stu1.id)).teacher_id === nunada.id, 'the admin moves a student to the admin')
+await login('tea1')
+ok(names(await b.teacherRoster()) === 'stu2', 'and the old teacher no longer sees them')
+await login('Nunada')
+ok((await fails(() => b.adminSetStudentTeacher(stu1.id, tea2.id))) === 'teacher-not-found', 'not to a teacher who was turned down')
+ok((await fails(() => b.adminSetStudentTeacher(stu1.id, tea3.id))) === 'teacher-not-found', 'not to a teacher who is pending')
+ok((await fails(() => b.adminSetStudentTeacher(stu1.id, stu2.id))) === 'teacher-not-found', 'not to a learner')
+ok((await fails(() => b.adminSetStudentTeacher(stu1.id, 'nobody'))) === 'teacher-not-found', 'not to nobody')
+ok((await fails(() => b.adminSetStudentTeacher(tea1.id, nunada.id))) === 'invalid', 'a teacher is not a student to move')
+ok((await state(stu1.id)).teacher_id === nunada.id, 'refused moves change nothing')
+await b.adminSetStudentTeacher(stu1.id, tea1.id)
+await login('tea1')
+ok(names(await b.teacherRoster()) === 'stu1,stu2', 'moved back to the teacher')
+
+/* -------------------------------------------------------------- feedback for the admin */
+
+const pause = () => new Promise((r) => setTimeout(r, 5))
+for (const [name, user, rating, comment] of [['stu1', stu1, 5, 'great lessons'], ['stu2', stu2, 2, undefined], ['Nunada', nunada, 4, 'ok'], ['tea1', tea1, 3, 'class page is clear']]) {
+  await login(name)
+  await b.submitFeedback(user.id, rating, comment)
+  await pause()
+}
+await login('Nunada')
+const fb = await b.adminFeedback()
+ok(fb.length === 4, `the admin reads all feedback, got ${fb.length}`)
+ok(fb[0].username === 'tea1' && fb[3].username === 'stu1', `newest first, got ${fb.map((r) => r.username).join(',')}`)
+ok(fb[0].role === 'teacher' && fb[3].comment === 'great lessons' && fb[3].rating === 5, 'with who wrote it, the rating and the comment')
+ok(fb.find((r) => r.username === 'stu2').comment === null, 'an empty comment stays empty')
+await login('stu1')
+ok((await fails(() => b.adminFeedback())) === 'invalid', 'a learner cannot read the feedback')
+await login('tea1')
+ok((await fails(() => b.adminFeedback())) === 'invalid', 'nor a teacher')
+
 /* ------------------------------------------------------------ boards leave staff out */
 
 await login('stu1')

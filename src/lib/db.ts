@@ -42,6 +42,18 @@ export interface TeacherInfo {
   role: 'teacher' | 'admin'
 }
 
+/** One piece of feedback, as the admin reads it. `username` is null when the account has since been deleted. */
+export interface FeedbackRow {
+  id: number
+  user_id: string
+  username: string | null
+  display_name: string | null
+  role: Role | null
+  rating: number
+  comment: string | null
+  created_at: string
+}
+
 /** A teacher account, as the admin lists them for approval. */
 export interface TeacherAccountRow {
   user_id: string
@@ -269,6 +281,10 @@ export interface Backend {
   adminTeachers(): Promise<TeacherAccountRow[]>
   /** Admin only: approve or turn down a teacher account. */
   setTeacherApproval(userId: string, approval: Approval): Promise<void>
+  /** Admin only: puts a learner in the class of another approved teacher, or of an admin (the admin's own id is "study with Nunada"). */
+  adminSetStudentTeacher(studentId: string, teacherId: string): Promise<void>
+  /** Admin only: the feedback everybody has sent, newest first. */
+  adminFeedback(): Promise<FeedbackRow[]>
 }
 
 export class AuthError extends Error {

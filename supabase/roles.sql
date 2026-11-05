@@ -374,6 +374,72 @@ begin
 end;
 $$;
 
+-- ------------------------------------------------------ moving a student (admin)
+--
+-- The admin can put any learner in the class of another approved teacher, or of an admin (themself included, which
+-- is "study with Nunada"). The learner's own choice goes through set_my_teacher; this is the admin's override, for a
+-- student who typed the wrong name or whose class has changed hands.
+
+create or replace function public.admin_set_student_teacher(p_student uuid, p_teacher uuid)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if not public.is_admin() then
+    raise exception 'admins only' using errcode = '42501';
+  end if;
+  if not exists (select 1 from public.profiles s where s.id = p_student and s.role = 'learner') then
+    raise exception 'not a learner' using errcode = 'P0002';
+  end if;
+  if not exists (
+    select 1 from public.profiles t
+     where t.id = p_teacher and (t.role = 'admin' or (t.role = 'teacher' and t.approval = 'approved'))
+  ) then
+    raise exception 'teacher not found' using errcode = 'P0002';
+  end if;
+
+  perform set_config('nunada.profile_admin', 'on', true);
+  update public.profiles set teacher_id = p_teacher where id = p_student;
+  perform set_config('nunada.profile_admin', 'off', true);
+end;
+$$;
+
+-- ------------------------------------------------------------ feedback (admin)
+--
+-- `feedback` is written by the in-app button and readable only by its writer. The admin reads all of it through this
+-- function, newest first, with the name of who wrote it.
+
+create or replace function public.admin_feedback(p_limit integer default 500)
+returns table (
+  id           bigint,
+  user_id      uuid,
+  username     text,
+  display_name text,
+  role         text,
+  rating       smallint,
+  comment      text,
+  created_at   timestamptz
+)
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if not public.is_admin() then
+    raise exception 'admins only' using errcode = '42501';
+  end if;
+
+  return query
+    select f.id, f.user_id, p.username::text, p.display_name, p.role, f.rating, f.comment, f.created_at
+      from public.feedback f
+      left join public.profiles p on p.id = f.user_id
+     order by f.created_at desc, f.id desc
+     limit greatest(1, least(coalesce(p_limit, 500), 2000));
+end;
+$$;
+
 -- --------------------------------------------------------------- permissions
 -- As in schema.sql: Supabase hands EXECUTE to anon on every new function, so anon is named in the revoke.
 
@@ -388,6 +454,8 @@ revoke execute on function public.set_teacher_approval(uuid, text)      from pub
 revoke execute on function public.teacher_roster()                      from public, anon;
 revoke execute on function public.teacher_course_progress()             from public, anon;
 revoke execute on function public.complete_item(text, text, text, integer) from public, anon;
+revoke execute on function public.admin_set_student_teacher(uuid, uuid) from public, anon;
+revoke execute on function public.admin_feedback(integer)               from public, anon;
 
 grant execute on function public.is_admin()                            to authenticated;
 grant execute on function public.is_teacher()                          to authenticated;
@@ -399,6 +467,8 @@ grant execute on function public.set_teacher_approval(uuid, text)      to authen
 grant execute on function public.teacher_roster()                      to authenticated;
 grant execute on function public.teacher_course_progress()             to authenticated;
 grant execute on function public.complete_item(text, text, text, integer) to authenticated;
+grant execute on function public.admin_set_student_teacher(uuid, uuid) to authenticated;
+grant execute on function public.admin_feedback(integer)               to authenticated;
 
 -- ------------------------------------------------------------ the first admin
 --

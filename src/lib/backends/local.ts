@@ -17,6 +17,7 @@ import type {
   Profile,
   ProgressItem,
   Approval,
+  FeedbackRow,
   Role,
   RosterRow,
   TeacherAccountRow,
@@ -685,6 +686,42 @@ export function createLocalBackend(): Backend {
         }))
       // those waiting come first, then the newest
       return rows.sort((x, y) => Number(y.approval === 'pending') - Number(x.approval === 'pending') || y.created_at.localeCompare(x.created_at))
+    },
+
+    async adminSetStudentTeacher(studentId, teacherId) {
+      const db = load()
+      const me = db.accounts.find((a) => a.id === localStorage.getItem(SESSION_KEY))
+      if (me?.profile.role !== 'admin') throw new AuthError('admins only', 'invalid')
+      const student = db.accounts.find((a) => a.id === studentId)
+      const teacher = db.accounts.find((a) => a.id === teacherId)
+      // the same refusals as the database: a learner to move, an admin or an approved teacher to move them to
+      if (!student || student.profile.role !== 'learner') throw new AuthError('not a learner', 'invalid')
+      if (!teacher || !(teacher.profile.role === 'admin' || (teacher.profile.role === 'teacher' && teacher.profile.approval === 'approved')))
+        throw new AuthError('teacher not found', 'teacher-not-found')
+      student.profile.teacher_id = teacher.id
+      save(db)
+    },
+
+    async adminFeedback() {
+      const db = load()
+      const me = db.accounts.find((a) => a.id === localStorage.getItem(SESSION_KEY))
+      if (me?.profile.role !== 'admin') throw new AuthError('admins only', 'invalid')
+      const rows: FeedbackRow[] = []
+      let n = 0
+      for (const a of db.accounts)
+        for (const f of a.feedback) {
+          rows.push({
+            id: ++n,
+            user_id: a.id,
+            username: a.profile.username,
+            display_name: a.profile.display_name,
+            role: a.profile.role,
+            rating: f.rating,
+            comment: f.comment ?? null,
+            created_at: f.created_at,
+          })
+        }
+      return rows.sort((x, y) => y.created_at.localeCompare(x.created_at) || y.id - x.id)
     },
 
     async setTeacherApproval(userId, approval) {
