@@ -41,7 +41,7 @@ const walk = (dir) =>
   fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]))
 
 /** The pages the prerender writes: a folder with an index.html under these. */
-const PAGE_DIRS = { en: ['articles', 'about'], id: ['artikel', 'tentang'] }
+const PAGE_DIRS = { en: ['articles', 'about', 'games'], id: ['artikel', 'tentang', 'permainan'] }
 const pages = []
 for (const [lang, dirs] of Object.entries(PAGE_DIRS))
   for (const d of dirs) {
@@ -120,6 +120,8 @@ for (const p of pages) {
   const where = p.rel
   const isArticle = /^(articles|artikel)\/[^/]+\/index\.html$/.test(p.rel)
   const isAbout = /^(about|tentang)\/index\.html$/.test(p.rel)
+  const isGame = /^(games|permainan)\/[^/]+\/index\.html$/.test(p.rel)
+  const isGamesList = /^(games|permainan)\/index\.html$/.test(p.rel)
 
   /* head basics */
   ok(d.title && d.title.length >= 10, where, 'missing <title>')
@@ -156,7 +158,7 @@ for (const p of pages) {
   /* structured data */
   const faq = find(d.jsonLd, 'FAQPage')[0]
   // the article list is a collection page with no questions of its own; articles and the About page answer questions
-  if ((isArticle || isAbout) && ok(faq, where, 'no FAQPage structured data') && faq) {
+  if ((isArticle || isAbout || isGame) && ok(faq, where, 'no FAQPage structured data') && faq) {
     ok(Array.isArray(faq.mainEntity) && faq.mainEntity.length >= 1, where, 'FAQPage has no questions')
     for (const q of faq.mainEntity ?? []) ok(q['@type'] === 'Question' && q.name && q.acceptedAnswer?.text, where, `FAQ question without a name or an answer: ${q.name}`)
   }
@@ -174,6 +176,31 @@ for (const p of pages) {
       ok(typeof art.keywords === 'string' && art.keywords.split(',').length >= 8, where, 'Article keywords should list at least 8 terms')
     }
     ok(find(d.jsonLd, 'FAQPage').length === 1, where, 'an article has exactly one FAQPage')
+  }
+
+  if (isGamesList) {
+    const list = find(d.jsonLd, 'CollectionPage')[0]
+    if (ok(list, where, 'the games list needs a CollectionPage')) ok(Array.isArray(list.hasPart) && list.hasPart.length >= 1 && list.hasPart.every((g) => g.name && /^https:\/\//.test(g.url ?? '')), where, 'the games list must name each game with an https url')
+    ok(d.html.includes('class="card artcard gamecard"'), where, 'the games list page has no game card in its static HTML')
+  }
+
+  if (isGame) {
+    const game = find(d.jsonLd, 'Game')[0]
+    if (ok(game, where, 'no Game structured data') && game) {
+      ok(typesOf(game).includes('LearningResource'), where, 'a game should also be a LearningResource')
+      ok(game.name && game.description && game.datePublished && game.dateModified, where, 'Game needs a name, description, datePublished and dateModified')
+      ok(game.inLanguage === p.lang, where, `Game inLanguage "${game.inLanguage}" should be "${p.lang}"`)
+      ok(game.url === d.canonical && game.mainEntityOfPage?.['@id'] === d.canonical, where, 'Game url and mainEntityOfPage must be the canonical address')
+      ok(game.author?.['@id'] === ORG_ID && game.publisher?.['@id'] === ORG_ID, where, 'Game author and publisher must refer to the Organization by @id')
+      ok(game.isAccessibleForFree === true, where, 'Game should say it is free')
+      ok(Array.isArray(game.teaches) && game.teaches.length >= 1, where, 'Game should say what it teaches')
+      ok(game.workTranslation?.url === alts[p.lang === 'en' ? 'id' : 'en'], where, 'workTranslation should be the other-language page')
+      ok(typeof game.keywords === 'string' && game.keywords.split(',').length >= 8, where, 'Game keywords should list at least 8 terms')
+    }
+    ok(find(d.jsonLd, 'FAQPage').length === 1, where, 'a game has exactly one FAQPage')
+    ok(/class="answerbox"/.test(d.html) && /id="quick-answer"/.test(d.html) && /id="how-to-play"/.test(d.html), where, 'a game page needs the quick answer and the how-to-play section in its static HTML')
+    ok(/<h1>[^<]+<\/h1>/.test(d.html), where, 'a game page needs an <h1>')
+    ok(/href="[^"]*(?:games|permainan)\/[^"]+\/"[^>]*hreflang="/.test(d.html), where, 'a game page should link to its other-language twin')
   }
 
   if (isAbout) {
@@ -195,6 +222,8 @@ for (const p of pages) {
     // every other page points to the About page, so the entity is one click away
     ok(/href="[^"]*\/(?:about|tentang)\/"/.test(d.html), where, 'no link to the About page (the footer carries it)')
   }
+  // and to the games, from the same footer
+  ok(/href="[^"]*\/(?:games|permainan)\/"/.test(d.html), where, 'no link to the games list (the footer carries it)')
 }
 
 /* --------------------------------------------------------------- sitemap */
@@ -250,6 +279,7 @@ ok(locs(simple).every((u) => u.endsWith('/') || u === new URL(u).origin), 'sitem
   for (const f of ['favicon-16.png', 'favicon-32.png', 'favicon-48.png', 'nunada-128.png']) ok(fs.existsSync(path.join(DIST, f)), f, 'missing from dist')
 }
 ok(read('llms.txt').includes('/about/') && read('llms.txt').includes('/tentang/'), 'llms.txt', 'does not name the About pages')
+ok(read('llms.txt').includes('/games/real-number-match/') && read('llms.txt').includes('/permainan/pasangkan-bilangan-real/'), 'llms.txt', 'does not name the games')
 
 console.log(`seo check: ${pages.length} pages, ${checks} checks, ${bad} problem(s)`)
 process.exit(bad ? 1 : 0)

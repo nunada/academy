@@ -241,6 +241,7 @@ jobs:
       - run: npm run check:cube
       - run: npm run check:cuboid
       - run: npm run check:prism
+      - run: npm run check:realcards
 
       - name: Work out where the site will live
         id: base

@@ -67,7 +67,8 @@
     "check:linsys": "node tools/check-linsys.mjs",
     "check:cube": "node tools/check-cube.mjs",
     "check:cuboid": "node tools/check-cuboid.mjs",
-    "check:prism": "node tools/check-prism.mjs"
+    "check:prism": "node tools/check-prism.mjs",
+    "check:realcards": "node tools/check-realcards.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

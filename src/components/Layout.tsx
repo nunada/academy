@@ -9,6 +9,7 @@ import { Hearts, ShareButton } from './ui'
 import { Logo } from './Logo'
 import { FeedbackWidget } from './FeedbackWidget'
 import { aboutPath } from '../lib/aboutSeo'
+import { gamesPath } from '../lib/gameSeo'
 import { ORG } from '../content/org'
 
 function LangToggle() {
@@ -134,6 +135,7 @@ export function TopBar({ signedIn, isTeacher, xp, hearts, nextHeartIn, localMode
           <NavLink to="/leaderboard">{t('navLeaderboard')}</NavLink>
           <NavLink to="/profile">{t('navProfile')}</NavLink>
           <NavLink to={articlesPath}>{t('navArticles')}</NavLink>
+          <NavLink to={gamesPath(lang)}>{t('navGames')}</NavLink>
           <NavLink to="/help">{t('navHelp')}</NavLink>
           {isTeacher && <NavLink to="/teacher">{t('navTeacher')}</NavLink>}
         </nav>
@@ -158,6 +160,9 @@ export function TopBar({ signedIn, isTeacher, xp, hearts, nextHeartIn, localMode
         <>
           <Link className="btn ghost sm" to={articlesPath}>
             {t('navArticles')}
+          </Link>
+          <Link className="btn ghost sm" to={gamesPath(lang)}>
+            {t('navGames')}
           </Link>
           <Link className="btn ghost sm" to="/help">
             {t('navHelp')}
@@ -235,6 +240,7 @@ function SiteFooter() {
       <nav aria-label={t('footerNavLabel')}>
         <Link to={aboutPath(lang)}>{t('navAbout')}</Link>
         <Link to={lang === 'id' ? '/artikel' : '/articles'}>{t('navArticles')}</Link>
+        <Link to={gamesPath(lang)}>{t('navGames')}</Link>
         <Link to="/help">{t('navHelp')}</Link>
         <a href={ORG.sameAs[0]} rel="noopener">
           GitHub

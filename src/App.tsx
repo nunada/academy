@@ -21,10 +21,13 @@ import ResetPassword from './pages/ResetPassword'
 import Help from './pages/Help'
 import Articles from './pages/Articles'
 import About from './pages/About'
+import Games from './pages/Games'
 
 // An article pulls in the figure drawing and the interactive widgets; nobody
 // who is not reading one needs them.
 const ArticlePage = lazy(() => import('./pages/ArticlePage'))
+// A game pulls in its engine and its board; nobody who is not playing needs them.
+const GamePage = lazy(() => import('./pages/GamePage'))
 
 function RequireAuth({ children }: { children: ReactNode }) {
   const { ready, user } = useStore()
@@ -85,6 +88,26 @@ export default function App() {
           element={
             <Suspense fallback={<main className="page muted">…</main>}>
               <ArticlePage routeLang="id" />
+            </Suspense>
+          }
+        />
+
+        {/* Games are public too, one address per language like the articles: /games/real-number-match, /permainan/pasangkan-bilangan-real. */}
+        <Route path="/games" element={<Games routeLang="en" />} />
+        <Route path="/permainan" element={<Games routeLang="id" />} />
+        <Route
+          path="/games/:slug"
+          element={
+            <Suspense fallback={<main className="page muted">…</main>}>
+              <GamePage routeLang="en" />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/permainan/:slug"
+          element={
+            <Suspense fallback={<main className="page muted">…</main>}>
+              <GamePage routeLang="id" />
             </Suspense>
           }
         />

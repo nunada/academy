@@ -65,6 +65,8 @@ export { WIDGETS } from '${q('src/content/articles/widgets.ts')}'
 export { coverSvg } from '${q('src/content/articles/covers.ts')}'
 export * from '${q('src/lib/articleSeo.ts')}'
 export * from '${q('src/lib/aboutSeo.ts')}'
+export * from '${q('src/lib/gameSeo.ts')}'
+export { GAMES, GAMES_PAGE } from '${q('src/content/games.ts')}'
 export * from '${q('src/lib/orgSeo.ts')}'
 export { ABOUT, aboutStats, fillStats } from '${q('src/content/about.ts')}'
 export { ORG } from '${q('src/content/org.ts')}'
@@ -82,7 +84,7 @@ const stubCurricula = {
 }
 await build({ entryPoints: [entry], bundle: true, format: 'esm', platform: 'node', outfile: out, logLevel: 'error', plugins: [stubCurricula] })
 const lib = await import('file://' + out.replace(/\\/g, '/'))
-const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, coverSvg, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER, OG_WIDTH, OG_HEIGHT, ogImageUrl, ogListImageUrl, ogDefaultImageUrl, aboutSeo, aboutUrl, ABOUT_PATH, ABOUT, aboutStats, fillStats, ORG, COURSES, coursesIn, organizationNode, websiteNode, homeUrl } = lib
+const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, coverSvg, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER, OG_WIDTH, OG_HEIGHT, ogImageUrl, ogListImageUrl, ogDefaultImageUrl, aboutSeo, aboutUrl, ABOUT_PATH, ABOUT, aboutStats, fillStats, ORG, COURSES, coursesIn, organizationNode, websiteNode, homeUrl, gamesSeo, gameSeo, gamesUrl, gameUrl, GAMES_PATH, GAMES, GAMES_PAGE } = lib
 
 const LANGS = ['en', 'id']
 
@@ -224,6 +226,33 @@ ${related.length ? `<section class="artsection" aria-labelledby="related"><h2 id
 </article></div></main>${footerHtml(lang)}`
 }
 
+/** The games list, as static HTML: a card per game. */
+function gamesBodyHtml(lang) {
+  curLang = lang
+  return `<main class="page"><h1>${esc(GAMES_PAGE.title[lang])}</h1><p class="muted" style="max-width:62ch">${esc(GAMES_PAGE.intro[lang])}</p><div class="grid two" style="margin-top:18px">${GAMES.map(
+    (g) => `<a class="card artcard gamecard" href="${esc(gameUrl(SITE, lang, g))}"><div class="gameicon" aria-hidden="true">${esc(g.icon)}</div><h2 style="font-size:1.15rem;margin:6px 0">${esc(g.title[lang])}</h2><p class="small muted">${esc(g.tagline[lang])}</p></a>`,
+  ).join('')}</div></main>${footerHtml(lang)}`
+}
+
+/** A game's page, as static HTML: what it is, how to play it, what it practises and the questions. The game itself needs the script, and a visitor
+ *  without it is told so. */
+function gameBodyHtml(g, lang) {
+  curLang = lang
+  const t = T[lang]
+  const other = OTHER[lang]
+  const noscript = lang === 'id' ? 'Permainan ini memerlukan JavaScript.' : 'This game needs JavaScript.'
+  return `<main class="page article gamepage">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="${esc(SITE)}/">${t.home}</a> › <a href="${esc(gamesUrl(SITE, lang))}">${esc(GAMES_PAGE.title[lang])}</a> › <span>${esc(g.title[lang])}</span></nav>
+<article class="article-body" lang="${lang}">
+<header><h1>${esc(g.title[lang])}</h1></header>
+<section class="answerbox" aria-labelledby="quick-answer"><h2 id="quick-answer">${t.quick}</h2><p>${inline(g.answer[lang])}</p></section>
+<noscript><p>${noscript}</p></noscript>
+${g.sections.map((s) => `<section class="artsection" aria-labelledby="${s.id}"><h2 id="${s.id}">${esc(s.heading[lang])}</h2>\n${rich(s.text[lang])}</section>`).join('\n')}
+<section class="artsection" aria-labelledby="faq"><h2 id="faq">${t.faq}</h2><div class="faq">${g.faq.map((f) => `<details open><summary>${inline(f.q[lang])}</summary><p>${inline(f.a[lang])}</p></details>`).join('')}</div></section>
+<p class="small muted"><a href="${esc(gameUrl(SITE, other, g))}" hreflang="${other}">${lang === 'en' ? 'Mainkan dalam Bahasa Indonesia' : 'Play in English'}</a></p>
+</article></main>${footerHtml(lang)}`
+}
+
 function listBodyHtml(lang) {
   const t = T[lang]
   return `<main class="page"><h1>${t.articles}</h1><div class="grid two">${ARTICLES.map(
@@ -234,14 +263,14 @@ function listBodyHtml(lang) {
 /* --------------------------------------------------------- footer, about */
 
 const FOOT = {
-  en: { about: 'About', articles: 'Articles', guide: 'Guide', tagline: 'Learn math and coding, step by step.', nav: 'About and links' },
-  id: { about: 'Tentang', articles: 'Artikel', guide: 'Panduan', tagline: 'Belajar matematika dan coding, langkah demi langkah.', nav: 'Tentang dan tautan' },
+  en: { about: 'About', articles: 'Articles', games: 'Games', guide: 'Guide', tagline: 'Learn math and coding, step by step.', nav: 'About and links' },
+  id: { about: 'Tentang', articles: 'Artikel', games: 'Permainan', guide: 'Panduan', tagline: 'Belajar matematika dan coding, langkah demi langkah.', nav: 'Tentang dan tautan' },
 }
 
 /** The line of links the running app shows at the bottom of every page, so a crawler that lands on any page can reach the About page. */
 function footerHtml(lang) {
   const f = FOOT[lang]
-  return `<footer class="sitefoot"><span>© ${new Date().getFullYear()} ${esc(ORG.name)} · ${esc(f.tagline)}</span><nav aria-label="${esc(f.nav)}"><a href="${esc(aboutUrl(SITE, lang))}">${f.about}</a><a href="${esc(listUrl(SITE, lang))}">${f.articles}</a><a href="${esc(SITE)}/help">${f.guide}</a><a href="${esc(ORG.sameAs[0])}">GitHub</a></nav></footer>`
+  return `<footer class="sitefoot"><span>© ${new Date().getFullYear()} ${esc(ORG.name)} · ${esc(f.tagline)}</span><nav aria-label="${esc(f.nav)}"><a href="${esc(aboutUrl(SITE, lang))}">${f.about}</a><a href="${esc(listUrl(SITE, lang))}">${f.articles}</a><a href="${esc(gamesUrl(SITE, lang))}">${f.games}</a><a href="${esc(SITE)}/help">${f.guide}</a><a href="${esc(ORG.sameAs[0])}">GitHub</a></nav></footer>`
 }
 
 const WORDS = { en: { lessons: 'lessons', projects: 'mini projects' }, id: { lessons: 'pelajaran', projects: 'mini proyek' } }
@@ -363,6 +392,9 @@ for (const lang of LANGS) {
   for (const a of articles) writeWithTwin(`${LIST_PATH[lang]}/${a.slug[lang]}`, page(articleSeo(a, SITE, lang), articleBodyHtml(a, lang)))
   // The About page, one address per language (/about, /tentang).
   writeWithTwin(ABOUT_PATH[lang], page(aboutSeo(SITE, lang, COURSES), aboutBodyHtml(articles, lang)))
+  // The games: the list (/games, /permainan) and a page for each game.
+  writeWithTwin(GAMES_PATH[lang], page(gamesSeo(SITE, lang), gamesBodyHtml(lang)))
+  for (const g of GAMES) writeWithTwin(`${GAMES_PATH[lang]}/${g.slug[lang]}`, page(gameSeo(g, SITE, lang), gameBodyHtml(g, lang)))
 }
 
 /* ------------------------------------------------------------ short aliases */
@@ -370,7 +402,7 @@ for (const lang of LANGS) {
 // People type and share `nunada.my.id/real-numbers`. There is no such route in the app, and the host would answer 404 and leave the work to a
 // script in the 404 page: the reader's browser gets there on a second request, a crawler does not. So the short address is a real page too: the
 // full article, one request, with the real address as canonical, and a line of script that moves a browser to the real address.
-const TAKEN = new Set(['articles', 'artikel', 'about', 'tentang', 'help', 'learn', 'catalog', 'course', 'auth', 'playground', 'leaderboard', 'profile', 'u', 'teacher', 'certificate', 'reset-password', 'og', 'assets', 'sitemap', 'sitemap-1', 'robots', 'llms', 'llms-full', 'index', '404', 'favicon-16', 'favicon-32', 'nunada-128'])
+const TAKEN = new Set(['articles', 'artikel', 'about', 'tentang', 'games', 'permainan', 'help', 'learn', 'catalog', 'course', 'auth', 'playground', 'leaderboard', 'profile', 'u', 'teacher', 'certificate', 'reset-password', 'og', 'assets', 'sitemap', 'sitemap-1', 'robots', 'llms', 'llms-full', 'index', '404', 'favicon-16', 'favicon-32', 'nunada-128'])
 const aliasOf = new Map() // short slug -> { lang, article }
 for (const lang of LANGS)
   for (const a of articles) {
@@ -460,6 +492,10 @@ for (const lang of LANGS) {
 for (const lang of LANGS) {
   entries.push(urlEntry(aboutUrl(SITE, lang), { en: aboutUrl(SITE, 'en'), id: aboutUrl(SITE, 'id'), 'x-default': aboutUrl(SITE, 'en') }, undefined))
 }
+for (const lang of LANGS) {
+  entries.push(urlEntry(gamesUrl(SITE, lang), { en: gamesUrl(SITE, 'en'), id: gamesUrl(SITE, 'id'), 'x-default': gamesUrl(SITE, 'en') }, undefined))
+  for (const g of GAMES) entries.push(urlEntry(gameUrl(SITE, lang, g), { en: gameUrl(SITE, 'en', g), id: gameUrl(SITE, 'id', g), 'x-default': gameUrl(SITE, 'en', g) }, g.updated))
+}
 for (const a of articles) {
   for (const lang of LANGS) {
     entries.push(
@@ -517,6 +553,10 @@ write(
     '## Artikel (Bahasa Indonesia)',
     '',
     ...articles.map((a) => `- [${a.title.id}](${articleUrl(SITE, 'id', a)}): ${a.description.id}`),
+    '',
+    '## Games',
+    '',
+    ...GAMES.flatMap((g) => LANGS.map((l) => `- [${g.title[l]}](${gameUrl(SITE, l, g)}): ${g.description[l]}`)),
     '',
     '## Optional',
     '',

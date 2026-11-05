@@ -1564,6 +1564,9 @@ a.chip.static { cursor: pointer; }
 /* On the narrowest phones the logo alone stands for the brand. */
 @media (max-width: 480px) {
   .brand-name { display: none; }
+  /* three short buttons (Articles, Games, Guide) for a signed-out visitor, so the language switch stays on the first row */
+  .topbar .btn.ghost.sm { padding: 5px 8px; font-size: 0.78rem; }
+  .topbar { column-gap: 5px; }
 }
 
 /* ---------- Code Blocks: the block editor and the robot's grid ---------- */
@@ -1648,3 +1651,74 @@ main:focus, .page:focus { outline: none; }
 .sitefoot a:hover { color: var(--brand); }
 .about .artcard h3 { margin: 0; font-size: 1.05rem; }
 .about .artcard p { margin: 4px 0 0; }
+
+/* ------------------------------------------------------------------ games */
+
+/* The list: a card per game, with a big icon. */
+.gamecard { display: block; text-decoration: none; color: inherit; }
+.gamecard .gameicon { font-size: 2.2rem; line-height: 1; }
+
+/* Real Number Match: a row of controls, the scores, and a board of cards. Only the site's own color tokens are used, so light, dark and system
+   themes need nothing more. */
+.rmgame { margin: 18px 0 8px; }
+.rmcontrols { display: flex; flex-direction: column; gap: 2px; }
+.rmhud { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 12px; }
+.rmboard {
+  display: grid;
+  grid-template-columns: repeat(var(--cw, 4), minmax(0, 1fr));
+  gap: 10px;
+}
+.rmcard {
+  display: grid;
+  place-items: center;
+  min-height: 76px;
+  padding: 8px 6px;
+  font: inherit;
+  font-size: 1.2rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: center;
+  overflow: hidden;
+  transition: border-color 0.12s, background 0.12s, transform 0.12s;
+}
+.rmcard:hover:not([aria-disabled='true']) { border-color: var(--brand); }
+.rmcard:active:not([aria-disabled='true']) { transform: translateY(1px); }
+.rmcard:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+.rmcard .tex { max-width: 100%; }
+.rmcard.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 2px var(--brand); }
+.rmcard.miss { border-color: var(--bad); background: var(--bad-soft); animation: rmshake 0.4s; }
+.rmcard.back { background: var(--surface-2); color: var(--muted); font-size: 1.6rem; font-weight: 700; }
+.rmcard.found {
+  border-color: hsl(var(--h) 45% 42%);
+  background: color-mix(in srgb, hsl(var(--h) 60% 55%) 22%, var(--surface));
+  cursor: default;
+}
+@keyframes rmshake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rmcard { transition: none; }
+  .rmcard.miss { animation: none; }
+}
+.rmnote { min-height: 1.4em; margin: 10px 0 0; color: var(--muted); }
+.rmnote.bad { color: var(--bad); }
+.rmresult { margin-top: 12px; }
+.rmfound h3 { margin: 18px 0 8px; font-size: 1rem; }
+.rmfound ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.rmfound li {
+  padding: 4px 10px;
+  border: 1px solid hsl(var(--h) 40% 45%);
+  border-radius: 999px;
+  background: color-mix(in srgb, hsl(var(--h) 60% 55%) 14%, var(--surface));
+  font-size: 0.95rem;
+}
+@media (max-width: 560px) {
+  .rmboard { grid-template-columns: repeat(var(--cn, 3), minmax(0, 1fr)); gap: 8px; }
+  .rmcard { min-height: 68px; font-size: 1rem; padding: 6px 3px; }
+  .rmcard.long { font-size: 0.8rem; }
+}

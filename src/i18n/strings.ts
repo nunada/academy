@@ -22,6 +22,7 @@ export const ui = {
   navProfile: { en: 'Profile', id: 'Profil' },
   navHelp: { en: 'Guide', id: 'Panduan' },
   navArticles: { en: 'Articles', id: 'Artikel' },
+  navGames: { en: 'Games', id: 'Permainan' },
   footerNavLabel: { en: 'About and links', id: 'Tentang dan tautan' },
   navAbout: { en: 'About', id: 'Tentang' },
   footerTagline: { en: 'Learn math and coding, step by step.', id: 'Belajar matematika dan coding, langkah demi langkah.' },
