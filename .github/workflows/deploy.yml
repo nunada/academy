@@ -244,6 +244,7 @@ jobs:
       - run: npm run check:realcards
       - run: npm run check:roles
       - run: npm run check:rolessql
+      - run: npm run check:fishgame
 
       - name: Work out where the site will live
         id: base

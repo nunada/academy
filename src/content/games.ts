@@ -5,7 +5,7 @@ import type { Loc } from './types'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
-export type GameId = 'real-number-match'
+export type GameId = 'real-number-match' | 'number-fish'
 
 export interface GameMeta {
   id: GameId
@@ -152,6 +152,130 @@ Karena sebuah bilangan dapat ditulis dengan banyak cara, dua kartu yang tampak b
       L('Equivalent fractions, decimals and percents', 'Pecahan, desimal, dan persen yang senilai'),
       L('Repeating decimals and scientific notation', 'Desimal berulang dan notasi ilmiah'),
       L('Exponents, roots and square roots', 'Eksponen, akar, dan akar kuadrat'),
+    ],
+  },
+  {
+    id: 'number-fish',
+    slug: { en: 'number-fish', id: 'ikan-bilangan' },
+    icon: '🐟',
+    title: L('Number Fish: Eat the Smaller Numbers, Flee the Larger', 'Ikan Bilangan: Makan Bilangan yang Lebih Kecil, Hindari yang Lebih Besar'),
+    seoTitle: L('Number Fish: a Real Number Comparing Game', 'Ikan Bilangan: Game Membandingkan Bilangan Real'),
+    description: L(
+      'A free fish game for comparing real numbers: eat the fish with a smaller number and flee the larger. Fractions, decimals, roots, π and e. Three levels.',
+      'Permainan ikan gratis untuk membandingkan bilangan real: makan ikan berbilangan lebih kecil dan hindari yang lebih besar. Pecahan, desimal, akar, π, dan e.',
+    ),
+    keywords: L(
+      'number fish game, comparing real numbers game, ordering fractions and decimals game, which number is larger game, compare fractions decimals and percents, compare square roots and pi, comparing negative numbers game, feeding frenzy math game, greater than and less than game, math game for ordering numbers',
+      'game ikan bilangan, game membandingkan bilangan real, game mengurutkan pecahan dan desimal, game bilangan mana yang lebih besar, membandingkan pecahan desimal dan persen, membandingkan akar dan pi, game membandingkan bilangan negatif, game matematika seperti feeding frenzy, game lebih besar dan lebih kecil, game matematika mengurutkan bilangan',
+    ),
+    tagline: L('Eat the fish with the smaller number; the larger ones eat you.', 'Makan ikan yang bilangannya lebih kecil; yang lebih besar akan memakanmu.'),
+    answer: L(
+      '**You swim a fish that carries a real number, and it eats every fish whose number is smaller than its own; a fish with a larger number eats you.** Equal numbers, such as $\\frac12$ and $0.5$, leave each other alone. Eat enough fish and yours grows into a larger number; reach the largest and you win.',
+      '**Kamu menggerakkan seekor ikan yang membawa bilangan real, dan ia memakan setiap ikan yang bilangannya lebih kecil daripada miliknya; ikan yang bilangannya lebih besar akan memakanmu.** Bilangan yang sama, seperti $\\frac12$ dan $0{,}5$, saling membiarkan. Makan cukup banyak ikan dan ikanmu tumbuh menjadi bilangan yang lebih besar; capai yang terbesar dan kamu menang.',
+    ),
+    published: '2026-11-06',
+    updated: '2026-11-06',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Number Fish?', 'Bagaimana cara memainkan Ikan Bilangan?'),
+        text: L(
+          `1. Choose a level and press Start. Your fish is the gold one, with its number on its body.
+2. Swim with the mouse, with a finger on a phone, or with the arrow keys or W A S D. Swim into a fish whose number is **smaller** than yours to eat it.
+3. A fish with a **larger** number eats you: you lose one of your three lives and are safe for a moment. Fish with an **equal** number, written another way, do nothing.
+4. Every few fish you eat, your fish grows and takes a larger number. Take the largest number of the level to win. Space or P pauses.
+
+You earn three stars if you never lose a life, two if you lose one and one if you lose two. Each time something is eaten the two numbers are shown as a comparison, such as $\\frac35<\\frac58$, at the top of the pond.`,
+          `1. Pilih tingkat lalu tekan Mulai. Ikanmu yang berwarna emas, dengan bilangannya di badan.
+2. Berenanglah dengan tetikus, dengan jari di ponsel, atau dengan tombol panah atau W A S D. Berenanglah ke ikan yang bilangannya **lebih kecil** daripada milikmu untuk memakannya.
+3. Ikan yang bilangannya **lebih besar** memakanmu: kamu kehilangan satu dari tiga nyawa dan aman sesaat. Ikan dengan bilangan yang **sama**, ditulis dengan cara lain, tidak berbuat apa-apa.
+4. Setiap beberapa ikan yang kamu makan, ikanmu tumbuh dan mengambil bilangan yang lebih besar. Ambil bilangan terbesar tingkat itu untuk menang. Spasi atau P menjeda.
+
+Kamu mendapat tiga bintang bila tidak pernah kehilangan nyawa, dua bila kehilangan satu, dan satu bila kehilangan dua. Setiap ada yang termakan, kedua bilangan ditunjukkan sebagai perbandingan, seperti $\\frac35<\\frac58$, di bagian atas kolam.`,
+        ),
+      },
+      {
+        id: 'numbers-on-the-fish',
+        heading: L('Which numbers are on the fish?', 'Bilangan apa saja yang ada pada ikan?'),
+        text: L(
+          `| Level | Numbers on the fish |
+|---|---|
+| Easy | fractions (also not in lowest terms), decimals that end and percents, from $\\frac1{20}$ up to $\\frac72$ |
+| Medium | adds negative numbers, repeating decimals, scientific notation, powers such as $2^{-3}$, and one large number, $2500$ |
+| Hard | adds square roots in several forms ($\\sqrt2$, $3\\sqrt2$, $\\frac{\\sqrt3}{3}$), roots and powers of whole numbers, and $\\pi$, $e$, $2\\pi$, $\\frac{\\pi}{2}$ |
+
+Most of the time the fish that swim in have numbers close to yours, because telling near numbers apart is the whole game: $0.6$ against $\\frac58$, or $\\sqrt5$ against $\\frac94$.`,
+          `| Tingkat | Bilangan pada ikan |
+|---|---|
+| Mudah | pecahan (juga yang belum sederhana), desimal berhingga, dan persen, dari $\\frac1{20}$ sampai $\\frac72$ |
+| Sedang | ditambah bilangan negatif, desimal berulang, notasi ilmiah, pangkat seperti $2^{-3}$, dan satu bilangan besar, $2500$ |
+| Sulit | ditambah akar kuadrat dalam beberapa bentuk ($\\sqrt2$, $3\\sqrt2$, $\\frac{\\sqrt3}{3}$), akar dan pangkat bilangan bulat, serta $\\pi$, $e$, $2\\pi$, $\\frac{\\pi}{2}$ |
+
+Sebagian besar ikan yang datang bilangannya dekat dengan milikmu, karena membedakan bilangan yang berdekatan adalah inti permainannya: $0{,}6$ melawan $\\frac58$, atau $\\sqrt5$ melawan $\\frac94$.`,
+        ),
+      },
+      {
+        id: 'how-to-compare',
+        heading: L('How do you tell quickly which number is larger?', 'Bagaimana cara cepat mengetahui bilangan mana yang lebih besar?'),
+        text: L(
+          `- **Turn both into decimals** when you can: $\\frac58=0.625$ is more than $0.6$, and $\\frac13=0.\\overline3$ is more than $0.33$.
+- **Fractions:** put them over a common denominator, or cross-multiply: $\\frac35$ against $\\frac58$ is $3\\cdot8=24$ against $5\\cdot5=25$, so $\\frac58$ is the larger.
+- **Negatives run backwards:** $-\\frac34$ is less than $-\\frac12$, and every negative number is less than every positive one.
+- **Roots:** compare the squares. $\\sqrt5$ against $\\frac94$ is $5$ against $\\frac{81}{16}=5.0625$, so $\\sqrt5$ is the smaller.
+- **$\\pi$ and $e$:** $\\pi=3.14159\\ldots$ is a little less than $\\frac{22}{7}=3.142857\\ldots$, and $e=2.71828\\ldots$.
+
+The numbers behind these forms are explained in [real numbers](article:real-numbers), [rational numbers](article:rational-numbers) and [irrational numbers](article:irrational-numbers), and the powers and roots in [exponents and radicals](article:exponents-and-radicals).`,
+          `- **Ubah keduanya menjadi desimal** bila bisa: $\\frac58=0{,}625$ lebih besar daripada $0{,}6$, dan $\\frac13=0{,}\\overline3$ lebih besar daripada $0{,}33$.
+- **Pecahan:** samakan penyebutnya, atau kalikan silang: $\\frac35$ melawan $\\frac58$ adalah $3\\cdot8=24$ melawan $5\\cdot5=25$, jadi $\\frac58$ yang lebih besar.
+- **Bilangan negatif terbalik:** $-\\frac34$ lebih kecil daripada $-\\frac12$, dan setiap bilangan negatif lebih kecil daripada setiap bilangan positif.
+- **Akar:** bandingkan kuadratnya. $\\sqrt5$ melawan $\\frac94$ adalah $5$ melawan $\\frac{81}{16}=5{,}0625$, jadi $\\sqrt5$ yang lebih kecil.
+- **$\\pi$ dan $e$:** $\\pi=3{,}14159\\ldots$ sedikit lebih kecil daripada $\\frac{22}{7}=3{,}142857\\ldots$, dan $e=2{,}71828\\ldots$.
+
+Bilangan di balik bentuk-bentuk ini dijelaskan di [bilangan real](article:real-numbers), [bilangan rasional](article:rational-numbers), dan [bilangan irasional](article:irrational-numbers), sedangkan pangkat dan akar di [eksponen dan radikal](article:exponents-and-radicals).`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('How do I play Number Fish?', 'Bagaimana cara bermain Ikan Bilangan?'),
+        a: L(
+          'Swim your fish with the mouse, a finger or the arrow keys. It eats any fish with a smaller number than its own, and a fish with a larger number eats you. Eat enough fish to grow, and reach the largest number to win.',
+          'Gerakkan ikanmu dengan tetikus, jari, atau tombol panah. Ia memakan ikan yang bilangannya lebih kecil daripada miliknya, dan ikan yang bilangannya lebih besar memakanmu. Makan cukup banyak ikan untuk tumbuh, dan capai bilangan terbesar untuk menang.',
+        ),
+      },
+      {
+        q: L('What happens when two fish have equal numbers?', 'Apa yang terjadi bila dua ikan memiliki bilangan yang sama?'),
+        a: L(
+          'Nothing: neither eats the other. Equal numbers are equal however they are written, so one half as a fraction and 0.5 as a decimal, or 0.999… and 1, leave each other alone.',
+          'Tidak terjadi apa-apa: tidak ada yang memakan yang lain. Bilangan yang sama tetap sama bagaimanapun penulisannya, jadi setengah sebagai pecahan dan 0,5 sebagai desimal, atau 0,999… dan 1, saling membiarkan.',
+        ),
+      },
+      {
+        q: L('How are the stars in Number Fish decided?', 'Bagaimana bintang dalam Ikan Bilangan ditentukan?'),
+        a: L(
+          'By the lives you have left when you win: all three lives earn three stars, two lives two stars, and one life one star. If you lose all three lives the game is lost, and you can play again.',
+          'Dari nyawa yang tersisa saat kamu menang: tiga nyawa memberi tiga bintang, dua nyawa dua bintang, dan satu nyawa satu bintang. Bila ketiga nyawa habis, permainan kalah dan kamu bisa main lagi.',
+        ),
+      },
+      {
+        q: L('Can I play Number Fish on a phone or with a keyboard?', 'Bisakah memainkan Ikan Bilangan di ponsel atau dengan papan ketik?'),
+        a: L(
+          'Yes: drag a finger across the pond on a phone, or use the arrow keys or W A S D on a computer. The Slow fish option makes the other fish swim slower, which gives more time to read the numbers, and Space or P pauses the game.',
+          'Bisa: seret jari melintasi kolam di ponsel, atau pakai tombol panah atau W A S D di komputer. Pilihan Ikan lambat membuat ikan lain berenang lebih lambat sehingga ada lebih banyak waktu untuk membaca bilangan, dan Spasi atau P menjeda permainan.',
+        ),
+      },
+      {
+        q: L('Does Number Fish save my score?', 'Apakah Ikan Bilangan menyimpan skorku?'),
+        a: L(
+          'Your best score and stars for each level are kept in this browser only. There is no account and nothing is sent anywhere; clearing the site data in your browser clears the scores too.',
+          'Skor dan bintang terbaikmu untuk tiap tingkat hanya disimpan di peramban ini. Tidak ada akun dan tidak ada yang dikirim ke mana pun; menghapus data situs di peramban juga menghapus skornya.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Comparing and ordering real numbers', 'Membandingkan dan mengurutkan bilangan real'),
+      L('Fractions, decimals, percents and negative numbers', 'Pecahan, desimal, persen, dan bilangan negatif'),
+      L('Comparing square roots, π and e', 'Membandingkan akar kuadrat, π, dan e'),
     ],
   },
 ]
