@@ -1743,7 +1743,27 @@ main:focus, .page:focus { outline: none; }
   cursor: crosshair;
 }
 .fishstage:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
-.fishworld { position: absolute; left: 0; top: 0; transform-origin: 0 0; transform: scale(var(--s)); }
+.fishworld { position: absolute; left: 0; top: 0; transform-origin: 0 0; transform: translate(var(--ox, 0px), var(--oy, 0px)) scale(var(--s)); }
+.fishexit, .fishpause { display: none; }
+/* On a phone the game takes the whole screen once it starts: upright the pond is tall, sideways it is wide, and either way the fish are readable. */
+.fishgame.immersive {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: max(6px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+  background: var(--bg);
+  overscroll-behavior: contain;
+}
+.fishgame.immersive > .chips, .fishgame.immersive > .small, .fishgame.immersive > .sr-only + .small { display: none; }
+.fishgame.immersive .fishhud { flex: 0 0 auto; flex-wrap: nowrap; margin: 0 0 6px; gap: 6px; overflow: hidden; }
+.fishgame.immersive .fishexit, .fishgame.immersive .fishpause { display: inline-flex; flex: 0 0 auto; }
+.fishgame.immersive .fishhud .pill { white-space: nowrap; padding: 2px 8px; font-size: 0.85rem; flex: 0 0 auto; }
+@media (max-width: 480px) { .fishgame.immersive .fishhud .pill.good { display: none; } }
+.fishgame.immersive .fishgrow { flex: 1 1 40px; max-width: 120px; }
+.fishgame.immersive .fishstage { flex: 1 1 auto; min-height: 0; max-width: none; width: 100%; height: auto; aspect-ratio: auto; }
 .bubbles i {
   position: absolute;
   bottom: -20px;

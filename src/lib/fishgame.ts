@@ -164,7 +164,20 @@ export function tiersOf(level: Level): Num[] {
 
 /* ----------------------------------------------------------------------------------------- the pond */
 
-export const WORLD = { W: 640, H: 400 }
+export interface Size {
+  W: number
+  H: number
+}
+/** the pond on a page with room for it; a phone gets a pond that fits its screen, see `pondFor` */
+export const WORLD: Size = { W: 640, H: 400 }
+
+const clampN = (x: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, x))
+/** The pond for a box of `boxW` × `boxH` pixels: the fish keep (about) the size they have on a page, the pond takes the shape of the box. A phone held
+ *  upright gets a tall pond, one held sideways a wide one, and in both the fish are as large as the screen allows. */
+export function pondFor(boxW: number, boxH: number): Size {
+  const s = clampN(Math.min(boxW, boxH) / 400, 0.9, 1.05)
+  return { W: clampN(Math.round(boxW / s), 360, 900), H: clampN(Math.round(boxH / s), 330, 760) }
+}
 export const LIVES = 3
 /** how long the player's fish is safe after being eaten, in seconds */
 export const SAFE_TIME = 1.6
@@ -204,6 +217,9 @@ export interface Player {
 }
 
 export type World = {
+  /** the size of the pond, in pond units */
+  W: number
+  H: number
   level: Level
   speedFactor: number
   t: number
@@ -241,20 +257,22 @@ const pickSpec = (n: Num, rand: () => number, not?: FishSpec): FishSpec => {
 
 const widthOf = (s: FishSpec) => Math.max(84, Math.min(140, 9.5 * fishTex(s, 'en').replace(/\\[a-z]+/g, 'x').length + 46))
 
-export function createWorld(level: Level, seed: number, speedFactor = 1): World {
+export function createWorld(level: Level, seed: number, speedFactor = 1, size: Size = WORLD): World {
   const rand = rng(seed)
   const nums = levelNums(level)
   const tiers = tiersOf(level)
   const num = tiers[0]
   const spec = pickSpec(num, rand)
   return {
+    W: size.W,
+    H: size.H,
     level,
     speedFactor,
     t: 0,
     rand,
     nums,
     tiers,
-    player: { x: WORLD.W / 2, y: WORLD.H / 2, r: 20, face: 1, tier: 0, num, spec, safe: 0 },
+    player: { x: size.W / 2, y: size.H / 2, r: 20, face: 1, tier: 0, num, spec, safe: 0 },
     fish: [],
     nextId: 1,
     spawnIn: 0.2,
@@ -290,8 +308,8 @@ export function spawnFish(w: World, kind: Fish['kind']): Fish | null {
     id: w.nextId++,
     num,
     spec,
-    x: fromLeft ? -wd / 2 : WORLD.W + wd / 2,
-    y: 36 + w.rand() * (WORLD.H - 72),
+    x: fromLeft ? -wd / 2 : w.W + wd / 2,
+    y: 36 + w.rand() * (w.H - 72),
     vx: fromLeft ? speed : -speed,
     phase: w.rand() * Math.PI * 2,
     w: wd,
@@ -340,8 +358,8 @@ export function step(w: World, dt: number, input: Input): GameEvent[] {
       my = (dy / d) * speed
     }
   }
-  p.x = clamp(p.x + mx * dt, p.r, WORLD.W - p.r)
-  p.y = clamp(p.y + my * dt, p.r, WORLD.H - p.r)
+  p.x = clamp(p.x + mx * dt, p.r, w.W - p.r)
+  p.y = clamp(p.y + my * dt, p.r, w.H - p.r)
   if (mx > 1) p.face = 1
   else if (mx < -1) p.face = -1
 
@@ -349,10 +367,10 @@ export function step(w: World, dt: number, input: Input): GameEvent[] {
   for (const f of w.fish) {
     f.x += f.vx * dt
     f.phase += dt * 1.6
-    f.y = clamp(f.y + Math.sin(f.phase) * 8 * dt, 24, WORLD.H - 24)
+    f.y = clamp(f.y + Math.sin(f.phase) * 8 * dt, 24, w.H - 24)
   }
   for (const f of [...w.fish]) {
-    if ((f.vx > 0 && f.x > WORLD.W + f.w) || (f.vx < 0 && f.x < -f.w)) {
+    if ((f.vx > 0 && f.x > w.W + f.w) || (f.vx < 0 && f.x < -f.w)) {
       w.fish.splice(w.fish.indexOf(f), 1)
       events.push({ type: 'leave', fish: f })
     }

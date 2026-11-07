@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react'
 import { useI18n } from '../../i18n'
 import type { Loc } from '../../content/types'
 import { Bar, Tex } from '../ui'
 import { texSpeech } from '../../lib/texspeech'
-import { LIVES, TIERS, WORLD, createWorld, fishTex, starsOf, step, type Fish, type FishSpec, type GameEvent, type Input, type Level, type World } from '../../lib/fishgame'
+import { LIVES, TIERS, WORLD, createWorld, fishTex, pondFor, starsOf, step, type Fish, type FishSpec, type GameEvent, type Input, type Level, type World } from '../../lib/fishgame'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
@@ -34,6 +34,9 @@ function writeBest(level: Level, b: Best) {
   }
 }
 
+/** a phone, held either way: the game then takes the whole screen once it starts */
+const COMPACT = '(max-width: 640px), (max-height: 500px)'
+
 const freshSeed = () => Math.floor(Math.random() * 2 ** 31)
 type Phase = 'ready' | 'play' | 'paused' | 'won' | 'lost'
 
@@ -57,6 +60,9 @@ export default function NumberFishGame() {
   const [, setTick] = useState(0)
   const [toast, setToast] = useState<{ a: FishSpec; b: FishSpec; rel: '>' | '<' | '=' } | null>(null)
   const [note, setNote] = useState('')
+  const [compact, setCompact] = useState(() => typeof matchMedia === 'function' && matchMedia(COMPACT).matches)
+  const compactRef = useRef(compact)
+  compactRef.current = compact
   const [best, setBest] = useState<Best | null>(() => readBest(1))
   const [newBest, setNewBest] = useState(false)
 
@@ -74,7 +80,9 @@ export default function NumberFishGame() {
 
   const begin = useCallback(
     (lv: Level, speedSlow: boolean) => {
-      world.current = createWorld(lv, freshSeed(), speedSlow ? 0.6 : 1)
+      // on a phone the pond takes the shape of the screen it is played on
+      const size = compactRef.current ? pondFor(window.innerWidth - 16, window.innerHeight - 64) : WORLD
+      world.current = createWorld(lv, freshSeed(), speedSlow ? 0.6 : 1, size)
       fishEls.current.clear()
       keys.current.clear()
       target.current = null
@@ -102,19 +110,47 @@ export default function NumberFishGame() {
     rerender()
   }
 
-  // the stage is a fixed pond of 640 × 400 units, scaled to the width it has
+  useEffect(() => {
+    if (typeof matchMedia !== 'function') return
+    const mq = matchMedia(COMPACT)
+    const on = () => setCompact(mq.matches)
+    mq.addEventListener('change', on)
+    return () => mq.removeEventListener('change', on)
+  }, [])
+
+  const immersive = compact && phase !== 'ready'
+
+  // The pond is drawn at its own size and scaled to fit the stage; if the stage has another shape (a phone turned over in the middle of a game), the pond is
+  // centred in it.
+  const fit = useCallback(() => {
+    const el = stage.current
+    if (!el) return
+    const { W, H } = world.current
+    const s = Math.min(el.clientWidth / W, el.clientHeight / H)
+    scale.current = s
+    el.style.setProperty('--s', String(s))
+    el.style.setProperty('--ox', `${(el.clientWidth - W * s) / 2}px`)
+    el.style.setProperty('--oy', `${(el.clientHeight - H * s) / 2}px`)
+  }, [])
+  useLayoutEffect(fit)
   useEffect(() => {
     const el = stage.current
     if (!el) return
-    const fit = () => {
-      scale.current = el.clientWidth / WORLD.W
-      el.style.setProperty('--s', String(scale.current))
-    }
-    fit()
     const ro = new ResizeObserver(fit)
     ro.observe(el)
     return () => ro.disconnect()
-  }, [])
+  }, [fit])
+
+  // the page behind a full-screen game does not scroll
+  useEffect(() => {
+    if (!immersive) return
+    const root = document.documentElement
+    const was = root.style.overflow
+    root.style.overflow = 'hidden'
+    return () => {
+      root.style.overflow = was
+    }
+  }, [immersive])
 
   const paint = () => {
     const w = world.current
@@ -209,7 +245,9 @@ export default function NumberFishGame() {
 
   const aim = (e: ReactPointerEvent<HTMLDivElement>) => {
     const rect = stage.current!.getBoundingClientRect()
-    target.current = { x: (e.clientX - rect.left) / scale.current, y: (e.clientY - rect.top) / scale.current }
+    const ox = parseFloat(stage.current!.style.getPropertyValue('--ox')) || 0
+    const oy = parseFloat(stage.current!.style.getPropertyValue('--oy')) || 0
+    target.current = { x: (e.clientX - rect.left - ox) / scale.current, y: (e.clientY - rect.top - oy) / scale.current }
   }
 
   const onKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
@@ -235,7 +273,7 @@ export default function NumberFishGame() {
   const stars = w.status === 'won' ? starsOf(w.lives) : 0
 
   return (
-    <section className="fishgame" aria-label={tc(L('Number Fish', 'Ikan Bilangan'))}>
+    <section className={`fishgame${immersive ? ' immersive' : ''}`} aria-label={tc(L('Number Fish', 'Ikan Bilangan'))}>
       <div className="chips" role="group" aria-label={tc(L('Level', 'Tingkat'))}>
         {LEVELS.map((l) => (
           <button key={l.id} type="button" className={`chip ${level === l.id ? 'on' : ''}`} aria-pressed={level === l.id} onClick={() => toReady(l.id)} title={tc(l.blurb)}>
@@ -253,6 +291,9 @@ export default function NumberFishGame() {
       </div>
 
       <div className="fishhud">
+        <button type="button" className="btn ghost sm fishexit" onClick={() => toReady(level)} aria-label={tc(L('Leave the game', 'Keluar dari game'))}>
+          ✕
+        </button>
         <span className="pill" aria-label={`${w.lives} ${tc(L('lives', 'nyawa'))}`}>
           {'❤️'.repeat(w.lives)}
           {'🤍'.repeat(LIVES - w.lives)}
@@ -271,11 +312,17 @@ export default function NumberFishGame() {
             {tc(L('Best', 'Terbaik'))} {best.score}
           </span>
         )}
+        {(phase === 'play' || phase === 'paused') && (
+          <button type="button" className="btn ghost sm fishpause" onClick={() => setPhase(phase === 'play' ? 'paused' : 'play')} aria-label={phase === 'play' ? tc(L('Pause', 'Jeda')) : tc(L('Resume', 'Lanjut'))}>
+            {phase === 'play' ? '⏸' : '▶'}
+          </button>
+        )}
       </div>
 
       <div
         ref={stage}
         className="fishstage"
+        style={immersive ? undefined : ({ aspectRatio: `${w.W} / ${w.H}` } as CSSProperties)}
         tabIndex={0}
         role="group"
         aria-label={tc(L('The pond. Swim with the mouse, a finger or the arrow keys, and eat the fish with the smaller number.', 'Kolam. Berenanglah dengan tetikus, jari, atau tombol panah, dan makan ikan yang bilangannya lebih kecil.'))}
@@ -285,7 +332,7 @@ export default function NumberFishGame() {
         onKeyUp={onKeyUp}
         onBlur={() => keys.current.clear()}
       >
-        <div className="fishworld" style={{ width: WORLD.W, height: WORLD.H } as CSSProperties}>
+        <div className="fishworld" style={{ width: w.W, height: w.H } as CSSProperties}>
           <div className="bubbles" aria-hidden="true">
             {Array.from({ length: 9 }, (_, i) => (
               <i key={i} style={{ left: `${8 + i * 11}%`, animationDelay: `${(i * 0.9) % 6}s`, animationDuration: `${7 + (i % 4)}s` }} />

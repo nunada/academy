@@ -486,5 +486,76 @@ for (const level of LEVELS) {
   ok(near > far, `numbers near the player's are drawn more often than the smallest (${near} near, ${far} far)`)
 }
 
+// the pond takes the shape of the screen: pondFor, and a game in a pond of another size
+{
+  const boxes = [[359, 748], [796, 311], [320, 520], [1200, 300], [200, 200], [4000, 4000], [375, 560], [600, 500]]
+  for (const [bw, bh] of boxes) {
+    const z = G.pondFor(bw, bh)
+    ok(Number.isInteger(z.W) && Number.isInteger(z.H) && z.W >= 360 && z.W <= 900 && z.H >= 330 && z.H <= 760, `pondFor(${bw}, ${bh}) = ${z.W} × ${z.H} is out of range`)
+    // on a screen of a size a phone has, the fish are drawn at a scale of at most 1.05
+    const sc = Math.min(bw / z.W, bh / z.H)
+    if (bw >= 360 && bh >= 330 && bw <= 900 && bh <= 760) ok(sc <= 1.06 && sc >= 0.5, `pondFor(${bw}, ${bh}): the pond is drawn at ${sc.toFixed(2)}`)
+  }
+  const tall = G.pondFor(359, 748)
+  const wide = G.pondFor(796, 311)
+  ok(tall.H > tall.W && wide.W > wide.H, 'an upright phone gets a tall pond and a sideways one a wide pond')
+  ok(Math.abs(359 / tall.W - 359 / 400) < 0.03 && tall.W < 420, `upright: the fish are about the size they have on a page, the pond is ${tall.W} wide`)
+  ok(Math.abs(311 / wide.H - 311 / 345) < 0.03 && wide.H < 360, `sideways: the pond is ${wide.H} high`)
+  const dflt = G.createWorld(1, 5)
+  ok(dflt.W === G.WORLD.W && dflt.H === G.WORLD.H && dflt.player.x === G.WORLD.W / 2 && dflt.player.y === G.WORLD.H / 2, 'a world without a size is the standard pond')
+
+  for (const level of LEVELS) {
+    for (const size of [tall, wide, { W: 360, H: 330 }, { W: 900, H: 760 }]) {
+      const where = `level ${level}, a pond of ${size.W} × ${size.H}`
+      const w = G.createWorld(level, 11 * level + size.W, 1, size)
+      ok(w.W === size.W && w.H === size.H && w.player.x === size.W / 2 && w.player.y === size.H / 2, `${where}: the world has the size it was made with and the fish starts in the middle`)
+      // spawning: from the sides, inside the pond up and down
+      for (let i = 0; i < 400; i++) {
+        const f = G.spawnFish(w, i % 2 ? 'edible' : 'danger')
+        if (!f) continue
+        ok(f.y >= 36 && f.y <= size.H - 36, `${where}: a fish swam in at height ${f.y.toFixed(0)}`)
+        ok(f.vx > 0 ? f.x < 0 : f.x > size.W, `${where}: a fish swam in at ${f.x.toFixed(0)} with speed ${f.vx.toFixed(0)}`)
+        w.fish.length = 0
+      }
+      // a player that goes wherever it likes: nothing leaves the pond, and the walls hold
+      let lcg = 12345 + size.W
+      const rand = () => ((lcg = (lcg * 1664525 + 1013904223) >>> 0) / 4294967296)
+      let tx = 0
+      let ty = 0
+      for (let i = 0; i < 4500 && w.status === 'play'; i++) {
+        if (i % 30 === 0) {
+          tx = rand() * size.W * 1.4 - size.W * 0.2
+          ty = rand() * size.H * 1.4 - size.H * 0.2
+        }
+        G.step(w, 1 / 30, i % 7 === 0 ? { kx: Math.round(rand() * 2 - 1), ky: Math.round(rand() * 2 - 1) } : { tx, ty })
+        const pl = w.player
+        ok(pl.x >= pl.r - 1e-9 && pl.x <= size.W - pl.r + 1e-9 && pl.y >= pl.r - 1e-9 && pl.y <= size.H - pl.r + 1e-9, `${where}: the fish is at ${pl.x.toFixed(0)}, ${pl.y.toFixed(0)}`)
+        for (const f of w.fish) ok(f.x > -f.w - 5 && f.x < size.W + f.w + 5 && f.y >= 24 - 1e-9 && f.y <= size.H - 24 + 1e-9, `${where}: a fish at ${f.x.toFixed(0)}, ${f.y.toFixed(0)} is out of the pond`)
+      }
+      // swimming across: with the keys from the middle to the far corner
+      const w2 = G.createWorld(level, 3, 1, size)
+      w2.spawnIn = 1e9
+      for (let i = 0; i < 2000; i++) G.step(w2, 0.05, { kx: 1, ky: 1 })
+      ok(Math.abs(w2.player.x - (size.W - w2.player.r)) < 1e-6 && Math.abs(w2.player.y - (size.H - w2.player.r)) < 1e-6, `${where}: the fish reaches the far corner and stops there, at ${w2.player.x.toFixed(1)}, ${w2.player.y.toFixed(1)}`)
+      // a careful player wins in any pond
+      const w3 = G.createWorld(level, 77 + level, 1, size)
+      let t = 0
+      while (w3.status === 'play' && t < 900) {
+        const mine = w3.player.num
+        const food = w3.fish
+          .filter((f) => refCmp(level, mine, f.num) > 0 && w3.fish.every((o) => o === f || refCmp(level, mine, o.num) >= 0 || Math.hypot(o.x - f.x, o.y - f.y) > 140))
+          .sort((a, b) => Math.hypot(a.x - w3.player.x, a.y - w3.player.y) - Math.hypot(b.x - w3.player.x, b.y - w3.player.y))[0]
+        if (food) {
+          w3.player.x = food.x
+          w3.player.y = food.y
+        }
+        G.step(w3, 1 / 30, {})
+        t += 1 / 30
+      }
+      ok(w3.status === 'won' && w3.lives === G.LIVES, `${where}: the careful player should win with every life, got ${w3.status} with ${w3.lives}`)
+    }
+  }
+}
+
 console.log(`fishgame check: ${pairs} pairs of forms, ${played} fights, ${LEVELS.length * games * 3} games, ${checks} checks, ${bad} failure(s)`)
 process.exit(bad ? 1 : 0)
