@@ -71,7 +71,9 @@
     "check:realcards": "node tools/check-realcards.mjs",
     "check:roles": "node tools/check-roles.mjs",
     "check:rolessql": "node tools/check-roles-sql.mjs",
-    "check:fishgame": "node tools/check-fishgame.mjs"
+    "check:fishgame": "node tools/check-fishgame.mjs",
+    "check:indexnow": "node tools/check-indexnow.mjs",
+    "indexnow": "node tools/indexnow.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

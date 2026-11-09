@@ -246,6 +246,9 @@ jobs:
       - run: npm run check:rolessql
       - run: npm run check:fishgame
 
+      # IndexNow: the key file, the reading of the sitemap, the choice of pages and the request, against a fake service.
+      - run: npm run check:indexnow
+
       - name: Work out where the site will live
         id: base
         run: |
@@ -357,3 +360,17 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+
+  # Tell Bing, Yandex and the other IndexNow search engines which pages changed (those with a lastmod in the last 2 days). It runs once the new
+  # site is live, because the search engine fetches the key file from it, and it never fails the deploy: a search engine being down is not a
+  # reason for a red build. Google does not take part in IndexNow; for Google there is the sitemap and Search Console.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: node tools/indexnow.mjs --sitemap https://nunada.my.id/sitemap.xml

@@ -3,7 +3,7 @@ import { useI18n } from '../../i18n'
 import type { Loc } from '../../content/types'
 import { Tex } from '../ui'
 import { texSpeech } from '../../lib/texspeech'
-import { PAIRS, approx, evalSpec, isDone, isShown, newGame, pick, settle, stars, texOf, type GameState, type Level, type Mode } from '../../lib/realcards'
+import { PAIRS, approx, hueOfPair, evalSpec, isDone, isShown, newGame, pick, settle, stars, texOf, type GameState, type Level, type Mode } from '../../lib/realcards'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
@@ -44,8 +44,7 @@ function writeBest(level: Level, mode: Mode, b: Best) {
 const freshSeed = () => Math.floor(Math.random() * 2 ** 31)
 const clock = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
 
-/** The pair's own color: the hue steps round the wheel by the golden angle, so ten pairs stay apart. */
-const hueOf = (pair: number) => Math.round((pair * 137.5) % 360)
+const hueOf = hueOfPair
 
 export default function RealMatchGame() {
   const { lang, tc } = useI18n()

@@ -466,5 +466,18 @@ ok(G.stars(3, 6, 'memory') === 3 && G.stars(4, 6, 'memory') === 2 && G.stars(7, 
   ok(G.texOf({ k: 'rep', neg: true, whole: '0', pre: '1', rep: '6' }, 'id') === '-0{,}1\\overline{6}', 'a negative repeating decimal in Indonesian')
 }
 
+// the colors of the found pairs: enough of them, apart from each other, and none of them a red
+{
+  const hs = G.PAIR_HUES
+  ok(hs.length >= Math.max(...LEVELS.map((l) => G.PAIRS[l])), 'a hue for every pair of the hardest level')
+  ok(new Set(hs).size === hs.length, 'no hue twice')
+  for (const h of hs) ok(h >= 30 && h < 335, `the hue ${h} is a red, the color of a mistake`)
+  let nearest = 360
+  for (let i = 0; i < hs.length; i++) for (let j = i + 1; j < hs.length; j++) nearest = Math.min(nearest, Math.min(Math.abs(hs[i] - hs[j]), 360 - Math.abs(hs[i] - hs[j])))
+  ok(nearest >= 15, `two hues are ${nearest}° apart`)
+  for (let p = 0; p < 30; p++) ok(G.hueOfPair(p) === hs[p % hs.length], `pair ${p} has the color ${G.hueOfPair(p)}`)
+  ok(G.hueOfPair(0) !== 0, 'the first pair to be found is not red')
+}
+
 console.log(`realcards check: ${entries.length} numbers, ${decks.length} decks, ${games} games, ${checks} checks, ${bad} failure(s)`)
 process.exit(bad ? 1 : 0)

@@ -404,6 +404,11 @@ export interface Card {
 
 export const PAIRS: Record<Level, number> = { 1: 6, 2: 8, 3: 10 }
 
+/** The color of a pair once it is found, as a hue in degrees. Never a red: red is the color of "not the same number", and a pair that was right and looks
+ *  wrong is worse than no color at all. Ten hues, for the ten pairs of the hardest level, each at least 15° from the others. */
+export const PAIR_HUES = [145, 215, 285, 40, 180, 255, 85, 315, 60, 200]
+export const hueOfPair = (pair: number): number => PAIR_HUES[pair % PAIR_HUES.length]
+
 /** A number written as a double, only for deciding which numbers look alike; the game never compares anything with it. */
 const looseValue = (v: Surd): number => Number(surdApprox(v, 6))
 
