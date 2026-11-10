@@ -11,7 +11,7 @@ export const module4: Module = {
   title: { en: 'States and Screens', id: 'Keadaan dan Layar' },
   summary: {
     en: 'React to the pointer and the keyboard, move smoothly, and fit any width.',
-    id: 'Merespons penunjuk dan papan ketik, bergerak halus, dan muat di lebar berapa pun.',
+    id: 'Merespons mouse dan keyboard, bergerak halus, dan muat di lebar berapa pun.',
   },
   submodules: [
     {
@@ -34,21 +34,21 @@ export const module4: Module = {
               title: { en: 'A pseudo-class is a condition', id: 'Pseudo-class adalah sebuah kondisi' },
               body: {
                 en: '`a:hover` means "a link, while the pointer is over it". The colon marks a state rather than a different element. `:first-child` and `:last-child` work the same way, on position instead of interaction.',
-                id: '`a:hover` berarti "sebuah tautan, selagi penunjuk berada di atasnya". Titik dua menandai sebuah keadaan, bukan elemen lain. `:first-child` dan `:last-child` bekerja serupa, berdasarkan posisi alih-alih interaksi.',
+                id: '`a:hover` berarti "sebuah link, selagi mouse berada di atasnya". Titik dua menandai sebuah keadaan, bukan elemen lain. `:first-child` dan `:last-child` bekerja serupa, berdasarkan posisi alih-alih interaksi.',
               },
               code: {
                 en: '<style>\n  a { color: #2563eb; }\n  a:hover { color: #dc2626; }\n</style>\n\n<p><a href="#">Point at this link</a></p>',
-                id: '<style>\n  a { color: #2563eb; }\n  a:hover { color: #dc2626; }\n</style>\n\n<p><a href="#">Arahkan penunjuk ke tautan ini</a></p>',
+                id: '<style>\n  a { color: #2563eb; }\n  a:hover { color: #dc2626; }\n</style>\n\n<p><a href="#">Arahkan penunjuk ke link ini</a></p>',
               },
               preview: true,
             },
             {
               kind: 'concept',
               id: 'c2',
-              title: { en: 'Not everyone has a mouse', id: 'Tidak semua orang punya tetikus' },
+              title: { en: 'Not everyone has a mouse', id: 'Tidak semua orang punya mouse' },
               body: {
                 en: 'People who navigate by keyboard move with Tab, which triggers `:focus`, never `:hover`. Removing the focus outline because it "looks ugly" leaves them unable to see where they are. Restyle it if you must, but never delete it.',
-                id: 'Orang yang menavigasi dengan papan ketik berpindah memakai Tab, yang memicu `:focus`, bukan `:hover`. Menghapus garis fokus karena "jelek" membuat mereka tak bisa melihat posisinya. Ubah gayanya kalau perlu, tetapi jangan pernah menghapusnya.',
+                id: 'Orang yang menavigasi dengan keyboard berpindah memakai Tab, yang memicu `:focus`, bukan `:hover`. Menghapus garis fokus karena "jelek" membuat mereka tak bisa melihat posisinya. Ubah gayanya kalau perlu, tetapi jangan pernah menghapusnya.',
               },
               code: {
                 en: '<style>\n  /* bad: outline: none; */\n  a:focus {\n    outline: 3px solid #f59e0b;\n    outline-offset: 2px;\n  }\n</style>\n\n<p><a href="#">Press Tab to see the focus</a></p>',
@@ -62,7 +62,7 @@ export const module4: Module = {
               title: { en: 'Style both together', id: 'Beri gaya keduanya sekaligus' },
               body: {
                 en: 'A comma lets one rule serve both, so a keyboard user gets the same feedback a mouse user does. It costs one extra selector and is the difference between usable and not.',
-                id: 'Sebuah koma membuat satu aturan melayani keduanya, sehingga pengguna papan ketik mendapat umpan balik yang sama dengan pengguna tetikus. Biayanya satu selektor tambahan dan itulah pembeda antara bisa dipakai dan tidak.',
+                id: 'Sebuah koma membuat satu aturan melayani keduanya, sehingga pengguna keyboard mendapat umpan balik yang sama dengan pengguna mouse. Biayanya satu selektor tambahan dan itulah pembeda antara bisa dipakai dan tidak.',
               },
               code: {
                 en: '<style>\n  .button { background: #e2e8f0; padding: 10px; }\n  .button:hover,\n  .button:focus { background: #cbd5e1; }\n</style>\n\n<p><a class="button" href="#">Button</a></p>',
@@ -78,7 +78,7 @@ export const module4: Module = {
                 id: 'Kamu hanya memberi gaya pada `:hover`. Siapa yang terlewat?',
               },
               options: [
-                { en: 'Anyone navigating by keyboard', id: 'Siapa pun yang menavigasi dengan papan ketik' },
+                { en: 'Anyone navigating by keyboard', id: 'Siapa pun yang menavigasi dengan keyboard' },
                 { en: 'Nobody', id: 'Tidak ada' },
                 { en: 'Users on large screens', id: 'Pengguna layar besar' },
                 { en: 'Users with fast connections', id: 'Pengguna dengan koneksi cepat' },
@@ -86,11 +86,11 @@ export const module4: Module = {
               answer: 0,
               explain: {
                 en: 'Tab moves focus, not the pointer. Without a :focus rule there is no visible feedback at all.',
-                id: 'Tab memindahkan fokus, bukan penunjuk. Tanpa aturan :focus, tidak ada umpan balik yang terlihat sama sekali.',
+                id: 'Tab memindahkan fokus, bukan mouse. Tanpa aturan :focus, tidak ada umpan balik yang terlihat sama sekali.',
               },
               hint: {
                 en: 'Think about what triggers when someone moves between links with the Tab key rather than a mouse, and whether that trigger is the same one this rule reacts to.',
-                id: 'Pikirkan apa yang terpicu saat seseorang berpindah antar tautan dengan tombol Tab, bukan tetikus, dan apakah pemicu itu sama dengan yang direspons aturan ini.',
+                id: 'Pikirkan apa yang terpicu saat seseorang berpindah antar link dengan tombol Tab, bukan mouse, dan apakah pemicu itu sama dengan yang direspons aturan ini.',
               },
             },
             {
@@ -131,7 +131,7 @@ export const module4: Module = {
                   {
                     name: { en: 'The resting state', id: 'Keadaan diamnya' },
                     check:
-                      'assert(style(".tautan", "color") === "rgb(29, 78, 216)", "warna tautan harus #1d4ed8, sekarang: " + style(".tautan", "color"));\nassert(style(".tautan", "text-decoration-line") === "none", "tautan tidak boleh bergaris bawah saat diam");',
+                      'assert(style(".tautan", "color") === "rgb(29, 78, 216)", "warna link harus #1d4ed8, sekarang: " + style(".tautan", "color"));\nassert(style(".tautan", "text-decoration-line") === "none", "link tidak boleh bergaris bawah saat diam");',
                   },
                   {
                     name: { en: 'A hover rule exists', id: 'Ada aturan hover' },
@@ -140,7 +140,7 @@ export const module4: Module = {
                   {
                     name: { en: 'Focus is covered too', id: 'Focus ikut ditangani' },
                     check:
-                      'assert(css().indexOf(":focus") !== -1, "belum ada aturan untuk :focus — pengguna papan ketik akan terlewat");',
+                      'assert(css().indexOf(":focus") !== -1, "belum ada aturan untuk :focus — pengguna keyboard akan terlewat");',
                   },
                   {
                     name: { en: 'Both states change color and underline', id: 'Kedua keadaan mengubah warna dan garis bawah' },
@@ -173,7 +173,7 @@ export const module4: Module = {
               title: { en: 'transition softens a jump', id: 'transition melunakkan lompatan' },
               body: {
                 en: '`transition: background-color 0.2s` tells the browser to animate between the old and new value instead of snapping. It goes on the **resting** rule, not on `:hover`, so it applies in both directions.',
-                id: '`transition: background-color 0.2s` menyuruh peramban menganimasikan perubahan dari nilai lama ke baru alih-alih meloncat. Ia ditulis pada aturan **diam**, bukan pada `:hover`, agar berlaku ke dua arah.',
+                id: '`transition: background-color 0.2s` menyuruh browser menganimasikan perubahan dari nilai lama ke baru alih-alih meloncat. Ia ditulis pada aturan **diam**, bukan pada `:hover`, agar berlaku ke dua arah.',
               },
               code: {
                 en: '<style>\n  .box {\n    background: #93c5fd;\n    padding: 16px;\n    transition: background-color 0.3s;\n  }\n  .box:hover { background: #1d4ed8; }\n</style>\n\n<div class="box">Point at it — the color glides.</div>',
@@ -340,14 +340,14 @@ export const module4: Module = {
         title: { en: 'Styled profile page', id: 'Halaman profil bergaya' },
         brief: {
           en: 'Everything at once: a centered page, a flex header, a responsive grid, and states that respond to both mouse and keyboard.',
-          id: 'Semuanya sekaligus: halaman terpusat, header flex, kisi responsif, dan keadaan yang merespons tetikus maupun papan ketik.',
+          id: 'Semuanya sekaligus: halaman terpusat, header flex, grid responsif, dan keadaan yang merespons mouse maupun keyboard.',
         },
         requirements: [
           { en: '`box-sizing: border-box` for everything.', id: '`box-sizing: border-box` untuk semuanya.' },
           { en: '`.page` is centered with a max-width of 900px.', id: '`.halaman` terpusat dengan max-width 900px.' },
           { en: '`.bar` is a flex row, 64px tall, `#0f172a` background, logo left and menu right, vertically centered.', id: '`.bar` baris flex, tinggi 64px, latar `#0f172a`, logo kiri dan menu kanan, terpusat vertikal.' },
-          { en: '`.menu` is a flex row with a 16px gap; its links are `#e2e8f0` with no underline.', id: '`.menu` baris flex dengan gap 16px; tautannya `#e2e8f0` tanpa garis bawah.' },
-          { en: 'Menu links change color on hover **and** focus.', id: 'Tautan menu berubah warna saat hover **dan** focus.' },
+          { en: '`.menu` is a flex row with a 16px gap; its links are `#e2e8f0` with no underline.', id: '`.menu` baris flex dengan gap 16px; link-nya `#e2e8f0` tanpa garis bawah.' },
+          { en: 'Menu links change color on hover **and** focus.', id: 'Link menu berubah warna saat hover **dan** focus.' },
           { en: '`.grid` is one column by default and three equal columns from 700px up, gap 16px.', id: '`.kisi` satu kolom secara bawaan dan tiga kolom sama lebar mulai 700px, gap 16px.' },
           { en: '`.card` has 20px padding, a 1px solid `#e2e8f0` border, a 12px radius, and transitions its border color over 0.2s.', id: '`.kartu` berpadding 20px, border solid 1px `#e2e8f0`, radius 12px, dan mentransisikan warna bordernya 0,2 detik.' },
         ],
@@ -397,17 +397,17 @@ export const module4: Module = {
                 'assert(style(".bar", "display") === "flex", "display .bar harus flex");\nassert(style(".bar", "height") === "64px", "tinggi .bar harus 64px");\nassert(style(".bar", "background-color") === "rgb(15, 23, 42)", "latar .bar harus #0f172a");\nassert(style(".bar", "align-items") === "center", "align-items harus center");\nvar bar = sel(".bar").getBoundingClientRect();\nvar menu = sel(".menu").getBoundingClientRect();\nassert(bar.right - menu.right < bar.width / 2, "menu harus berada di sisi kanan");',
             },
             {
-              name: { en: 'The menu spaces and styles its links', id: 'Menunya memberi jarak dan gaya tautannya' },
+              name: { en: 'The menu spaces and styles its links', id: 'Menunya memberi jarak dan gaya link-nya' },
               check:
-                'assert(style(".menu", "display") === "flex", "display .menu harus flex");\nvar a = all(".menu a");\nvar jarak = Math.round(a[1].getBoundingClientRect().left - a[0].getBoundingClientRect().right);\nassert(Math.abs(jarak - 16) < 2, "gap menu harus 16px, sekarang: " + jarak + "px");\nassert(style(".menu a", "color") === "rgb(226, 232, 240)", "warna tautan harus #e2e8f0");\nassert(style(".menu a", "text-decoration-line") === "none", "tautan tidak boleh bergaris bawah");',
+                'assert(style(".menu", "display") === "flex", "display .menu harus flex");\nvar a = all(".menu a");\nvar jarak = Math.round(a[1].getBoundingClientRect().left - a[0].getBoundingClientRect().right);\nassert(Math.abs(jarak - 16) < 2, "gap menu harus 16px, sekarang: " + jarak + "px");\nassert(style(".menu a", "color") === "rgb(226, 232, 240)", "warna link harus #e2e8f0");\nassert(style(".menu a", "text-decoration-line") === "none", "link tidak boleh bergaris bawah");',
             },
             {
               name: { en: 'Hover and focus are both handled', id: 'Hover dan focus sama-sama ditangani' },
               check:
-                'var teks = css().replace(/\\s+/g, " ").toLowerCase();\nassert(teks.indexOf(":hover") !== -1, "belum ada aturan :hover");\nassert(teks.indexOf(":focus") !== -1, "belum ada aturan :focus — pengguna papan ketik akan terlewat");',
+                'var teks = css().replace(/\\s+/g, " ").toLowerCase();\nassert(teks.indexOf(":hover") !== -1, "belum ada aturan :hover");\nassert(teks.indexOf(":focus") !== -1, "belum ada aturan :focus — pengguna keyboard akan terlewat");',
             },
             {
-              name: { en: 'The grid is one column, then three', id: 'Kisinya satu kolom, lalu tiga' },
+              name: { en: 'The grid is one column, then three', id: 'Grid-nya satu kolom, lalu tiga' },
               check:
                 'assert(style(".kisi", "display") === "grid", "display .kisi harus grid");\nvar teks = css().replace(/\\s+/g, " ");\nassert(teks.indexOf("@media") !== -1, "belum ada @media");\nassert(teks.indexOf("min-width: 700px") !== -1 || teks.indexOf("min-width:700px") !== -1, "query-nya harus min-width: 700px");\nvar sesudah = teks.slice(teks.indexOf("@media"));\nassert(/repeat\\(\\s*3|1fr 1fr 1fr/.test(sesudah), "di dalam media query harus ada tiga kolom");',
             },
@@ -419,10 +419,10 @@ export const module4: Module = {
           ],
         },
         hints: [
-          { en: 'Work top down: page, header, menu, grid, cards. Each is something you have already built.', id: 'Kerjakan dari atas: halaman, header, menu, kisi, kartu. Tiap bagian sudah pernah kamu bangun.' },
+          { en: 'Work top down: page, header, menu, grid, cards. Each is something you have already built.', id: 'Kerjakan dari atas: halaman, header, menu, grid, kartu. Tiap bagian sudah pernah kamu bangun.' },
           { en: 'The centered page needs both max-width and margin auto.', id: 'Halaman terpusat butuh max-width sekaligus margin auto.' },
           { en: 'One rule can serve both states: `.menu a:hover, .menu a:focus`.', id: 'Satu aturan bisa melayani kedua keadaan: `.menu a:hover, .menu a:focus`.' },
-          { en: 'Put the media query last, holding only the grid change.', id: 'Taruh media query paling akhir, memuat hanya perubahan kisinya.' },
+          { en: 'Put the media query last, holding only the grid change.', id: 'Taruh media query paling akhir, memuat hanya perubahan grid-nya.' },
         ],
         solution: {
           en: '* {\n  box-sizing: border-box;\n}\n\n.page {\n  max-width: 900px;\n  margin: 0 auto;\n}\n\n.bar {\n  display: flex;\n  height: 64px;\n  padding: 0 20px;\n  background-color: #0f172a;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.logo {\n  color: white;\n  font-weight: bold;\n}\n\n.menu {\n  display: flex;\n  gap: 16px;\n}\n\n.menu a {\n  color: #e2e8f0;\n  text-decoration: none;\n  transition: color 0.2s;\n}\n\n.menu a:hover,\n.menu a:focus {\n  color: #7dd3fc;\n}\n\n.content {\n  padding: 20px;\n}\n\n.grid {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 16px;\n}\n\n.card {\n  padding: 20px;\n  border: 1px solid #e2e8f0;\n  border-radius: 12px;\n  transition: border-color 0.2s;\n}\n\n.card:hover {\n  border-color: #7dd3fc;\n}\n\n.footer {\n  padding: 20px;\n  color: #64748b;\n}\n\n@media (min-width: 700px) {\n  .grid {\n    grid-template-columns: repeat(3, 1fr);\n  }\n}',

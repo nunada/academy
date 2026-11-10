@@ -33,7 +33,7 @@ export const module2: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'Combine the outputs, not the rules', id: 'Gabungkan keluarannya, bukan aturannya' },
+              title: { en: 'Combine the outputs, not the rules', id: 'Gabungkan output-nya, bukan aturannya' },
               body: {
                 en: 'Given two functions $f$ and $g$, four new ones come for free:\n$$(f + g)(x) = f(x) + g(x), \\qquad (f - g)(x) = f(x) - g(x)$$\n$$(fg)(x) = f(x)\\,g(x), \\qquad \\left(\\frac{f}{g}\\right)(x) = \\frac{f(x)}{g(x)}$$\nEach is defined by evaluating both functions at the same $x$ and then combining the two **numbers**. Nothing clever happens to the formulas.\n\nThe domain is where both were already defined — the intersection of the two domains. The quotient loses one more thing: every $x$ with $g(x) = 0$, because you still may not divide by zero.',
                 id: 'Diberikan dua fungsi $f$ dan $g$, empat fungsi baru muncul dengan sendirinya:\n$$(f + g)(x) = f(x) + g(x), \\qquad (f - g)(x) = f(x) - g(x)$$\n$$(fg)(x) = f(x)\\,g(x), \\qquad \\left(\\frac{f}{g}\\right)(x) = \\frac{f(x)}{g(x)}$$\nMasing-masing didefinisikan dengan menghitung kedua fungsi pada $x$ yang sama lalu menggabungkan kedua **bilangannya**. Tak ada yang istimewa terjadi pada rumusnya.\n\nDomainnya adalah tempat keduanya sudah terdefinisi — irisan kedua domain. Hasil baginya kehilangan satu hal lagi: setiap $x$ dengan $g(x) = 0$, sebab membagi dengan nol tetap tidak boleh.',
@@ -159,7 +159,7 @@ export const module2: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'Output into input', id: 'Keluaran menjadi masukan' },
+              title: { en: 'Output into input', id: 'Output menjadi input' },
               body: {
                 en: 'The **composite** of $f$ with $g$ is\n$$(f \\circ g)(x) = f(g(x))$$\nread "$f$ after $g$" — because $g$ acts first. Apply $g$ to $x$, then hand the answer to $f$.\n\nWith $f(x) = \\sqrt{x}$ and $g(x) = x + 1$:\n$$(f \\circ g)(3) = f(g(3)) = f(4) = 2$$\nWork from the inside out, exactly as the brackets tell you to. The commonest mistake is doing $f$ first because it is written first.',
                 id: '**Komposisi** $f$ dengan $g$ adalah\n$$(f \\circ g)(x) = f(g(x))$$\ndibaca "$f$ setelah $g$" — karena $g$ yang bekerja lebih dulu. Kenakan $g$ pada $x$, lalu serahkan hasilnya kepada $f$.\n\nDengan $f(x) = \\sqrt{x}$ dan $g(x) = x + 1$:\n$$(f \\circ g)(3) = f(g(3)) = f(4) = 2$$\nKerjakan dari dalam ke luar, persis seperti yang diperintahkan kurungnya. Kesalahan yang paling lazim adalah mengerjakan $f$ lebih dulu karena ia ditulis lebih dulu.',
@@ -294,7 +294,7 @@ export const module2: Module = {
               title: { en: 'Two conditions, not one', id: 'Dua syarat, bukan satu' },
               body: {
                 en: 'For $f(g(x))$ to make sense, two things must hold: $x$ has to be in the domain of $g$, **and** $g(x)$ has to be in the domain of $f$.\n\nWith $f(x) = \\sqrt{x}$ and $g(x) = x - 3$: $g$ accepts everything, but $f$ needs a non-negative input, so we need $x - 3 \\geq 0$, that is $x \\geq 3$.\n\nSimplifying first is what goes wrong here. $(\\sqrt{x})^2$ tidies to $x$, which looks defined everywhere — but the composite still needs $x \\geq 0$, because the inner square root had to happen. Find the domain before you simplify, never after.',
-                id: 'Agar $f(g(x))$ bermakna, dua hal harus berlaku: $x$ harus berada di domain $g$, **dan** $g(x)$ harus berada di domain $f$.\n\nDengan $f(x) = \\sqrt{x}$ dan $g(x) = x - 3$: $g$ menerima apa saja, tetapi $f$ memerlukan masukan tak negatif, jadi diperlukan $x - 3 \\geq 0$, yaitu $x \\geq 3$.\n\nMenyederhanakan lebih dulu adalah tempat kekeliruan terjadi. $(\\sqrt{x})^2$ menjadi rapi sebagai $x$, yang tampak terdefinisi di mana-mana — tetapi komposisinya tetap memerlukan $x \\geq 0$, sebab akar di dalamnya tetap harus terjadi. Tentukan domainnya sebelum menyederhanakan, jangan sesudahnya.',
+                id: 'Agar $f(g(x))$ bermakna, dua hal harus berlaku: $x$ harus berada di domain $g$, **dan** $g(x)$ harus berada di domain $f$.\n\nDengan $f(x) = \\sqrt{x}$ dan $g(x) = x - 3$: $g$ menerima apa saja, tetapi $f$ memerlukan input tak negatif, jadi diperlukan $x - 3 \\geq 0$, yaitu $x \\geq 3$.\n\nMenyederhanakan lebih dulu adalah tempat kekeliruan terjadi. $(\\sqrt{x})^2$ menjadi rapi sebagai $x$, yang tampak terdefinisi di mana-mana — tetapi komposisinya tetap memerlukan $x \\geq 0$, sebab akar di dalamnya tetap harus terjadi. Tentukan domainnya sebelum menyederhanakan, jangan sesudahnya.',
               },
               figure: {
                 dim: 2,

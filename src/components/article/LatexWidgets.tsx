@@ -262,7 +262,7 @@ const PKG: { id: DocPackage; note: { en: string; id: string } }[] = [
   { id: 'amssymb', note: L('\\mathbb, \\therefore, more symbols', '\\mathbb, \\therefore, lebih banyak simbol') },
   { id: 'graphicx', note: L('\\includegraphics for pictures', '\\includegraphics untuk gambar') },
   { id: 'booktabs', note: L('professional table rules', 'garis tabel profesional') },
-  { id: 'hyperref', note: L('clickable links and references', 'tautan dan referensi yang dapat diklik') },
+  { id: 'hyperref', note: L('clickable links and references', 'link dan referensi yang dapat diklik') },
 ]
 const NOTE_TEXT = {
   'graphicx-added': L('graphicx was added because the document has a figure.', 'graphicx ditambahkan karena dokumen memiliki gambar.'),

@@ -575,7 +575,7 @@ infinitely many solutions
 - **Pada abad ke-1 M.** Kitab Tiongkok *Sembilan Bab tentang Seni Matematika* mengabdikan bab kedelapan, *fangcheng* ("susunan persegi panjang"), untuk sistem beberapa persamaan, yang diselesaikan dengan prosedur eliminasi pada susunan bilangan yang ditata dengan batang hitung, langkah yang sama dengan eliminasi Gauss.
 - **1557.** Robert Recorde menulis tanda sama dengan pertama, $=$, "karena tak ada dua hal yang lebih sama" daripada dua garis sejajar yang sama panjang.
 - **1707 dan 1750.** Kuliah Newton, diterbitkan 1707, menguraikan eliminasi untuk beberapa bilangan tak diketahui, dan Gabriel Cramer menerbitkan, pada 1750, aturan determinan yang memakai namanya (Colin Maclaurin telah menemukannya untuk dua dan tiga bilangan tak diketahui sedikit lebih awal).
-- **Awal abad ke-19.** Gauss memakai eliminasi yang sistematis untuk perhitungan kuadrat terkecilnya, itulah sebabnya ia disebut eliminasi Gauss; ia leluhur penyelesai di setiap pustaka numerik sekarang.`,
+- **Awal abad ke-19.** Gauss memakai eliminasi yang sistematis untuk perhitungan kuadrat terkecilnya, itulah sebabnya ia disebut eliminasi Gauss; ia leluhur penyelesai di setiap library numerik sekarang.`,
           ),
         },
       ],

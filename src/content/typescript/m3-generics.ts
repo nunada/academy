@@ -335,7 +335,7 @@ export const module3: Module = {
                   'stok.pensil.toFixed(0);   // aman: nilainya number\n\n' +
                   'type Ukuran = "kecil" | "besar";\n' +
                   'const biaya: Record<Ukuran, number> = { kecil: 0, besar: 10000 };\n' +
-                  '// menghilangkan salah satu kuncinya adalah galat',
+                  '// menghilangkan salah satu kuncinya adalah error',
               },
             },
             {

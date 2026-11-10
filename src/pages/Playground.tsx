@@ -116,7 +116,7 @@ export default function Playground() {
       if (modeId === 'python' && !pythonInteractiveAvailable) {
         const res = await runPython(source, splitStdin(stdin))
         setOut({
-          text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)',
+          text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada output)',
           error: Boolean(res.error),
         })
       } else if (modeId === 'python') {

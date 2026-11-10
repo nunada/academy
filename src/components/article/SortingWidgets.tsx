@@ -172,11 +172,11 @@ const ALGO_NAME: Record<SortAlgo, { en: string; id: string }> = {
 }
 const ALGO_IDEA: Record<SortAlgo, { en: string; id: string }> = {
   selection: L('Find the smallest of the rest and swap it to the front. Always n(n − 1)/2 comparisons, but at most n − 1 swaps.', 'Cari yang terkecil dari sisanya dan tukar ke depan. Selalu n(n − 1)/2 perbandingan, tetapi paling banyak n − 1 pertukaran.'),
-  insertion: L('Take the next number and slide it left past every larger neighbor, like sorting cards in the hand. Fast when the input is nearly sorted.', 'Ambil bilangan berikutnya dan geser ke kiri melewati setiap tetangga yang lebih besar, seperti mengurutkan kartu di tangan. Cepat bila masukan hampir terurut.'),
+  insertion: L('Take the next number and slide it left past every larger neighbor, like sorting cards in the hand. Fast when the input is nearly sorted.', 'Ambil bilangan berikutnya dan geser ke kiri melewati setiap tetangga yang lebih besar, seperti mengurutkan kartu di tangan. Cepat bila input hampir terurut.'),
   bubble: L('Swap neighbors that are out of order, pass after pass; the largest number "bubbles" to the end of each pass. It stops after a pass with no swap.', 'Tukar tetangga yang salah urutan, putaran demi putaran; bilangan terbesar "menggelembung" ke ujung tiap putaran. Berhenti setelah putaran tanpa pertukaran.'),
-  merge: L('Sort the left half, sort the right half, then merge the two sorted halves. About n log₂ n comparisons whatever the input.', 'Urutkan separuh kiri, urutkan separuh kanan, lalu gabungkan kedua separuh terurut itu. Sekitar n log₂ n perbandingan apa pun masukannya.'),
-  quick: L('Pick the last number as the pivot, put smaller numbers before it and the rest after it, then sort both sides. Fast on average, quadratic on sorted input with this pivot.', 'Pilih bilangan terakhir sebagai pivot, taruh yang lebih kecil sebelumnya dan sisanya sesudahnya, lalu urutkan kedua sisi. Cepat rata-rata, kuadratik pada masukan terurut dengan pivot ini.'),
-  heap: L('Build a max-heap, then swap the largest to the end and repair the heap, n − 1 times. About 2n log₂ n comparisons whatever the input.', 'Bangun max-heap, lalu tukar yang terbesar ke ujung dan perbaiki heap, n − 1 kali. Sekitar 2n log₂ n perbandingan apa pun masukannya.'),
+  merge: L('Sort the left half, sort the right half, then merge the two sorted halves. About n log₂ n comparisons whatever the input.', 'Urutkan separuh kiri, urutkan separuh kanan, lalu gabungkan kedua separuh terurut itu. Sekitar n log₂ n perbandingan apa pun input-nya.'),
+  quick: L('Pick the last number as the pivot, put smaller numbers before it and the rest after it, then sort both sides. Fast on average, quadratic on sorted input with this pivot.', 'Pilih bilangan terakhir sebagai pivot, taruh yang lebih kecil sebelumnya dan sisanya sesudahnya, lalu urutkan kedua sisi. Cepat rata-rata, kuadratik pada input terurut dengan pivot ini.'),
+  heap: L('Build a max-heap, then swap the largest to the end and repair the heap, n − 1 times. About 2n log₂ n comparisons whatever the input.', 'Bangun max-heap, lalu tukar yang terbesar ke ujung dan perbaiki heap, n − 1 kali. Sekitar 2n log₂ n perbandingan apa pun input-nya.'),
 }
 const PATTERNS: { id: Pattern; label: { en: string; id: string } }[] = [
   { id: 'random', label: L('random', 'acak') },
@@ -234,7 +234,7 @@ export function SortViz() {
         ))}
         {pattern === 'random' && (
           <button className="chip ghost" onClick={() => { setSeed(seed + 1); reset() }}>
-            {tc(L('another random input', 'masukan acak lain'))}
+            {tc(L('another random input', 'input acak lain'))}
           </button>
         )}
       </div>
@@ -306,7 +306,7 @@ export function SortRace() {
         ))}
         {pattern === 'random' && (
           <button className="chip ghost" onClick={() => setSeed(seed + 1)}>
-            {tc(L('another random input', 'masukan acak lain'))}
+            {tc(L('another random input', 'input acak lain'))}
           </button>
         )}
       </div>
@@ -341,16 +341,16 @@ export function SortRace() {
       </div>
       <div className="wgtout" aria-live="polite">
         <p className="small">
-          {tc(L('For comparison', 'Sebagai pembanding'))}: n log₂ n = {grp(Math.round(nlg), lang)}, n²/2 = {grp(Math.round((n * n) / 2), lang)}, n − 1 = {grp(n - 1, lang)}. {tc(L('The highlighted row has the fewest comparisons. Moves count swaps (selection, bubble, quick, heap), shifts (insertion) or writes into the merged array (merge), so compare moves only within one algorithm.', 'Baris yang disorot punya perbandingan paling sedikit. Perpindahan menghitung pertukaran (selection, bubble, quick, heap), geseran (insertion), atau penulisan ke larik gabungan (merge), jadi bandingkan perpindahan hanya dalam satu algoritma.'))}
+          {tc(L('For comparison', 'Sebagai pembanding'))}: n log₂ n = {grp(Math.round(nlg), lang)}, n²/2 = {grp(Math.round((n * n) / 2), lang)}, n − 1 = {grp(n - 1, lang)}. {tc(L('The highlighted row has the fewest comparisons. Moves count swaps (selection, bubble, quick, heap), shifts (insertion) or writes into the merged array (merge), so compare moves only within one algorithm.', 'Baris yang disorot punya perbandingan paling sedikit. Perpindahan menghitung pertukaran (selection, bubble, quick, heap), geseran (insertion), atau penulisan ke array gabungan (merge), jadi bandingkan perpindahan hanya dalam satu algoritma.'))}
         </p>
         <p className="small">
           {pattern === 'sorted' || pattern === 'reversed'
             ? tc(L(`Quicksort with the last element as the pivot makes n(n − 1)/2 = ${grp((n * (n - 1)) / 2, lang)} comparisons here: the pivot is always the smallest or the largest.`, `Quicksort dengan elemen terakhir sebagai pivot membuat n(n − 1)/2 = ${grp((n * (n - 1)) / 2, lang)} perbandingan di sini: pivotnya selalu yang terkecil atau terbesar.`))
             : pattern === 'nearly'
-              ? tc(L('Insertion sort pays one comparison per number plus one per inversion, so a nearly sorted input costs it about n; quicksort with the last element as pivot is still close to quadratic.', 'Insertion sort membayar satu perbandingan per bilangan ditambah satu per inversi, sehingga masukan hampir terurut hanya memerlukan sekitar n; quicksort dengan elemen terakhir sebagai pivot tetap mendekati kuadratik.'))
+              ? tc(L('Insertion sort pays one comparison per number plus one per inversion, so a nearly sorted input costs it about n; quicksort with the last element as pivot is still close to quadratic.', 'Insertion sort membayar satu perbandingan per bilangan ditambah satu per inversi, sehingga input hampir terurut hanya memerlukan sekitar n; quicksort dengan elemen terakhir sebagai pivot tetap mendekati kuadratik.'))
               : pattern === 'few'
-                ? tc(L('With few distinct values, many numbers are equal: the Lomuto partition used here puts equal numbers on one side, so quicksort degrades toward a quadratic count - this is why real libraries use a three-way partition.', 'Dengan sedikit nilai berbeda, banyak bilangan sama: partisi Lomuto di sini menaruh bilangan sama di satu sisi, sehingga quicksort memburuk ke arah hitungan kuadratik - karena itu pustaka sungguhan memakai partisi tiga arah.'))
-                : tc(L(`On random input, quicksort averages 2(n + 1)Hₙ − 4n ≈ ${grp(Math.round(quickAvg), lang)} comparisons (this input is one sample), a little more than merge sort.`, `Pada masukan acak, quicksort rata-rata 2(n + 1)Hₙ − 4n ≈ ${grp(Math.round(quickAvg), lang)} perbandingan (masukan ini hanya satu contoh), sedikit lebih banyak daripada merge sort.`))}
+                ? tc(L('With few distinct values, many numbers are equal: the Lomuto partition used here puts equal numbers on one side, so quicksort degrades toward a quadratic count - this is why real libraries use a three-way partition.', 'Dengan sedikit nilai berbeda, banyak bilangan sama: partisi Lomuto di sini menaruh bilangan sama di satu sisi, sehingga quicksort memburuk ke arah hitungan kuadratik - karena itu library sungguhan memakai partisi tiga arah.'))
+                : tc(L(`On random input, quicksort averages 2(n + 1)Hₙ − 4n ≈ ${grp(Math.round(quickAvg), lang)} comparisons (this input is one sample), a little more than merge sort.`, `Pada input acak, quicksort rata-rata 2(n + 1)Hₙ − 4n ≈ ${grp(Math.round(quickAvg), lang)} perbandingan (input ini hanya satu contoh), sedikit lebih banyak daripada merge sort.`))}
         </p>
       </div>
     </Frame>

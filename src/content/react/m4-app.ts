@@ -303,7 +303,7 @@ export const module4: Module = {
         },
         requirements: [
           { en: '`useTasks()` returns `{ tasks, add, toggle, remove }` and owns the array.', id: '`useTugas()` mengembalikan `{ tugas, tambah, tandai, hapus }` dan memiliki array-nya.' },
-          { en: '`Form({ onAdd })` owns its own text state and refuses empty entries.', id: '`Form({ onTambah })` memiliki state teksnya sendiri dan menolak masukan kosong.' },
+          { en: '`Form({ onAdd })` owns its own text state and refuses empty entries.', id: '`Form({ onTambah })` memiliki state teksnya sendiri dan menolak input kosong.' },
           { en: 'Each task is an `li` with a `key`; clicking it toggles the class `done`.', id: 'Tiap tugas adalah `li` ber-`key`; mengkliknya menyalakan-mematikan class `selesai`.' },
           { en: 'Each `li` contains a `button.remove` that removes just that task.', id: 'Tiap `li` memuat `button.hapus` yang menghapus hanya tugas itu.' },
           { en: 'Three filter buttons — `All`, `Active`, `Done` — narrow what is listed.', id: 'Tiga tombol penyaring — `Semua`, `Aktif`, `Selesai` — mempersempit yang ditampilkan.' },
@@ -321,7 +321,7 @@ export const module4: Module = {
                 'async function submit(text) {\n  var i = sel("#root input");\n  var setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(i), "value").set;\n  setter.call(i, text);\n  i.dispatchEvent(new Event("input", { bubbles: true }));\n  await tick(20);\n  var f = sel("#root form");\n  if (f) f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\n  else await click("#root form button, #root button");\n  await tick(40);\n}\nassert(sel("#root input"), "no input yet");\nawait submit("One");\nawait submit("Two");\nawait submit("Three");\nassert(all("#root li").length === 3, "should be three tasks, got: " + all("#root li").length);\nassert(sel("#root input").value === "", "the input should be cleared");',
             },
             {
-              name: { en: 'Empty entries are refused', id: 'Masukan kosong ditolak' },
+              name: { en: 'Empty entries are refused', id: 'Input kosong ditolak' },
               check:
                 'async function submit(text) {\n  var i = sel("#root input");\n  var setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(i), "value").set;\n  setter.call(i, text);\n  i.dispatchEvent(new Event("input", { bubbles: true }));\n  await tick(20);\n  var f = sel("#root form");\n  if (f) f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\n  await tick(40);\n}\nvar before = all("#root li").length;\nawait submit("");\nawait submit("   ");\nassert(all("#root li").length === before, "empty and whitespace should not add a task");',
             },
@@ -358,7 +358,7 @@ export const module4: Module = {
                 'async function kirim(teks) {\n  var i = sel("#root input");\n  var setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(i), "value").set;\n  setter.call(i, teks);\n  i.dispatchEvent(new Event("input", { bubbles: true }));\n  await tick(20);\n  var f = sel("#root form");\n  if (f) f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\n  else await click("#root form button, #root button");\n  await tick(40);\n}\nassert(sel("#root input"), "belum ada input");\nawait kirim("Satu");\nawait kirim("Dua");\nawait kirim("Tiga");\nassert(all("#root li").length === 3, "harus tiga tugas, sekarang: " + all("#root li").length);\nassert(sel("#root input").value === "", "input harus dikosongkan");',
             },
             {
-              name: { en: 'Empty entries are refused', id: 'Masukan kosong ditolak' },
+              name: { en: 'Empty entries are refused', id: 'Input kosong ditolak' },
               check:
                 'async function kirim(teks) {\n  var i = sel("#root input");\n  var setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(i), "value").set;\n  setter.call(i, teks);\n  i.dispatchEvent(new Event("input", { bubbles: true }));\n  await tick(20);\n  var f = sel("#root form");\n  if (f) f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\n  await tick(40);\n}\nvar sebelum = all("#root li").length;\nawait kirim("");\nawait kirim("   ");\nassert(all("#root li").length === sebelum, "kosong dan spasi tidak boleh menambah");',
             },

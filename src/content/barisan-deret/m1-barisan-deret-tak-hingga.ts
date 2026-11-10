@@ -105,11 +105,11 @@ export const module1: Module = {
               answer: 0,
               explain: {
                 en: 'A sequence is a function whose input is a positive integer $n$ (the index) and whose output is the term $a_n$ — its domain is exactly the counting numbers.',
-                id: 'Barisan adalah fungsi yang masukannya bilangan bulat positif $n$ (indeksnya) dan keluarannya suku $a_n$ — domainnya persis bilangan cacah.',
+                id: 'Barisan adalah fungsi yang input-nya bilangan bulat positif $n$ (indeksnya) dan output-nya suku $a_n$ — domainnya persis bilangan cacah.',
               },
               hint: {
                 en: 'Re-read the opening definition — a sequence was described as a function whose input is which kind of number?',
-                id: 'Baca ulang definisi pembuka — barisan dideskripsikan sebagai fungsi yang masukannya jenis bilangan apa?',
+                id: 'Baca ulang definisi pembuka — barisan dideskripsikan sebagai fungsi yang input-nya jenis bilangan apa?',
               },
             },
             {
@@ -164,7 +164,7 @@ export const module1: Module = {
               title: { en: 'The same limit, one integer step at a time', id: 'Limit yang sama, selangkah demi selangkah bilangan bulat' },
               body: {
                 en: 'A sequence $\\{a_n\\}$ **converges** to $L$ if $a_n$ gets arbitrarily close to $L$ as $n\\to\\infty$ — exactly the Limit course\'s definition of $\\lim_{x\\to\\infty}f(x)=L$, restricted to integer inputs. Every limit law from that course carries over unchanged: sums, products, and quotients of convergent sequences behave exactly as they did for functions. If $\\{a_n\\}$ has no such $L$, it **diverges**.\n\nOne extra tool is available whenever a sequence\'s formula is also a formula in a continuous variable: if $f(n)=a_n$ for a function $f$ with $\\lim_{x\\to\\infty}f(x)=L$, then $\\lim_{n\\to\\infty}a_n=L$ too — so $\\dfrac{\\ln n}{n}\\to 0$ follows immediately from the identical limit already computed for $\\dfrac{\\ln x}{x}$ in the Integrals and Transcendental Functions course, with L\'Hôpital\'s Rule doing the work there.',
-                id: 'Sebuah barisan $\\{a_n\\}$ **konvergen** ke $L$ jika $a_n$ mendekati $L$ sedekat apa pun ketika $n\\to\\infty$ — persis definisi $\\lim_{x\\to\\infty}f(x)=L$ dari kursus Limit, dibatasi pada masukan bilangan bulat. Setiap hukum limit dari kursus itu berlaku tanpa berubah: jumlah, hasil kali, dan hasil bagi barisan yang konvergen berperilaku persis seperti pada fungsi. Jika $\\{a_n\\}$ tak punya $L$ semacam itu, ia **divergen**.\n\nSatu alat tambahan tersedia setiap kali rumus sebuah barisan juga rumus dalam peubah sinambung: jika $f(n)=a_n$ untuk suatu fungsi $f$ dengan $\\lim_{x\\to\\infty}f(x)=L$, maka $\\lim_{n\\to\\infty}a_n=L$ juga — sehingga $\\dfrac{\\ln n}{n}\\to 0$ langsung mengikuti dari limit identik yang sudah dihitung untuk $\\dfrac{\\ln x}{x}$ pada kursus Integral dan Fungsi Transenden, dengan Aturan L\'Hôpital yang mengerjakannya di sana.',
+                id: 'Sebuah barisan $\\{a_n\\}$ **konvergen** ke $L$ jika $a_n$ mendekati $L$ sedekat apa pun ketika $n\\to\\infty$ — persis definisi $\\lim_{x\\to\\infty}f(x)=L$ dari kursus Limit, dibatasi pada input bilangan bulat. Setiap hukum limit dari kursus itu berlaku tanpa berubah: jumlah, hasil kali, dan hasil bagi barisan yang konvergen berperilaku persis seperti pada fungsi. Jika $\\{a_n\\}$ tak punya $L$ semacam itu, ia **divergen**.\n\nSatu alat tambahan tersedia setiap kali rumus sebuah barisan juga rumus dalam peubah sinambung: jika $f(n)=a_n$ untuk suatu fungsi $f$ dengan $\\lim_{x\\to\\infty}f(x)=L$, maka $\\lim_{n\\to\\infty}a_n=L$ juga — sehingga $\\dfrac{\\ln n}{n}\\to 0$ langsung mengikuti dari limit identik yang sudah dihitung untuk $\\dfrac{\\ln x}{x}$ pada kursus Integral dan Fungsi Transenden, dengan Aturan L\'Hôpital yang mengerjakannya di sana.',
               },
               figure: {
                 dim: 2,

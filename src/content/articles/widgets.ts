@@ -940,14 +940,14 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
     title: { en: 'Interactive: how long do the growth classes take?', id: 'Interaktif: berapa lama tiap kelas pertumbuhan?' },
     description: {
       en: 'Slide the input size n from 1 to ten million and read the number of steps and the time of every class from 1 to n!, at the speed you choose, and the largest n that finishes in a second, a minute, an hour or a day.',
-      id: 'Geser ukuran masukan n dari 1 sampai sepuluh juta dan baca banyaknya langkah dan waktu setiap kelas dari 1 sampai n!, pada kecepatan yang kamu pilih, dan n terbesar yang selesai dalam satu detik, menit, jam, atau hari.',
+      id: 'Geser ukuran input n dari 1 sampai sepuluh juta dan baca banyaknya langkah dan waktu setiap kelas dari 1 sampai n!, pada kecepatan yang kamu pilih, dan n terbesar yang selesai dalam satu detik, menit, jam, atau hari.',
     },
   },
   bigocounter: {
     title: { en: 'Interactive: count the steps of an algorithm', id: 'Interaktif: hitung langkah sebuah algoritma' },
     description: {
       en: 'Twelve algorithms run on inputs of size 1, 2, 4, 8, …: see the counted steps, the ratio each time n doubles, and the steps divided by the growth class that fits, which settles on a constant.',
-      id: 'Dua belas algoritma dijalankan pada masukan berukuran 1, 2, 4, 8, …: lihat langkah yang dihitung, rasio setiap n berlipat dua, dan langkah dibagi kelas pertumbuhan yang cocok, yang menuju konstanta.',
+      id: 'Dua belas algoritma dijalankan pada input berukuran 1, 2, 4, 8, …: lihat langkah yang dihitung, rasio setiap n berlipat dua, dan langkah dibagi kelas pertumbuhan yang cocok, yang menuju konstanta.',
     },
   },
   bigorecur: {
@@ -968,14 +968,14 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
     title: { en: 'Interactive: six sorting algorithms, move by move', id: 'Interaktif: enam algoritma pengurutan, gerakan demi gerakan' },
     description: {
       en: 'Pick selection, insertion, bubble, merge, quick or heap sort and an input (random, sorted, reversed, few values, nearly sorted), then play the bars and read the comparisons and moves it needs.',
-      id: 'Pilih selection, insertion, bubble, merge, quick, atau heap sort dan sebuah masukan (acak, terurut, terbalik, sedikit nilai, hampir terurut), lalu putar batangnya dan baca perbandingan serta perpindahan yang dibutuhkan.',
+      id: 'Pilih selection, insertion, bubble, merge, quick, atau heap sort dan sebuah input (acak, terurut, terbalik, sedikit nilai, hampir terurut), lalu putar batangnya dan baca perbandingan serta perpindahan yang dibutuhkan.',
     },
   },
   sortrace: {
     title: { en: 'Interactive: the sorting race', id: 'Interaktif: balapan pengurutan' },
     description: {
       en: 'Run all six algorithms on the same input of 16 to 1024 numbers and compare the counted comparisons and moves, to see why the best choice depends on the input, not only on the Big-O class.',
-      id: 'Jalankan keenam algoritma pada masukan yang sama berukuran 16 sampai 1024 bilangan dan bandingkan perbandingan serta perpindahan yang dihitung, untuk melihat mengapa pilihan terbaik bergantung pada masukan, bukan hanya kelas Big-O.',
+      id: 'Jalankan keenam algoritma pada input yang sama berukuran 16 sampai 1024 bilangan dan bandingkan perbandingan serta perpindahan yang dihitung, untuk melihat mengapa pilihan terbaik bergantung pada input, bukan hanya kelas Big-O.',
     },
   },
   bisectanswer: {

@@ -31,7 +31,7 @@ export const module4: Module = {
               title: { en: 'Every type in your program is a guess about the outside', id: 'Tiap tipe di programmu adalah tebakan tentang dunia luar' },
               body: {
                 en: 'Inside your own code the compiler has checked everything. The moment data arrives from a file, a form, or a server, all it has is your word for it. `JSON.parse` is typed as `any` — which is to say, the checker has been switched off exactly where you know the least.',
-                id: 'Di dalam kodemu sendiri kompilernya sudah memeriksa semuanya. Begitu data datang dari sebuah berkas, formulir, atau server, yang ia punya hanya perkataanmu. `JSON.parse` bertipe `any` — artinya, pemeriksanya dimatikan persis di tempat kamu paling sedikit tahu.',
+                id: 'Di dalam kodemu sendiri kompilernya sudah memeriksa semuanya. Begitu data datang dari sebuah file, formulir, atau server, yang ia punya hanya perkataanmu. `JSON.parse` bertipe `any` — artinya, pemeriksanya dimatikan persis di tempat kamu paling sedikit tahu.',
               },
               code: {
                 en:
@@ -384,7 +384,7 @@ export const module4: Module = {
               title: { en: 'The point of all of it', id: 'Inti dari semuanya' },
               body: {
                 en: 'Every technique in this course points the same way: put the rule in the type, so the wrong thing cannot be written at all. A comment saying "do not change the id" is a hope. `readonly id` is a fact — and unlike the comment, it is still true after somebody else edits the file.',
-                id: 'Tiap teknik di kursus ini menunjuk ke arah yang sama: taruh aturannya di dalam tipenya, agar yang salah sama sekali tak bisa ditulis. Komentar bertuliskan "jangan ubah id-nya" adalah harapan. `readonly id` adalah fakta — dan tak seperti komentarnya, ia tetap benar setelah orang lain menyunting berkasnya.',
+                id: 'Tiap teknik di kursus ini menunjuk ke arah yang sama: taruh aturannya di dalam tipenya, agar yang salah sama sekali tak bisa ditulis. Komentar bertuliskan "jangan ubah id-nya" adalah harapan. `readonly id` adalah fakta — dan tak seperti komentarnya, ia tetap benar setelah orang lain menyunting file-nya.',
               },
               code: {
                 en:
@@ -674,7 +674,7 @@ export const module4: Module = {
                 'assert(m.tasks[1].deadline === "2026-01-01", "the deadline should be carried through");',
             },
             {
-              name: { en: 'Each kind of bad input has its own message', id: 'Tiap jenis masukan buruk punya pesannya sendiri' },
+              name: { en: 'Each kind of bad input has its own message', id: 'Tiap jenis input buruk punya pesannya sendiri' },
               check:
                 'const a = readBoard("not json");\n' +
                 'assert(a.phase === "error" && a.message === "Invalid JSON", "got: " + JSON.stringify(a));\n' +
@@ -813,7 +813,7 @@ export const module4: Module = {
                 'assert(m.tugas[1].tenggat === "2026-01-01", "tenggatnya harus ikut terbawa");',
             },
             {
-              name: { en: 'Each kind of bad input has its own message', id: 'Tiap jenis masukan buruk punya pesannya sendiri' },
+              name: { en: 'Each kind of bad input has its own message', id: 'Tiap jenis input buruk punya pesannya sendiri' },
               check:
                 'const a = bacaPapan("bukan json");\n' +
                 'assert(a.fase === "galat" && a.pesan === "JSON tidak valid", "sekarang: " + JSON.stringify(a));\n' +
@@ -943,7 +943,7 @@ export const module4: Module = {
           { en: 'Work top to bottom. The first two lines decide everything below them: freeze the list, then derive the type from it.', id: 'Kerjakan dari atas ke bawah. Dua baris pertamanya menentukan semua di bawahnya: bekukan daftarnya, lalu turunkan tipenya darinya.' },
           { en: '`Load` is a tagged union on `phase`, not one object with optional fields. Several tests exist only to prove the difference.', id: '`Muat` adalah union bertanda pada `fase`, bukan satu objek berisi field opsional. Beberapa tes ada hanya untuk membuktikan bedanya.' },
           { en: 'Checking a status inside the predicate: `STATUS` is a readonly tuple of literals, so `includes` will not accept a plain string. Widen it first — `(STATUS as readonly string[]).includes(s)`.', id: 'Memeriksa status di dalam predikatnya: `STATUS` adalah tuple readonly berisi literal, jadi `includes` tak akan menerima string biasa. Lebarkan dulu — `(STATUS as readonly string[]).includes(s)`.' },
-          { en: 'The three error messages are distinguished before the tasks are: parse, then "is it an array", then "is every element a task".', id: 'Ketiga pesan galatnya dibedakan sebelum tugasnya: urai, lalu "apakah ini array", lalu "apakah tiap elemennya sebuah tugas".' },
+          { en: 'The three error messages are distinguished before the tasks are: parse, then "is it an array", then "is every element a task".', id: 'Ketiga pesan error-nya dibedakan sebelum tugasnya: urai, lalu "apakah ini array", lalu "apakah tiap elemennya sebuah tugas".' },
           { en: '`count` starts from a zeroed record of every status, so the missing ones are still there: `{ new: 0, "in-progress": 0, done: 0 }`.', id: '`hitung` mulai dari record nol untuk tiap status, agar yang tak ada pun tetap ada: `{ baru: 0, jalan: 0, selesai: 0 }`.' },
         ],
         solution: {

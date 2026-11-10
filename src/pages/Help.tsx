@@ -133,7 +133,7 @@ const FAQ: { q: Loc; a: Loc }[] = [
     q: L('Where does my code run?', 'Di mana kodeku dijalankan?'),
     a: L(
       'In your own browser, so nothing you type is sent away to run. The first time you open a language it may take a moment to load.',
-      'Di peramban kamu sendiri, jadi apa yang kamu ketik tidak dikirim ke tempat lain untuk dijalankan. Saat pertama kali membuka sebuah bahasa, memuatnya bisa butuh beberapa saat.',
+      'Di browser kamu sendiri, jadi apa yang kamu ketik tidak dikirim ke tempat lain untuk dijalankan. Saat pertama kali membuka sebuah bahasa, memuatnya bisa butuh beberapa saat.',
     ),
   },
   {
@@ -154,7 +154,7 @@ const FAQ: { q: Loc; a: Loc }[] = [
     q: L('I forgot my password.', 'Aku lupa kata sandi.'),
     a: L(
       'On the sign-in page choose "Forgot your password?", enter your email, and follow the link we send you. For privacy the page does not say whether an email has an account.',
-      'Di halaman masuk pilih "Lupa kata sandi?", masukkan emailmu, lalu ikuti tautan yang kami kirim. Demi privasi, halaman itu tidak menyebutkan apakah sebuah email punya akun.',
+      'Di halaman masuk pilih "Lupa kata sandi?", masukkan emailmu, lalu ikuti link yang kami kirim. Demi privasi, halaman itu tidak menyebutkan apakah sebuah email punya akun.',
     ),
   },
   {

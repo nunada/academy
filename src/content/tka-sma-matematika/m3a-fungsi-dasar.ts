@@ -29,7 +29,7 @@ export const m3s1: Submodule = {
           title: L('Look Closely: A Rule With One Answer', 'Ayo Amati: Aturan dengan Satu Jawaban'),
           body: L(
             'A **function** is a rule that gives **exactly one** output to each allowed input. The picture shows $f(x)=2x$: the inputs 1, 2, 3 go to 2, 4, 6. Every input has one arrow.\n\n- The set of allowed inputs is the **domain**. The set of outputs actually produced is the **range**.\n- Here the domain is $\\{1,2,3\\}$ and the range is $\\{2,4,6\\}$. The output 8 is not used, so it is not in the range.\n- On a graph, a rule is a function if **every vertical line** meets the graph at most once.\n\nIf one input had two arrows leaving it, the rule would **not** be a function.',
-            '**Fungsi** adalah aturan yang memberi **tepat satu** keluaran untuk setiap masukan yang diperbolehkan. Gambar menunjukkan $f(x)=2x$: masukan 1, 2, 3 menuju 2, 4, 6. Setiap masukan punya satu panah.\n\n- Himpunan masukan yang diperbolehkan disebut **domain**. Himpunan keluaran yang benar-benar dihasilkan disebut **rentang** (range).\n- Di sini domainnya $\\{1,2,3\\}$ dan rentangnya $\\{2,4,6\\}$. Keluaran 8 tidak dipakai, jadi tidak termasuk rentang.\n- Pada grafik, sebuah aturan adalah fungsi jika **setiap garis vertikal** memotong grafik paling banyak sekali.\n\nJika satu masukan punya dua panah, aturan itu **bukan** fungsi.',
+            '**Fungsi** adalah aturan yang memberi **tepat satu** output untuk setiap input yang diperbolehkan. Gambar menunjukkan $f(x)=2x$: input 1, 2, 3 menuju 2, 4, 6. Setiap input punya satu panah.\n\n- Himpunan input yang diperbolehkan disebut **domain**. Himpunan output yang benar-benar dihasilkan disebut **rentang** (range).\n- Di sini domainnya $\\{1,2,3\\}$ dan rentangnya $\\{2,4,6\\}$. Output 8 tidak dipakai, jadi tidak termasuk rentang.\n- Pada grafik, sebuah aturan adalah fungsi jika **setiap garis vertikal** memotong grafik paling banyak sekali.\n\nJika satu input punya dua panah, aturan itu **bukan** fungsi.',
           ),
           figure: {
             ...arrowDiagram({
@@ -38,7 +38,7 @@ export const m3s1: Submodule = {
               pairs: [[0, 0], [1, 1], [2, 2]],
               titles: ['x', 'f(x)'],
             }),
-            caption: L('The function f(x) = 2x on the inputs 1, 2, 3.', 'Fungsi f(x) = 2x pada masukan 1, 2, 3.'),
+            caption: L('The function f(x) = 2x on the inputs 1, 2, 3.', 'Fungsi f(x) = 2x pada input 1, 2, 3.'),
           },
         },
         {
@@ -153,7 +153,7 @@ export const m3s1: Submodule = {
           id: 'j1',
           prompt: L('Decide whether each statement is True or False.', 'Tentukan tiap pernyataan Benar atau Salah.'),
           statements: [
-            L('In a function, each input has exactly one output.', 'Pada fungsi, setiap masukan punya tepat satu keluaran.'),
+            L('In a function, each input has exactly one output.', 'Pada fungsi, setiap input punya tepat satu output.'),
             L('A vertical line can cross the graph of a function in two points.', 'Garis vertikal dapat memotong grafik fungsi di dua titik.'),
             L('Lines with gradients $2$ and $-\\frac{1}{2}$ are perpendicular.', 'Garis dengan gradien $2$ dan $-\\frac{1}{2}$ saling tegak lurus.'),
             L('The lines $y=3x+1$ and $y=3x-4$ meet at one point.', 'Garis $y=3x+1$ dan $y=3x-4$ bertemu di satu titik.'),
@@ -244,7 +244,7 @@ export const m3s1: Submodule = {
           title: L('Watch Out!: When Is There an Inverse?', 'Awas, Jebakan!: Kapan Ada Invers?'),
           body: L(
             'An inverse exists only when every output comes from **exactly one** input (the function is **one-to-one**). Test with a **horizontal** line: it must meet the graph at most once.\n\n- $f(x)=x^2$ on all real numbers has no inverse function: $f(2)=f(-2)=4$, and the horizontal line $y=4$ meets the parabola twice. Restrict to $x\\ge0$ and the inverse is $\\sqrt{x}$.\n- Rational example: $f(x)=\\frac{2x+1}{x-3}$. From $y(x-3)=2x+1$ we get $xy-3y=2x+1$, so $x(y-2)=3y+1$ and $f^{-1}(x)=\\frac{3x+1}{x-2}$.\n- For a composite, the inverse reverses the order: $(f\\circ g)^{-1}=g^{-1}\\circ f^{-1}$, like taking off socks and shoes in the opposite order to putting them on.',
-            'Invers ada hanya jika setiap keluaran berasal dari **tepat satu** masukan (fungsinya **satu-satu**). Ujilah dengan garis **horizontal**: garis itu harus memotong grafik paling banyak sekali.\n\n- $f(x)=x^2$ pada semua bilangan real tidak punya fungsi invers: $f(2)=f(-2)=4$, dan garis horizontal $y=4$ memotong parabola dua kali. Batasi ke $x\\ge0$ dan inversnya adalah $\\sqrt{x}$.\n- Contoh pecahan: $f(x)=\\frac{2x+1}{x-3}$. Dari $y(x-3)=2x+1$ diperoleh $xy-3y=2x+1$, jadi $x(y-2)=3y+1$ dan $f^{-1}(x)=\\frac{3x+1}{x-2}$.\n- Untuk komposisi, invers membalik urutan: $(f\\circ g)^{-1}=g^{-1}\\circ f^{-1}$, seperti melepas kaus kaki dan sepatu dalam urutan kebalikan saat memakainya.',
+            'Invers ada hanya jika setiap output berasal dari **tepat satu** input (fungsinya **satu-satu**). Ujilah dengan garis **horizontal**: garis itu harus memotong grafik paling banyak sekali.\n\n- $f(x)=x^2$ pada semua bilangan real tidak punya fungsi invers: $f(2)=f(-2)=4$, dan garis horizontal $y=4$ memotong parabola dua kali. Batasi ke $x\\ge0$ dan inversnya adalah $\\sqrt{x}$.\n- Contoh pecahan: $f(x)=\\frac{2x+1}{x-3}$. Dari $y(x-3)=2x+1$ diperoleh $xy-3y=2x+1$, jadi $x(y-2)=3y+1$ dan $f^{-1}(x)=\\frac{3x+1}{x-2}$.\n- Untuk komposisi, invers membalik urutan: $(f\\circ g)^{-1}=g^{-1}\\circ f^{-1}$, seperti melepas kaus kaki dan sepatu dalam urutan kebalikan saat memakainya.',
           ),
           figure: {
             ...plane(
@@ -284,7 +284,7 @@ export const m3s1: Submodule = {
           ),
           hint: L(
             'The inverse swaps input and output. Which coordinate of the dot becomes the answer?',
-            'Invers menukar masukan dan keluaran. Koordinat titik yang mana menjadi jawabannya?',
+            'Invers menukar input dan output. Koordinat titik yang mana menjadi jawabannya?',
           ),
         },
         {
@@ -346,7 +346,7 @@ export const m3s1: Submodule = {
           ),
           hint: L(
             'For the third statement, find two different inputs that give the same output.',
-            'Untuk pernyataan ketiga, cari dua masukan berbeda yang memberi keluaran sama.',
+            'Untuk pernyataan ketiga, cari dua input berbeda yang memberi output sama.',
           ),
         },
         {

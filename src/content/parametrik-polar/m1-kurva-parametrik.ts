@@ -242,7 +242,7 @@ export const module1: Module = {
                 ],
                 caption: {
                   en: 'Drag $s$ to roll the wheel (radius $1$) along the ground: the dot $P$ on its rim leaves the solid arch behind. At $s=\\pi$ the dot is at the top of the arch, and at $s=2\\pi$ it is back on the ground after exactly one turn.',
-                  id: 'Geser $s$ untuk menggulirkan roda (jari-jari $1$) sepanjang tanah: titik $P$ di tepinya meninggalkan lengkungan tebal di belakang. Pada $s=\\pi$ titik itu ada di puncak lengkungan, dan pada $s=2\\pi$ ia kembali di tanah setelah tepat satu putaran.',
+                  id: 'Geser $s$ untuk menggelindingkan roda (jari-jari $1$) sepanjang tanah: titik $P$ di tepinya meninggalkan lengkungan tebal di belakang. Pada $s=\\pi$ titik itu ada di puncak lengkungan, dan pada $s=2\\pi$ ia kembali di tanah setelah tepat satu putaran.',
                 },
               },
             },

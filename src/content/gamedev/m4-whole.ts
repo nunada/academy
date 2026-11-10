@@ -89,7 +89,7 @@ export const module4: Module = {
               },
               hint: {
                 en: 'Think about how many things could possibly go wrong inside a function whose only visible input is a single number.',
-                id: 'Pikirkan berapa banyak hal yang bisa saja salah di dalam sebuah fungsi yang satu-satunya masukan yang terlihat adalah satu angka.',
+                id: 'Pikirkan berapa banyak hal yang bisa saja salah di dalam sebuah fungsi yang satu-satunya input yang terlihat adalah satu angka.',
               },
             },
             {

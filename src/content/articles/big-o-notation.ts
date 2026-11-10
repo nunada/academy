@@ -18,7 +18,7 @@ const T = (s: TemplateStringsArray): string =>
 export const body: ArticleBody = {
   answer: L(
     T`**Big-O notation describes how the number of steps of an algorithm grows with the size $n$ of its input, ignoring constant factors and smaller terms: $f(n)=O(g(n))$ means $f(n)\le c\,g(n)$ for some constant $c$ and all large $n$.** An algorithm with $3n^2+5n+7$ steps is $O(n^2)$. The common classes, from slowest to fastest growth, are $O(1)$, $O(\log n)$, $O(n)$, $O(n\log n)$, $O(n^2)$, $O(2^n)$ and $O(n!)$.`,
-    T`**Notasi Big-O menggambarkan bagaimana banyaknya langkah sebuah algoritma tumbuh menurut ukuran $n$ masukannya, mengabaikan faktor konstan dan suku yang lebih kecil: $f(n)=O(g(n))$ berarti $f(n)\le c\,g(n)$ untuk suatu konstanta $c$ dan semua $n$ yang besar.** Algoritma dengan $3n^2+5n+7$ langkah adalah $O(n^2)$. Kelas yang umum, dari pertumbuhan paling lambat ke paling cepat, adalah $O(1)$, $O(\log n)$, $O(n)$, $O(n\log n)$, $O(n^2)$, $O(2^n)$, dan $O(n!)$.`,
+    T`**Notasi Big-O menggambarkan bagaimana banyaknya langkah sebuah algoritma tumbuh menurut ukuran $n$ input-nya, mengabaikan faktor konstan dan suku yang lebih kecil: $f(n)=O(g(n))$ berarti $f(n)\le c\,g(n)$ untuk suatu konstanta $c$ dan semua $n$ yang besar.** Algoritma dengan $3n^2+5n+7$ langkah adalah $O(n^2)$. Kelas yang umum, dari pertumbuhan paling lambat ke paling cepat, adalah $O(1)$, $O(\log n)$, $O(n)$, $O(n\log n)$, $O(n^2)$, $O(2^n)$, dan $O(n!)$.`,
   ),
 
   keyPoints: [
@@ -32,7 +32,7 @@ export const body: ArticleBody = {
     ),
     L(
       T`The order of growth is $1\ll\log n\ll\sqrt n\ll n\ll n\log n$ $\ll n^2\ll n^3\ll2^n\ll n!$. At $10^9$ steps a second, the largest input that finishes in one second is about $10^9$ for $n$, $31\,622$ for $n^2$, $29$ for $2^n$ and $12$ for $n!$.`,
-      T`Urutan pertumbuhannya $1\ll\log n\ll\sqrt n\ll n\ll n\log n$ $\ll n^2\ll n^3\ll2^n\ll n!$. Pada $10^9$ langkah per detik, masukan terbesar yang selesai dalam satu detik sekitar $10^9$ untuk $n$, $31\,622$ untuk $n^2$, $29$ untuk $2^n$, dan $12$ untuk $n!$.`,
+      T`Urutan pertumbuhannya $1\ll\log n\ll\sqrt n\ll n\ll n\log n$ $\ll n^2\ll n^3\ll2^n\ll n!$. Pada $10^9$ langkah per detik, input terbesar yang selesai dalam satu detik sekitar $10^9$ untuk $n$, $31\,622$ untuk $n^2$, $29$ untuk $2^n$, dan $12$ untuk $n!$.`,
     ),
     L(
       T`To find the complexity of code: add the costs of statements in sequence and keep the largest, multiply the cost of a loop body by the number of iterations, nested loops multiply, a loop that halves its counter runs $\log n$ times, and a recursion gives a recurrence.`,
@@ -44,7 +44,7 @@ export const body: ArticleBody = {
     ),
     L(
       T`Big-O is not running time: a $100n$ algorithm is slower than an $n^2$ one for $n<100$, memory and caches matter, and for numbers the size of the input is the number of digits, not the value.`,
-      T`Big-O bukan waktu jalan: algoritma $100n$ lebih lambat daripada $n^2$ untuk $n<100$, memori dan cache berpengaruh, dan untuk bilangan ukuran masukan adalah banyaknya angka, bukan nilainya.`,
+      T`Big-O bukan waktu jalan: algoritma $100n$ lebih lambat daripada $n^2$ untuk $n<100$, memori dan cache berpengaruh, dan untuk bilangan ukuran input adalah banyaknya angka, bukan nilainya.`,
     ),
   ],
 
@@ -68,7 +68,7 @@ The pair $(c,n_0)$ is a *witness*. For example, $f(n)=3n^2+5n+7$ is $O(n^2)$ wit
 **Three symbols.** $O$ is an upper bound ("at most this fast a growth"), $\Omega$ is a lower bound ($f(n)\ge c\,g(n)$ for large $n$) and $\Theta$ is both: $f=\Theta(g)$ means $f=O(g)$ and $g=O(f)$. Linear search is $O(n)$, but also $O(n^2)$ and $O(2^n)$, which are true and useless; the useful statement is the tight one, $\Theta(n)$ in the worst case. When the limit of $\frac{f(n)}{g(n)}$ exists, it decides: a finite limit gives $f=O(g)$, a non-zero finite limit gives $f=\Theta(g)$, and a limit of $0$ means $f$ grows strictly slower (this is where [L'Hôpital's Rule](article:indeterminate-forms-and-lhopitals-rule#infinity-forms) is used).
 
 Try the definition below. Type two functions with $n$ written as ´x´, choose $c$, and the widget finds the threshold $n_0$.`,
-            T`**Notasi Big-O adalah cara menyatakan seberapa cepat kerja sebuah algoritma tumbuh ketika masukannya membesar, tanpa menghitung detik.** Detik bergantung pada komputer, bahasa, dan harinya; *banyaknya langkah dasar* sebagai fungsi ukuran masukan $n$ tidak. Jika algoritma memerlukan $f(n)$ langkah, kita tulis $f(n)=O(g(n))$ bila $f$ tumbuh tidak lebih cepat daripada $g$, sampai suatu faktor konstan.
+            T`**Notasi Big-O adalah cara menyatakan seberapa cepat kerja sebuah algoritma tumbuh ketika input-nya membesar, tanpa menghitung detik.** Detik bergantung pada komputer, bahasa, dan harinya; *banyaknya langkah dasar* sebagai fungsi ukuran input $n$ tidak. Jika algoritma memerlukan $f(n)$ langkah, kita tulis $f(n)=O(g(n))$ bila $f$ tumbuh tidak lebih cepat daripada $g$, sampai suatu faktor konstan.
 
 **Definisinya.** $f(n)=O(g(n))$ berarti ada konstanta $c>0$ dan $n_0$ sehingga
 $$f(n)\le c\cdot g(n)\qquad\text{untuk semua }n\ge n_0.$$
@@ -116,7 +116,7 @@ Slide $n$ and the speed below. The table gives the steps, the time and the large
 
 | Kelas | Nama | Contoh |
 |---|---|---|
-| $O(1)$ | konstan | membaca elemen larik ´a[i]´ |
+| $O(1)$ | konstan | membaca elemen array ´a[i]´ |
 | $O(\log n)$ | logaritmik | pencarian biner; membagi dua masalah setiap langkah |
 | $O(\sqrt n)$ | akar kuadrat | pembagian coba-coba sampai $\sqrt n$ |
 | $O(n)$ | linear | satu lintasan atas daftar |
@@ -128,7 +128,7 @@ Slide $n$ and the speed below. The table gives the steps, the time and the large
 
 Urutannya $1\ll\log n\ll\sqrt n\ll n\ll n\log n$ $\ll n^2\ll n^3\ll2^n\ll n!$, dengan $f\ll g$ berarti $\frac fg\to0$; perbandingan pertumbuhan yang sama, logaritma di bawah pangkat mana pun di bawah eksponensial, dibuktikan dengan limit dalam artikel [laju pertumbuhan dan Aturan L'Hôpital](article:indeterminate-forms-and-lhopitals-rule#infinity-forms).
 
-**Arti kelas itu dalam waktu.** Ambil komputer yang melakukan $10^9$ langkah per detik. Untuk $n=100$ algoritma kuadratik memerlukan $10^4$ langkah, sepuluh mikrodetik. Yang eksponensial memerlukan $2^{100}\approx1{,}3\times10^{30}$ langkah, sekitar $4\times10^{13}$ tahun, ribuan kali usia alam semesta. Dan masukan terbesar yang selesai dalam satu detik sekitar $10^9$ untuk $n$, $4\times10^7$ untuk $n\log n$, $31\,622$ untuk $n^2$, $1000$ untuk $n^3$, hanya $29$ untuk $2^n$ dan $12$ untuk $n!$. Komputer seribu kali lebih cepat hanya menambah $10$ pada $n$ algoritma eksponensial ($2^{10}\approx1000$), sedangkan ia mengalikan $n$ algoritma linear dengan seribu. Itulah sebabnya kelas lebih penting daripada mesin.
+**Arti kelas itu dalam waktu.** Ambil komputer yang melakukan $10^9$ langkah per detik. Untuk $n=100$ algoritma kuadratik memerlukan $10^4$ langkah, sepuluh mikrodetik. Yang eksponensial memerlukan $2^{100}\approx1{,}3\times10^{30}$ langkah, sekitar $4\times10^{13}$ tahun, ribuan kali usia alam semesta. Dan input terbesar yang selesai dalam satu detik sekitar $10^9$ untuk $n$, $4\times10^7$ untuk $n\log n$, $31\,622$ untuk $n^2$, $1000$ untuk $n^3$, hanya $29$ untuk $2^n$ dan $12$ untuk $n!$. Komputer seribu kali lebih cepat hanya menambah $10$ pada $n$ algoritma eksponensial ($2^{10}\approx1000$), sedangkan ia mengalikan $n$ algoritma linear dengan seribu. Itulah sebabnya kelas lebih penting daripada mesin.
 
 Geser $n$ dan kecepatan di bawah. Tabel memberi langkah, waktu, dan $n$ terbesar untuk anggaran waktu.`,
           ),
@@ -159,7 +159,7 @@ Geser $n$ dan kecepatan di bawah. Tabel memberi langkah, waktu, dan $n$ terbesar
 **Counting by experiment.** A good habit is to let the program count its own steps and to *double* $n$: if the count doubles the algorithm is linear; if it quadruples, quadratic; if it grows by a constant, logarithmic; if it multiplies by a little more than two, it is $n\log n$. The widget below runs twelve algorithms on a worst-case input, and the column of ratios shows exactly this.`,
             T`**Kamu menghitung langkah dasar, lalu hanya menyimpan suku yang tumbuh paling cepat.** Beberapa aturan mencakup kebanyakan kode:
 
-1. **Operasi dasar berbiaya 1:** penugasan, perbandingan, operasi aritmetika, membaca elemen larik.
+1. **Operasi dasar berbiaya 1:** penugasan, perbandingan, operasi aritmetika, membaca elemen array.
 2. **Pernyataan berurutan menjumlahkan, dan yang terbesar menang:** perulangan $n$ langkah diikuti perulangan $n^2$ langkah adalah $O(n+n^2)=O(n^2)$.
 3. **Perulangan mengalikan:** banyak iterasi kali biaya badannya. Dua perulangan bersarang atas $n$ berbiaya $n\cdot n=n^2$.
 4. **Perulangan ganda segitiga** ($j$ dari $i+1$ sampai $n$) berjalan $\frac{n(n-1)}2$ kali, yang tetap $O(n^2)$.
@@ -168,7 +168,7 @@ Geser $n$ dan kecepatan di bawah. Tabel memberi langkah, waktu, dan $n$ terbesar
 7. **Fungsi rekursif** menghasilkan rekurensi, diselesaikan pada bagian berikutnya; dua panggilan rekursif berukuran $n-1$ memberi $2^n$.
 8. **Kondisi berbiaya cabang yang lebih mahal**, bila kamu menginginkan kasus terburuk.
 
-**Menghitung dengan percobaan.** Kebiasaan baik adalah membiarkan program menghitung langkahnya sendiri dan *menggandakan* $n$: jika hitungannya berlipat dua algoritmanya linear; jika berlipat empat, kuadratik; jika bertambah konstan, logaritmik; jika berlipat sedikit lebih dari dua, ia $n\log n$. Widget di bawah menjalankan dua belas algoritma pada masukan kasus terburuk, dan kolom rasio memperlihatkan persis hal ini.`,
+**Menghitung dengan percobaan.** Kebiasaan baik adalah membiarkan program menghitung langkahnya sendiri dan *menggandakan* $n$: jika hitungannya berlipat dua algoritmanya linear; jika berlipat empat, kuadratik; jika bertambah konstan, logaritmik; jika berlipat sedikit lebih dari dua, ia $n\log n$. Widget di bawah menjalankan dua belas algoritma pada input kasus terburuk, dan kolom rasio memperlihatkan persis hal ini.`,
           ),
         },
         {
@@ -233,16 +233,16 @@ def is_prime(n):              # O(sqrt n) divisions, but exponential in the numb
 **Space complexity** is the same idea for memory: merge sort needs $O(n)$ extra space, an in-place sort like heapsort $O(1)$, and a recursion of depth $d$ uses $O(d)$ stack. Big-O describes memory just as it describes time.
 
 **Lower bounds.** $\Omega$ can show that no algorithm does better. Sorting by comparisons needs at least $\log_2(n!)\approx n\log_2n-1.44n$ comparisons, because the $n!$ possible orders must be told apart by yes-or-no answers, so $\Omega(n\log n)$; merge sort reaches it, and is therefore $\Theta(n\log n)$ and optimal among comparison sorts.`,
-            T`**Algoritma yang sama dapat berbiaya berbeda pada masukan berbeda dengan ukuran yang sama, sehingga kompleksitas selalu dinyatakan untuk suatu kasus: terbaik, terburuk, atau rata-rata.** Secara bawaan "kompleksitas" berarti kasus terburuk, karena ia adalah jaminan.
+            T`**Algoritma yang sama dapat berbiaya berbeda pada input berbeda dengan ukuran yang sama, sehingga kompleksitas selalu dinyatakan untuk suatu kasus: terbaik, terburuk, atau rata-rata.** Secara bawaan "kompleksitas" berarti kasus terburuk, karena ia adalah jaminan.
 
 - **Pencarian linear** sebuah nilai dalam daftar $n$: terbaik $1$ perbandingan (elemen pertama), terburuk $n$ (ia terakhir atau tidak ada), rata-rata sekitar $\frac{n+1}{2}$ jika ia ada dan setiap posisi sama mungkin. Terbaik $\Theta(1)$, terburuk dan rata-rata $\Theta(n)$.
-- **Insertion sort:** kasus terbaik $n-1$ perbandingan (sudah terurut), kasus terburuk $\frac{n(n-1)}{2}$ (terbalik). Kode yang sama $O(n)$ atau $O(n^2)$ tergantung masukannya.
+- **Insertion sort:** kasus terbaik $n-1$ perbandingan (sudah terurut), kasus terburuk $\frac{n(n-1)}{2}$ (terbalik). Kode yang sama $O(n)$ atau $O(n^2)$ tergantung input-nya.
 - **Quicksort:** rata-rata $O(n\log n)$, tetapi $O(n^2)$ pada kasus terburuk, ketika pivotnya selalu elemen terkecil atau terbesar.
 - **Pencarian tabel hash:** $O(1)$ rata-rata dan $O(n)$ jika setiap kunci bertabrakan.
 
-**Biaya teramortisasi.** Beberapa operasi biasanya murah dan sesekali mahal, dan yang penting adalah totalnya pada barisan panjang. Larik dinamis (´list´ Python, ´vector´ C++) menggandakan kapasitasnya ketika penuh: penyalinan berbiaya $1+2+4+\cdots+2^k<2\cdot2^k$, sehingga $n$ penambahan berbiaya kurang dari $3n$ langkah seluruhnya, dan setiap penambahan $O(1)$ *teramortisasi* walaupun salah satunya berbiaya $O(n)$.
+**Biaya teramortisasi.** Beberapa operasi biasanya murah dan sesekali mahal, dan yang penting adalah totalnya pada barisan panjang. Array dinamis (´list´ Python, ´vector´ C++) menggandakan kapasitasnya ketika penuh: penyalinan berbiaya $1+2+4+\cdots+2^k<2\cdot2^k$, sehingga $n$ penambahan berbiaya kurang dari $3n$ langkah seluruhnya, dan setiap penambahan $O(1)$ *teramortisasi* walaupun salah satunya berbiaya $O(n)$.
 
-**Kompleksitas ruang** adalah gagasan yang sama untuk memori: merge sort memerlukan ruang tambahan $O(n)$, pengurutan di tempat seperti heapsort $O(1)$, dan rekursi berkedalaman $d$ memakai tumpukan $O(d)$. Big-O menggambarkan memori seperti menggambarkan waktu.
+**Kompleksitas ruang** adalah gagasan yang sama untuk memori: merge sort memerlukan ruang tambahan $O(n)$, pengurutan di tempat seperti heapsort $O(1)$, dan rekursi berkedalaman $d$ memakai call stack $O(d)$. Big-O menggambarkan memori seperti menggambarkan waktu.
 
 **Batas bawah.** $\Omega$ dapat menunjukkan bahwa tidak ada algoritma yang lebih baik. Pengurutan dengan perbandingan memerlukan sedikitnya $\log_2(n!)\approx n\log_2n-1{,}44n$ perbandingan, karena $n!$ urutan yang mungkin harus dibedakan dengan jawaban ya atau tidak, sehingga $\Omega(n\log n)$; merge sort mencapainya, sehingga ia $\Theta(n\log n)$ dan optimal di antara pengurutan perbandingan.`,
           ),
@@ -323,11 +323,11 @@ Pilih $a$, $b$, dan $d$ di bawah. Tabel menghitung $T(n)$ secara eksak untuk $n=
 - **Worst case may not be typical.** Quicksort's worst case is $n^2$ and nobody minds, because it almost never happens with a random pivot.
 
 Use Big-O to choose between a $n^2$ and an $n\log n$ idea before writing code, and measurement to choose between two ideas of the same class.`,
-            T`**Big-O membandingkan pertumbuhan untuk $n$ besar, sehingga ia tidak mengatakan apa pun tentang masukan kecil, faktor konstan, memori, atau mesin.**
+            T`**Big-O membandingkan pertumbuhan untuk $n$ besar, sehingga ia tidak mengatakan apa pun tentang input kecil, faktor konstan, memori, atau mesin.**
 
-- **Konstanta penting untuk $n$ kecil.** $100n$ adalah $O(n)$ dan $n^2$ adalah $O(n^2)$, namun $n^2<100n$ untuk setiap $n<100$. Pustaka pengurutan nyata berupa hibrida: pengurutan Python dan Java (Timsort) memakai insertion sort, kuadratik pada kasus terburuk, untuk bagian pendek, karena dengan konstanta yang sangat kecil ia mengalahkan metode $n\log n$ di bawah beberapa puluh elemen.
+- **Konstanta penting untuk $n$ kecil.** $100n$ adalah $O(n)$ dan $n^2$ adalah $O(n^2)$, namun $n^2<100n$ untuk setiap $n<100$. Library pengurutan nyata berupa hibrida: pengurutan Python dan Java (Timsort) memakai insertion sort, kuadratik pada kasus terburuk, untuk bagian pendek, karena dengan konstanta yang sangat kecil ia mengalahkan metode $n\log n$ di bawah beberapa puluh elemen.
 - **Tidak semua langkah berbiaya sama.** Langkah yang meleset dari cache prosesor dapat berbiaya seratus kali langkah yang mengenainya. Dua perulangan $O(n)$, satu membaca memori berurutan dan satu melompat-lompat, dapat berbeda satu orde besaran.
-- **Apa itu $n$.** $n$ adalah ukuran *masukan*, banyaknya bit atau angka yang diperlukan untuk menuliskannya, bukan nilainya. Pembagian coba-coba, ´while i * i <= n´, memerlukan $O(\sqrt N)$ pembagian untuk menguji bilangan $N$, tetapi $N$ memiliki $n=\log_2N$ bit (lihat [berapa nilai yang dapat dimuat bit](article:binary-numbers#bits-and-bytes)), sehingga biayanya $O\left(2^{n/2}\right)$: eksponensial terhadap ukuran masukan, itulah sebabnya menguji bilangan 600 angka dengan pembagian coba-coba tidak ada harapan.
+- **Apa itu $n$.** $n$ adalah ukuran *input*, banyaknya bit atau angka yang diperlukan untuk menuliskannya, bukan nilainya. Pembagian coba-coba, ´while i * i <= n´, memerlukan $O(\sqrt N)$ pembagian untuk menguji bilangan $N$, tetapi $N$ memiliki $n=\log_2N$ bit (lihat [berapa nilai yang dapat dimuat bit](article:binary-numbers#bits-and-bytes)), sehingga biayanya $O\left(2^{n/2}\right)$: eksponensial terhadap ukuran input, itulah sebabnya menguji bilangan 600 angka dengan pembagian coba-coba tidak ada harapan.
 - **Biaya tersembunyi operasi.** ´x in a_list´ adalah $O(n)$ tetapi ´x in a_set´ adalah $O(1)$ rata-rata; ´s += "a"´ pada string dapat menyalin seluruh string; ´list.insert(0, x)´ menggeser setiap elemen, $O(n)$, sedangkan ´list.append(x)´ adalah $O(1)$ teramortisasi; ´sorted(a)´ adalah $O(n\log n)$.
 - **Kasus terburuk mungkin tidak lazim.** Kasus terburuk quicksort adalah $n^2$ dan tidak ada yang keberatan, karena ia hampir tidak pernah terjadi dengan pivot acak.
 
@@ -346,7 +346,7 @@ Pakai Big-O untuk memilih antara gagasan $n^2$ dan $n\log n$ sebelum menulis kod
           kind: 'text',
           text: L(
             T`**Count the steps instead of timing them: a counter is exact, repeatable and independent of the computer.** The programs below count the comparisons of linear search, binary search and bubble sort for inputs of $250$, $500$ and $1000$ elements, the calls of the Fibonacci function with and without a memo, and the iterations of a double loop and of a halving loop. Doubling $n$ adds one to the binary search, doubles the linear search and quadruples the bubble sort.`,
-            T`**Hitung langkahnya, jangan mengukur waktunya: penghitung itu eksak, dapat diulang, dan tidak bergantung pada komputer.** Program di bawah menghitung perbandingan pencarian linear, pencarian biner, dan bubble sort untuk masukan $250$, $500$, dan $1000$ elemen, panggilan fungsi Fibonacci dengan dan tanpa memo, dan iterasi perulangan ganda dan perulangan pembagian dua. Menggandakan $n$ menambah satu pada pencarian biner, melipatduakan pencarian linear, dan melipatempatkan bubble sort.`,
+            T`**Hitung langkahnya, jangan mengukur waktunya: penghitung itu eksak, dapat diulang, dan tidak bergantung pada komputer.** Program di bawah menghitung perbandingan pencarian linear, pencarian biner, dan bubble sort untuk input $250$, $500$, dan $1000$ elemen, panggilan fungsi Fibonacci dengan dan tanpa memo, dan iterasi perulangan ganda dan perulangan pembagian dua. Menggandakan $n$ menambah satu pada pencarian biner, melipatduakan pencarian linear, dan melipatempatkan bubble sort.`,
           ),
         },
         {
@@ -521,14 +521,14 @@ int main() {
 
 | Kesalahan | Yang benar |
 |---|---|
-| ❌ Big-O adalah waktu jalan dalam detik | Ia adalah pertumbuhan banyaknya langkah menurut ukuran masukan; detiknya bergantung pada mesin. |
+| ❌ Big-O adalah waktu jalan dalam detik | Ia adalah pertumbuhan banyaknya langkah menurut ukuran input; detiknya bergantung pada mesin. |
 | ❌ Menyimpan konstanta: $O(3n^2)$ | Konstanta dan suku rendah dibuang: $O(3n^2+5n)=O(n^2)$. |
 | ❌ Algoritma $O(n)$ selalu lebih cepat daripada $O(n^2)$ | Hanya untuk $n$ besar: $n^2<100n$ untuk $n<100$. |
 | ❌ Dua perulangan berurutan berbiaya $O(n^2)$ | Perulangan berurutan menjumlahkan, $O(n)+O(n)=O(n)$; hanya perulangan bersarang yang mengalikan. |
 | ❌ Setiap perulangan bersarang adalah $O(n^2)$ | Tergantung banyaknya yang dalam: perulangan dalam yang menggandakan penghitungnya berbiaya $\log n$, sehingga pasangannya $O(n\log n)$. |
 | ❌ Mengatakan "pencarian linear adalah $O(n^2)$" | Benar dan tidak berguna: beri batas ketat, $\Theta(n)$ pada kasus terburuk. |
-| ❌ Mengutip kasus terbaik | Jaminannya adalah kasus terburuk, dan kasus rata-rata harus menyebut masukan mana yang dirata-ratakan. |
-| ❌ $n$ adalah bilangan dalam masukan | $n$ adalah ukuran masukan: untuk bilangan $N$ ia adalah banyaknya angka, sehingga pembagian coba-coba bersifat eksponensial. |
+| ❌ Mengutip kasus terbaik | Jaminannya adalah kasus terburuk, dan kasus rata-rata harus menyebut input mana yang dirata-ratakan. |
+| ❌ $n$ adalah bilangan dalam input | $n$ adalah ukuran input: untuk bilangan $N$ ia adalah banyaknya angka, sehingga pembagian coba-coba bersifat eksponensial. |
 | ❌ Melupakan biaya operasi di dalamnya | ´x in a_list´, penyambungan string, dan ´insert(0, x)´ masing-masing $O(n)$, di dalam perulangan. |`,
           ),
         },
@@ -697,7 +697,7 @@ int main() {
         },
         {
           kind: 'activity',
-          title: L('Small inputs', 'Masukan kecil'),
+          title: L('Small inputs', 'Input kecil'),
           step: {
             kind: 'quiz',
             id: 'p10',
@@ -732,11 +732,11 @@ int main() {
           step: {
             kind: 'quiz',
             id: 'p12',
-            prompt: L(T`Why is appending to a dynamic array $O(1)$ amortized although a single append may copy the whole array?`, T`Mengapa menambah ke larik dinamis adalah $O(1)$ teramortisasi walaupun satu penambahan dapat menyalin seluruh larik?`),
+            prompt: L(T`Why is appending to a dynamic array $O(1)$ amortized although a single append may copy the whole array?`, T`Mengapa menambah ke array dinamis adalah $O(1)$ teramortisasi walaupun satu penambahan dapat menyalin seluruh array?`),
             options: [
               L(T`the capacity doubles, so the copies total less than $2n$ over $n$ appends`, T`kapasitas berlipat dua, sehingga salinan totalnya kurang dari $2n$ pada $n$ penambahan`),
               L(T`copying is free`, T`penyalinan gratis`),
-              L(T`the array never grows`, T`larik tidak pernah tumbuh`),
+              L(T`the array never grows`, T`array tidak pernah tumbuh`),
               L(T`it is not $O(1)$, it is $O(n)$ every time`, T`ia bukan $O(1)$, ia $O(n)$ setiap kali`),
             ],
             answer: 0,
@@ -770,7 +770,7 @@ int main() {
 - **Menghitung:** urutan menjumlahkan, perulangan mengalikan, pembagian dua memberi $\log n$, rekursi memberi rekurensi; gandakan $n$ dan lihat rasionya.
 - **Kasus:** sebut terbaik, terburuk, atau rata-rata; biaya teramortisasi menyebarkan langkah mahal yang jarang ke banyak langkah murah.
 - **Teorema Master:** $T(n)=aT(n/b)+n^d$ membandingkan $d$ dengan $\log_ba$: $\Theta(n^d)$, $\Theta(n^d\log n)$, atau $\Theta(n^{\log_ba})$.
-- **Batas Big-O:** konstanta untuk $n$ kecil, memori, ukuran masukan adalah angkanya, dan biaya tersembunyi operasi.
+- **Batas Big-O:** konstanta untuk $n$ kecil, memori, ukuran input adalah angkanya, dan biaya tersembunyi operasi.
 - **Berikutnya:** pencarian atau pengurutan dengan langkah yang dihitung.
 - **Kode:** hitung langkah dengan penghitung, jangan mengukur waktu.`,
           ),
@@ -780,14 +780,14 @@ int main() {
   ],
 
   glossary: [
-    { term: L('Big-O notation', 'Notasi Big-O'), definition: L('A way of saying that a function grows no faster than another, up to a constant factor and for large inputs.', 'Cara menyatakan bahwa suatu fungsi tumbuh tidak lebih cepat daripada fungsi lain, sampai faktor konstan dan untuk masukan besar.') },
-    { term: L('Time complexity', 'Kompleksitas waktu'), definition: L('The number of basic steps an algorithm takes, as a function of the size of its input.', 'Banyaknya langkah dasar yang diambil sebuah algoritma, sebagai fungsi ukuran masukannya.') },
+    { term: L('Big-O notation', 'Notasi Big-O'), definition: L('A way of saying that a function grows no faster than another, up to a constant factor and for large inputs.', 'Cara menyatakan bahwa suatu fungsi tumbuh tidak lebih cepat daripada fungsi lain, sampai faktor konstan dan untuk input besar.') },
+    { term: L('Time complexity', 'Kompleksitas waktu'), definition: L('The number of basic steps an algorithm takes, as a function of the size of its input.', 'Banyaknya langkah dasar yang diambil sebuah algoritma, sebagai fungsi ukuran input-nya.') },
     { term: L('Big Theta', 'Big Theta'), definition: L('A tight bound: a function is both bounded above and bounded below by constant multiples of the same function.', 'Batas ketat: suatu fungsi dibatasi dari atas dan dari bawah oleh kelipatan konstan dari fungsi yang sama.') },
-    { term: L('Worst case', 'Kasus terburuk'), definition: L('The input of a given size on which an algorithm takes the most steps, which gives a guarantee.', 'Masukan berukuran tertentu yang membuat algoritma mengambil langkah terbanyak, yang memberi jaminan.') },
+    { term: L('Worst case', 'Kasus terburuk'), definition: L('The input of a given size on which an algorithm takes the most steps, which gives a guarantee.', 'Input berukuran tertentu yang membuat algoritma mengambil langkah terbanyak, yang memberi jaminan.') },
     { term: L('Amortized cost', 'Biaya teramortisasi'), definition: L('The average cost per operation over a long sequence, when expensive operations are rare and cheap ones are common.', 'Biaya rata-rata per operasi pada barisan panjang, ketika operasi mahal jarang dan operasi murah sering.') },
     { term: L('Recurrence relation', 'Relasi rekurensi'), definition: L('An equation that gives the cost of a problem of size n in terms of the cost of smaller problems.', 'Persamaan yang memberi biaya masalah berukuran n dalam biaya masalah yang lebih kecil.') },
     { term: L('Master theorem', 'Teorema Master'), definition: L('A rule for solving recurrences of the form T(n) = aT(n/b) + n to the d by comparing d with the logarithm of a in base b.', 'Aturan untuk menyelesaikan rekurensi berbentuk T(n) = aT(n/b) + n pangkat d dengan membandingkan d dengan logaritma a berbasis b.') },
-    { term: L('Space complexity', 'Kompleksitas ruang'), definition: L('The amount of extra memory an algorithm needs, as a function of the size of its input.', 'Banyaknya memori tambahan yang diperlukan sebuah algoritma, sebagai fungsi ukuran masukannya.') },
+    { term: L('Space complexity', 'Kompleksitas ruang'), definition: L('The amount of extra memory an algorithm needs, as a function of the size of its input.', 'Banyaknya memori tambahan yang diperlukan sebuah algoritma, sebagai fungsi ukuran input-nya.') },
   ],
 
   howTo: [
@@ -795,7 +795,7 @@ int main() {
       name: L('How to find the Big-O of a function', 'Cara mencari Big-O sebuah fungsi'),
       description: L('Count the basic steps, then keep the fastest-growing term and drop its constant.', 'Hitung langkah dasar, lalu simpan suku yang tumbuh paling cepat dan buang konstantanya.'),
       steps: [
-        { name: L('Count the steps', 'Hitung langkahnya'), text: L('Count the basic operations as a function of the input size n, treating loops as multiplication and statements in sequence as addition.', 'Hitung operasi dasar sebagai fungsi ukuran masukan n, dengan memperlakukan perulangan sebagai perkalian dan pernyataan berurutan sebagai penjumlahan.') },
+        { name: L('Count the steps', 'Hitung langkahnya'), text: L('Count the basic operations as a function of the input size n, treating loops as multiplication and statements in sequence as addition.', 'Hitung operasi dasar sebagai fungsi ukuran input n, dengan memperlakukan perulangan sebagai perkalian dan pernyataan berurutan sebagai penjumlahan.') },
         { name: L('Pick the fastest term', 'Pilih suku tercepat'), text: L('Keep the term that grows fastest, since it dominates for large n.', 'Simpan suku yang tumbuh paling cepat, karena ia mendominasi untuk n besar.') },
         { name: L('Drop the constant', 'Buang konstantanya'), text: L('Remove the constant factor in front of that term.', 'Hapus faktor konstan di depan suku itu.') },
         { name: L('Check with a witness', 'Periksa dengan saksi'), text: L('If you want a proof, find constants c and n zero so that the function is at most c times the bound for all n from n zero.', 'Jika ingin bukti, cari konstanta c dan n nol sehingga fungsi paling banyak c kali batasnya untuk semua n mulai dari n nol.') },
@@ -818,14 +818,14 @@ int main() {
       q: L('What is Big-O notation?', 'Apa itu notasi Big-O?'),
       a: L(
         'It is a way to describe how the number of steps of an algorithm grows with the size of its input, ignoring constant factors and smaller terms. Saying an algorithm is O of n squared means its steps grow at most like n squared.',
-        'Itu adalah cara menggambarkan bagaimana banyaknya langkah sebuah algoritma tumbuh menurut ukuran masukannya, dengan mengabaikan faktor konstan dan suku yang lebih kecil. Mengatakan algoritma O dari n kuadrat berarti langkahnya tumbuh paling banyak seperti n kuadrat.',
+        'Itu adalah cara menggambarkan bagaimana banyaknya langkah sebuah algoritma tumbuh menurut ukuran input-nya, dengan mengabaikan faktor konstan dan suku yang lebih kecil. Mengatakan algoritma O dari n kuadrat berarti langkahnya tumbuh paling banyak seperti n kuadrat.',
       ),
     },
     {
       q: L('How do you calculate time complexity?', 'Bagaimana menghitung kompleksitas waktu?'),
       a: L(
         'Count the basic operations as a function of the input size. Statements in sequence add, loops and nested loops multiply, and a loop that halves its counter runs log n times. Then keep only the fastest-growing term and drop its constant.',
-        'Hitung operasi dasar sebagai fungsi ukuran masukan. Pernyataan berurutan menjumlahkan, perulangan dan perulangan bersarang mengalikan, dan perulangan yang membagi dua penghitungnya berjalan log n kali. Lalu simpan hanya suku yang tumbuh paling cepat dan buang konstantanya.',
+        'Hitung operasi dasar sebagai fungsi ukuran input. Pernyataan berurutan menjumlahkan, perulangan dan perulangan bersarang mengalikan, dan perulangan yang membagi dua penghitungnya berjalan log n kali. Lalu simpan hanya suku yang tumbuh paling cepat dan buang konstantanya.',
       ),
     },
     {
@@ -853,7 +853,7 @@ int main() {
       q: L('What is amortized time complexity?', 'Apa itu kompleksitas waktu teramortisasi?'),
       a: L(
         'It is the average cost per operation over a worst-case sequence. Appending to a dynamic array is usually constant but sometimes copies everything; since the copies add up to less than twice the number of appends, the amortized cost is constant.',
-        'Itu adalah biaya rata-rata per operasi pada barisan kasus terburuk. Menambah ke larik dinamis biasanya konstan tetapi kadang menyalin semuanya; karena salinan itu berjumlah kurang dari dua kali banyaknya penambahan, biaya teramortisasinya konstan.',
+        'Itu adalah biaya rata-rata per operasi pada barisan kasus terburuk. Menambah ke array dinamis biasanya konstan tetapi kadang menyalin semuanya; karena salinan itu berjumlah kurang dari dua kali banyaknya penambahan, biaya teramortisasinya konstan.',
       ),
     },
     {
@@ -867,7 +867,7 @@ int main() {
       q: L('Is an O(n) algorithm always faster than an O(n²) one?', 'Apakah algoritma O(n) selalu lebih cepat daripada yang O(n²)?'),
       a: L(
         'No, only for large enough inputs. Big-O hides constant factors, so an algorithm with 100n steps is slower than one with n squared steps until n reaches 100. For small inputs the simpler method often wins.',
-        'Tidak, hanya untuk masukan yang cukup besar. Big-O menyembunyikan faktor konstan, sehingga algoritma dengan 100n langkah lebih lambat daripada yang n kuadrat langkah sampai n mencapai 100. Untuk masukan kecil metode yang lebih sederhana sering menang.',
+        'Tidak, hanya untuk input yang cukup besar. Big-O menyembunyikan faktor konstan, sehingga algoritma dengan 100n langkah lebih lambat daripada yang n kuadrat langkah sampai n mencapai 100. Untuk input kecil metode yang lebih sederhana sering menang.',
       ),
     },
   ],

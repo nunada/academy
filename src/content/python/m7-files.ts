@@ -8,7 +8,7 @@ import type { Module } from '../types'
  *  leftovers before the learner's code runs. */
 export const module7: Module = {
   id: 'py-m7',
-  title: { en: 'Files', id: 'Berkas' },
+  title: { en: 'Files', id: 'File' },
   summary: {
     en: 'Save data so it is still there after the program ends.',
     id: 'Menyimpan data agar tetap ada setelah program berakhir.',
@@ -20,12 +20,12 @@ export const module7: Module = {
       title: { en: 'Reading and Writing', id: 'Membaca dan Menulis' },
       summary: {
         en: 'Put text into a file, then get it back out.',
-        id: 'Memasukkan teks ke berkas, lalu mengambilnya kembali.',
+        id: 'Memasukkan teks ke file, lalu mengambilnya kembali.',
       },
       lessons: [
         {
           id: 'py-m7-s1-l1',
-          title: { en: 'Writing a file', id: 'Menulis berkas' },
+          title: { en: 'Writing a file', id: 'Menulis file' },
           goal: { en: 'Save text that survives the program.', id: 'Menyimpan teks yang bertahan setelah program selesai.' },
           xp: 20,
           steps: [
@@ -35,7 +35,7 @@ export const module7: Module = {
               title: { en: 'Everything so far was forgotten', id: 'Semua yang lalu terlupakan' },
               body: {
                 en: 'Every variable disappears when the program ends. A file is the simplest way to keep something. `open(nama, "w")` opens a file for writing — and `"w"` **empties it first**, so an existing file loses its old contents.',
-                id: 'Semua variabel lenyap saat program berakhir. Berkas adalah cara paling sederhana untuk menyimpan sesuatu. `open(nama, "w")` membuka berkas untuk ditulis — dan `"w"` **mengosongkannya lebih dulu**, jadi berkas lama kehilangan isinya.',
+                id: 'Semua variabel lenyap saat program berakhir. File adalah cara paling sederhana untuk menyimpan sesuatu. `open(nama, "w")` membuka file untuk ditulis — dan `"w"` **mengosongkannya lebih dulu**, jadi file lama kehilangan isinya.',
               },
               code: {
                 en: 'f = open("notes.txt", "w")\nf.write("first line\\n")\nf.write("second line\\n")\nf.close()\n\nprint("saved")',
@@ -49,7 +49,7 @@ export const module7: Module = {
               title: { en: 'with closes it for you', id: 'with menutupnya untukmu' },
               body: {
                 en: 'Forgetting `close()` can leave the text unwritten. `with` closes the file the moment the indented block ends — even if an error happens inside it. Prefer this form always.',
-                id: 'Lupa `close()` bisa membuat teksnya tidak tertulis. `with` menutup berkas begitu blok menjoroknya berakhir — bahkan bila terjadi error di dalamnya. Selalu utamakan bentuk ini.',
+                id: 'Lupa `close()` bisa membuat teksnya tidak tertulis. `with` menutup file begitu blok menjoroknya berakhir — bahkan bila terjadi error di dalamnya. Selalu utamakan bentuk ini.',
               },
               code: {
                 en: 'with open("notes.txt", "w") as f:\n    f.write("hello\\n")\n\nprint("done")',
@@ -76,23 +76,23 @@ export const module7: Module = {
               id: 'q1',
               prompt: {
                 en: 'The file already contains 10 lines. What does this leave in it?',
-                id: 'Berkas sudah berisi 10 baris. Apa yang tersisa setelah kode ini?',
+                id: 'File sudah berisi 10 baris. Apa yang tersisa setelah kode ini?',
               },
               code: { en: 'with open("data.txt", "w") as f:\n    f.write("new\\n")', id: 'with open("data.txt", "w") as f:\n    f.write("baru\\n")' },
               options: [
                 { en: 'Only the line `new`', id: 'Hanya baris `baru`' },
                 { en: '11 lines', id: '11 baris' },
                 { en: 'The original 10 lines', id: '10 baris aslinya' },
-                { en: 'An error, the file exists', id: 'Error, berkasnya sudah ada' },
+                { en: 'An error, the file exists', id: 'Error, file-nya sudah ada' },
               ],
               answer: 0,
               explain: {
                 en: 'Mode "w" truncates the file before writing. Use "a" to append instead.',
-                id: 'Mode "w" mengosongkan berkas sebelum menulis. Pakai "a" bila ingin menambahkan.',
+                id: 'Mode "w" mengosongkan file sebelum menulis. Pakai "a" bila ingin menambahkan.',
               },
               hint: {
                 en: "Recall what mode \"w\" does to a file's existing contents the moment it's opened, before any writing happens.",
-                id: 'Ingat apa yang dilakukan mode "w" terhadap isi berkas yang sudah ada, tepat saat berkas dibuka, sebelum penulisan terjadi.',
+                id: 'Ingat apa yang dilakukan mode "w" terhadap isi file yang sudah ada, tepat saat file dibuka, sebelum penulisan terjadi.',
               },
             },
             {
@@ -100,7 +100,7 @@ export const module7: Module = {
               id: 'f1',
               prompt: {
                 en: 'Write `hello` into `message.txt`, closing the file automatically.',
-                id: 'Tulis `halo` ke `pesan.txt`, dengan penutupan berkas otomatis.',
+                id: 'Tulis `halo` ke `pesan.txt`, dengan penutupan file otomatis.',
               },
               template: {
                 en: '___ open("message.txt", "___") as f:\n    f.write("hello")',
@@ -109,11 +109,11 @@ export const module7: Module = {
               blanks: ['with', 'w'],
               explain: {
                 en: 'with handles the closing; "w" opens the file for writing.',
-                id: 'with mengurus penutupannya; "w" membuka berkas untuk ditulis.',
+                id: 'with mengurus penutupannya; "w" membuka file untuk ditulis.',
               },
               hint: {
                 en: 'The first blank is the keyword that opens a file and closes it automatically when the block ends; the second blank is the mode letter for writing.',
-                id: 'Bagian kosong pertama adalah kata kunci yang membuka berkas dan menutupnya otomatis saat blok berakhir; bagian kosong kedua adalah huruf mode untuk menulis.',
+                id: 'Bagian kosong pertama adalah kata kunci yang membuka file dan menutupnya otomatis saat blok berakhir; bagian kosong kedua adalah huruf mode untuk menulis.',
               },
             },
             {
@@ -132,7 +132,7 @@ export const module7: Module = {
                     expectOutput: 'Done',
                   },
                   {
-                    name: { en: 'The file holds five lines', id: 'Berkasnya berisi lima baris' },
+                    name: { en: 'The file holds five lines', id: 'File-nya berisi lima baris' },
                     setup: 'import os\nif os.path.exists("numbers.txt"):\n    os.remove("numbers.txt")',
                     assert:
                       'with open("numbers.txt") as _f:\n    _content = _f.read()\nassert _content.split() == ["1", "2", "3", "4", "5"], "file contents are not right: " + repr(_content)',
@@ -145,10 +145,10 @@ export const module7: Module = {
                     expectOutput: 'Selesai',
                   },
                   {
-                    name: { en: 'The file holds five lines', id: 'Berkasnya berisi lima baris' },
+                    name: { en: 'The file holds five lines', id: 'File-nya berisi lima baris' },
                     setup: 'import os\nif os.path.exists("angka.txt"):\n    os.remove("angka.txt")',
                     assert:
-                      'with open("angka.txt") as _f:\n    _isi = _f.read()\nassert _isi.split() == ["1", "2", "3", "4", "5"], "isi berkas belum sesuai: " + repr(_isi)',
+                      'with open("angka.txt") as _f:\n    _isi = _f.read()\nassert _isi.split() == ["1", "2", "3", "4", "5"], "isi file belum sesuai: " + repr(_isi)',
                   },
                 ],
               },
@@ -167,7 +167,7 @@ export const module7: Module = {
         {
           id: 'py-m7-s1-l2',
           title: { en: 'Reading it back', id: 'Membacanya kembali' },
-          goal: { en: 'Read a file line by line.', id: 'Membaca berkas baris demi baris.' },
+          goal: { en: 'Read a file line by line.', id: 'Membaca file baris demi baris.' },
           xp: 20,
           steps: [
             {
@@ -176,7 +176,7 @@ export const module7: Module = {
               title: { en: 'read, readlines, or just loop', id: 'read, readlines, atau langsung loop' },
               body: {
                 en: '`read()` gives the whole file as one string. Looping the file directly gives one line at a time, which is what you usually want — and it never loads a huge file into memory at once.',
-                id: '`read()` memberi seluruh berkas sebagai satu string. Mengulang berkasnya langsung memberi satu baris tiap kali, dan itulah yang biasanya kamu butuhkan — sekaligus tidak memuat berkas raksasa sekaligus ke memori.',
+                id: '`read()` memberi seluruh file sebagai satu string. Mengulang file-nya langsung memberi satu baris tiap kali, dan itulah yang biasanya kamu butuhkan — sekaligus tidak memuat file raksasa sekaligus ke memori.',
               },
               code: {
                 en: 'with open("cities.txt", "w") as f:\n    f.write("Surabaya\\nMalang\\n")\n\nwith open("cities.txt") as f:\n    for line in f:\n        print(line)',
@@ -201,27 +201,27 @@ export const module7: Module = {
             {
               kind: 'concept',
               id: 'c3',
-              title: { en: 'A missing file raises', id: 'Berkas yang tidak ada memunculkan error' },
+              title: { en: 'A missing file raises', id: 'File yang tidak ada memunculkan error' },
               body: {
                 en: 'Opening a file that is not there raises `FileNotFoundError`. This is where module 6 pays off: reading a file is exactly the kind of risky line `try` was made for.',
-                id: 'Membuka berkas yang tidak ada memunculkan `FileNotFoundError`. Di sinilah modul 6 terbayar: membaca berkas persis jenis baris berisiko yang membuat `try` diciptakan.',
+                id: 'Membuka file yang tidak ada memunculkan `FileNotFoundError`. Di sinilah modul 6 terbayar: membaca file persis jenis baris berisiko yang membuat `try` diciptakan.',
               },
               code: {
                 en: 'try:\n    with open("missing.txt") as f:\n        print(f.read())\nexcept FileNotFoundError:\n    print("file does not exist yet")',
-                id: 'try:\n    with open("hilang.txt") as f:\n        print(f.read())\nexcept FileNotFoundError:\n    print("berkas belum ada")',
+                id: 'try:\n    with open("hilang.txt") as f:\n        print(f.read())\nexcept FileNotFoundError:\n    print("file belum ada")',
               },
-              output: { en: 'file does not exist yet', id: 'berkas belum ada' },
+              output: { en: 'file does not exist yet', id: 'file belum ada' },
             },
             {
               kind: 'quiz',
               id: 'q1',
               prompt: {
                 en: 'A file holds three lines. What does `len(f.readlines())` give?',
-                id: 'Sebuah berkas berisi tiga baris. Berapa hasil `len(f.readlines())`?',
+                id: 'Sebuah file berisi tiga baris. Berapa hasil `len(f.readlines())`?',
               },
               options: [
                 { en: '3 — one string per line', id: '3 — satu string per baris' },
-                { en: '1 — the whole file', id: '1 — seluruh berkas' },
+                { en: '1 — the whole file', id: '1 — seluruh file' },
                 { en: 'The number of characters', id: 'Jumlah karakternya' },
                 { en: '0 until you call read()', id: '0 sampai kamu memanggil read()' },
               ],
@@ -232,7 +232,7 @@ export const module7: Module = {
               },
               hint: {
                 en: 'Think about what readlines() actually returns — one thing for the whole file, or one item per line?',
-                id: 'Pikirkan apa yang sebenarnya dikembalikan readlines() — satu hal untuk seluruh berkas, atau satu item per baris?',
+                id: 'Pikirkan apa yang sebenarnya dikembalikan readlines() — satu hal untuk seluruh file, atau satu item per baris?',
               },
             },
             {
@@ -240,7 +240,7 @@ export const module7: Module = {
               id: 'o1',
               prompt: {
                 en: 'Assemble a program that counts the lines in a file.',
-                id: 'Susun program yang menghitung jumlah baris dalam sebuah berkas.',
+                id: 'Susun program yang menghitung jumlah baris dalam sebuah file.',
               },
               lines: {
                 en: ['count = 0', 'with open("data.txt") as f:', '    for line in f:', '        count += 1', 'print(count)'],
@@ -248,11 +248,11 @@ export const module7: Module = {
               },
               explain: {
                 en: 'The counter is created before the file is opened and printed after the block closes it.',
-                id: 'Pencacahnya dibuat sebelum berkas dibuka dan dicetak setelah bloknya menutup berkas.',
+                id: 'Pencacahnya dibuat sebelum file dibuka dan dicetak setelah bloknya menutup file.',
               },
               hint: {
                 en: 'The counter needs a starting value before the loop can add to it, and the file has to be open before you can loop over its lines.',
-                id: 'Pencacahnya butuh nilai awal sebelum loop bisa menambahkannya, dan berkasnya harus dibuka dulu sebelum kamu bisa mengulang barisnya.',
+                id: 'Pencacahnya butuh nilai awal sebelum loop bisa menambahkannya, dan file-nya harus dibuka dulu sebelum kamu bisa mengulang barisnya.',
               },
             },
             {
@@ -260,7 +260,7 @@ export const module7: Module = {
               id: 'w1',
               prompt: {
                 en: 'The file `scores.txt` holds one number per line. Read it and print the total, then the average rounded to one decimal, on two lines.',
-                id: 'Berkas `nilai.txt` berisi satu angka per baris. Baca dan cetak totalnya, lalu rata-ratanya dibulatkan satu desimal, dalam dua baris.',
+                id: 'File `nilai.txt` berisi satu angka per baris. Baca dan cetak totalnya, lalu rata-ratanya dibulatkan satu desimal, dalam dua baris.',
               },
               starter: { en: '# scores.txt has been prepared for you\n', id: '# nilai.txt sudah disiapkan untukmu\n' },
               tests: {
@@ -317,13 +317,13 @@ export const module7: Module = {
         title: { en: 'Note keeper', id: 'Penyimpan catatan' },
         brief: {
           en: 'Add notes to a file that grows across runs, then show them numbered.',
-          id: 'Tambahkan catatan ke berkas yang bertambah antar-jalan, lalu tampilkan bernomor.',
+          id: 'Tambahkan catatan ke file yang bertambah antar-jalan, lalu tampilkan bernomor.',
         },
         requirements: [
           { en: 'Read lines until the user types `done`.', id: 'Baca baris sampai pengguna mengetik `selesai`.' },
           { en: 'Append each note to `notes.txt` — do not erase what was already there.', id: 'Tambahkan tiap catatan ke `catatan.txt` — jangan hapus isi sebelumnya.' },
           { en: 'Then print every note as `1. note content`, numbered from 1.', id: 'Lalu cetak semua catatan sebagai `1. isi catatan`, bernomor mulai 1.' },
-          { en: 'If the file does not exist yet, print `No notes yet`.', id: 'Bila berkasnya belum ada, cetak `Belum ada catatan`.' },
+          { en: 'If the file does not exist yet, print `No notes yet`.', id: 'Bila file-nya belum ada, cetak `Belum ada catatan`.' },
         ],
         starter: { en: '# Note keeper\n', id: '# Penyimpan catatan\n' },
         tests: {
@@ -341,7 +341,7 @@ export const module7: Module = {
               expectOutput: '1. old note\n2. new note',
             },
             {
-              name: { en: 'No file and no input', id: 'Tanpa berkas dan tanpa masukan' },
+              name: { en: 'No file and no input', id: 'Tanpa file dan tanpa input' },
               setup: 'import os\nif os.path.exists("notes.txt"):\n    os.remove("notes.txt")',
               stdin: ['done'],
               expectOutput: 'No notes yet',
@@ -361,7 +361,7 @@ export const module7: Module = {
               expectOutput: '1. catatan lama\n2. catatan baru',
             },
             {
-              name: { en: 'No file and no input', id: 'Tanpa berkas dan tanpa masukan' },
+              name: { en: 'No file and no input', id: 'Tanpa file dan tanpa input' },
               setup: 'import os\nif os.path.exists("catatan.txt"):\n    os.remove("catatan.txt")',
               stdin: ['selesai'],
               expectOutput: 'Belum ada catatan',
@@ -370,7 +370,7 @@ export const module7: Module = {
         },
         hints: [
           { en: 'Mode "a" appends instead of erasing.', id: 'Mode "a" menambahkan, bukan menghapus.' },
-          { en: 'Collect the notes in a loop first, then open the file once to append them all.', id: 'Kumpulkan catatannya dalam loop dulu, lalu buka berkasnya sekali untuk menambahkan semuanya.' },
+          { en: 'Collect the notes in a loop first, then open the file once to append them all.', id: 'Kumpulkan catatannya dalam loop dulu, lalu buka file-nya sekali untuk menambahkan semuanya.' },
           { en: 'Reading needs try/except FileNotFoundError for the very first run.', id: 'Pembacaan butuh try/except FileNotFoundError untuk jalan pertama kali.' },
           {
             en: 'enumerate(lines, 1) hands you the number and the line together.',
@@ -388,7 +388,7 @@ export const module7: Module = {
     /* ------------------------------------------------------------- 7.2 tables */
     {
       id: 'py-m7-s2',
-      title: { en: 'Structured Files', id: 'Berkas Terstruktur' },
+      title: { en: 'Structured Files', id: 'File Terstruktur' },
       summary: {
         en: 'Store rows and columns, not just loose lines.',
         id: 'Menyimpan baris dan kolom, bukan sekadar baris lepas.',
@@ -539,7 +539,7 @@ export const module7: Module = {
         },
         {
           id: 'py-m7-s2-l2',
-          title: { en: 'A file full of rows', id: 'Berkas penuh baris data' },
+          title: { en: 'A file full of rows', id: 'File penuh baris data' },
           goal: { en: 'Load a whole table and query it.', id: 'Memuat seluruh tabel dan menanyainya.' },
           xp: 20,
           steps: [
@@ -549,7 +549,7 @@ export const module7: Module = {
               title: { en: 'Read, split, collect', id: 'Baca, pecah, kumpulkan' },
               body: {
                 en: 'The whole pattern is three moves: loop the file, split each line, append the result. What you get is a list of dictionaries — the shape most real data arrives in.',
-                id: 'Seluruh polanya cuma tiga langkah: ulangi berkasnya, pecah tiap baris, tambahkan hasilnya. Yang kamu dapat adalah list berisi dictionary — bentuk yang paling sering dipakai data nyata.',
+                id: 'Seluruh polanya cuma tiga langkah: ulangi file-nya, pecah tiap baris, tambahkan hasilnya. Yang kamu dapat adalah list berisi dictionary — bentuk yang paling sering dipakai data nyata.',
               },
               figure: {
                 dim: 2,
@@ -586,7 +586,7 @@ export const module7: Module = {
               title: { en: 'Skip the blank line at the end', id: 'Lewati baris kosong di akhir' },
               body: {
                 en: 'A file usually ends with a newline, which can hand you one empty final line. Splitting that would crash, so skip it — a one-line guard that saves a lot of confusion.',
-                id: 'Berkas biasanya diakhiri baris baru, yang bisa memberimu satu baris kosong di ujung. Memecah baris itu akan error, jadi lewati saja — penjagaan satu baris yang menghemat banyak kebingungan.',
+                id: 'File biasanya diakhiri baris baru, yang bisa memberimu satu baris kosong di ujung. Memecah baris itu akan error, jadi lewati saja — penjagaan satu baris yang menghemat banyak kebingungan.',
               },
               code: {
                 en: 'line = "\\n"\nif not line.strip():\n    print("skipped")\nelse:\n    print(line.split(","))',
@@ -662,7 +662,7 @@ export const module7: Module = {
                 ],
               },
               hints: [
-                { en: 'Loop the file, strip, then split on the comma.', id: 'Ulangi berkasnya, strip, lalu split pada komanya.' },
+                { en: 'Loop the file, strip, then split on the comma.', id: 'Ulangi file-nya, strip, lalu split pada komanya.' },
                 { en: 'Skip a line that is empty after stripping.', id: 'Lewati baris yang kosong setelah di-strip.' },
                 { en: 'name, count = line.strip().split(",") then if int(count) == 0:', id: 'nama, jumlah = baris.strip().split(",") lalu if int(jumlah) == 0:' },
               ],
@@ -679,7 +679,7 @@ export const module7: Module = {
         title: { en: 'Class register', id: 'Daftar nilai kelas' },
         brief: {
           en: 'Load a table of students from a file and report on it.',
-          id: 'Muat tabel siswa dari sebuah berkas lalu laporkan isinya.',
+          id: 'Muat tabel siswa dari sebuah file lalu laporkan isinya.',
         },
         requirements: [
           { en: '`class.txt` holds `name,score` per line. Blank lines must be ignored.', id: '`kelas.txt` berisi `nama,nilai` per baris. Baris kosong harus diabaikan.' },
@@ -687,7 +687,7 @@ export const module7: Module = {
           { en: 'Print `Average: R`, rounded to one decimal.', id: 'Cetak `Rata-rata: R`, dibulatkan satu desimal.' },
           { en: 'Print `Highest: <name> (<score>)`.', id: 'Cetak `Tertinggi: <nama> (<nilai>)`.' },
           { en: 'Then write only the names scoring 70 or more into `passed.txt`, one per line.', id: 'Lalu tulis hanya nama yang bernilai 70 ke atas ke `lulus.txt`, satu per baris.' },
-          { en: 'If the file is missing, print only `File not found`.', id: 'Bila berkasnya tidak ada, cetak hanya `Berkas tidak ditemukan`.' },
+          { en: 'If the file is missing, print only `File not found`.', id: 'Bila file-nya tidak ada, cetak hanya `File tidak ditemukan`.' },
         ],
         starter: { en: '# Class register\n', id: '# Daftar nilai kelas\n' },
         tests: {
@@ -712,7 +712,7 @@ export const module7: Module = {
               expectOutput: 'Number of students: 2\nAverage: 80.0\nHighest: Budi (90)',
             },
             {
-              name: { en: 'A missing file', id: 'Berkas tidak ada' },
+              name: { en: 'A missing file', id: 'File tidak ada' },
               setup: 'import os\nif os.path.exists("class.txt"):\n    os.remove("class.txt")',
               expectOutput: 'File not found',
             },
@@ -738,9 +738,9 @@ export const module7: Module = {
               expectOutput: 'Jumlah siswa: 2\nRata-rata: 80.0\nTertinggi: Budi (90)',
             },
             {
-              name: { en: 'A missing file', id: 'Berkas tidak ada' },
+              name: { en: 'A missing file', id: 'File tidak ada' },
               setup: 'import os\nif os.path.exists("kelas.txt"):\n    os.remove("kelas.txt")',
-              expectOutput: 'Berkas tidak ditemukan',
+              expectOutput: 'File tidak ditemukan',
             },
           ],
         },
@@ -752,7 +752,7 @@ export const module7: Module = {
         ],
         solution: {
           en: 'try:\n    data = []\n    with open("class.txt") as f:\n        for line in f:\n            if not line.strip():\n                continue\n            name, score = line.strip().split(",")\n            data.append({"name": name, "score": int(score)})\nexcept FileNotFoundError:\n    print("File not found")\nelse:\n    print(f"Number of students: {len(data)}")\n    total = sum(d["score"] for d in data)\n    print(f"Average: {round(total / len(data), 1)}")\n\n    best = data[0]\n    for d in data:\n        if d["score"] > best["score"]:\n            best = d\n    print(f"Highest: {best[\'name\']} ({best[\'score\']})")\n\n    with open("passed.txt", "w") as f:\n        for d in data:\n            if d["score"] >= 70:\n                f.write(d["name"] + "\\n")',
-          id: 'try:\n    data = []\n    with open("kelas.txt") as f:\n        for baris in f:\n            if not baris.strip():\n                continue\n            nama, nilai = baris.strip().split(",")\n            data.append({"nama": nama, "nilai": int(nilai)})\nexcept FileNotFoundError:\n    print("Berkas tidak ditemukan")\nelse:\n    print(f"Jumlah siswa: {len(data)}")\n    total = sum(d["nilai"] for d in data)\n    print(f"Rata-rata: {round(total / len(data), 1)}")\n\n    terbaik = data[0]\n    for d in data:\n        if d["nilai"] > terbaik["nilai"]:\n            terbaik = d\n    print(f"Tertinggi: {terbaik[\'nama\']} ({terbaik[\'nilai\']})")\n\n    with open("lulus.txt", "w") as f:\n        for d in data:\n            if d["nilai"] >= 70:\n                f.write(d["nama"] + "\\n")',
+          id: 'try:\n    data = []\n    with open("kelas.txt") as f:\n        for baris in f:\n            if not baris.strip():\n                continue\n            nama, nilai = baris.strip().split(",")\n            data.append({"nama": nama, "nilai": int(nilai)})\nexcept FileNotFoundError:\n    print("File tidak ditemukan")\nelse:\n    print(f"Jumlah siswa: {len(data)}")\n    total = sum(d["nilai"] for d in data)\n    print(f"Rata-rata: {round(total / len(data), 1)}")\n\n    terbaik = data[0]\n    for d in data:\n        if d["nilai"] > terbaik["nilai"]:\n            terbaik = d\n    print(f"Tertinggi: {terbaik[\'nama\']} ({terbaik[\'nilai\']})")\n\n    with open("lulus.txt", "w") as f:\n        for d in data:\n            if d["nilai"] >= 70:\n                f.write(d["nama"] + "\\n")',
         },
         xp: 50,
       },

@@ -30,7 +30,7 @@
      bawah 4,5 yang diajarkan kursus CSS ini sendiri di modul 1.2. */
   --muted: #5f7066;
 
-  /* Warna tindakan: tombol utama, tautan, pil aktif. Hijau hutan, bukan hijau
+  /* Warna tindakan: tombol utama, link, pil aktif. Hijau hutan, bukan hijau
      daun — krem di atas daun hanya mencapai rasio 2,5:1, jauh di bawah 4,5:1
      yang diajarkan kursus CSS ini sendiri. Daun tetap dipakai, tapi hanya untuk
      bidang tanpa teks seperti isi bilah progres. */
@@ -681,7 +681,7 @@ table.rows tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surfa
    mengikuti lebar yang tersedia, dan `image-rendering: pixelated` menjaga
    tepinya tetap tajam alih-alih kabur saat diperbesar.
 
-   Pembungkusnya bisa difokus karena permainannya membaca papan ketik: tanpa
+   Pembungkusnya bisa difokus karena permainannya membaca keyboard: tanpa
    fokus, tombol panah menggulirkan halaman, bukan menggerakkan pemain. */
 .gamewrap {
   position: relative;
@@ -761,8 +761,8 @@ th .sortable.on::after { content: ' ↓'; }
 
 /* ------------------------------------------------------------- matematika
 
-   Rumus dirender sebagai MathML oleh `lib/tex.ts`, jadi peramban yang menata
-   letaknya, bukan berkas ini. Yang diatur di sini hanya ukuran, jarak, dan
+   Rumus dirender sebagai MathML oleh `lib/tex.ts`, jadi browser yang menata
+   letaknya, bukan file ini. Yang diatur di sini hanya ukuran, jarak, dan
    kotak jawaban di sekelilingnya.
 
    `math-style: normal` menjaga pecahan pada rumus sebaris tetap seukuran
@@ -773,12 +773,12 @@ th .sortable.on::after { content: ' ↓'; }
   math-style: normal;
 }
 
-/* Rumus perlu font yang punya tabel OpenType MATH. Tanpanya peramban tak bisa
+/* Rumus perlu font yang punya tabel OpenType MATH. Tanpanya browser tak bisa
    meregangkan kurung dan garis determinan mengikuti tinggi isinya, sehingga
    matriks 3x3 tampil di antara dua garis sependek satu huruf. Nama-nama di
    bawah adalah font matematika yang lazim ada — Cambria Math ikut Windows,
    STIX Two Math ikut banyak pemasangan TeX — dan `math` di ujung adalah kata
-   kunci CSS untuk font matematika bawaan peramban. */
+   kunci CSS untuk font matematika bawaan browser. */
 .tex math {
   font-family: 'Cambria Math', 'STIX Two Math', 'Latin Modern Math', math, serif;
 }
@@ -1033,7 +1033,7 @@ th .sortable.on::after { content: ' ↓'; }
 /* Label pada gambar diset seperti matematika ditulis: yang miring hanya
    variabelnya. `tan x` berarti satu huruf miring, bukan empat; `proj`,
    `puncak`, angka, dan tanda operasi tetap tegak. Pembagiannya dikerjakan
-   `LabelText` di `components/Figure.tsx`; berkas ini hanya memberi rupanya.
+   `LabelText` di `components/Figure.tsx`; file ini hanya memberi rupanya.
 
    Times New Roman dipilih karena itulah huruf yang dipakai hampir semua buku
    matematika untuk variabel — dan mata yang terbiasa membacanya di kertas
@@ -1153,7 +1153,7 @@ th .sortable.on::after { content: ' ↓'; }
   text-align: left;
 }
 
-/* Papan simbol: bukan papan ketik kedua, hanya karakter yang canggung diketik.
+/* Papan simbol: bukan keyboard kedua, hanya karakter yang canggung diketik.
    Yang disisipkannya sama persis dengan yang bisa diketik sendiri, sehingga
    ia sekaligus memberi tahu bahwa `√` dan `π` memang boleh dipakai. */
 .mathkeys {

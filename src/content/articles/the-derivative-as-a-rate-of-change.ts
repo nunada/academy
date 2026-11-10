@@ -40,7 +40,7 @@ export const body: ArticleBody = {
     ),
     L(
       T`A large $|f'|$ means that $f$ is sensitive to its input: a small change in $x$ makes a large change in $f(x)$.`,
-      T`$|f'|$ yang besar berarti $f$ peka terhadap masukannya: perubahan kecil pada $x$ membuat perubahan besar pada $f(x)$.`,
+      T`$|f'|$ yang besar berarti $f$ peka terhadap input-nya: perubahan kecil pada $x$ membuat perubahan besar pada $f(x)$.`,
     ),
     L(
       T`From data, a derivative is a difference quotient, and every differentiation amplifies measurement noise: position noise of $0.01$ m becomes a velocity error of $0.7$ m/s and an acceleration error of about $60$ m/s².`,
@@ -253,7 +253,7 @@ The derivative is $\frac{dy}{dp}=2-2p$, close to $2$ for $p$ near $0$ and close 
 **Braking distance.** A model of the total stopping distance of a car at speed $V$ km/h is $s=0.21V+0.0063V^2$ meters: the linear part is the distance covered while the driver reacts, the quadratic part the braking distance. The derivative is $\frac{ds}{dV}=0.21+0.0126V$, which is $0.84$ meters per km/h at $50$ km/h and $1.47$ meters per km/h at $100$ km/h. The stopping distance is much more sensitive to speed when you are already going fast: from $50$ to $100$ km/h the speed doubles but the stopping distance goes from $26.25$ m to $84$ m, more than three times as far.
 
 **How to read a sensitivity.** The derivative is an absolute rate (units of $f$ per unit of $x$), so it is the right measure when the units mean something to you: meters of distance for each km/h. A graph of $f'$ next to the graph of $f$, as in [graphing the derivative](article:the-derivative-as-a-function#graphing-the-derivative), shows at a glance where $f$ is most and least sensitive.`,
-            T`**Fungsi peka terhadap masukannya di tempat perubahan kecil pada $x$ menghasilkan perubahan besar pada $f(x)$, dan turunan $f'(x)$ mengukur tepat itu: makin besar $|f'(x)|$, makin peka $f$ di $x$.** Pada grafik itu adalah kecuraman garis singgung.
+            T`**Fungsi peka terhadap input-nya di tempat perubahan kecil pada $x$ menghasilkan perubahan besar pada $f(x)$, dan turunan $f'(x)$ mengukur tepat itu: makin besar $|f'(x)|$, makin peka $f$ di $x$.** Pada grafik itu adalah kecuraman garis singgung.
 
 **Kacang polong dan gen.** Gregor Mendel menemukan bahwa jika $p$ (di antara $0$ dan $1$) adalah frekuensi gen kulit halus pada kacang polong dan $1-p$ frekuensi gen kulit keriput, maka proporsi kacang halus pada generasi berikutnya adalah
 $$y=2p(1-p)+p^2=2p-p^2.$$
@@ -407,7 +407,7 @@ int main() {
 - **Galileo.** Dalam *Discourses on Two New Sciences* (1638) Galileo menunjukkan bahwa benda yang jatuh dari keadaan diam menempuh jarak sebanding dengan kuadrat waktu, $s\propto t^2$, yaitu hukum $s=\frac12gt^2$ yang dipakai di sini. Ia menemukannya dengan menggelindingkan bola pada papan miring, yang memperlambat geraknya cukup untuk diukur waktunya.
 - **Para Kalkulator Oxford.** Para sarjana di Merton College, Oxford, pada 1330-an membedakan gerak beraturan dari gerak tak beraturan dan mendefinisikan "kecepatan sesaat" dengan kata-kata; teorema kecepatan rata-rata mereka digambarkan sebagai grafik laju terhadap waktu oleh Nicole Oresme sekitar 1350, berabad-abad sebelum turunan.
 - **Newton.** Pada 1660-an Isaac Newton memperlakukan kecepatan sebagai *fluksi* posisi, laju perubahan besaran yang mengalir, dan percepatan sebagai fluksi kecepatan: turunan ditemukan, sebagian, untuk membicarakan gerak.
-- **Ekonomi marjinal.** Augustin Cournot memakai turunan dalam bukunya tahun 1838 tentang teori matematika kekayaan untuk mencari keluaran yang memaksimalkan laba perusahaan. Kata "marjinal" dalam ekonomi berasal dari Friedrich von Wieser (1884), dan "revolusi marjinal" pada 1870-an menjadikannya pusat.`,
+- **Ekonomi marjinal.** Augustin Cournot memakai turunan dalam bukunya tahun 1838 tentang teori matematika kekayaan untuk mencari output yang memaksimalkan laba perusahaan. Kata "marjinal" dalam ekonomi berasal dari Friedrich von Wieser (1884), dan "revolusi marjinal" pada 1870-an menjadikannya pusat.`,
           ),
         },
       ],
@@ -673,7 +673,7 @@ int main() {
     { term: L('Displacement', 'Perpindahan'), definition: L('The change in position from the start to the end of a time interval, found by subtracting the starting position from the final one; it can be smaller than the distance travelled.', 'Perubahan posisi dari awal sampai akhir selang waktu, diperoleh dengan mengurangkan posisi awal dari posisi akhir; ia dapat lebih kecil daripada jarak yang ditempuh.') },
     { term: L('Marginal cost', 'Biaya marjinal'), definition: L('The derivative of the cost of production with respect to the number of units produced, which approximates the cost of making one more unit.', 'Turunan biaya produksi terhadap banyak satuan yang diproduksi, yang menghampiri biaya membuat satu satuan lagi.') },
     { term: L('Marginal revenue', 'Pendapatan marjinal'), definition: L('The derivative of revenue with respect to the number of units sold, which approximates the extra revenue from selling one more unit.', 'Turunan pendapatan terhadap banyak satuan yang terjual, yang menghampiri pendapatan tambahan dari menjual satu satuan lagi.') },
-    { term: L('Sensitivity to change', 'Kepekaan terhadap perubahan'), definition: L('How strongly a function responds to a small change in its input, measured by the size of its derivative: the steeper the graph, the more sensitive the function.', 'Seberapa kuat suatu fungsi menanggapi perubahan kecil pada masukannya, diukur dengan besar turunannya: makin curam grafik, makin peka fungsi itu.') },
+    { term: L('Sensitivity to change', 'Kepekaan terhadap perubahan'), definition: L('How strongly a function responds to a small change in its input, measured by the size of its derivative: the steeper the graph, the more sensitive the function.', 'Seberapa kuat suatu fungsi menanggapi perubahan kecil pada input-nya, diukur dengan besar turunannya: makin curam grafik, makin peka fungsi itu.') },
   ],
 
   howTo: [

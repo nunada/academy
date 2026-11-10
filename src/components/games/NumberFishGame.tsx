@@ -325,7 +325,7 @@ export default function NumberFishGame() {
         style={immersive ? undefined : ({ aspectRatio: `${w.W} / ${w.H}` } as CSSProperties)}
         tabIndex={0}
         role="group"
-        aria-label={tc(L('The pond. Swim with the mouse, a finger or the arrow keys, and eat the fish with the smaller number.', 'Kolam. Berenanglah dengan tetikus, jari, atau tombol panah, dan makan ikan yang bilangannya lebih kecil.'))}
+        aria-label={tc(L('The pond. Swim with the mouse, a finger or the arrow keys, and eat the fish with the smaller number.', 'Kolam. Berenanglah dengan mouse, jari, atau tombol panah, dan makan ikan yang bilangannya lebih kecil.'))}
         onPointerMove={aim}
         onPointerDown={aim}
         onKeyDown={onKeyDown}
@@ -389,7 +389,7 @@ export default function NumberFishGame() {
                   {tc(L('Start', 'Mulai'))}
                 </button>
                 <ul>
-                  <li>{tc(L('Swim with the mouse, a finger, or the arrow keys or W A S D.', 'Berenanglah dengan tetikus, jari, atau tombol panah atau W A S D.'))}</li>
+                  <li>{tc(L('Swim with the mouse, a finger, or the arrow keys or W A S D.', 'Berenanglah dengan mouse, jari, atau tombol panah atau W A S D.'))}</li>
                   <li>{tc(L('Your fish eats a fish with a smaller number than its own.', 'Ikanmu memakan ikan yang bilangannya lebih kecil daripada miliknya.'))}</li>
                   <li>{tc(L('A fish with a larger number eats you: you lose a life.', 'Ikan yang bilangannya lebih besar memakanmu: kamu kehilangan satu nyawa.'))}</li>
                   <li className="more">{tc(L('Equal numbers, written in another way, leave each other alone.', 'Bilangan yang sama, ditulis dengan cara lain, saling membiarkan.'))}</li>

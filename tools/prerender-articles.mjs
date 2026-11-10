@@ -264,7 +264,7 @@ function listBodyHtml(lang) {
 
 const FOOT = {
   en: { about: 'About', articles: 'Articles', games: 'Games', guide: 'Guide', tagline: 'Learn math and coding, step by step.', nav: 'About and links' },
-  id: { about: 'Tentang', articles: 'Artikel', games: 'Permainan', guide: 'Panduan', tagline: 'Belajar matematika dan coding, langkah demi langkah.', nav: 'Tentang dan tautan' },
+  id: { about: 'Tentang', articles: 'Artikel', games: 'Permainan', guide: 'Panduan', tagline: 'Belajar matematika dan coding, langkah demi langkah.', nav: 'Tentang dan link' },
 }
 
 /** The line of links the running app shows at the bottom of every page, so a crawler that lands on any page can reach the About page. */

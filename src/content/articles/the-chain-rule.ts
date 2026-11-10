@@ -516,7 +516,7 @@ print(sp.simplify(sp.diff((5 * x**3 - x**4) ** 7, x)))   # x**20*(105 - 28*x)*(x
 Applying the rule from the outside in, to a program of millions of steps, is *reverse-mode* automatic differentiation, which is what *backpropagation* in a neural network does: one pass computes the output, and one pass back multiplies the rates of the layers.`,
             T`**Sebuah program dapat menerapkan aturan rantai pada *bilangan* dan bukan rumus.** Bawa bersama setiap nilai turunannya, sepasang $(v,d)$, dan beri tiap operasi aturan rantainya: untuk sinus, $(v,d)\mapsto\left(\sin v,\ \cos v\cdot d\right)$, yaitu $f'(u)\cdot u'$ lagi. Mulai dengan $x=(0{,}7;1)$, karena $x$ berturunan $1$, dan program menghitung $\sin\left(x^2+e^x\right)$ dan turunannya sekaligus. Inilah *diferensiasi otomatis mode maju*. Hasilnya $-2{,}742554$, sama dengan rumus $\cos\left(x^2+e^x\right)\left(2x+e^x\right)$ di $x=0{,}7$ dan sama dengan selisih terpusat.
 
-Menerapkan aturan itu dari luar ke dalam, pada program dengan jutaan langkah, adalah diferensiasi otomatis *mode mundur*, yang dilakukan *propagasi balik* dalam jaringan saraf: satu lintasan menghitung keluaran, dan satu lintasan balik mengalikan laju tiap lapisan.`,
+Menerapkan aturan itu dari luar ke dalam, pada program dengan jutaan langkah, adalah diferensiasi otomatis *mode mundur*, yang dilakukan *propagasi balik* dalam jaringan saraf: satu lintasan menghitung output, dan satu lintasan balik mengalikan laju tiap lapisan.`,
           ),
         },
         {
@@ -617,7 +617,7 @@ int main() {
 - **Bernoulli dan l'Hôpital.** Johann Bernoulli mengajarkan kalkulus baru kepada Marquis de l'Hôpital, yang buku teksnya pada 1696, *Analyse des infiniment petits*, menyebarkannya ke seluruh Eropa.
 - **Lagrange.** Notasi aksen $f'(x)$, yang menulis aturan rantai sebagai $f'(g(x))\cdot g'(x)$ dan menunjukkan di mana tiap turunan diambil, diperkenalkan oleh Joseph-Louis Lagrange.
 - **Bukti tanpa celah.** Pada abad ke-20 cara Constantin Carathéodory mendefinisikan turunan, $f(x)-f(a)=\varphi(x)(x-a)$ dengan $\varphi$ kontinu di $a$, memberi bukti singkat aturan rantai yang tidak pernah membagi dengan $\Delta u$.
-- **Propagasi balik.** Menerapkan aturan itu dari keluaran kembali ke masukan suatu perhitungan, dalam mode mundur, diuraikan oleh Seppo Linnainmaa pada 1970, dan David Rumelhart, Geoffrey Hinton, dan Ronald Williams menjadikannya cara baku melatih jaringan saraf pada 1986.`,
+- **Propagasi balik.** Menerapkan aturan itu dari output kembali ke input suatu perhitungan, dalam mode mundur, diuraikan oleh Seppo Linnainmaa pada 1970, dan David Rumelhart, Geoffrey Hinton, dan Ronald Williams menjadikannya cara baku melatih jaringan saraf pada 1986.`,
           ),
         },
       ],
@@ -878,8 +878,8 @@ int main() {
   ],
 
   glossary: [
-    { term: L('Composite function', 'Fungsi komposit'), definition: L('A function formed by applying one function to the output of another, written f of g of x, where the inside function g is applied first and the outside function f last.', 'Fungsi yang dibentuk dengan menerapkan satu fungsi pada keluaran fungsi lain, ditulis f dari g dari x, dengan fungsi dalam g diterapkan lebih dulu dan fungsi luar f terakhir.') },
-    { term: L('Inside function', 'Fungsi dalam'), definition: L('The function in a composite that is applied first, so that its output is the input of the outside function; it is the u in y equals f of u.', 'Fungsi dalam suatu komposit yang diterapkan lebih dulu, sehingga keluarannya menjadi masukan fungsi luar; ia adalah u pada y sama dengan f dari u.') },
+    { term: L('Composite function', 'Fungsi komposit'), definition: L('A function formed by applying one function to the output of another, written f of g of x, where the inside function g is applied first and the outside function f last.', 'Fungsi yang dibentuk dengan menerapkan satu fungsi pada output fungsi lain, ditulis f dari g dari x, dengan fungsi dalam g diterapkan lebih dulu dan fungsi luar f terakhir.') },
+    { term: L('Inside function', 'Fungsi dalam'), definition: L('The function in a composite that is applied first, so that its output is the input of the outside function; it is the u in y equals f of u.', 'Fungsi dalam suatu komposit yang diterapkan lebih dulu, sehingga output-nya menjadi input fungsi luar; ia adalah u pada y sama dengan f dari u.') },
     { term: L('Outside function', 'Fungsi luar'), definition: L('The function in a composite that is applied last, to the result of the inside function; it is the f in y equals f of u.', 'Fungsi pada suatu komposit yang diterapkan terakhir, pada hasil fungsi dalam; ia adalah f pada y sama dengan f dari u.') },
     { term: L('Chain rule', 'Aturan rantai'), definition: L('The rule that the derivative of a composite function is the derivative of the outside function evaluated at the inside function, times the derivative of the inside function.', 'Aturan bahwa turunan suatu fungsi komposit adalah turunan fungsi luar yang dihitung pada fungsi dalam, dikali turunan fungsi dalam.') },
     { term: L('Power chain rule', 'Aturan rantai pangkat'), definition: L('The chain rule for a power of a function: the derivative of u to the n is n times u to the n minus 1 times the derivative of u.', 'Aturan rantai untuk pangkat dari suatu fungsi: turunan u pangkat n adalah n kali u pangkat n dikurangi 1 kali turunan u.') },

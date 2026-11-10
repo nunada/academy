@@ -413,7 +413,7 @@ export const module2: Module = {
               },
               hint: {
                 en: 'A function can only call a helper that already exists above it, and that helper in turn needs the library it calls already imported before it runs.',
-                id: 'Sebuah fungsi hanya bisa memanggil pembantu yang sudah ada di atasnya, dan pembantu itu sendiri butuh pustaka yang dipanggilnya sudah diimpor sebelum ia berjalan.',
+                id: 'Sebuah fungsi hanya bisa memanggil pembantu yang sudah ada di atasnya, dan pembantu itu sendiri butuh library yang dipanggilnya sudah diimpor sebelum ia berjalan.',
               },
             },
             {

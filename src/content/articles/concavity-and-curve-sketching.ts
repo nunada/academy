@@ -497,7 +497,7 @@ x=3.0; f''=36.00; local minimum
 - **l'Hôpital, 1696.** Buku teks Guillaume de l'Hôpital *Analyse des infiniment petits*, yang pertama tentang kalkulus diferensial, menerapkan metode itu untuk mencari titik belok dan titik puncak kurva yang diberikan oleh persamaan.
 - **Maclaurin, 1742.** *Treatise of Fluxions* karya Colin Maclaurin menata uji maksimum, minimum, dan titik belok dari tanda fluksi pertama dan kedua, dalam bentuk yang masih diajarkan.
 - **Euler, 1748.** *Introductio in analysin infinitorum* karya Leonhard Euler mempelajari kurva lewat asimtot dan cabangnya, bagian prosedur yang berasal dari aljabar dan bukan dari turunan.
-- **Sekarang.** Perangkat lunak grafik menggambar kurva titik demi titik; langkah-langkah sketsa masih menjadi cara memeriksa bahwa suatu plot menunjukkan setiap ekstrem, setiap titik belok, dan setiap asimtot.`,
+- **Sekarang.** Software grafik menggambar kurva titik demi titik; langkah-langkah sketsa masih menjadi cara memeriksa bahwa suatu plot menunjukkan setiap ekstrem, setiap titik belok, dan setiap asimtot.`,
           ),
         },
       ],

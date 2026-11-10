@@ -310,7 +310,7 @@ export const module4: Module = {
               title: { en: 'A transaction is all or nothing', id: 'Transaksi bersifat semua atau tidak sama sekali' },
               body: {
                 en: 'Several statements that only make sense together belong in a transaction. Between `BEGIN` and `COMMIT` nothing is final; `ROLLBACK` throws the lot away as though it never happened. If the power fails halfway through, the database also rolls back — you never end up with half a transfer.',
-                id: 'Beberapa pernyataan yang hanya bermakna bersama-sama sebaiknya dibungkus transaksi. Di antara `BEGIN` dan `COMMIT` tak ada yang final; `ROLLBACK` membuang semuanya seolah tak pernah terjadi. Kalau listrik mati di tengah jalan, basis datanya juga membatalkan — kamu tak pernah berakhir dengan setengah pemindahan.',
+                id: 'Beberapa pernyataan yang hanya bermakna bersama-sama sebaiknya dibungkus transaksi. Di antara `BEGIN` dan `COMMIT` tak ada yang final; `ROLLBACK` membuang semuanya seolah tak pernah terjadi. Kalau listrik mati di tengah jalan, database-nya juga membatalkan — kamu tak pernah berakhir dengan setengah pemindahan.',
               },
               code: {
                 en:
@@ -342,7 +342,7 @@ export const module4: Module = {
               answer: 0,
               explain: {
                 en: 'No WHERE means no filter, and no filter means every row. The database does exactly what you asked.',
-                id: 'Tanpa WHERE berarti tanpa penyaring, dan tanpa penyaring berarti semua baris. Basis datanya melakukan persis yang kamu minta.',
+                id: 'Tanpa WHERE berarti tanpa penyaring, dan tanpa penyaring berarti semua baris. Database-nya melakukan persis yang kamu minta.',
               },
               hint: {
                 en: 'Notice this statement has no WHERE clause at all — think about what a missing WHERE means for how many rows are affected.',

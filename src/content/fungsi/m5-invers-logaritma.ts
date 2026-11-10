@@ -34,10 +34,10 @@ export const module5: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'Never the same output twice', id: 'Tak pernah keluaran yang sama dua kali' },
+              title: { en: 'Never the same output twice', id: 'Tak pernah output yang sama dua kali' },
               body: {
                 en: 'A function is **one-to-one** if different inputs always give different outputs: $f(x_1) \\neq f(x_2)$ whenever $x_1 \\neq x_2$.\n\nThat is exactly the condition for an inverse to exist. If $f$ sent both $2$ and $-2$ to $4$, then a rule undoing $f$ would have to send $4$ to both — and that is not a function.\n\nThe test is the mirror image of the vertical line test: a function is one-to-one exactly when **no horizontal line** meets its graph more than once.\n\n$f(x) = x^2$ fails on $R$. But restrict it to $[0, \\infty)$ and it passes, and its inverse is $\\sqrt{x}$. That is where the convention that $\\sqrt{4}$ means $2$ and not $-2$ comes from: somebody had to choose a half, and the positive one was chosen.',
-                id: 'Sebuah fungsi disebut **satu-satu** bila masukan yang berbeda selalu memberi keluaran yang berbeda: $f(x_1) \\neq f(x_2)$ setiap kali $x_1 \\neq x_2$.\n\nItulah persis syarat agar inversnya ada. Kalau $f$ mengirim $2$ maupun $-2$ ke $4$, maka aturan yang membalik $f$ harus mengirim $4$ ke keduanya — dan itu bukan fungsi.\n\nUjinya adalah bayangan cermin dari uji garis tegak: sebuah fungsi satu-satu tepat ketika **tak ada garis mendatar** yang memotong grafiknya lebih dari sekali.\n\n$f(x) = x^2$ gagal pada $R$. Tetapi batasi ke $[0, \\infty)$ dan ia lolos, dan inversnya adalah $\\sqrt{x}$. Dari situlah asal kesepakatan bahwa $\\sqrt{4}$ berarti $2$ dan bukan $-2$: seseorang harus memilih salah satu belahan, dan yang positif yang dipilih.',
+                id: 'Sebuah fungsi disebut **satu-satu** bila input yang berbeda selalu memberi output yang berbeda: $f(x_1) \\neq f(x_2)$ setiap kali $x_1 \\neq x_2$.\n\nItulah persis syarat agar inversnya ada. Kalau $f$ mengirim $2$ maupun $-2$ ke $4$, maka aturan yang membalik $f$ harus mengirim $4$ ke keduanya — dan itu bukan fungsi.\n\nUjinya adalah bayangan cermin dari uji garis tegak: sebuah fungsi satu-satu tepat ketika **tak ada garis mendatar** yang memotong grafiknya lebih dari sekali.\n\n$f(x) = x^2$ gagal pada $R$. Tetapi batasi ke $[0, \\infty)$ dan ia lolos, dan inversnya adalah $\\sqrt{x}$. Dari situlah asal kesepakatan bahwa $\\sqrt{4}$ berarti $2$ dan bukan $-2$: seseorang harus memilih salah satu belahan, dan yang positif yang dipilih.',
               },
               figure: {
                 dim: 2,
@@ -74,11 +74,11 @@ export const module5: Module = {
               answer: 1,
               explain: {
                 en: '$x^3$ is increasing everywhere, so it never repeats a value. The other three all take the same value at two different inputs — cosine does it infinitely often, being periodic.',
-                id: '$x^3$ naik di mana-mana, jadi ia tak pernah mengulang satu nilai pun. Tiga lainnya sama-sama mencapai nilai yang sama pada dua masukan berbeda — cosinus bahkan melakukannya tak berhingga kali, karena periodik.',
+                id: '$x^3$ naik di mana-mana, jadi ia tak pernah mengulang satu nilai pun. Tiga lainnya sama-sama mencapai nilai yang sama pada dua input berbeda — cosinus bahkan melakukannya tak berhingga kali, karena periodik.',
               },
               hint: {
                 en: 'Try a positive input and its negative for each rule — does the function ever produce the same output from two different inputs?',
-                id: 'Coba satu masukan positif dan negatifnya untuk tiap aturan — apakah fungsinya pernah menghasilkan keluaran yang sama dari dua masukan berbeda?',
+                id: 'Coba satu input positif dan negatifnya untuk tiap aturan — apakah fungsinya pernah menghasilkan output yang sama dari dua input berbeda?',
               },
             },
             {
@@ -107,7 +107,7 @@ export const module5: Module = {
               answer: 0,
               explain: {
                 en: 'The dashed line meets the curve three times, so three different inputs share the output 1. A cubic is not automatically one-to-one — this one is not, even though $x^3$ itself is.',
-                id: 'Garis putus-putusnya memotong kurvanya tiga kali, jadi tiga masukan berbeda berbagi keluaran 1. Fungsi kubik tidak otomatis satu-satu — yang ini tidak, sekalipun $x^3$ sendiri satu-satu.',
+                id: 'Garis putus-putusnya memotong kurvanya tiga kali, jadi tiga input berbeda berbagi output 1. Fungsi kubik tidak otomatis satu-satu — yang ini tidak, sekalipun $x^3$ sendiri satu-satu.',
               },
               hint: {
                 en: 'Count how many times the dashed horizontal line actually touches the curve in the picture, and recall what the horizontal line test says about that count.',
@@ -119,7 +119,7 @@ export const module5: Module = {
               id: 'm1',
               prompt: {
                 en: 'For $f(x) = x^2$, find the two inputs that share the output 25, then the one that survives on $[0, \\infty)$.',
-                id: 'Untuk $f(x) = x^2$, tentukan dua masukan yang berbagi keluaran 25, lalu satu yang bertahan pada $[0, \\infty)$.',
+                id: 'Untuk $f(x) = x^2$, tentukan dua input yang berbagi output 25, lalu satu yang bertahan pada $[0, \\infty)$.',
               },
               blanks: [
                 { label: 'x =', answer: -5 },
@@ -131,7 +131,7 @@ export const module5: Module = {
               ],
               explain: {
                 en: 'Two inputs, one output — which is precisely why $x^2$ has no inverse until you throw one of them away.',
-                id: 'Dua masukan, satu keluaran — dan justru itulah sebabnya $x^2$ tak punya invers sebelum salah satunya dibuang.',
+                id: 'Dua input, satu output — dan justru itulah sebabnya $x^2$ tak punya invers sebelum salah satunya dibuang.',
               },
             },
           ],
@@ -204,7 +204,7 @@ export const module5: Module = {
               },
               hint: {
                 en: 'One of these lines still has $y$ playing the role of the original output; another has already traded the roles of $x$ and $y$. The trade has to happen before you can isolate $y$ as the new formula.',
-                id: 'Salah satu dari baris ini masih memiliki $y$ berperan sebagai keluaran aslinya; baris lain sudah menukar peran $x$ dan $y$. Pertukaran itu harus terjadi sebelum kamu bisa mengisolasi $y$ sebagai rumus barunya.',
+                id: 'Salah satu dari baris ini masih memiliki $y$ berperan sebagai output aslinya; baris lain sudah menukar peran $x$ dan $y$. Pertukaran itu harus terjadi sebelum kamu bisa mengisolasi $y$ sebagai rumus barunya.',
               },
             },
             {
@@ -258,7 +258,7 @@ export const module5: Module = {
                   en: 'The first box wants the rule itself. Swap and solve: $x = 2y + 3$.',
                   id: 'Kotak pertama meminta aturannya sendiri. Tukar lalu selesaikan: $x = 2y + 3$.',
                 },
-                { en: 'For the others, ask "what input would $f$ have needed to give this?"', id: 'Untuk sisanya, tanyakan "masukan apa yang dibutuhkan $f$ untuk menghasilkan ini?"' },
+                { en: 'For the others, ask "what input would $f$ have needed to give this?"', id: 'Untuk sisanya, tanyakan "input apa yang dibutuhkan $f$ untuk menghasilkan ini?"' },
               ],
               solution: [
                 'f^{-1}(x) = \\tfrac{x-3}{2}',
@@ -380,7 +380,7 @@ export const module5: Module = {
               ],
               hints: [
                 { en: 'Ask which angle **in the allowed range** has that value.', id: 'Tanyakan sudut mana **dalam range yang diizinkan** yang punya nilai itu.' },
-                { en: 'Arccosine must land in $[0, \\pi]$, so a negative input gives an obtuse angle.', id: 'Arccosinus harus mendarat di $[0, \\pi]$, jadi masukan negatif memberi sudut tumpul.' },
+                { en: 'Arccosine must land in $[0, \\pi]$, so a negative input gives an obtuse angle.', id: 'Arccosinus harus mendarat di $[0, \\pi]$, jadi input negatif memberi sudut tumpul.' },
               ],
               solution: [
                 '\\arcsin\\tfrac{1}{2} = \\tfrac{\\pi}{6}, \\qquad \\arccos\\left(-\\tfrac{1}{2}\\right) = \\tfrac{2\\pi}{3}',

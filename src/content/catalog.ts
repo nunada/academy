@@ -57,7 +57,7 @@ export const COURSES: CourseInfo[] = [
     title: { en: 'HTML', id: 'HTML' },
     tagline: {
       en: 'Structure a web page with the language browsers actually read.',
-      id: 'Menyusun halaman web dengan bahasa yang benar-benar dibaca peramban.',
+      id: 'Menyusun halaman web dengan bahasa yang benar-benar dibaca browser.',
     },
     icon: '📄',
     color: '#e16f47',
@@ -125,7 +125,7 @@ export const COURSES: CourseInfo[] = [
     title: { en: 'SQL', id: 'SQL' },
     tagline: {
       en: 'Ask a database questions and get exactly the rows you meant.',
-      id: 'Bertanya kepada basis data dan mendapatkan baris yang benar-benar kamu maksud.',
+      id: 'Bertanya kepada database dan mendapatkan baris yang benar-benar kamu maksud.',
     },
     icon: '🗄️',
     color: '#4f8b56',
@@ -643,7 +643,7 @@ export const PATHS: CareerPath[] = [
     title: { en: 'Front-End Developer', id: 'Front-End Developer' },
     blurb: {
       en: 'Everything the browser runs: structure, style, behavior, components.',
-      id: 'Semua yang dijalankan peramban: struktur, gaya, perilaku, komponen.',
+      id: 'Semua yang dijalankan browser: struktur, gaya, perilaku, komponen.',
     },
     icon: '🖼️',
     color: '#e16f47',
@@ -667,7 +667,7 @@ export const PATHS: CareerPath[] = [
     title: { en: 'Full-Stack Developer', id: 'Full-Stack Developer' },
     blurb: {
       en: 'Both halves, end to end — from the button to the database row.',
-      id: 'Kedua sisi, ujung ke ujung — dari tombolnya sampai baris basis datanya.',
+      id: 'Kedua sisi, ujung ke ujung — dari tombolnya sampai baris database-nya.',
     },
     icon: '🧱',
     color: '#dda52b',

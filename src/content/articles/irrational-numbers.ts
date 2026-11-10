@@ -639,7 +639,7 @@ Use ´Decimal´ or ´sympy´ for exactness, floats for speed, and never use a fl
 | Jebakan | Yang terjadi | Yang sebaiknya dilakukan |
 |---|---|---|
 | ´==´ pada hasil akar | ´Math.sqrt(2) ** 2 == 2´ salah | bandingkan dengan toleransi, ´math.isclose´ di Python |
-| Memercayai angka yang ditampilkan | ´math.pi´ berhenti setelah sekitar 16 angka | pakai ´decimal´ atau pustaka untuk lebih banyak |
+| Memercayai angka yang ditampilkan | ´math.pi´ berhenti setelah sekitar 16 angka | pakai ´decimal´ atau library untuk lebih banyak |
 | Menguji keirasionalan secara numerik | setiap float rasional, jadi program hanya dapat menebak | buktikan, atau faktorkan bilangan bulat di bawah akar |
 | ´22 / 7´ sebagai ´π´ | 3,142857… berbeda dari π pada desimal ketiga | pakai ´math.pi´, atau 355/113 bila perlu pecahan |
 | ´sqrt´ dari kuadrat sempurna | ´math.sqrt(16)´ memberi ´4.0´, sebuah float | pakai ´math.isqrt´ bila ingin bilangan bulat |
@@ -983,7 +983,7 @@ Pakai ´Decimal´ atau ´sympy´ untuk ketepatan, float untuk kecepatan, dan jan
       q: L('How are irrational numbers stored in a computer?', 'Bagaimana bilangan irasional disimpan di komputer?'),
       a: L(
         'They are not stored exactly. A floating-point number is always a fraction with a power of 2 as denominator, so a float such as math.pi is only a nearby rational number. For exact work use a symbolic library such as sympy, or compute as many digits as needed with decimal.',
-        'Bilangan irasional tidak disimpan secara eksak. Bilangan floating point selalu berupa pecahan berpenyebut pangkat 2, sehingga float seperti math.pi hanyalah bilangan rasional di dekatnya. Untuk kerja eksak pakai pustaka simbolik seperti sympy, atau hitung angka sebanyak perlu dengan decimal.',
+        'Bilangan irasional tidak disimpan secara eksak. Bilangan floating point selalu berupa pecahan berpenyebut pangkat 2, sehingga float seperti math.pi hanyalah bilangan rasional di dekatnya. Untuk kerja eksak pakai library simbolik seperti sympy, atau hitung angka sebanyak perlu dengan decimal.',
       ),
     },
     {

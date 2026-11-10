@@ -44,7 +44,7 @@ export const module1: Module = {
               title: { en: 'You write the three; the loop is ours', id: 'Kamu menulis yang tiga; loop-nya milik kami' },
               body: {
                 en: '`start()` gives the starting state. `update(state, keys, dt)` gives the next one. `draw(state)` says what to draw. You never write the loop, never clear the screen, never read the keyboard yourself — you are handed the keys that are down and the time that passed, and you return data.',
-                id: '`start()` memberi keadaan awalnya. `update(state, keys, dt)` memberi keadaan berikutnya. `draw(state)` menyatakan apa yang digambar. Kamu tak pernah menulis loop-nya, tak pernah membersihkan layar, tak pernah membaca papan ketik sendiri — kamu diberi tombol yang sedang ditekan dan waktu yang berlalu, lalu kamu mengembalikan data.',
+                id: '`start()` memberi keadaan awalnya. `update(state, keys, dt)` memberi keadaan berikutnya. `draw(state)` menyatakan apa yang digambar. Kamu tak pernah menulis loop-nya, tak pernah membersihkan layar, tak pernah membaca keyboard sendiri — kamu diberi tombol yang sedang ditekan dan waktu yang berlalu, lalu kamu mengembalikan data.',
               },
               code:
                 'def start():\n' +
@@ -60,7 +60,7 @@ export const module1: Module = {
               title: { en: 'draw returns data, it does not paint', id: 'draw mengembalikan data, ia tidak melukis' },
               body: {
                 en: '`draw` hands back a **list of drawing commands** — plain dictionaries. It does not touch a screen. That is what lets a check call it with a made-up state and look at what came back, and it is why the same function would work just as well drawing to a window, a file, or nothing at all.',
-                id: '`draw` mengembalikan **daftar perintah gambar** — dictionary biasa. Ia tak menyentuh layar. Itulah yang membuat sebuah pemeriksaan bisa memanggilnya dengan keadaan karangan lalu melihat apa yang kembali, dan itulah sebabnya fungsi yang sama akan sama baiknya menggambar ke jendela, ke berkas, atau ke mana pun.',
+                id: '`draw` mengembalikan **daftar perintah gambar** — dictionary biasa. Ia tak menyentuh layar. Itulah yang membuat sebuah pemeriksaan bisa memanggilnya dengan keadaan karangan lalu melihat apa yang kembali, dan itulah sebabnya fungsi yang sama akan sama baiknya menggambar ke jendela, ke file, atau ke mana pun.',
               },
               code:
                 '{"shape": "box", "x": 10, "y": 20, "w": 30, "h": 40, "color": "#ef8f70"}\n' +
@@ -219,7 +219,7 @@ export const module1: Module = {
               title: { en: 'Frames are not evenly spaced', id: 'Bingkai tidak berjarak sama' },
               body: {
                 en: 'It is tempting to write `x = x + 2` and call it movement. But frames arrive when the machine can manage them — sixty a second on a good day, thirty on a busy one. Add a fixed amount per frame and your game runs at half speed on a slower computer, which is exactly the bug that made old PC games unplayable on new hardware.',
-                id: 'Menggoda sekali menulis `x = x + 2` lalu menyebutnya gerakan. Tapi bingkai datang saat mesinnya sanggup — enam puluh sedetik di hari baik, tiga puluh di hari sibuk. Tambahkan jumlah tetap tiap bingkai dan gamemu berjalan setengah kecepatan di komputer yang lebih lambat, dan persis itulah kutu yang membuat game PC lama tak bisa dimainkan di perangkat keras baru.',
+                id: 'Menggoda sekali menulis `x = x + 2` lalu menyebutnya gerakan. Tapi bingkai datang saat mesinnya sanggup — enam puluh sedetik di hari baik, tiga puluh di hari sibuk. Tambahkan jumlah tetap tiap bingkai dan gamemu berjalan setengah kecepatan di komputer yang lebih lambat, dan persis itulah kutu yang membuat game PC lama tak bisa dimainkan di hardware baru.',
               },
               code: {
                 en: '# depends on the machine\nx = x + 2\n\n# depends on time\nx = x + 80 * dt',
@@ -648,7 +648,7 @@ export const module1: Module = {
       title: { en: 'Controls', id: 'Kendali' },
       summary: {
         en: 'Read the keyboard, and keep the player on the field.',
-        id: 'Membaca papan ketik, dan menjaga pemain tetap di lapangan.',
+        id: 'Membaca keyboard, dan menjaga pemain tetap di lapangan.',
       },
       lessons: [
         {
@@ -712,7 +712,7 @@ export const module1: Module = {
                 { en: 'Nowhere — the two cancel out', id: 'Tidak ke mana-mana — keduanya saling meniadakan' },
                 { en: 'Left, because that is checked first', id: 'Ke kiri, karena itu yang diperiksa duluan' },
                 { en: 'Right, because that is checked last', id: 'Ke kanan, karena itu yang diperiksa terakhir' },
-                { en: 'It is an error', id: 'Itu galat' },
+                { en: 'It is an error', id: 'Itu error' },
               ],
               answer: 0,
               explain: {

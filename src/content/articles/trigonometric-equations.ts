@@ -746,7 +746,7 @@ none
 - **1609.** *Astronomia nova* karya Kepler memuat persamaan $M=E-e\sin E$ yang menghubungkan waktu sejak planet melewati titik terdekatnya ($M$) dengan posisinya ($E$). Tak ada rumus yang menyelesaikan $E$ dalam $M$, sehingga sejak itu persamaan ini diselesaikan dengan iterasi.
 - **1687.** *Principia* karya Newton memberi metode iteratif untuk soal Kepler, pendahulu metode yang kini memakai namanya.
 - **1824.** Bessel menulis $E$ sebagai deret fungsi yang kini memakai namanya, jawaban lain untuk persamaan yang sama.
-- **Sekarang.** Kalkulator dan pustaka mengembalikan nilai pokok ´asin´, ´acos´, dan ´atan´ dan menyerahkan keluarga lainnya kepada pengguna; persamaan seperti $\cos x=x$ diserahkan kepada bisection atau metode Newton.`,
+- **Sekarang.** Kalkulator dan library mengembalikan nilai pokok ´asin´, ´acos´, dan ´atan´ dan menyerahkan keluarga lainnya kepada pengguna; persamaan seperti $\cos x=x$ diserahkan kepada bisection atau metode Newton.`,
           ),
         },
       ],

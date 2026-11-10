@@ -234,7 +234,7 @@ export function BigOGrowth() {
       </div>
       <div className="wgtout" aria-live="polite">
         <p className="small">
-          {tc(L('The last column is the largest input that finishes within the time you chose. Exponential and factorial algorithms stop at a few dozen; a constant or logarithmic one never runs out in practice.', 'Kolom terakhir adalah masukan terbesar yang selesai dalam waktu yang kamu pilih. Algoritma eksponensial dan faktorial berhenti pada beberapa puluh; yang konstan atau logaritmik hampir tidak pernah kehabisan dalam praktik.'))}
+          {tc(L('The last column is the largest input that finishes within the time you chose. Exponential and factorial algorithms stop at a few dozen; a constant or logarithmic one never runs out in practice.', 'Kolom terakhir adalah input terbesar yang selesai dalam waktu yang kamu pilih. Algoritma eksponensial dan faktorial berhenti pada beberapa puluh; yang konstan atau logaritmik hampir tidak pernah kehabisan dalam praktik.'))}
         </p>
       </div>
     </Frame>
@@ -249,8 +249,8 @@ const ALGO_NAME: Record<string, { en: string; id: string }> = {
   sqrt: { en: 'loop to √n', id: 'perulangan sampai √n' },
   linear: { en: 'linear search', id: 'pencarian linear' },
   merge: { en: 'merge sort', id: 'merge sort' },
-  'insertion-best': { en: 'insertion sort, sorted input', id: 'insertion sort, masukan terurut' },
-  insertion: { en: 'insertion sort, reversed input', id: 'insertion sort, masukan terbalik' },
+  'insertion-best': { en: 'insertion sort, sorted input', id: 'insertion sort, input terurut' },
+  insertion: { en: 'insertion sort, reversed input', id: 'insertion sort, input terbalik' },
   bubble: { en: 'bubble sort', id: 'bubble sort' },
   pairs: { en: 'all pairs', id: 'semua pasangan' },
   'fib-memo': { en: 'Fibonacci with a memo', id: 'Fibonacci dengan memo' },

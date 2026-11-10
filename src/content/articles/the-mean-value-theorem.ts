@@ -768,7 +768,7 @@ slope=-0.2500 c=2.0000 f'(c)=-0.2500
       description: L('Use the Intermediate Value Theorem for existence and Rolle’s Theorem for uniqueness.', 'Pakai Teorema Nilai Antara untuk keberadaan dan Teorema Rolle untuk ketunggalan.'),
       steps: [
         { name: L('Define the function', 'Definisikan fungsinya'), text: L('Move everything to one side and call it f, so that the solutions are the zeros of f.', 'Pindahkan semuanya ke satu ruas dan namai f, sehingga penyelesaiannya adalah nol f.') },
-        { name: L('Show a sign change', 'Tunjukkan perubahan tanda'), text: L('Find two inputs where f has opposite signs; the Intermediate Value Theorem gives at least one zero between them.', 'Cari dua masukan tempat f berlawanan tanda; Teorema Nilai Antara memberi paling sedikit satu nol di antaranya.') },
+        { name: L('Show a sign change', 'Tunjukkan perubahan tanda'), text: L('Find two inputs where f has opposite signs; the Intermediate Value Theorem gives at least one zero between them.', 'Cari dua input tempat f berlawanan tanda; Teorema Nilai Antara memberi paling sedikit satu nol di antaranya.') },
         { name: L('Assume two zeros', 'Andaikan dua nol'), text: L('If there were two zeros, Rolle’s Theorem would put a zero of the derivative between them.', 'Jika ada dua nol, Teorema Rolle akan menempatkan nol turunan di antaranya.') },
         { name: L('Contradict it', 'Bantah'), text: L('Show that the derivative is never zero, for example because it is always positive; so there is only one zero.', 'Tunjukkan bahwa turunan tidak pernah nol, misalnya karena selalu positif; jadi hanya ada satu nol.') },
       ],

@@ -42,7 +42,7 @@ export const module1: Module = {
               title: { en: 'An annotation is a promise', id: 'Keterangan tipe adalah sebuah janji' },
               body: {
                 en: '`: number` after a name says "this will always be a number". From then on the compiler holds you to it, and every line that breaks the promise is reported with a file and a line number — before anybody runs anything.',
-                id: '`: number` setelah sebuah nama berarti "ini akan selalu berupa angka". Sejak saat itu kompiler menagihmu untuk janji itu, dan tiap baris yang melanggarnya dilaporkan lengkap dengan berkas dan nomor barisnya — sebelum ada yang menjalankan apa pun.',
+                id: '`: number` setelah sebuah nama berarti "ini akan selalu berupa angka". Sejak saat itu kompiler menagihmu untuk janji itu, dan tiap baris yang melanggarnya dilaporkan lengkap dengan file dan nomor barisnya — sebelum ada yang menjalankan apa pun.',
               },
               code: {
                 en: 'let amount: number = 5;\namount = 6;        // fine\namount = "six";    // Type \'string\' is not assignable to type \'number\'.',
@@ -78,7 +78,7 @@ export const module1: Module = {
               title: { en: 'any switches the checker off', id: 'any mematikan pemeriksanya' },
               body: {
                 en: '`any` means "stop checking this". It is occasionally the honest answer, and it is very often a way of making an error message go away without fixing anything — the mistake simply moves to runtime, where it costs more. In this course `any` is never the answer.',
-                id: '`any` berarti "berhenti memeriksa yang ini". Kadang ia jawaban yang jujur, dan sangat sering ia cara menghilangkan pesan galat tanpa membetulkan apa pun — kesalahannya sekadar pindah ke waktu jalan, tempat ia jadi lebih mahal. Di kursus ini `any` tidak pernah jadi jawabannya.',
+                id: '`any` berarti "berhenti memeriksa yang ini". Kadang ia jawaban yang jujur, dan sangat sering ia cara menghilangkan pesan error tanpa membetulkan apa pun — kesalahannya sekadar pindah ke waktu jalan, tempat ia jadi lebih mahal. Di kursus ini `any` tidak pernah jadi jawabannya.',
               },
               code: {
                 en:
@@ -575,7 +575,7 @@ export const module1: Module = {
           ],
         },
         hints: [
-          { en: 'The starter has no annotations at all, so it does not compile. Read the errors — they name the parameter.', id: 'Kode awalnya sama sekali tak punya keterangan tipe, jadi ia tak bisa dikompilasi. Baca galatnya — ia menyebut parameternya.' },
+          { en: 'The starter has no annotations at all, so it does not compile. Read the errors — they name the parameter.', id: 'Kode awalnya sama sekali tak punya keterangan tipe, jadi ia tak bisa dikompilasi. Baca error-nya — ia menyebut parameternya.' },
           { en: 'Height in cm becomes meters: height / 100.', id: 'Tinggi dalam cm menjadi meter: tinggi / 100.' },
           { en: 'One decimal place: Math.round(x * 10) / 10.', id: 'Satu angka desimal: Math.round(x * 10) / 10.' },
           { en: 'The bands are open at the bottom and closed at the top: below 18.5 is Underweight, and 18.5 itself is already Normal.', id: 'Rentangnya terbuka di bawah dan tertutup di atas: di bawah 18,5 itu Kurus, dan 18,5 sendiri sudah Normal.' },
@@ -657,10 +657,10 @@ export const module1: Module = {
             {
               kind: 'concept',
               id: 'c2',
-              title: { en: 'Missing is an error, extra is an error', id: 'Kurang itu galat, lebih juga galat' },
+              title: { en: 'Missing is an error, extra is an error', id: 'Kurang itu error, lebih juga error' },
               body: {
                 en: 'Leave a property out and you get **missing property**. Add one that was never declared and you get an **excess property** error — TypeScript takes an object literal you wrote right there as a statement of intent, and assumes the extra key is a typo, which it very often is.',
-                id: 'Hilangkan satu properti dan kamu mendapat **properti yang hilang**. Tambahkan satu yang tak pernah dideklarasikan dan kamu mendapat galat **properti berlebih** — TypeScript menganggap objek literal yang baru kamu tulis di situ sebagai pernyataan niat, dan mengira kunci tambahannya salah ketik, dan itu memang sangat sering benar.',
+                id: 'Hilangkan satu properti dan kamu mendapat **properti yang hilang**. Tambahkan satu yang tak pernah dideklarasikan dan kamu mendapat error **properti berlebih** — TypeScript menganggap objek literal yang baru kamu tulis di situ sebagai pernyataan niat, dan mengira kunci tambahannya salah ketik, dan itu memang sangat sering benar.',
               },
               code: {
                 en:
@@ -710,7 +710,7 @@ export const module1: Module = {
                 id: 'Dengan `terjual?: number`, apa yang terjadi pada `b.terjual + 1`?',
               },
               options: [
-                { en: "It is an error — `b.sold` might be undefined", id: 'Itu galat — `b.terjual` mungkin undefined' },
+                { en: "It is an error — `b.sold` might be undefined", id: 'Itu error — `b.terjual` mungkin undefined' },
                 { en: 'It gives 1 when the property is absent', id: 'Ia menghasilkan 1 ketika propertinya tak ada' },
                 { en: 'It gives NaN', id: 'Ia menghasilkan NaN' },
                 { en: 'It is fine — the ? only affects writing', id: 'Tidak apa-apa — tanda ? hanya memengaruhi penulisan' },

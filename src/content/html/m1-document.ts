@@ -32,7 +32,7 @@ export const module1: Module = {
               title: { en: 'HTML labels, it does not draw', id: 'HTML melabeli, bukan menggambar' },
               body: {
                 en: 'HTML is not a programming language and it is not a drawing tool. It **labels** text so the browser knows what each piece is. `<h1>` says "this is the main heading"; `<p>` says "this is a paragraph". The browser then decides how to show it.',
-                id: 'HTML bukan bahasa pemrograman dan bukan alat menggambar. Ia **melabeli** teks agar peramban tahu tiap bagian itu apa. `<h1>` berkata "ini judul utama"; `<p>` berkata "ini paragraf". Peramban lalu memutuskan cara menampilkannya.',
+                id: 'HTML bukan bahasa pemrograman dan bukan alat menggambar. Ia **melabeli** teks agar browser tahu tiap bagian itu apa. `<h1>` berkata "ini judul utama"; `<p>` berkata "ini paragraf". Browser lalu memutuskan cara menampilkannya.',
               },
               code: {
                 en: '<h1>Nunada Academy</h1>\n<p>Learn to code step by step.</p>',
@@ -46,7 +46,7 @@ export const module1: Module = {
               title: { en: 'Open, content, close', id: 'Buka, isi, tutup' },
               body: {
                 en: 'Most elements come in a pair: `<p>` opens and `</p>` closes — the slash is the only difference. Everything between them belongs to that element. Forget the closing tag and the browser guesses, usually wrongly.',
-                id: 'Sebagian besar elemen berpasangan: `<p>` membuka dan `</p>` menutup — garis miring satu-satunya pembeda. Semua di antaranya milik elemen itu. Lupakan tag penutupnya dan peramban akan menebak, biasanya keliru.',
+                id: 'Sebagian besar elemen berpasangan: `<p>` membuka dan `</p>` menutup — garis miring satu-satunya pembeda. Semua di antaranya milik elemen itu. Lupakan tag penutupnya dan browser akan menebak, biasanya keliru.',
               },
               code: {
                 en: '<p>This paragraph is closed correctly.</p>\n<p>So is this one.</p>',
@@ -196,7 +196,7 @@ export const module1: Module = {
               title: { en: 'What the head is for', id: 'Untuk apa head itu' },
               body: {
                 en: 'Nothing in `<head>` appears on the page. `<title>` names the browser tab and is what search results show. `<meta charset="utf-8">` tells the browser how to read the letters — leave it out and accented characters turn into rubbish.',
-                id: 'Tidak ada isi `<head>` yang muncul di halaman. `<title>` menamai tab peramban dan itulah yang ditampilkan hasil pencarian. `<meta charset="utf-8">` memberi tahu peramban cara membaca hurufnya — hilangkan ia dan huruf beraksen berubah jadi sampah.',
+                id: 'Tidak ada isi `<head>` yang muncul di halaman. `<title>` menamai tab browser dan itulah yang ditampilkan hasil pencarian. `<meta charset="utf-8">` memberi tahu browser cara membaca hurufnya — hilangkan ia dan huruf beraksen berubah jadi sampah.',
               },
               code: {
                 en: '<head>\n  <meta charset="utf-8">\n  <title>Title in the tab, not on the page</title>\n</head>',
@@ -209,7 +209,7 @@ export const module1: Module = {
               title: { en: 'Nesting must not cross', id: 'Sarang tidak boleh bersilang' },
               body: {
                 en: 'Elements sit inside one another like boxes. The one opened last must close first. Crossing them — `<b><i>text</b></i>` — is invalid, and browsers repair it in ways you did not ask for.',
-                id: 'Elemen bersarang satu di dalam lainnya seperti kotak. Yang dibuka terakhir harus ditutup pertama. Menyilangkannya — `<b><i>teks</b></i>` — tidak sah, dan peramban memperbaikinya dengan cara yang tidak kamu minta.',
+                id: 'Elemen bersarang satu di dalam lainnya seperti kotak. Yang dibuka terakhir harus ditutup pertama. Menyilangkannya — `<b><i>teks</b></i>` — tidak sah, dan browser memperbaikinya dengan cara yang tidak kamu minta.',
               },
               figure: {
                 dim: 2,
@@ -580,7 +580,7 @@ export const module1: Module = {
               title: { en: 'Quotations and code', id: 'Kutipan dan kode' },
               body: {
                 en: '`<blockquote>` is a quoted passage, `<code>` is a piece of code inside a sentence. Both let the browser and other tools understand what they are looking at.',
-                id: '`<blockquote>` adalah kutipan panjang, `<code>` adalah potongan kode di dalam kalimat. Keduanya membuat peramban dan alat lain paham apa yang sedang mereka lihat.',
+                id: '`<blockquote>` adalah kutipan panjang, `<code>` adalah potongan kode di dalam kalimat. Keduanya membuat browser dan alat lain paham apa yang sedang mereka lihat.',
               },
               code: {
                 en: '<blockquote>Good code explains itself.</blockquote>\n<p>Use <code>print()</code> to display text.</p>',
@@ -594,7 +594,7 @@ export const module1: Module = {
               title: { en: 'Comments and special characters', id: 'Komentar dan karakter khusus' },
               body: {
                 en: 'Anything between `<!--` and `-->` is a note for people reading the source; the browser ignores it. And because `<` starts a tag, writing a literal one needs `&lt;` — the same trick gives `&gt;` and `&amp;`.',
-                id: 'Apa pun di antara `<!--` dan `-->` adalah catatan untuk yang membaca sumbernya; peramban mengabaikannya. Dan karena `<` memulai sebuah tag, menulis tanda itu secara harfiah butuh `&lt;` — cara yang sama memberi `&gt;` dan `&amp;`.',
+                id: 'Apa pun di antara `<!--` dan `-->` adalah catatan untuk yang membaca sumbernya; browser mengabaikannya. Dan karena `<` memulai sebuah tag, menulis tanda itu secara harfiah butuh `&lt;` — cara yang sama memberi `&gt;` dan `&amp;`.',
               },
               code: {
                 en: '<!-- this does not show -->\n<p>Write &lt;p&gt; to make a paragraph.</p>',
@@ -639,7 +639,7 @@ export const module1: Module = {
               blanks: ['&lt;'],
               explain: {
                 en: '&lt; is the escape for a literal less-than sign, so the browser does not read it as a tag.',
-                id: '&lt; adalah bentuk lolos untuk tanda kurang-dari harfiah, agar peramban tidak membacanya sebagai tag.',
+                id: '&lt; adalah bentuk lolos untuk tanda kurang-dari harfiah, agar browser tidak membacanya sebagai tag.',
               },
               hint: {
                 en: 'The line already shows the entity for `>` further along — the one for `<` follows the same naming pattern, just for the opposite bracket.',

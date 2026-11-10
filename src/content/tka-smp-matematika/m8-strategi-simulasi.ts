@@ -771,7 +771,7 @@ export const module8: Module = {
           {
             prompt: L(
               'An online shop charges a shipping fee of Rp12,000 plus Rp8,000 for each kilogram. Siti paid Rp68,000 for shipping. How many kilograms was her parcel?',
-              'Sebuah toko daring menetapkan ongkos kirim Rp12.000 ditambah Rp8.000 untuk setiap kilogram. Siti membayar ongkos kirim Rp68.000. Berapa kilogram paket Siti?',
+              'Sebuah toko online-62412 menetapkan ongkos kirim Rp12.000 ditambah Rp8.000 untuk setiap kilogram. Siti membayar ongkos kirim Rp68.000. Berapa kilogram paket Siti?',
             ),
             blanks: [{ answer: 7, after: '\\text{ kg}' }],
             solution: [
@@ -1689,7 +1689,7 @@ export const module8: Module = {
               answer: [true, false, true, true],
               explain: L(
                 'Every member of the domain has exactly one arrow, so it is a function. The range holds only the outputs that are reached, $\\{2, 4, 6\\}$, so 8 does not belong to it (it is only in the codomain). The domain is $\\{1, 2, 3\\}$, and each output is double its input.',
-                'Setiap anggota domain mempunyai tepat satu panah, jadi ini fungsi. Daerah hasil hanya berisi keluaran yang terjangkau, $\\{2, 4, 6\\}$, jadi 8 bukan anggotanya (ia hanya ada di kodomain). Domainnya $\\{1, 2, 3\\}$, dan setiap keluaran adalah dua kali masukannya.',
+                'Setiap anggota domain mempunyai tepat satu panah, jadi ini fungsi. Daerah hasil hanya berisi output yang terjangkau, $\\{2, 4, 6\\}$, jadi 8 bukan anggotanya (ia hanya ada di kodomain). Domainnya $\\{1, 2, 3\\}$, dan setiap output adalah dua kali input-nya.',
               ),
               hint: L(
                 'Count the arrows leaving each number on the left. For the range, list only the numbers on the right that an arrow reaches.',

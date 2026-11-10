@@ -24,7 +24,7 @@ export function CompileReport({ result }: { result: TsCompile }) {
   return (
     <div style={{ marginTop: 12 }}>
       <div className="verdict ok" style={{ marginTop: 0 }}>
-        <b>{tc({ en: 'No type errors.', id: 'Tidak ada galat tipe.' })}</b>
+        <b>{tc({ en: 'No type errors.', id: 'Tidak ada error tipe.' })}</b>
       </div>
       <div className="io-label">{t('output')}</div>
       <LivePreview source={result.js} js height={160} />

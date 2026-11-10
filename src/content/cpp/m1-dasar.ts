@@ -46,7 +46,7 @@ export const module1: Module = {
               title: { en: 'cout and <<', id: 'cout dan <<' },
               body: {
                 en: '`cout` is the output stream — the thing that writes to the screen. The `<<` arrows point at it, feeding it one piece at a time. `endl` ends the line, the way pressing Enter would. Chain as many `<<` as you like on one line.',
-                id: '`cout` adalah aliran keluaran — hal yang menulis ke layar. Tanda panah `<<` menunjuk ke arahnya, menyodorkan satu bagian setiap kali. `endl` mengakhiri baris, seperti menekan Enter. Kamu boleh menyambung `<<` sebanyak yang kamu mau dalam satu baris.',
+                id: '`cout` adalah aliran output — hal yang menulis ke layar. Tanda panah `<<` menunjuk ke arahnya, menyodorkan satu bagian setiap kali. `endl` mengakhiri baris, seperti menekan Enter. Kamu boleh menyambung `<<` sebanyak yang kamu mau dalam satu baris.',
               },
               code: {
                 en: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "My name is Nunada" << endl;\n    cout << "I am learning C++" << endl;\n    return 0;\n}',
@@ -89,11 +89,11 @@ export const module1: Module = {
               blanks: ['cout'],
               explain: {
                 en: 'cout is the output stream every printed line starts from.',
-                id: 'cout adalah aliran keluaran yang menjadi awal setiap baris yang dicetak.',
+                id: 'cout adalah aliran output yang menjadi awal setiap baris yang dicetak.',
               },
               hint: {
                 en: 'Every line that prints to the screen starts with the same output stream you have been using in every example so far.',
-                id: 'Setiap baris yang mencetak ke layar dimulai dengan aliran keluaran yang sama yang sudah kamu pakai di setiap contoh sejauh ini.',
+                id: 'Setiap baris yang mencetak ke layar dimulai dengan aliran output yang sama yang sudah kamu pakai di setiap contoh sejauh ini.',
               },
             },
             {

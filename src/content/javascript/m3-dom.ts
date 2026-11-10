@@ -153,7 +153,7 @@ export const module3: Module = {
         {
           id: 'js-m3-s1-l2',
           title: { en: 'Building elements', id: 'Membangun elemen' },
-          goal: { en: 'Create nodes and put them on the page.', id: 'Membuat simpul dan menaruhnya di halaman.' },
+          goal: { en: 'Create nodes and put them on the page.', id: 'Membuat node dan menaruhnya di halaman.' },
           xp: 20,
           steps: [
             {
@@ -162,7 +162,7 @@ export const module3: Module = {
               title: { en: 'create, fill, append', id: 'buat, isi, tempelkan' },
               body: {
                 en: 'Three steps every time: `createElement` makes the node, you set what it holds, then `append` puts it somewhere. Until it is appended it exists but is nowhere.',
-                id: 'Tiga langkah setiap kali: `createElement` membuat simpulnya, kamu mengisi isinya, lalu `append` menaruhnya di suatu tempat. Sebelum ditempelkan, ia ada tetapi tak berada di mana pun.',
+                id: 'Tiga langkah setiap kali: `createElement` membuat node-nya, kamu mengisi isinya, lalu `append` menaruhnya di suatu tempat. Sebelum ditempelkan, ia ada tetapi tak berada di mana pun.',
               },
               figure: {
                 dim: 2,
@@ -192,7 +192,7 @@ export const module3: Module = {
               title: { en: 'A list from an array', id: 'Sebuah daftar dari array' },
               body: {
                 en: 'This is the pattern behind almost every list you see on the web: loop the data, build one node per item, append it. Change the array and the page follows.',
-                id: 'Inilah pola di balik hampir setiap daftar yang kamu lihat di web: ulangi datanya, bangun satu simpul per item, tempelkan. Ubah array-nya dan halamannya mengikuti.',
+                id: 'Inilah pola di balik hampir setiap daftar yang kamu lihat di web: ulangi datanya, bangun satu node per item, tempelkan. Ubah array-nya dan halamannya mengikuti.',
               },
               code: {
                 en: '<ul id="list"></ul>\n\n<script>\n  const tasks = ["Study", "Practice", "Rest"];\n  const list = document.querySelector("#list");\n\n  for (const t of tasks) {\n    const li = document.createElement("li");\n    li.textContent = t;\n    list.append(li);\n  }\n</script>',
@@ -218,7 +218,7 @@ export const module3: Module = {
               id: 'q1',
               prompt: {
                 en: 'You createElement a node but never append it. What appears?',
-                id: 'Kamu membuat simpul dengan createElement tetapi tak pernah menempelkannya. Apa yang muncul?',
+                id: 'Kamu membuat node dengan createElement tetapi tak pernah menempelkannya. Apa yang muncul?',
               },
               options: [
                 { en: 'Nothing — it exists in memory but is not in the document', id: 'Tidak ada — ia ada di memori tetapi tidak di dokumen' },
@@ -233,7 +233,7 @@ export const module3: Module = {
               },
               hint: {
                 en: 'Remember that creating a node and placing it on the page are two separate steps — think about what a node that only exists in memory can show up as.',
-                id: 'Ingat bahwa membuat simpul dan menempatkannya di halaman adalah dua langkah terpisah — pikirkan simpul yang hanya ada di memori bisa muncul sebagai apa.',
+                id: 'Ingat bahwa membuat node dan menempatkannya di halaman adalah dua langkah terpisah — pikirkan node yang hanya ada di memori bisa muncul sebagai apa.',
               },
             },
             {
@@ -529,7 +529,7 @@ export const module3: Module = {
         },
         {
           id: 'js-m3-s2-l2',
-          title: { en: 'Forms and input', id: 'Formulir dan masukan' },
+          title: { en: 'Forms and input', id: 'Formulir dan input' },
           goal: { en: 'Read what the reader typed.', id: 'Membaca apa yang diketik pembaca.' },
           xp: 20,
           steps: [
@@ -567,7 +567,7 @@ export const module3: Module = {
               title: { en: 'Clear the field afterward', id: 'Kosongkan isiannya setelahnya' },
               body: {
                 en: 'After handling the input, set `value` back to an empty string. Without it the reader has to select and delete before typing the next one — a small thing that makes a form feel broken.',
-                id: 'Setelah masukannya ditangani, setel `value` kembali ke string kosong. Tanpa itu pembaca harus memblok dan menghapus sebelum mengetik berikutnya — hal kecil yang membuat formulir terasa rusak.',
+                id: 'Setelah input-nya ditangani, setel `value` kembali ke string kosong. Tanpa itu pembaca harus memblok dan menghapus sebelum mengetik berikutnya — hal kecil yang membuat formulir terasa rusak.',
               },
               code: { en: 'input.value = "";', id: 'isi.value = "";' },
             },
@@ -604,7 +604,7 @@ export const module3: Module = {
               },
               prompt: {
                 en: 'On submit, append the typed text as an `li` in `#list`, then clear the input. Ignore an empty or whitespace-only entry.',
-                id: 'Saat submit, tambahkan teks yang diketik sebagai `li` di `#daftar`, lalu kosongkan isiannya. Abaikan masukan kosong atau berisi spasi saja.',
+                id: 'Saat submit, tambahkan teks yang diketik sebagai `li` di `#daftar`, lalu kosongkan isiannya. Abaikan input kosong atau berisi spasi saja.',
               },
               starter: '',
               tests: {
@@ -640,9 +640,9 @@ export const module3: Module = {
                     check: 'assert(sel("#isi").value === "", "isian harus kosong setelah dikirim, sekarang: " + JSON.stringify(sel("#isi").value));',
                   },
                   {
-                    name: { en: 'Empty entries are ignored', id: 'Masukan kosong diabaikan' },
+                    name: { en: 'Empty entries are ignored', id: 'Input kosong diabaikan' },
                     check:
-                      'var sebelum = all("#daftar li").length;\nvar isi = sel("#isi");\nisi.value = "";\nsel("#form").dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\nisi.value = "   ";\nsel("#form").dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\nassert(all("#daftar li").length === sebelum, "masukan kosong atau spasi tidak boleh menambah item");',
+                      'var sebelum = all("#daftar li").length;\nvar isi = sel("#isi");\nisi.value = "";\nsel("#form").dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\nisi.value = "   ";\nsel("#form").dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\nassert(all("#daftar li").length === sebelum, "input kosong atau spasi tidak boleh menambah item");',
                   },
                   {
                     name: { en: 'The page is not reloaded', id: 'Halamannya tidak dimuat ulang' },
@@ -679,7 +679,7 @@ export const module3: Module = {
         },
         requirements: [
           { en: 'Submitting adds the trimmed text as an `li` and clears the input.', id: 'Submit menambahkan teks yang sudah di-trim sebagai `li` dan mengosongkan isiannya.' },
-          { en: 'Empty or whitespace-only entries are ignored.', id: 'Masukan kosong atau berisi spasi saja diabaikan.' },
+          { en: 'Empty or whitespace-only entries are ignored.', id: 'Input kosong atau berisi spasi saja diabaikan.' },
           { en: 'Clicking an `li` toggles the class `done` on it.', id: 'Mengklik sebuah `li` menyalakan-mematikan class `selesai` padanya.' },
           { en: '`#remaining` always reads `2 of 3 not done`.', id: '`#sisa` selalu bertuliskan `2 dari 3 belum selesai`.' },
           { en: 'It must be right after every add and every toggle.', id: 'Harus tepat setelah tiap penambahan dan tiap penandaan.' },
@@ -720,7 +720,7 @@ export const module3: Module = {
                 'function kirim(v) { sel("#isi").value = v; sel("#form").dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })); }\nkirim("Satu"); kirim("Dua");\nassert(all("#daftar li").length === 2, "harus dua item, sekarang: " + all("#daftar li").length);\nassert(sel("#isi").value === "", "isian harus kosong");',
             },
             {
-              name: { en: 'Empty entries are ignored', id: 'Masukan kosong diabaikan' },
+              name: { en: 'Empty entries are ignored', id: 'Input kosong diabaikan' },
               check:
                 'function kirim(v) { sel("#isi").value = v; sel("#form").dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })); }\nvar sebelum = all("#daftar li").length;\nkirim(""); kirim("   ");\nassert(all("#daftar li").length === sebelum, "kosong dan spasi tidak boleh menambah item");',
             },

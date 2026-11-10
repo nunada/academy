@@ -416,7 +416,7 @@ export const module3: Module = {
               title: { en: 'One tag, many types', id: 'Satu tag, banyak tipe' },
               body: {
                 en: '`<input>` is a single self-closing tag whose `type` decides what it becomes: `text`, `email`, `number`, `password`, `date`, `checkbox`. Choosing the right type gives phones the right keyboard for free.',
-                id: '`<input>` adalah satu tag tanpa penutup yang `type`-nya menentukan wujudnya: `text`, `email`, `number`, `password`, `date`, `checkbox`. Memilih tipe yang tepat memberi papan ketik yang tepat di ponsel, gratis.',
+                id: '`<input>` adalah satu tag tanpa penutup yang `type`-nya menentukan wujudnya: `text`, `email`, `number`, `password`, `date`, `checkbox`. Memilih tipe yang tepat memberi keyboard yang tepat di ponsel, gratis.',
               },
               code: {
                 en: '<input type="text" placeholder="Name">\n<input type="email" placeholder="Email">\n<input type="number" placeholder="Age">',

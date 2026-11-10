@@ -68,7 +68,7 @@ export const module1: Module = {
               title: { en: 'A table is a grid with named columns', id: 'Tabel adalah kisi dengan kolom bernama' },
               body: {
                 en: 'A database keeps data in tables. Each **row** is one thing — one book — and each **column** is one fact about it, with a name and a type. SQL is how you ask that grid a question. You describe **what you want**; the database works out how to get it.',
-                id: 'Basis data menyimpan data dalam tabel. Tiap **baris** adalah satu benda — satu buku — dan tiap **kolom** adalah satu fakta tentangnya, punya nama dan tipe. SQL adalah caramu bertanya kepada kisi itu. Kamu menjelaskan **apa yang kamu mau**; basis datanya yang memikirkan cara mendapatkannya.',
+                id: 'Database menyimpan data dalam tabel. Tiap **baris** adalah satu benda — satu buku — dan tiap **kolom** adalah satu fakta tentangnya, punya nama dan tipe. SQL adalah caramu bertanya kepada kisi itu. Kamu menjelaskan **apa yang kamu mau**; database-nya yang memikirkan cara mendapatkannya.',
               },
               code: SCHEMA,
               figure: {
@@ -291,7 +291,7 @@ export const module1: Module = {
               title: { en: 'WHERE tests every row', id: 'WHERE menguji tiap baris' },
               body: {
                 en: 'A `WHERE` clause is a question asked of each row on its own: keep it, or drop it. The row is kept when the condition is true. Everything else falls away — the database never shows you what it rejected.',
-                id: 'Klausa `WHERE` adalah pertanyaan yang diajukan ke tiap baris satu per satu: simpan, atau buang. Barisnya disimpan ketika kondisinya benar. Sisanya gugur — basis data tidak pernah menunjukkan apa yang ia tolak.',
+                id: 'Klausa `WHERE` adalah pertanyaan yang diajukan ke tiap baris satu per satu: simpan, atau buang. Barisnya disimpan ketika kondisinya benar. Sisanya gugur — database tidak pernah menunjukkan apa yang ia tolak.',
               },
               code: { en: 'SELECT title, stock FROM book WHERE stock = 0;', id: 'SELECT judul, stok FROM buku WHERE stok = 0;' },
               output: {
@@ -600,7 +600,7 @@ export const module1: Module = {
               title: { en: 'Rows have no order until you give them one', id: 'Baris tidak punya urutan sampai kamu memberinya' },
               body: {
                 en: 'A table is a **set** of rows. Without `ORDER BY`, the order you get is whatever was convenient for the database, and it may change between two runs of the same query. If the order matters, say so.',
-                id: 'Tabel adalah **himpunan** baris. Tanpa `ORDER BY`, urutan yang kamu terima adalah apa pun yang kebetulan mudah bagi basis datanya, dan itu bisa berubah antara dua kali menjalankan kueri yang sama. Kalau urutannya penting, katakanlah.',
+                id: 'Tabel adalah **himpunan** baris. Tanpa `ORDER BY`, urutan yang kamu terima adalah apa pun yang kebetulan mudah bagi database-nya, dan itu bisa berubah antara dua kali menjalankan kueri yang sama. Kalau urutannya penting, katakanlah.',
               },
               code: { en: 'SELECT title, price FROM book ORDER BY price;', id: 'SELECT judul, harga FROM buku ORDER BY harga;' },
               output: {
@@ -667,7 +667,7 @@ export const module1: Module = {
               },
               hint: {
                 en: 'Without something that fixes the row order, ask yourself what decides which three rows the database happens to hand back first.',
-                id: 'Tanpa sesuatu yang menetapkan urutan barisnya, tanyakan pada dirimu apa yang menentukan tiga baris mana yang kebetulan diberikan basis datanya lebih dulu.',
+                id: 'Tanpa sesuatu yang menetapkan urutan barisnya, tanyakan pada dirimu apa yang menentukan tiga baris mana yang kebetulan diberikan database-nya lebih dulu.',
               },
             },
             {
@@ -767,7 +767,7 @@ export const module1: Module = {
                 ],
               },
               hints: [
-                { en: 'Sort first, then cut — the database applies ORDER BY before LIMIT.', id: 'Urutkan dulu, baru potong — basis datanya menerapkan ORDER BY sebelum LIMIT.' },
+                { en: 'Sort first, then cut — the database applies ORDER BY before LIMIT.', id: 'Urutkan dulu, baru potong — database-nya menerapkan ORDER BY sebelum LIMIT.' },
                 { en: '"Most expensive first" is descending.', id: '"Termahal dulu" berarti menurun.' },
                 { en: 'ORDER BY price DESC LIMIT 3', id: 'ORDER BY harga DESC LIMIT 3' },
               ],

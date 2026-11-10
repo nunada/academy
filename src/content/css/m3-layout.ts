@@ -11,7 +11,7 @@ export const module3: Module = {
   title: { en: 'Layout', id: 'Tata Letak' },
   summary: {
     en: 'Arrange boxes in rows and grids without fighting the browser.',
-    id: 'Menata kotak dalam baris dan kisi tanpa melawan peramban.',
+    id: 'Menata kotak dalam baris dan grid tanpa melawan browser.',
   },
   submodules: [
     /* ----------------------------------------------------------- 3.1 flexbox */
@@ -406,7 +406,7 @@ export const module3: Module = {
           { en: 'Logo left, menu right, both vertically centered.', id: 'Logo di kiri, menu di kanan, keduanya terpusat vertikal.' },
           { en: '`.logo` is white, 20px, bold.', id: '`.logo` putih, 20px, tebal.' },
           { en: '`.menu` is itself a flex row with a 20px gap.', id: '`.menu` sendiri adalah baris flex dengan gap 20px.' },
-          { en: 'Links inside `.menu` are `#cbd5e1` with no underline.', id: 'Tautan di dalam `.menu` berwarna `#cbd5e1` tanpa garis bawah.' },
+          { en: 'Links inside `.menu` are `#cbd5e1` with no underline.', id: 'Link di dalam `.menu` berwarna `#cbd5e1` tanpa garis bawah.' },
         ],
         starter: '.bar {\n\n}\n',
         tests: {
@@ -464,14 +464,14 @@ export const module3: Module = {
                 'assert(style(".logo", "color") === "rgb(255, 255, 255)", "logo harus putih");\nassert(style(".logo", "font-size") === "20px", "ukuran logo harus 20px");\nvar w = style(".logo", "font-weight");\nassert(w === "700" || w === "bold", "logo harus tebal, sekarang: " + w);',
             },
             {
-              name: { en: 'The menu spaces its links', id: 'Menunya memberi jarak tautannya' },
+              name: { en: 'The menu spaces its links', id: 'Menunya memberi jarak link-nya' },
               check:
-                'assert(style(".menu", "display") === "flex", "display .menu harus flex");\nvar a = all(".menu a");\nassert(a.length === 3, "seharusnya ada tiga tautan");\nvar jarak = Math.round(a[1].getBoundingClientRect().left - a[0].getBoundingClientRect().right);\nassert(Math.abs(jarak - 20) < 2, "jarak antartautan harus 20px, sekarang: " + jarak + "px");',
+                'assert(style(".menu", "display") === "flex", "display .menu harus flex");\nvar a = all(".menu a");\nassert(a.length === 3, "seharusnya ada tiga link");\nvar jarak = Math.round(a[1].getBoundingClientRect().left - a[0].getBoundingClientRect().right);\nassert(Math.abs(jarak - 20) < 2, "jarak antartautan harus 20px, sekarang: " + jarak + "px");',
             },
             {
-              name: { en: 'The links are quiet and clean', id: 'Tautannya tenang dan bersih' },
+              name: { en: 'The links are quiet and clean', id: 'Link-nya tenang dan bersih' },
               check:
-                'assert(style(".menu a", "color") === "rgb(203, 213, 225)", "warna tautan harus #cbd5e1");\nassert(style(".menu a", "text-decoration-line") === "none", "tautan tidak boleh bergaris bawah");',
+                'assert(style(".menu a", "color") === "rgb(203, 213, 225)", "warna link harus #cbd5e1");\nassert(style(".menu a", "text-decoration-line") === "none", "link tidak boleh bergaris bawah");',
             },
           ],
         },
@@ -498,7 +498,7 @@ export const module3: Module = {
         {
           id: 'css-m3-s2-l1',
           title: { en: 'Columns you declare', id: 'Kolom yang kamu tetapkan' },
-          goal: { en: 'Place items on a grid.', id: 'Menempatkan item pada kisi.' },
+          goal: { en: 'Place items on a grid.', id: 'Menempatkan item pada grid.' },
           xp: 20,
           steps: [
             {
@@ -596,7 +596,7 @@ export const module3: Module = {
               },
               prompt: {
                 en: 'Make `.gallery` a grid of two equal columns with a 16px gap, and give each `.cell` 20px of padding and a `#fee2e2` background.',
-                id: 'Jadikan `.galeri` kisi dua kolom sama lebar dengan gap 16px, dan beri tiap `.sel` padding 20px serta latar `#fee2e2`.',
+                id: 'Jadikan `.galeri` grid dua kolom sama lebar dengan gap 16px, dan beri tiap `.sel` padding 20px serta latar `#fee2e2`.',
               },
               starter: '.gallery {\n\n}\n',
               tests: {
@@ -624,7 +624,7 @@ export const module3: Module = {
                 ],
                 id: [
                   {
-                    name: { en: 'It is a grid with two columns', id: 'Ia kisi dengan dua kolom' },
+                    name: { en: 'It is a grid with two columns', id: 'Ia grid dengan dua kolom' },
                     check:
                       'assert(style(".galeri", "display") === "grid", "display harus grid, sekarang: " + style(".galeri", "display"));\nvar kolom = style(".galeri", "grid-template-columns").split(" ").filter(function (x) { return x; });\nassert(kolom.length === 2, "harus dua kolom, terbaca: " + kolom.length);',
                   },
@@ -659,7 +659,7 @@ export const module3: Module = {
         {
           id: 'css-m3-s2-l2',
           title: { en: 'Spanning and fitting', id: 'Melintang dan menyesuaikan' },
-          goal: { en: 'Let one item take more room, and let the grid adapt.', id: 'Membiarkan satu item mengambil ruang lebih, dan kisinya menyesuaikan.' },
+          goal: { en: 'Let one item take more room, and let the grid adapt.', id: 'Membiarkan satu item mengambil ruang lebih, dan grid-nya menyesuaikan.' },
           xp: 20,
           steps: [
             {
@@ -682,7 +682,7 @@ export const module3: Module = {
                 ],
                 caption: {
                   en: 'grid-column: span 2 stretches the first cell across two tracks, so it takes the space of two ordinary cells while the third keeps to one — the child asks for extra tracks, the parent still owns the grid.',
-                  id: 'grid-column: span 2 merentangkan sel pertama melintasi dua jalur, sehingga ia mengambil ruang dua sel biasa sementara yang ketiga tetap satu — anaknya meminta jalur tambahan, wadahnya tetap yang menguasai kisinya.',
+                  id: 'grid-column: span 2 merentangkan sel pertama melintasi dua jalur, sehingga ia mengambil ruang dua sel biasa sementara yang ketiga tetap satu — anaknya meminta jalur tambahan, wadahnya tetap yang menguasai grid-nya.',
                 },
               },
               code: {
@@ -694,7 +694,7 @@ export const module3: Module = {
             {
               kind: 'concept',
               id: 'c2',
-              title: { en: 'A grid that decides for itself', id: 'Kisi yang memutuskan sendiri' },
+              title: { en: 'A grid that decides for itself', id: 'Grid yang memutuskan sendiri' },
               body: {
                 en: '`repeat(auto-fit, minmax(160px, 1fr))` means "fit as many columns as you can, each at least 160px". The number of columns then changes with the width, with no media query at all.',
                 id: '`repeat(auto-fit, minmax(160px, 1fr))` berarti "muat sebanyak mungkin kolom, masing-masing minimal 160px". Jumlah kolomnya lalu berubah mengikuti lebar, tanpa media query sama sekali.',
@@ -767,7 +767,7 @@ export const module3: Module = {
                   {
                     name: { en: 'The highlight fills the first row', id: 'Sorotannya memenuhi baris pertama' },
                     check:
-                      'var kisi = sel(".kisi").getBoundingClientRect();\nvar sorot = sel(".sorot").getBoundingClientRect();\nassert(Math.abs(sorot.width - kisi.width) < 3, ".sorot harus selebar kisinya — gunakan span 3 (sekarang " + Math.round(sorot.width) + " dari " + Math.round(kisi.width) + ")");',
+                      'var kisi = sel(".kisi").getBoundingClientRect();\nvar sorot = sel(".sorot").getBoundingClientRect();\nassert(Math.abs(sorot.width - kisi.width) < 3, ".sorot harus selebar grid-nya — gunakan span 3 (sekarang " + Math.round(sorot.width) + " dari " + Math.round(kisi.width) + ")");',
                   },
                   {
                     name: { en: 'The three cells share the second row', id: 'Ketiga sel berbagi baris kedua' },
@@ -802,7 +802,7 @@ export const module3: Module = {
         },
         requirements: [
           { en: '`box-sizing: border-box` for everything.', id: '`box-sizing: border-box` untuk semuanya.' },
-          { en: '`.gallery` is a grid of three equal columns with a 16px gap.', id: '`.galeri` adalah kisi tiga kolom sama lebar dengan gap 16px.' },
+          { en: '`.gallery` is a grid of three equal columns with a 16px gap.', id: '`.galeri` adalah grid tiga kolom sama lebar dengan gap 16px.' },
           { en: '`.lead` spans all three columns.', id: '`.utama` melintasi ketiga kolom.' },
           { en: 'Each `.card` has 20px padding, a 1px solid `#e2e8f0` border, and a 12px radius.', id: 'Tiap `.kartu` berpadding 20px, border solid 1px `#e2e8f0`, dan radius 12px.' },
           { en: 'The `h2` inside a card has `margin-top: 0`.', id: '`h2` di dalam kartu ber-`margin-top: 0`.' },
@@ -842,7 +842,7 @@ export const module3: Module = {
           ],
           id: [
             {
-              name: { en: 'A three-column grid', id: 'Kisi tiga kolom' },
+              name: { en: 'A three-column grid', id: 'Grid tiga kolom' },
               check:
                 'assert(style(".galeri", "display") === "grid", "display .galeri harus grid");\nvar k = style(".galeri", "grid-template-columns").split(" ").map(parseFloat);\nassert(k.length === 3, "harus tiga kolom, terbaca: " + k.length);\nassert(Math.abs(k[0] - k[1]) < 2 && Math.abs(k[1] - k[2]) < 2, "ketiga kolom harus sama lebar");',
             },

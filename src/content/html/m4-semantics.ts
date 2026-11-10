@@ -111,7 +111,7 @@ export const module4: Module = {
               id: 'w1',
               prompt: {
                 en: 'Build the four regions: a `header` with an `h1` `My Blog`, a `nav` with one link to `index.html`, a `main` with one paragraph, and a `footer` with one paragraph.',
-                id: 'Bangun empat bagian: `header` berisi `h1` `Blog Saya`, `nav` berisi satu tautan ke `index.html`, `main` berisi satu paragraf, dan `footer` berisi satu paragraf.',
+                id: 'Bangun empat bagian: `header` berisi `h1` `Blog Saya`, `nav` berisi satu link ke `index.html`, `main` berisi satu paragraf, dan `footer` berisi satu paragraf.',
               },
               starter: '',
               tests: {
@@ -146,8 +146,8 @@ export const module4: Module = {
                     check: 'assert(sel("header h1"), "h1 harus di dalam <header>");\nassert(text("header h1") === "Blog Saya", "h1 harus: Blog Saya");',
                   },
                   {
-                    name: { en: 'The nav holds a link', id: 'Nav memuat sebuah tautan' },
-                    check: 'assert(sel("nav a"), "nav harus memuat sebuah tautan");\nassert(attr("nav a", "href") === "index.html", "tautannya harus menuju index.html");',
+                    name: { en: 'The nav holds a link', id: 'Nav memuat sebuah link' },
+                    check: 'assert(sel("nav a"), "nav harus memuat sebuah link");\nassert(attr("nav a", "href") === "index.html", "link-nya harus menuju index.html");',
                   },
                   {
                     name: { en: 'main and footer each hold a paragraph', id: 'main dan footer masing-masing memuat paragraf' },
@@ -303,7 +303,7 @@ export const module4: Module = {
         requirements: [
           { en: 'Full document: lang `en`, charset utf-8, title `Complete Profile`.', id: 'Dokumen lengkap: lang `id`, charset utf-8, judul `Profil Lengkap`.' },
           { en: 'A `header` with exactly one `h1`.', id: 'Sebuah `header` dengan tepat satu `h1`.' },
-          { en: 'A `nav` with a `ul` of at least three links.', id: 'Sebuah `nav` dengan `ul` berisi minimal tiga tautan.' },
+          { en: 'A `nav` with a `ul` of at least three links.', id: 'Sebuah `nav` dengan `ul` berisi minimal tiga link.' },
           { en: 'Exactly one `main`, holding at least two `article` elements, each with an `h2`.', id: 'Tepat satu `main`, memuat minimal dua elemen `article`, masing-masing dengan `h2`.' },
           { en: 'Inside main, a table with a `caption` and a `thead`.', id: 'Di dalam main, sebuah tabel dengan `caption` dan `thead`.' },
           { en: 'Inside main, a form with at least two fields, each with a matching `label`, and a submit button.', id: 'Di dalam main, sebuah formulir dengan minimal dua isian, masing-masing dengan `label` yang cocok, dan tombol kirim.' },
@@ -358,9 +358,9 @@ export const module4: Module = {
                 'assert(doc.documentElement.getAttribute("lang") === "id", "lang harus id");\nassert(sel("meta[charset]"), "belum ada meta charset");\nassert(doc.title === "Profil Lengkap", "judul harus: Profil Lengkap");\n["header", "nav", "main", "footer"].forEach(function (r) { assert(sel(r), "belum ada <" + r + ">"); });\nassert(all("main").length === 1, "harus tepat satu <main>");\nassert(all("header h1").length === 1, "header harus punya tepat satu h1");',
             },
             {
-              name: { en: 'Navigation with three links', id: 'Navigasi dengan tiga tautan' },
+              name: { en: 'Navigation with three links', id: 'Navigasi dengan tiga link' },
               check:
-                'var a = all("nav ul li a");\nassert(a.length >= 3, "nav butuh minimal tiga tautan dalam <ul><li>, ada: " + a.length);\na.forEach(function (x) {\n  assert(x.getAttribute("href"), "setiap tautan butuh href");\n  assert(x.textContent.trim().length > 0, "setiap tautan butuh teks");\n});',
+                'var a = all("nav ul li a");\nassert(a.length >= 3, "nav butuh minimal tiga link dalam <ul><li>, ada: " + a.length);\na.forEach(function (x) {\n  assert(x.getAttribute("href"), "setiap link butuh href");\n  assert(x.textContent.trim().length > 0, "setiap link butuh teks");\n});',
             },
             {
               name: { en: 'Two articles with headings', id: 'Dua article berjudul' },

@@ -547,7 +547,7 @@ kite
 | Titik sudut tidak berurutan | ´a, c, b, d´ menggambarkan pita, dan luasnya salah | urutkan titik sudut mengelilingi bangun lebih dulu |
 | Lupa ´abs´ pada jumlah tali sepatu | poligon searah jarum jam berluas negatif | ambil nilai mutlak |
 | Membandingkan sisi dengan ´sqrt´ | pembulatan membuat sisi yang sama jadi tak sama | bandingkan kuadrat panjangnya |
-| Masukan yang runtuh | tiga titik segaris membentuk segitiga, bukan segiempat | periksa bahwa tidak ada tiga hasil kali silang berurutan yang 0 |
+| Input yang runtuh | tiga titik segaris membentuk segitiga, bukan segiempat | periksa bahwa tidak ada tiga hasil kali silang berurutan yang 0 |
 | Bangun cekung | pengklasifikasi di atas menyebut dart sebagai layang-layang | periksa dulu bahwa keempat belokan searah |`,
           ),
         },

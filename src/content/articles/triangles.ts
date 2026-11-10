@@ -620,7 +620,7 @@ not a triangle
 | Derajat dan radian tertukar | ´math.sin(30)´ bukan $0{,}5$ | pakai ´math.radians(30)´; ´math.degrees´ untuk kembali |
 | ´acos´ dari kosinus yang dibulatkan | nilai seperti ´1.0000000000000002´ memunculkan ´ValueError´ | batasi argumen pada $[-1,1]$ |
 | Tidak mengurutkan sisi | sisi terpanjang tidak diuji | urutkan dulu, atau ambil ´max´ |
-| Masukan merosot | $a+b=c$ adalah segitiga datar berluas 0 | wajibkan ´a + b > c´ secara ketat |
+| Input merosot | $a+b=c$ adalah segitiga datar berluas 0 | wajibkan ´a + b > c´ secara ketat |
 | ´^´ untuk kuadrat | itu XOR | pakai ´**´ atau kalikan: ´a * a´ |`,
           ),
         },

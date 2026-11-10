@@ -44,7 +44,7 @@ export const body: ArticleBody = {
     ),
     L(
       T`Real libraries use hybrids (Timsort in Python and for Java objects, introsort in C++). Ask for a stable sort when you sort by several keys in turn, and remember that JavaScript's ´[10, 9, 1].sort()´ compares text and gives ´[1, 10, 9]´.`,
-      T`Pustaka sungguhan memakai hibrida (Timsort di Python dan untuk objek Java, introsort di C++). Minta pengurutan stabil ketika mengurutkan menurut beberapa kunci berturut-turut, dan ingat bahwa ´[10, 9, 1].sort()´ di JavaScript membandingkan teks dan menghasilkan ´[1, 10, 9]´.`,
+      T`Library sungguhan memakai hibrida (Timsort di Python dan untuk objek Java, introsort di C++). Minta pengurutan stabil ketika mengurutkan menurut beberapa kunci berturut-turut, dan ingat bahwa ´[10, 9, 1].sort()´ di JavaScript membandingkan teks dan menghasilkan ´[1, 10, 9]´.`,
     ),
   ],
 
@@ -72,7 +72,7 @@ Type a list and a target below and step through the search. The orange cell is t
 
 **Algoritmanya.** Simpan dua indeks, ´lo´ dan ´hi´, dengan janji (*invarian*) bahwa *jika target ada dalam daftar, indeksnya berada di antara ´lo´ dan ´hi´, ujung-ujungnya termasuk*. Mulai dengan ´lo = 0´ dan ´hi = n - 1´. Selama ´lo <= hi´: lihat ´mid´, indeks tengah; jika ´a[mid]´ sama dengan target, kembalikan ´mid´; jika lebih kecil, setel ´lo = mid + 1´; jika tidak, setel ´hi = mid - 1´. Jika selangnya menjadi kosong, target tidak ada.
 
-**Mengapa benar.** Invarian benar di awal. Melihat ´mid´ menggugurkan ´mid´ sendiri dan satu sisi utuh: jika $a[mid]<x$, daftarnya terurut, sehingga setiap elemen di ´mid´ atau sebelumnya lebih kecil daripada $x$ dan target, bila ada, berada di kanan. Jadi invarian tetap berlaku setelah setiap langkah. *Daftarnya harus terurut, dan harus memungkinkan lompatan ke tengah dalam satu langkah* (larik, bukan linked list); jika tidak, argumen dan kecepatannya hilang.
+**Mengapa benar.** Invarian benar di awal. Melihat ´mid´ menggugurkan ´mid´ sendiri dan satu sisi utuh: jika $a[mid]<x$, daftarnya terurut, sehingga setiap elemen di ´mid´ atau sebelumnya lebih kecil daripada $x$ dan target, bila ada, berada di kanan. Jadi invarian tetap berlaku setelah setiap langkah. *Daftarnya harus terurut, dan harus memungkinkan lompatan ke tengah dalam satu langkah* (array, bukan linked list); jika tidak, argumen dan kecepatannya hilang.
 
 **Mengapa cepat.** Selang selebar $w$ menjadi selang selebar paling banyak $\lfloor w/2\rfloor$. Dimulai dari $n$, setelah $k$ kali melihat lebarnya paling banyak $\lfloor n/2^k\rfloor$, yaitu $0$ begitu $2^k>n$. Jadi banyaknya melihat paling banyak
 $$\lfloor\log_2n\rfloor+1.$$
@@ -88,7 +88,7 @@ Ketik daftar dan target di bawah lalu telusuri pencariannya. Sel oranye adalah y
     /* ----------------------------------------------------------------------------------- bounds */
     {
       id: 'bounds',
-      heading: L('How do you find the first match and avoid off-by-one errors?', 'Bagaimana menemukan kecocokan pertama dan menghindari galat selisih satu?'),
+      heading: L('How do you find the first match and avoid off-by-one errors?', 'Bagaimana menemukan kecocokan pertama dan menghindari error selisih satu?'),
       blocks: [
         {
           kind: 'text',
@@ -107,7 +107,7 @@ The upper bound minus the lower bound is the number of copies of $x$: $7-4=3$. W
 **Where the off-by-one errors come from.** Mixing the two conventions: the closed interval ´lo <= i <= hi´ goes with ´hi = n - 1´, ´while lo <= hi´ and ´hi = mid - 1´; the half-open interval ´lo <= i < hi´ goes with ´hi = n´, ´while lo < hi´ and ´hi = mid´. Writing ´hi = mid´ in a closed interval can loop forever on two elements, and ´hi = mid - 1´ in a half-open one can skip the answer. Choose one and write the invariant as a comment. Jon Bentley found that most professional programmers he tried this on could not write a correct binary search, and Donald Knuth remarked that the first binary search was published in 1946 but a correct one for every length did not appear until 1962.
 
 **The overflow bug.** The middle is the average of ´lo´ and ´hi´, and the obvious formula ´(lo + hi) / 2´ adds them first. In a language with 32-bit integers the sum of two valid indices can be larger than $2\,147\,483\,647$ and wrap around to a negative number (see [two's complement](article:binary-numbers#twos-complement)), as with ´lo = 1 500 000 000´ and ´hi = 2 000 000 000´. In 2006 Joshua Bloch reported that this had been in the binary search of the Java library for years. The safe form is ´lo + (hi - lo) / 2´: the difference is never larger than ´hi´.`,
-            T`**Pakai satu templat untuk setiap pertanyaan tentang posisi: simpan selang indeks setengah terbuka ´lo <= i < hi´ yang di dalamnya semua yang sebelum ´lo´ diketahui terlalu kecil dan semua dari ´hi´ ke belakang diketahui cukup besar.** Dengan nilai kembar, "cari $x$" tidak punya jawaban tunggal, tetapi "indeks pertama dengan $a[i]\ge x$" selalu punya. Pada daftar $[1,3,3,5,7,7,7,9,12]$:
+            T`**Pakai satu template untuk setiap pertanyaan tentang posisi: simpan selang indeks setengah terbuka ´lo <= i < hi´ yang di dalamnya semua yang sebelum ´lo´ diketahui terlalu kecil dan semua dari ´hi´ ke belakang diketahui cukup besar.** Dengan nilai kembar, "cari $x$" tidak punya jawaban tunggal, tetapi "indeks pertama dengan $a[i]\ge x$" selalu punya. Pada daftar $[1,3,3,5,7,7,7,9,12]$:
 
 | Pertanyaan | Nama | $x=7$ | $x=4$ | $x=100$ |
 |---|---|---|---|---|
@@ -116,11 +116,11 @@ The upper bound minus the lower bound is the number of copies of $x$: $7-4=3$. W
 
 Batas atas dikurangi batas bawah adalah banyaknya salinan $x$: $7-4=3$. Bila $x$ tidak ada, batas bawah adalah *titik sisip*, indeks tempat $x$ akan ditaruh agar daftar tetap terurut, dan ia bisa bernilai $n$ (melewati ujung).
 
-**Templatnya.** Mulai dengan ´lo = 0´, ´hi = n´ (satu setelah indeks terakhir). Selama ´lo < hi´: ambil ´mid = lo + (hi - lo) // 2´; jika ´a[mid] < x´ maka ´lo = mid + 1´ (batas bawah ada di kanan ´mid´), jika tidak ´hi = mid´ (´mid´ mungkin jawabannya, jadi simpan). Ketika perulangan berakhir, ´lo == hi´ adalah jawabannya. Untuk batas atas, ubah ujinya menjadi ´a[mid] <= x´. Invarian adalah seluruh buktinya: semua sebelum ´lo´ bernilai $<x$, semua dari ´hi´ bernilai $\ge x$, dan setiap langkah memperkecil ´hi - lo´ sedikitnya satu, sehingga perulangan berakhir.
+**Template-nya.** Mulai dengan ´lo = 0´, ´hi = n´ (satu setelah indeks terakhir). Selama ´lo < hi´: ambil ´mid = lo + (hi - lo) // 2´; jika ´a[mid] < x´ maka ´lo = mid + 1´ (batas bawah ada di kanan ´mid´), jika tidak ´hi = mid´ (´mid´ mungkin jawabannya, jadi simpan). Ketika perulangan berakhir, ´lo == hi´ adalah jawabannya. Untuk batas atas, ubah ujinya menjadi ´a[mid] <= x´. Invarian adalah seluruh buktinya: semua sebelum ´lo´ bernilai $<x$, semua dari ´hi´ bernilai $\ge x$, dan setiap langkah memperkecil ´hi - lo´ sedikitnya satu, sehingga perulangan berakhir.
 
-**Dari mana galat selisih satu berasal.** Dari mencampur dua konvensi: selang tertutup ´lo <= i <= hi´ berpasangan dengan ´hi = n - 1´, ´while lo <= hi´, dan ´hi = mid - 1´; selang setengah terbuka ´lo <= i < hi´ berpasangan dengan ´hi = n´, ´while lo < hi´, dan ´hi = mid´. Menulis ´hi = mid´ pada selang tertutup dapat berputar tanpa henti pada dua elemen, dan ´hi = mid - 1´ pada yang setengah terbuka dapat melewatkan jawabannya. Pilih satu dan tulis invariannya sebagai komentar. Jon Bentley mendapati bahwa kebanyakan pemrogram profesional yang ia uji tidak dapat menulis pencarian biner yang benar, dan Donald Knuth mengamati bahwa pencarian biner pertama diterbitkan pada 1946 tetapi yang benar untuk setiap panjang baru muncul pada 1962.
+**Dari mana error selisih satu berasal.** Dari mencampur dua konvensi: selang tertutup ´lo <= i <= hi´ berpasangan dengan ´hi = n - 1´, ´while lo <= hi´, dan ´hi = mid - 1´; selang setengah terbuka ´lo <= i < hi´ berpasangan dengan ´hi = n´, ´while lo < hi´, dan ´hi = mid´. Menulis ´hi = mid´ pada selang tertutup dapat berputar tanpa henti pada dua elemen, dan ´hi = mid - 1´ pada yang setengah terbuka dapat melewatkan jawabannya. Pilih satu dan tulis invariannya sebagai komentar. Jon Bentley mendapati bahwa kebanyakan programmer profesional yang ia uji tidak dapat menulis pencarian biner yang benar, dan Donald Knuth mengamati bahwa pencarian biner pertama diterbitkan pada 1946 tetapi yang benar untuk setiap panjang baru muncul pada 1962.
 
-**Galat luapan.** Titik tengah adalah rata-rata ´lo´ dan ´hi´, dan rumus yang paling mudah, ´(lo + hi) / 2´, menjumlahkan keduanya lebih dulu. Dalam bahasa dengan bilangan bulat 32-bit, jumlah dua indeks yang sah dapat lebih besar daripada $2\,147\,483\,647$ dan berputar menjadi bilangan negatif (lihat [komplemen dua](article:binary-numbers#twos-complement)), seperti pada ´lo = 1 500 000 000´ dan ´hi = 2 000 000 000´. Pada 2006 Joshua Bloch melaporkan bahwa ini sudah bertahun-tahun ada dalam pencarian biner pustaka Java. Bentuk yang aman adalah ´lo + (hi - lo) / 2´: selisihnya tidak pernah lebih besar daripada ´hi´.`,
+**Error luapan.** Titik tengah adalah rata-rata ´lo´ dan ´hi´, dan rumus yang paling mudah, ´(lo + hi) / 2´, menjumlahkan keduanya lebih dulu. Dalam bahasa dengan bilangan bulat 32-bit, jumlah dua indeks yang sah dapat lebih besar daripada $2\,147\,483\,647$ dan berputar menjadi bilangan negatif (lihat [komplemen dua](article:binary-numbers#twos-complement)), seperti pada ´lo = 1 500 000 000´ dan ´hi = 2 000 000 000´. Pada 2006 Joshua Bloch melaporkan bahwa ini sudah bertahun-tahun ada dalam pencarian biner library Java. Bentuk yang aman adalah ´lo + (hi - lo) / 2´: selisihnya tidak pernah lebih besar daripada ´hi´.`,
           ),
         },
       ],
@@ -183,13 +183,13 @@ Cobalah keduanya di bawah: sebuah rumus dan selang, atau sebuah bilangan bulat.`
 Choose an algorithm and an input below and play the bars. Gold bars are being compared, red ones are moving, and green ones are in their final place.`,
             T`**Selection, insertion, dan bubble sort adalah tiga pengurutan sederhana: masing-masing memerlukan sekitar $\frac{n^2}{2}$ langkah, ketiganya pendek untuk ditulis, dan merupakan pilihan yang tepat hanya untuk daftar pendek atau hampir terurut.**
 
-- **Selection sort.** Cari yang terkecil dari bagian yang belum terurut lalu tukar ke depan; ulangi. Ia membuat tepat $\frac{n(n-1)}{2}$ perbandingan apa pun masukannya, tetapi paling banyak $n-1$ pertukaran: yang dipakai bila memindahkan satu elemen sangat mahal.
+- **Selection sort.** Cari yang terkecil dari bagian yang belum terurut lalu tukar ke depan; ulangi. Ia membuat tepat $\frac{n(n-1)}{2}$ perbandingan apa pun input-nya, tetapi paling banyak $n-1$ pertukaran: yang dipakai bila memindahkan satu elemen sangat mahal.
 - **Insertion sort.** Ambil bilangan berikutnya dan geser ke kiri melewati setiap tetangga yang lebih besar, seperti yang kamu lakukan dengan kartu di tangan. Pada daftar terurut tiap bilangan dibandingkan sekali ($n-1$ perbandingan seluruhnya); pada daftar terbalik setiap bilangan bergeser sampai ujung.
 - **Bubble sort.** Berjalan menyusuri daftar sambil menukar tetangga yang salah urutan; bilangan terbesar terbawa ke ujung pada putaran pertama, yang terbesar berikutnya pada putaran kedua, dan seterusnya. Dengan penanda yang berhenti setelah putaran tanpa pertukaran, daftar terurut hanya memerlukan satu putaran.
 
 **Inversi menjelaskan biayanya.** *Inversi* adalah pasangan posisi $i<j$ dengan $a[i]>a[j]$. Daftar $[5,2,4,6,1,3]$ memiliki $9$: $(5,2)$, $(5,4)$, $(5,1)$, $(5,3)$, $(2,1)$, $(4,1)$, $(4,3)$, $(6,1)$, dan $(6,3)$. Daftar terurut memiliki $0$ dan daftar terbalik memiliki $\frac{n(n-1)}{2}$, semua pasangan; daftar acak memiliki sekitar setengahnya, $\frac{n(n-1)}{4}$. Menukar dua *tetangga* yang salah urutan menghilangkan tepat satu inversi, demikian pula satu geseran insertion sort. Jadi **bubble sort membuat pertukaran sebanyak inversi, dan insertion sort geseran sebanyak inversi, tepat**, dan metode apa pun yang hanya memindahkan tetangga memerlukan sekitar $\frac{n^2}{4}$ langkah pada daftar acak. Agar lebih cepat, pengurutan harus memindahkan elemen melintasi jarak jauh: itulah yang dilakukan merge sort dan quicksort.
 
-Pilih algoritma dan masukan di bawah lalu putar batangnya. Batang emas sedang dibandingkan, yang merah sedang pindah, dan yang hijau sudah di tempat akhirnya.`,
+Pilih algoritma dan input di bawah lalu putar batangnya. Batang emas sedang dibandingkan, yang merah sedang pindah, dan yang hijau sudah di tempat akhirnya.`,
           ),
         },
         { kind: 'widget', name: 'sortviz' },
@@ -213,7 +213,7 @@ The recursion halves the list until single elements (already sorted) remain, so 
 - **comparisons, already sorted:** about half as many, since one list runs out first: $12$ for $8$ numbers.
 
 **Properties.** Merge sort needs $O(n)$ extra memory for the merged output, it is *stable* (if two elements are equal, take the one from the left half first, which is the ´<=´ in the code below), and its cost barely depends on the input. It is the natural choice for linked lists and for data on disk or tape, which are read in order; it was the first computer sort, programmed by John von Neumann in 1945.`,
-            T`**Merge sort membagi daftar menjadi dua, mengurutkan setiap separuh dengan cara yang sama, lalu menggabungkan kedua separuh terurut itu menjadi satu.** Penggabungan adalah bagian yang mudah: dua daftar terurut memiliki elemen terkecilnya di depan, jadi bandingkan kedua depan itu, pindahkan yang lebih kecil ke keluaran, dan ulangi. Menggabungkan daftar dengan panjang total $n$ memerlukan paling banyak $n-1$ perbandingan dan tepat $n$ penulisan.
+            T`**Merge sort membagi daftar menjadi dua, mengurutkan setiap separuh dengan cara yang sama, lalu menggabungkan kedua separuh terurut itu menjadi satu.** Penggabungan adalah bagian yang mudah: dua daftar terurut memiliki elemen terkecilnya di depan, jadi bandingkan kedua depan itu, pindahkan yang lebih kecil ke output, dan ulangi. Menggabungkan daftar dengan panjang total $n$ memerlukan paling banyak $n-1$ perbandingan dan tepat $n$ penulisan.
 
 Rekursinya membagi dua daftar sampai tersisa elemen tunggal (yang sudah terurut), sehingga ada $\lceil\log_2n\rceil$ tingkat, dan setiap tingkat menggabungkan semua $n$ elemen sekali. Itu $n$ penulisan per tingkat dan totalnya sekitar $n\log_2n$. Rekurensinya $T(n)=2T(n/2)+n$, diselesaikan pada [bagian tentang rekurensi](article:big-o-notation#recurrences). Dalam angka eksak:
 
@@ -221,7 +221,7 @@ Rekursinya membagi dua daftar sampai tersisa elemen tunggal (yang sudah terurut)
 - **perbandingan, kasus terburuk:** $n\lceil\log_2n\rceil-2^{\lceil\log_2n\rceil}+1$, yaitu $17$ untuk $8$ bilangan dan $8977$ untuk $1000$;
 - **perbandingan, sudah terurut:** sekitar setengahnya, karena satu daftar habis lebih dulu: $12$ untuk $8$ bilangan.
 
-**Sifat-sifatnya.** Merge sort memerlukan memori tambahan $O(n)$ untuk keluaran gabungan, ia *stabil* (jika dua elemen sama, ambil yang dari separuh kiri lebih dulu, yaitu ´<=´ dalam kode di bawah), dan biayanya hampir tidak bergantung pada masukan. Ia pilihan yang wajar untuk linked list dan untuk data di cakram atau pita, yang dibaca berurutan; ia pengurutan komputer pertama, diprogram oleh John von Neumann pada 1945.`,
+**Sifat-sifatnya.** Merge sort memerlukan memori tambahan $O(n)$ untuk output gabungan, ia *stabil* (jika dua elemen sama, ambil yang dari separuh kiri lebih dulu, yaitu ´<=´ dalam kode di bawah), dan biayanya hampir tidak bergantung pada input. Ia pilihan yang wajar untuk linked list dan untuk data di cakram atau pita, yang dibaca berurutan; ia pengurutan komputer pertama, diprogram oleh John von Neumann pada 1945.`,
           ),
         },
       ],
@@ -250,21 +250,21 @@ where $H_n=1+\frac12+\cdots+\frac1n$. For $1000$ elements that is about $10\,986
 - **Quicksort is not stable**, and it sorts in place, with no extra array. Cache-friendly sweeps make it faster than merge sort on arrays in practice, in spite of the extra comparisons.
 
 The sorting race below runs all six algorithms on the same input and counts comparisons and moves.`,
-            T`**Quicksort memilih sebuah pivot, memindahkan elemen yang lebih kecil ke depannya dan yang lain ke belakangnya, lalu mengurutkan kedua sisi dengan cara yang sama.** Setelah partisi, pivot sudah berada di tempat akhirnya. Partisi Nico Lomuto, yang dipakai dalam kode di bawah, mengambil elemen terakhir sebagai pivot dan menyapu dari kiri ke kanan sambil menjaga batas ´p´: setiap elemen yang lebih kecil daripada pivot ditukar ke batas, yang lalu maju satu langkah. Partisi asli Tony Hoare memakai dua penunjuk yang bergerak saling mendekat dan melakukan lebih sedikit pertukaran.
+            T`**Quicksort memilih sebuah pivot, memindahkan elemen yang lebih kecil ke depannya dan yang lain ke belakangnya, lalu mengurutkan kedua sisi dengan cara yang sama.** Setelah partisi, pivot sudah berada di tempat akhirnya. Partisi Nico Lomuto, yang dipakai dalam kode di bawah, mengambil elemen terakhir sebagai pivot dan menyapu dari kiri ke kanan sambil menjaga batas ´p´: setiap elemen yang lebih kecil daripada pivot ditukar ke batas, yang lalu maju satu langkah. Partisi asli Tony Hoare memakai dua pointer yang bergerak saling mendekat dan melakukan lebih sedikit pertukaran.
 
 **Biayanya.** Partisi $m$ elemen membuat $m-1$ perbandingan. Jika pivot membagi rentang kira-kira dua sama besar setiap kali, ada sekitar $\log_2n$ tingkat dengan sekitar $n$ perbandingan masing-masing. Jika pivot selalu elemen terkecil atau terbesar, kedua sisi berukuran $0$ dan $m-1$ dan totalnya
 $$(n-1)+(n-2)+\cdots+1=\frac{n(n-1)}{2},$$
-kuadratik. Dengan elemen terakhir sebagai pivot, hal ini terjadi pada daftar yang *sudah terurut* atau terbalik, persis masukan yang sering diberikan orang. Pada daftar acak rata-ratanya
+kuadratik. Dengan elemen terakhir sebagai pivot, hal ini terjadi pada daftar yang *sudah terurut* atau terbalik, persis input yang sering diberikan orang. Pada daftar acak rata-ratanya
 $$2(n+1)H_n-4n\approx2n\ln n\approx1{,}39\,n\log_2n,$$
 dengan $H_n=1+\frac12+\cdots+\frac1n$. Untuk $1000$ elemen itu sekitar $10\,986$ perbandingan (dibandingkan paling banyak $8977$ untuk merge sort), dan peluang jalannya sangat buruk amat kecil.
 
 **Yang dilakukan implementasi sungguhan.**
 - **Memilih pivot dengan baik:** elemen acak, atau median dari yang pertama, tengah, dan terakhir.
 - **Menangani kunci yang sama:** partisi tiga arah (lebih kecil, sama, lebih besar) menjaga daftar dengan sedikit nilai berbeda tidak melambat.
-- **Membatasi kerusakan:** *introsort* (David Musser, 1997) beralih ke heapsort jika rekursi terlalu dalam, sehingga kasus terburuknya $O(n\log n)$; ia ada di balik ´std::sort´ C++. Merekursi sisi yang lebih kecil lebih dulu menjaga tumpukan tetap $O(\log n)$.
-- **Quicksort tidak stabil**, dan ia mengurutkan di tempat, tanpa larik tambahan. Sapuan yang ramah cache membuatnya lebih cepat daripada merge sort pada larik dalam praktik, meskipun perbandingannya lebih banyak.
+- **Membatasi kerusakan:** *introsort* (David Musser, 1997) beralih ke heapsort jika rekursi terlalu dalam, sehingga kasus terburuknya $O(n\log n)$; ia ada di balik ´std::sort´ C++. Merekursi sisi yang lebih kecil lebih dulu menjaga call stack tetap $O(\log n)$.
+- **Quicksort tidak stabil**, dan ia mengurutkan di tempat, tanpa array tambahan. Sapuan yang ramah cache membuatnya lebih cepat daripada merge sort pada array dalam praktik, meskipun perbandingannya lebih banyak.
 
-Balapan pengurutan di bawah menjalankan keenam algoritma pada masukan yang sama dan menghitung perbandingan serta perpindahan.`,
+Balapan pengurutan di bawah menjalankan keenam algoritma pada input yang sama dan menghitung perbandingan serta perpindahan.`,
           ),
         },
         { kind: 'widget', name: 'sortrace' },
@@ -309,14 +309,14 @@ Three properties decide the choice. **Stable**: equal keys keep their original o
 | quick | $n\log n$ | $n\log n$ | $n^2$ | $O(\log n)$ | tidak |
 | heap | $n\log n$ | $n\log n$ | $n\log n$ | $O(1)$ | tidak |
 
-Tiga sifat menentukan pilihan. **Stabil**: kunci yang sama mempertahankan urutan awalnya, yang memungkinkan mengurutkan menurut beberapa kunci berturut-turut (urutkan menurut nama, lalu secara stabil menurut kota, dan setiap kota tetap terurut menurut nama). **Di tempat**: hanya memerlukan memori tambahan $O(1)$ atau $O(\log n)$. **Adaptif**: lebih cepat pada masukan yang hampir terurut, seperti insertion sort. *Heapsort* membangun max-heap di dalam larik, lalu berulang kali menukar yang terbesar ke ujung dan memperbaiki heap: di tempat dan $O(n\log n)$ pada kasus terburuk, tetapi tidak stabil dan tidak ramah cache.
+Tiga sifat menentukan pilihan. **Stabil**: kunci yang sama mempertahankan urutan awalnya, yang memungkinkan mengurutkan menurut beberapa kunci berturut-turut (urutkan menurut nama, lalu secara stabil menurut kota, dan setiap kota tetap terurut menurut nama). **Di tempat**: hanya memerlukan memori tambahan $O(1)$ atau $O(\log n)$. **Adaptif**: lebih cepat pada input yang hampir terurut, seperti insertion sort. *Heapsort* membangun max-heap di dalam array, lalu berulang kali menukar yang terbesar ke ujung dan memperbaiki heap: di tempat dan $O(n\log n)$ pada kasus terburuk, tetapi tidak stabil dan tidak ramah cache.
 
 **Sebuah batas dan cara mengelilinginya.** Pengurutan apa pun yang hanya *membandingkan* elemen memerlukan sedikitnya $\log_2(n!)\approx n\log_2n-1{,}44n$ perbandingan, karena $n!$ urutan yang mungkin harus dibedakan dengan jawaban ya atau tidak (gagasan batas bawah dalam [bagian tentang kasus](article:big-o-notation#cases)). Untuk $1000$ elemen itu $8530$ perbandingan, dan kasus terburuk merge sort, $8977$, hanya sekitar 5 persen di atasnya. Pengurutan yang tidak membandingkan bisa lebih cepat: *counting sort* menghitung berapa kali tiap nilai muncul ($O(n+k)$ untuk nilai di bawah $k$), dan *radix sort* mengurutkan angka demi angka dengan pengurutan stabil, begitulah cara pengurut kartu berlubang bekerja.
 
-**Yang dilakukan pustaka.**
-- **Python:** ´sorted(a)´ mengembalikan daftar baru dan ´a.sort()´ mengurutkan di tempat dan mengembalikan ´None´. Keduanya memakai *Timsort* (Tim Peters, 2002): ia menemukan bagian yang sudah berurutan, memperpanjang bagian pendek dengan insertion sort dan menggabungkan bagian-bagiannya, sehingga stabil, $O(n\log n)$, dan $O(n)$ pada masukan terurut.
+**Yang dilakukan library.**
+- **Python:** ´sorted(a)´ mengembalikan daftar baru dan ´a.sort()´ mengurutkan di tempat dan mengembalikan ´None´. Keduanya memakai *Timsort* (Tim Peters, 2002): ia menemukan bagian yang sudah berurutan, memperpanjang bagian pendek dengan insertion sort dan menggabungkan bagian-bagiannya, sehingga stabil, $O(n\log n)$, dan $O(n)$ pada input terurut.
 - **JavaScript:** ´array.sort()´ stabil sejak 2019, tetapi *tanpa pembanding ia membandingkan elemen sebagai teks*, sehingga ´[10, 9, 1].sort()´ menghasilkan ´[1, 10, 9]´. Selalu tulis ´(a, b) => a - b´ untuk bilangan.
-- **Java:** Timsort untuk objek, quicksort dwi-pivot untuk larik bilangan. **C++:** ´std::sort´ (introsort, tidak stabil) dan ´std::stable_sort´.`,
+- **Java:** Timsort untuk objek, quicksort dwi-pivot untuk array bilangan. **C++:** ´std::sort´ (introsort, tidak stabil) dan ´std::stable_sort´.`,
           ),
         },
       ],
@@ -331,7 +331,7 @@ Tiga sifat menentukan pilihan. **Stabil**: kunci yang sama mempertahankan urutan
           kind: 'text',
           text: L(
             T`**Write the binary search once with the half-open template and reuse it; in Python the standard library already has it as ´bisect´.** The first program below has the lower bound, the closed-interval search that counts its looks, the integer square root by searching the answer, and a comparison with ´bisect_left´ and ´bisect_right´. The second program has insertion sort (counting its shifts), merge sort, quicksort (counting its comparisons) and a stable sort by key. The two numbers $9$ and $9$ in the output are the inversions of $[5,2,4,6,1,3]$ and the shifts of insertion sort: they are equal.`,
-            T`**Tulis pencarian biner sekali dengan templat setengah terbuka dan pakai ulang; di Python pustaka standar sudah memilikinya sebagai ´bisect´.** Program pertama di bawah memuat batas bawah, pencarian selang tertutup yang menghitung berapa kali melihat, akar kuadrat bulat dengan mencari jawaban, dan perbandingan dengan ´bisect_left´ dan ´bisect_right´. Program kedua memuat insertion sort (menghitung geserannya), merge sort, quicksort (menghitung perbandingannya), dan pengurutan stabil menurut kunci. Dua bilangan $9$ dan $9$ pada keluaran adalah inversi $[5,2,4,6,1,3]$ dan geseran insertion sort: keduanya sama.`,
+            T`**Tulis pencarian biner sekali dengan template setengah terbuka dan pakai ulang; di Python library standar sudah memilikinya sebagai ´bisect´.** Program pertama di bawah memuat batas bawah, pencarian selang tertutup yang menghitung berapa kali melihat, akar kuadrat bulat dengan mencari jawaban, dan perbandingan dengan ´bisect_left´ dan ´bisect_right´. Program kedua memuat insertion sort (menghitung geserannya), merge sort, quicksort (menghitung perbandingannya), dan pengurutan stabil menurut kunci. Dua bilangan $9$ dan $9$ pada output adalah inversi $[5,2,4,6,1,3]$ dan geseran insertion sort: keduanya sama.`,
           ),
         },
         {
@@ -565,7 +565,7 @@ int main() {
 - **1964.** J. W. J. Williams menerbitkan heapsort, dan Robert Floyd segera menunjukkan cara membangun heap dalam waktu linear.
 - **1997.** David Musser merancang introsort, quicksort yang tidak dapat memburuk.
 - **2002.** Tim Peters menulis Timsort untuk Python, dan kemudian ia menyebar ke Java, Android, dan mesin JavaScript.
-- **2006.** Joshua Bloch menunjukkan bahwa titik tengah yang dihitung sebagai ´(lo + hi) / 2´ dalam pencarian biner dan merge sort pustaka Java dapat meluap untuk daftar lebih dari $2^{30}$ elemen.`,
+- **2006.** Joshua Bloch menunjukkan bahwa titik tengah yang dihitung sebagai ´(lo + hi) / 2´ dalam pencarian biner dan merge sort library Java dapat meluap untuk daftar lebih dari $2^{30}$ elemen.`,
           ),
         },
       ],
@@ -632,7 +632,7 @@ int main() {
             statements: [
               L(T`Binary search needs the list to be sorted.`, T`Pencarian biner memerlukan daftar terurut.`),
               L(T`Binary search on a linked list takes $O(\log n)$ steps.`, T`Pencarian biner pada linked list memerlukan $O(\log n)$ langkah.`),
-              L(T`Selection sort makes the same number of comparisons on every input of size $n$.`, T`Selection sort membuat banyak perbandingan yang sama pada setiap masukan berukuran $n$.`),
+              L(T`Selection sort makes the same number of comparisons on every input of size $n$.`, T`Selection sort membuat banyak perbandingan yang sama pada setiap input berukuran $n$.`),
               L(T`Merge sort can be made stable by taking the left element when two are equal.`, T`Merge sort dapat dibuat stabil dengan mengambil elemen kiri bila dua elemen sama.`),
               L(T`Quicksort with the last element as pivot is fast on a sorted list.`, T`Quicksort dengan elemen terakhir sebagai pivot cepat pada daftar terurut.`),
               L(T`Python's ´sorted(a)´ sorts the list ´a´ in place.`, T`´sorted(a)´ Python mengurutkan daftar ´a´ di tempat.`),
@@ -640,7 +640,7 @@ int main() {
             answer: [true, false, true, true, false, false],
             explain: L(
               T`A linked list cannot jump to its middle, so reaching it costs $O(n)$. Selection sort always compares every pair of the unsorted part. A sorted list is the worst input for that quicksort: $\frac{n(n-1)}{2}$ comparisons. ´sorted´ returns a new list; ´a.sort()´ sorts in place.`,
-              T`Linked list tidak dapat melompat ke tengahnya, sehingga mencapainya memerlukan $O(n)$. Selection sort selalu membandingkan setiap pasangan pada bagian yang belum terurut. Daftar terurut adalah masukan terburuk bagi quicksort itu: $\frac{n(n-1)}{2}$ perbandingan. ´sorted´ mengembalikan daftar baru; ´a.sort()´ mengurutkan di tempat.`,
+              T`Linked list tidak dapat melompat ke tengahnya, sehingga mencapainya memerlukan $O(n)$. Selection sort selalu membandingkan setiap pasangan pada bagian yang belum terurut. Daftar terurut adalah input terburuk bagi quicksort itu: $\frac{n(n-1)}{2}$ perbandingan. ´sorted´ mengembalikan daftar baru; ´a.sort()´ mengurutkan di tempat.`,
             ),
             hint: L(T`Think of what each algorithm needs: random access, an order of comparisons, the pivot's position.`, T`Pikirkan apa yang dibutuhkan tiap algoritma: akses acak, urutan perbandingan, posisi pivot.`),
           },
@@ -711,7 +711,7 @@ int main() {
             id: 'p6',
             hints: [L(T`The lower bound is the first index with $a[i]\ge8$.`, T`Batas bawah adalah indeks pertama dengan $a[i]\ge8$.`), L(T`The list is $[1,3,3,5,7,7,7,9,12]$ with indices $0$ to $8$; $a[7]=9$.`, T`Daftarnya $[1,3,3,5,7,7,7,9,12]$ dengan indeks $0$ sampai $8$; $a[7]=9$.`)],
             explain: L(T`The numbers before $9$ are all below $8$ and $9\ge8$, so the lower bound of $8$ is index $7$, the insertion point.`, T`Bilangan sebelum $9$ semuanya di bawah $8$ dan $9\ge8$, sehingga batas bawah $8$ adalah indeks $7$, titik sisipnya.`),
-            prompt: L(T`In $[1,3,3,5,7,7,7,9,12]$, what index does the lower bound template return for $x=8$?`, T`Pada $[1,3,3,5,7,7,7,9,12]$, indeks berapa yang dikembalikan templat batas bawah untuk $x=8$?`),
+            prompt: L(T`In $[1,3,3,5,7,7,7,9,12]$, what index does the lower bound template return for $x=8$?`, T`Pada $[1,3,3,5,7,7,7,9,12]$, indeks berapa yang dikembalikan template batas bawah untuk $x=8$?`),
             given: String.raw`i=v`,
             blanks: [{ label: 'i =', answer: 7 }],
           },
@@ -829,13 +829,13 @@ int main() {
 - **Limits:** a comparison sort needs $\log_2(n!)\approx n\log_2n-1.44n$ comparisons; counting and radix sort avoid comparing.
 - **In practice:** use the library sort (Timsort, introsort), a stable one for several keys, and a comparator for numbers in JavaScript.`,
             T`- **Pencarian biner:** daftar terurut, lihat bagian tengah, buang separuh; paling banyak $\lfloor\log_2n\rfloor+1$ kali melihat.
-- **Pertanyaan posisi:** templat setengah terbuka memberi batas bawah ($a[i]\ge x$ pertama); ubah ´<´ menjadi ´<=´ untuk batas atas; selisihnya menghitung salinan.
-- **Galat:** pertahankan satu konvensi dengan invariannya, dan pakai ´lo + (hi - lo) / 2´.
+- **Pertanyaan posisi:** template setengah terbuka memberi batas bawah ($a[i]\ge x$ pertama); ubah ´<´ menjadi ´<=´ untuk batas atas; selisihnya menghitung salinan.
+- **Error:** pertahankan satu konvensi dengan invariannya, dan pakai ´lo + (hi - lo) / 2´.
 - **Cari jawabannya:** pertanyaan ya atau tidak yang monoton apa pun; akar bulat dalam $\log_2N$ pengujian; bisection memperoleh satu angka biner per langkah dan tidak dapat gagal.
 - **Pengurutan sederhana:** sekitar $\frac{n^2}{2}$ langkah; bubble dan insertion sort bergerak tepat sebanyak inversi.
 - **Merge sort:** paling banyak $n\lceil\log_2n\rceil$ perbandingan, memori tambahan $O(n)$, stabil. **Quicksort:** $\approx1{,}39\,n\log_2n$ rata-rata, $\frac{n(n-1)}{2}$ untuk pivot ekstrem, di tempat, tidak stabil.
 - **Batas:** pengurutan perbandingan memerlukan $\log_2(n!)\approx n\log_2n-1{,}44n$ perbandingan; counting dan radix sort menghindari perbandingan.
-- **Dalam praktik:** pakai pengurutan pustaka (Timsort, introsort), yang stabil untuk beberapa kunci, dan pembanding untuk bilangan di JavaScript.`,
+- **Dalam praktik:** pakai pengurutan library (Timsort, introsort), yang stabil untuk beberapa kunci, dan pembanding untuk bilangan di JavaScript.`,
           ),
         },
       ],
@@ -858,9 +858,9 @@ int main() {
   howTo: [
     {
       name: L('How to write a correct binary search', 'Cara menulis pencarian biner yang benar'),
-      description: L('Use the half-open template with an invariant, and compute the middle without overflow.', 'Pakai templat setengah terbuka dengan invarian, dan hitung titik tengah tanpa luapan.'),
+      description: L('Use the half-open template with an invariant, and compute the middle without overflow.', 'Pakai template setengah terbuka dengan invarian, dan hitung titik tengah tanpa luapan.'),
       steps: [
-        { name: L('Check the input', 'Periksa masukannya'), text: L('Make sure the list is sorted and that you can reach any index in one step.', 'Pastikan daftar terurut dan kamu dapat mencapai indeks mana pun dalam satu langkah.') },
+        { name: L('Check the input', 'Periksa input-nya'), text: L('Make sure the list is sorted and that you can reach any index in one step.', 'Pastikan daftar terurut dan kamu dapat mencapai indeks mana pun dalam satu langkah.') },
         { name: L('Write the invariant', 'Tulis invariannya'), text: L('Start with lo at 0 and hi at the length, and state that everything before lo is too small and everything from hi on is large enough.', 'Mulai dengan lo di 0 dan hi di panjang daftar, dan nyatakan bahwa semua sebelum lo terlalu kecil dan semua dari hi ke belakang cukup besar.') },
         { name: L('Halve safely', 'Bagi dua dengan aman'), text: L('While lo is below hi, take mid as lo plus half of hi minus lo; if the element at mid is too small move lo past it, otherwise set hi to mid.', 'Selama lo di bawah hi, ambil mid sebagai lo ditambah setengah dari hi dikurangi lo; jika elemen di mid terlalu kecil pindahkan lo melewatinya, jika tidak setel hi ke mid.') },
         { name: L('Read the answer', 'Baca jawabannya'), text: L('When lo equals hi it is the first index that qualifies; check that it is inside the list and holds the value you wanted.', 'Ketika lo sama dengan hi ia adalah indeks pertama yang memenuhi syarat; periksa bahwa ia berada di dalam daftar dan memuat nilai yang kamu inginkan.') },
@@ -868,9 +868,9 @@ int main() {
     },
     {
       name: L('How to choose a sorting algorithm', 'Cara memilih algoritma pengurutan'),
-      description: L('Start from the library sort and change it only for a reason you can name.', 'Mulai dari pengurutan pustaka dan ubah hanya karena alasan yang dapat kamu sebut.'),
+      description: L('Start from the library sort and change it only for a reason you can name.', 'Mulai dari pengurutan library dan ubah hanya karena alasan yang dapat kamu sebut.'),
       steps: [
-        { name: L('Use the library sort', 'Pakai pengurutan pustaka'), text: L('Call the sort of your language; it is a tuned hybrid that is hard to beat.', 'Panggil pengurutan bahasamu; ia hibrida yang sudah disetel dan sulit dikalahkan.') },
+        { name: L('Use the library sort', 'Pakai pengurutan library'), text: L('Call the sort of your language; it is a tuned hybrid that is hard to beat.', 'Panggil pengurutan bahasamu; ia hibrida yang sudah disetel dan sulit dikalahkan.') },
         { name: L('Decide if you need stability', 'Putuskan perlu stabil atau tidak'), text: L('If you sort by several keys in turn, or equal elements carry other information, choose a stable sort.', 'Jika kamu mengurutkan menurut beberapa kunci berturut-turut, atau elemen yang sama membawa informasi lain, pilih pengurutan stabil.') },
         { name: L('Look at the data', 'Lihat datanya'), text: L('For a few dozen items or a nearly sorted list insertion sort is enough; for small whole numbers consider counting sort.', 'Untuk beberapa puluh elemen atau daftar yang hampir terurut insertion sort sudah cukup; untuk bilangan bulat kecil pertimbangkan counting sort.') },
         { name: L('Mind memory and the worst case', 'Perhatikan memori dan kasus terburuk'), text: L('Merge sort needs extra memory, plain quicksort can degrade, and heapsort or introsort give a worst-case guarantee in place.', 'Merge sort memerlukan memori tambahan, quicksort biasa dapat memburuk, dan heapsort atau introsort memberi jaminan kasus terburuk di tempat.') },
@@ -894,7 +894,7 @@ int main() {
       ),
     },
     {
-      q: L('How do you avoid overflow and off-by-one errors in binary search?', 'Bagaimana menghindari luapan dan galat selisih satu pada pencarian biner?'),
+      q: L('How do you avoid overflow and off-by-one errors in binary search?', 'Bagaimana menghindari luapan dan error selisih satu pada pencarian biner?'),
       a: L(
         'Compute the middle as lo plus half of hi minus lo, so the sum of two large indices never overflows. Pick either a closed interval or a half-open one, use the matching loop condition and updates, and write the invariant as a comment.',
         'Hitung titik tengah sebagai lo ditambah setengah dari hi dikurangi lo, sehingga jumlah dua indeks besar tidak pernah meluap. Pilih selang tertutup atau setengah terbuka, pakai syarat perulangan dan pembaruan yang cocok, dan tulis invariannya sebagai komentar.',
@@ -911,7 +911,7 @@ int main() {
       q: L('What is the fastest sorting algorithm?', 'Apa algoritma pengurutan tercepat?'),
       a: L(
         'There is none for every input. Comparison sorts cannot beat about n log n comparisons, and among them quicksort is usually fastest on arrays and merge sort on linked lists. Counting and radix sort can beat that when the keys are small integers.',
-        'Tidak ada yang tercepat untuk setiap masukan. Pengurutan perbandingan tidak dapat mengalahkan sekitar n log n perbandingan, dan di antaranya quicksort biasanya tercepat pada larik dan merge sort pada linked list. Counting dan radix sort dapat mengalahkannya bila kuncinya bilangan bulat kecil.',
+        'Tidak ada yang tercepat untuk setiap input. Pengurutan perbandingan tidak dapat mengalahkan sekitar n log n perbandingan, dan di antaranya quicksort biasanya tercepat pada array dan merge sort pada linked list. Counting dan radix sort dapat mengalahkannya bila kuncinya bilangan bulat kecil.',
       ),
     },
     {

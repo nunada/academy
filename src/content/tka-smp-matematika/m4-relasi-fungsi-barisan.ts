@@ -119,7 +119,7 @@ export const module4: Module = {
               title: L('Step by Step: Domain, Codomain and Range', 'Contoh Bertahap: Daerah Asal, Kodomain, dan Daerah Hasil'),
               body: L(
                 'Take the same relation. On the graph, each pair $(x,y)$ is a dot: $x$ is the number from $A$ and $y$ is its partner in $B$.\n\n1. Step 1: The **domain** is the set where the arrows start: $A=\\{1,2,3,4\\}$.\n2. Step 2: The **codomain** is the whole set the arrows may land in: $B=\\{2,4,6,8,10\\}$.\n3. Step 3: The **range** has only the members of $B$ that an arrow really reaches: $\\{2,4,6,8\\}$.\n4. Step 4: The number 10 is in the codomain, but no arrow ends there, so it is NOT in the range.\n\n**Remember:**\n\n| Name | Meaning | In this example |\n|---|---|---|\n| Domain | the inputs: where arrows start | $\\{1,2,3,4\\}$ |\n| Codomain | the whole target set: every output that is allowed | $\\{2,4,6,8,10\\}$ |\n| Range | the outputs that are really used | $\\{2,4,6,8\\}$ |',
-                'Ambil relasi yang sama. Pada grafik, setiap pasangan $(x,y)$ adalah satu titik: $x$ adalah bilangan dari $A$ dan $y$ adalah pasangannya di $B$.\n\n1. Langkah 1: **Daerah asal** (domain) adalah himpunan tempat panah berawal: $A=\\{1,2,3,4\\}$.\n2. Langkah 2: **Daerah kawan** (kodomain) adalah seluruh himpunan tujuan panah: $B=\\{2,4,6,8,10\\}$.\n3. Langkah 3: **Daerah hasil** (range) hanya berisi anggota $B$ yang benar-benar dicapai panah: $\\{2,4,6,8\\}$.\n4. Langkah 4: Bilangan 10 ada di kodomain, tetapi tidak ada panah yang berakhir di sana, jadi 10 BUKAN anggota daerah hasil.\n\n**Ingat:**\n\n| Nama | Arti | Pada contoh ini |\n|---|---|---|\n| Daerah asal | masukan: tempat panah berawal | $\\{1,2,3,4\\}$ |\n| Kodomain | seluruh himpunan tujuan: semua keluaran yang diperbolehkan | $\\{2,4,6,8,10\\}$ |\n| Daerah hasil | keluaran yang benar-benar terpakai | $\\{2,4,6,8\\}$ |',
+                'Ambil relasi yang sama. Pada grafik, setiap pasangan $(x,y)$ adalah satu titik: $x$ adalah bilangan dari $A$ dan $y$ adalah pasangannya di $B$.\n\n1. Langkah 1: **Daerah asal** (domain) adalah himpunan tempat panah berawal: $A=\\{1,2,3,4\\}$.\n2. Langkah 2: **Daerah kawan** (kodomain) adalah seluruh himpunan tujuan panah: $B=\\{2,4,6,8,10\\}$.\n3. Langkah 3: **Daerah hasil** (range) hanya berisi anggota $B$ yang benar-benar dicapai panah: $\\{2,4,6,8\\}$.\n4. Langkah 4: Bilangan 10 ada di kodomain, tetapi tidak ada panah yang berakhir di sana, jadi 10 BUKAN anggota daerah hasil.\n\n**Ingat:**\n\n| Nama | Arti | Pada contoh ini |\n|---|---|---|\n| Daerah asal | input: tempat panah berawal | $\\{1,2,3,4\\}$ |\n| Kodomain | seluruh himpunan tujuan: semua output yang diperbolehkan | $\\{2,4,6,8,10\\}$ |\n| Daerah hasil | output yang benar-benar terpakai | $\\{2,4,6,8\\}$ |',
               ),
               figure: {
                 ...plane([-1, 6], [-1, 10], [
@@ -140,7 +140,7 @@ export const module4: Module = {
               title: L('Watch Out!: Range, Codomain and Functions', 'Awas, Jebakan!: Daerah Hasil, Kodomain, dan Fungsi'),
               body: L(
                 'A relation is a **function** when every member of the domain has exactly one partner. On a graph, use the **vertical line test**: if every vertical line crosses the graph at most once, it is a function.\n\n| Wrong | Right |\n|---|---|\n| ❌ The range of the relation above is $\\{2,4,6,8,10\\}$ (the whole codomain was copied) | The range is $\\{2,4,6,8\\}$: only the outputs that an arrow really reaches |\n| ❌ $\\{(1,2),(1,3),(2,4)\\}$ is a function, because every number has an arrow | Not a function: the input 1 has two outputs, 2 and 3 |\n| ❌ $\\{(1,5),(2,5),(3,5)\\}$ is not a function, because 5 appears three times | It is a function: different inputs may share one output. Only one INPUT with two outputs is forbidden |',
-                'Relasi disebut **fungsi** jika setiap anggota daerah asal punya tepat satu pasangan. Pada grafik, pakai **uji garis vertikal**: jika setiap garis vertikal memotong grafik paling banyak satu kali, grafik itu fungsi.\n\n| Salah | Benar |\n|---|---|\n| ❌ Daerah hasil relasi di atas adalah $\\{2,4,6,8,10\\}$ (seluruh kodomain disalin) | Daerah hasilnya $\\{2,4,6,8\\}$: hanya keluaran yang benar-benar dicapai panah |\n| ❌ $\\{(1,2),(1,3),(2,4)\\}$ adalah fungsi, karena setiap bilangan punya panah | Bukan fungsi: masukan 1 punya dua keluaran, yaitu 2 dan 3 |\n| ❌ $\\{(1,5),(2,5),(3,5)\\}$ bukan fungsi, karena 5 muncul tiga kali | Itu fungsi: masukan yang berbeda boleh punya keluaran yang sama. Yang dilarang hanya SATU masukan dengan dua keluaran |',
+                'Relasi disebut **fungsi** jika setiap anggota daerah asal punya tepat satu pasangan. Pada grafik, pakai **uji garis vertikal**: jika setiap garis vertikal memotong grafik paling banyak satu kali, grafik itu fungsi.\n\n| Salah | Benar |\n|---|---|\n| ❌ Daerah hasil relasi di atas adalah $\\{2,4,6,8,10\\}$ (seluruh kodomain disalin) | Daerah hasilnya $\\{2,4,6,8\\}$: hanya output yang benar-benar dicapai panah |\n| ❌ $\\{(1,2),(1,3),(2,4)\\}$ adalah fungsi, karena setiap bilangan punya panah | Bukan fungsi: input 1 punya dua output, yaitu 2 dan 3 |\n| ❌ $\\{(1,5),(2,5),(3,5)\\}$ bukan fungsi, karena 5 muncul tiga kali | Itu fungsi: input yang berbeda boleh punya output yang sama. Yang dilarang hanya SATU input dengan dua output |',
               ),
               figure: {
                 ...plane([-1, 6], [-1, 7], [
@@ -152,7 +152,7 @@ export const module4: Module = {
                 ]),
                 caption: L(
                   'The dashed vertical line touches two dots: the input 2 has two outputs, so this is not a function.',
-                  'Garis vertikal putus-putus menyentuh dua titik: masukan 2 punya dua keluaran, jadi ini bukan fungsi.',
+                  'Garis vertikal putus-putus menyentuh dua titik: input 2 punya dua output, jadi ini bukan fungsi.',
                 ),
               },
             },
@@ -232,7 +232,7 @@ export const module4: Module = {
               answer: 0,
               explain: L(
                 'A function needs exactly one arrow from every member of the domain. The input 2 has two arrows, so it breaks the rule. Having extra members in $B$ is allowed, and so is a member of $B$ with two arrows coming in.',
-                'Fungsi membutuhkan tepat satu panah dari setiap anggota daerah asal. Masukan 2 punya dua panah, jadi aturannya dilanggar. Anggota $B$ yang berlebih boleh ada, dan anggota $B$ yang menerima dua panah juga boleh.',
+                'Fungsi membutuhkan tepat satu panah dari setiap anggota daerah asal. Input 2 punya dua panah, jadi aturannya dilanggar. Anggota $B$ yang berlebih boleh ada, dan anggota $B$ yang menerima dua panah juga boleh.',
               ),
               hint: L(
                 'Count the arrows that leave each number of $A$. Is there exactly one for every number?',
@@ -252,7 +252,7 @@ export const module4: Module = {
               answer: [true, false, true, false],
               explain: L(
                 'In the first set every input (1, 2, 3) has one output, and two inputs may share the output 4. In the second set the input 1 has two outputs. The range can be smaller than the codomain when some members of the codomain are not reached.',
-                'Pada himpunan pertama setiap masukan (1, 2, 3) punya satu keluaran, dan dua masukan boleh punya keluaran 4 yang sama. Pada himpunan kedua masukan 1 punya dua keluaran. Daerah hasil bisa lebih kecil daripada kodomain jika ada anggota kodomain yang tidak dicapai.',
+                'Pada himpunan pertama setiap input (1, 2, 3) punya satu output, dan dua input boleh punya output 4 yang sama. Pada himpunan kedua input 1 punya dua output. Daerah hasil bisa lebih kecil daripada kodomain jika ada anggota kodomain yang tidak dicapai.',
               ),
               hint: L(
                 'For a set of pairs, look at the first numbers. Does any first number appear twice with different partners?',
@@ -275,7 +275,7 @@ export const module4: Module = {
               answer: [0, 1],
               explain: L(
                 'The first two sets never use the same first number twice, so each input has one output. The other two sets use a first number twice with different second numbers (2 with 1 and 2, and 1 with 4 and 6).',
-                'Dua himpunan pertama tidak pernah memakai bilangan pertama yang sama dua kali, jadi setiap masukan punya satu keluaran. Dua himpunan lainnya memakai satu bilangan pertama dua kali dengan bilangan kedua berbeda (2 dengan 1 dan 2, serta 1 dengan 4 dan 6).',
+                'Dua himpunan pertama tidak pernah memakai bilangan pertama yang sama dua kali, jadi setiap input punya satu output. Dua himpunan lainnya memakai satu bilangan pertama dua kali dengan bilangan kedua berbeda (2 dengan 1 dan 2, serta 1 dengan 4 dan 6).',
               ),
               hint: L(
                 'List the first number of every pair. A set is a function only if no first number repeats with a different second number.',
@@ -296,7 +296,7 @@ export const module4: Module = {
               hints: [
                 L(
                   'The range is made of the outputs. Work out the partner of every number in $A$ first.',
-                  'Daerah hasil terdiri dari keluaran. Hitung dulu pasangan dari setiap bilangan di $A$.',
+                  'Daerah hasil terdiri dari output. Hitung dulu pasangan dari setiap bilangan di $A$.',
                 ),
                 L(
                   'Replace $x$ in $3x-1$ by 1, 2, 3 and 4. Count the different results: that is the size of the range.',
@@ -324,7 +324,7 @@ export const module4: Module = {
           title: L('Functions: Rule, Table and Graph', 'Fungsi: Rumus, Tabel, dan Grafik'),
           goal: L(
             'You can use f(x) = ax + b: find outputs and inputs, make a table, read and draw the graph, and write the rule from two values.',
-            'Kamu bisa memakai f(x) = ax + b: mencari keluaran dan masukan, membuat tabel, membaca dan menggambar grafik, serta menuliskan rumus dari dua nilai.',
+            'Kamu bisa memakai f(x) = ax + b: mencari output dan input, membuat tabel, membaca dan menggambar grafik, serta menuliskan rumus dari dua nilai.',
           ),
           xp: 20,
           steps: [
@@ -334,7 +334,7 @@ export const module4: Module = {
               title: L('Look Closely: A Function Is a Machine', 'Ayo Amati: Fungsi Itu Seperti Mesin'),
               body: L(
                 'A **function** is a rule that gives exactly one output for every input. Think of a machine: you put in a number $x$, it doubles the number and adds 3.\n\nWe name the machine $f$ and write its rule as $f(x)=2x+3$.\n\n- $x$ is the **input**. $f(x)$, read "f of x", is the **output**.\n- To find $f(4)$, replace every $x$ by 4: $f(4)=2\\times4+3=11$.\n- A rule of the form $f(x)=ax+b$ is a **linear function**: its graph is a straight line.\n\nA table lists inputs with their outputs.\n\n| $x$ | $-2$ | $-1$ | 0 | 1 | 2 |\n|---|---|---|---|---|---|\n| $f(x)$ | $-1$ | 1 | 3 | 5 | 7 |',
-                '**Fungsi** adalah aturan yang memberi tepat satu keluaran untuk setiap masukan. Bayangkan sebuah mesin: kamu memasukkan bilangan $x$, mesin menggandakannya lalu menambah 3.\n\nMesin itu kita beri nama $f$ dan aturannya ditulis $f(x)=2x+3$.\n\n- $x$ adalah **masukan**. $f(x)$, dibaca "f dari x", adalah **keluaran**.\n- Untuk mencari $f(4)$, ganti setiap $x$ dengan 4: $f(4)=2\\times4+3=11$.\n- Aturan berbentuk $f(x)=ax+b$ disebut **fungsi linear**: grafiknya berupa garis lurus.\n\nTabel mendaftar masukan beserta keluarannya.\n\n| $x$ | $-2$ | $-1$ | 0 | 1 | 2 |\n|---|---|---|---|---|---|\n| $f(x)$ | $-1$ | 1 | 3 | 5 | 7 |',
+                '**Fungsi** adalah aturan yang memberi tepat satu output untuk setiap input. Bayangkan sebuah mesin: kamu memasukkan bilangan $x$, mesin menggandakannya lalu menambah 3.\n\nMesin itu kita beri nama $f$ dan aturannya ditulis $f(x)=2x+3$.\n\n- $x$ adalah **input**. $f(x)$, dibaca "f dari x", adalah **output**.\n- Untuk mencari $f(4)$, ganti setiap $x$ dengan 4: $f(4)=2\\times4+3=11$.\n- Aturan berbentuk $f(x)=ax+b$ disebut **fungsi linear**: grafiknya berupa garis lurus.\n\nTabel mendaftar input beserta output-nya.\n\n| $x$ | $-2$ | $-1$ | 0 | 1 | 2 |\n|---|---|---|---|---|---|\n| $f(x)$ | $-1$ | 1 | 3 | 5 | 7 |',
               ),
               figure: {
                 ...arrowDiagram({
@@ -345,7 +345,7 @@ export const module4: Module = {
                 }),
                 caption: L(
                   'The machine f(x) = 2x + 3 sends every input to one output.',
-                  'Mesin f(x) = 2x + 3 mengirim setiap masukan ke satu keluaran.',
+                  'Mesin f(x) = 2x + 3 mengirim setiap input ke satu output.',
                 ),
               },
             },
@@ -355,7 +355,7 @@ export const module4: Module = {
               title: L('Step by Step: Table and Graph', 'Contoh Bertahap: Tabel dan Grafik'),
               body: L(
                 'Let us draw the graph of $f(x)=2x+3$.\n\n1. Step 1: Choose some inputs, for example $x=-2,-1,0,1,2$.\n2. Step 2: Work out each output: $f(-2)=2(-2)+3=-1$, $f(-1)=1$, $f(0)=3$, $f(1)=5$, $f(2)=7$.\n3. Step 3: Each pair $(x,f(x))$ is a point. Plot $(-2,-1)$, $(-1,1)$, $(0,3)$, $(1,5)$ and $(2,7)$.\n4. Step 4: Join the points. They lie on one straight line.\n\n**Remember:**\n\n- The line crosses the $y$-axis at $(0,b)$. Here it is $(0,3)$.\n- Each step of 1 to the right makes the output change by $a$. Here the line goes up by 2.\n- To find the input for a given output, solve an equation. For $f(x)=9$: $2x+3=9$, so $2x=6$ and $x=3$.',
-                'Mari kita gambar grafik $f(x)=2x+3$.\n\n1. Langkah 1: Pilih beberapa masukan, misalnya $x=-2,-1,0,1,2$.\n2. Langkah 2: Hitung setiap keluaran: $f(-2)=2(-2)+3=-1$, $f(-1)=1$, $f(0)=3$, $f(1)=5$, $f(2)=7$.\n3. Langkah 3: Setiap pasangan $(x,f(x))$ adalah satu titik. Gambar $(-2,-1)$, $(-1,1)$, $(0,3)$, $(1,5)$, dan $(2,7)$.\n4. Langkah 4: Hubungkan titik-titiknya. Semuanya terletak pada satu garis lurus.\n\n**Ingat:**\n\n- Garis memotong sumbu $y$ di $(0,b)$. Di sini $(0,3)$.\n- Setiap bergeser 1 ke kanan, keluaran berubah sebesar $a$. Di sini garis naik 2.\n- Untuk mencari masukan dari keluaran tertentu, selesaikan persamaan. Untuk $f(x)=9$: $2x+3=9$, jadi $2x=6$ dan $x=3$.',
+                'Mari kita gambar grafik $f(x)=2x+3$.\n\n1. Langkah 1: Pilih beberapa input, misalnya $x=-2,-1,0,1,2$.\n2. Langkah 2: Hitung setiap output: $f(-2)=2(-2)+3=-1$, $f(-1)=1$, $f(0)=3$, $f(1)=5$, $f(2)=7$.\n3. Langkah 3: Setiap pasangan $(x,f(x))$ adalah satu titik. Gambar $(-2,-1)$, $(-1,1)$, $(0,3)$, $(1,5)$, dan $(2,7)$.\n4. Langkah 4: Hubungkan titik-titiknya. Semuanya terletak pada satu garis lurus.\n\n**Ingat:**\n\n- Garis memotong sumbu $y$ di $(0,b)$. Di sini $(0,3)$.\n- Setiap bergeser 1 ke kanan, output berubah sebesar $a$. Di sini garis naik 2.\n- Untuk mencari input dari output tertentu, selesaikan persamaan. Untuk $f(x)=9$: $2x+3=9$, jadi $2x=6$ dan $x=3$.',
               ),
               figure: {
                 ...plane([-4, 4], [-2, 10], [
@@ -378,7 +378,7 @@ export const module4: Module = {
               title: L('Watch Out!: f(x) Is Not f Times x', 'Awas, Jebakan!: f(x) Bukan f Dikali x'),
               body: L(
                 'Be careful with these common mistakes.\n\n| Wrong | Right |\n|---|---|\n| ❌ $f(x)$ means $f\\times x$, so $f(4)=f\\times4$ | $f(x)$ is the name of the output. $f(4)=2\\times4+3=11$ |\n| ❌ $f(-2)=2-2+3=3$ (the multiplication was lost) | $f(-2)=2\\times(-2)+3=-1$ (use brackets for a negative input) |\n| ❌ $f(x)=13$, so $x=13$ | $f(x)=13$ means the OUTPUT is 13. Solve $2x+3=13$: $x=5$ |',
-                'Hati-hati dengan kesalahan yang sering terjadi ini.\n\n| Salah | Benar |\n|---|---|\n| ❌ $f(x)$ berarti $f\\times x$, jadi $f(4)=f\\times4$ | $f(x)$ adalah nama keluaran. $f(4)=2\\times4+3=11$ |\n| ❌ $f(-2)=2-2+3=3$ (perkaliannya hilang) | $f(-2)=2\\times(-2)+3=-1$ (pakai tanda kurung untuk masukan negatif) |\n| ❌ $f(x)=13$, jadi $x=13$ | $f(x)=13$ berarti KELUARANNYA 13. Selesaikan $2x+3=13$: $x=5$ |',
+                'Hati-hati dengan kesalahan yang sering terjadi ini.\n\n| Salah | Benar |\n|---|---|\n| ❌ $f(x)$ berarti $f\\times x$, jadi $f(4)=f\\times4$ | $f(x)$ adalah nama output. $f(4)=2\\times4+3=11$ |\n| ❌ $f(-2)=2-2+3=3$ (perkaliannya hilang) | $f(-2)=2\\times(-2)+3=-1$ (pakai tanda kurung untuk input negatif) |\n| ❌ $f(x)=13$, jadi $x=13$ | $f(x)=13$ berarti KELUARANNYA 13. Selesaikan $2x+3=13$: $x=5$ |',
               ),
             },
             {
@@ -410,7 +410,7 @@ export const module4: Module = {
               math: true,
               prompt: L(
                 'Try it together: for $f(x)=2x+3$, find the input $x$ whose output is 13. Subtract 3 from both sides, then divide by 2.',
-                'Coba bersama: untuk $f(x)=2x+3$, cari masukan $x$ yang keluarannya 13. Kurangi kedua ruas dengan 3, lalu bagi dengan 2.',
+                'Coba bersama: untuk $f(x)=2x+3$, cari input $x$ yang output-nya 13. Kurangi kedua ruas dengan 3, lalu bagi dengan 2.',
               ),
               template: '2x+3=13 \\quad 2x=13-3=___ \\quad x=___ \\div 2=___',
               blanks: ['10', '10', '5'],
@@ -450,11 +450,11 @@ export const module4: Module = {
               answer: 0,
               explain: L(
                 'Go to $x=2$ on the horizontal axis and up to the line: the height is 5. The value 2 is the input, 3 is $f(1)$ and 7 is $f(3)$.',
-                'Pergi ke $x=2$ pada sumbu mendatar lalu naik ke garis: tingginya 5. Nilai 2 adalah masukan, 3 adalah $f(1)$, dan 7 adalah $f(3)$.',
+                'Pergi ke $x=2$ pada sumbu mendatar lalu naik ke garis: tingginya 5. Nilai 2 adalah input, 3 adalah $f(1)$, dan 7 adalah $f(3)$.',
               ),
               hint: L(
                 'The input is on the horizontal axis. Find $x=2$, go up to the line, and read the height on the vertical axis.',
-                'Masukan ada di sumbu mendatar. Cari $x=2$, naik ke garis, lalu baca tingginya pada sumbu tegak.',
+                'Input ada di sumbu mendatar. Cari $x=2$, naik ke garis, lalu baca tingginya pada sumbu tegak.',
               ),
             },
             {
@@ -470,7 +470,7 @@ export const module4: Module = {
               answer: [true, false, true, false],
               explain: L(
                 '$f(2)=4\\times2-1=7$ is true. $f(-1)=4\\times(-1)-1=-5$, not 3. From $4x-1=11$ we get $4x=12$ and $x=3$. And $f(x)$ is a name for the output, not a product.',
-                '$f(2)=4\\times2-1=7$ benar. $f(-1)=4\\times(-1)-1=-5$, bukan 3. Dari $4x-1=11$ diperoleh $4x=12$ dan $x=3$. Dan $f(x)$ adalah nama keluaran, bukan hasil kali.',
+                '$f(2)=4\\times2-1=7$ benar. $f(-1)=4\\times(-1)-1=-5$, bukan 3. Dari $4x-1=11$ diperoleh $4x=12$ dan $x=3$. Dan $f(x)$ adalah nama output, bukan hasil kali.',
               ),
               hint: L(
                 'Test each statement by replacing $x$ in $4x-1$. For the third one, solve $4x-1=11$.',
@@ -483,7 +483,7 @@ export const module4: Module = {
               title: L('Step by Step: A Function from a Story', 'Contoh Bertahap: Fungsi dari Sebuah Cerita'),
               body: L(
                 'A taxi charges a starting fee of Rp5,000 plus Rp3,000 for every kilometer. For $x$ km the fare in rupiah is $f(x)=3\\,000x+5\\,000$. For example, $f(4)=3\\,000\\times4+5\\,000=17\\,000$.\n\nNow the other way round: we know two values and want the rule $f(x)=ax+b$. Suppose $f(2)=11\\,000$ and $f(4)=17\\,000$.\n\n1. Step 1: From 2 km to 4 km the fare rises by $17\\,000-11\\,000=6\\,000$, for $4-2=2$ extra km. So $a=6\\,000\\div2=3\\,000$.\n2. Step 2: Put $x=2$ in $f(x)=3\\,000x+b$: $3\\,000\\times2+b=11\\,000$, so $b=5\\,000$.\n3. Step 3: Write the rule: $f(x)=3\\,000x+5\\,000$.\n\n**Remember:**\n\n- $a$ tells how much the output changes when the input goes up by 1.\n- $b$ is the output when the input is 0, the starting amount.',
-                'Sebuah taksi menarik biaya awal Rp5.000 ditambah Rp3.000 untuk setiap kilometer. Untuk $x$ km, ongkos dalam rupiah adalah $f(x)=3\\,000x+5\\,000$. Contohnya, $f(4)=3\\,000\\times4+5\\,000=17\\,000$.\n\nSekarang sebaliknya: kita tahu dua nilai dan ingin mencari rumus $f(x)=ax+b$. Misalkan $f(2)=11\\,000$ dan $f(4)=17\\,000$.\n\n1. Langkah 1: Dari 2 km ke 4 km ongkos naik $17\\,000-11\\,000=6\\,000$, untuk tambahan $4-2=2$ km. Jadi $a=6\\,000\\div2=3\\,000$.\n2. Langkah 2: Masukkan $x=2$ ke $f(x)=3\\,000x+b$: $3\\,000\\times2+b=11\\,000$, jadi $b=5\\,000$.\n3. Langkah 3: Tulis rumusnya: $f(x)=3\\,000x+5\\,000$.\n\n**Ingat:**\n\n- $a$ menyatakan seberapa besar keluaran berubah ketika masukan naik 1.\n- $b$ adalah keluaran ketika masukan 0, yaitu jumlah awal.',
+                'Sebuah taksi menarik biaya awal Rp5.000 ditambah Rp3.000 untuk setiap kilometer. Untuk $x$ km, ongkos dalam rupiah adalah $f(x)=3\\,000x+5\\,000$. Contohnya, $f(4)=3\\,000\\times4+5\\,000=17\\,000$.\n\nSekarang sebaliknya: kita tahu dua nilai dan ingin mencari rumus $f(x)=ax+b$. Misalkan $f(2)=11\\,000$ dan $f(4)=17\\,000$.\n\n1. Langkah 1: Dari 2 km ke 4 km ongkos naik $17\\,000-11\\,000=6\\,000$, untuk tambahan $4-2=2$ km. Jadi $a=6\\,000\\div2=3\\,000$.\n2. Langkah 2: Masukkan $x=2$ ke $f(x)=3\\,000x+b$: $3\\,000\\times2+b=11\\,000$, jadi $b=5\\,000$.\n3. Langkah 3: Tulis rumusnya: $f(x)=3\\,000x+5\\,000$.\n\n**Ingat:**\n\n- $a$ menyatakan seberapa besar output berubah ketika input naik 1.\n- $b$ adalah output ketika input 0, yaitu jumlah awal.',
               ),
             },
             {
@@ -530,12 +530,12 @@ export const module4: Module = {
         ),
         requirements: [
           L('Name the domain, codomain and range of a relation and decide whether it is a function.', 'Menyebut daerah asal, kodomain, dan daerah hasil suatu relasi serta menentukan apakah relasi itu fungsi.'),
-          L('Use f(x) = ax + b: evaluate it, solve for the input and write the rule from two values.', 'Memakai f(x) = ax + b: menghitung nilainya, mencari masukan, dan menuliskan rumus dari dua nilai.'),
+          L('Use f(x) = ax + b: evaluate it, solve for the input and write the rule from two values.', 'Memakai f(x) = ax + b: menghitung nilainya, mencari input, dan menuliskan rumus dari dua nilai.'),
         ],
         hints: [
-          L('For a relation, the range only holds the outputs that an arrow reaches.', 'Pada relasi, daerah hasil hanya berisi keluaran yang dicapai panah.'),
-          L('To find the input for a given output, write an equation and undo the operations one by one.', 'Untuk mencari masukan dari keluaran tertentu, tulis persamaan lalu batalkan operasinya satu per satu.'),
-          L('To write the rule from two values, first find $a$ as change in output divided by change in input, then find $b$.', 'Untuk menuliskan rumus dari dua nilai, cari dulu $a$ sebagai perubahan keluaran dibagi perubahan masukan, lalu cari $b$.'),
+          L('For a relation, the range only holds the outputs that an arrow reaches.', 'Pada relasi, daerah hasil hanya berisi output yang dicapai panah.'),
+          L('To find the input for a given output, write an equation and undo the operations one by one.', 'Untuk mencari input dari output tertentu, tulis persamaan lalu batalkan operasinya satu per satu.'),
+          L('To write the rule from two values, first find $a$ as change in output divided by change in input, then find $b$.', 'Untuk menuliskan rumus dari dua nilai, cari dulu $a$ sebagai perubahan output dibagi perubahan input, lalu cari $b$.'),
         ],
         xp: 50,
         tasks: [
@@ -566,19 +566,19 @@ export const module4: Module = {
           {
             prompt: L(
               'The rule of a function is $f(x)=5x-7$. Find $f(4)$, and find the input $x$ whose output is 18.',
-              'Rumus sebuah fungsi adalah $f(x)=5x-7$. Cari $f(4)$, dan cari masukan $x$ yang keluarannya 18.',
+              'Rumus sebuah fungsi adalah $f(x)=5x-7$. Cari $f(4)$, dan cari input $x$ yang output-nya 18.',
             ),
             inline: true,
             blanks: [
               { label: 'f(4) =', answer: 13 },
-              { label: { en: '\\text{input for output 18: } x =', id: '\\text{masukan untuk keluaran 18: } x =' }, answer: 5 },
+              { label: { en: '\\text{input for output 18: } x =', id: '\\text{input untuk output 18: } x =' }, answer: 5 },
             ],
             solution: ['f(4)=5\\times4-7=13', '5x-7=18', '5x=25', 'x=5'],
           },
           {
             prompt: L(
               'An online motorbike taxi charges a fare that is a linear function of the distance. Let $f(x)$ be the fare in thousand rupiah for $x$ km. A trip of 4 km costs Rp16,000 and a trip of 10 km costs Rp28,000. Write the rule $f(x)$, then find the fare in thousand rupiah for 7 km.',
-              'Sebuah ojek daring menarik ongkos yang merupakan fungsi linear dari jarak. Misalkan $f(x)$ adalah ongkos dalam ribu rupiah untuk $x$ km. Perjalanan 4 km membayar Rp16.000 dan perjalanan 10 km membayar Rp28.000. Tuliskan rumus $f(x)$, lalu cari ongkos dalam ribu rupiah untuk 7 km.',
+              'Sebuah ojek online-41992 menarik ongkos yang merupakan fungsi linear dari jarak. Misalkan $f(x)$ adalah ongkos dalam ribu rupiah untuk $x$ km. Perjalanan 4 km membayar Rp16.000 dan perjalanan 10 km membayar Rp28.000. Tuliskan rumus $f(x)$, lalu cari ongkos dalam ribu rupiah untuk 7 km.',
             ),
             blanks: [
               { label: 'f(x) =', formula: '2*x+8', variable: 'x', domain: [0, 20] },

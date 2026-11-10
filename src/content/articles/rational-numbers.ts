@@ -646,7 +646,7 @@ Use ´Fraction´ when you need an exact answer from exact input, and floats when
 | Pecahan di JavaScript | tidak ada tipe bawaan | simpan dua ´BigInt´ dan sederhanakan dengan FPB, seperti di atas |
 | Penyebut sangat besar | penjumlahan berulang dapat membuat bilangan membesar | sederhanakan setiap langkah; Fraction melakukannya untukmu |
 
-Pakai ´Fraction´ bila kamu memerlukan jawaban eksak dari masukan eksak, dan float bila kecepatan penting dan galat pembulatan kecil tidak berbahaya.`,
+Pakai ´Fraction´ bila kamu memerlukan jawaban eksak dari input eksak, dan float bila kecepatan penting dan galat pembulatan kecil tidak berbahaya.`,
           ),
         },
       ],

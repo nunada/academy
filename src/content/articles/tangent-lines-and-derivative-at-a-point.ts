@@ -292,7 +292,7 @@ Over a whole second ($h=1$) that is $14.7$ m/s, over half a second $12.25$ m/s, 
 **Units.** The derivative has the units of $y$ divided by the units of $x$: meters per second for distance against time, dollars per item for cost against quantity. A road that climbs $8$ meters for each $100$ meters along the ground has slope $0.08$, an 8% grade.
 
 Motion along a line (velocity, speed, acceleration, jerk, free fall) and marginal cost and revenue are worked out in full in [the derivative as a rate of change](article:the-derivative-as-a-rate-of-change#motion-along-a-line).`,
-            T`**Turunan di suatu titik adalah laju perubahan sesaat: seberapa cepat keluaran berubah per satuan masukan pada saat yang tepat itu, dalam satuan $y$ per satuan $x$.** Hasil bagi selisih adalah laju perubahan *rata-rata* pada langkah sebesar $h$, dan turunan adalah nilai yang didekati rata-rata itu saat langkahnya mengecil menjadi nol.
+            T`**Turunan di suatu titik adalah laju perubahan sesaat: seberapa cepat output berubah per satuan input pada saat yang tepat itu, dalam satuan $y$ per satuan $x$.** Hasil bagi selisih adalah laju perubahan *rata-rata* pada langkah sebesar $h$, dan turunan adalah nilai yang didekati rata-rata itu saat langkahnya mengecil menjadi nol.
 
 **Kecepatan.** Misalkan bola yang dijatuhkan dari menara jatuh sejauh $s(t)=4{,}9t^2$ meter dalam $t$ detik. Kecepatan rata-ratanya dari $t=1$ sampai $t=1+h$ adalah
 $$\frac{4{,}9(1+h)^2-4{,}9}{h}=9{,}8+4{,}9h.$$
@@ -757,7 +757,7 @@ h=1e-4  forward 4.2e-05   central 9.0e-10
   glossary: [
     { term: L('Tangent line', 'Garis singgung'), definition: L('A straight line that passes through a point of a curve and has the same direction as the curve there; its slope is the derivative of the function at that point.', 'Garis lurus yang melalui suatu titik pada kurva dan searah dengan kurva di sana; gradiennya adalah turunan fungsi di titik itu.') },
     { term: L('Secant line', 'Garis potong'), definition: L('A straight line through two points of a curve; its slope is the average rate of change of the function between the two points.', 'Garis lurus yang melalui dua titik pada kurva; gradiennya adalah laju perubahan rata-rata fungsi di antara kedua titik itu.') },
-    { term: L('Difference quotient', 'Hasil bagi selisih'), definition: L('The change in a function divided by the change in its input, f of a plus h minus f of a, all over h; it is the slope of a secant line.', 'Perubahan fungsi dibagi perubahan masukannya, f dari a ditambah h dikurangi f dari a, seluruhnya dibagi h; ia adalah gradien garis potong.') },
+    { term: L('Difference quotient', 'Hasil bagi selisih'), definition: L('The change in a function divided by the change in its input, f of a plus h minus f of a, all over h; it is the slope of a secant line.', 'Perubahan fungsi dibagi perubahan input-nya, f dari a ditambah h dikurangi f dari a, seluruhnya dibagi h; ia adalah gradien garis potong.') },
     { term: L('Derivative at a point', 'Turunan di suatu titik'), definition: L('The limit of the difference quotient as h approaches zero, when it exists; it is the slope of the tangent line and the instantaneous rate of change at that point.', 'Limit hasil bagi selisih saat h mendekati nol, bila ada; ia adalah gradien garis singgung dan laju perubahan sesaat di titik itu.') },
     { term: L('Instantaneous rate of change', 'Laju perubahan sesaat'), definition: L('How fast a quantity is changing at one exact moment, found as the limit of the average rates of change over shorter and shorter intervals.', 'Seberapa cepat suatu besaran berubah pada satu saat yang tepat, ditemukan sebagai limit laju perubahan rata-rata pada selang yang makin pendek.') },
     { term: L('Differentiable function', 'Fungsi terdiferensialkan'), definition: L('A function that has a derivative at a given point, or at every point of an interval; such a function is continuous there and looks like a straight line when you zoom in.', 'Fungsi yang memiliki turunan di titik tertentu, atau di setiap titik pada suatu selang; fungsi seperti itu kontinu di sana dan tampak seperti garis lurus saat diperbesar.') },
@@ -833,7 +833,7 @@ h=1e-4  forward 4.2e-05   central 9.0e-10
       q: L('What does the derivative at a point mean?', 'Apa arti turunan di suatu titik?'),
       a: L(
         'It is the instantaneous rate of change of the function at that point, in units of the output per unit of the input. For distance against time it is the speed at that instant, and for cost against quantity it is the marginal cost. Geometrically it is the slope of the graph.',
-        'Ia adalah laju perubahan sesaat fungsi di titik itu, dalam satuan keluaran per satuan masukan. Untuk jarak terhadap waktu ia adalah kecepatan pada saat itu, dan untuk biaya terhadap jumlah ia adalah biaya marjinal. Secara geometris ia adalah gradien grafik.',
+        'Ia adalah laju perubahan sesaat fungsi di titik itu, dalam satuan output per satuan input. Untuk jarak terhadap waktu ia adalah kecepatan pada saat itu, dan untuk biaya terhadap jumlah ia adalah biaya marjinal. Secara geometris ia adalah gradien grafik.',
       ),
     },
     {

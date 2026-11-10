@@ -23,7 +23,7 @@ export const ui = {
   navHelp: { en: 'Guide', id: 'Panduan' },
   navArticles: { en: 'Articles', id: 'Artikel' },
   navGames: { en: 'Games', id: 'Permainan' },
-  footerNavLabel: { en: 'About and links', id: 'Tentang dan tautan' },
+  footerNavLabel: { en: 'About and links', id: 'Tentang dan link' },
   navAbout: { en: 'About', id: 'Tentang' },
   footerTagline: { en: 'Learn math and coding, step by step.', id: 'Belajar matematika dan coding, langkah demi langkah.' },
   signOut: { en: 'Sign out', id: 'Keluar' },
@@ -56,16 +56,16 @@ export const ui = {
   resetTitle: { en: 'Reset your password', id: 'Atur ulang kata sandi' },
   resetSub: {
     en: 'Type the email you signed up with and we will send you a link.',
-    id: 'Ketik email yang kamu pakai mendaftar, dan kami kirimkan tautannya.',
+    id: 'Ketik email yang kamu pakai mendaftar, dan kami kirimkan link-nya.',
   },
-  resetSend: { en: 'Send the link', id: 'Kirim tautannya' },
+  resetSend: { en: 'Send the link', id: 'Kirim link-nya' },
   resetSentBody: {
     en: 'If that email has an account, a link is on its way. It works once and expires within the hour. Check the spam folder if it does not appear.',
-    id: 'Kalau email itu punya akun, tautannya sedang dikirim. Ia hanya bisa dipakai sekali dan kedaluwarsa dalam sejam. Periksa folder spam kalau belum muncul.',
+    id: 'Kalau email itu punya akun, link-nya sedang dikirim. Ia hanya bisa dipakai sekali dan kedaluwarsa dalam sejam. Periksa folder spam kalau belum muncul.',
   },
   resetLocalNote: {
     en: 'Local mode sends no email, so here is the link:',
-    id: 'Mode lokal tidak mengirim email, jadi ini tautannya:',
+    id: 'Mode lokal tidak mengirim email, jadi ini link-nya:',
   },
   resetLocalOpen: { en: 'Open it', id: 'Buka' },
   newPasswordTitle: { en: 'Choose a new password', id: 'Pilih kata sandi baru' },
@@ -89,7 +89,7 @@ export const ui = {
   signupConfirmTitle: { en: 'Check your email', id: 'Periksa emailmu' },
   signupConfirmBody: {
     en: 'Your account is created. Click the link we sent to confirm it, then sign in — the link works once and expires within the hour.',
-    id: 'Akunmu sudah dibuat. Klik tautan yang kami kirim untuk mengonfirmasinya, lalu masuk — tautannya hanya berlaku sekali dan kedaluwarsa dalam sejam.',
+    id: 'Akunmu sudah dibuat. Klik link yang kami kirim untuk mengonfirmasinya, lalu masuk — link-nya hanya berlaku sekali dan kedaluwarsa dalam sejam.',
   },
 
   // landing
@@ -111,7 +111,7 @@ export const ui = {
   featProjects: { en: 'A mini project every submodule', id: 'Mini proyek di setiap submateri' },
   featProjectsBody: {
     en: 'Real code running in your browser, or a problem set marked box by box — either way, checked properly.',
-    id: 'Terapkan konsep yang baru dipelajari melalui mini proyek. Untuk coding, tulis dan jalankan kode langsung di peramban.',
+    id: 'Terapkan konsep yang baru dipelajari melalui mini proyek. Untuk coding, tulis dan jalankan kode langsung di browser.',
   },
   featCompete: { en: 'XP, hearts & weekly leaderboard', id: 'XP, nyawa, dan peringkat mingguan' },
   featCompeteBody: {
@@ -186,7 +186,7 @@ export const ui = {
   loadingPython: { en: 'Starting Python…', id: 'Menyalakan Python…' },
   loadingPythonNote: {
     en: 'First run downloads the Python runtime. It is cached afterward.',
-    id: 'Jalan pertama mengunduh runtime Python. Setelah itu tersimpan di cache.',
+    id: 'Jalan pertama men-download runtime Python. Setelah itu tersimpan di cache.',
   },
 
   // hearts

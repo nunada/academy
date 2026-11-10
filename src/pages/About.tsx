@@ -92,7 +92,7 @@ export default function About({ routeLang }: { routeLang: Lang }) {
           <section key={s.id} className="artsection" aria-labelledby={s.id}>
             <h2 id={s.id}>
               {tc(s.heading)}
-              <a className="anchor" href={`#${s.id}`} aria-label={lang === 'id' ? 'Tautan ke bagian ini' : 'Link to this section'}>
+              <a className="anchor" href={`#${s.id}`} aria-label={lang === 'id' ? 'Link ke bagian ini' : 'Link to this section'}>
                 #
               </a>
             </h2>

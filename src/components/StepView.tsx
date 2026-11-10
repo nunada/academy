@@ -775,7 +775,7 @@ function CodeStep({ step, solved, onSolved, onWrong, blocked, isTeacher }: Props
       setLoadingPy(true)
       try {
         const res = await runPython(code, splitStdin(stdin))
-        setRunOut({ text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)', error: Boolean(res.error) })
+        setRunOut({ text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada output)', error: Boolean(res.error) })
       } finally {
         setLoadingPy(false)
         setBusy(false)

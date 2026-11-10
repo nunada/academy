@@ -42,7 +42,7 @@ export const GAMES_PAGE = {
   ),
   intro: L(
     'Short games, each built around one idea. They need no account, they save your best score in this browser, and every answer is checked exactly, the way the lessons check it.',
-    'Permainan singkat, masing-masing dibangun di sekitar satu gagasan. Tidak perlu akun, skor terbaikmu disimpan di peramban ini, dan setiap jawaban diperiksa secara eksak, seperti yang dilakukan pelajaran.',
+    'Permainan singkat, masing-masing dibangun di sekitar satu gagasan. Tidak perlu akun, skor terbaikmu disimpan di browser ini, dan setiap jawaban diperiksa secara eksak, seperti yang dilakukan pelajaran.',
   ),
 }
 
@@ -80,7 +80,7 @@ export const GAMES: GameMeta[] = [
 There are two modes. In **open cards** everything is face up and the game is about telling numbers apart. In **memory** the cards are face down and you also have to remember where each one is.`,
           `1. Pilih tingkat dan mode, lalu perhatikan kartunya.
 2. Ketuk satu kartu, lalu ketuk kartu yang menurutmu bilangannya sama. Bila sama, keduanya tetap bersama dan pasangannya dituliskan di bawah papan. Bila tidak, keduanya terbalik lagi dan satu kesalahan dihitung.
-3. Temukan semua pasangan untuk menyelesaikan permainan. Kamu mendapat satu sampai tiga bintang dari banyaknya kesalahan; permainan terbaikmu untuk tiap tingkat dan mode disimpan di peramban ini.
+3. Temukan semua pasangan untuk menyelesaikan permainan. Kamu mendapat satu sampai tiga bintang dari banyaknya kesalahan; permainan terbaikmu untuk tiap tingkat dan mode disimpan di browser ini.
 
 Ada dua mode. Pada **kartu terbuka** semua kartu menghadap ke atas dan permainannya adalah membedakan bilangan. Pada **memori** kartu menghadap ke bawah dan kamu juga harus mengingat letak tiap kartu.`,
         ),
@@ -137,7 +137,7 @@ Karena sebuah bilangan dapat ditulis dengan banyak cara, dua kartu yang tampak b
         q: L('Does the game save my score?', 'Apakah permainan menyimpan skorku?'),
         a: L(
           'Your best result for each level and mode is kept in this browser only. There is no account and nothing is sent anywhere; clearing the site data in your browser clears the scores too.',
-          'Hasil terbaikmu untuk tiap tingkat dan mode hanya disimpan di peramban ini. Tidak ada akun dan tidak ada yang dikirim ke mana pun; menghapus data situs di peramban juga menghapus skornya.',
+          'Hasil terbaikmu untuk tiap tingkat dan mode hanya disimpan di browser ini. Tidak ada akun dan tidak ada yang dikirim ke mana pun; menghapus data situs di browser juga menghapus skornya.',
         ),
       },
       {
@@ -187,7 +187,7 @@ Karena sebuah bilangan dapat ditulis dengan banyak cara, dua kartu yang tampak b
 
 You earn three stars if you never lose a life, two if you lose one and one if you lose two. Each time something is eaten the two numbers are shown as a comparison, such as $\\frac35<\\frac58$, at the top of the pond.`,
           `1. Pilih tingkat lalu tekan Mulai. Ikanmu yang berwarna emas, dengan bilangannya di badan.
-2. Berenanglah dengan tetikus, dengan jari di ponsel, atau dengan tombol panah atau W A S D. Berenanglah ke ikan yang bilangannya **lebih kecil** daripada milikmu untuk memakannya.
+2. Berenanglah dengan mouse, dengan jari di ponsel, atau dengan tombol panah atau W A S D. Berenanglah ke ikan yang bilangannya **lebih kecil** daripada milikmu untuk memakannya.
 3. Ikan yang bilangannya **lebih besar** memakanmu: kamu kehilangan satu dari tiga nyawa dan aman sesaat. Ikan dengan bilangan yang **sama**, ditulis dengan cara lain, tidak berbuat apa-apa.
 4. Setiap beberapa ikan yang kamu makan, ikanmu tumbuh dan mengambil bilangan yang lebih besar. Ambil bilangan terbesar tingkat itu untuk menang. Spasi atau P menjeda.
 
@@ -240,7 +240,7 @@ Bilangan di balik bentuk-bentuk ini dijelaskan di [bilangan real](article:real-n
         q: L('How do I play Number Fish?', 'Bagaimana cara bermain Ikan Bilangan?'),
         a: L(
           'Swim your fish with the mouse, a finger or the arrow keys. It eats any fish with a smaller number than its own, and a fish with a larger number eats you. Eat enough fish to grow, and reach the largest number to win.',
-          'Gerakkan ikanmu dengan tetikus, jari, atau tombol panah. Ia memakan ikan yang bilangannya lebih kecil daripada miliknya, dan ikan yang bilangannya lebih besar memakanmu. Makan cukup banyak ikan untuk tumbuh, dan capai bilangan terbesar untuk menang.',
+          'Gerakkan ikanmu dengan mouse, jari, atau tombol panah. Ia memakan ikan yang bilangannya lebih kecil daripada miliknya, dan ikan yang bilangannya lebih besar memakanmu. Makan cukup banyak ikan untuk tumbuh, dan capai bilangan terbesar untuk menang.',
         ),
       },
       {
@@ -258,7 +258,7 @@ Bilangan di balik bentuk-bentuk ini dijelaskan di [bilangan real](article:real-n
         ),
       },
       {
-        q: L('Can I play Number Fish on a phone or with a keyboard?', 'Bisakah memainkan Ikan Bilangan di ponsel atau dengan papan ketik?'),
+        q: L('Can I play Number Fish on a phone or with a keyboard?', 'Bisakah memainkan Ikan Bilangan di ponsel atau dengan keyboard?'),
         a: L(
           'Yes: drag a finger across the pond on a phone, or use the arrow keys or W A S D on a computer. The Slow fish option makes the other fish swim slower, which gives more time to read the numbers, and Space or P pauses the game.',
           'Bisa: seret jari melintasi kolam di ponsel, atau pakai tombol panah atau W A S D di komputer. Pilihan Ikan lambat membuat ikan lain berenang lebih lambat sehingga ada lebih banyak waktu untuk membaca bilangan, dan Spasi atau P menjeda permainan.',
@@ -268,7 +268,7 @@ Bilangan di balik bentuk-bentuk ini dijelaskan di [bilangan real](article:real-n
         q: L('Does Number Fish save my score?', 'Apakah Ikan Bilangan menyimpan skorku?'),
         a: L(
           'Your best score and stars for each level are kept in this browser only. There is no account and nothing is sent anywhere; clearing the site data in your browser clears the scores too.',
-          'Skor dan bintang terbaikmu untuk tiap tingkat hanya disimpan di peramban ini. Tidak ada akun dan tidak ada yang dikirim ke mana pun; menghapus data situs di peramban juga menghapus skornya.',
+          'Skor dan bintang terbaikmu untuk tiap tingkat hanya disimpan di browser ini. Tidak ada akun dan tidak ada yang dikirim ke mana pun; menghapus data situs di browser juga menghapus skornya.',
         ),
       },
     ],

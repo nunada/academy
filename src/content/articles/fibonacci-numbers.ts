@@ -24,7 +24,7 @@ export const body: ArticleBody = {
   keyPoints: [
     L(
       T`$F_0=0$, $F_1=1$, $F_n=F_{n-1}+F_{n-2}$ gives $0,1,1,2,3,5,8,13,21,34,55,89,144$. The same numbers count the ways to climb $n$ stairs with steps of $1$ or $2$ (that is $F_{n+1}$), the binary strings of length $n$ with no two $1$s in a row ($F_{n+2}$) and Fibonacci's rabbits.`,
-      T`$F_0=0$, $F_1=1$, $F_n=F_{n-1}+F_{n-2}$ menghasilkan $0,1,1,2,3,5,8,13,21,34,55,89,144$. Bilangan yang sama menghitung cara menaiki $n$ anak tangga dengan langkah $1$ atau $2$ (yaitu $F_{n+1}$), untai biner panjang $n$ tanpa dua $1$ berurutan ($F_{n+2}$), dan kelinci Fibonacci.`,
+      T`$F_0=0$, $F_1=1$, $F_n=F_{n-1}+F_{n-2}$ menghasilkan $0,1,1,2,3,5,8,13,21,34,55,89,144$. Bilangan yang sama menghitung cara menaiki $n$ anak tangga dengan langkah $1$ atau $2$ (yaitu $F_{n+1}$), string biner panjang $n$ tanpa dua $1$ berurutan ($F_{n+2}$), dan kelinci Fibonacci.`,
     ),
     L(
       T`Binet's formula $F_n=\frac{\varphi^n-\psi^n}{\sqrt5}$ works because $\varphi$ and $\psi$ solve $x^2=x+1$. Since $|\psi^n/\sqrt5|<\frac12$, $F_n$ is the integer nearest to $\varphi^n/\sqrt5$, but in floating point this fails already at $n=71$. The ratio $\frac{F_{n+1}}{F_n}$ differs from $\varphi$ by $\frac{\psi^n}{F_n}\approx\frac{\pm1}{\sqrt5F_n^2}$.`,
@@ -124,7 +124,7 @@ $$s_n=F_{n+1},\qquad s_{10}=F_{11}=89.$$
 
 Argumen yang sama menghitung banyak hal:
 - **Pengubinan.** Banyaknya cara menutup pita sepanjang $n$ dengan persegi panjang $1$ dan domino panjang $2$ adalah $F_{n+1}$. Hitungan Pingala tentang irama dari suku kata pendek dan panjang adalah soal yang sama.
-- **Untai.** Untai biner panjang $n$ tanpa dua $1$ berurutan berjumlah $F_{n+2}$: untuk $n=3$ mereka $000,001,010,100,101$, lima, $F_5$. Bilangan yang sama menghitung himpunan bagian $\{1,\dots,n\}$ tanpa dua bilangan berurutan.
+- **String.** String biner panjang $n$ tanpa dua $1$ berurutan berjumlah $F_{n+2}$: untuk $n=3$ mereka $000,001,010,100,101$, lima, $F_5$. Bilangan yang sama menghitung himpunan bagian $\{1,\dots,n\}$ tanpa dua bilangan berurutan.
 - **Kelinci.** $F_{n+2}$ pasang setelah $n$ bulan, seperti di atas.
 - **Segitiga Pascal.** Jumlah sepanjang diagonal landai adalah bilangan Fibonacci: $C(5,0)+C(4,1)+C(3,2)=1+4+3=8=F_6$, dengan $C(n,k)$ koefisien binomial, dan secara umum $F_{n+1}=\sum_kC(n-k,k)$.
 
@@ -163,7 +163,7 @@ Jadi $\varphi^n$ dan $\psi^n$ keduanya memenuhi rekurensi, demikian pula setiap 
 $$\frac{F_{n+1}}{F_n}-\varphi=\frac{\psi^n}{F_n}\approx\frac{(-1)^n}{\sqrt5\,F_n^2}.$$
 Perbandingan itu karenanya bergantian di sekitar $\varphi$ ($1,2,1{,}5,1{,}667,1{,}6,1{,}625,1{,}615,\ldots$) dan sampai ke sana dengan cepat: ia memperoleh sekitar $2\log_{10}\varphi\approx0{,}42$ tempat desimal per langkah, sehingga $\frac{F_{31}}{F_{30}}$ sudah sesuai dengan $\varphi$ sampai sepuluh desimal. Bandingkan dengan [bilangan irasional yang paling sulit dihampiri pecahan](article:irrational-numbers#rational-approximations): pecahan $\frac{F_{n+1}}{F_n}$ persis yang terbaik untuk $\varphi$, dan merupakan pecahan berantai yang paling lambat konvergen.
 
-**Peringatan bagi pemrogram.** Menghitung ´round(phi ** n / sqrt(5))´ dengan bilangan titik mengambang biasa benar untuk $n\le70$ dan salah mulai $n=71$ ($308\,061\,521\,170\,130$ bukan $308\,061\,521\,170\,129$): sebuah double hanya memiliki sekitar $16$ angka (lihat [jarak antarbilangan titik mengambang](article:floating-point-numbers#spacing)), dan $\varphi^{71}$ harus diketahui lebih baik daripada satu bagian dalam $10^{15}$. Untuk nilai eksak pakai bilangan bulat.`,
+**Peringatan bagi programmer.** Menghitung ´round(phi ** n / sqrt(5))´ dengan bilangan titik mengambang biasa benar untuk $n\le70$ dan salah mulai $n=71$ ($308\,061\,521\,170\,130$ bukan $308\,061\,521\,170\,129$): sebuah double hanya memiliki sekitar $16$ angka (lihat [jarak antarbilangan titik mengambang](article:floating-point-numbers#spacing)), dan $\varphi^{71}$ harus diketahui lebih baik daripada satu bagian dalam $10^{15}$. Untuk nilai eksak pakai bilangan bulat.`,
           ),
         },
       ],

@@ -18,13 +18,13 @@ const T = (s: TemplateStringsArray): string =>
 export const body: ArticleBody = {
   answer: L(
     T`**LaTeX is a typesetting system: you write a plain-text file with commands such as ´\frac{a}{b}´ and ´\section{Introduction}´, and a program turns it into a cleanly formatted PDF.** It is the standard for mathematics, science and computing papers because it sets formulas beautifully, numbers pages, equations and citations automatically, and keeps the look of a document separate from its content. Mathematics goes between dollar signs, as in ´$x^2+y^2=r^2$´.`,
-    T`**LaTeX adalah sistem penyusunan huruf: kamu menulis berkas teks biasa dengan perintah seperti ´\frac{a}{b}´ dan ´\section{Pendahuluan}´, dan sebuah program mengubahnya menjadi PDF yang rapi.** Ia menjadi standar untuk makalah matematika, sains, dan komputasi karena menyusun rumus dengan indah, menomori halaman, persamaan, dan kutipan secara otomatis, dan memisahkan tampilan dokumen dari isinya. Matematika ditaruh di antara tanda dolar, seperti ´$x^2+y^2=r^2$´.`,
+    T`**LaTeX adalah sistem penyusunan huruf: kamu menulis file teks biasa dengan perintah seperti ´\frac{a}{b}´ dan ´\section{Pendahuluan}´, dan sebuah program mengubahnya menjadi PDF yang rapi.** Ia menjadi standar untuk makalah matematika, sains, dan komputasi karena menyusun rumus dengan indah, menomori halaman, persamaan, dan kutipan secara otomatis, dan memisahkan tampilan dokumen dari isinya. Matematika ditaruh di antara tanda dolar, seperti ´$x^2+y^2=r^2$´.`,
   ),
 
   keyPoints: [
     L(
       T`LaTeX is *marked-up text*: you type the content and say what each part is (a section, a formula, a list), and the compiler chooses the typography. A document is a ´.tex´ file; compiling it with ´pdflatex´ gives a PDF.`,
-      T`LaTeX adalah *teks bertanda*: kamu mengetik isinya dan menyatakan bagian apa tiap bagian itu (bagian, rumus, daftar), dan kompilator memilih tipografinya. Dokumen adalah berkas ´.tex´; mengompilasinya dengan ´pdflatex´ menghasilkan PDF.`,
+      T`LaTeX adalah *teks bertanda*: kamu mengetik isinya dan menyatakan bagian apa tiap bagian itu (bagian, rumus, daftar), dan compiler memilih tipografinya. Dokumen adalah file ´.tex´; mengompilasinya dengan ´pdflatex´ menghasilkan PDF.`,
     ),
     L(
       T`Mathematics lives in *math mode*: ´$...$´ inside a sentence, ´\[ ... \]´ on its own line. Scripts take one character unless braced: ´x^{10}´, not ´x^10´. Fractions, roots and sums are ´\frac{a}{b}´, ´\sqrt{x}´ and ´\sum_{i=1}^{n}´.`,
@@ -40,11 +40,11 @@ export const body: ArticleBody = {
     ),
     L(
       T`Read errors from the first one down: ´Undefined control sequence´ is a misspelled command or a missing package, ´Missing $ inserted´ is mathematics outside math mode (a ´^´ in text, or a lone ´$´), ´Missing } inserted´ is an unbalanced brace. A linter can find most of them before you compile.`,
-      T`Baca galat dari yang pertama ke bawah: ´Undefined control sequence´ adalah perintah yang salah eja atau paket yang hilang, ´Missing $ inserted´ adalah matematika di luar mode matematika (´^´ dalam teks, atau ´$´ yang sendirian), ´Missing } inserted´ adalah kurung kurawal yang tidak seimbang. Sebuah linter dapat menemukan kebanyakannya sebelum kamu mengompilasi.`,
+      T`Baca error dari yang pertama ke bawah: ´Undefined control sequence´ adalah perintah yang salah eja atau paket yang hilang, ´Missing $ inserted´ adalah matematika di luar mode matematika (´^´ dalam teks, atau ´$´ yang sendirian), ´Missing } inserted´ adalah kurung kurawal yang tidak seimbang. Sebuah linter dapat menemukan kebanyakannya sebelum kamu mengompilasi.`,
     ),
     L(
       T`LaTeX is also the notation of the web and of code: MathJax and KaTeX draw it in browsers, Markdown and Jupyter notebooks accept ´$...$´, Python's SymPy prints it with ´latex()´, and Overleaf compiles documents online without installing anything.`,
-      T`LaTeX juga adalah notasi web dan kode: MathJax dan KaTeX menggambarnya di peramban, Markdown dan notebook Jupyter menerima ´$...$´, SymPy Python mencetaknya dengan ´latex()´, dan Overleaf mengompilasi dokumen secara daring tanpa memasang apa pun.`,
+      T`LaTeX juga adalah notasi web dan kode: MathJax dan KaTeX menggambarnya di browser, Markdown dan notebook Jupyter menerima ´$...$´, SymPy Python mencetaknya dengan ´latex()´, dan Overleaf mengompilasi dokumen secara online-4987 tanpa memasang apa pun.`,
     ),
   ],
 
@@ -68,17 +68,17 @@ export const body: ArticleBody = {
 **The names.** *TeX* (pronounced "tech", from the Greek letters τ ε χ) is the typesetting engine written by Donald Knuth. *LaTeX* (say "lah-tech" or "lay-tech") is a layer of commands on top of TeX, written by Leslie Lamport, that makes it easy to describe documents. People say "LaTeX" for both the system and the language. *Overleaf* is a website that compiles LaTeX in the browser; *TeX Live* and *MiKTeX* are the distributions you install on your own computer.
 
 **The workflow.** You write ´main.tex´, run the compiler (´pdflatex main´), and open ´main.pdf´. The compiler also writes a ´.log´ file with its messages and a ´.aux´ file where it remembers numbers for the next run. Here is the smallest complete document:`,
-            T`**LaTeX adalah sistem untuk menyiapkan dokumen yang di dalamnya kamu menulis teks dan menandai strukturnya, dan sebuah program bernama kompilator menata letaknya dan menghasilkan PDF.** Kamu tidak menyeret rumus ke tempatnya atau memilih ukuran huruf untuk judul bagian. Kamu mengetik ´\section{Hasil}´ dan LaTeX menentukan seperti apa judul bagian itu, berapa ruang di sekelilingnya, nomor berapa yang ia dapat, dan di mana ia muncul dalam daftar isi. Ini adalah "yang kamu maksud adalah yang kamu dapat", berlawanan dengan "yang kamu lihat adalah yang kamu dapat" pada pengolah kata.
+            T`**LaTeX adalah sistem untuk menyiapkan dokumen yang di dalamnya kamu menulis teks dan menandai strukturnya, dan sebuah program bernama compiler menata letaknya dan menghasilkan PDF.** Kamu tidak menyeret rumus ke tempatnya atau memilih ukuran huruf untuk judul bagian. Kamu mengetik ´\section{Hasil}´ dan LaTeX menentukan seperti apa judul bagian itu, berapa ruang di sekelilingnya, nomor berapa yang ia dapat, dan di mana ia muncul dalam daftar isi. Ini adalah "yang kamu maksud adalah yang kamu dapat", berlawanan dengan "yang kamu lihat adalah yang kamu dapat" pada pengolah kata.
 
 **Mengapa orang memakainya.**
 - **Matematika.** Rumus ditulis dalam teks dan disusun dengan ketelitian penyusun huruf profesional: spasi yang tepat di sekitar operator, kurung yang membesar mengikuti isinya, dan pecahan serta skrip berukuran benar.
 - **Penomoran dan rujukan otomatis.** Bagian, persamaan, gambar, dan tabel dinomori untukmu, dan ´\ref´ serta ´\cite´ menjaga setiap rujukan silang dan kutipan tetap benar ketika kamu menambah atau memindahkan sesuatu.
-- **Stabilitas.** Berkas sumber adalah teks biasa: ia terbuka di mana saja, cocok dengan kontrol versi, dan masih dapat dikompilasi bertahun-tahun kemudian.
+- **Stabilitas.** File sumber adalah teks biasa: ia terbuka di mana saja, cocok dengan kontrol versi, dan masih dapat dikompilasi bertahun-tahun kemudian.
 - **Konsistensi.** Tampilannya adalah sifat *kelas dokumen* dan paket, sehingga tesis, makalah, dan seperangkat slide mempertahankan gaya yang seragam, dan sebuah jurnal dapat menyediakan kelas yang memformat makalahmu sesuai keinginannya.
 
-**Namanya.** *TeX* (dibaca "tek", dari huruf Yunani τ ε χ) adalah mesin penyusunan huruf yang ditulis Donald Knuth. *LaTeX* (baca "la-tek" atau "lei-tek") adalah lapisan perintah di atas TeX, ditulis Leslie Lamport, yang memudahkan menguraikan dokumen. Orang menyebut "LaTeX" untuk sistem maupun bahasanya. *Overleaf* adalah situs yang mengompilasi LaTeX di peramban; *TeX Live* dan *MiKTeX* adalah distribusi yang kamu pasang di komputermu sendiri.
+**Namanya.** *TeX* (dibaca "tek", dari huruf Yunani τ ε χ) adalah mesin penyusunan huruf yang ditulis Donald Knuth. *LaTeX* (baca "la-tek" atau "lei-tek") adalah lapisan perintah di atas TeX, ditulis Leslie Lamport, yang memudahkan menguraikan dokumen. Orang menyebut "LaTeX" untuk sistem maupun bahasanya. *Overleaf* adalah situs yang mengompilasi LaTeX di browser; *TeX Live* dan *MiKTeX* adalah distribusi yang kamu pasang di komputermu sendiri.
 
-**Alur kerjanya.** Kamu menulis ´main.tex´, menjalankan kompilator (´pdflatex main´), dan membuka ´main.pdf´. Kompilator juga menulis berkas ´.log´ berisi pesannya dan berkas ´.aux´ tempat ia mengingat nomor untuk pengerjaan berikutnya. Inilah dokumen lengkap yang terkecil:`,
+**Alur kerjanya.** Kamu menulis ´main.tex´, menjalankan compiler (´pdflatex main´), dan membuka ´main.pdf´. Compiler juga menulis file ´.log´ berisi pesannya dan file ´.aux´ tempat ia mengingat nomor untuk pengerjaan berikutnya. Inilah dokumen lengkap yang terkecil:`,
           ),
         },
         {
@@ -124,17 +124,17 @@ Hello, \LaTeX! The area of a circle of radius $r$ is $A = \pi r^2$.
 **How many times to compile.** A cross-reference such as ´\ref{eq:main}´ is resolved from the ´.aux´ file written on the *previous* run, so the first compilation prints "??" and the second prints the number. A bibliography needs the sequence ´pdflatex´, ´bibtex´, ´pdflatex´, ´pdflatex´. The tool ´latexmk -pdf main.tex´ (and Overleaf) repeats the steps for you until nothing changes.
 
 Assemble one below. Choose the class, packages and parts, and read the source; it also lists the commands to compile it and the rules the page applied (for example, that ´hyperref´ goes last and that a book has no abstract).`,
-            T`**Tulis berkas ´.tex´ dengan kelas dokumen, preamble, dan isi, lalu kompilasi dengan ´pdflatex´; awal tercepat adalah Overleaf, yang tidak perlu dipasang.** Pasang distribusi (TeX Live di Linux, macOS, dan Windows; MiKTeX di Windows) dan sebuah editor, atau buat proyek gratis di Overleaf, tempat tombol Compile menjalankan semuanya untukmu.
+            T`**Tulis file ´.tex´ dengan kelas dokumen, preamble, dan isi, lalu kompilasi dengan ´pdflatex´; awal tercepat adalah Overleaf, yang tidak perlu dipasang.** Pasang distribusi (TeX Live di Linux, macOS, dan Windows; MiKTeX di Windows) dan sebuah editor, atau buat proyek gratis di Overleaf, tempat tombol Compile menjalankan semuanya untukmu.
 
 **Kerangka dokumen sungguhan.** Makalah memiliki judul, penulis, perintah ´\maketitle´, bagian, dan biasanya abstrak:
 
 - ´\documentclass[11pt,a4paper]{article}´: kelasnya, dengan opsi untuk ukuran huruf dan kertas.
-- ´\usepackage{...}´: satu baris per paket, hanya di preamble. ´amsmath´ memberi lingkungan persamaan yang lebih baik, ´amssymb´ simbol tambahan, ´graphicx´ gambar, ´booktabs´ garis tabel yang lebih indah, ´geometry´ margin, dan ´hyperref´ tautan yang dapat diklik (muat paling akhir).
+- ´\usepackage{...}´: satu baris per paket, hanya di preamble. ´amsmath´ memberi lingkungan persamaan yang lebih baik, ´amssymb´ simbol tambahan, ´graphicx´ gambar, ´booktabs´ garis tabel yang lebih indah, ´geometry´ margin, dan ´hyperref´ link yang dapat diklik (muat paling akhir).
 - ´\title´, ´\author´, ´\date´: bagian depan, dicetak oleh ´\maketitle´.
 - ´\section´, ´\subsection´: judul bagian (´report´ atau ´book´ juga memiliki ´\chapter´).
 - ´abstract´: ringkasan singkat, di kelas ´article´ dan ´report´ (´book´ tidak memilikinya).
 
-**Berapa kali mengompilasi.** Rujukan silang seperti ´\ref{eq:main}´ diselesaikan dari berkas ´.aux´ yang ditulis pada pengerjaan *sebelumnya*, sehingga kompilasi pertama mencetak "??" dan yang kedua mencetak nomornya. Daftar pustaka memerlukan urutan ´pdflatex´, ´bibtex´, ´pdflatex´, ´pdflatex´. Alat ´latexmk -pdf main.tex´ (dan Overleaf) mengulang langkah-langkah itu untukmu sampai tidak ada yang berubah.
+**Berapa kali mengompilasi.** Rujukan silang seperti ´\ref{eq:main}´ diselesaikan dari file ´.aux´ yang ditulis pada pengerjaan *sebelumnya*, sehingga kompilasi pertama mencetak "??" dan yang kedua mencetak nomornya. Daftar library memerlukan urutan ´pdflatex´, ´bibtex´, ´pdflatex´, ´pdflatex´. Alat ´latexmk -pdf main.tex´ (dan Overleaf) mengulang langkah-langkah itu untukmu sampai tidak ada yang berubah.
 
 Rakit satu di bawah. Pilih kelas, paket, dan bagian, lalu baca sumbernya; ia juga mendaftar perintah untuk mengompilasinya dan aturan yang diterapkan halaman ini (misalnya ´hyperref´ paling akhir dan buku tidak memiliki abstrak).`,
           ),
@@ -410,7 +410,7 @@ Table~\ref{tab:prices} lists them; the ink costs 50\% less.
           kind: 'text',
           text: L(
             T`**Keep your sources in a ´.bib´ file, cite them by key with ´\cite´, and let BibTeX or biblatex build the reference list.** Each source is one entry with a key you choose:`,
-            T`**Simpan sumbermu dalam berkas ´.bib´, kutip dengan kunci memakai ´\cite´, dan biarkan BibTeX atau biblatex menyusun daftar pustaka.** Setiap sumber adalah satu entri dengan kunci yang kamu pilih:`,
+            T`**Simpan sumbermu dalam file ´.bib´, kutip dengan kunci memakai ´\cite´, dan biarkan BibTeX atau biblatex menyusun daftar pustaka.** Setiap sumber adalah satu entri dengan kunci yang kamu pilih:`,
           ),
         },
         {
@@ -436,7 +436,7 @@ TeX was described by Knuth~\cite{knuth1984}.
           kind: 'text',
           text: L(
             T`The build is a small pipeline. The first ´pdflatex´ run notes every ´\cite´ in the ´.aux´ file; ´bibtex main´ reads the ´.bib´ file and writes the formatted list; the next two ´pdflatex´ runs put the list in the document and fix the numbers. Keys are case-sensitive and must be unique. The braces in ´{\TeX}´ protect capital letters from being lowercased by the style. The newer *biblatex* with the *biber* program replaces BibTeX in many projects (the steps are ´pdflatex´, ´biber´, ´pdflatex´), and gives more control over styles such as APA. ´latexmk´ and Overleaf run the right sequence automatically.`,
-            T`Pembangunannya adalah saluran kecil. Pengerjaan ´pdflatex´ pertama mencatat setiap ´\cite´ dalam berkas ´.aux´; ´bibtex main´ membaca berkas ´.bib´ dan menulis daftar yang terformat; dua pengerjaan ´pdflatex´ berikutnya menaruh daftar itu dalam dokumen dan memperbaiki nomornya. Kunci peka huruf besar-kecil dan harus unik. Kurung kurawal pada ´{\TeX}´ melindungi huruf kapital dari diubah menjadi huruf kecil oleh gayanya. *biblatex* yang lebih baru dengan program *biber* menggantikan BibTeX pada banyak proyek (langkahnya ´pdflatex´, ´biber´, ´pdflatex´), dan memberi lebih banyak kendali atas gaya seperti APA. ´latexmk´ dan Overleaf menjalankan urutan yang benar secara otomatis.`,
+            T`Pembangunannya adalah saluran kecil. Pengerjaan ´pdflatex´ pertama mencatat setiap ´\cite´ dalam file ´.aux´; ´bibtex main´ membaca file ´.bib´ dan menulis daftar yang terformat; dua pengerjaan ´pdflatex´ berikutnya menaruh daftar itu dalam dokumen dan memperbaiki nomornya. Kunci peka huruf besar-kecil dan harus unik. Kurung kurawal pada ´{\TeX}´ melindungi huruf kapital dari diubah menjadi huruf kecil oleh gayanya. *biblatex* yang lebih baru dengan program *biber* menggantikan BibTeX pada banyak proyek (langkahnya ´pdflatex´, ´biber´, ´pdflatex´), dan memberi lebih banyak kendali atas gaya seperti APA. ´latexmk´ dan Overleaf menjalankan urutan yang benar secara otomatis.`,
           ),
         },
       ],
@@ -445,7 +445,7 @@ TeX was described by Knuth~\cite{knuth1984}.
     /* ---------------------------------------------------------------------------------- errors */
     {
       id: 'errors',
-      heading: L('What do the common LaTeX errors mean?', 'Apa arti galat LaTeX yang umum?'),
+      heading: L('What do the common LaTeX errors mean?', 'Apa arti error LaTeX yang umum?'),
       blocks: [
         {
           kind: 'text',
@@ -467,22 +467,22 @@ TeX was described by Knuth~\cite{knuth1984}.
 - Write ´\begin{...}´ and ´\end{...}´ together, then fill in between.
 - When stuck, make a *minimal working example*: delete everything that is not needed to reproduce the error. Half the time the mistake appears in the process, and if not, it is a perfect post for a forum.
 - Check formulas with the linter in the editor above before compiling: it finds unbalanced braces, ´\left´ without ´\right´, mismatched environments, scripts like ´x^10´ and unknown commands.`,
-            T`**LaTeX melaporkan masalah dengan pesan dan nomor baris; galat pertama adalah yang harus diperbaiki, karena yang berikutnya sering hanya gemanya.** Baca baris yang ia sebut dan baris sebelumnya. Pesan yang paling umum:
+            T`**LaTeX melaporkan masalah dengan pesan dan nomor baris; error pertama adalah yang harus diperbaiki, karena yang berikutnya sering hanya gemanya.** Baca baris yang ia sebut dan baris sebelumnya. Pesan yang paling umum:
 
 - ´Undefined control sequence´: sebuah perintah salah eja (´\fraq´), atau paket yang mendefinisikannya belum dimuat (´\mathbb´ tanpa ´amssymb´).
 - ´Missing $ inserted´: matematika dipakai di luar mode matematika (´^´ atau ´_´ dalam teks, atau simbol seperti ´\alpha´ tanpa tanda dolar), atau sebuah tanda dolar tidak berpasangan.
 - ´Missing } inserted´ dan ´Extra }, or forgotten $´: kurung kurawal tidak seimbang; hitung kurung kurawal pembuka dan penutup pada baris itu.
 - ´Runaway argument´: sebuah kurung kurawal tidak pernah ditutup, sehingga argumen berlanjut sampai akhir paragraf.
 - ´\begin{...} ended by \end{...}´: nama pasangan lingkungan berbeda, atau lingkungan dalam tidak ditutup.
-- ´File ended while scanning use of...´: masalah sejenis, ditemukan di akhir berkas.
+- ´File ended while scanning use of...´: masalah sejenis, ditemukan di akhir file.
 - ´Misplaced alignment tab character &´: ampersand di luar tabel, matriks, atau ´align´; tulis ´\&´ untuk mencetaknya.
 - ´LaTeX Error: File 'x.sty' not found´: sebuah paket tidak terpasang; pasang dari distribusimu, atau pakai Overleaf.
-- ´Overfull \hbox´: peringatan, bukan galat: sebuah baris terlalu lebar sebesar yang ditunjukkan.
+- ´Overfull \hbox´: peringatan, bukan error: sebuah baris terlalu lebar sebesar yang ditunjukkan.
 
 **Kebiasaan yang memudahkan menemukannya.**
-- Kompilasi sering, setelah setiap paragraf atau rumus, sehingga galat baru hanya mungkin ada di teks baru.
+- Kompilasi sering, setelah setiap paragraf atau rumus, sehingga error baru hanya mungkin ada di teks baru.
 - Tulis ´\begin{...}´ dan ´\end{...}´ bersama-sama, lalu isi di antaranya.
-- Bila buntu, buat *contoh minimal yang berfungsi*: hapus semua yang tidak diperlukan untuk mereproduksi galat. Separuh waktu kesalahannya muncul dalam prosesnya, dan bila tidak, itu bahan yang sempurna untuk sebuah forum.
+- Bila buntu, buat *contoh minimal yang berfungsi*: hapus semua yang tidak diperlukan untuk mereproduksi error. Separuh waktu kesalahannya muncul dalam prosesnya, dan bila tidak, itu bahan yang sempurna untuk sebuah forum.
 - Periksa rumus dengan linter pada editor di atas sebelum mengompilasi: ia menemukan kurung kurawal tak seimbang, ´\left´ tanpa ´\right´, lingkungan yang tidak cocok, skrip seperti ´x^10´, dan perintah tak dikenal.`,
           ),
         },
@@ -505,12 +505,12 @@ TeX was described by Knuth~\cite{knuth1984}.
 - **User text.** Text that comes from outside (names, titles, file contents) must be *escaped* before it goes into a LaTeX document, or a ´%´ or ´&´ in it breaks the build.
 
 The first Python program asks SymPy for the LaTeX of some expressions (as printed by SymPy ´1.14´), and the second one escapes text and writes a table. The JavaScript program builds formulas as strings and shows the form-feed trap, and the C++ program escapes characters and prints a fraction.`,
-            T`**Matematika LaTeX adalah notasi umum web dan kode ilmiah: kamu dapat menulisnya dengan tangan, membangkitkannya dari objek, atau membiarkan pustaka menggambarnya.**
+            T`**Matematika LaTeX adalah notasi umum web dan kode ilmiah: kamu dapat menulisnya dengan tangan, membangkitkannya dari objek, atau membiarkan library menggambarnya.**
 
 - **Markdown, notebook, dan web.** Di notebook Jupyter, penerjemah Markdown, banyak wiki, dan Wikipedia, ´$...$´ dan ´$$...$$´ digambar sebagai rumus. Di halaman webmu sendiri, sertakan **KaTeX** (cepat, bagian dari LaTeX) atau **MathJax** (lebih lengkap) dan tulis kode yang sama.
 - **Python.** SymPy mengubah ungkapan menjadi LaTeX dengan ´latex()´; Matplotlib menggambarnya pada label, seperti ´plt.title(r"$\alpha^2$")´ (´r´ berarti *raw string*, sehingga garis miring terbalik dipertahankan); Pandoc mengubah Markdown berisi rumus menjadi PDF lewat LaTeX.
 - **String dan garis miring terbalik.** Di Python dan JavaScript garis miring terbalik memulai escape, sehingga ´"\frac"´ memuat karakter form-feed (´\f´) dan ´"\alpha"´ salah. Pakai raw string: ´r"\frac"´ di Python dan ´String.raw´ di JavaScript.
-- **Teks pengguna.** Teks yang datang dari luar (nama, judul, isi berkas) harus di-*escape* sebelum masuk ke dokumen LaTeX, atau ´%´ atau ´&´ di dalamnya merusak pembangunan.
+- **Teks pengguna.** Teks yang datang dari luar (nama, judul, isi file) harus di-*escape* sebelum masuk ke dokumen LaTeX, atau ´%´ atau ´&´ di dalamnya merusak pembangunan.
 
 Program Python pertama meminta SymPy memberi LaTeX untuk beberapa ungkapan (seperti dicetak SymPy ´1.14´), dan yang kedua meng-escape teks dan menulis tabel. Program JavaScript membangun rumus sebagai string dan memperlihatkan jebakan form-feed, dan program C++ meng-escape karakter dan mencetak sebuah pecahan.`,
           ),
@@ -649,9 +649,9 @@ int main() {
 - **1984–1985.** Leslie Lamport menulis LaTeX, seperangkat makro di atas TeX yang menguraikan struktur dokumen (*bagian*, *daftar*, *persamaan*) alih-alih rincian tata letaknya; bukunya *LaTeX: A Document Preparation System* terbit pada 1986.
 - **1992 dan 1996.** Arsip CTAN mengumpulkan paket di satu tempat, dan TeX Live dimulai sebagai distribusi lengkap.
 - **1994.** LaTeX2e, versi yang dipakai sekarang, dirilis oleh tim yang dipimpin Frank Mittelbach, dan masih dikembangkan.
-- **1997–2007.** Mesin baru menyusul: pdfTeX (keluaran PDF langsung, oleh Hàn Thế Thành), XeTeX (Unicode dan huruf sistem, oleh Jonathan Kew, 2004), dan LuaTeX (2007, dapat diprogram dengan Lua).
-- **2009–2014.** MathJax (2009) dan KaTeX (2014) membawa matematika LaTeX ke halaman web; Overleaf (2012) menaruh seluruh sistem di peramban.
-- **2021.** Knuth membuat pembaruan terjadwal terakhir TeX, versi 3,141592653. Nomor versi TeX makin dekat ke π pada setiap pembaruan, dan Knuth berkata ia akan menjadi π pada saat ia meninggal, ketika program itu dibekukan. Selama puluhan tahun ia membayar hadiah, dimulai dari 2,56 dolar AS dan berlipat dua setiap tahun sampai 327,68, untuk setiap galat yang ditemukan pada programnya.`,
+- **1997–2007.** Mesin baru menyusul: pdfTeX (output PDF langsung, oleh Hàn Thế Thành), XeTeX (Unicode dan huruf sistem, oleh Jonathan Kew, 2004), dan LuaTeX (2007, dapat diprogram dengan Lua).
+- **2009–2014.** MathJax (2009) dan KaTeX (2014) membawa matematika LaTeX ke halaman web; Overleaf (2012) menaruh seluruh sistem di browser.
+- **2021.** Knuth membuat pembaruan terjadwal terakhir TeX, versi 3,141592653. Nomor versi TeX makin dekat ke π pada setiap pembaruan, dan Knuth berkata ia akan menjadi π pada saat ia meninggal, ketika program itu dibekukan. Selama puluhan tahun ia membayar hadiah, dimulai dari 2,56 dolar AS dan berlipat dua setiap tahun sampai 327,68, untuk setiap error yang ditemukan pada programnya.`,
           ),
         },
       ],
@@ -716,7 +716,7 @@ int main() {
             id: 'p1',
             prompt: L('Decide whether each statement is True or False.', 'Tentukan tiap pernyataan Benar atau Salah.'),
             statements: [
-              L(T`A LaTeX document is a plain-text file that a compiler turns into a PDF.`, T`Dokumen LaTeX adalah berkas teks biasa yang diubah kompilator menjadi PDF.`),
+              L(T`A LaTeX document is a plain-text file that a compiler turns into a PDF.`, T`Dokumen LaTeX adalah file teks biasa yang diubah compiler menjadi PDF.`),
               L(T`A blank line in the source starts a new paragraph.`, T`Baris kosong dalam sumber memulai paragraf baru.`),
               L(T`´x^10´ produces $x$ to the power ten.`, T`´x^10´ menghasilkan $x$ pangkat sepuluh.`),
               L(T`´\usepackage´ may be written anywhere in the document.`, T`´\usepackage´ boleh ditulis di mana saja dalam dokumen.`),
@@ -726,7 +726,7 @@ int main() {
             answer: [true, true, false, false, true, true],
             explain: L(
               T`´x^10´ raises only the 1: write ´x^{10}´. Packages go in the preamble, before ´\begin{document}´. The ´.aux´ file lets the second run fill in the numbers. A ´\left´ without its ´\right´ is an error (write ´\right.´ for an invisible one).`,
-              T`´x^10´ hanya menaikkan angka 1: tulis ´x^{10}´. Paket ditaruh di preamble, sebelum ´\begin{document}´. Berkas ´.aux´ memungkinkan pengerjaan kedua mengisi nomornya. ´\left´ tanpa ´\right´ adalah galat (tulis ´\right.´ untuk yang tak terlihat).`,
+              T`´x^10´ hanya menaikkan angka 1: tulis ´x^{10}´. Paket ditaruh di preamble, sebelum ´\begin{document}´. File ´.aux´ memungkinkan pengerjaan kedua mengisi nomornya. ´\left´ tanpa ´\right´ adalah error (tulis ´\right.´ untuk yang tak terlihat).`,
             ),
             hint: L(T`Remember what a script takes, and where the preamble ends.`, T`Ingat apa yang diambil sebuah skrip, dan di mana preamble berakhir.`),
           },
@@ -814,7 +814,7 @@ int main() {
         },
         {
           kind: 'activity',
-          title: L('An error message', 'Sebuah pesan galat'),
+          title: L('An error message', 'Sebuah pesan error'),
           step: {
             kind: 'quiz',
             id: 'p7',
@@ -871,12 +871,12 @@ int main() {
             options: [
               L(T`KaTeX or MathJax`, T`KaTeX atau MathJax`),
               L(T`BibTeX`, T`BibTeX`),
-              L(T`pdflatex in the browser tab`, T`pdflatex di tab peramban`),
+              L(T`pdflatex in the browser tab`, T`pdflatex di tab browser`),
               L(T`the ´\maketitle´ command`, T`perintah ´\maketitle´`),
             ],
             answer: 0,
-            explain: L(T`KaTeX and MathJax are JavaScript libraries that read LaTeX math and draw it in the browser. BibTeX makes reference lists.`, T`KaTeX dan MathJax adalah pustaka JavaScript yang membaca matematika LaTeX dan menggambarnya di peramban. BibTeX membuat daftar pustaka.`),
-            hint: L(T`Which of them are JavaScript libraries?`, T`Mana yang merupakan pustaka JavaScript?`),
+            explain: L(T`KaTeX and MathJax are JavaScript libraries that read LaTeX math and draw it in the browser. BibTeX makes reference lists.`, T`KaTeX dan MathJax adalah library JavaScript yang membaca matematika LaTeX dan menggambarnya di browser. BibTeX membuat daftar pustaka.`),
+            hint: L(T`Which of them are JavaScript libraries?`, T`Mana yang merupakan library JavaScript?`),
           },
         },
         {
@@ -937,7 +937,7 @@ int main() {
 - **Lingkungan:** ´pmatrix´, ´cases´, ´align´, ´itemize´, ´tabular´, ´figure´: ´&´ memisahkan sel, ´\\´ mengakhiri baris.
 - **Karakter khusus:** ´# $ % & _ { } ~ ^ \´ harus di-escape; beri escape pada teks yang datang dari luar.
 - **Pembangunan:** beberapa kali jalan untuk label dan kutipan; ´pdflatex´, ´bibtex´, ´pdflatex´, ´pdflatex´, atau ´latexmk´ dan Overleaf.
-- **Galat:** baca yang pertama; undefined control sequence, missing $, kurung kurawal tak seimbang; kompilasi sering dan pakai contoh minimal.
+- **Error:** baca yang pertama; undefined control sequence, missing $, kurung kurawal tak seimbang; kompilasi sering dan pakai contoh minimal.
 - **Di tempat lain:** KaTeX dan MathJax di web, ´latex()´ SymPy, raw string untuk garis miring terbalik.`,
           ),
         },
@@ -946,26 +946,26 @@ int main() {
   ],
 
   glossary: [
-    { term: L('LaTeX', 'LaTeX'), definition: L('A system of commands on top of TeX for writing documents, in which you describe the structure and a compiler produces the layout.', 'Sistem perintah di atas TeX untuk menulis dokumen, yang di dalamnya kamu menguraikan struktur dan kompilator menghasilkan tata letaknya.') },
+    { term: L('LaTeX', 'LaTeX'), definition: L('A system of commands on top of TeX for writing documents, in which you describe the structure and a compiler produces the layout.', 'Sistem perintah di atas TeX untuk menulis dokumen, yang di dalamnya kamu menguraikan struktur dan compiler menghasilkan tata letaknya.') },
     { term: L('TeX', 'TeX'), definition: L('The typesetting engine written by Donald Knuth, which LaTeX is built on.', 'Mesin penyusunan huruf yang ditulis Donald Knuth, tempat LaTeX dibangun.') },
-    { term: L('Compiler', 'Kompilator'), definition: L('The program, such as pdflatex, that reads the source file and produces the PDF.', 'Program, seperti pdflatex, yang membaca berkas sumber dan menghasilkan PDF.') },
-    { term: L('Preamble', 'Preamble'), definition: L('The part of a LaTeX file before the begin document line, where the class, packages and settings are given.', 'Bagian berkas LaTeX sebelum baris begin document, tempat kelas, paket, dan pengaturan diberikan.') },
+    { term: L('Compiler', 'Compiler'), definition: L('The program, such as pdflatex, that reads the source file and produces the PDF.', 'Program, seperti pdflatex, yang membaca file sumber dan menghasilkan PDF.') },
+    { term: L('Preamble', 'Preamble'), definition: L('The part of a LaTeX file before the begin document line, where the class, packages and settings are given.', 'Bagian file LaTeX sebelum baris begin document, tempat kelas, paket, dan pengaturan diberikan.') },
     { term: L('Package', 'Paket'), definition: L('An add-on loaded with the usepackage command that provides new commands or changes how the document is built, such as amsmath.', 'Tambahan yang dimuat dengan perintah usepackage yang menyediakan perintah baru atau mengubah cara dokumen dibangun, seperti amsmath.') },
     { term: L('Environment', 'Lingkungan'), definition: L('A block between a begin command and an end command with the same name, such as equation, itemize or pmatrix.', 'Blok di antara perintah begin dan perintah end dengan nama yang sama, seperti equation, itemize, atau pmatrix.') },
     { term: L('Math mode', 'Mode matematika'), definition: L('The state in which LaTeX reads formulas: between dollar signs inside text, or in a displayed equation.', 'Keadaan ketika LaTeX membaca rumus: di antara tanda dolar dalam teks, atau dalam persamaan tampilan.') },
-    { term: L('BibTeX', 'BibTeX'), definition: L('A program that turns a bib file of sources into the formatted list of references cited in a document.', 'Program yang mengubah berkas bib berisi sumber menjadi daftar pustaka terformat yang dikutip dalam dokumen.') },
+    { term: L('BibTeX', 'BibTeX'), definition: L('A program that turns a bib file of sources into the formatted list of references cited in a document.', 'Program yang mengubah file bib berisi sumber menjadi daftar pustaka terformat yang dikutip dalam dokumen.') },
     { term: L('Escape character', 'Karakter escape'), definition: L('The backslash that turns a special character into an ordinary one, as in the percent escape, so that it prints itself.', 'Garis miring terbalik yang mengubah karakter khusus menjadi biasa, seperti pada escape persen, agar ia tercetak apa adanya.') },
   ],
 
   howTo: [
     {
       name: L('How to write your first LaTeX document', 'Cara menulis dokumen LaTeX pertamamu'),
-      description: L('Start from a minimal file with a class and a body, compile it, and add one thing at a time.', 'Mulai dari berkas minimal dengan kelas dan isi, kompilasi, dan tambahkan satu hal sekali waktu.'),
+      description: L('Start from a minimal file with a class and a body, compile it, and add one thing at a time.', 'Mulai dari file minimal dengan kelas dan isi, kompilasi, dan tambahkan satu hal sekali waktu.'),
       steps: [
         { name: L('Choose where to compile', 'Pilih tempat mengompilasi'), text: L('Create a free Overleaf project, or install TeX Live or MiKTeX and an editor.', 'Buat proyek Overleaf gratis, atau pasang TeX Live atau MiKTeX dan sebuah editor.') },
         { name: L('Write the skeleton', 'Tulis kerangkanya'), text: L('Create main.tex with the document class, the begin document and end document lines, and a sentence between them.', 'Buat main.tex dengan kelas dokumen, baris begin document dan end document, dan sebuah kalimat di antaranya.') },
         { name: L('Compile and look', 'Kompilasi dan lihat'), text: L('Run pdflatex main, or press Compile, and open the PDF.', 'Jalankan pdflatex main, atau tekan Compile, dan buka PDF-nya.') },
-        { name: L('Add one thing at a time', 'Tambahkan satu hal sekali waktu'), text: L('Add a section, a formula or a list, compile again after each, and read the first error message if one appears.', 'Tambahkan bagian, rumus, atau daftar, kompilasi lagi setelah masing-masing, dan baca pesan galat pertama bila ada.') },
+        { name: L('Add one thing at a time', 'Tambahkan satu hal sekali waktu'), text: L('Add a section, a formula or a list, compile again after each, and read the first error message if one appears.', 'Tambahkan bagian, rumus, atau daftar, kompilasi lagi setelah masing-masing, dan baca pesan error pertama bila ada.') },
       ],
     },
     {
@@ -1020,14 +1020,14 @@ int main() {
       q: L('Why does LaTeX say "Undefined control sequence"?', 'Mengapa LaTeX berkata "Undefined control sequence"?'),
       a: L(
         'LaTeX met a command it does not know. Either the name is misspelled, or the package that defines it is not loaded in the preamble, as with mathbb without amssymb. Fix the first such error, since the others often follow from it.',
-        'LaTeX menemui perintah yang tidak dikenalnya. Entah namanya salah eja, atau paket yang mendefinisikannya belum dimuat di preamble, seperti mathbb tanpa amssymb. Perbaiki galat pertama seperti itu, karena yang lain sering mengikutinya.',
+        'LaTeX menemui perintah yang tidak dikenalnya. Entah namanya salah eja, atau paket yang mendefinisikannya belum dimuat di preamble, seperti mathbb tanpa amssymb. Perbaiki error pertama seperti itu, karena yang lain sering mengikutinya.',
       ),
     },
     {
       q: L('How do you write LaTeX in Markdown or on a website?', 'Bagaimana menulis LaTeX di Markdown atau di situs web?'),
       a: L(
         'Many Markdown tools, Jupyter notebooks and wikis draw formulas written between single or double dollar signs. On your own page, include KaTeX or MathJax, which read the same code and draw it in the browser.',
-        'Banyak alat Markdown, notebook Jupyter, dan wiki menggambar rumus yang ditulis di antara tanda dolar tunggal atau ganda. Di halamanmu sendiri, sertakan KaTeX atau MathJax, yang membaca kode yang sama dan menggambarnya di peramban.',
+        'Banyak alat Markdown, notebook Jupyter, dan wiki menggambar rumus yang ditulis di antara tanda dolar tunggal atau ganda. Di halamanmu sendiri, sertakan KaTeX atau MathJax, yang membaca kode yang sama dan menggambarnya di browser.',
       ),
     },
     {

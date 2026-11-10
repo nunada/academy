@@ -227,7 +227,7 @@ export const module2: Module = {
                 ],
                 caption: {
                   en: 'The content box measures 300px; the browser then adds padding and border on top, so the box actually drawn on the page is wider — 344px, not 300.',
-                  id: 'Kotak isinya berukuran 300px; peramban lalu menambahkan padding dan border di atasnya, sehingga kotak yang sungguh digambar di halaman lebih lebar — 344px, bukan 300.',
+                  id: 'Kotak isinya berukuran 300px; browser lalu menambahkan padding dan border di atasnya, sehingga kotak yang sungguh digambar di halaman lebih lebar — 344px, bukan 300.',
                 },
               },
               code: {
@@ -242,7 +242,7 @@ export const module2: Module = {
               title: { en: 'border-box makes width mean width', id: 'border-box membuat width berarti lebar' },
               body: {
                 en: '`box-sizing: border-box` tells the browser to include padding and border **inside** the number you gave. Most projects set it once for everything and never think about it again.',
-                id: '`box-sizing: border-box` menyuruh peramban memasukkan padding dan border **ke dalam** angka yang kamu beri. Sebagian besar proyek menyetelnya sekali untuk semuanya dan tak pernah memikirkannya lagi.',
+                id: '`box-sizing: border-box` menyuruh browser memasukkan padding dan border **ke dalam** angka yang kamu beri. Sebagian besar proyek menyetelnya sekali untuk semuanya dan tak pernah memikirkannya lagi.',
               },
               figure: {
                 dim: 2,
@@ -350,7 +350,7 @@ export const module2: Module = {
               },
               hints: [
                 { en: 'The universal selector `*` applies to everything.', id: 'Selektor universal `*` berlaku untuk semuanya.' },
-                { en: 'With border-box, you write width: 320px and the browser does the arithmetic.', id: 'Dengan border-box, kamu cukup menulis width: 320px dan peramban yang berhitung.' },
+                { en: 'With border-box, you write width: 320px and the browser does the arithmetic.', id: 'Dengan border-box, kamu cukup menulis width: 320px dan browser yang berhitung.' },
               ],
               solution: {
                 en: '* {\n  box-sizing: border-box;\n}\n\n.card {\n  width: 320px;\n  padding: 24px;\n  border: 1px solid #cbd5e1;\n}',

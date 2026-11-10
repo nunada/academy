@@ -40,7 +40,7 @@ export const body: ArticleBody = {
     ),
     L(
       T`Rounding errors accumulate when you add many numbers, vanish into a big number (absorption), and make subtracting two nearly equal numbers lose digits (cancellation). Compensated sums, algebraic rewriting and library functions such as ´expm1´ limit the damage.`,
-      T`Galat pembulatan menumpuk ketika kamu menjumlahkan banyak bilangan, hilang ke dalam bilangan besar (penyerapan), dan membuat pengurangan dua bilangan yang hampir sama kehilangan angka (pembatalan). Jumlah berkompensasi, penulisan ulang aljabar, dan fungsi pustaka seperti ´expm1´ membatasi kerusakannya.`,
+      T`Galat pembulatan menumpuk ketika kamu menjumlahkan banyak bilangan, hilang ke dalam bilangan besar (penyerapan), dan membuat pengurangan dua bilangan yang hampir sama kehilangan angka (pembatalan). Jumlah berkompensasi, penulisan ulang aljabar, dan fungsi library seperti ´expm1´ membatasi kerusakannya.`,
     ),
     L(
       T`Compare floats with a relative and an absolute tolerance, never with ´==´ after a calculation; use integers or decimal types for money; and choose float16, bfloat16, float32 or float64 by the range and the digits the problem needs.`,
@@ -79,7 +79,7 @@ Titiknya "mengambang" karena eksponen $e$ menggesernya, sehingga format yang sam
 
 **Mengapa bukan titik tetap?** Format titik tetap menjaga titik di satu tempat, misalnya selalu $16$ angka biner setelahnya. Maka ia tidak dapat memuat $10^{30}$ dan $10^{-30}$ sekaligus; floating-point mengorbankan sebagian ketelitian untuk menjangkau seluruh rentang itu.
 
-**Standarnya.** Hampir semua perangkat keras mengikuti IEEE 754. Ia mendefinisikan beberapa format biner, yang berbeda dalam banyaknya bit untuk eksponen dan untuk pecahan:
+**Standarnya.** Hampir semua hardware mengikuti IEEE 754. Ia mendefinisikan beberapa format biner, yang berbeda dalam banyaknya bit untuk eksponen dan untuk pecahan:
 
 | Format | Bit | Tanda + eksponen + pecahan | Bit signifikan | Angka desimal | Nilai terbesar |
 |---|---|---|---|---|---|
@@ -249,7 +249,7 @@ Jumlah parsial yang besar juga **menyerap** suku kecil: begitu totalnya $2^{53}$
 
 **Tiga obat.**
 1. **Penjumlahan Kahan** menyimpan bilangan kedua $c$ yang memuat bagian yang dibulatkan pada penjumlahan terakhir, dan memasukkannya kembali pada penjumlahan berikutnya:
-   $y=x_i-c$, $t=s+y$, $c=(t-s)-y$, $s=t$. Galatnya lalu tidak lagi tumbuh bersama $n$: ia tetap dalam satu atau dua ulp. Kompilator yang menyusun ulang aritmetika floating-point dengan bebas dapat menghilangkan kompensasinya, sehingga opsi untuk aritmetika ketat penting.
+   $y=x_i-c$, $t=s+y$, $c=(t-s)-y$, $s=t$. Galatnya lalu tidak lagi tumbuh bersama $n$: ia tetap dalam satu atau dua ulp. Compiler yang menyusun ulang aritmetika floating-point dengan bebas dapat menghilangkan kompensasinya, sehingga opsi untuk aritmetika ketat penting.
 2. **Penjumlahan berpasangan** menjumlahkan dalam pohon, sehingga suku-sukunya berukuran mirip dan galat tumbuh seperti $\log n$, bukan $n$. NumPy melakukannya.
 3. **Penjumlahan tepat.** ´math.fsum´ di Python mengembalikan jumlah nilai eksak yang dibulatkan dengan tepat dengan menyimpan jumlah parsial yang tidak kehilangan apa pun. Ia acuan yang dipakai dalam uji.
 
@@ -285,11 +285,11 @@ Move $x$ in each of the four cases below and read the number of correct digits.`
 
 **Contoh.**
 - $\dfrac{1-\cos x}{x^2}$ untuk $x=10^{-8}$: $\cos x=1-5\times10^{-17}$ dibulatkan ke $1$, sehingga rumus naif memberi $0$, padahal nilai sebenarnya $\frac12$. Memakai $1-\cos x=2\sin^2\frac x2$ memberi $0{,}5$.
-- $\dfrac{e^x-1}{x}$ untuk $x=10^{-15}$: $e^x$ dibulatkan ke $1{,}000000000000001$, dan rumus naif memberi $1{,}1102230246251565$, bukan $1$. Fungsi pustaka ´expm1(x)´ menghitung $e^x-1$ langsung, dan memberi $1{,}0000000000000004$ (angka terakhir adalah pembulatan).
+- $\dfrac{e^x-1}{x}$ untuk $x=10^{-15}$: $e^x$ dibulatkan ke $1{,}000000000000001$, dan rumus naif memberi $1{,}1102230246251565$, bukan $1$. Fungsi library ´expm1(x)´ menghitung $e^x-1$ langsung, dan memberi $1{,}0000000000000004$ (angka terakhir adalah pembulatan).
 - $\sqrt{x^2+1}-x$ untuk $x$ besar: untuk $x=10^8$ rumus naif memberi $0$; bentuk stabil $\dfrac1{\sqrt{x^2+1}+x}$ memberi $5\times10^{-9}$.
 - Akar kecil $x^2-bx+1=0$ untuk $b=10^8$: $\frac{b-\sqrt{b^2-4}}{2}$ memberi $7{,}45\times10^{-9}$, sedangkan bentuk stabil $\frac{2}{b+\sqrt{b^2-4}}$ memberi $10^{-8}$ yang benar.
 
-**Obatnya** hampir tidak pernah ketelitian lebih besar: ia menghindari pengurangan dengan aljabar (sekawan, identitas), dengan deret untuk $x$ kecil, atau dengan fungsi pustaka yang dibuat untuknya (´expm1´, ´log1p´, ´hypot´). Pembatalan juga menjelaskan mengapa hasil bagi selisih dengan $h$ sangat kecil pada diferensiasi numerik justru memburuk, bukan membaik, di bawah $h\approx10^{-8}$. Sistem persamaan yang garisnya hampir sejajar mengalami hal yang sama, pada determinannya: lihat [garis yang hampir sejajar](article:linear-systems-two-variables#nearly-parallel-lines).
+**Obatnya** hampir tidak pernah ketelitian lebih besar: ia menghindari pengurangan dengan aljabar (sekawan, identitas), dengan deret untuk $x$ kecil, atau dengan fungsi library yang dibuat untuknya (´expm1´, ´log1p´, ´hypot´). Pembatalan juga menjelaskan mengapa hasil bagi selisih dengan $h$ sangat kecil pada diferensiasi numerik justru memburuk, bukan membaik, di bawah $h\approx10^{-8}$. Sistem persamaan yang garisnya hampir sejajar mengalami hal yang sama, pada determinannya: lihat [garis yang hampir sejajar](article:linear-systems-two-variables#nearly-parallel-lines).
 
 Geser $x$ pada tiap empat kasus di bawah dan baca banyaknya angka benar.`,
           ),
@@ -515,11 +515,11 @@ int main() {
 
 - **1914.** Leonardo Torres Quevedo mengusulkan aritmetika floating-point untuk kalkulator mekanis dalam *Essays on Automatics*.
 - **1930-an–1941.** Mesin Konrad Zuse, Z1 dan Z3, memakai floating-point biner, dengan tanda, eksponen, dan pecahan.
-- **1954.** IBM 704 memiliki aritmetika floating-point di perangkat keras, dan sepanjang 1960-an dan 1970-an setiap pembuat memilih basis, ukuran, dan pembulatannya sendiri, sehingga program yang sama memberi jawaban berbeda di komputer berbeda.
+- **1954.** IBM 704 memiliki aritmetika floating-point di hardware, dan sepanjang 1960-an dan 1970-an setiap pembuat memilih basis, ukuran, dan pembulatannya sendiri, sehingga program yang sama memberi jawaban berbeda di komputer berbeda.
 - **1980-an.** William Kahan, yang pernah mengerjakan koprosesor 8087 Intel, memimpin panitia yang menulis **IEEE 754**, terbit pada 1985: format, pembulatan tepat, tak hingga, NaN, dan underflow bertahap. Kahan menerima Penghargaan Turing pada 1989.
-- **1994.** Galat FDIV Pentium, beberapa entri yang salah pada tabel yang dipakai pembagi, memberi hasil yang salah pada angka signifikan keempat atau kelima atau lebih jauh, dan menunjukkan bahwa perangkat keras floating-point harus diuji secermat perangkat lunak; Intel menarik kembali cip itu.
+- **1994.** Galat FDIV Pentium, beberapa entri yang salah pada tabel yang dipakai pembagi, memberi hasil yang salah pada angka signifikan keempat atau kelima atau lebih jauh, dan menunjukkan bahwa hardware floating-point harus diuji secermat software; Intel menarik kembali cip itu.
 - **2008 dan 2019.** Standar direvisi: fused multiply-add (menghitung $a\times b+c$ dengan satu pembulatan), format desimal, half precision sebagai format pertukaran, dan aturan yang lebih jelas untuk NaN dan untuk operasi seperti minimum dan maksimum.
-- **2010-an.** bfloat16, dengan rentang eksponen single dan ketelitian hanya $8$ bit, dirancang untuk perangkat keras pembelajaran mesin, dan half precision menjadi umum pada GPU.`,
+- **2010-an.** bfloat16, dengan rentang eksponen single dan ketelitian hanya $8$ bit, dirancang untuk hardware pembelajaran mesin, dan half precision menjadi umum pada GPU.`,
           ),
         },
       ],
@@ -810,7 +810,7 @@ int main() {
 
   glossary: [
     { term: L('Floating-point number', 'Bilangan floating-point'), definition: L('A number stored as a sign, an exponent and a fixed number of significant bits, so that the point floats with the exponent.', 'Bilangan yang disimpan sebagai tanda, eksponen, dan sejumlah tetap bit signifikan, sehingga titiknya mengambang menurut eksponen.') },
-    { term: L('IEEE 754', 'IEEE 754'), definition: L('The standard that defines the binary floating-point formats, correct rounding, infinities, NaN and gradual underflow used by almost all hardware.', 'Standar yang mendefinisikan format floating-point biner, pembulatan tepat, tak hingga, NaN, dan underflow bertahap yang dipakai hampir semua perangkat keras.') },
+    { term: L('IEEE 754', 'IEEE 754'), definition: L('The standard that defines the binary floating-point formats, correct rounding, infinities, NaN and gradual underflow used by almost all hardware.', 'Standar yang mendefinisikan format floating-point biner, pembulatan tepat, tak hingga, NaN, dan underflow bertahap yang dipakai hampir semua hardware.') },
     { term: L('Machine epsilon', 'Epsilon mesin'), definition: L('The gap between 1 and the next number of a format: 2 to the power minus 52 for a double.', 'Jarak antara 1 dan bilangan berikutnya dari sebuah format: 2 pangkat minus 52 untuk double.') },
     { term: L('Ulp', 'Ulp'), definition: L('The unit in the last place: the gap between a floating-point number and the next one.', 'Unit pada tempat terakhir: jarak antara sebuah bilangan floating-point dan bilangan berikutnya.') },
     { term: L('Subnormal number', 'Bilangan subnormal'), definition: L('A number below the smallest normal one, stored with exponent field zero and no implied leading 1, which makes underflow gradual.', 'Bilangan di bawah yang normal terkecil, disimpan dengan bidang eksponen nol dan tanpa angka 1 di depan yang tersirat, yang membuat underflow bertahap.') },

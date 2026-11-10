@@ -313,7 +313,7 @@ export const authErrors: Record<string, { en: string; id: string }> = {
   invalid: { en: 'Please check the form and try again.', id: 'Periksa kembali isian lalu coba lagi.' },
   'link-expired': {
     en: 'That link has expired or has already been used. Ask for a new one.',
-    id: 'Tautan itu sudah kedaluwarsa atau sudah dipakai. Minta yang baru.',
+    id: 'Link itu sudah kedaluwarsa atau sudah dipakai. Minta yang baru.',
   },
   'teacher-not-found': {
     en: 'No teacher has that username. Check the spelling, or leave it empty to study with Nunada.',

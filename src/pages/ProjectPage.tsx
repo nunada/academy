@@ -156,7 +156,7 @@ export default function ProjectPage() {
       } else if (!pythonInteractiveAvailable) {
         const res = await runPython(code, splitStdin(stdin))
         setRunOut({
-          text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada keluaran)',
+          text: res.error ? `${res.stdout}${res.error}` : res.stdout || '(tidak ada output)',
           error: Boolean(res.error),
         })
       } else {

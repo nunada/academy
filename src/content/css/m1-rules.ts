@@ -64,7 +64,7 @@ export const module1: Module = {
               title: { en: 'Where the CSS lives', id: 'Di mana CSS itu tinggal' },
               body: {
                 en: 'For these exercises the CSS goes in a `<style>` block. A real site puts it in its own `.css` file, linked from the head with `<link rel="stylesheet" href="style.css">` — same rules, one file serving every page.',
-                id: 'Untuk latihan ini, CSS-nya ditaruh di blok `<style>`. Situs sungguhan menaruhnya di berkas `.css` tersendiri, ditautkan dari head dengan `<link rel="stylesheet" href="gaya.css">` — aturannya sama, satu berkas melayani semua halaman.',
+                id: 'Untuk latihan ini, CSS-nya ditaruh di blok `<style>`. Situs sungguhan menaruhnya di file `.css` tersendiri, ditautkan dari head dengan `<link rel="stylesheet" href="gaya.css">` — aturannya sama, satu file melayani semua halaman.',
               },
               code: {
                 en: '<head>\n  <link rel="stylesheet" href="style.css">\n</head>',
@@ -188,7 +188,7 @@ export const module1: Module = {
               title: { en: 'A space means "inside"', id: 'Spasi berarti "di dalam"' },
               body: {
                 en: '`nav a` means "every link inside a nav" — the space is a descendant combinator, not decoration. Writing `nav, a` with a comma means something completely different: navs **and** links.',
-                id: '`nav a` berarti "setiap tautan di dalam nav" — spasinya adalah kombinator keturunan, bukan hiasan. Menulis `nav, a` dengan koma berarti sesuatu yang sama sekali lain: nav **dan** tautan.',
+                id: '`nav a` berarti "setiap link di dalam nav" — spasinya adalah kombinator keturunan, bukan hiasan. Menulis `nav, a` dengan koma berarti sesuatu yang sama sekali lain: nav **dan** link.',
               },
               figure: {
                 dim: 2,
@@ -245,7 +245,7 @@ export const module1: Module = {
               id: 'q1',
               prompt: {
                 en: 'Which selector hits only links that sit inside a footer?',
-                id: 'Selektor mana yang hanya mengenai tautan di dalam footer?',
+                id: 'Selektor mana yang hanya mengenai link di dalam footer?',
               },
               options: [
                 { en: 'footer a', id: 'footer a' },
@@ -256,7 +256,7 @@ export const module1: Module = {
               answer: 0,
               explain: {
                 en: 'A space is "descendant of". The comma version means both, and reversing it looks for a footer inside a link.',
-                id: 'Spasi berarti "keturunan dari". Versi komanya berarti keduanya, dan membaliknya berarti mencari footer di dalam tautan.',
+                id: 'Spasi berarti "keturunan dari". Versi komanya berarti keduanya, dan membaliknya berarti mencari footer di dalam link.',
               },
               hint: {
                 en: 'Think about what a plain space between two selectors means compared to a comma, and which order the two parts should be written in for "inside".',
@@ -487,7 +487,7 @@ export const module1: Module = {
               },
               prompt: {
                 en: 'Set the whole page to a `sans-serif` stack, make `p` 18px with a line-height of 1.6, and align `.signature` to the right.',
-                id: 'Setel seluruh halaman ke tumpukan `sans-serif`, buat `p` berukuran 18px dengan line-height 1.6, dan ratakan `.tanda` ke kanan.',
+                id: 'Setel seluruh halaman ke font stack `sans-serif`, buat `p` berukuran 18px dengan line-height 1.6, dan ratakan `.tanda` ke kanan.',
               },
               starter: 'body {\n\n}\n',
               tests: {
@@ -510,7 +510,7 @@ export const module1: Module = {
                 ],
                 id: [
                   {
-                    name: { en: 'The page uses a sans-serif stack', id: 'Halaman memakai tumpukan sans-serif' },
+                    name: { en: 'The page uses a sans-serif stack', id: 'Halaman memakai font stack sans-serif' },
                     check:
                       'var f = style("body", "font-family").toLowerCase();\nassert(f.indexOf("sans-serif") !== -1, "font-family body harus berakhir dengan sans-serif, sekarang: " + f);',
                   },
@@ -676,7 +676,7 @@ export const module1: Module = {
           id: 'Ubah artikel polos menjadi sesuatu yang enak dibaca, hanya dengan tipografi dan warna.',
         },
         requirements: [
-          { en: 'The page uses a font stack ending in `serif`.', id: 'Halaman memakai tumpukan font yang berakhir `serif`.' },
+          { en: 'The page uses a font stack ending in `serif`.', id: 'Halaman memakai font stack yang berakhir `serif`.' },
           { en: 'Paragraphs are 17px with a line-height of 1.7.', id: 'Paragraf berukuran 17px dengan line-height 1,7.' },
           { en: 'The `h1` is centered and colored `#0f172a`.', id: '`h1` rata tengah dan berwarna `#0f172a`.' },
           { en: '`.summary` is bold and `#334155`.', id: '`.ringkasan` tebal dan berwarna `#334155`.' },

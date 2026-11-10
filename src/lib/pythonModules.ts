@@ -14,7 +14,7 @@ export const NUNADA_API_PY = `
 """API tiruan untuk latihan Nunada Academy.
 
 Jaringannya disimulasikan: tidak ada permintaan yang benar-benar keluar dari
-peramban. Bentuk pemanggilannya sengaja dibuat sama seperti library "requests",
+browser. Bentuk pemanggilannya sengaja dibuat sama seperti library "requests",
 jadi yang kamu pelajari di sini berlaku juga pada API sungguhan.
 """
 

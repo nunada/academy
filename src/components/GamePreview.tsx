@@ -159,7 +159,7 @@ export function GamePreview({ code, runNonce }: { code: string; runNonce: number
         {running
           ? focused
             ? tc({ en: 'Arrow keys or WASD, and space.', id: 'Tombol panah atau WASD, dan spasi.' })
-            : tc({ en: 'Click the field to use the keyboard.', id: 'Klik lapangannya untuk memakai papan ketik.' })
+            : tc({ en: 'Click the field to use the keyboard.', id: 'Klik lapangannya untuk memakai keyboard.' })
           : tc({ en: 'The field is 320 by 240, with (0, 0) at the top left.', id: 'Lapangannya 320 kali 240, dengan (0, 0) di kiri atas.' })}
       </p>
 

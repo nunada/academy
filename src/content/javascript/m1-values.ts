@@ -34,7 +34,7 @@ export const module1: Module = {
               title: { en: 'console.log is your window in', id: 'console.log adalah jendelamu ke dalam' },
               body: {
                 en: 'JavaScript runs inside the page, where you cannot see it. `console.log()` is how you look: it prints a value to the browser console — and in these exercises, to the panel beside your editor.',
-                id: 'JavaScript berjalan di dalam halaman, tempat yang tak terlihat. `console.log()` adalah caramu mengintip: ia menampilkan sebuah nilai ke konsol peramban — dan di latihan ini, ke panel di sebelah editormu.',
+                id: 'JavaScript berjalan di dalam halaman, tempat yang tak terlihat. `console.log()` adalah caramu mengintip: ia menampilkan sebuah nilai ke konsol browser — dan di latihan ini, ke panel di sebelah editormu.',
               },
               code: { en: 'console.log("Hello, world!");\nconsole.log(2 + 3);', id: 'console.log("Halo, dunia!");\nconsole.log(2 + 3);' },
               output: { en: 'Hello, world!\n5', id: 'Halo, dunia!\n5' },
@@ -139,7 +139,7 @@ export const module1: Module = {
                   {
                     name: { en: 'Two lines are logged', id: 'Dua baris ditampilkan' },
                     check:
-                      'assert(logs().length === 2, "harus tepat dua console.log, sekarang: " + logs().length);\nassert(out() === "Budi\\n20", "keluarannya harus Budi lalu 20, sekarang: " + JSON.stringify(out()));',
+                      'assert(logs().length === 2, "harus tepat dua console.log, sekarang: " + logs().length);\nassert(out() === "Budi\\n20", "output-nya harus Budi lalu 20, sekarang: " + JSON.stringify(out()));',
                   },
                 ],
               },
@@ -274,7 +274,7 @@ export const module1: Module = {
                   },
                   {
                     name: { en: 'The sentence is exact', id: 'Kalimatnya tepat' },
-                    check: 'assert(out() === "Hemat 30000, bayar 90000", "keluarannya: " + JSON.stringify(out()));',
+                    check: 'assert(out() === "Hemat 30000, bayar 90000", "output-nya: " + JSON.stringify(out()));',
                   },
                 ],
               },
@@ -353,7 +353,7 @@ export const module1: Module = {
             {
               name: { en: 'The receipt reads exactly right', id: 'Struknya terbaca tepat' },
               check:
-                'assert(logs().length === 4, "harus tepat empat baris, sekarang: " + logs().length);\nassert(out() === "Subtotal: 750000\\nDiskon: 75000\\nPajak: 74250\\nTotal: 749250", "keluarannya: " + JSON.stringify(out()));',
+                'assert(logs().length === 4, "harus tepat empat baris, sekarang: " + logs().length);\nassert(out() === "Subtotal: 750000\\nDiskon: 75000\\nPajak: 74250\\nTotal: 749250", "output-nya: " + JSON.stringify(out()));',
             },
           ],
         },
@@ -498,7 +498,7 @@ export const module1: Module = {
                 id: [
                   {
                     name: { en: 'Midday gives Siang', id: 'Tengah hari memberi Siang' },
-                    check: 'assert(out() === "Siang", "dengan jam = 13 keluarannya harus Siang, sekarang: " + JSON.stringify(out()));',
+                    check: 'assert(out() === "Siang", "dengan jam = 13 output-nya harus Siang, sekarang: " + JSON.stringify(out()));',
                   },
                   {
                     name: { en: 'One line only', id: 'Hanya satu baris' },

@@ -179,7 +179,7 @@ Type a number below in any base and see it in all four.`,
 
 Baca sisanya ke atas: $1011010_2$. Ini pembagian bersisa yang sama dengan pada [artikel bilangan bulat](article:integers#remainders), dan sisa terakhir adalah angka paling kiri karena ia tempat tertinggi.
 
-**Oktal dan heksadesimal.** Untai biner panjang, sehingga pemrogram mengelompokkan bit. Tiga bit membentuk satu angka **oktal** (basis 8, angka 0 sampai 7) dan empat bit membentuk satu angka **heksadesimal** (basis 16, angka 0 sampai 9 lalu A sampai F untuk 10 sampai 15):
+**Oktal dan heksadesimal.** String biner panjang, sehingga programmer mengelompokkan bit. Tiga bit membentuk satu angka **oktal** (basis 8, angka 0 sampai 7) dan empat bit membentuk satu angka **heksadesimal** (basis 16, angka 0 sampai 9 lalu A sampai F untuk 10 sampai 15):
 
 | Biner | 0000 | 0001 | 0010 | 0011 | 0100 | 0101 | 0110 | 0111 |
 |---|---|---|---|---|---|---|---|---|
@@ -189,7 +189,7 @@ Baca sisanya ke atas: $1011010_2$. Ini pembagian bersisa yang sama dengan pada [
 |---|---|---|---|---|---|---|---|---|
 | Heks | 8 | 9 | A | B | C | D | E | F |
 
-Kelompokkan dari kanan: $01011010_2$ adalah $0101\;1010$, yaitu $5A_{16}$, dan $5\cdot16+10=90$. Satu byte selalu tepat dua angka heksadesimal, itulah sebabnya ´FF´ adalah $11111111_2=255$. Heksadesimal adalah cara menulis warna di web: ´#FF8800´ adalah merah 255, hijau $\text{88}_{16}=136$, dan biru 0, sebuah oranye. Oktal masih bertahan pada izin berkas Unix, tempat ´755´ adalah $111\;101\;101$, baca, tulis, dan eksekusi untuk pemilik serta baca dan eksekusi untuk semua yang lain.
+Kelompokkan dari kanan: $01011010_2$ adalah $0101\;1010$, yaitu $5A_{16}$, dan $5\cdot16+10=90$. Satu byte selalu tepat dua angka heksadesimal, itulah sebabnya ´FF´ adalah $11111111_2=255$. Heksadesimal adalah cara menulis warna di web: ´#FF8800´ adalah merah 255, hijau $\text{88}_{16}=136$, dan biru 0, sebuah oranye. Oktal masih bertahan pada izin file Unix, tempat ´755´ adalah $111\;101\;101$, baca, tulis, dan eksekusi untuk pemilik serta baca dan eksekusi untuk semua yang lain.
 
 Ketik bilangan di bawah dalam basis apa pun dan lihat dalam keempatnya.`,
           ),
@@ -256,7 +256,7 @@ Kolom demi kolom, dari kanan: $1+0=1$; $1+1=10$, tulis 0 dan bawa 1; $0+1+1=10$,
 
 **Pengurangan.** Bila sebuah kolom tidak dapat dikurangi angkanya, pinjam 1 dari kolom di kiri, yang bernilai 2 pada kolom yang sedang kamu kerjakan. Untuk $1011_2-110_2$ jawabannya $101_2$, dan $11-6=5$. Komputer jarang mengurangi dengan cara ini: ia menjumlahkan komplemen dua, pada bagian bilangan negatif.
 
-**Perkalian.** Setiap bit pada bilangan bawah memberi 0 atau salinan bilangan atas yang digeser ke kiri, dan salinannya dijumlahkan. $101_2\times11_2$ adalah $101+1010=1111_2$, dan $5\cdot3=15$. Tidak ada tabel perkalian yang perlu dipelajari, hanya menggeser dan menjumlahkan, itulah sebabnya pengali perangkat keras sederhana.
+**Perkalian.** Setiap bit pada bilangan bawah memberi 0 atau salinan bilangan atas yang digeser ke kiri, dan salinannya dijumlahkan. $101_2\times11_2$ adalah $101+1010=1111_2$, dan $5\cdot3=15$. Tidak ada tabel perkalian yang perlu dipelajari, hanya menggeser dan menjumlahkan, itulah sebabnya pengali hardware sederhana.
 
 **Menggandakan dan membagi dua.** Menambah angka 0 di ujung menggandakan bilangan biner ($101_2=5$, $1010_2=10$), seperti menambah 0 mengalikan bilangan desimal dengan sepuluh. Membuang bit terakhir membaginya dua dan membuang sisanya. Inilah gagasan di balik geseran bit di bawah.
 
@@ -385,7 +385,7 @@ Untuk 8 bit, mendapatkan $-5$: mulai dari $5=00000101$, balik menjadi $11111010$
 
 Dengan $n$ bit rentang bertanda adalah $-2^{n-1}$ sampai $2^{n-1}-1$, sehingga 8 bit memuat −128 sampai 127 dan 32 bit memuat −2.147.483.648 sampai 2.147.483.647. Ada satu bilangan negatif lebih banyak daripada positif karena 0 memakai salah satu pola tidak negatif.
 
-**Mengapa skema ini.** Gagasan yang lebih tua, seperti bit tanda tersendiri, memberi dua nol (+0 dan −0) dan memerlukan aturan khusus untuk penjumlahan. Dalam komplemen dua hanya ada satu nol, dan pengurangan adalah penjumlahan: $5+(-5)=00000101+11111011=100000000$, dan bit kesembilan dibuang, menyisakan 0. Penjumlah perangkat keras tidak memerlukan logika tanda.
+**Mengapa skema ini.** Gagasan yang lebih tua, seperti bit tanda tersendiri, memberi dua nol (+0 dan −0) dan memerlukan aturan khusus untuk penjumlahan. Dalam komplemen dua hanya ada satu nol, dan pengurangan adalah penjumlahan: $5+(-5)=00000101+11111011=100000000$, dan bit kesembilan dibuang, menyisakan 0. Penjumlah hardware tidak memerlukan logika tanda.
 
 **Overflow.** Hasil yang tidak muat berputar kembali. Dalam 8 bit $127+1=01111111+00000001=10000000$, yang terbaca −128. Bilangan bulat berukuran tetap di C dan Java berputar seperti ini (lihat bagian [bilangan bulat dalam kode](article:integers#integers-in-code)), sedangkan bilangan bulat Python membesar selama memori cukup, sehingga Python hanya memperlihatkan perputaran bila kamu menutup bitnya sendiri.
 
@@ -465,7 +465,7 @@ Misalnya $1100_2$ AND $1010_2$ adalah $1000_2$, sehingga $12\,\&\,10=8$; OR memb
 **Kegunaannya.**
 
 - **Topeng (mask).** ´x & 0xFF´ mempertahankan byte terendah, dan ´x & 1´ bernilai 1 tepat bila $x$ ganjil.
-- **Bendera (flag).** Beberapa pengaturan ya-atau-tidak muat dalam satu bilangan, satu bit masing-masing: nyalakan bendera dengan OR, matikan dengan AND dan NOT, balik dengan XOR. Izin berkas Unix adalah tiga bendera seperti itu per kelompok.
+- **Bendera (flag).** Beberapa pengaturan ya-atau-tidak muat dalam satu bilangan, satu bit masing-masing: nyalakan bendera dengan OR, matikan dengan AND dan NOT, balik dengan XOR. Izin file Unix adalah tiga bendera seperti itu per kelompok.
 - **Geseran.** Menggeser ke kiri sebanyak $k$ mengalikan dengan $2^k$ dan menggeser ke kanan sebanyak $k$ membagi dengan $2^k$, membuang sisanya, yaitu penggandaan dan pembagian dua yang terlihat tadi. Bit yang melewati ujung hilang.
 - **Trik.** $x\,\&\,(x-1)$ bernilai 0 tepat bila $x$ pangkat 2 (atau 0), dan $x$ XOR $x$ selalu 0.
 
@@ -993,7 +993,7 @@ Satu benang merah mengalir melalui semuanya: dua simbol cukup untuk menulis bila
       q: L('What is hexadecimal and why is it used?', 'Apa itu heksadesimal dan mengapa dipakai?'),
       a: L(
         'Hexadecimal is base 16, with digits 0 to 9 and A to F. One hex digit is exactly four bits, so a byte is two hex digits and long binary strings become short. Web colors such as FF8800 and memory addresses are written in hexadecimal.',
-        'Heksadesimal adalah basis 16, dengan angka 0 sampai 9 dan A sampai F. Satu angka heksadesimal tepat empat bit, sehingga satu byte adalah dua angka heksadesimal dan untai biner yang panjang menjadi pendek. Warna web seperti FF8800 dan alamat memori ditulis dalam heksadesimal.',
+        'Heksadesimal adalah basis 16, dengan angka 0 sampai 9 dan A sampai F. Satu angka heksadesimal tepat empat bit, sehingga satu byte adalah dua angka heksadesimal dan string biner yang panjang menjadi pendek. Warna web seperti FF8800 dan alamat memori ditulis dalam heksadesimal.',
       ),
     },
     {

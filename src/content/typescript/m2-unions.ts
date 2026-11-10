@@ -492,7 +492,7 @@ export const module2: Module = {
                 ],
               },
               hints: [
-                { en: 'The starter calls `.toFixed` on the whole union. Read the error: it names all three members.', id: 'Kode awalnya memanggil `.toFixed` pada seluruh union-nya. Baca galatnya: ia menyebut ketiga anggotanya.' },
+                { en: 'The starter calls `.toFixed` on the whole union. Read the error: it names all three members.', id: 'Kode awalnya memanggil `.toFixed` pada seluruh union-nya. Baca error-nya: ia menyebut ketiga anggotanya.' },
                 { en: 'Check the array first — `typeof` cannot tell an array from an object.', id: 'Periksa array-nya lebih dulu — `typeof` tak bisa membedakan array dari objek.' },
                 { en: 'Array.isArray(value), then typeof value === "number", and what is left is the string.', id: 'Array.isArray(nilai), lalu typeof nilai === "number", dan yang tersisa adalah string-nya.' },
               ],
@@ -608,7 +608,7 @@ export const module2: Module = {
               check:
                 'assert(label("info") === "INFO", "label(\\"info\\") harus \\"INFO\\", sekarang: " + JSON.stringify(label("info")));\n' +
                 'assert(label("peringatan") === "PERINGATAN", "label(\\"peringatan\\") harus \\"PERINGATAN\\", sekarang: " + JSON.stringify(label("peringatan")));\n' +
-                'assert(label("galat") === "GALAT", "label(\\"galat\\") harus \\"GALAT\\", sekarang: " + JSON.stringify(label("galat")));',
+                'assert(label("galat") === "GALAT", "label(\\"error\\") harus \\"GALAT\\", sekarang: " + JSON.stringify(label("galat")));',
             },
             {
               name: { en: 'A single message is bracketed', id: 'Satu pesan diberi kurung siku' },
@@ -774,7 +774,7 @@ export const module2: Module = {
               title: { en: 'Reach for the wrong field and it says so', id: 'Menjangkau field yang salah dan ia menegurmu' },
               body: {
                 en: 'This is the payoff. A circle has no `side`, so asking for one inside the circle branch is an error — not a silent `undefined` that becomes `NaN` three lines later. The shape of the data and the code that reads it can no longer drift apart.',
-                id: 'Inilah hasilnya. Lingkaran tak punya `sisi`, jadi memintanya di dalam cabang lingkaran adalah galat — bukan `undefined` diam-diam yang jadi `NaN` tiga baris kemudian. Bentuk datanya dan kode yang membacanya tak bisa lagi berselisih.',
+                id: 'Inilah hasilnya. Lingkaran tak punya `sisi`, jadi memintanya di dalam cabang lingkaran adalah error — bukan `undefined` diam-diam yang jadi `NaN` tiga baris kemudian. Bentuk datanya dan kode yang membacanya tak bisa lagi berselisih.',
               },
               code: {
                 en:
@@ -1022,7 +1022,7 @@ export const module2: Module = {
               title: { en: 'The ! is a promise you cannot keep', id: 'Tanda ! adalah janji yang tak bisa kamu tepati' },
               body: {
                 en: '`x!` tells the compiler "trust me, this is not null". It silences the error and changes nothing about the value. If you are wrong, you have swapped a message you would have read for a crash a user will see. Check instead; `!` is for the rare case where you can prove what the compiler cannot.',
-                id: '`x!` memberi tahu kompilernya "percaya saja, ini bukan null". Ia membungkam galatnya dan tak mengubah apa pun pada nilainya. Kalau kamu salah, kamu menukar pesan yang tadinya kamu baca dengan kerusakan yang akan dilihat pengguna. Periksa saja; `!` untuk kasus langka ketika kamu bisa membuktikan apa yang tak bisa dibuktikan kompilernya.',
+                id: '`x!` memberi tahu kompilernya "percaya saja, ini bukan null". Ia membungkam error-nya dan tak mengubah apa pun pada nilainya. Kalau kamu salah, kamu menukar pesan yang tadinya kamu baca dengan kerusakan yang akan dilihat pengguna. Periksa saja; `!` untuk kasus langka ketika kamu bisa membuktikan apa yang tak bisa dibuktikan kompilernya.',
               },
               code: {
                 en:
@@ -1193,7 +1193,7 @@ export const module2: Module = {
                 ],
               },
               hints: [
-                { en: 'Read the two errors first — they name the expression that might be undefined.', id: 'Baca dulu kedua galatnya — keduanya menyebut ekspresi yang mungkin undefined.' },
+                { en: 'Read the two errors first — they name the expression that might be undefined.', id: 'Baca dulu kedua error-nya — keduanya menyebut ekspresi yang mungkin undefined.' },
                 { en: 'An optional chain walks past a missing address: `p.address?.city`.', id: 'Rantai opsional melewati alamat yang tidak ada: `p.alamat?.kota`.' },
                 { en: '`postcode` needs two steps of safety, because the postcode is optional even when the address is there.', id: '`pos` butuh dua langkah pengamanan, karena kode posnya opsional bahkan ketika alamatnya ada.' },
               ],
@@ -1231,7 +1231,7 @@ export const module2: Module = {
         title: { en: 'The Activity Feed', id: 'Lini Masa Aktivitas' },
         brief: {
           en: 'Three kinds of event in one list. Model them so that reading the wrong field is a compile error rather than a blank space on somebody\'s screen.',
-          id: 'Tiga jenis peristiwa dalam satu daftar. Modelkan agar membaca field yang salah jadi galat kompilasi, bukan ruang kosong di layar seseorang.',
+          id: 'Tiga jenis peristiwa dalam satu daftar. Modelkan agar membaca field yang salah jadi error kompilasi, bukan ruang kosong di layar seseorang.',
         },
         requirements: [
           { en: '`type Event` is a tagged union of `"message"` (with `from` and `content`), `"like"` (with `from`), and `"system"` (with `code` and an optional `note`).', id: '`type Peristiwa` adalah union bertanda berisi `"pesan"` (dengan `dari` dan `isi`), `"suka"` (dengan `dari`), dan `"sistem"` (dengan `kode` dan `catatan` opsional).' },

@@ -218,13 +218,13 @@ Hitung $2x^2-3x$ pada $x=-3$:
 
 Kekeliruan klasik adalah melewatkan kurung: $2\cdot-3^2$ akan memberi $-18$, sebab pangkat hanya berlaku untuk angka 3. Kekeliruan kedua adalah ikut mengkuadratkan koefisien: pada $2x^2$ hanya $x$ yang dikuadratkan, sehingga pada $x=-3$ nilainya $2\cdot9=18$, bukan $(2\cdot(-3))^2=36$.
 
-Tabel nilai menghitung satu bentuk aljabar pada banyak masukan. Untuk $2x^2-3x$:
+Tabel nilai menghitung satu bentuk aljabar pada banyak input. Untuk $2x^2-3x$:
 
 | $x$ | −2 | −1 | 0 | 1 | 2 |
 |---|---|---|---|---|---|
 | $2x^2-3x$ | 14 | 5 | 0 | −1 | 2 |
 
-**Substitusi juga cara menguji.** Dua bentuk aljabar *ekuivalen* bila nilainya sama untuk setiap masukan. Satu masukan yang memberi nilai berbeda membuktikan keduanya tidak ekuivalen: $(x+3)^2$ dan $x^2+9$ sama-sama bernilai 9 pada $x=0$, tetapi pada $x=1$ nilainya 16 dan 10. Kebalikannya tidak berlaku. Sama pada beberapa masukan tidak membuktikan apa-apa, sebab $x^2$ dan $2x$ sama pada $x=0$ maupun $x=2$ namun merupakan bentuk yang berbeda.`,
+**Substitusi juga cara menguji.** Dua bentuk aljabar *ekuivalen* bila nilainya sama untuk setiap input. Satu input yang memberi nilai berbeda membuktikan keduanya tidak ekuivalen: $(x+3)^2$ dan $x^2+9$ sama-sama bernilai 9 pada $x=0$, tetapi pada $x=1$ nilainya 16 dan 10. Kebalikannya tidak berlaku. Sama pada beberapa input tidak membuktikan apa-apa, sebab $x^2$ dan $2x$ sama pada $x=0$ maupun $x=2$ namun merupakan bentuk yang berbeda.`,
           ),
         },
         { kind: 'widget', name: 'evalexpr' },
@@ -536,13 +536,13 @@ Penyebut bersamanya adalah hasil kali faktor-faktor yang berbeda, di sini $x(x+1
           kind: 'text',
           text: L(
             T`**In code an expression you want to evaluate becomes a function, and an expression you want to manipulate symbolically needs a library such as SymPy in Python.** Plain Python and JavaScript only calculate with numbers; they do not know that $x^2-9=(x-3)(x+3)$.`,
-            T`**Dalam kode, bentuk aljabar yang ingin dihitung nilainya menjadi sebuah fungsi, dan bentuk yang ingin dimanipulasi secara simbolik memerlukan pustaka seperti SymPy di Python.** Python dan JavaScript biasa hanya menghitung dengan bilangan; keduanya tidak tahu bahwa $x^2-9=(x-3)(x+3)$.`,
+            T`**Dalam kode, bentuk aljabar yang ingin dihitung nilainya menjadi sebuah fungsi, dan bentuk yang ingin dimanipulasi secara simbolik memerlukan library seperti SymPy di Python.** Python dan JavaScript biasa hanya menghitung dengan bilangan; keduanya tidak tahu bahwa $x^2-9=(x-3)(x+3)$.`,
           ),
         },
         {
           kind: 'code',
           lang: 'python',
-          caption: L('Python with SymPy (a symbolic algebra library)', 'Python dengan SymPy (pustaka aljabar simbolik)'),
+          caption: L('Python with SymPy (a symbolic algebra library)', 'Python dengan SymPy (library aljabar simbolik)'),
           code: `>>> from sympy import symbols, expand, factor, simplify
 >>> x = symbols('x')
 >>> expand((x + 2) * (x - 3))
@@ -624,7 +624,7 @@ A numeric test such as ´f(2)´ can catch a wrong simplification but cannot prov
 | Simbolik lawan numerik | ´x**2 - 9´ tidak pernah menjadi ´(x - 3)*(x + 3)´ dengan sendirinya | pakai ´factor´ di SymPy |
 | Membandingkan hasil | ´0.1 * 3´ tidak persis ´0.3´ | bandingkan dengan toleransi, seperti pada [artikel bilangan real](article:real-numbers#real-numbers-in-code) |
 
-Uji numerik seperti ´f(2)´ dapat menangkap penyederhanaan yang salah tetapi tidak dapat membuktikan yang benar: ia memeriksa satu masukan, tepat seperti batas yang dijelaskan pada bagian menghitung nilai.`,
+Uji numerik seperti ´f(2)´ dapat menangkap penyederhanaan yang salah tetapi tidak dapat membuktikan yang benar: ia memeriksa satu input, tepat seperti batas yang dijelaskan pada bagian menghitung nilai.`,
           ),
         },
       ],
@@ -804,7 +804,7 @@ Uji numerik seperti ´f(2)´ dapat menangkap penyederhanaan yang salah tetapi ti
 - **Code:** write ´3 * x´, not ´3x´; use ´**´ for powers; use SymPy for symbolic work.`,
             T`- **Bagian:** bentuk aljabar adalah suku-suku yang dihubungkan oleh + dan −; suku memiliki koefisien dan bagian variabel, dan suku tanpa huruf adalah konstanta.
 - **Suku sejenis:** huruf sama, eksponen sama; jumlahkan koefisien, pertahankan bagian variabel.
-- **Hitung nilai:** taruh tiap nilai dalam kurung, lalu ikuti urutan operasi. Beberapa masukan yang cocok tidak pernah membuktikan dua bentuk sama.
+- **Hitung nilai:** taruh tiap nilai dalam kurung, lalu ikuti urutan operasi. Beberapa input yang cocok tidak pernah membuktikan dua bentuk sama.
 - **Jabarkan:** $a(b+c)=ab+ac$ dan $(a+b)(c+d)=ac+ad+bc+bd$; $(a\pm b)^2=a^2\pm2ab+b^2$; $(a+b)(a-b)=a^2-b^2$.
 - **Faktorkan:** faktor persekutuan lebih dulu, lalu selisih dua kuadrat, kuadrat sempurna, atau dua bilangan dengan hasil kali $c$ dan jumlah $b$; periksa dengan menjabarkan.
 - **Pecahan:** faktorkan, lalu coret faktor, bukan suku; perhatikan di mana penyebutnya nol.
@@ -961,7 +961,7 @@ Uji numerik seperti ´f(2)´ dapat menangkap penyederhanaan yang salah tetapi ti
       q: L('How do you expand and factor with Python?', 'Bagaimana menjabarkan dan memfaktorkan dengan Python?'),
       a: L(
         'Use the SymPy library. Create a symbol with symbols, then call expand to remove brackets, factor to write a product, and simplify to reduce a fraction. Plain Python cannot do this because it only calculates with numbers, and the caret is XOR, so write powers with a double asterisk.',
-        'Pakai pustaka SymPy. Buat simbol dengan symbols, lalu panggil expand untuk menghilangkan kurung, factor untuk menulis hasil kali, dan simplify untuk menyederhanakan pecahan. Python biasa tidak dapat melakukannya karena hanya menghitung dengan bilangan, dan tanda sisipan adalah XOR, jadi tulis pangkat dengan dua tanda bintang.',
+        'Pakai library SymPy. Buat simbol dengan symbols, lalu panggil expand untuk menghilangkan kurung, factor untuk menulis hasil kali, dan simplify untuk menyederhanakan pecahan. Python biasa tidak dapat melakukannya karena hanya menghitung dengan bilangan, dan tanda sisipan adalah XOR, jadi tulis pangkat dengan dua tanda bintang.',
       ),
     },
   ],

@@ -544,7 +544,7 @@ export const module9: Module = {
               title: { en: 'A key in the code is a leaked key', id: 'Kunci di dalam kode adalah kunci yang bocor' },
               body: {
                 en: 'Type the key straight into your program and it goes wherever the program goes — into Git, into a screenshot, into a shared folder. Anyone who reads the file can now act as you. Treat a leaked key as one that must be revoked, not one you can quietly delete.',
-                id: 'Ketik kunci langsung di programmu dan ia ikut ke mana pun program itu pergi — masuk ke Git, ke tangkapan layar, ke folder bersama. Siapa pun yang membaca berkasnya kini bisa bertindak sebagai dirimu. Anggap kunci yang bocor sebagai kunci yang wajib dicabut, bukan yang cukup dihapus diam-diam.',
+                id: 'Ketik kunci langsung di programmu dan ia ikut ke mana pun program itu pergi — masuk ke Git, ke screenshot, ke folder bersama. Siapa pun yang membaca file-nya kini bisa bertindak sebagai dirimu. Anggap kunci yang bocor sebagai kunci yang wajib dicabut, bukan yang cukup dihapus diam-diam.',
               },
               code: {
                 en: '# DO NOT do this\nKEY = "nunada-rahasia-123"',
@@ -552,7 +552,7 @@ export const module9: Module = {
               },
               output: {
                 en: '(no output — but the secret is now saved in the file)',
-                id: '(tidak ada keluaran — tetapi rahasianya sudah ikut tersimpan di berkas)',
+                id: '(tidak ada output — tetapi rahasianya sudah ikut tersimpan di file)',
               },
             },
             {
@@ -561,7 +561,7 @@ export const module9: Module = {
               title: { en: 'Keep it beside the code, not inside it', id: 'Simpan di samping kode, bukan di dalamnya' },
               body: {
                 en: 'Put the secret in a separate file the program reads at startup, and keep that file out of version control. On a real server the same idea uses an environment variable, read with `os.environ`. The principle is identical: the code says **where** to find the key, never **what** it is.',
-                id: 'Taruh rahasianya di berkas terpisah yang dibaca program saat mulai, dan jauhkan berkas itu dari kendali versi. Di server sungguhan, gagasan yang sama memakai variabel lingkungan, dibaca dengan `os.environ`. Prinsipnya sama: kode menyebut **di mana** kuncinya, bukan **apa** isinya.',
+                id: 'Taruh rahasianya di file terpisah yang dibaca program saat mulai, dan jauhkan file itu dari kendali versi. Di server sungguhan, gagasan yang sama memakai variabel lingkungan, dibaca dengan `os.environ`. Prinsipnya sama: kode menyebut **di mana** kuncinya, bukan **apa** isinya.',
               },
               code: {
                 en: 'with open("key.txt", "w") as f:\n    f.write("nunada-rahasia-123\\n")\n\nwith open("key.txt") as f:\n    key = f.read().strip()\n\nprint(key[:6] + "...")',
@@ -579,11 +579,11 @@ export const module9: Module = {
               },
               code: {
                 en: 'def load_key(filename="key.txt"):\n    try:\n        with open(filename) as f:\n            key = f.read().strip()\n    except FileNotFoundError:\n        raise ValueError(f"file {filename} not found")\n    if not key:\n        raise ValueError("key is empty")\n    return key',
-                id: 'def muat_kunci(nama="kunci.txt"):\n    try:\n        with open(nama) as f:\n            kunci = f.read().strip()\n    except FileNotFoundError:\n        raise ValueError(f"berkas {nama} tidak ada")\n    if not kunci:\n        raise ValueError("kunci kosong")\n    return kunci',
+                id: 'def muat_kunci(nama="kunci.txt"):\n    try:\n        with open(nama) as f:\n            kunci = f.read().strip()\n    except FileNotFoundError:\n        raise ValueError(f"file {nama} tidak ada")\n    if not kunci:\n        raise ValueError("kunci kosong")\n    return kunci',
               },
               output: {
                 en: '(defines a function — no output yet)',
-                id: '(mendefinisikan fungsi — belum ada keluaran)',
+                id: '(mendefinisikan fungsi — belum ada output)',
               },
             },
             {
@@ -614,7 +614,7 @@ export const module9: Module = {
               id: 'w1',
               prompt: {
                 en: 'Write `load_key(filename)` returning the stripped contents of the file, raising `ValueError` with `file not found` when it is missing and `key is empty` when the file is blank.',
-                id: 'Tulis `muat_kunci(nama)` yang mengembalikan isi berkas tanpa spasi tepi, memunculkan `ValueError` berpesan `berkas tidak ada` bila berkasnya hilang dan `kunci kosong` bila berkasnya kosong.',
+                id: 'Tulis `muat_kunci(nama)` yang mengembalikan isi file tanpa spasi tepi, memunculkan `ValueError` berpesan `file tidak ada` bila file-nya hilang dan `kunci kosong` bila file-nya kosong.',
               },
               starter: { en: 'def load_key(filename):\n    pass\n', id: 'def muat_kunci(nama):\n    pass\n' },
               tests: {
@@ -625,13 +625,13 @@ export const module9: Module = {
                     assert: 'assert load_key("key_test.txt") == "secret-abc", "spaces and newlines should be stripped"',
                   },
                   {
-                    name: { en: 'A missing file is refused', id: 'Berkas yang tidak ada ditolak' },
+                    name: { en: 'A missing file is refused', id: 'File yang tidak ada ditolak' },
                     setup: 'import os\nif os.path.exists("missing.txt"):\n    os.remove("missing.txt")',
                     assert:
                       'try:\n    load_key("missing.txt")\n    raise AssertionError("should reject a missing file")\nexcept ValueError as e:\n    assert "file not found" in str(e), "message should contain: file not found"',
                   },
                   {
-                    name: { en: 'An empty file is refused', id: 'Berkas kosong ditolak' },
+                    name: { en: 'An empty file is refused', id: 'File kosong ditolak' },
                     setup: 'with open("key_empty.txt", "w") as _f:\n    _f.write("   \\n")',
                     assert:
                       'try:\n    load_key("key_empty.txt")\n    raise AssertionError("should reject an empty file")\nexcept ValueError as e:\n    assert "key is empty" in str(e), "message should contain: key is empty"',
@@ -644,16 +644,16 @@ export const module9: Module = {
                     assert: 'assert muat_kunci("kunci_uji.txt") == "rahasia-abc", "spasi dan baris baru harus dibuang"',
                   },
                   {
-                    name: { en: 'A missing file is refused', id: 'Berkas yang tidak ada ditolak' },
+                    name: { en: 'A missing file is refused', id: 'File yang tidak ada ditolak' },
                     setup: 'import os\nif os.path.exists("tidak_ada.txt"):\n    os.remove("tidak_ada.txt")',
                     assert:
-                      'try:\n    muat_kunci("tidak_ada.txt")\n    raise AssertionError("seharusnya menolak berkas yang tidak ada")\nexcept ValueError as e:\n    assert "berkas tidak ada" in str(e), "pesan harus memuat: berkas tidak ada"',
+                      'try:\n    muat_kunci("tidak_ada.txt")\n    raise AssertionError("seharusnya menolak file yang tidak ada")\nexcept ValueError as e:\n    assert "file tidak ada" in str(e), "pesan harus memuat: file tidak ada"',
                   },
                   {
-                    name: { en: 'An empty file is refused', id: 'Berkas kosong ditolak' },
+                    name: { en: 'An empty file is refused', id: 'File kosong ditolak' },
                     setup: 'with open("kunci_kosong.txt", "w") as _f:\n    _f.write("   \\n")',
                     assert:
-                      'try:\n    muat_kunci("kunci_kosong.txt")\n    raise AssertionError("seharusnya menolak berkas kosong")\nexcept ValueError as e:\n    assert "kunci kosong" in str(e), "pesan harus memuat: kunci kosong"',
+                      'try:\n    muat_kunci("kunci_kosong.txt")\n    raise AssertionError("seharusnya menolak file kosong")\nexcept ValueError as e:\n    assert "kunci kosong" in str(e), "pesan harus memuat: kunci kosong"',
                   },
                 ],
               },
@@ -666,7 +666,7 @@ export const module9: Module = {
                 en:
                   'def load_key(filename):\n    try:\n        with open(filename) as f:\n            key = f.read().strip()\n    except FileNotFoundError:\n        raise ValueError("file not found")\n    if not key:\n        raise ValueError("key is empty")\n    return key',
                 id:
-                  'def muat_kunci(nama):\n    try:\n        with open(nama) as f:\n            kunci = f.read().strip()\n    except FileNotFoundError:\n        raise ValueError("berkas tidak ada")\n    if not kunci:\n        raise ValueError("kunci kosong")\n    return kunci',
+                  'def muat_kunci(nama):\n    try:\n        with open(nama) as f:\n            kunci = f.read().strip()\n    except FileNotFoundError:\n        raise ValueError("file tidak ada")\n    if not kunci:\n        raise ValueError("kunci kosong")\n    return kunci',
               },
             },
           ],
@@ -677,10 +677,10 @@ export const module9: Module = {
         title: { en: 'API client', id: 'Klien API' },
         brief: {
           en: 'Wrap the whole API in one class: the key loaded from a file, the header built once, and every failure reported rather than crashing.',
-          id: 'Bungkus seluruh API dalam satu class: kunci dimuat dari berkas, header dibangun sekali, dan setiap kegagalan dilaporkan alih-alih menjatuhkan program.',
+          id: 'Bungkus seluruh API dalam satu class: kunci dimuat dari file, header dibangun sekali, dan setiap kegagalan dilaporkan alih-alih menjatuhkan program.',
         },
         requirements: [
-          { en: '`Client(key_file)` reads the key and raises `ValueError` when the file is missing.', id: '`Klien(berkas_kunci)` membaca kuncinya dan memunculkan `ValueError` bila berkasnya tidak ada.' },
+          { en: '`Client(key_file)` reads the key and raises `ValueError` when the file is missing.', id: '`Klien(berkas_kunci)` membaca kuncinya dan memunculkan `ValueError` bila file-nya tidak ada.' },
           { en: '`list_students()` returns the list of students, or `[]` when the request fails.', id: '`daftar()` mengembalikan list siswa, atau `[]` bila permintaannya gagal.' },
           { en: '`get_student(sid)` returns one student dictionary, or `None` when not found.', id: '`ambil(sid)` mengembalikan satu dictionary siswa, atau `None` bila tidak ditemukan.' },
           { en: '`add_student(name, score)` returns the new id, or `None` when refused.', id: '`tambah(nama, nilai)` mengembalikan id baru, atau `None` bila ditolak.' },
@@ -721,7 +721,7 @@ export const module9: Module = {
                 'k = Client("wrong_key.txt")\nassert k.list_students() == [], "a wrong key should give an empty list, not an error"\nassert k.get_student(1) is None\nassert k.add_student("X", 1) is None\nassert k.average() == 0',
             },
             {
-              name: { en: 'A missing key file is refused at construction', id: 'Berkas kunci yang hilang ditolak saat pembuatan' },
+              name: { en: 'A missing key file is refused at construction', id: 'File kunci yang hilang ditolak saat pembuatan' },
               setup: 'import os\nif os.path.exists("missing.txt"):\n    os.remove("missing.txt")',
               assert:
                 'try:\n    Client("missing.txt")\n    raise AssertionError("should reject a missing key file")\nexcept ValueError:\n    pass',
@@ -757,10 +757,10 @@ export const module9: Module = {
                 'k = Klien("kunci_salah.txt")\nassert k.daftar() == [], "kunci salah harus memberi list kosong, bukan error"\nassert k.ambil(1) is None\nassert k.tambah("X", 1) is None\nassert k.rata_rata() == 0',
             },
             {
-              name: { en: 'A missing key file is refused at construction', id: 'Berkas kunci yang hilang ditolak saat pembuatan' },
+              name: { en: 'A missing key file is refused at construction', id: 'File kunci yang hilang ditolak saat pembuatan' },
               setup: 'import os\nif os.path.exists("hilang.txt"):\n    os.remove("hilang.txt")',
               assert:
-                'try:\n    Klien("hilang.txt")\n    raise AssertionError("seharusnya menolak berkas kunci yang tidak ada")\nexcept ValueError:\n    pass',
+                'try:\n    Klien("hilang.txt")\n    raise AssertionError("seharusnya menolak file kunci yang tidak ada")\nexcept ValueError:\n    pass',
             },
           ],
         },
@@ -777,7 +777,7 @@ export const module9: Module = {
           en:
             'import nunada_api\n\nBASE = "https://api.nunada.test"\n\nclass Client:\n    def __init__(self, key_file):\n        try:\n            with open(key_file) as f:\n                key = f.read().strip()\n        except FileNotFoundError:\n            raise ValueError("key file does not exist")\n        if not key:\n            raise ValueError("key is empty")\n        self.key = key\n        self.headers = {"Authorization": "Bearer " + key}\n\n    def list_students(self):\n        response = nunada_api.get(BASE + "/siswa", headers=self.headers)\n        if not response.ok:\n            return []\n        return response.json()["data"]\n\n    def get_student(self, sid):\n        response = nunada_api.get(f"{BASE}/siswa/{sid}", headers=self.headers)\n        if not response.ok:\n            return None\n        return response.json()["data"]\n\n    def add_student(self, name, score):\n        response = nunada_api.post(\n            BASE + "/siswa",\n            headers=self.headers,\n            json={"nama": name, "nilai": score},\n        )\n        if not response.ok:\n            return None\n        return response.json()["data"]["id"]\n\n    def average(self):\n        students = self.list_students()\n        if not students:\n            return 0\n        return round(sum(s["nilai"] for s in students) / len(students), 1)',
           id:
-            'import nunada_api\n\nBASE = "https://api.nunada.test"\n\nclass Klien:\n    def __init__(self, berkas_kunci):\n        try:\n            with open(berkas_kunci) as f:\n                kunci = f.read().strip()\n        except FileNotFoundError:\n            raise ValueError("berkas kunci tidak ada")\n        if not kunci:\n            raise ValueError("kunci kosong")\n        self.kunci = kunci\n        self.headers = {"Authorization": "Bearer " + kunci}\n\n    def daftar(self):\n        respons = nunada_api.get(BASE + "/siswa", headers=self.headers)\n        if not respons.ok:\n            return []\n        return respons.json()["data"]\n\n    def ambil(self, sid):\n        respons = nunada_api.get(f"{BASE}/siswa/{sid}", headers=self.headers)\n        if not respons.ok:\n            return None\n        return respons.json()["data"]\n\n    def tambah(self, nama, nilai):\n        respons = nunada_api.post(\n            BASE + "/siswa",\n            headers=self.headers,\n            json={"nama": nama, "nilai": nilai},\n        )\n        if not respons.ok:\n            return None\n        return respons.json()["data"]["id"]\n\n    def rata_rata(self):\n        siswa = self.daftar()\n        if not siswa:\n            return 0\n        return round(sum(s["nilai"] for s in siswa) / len(siswa), 1)',
+            'import nunada_api\n\nBASE = "https://api.nunada.test"\n\nclass Klien:\n    def __init__(self, berkas_kunci):\n        try:\n            with open(berkas_kunci) as f:\n                kunci = f.read().strip()\n        except FileNotFoundError:\n            raise ValueError("file kunci tidak ada")\n        if not kunci:\n            raise ValueError("kunci kosong")\n        self.kunci = kunci\n        self.headers = {"Authorization": "Bearer " + kunci}\n\n    def daftar(self):\n        respons = nunada_api.get(BASE + "/siswa", headers=self.headers)\n        if not respons.ok:\n            return []\n        return respons.json()["data"]\n\n    def ambil(self, sid):\n        respons = nunada_api.get(f"{BASE}/siswa/{sid}", headers=self.headers)\n        if not respons.ok:\n            return None\n        return respons.json()["data"]\n\n    def tambah(self, nama, nilai):\n        respons = nunada_api.post(\n            BASE + "/siswa",\n            headers=self.headers,\n            json={"nama": nama, "nilai": nilai},\n        )\n        if not respons.ok:\n            return None\n        return respons.json()["data"]["id"]\n\n    def rata_rata(self):\n        siswa = self.daftar()\n        if not siswa:\n            return 0\n        return round(sum(s["nilai"] for s in siswa) / len(siswa), 1)',
         },
         xp: 80,
       },

@@ -198,7 +198,7 @@ export const module3: Module = {
                 { en: 'When a part answers a different question and can be named', id: 'Saat sebuah bagian menjawab pertanyaan berbeda dan bisa dinamai' },
                 { en: 'Whenever it passes 20 lines', id: 'Setiap kali melewati 20 baris' },
                 { en: 'Whenever it has state', id: 'Setiap kali ia punya state' },
-                { en: 'Never — one file is simpler', id: 'Tidak pernah — satu berkas lebih sederhana' },
+                { en: 'Never — one file is simpler', id: 'Tidak pernah — satu file lebih sederhana' },
               ],
               answer: 0,
               explain: {

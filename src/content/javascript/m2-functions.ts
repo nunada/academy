@@ -19,7 +19,7 @@ export const module2: Module = {
       title: { en: 'Functions', id: 'Fungsi' },
       summary: {
         en: 'Wrap work in a name, feed it values, and hand a result back.',
-        id: 'Bungkus pekerjaan dalam sebuah nama, beri nilai masukan, dan kembalikan hasilnya.',
+        id: 'Bungkus pekerjaan dalam sebuah nama, beri nilai input, dan kembalikan hasilnya.',
       },
       lessons: [
         {
@@ -148,7 +148,7 @@ export const module2: Module = {
                   {
                     name: { en: 'It returns rather than logs', id: 'Ia mengembalikan, bukan menampilkan' },
                     check:
-                      'assert(logs().length === 0, "fungsi ini harus return, bukan console.log — sekarang ada " + logs().length + " baris keluaran");',
+                      'assert(logs().length === 0, "fungsi ini harus return, bukan console.log — sekarang ada " + logs().length + " baris output");',
                   },
                   {
                     name: { en: 'greet builds the greeting', id: 'sapa menyusun sapaannya' },
@@ -384,7 +384,7 @@ export const module2: Module = {
             },
             {
               name: { en: 'Nothing is logged', id: 'Tidak ada yang ditampilkan' },
-              check: 'assert(logs().length === 0, "toolkit ini harus return saja — sekarang ada " + logs().length + " baris keluaran");',
+              check: 'assert(logs().length === 0, "toolkit ini harus return saja — sekarang ada " + logs().length + " baris output");',
             },
           ],
         },

@@ -63,7 +63,7 @@ export const module4: Module = {
               answer: 1,
               explain: {
                 en: 'The determinant has three columns and produces three components, so both the input and the output are three-dimensional. In the plane there is no direction left over to point in.',
-                id: 'Determinannya berkolom tiga dan menghasilkan tiga komponen, jadi masukan dan keluarannya sama-sama berdimensi tiga. Di bidang tak tersisa arah untuk ditunjuk.',
+                id: 'Determinannya berkolom tiga dan menghasilkan tiga komponen, jadi input dan output-nya sama-sama berdimensi tiga. Di bidang tak tersisa arah untuk ditunjuk.',
               },
               hint: {
                 en: 'Count how many entries expanding that determinant actually produces, and notice how many columns of components it needs to begin with.',

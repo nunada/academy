@@ -66,7 +66,7 @@ A strictly monotonic function never takes the same value twice, because two diff
 
 Kata-kata itu milik suatu *selang*. Kita tidak mengatakan fungsi naik atau turun di satu titik, karena definisinya membandingkan dua titik yang berbeda. $f(x)=x^2$ turun pada $(-\infty,0]$ dan naik pada $[0,\infty)$, dan tidak monoton pada seluruh garis. Apakah ujung disertakan tidak mengubah apa-apa untuk fungsi kontinu: jika ia naik pada $(0,1)$ ia juga naik pada $[0,1]$.
 
-Fungsi monoton tegas tidak pernah bernilai sama dua kali, karena dua masukan yang berbeda berurutan dan begitu pula keluarannya. Itulah alasan fungsi monoton memiliki invers, yang dibahas lagi di bagian akhir. Pertanyaan praktisnya adalah bagaimana mencari selangnya; menguji definisi untuk setiap pasangan titik tidak mungkin, dan turunan melakukannya untuk kita.`,
+Fungsi monoton tegas tidak pernah bernilai sama dua kali, karena dua input yang berbeda berurutan dan begitu pula output-nya. Itulah alasan fungsi monoton memiliki invers, yang dibahas lagi di bagian akhir. Pertanyaan praktisnya adalah bagaimana mencari selangnya; menguji definisi untuk setiap pasangan titik tidak mungkin, dan turunan melakukannya untuk kita.`,
           ),
         },
       ],
@@ -314,7 +314,7 @@ yang nol di $t=1$ dan $t=\frac{11}{3}$. Tanda $v$ adalah $+$ untuk $0\le t<1$, $
 
 **Kuadrat.** Untuk $f(x)=ax^2+bx+c$ dengan $a\neq0$ kita punya $f'(x)=2ax+b$, dengan satu nol di $x=-\frac b{2a}$. Jika $a>0$, $f$ turun di kiri titik itu dan naik di kanannya, sehingga puncaknya minimum; jika $a<0$ sebaliknya. Satu rumus mencakup setiap parabola.
 
-**Invers.** Fungsi monoton tegas satu-satu: $x_1\ne x_2$ memaksa $f(x_1)\ne f(x_2)$, karena salah satu dari dua masukan lebih besar dan keluarannya berurutan sama. Jadi fungsi dengan $f'>0$ pada suatu selang, atau $f'<0$, memiliki invers di sana. Untuk $f(x)=x^3+x$ kita punya $f'(x)=3x^2+1>0$, sehingga $f$ naik pada seluruh garis dan memiliki invers, walaupun tanpa rumus sederhana untuknya. Turunannya di titik $2$ tetap tersedia lewat [aturan invers](article:derivatives-of-inverse-functions-and-logarithms#inverse-rule): $f(1)=2$, sehingga $\left(f^{-1}\right)'(2)=\frac1{f'(1)}=\frac14$.`,
+**Invers.** Fungsi monoton tegas satu-satu: $x_1\ne x_2$ memaksa $f(x_1)\ne f(x_2)$, karena salah satu dari dua input lebih besar dan output-nya berurutan sama. Jadi fungsi dengan $f'>0$ pada suatu selang, atau $f'<0$, memiliki invers di sana. Untuk $f(x)=x^3+x$ kita punya $f'(x)=3x^2+1>0$, sehingga $f$ naik pada seluruh garis dan memiliki invers, walaupun tanpa rumus sederhana untuknya. Turunannya di titik $2$ tetap tersedia lewat [aturan invers](article:derivatives-of-inverse-functions-and-logarithms#inverse-rule): $f(1)=2$, sehingga $\left(f^{-1}\right)'(2)=\frac1{f'(1)}=\frac14$.`,
           ),
         },
       ],
@@ -731,12 +731,12 @@ f(-2)=11 f(2)=-21
   ],
 
   glossary: [
-    { term: L('Increasing function', 'Fungsi naik'), definition: L('A function whose value is larger at a larger input anywhere on an interval: f of x one is less than f of x two whenever x one is less than x two.', 'Fungsi yang nilainya lebih besar pada masukan yang lebih besar di mana pun pada suatu selang: f(x1) kurang dari f(x2) setiap kali x1 kurang dari x2.') },
-    { term: L('Decreasing function', 'Fungsi turun'), definition: L('A function whose value is smaller at a larger input anywhere on an interval; its graph falls from left to right.', 'Fungsi yang nilainya lebih kecil pada masukan yang lebih besar di mana pun pada suatu selang; grafiknya turun dari kiri ke kanan.') },
+    { term: L('Increasing function', 'Fungsi naik'), definition: L('A function whose value is larger at a larger input anywhere on an interval: f of x one is less than f of x two whenever x one is less than x two.', 'Fungsi yang nilainya lebih besar pada input yang lebih besar di mana pun pada suatu selang: f(x1) kurang dari f(x2) setiap kali x1 kurang dari x2.') },
+    { term: L('Decreasing function', 'Fungsi turun'), definition: L('A function whose value is smaller at a larger input anywhere on an interval; its graph falls from left to right.', 'Fungsi yang nilainya lebih kecil pada input yang lebih besar di mana pun pada suatu selang; grafiknya turun dari kiri ke kanan.') },
     { term: L('Monotonic function', 'Fungsi monoton'), definition: L('A function that is either increasing on an interval or decreasing on it; a strictly monotonic function is one-to-one.', 'Fungsi yang naik pada suatu selang atau turun pada selang itu; fungsi monoton tegas bersifat satu-satu.') },
     { term: L('First Derivative Test', 'Uji Turunan Pertama'), definition: L('The test that finds local extremes from the sign of the derivative on both sides of a critical point: negative then positive is a minimum, positive then negative a maximum, no change means none.', 'Uji yang mencari ekstrem lokal dari tanda turunan di kedua sisi titik kritis: negatif lalu positif minimum, positif lalu negatif maksimum, tidak berubah berarti bukan ekstrem.') },
     { term: L('Sign chart', 'Bagan tanda'), definition: L('A table of the sign of the derivative on each interval between the critical points, with what the function does on each.', 'Tabel tanda turunan pada setiap selang di antara titik kritis, dengan apa yang dilakukan fungsi pada masing-masingnya.') },
-    { term: L('One-to-one function', 'Fungsi satu-satu'), definition: L('A function that never takes the same value at two different inputs, so that it has an inverse.', 'Fungsi yang tidak pernah bernilai sama pada dua masukan berbeda, sehingga memiliki invers.') },
+    { term: L('One-to-one function', 'Fungsi satu-satu'), definition: L('A function that never takes the same value at two different inputs, so that it has an inverse.', 'Fungsi yang tidak pernah bernilai sama pada dua input berbeda, sehingga memiliki invers.') },
   ],
 
   howTo: [

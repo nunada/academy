@@ -354,7 +354,7 @@ Untuk $A=60^\circ$ dan $n=1{,}5$, $D_{\min}=37{,}18^\circ$. Rumus kedua adalah c
 
 *Pemantulan sempurna.* Di dalam, sinar mengenai sisi kedua pada $r_2=A-r_1$. Bila $n\sin r_2>1$ ia tak dapat keluar: sisi itu bekerja seperti cermin. Sudut kritis kaca adalah $\arcsin\frac1n=41{,}8^\circ$, kurang dari $45^\circ$, sehingga prisma kaca siku-siku dengan sisi-sisi $45^\circ$ memantulkan cahaya sepenuhnya, tanpa lapisan perak; teropong dan periskop memakai prisma seperti itu.
 
-*Warna.* Indeks $n$ sedikit lebih besar untuk cahaya ungu daripada merah, sekitar $1{,}53$ berbanding $1{,}51$ pada kaca biasa, sehingga ungu dibelokkan lebih banyak: deviasi minimumnya sekitar $39{,}8^\circ$ berbanding $38{,}1^\circ$ untuk $A=60^\circ$. Cahaya putih yang masuk dari satu sisi keluar dari sisi lain tersebar menjadi pita warna, *spektrum*, yang dilihat Newton pada 1666. Widget menelusuri sinar melalui prisma, dan dengan “dua warna” menunjukkan kedua berkas yang terpisah.`,
+*Warna.* Indeks $n$ sedikit lebih besar untuk cahaya ungu daripada merah, sekitar $1{,}53$ berbanding $1{,}51$ pada kaca biasa, sehingga ungu dibelokkan lebih banyak: deviasi minimumnya sekitar $39{,}8^\circ$ berbanding $38{,}1^\circ$ untuk $A=60^\circ$. Cahaya putih yang masuk dari satu sisi keluar dari sisi lain tersebar menjadi pita warna, *spektrum*, yang dilihat Newton pada 1666. Widget menelusuri sinar melalui prisma, dan dengan “dua warna” menunjukkan kedua file yang terpisah.`,
           ),
         },
         { kind: 'widget', name: 'prlight' },

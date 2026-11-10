@@ -359,7 +359,7 @@ const WEB: Templat[] = [
         '      </main>\n' +
         '      <aside>\n' +
         '        <strong>Samping</strong>\n' +
-        '        <p>Tautan, iklan, apa saja.</p>\n' +
+        '        <p>Link, iklan, apa saja.</p>\n' +
         '      </aside>\n' +
         '    </div>\n' +
         '    <footer>© 2026</footer>\n' +
@@ -754,8 +754,8 @@ const REACT: Templat[] = [
         '// diizinkan adalah hash, jadi router ini memakai hash.\n' +
         '//\n' +
         '// Karena alasan yang sama, href="#/tentang" saja tidak cukup: tanpa\n' +
-        '// alamat dasar, peramban memperlakukan kliknya sebagai pindah halaman\n' +
-        '// dan pratinjaunya jadi kosong. Jadi tautannya mencegat kliknya sendiri\n' +
+        '// alamat dasar, browser memperlakukan kliknya sebagai pindah halaman\n' +
+        '// dan pratinjaunya jadi kosong. Jadi link-nya mencegat kliknya sendiri\n' +
         '// lalu menyetel hash-nya — persis yang dilakukan <Link> react-router,\n' +
         '// hanya dengan tujuan yang berbeda.\n\n' +
         'function useRute() {\n' +
@@ -785,7 +785,7 @@ const REACT: Templat[] = [
         '  );\n' +
         '}\n\n' +
         'function Beranda() {\n' +
-        '  return <p>Selamat datang. Klik tautan di atas — perhatikan alamatnya berubah.</p>;\n' +
+        '  return <p>Selamat datang. Klik link di atas — perhatikan alamatnya berubah.</p>;\n' +
         '}\n\n' +
         'function Tentang() {\n' +
         '  return <p>Halaman ini dirender karena rutenya /tentang.</p>;\n' +

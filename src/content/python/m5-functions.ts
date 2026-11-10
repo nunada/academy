@@ -15,7 +15,7 @@ export const module5: Module = {
       title: { en: 'Defining a Function', id: 'Mendefinisikan Fungsi' },
       summary: {
         en: 'Wrap code in a name, feed it values, and get an answer back.',
-        id: 'Bungkus kode dalam sebuah nama, beri nilai masukan, dan terima jawabannya.',
+        id: 'Bungkus kode dalam sebuah nama, beri nilai input, dan terima jawabannya.',
       },
       lessons: [
         {

@@ -278,7 +278,7 @@ export const module2: Module = {
               title: { en: 'AVG gives you a fraction', id: 'AVG memberimu pecahan' },
               body: {
                 en: '`AVG` divides, so it returns a fractional number even when every input was whole. `ROUND(x)` rounds to the nearest whole number and `ROUND(x, 2)` keeps two decimals. Round when you present a number, not while you are still calculating with it.',
-                id: '`AVG` membagi, jadi ia mengembalikan bilangan pecahan bahkan ketika semua masukannya bulat. `ROUND(x)` membulatkan ke bilangan bulat terdekat dan `ROUND(x, 2)` menyisakan dua desimal. Bulatkan saat kamu menyajikan angkanya, bukan saat kamu masih berhitung dengannya.',
+                id: '`AVG` membagi, jadi ia mengembalikan bilangan pecahan bahkan ketika semua input-nya bulat. `ROUND(x)` membulatkan ke bilangan bulat terdekat dan `ROUND(x, 2)` menyisakan dua desimal. Bulatkan saat kamu menyajikan angkanya, bukan saat kamu masih berhitung dengannya.',
               },
               code: { en: 'SELECT ROUND(AVG(total)) AS average FROM orders;', id: 'SELECT ROUND(AVG(total)) AS rata_rata FROM pesanan;' },
               output: { en: 'average\n747500.0', id: 'rata_rata\n747500.0' },
@@ -515,7 +515,7 @@ export const module2: Module = {
               title: { en: 'Buckets, then one row each', id: 'Ember, lalu satu baris untuk tiap ember' },
               body: {
                 en: '`GROUP BY city` sorts the rows into one bucket per city. Every aggregate in the `SELECT` then runs **inside each bucket** on its own, and you get one output row per bucket. Nothing else about the query changes.',
-                id: '`GROUP BY kota` memilah barisnya menjadi satu ember per kota. Tiap agregat di `SELECT` lalu berjalan **di dalam tiap ember** sendiri-sendiri, dan kamu menerima satu baris keluaran per ember. Tidak ada bagian lain dari kuerinya yang berubah.',
+                id: '`GROUP BY kota` memilah barisnya menjadi satu ember per kota. Tiap agregat di `SELECT` lalu berjalan **di dalam tiap ember** sendiri-sendiri, dan kamu menerima satu baris output per ember. Tidak ada bagian lain dari kuerinya yang berubah.',
               },
               figure: {
                 dim: 2,
@@ -544,7 +544,7 @@ export const module2: Module = {
                 ],
                 caption: {
                   en: 'Every order row is sorted into the bucket for its city; each bucket then collapses to exactly one output row.',
-                  id: 'Tiap baris pesanan dipilah ke ember kotanya; tiap ember lalu meringkas jadi tepat satu baris keluaran.',
+                  id: 'Tiap baris pesanan dipilah ke ember kotanya; tiap ember lalu meringkas jadi tepat satu baris output.',
                 },
               },
               code: {
@@ -570,7 +570,7 @@ export const module2: Module = {
               title: { en: 'Every plain column must be a grouping column', id: 'Tiap kolom polos harus jadi kolom pengelompokan' },
               body: {
                 en: 'If you group by `city` and also select `customer`, the question has no answer — a bucket holds several customers, and only one can fit in the cell. SQLite quietly picks one; most other databases refuse the query outright. Select the grouping columns and aggregates, nothing else.',
-                id: 'Kalau kamu mengelompokkan berdasarkan `kota` dan juga memilih `pelanggan`, pertanyaannya tak punya jawaban — satu ember berisi beberapa pelanggan, dan hanya satu yang muat di selnya. SQLite diam-diam memilih salah satu; kebanyakan basis data lain menolak kuerinya mentah-mentah. Pilih kolom pengelompokan dan agregat saja, tidak lebih.',
+                id: 'Kalau kamu mengelompokkan berdasarkan `kota` dan juga memilih `pelanggan`, pertanyaannya tak punya jawaban — satu ember berisi beberapa pelanggan, dan hanya satu yang muat di selnya. SQLite diam-diam memilih salah satu; kebanyakan database lain menolak kuerinya mentah-mentah. Pilih kolom pengelompokan dan agregat saja, tidak lebih.',
               },
               code: {
                 en:

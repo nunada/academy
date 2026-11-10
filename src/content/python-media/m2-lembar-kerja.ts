@@ -60,7 +60,7 @@ export const module2: Module = {
               options: [
                 { en: 'Every problem in the batch would be identical', id: 'Semua soal di kelompok itu akan identik' },
                 { en: 'Nothing would change', id: 'Tidak ada yang berubah' },
-                { en: 'The program would raise an error', id: 'Programnya akan melempar galat' },
+                { en: 'The program would raise an error', id: 'Programnya akan melempar error' },
                 { en: 'Each problem would be even more random', id: 'Tiap soal akan makin acak' },
               ],
               answer: 0,
@@ -190,7 +190,7 @@ export const module2: Module = {
               },
               options: [
                 { en: 'The loop body never runs', id: 'Isi perulangannya tak pernah berjalan' },
-                { en: 'It raises an error', id: 'Ia melempar galat' },
+                { en: 'It raises an error', id: 'Ia melempar error' },
                 { en: 'problem and answer become None', id: 'soal dan jawaban menjadi None' },
                 { en: 'It loops forever', id: 'Ia berulang selamanya' },
               ],
@@ -355,14 +355,14 @@ export const module2: Module = {
               },
               options: [
                 { en: 'zip stops at the shorter list — only 2 pairs are checked', id: 'zip berhenti di list yang lebih pendek — hanya 2 pasangan yang diperiksa' },
-                { en: 'It raises an error immediately', id: 'Ia langsung melempar galat' },
+                { en: 'It raises an error immediately', id: 'Ia langsung melempar error' },
                 { en: 'The missing spot is filled with None', id: 'Tempat yang hilang diisi None' },
                 { en: 'It loops through all 3 anyway', id: 'Tetap mengulang ketiganya' },
               ],
               answer: 0,
               explain: {
                 en: 'zip pairs items up only as far as the shorter sequence goes, then simply stops — no error, no filling in gaps.',
-                id: 'zip memasangkan unsurnya hanya sejauh urutan yang lebih pendek, lalu sekadar berhenti — tanpa galat, tanpa mengisi kekosongan.',
+                id: 'zip memasangkan unsurnya hanya sejauh urutan yang lebih pendek, lalu sekadar berhenti — tanpa error, tanpa mengisi kekosongan.',
               },
               hint: {
                 en: 'Think about how zip decides when to stop pairing items — does it need both lists to be the same length, or does it just work with what overlaps?',

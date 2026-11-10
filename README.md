@@ -56,11 +56,11 @@ papan peringkat tidak kosong. Berguna untuk mencoba, **bukan** untuk dipakai sun
 
 1. Buat project baru di [supabase.com](https://supabase.com).
 2. Buka **SQL Editor → New query**, tempel seluruh isi [`supabase/schema.sql`](supabase/schema.sql), jalankan.
-   Berkas itu membuat tabel, trigger, RPC, dan seluruh kebijakan Row Level Security.
+   File itu membuat tabel, trigger, RPC, dan seluruh kebijakan Row Level Security.
    Aman dijalankan ulang, dan **harus** dijalankan ulang pada proyek yang sudah
    terpasang sebelum pemisahan papan peringkat: `xp_events` mendapat kolom
    `course_id`, dan kedua fungsi papan XP berganti tanda tangan. Baris lama
-   diisikan sendiri oleh berkas itu dari tabel `progress`.
+   diisikan sendiri oleh file itu dari tabel `progress`.
    Lalu jalankan [`supabase/public-profile.sql`](supabase/public-profile.sql) dan
    [`supabase/roles.sql`](supabase/roles.sql) dengan cara yang sama (peran siswa,
    guru, admin, dan kelas; lihat "Melihat capaian pembelajar" di bawah). Untuk
@@ -135,10 +135,10 @@ empat langkah, dan semuanya sekali saja.
    https://<kamu>.github.io/<repo>/reset-password
    ```
 
-   Yang pertama untuk tautan konfirmasi pendaftaran; tanpa itu tautannya
+   Yang pertama untuk link konfirmasi pendaftaran; tanpa itu link-nya
    menunjuk ke `localhost` dan tak seorang pun bisa menyelesaikan
-   pendaftarannya. Yang kedua untuk tautan lupa-sandi; tanpa itu Supabase
-   menolak mengarahkan orangnya ke sana dan tautannya tampak rusak. Satu pola
+   pendaftarannya. Yang kedua untuk link lupa-sandi; tanpa itu Supabase
+   menolak mengarahkan orangnya ke sana dan link-nya tampak rusak. Satu pola
    `https://<kamu>.github.io/<repo>/**` juga menutupi keduanya.
 
 ### Yang sudah disiapkan, dan mengapa
@@ -151,11 +151,11 @@ tiap aset, dan router membacanya kembali lewat `import.meta.env.BASE_URL` sebaga
 `<kamu>.github.io` dikenali dan memakai `/`.
 
 **Domain sendiri (`nunada.my.id`).** Domain situs ditulis di satu tempat,
-`public/CNAME`, berkas yang sama yang dibaca GitHub Pages. Kalau berkas itu ada,
+`public/CNAME`, file yang sama yang dibaca GitHub Pages. Kalau file itu ada,
 alur kerjanya memakai `VITE_BASE=/` (domain sendiri berada di akar) dan
-`SITE_URL=https://<domain>`, sehingga peta situs, tautan kanonis, `llms.txt`, dan
+`SITE_URL=https://<domain>`, sehingga peta situs, link kanonis, `llms.txt`, dan
 data terstruktur semuanya memakai domain itu. Untuk kembali ke
-`<kamu>.github.io/<repo>/`, hapus berkas itu. Yang harus dilakukan di luar
+`<kamu>.github.io/<repo>/`, hapus file itu. Yang harus dilakukan di luar
 repositori, sekali saja:
 
 1. **DNS di registrar.** Untuk domain utama `nunada.my.id` buat empat rekaman A ke
@@ -170,14 +170,14 @@ repositori, sekali saja:
 3. **Supabase → Authentication → URL Configuration.** Setel **Site URL** ke
    `https://nunada.my.id/` dan tambahkan `https://nunada.my.id/` dan
    `https://nunada.my.id/reset-password` ke **Redirect URLs** (atau satu pola
-   `https://nunada.my.id/**`). Tanpa ini tautan konfirmasi pendaftaran dan
-   tautan lupa-sandi tidak berfungsi di alamat baru. Alamat `github.io` yang
+   `https://nunada.my.id/**`). Tanpa ini link konfirmasi pendaftaran dan
+   link lupa-sandi tidak berfungsi di alamat baru. Alamat `github.io` yang
    lama boleh dibiarkan sampai peralihannya selesai.
 4. **Google Search Console.** Daftarkan `nunada.my.id` sebagai properti domain
    (verifikasi lewat rekaman TXT di DNS) dan kirim ulang `sitemap.xml`.
 
 **Muat ulang di URL dalam.** Pages tidak punya aturan penulisan ulang, jadi
-menyegarkan `/course/sql/lesson/…` seharusnya 404 — berkasnya memang tidak ada;
+menyegarkan `/course/sql/lesson/…` seharusnya 404 — file-nya memang tidak ada;
 rutenya baru bermakna setelah aplikasinya berjalan. Yang dipunyai Pages adalah
 `404.html`, yang ia sajikan untuk jalur apa pun yang tak ditemukannya. Build
 menyalin `index.html` ke sana, jadi aplikasinya boot, router membaca alamatnya,
@@ -189,7 +189,7 @@ penulisan ulang — dan URL pelajaran yang diketik langsung tetap memuat langkah
 yang benar, dengan kedelapan potongan kursusnya, tanpa satu pun aset gagal.
 
 Satu akibat yang perlu diketahui: halaman-halaman itu dijawab dengan status HTTP
-404. Peramban mengabaikannya, perayap tidak. Untuk aplikasi yang harus dimasuki
+404. Browser mengabaikannya, perayap tidak. Untuk aplikasi yang harus dimasuki
 dulu itu tidak masalah; kalau suatu saat kamu ingin halaman depannya terindeks,
 di situlah GitHub Pages berhenti cocok.
 
@@ -254,8 +254,8 @@ harga yang wajar; untuk pendaftaran terbuka, tidak.
 
 ### Kalau ada yang lupa kata sandinya
 
-Ada tautan **"Lupa kata sandi?"** di halaman masuk. Orangnya mengetik alamat
-surelnya, menerima tautan, memilih sandi baru, dan langsung masuk. Tautannya
+Ada link **"Lupa kata sandi?"** di halaman masuk. Orangnya mengetik alamat
+surelnya, menerima link, memilih sandi baru, dan langsung masuk. Link-nya
 sekali pakai dan kedaluwarsa dalam sejam; meminta yang baru membatalkan yang
 lama. Yang sudah ingat sandinya tapi ingin menggantinya bisa lewat **Profil →
 Ganti kata sandi**.
@@ -273,7 +273,7 @@ Dua hal yang menggagalkannya, dan keduanya di luar kode:
   pendaftaran lancar, pemulihan sandi tetap butuh surel — ini alasan tersendiri
   untuk memasang SMTP.
 
-Di mode lokal tidak ada surel sama sekali, jadi tautannya ditampilkan di layar.
+Di mode lokal tidak ada surel sama sekali, jadi link-nya ditampilkan di layar.
 Itu bukan jalan pintas yang ikut terbit: mode lokal hanya aktif saat kunci
 Supabase tidak ada, dan build yang terbit selalu punya kuncinya.
 
@@ -302,8 +302,8 @@ setelah `schema.sql` dan `public-profile.sql` (aman diulang):
   tidak kehabisan heart, dan tidak muncul di papan peringkat.
 - **Admin** (`admin`). Melihat semua kelas, menyetujui guru, memindahkan seorang
   siswa ke guru lain (menu di kolom terakhir tabel siswa; tujuannya guru yang
-  sudah disetujui atau admin sendiri), dan membaca masukan yang dikirim semua
-  pengguna lewat tombol 💬 (tab **Masukan**, terbaru di atas, dengan nilai
+  sudah disetujui atau admin sendiri), dan membaca input yang dikirim semua
+  pengguna lewat tombol 💬 (tab **Input**, terbaru di atas, dengan nilai
   rata-rata). Tidak pernah
   dibuat dari aplikasi: pernyataan terakhir `roles.sql` mengangkat akun
   berusername `nunada`, dan admin lain diangkat dengan pernyataan yang sama dari
@@ -313,24 +313,24 @@ setelah `schema.sql` dan `public-profile.sql` (aman diulang):
 update public.profiles set role = 'admin', approval = 'approved' where username = 'nama_penggunanya';
 ```
 
-Hanya dari sana. Basis datanya menolak perubahan `role` kalau datang dari
+Hanya dari sana. Database-nya menolak perubahan `role` kalau datang dari
 aplikasi, dan `approval` serta `teacher_id` hanya bisa diubah oleh fungsi di
 `roles.sql` — dua kali, lewat hibah kolom dan lewat trigger — supaya tidak ada
 orang yang bisa mengangkat atau menyetujui dirinya sendiri lalu membaca data
 sebuah kelas. Aturannya diuji pada Postgres sungguhan oleh `npm run check:rolessql`
 (PGlite), dan padanannya di mode lokal oleh `npm run check:roles`.
 
-Di mode lokal, akun pertama di peramban adalah admin.
+Di mode lokal, akun pertama di browser adalah admin.
 
 **Empat kueri di SQL Editor**, untuk yang tidak muat di halaman:
 [`supabase/reports.sql`](supabase/reports.sql) — satu baris per pembelajar,
 sejauh mana tiap orang di tiap kursus, siapa yang seminggu tak menyentuh apa
 pun, dan butir mana yang paling sering menjadi tempat orang berhenti. Tempel
-seluruh berkasnya, lalu sorot satu kueri dan tekan Ctrl+Enter; menjalankan
+seluruh file-nya, lalu sorot satu kueri dan tekan Ctrl+Enter; menjalankan
 semuanya sekaligus hanya menampilkan hasil yang terakhir.
 
 Angka pembagi di kueri kedua — berapa pelajaran yang dimiliki tiap kursus —
-tinggal di kurikulum, bukan di basis data, jadi ia ditulis ulang di sana dan
+tinggal di kurikulum, bukan di database, jadi ia ditulis ulang di sana dan
 harus dijaga tetap seiring; `npm run check:curriculum` yang membuktikan angka
 itu masih cocok. Kursus yang tak ada di daftarnya menghasilkan persentase
 kosong, bukan persentase yang keliru. Halaman Kelas tidak punya soal itu: ia
@@ -347,9 +347,9 @@ Papan **trofi** tidak ikut disaring, dan itu disengaja: "kumpulkan 100 XP total"
 tidak dimiliki jalur mana pun. Penyaringnya hanya muncul di tab yang memang
 berarti.
 
-Yang dikirim aplikasi ke basis data adalah **daftar id kursus**, bukan nama
+Yang dikirim aplikasi ke database adalah **daftar id kursus**, bukan nama
 jalurnya. Keanggotaan jalur diputuskan `content/catalog.ts`; menyalin tabel itu
-ke dalam basis data hanya akan memberinya tempat kedua untuk salah. Dua RPC-nya
+ke dalam database hanya akan memberinya tempat kedua untuk salah. Dua RPC-nya
 menerima `p_courses text[] default null`, dan `null` berarti semuanya — persis
 perilaku versi lama, sehingga pemanggilan tanpa argumen itu tetap sah.
 
@@ -390,7 +390,7 @@ Tiga penyimpangan yang disengaja dari palet add-in, semuanya dicatat di
 | Hearts | maksimal 5; jawaban salah mengurangi 1; satu heart pulih tiap 15 menit |
 | Hearts habis | pemeriksaan jawaban terkunci — tunggu, atau lanjut dalam mode latihan tanpa XP |
 | Mini proyek | memeriksa proyek **tidak** memakan heart, karena proyek memang dikerjakan berulang |
-| Papan peringkat mingguan | menjumlahkan XP sejak Senin 00:00 UTC; tidak ada proses reset, hanya jendela waktu. Zona waktunya dieja di kedua sisi — klien dan RPC — agar tidak bergantung pada setelan sesi basis datanya |
+| Papan peringkat mingguan | menjumlahkan XP sejak Senin 00:00 UTC; tidak ada proses reset, hanya jendela waktu. Zona waktunya dieja di kedua sisi — klien dan RPC — agar tidak bergantung pada setelan sesi database-nya |
 | Trofi | otomatis diberikan dari progres (XP, jumlah proyek, modul/kursus/jalur yang tuntas) |
 | Sertifikat | terbit sendiri saat sebuah kursus atau jalur karier tuntas 100% |
 
@@ -403,7 +403,7 @@ keduanya.
 ## Python di browser
 
 Kode peserta dijalankan oleh [Pyodide](https://pyodide.org) — CPython asli yang
-dikompilasi ke WebAssembly. Unduhan pertama sekitar 7 MB, setelah itu tersimpan di
+dikompilasi ke WebAssembly. Download pertama sekitar 7 MB, setelah itu tersimpan di
 cache browser. Tidak ada kode yang dikirim ke server mana pun.
 
 Tiap pemeriksaan berjalan di *namespace* baru, sehingga latihan tidak saling bocor.
@@ -412,12 +412,12 @@ yang dibandingkan; saat menekan **Run**, prompt tetap tampil seperti terminal su
 
 Yang **tidak** ikut baru tiap kali adalah filesystem-nya: satu instance Pyodide melayani
 seluruh sesi. Karena itu tes punya kolom `setup` — Python yang jalan sebelum kode peserta,
-dipakai untuk menyiapkan berkas yang dibutuhkan latihan sekaligus membersihkan sisa tes
+dipakai untuk menyiapkan file yang dibutuhkan latihan sekaligus membersihkan sisa tes
 sebelumnya.
 
 ### API tiruan untuk modul 9
 
-Pyodide berada di dalam sandbox peramban, jadi `requests` tidak punya soket dan CORS
+Pyodide berada di dalam sandbox browser, jadi `requests` tidak punya soket dan CORS
 memblokir hampir semua host sungguhan — dan menyuruh peserta menempelkan kunci API asli
 ke halaman web jelas nasihat yang buruk. Maka modul "Bekerja dengan API Privat" memakai
 `nunada_api`, modul Python yang ditulis ke filesystem Pyodide saat startup
@@ -436,7 +436,7 @@ agar satu POST tidak mencemari tes berikutnya.
 | Modul | Isi |
 | --- | --- |
 | 1 Halaman Pertamamu | tag, elemen, kerangka dokumen, jenjang judul, penekanan bermakna |
-| 2 Tautan, Gambar, Daftar | atribut, href, img dan alt, ul/ol, navigasi dari daftar |
+| 2 Link, Gambar, Daftar | atribut, href, img dan alt, ul/ol, navigasi dari daftar |
 | 3 Tabel dan Formulir | tr/th/td, caption, thead, colspan, input, label, select, textarea |
 | 4 Struktur Semantik | header/nav/main/footer, article vs section, div/span, id vs class |
 
@@ -500,7 +500,7 @@ Satu jebakan yang sudah dibereskan dan sebaiknya tidak diperkenalkan lagi: pemer
 tidak boleh dijalankan pada `DOMContentLoaded`, karena frame-nya sudah terurai tetapi
 belum di-*layout* — `getBoundingClientRect` mengembalikan 0. Runner-nya menunggu `load`
 lalu membaca `offsetHeight` untuk memaksa layout. `requestAnimationFrame` **tidak** bisa
-dipakai untuk ini: frame-nya berada di luar viewport dan peramban berhenti melayani rAF
+dipakai untuk ini: frame-nya berada di luar viewport dan browser berhenti melayani rAF
 di sana, sehingga penantiannya tak pernah selesai.
 
 ## Isi kursus JavaScript
@@ -561,7 +561,7 @@ lahir dari pengukuran, bukan dugaan.
 
 **JSX ditranspilasi di aplikasi induk, bukan di dalam frame.** Rencana awalnya memuat
 Babel lewat `<script src>` di dalam frame. Ternyata frame ber-`sandbox="allow-scripts"`
-tanpa `allow-same-origin` berada di origin buram, dan **peramban memblokir seluruh
+tanpa `allow-same-origin` berada di origin buram, dan **browser memblokir seluruh
 pemuatan subresource-nya** — terbukti karena frame yang sama berhasil begitu
 `allow-same-origin` ditambahkan, yaitu izin yang justru akan membuat skrip peserta bisa
 menjangkau DOM aplikasi dan sesi Supabase-nya. Sandbox yang ketat lebih berharga
@@ -574,7 +574,7 @@ sekali, malas, alih-alih empat puluh kali.
 **Transpilernya sucrase, bukan Babel.** Babel pilihan pertama yang wajar dan ia bekerja,
 tetapi `@babel/standalone` adalah seluruh perkakasnya — 684 KB lewat kabel — untuk
 mengerjakan satu transformasi. sucrase mengerjakan transformasi JSX yang sama dalam
-**46 KB**: 15 kali lebih kecil. Sebelum ditukar, keluarannya dibandingkan kasus per
+**46 KB**: 15 kali lebih kecil. Sebelum ditukar, output-nya dibandingkan kasus per
 kasus dengan Babel — spread, entitas HTML, atribut boolean, fragmen, dan sarang — dan
 semuanya setara: `React.createElement` yang sama, tiap pengikatan tingkat atas tetap di
 tempatnya (dan itulah yang membuat sebuah pemeriksaan bisa menyebut namanya), entitas
@@ -585,7 +585,7 @@ Dua hal yang tadinya gratis dari Babel dibeli kembali, keduanya murah:
 
 - **Cuplikan baris pada galat sintaks.** sucrase melaporkan `(baris:kolom)`; bingkainya
   dibangun sendiri — baris yang bersangkutan, dengan caret di bawah titiknya.
-- **Validasi seluruh berkas.** sucrase hanya mengurai sejauh yang dibutuhkan transformasi
+- **Validasi seluruh file.** sucrase hanya mengurai sejauh yang dibutuhkan transformasi
   JSX, jadi kesalahan JavaScript biasa di bagian lain akan lolos dan muncul sebagai
   pemeriksaan yang misterius tidak menemukan apa pun. Satu panggilan `new Function` pada
   hasilnya mengompilasi tanpa menjalankan, dan mengembalikan jaminan itu.
@@ -595,7 +595,7 @@ memicunya selesai, jadi pemeriksaan yang membaca DOM tepat setelah klik akan mel
 nilai lama. Tersedia `await click(q)` dan `await tick(ms)`.
 
 **`setTimeout` tidak dipakai untuk menunggu.** Frame-nya berada di luar viewport, dan di
-sana peramban meredam timer sampai ~1 detik. Gejalanya: tiga proyek React kehabisan
+sana browser meredam timer sampai ~1 detik. Gejalanya: tiga proyek React kehabisan
 waktu, dan setiap frame di semua kursus web diam-diam memakan sedetik. Penantiannya kini
 memakai `MessageChannel` — makrotask sungguhan yang tidak diredam, mekanisme yang sama
 dipakai penjadwal React sendiri. Proyek yang tadinya habis waktu di 8 detik kini selesai
@@ -614,12 +614,12 @@ Dua hal yang perlu diingat saat menulis materi React:
 Tidak ada WebAssembly di sini — [JSCPP](https://github.com/felixhao28/JSCPP) adalah
 interpreter tulisan tangan, bukan kompiler sungguhan, dan berjalan sinkron di thread
 utama ([`src/lib/cpp.ts`](src/lib/cpp.ts)). Itulah yang membuatnya masuk akal untuk
-kursus ini: tak ada unduhan berukuran Pyodide, dan cukup cepat untuk sebuah latihan.
+kursus ini: tak ada download berukuran Pyodide, dan cukup cepat untuk sebuah latihan.
 
 **Ia mengerti sebagian C++, bukan seluruhnya.** Tanpa `std::string`, tanpa
 `std::vector`, dan referensi (`int &x`) gagal diurai sama sekali — jadi setiap
 latihan memakai array gaya-C dan pointer, bukan STL. Kelas dasar ada, namespace dan
-berkas jamak tidak. Batasan ini ditemukan dengan mencobanya langsung, bukan dari
+file jamak tidak. Batasan ini ditemukan dengan mencobanya langsung, bukan dari
 dokumentasinya: `strcmp` pada dua string yang identik melempar galat aneh
 ("overflow of NaN"), dan `strcat` diam-diam menjatuhkan satu spasi ketika
 menyambung string yang huruf keduanya spasi (`", dunia!"` menjadi `",dunia!"`) —
@@ -648,23 +648,23 @@ kursus Python), dan bug `strcat` di atas.
 ## Menjalankan SQL peserta
 
 SQL tidak memerlukan iframe. Ia tidak menyentuh DOM dan tidak menjangkau jaringan —
-[sql.js](https://sql.js.org) sudah berupa sandbox WebAssembly yang memegang basis data
+[sql.js](https://sql.js.org) sudah berupa sandbox WebAssembly yang memegang database
 yang hanya ada di memori. Jadi ia berjalan di dalam aplikasi seperti Pyodide, dan
 mesinnya disimpan untuk sisa sesi ([`src/lib/sql.ts`](src/lib/sql.ts)).
 
-**Tiap pemeriksaan mendapat basis data baru,** dibangun ulang dari skema latihannya.
+**Tiap pemeriksaan mendapat database baru,** dibangun ulang dari skema latihannya.
 Itulah seluruh cerita isolasinya: sebuah `UPDATE` di satu pemeriksaan tidak mungkin
 terlihat oleh pemeriksaan berikutnya. Ini berbeda dari Pyodide, yang berbagi satu
 filesystem untuk seluruh sesi.
 
 Pernyataan yang menulis diperiksa lewat `verify`: runner menjalankan pernyataan peserta,
-lalu menanyakan kembali kepada basis datanya apa yang sekarang tersimpan, dan baris
+lalu menanyakan kembali kepada database-nya apa yang sekarang tersimpan, dan baris
 itulah yang dibandingkan. Karena itu latihan `INSERT`, `UPDATE`, dan `DELETE` diuji dari
 akibatnya, bukan dari teks yang ditulis peserta.
 
 Satu perangkap yang perlu diketahui saat menulis tes: **sql.js melaporkan `SELECT` yang
 tidak cocok dengan apa pun persis seperti pernyataan yang memang tidak punya hasil.**
-Keduanya mengembalikan larik kosong, jadi "senyap" dan "nol baris" adalah pengamatan
+Keduanya mengembalikan array kosong, jadi "senyap" dan "nol baris" adalah pengamatan
 yang sama. Sebuah tes boleh menyatakan bahwa ia memang menginginkan nol baris dengan
 `expectRows: []`; selain itu, hasil kosong dihitung gagal.
 
@@ -675,7 +675,7 @@ Perbandingan barisnya tidak peduli urutan kecuali tes menyebut `ordered: true` �
 
 Kursus TypeScript yang hanya *menjalankan* kodenya akan jadi kursus JavaScript
 dengan tanda baca tambahan — seluruh pokok bahasannya justru adalah apa yang
-**ditolak** kompilernya. Maka `typescript` sungguhan dimuat di peramban dan
+**ditolak** kompilernya. Maka `typescript` sungguhan dimuat di browser dan
 dimintai diagnostiknya ([`src/lib/ts.ts`](src/lib/ts.ts)).
 
 Ukurannya 3,4 MB terminifikasi (0,97 MB lewat kabel), dan itulah sebabnya baik
@@ -686,13 +686,13 @@ tak pernah membayarnya. Vite memisahkannya jadi dua potong tersendiri,
 
 **Lib-nya diambil apa adanya, kecuali DOM.** Tanpa `lib.es*.d.ts`, tiap program
 biasa jadi dinding "Cannot find name". [`src/lib/tsLib.ts`](src/lib/tsLib.ts)
-mengimpor 45 berkas itu sebagai teks — penutupan transitif dari referensi di
+mengimpor 45 file itu sebagai teks — penutupan transitif dari referensi di
 `lib.es2020.d.ts`, dibangkitkan, bukan ditebak. `lib.dom.d.ts` ditinggalkan
 karena ia sendirian 1,9 MB dan kursus ini tak pernah menyentuh DOM; deklarasi
 `console` empat baris menggantikannya.
 
-**Berkas lib yang sudah diurai disimpan.** Mengurai 425 KB lib di tiap
-pemeriksaan memakan 48 ms; menyimpan hasil uraiannya memakan 3 ms. Hanya berkas
+**File lib yang sudah diurai disimpan.** Mengurai 425 KB lib di tiap
+pemeriksaan memakan 48 ms; menyimpan hasil uraiannya memakan 3 ms. Hanya file
 peserta yang diurai ulang. Proyek penutup punya 18 pemeriksaan, dan selisih itu
 yang membuatnya terasa 1,5 detik alih-alih belasan.
 
@@ -737,7 +737,7 @@ gambar(keadaan)               # daftar perintah gambar
 ```
 
 **`perbarui` adalah fungsi murni** — keadaan masuk, keadaan keluar, tanpa
-menggambar dan tanpa membaca papan ketik sendiri. Itulah yang membuat sebuah
+menggambar dan tanpa membaca keyboard sendiri. Itulah yang membuat sebuah
 pemeriksaan bisa memanggilnya langsung dengan keadaan karangan dan himpunan
 tombol karangan. Akibatnya seluruh kursus ini diperiksa dengan mesin `PyTest`
 yang sama persis dengan kursus Python, tanpa satu pun kanvas terlibat — yang baru
@@ -754,7 +754,7 @@ Keadaannya disimpan di sisi Python di antara bingkai, jadi loop di sisi
 JavaScript tetap berupa loop dan yang menyeberang hanya tombol yang masuk dan
 adegan yang keluar.
 
-**`dt` adalah waktu nyata, dijepit.** Peramban meredam `requestAnimationFrame`
+**`dt` adalah waktu nyata, dijepit.** Browser meredam `requestAnimationFrame`
 sampai berhenti di tab yang tersembunyi; tanpa jepitan, kembali ke tab setelah
 sepuluh detik akan melemparkan pemainnya menembus dinding. Batasnya `1/15` detik
 — cukup untuk melewati satu tersendat, cukup pendek agar tak ada yang melompat.
@@ -773,7 +773,7 @@ membuat tiga hal harus dibangun sendiri.
 **Rumus.** [`src/lib/tex.ts`](src/lib/tex.ts) membaca sebagian kecil LaTeX —
 pecahan, akar, pangkat dan indeks, anak panah di atas huruf, matriks, dan sekitar
 delapan puluh lambang — lalu mengeluarkan MathML, yang kini ditata sendiri oleh
-peramban. KaTeX bisa lebih banyak, tetapi ia 280 KB skrip ditambah satu megabyte
+browser. KaTeX bisa lebih banyak, tetapi ia 280 KB skrip ditambah satu megabyte
 font, sementara seluruh kurikulum aplikasi ini saja hanya 282 KB di kabel.
 
 Dalam prosa, `$...$` menjadi rumus sebaris dan `$$...$$` menjadi rumus yang berdiri
@@ -814,7 +814,7 @@ kalau jawaban penulis pun disalahkan, domainnya keliru.
 
 **Papan simbol.** Deretan tombol `x √ π ^ / ( ) |` di bawah kotak, menyisipkan pada
 posisi karet. Tombol `x` hanya muncul bila ada kotak rumus. Gunanya bukan menjadi
-papan ketik kedua — `sqrt(` dan `pi` selalu bisa diketik sendiri — melainkan
+keyboard kedua — `sqrt(` dan `pi` selalu bisa diketik sendiri — melainkan
 **memberi tahu** bahwa simbol-simbol itu memang diterima.
 
 **Gambar.** [`src/lib/figure.ts`](src/lib/figure.ts) mendefinisikan gambar sebagai
@@ -940,7 +940,7 @@ variabel dan blok buatan yang boleh dipakai, serta tujuannya (`reach`, `collectA
 **Penyuntingnya.** [`components/BlocksBoard.tsx`](src/components/BlocksBoard.tsx):
 palet, tumpukan blok bersarang, jalankan dengan animasi (blok yang sedang dikerjakan
 menyala), satu tab per peta, dan pesan salah dwibahasa. Blok **ditekan**, bukan
-diseret: begitu bisa dipakai dengan papan ketik maupun jari, dan tumpukan tujuannya
+diseret: begitu bisa dipakai dengan keyboard maupun jari, dan tumpukan tujuannya
 selalu terlihat. Komponen ini terkendali — halaman di atasnya memegang program dan
 vonisnya — sehingga langkah pelajaran dan proyek memakai komponen yang sama.
 
@@ -983,18 +983,18 @@ bilangan floating point, notasi Big-O, pencarian biner dan pengurutan, Menara
 Hanoi). Daftarnya bisa disaring per jalur dan tag, dan dicari (lihat *Pencarian*
 di bawah).
 
-**Berkas.** Semuanya di `src/content/articles/`:
+**File.** Semuanya di `src/content/articles/`:
 
-| Berkas | Isinya |
+| File | Isinya |
 | --- | --- |
-| `<id>.meta.ts` | metadata: `id`, `slug` per bahasa, `title`, `seoTitle` (untuk judul panjang), `description`, `track` (`math` / `code`), `tags`, `level`, `keywords`, `published`, `updated`, `readingMinutes`, dan `about` (entitas yang dibahas, masing-masing dengan tautan `sameAs` ke Wikipedia) |
+| `<id>.meta.ts` | metadata: `id`, `slug` per bahasa, `title`, `seoTitle` (untuk judul panjang), `description`, `track` (`math` / `code`), `tags`, `level`, `keywords`, `published`, `updated`, `readingMinutes`, dan `about` (entitas yang dibahas, masing-masing dengan link `sameAs` ke Wikipedia) |
 | `<id>.ts` | isi: jawaban singkat, poin penting, bagian-bagian, FAQ, referensi |
 | `tags.ts` | daftar tag dan namanya di kedua bahasa; ganti nama di sini sekali |
 | `widgets.ts` | judul dan deskripsi tiap widget (dipakai halaman statis) |
 | `covers.ts` | sampul tiap artikel |
-| `index.ts` | dua tabel: daftar metadata (dimuat sekaligus, terbaru di depan) dan daftar pemuat isi (dimuat per artikel, supaya membuka satu artikel tidak mengunduh seluruhnya) |
+| `index.ts` | dua tabel: daftar metadata (dimuat sekaligus, terbaru di depan) dan daftar pemuat isi (dimuat per artikel, supaya membuka satu artikel tidak men-download seluruhnya) |
 
-Menambah artikel berarti dua berkas baru, satu baris di tiap tabel `index.ts`,
+Menambah artikel berarti dua file baru, satu baris di tiap tabel `index.ts`,
 satu sampul di `covers.ts`, dan — bila ada widget baru — komponennya.
 
 **Isi sebuah artikel**, berurutan: *jawaban singkat* (2–3 kalimat yang bisa
@@ -1040,7 +1040,7 @@ dan kedua bahasa tidak menyimpang strukturnya.
 **SEO dan GEO.** Aplikasi ini satu halaman: HTML-nya kosong sampai JavaScript
 jalan, padahal kebanyakan perayap AI tidak menjalankannya. Maka
 `tools/prerender-articles.mjs` (jalan otomatis di `npm run build`) menulis satu
-berkas HTML nyata untuk tiap artikel dan bahasa, berisi `<title>`, deskripsi,
+file HTML nyata untuk tiap artikel dan bahasa, berisi `<title>`, deskripsi,
 canonical, hreflang, Open Graph dan Twitter; data terstruktur JSON-LD
 (**Article** yang juga **LearningResource**, **BreadcrumbList**, **FAQPage**);
 dan teks artikel di dalam `#root` (React menggantinya saat dimuat). Ia juga
@@ -1050,7 +1050,7 @@ yang sama yang dipakai halaman saat berjalan (`lib/useSeo.ts`), jadi keduanya
 tidak bisa berbeda. Alamat canonical berakhir dengan garis miring, karena begitu
 alamat yang dijawab 200 oleh hosting statis.
 
-**Gambar bagikan.** Facebook, WhatsApp, LinkedIn, dan X memerlukan berkas raster
+**Gambar bagikan.** Facebook, WhatsApp, LinkedIn, dan X memerlukan file raster
 untuk `og:image`, bukan SVG. Maka `tools/og-image.mjs` menggambar kartu 1200×630
 (merek dan judul di kiri, sampul artikel di kanan, alamat dan satu baris
 keterangan di bawah) dan merasterisasinya dengan `@resvg/resvg-js` saat build.
@@ -1063,7 +1063,7 @@ Ubuntu milik workflow deploy).
 Dua hal yang perlu diketahui. Alamat situs diambil dari `SITE_URL` bila ada
 (situs ini memakai `nunada.my.id`), bila tidak dari `GITHUB_REPOSITORY`; kalau situs memakai domain sendiri, isi
 *Repository variable* `SITE_URL` di GitHub. Dan `robots.txt` hanya berlaku di
-akar sebuah host: di situs proyek GitHub Pages (`user.github.io/repo/`) berkas
+akar sebuah host: di situs proyek GitHub Pages (`user.github.io/repo/`) file
 itu tidak dibaca perayap, jadi kirim `sitemap.xml` sendiri lewat Google Search
 Console dan Bing Webmaster Tools.
 
@@ -1071,7 +1071,7 @@ Console dan Bing Webmaster Tools.
 dibangun sekali, kueri hanya melewati token yang sudah disiapkan. Yang dicari
 adalah metadata — judul di kedua bahasa, deskripsi, tag, dan kata kunci tulisan
 tangan (sinonim, simbol, salah eja) — bukan isi artikel, supaya pembaca daftar
-tidak mengunduh seluruh teks. Huruf besar dan aksen tak berpengaruh, kata boleh
+tidak men-download seluruh teks. Huruf besar dan aksen tak berpengaruh, kata boleh
 diketik awalnya saja (`irrat`), kata empat huruf atau lebih boleh salah satu
 ketikan, dan semua kata kueri harus cocok. Daftar bisa disaring per jalur dan
 tag, dan tombol `/` memindahkan fokus ke kotak cari. Pencarian teks penuh, bila
@@ -1083,7 +1083,7 @@ semua pasangan browser dan pembaca layar. Karena itu `lib/texspeech.ts` mengubah
 tiap rumus menjadi kata-kata (`\frac{a+b}{2}` menjadi "fraction, a plus b, over 2,
 end fraction", dan padanannya dalam bahasa Indonesia), dan komponen rumus menaruhnya
 di `aria-label` pada pembungkus `role="math"`, sehingga semua pembaca layar
-mengucapkan hal yang sama. Selain itu situs punya tautan *lompat ke konten*,
+mengucapkan hal yang sama. Selain itu situs punya link *lompat ke konten*,
 pengumuman perubahan halaman, gaya fokus yang jelas, dan label pada widget.
 
 **Pemeriksa.** Selain `npm run check:articles` (yang memeriksa semua artikel
@@ -1125,14 +1125,14 @@ React disisipkan. Dua pengukuran menghentikannya. Pertama, di dalam bingkai
 ber-origin buram, `history.pushState` dan `replaceState` melempar SecurityError —
 dan di situlah react-router memindahkan halaman; ia akan jatuh ke
 `location.assign`, yang memuat ulang bingkainya dan menghapus seluruh state di
-tiap klik tautan. Kedua, `location.hash` dan `hashchange` justru bekerja.
+tiap klik link. Kedua, `location.hash` dan `hashchange` justru bekerja.
 
 Maka router-nya ditulis di dalam templatnya sendiri: dua puluh baris yang bisa
 dibaca dan diubah peserta, memakai hash. Ada satu jebakan lagi yang juga terukur:
 `href="#/tentang"` saja tidak cukup, karena dokumen `srcdoc` ber-origin buram tak
 punya alamat dasar yang bisa dipakai — `#/tentang` diselesaikan terhadap
-`about:blank` dan peramban memperlakukan kliknya sebagai pindah halaman, sehingga
-pratinjaunya jadi kosong. Jadi tautannya mencegat kliknya sendiri lalu menyetel
+`about:blank` dan browser memperlakukan kliknya sebagai pindah halaman, sehingga
+pratinjaunya jadi kosong. Jadi link-nya mencegat kliknya sendiri lalu menyetel
 hash-nya. Kebetulan itu justru yang dilakukan `<Link>` react-router — hanya
 dengan tujuan yang berbeda.
 
@@ -1162,7 +1162,7 @@ src/
     python.ts       pemuat Pyodide, runner, dan pemeriksa tes
     web.ts          runner iframe tersandbox untuk HTML, CSS, JavaScript, React
     reactRuntime.ts React/ReactDOM sebagai teks + transpilasi JSX lewat sucrase
-    sql.ts          SQLite lewat sql.js — basis data baru untuk tiap pemeriksaan
+    sql.ts          SQLite lewat sql.js — database baru untuk tiap pemeriksaan
     ts.ts           kompiler TypeScript sungguhan, dimuat malas, untuk diagnostik
     tsLib.ts        rantai lib.es*.d.ts sebagai teks (dibangkitkan)
     game.ts         sesi game Python: namespace bertahan + jembatan JSON per bingkai
@@ -1182,7 +1182,7 @@ src/
   pages/            Landing, Auth, Dashboard, Catalog, CourseMap, Lesson,
                     Project, Playground, Leaderboard, Profile, Certificate,
                     Teacher (halaman Kelas, hanya untuk akun guru),
-                    ResetPassword (tempat tautan lupa-sandi mendarat)
+                    ResetPassword (tempat link lupa-sandi mendarat)
 .github/workflows/deploy.yml  build dan terbitkan ke GitHub Pages
 supabase/schema.sql skema, RPC, dan RLS
 supabase/reports.sql  capaian tiap pembelajar, untuk SQL Editor
@@ -1206,7 +1206,7 @@ muncul. Sekarang tiap kursus punya potongannya sendiri.
 | | sebelum | sesudah |
 | --- | --- | --- |
 | bundel utama | 1.582 KB / 444 KB gzip | 548 KB / **162 KB gzip** |
-| halaman depan (belum masuk) | 9 berkas, 444 KB | **1 berkas, 163 KB** |
+| halaman depan (belum masuk) | 9 file, 444 KB | **1 file, 163 KB** |
 | tiap kursus | — | 25–52 KB gzip, diambil saat dibutuhkan |
 | transpiler JSX (hanya latihan React) | 684 KB gzip | **46 KB gzip** |
 
@@ -1219,7 +1219,7 @@ katalog, dan dasbor tidak mengambil satu kurikulum pun.
 Yang benar-benar butuh hanya empat hal, dan semuanya khas:
 
 - **peta kursus, pelajaran, dan proyek** — satu kursus, yaitu yang sedang dibuka;
-- **tautan "lanjutkan"** di dasbor — butuh urutan itemnya, jadi satu kursus juga;
+- **link "lanjutkan"** di dasbor — butuh urutan itemnya, jadi satu kursus juga;
 - **kisi trofi** — menamai tiap modul, jadi ia satu-satunya halaman yang menunggu
   semuanya;
 - **penyelesaian sebuah pelajaran** — trofi modul perlu tahu item apa saja yang
@@ -1255,7 +1255,7 @@ Tiap pelajaran menurunkan bantuan secara bertahap lewat lima jenis langkah
 | Jenis | Yang dilakukan peserta | Bantuan |
 | --- | --- | --- |
 | `concept` | membaca penjelasan + contoh yang sudah jadi | penuh |
-| `quiz` | menebak keluaran sebelum menjalankannya | tinggi |
+| `quiz` | menebak output sebelum menjalankannya | tinggi |
 | `fill` | mengisi bagian kosong pada kode yang hampir lengkap | sedang |
 | `order` | menyusun baris yang sudah benar ke urutan yang tepat | rendah |
 | `code` | menulis sendiri, diperiksa tes, petunjuk muncul bila diminta | minimal |
@@ -1277,14 +1277,14 @@ editor kosong, dan tes.
 Kurikulum adalah data biasa, jadi menambah pelajaran berarti menambah objek — tidak
 ada komponen baru yang perlu ditulis.
 
-1. Buka berkas modul di `src/content/python/`, atau buat modul baru dan daftarkan di
+1. Buka file modul di `src/content/python/`, atau buat modul baru dan daftarkan di
    `src/content/python/index.ts`.
 2. Tambahkan `Lesson` ke `lessons`, atau ubah `project` pada submateri.
 3. Isi `en` dan `id` untuk setiap teks — `Loc` mewajibkan keduanya, jadi teks yang
    belum diterjemahkan akan ketahuan sebagai galat TypeScript.
 4. Untuk langkah `code` dan mini proyek, tulis `solution` yang benar. Tes bisa
-   menyiapkan keadaan lebih dulu (`setup`), memberi masukan (`stdin`), membandingkan
-   keluaran (`expectOutput`), memeriksa potongan teks (`expectContains`), atau
+   menyiapkan keadaan lebih dulu (`setup`), memberi input (`stdin`), membandingkan
+   output (`expectOutput`), memeriksa potongan teks (`expectContains`), atau
    menjalankan Python tambahan di namespace yang sama (`assert`).
 5. Untuk langkah `sql`, tesnya memakai `expectColumns`, `expectRows`, `ordered`, dan
    `verify` — lihat `SqlTest` di [`src/content/types.ts`](src/content/types.ts).
@@ -1390,7 +1390,7 @@ for (const m of sqlCourse.modules)
 bad
 ```
 
-Untuk kursus TypeScript, polanya sama. Pemuatan pertama mengunduh kompilernya,
+Untuk kursus TypeScript, polanya sama. Pemuatan pertama men-download kompilernya,
 jadi berikan waktu sebentar:
 
 ```js
@@ -1461,7 +1461,7 @@ di bagian [Kursus TKA](#kursus-tka).
 | 4 Koleksi Data | list, indeks, method, dictionary, items() |
 | 5 Fungsi | def, return, parameter bawaan, komposisi, scope |
 | 6 Ketika Terjadi Kesalahan | try/except, jenis error, validasi input, raise |
-| 7 Berkas | tulis/baca, with, split/join, berkas terstruktur |
+| 7 File | tulis/baca, with, split/join, file terstruktur |
 | 8 Objek | class, __init__, method, __str__, list objek, pewarisan |
 | 9 Bekerja dengan API Privat | kunci API, header bearer, kode status, JSON, POST, menjaga rahasia |
 

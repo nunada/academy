@@ -37,7 +37,7 @@ export const module5: Module = {
               title: { en: 'turtle: geometry with a virtual pen', id: 'turtle: geometri dengan pena virtual' },
               body: {
                 en: '`turtle` has shipped with Python since the beginning — a pen that moves and turns, leaving a trail. Excellent for teaching angles, polygons, and repeating patterns to younger students. It needs a real window to draw into, so it does not run in this browser sandbox — but it runs instantly on any desktop Python install, with nothing extra to add.',
-                id: '`turtle` sudah ada di Python sejak awal — pena yang bergerak dan berbelok, meninggalkan jejak. Sangat cocok mengajarkan sudut, poligon, dan pola berulang ke siswa yang lebih muda. Ia butuh jendela sungguhan untuk digambari, jadi tidak berjalan di sandbox peramban ini — tapi berjalan seketika di komputer mana pun yang sudah terpasang Python, tanpa tambahan apa pun.',
+                id: '`turtle` sudah ada di Python sejak awal — pena yang bergerak dan berbelok, meninggalkan jejak. Sangat cocok mengajarkan sudut, poligon, dan pola berulang ke siswa yang lebih muda. Ia butuh jendela sungguhan untuk digambari, jadi tidak berjalan di sandbox browser ini — tapi berjalan seketika di komputer mana pun yang sudah terpasang Python, tanpa tambahan apa pun.',
               },
               code: 'import turtle\nt = turtle.Turtle()\nfor _ in range(4):\n    t.forward(100)\n    t.right(90)\nturtle.done()',
             },
@@ -47,7 +47,7 @@ export const module5: Module = {
               title: { en: 'pygame: the foundation for 2D games', id: 'pygame: fondasi game 2D' },
               body: {
                 en: 'The most established 2D game library in Python — sprites, collisions, sound, and a game loop you write yourself, line by line. Powerful and flexible, at the cost of more boilerplate than anything seen in this course.',
-                id: 'Pustaka game 2D paling mapan di Python — sprite, tabrakan, suara, dan loop game yang kamu tulis sendiri baris demi baris. Kuat dan fleksibel, dengan konsekuensi kode dasar (boilerplate) lebih banyak daripada apa pun di kursus ini.',
+                id: 'Library game 2D paling mapan di Python — sprite, tabrakan, suara, dan loop game yang kamu tulis sendiri baris demi baris. Kuat dan fleksibel, dengan konsekuensi kode dasar (boilerplate) lebih banyak daripada apa pun di kursus ini.',
               },
               code: {
                 en: 'import pygame\npygame.init()\nscreen = pygame.display.set_mode((320, 240))\nrunning = True\nwhile running:\n    for e in pygame.event.get():\n        if e.type == pygame.QUIT:\n            running = False\n    pygame.display.flip()',
@@ -116,7 +116,7 @@ export const module5: Module = {
               answer: 0,
               explain: {
                 en: 'Pygame Zero wraps pygame itself; the other three are independent libraries with their own foundations.',
-                id: 'Pygame Zero membungkus pygame itu sendiri; tiga lainnya adalah pustaka mandiri dengan fondasinya sendiri.',
+                id: 'Pygame Zero membungkus pygame itu sendiri; tiga lainnya adalah library mandiri dengan fondasinya sendiri.',
               },
               hint: {
                 en: "Recall which of these four tools was described as removing pygame's manual setup rather than being an independent foundation of its own.",
@@ -202,7 +202,7 @@ export const module5: Module = {
       ],
       project: {
         id: 'pymed-m5-s1-p',
-        title: { en: 'Which Library Fits?', id: 'Pustaka Mana yang Cocok?' },
+        title: { en: 'Which Library Fits?', id: 'Library Mana yang Cocok?' },
         brief: {
           en: 'Practice matching a stated need to the right tool from this lesson — the same lookup skill, covering the two needs the lesson\'s own exercise did not test.',
           id: 'Latih mencocokkan kebutuhan dengan perkakas yang tepat dari pelajaran ini — keterampilan yang sama, mencakup dua kebutuhan yang belum diuji di latihan pelajarannya.',
@@ -259,10 +259,10 @@ export const module5: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'matplotlib & seaborn: the standard plotting libraries', id: 'matplotlib & seaborn: pustaka plot standar' },
+              title: { en: 'matplotlib & seaborn: the standard plotting libraries', id: 'matplotlib & seaborn: library plot standar' },
               body: {
                 en: 'matplotlib draws almost any chart imaginable — line graphs, bar charts, plotted functions — and it genuinely runs in this sandbox, `Agg` mode saving straight to a file with no display involved. Try it. seaborn is a friendlier layer on top, with better defaults for statistical charts like histograms — checked directly, seaborn itself is not available here.',
-                id: 'matplotlib menggambar hampir semua jenis grafik — grafik garis, batang, plot fungsi — dan sungguh berjalan di sandbox ini, mode `Agg` menyimpan langsung ke berkas tanpa tampilan yang terlibat. Coba sendiri. seaborn adalah lapisan yang lebih ramah di atasnya, dengan tampilan bawaan lebih baik untuk grafik statistik seperti histogram — dicek langsung, seaborn sendiri tidak tersedia di sini.',
+                id: 'matplotlib menggambar hampir semua jenis grafik — grafik garis, batang, plot fungsi — dan sungguh berjalan di sandbox ini, mode `Agg` menyimpan langsung ke file tanpa tampilan yang terlibat. Coba sendiri. seaborn adalah lapisan yang lebih ramah di atasnya, dengan tampilan bawaan lebih baik untuk grafik statistik seperti histogram — dicek langsung, seaborn sendiri tidak tersedia di sini.',
               },
               code: {
                 en: 'import matplotlib\nmatplotlib.use("Agg")\nimport matplotlib.pyplot as plt\nx = [1, 2, 3, 4]\ny = [i ** 2 for i in x]\nplt.plot(x, y)\nplt.savefig("chart.png")\nprint("saved")',
@@ -289,7 +289,7 @@ export const module5: Module = {
               title: { en: 'VPython: physics in 3D', id: 'VPython: fisika dalam 3D' },
               body: {
                 en: 'Built for visualizing vectors, forces, and motion as a navigable 3D scene. Its browser-based version — Web VPython, formerly called GlowScript — runs directly in a browser, but through its own engine, not through Pyodide the way this app does.',
-                id: 'Dibuat untuk memvisualisasikan vektor, gaya, dan gerak sebagai adegan 3D yang bisa dijelajahi. Versinya yang berbasis peramban — Web VPython, dulu bernama GlowScript — berjalan langsung di peramban, tapi lewat mesinnya sendiri, bukan lewat Pyodide seperti aplikasi ini.',
+                id: 'Dibuat untuk memvisualisasikan vektor, gaya, dan gerak sebagai adegan 3D yang bisa dijelajahi. Versinya yang berbasis browser — Web VPython, dulu bernama GlowScript — berjalan langsung di browser, tapi lewat mesinnya sendiri, bukan lewat Pyodide seperti aplikasi ini.',
               },
               code: {
                 en: 'from vpython import sphere, vector, color\n\nball = sphere(pos=vector(0, 0, 0), radius=1, color=color.orange)',
@@ -302,7 +302,7 @@ export const module5: Module = {
               title: { en: 'Streamlit: a script becomes a web app', id: 'Streamlit: skrip Python jadi aplikasi web' },
               body: {
                 en: 'Turns an ordinary Python script into an interactive web app — sliders, buttons, live charts — with almost no web-development knowledge required. If a piece of teaching media needs to reach a whole class online, each from their own browser, this is the most direct route.',
-                id: 'Mengubah skrip Python biasa menjadi aplikasi web interaktif — slider, tombol, grafik yang hidup — nyaris tanpa pengetahuan pengembangan web. Kalau sebuah media pembelajaran perlu menjangkau satu kelas penuh secara daring, dari peramban masing-masing, inilah jalan paling langsung.',
+                id: 'Mengubah skrip Python biasa menjadi aplikasi web interaktif — slider, tombol, grafik yang hidup — nyaris tanpa pengetahuan pengembangan web. Kalau sebuah media pembelajaran perlu menjangkau satu kelas penuh secara online-25761, dari browser masing-masing, inilah jalan paling langsung.',
               },
               code: {
                 en: 'import streamlit as st\n\nst.title("Compound Interest Calculator")\nprincipal = st.number_input("Initial capital")\nst.write(principal * 1.05)',

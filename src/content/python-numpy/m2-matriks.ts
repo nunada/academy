@@ -239,7 +239,7 @@ export const module2: Module = {
               },
               hint: {
                 en: 'Work out each row of the matrix dotted with the vector separately — row 1 gives the first output number, row 2 gives the second.',
-                id: 'Hitung tiap baris matriks yang di-dot dengan vektornya secara terpisah — baris 1 memberi angka keluaran pertama, baris 2 memberi yang kedua.',
+                id: 'Hitung tiap baris matriks yang di-dot dengan vektornya secara terpisah — baris 1 memberi angka output pertama, baris 2 memberi yang kedua.',
               },
             },
             {

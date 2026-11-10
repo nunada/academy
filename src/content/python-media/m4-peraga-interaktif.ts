@@ -62,7 +62,7 @@ export const module4: Module = {
               options: [
                 { en: 'The check is True, since "right" is one of the members', id: 'Pemeriksaannya True, karena "kanan" salah satu anggotanya' },
                 { en: 'The check is False, since more than one key is held', id: 'Pemeriksaannya False, karena lebih dari satu tombol ditekan' },
-                { en: 'It raises an error', id: 'Ia melempar galat' },
+                { en: 'It raises an error', id: 'Ia melempar error' },
                 { en: 'It depends on the order the keys were pressed', id: 'Bergantung urutan tombolnya ditekan' },
               ],
               answer: 0,
@@ -211,7 +211,7 @@ export const module4: Module = {
                 { en: '0', id: '0' },
                 { en: '5', id: '5' },
                 { en: '1', id: '1' },
-                { en: 'It raises an error', id: 'Melempar galat' },
+                { en: 'It raises an error', id: 'Melempar error' },
               ],
               answer: 0,
               explain: {

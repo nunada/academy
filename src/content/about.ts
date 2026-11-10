@@ -64,7 +64,7 @@ Yang membedakannya adalah cara latihannya bekerja. Sebuah pelajaran adalah rangk
           kind: 'text',
           text: L(
             `There are two tracks. The **mathematics** courses are worked on paper and answered in a box, and run from algebra fundamentals through functions, vectors, limits, derivatives, integrals and series, with TKA (Tes Kemampuan Akademik) preparation for elementary, junior high and senior high school. The **code** courses are written and run in the browser: blocks, Python, HTML, CSS, JavaScript, TypeScript, React, SQL, C++, game development, and Python used for mathematics.`,
-            `Ada dua jalur. Kursus **matematika** dikerjakan di atas kertas dan dijawab di kotak isian, dari dasar aljabar lewat fungsi, vektor, limit, turunan, integral, dan deret, dengan persiapan TKA (Tes Kemampuan Akademik) untuk SD, SMP, dan SMA. Kursus **kode** ditulis dan dijalankan di peramban: blok, Python, HTML, CSS, JavaScript, TypeScript, React, SQL, C++, pengembangan game, dan Python untuk matematika.`,
+            `Ada dua jalur. Kursus **matematika** dikerjakan di atas kertas dan dijawab di kotak isian, dari dasar aljabar lewat fungsi, vektor, limit, turunan, integral, dan deret, dengan persiapan TKA (Tes Kemampuan Akademik) untuk SD, SMP, dan SMA. Kursus **kode** ditulis dan dijalankan di browser: blok, Python, HTML, CSS, JavaScript, TypeScript, React, SQL, C++, pengembangan game, dan Python untuk matematika.`,
           ),
         },
         { kind: 'courses', track: 'math', heading: L('Mathematics courses', 'Kursus matematika') },
@@ -95,7 +95,7 @@ New here? The [guide](/help) walks through the first lesson.`,
 - **Mini proyek.** Tiap bagian kursus ditutup dengan proyek yang menyatukan pelajarannya, dan menyelesaikannya membuka bagian berikutnya.
 - **XP, nyawa, trofi, dan sertifikat.** Pelajaran yang selesai memberi XP dan menaikkan peringkatmu, pencapaian tertentu memberi trofi, dan menamatkan kursus memberi sertifikat.
 - **Playground.** Tulis dan jalankan kode di luar pelajaran.
-- **Dibuat agar bisa dibacakan.** Rumus punya versi lisan untuk pembaca layar, ada tautan lompat di setiap halaman, dan tema terang, gelap, atau mengikuti sistem hanya sekali ketuk.
+- **Dibuat agar bisa dibacakan.** Rumus punya versi lisan untuk pembaca layar, ada link lompat di setiap halaman, dan tema terang, gelap, atau mengikuti sistem hanya sekali ketuk.
 
 Baru di sini? [Panduan](/help) menuntunmu lewat pelajaran pertama.`,
           ),

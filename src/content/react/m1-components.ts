@@ -13,7 +13,7 @@ export const module1: Module = {
   title: { en: 'Components and JSX', id: 'Komponen dan JSX' },
   summary: {
     en: 'Describe a piece of interface, give it inputs, and repeat it over data.',
-    id: 'Menjelaskan sepotong antarmuka, memberinya masukan, dan mengulangnya atas data.',
+    id: 'Menjelaskan sepotong antarmuka, memberinya input, dan mengulangnya atas data.',
   },
   submodules: [
     /* -------------------------------------------------- 1.1 JSX and components */
@@ -22,7 +22,7 @@ export const module1: Module = {
       title: { en: 'Your First Component', id: 'Komponen Pertamamu' },
       summary: {
         en: 'JSX, a function that returns it, and the props that feed it.',
-        id: 'JSX, sebuah fungsi yang mengembalikannya, dan props yang memberinya masukan.',
+        id: 'JSX, sebuah fungsi yang mengembalikannya, dan props yang memberinya input.',
       },
       lessons: [
         {
@@ -37,7 +37,7 @@ export const module1: Module = {
               title: { en: 'Markup that lives in a script', id: 'Markup yang tinggal di dalam skrip' },
               body: {
                 en: 'JSX looks like HTML but it is JavaScript — it compiles down to function calls before the browser ever sees it. That is why you can hold it in a variable, return it from a function, and put it in an array.',
-                id: 'JSX tampak seperti HTML tetapi ia JavaScript — ia dikompilasi menjadi pemanggilan fungsi sebelum peramban melihatnya. Karena itulah kamu bisa menyimpannya di variabel, mengembalikannya dari fungsi, dan menaruhnya di dalam array.',
+                id: 'JSX tampak seperti HTML tetapi ia JavaScript — ia dikompilasi menjadi pemanggilan fungsi sebelum browser melihatnya. Karena itulah kamu bisa menyimpannya di variabel, mengembalikannya dari fungsi, dan menaruhnya di dalam array.',
               },
               code: {
                 en: 'const title = <h1>Hello, React</h1>;\n\nReactDOM.createRoot(document.querySelector("#root")).render(title);',
@@ -191,10 +191,10 @@ export const module1: Module = {
             {
               kind: 'concept',
               id: 'c2',
-              title: { en: 'Props are the inputs', id: 'Props adalah masukannya' },
+              title: { en: 'Props are the inputs', id: 'Props adalah input-nya' },
               body: {
                 en: 'Attributes on your component arrive as one object. Destructuring it in the signature keeps the body readable, and makes the inputs visible at a glance.',
-                id: 'Atribut pada komponenmu tiba sebagai satu object. Membongkarnya di tanda tangan fungsi menjaga badannya tetap terbaca, dan membuat masukannya terlihat sekilas.',
+                id: 'Atribut pada komponenmu tiba sebagai satu object. Membongkarnya di tanda tangan fungsi menjaga badannya tetap terbaca, dan membuat input-nya terlihat sekilas.',
               },
               figure: {
                 dim: 2,

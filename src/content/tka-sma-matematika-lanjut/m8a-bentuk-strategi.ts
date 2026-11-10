@@ -291,7 +291,7 @@ export const m8s1: Submodule = {
       'Kerjakan model dari kehidupan sehari-hari dan periksa jawabannya.',
     ),
     requirements: [
-      L('Evaluate a model and solve for the input.', 'Menghitung sebuah model dan mencari masukannya.'),
+      L('Evaluate a model and solve for the input.', 'Menghitung sebuah model dan mencari input-nya.'),
       L('Check each answer by putting it back.', 'Memeriksa tiap jawaban dengan memasukkannya kembali.'),
     ],
     hints: [

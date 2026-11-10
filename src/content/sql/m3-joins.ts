@@ -109,7 +109,7 @@ export const module3: Module = {
               title: { en: 'Why the data is split up', id: 'Mengapa datanya dipecah' },
               body: {
                 en: 'You could store the teacher\'s name on every student row. Then a teacher who changes school means editing thirty rows, and missing one leaves the database saying two different things at once. So the class lives in its own table, once, and each student keeps only a **foreign key**: `class_id`, the `id` of its class.',
-                id: 'Kamu bisa saja menyimpan nama gurunya di tiap baris siswa. Lalu seorang guru yang pindah sekolah berarti menyunting tiga puluh baris, dan satu yang terlewat membuat basis datanya mengatakan dua hal berbeda sekaligus. Maka kelasnya hidup di tabelnya sendiri, sekali, dan tiap siswa hanya menyimpan sebuah **kunci asing**: `kelas_id`, yaitu `id` kelasnya.',
+                id: 'Kamu bisa saja menyimpan nama gurunya di tiap baris siswa. Lalu seorang guru yang pindah sekolah berarti menyunting tiga puluh baris, dan satu yang terlewat membuat database-nya mengatakan dua hal berbeda sekaligus. Maka kelasnya hidup di tabelnya sendiri, sekali, dan tiap siswa hanya menyimpan sebuah **kunci asing**: `kelas_id`, yaitu `id` kelasnya.',
               },
               code: {
                 en: 'class:    id=1, name=X-A, teacher=Bu Ratna\nstudent:  id=1, name=Adi, class_id=1   -- points to class 1',
@@ -951,7 +951,7 @@ export const module3: Module = {
         {
           id: 'sql-m3-s2-l2',
           title: { en: 'A query inside a query', id: 'Kueri di dalam kueri' },
-          goal: { en: 'Compare a row against something the database works out first.', id: 'Membandingkan baris dengan sesuatu yang dihitung basis data lebih dulu.' },
+          goal: { en: 'Compare a row against something the database works out first.', id: 'Membandingkan baris dengan sesuatu yang dihitung database lebih dulu.' },
           xp: 20,
           steps: [
             {
@@ -1012,7 +1012,7 @@ export const module3: Module = {
               id: 'q1',
               prompt: {
                 en: 'How many times does the database work out the inner average here?',
-                id: 'Berapa kali basis datanya menghitung rata-rata bagian dalam di sini?',
+                id: 'Berapa kali database-nya menghitung rata-rata bagian dalam di sini?',
               },
               code: {
                 en: 'SELECT subject FROM grade WHERE score > (SELECT AVG(score) FROM grade);',

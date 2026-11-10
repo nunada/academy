@@ -715,7 +715,7 @@ export const module2: Module = {
         },
         requirements: [
           { en: 'A controlled `input` and a `form` that adds the trimmed text.', id: 'Sebuah `input` terkendali dan `form` yang menambahkan teksnya setelah di-trim.' },
-          { en: 'Empty or whitespace-only entries add nothing.', id: 'Masukan kosong atau berisi spasi saja tidak menambah apa pun.' },
+          { en: 'Empty or whitespace-only entries add nothing.', id: 'Input kosong atau berisi spasi saja tidak menambah apa pun.' },
           { en: 'Adding clears the input.', id: 'Penambahan mengosongkan input-nya.' },
           { en: 'Each task is an `li` with a `key`; clicking it toggles the class `done`.', id: 'Tiap tugas adalah `li` ber-`key`; mengkliknya menyalakan-mematikan class `selesai`.' },
           { en: '`p#remaining` reads `2 of 3 not done`.', id: '`p#sisa` bertuliskan `2 dari 3 belum selesai`.' },
@@ -732,7 +732,7 @@ export const module2: Module = {
                 'async function add(text) {\n  var i = sel("input");\n  var setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(i), "value").set;\n  setter.call(i, text);\n  i.dispatchEvent(new Event("input", { bubbles: true }));\n  await tick(20);\n  sel("form").dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\n  await tick(30);\n}\nassert(sel("form"), "no <form> yet");\nassert(sel("input"), "no <input> yet");\nvar before = all("li").length;\nawait add("Learn");\nassert(all("li").length === before + 1, "one item should be added, got: " + all("li").length);\nassert(sel("input").value === "", "the input should be cleared after adding");',
             },
             {
-              name: { en: 'Empty entries are refused', id: 'Masukan kosong ditolak' },
+              name: { en: 'Empty entries are refused', id: 'Input kosong ditolak' },
               check:
                 'async function add(text) {\n  var i = sel("input");\n  var setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(i), "value").set;\n  setter.call(i, text);\n  i.dispatchEvent(new Event("input", { bubbles: true }));\n  await tick(20);\n  sel("form").dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\n  await tick(30);\n}\nvar before = all("li").length;\nawait add("");\nawait add("   ");\nassert(all("li").length === before, "empty and whitespace must not add an item");',
             },
@@ -759,7 +759,7 @@ export const module2: Module = {
                 'async function tambah(teks) {\n  var i = sel("input");\n  var setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(i), "value").set;\n  setter.call(i, teks);\n  i.dispatchEvent(new Event("input", { bubbles: true }));\n  await tick(20);\n  sel("form").dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\n  await tick(30);\n}\nassert(sel("form"), "belum ada <form>");\nassert(sel("input"), "belum ada <input>");\nvar sebelum = all("li").length;\nawait tambah("Belajar");\nassert(all("li").length === sebelum + 1, "satu item harus bertambah, sekarang: " + all("li").length);\nassert(sel("input").value === "", "input harus dikosongkan setelah ditambah");',
             },
             {
-              name: { en: 'Empty entries are refused', id: 'Masukan kosong ditolak' },
+              name: { en: 'Empty entries are refused', id: 'Input kosong ditolak' },
               check:
                 'async function tambah(teks) {\n  var i = sel("input");\n  var setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(i), "value").set;\n  setter.call(i, teks);\n  i.dispatchEvent(new Event("input", { bubbles: true }));\n  await tick(20);\n  sel("form").dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));\n  await tick(30);\n}\nvar sebelum = all("li").length;\nawait tambah("");\nawait tambah("   ");\nassert(all("li").length === sebelum, "kosong dan spasi tidak boleh menambah item");',
             },

@@ -134,7 +134,7 @@ Tambahkan $1$ ke kedua ruas: $T(n)+1=2\,(T(n-1)+1)$, sehingga $T(n)+1$ berlipat 
 $$T(n)+1=2^n,\qquad T(n)=2^n-1.$$
 Periksa: $T(1)=1$, $T(2)=3$, $T(3)=7$, $T(4)=15$, $T(5)=31$, $T(10)=1023$. Cara lain melihatnya: cakram nomor $k$ (yang terkecil $1$) bergerak $2^{n-k}$ kali, dan $1+2+4+\cdots+2^{n-1}=2^n-1$ adalah [deret geometri](article:geometric-sequences-and-series#sum-of-a-geometric-series).
 
-**Apa yang dilakukan komputer.** Fungsi itu memanggil dirinya dua kali, sehingga ia membuat $2^{n+1}-1$ panggilan seluruhnya, tetapi *kedalaman* rekursinya hanya $n$: pada setiap saat tumpukan panggilan memuat satu panggilan untuk setiap ukuran dari $n$ turun ke yang sekarang. Jadi program dapat menyelesaikan $25$ cakram (33 juta langkah) tanpa kehabisan tumpukan, walau akan memakan waktu. Ini berbeda dari rekursi naif untuk [bilangan Fibonacci](article:fibonacci-numbers#computing), yang dapat diselamatkan dengan mengingat nilai: di sini jawabannya sendiri memuat $2^n-1$ langkah, sehingga tidak ada program yang bisa lebih cepat daripada itu.`,
+**Apa yang dilakukan komputer.** Fungsi itu memanggil dirinya dua kali, sehingga ia membuat $2^{n+1}-1$ panggilan seluruhnya, tetapi *kedalaman* rekursinya hanya $n$: pada setiap saat call stack memuat satu panggilan untuk setiap ukuran dari $n$ turun ke yang sekarang. Jadi program dapat menyelesaikan $25$ cakram (33 juta langkah) tanpa kehabisan tumpukan, walau akan memakan waktu. Ini berbeda dari rekursi naif untuk [bilangan Fibonacci](article:fibonacci-numbers#computing), yang dapat diselamatkan dengan mengingat nilai: di sini jawabannya sendiri memuat $2^n-1$ langkah, sehingga tidak ada program yang bisa lebih cepat daripada itu.`,
           ),
         },
       ],
@@ -526,7 +526,7 @@ disc 1: A -> C
 | ❌ Langkah paling sedikit untuk $n$ cakram sekitar $n^2$ atau $2n$ | Yaitu $2^n-1$: $7$ untuk tiga cakram, $1023$ untuk sepuluh, dan setiap cakram tambahan melipatduakannya. |
 | ❌ Mulai dengan memindahkan cakram terbesar | Ia tidak dapat bergerak sampai $n-1$ cakram yang lebih kecil semuanya di tiang ketiga: selesaikan itu dulu. |
 | ❌ Cakram besar boleh di atas yang kecil bila hanya sesaat | Tidak pernah: aturannya berlaku setiap saat, sehingga cakram terbesar memerlukan tiang tanpa cakram yang lebih kecil. |
-| ❌ Rekursi memerlukan tumpukan $2^n$ panggilan | Ia membuat $2^{n+1}-1$ panggilan tetapi tidak pernah lebih dalam daripada $n$. |
+| ❌ Rekursi memerlukan call stack sedalam $2^n$ panggilan | Ia membuat $2^{n+1}-1$ panggilan tetapi tidak pernah lebih dalam daripada $n$. |
 | ❌ Menara 64 cakram akan segera selesai | Pada satu langkah per detik ia memerlukan $585$ miliar tahun, $42$ kali usia alam semesta. |
 | ❌ Ada banyak solusi terpendek | Dengan tiga tiang tepat satu: setiap ketaksamaan dalam bukti harus berupa kesamaan. |
 | ❌ Setiap posisi berjarak $2^n-1$ langkah dari tujuan | Jaraknya bergantung pada posisi: setelah $m$ langkah solusi terbaik, hanya tersisa $2^n-1-m$, dan cakram terbesar yang belum di tempatnya menentukan sisanya. |
@@ -724,7 +724,7 @@ disc 1: A -> C
           step: {
             kind: 'quiz',
             id: 'p12',
-            prompt: L(T`The recursive solution of $n=40$ discs makes about $2^{41}$ calls. Why does it not overflow the call stack?`, T`Solusi rekursif $n=40$ cakram membuat sekitar $2^{41}$ panggilan. Mengapa ia tidak meluapkan tumpukan panggilan?`),
+            prompt: L(T`The recursive solution of $n=40$ discs makes about $2^{41}$ calls. Why does it not overflow the call stack?`, T`Solusi rekursif $n=40$ cakram membuat sekitar $2^{41}$ panggilan. Mengapa ia tidak meluapkan call stack?`),
             options: [
               L(T`only one call per size from $40$ down is open at any time: the depth is $n$`, T`hanya satu panggilan per ukuran dari $40$ turun yang terbuka pada satu saat: kedalamannya $n$`),
               L(T`the calls are made in parallel`, T`panggilan dilakukan secara paralel`),
@@ -732,7 +732,7 @@ disc 1: A -> C
               L(T`it does overflow, the puzzle cannot be solved by recursion`, T`ia memang meluap, teka-teki tidak dapat dipecahkan dengan rekursi`),
             ],
             answer: 0,
-            explain: L(T`A call finishes before the next one of the same level starts, so the stack holds at most one call for each of the $n$ sizes. The program would take an enormous time ($2^{41}$ calls), but it needs very little stack.`, T`Sebuah panggilan selesai sebelum yang berikutnya pada tingkat yang sama dimulai, sehingga tumpukan memuat paling banyak satu panggilan untuk masing-masing dari $n$ ukuran. Program itu akan memakan waktu sangat lama ($2^{41}$ panggilan), tetapi memerlukan tumpukan yang sangat sedikit.`),
+            explain: L(T`A call finishes before the next one of the same level starts, so the stack holds at most one call for each of the $n$ sizes. The program would take an enormous time ($2^{41}$ calls), but it needs very little stack.`, T`Sebuah panggilan selesai sebelum yang berikutnya pada tingkat yang sama dimulai, sehingga call stack memuat paling banyak satu panggilan untuk masing-masing dari $n$ ukuran. Program itu akan memakan waktu sangat lama ($2^{41}$ panggilan), tetapi memerlukan call stack yang sangat dangkal.`),
             hint: L(T`The depth of recursion is not the number of calls.`, T`Kedalaman rekursi bukan banyaknya panggilan.`),
           },
         },
@@ -773,7 +773,7 @@ disc 1: A -> C
     { term: L('Tower of Hanoi', 'Menara Hanoi'), definition: L('A puzzle of moving a stack of discs between three pegs, one disc at a time, never putting a larger disc on a smaller one.', 'Teka-teki memindahkan tumpukan cakram di antara tiga tiang, satu cakram sekali waktu, tanpa pernah menaruh cakram yang lebih besar di atas yang lebih kecil.') },
     { term: L('Recursion', 'Rekursi'), definition: L('A method of solving a problem by solving smaller copies of the same problem and combining the results.', 'Cara menyelesaikan masalah dengan menyelesaikan salinan masalah yang sama yang lebih kecil dan menggabungkan hasilnya.') },
     { term: L('Recurrence relation of moves', 'Relasi rekurensi langkah'), definition: L('The equation T(n) = 2T(n−1) + 1 for the number of moves of the best solution with n discs.', 'Persamaan T(n) = 2T(n−1) + 1 untuk banyaknya langkah solusi terbaik dengan n cakram.') },
-    { term: L('Exponential growth', 'Pertumbuhan eksponensial'), definition: L('Growth in which each extra unit of input multiplies the cost by a constant, as each extra disc doubles the number of moves.', 'Pertumbuhan yang setiap satuan masukan tambahan mengalikan biaya dengan konstanta, seperti setiap cakram tambahan melipatduakan banyak langkah.') },
+    { term: L('Exponential growth', 'Pertumbuhan eksponensial'), definition: L('Growth in which each extra unit of input multiplies the cost by a constant, as each extra disc doubles the number of moves.', 'Pertumbuhan yang setiap satuan input tambahan mengalikan biaya dengan konstanta, seperti setiap cakram tambahan melipatduakan banyak langkah.') },
     { term: L('Ruler sequence', 'Barisan penggaris'), definition: L('The sequence 1, 2, 1, 3, 1, 2, 1, 4, … in which the term at position m is one plus the number of trailing zeros of m in binary.', 'Barisan 1, 2, 1, 3, 1, 2, 1, 4, … yang suku pada posisi m adalah satu ditambah banyaknya nol di ujung m dalam biner.') },
     { term: L('Gray code', 'Kode Gray'), definition: L('A binary numbering in which consecutive numbers differ in exactly one bit.', 'Penomoran biner yang bilangan berurutannya berbeda tepat satu bit.') },
     { term: L('Sierpiński triangle', 'Segitiga Sierpiński'), definition: L('A fractal made of three half-size copies of itself placed at the corners of a triangle; the graph of positions of the Tower of Hanoi has this shape.', 'Fraktal yang terdiri dari tiga salinan dirinya setengah ukuran yang ditempatkan di sudut-sudut segitiga; graf posisi Menara Hanoi berbentuk seperti ini.') },

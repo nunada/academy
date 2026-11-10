@@ -35,10 +35,10 @@ export const module1: Module = {
             {
               kind: 'concept',
               id: 'c1',
-              title: { en: 'One input, one output', id: 'Satu masukan, satu keluaran' },
+              title: { en: 'One input, one output', id: 'Satu input, satu output' },
               body: {
                 en: 'A **function** from a set $D$ to a set $Y$ is a rule that assigns to **each** element of $D$ **exactly one** element of $Y$. The set $D$ is the **domain**; the set of values the rule actually produces is the **range**.\n\nThe word doing the work is "exactly one". A rule that gives two answers for the same input is not a function — and neither is one that gives no answer at all for something in its domain.\n\nWe write $y = f(x)$, read "$y$ equals $f$ of $x$". Here $x$ is the **independent variable** (what you choose) and $y$ the **dependent variable** (what the rule then forces). The letter $f$ is the name of the rule, not a number, and $f(x)$ does not mean $f$ times $x$.',
-                id: 'Sebuah **fungsi** dari himpunan $D$ ke himpunan $Y$ adalah aturan yang memasangkan **setiap** anggota $D$ dengan **tepat satu** anggota $Y$. Himpunan $D$ disebut **domain**; himpunan nilai yang benar-benar dihasilkan aturan itu disebut **range** (daerah hasil).\n\nKata yang bekerja di situ adalah "tepat satu". Aturan yang memberi dua jawaban untuk masukan yang sama bukanlah fungsi — begitu pula aturan yang tak memberi jawaban apa pun untuk sesuatu yang ada di domainnya.\n\nKita tulis $y = f(x)$, dibaca "$y$ sama dengan $f$ dari $x$". Di sini $x$ adalah **variabel bebas** (yang kamu pilih) dan $y$ **variabel terikat** (yang kemudian dipaksa oleh aturannya). Huruf $f$ adalah nama aturannya, bukan bilangan, dan $f(x)$ tidak berarti $f$ dikali $x$.',
+                id: 'Sebuah **fungsi** dari himpunan $D$ ke himpunan $Y$ adalah aturan yang memasangkan **setiap** anggota $D$ dengan **tepat satu** anggota $Y$. Himpunan $D$ disebut **domain**; himpunan nilai yang benar-benar dihasilkan aturan itu disebut **range** (daerah hasil).\n\nKata yang bekerja di situ adalah "tepat satu". Aturan yang memberi dua jawaban untuk input yang sama bukanlah fungsi — begitu pula aturan yang tak memberi jawaban apa pun untuk sesuatu yang ada di domainnya.\n\nKita tulis $y = f(x)$, dibaca "$y$ sama dengan $f$ dari $x$". Di sini $x$ adalah **variabel bebas** (yang kamu pilih) dan $y$ **variabel terikat** (yang kemudian dipaksa oleh aturannya). Huruf $f$ adalah nama aturannya, bukan bilangan, dan $f(x)$ tidak berarti $f$ dikali $x$.',
               },
             },
             {
@@ -66,7 +66,7 @@ export const module1: Module = {
               answer: 1,
               explain: {
                 en: '$y^2 = x$ gives two values of $y$ for every positive $x$ — at $x = 4$ both $y = 2$ and $y = -2$ satisfy it. The constant rule is a perfectly good function: every input gets exactly one output, and it happens to be the same one.',
-                id: '$y^2 = x$ memberi dua nilai $y$ untuk setiap $x$ positif — pada $x = 4$ baik $y = 2$ maupun $y = -2$ memenuhinya. Aturan konstan justru fungsi yang sah: setiap masukan mendapat tepat satu keluaran, kebetulan keluaran yang sama.',
+                id: '$y^2 = x$ memberi dua nilai $y$ untuk setiap $x$ positif — pada $x = 4$ baik $y = 2$ maupun $y = -2$ memenuhinya. Aturan konstan justru fungsi yang sah: setiap input mendapat tepat satu output, kebetulan output yang sama.',
               },
               hint: {
                 en: 'For each rule, pick one specific $x$ and ask how many values of $y$ actually satisfy it. Three of the four force exactly one answer no matter what $x$ you try.',
@@ -108,7 +108,7 @@ export const module1: Module = {
               },
               hint: {
                 en: 'The dot on the graph sits at the marked height directly above $x = 4$ — but check that against the formula itself: square the input first, then subtract three times it.',
-                id: 'Titik pada grafiknya berada tepat pada ketinggian yang ditandai di atas $x = 4$ — tetapi cocokkan dengan rumusnya sendiri: kuadratkan dulu masukannya, baru kurangi tiga kalinya.',
+                id: 'Titik pada grafiknya berada tepat pada ketinggian yang ditandai di atas $x = 4$ — tetapi cocokkan dengan rumusnya sendiri: kuadratkan dulu input-nya, baru kurangi tiga kalinya.',
               },
             },
             {
@@ -123,11 +123,11 @@ export const module1: Module = {
               blanks: ['-2', '-6', '10'],
               explain: {
                 en: 'Every $x$ becomes $-2$, so the middle term is $-3(-2)$: first $3(-2) = -6$, then $4 - (-6) = 4 + 6 = 10$. Subtracting a negative number adds, and this sign slip is the commonest error when evaluating a function at a negative input.',
-                id: 'Setiap $x$ menjadi $-2$, jadi suku tengahnya $-3(-2)$: pertama $3(-2) = -6$, lalu $4 - (-6) = 4 + 6 = 10$. Mengurangi bilangan negatif berarti menambah, dan kesalahan tanda ini adalah yang paling umum saat menghitung fungsi pada masukan negatif.',
+                id: 'Setiap $x$ menjadi $-2$, jadi suku tengahnya $-3(-2)$: pertama $3(-2) = -6$, lalu $4 - (-6) = 4 + 6 = 10$. Mengurangi bilangan negatif berarti menambah, dan kesalahan tanda ini adalah yang paling umum saat menghitung fungsi pada input negatif.',
               },
               hint: {
                 en: 'Put the input in the bracket for the $x$ in $3x$ too, and multiply before you subtract. Then ask what taking away a negative number does on the number line.',
-                id: 'Masukkan juga masukannya ke dalam kurung untuk $x$ pada $3x$, dan kalikan sebelum mengurangkan. Lalu tanyakan apa yang dilakukan pengambilan bilangan negatif pada garis bilangan.',
+                id: 'Masukkan juga input-nya ke dalam kurung untuk $x$ pada $3x$, dan kalikan sebelum mengurangkan. Lalu tanyakan apa yang dilakukan pengambilan bilangan negatif pada garis bilangan.',
               },
             },
             {
@@ -135,7 +135,7 @@ export const module1: Module = {
               id: 'm1',
               prompt: {
                 en: 'Let $f(x) = 2x^2 - 5x + 1$. Evaluate it at each of these.',
-                id: 'Misalkan $f(x) = 2x^2 - 5x + 1$. Hitung nilainya pada tiap masukan berikut.',
+                id: 'Misalkan $f(x) = 2x^2 - 5x + 1$. Hitung nilainya pada tiap input berikut.',
               },
               blanks: [
                 { label: 'f(3) =', answer: 4 },
@@ -163,7 +163,7 @@ export const module1: Module = {
           title: { en: 'Natural Domain', id: 'Domain Alami' },
           goal: {
             en: 'Find every input a formula forbids, and state the domain that is left.',
-            id: 'Menemukan setiap masukan yang dilarang oleh rumusnya, dan menyatakan domain yang tersisa.',
+            id: 'Menemukan setiap input yang dilarang oleh rumusnya, dan menyatakan domain yang tersisa.',
           },
           xp: 20,
           steps: [
@@ -173,7 +173,7 @@ export const module1: Module = {
               title: { en: 'Two things arithmetic refuses', id: 'Dua hal yang ditolak aritmetika' },
               body: {
                 en: 'When a function is given by a formula and nothing else is said, its domain is the **natural domain**: every real number the formula can actually be evaluated at. Only two things rule an input out, and you look for both every time.\n\n- **A zero denominator.** $\\dfrac{1}{x-3}$ is undefined at $x = 3$. Set the denominator to zero, solve, and throw those values out.\n- **An even root of a negative.** $\\sqrt{x-4}$ is undefined for $x < 4$. Set what is under the root $\\geq 0$ and solve. An **odd** root has no such trouble: $\\sqrt[3]{-8} = -2$.\n\nLater you will meet a third — the logarithm, which refuses zero and everything below it.',
-                id: 'Ketika sebuah fungsi diberikan lewat rumus dan tak ada keterangan lain, domainnya adalah **domain alami**: semua bilangan real yang benar-benar bisa dimasukkan ke rumus itu. Hanya dua hal yang menggugurkan sebuah masukan, dan keduanya diperiksa setiap kali.\n\n- **Penyebut nol.** $\\dfrac{1}{x-3}$ tak terdefinisi di $x = 3$. Nolkan penyebutnya, selesaikan, lalu buang nilai-nilai itu.\n- **Akar genap dari bilangan negatif.** $\\sqrt{x-4}$ tak terdefinisi untuk $x < 4$. Buat yang di bawah akarnya $\\geq 0$ lalu selesaikan. Akar **ganjil** tidak bermasalah: $\\sqrt[3]{-8} = -2$.\n\nNanti kamu akan bertemu yang ketiga — logaritma, yang menolak nol dan semua yang di bawahnya.',
+                id: 'Ketika sebuah fungsi diberikan lewat rumus dan tak ada keterangan lain, domainnya adalah **domain alami**: semua bilangan real yang benar-benar bisa dimasukkan ke rumus itu. Hanya dua hal yang menggugurkan sebuah input, dan keduanya diperiksa setiap kali.\n\n- **Penyebut nol.** $\\dfrac{1}{x-3}$ tak terdefinisi di $x = 3$. Nolkan penyebutnya, selesaikan, lalu buang nilai-nilai itu.\n- **Akar genap dari bilangan negatif.** $\\sqrt{x-4}$ tak terdefinisi untuk $x < 4$. Buat yang di bawah akarnya $\\geq 0$ lalu selesaikan. Akar **ganjil** tidak bermasalah: $\\sqrt[3]{-8} = -2$.\n\nNanti kamu akan bertemu yang ketiga — logaritma, yang menolak nol dan semua yang di bawahnya.',
               },
               figure: {
                 dim: 2,
@@ -188,7 +188,7 @@ export const module1: Module = {
                 ],
                 caption: {
                   en: 'Two forbidden inputs, and what they look like. The first curve has nothing at all at $x = 3$ — it runs off in both directions instead. The second simply does not start until $x = 4$.',
-                  id: 'Dua masukan terlarang, dan seperti apa bentuknya. Kurva pertama sama sekali tak punya nilai di $x = 3$ — ia justru lari ke dua arah. Kurva kedua sekadar belum mulai sebelum $x = 4$.',
+                  id: 'Dua input terlarang, dan seperti apa bentuknya. Kurva pertama sama sekali tak punya nilai di $x = 3$ — ia justru lari ke dua arah. Kurva kedua sekadar belum mulai sebelum $x = 4$.',
                 },
               },
             },
@@ -365,7 +365,7 @@ export const module1: Module = {
               answer: 1,
               explain: {
                 en: 'The range is read off the **vertical** axis: lowest output to highest output, $[-3, 4]$. The $x$ values $[-2, 5]$ are the domain — swapping the two is the most common slip here.',
-                id: 'Range dibaca dari sumbu **tegak**: dari keluaran terendah sampai tertinggi, $[-3, 4]$. Nilai $x$ yaitu $[-2, 5]$ adalah domainnya — menukar keduanya adalah kekeliruan yang paling sering terjadi di sini.',
+                id: 'Range dibaca dari sumbu **tegak**: dari output terendah sampai tertinggi, $[-3, 4]$. Nilai $x$ yaitu $[-2, 5]$ adalah domainnya — menukar keduanya adalah kekeliruan yang paling sering terjadi di sini.',
               },
               hint: {
                 en: 'Range comes from the heights the graph reaches, not the horizontal stretch it runs along. Re-read the description and separate which numbers describe up-down and which describe left-right.',
@@ -594,7 +594,7 @@ export const module1: Module = {
               title: { en: 'A different rule on each stretch', id: 'Aturan berbeda di tiap bagian' },
               body: {
                 en: 'Nothing says one function must be one formula. A **piecewise** function gives a rule for each part of its domain:\n$$f(x) = \\begin{cases} -x, & x < 1 \\\\ x^2, & x \\geq 1 \\end{cases}$$\nTo evaluate, first decide which line the input falls under, then use only that line. $f(-3)$ uses the top ($-3 < 1$) and equals 3; $f(4)$ uses the bottom and equals 16.\n\nThe boundary belongs to exactly one line — here $x = 1$ goes with the bottom, because of the $\\geq$. On the graph that is drawn with a **filled dot** where the value is taken and a **hollow dot** where it is not.',
-                id: 'Tak ada yang mengharuskan satu fungsi berupa satu rumus. Fungsi **sepotong-sepotong** memberi satu aturan untuk tiap bagian domainnya:\n$$f(x) = \\begin{cases} -x, & x < 1 \\\\ x^2, & x \\geq 1 \\end{cases}$$\nUntuk menghitung nilainya, tentukan dulu masukannya jatuh pada baris yang mana, lalu pakai baris itu saja. $f(-3)$ memakai baris atas ($-3 < 1$) dan bernilai 3; $f(4)$ memakai baris bawah dan bernilai 16.\n\nBatasnya menjadi milik tepat satu baris — di sini $x = 1$ ikut baris bawah, karena tanda $\\geq$-nya. Pada grafik hal itu digambar dengan **titik penuh** di tempat nilainya diambil dan **titik kosong** di tempat nilainya tidak diambil.',
+                id: 'Tak ada yang mengharuskan satu fungsi berupa satu rumus. Fungsi **sepotong-sepotong** memberi satu aturan untuk tiap bagian domainnya:\n$$f(x) = \\begin{cases} -x, & x < 1 \\\\ x^2, & x \\geq 1 \\end{cases}$$\nUntuk menghitung nilainya, tentukan dulu input-nya jatuh pada baris yang mana, lalu pakai baris itu saja. $f(-3)$ memakai baris atas ($-3 < 1$) dan bernilai 3; $f(4)$ memakai baris bawah dan bernilai 16.\n\nBatasnya menjadi milik tepat satu baris — di sini $x = 1$ ikut baris bawah, karena tanda $\\geq$-nya. Pada grafik hal itu digambar dengan **titik penuh** di tempat nilainya diambil dan **titik kosong** di tempat nilainya tidak diambil.',
               },
               figure: {
                 dim: 2,
@@ -709,7 +709,7 @@ export const module1: Module = {
                 { label: 'f(3) =', answer: 9 },
               ],
               hints: [
-                { en: 'Decide which line the input falls under before you calculate anything.', id: 'Tentukan masukannya jatuh pada baris yang mana sebelum menghitung apa pun.' },
+                { en: 'Decide which line the input falls under before you calculate anything.', id: 'Tentukan input-nya jatuh pada baris yang mana sebelum menghitung apa pun.' },
                 { en: '$-3$ and $0$ are both below 1; $1$ and $3$ are not.', id: '$-3$ dan $0$ sama-sama di bawah 1; $1$ dan $3$ tidak.' },
               ],
               explain: {
@@ -1272,7 +1272,7 @@ export const module1: Module = {
               title: { en: 'Squaring away the root', id: 'Menghilangkan akar dengan mengkuadratkan' },
               body: {
                 en: 'A square root is awkward to work with, and there is a shortcut: since $d \\geq 0$ always, $d$ is smallest exactly when $D=d^2$ is smallest — squaring never changes which input wins, only which expression is easier to handle.\n\nHere $D(x) = x^4-x^2+1$. Substituting $u=x^2$ turns this into the ordinary quadratic $D=u^2-u+1$, and Module 1\'s vertex formula finds its minimum immediately: $u=\\tfrac{1}{2}$, giving $D=\\tfrac{1}{4}-\\tfrac{1}{2}+1=\\tfrac{3}{4}$. Since $u=x^2=\\tfrac{1}{2}$, $x=\\pm\\tfrac{1}{\\sqrt2}$, and the minimum distance is $d=\\sqrt{\\tfrac{3}{4}}=\\tfrac{\\sqrt3}{2}\\approx 0.87$ — an exact answer, no calculus needed, because the substitution turned a quartic into a parabola in disguise.',
-                id: 'Akar kuadrat merepotkan untuk dikerjakan, dan ada jalan pintasnya: karena $d \\geq 0$ selalu, $d$ terkecil tepat ketika $D=d^2$ terkecil — mengkuadratkan tak pernah mengubah masukan mana yang menang, hanya ekspresi mana yang lebih mudah ditangani.\n\nDi sini $D(x) = x^4-x^2+1$. Mensubstitusikan $u=x^2$ mengubahnya menjadi kuadrat biasa $D=u^2-u+1$, dan rumus titik balik Modul 1 langsung menemukan minimumnya: $u=\\tfrac{1}{2}$, memberi $D=\\tfrac{1}{4}-\\tfrac{1}{2}+1=\\tfrac{3}{4}$. Karena $u=x^2=\\tfrac{1}{2}$, $x=\\pm\\tfrac{1}{\\sqrt2}$, dan jarak minimumnya adalah $d=\\sqrt{\\tfrac{3}{4}}=\\tfrac{\\sqrt3}{2}\\approx 0{,}87$ — jawaban eksak, tanpa kalkulus, sebab substitusinya mengubah kuartik menjadi parabola yang menyamar.',
+                id: 'Akar kuadrat merepotkan untuk dikerjakan, dan ada jalan pintasnya: karena $d \\geq 0$ selalu, $d$ terkecil tepat ketika $D=d^2$ terkecil — mengkuadratkan tak pernah mengubah input mana yang menang, hanya ekspresi mana yang lebih mudah ditangani.\n\nDi sini $D(x) = x^4-x^2+1$. Mensubstitusikan $u=x^2$ mengubahnya menjadi kuadrat biasa $D=u^2-u+1$, dan rumus titik balik Modul 1 langsung menemukan minimumnya: $u=\\tfrac{1}{2}$, memberi $D=\\tfrac{1}{4}-\\tfrac{1}{2}+1=\\tfrac{3}{4}$. Karena $u=x^2=\\tfrac{1}{2}$, $x=\\pm\\tfrac{1}{\\sqrt2}$, dan jarak minimumnya adalah $d=\\sqrt{\\tfrac{3}{4}}=\\tfrac{\\sqrt3}{2}\\approx 0{,}87$ — jawaban eksak, tanpa kalkulus, sebab substitusinya mengubah kuartik menjadi parabola yang menyamar.',
               },
               figure: {
                 dim: 2,
