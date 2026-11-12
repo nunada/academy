@@ -51,7 +51,7 @@ const rng = (seed) => {
   }
 }
 const python = (code, input) => {
-  const r = spawnSync('python', ['-I', '-c', code], { input, encoding: 'utf8', timeout: 600000 })
+  const r = spawnSync('python', ['-c', code], { input, encoding: 'utf8', timeout: 600000 })
   if (r.status !== 0) throw new Error('python failed: ' + r.stderr)
   return r.stdout
 }
