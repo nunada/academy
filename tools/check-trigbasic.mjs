@@ -39,8 +39,23 @@ const ok = (cond, what) => {
   if (!cond) fail(what)
 }
 const near = (a, b, tol = 1e-9) => Math.abs(a - b) <= tol * Math.max(1, Math.abs(a), Math.abs(b))
-const rnd = (a, b) => a + Math.random() * (b - a)
-const rndInt = (a, b) => a + Math.floor(Math.random() * (b - a + 1))
+// a reproducible random source (mulberry32), so that a failure can be repeated: every run checks the same cases;
+// TRIGBASIC_SEED=n tries other ones
+let seed = Number(process.env.TRIGBASIC_SEED ?? 20261113) | 0
+const rand = () => {
+  seed = (seed + 0x6d2b79f5) | 0
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed)
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+}
+const rnd = (a, b) => a + rand() * (b - a)
+const rndInt = (a, b) => a + Math.floor(rand() * (b - a + 1))
+/** Within 0.5° of a pole of tan/sec (cos x = 0): there 1/cos² and tan x are huge and a relative comparison is ill-conditioned. */
+const nearPole = (x) => {
+  const r = ((x % 180) + 180) % 180
+  return Math.abs(r - 90) < 0.5
+}
+const POLE_IDS = new Set(['tangent', 'secant'])
 
 /* ------------------------------------------------------------------------------------ test data */
 const DEGS = Array.from({ length: 1441 }, (_, i) => i - 720)
@@ -320,7 +335,7 @@ ok(JSON.stringify(M.solveBasic('cos', 1)) === '[0]' && JSON.stringify(M.solveBas
 
 /* -------------------------------------------------------------------------------------- 6: waves */
 for (let i = 0; i < 200; i++) {
-  const w = { fn: Math.random() < 0.5 ? 'sin' : 'cos', a: rnd(0.3, 4) * (Math.random() < 0.3 ? -1 : 1), b: [0.25, 0.5, 1, 1.5, 2, 3, 4][rndInt(0, 6)], c: rnd(-180, 180), d: rnd(-3, 3) }
+  const w = { fn: rand() < 0.5 ? 'sin' : 'cos', a: rnd(0.3, 4) * (rand() < 0.3 ? -1 : 1), b: [0.25, 0.5, 1, 1.5, 2, 3, 4][rndInt(0, 6)], c: rnd(-180, 180), d: rnd(-3, 3) }
   const info = M.waveInfo(w)
   const g = M.waveAt
   const period = 360 / w.b
@@ -386,6 +401,7 @@ for (const it of M.IDENTITIES) {
     const pv = R.vals[it.id][i]
     const [l, r] = it.eval(x, y)
     if (pv === null) return
+    if (POLE_IDS.has(it.id) && nearPole(x)) return
     const bothFinite = Number.isFinite(l) && Number.isFinite(r)
     if (!bothFinite) return
     const tol = 1e-9 * Math.max(1, Math.abs(pv[0]), Math.abs(pv[1]))
@@ -397,6 +413,7 @@ for (const it of M.IDENTITIES) {
   for (let t = 0; t < 40; t++) {
     const x = rnd(-720, 720)
     const y = rnd(-720, 720)
+    if (POLE_IDS.has(it.id) && nearPole(x)) continue
     const a = M.agrees(it, x, y)
     if (it.holds) ok(a, `${it.id} should agree at ${x}°, ${y}°`)
   }
