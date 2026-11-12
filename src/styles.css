@@ -1835,6 +1835,11 @@ main:focus, .page:focus { outline: none; }
   .bubbles i { animation: none; opacity: 0; }
 }
 
+/* The view count of a page: a small eye and a number, beside the date of an article, under a game's title and on the cards of the lists. */
+.views { white-space: nowrap; }
+.views.inline { margin-left: 10px; }
+.artcard .views, .gamecard .views { display: block; margin-top: 6px; }
+
 /* Code Maze: the tier tabs, the level buttons and the result card around the block editor. */
 .codemaze { margin: 18px 0 8px; }
 .cmbar { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }

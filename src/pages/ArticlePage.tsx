@@ -7,6 +7,7 @@ import type { Article } from '../content/articles/types'
 import { tagLabel } from '../content/articles/tags'
 import { Block, References } from '../components/article/ArticleBlocks'
 import { Rich, RichBlock } from '../components/ui'
+import { PageViews } from '../components/ViewCount'
 import { OTHER, articlePath, articleSeo, listPath } from '../lib/articleSeo'
 import { siteUrl, useSeo } from '../lib/useSeo'
 import { useRouteLang } from '../lib/useRouteLang'
@@ -164,6 +165,7 @@ export default function ArticlePage({ routeLang }: { routeLang: Lang }) {
                   {article.readingMinutes} {lang === 'id' ? 'menit baca' : 'min read'}
                 </span>
                 <span>{tc(article.level)}</span>
+                <PageViews kind="article" slug={article.id} />
                 <span>
                   <Link to={articlePath(OTHER[routeLang], article)} hrefLang={OTHER[routeLang]}>
                     {lang === 'id' ? 'Read in English' : 'Baca dalam Bahasa Indonesia'}

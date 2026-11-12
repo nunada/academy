@@ -77,6 +77,13 @@ const TERBUKA = {
   username_available: { p_username: 'zzz_probe_zzz' },
 }
 
+/** Open to anon on purpose too, but optional: the page view counter (supabase/views.sql). Both are probed as reads, so nothing is counted.
+ *  A project that has not run views.sql answers 404, which only means the pages show no number yet; a refusal is a real problem. */
+const TERBUKA_OPSIONAL = {
+  page_view: { p_kind: 'article', p_slug: 'real-numbers', p_count: false },
+  page_views: { p_kind: 'article' },
+}
+
 async function panggil(rpc, args) {
   const res = await fetch(`${URL_}/rest/v1/rpc/${rpc}`, {
     method: 'POST',
@@ -121,6 +128,18 @@ for (const [rpc, args] of Object.entries(TERBUKA)) {
     console.log(`  ${rpc}: open to anon, as it must be — returned ${r.teks.slice(0, 20)}`)
   } else {
     masalah.push(`${rpc} is refused to anon — sign-up cannot check a name`)
+    console.log(`  ${rpc}: REFUSED (${r.status}) — ${r.pesan}`)
+  }
+}
+
+for (const [rpc, args] of Object.entries(TERBUKA_OPSIONAL)) {
+  const r = await panggil(rpc, args)
+  if (r.ok) {
+    console.log(`  ${rpc}: open to anon, as it must be — returned ${r.teks.slice(0, 20)}`)
+  } else if (r.status === 404) {
+    console.log(`  ${rpc}: not installed — the pages show no view count until supabase/views.sql is run`)
+  } else {
+    masalah.push(`${rpc} is refused to anon — the view counter cannot work`)
     console.log(`  ${rpc}: REFUSED (${r.status}) — ${r.pesan}`)
   }
 }

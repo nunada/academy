@@ -10,9 +10,11 @@ import { articlePath, listPath, listSeo } from '../lib/articleSeo'
 import { buildIndex, search } from '../lib/articleSearch'
 import { siteUrl, useSeo } from '../lib/useSeo'
 import { useRouteLang } from '../lib/useRouteLang'
+import { Views, usePageViews } from '../components/ViewCount'
 
 export default function Articles({ routeLang }: { routeLang: Lang }) {
   const { t, tc, lang } = useI18n()
+  const views = usePageViews('article')
   const [params, setParams] = useSearchParams()
   const query = params.get('q') ?? ''
   const tag = params.get('tag') ?? ''
@@ -146,6 +148,7 @@ export default function Articles({ routeLang }: { routeLang: Lang }) {
               </span>
               <span className="small muted">
                 {lang === 'id' ? 'Diperbarui' : 'Updated'} {formatDate(a.updated, lang)}
+                <Views n={views[a.id]} className="inline" />
               </span>
             </Link>
           ))}

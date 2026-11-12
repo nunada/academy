@@ -7,6 +7,7 @@ import { siteUrl, useSeo } from '../lib/useSeo'
 import { useRouteLang } from '../lib/useRouteLang'
 import { useI18n } from '../i18n'
 import { Rich, RichBlock } from '../components/ui'
+import { PageViews } from '../components/ViewCount'
 import RealMatchGame from '../components/games/RealMatchGame'
 import NumberFishGame from '../components/games/NumberFishGame'
 import CodeMazeGame from '../components/games/CodeMazeGame'
@@ -44,6 +45,9 @@ export default function GamePage({ routeLang }: { routeLang: Lang }) {
       <article className="article-body" lang={routeLang}>
         <header>
           <h1>{tc(game.title)}</h1>
+          <p className="artmeta">
+            <PageViews kind="game" slug={game.id} />
+          </p>
         </header>
 
         <section className="answerbox" aria-labelledby="quick-answer">

@@ -6,6 +6,7 @@
  *  `getBackend()` picks based on whether VITE_SUPABASE_URL is set. */
 
 import type { Lang } from '../content/types'
+import type { ViewKind } from './views'
 
 export interface AuthUser {
   id: string
@@ -285,6 +286,13 @@ export interface Backend {
   adminSetStudentTeacher(studentId: string, teacherId: string): Promise<void>
   /** Admin only: the feedback everybody has sent, newest first. */
   adminFeedback(): Promise<FeedbackRow[]>
+
+  /** Open to anyone, signed in or not. Counts one view of an article or game page when `count` is true, and returns how many there
+   *  have been in all. Returns null whenever there is no number to show: the address is not one the database accepts, the counter is
+   *  not installed yet, or the network failed. It never throws: a missing counter must not break the page it sits on. */
+  pageView(kind: ViewKind, slug: string, count: boolean): Promise<number | null>
+  /** The totals of every counted page of one kind, by address, for the cards on a list. Empty when there is nothing to show. */
+  pageViews(kind: ViewKind): Promise<Record<string, number>>
 }
 
 export class AuthError extends Error {

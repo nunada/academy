@@ -28,6 +28,7 @@ import type {
 } from '../db'
 import { isStaff } from '../roles'
 import { AuthError } from '../db'
+import { isViewKey, type ViewKind } from '../views'
 import type { Lang } from '../../content/types'
 import { MAX_HEARTS, loseHeart, resolveHearts } from '../hearts'
 import { isThisWeek, weekStart } from '../week'
@@ -35,6 +36,17 @@ import { coursesIn } from '../../content/catalog'
 
 const KEY = 'nunada.local.db.v1'
 const SESSION_KEY = 'nunada.local.session'
+const VIEWS_KEY = 'nunada.local.views.v1'
+
+/** The view counts of this browser, by kind and address. Kept apart from the accounts: a view needs no account. */
+function loadViews(): Record<string, Record<string, number>> {
+  try {
+    const v: unknown = JSON.parse(localStorage.getItem(VIEWS_KEY) ?? '{}')
+    return v && typeof v === 'object' && !Array.isArray(v) ? (v as Record<string, Record<string, number>>) : {}
+  } catch {
+    return {}
+  }
+}
 
 interface Account {
   id: string
@@ -732,6 +744,27 @@ export function createLocalBackend(): Backend {
       if (!target || target.profile.role !== 'teacher') throw new AuthError('not a teacher account', 'invalid')
       target.profile.approval = approval
       save(db)
+    },
+
+    // The same answers as the database function: null for an address it would refuse, the running total otherwise. Here the total is this
+    // browser's own, which is all a local copy of the app can know.
+    async pageView(kind: ViewKind, slug: string, count: boolean) {
+      if (!isViewKey(kind, slug)) return null
+      const all = loadViews()
+      const n = (all[kind]?.[slug] ?? 0) + (count ? 1 : 0)
+      if (count) {
+        all[kind] = { ...all[kind], [slug]: n }
+        try {
+          localStorage.setItem(VIEWS_KEY, JSON.stringify(all))
+        } catch {
+          /* storage full or blocked: the count is simply not kept */
+        }
+      }
+      return n
+    },
+
+    async pageViews(kind: ViewKind) {
+      return { ...(loadViews()[kind] ?? {}) }
     },
   }
 }

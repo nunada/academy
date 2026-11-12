@@ -244,6 +244,8 @@ jobs:
       - run: npm run check:realcards
       - run: npm run check:roles
       - run: npm run check:rolessql
+      - run: npm run check:views
+      - run: npm run check:viewssql
       - run: npm run check:fishgame
       - run: npm run check:codemaze
 

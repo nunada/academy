@@ -73,6 +73,8 @@
     "check:rolessql": "node tools/check-roles-sql.mjs",
     "check:fishgame": "node tools/check-fishgame.mjs",
     "check:codemaze": "node tools/check-codemaze.mjs",
+    "check:views": "node tools/check-views.mjs",
+    "check:viewssql": "node tools/check-viewssql.mjs",
     "check:indexnow": "node tools/check-indexnow.mjs",
     "indexnow": "node tools/indexnow.mjs"
   },

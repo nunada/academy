@@ -66,6 +66,9 @@ papan peringkat tidak kosong. Berguna untuk mencoba, **bukan** untuk dipakai sun
    guru, admin, dan kelas; lihat "Melihat capaian pembelajar" di bawah). Untuk
    proyek yang sudah berjalan, `roles.sql` **harus** dijalankan sebelum akun guru
    baru mendaftar: tanpa itu pendaftaran "guru" diam-diam menjadi siswa.
+   Terakhir [`supabase/views.sql`](supabase/views.sql): jumlah tayang tiap artikel
+   dan game (lihat "Jumlah tayang" di bawah). Tanpa file ini halaman tetap jalan,
+   hanya tidak menampilkan angka.
 3. Di **Authentication → Providers**, pastikan Email aktif. Untuk pengembangan,
    matikan *Confirm email* agar bisa langsung masuk setelah mendaftar.
 4. Salin `.env.example` menjadi `.env.live` (bukan `.env`), lalu isi dari
@@ -321,6 +324,22 @@ sebuah kelas. Aturannya diuji pada Postgres sungguhan oleh `npm run check:roless
 (PGlite), dan padanannya di mode lokal oleh `npm run check:roles`.
 
 Di mode lokal, akun pertama di browser adalah admin.
+
+**Jumlah tayang.** Tiap halaman artikel dan game menampilkan "👁 1.234 dilihat" (di
+daftar artikel dan daftar game juga, pada kartunya). Satu kunjungan dihitung satu kali
+per sesi browser per halaman, sehingga memuat ulang atau bolak-balik tidak menambah;
+pengunjung yang mengaku robot (`navigator.webdriver`, "bot", "crawler", "headless")
+hanya dibaca, tidak dihitung. Angkanya milik halaman, bukan bahasanya: artikel
+Indonesia dan Inggris berbagi satu hitungan (kuncinya id artikel atau game).
+Tidak ada cookie dan tidak ada data pengunjung yang dikirim, hanya jenis halaman dan id-nya.
+Disimpan di tabel `page_views` (RLS menutupnya untuk semua peran; akses hanya lewat dua
+fungsi SECURITY DEFINER `page_view` dan `page_views`, terbuka untuk anon karena yang
+dihitung justru pengunjung tanpa akun). Batasnya: jenis harus `article` atau `game`,
+alamat berupa slug biasa, dan paling banyak 1000 halaman; penghitung yang terbuka tetap
+bisa dipompa orang yang mau, jadi angka ini hanya penanda, bukan bukti. Pemeriksa:
+`npm run check:viewssql` (Postgres PGlite, 69 pemeriksaan) dan `npm run check:views`
+(helper, backend lokal, alamat setiap halaman, pemasangan; 131 pemeriksaan).
+`npm run check:grants` ikut menguji bahwa kedua fungsi terbuka untuk anon.
 
 **Empat kueri di SQL Editor**, untuk yang tidak muat di halaman:
 [`supabase/reports.sql`](supabase/reports.sql) — satu baris per pembelajar,
@@ -1186,6 +1205,7 @@ src/
 .github/workflows/deploy.yml  build dan terbitkan ke GitHub Pages
 supabase/schema.sql skema, RPC, dan RLS
 supabase/reports.sql  capaian tiap pembelajar, untuk SQL Editor
+supabase/views.sql    jumlah tayang artikel dan game (tabel page_views, dua RPC terbuka)
 tools/check-curriculum.mjs  menghitung kurikulum sungguhan lalu mencocokkannya
 tools/audit-course.mjs      memeriksa kursus persiapan TKA (petunjuk, gambar, pilihan)
 tools/check-blocks.mjs      menjalankan solusi tiap level robot di kursus Code Blocks

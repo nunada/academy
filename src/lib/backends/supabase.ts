@@ -23,6 +23,7 @@ import type {
   XpEvent,
 } from '../db'
 import { AuthError } from '../db'
+import { isViewKey, type ViewKind } from '../views'
 import { coursesIn } from '../../content/catalog'
 import { MAX_HEARTS } from '../hearts'
 
@@ -372,6 +373,32 @@ export function createSupabaseBackend(): Backend {
       const { data, error } = await sb.rpc('admin_feedback', { p_limit: 500 })
       if (error) throw error
       return ((data ?? []) as (Omit<FeedbackRow, 'id' | 'rating'> & { id: number | string; rating: number | string })[]).map((r) => ({ ...r, id: Number(r.id), rating: Number(r.rating) }))
+    },
+
+    // Both are open to anon, and both swallow every failure: a database that has not had supabase/views.sql run yet answers 404, and the
+    // page must carry on without a number rather than show an error.
+    async pageView(kind: ViewKind, slug: string, count: boolean) {
+      if (!isViewKey(kind, slug)) return null
+      try {
+        const { data, error } = await sb.rpc('page_view', { p_kind: kind, p_slug: slug, p_count: count })
+        if (error || data === null || data === undefined) return null
+        const n = Number(data)
+        return Number.isFinite(n) ? n : null
+      } catch {
+        return null
+      }
+    },
+
+    async pageViews(kind: ViewKind) {
+      try {
+        const { data, error } = await sb.rpc('page_views', { p_kind: kind })
+        if (error || !Array.isArray(data)) return {}
+        const out: Record<string, number> = {}
+        for (const r of data as { slug: string; views: number | string }[]) out[r.slug] = Number(r.views)
+        return out
+      } catch {
+        return {}
+      }
     },
   }
 }
