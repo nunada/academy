@@ -1440,4 +1440,32 @@ export const WIDGETS: Record<WidgetName, { title: Loc; description: Loc }> = {
       id: 'Kirim sinar ke dalam prisma: ubah sudut puncak, indeks bias, dan sudut datang, dan lihat deviasi, deviasi minimum, pemantulan sempurna, dan dua warna yang terpisah.',
     },
   },
+  rbplay: {
+    title: { en: 'Interactive: turn a Rubik’s cube', id: 'Interaktif: putar kubus Rubik' },
+    description: {
+      en: 'Turn the six faces a quarter or a half turn either way, scramble the cube, undo moves, and see the way back: the same moves in the opposite order, each one undone.',
+      id: 'Putar keenam sisi seperempat atau setengah putaran ke arah mana pun, acak kubus, urungkan gerakan, dan lihat jalan kembali: gerakan yang sama dalam urutan terbalik, masing-masing dibalik.',
+    },
+  },
+  rbcount: {
+    title: { en: 'Interactive: count the positions one reason at a time', id: 'Interaktif: hitung posisi satu alasan demi satu alasan' },
+    description: {
+      en: 'Switch on the arrangements of the corners and the edges, their twists and flips, and the three conditions that cut the count down, and watch the number of positions fall to 43 quintillion.',
+      id: 'Aktifkan susunan sudut dan rusuk, putaran dan pembalikannya, serta tiga syarat yang mengurangi hitungannya, dan lihat banyak posisi turun menjadi 43 kuintiliun.',
+    },
+  },
+  rborder: {
+    title: { en: 'Interactive: how many repeats bring the cube back?', id: 'Interaktif: berapa kali diulang agar kubus kembali?' },
+    description: {
+      en: 'Type a sequence of moves and repeat it: the cube returns to the start after exactly its order, the least common multiple of its cycles, shown piece by piece.',
+      id: 'Ketik urutan gerakan dan ulangi: kubus kembali ke awal tepat setelah ordenya, kelipatan persekutuan terkecil dari siklusnya, ditunjukkan keping demi keping.',
+    },
+  },
+  rbparity: {
+    title: { en: 'Interactive: which positions can be reached?', id: 'Interaktif: posisi mana yang dapat dicapai?' },
+    description: {
+      en: 'Turn faces, or take the cube apart: twist a corner, flip an edge or swap two pieces, and watch the three numbers that no turn can change decide whether the position can be solved.',
+      id: 'Putar sisi, atau bongkar kubus: putar sebuah sudut, balik sebuah rusuk, atau tukar dua keping, dan lihat tiga bilangan yang tak dapat diubah putaran apa pun menentukan apakah posisi itu dapat dipecahkan.',
+    },
+  },
 }

@@ -465,12 +465,12 @@ face diagonal 4.243; space diagonal 5.196
 
 A $3\times3\times3$ puzzle cube has $8$ corner pieces, $12$ edge pieces and $6$ centres. The corners can be arranged in $8!$ ways and each can be twisted in $3$ ways (the last twist is forced), the edges in $12!$ ways and each flipped in $2$ ways (the last flip is forced), and half of these combinations cannot be reached by turning the faces, giving
 $$\frac{8!\cdot3^7\cdot12!\cdot2^{11}}{2}=43\,252\,003\,274\,489\,856\,000\approx4.3\times10^{19}$$
-positions. Of the $27$ little cubes of a $3\times3\times3$ block, $26$ show a face and the middle one is hidden, which is also $3^3-1^3$.`,
+positions. Of the $27$ little cubes of a $3\times3\times3$ block, $26$ show a face and the middle one is hidden, which is also $3^3-1^3$. How the puzzle is counted, solved and why a position can be impossible is the subject of the [Rubik’s cube](article:rubiks-cube) article.`,
             T`**Ada $30$ dadu yang berbeda bila sisinya memuat $1$ sampai $6$ masing-masing sekali dan memutar dadu tak membuat dadu baru, dan hanya $2$ di antaranya yang sisi berhadapannya berjumlah $7$, yang saling merupakan bayangan cermin.** Tanpa memutar ada $6!=720$ cara menuliskan bilangan pada enam sisi, dan kubus dapat diputar dalam $24$ cara ($6$ sisi yang dapat berada di meja kali $4$ putaran seperempat), jadi $\frac{720}{24}=30$. Tetapkan pasangan sisi berhadapan sebagai $(1,6)$, $(2,5)$, $(3,4)$ dan hanya tersisa susunan kidal atau kanan: letakkan $1$ di atas dan $2$ di depan, dan $3$ berada di kanan atau di kiri. Dadu untuk permainan memakai salah satu dari keduanya, yang lain adalah bayangannya. Dadu sangat tua: kubus yang ditandai seperti ini berumur sekitar $5000$ tahun.
 
 Kubus teka-teki $3\times3\times3$ memiliki $8$ keping sudut, $12$ keping rusuk, dan $6$ pusat. Sudutnya dapat disusun dalam $8!$ cara dan masing-masing dapat diputar dalam $3$ cara (putaran terakhir ditentukan), rusuknya dalam $12!$ cara dan masing-masing dibalik dalam $2$ cara (pembalikan terakhir ditentukan), dan separuh kombinasi itu tak dapat dicapai dengan memutar sisi-sisinya, sehingga diperoleh
 $$\frac{8!\cdot3^7\cdot12!\cdot2^{11}}{2}=43.252.003.274.489.856.000\approx4{,}3\times10^{19}$$
-posisi. Dari $27$ kubus kecil pada balok $3\times3\times3$, $26$ memperlihatkan sebuah sisi dan yang di tengah tersembunyi, yang juga $3^3-1^3$.`,
+posisi. Dari $27$ kubus kecil pada balok $3\times3\times3$, $26$ memperlihatkan sebuah sisi dan yang di tengah tersembunyi, yang juga $3^3-1^3$. Bagaimana teka-teki itu dihitung, dipecahkan, dan mengapa sebuah posisi dapat mustahil dibahas dalam artikel [kubus Rubik](article:rubiks-cube).`,
           ),
         },
       ],

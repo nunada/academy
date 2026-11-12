@@ -229,6 +229,10 @@ export type WidgetName =
   | 'prnet'
   | 'prcyl'
   | 'prlight'
+  | 'rbplay'
+  | 'rbcount'
+  | 'rborder'
+  | 'rbparity'
 
 export interface ArticleMeta {
   /** Stable key. Never shown; the URL slugs below may change, this may not. */

@@ -906,6 +906,36 @@ const prismCover = (): string => {
   return art
 }
 
+const rubikCover = (): string => {
+  // an isometric cube with its three visible faces cut into 3 × 3 stickers, scrambled, and two numbers beside it
+  const C: [number, number] = [150, 180]
+  const up: [number, number] = [0, -80]
+  const a: [number, number] = [69, -40]
+  const b: [number, number] = [-69, -40]
+  const add = (p: [number, number], v: [number, number], k = 1): [number, number] => [p[0] + k * v[0], p[1] + k * v[1]]
+  const kinds = ['fa', 'fb', 'fc', 'fr', 'fm']
+  const face = (o: [number, number], u: [number, number], v: [number, number], seed: number, centre: string): string => {
+    let out = ''
+    for (let i = 0; i < 3; i++)
+      for (let j = 0; j < 3; j++) {
+        const cls = i === 1 && j === 1 ? centre : kinds[(i * 2 + j * 3 + seed * 5 + i * j) % 5]
+        const c = add(add(o, u, (i + 0.5) / 3), v, (j + 0.5) / 3)
+        const corner = (di: number, dj: number): [number, number] => add(add(c, u, (di * 0.42) / 3), v, (dj * 0.42) / 3)
+        out += poly([corner(-1, -1), corner(1, -1), corner(1, 1), corner(-1, 1)], cls)
+      }
+    return out
+  }
+  const top = add(C, up)
+  let art = face(top, a, b, 1, 'fm') + face(C, b, up, 2, 'fa') + face(C, a, up, 3, 'fr')
+  for (const [p, q] of [
+    [C, add(C, up)], [C, add(C, a)], [C, add(C, b)],
+    [add(C, a), add(add(C, a), up)], [add(C, b), add(add(C, b), up)],
+    [add(top, a), add(add(top, a), b)], [add(top, b), add(add(top, a), b)], [top, add(top, a)], [top, add(top, b)],
+  ] as [[number, number], [number, number]][]) art += line(p[0], p[1], q[0], q[1], 'st', 2)
+  art += text(270, 78, '4.3×10¹⁹', 24, 'tm', 'start') + text(270, 112, '1260', 20, 'tm', 'start') + text(270, 146, 'God’s number 20', 15, 'tm', 'start')
+  return art
+}
+
 const generic = (): string => {
   const X = (x: number) => 60 + x * 70
   const Y = (y: number) => 160 - y * 60
@@ -913,6 +943,7 @@ const generic = (): string => {
 }
 
 const COVERS: Record<string, () => string> = {
+  'rubiks-cube': rubikCover,
   prism: prismCover,
   cuboid: cuboidCover,
   cube: cubeCover,

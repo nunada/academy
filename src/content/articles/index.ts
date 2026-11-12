@@ -59,8 +59,9 @@ import { meta as linearSystems } from './linear-systems-two-variables.meta'
 import { meta as cube } from './cube.meta'
 import { meta as cuboid } from './cuboid.meta'
 import { meta as prism } from './prism.meta'
+import { meta as rubiksCube } from './rubiks-cube.meta'
 
-export const ARTICLES: ArticleMeta[] = [prism, cuboid, cube, linearSystems, lawOfCosines, lawOfSines, graphs, equations, identities, basicTrig, constructions, angles, latex, hanoi, fibonacci, binarySearch, bigO, floatingPoint, newtonsMethod, optimization, lhopital, concavity, monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
+export const ARTICLES: ArticleMeta[] = [rubiksCube, prism, cuboid, cube, linearSystems, lawOfCosines, lawOfSines, graphs, equations, identities, basicTrig, constructions, angles, latex, hanoi, fibonacci, binarySearch, bigO, floatingPoint, newtonsMethod, optimization, lhopital, concavity, monotonic, meanValue, extremeValues, linearization, relatedRates, inverseTrig, inverseLogs, implicitDiff, chainRule, trigDerivatives, rateOfChange, differentiationRules, derivativeFunction, tangentLines, pythagoreanTheorem, circles, triangles, quadrilaterals, geometricSequences, arithmeticSequences, binaryNumbers, irrationalNumbers, rationalNumbers, integers, algebraicExpressions, exponentsAndRadicals, chineseNumbers, realNumbers]
 
 const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   'real-numbers': () => import('./real-numbers'),
@@ -111,6 +112,7 @@ const BODIES: Record<string, () => Promise<{ body: ArticleBody }>> = {
   cube: () => import('./cube'),
   cuboid: () => import('./cuboid'),
   prism: () => import('./prism'),
+  'rubiks-cube': () => import('./rubiks-cube'),
   'monotonic-functions-and-the-first-derivative-test': () => import('./monotonic-functions-and-the-first-derivative-test'),
   'the-derivative-as-a-rate-of-change': () => import('./the-derivative-as-a-rate-of-change'),
 }

@@ -68,6 +68,7 @@
     "check:cube": "node tools/check-cube.mjs",
     "check:cuboid": "node tools/check-cuboid.mjs",
     "check:prism": "node tools/check-prism.mjs",
+    "check:rubik": "node tools/check-rubik.mjs",
     "check:realcards": "node tools/check-realcards.mjs",
     "check:roles": "node tools/check-roles.mjs",
     "check:rolessql": "node tools/check-roles-sql.mjs",
