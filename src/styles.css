@@ -1867,3 +1867,70 @@ main:focus, .page:focus { outline: none; }
   .cmtiers { gap: 4px; }
   .cmtier-t { font-size: 0.72rem; }
 }
+
+/* Number Line: a line of ticks to put a marker on. Only the site's color tokens are used, so light, dark and system themes need nothing more. The track
+   is inset from the field so the labels at the two ends have room; everything on it is placed in percent of the track, so it scales with the page. */
+.nlgame { margin: 18px 0 8px; }
+.nlabout { margin: 0 0 4px; }
+.nlpips { list-style: none; display: flex; gap: 6px; margin: 0 0 12px; padding: 0; }
+.nlpip { flex: 1 1 0; max-width: 34px; height: 8px; border-radius: 999px; background: var(--border); }
+.nlpip.now { background: var(--brand); opacity: 0.55; }
+.nlpip.first { background: var(--good); }
+.nlpip.retry { background: var(--gold); }
+.nlpip.shown { background: var(--bad); }
+.nltarget { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 8px; }
+.nlnum { font-size: 1.7rem; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.nlfield {
+  position: relative;
+  padding: 0 30px;
+  height: 118px;
+  cursor: pointer;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.nlfield:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+.nlfield.settled { cursor: default; }
+.nltrack { position: relative; height: 100%; }
+.nlaxis { position: absolute; left: 0; right: 0; top: 60px; height: 3px; margin-top: -1px; background: var(--text); border-radius: 2px; }
+.nltick { position: absolute; top: 60px; width: 2px; height: 10px; margin-left: -1px; margin-top: -4px; background: var(--muted); }
+.nltick.big { height: 20px; margin-top: -9px; background: var(--text); }
+.nllabel { position: absolute; top: 76px; transform: translateX(-50%); font-size: 0.95rem; white-space: nowrap; color: var(--text); }
+.nlpin { position: absolute; transform: translateX(-50%); pointer-events: none; }
+.nlpin.mark {
+  top: 44px;
+  width: 22px;
+  height: 22px;
+  margin-top: 0;
+  border-radius: 50%;
+  background: var(--brand);
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 2px var(--brand);
+  transition: left 0.08s;
+}
+.nlpin.mark::before { content: ''; position: absolute; left: 50%; bottom: 100%; width: 2px; height: 30px; margin-left: -1px; background: var(--brand); }
+.nlpin.mark.ok { background: var(--good); box-shadow: 0 0 0 2px var(--good); }
+.nlpin.mark.ok::before { background: var(--good); }
+.nlpin.mark.bad { background: var(--bad); box-shadow: 0 0 0 2px var(--bad); animation: rmshake 0.4s; }
+.nlpin.mark.bad::before { background: var(--bad); }
+.nlpin.mark.off { opacity: 0.45; }
+.nlpin.target { top: 8px; width: 0; height: 0; border-left: 9px solid transparent; border-right: 9px solid transparent; border-top: 16px solid var(--gold); margin-left: 0; }
+.nlpin.target::after { content: ''; position: absolute; left: -1px; top: -16px; width: 2px; height: 66px; background: var(--gold); }
+.nlhelp { margin: 8px 0 0; }
+.nlbuttons { gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.nlfeedback { min-height: 3.2rem; margin-top: 8px; }
+.nlfeedback p { margin: 0; }
+.nlok b { color: var(--good); }
+.nlbad { color: var(--bad); }
+@media (prefers-reduced-motion: reduce) {
+  .nlpin.mark { transition: none; }
+  .nlpin.mark.bad { animation: none; }
+}
+@media (max-width: 560px) {
+  .nlfield { padding: 0 22px; }
+  .nllabel { font-size: 0.85rem; }
+  .nlnum { font-size: 1.45rem; }
+}

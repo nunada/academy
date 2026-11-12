@@ -5,7 +5,7 @@ import type { Loc } from './types'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
-export type GameId = 'real-number-match' | 'number-fish' | 'code-maze'
+export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line'
 
 export interface GameMeta {
   id: GameId
@@ -33,12 +33,12 @@ export const GAMES_PAGE = {
   title: L('Games', 'Permainan'),
   seoTitle: L('Free Learning Games: Math and Coding Games in English and Indonesian', 'Game Belajar Gratis: Permainan Matematika dan Coding dalam Dua Bahasa'),
   description: L(
-    'Free math and coding games that train one skill at a time: pair the cards, swim among the numbers, program a robot out of a maze. Play in English or Indonesian, on a phone or a computer.',
-    'Permainan matematika dan coding gratis yang melatih satu keterampilan sekaligus: pasangkan kartu, berenang di antara bilangan, susun program agar robot keluar dari labirin. Mainkan dalam bahasa Indonesia atau Inggris.',
+    'Free math and coding games that train one skill at a time: pair the cards, swim among the numbers, put each number on the line, program a robot out of a maze. Play in English or Indonesian, on a phone or a computer.',
+    'Permainan matematika dan coding gratis yang melatih satu keterampilan sekaligus: pasangkan kartu, berenang di antara bilangan, letakkan setiap bilangan pada garis, susun program agar robot keluar dari labirin. Mainkan dalam bahasa Indonesia atau Inggris.',
   ),
   keywords: L(
-    'math games, free math card games, matching games for fractions and decimals, learn math by playing, bilingual math games, real number games',
-    'permainan matematika, game kartu matematika gratis, game mencocokkan pecahan dan desimal, belajar matematika sambil bermain, permainan matematika dua bahasa, game bilangan real',
+    'math games, free math card games, matching games for fractions and decimals, number line game, learn math by playing, bilingual math games, real number games',
+    'permainan matematika, game kartu matematika gratis, game mencocokkan pecahan dan desimal, game garis bilangan, belajar matematika sambil bermain, permainan matematika dua bahasa, game bilangan real',
   ),
   intro: L(
     'Short games, each built around one idea. They need no account, they save your best score in this browser, and every answer is checked exactly, the way the lessons check it.',
@@ -404,6 +404,144 @@ Aturan ini berhasil di labirin mana pun yang seluruh temboknya tersambung, yaitu
       L('Sequencing instructions and algorithmic thinking', 'Mengurutkan perintah dan berpikir algoritmik'),
       L('Loops (repeat and while) and conditions (if and else)', 'Perulangan (ulangi dan selama) dan percabangan (jika dan kalau tidak)'),
       L('The right-hand rule, an algorithm for solving mazes', 'Aturan tangan kanan, algoritma untuk menyelesaikan labirin'),
+    ],
+  },
+  {
+    id: 'number-line',
+    slug: { en: 'number-line', id: 'garis-bilangan' },
+    icon: '📏',
+    title: L('Number Line: Put Each Number Where It Belongs', 'Garis Bilangan: Letakkan Setiap Bilangan di Tempatnya'),
+    seoTitle: L('Number Line: a Free Game for Fractions, Decimals and Negatives', 'Garis Bilangan: Game Gratis untuk Pecahan, Desimal, dan Bilangan Negatif'),
+    description: L(
+      'A free number line game: place integers, fractions, decimals, percents, negative numbers, square roots, π and e at the right spot. Five levels, from counting ticks to zooming in.',
+      'Game garis bilangan gratis: letakkan bilangan bulat, pecahan, desimal, persen, bilangan negatif, akar, π, dan e di tempat yang tepat. Lima tingkat, dari menghitung tanda sampai memperbesar.',
+    ),
+    keywords: L(
+      'number line game, placing numbers on a number line, fractions on a number line, decimals on a number line, negative numbers on a number line, integers on a number line, plotting square roots and pi on a number line, number line practice, learn fractions by playing, zoomed number line',
+      'game garis bilangan, meletakkan bilangan pada garis bilangan, pecahan pada garis bilangan, desimal pada garis bilangan, bilangan negatif pada garis bilangan, bilangan bulat pada garis bilangan, menempatkan akar dan pi pada garis bilangan, latihan garis bilangan, belajar pecahan sambil bermain, garis bilangan diperbesar',
+    ),
+    tagline: L('A number appears; you put it on the line.', 'Sebuah bilangan muncul; kamu meletakkannya pada garis.'),
+    answer: L(
+      '**A number appears, written as a fraction, a decimal, a percent, a root or $\\pi$, and you move a marker to where it belongs on a number line.** On the first four levels the number is exactly on a tick, so only one tick is right; on the last level it lies between ticks, and being within 3% of the line counts.',
+      '**Sebuah bilangan muncul, ditulis sebagai pecahan, desimal, persen, akar, atau $\\pi$, dan kamu menggeser penanda ke tempatnya pada garis bilangan.** Pada empat tingkat pertama bilangan itu tepat berada di satu tanda, sehingga hanya satu tanda yang benar; pada tingkat terakhir ia berada di antara tanda, dan dalam 3% panjang garis dianggap tepat.',
+    ),
+    published: '2026-11-13',
+    updated: '2026-11-13',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Number Line?', 'Bagaimana cara memainkan Garis Bilangan?'),
+        text: L(
+          `1. Pick a level. Ten numbers wait for you, one at a time. Read the number in the box above the line.
+2. Tap or drag on the line to put the marker where the number goes. On the first four levels the marker jumps from tick to tick; the arrow buttons and the arrow keys move it one tick at a time.
+3. Press **Check**. If the marker is on the right spot the number is shown in its other forms, such as $\\frac34=0.75=75\\%$. If not, you are told which side of the number your marker is on and what number it stands for, and you try again.
+4. After two wrong tries you may ask to be shown the place. That number counts as missed.
+
+You earn three stars for at most one mistake in the ten numbers, two for up to four, and one for finishing. Your best result for each level is kept in this browser.`,
+          `1. Pilih tingkat. Sepuluh bilangan menunggumu, satu per satu. Baca bilangan di kotak di atas garis.
+2. Ketuk atau seret pada garis untuk meletakkan penanda di tempat bilangan itu. Pada empat tingkat pertama penanda melompat dari tanda ke tanda; tombol panah di layar dan tombol panah di keyboard menggesernya satu tanda sekali.
+3. Tekan **Periksa**. Bila penanda ada di tempat yang benar, bilangan itu ditunjukkan dalam bentuk lainnya, seperti $\\frac34=0{,}75=75\\%$. Bila belum, kamu diberi tahu penandamu ada di sisi mana dari bilangan itu dan bilangan apa yang ditunjuk penandamu, lalu kamu mencoba lagi.
+4. Setelah dua kali salah, kamu boleh meminta tempatnya ditunjukkan. Bilangan itu dihitung gagal.
+
+Kamu mendapat tiga bintang untuk paling banyak satu kesalahan dalam sepuluh bilangan, dua bintang untuk sampai empat, dan satu bintang karena menyelesaikannya. Hasil terbaikmu untuk tiap tingkat disimpan di browser ini.`,
+        ),
+      },
+      {
+        id: 'levels',
+        heading: L('What are the five levels?', 'Apa saja kelima tingkatnya?'),
+        text: L(
+          `| Level | The line | The numbers |
+|---|---|---|
+| 1 Integers | ticks of $1$, $2$ or $5$, some of the line below $0$ | integers, negative ones too |
+| 2 Fractions and decimals | from $0$, with each unit cut into $2$, $4$, $5$, $8$ or $10$ parts | fractions (also not in lowest terms), mixed numbers, decimals that end, percents |
+| 3 Below zero | also left of $0$, with units cut in $3$ or $6$ parts | adds negative numbers and repeating decimals such as $0.\\overline{3}$ |
+| 4 Zoom in | only the two ends are labelled, such as $0.4$ and $0.5$ or $\\frac12$ and $\\frac34$ | decimals, fractions and percents that sit between two close numbers |
+| 5 Roots, $\\pi$ and $e$ | ticks at every half or whole number; the number is not on a tick | $\\sqrt2$, $\\frac{\\sqrt3}{2}$, $-\\sqrt5$, $\\pi$, $\\frac{\\pi}{2}$, $e$ and similar |
+
+Every number in a game is different, and the line changes from number to number, so you have to read the line each time instead of remembering where things were.`,
+          `| Tingkat | Garisnya | Bilangannya |
+|---|---|---|
+| 1 Bilangan bulat | tanda $1$, $2$, atau $5$, sebagian garis ada di bawah $0$ | bilangan bulat, termasuk yang negatif |
+| 2 Pecahan dan desimal | mulai dari $0$, dengan setiap satuan dibagi $2$, $4$, $5$, $8$, atau $10$ bagian | pecahan (juga yang belum sederhana), pecahan campuran, desimal berhingga, persen |
+| 3 Di bawah nol | juga di kiri $0$, dengan satuan dibagi $3$ atau $6$ bagian | ditambah bilangan negatif dan desimal berulang seperti $0{,}\\overline{3}$ |
+| 4 Perbesar | hanya kedua ujung yang diberi label, seperti $0{,}4$ dan $0{,}5$ atau $\\frac12$ dan $\\frac34$ | desimal, pecahan, dan persen yang berada di antara dua bilangan yang berdekatan |
+| 5 Akar, $\\pi$, dan $e$ | tanda pada setiap setengah atau bilangan bulat; bilangannya tidak berada di satu tanda | $\\sqrt2$, $\\frac{\\sqrt3}{2}$, $-\\sqrt5$, $\\pi$, $\\frac{\\pi}{2}$, $e$, dan sejenisnya |
+
+Setiap bilangan dalam satu permainan berbeda, dan garisnya berubah dari bilangan ke bilangan, jadi kamu harus membaca garisnya setiap kali, bukan mengingat letaknya.`,
+        ),
+      },
+      {
+        id: 'how-to-read',
+        heading: L('How do you find where a number goes?', 'Bagaimana cara menemukan tempat sebuah bilangan?'),
+        text: L(
+          `- **Read the labels first.** The two ends tell you what one tick is worth: from $0$ to $2$ with $8$ ticks, each tick is $\\frac{2}{8}=\\frac14$.
+- **A tick is a fraction of a unit.** If a unit has $4$ ticks, $0.75$ is $3$ ticks from $0$, and so are $\\frac34$ and $75\\%$. Several names, one place.
+- **Negative numbers mirror the positive ones.** $-\\frac34$ is as far left of $0$ as $\\frac34$ is right of it, so it is $3$ ticks to the left.
+- **A repeating decimal is a fraction.** $0.\\overline{3}=\\frac13$ and $0.\\overline{6}=\\frac23$, so they need a unit cut in three; see [rational numbers](article:rational-numbers).
+- **On a zoomed line, the ends are the new $0$ and $1$.** Between $0.4$ and $0.5$ with ten ticks, each tick is $0.01$, so $0.47$ is the seventh.
+- **A root has no tick, so squeeze it.** $\\sqrt5$ is between $2$ and $3$ because $4<5<9$, and nearer $2$ than $3$ because $5$ is nearer $4$ than $9$. For $\\pi$ and $e$, think of $3.14$ and $2.72$.
+
+The whole picture of these numbers is in [real numbers](article:real-numbers), the negative ones in [integers](article:integers), and the roots in [irrational numbers](article:irrational-numbers) and [exponents and radicals](article:exponents-and-radicals).`,
+          `- **Baca labelnya dulu.** Kedua ujung memberi tahu nilai satu tanda: dari $0$ sampai $2$ dengan $8$ tanda, setiap tanda bernilai $\\frac{2}{8}=\\frac14$.
+- **Satu tanda adalah sebagian dari satu satuan.** Bila satu satuan punya $4$ tanda, $0{,}75$ berjarak $3$ tanda dari $0$, begitu pula $\\frac34$ dan $75\\%$. Banyak nama, satu tempat.
+- **Bilangan negatif mencerminkan bilangan positif.** $-\\frac34$ sejauh $\\frac34$ di kiri $0$ seperti $\\frac34$ di kanannya, jadi letaknya $3$ tanda ke kiri.
+- **Desimal berulang adalah pecahan.** $0{,}\\overline{3}=\\frac13$ dan $0{,}\\overline{6}=\\frac23$, jadi memerlukan satuan yang dibagi tiga; lihat [bilangan rasional](article:rational-numbers).
+- **Pada garis yang diperbesar, kedua ujung adalah $0$ dan $1$ yang baru.** Antara $0{,}4$ dan $0{,}5$ dengan sepuluh tanda, setiap tanda bernilai $0{,}01$, jadi $0{,}47$ adalah tanda ketujuh.
+- **Akar tidak punya tanda, jadi apitlah.** $\\sqrt5$ ada di antara $2$ dan $3$ karena $4<5<9$, dan lebih dekat ke $2$ daripada $3$ karena $5$ lebih dekat ke $4$ daripada $9$. Untuk $\\pi$ dan $e$, ingatlah $3{,}14$ dan $2{,}72$.
+
+Gambaran utuh bilangan-bilangan ini ada di [bilangan real](article:real-numbers), bilangan negatifnya di [bilangan bulat](article:integers), dan akarnya di [bilangan irasional](article:irrational-numbers) dan [eksponen dan radikal](article:exponents-and-radicals).`,
+        ),
+      },
+      {
+        id: 'why-number-line',
+        heading: L('Why put numbers on a line?', 'Mengapa bilangan diletakkan pada garis?'),
+        text: L(
+          `A number line turns *which is larger* and *how far apart* into something you can see. Every real number has exactly one place on it, and the many ways of writing a number are only many names for that one place. A fraction, a decimal and a percent that are equal land on the same tick; two numbers that look alike but differ, such as $0.33$ and $\\frac13$, land on different ones, and the zoomed levels show how close and yet apart they are. Learners who can place a number on a line can usually also compare, order and round it, which is why number lines are used from the first years of school to calculus. If you like comparing, [Number Fish](/games/number-fish) asks the same question while you swim.`,
+          `Garis bilangan mengubah *mana yang lebih besar* dan *seberapa jauh jaraknya* menjadi sesuatu yang dapat dilihat. Setiap bilangan real punya tepat satu tempat pada garis itu, dan beragam cara menulis sebuah bilangan hanyalah banyak nama untuk satu tempat itu. Pecahan, desimal, dan persen yang sama jatuh pada tanda yang sama; dua bilangan yang tampak mirip tetapi berbeda, seperti $0{,}33$ dan $\\frac13$, jatuh pada tanda yang berlainan, dan tingkat yang diperbesar memperlihatkan betapa dekat namun terpisahnya mereka. Pembelajar yang bisa meletakkan bilangan pada garis biasanya juga bisa membandingkan, mengurutkan, dan membulatkannya, itulah sebabnya garis bilangan dipakai sejak tahun-tahun pertama sekolah sampai kalkulus. Bila kamu suka membandingkan, [Ikan Bilangan](/permainan/ikan-bilangan) mengajukan pertanyaan yang sama sambil kamu berenang.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('How do I play Number Line?', 'Bagaimana cara bermain Garis Bilangan?'),
+        a: L(
+          'Read the number in the box, then tap or drag on the line to put the marker where the number belongs, and press Check. Ten numbers make a game; the marker moves tick by tick on the first four levels, with the arrow buttons or the arrow keys.',
+          'Baca bilangan di kotak, lalu ketuk atau seret pada garis untuk meletakkan penanda di tempat bilangan itu, dan tekan Periksa. Sepuluh bilangan membentuk satu permainan; penanda bergerak tanda demi tanda pada empat tingkat pertama, dengan tombol panah di layar atau di keyboard.',
+        ),
+      },
+      {
+        q: L('How exact does the marker have to be?', 'Seberapa tepat penanda harus diletakkan?'),
+        a: L(
+          'On the first four levels the number is exactly on a tick and the marker snaps to ticks, so the answer is that tick and no other: it is decided with exact fractions, never with pixels. On the last level, where a square root or π lies between ticks, a marker within 3% of the line from the number counts.',
+          'Pada empat tingkat pertama bilangannya tepat berada di satu tanda dan penanda melekat pada tanda, sehingga jawabannya tanda itu dan bukan yang lain: ini diputuskan dengan pecahan eksak, bukan dengan piksel. Pada tingkat terakhir, saat akar atau π berada di antara tanda, penanda dalam 3% panjang garis dari bilangan itu dianggap benar.',
+        ),
+      },
+      {
+        q: L('How are the stars decided?', 'Bagaimana bintang ditentukan?'),
+        a: L(
+          'By the mistakes in a game of ten numbers: one mistake or none is three stars, two to four mistakes is two stars, more is one star. A mistake is a Check that was wrong; asking to be shown the place does not cost more.',
+          'Dari banyaknya kesalahan dalam satu permainan sepuluh bilangan: satu kesalahan atau tanpa kesalahan adalah tiga bintang, dua sampai empat kesalahan dua bintang, lebih dari itu satu bintang. Kesalahan adalah Periksa yang salah; meminta tempatnya ditunjukkan tidak menambah kesalahan.',
+        ),
+      },
+      {
+        q: L('Does Number Line save my score?', 'Apakah Garis Bilangan menyimpan skorku?'),
+        a: L(
+          'Your best stars for each level are kept in this browser only. There is no account and nothing is sent anywhere; clearing the site data in your browser clears them too.',
+          'Bintang terbaikmu untuk tiap tingkat hanya disimpan di browser ini. Tidak ada akun dan tidak ada yang dikirim ke mana pun; menghapus data situs di browser juga menghapusnya.',
+        ),
+      },
+      {
+        q: L('Which math topics does Number Line practise?', 'Topik matematika apa yang dilatih Garis Bilangan?'),
+        a: L(
+          'Reading and placing integers, fractions, mixed numbers, decimals, percents and repeating decimals on a number line, negative numbers, scale and zooming, and estimating square roots, π and e between whole numbers.',
+          'Membaca dan meletakkan bilangan bulat, pecahan, pecahan campuran, desimal, persen, dan desimal berulang pada garis bilangan, bilangan negatif, skala dan memperbesar, serta memperkirakan akar, π, dan e di antara bilangan bulat.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Placing fractions, decimals and percents on a number line', 'Meletakkan pecahan, desimal, dan persen pada garis bilangan'),
+      L('Negative numbers and the scale of a number line', 'Bilangan negatif dan skala garis bilangan'),
+      L('Estimating square roots, π and e', 'Memperkirakan akar, π, dan e'),
     ],
   },
 ]
