@@ -498,12 +498,15 @@ export function BlocksBoard({
   onChange,
   disabled,
   report,
+  speeds = false,
 }: {
   level: BlocksLevel
   program: Program
   onChange: (p: Program) => void
   disabled: boolean
   report: LevelReport | null
+  /** Offer faster playback and a jump to the end, for a long run on a big map. */
+  speeds?: boolean
 }) {
   const { tc } = useI18n()
   const [cursor, setCursor] = useState<Path>('main')
@@ -511,7 +514,9 @@ export function BlocksBoard({
   const [run, setRun] = useState<Run | null>(null)
   const [frame, setFrame] = useState(0)
   const [playing, setPlaying] = useState(false)
+  const [speed, setSpeed] = useState(1)
   const timer = useRef<number | null>(null)
+  const at = useRef(0)
 
   // A cursor into a stack that no longer exists falls back to the main stack.
   const safeCursor = listAt(program, cursor) ? cursor : 'main'
@@ -529,21 +534,41 @@ export function BlocksBoard({
     setFrame(0)
   }, [program, world])
 
+  /** Step through the frames of `r` from where `at` is, one every `ms`. */
+  function tickEvery(r: Run, ms: number) {
+    if (timer.current !== null) window.clearInterval(timer.current)
+    timer.current = window.setInterval(() => {
+      at.current++
+      if (at.current >= r.frames.length) {
+        stop()
+        return
+      }
+      setFrame(at.current)
+    }, ms)
+  }
+
   function play() {
     stop()
     const r = runProgram(level.worlds[world], program)
     setRun(r)
     setFrame(0)
+    at.current = 0
     setPlaying(true)
-    let i = 0
-    timer.current = window.setInterval(() => {
-      i++
-      if (i >= r.frames.length) {
-        stop()
-        return
-      }
-      setFrame(i)
-    }, 320)
+    tickEvery(r, 320 / speed)
+  }
+
+  function faster(s: number) {
+    setSpeed(s)
+    if (playing && run) tickEvery(run, 320 / s)
+  }
+
+  /** Run the program and show the last frame at once. */
+  function skip() {
+    const r = run && playing ? run : runProgram(level.worlds[world], program)
+    stop()
+    setRun(r)
+    at.current = r.frames.length - 1
+    setFrame(at.current)
   }
 
   function reset() {
@@ -619,8 +644,22 @@ export function BlocksBoard({
             <button className="btn ghost sm" onClick={reset} disabled={!run && !playing}>
               ↺ {tc(L('Reset', 'Ulang'))}
             </button>
+            {speeds && (
+              <button className="btn ghost sm" onClick={skip} title={tc(L('Show the end result at once', 'Langsung tampilkan hasil akhir'))}>
+                ⏭ {tc(L('End', 'Akhir'))}
+              </button>
+            )}
             {run && <span className="small muted">{Math.min(frame, run.frames.length - 1)}/{run.frames.length - 1}</span>}
           </div>
+          {speeds && (
+            <div className="chips bk-speeds" role="group" aria-label={tc(L('Speed', 'Kecepatan'))}>
+              {[1, 4, 16].map((s) => (
+                <button key={s} className={`chip${speed === s ? ' on' : ''}`} aria-pressed={speed === s} onClick={() => faster(s)}>
+                  {s}×
+                </button>
+              ))}
+            </div>
+          )}
           {f && f.said.length > 0 && (
             <div style={{ marginTop: 8 }}>
               <div className="io-label">{tc(L('The robot says', 'Robot berkata'))}</div>

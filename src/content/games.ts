@@ -5,7 +5,7 @@ import type { Loc } from './types'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
-export type GameId = 'real-number-match' | 'number-fish'
+export type GameId = 'real-number-match' | 'number-fish' | 'code-maze'
 
 export interface GameMeta {
   id: GameId
@@ -31,10 +31,10 @@ export interface GameMeta {
 
 export const GAMES_PAGE = {
   title: L('Games', 'Permainan'),
-  seoTitle: L('Math Games: Free Learning Games in English and Indonesian', 'Permainan Matematika: Game Belajar Gratis dalam Dua Bahasa'),
+  seoTitle: L('Free Learning Games: Math and Coding Games in English and Indonesian', 'Game Belajar Gratis: Permainan Matematika dan Coding dalam Dua Bahasa'),
   description: L(
-    'Free math games that train one skill at a time: pair the cards, beat the clock, earn stars. Play in English or Indonesian, on a phone or a computer.',
-    'Permainan matematika gratis yang melatih satu keterampilan sekaligus: pasangkan kartu, kejar waktu, raih bintang. Mainkan dalam bahasa Indonesia atau Inggris.',
+    'Free math and coding games that train one skill at a time: pair the cards, swim among the numbers, program a robot out of a maze. Play in English or Indonesian, on a phone or a computer.',
+    'Permainan matematika dan coding gratis yang melatih satu keterampilan sekaligus: pasangkan kartu, berenang di antara bilangan, susun program agar robot keluar dari labirin. Mainkan dalam bahasa Indonesia atau Inggris.',
   ),
   keywords: L(
     'math games, free math card games, matching games for fractions and decimals, learn math by playing, bilingual math games, real number games',
@@ -276,6 +276,134 @@ Bilangan di balik bentuk-bentuk ini dijelaskan di [bilangan real](article:real-n
       L('Comparing and ordering real numbers', 'Membandingkan dan mengurutkan bilangan real'),
       L('Fractions, decimals, percents and negative numbers', 'Pecahan, desimal, persen, dan bilangan negatif'),
       L('Comparing square roots, π and e', 'Membandingkan akar kuadrat, π, dan e'),
+    ],
+  },
+  {
+    id: 'code-maze',
+    slug: { en: 'code-maze', id: 'labirin-kode' },
+    icon: '🤖',
+    title: L('Code Maze: Program a Robot Out of the Maze with Blocks', 'Labirin Kode: Susun Blok untuk Mengeluarkan Robot dari Labirin'),
+    seoTitle: L('Code Maze: a Free Block Coding Game for Beginners', 'Labirin Kode: Game Coding Blok Gratis untuk Pemula'),
+    description: L(
+      'A free coding game: snap blocks together to guide a robot through mazes. Twenty levels in five tiers, from simple moves to loops, conditions and the right-hand rule.',
+      'Game coding gratis: susun blok untuk memandu robot melewati labirin. Dua puluh level dalam lima tingkat, dari gerakan sederhana sampai perulangan, syarat, dan aturan tangan kanan.',
+    ),
+    keywords: L(
+      'code maze game, block coding game, learn to code with blocks, programming game for beginners, robot maze game, loops and conditions for beginners, if else while loop game, right-hand rule maze, wall follower algorithm, coding puzzle game, visual programming for kids, algorithmic thinking game',
+      'game labirin kode, game coding blok, belajar coding dengan blok, game pemrograman untuk pemula, game robot labirin, perulangan dan percabangan untuk pemula, game if else while, aturan tangan kanan labirin, algoritma pengikut dinding, game teka-teki coding, pemrograman visual untuk anak, game berpikir algoritmik',
+    ),
+    tagline: L('Build a program from blocks and watch the robot find its way out.', 'Susun program dari blok dan lihat robot menemukan jalan keluar.'),
+    answer: L(
+      '**You build a program out of blocks, press Run, and a robot carries it out on a map until it reaches the finish.** There are twenty levels in five tiers. The first only needs move and turn; later tiers add repeat, if and while, and the last asks for one short program that can find the way out of any maze.',
+      '**Kamu menyusun program dari blok, menekan Jalankan, dan robot melaksanakannya di peta sampai tiba di finis.** Ada dua puluh level dalam lima tingkat. Tingkat pertama hanya memakai maju dan belok; tingkat berikutnya menambah ulangi, jika, dan selama, dan yang terakhir meminta satu program singkat yang dapat menemukan jalan keluar dari labirin mana pun.',
+    ),
+    published: '2026-11-12',
+    updated: '2026-11-12',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Code Maze?', 'Bagaimana cara memainkan Labirin Kode?'),
+        text: L(
+          `1. Pick a tier and a level. Read the goal above the map: usually to stop on the finish square, sometimes also to pick up every star.
+2. Press a block in the palette to add it to your program. A block that holds others, such as **repeat**, **if** or **while**, opens ready to be filled; press a slot to choose where the next block goes.
+3. Press **Run** to watch the robot, or **End** to jump to the result. The speed buttons make a long run quicker. When the program looks right, press **Check**: it is tried on every map of the level.
+4. A solved level earns one to three stars from the number of blocks. Three stars need as few blocks as the model solution; looking at the solution caps the level at one star.
+
+Some levels give several maps and one program has to work on all of them. Some limit the number of blocks, which is what makes a loop worth using. Your stars are kept in this browser.`,
+          `1. Pilih tingkat dan level. Baca tujuannya di atas peta: biasanya berhenti di kotak finis, kadang juga mengambil semua bintang.
+2. Tekan sebuah blok di palet untuk menambahkannya ke programmu. Blok yang menampung blok lain, seperti **ulangi**, **jika**, atau **selama**, terbuka siap diisi; tekan sebuah slot untuk memilih tempat blok berikutnya.
+3. Tekan **Jalankan** untuk melihat robot, atau **Akhir** untuk langsung ke hasil. Tombol kecepatan membuat jalannya program yang panjang lebih cepat. Bila program tampak benar, tekan **Periksa**: program dicoba di setiap peta pada level itu.
+4. Level yang selesai memberi satu sampai tiga bintang dari banyaknya blok. Tiga bintang memerlukan blok sesedikit solusi contoh; melihat solusi membatasi level itu pada satu bintang.
+
+Beberapa level memberi beberapa peta dan satu program harus berhasil di semuanya. Beberapa membatasi jumlah blok, yang membuat perulangan layak dipakai. Bintangmu disimpan di browser ini.`,
+        ),
+      },
+      {
+        id: 'tiers',
+        heading: L('What do the five tiers teach?', 'Apa yang diajarkan kelima tingkat?'),
+        text: L(
+          `| Tier | Blocks | The idea |
+|---|---|---|
+| 1 Sequence | move, turn, pick up | a program is a list of orders carried out in order |
+| 2 Repeat | adds repeat | a pattern that comes back is written once |
+| 3 If | adds if and while | the robot looks before it acts, so one program fits maps it has never seen |
+| 4 Sensors | adds the left and right sensors | choosing a way at a corner and at a fork |
+| 5 Mazes | the same blocks, bigger mazes with stars | the right-hand rule: a few blocks that solve any maze without loops |
+
+A tier opens when you have solved three levels of the one before, so one stubborn level never blocks you.`,
+          `| Tingkat | Blok | Gagasannya |
+|---|---|---|
+| 1 Urutan | maju, belok, ambil | program adalah daftar perintah yang dilaksanakan berurutan |
+| 2 Ulangi | ditambah ulangi | pola yang kembali cukup ditulis sekali |
+| 3 Jika | ditambah jika dan selama | robot melihat dulu sebelum bertindak, sehingga satu program cocok untuk peta yang belum pernah ia lihat |
+| 4 Sensor | ditambah sensor kiri dan kanan | memilih jalan di tikungan dan di percabangan |
+| 5 Labirin | blok yang sama, labirin lebih besar dengan bintang | aturan tangan kanan: beberapa blok yang menyelesaikan labirin mana pun yang tidak berputar |
+
+Satu tingkat terbuka bila kamu sudah menyelesaikan tiga level pada tingkat sebelumnya, jadi satu level yang sulit tidak pernah menghalangimu.`,
+        ),
+      },
+      {
+        id: 'right-hand-rule',
+        heading: L('What is the right-hand rule for mazes?', 'Apa itu aturan tangan kanan untuk labirin?'),
+        text: L(
+          `Walk through the maze with one hand always touching the wall on your right. At every step: **if the way on the right is open, turn right and step; otherwise, if the way ahead is open, step; otherwise turn left.** That is all, and it needs no map.
+
+It works in any maze whose walls are all joined together, which means a maze with no loops and no rooms closed off. Every wall then connects to the outer wall, so a hand that follows the wall visits every corridor and must pass the exit. In the game this is a **while** block (until the robot is on the finish) with two **if** blocks inside. It is a small example of an *algorithm*: a fixed recipe that is correct for every input of its kind, not just for the one you tried. The same idea is explained for sorting and searching in [binary search and sorting](article:binary-search-and-sorting).`,
+          `Jalanilah labirin dengan satu tangan selalu menyentuh tembok di sisi kananmu. Pada setiap langkah: **bila jalan di kanan terbuka, belok kanan lalu melangkah; bila tidak, dan jalan di depan terbuka, melangkah; bila tidak, belok kiri.** Hanya itu, dan tidak perlu peta.
+
+Aturan ini berhasil di labirin mana pun yang seluruh temboknya tersambung, yaitu labirin tanpa putaran dan tanpa ruang yang tertutup. Setiap tembok lalu tersambung ke tembok luar, sehingga tangan yang mengikuti tembok melewati setiap lorong dan pasti melewati pintu keluar. Dalam game ini aturannya berupa blok **selama** (sampai robot di finis) dengan dua blok **jika** di dalamnya. Ini contoh kecil sebuah *algoritma*: resep tetap yang benar untuk setiap input sejenis, bukan hanya untuk yang kamu coba. Gagasan serupa untuk pengurutan dan pencarian dijelaskan di [pencarian biner dan pengurutan](article:binary-search-and-sorting).`,
+        ),
+      },
+      {
+        id: 'fewer-blocks',
+        heading: L('Why do fewer blocks earn more stars?', 'Mengapa blok yang lebih sedikit memberi lebih banyak bintang?'),
+        text: L(
+          `A program that does the same job with fewer blocks has found the pattern in the problem. Walking a staircase one step at a time is sixteen orders, but it is one **repeat** of four. Following a corridor with any number of corners is four blocks if the robot looks before it moves. Short programs are also easier to read, to check and to change, which is why programmers prefer them. If you want to go on from here, the [Code Blocks course](/course/code-blocks) teaches the same blocks step by step, and its variables and your own blocks come next.`,
+          `Program yang mengerjakan tugas yang sama dengan blok lebih sedikit telah menemukan pola dalam masalahnya. Menuruni tangga satu anak tangga demi satu anak tangga adalah enam belas perintah, tetapi hanya satu **ulangi** dengan empat blok di dalamnya. Menyusuri lorong dengan tikungan sebanyak apa pun cukup empat blok bila robot melihat sebelum melangkah. Program yang singkat juga lebih mudah dibaca, diperiksa, dan diubah, itulah sebabnya programmer menyukainya. Bila ingin melanjutkan, [kursus Code Blocks](/course/code-blocks) mengajarkan blok yang sama selangkah demi selangkah, dan variabel serta blok buatanmu sendiri menyusul sesudahnya.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('How do I play Code Maze?', 'Bagaimana cara bermain Labirin Kode?'),
+        a: L(
+          'Press blocks in the palette to build a program, press Run to watch the robot carry it out, and press Check to test it on every map of the level. Reach the finish, and pick up the stars when the level asks, to solve it.',
+          'Tekan blok di palet untuk menyusun program, tekan Jalankan untuk melihat robot melaksanakannya, dan tekan Periksa untuk mengujinya di setiap peta pada level itu. Capai finis, dan ambil bintang bila level memintanya, untuk menyelesaikan level.',
+        ),
+      },
+      {
+        q: L('Do I need to know how to code?', 'Apakah saya harus bisa coding?'),
+        a: L(
+          'No. The first tier needs only two blocks, and each tier adds one idea at a time. The hints go from a small nudge to nearly the answer, and the game never types code: you only press blocks.',
+          'Tidak. Tingkat pertama hanya memerlukan dua blok, dan setiap tingkat menambah satu gagasan sekali waktu. Petunjuknya bergerak dari dorongan kecil sampai hampir jawaban, dan game ini tidak pernah meminta mengetik kode: kamu hanya menekan blok.',
+        ),
+      },
+      {
+        q: L('How are the stars decided?', 'Bagaimana bintang ditentukan?'),
+        a: L(
+          'By the number of blocks in your program. As few blocks as the model solution earns three stars, up to a few more earns two, and any working program earns one. A level solved after looking at the solution counts for one star.',
+          'Dari banyaknya blok di programmu. Sesedikit blok pada solusi contoh memberi tiga bintang, sedikit lebih banyak memberi dua, dan program apa pun yang berhasil memberi satu. Level yang diselesaikan setelah melihat solusi dihitung satu bintang.',
+        ),
+      },
+      {
+        q: L('Why does my program work on one map but not another?', 'Mengapa programku berhasil di satu peta tetapi tidak di peta lain?'),
+        a: L(
+          'Because it relies on something true only on that map, such as an exact number of squares. When a level gives several maps, let the robot look with the sensors instead of counting. The report under the map says which map failed and why.',
+          'Karena programmu bergantung pada sesuatu yang hanya benar di peta itu, seperti jumlah kotak yang pas. Bila sebuah level memberi beberapa peta, biarkan robot melihat dengan sensor, bukan menghitung. Laporan di bawah peta menyebut peta mana yang gagal dan sebabnya.',
+        ),
+      },
+      {
+        q: L('Does Code Maze save my progress?', 'Apakah Labirin Kode menyimpan kemajuanku?'),
+        a: L(
+          'Your stars for each level are kept in this browser only. There is no account and nothing is sent anywhere; clearing the site data in your browser clears the stars too.',
+          'Bintangmu untuk tiap level hanya disimpan di browser ini. Tidak ada akun dan tidak ada yang dikirim ke mana pun; menghapus data situs di browser juga menghapus bintangnya.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Sequencing instructions and algorithmic thinking', 'Mengurutkan perintah dan berpikir algoritmik'),
+      L('Loops (repeat and while) and conditions (if and else)', 'Perulangan (ulangi dan selama) dan percabangan (jika dan kalau tidak)'),
+      L('The right-hand rule, an algorithm for solving mazes', 'Aturan tangan kanan, algoritma untuk menyelesaikan labirin'),
     ],
   },
 ]

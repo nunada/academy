@@ -9,11 +9,13 @@ import { useI18n } from '../i18n'
 import { Rich, RichBlock } from '../components/ui'
 import RealMatchGame from '../components/games/RealMatchGame'
 import NumberFishGame from '../components/games/NumberFishGame'
+import CodeMazeGame from '../components/games/CodeMazeGame'
 
 /** The game itself, by id. A new game is one more case here, one more entry in `content/games.ts`, and one more `lib/` engine. */
 const PLAYERS: Record<GameId, () => ReactNode> = {
   'real-number-match': () => <RealMatchGame />,
   'number-fish': () => <NumberFishGame />,
+  'code-maze': () => <CodeMazeGame />,
 }
 
 /** A game's page: the game on top, then what it is, how to play it and what it practises, in words a visitor and a search engine can both read.

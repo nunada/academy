@@ -1834,3 +1834,31 @@ main:focus, .page:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   .bubbles i { animation: none; opacity: 0; }
 }
+
+/* Code Maze: the tier tabs, the level buttons and the result card around the block editor. */
+.codemaze { margin: 18px 0 8px; }
+.cmbar { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.cmtiers { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.cmtier { font: inherit; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 4px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; min-width: 0; }
+.cmtier:hover:not(:disabled) { border-color: var(--brand); }
+.cmtier.on { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 2px var(--brand); }
+.cmtier.locked { opacity: 0.55; cursor: not-allowed; }
+.cmtier:focus-visible, .cmlevel:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+.cmtier-n { font-weight: 800; font-size: 1.05rem; }
+.cmtier-t { font-size: 0.82rem; font-weight: 700; overflow-wrap: anywhere; text-align: center; }
+.cmtier-c { font-size: 0.75rem; color: var(--muted); }
+.cmabout { margin: 8px 0; }
+.cmlevels { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin-bottom: 12px; }
+.cmlevel { font: inherit; display: flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; text-align: left; min-width: 0; }
+.cmlevel:hover { border-color: var(--brand); }
+.cmlevel.on { border-color: var(--brand); background: var(--brand-soft); }
+.cmlevel span { font-size: 0.85rem; overflow-wrap: anywhere; }
+.cmlevel.done .cmstars { color: #b8892a; }
+:root[data-theme="dark"] .cmlevel.done .cmstars { color: var(--sun); }
+.cmstars { letter-spacing: 0.1em; font-size: 0.9rem; }
+.cmcard h3 { margin-top: 0; }
+.bk-speeds { margin: 6px 0 0; }
+@media (max-width: 480px) {
+  .cmtiers { gap: 4px; }
+  .cmtier-t { font-size: 0.72rem; }
+}

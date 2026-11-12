@@ -245,6 +245,7 @@ jobs:
       - run: npm run check:roles
       - run: npm run check:rolessql
       - run: npm run check:fishgame
+      - run: npm run check:codemaze
 
       # IndexNow: the key file, the reading of the sitemap, the choice of pages and the request, against a fake service.
       - run: npm run check:indexnow
