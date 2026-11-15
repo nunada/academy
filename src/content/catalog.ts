@@ -427,6 +427,23 @@ export const COURSES: CourseInfo[] = [
     projects: 4,
   },
   {
+    id: 'turunan-teknik-sipil',
+    title: { en: 'Derivatives in Civil Engineering', id: 'Aplikasi Turunan dalam Teknik Sipil' },
+    tagline: {
+      en: 'The derivative at work on a building site: how a beam sags and bends, the strongest beam cut from a log, the channel that carries the most water, a pond that fills, and the curves of a road, each with a scene in 3D to turn and try.',
+      id: 'Turunan yang bekerja di lokasi proyek: bagaimana balok melendut dan melentur, balok terkuat dari sebatang gelondong, saluran yang membawa air paling banyak, kolam yang terisi, dan lengkung jalan, masing-masing dengan adegan 3D untuk diputar dan dicoba.',
+    },
+    icon: '🏗️',
+    color: '#5f7387',
+    level: { en: 'Intermediate', id: 'Menengah' },
+    language: 'math',
+    track: 'math',
+    requires: ['aplikasi-turunan'],
+    available: true,
+    lessons: 8,
+    projects: 4,
+  },
+  {
     id: 'integral',
     title: { en: 'Integrals', id: 'Integral' },
     tagline: {
@@ -552,6 +569,7 @@ const MUAT: Record<string, () => Promise<{ modules: Module[] }>> = {
   limit: () => import('./limit'),
   turunan: () => import('./turunan'),
   'aplikasi-turunan': () => import('./aplikasi-turunan'),
+  'turunan-teknik-sipil': () => import('./turunan-teknik-sipil'),
   integral: () => import('./integral'),
   'teknik-integrasi': () => import('./teknik-integrasi'),
   'aplikasi-integral': () => import('./aplikasi-integral'),

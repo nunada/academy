@@ -4,6 +4,7 @@
 
 import type { Figure } from '../lib/figure'
 import type { Solid3D } from '../lib/solid3d'
+import type { Scene3D } from '../lib/scene3d'
 import type { BlocksLevel, Program } from '../lib/blocks'
 
 export type Lang = 'en' | 'id'
@@ -232,6 +233,9 @@ export type Step =
        *  step can pair the 2D cross-section (the algebra) with the solid
        *  itself (the intuition). */
       solid3d?: Solid3D
+      /** A scene in space built from boxes, cylinders and swept sections, with sliders: a beam that bends, a channel with water in it. Shown
+       *  after `figure` and `solid3d`. */
+      scene3d?: Scene3D
       /** A plain string when the snippet is language-neutral code with no
        *  prose in it; `Loc` only where a comment or string literal needs
        *  translating, so most snippets don't carry a redundant duplicate. */

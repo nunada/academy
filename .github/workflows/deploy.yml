@@ -242,6 +242,8 @@ jobs:
       - run: npm run check:cuboid
       - run: npm run check:prism
       - run: npm run check:rubik
+      - run: npm run check:scene3d
+      - run: npm run check:sipil
       - run: npm run check:realcards
       - run: npm run check:roles
       - run: npm run check:rolessql

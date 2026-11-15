@@ -1018,6 +1018,8 @@ th .sortable.on::after { content: ' ↓'; }
   cursor: grab;
 }
 .fig3d:active { cursor: grabbing; }
+/* A scene of several things side by side wants a little more room than one solid. */
+.fig3d.scene3d { max-width: 560px; }
 .fig3d canvas { display: block; width: 100%; height: 100%; }
 
 .figgrid { stroke: var(--fig-grid); stroke-width: 1; }

@@ -14,6 +14,7 @@ import { evalAnswer, isRight } from '../lib/answer'
 import { FigureView } from './Figure'
 // Three.js is heavy and only a handful of steps use it — load it only when one does.
 const Solid3DView = lazy(() => import('./Solid3DView').then((m) => ({ default: m.Solid3DView })))
+const Scene3DView = lazy(() => import('./Scene3DView').then((m) => ({ default: m.Scene3DView })))
 import { ResultList, fromPython, fromWeb, fromSql, fromTs, fromCpp } from './results'
 import { ResultTable } from './ResultTable'
 import { CompileReport } from './CompileReport'
@@ -247,6 +248,11 @@ function ConceptStep({ step, onSolved, solved }: Props & { step: Extract<Step, {
       {step.solid3d && (
         <Suspense fallback={<div className="fig3d" style={{ height: step.solid3d.height ?? 380 }} />}>
           <Solid3DView solid={step.solid3d} />
+        </Suspense>
+      )}
+      {step.scene3d && (
+        <Suspense fallback={<div className="fig3d scene3d" style={{ height: step.scene3d.height ?? 360 }} />}>
+          <Scene3DView scene={step.scene3d} />
         </Suspense>
       )}
       {code && (

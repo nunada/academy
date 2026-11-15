@@ -29,6 +29,7 @@ const MATH_COURSES = [
   'limit',
   'turunan',
   'aplikasi-turunan',
+  'turunan-teknik-sipil',
   'integral',
   'teknik-integrasi',
   'aplikasi-integral',
