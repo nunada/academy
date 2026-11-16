@@ -252,8 +252,8 @@ export const module1: Module = {
                 id: 'head menjelaskan halamannya; body adalah halamannya.',
               },
               hint: {
-                en: 'Think about which part of the document holds information *about* the page, and which part holds what a visitor actually sees rendered.',
-                id: 'Pikirkan bagian dokumen mana yang memuat keterangan *tentang* halaman, dan bagian mana yang memuat apa yang benar-benar dilihat pengunjung.',
+                en: 'Think about which part of the document holds information **about** the page, and which part holds what a visitor actually sees rendered.',
+                id: 'Pikirkan bagian dokumen mana yang memuat keterangan **tentang** halaman, dan bagian mana yang memuat apa yang benar-benar dilihat pengunjung.',
               },
             },
             {

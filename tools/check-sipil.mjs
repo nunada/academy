@@ -620,6 +620,9 @@ const EI = 20000
           for (const w of ['colour', 'centre', 'metre', 'neighbour', 'minimise', 'maximise', 'analyse']) ok(!t.includes(w), `${at}: British spelling ${w}`)
         }
         ok(!/—/.test(t), `${at} (${lang}): no long dash`)
+        // lesson prose knows `code`, **bold**, $maths$, lists, tables and links: a single *star* or _underscore_ would be printed as it is
+        const prose = t.replace(/\$\$[^$]*\$\$|\$[^$]*\$|`[^`]*`|\*\*[^*]+\*\*/g, ' ')
+        ok(!/\*/.test(prose) && !/(^|\s)_[^_\s][^_]*_(\s|$|[.,;:!?])/.test(prose) && !/^#{1,6}\s/m.test(prose), `${at} (${lang}): markdown the lesson text does not render (*italic*, _italic_ or a # heading): ${prose.slice(0, 80)}`)
       }
     }
   }

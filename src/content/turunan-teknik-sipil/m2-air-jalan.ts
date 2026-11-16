@@ -46,7 +46,7 @@ $$R=\frac{A}{P}.$$
 
 Friction acts where water touches the lining. For a given area $A$, roughness and slope, $Q$ grows as $R$ grows, and $R=\frac{A}{P}$ grows as $P$ shrinks. So the design question is a calculus question:
 
-**Among all channels with the same area, which has the smallest wetted perimeter?** That one is called the *best hydraulic section*: it carries the most water for the same excavation, or needs the least lining for the same water.`,
+**Among all channels with the same area, which has the smallest wetted perimeter?** That one is called the **best hydraulic section**: it carries the most water for the same excavation, or needs the least lining for the same water.`,
                 T`
 Banyaknya air yang dibawa saluran tiap detik, yaitu **debit** $Q$, diberikan oleh rumus Manning:
 $$Q=\frac{1}{n}\,A\,R^{2/3}\,\sqrt{S}$$
@@ -58,7 +58,7 @@ $$R=\frac{A}{P}.$$
 
 Gesekan bekerja di tempat air menyentuh lapisan. Untuk luas $A$, kekasaran, dan kemiringan tertentu, $Q$ bertambah saat $R$ bertambah, dan $R=\frac{A}{P}$ bertambah saat $P$ menyusut. Jadi pertanyaan perancangannya adalah pertanyaan kalkulus:
 
-**Di antara semua saluran dengan luas yang sama, mana yang keliling basahnya terkecil?** Itulah yang disebut *penampang hidraulik terbaik*: ia membawa air paling banyak untuk galian yang sama, atau memerlukan lapisan paling sedikit untuk air yang sama.`,
+**Di antara semua saluran dengan luas yang sama, mana yang keliling basahnya terkecil?** Itulah yang disebut **penampang hidraulik terbaik**: ia membawa air paling banyak untuk galian yang sama, atau memerlukan lapisan paling sedikit untuk air yang sama.`,
               ),
             },
             {

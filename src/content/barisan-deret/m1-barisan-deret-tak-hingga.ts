@@ -520,8 +520,8 @@ export const module1: Module = {
               ],
               answer: 0,
               explain: {
-                en: 'The nth-Term Test only rules a series out when the terms do *not* go to zero — when they do, the test is silent, and a separate argument (the next lesson\'s Integral Test, among others) is needed.',
-                id: 'Uji Suku ke-n hanya menyingkirkan sebuah deret ketika sukunya *tidak* menuju nol — ketika sukunya menuju nol, ujinya diam, dan argumen terpisah (Uji Integral pelajaran berikutnya, di antara yang lain) diperlukan.',
+                en: 'The nth-Term Test only rules a series out when the terms do **not** go to zero — when they do, the test is silent, and a separate argument (the next lesson\'s Integral Test, among others) is needed.',
+                id: 'Uji Suku ke-n hanya menyingkirkan sebuah deret ketika sukunya **tidak** menuju nol — ketika sukunya menuju nol, ujinya diam, dan argumen terpisah (Uji Integral pelajaran berikutnya, di antara yang lain) diperlukan.',
               },
               hint: {
                 en: 'The nth-Term Test was built as a contrapositive — re-read exactly which direction it proves, and which direction it stays silent on.',

@@ -91,7 +91,7 @@ $$=-\frac{x\,(216-12x^2+x^3)}{48.000}\ \text{m}.$$
                 T`
 How hard is the beam being bent at $x$? That is the **bending moment** $M(x)$, and it is tied to the deflection by the most used equation in structural engineering:
 $$EI\,y''(x)=M(x).$$
-$E$ measures the material (steel is stiffer than timber) and $I$ the shape of the cross-section, so $EI$ is the beam's resistance to bending. The second derivative $y''$ is how fast the slope changes, the *curvature*: a large moment or a small $EI$ bends the beam sharply.
+$E$ measures the material (steel is stiffer than timber) and $I$ the shape of the cross-section, so $EI$ is the beam's resistance to bending. The second derivative $y''$ is how fast the slope changes, the **curvature**: a large moment or a small $EI$ bends the beam sharply.
 
 For our beam, multiply the deflection by $EI$ and differentiate twice:
 
@@ -105,7 +105,7 @@ So $M(3)=5\cdot3\cdot3=45\text{ kN·m}$ at the middle and $M(0)=M(6)=0$ at the s
                 T`
 Seberapa kuat balok dilenturkan di $x$? Itulah **momen lentur** $M(x)$, dan ia terikat pada lendutan oleh persamaan yang paling sering dipakai dalam rekayasa struktur:
 $$EI\,y''(x)=M(x).$$
-$E$ mengukur bahannya (baja lebih kaku daripada kayu) dan $I$ bentuk penampangnya, sehingga $EI$ adalah ketahanan balok terhadap lenturan. Turunan kedua $y''$ adalah seberapa cepat kemiringan berubah, yaitu *kelengkungan*: momen yang besar atau $EI$ yang kecil melenturkan balok dengan tajam.
+$E$ mengukur bahannya (baja lebih kaku daripada kayu) dan $I$ bentuk penampangnya, sehingga $EI$ adalah ketahanan balok terhadap lenturan. Turunan kedua $y''$ adalah seberapa cepat kemiringan berubah, yaitu **kelengkungan**: momen yang besar atau $EI$ yang kecil melenturkan balok dengan tajam.
 
 Untuk balok kita, kalikan lendutan dengan $EI$ dan turunkan dua kali:
 

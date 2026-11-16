@@ -87,8 +87,8 @@ export const module1: Module = {
                 id: 'Hanya yang kedua menyebut arah. Kelajuan adalah besar dari kecepatan — skalar yang tersisa setelah arahnya dibuang.',
               },
               hint: {
-                en: 'A vector needs a magnitude *and* a direction stated together. Check each option for whether it actually names a "which way", not just a "how much".',
-                id: 'Vektor perlu besar *dan* arah yang disebut bersamaan. Periksa tiap pilihan, apakah ia benar-benar menyebut "ke mana", bukan cuma "seberapa banyak".',
+                en: 'A vector needs a magnitude **and** a direction stated together. Check each option for whether it actually names a "which way", not just a "how much".',
+                id: 'Vektor perlu besar **dan** arah yang disebut bersamaan. Periksa tiap pilihan, apakah ia benar-benar menyebut "ke mana", bukan cuma "seberapa banyak".',
               },
             },
             {
@@ -676,8 +676,8 @@ export const module1: Module = {
                 id: '$-2\\vec{a}$ membalik arah dan menggandakan panjangnya: $(1,2)$ menjadi $(-2,-4)$, anak panah C. Anak panah A adalah $2\\vec{a}$ (arah sama, digandakan); anak panah B adalah $-\\vec{a}$ (dibalik, panjang sama).',
               },
               hint: {
-                en: 'The scalar $-2$ does two separate things to $\\vec{a}$: it flips the direction *and* doubles the length. Check each labeled arrow against both requirements at once, not just one.',
-                id: 'Skalar $-2$ melakukan dua hal terpisah pada $\\vec{a}$: membalik arah *dan* menggandakan panjang. Periksa tiap anak panah berlabel terhadap kedua syarat sekaligus, bukan cuma satu.',
+                en: 'The scalar $-2$ does two separate things to $\\vec{a}$: it flips the direction **and** doubles the length. Check each labeled arrow against both requirements at once, not just one.',
+                id: 'Skalar $-2$ melakukan dua hal terpisah pada $\\vec{a}$: membalik arah **dan** menggandakan panjang. Periksa tiap anak panah berlabel terhadap kedua syarat sekaligus, bukan cuma satu.',
               },
             },
             {
