@@ -5,7 +5,7 @@ import type { Loc } from './types'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
-export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line'
+export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino'
 
 export interface GameMeta {
   id: GameId
@@ -542,6 +542,238 @@ Gambaran utuh bilangan-bilangan ini ada di [bilangan real](article:real-numbers)
       L('Placing fractions, decimals and percents on a number line', 'Meletakkan pecahan, desimal, dan persen pada garis bilangan'),
       L('Negative numbers and the scale of a number line', 'Bilangan negatif dan skala garis bilangan'),
       L('Estimating square roots, π and e', 'Memperkirakan akar, π, dan e'),
+    ],
+  },
+  {
+    id: 'math-domino',
+    slug: { en: 'math-domino', id: 'domino-matematika' },
+    icon: '🎲',
+    title: L('Math Domino: Match the Ends by Calculating', 'Domino Matematika: Cocokkan Ujungnya dengan Menghitung'),
+    seoTitle: L('Math Domino: a Free Online Game for Integers, Fractions and More', 'Domino Matematika: Game Gratis Online untuk Bilangan Bulat, Pecahan, dan Lainnya'),
+    description: L(
+      'A free math domino game for one player against the computer or 2 to 8 players online. Each half of a tile is a calculation or a plain number, and tiles touch when the values are equal. Natural numbers, integers, multiplication, fractions and order of operations.',
+      'Game domino matematika gratis untuk satu pemain melawan komputer atau 2 sampai 8 pemain online. Setiap sisi kartu berupa hitungan atau bilangan biasa, dan kartu bersentuhan bila nilainya sama. Bilangan asli, bilangan bulat, perkalian, pecahan, dan urutan operasi hitung.',
+    ),
+    keywords: L(
+      'math domino, math domino game online, domino game for kids, integer domino, fraction domino, multiplayer math game, play math games with friends, adding and subtracting integers game, order of operations game, equivalent fractions game, learn math by playing',
+      'domino matematika, game domino matematika online, game domino untuk anak, domino bilangan bulat, domino pecahan, game matematika multiplayer, main game matematika bersama teman, game penjumlahan dan pengurangan bilangan bulat, game urutan operasi hitung, game pecahan senilai, belajar matematika sambil bermain',
+    ),
+    tagline: L('Dominoes whose halves are calculations. Play the computer or friends.', 'Domino yang sisinya berupa hitungan. Lawan komputer atau teman.'),
+    answer: L(
+      '**Math Domino is a domino game in which each half of a tile is a calculation or a plain number, and two halves touch when their values are equal.** $3+4$ can sit next to $10-3$, because both are $7$. You can play alone against the computer or online with 2 to 8 players, with natural numbers, integers, multiplication and division, fractions, or the order of operations.',
+      '**Domino Matematika adalah game domino yang setiap sisi kartunya berupa hitungan atau bilangan biasa, dan dua sisi bersentuhan bila nilainya sama.** $3+4$ boleh bersebelahan dengan $10-3$, karena keduanya bernilai $7$. Kamu bisa bermain sendiri melawan komputer atau online dengan 2 sampai 8 pemain, dengan bilangan asli, bilangan bulat, perkalian dan pembagian, pecahan, atau urutan operasi hitung.',
+    ),
+    published: '2026-11-18',
+    updated: '2026-11-18',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Math Domino?', 'Bagaimana cara memainkan Domino Matematika?'),
+        text: L(
+          `1. Choose the kind of calculation and a level. Then play against the computer, or make a room and share its code with friends.
+2. Every tile has two halves, and each half is a calculation such as $3+4$ or $10-3$, or sometimes just a number such as $7$. You are dealt some tiles; the rest make the pile.
+3. A tile goes at one end of the chain, with a half that has **the same value** as that end touching it. $3+4$ and $10-3$ are both $7$, so they can touch.
+4. On your turn, tap one of your tiles, then tap the end where it goes, the **left end** or the **right end**. The first tile of the game can be any tile.
+5. If none of your tiles fits, press **Draw a tile**, and go on drawing until one fits. When the pile is empty, press **Pass**.
+6. The first player to play all their tiles wins. If nobody can move, the player with the fewest tiles left wins.
+
+A tile put where its value does not equal the end is a miscalculation: the tile stays in your hand, you draw one tile as a penalty and your turn is over. The game only says that the values are not equal; it never gives the answer.`,
+          `1. Pilih jenis hitungan dan tingkatnya. Lalu main melawan komputer, atau buat ruangan dan bagikan kodenya ke teman.
+2. Setiap kartu punya dua sisi, dan tiap sisi adalah hitungan seperti $3+4$ atau $10-3$, atau kadang hanya sebuah bilangan seperti $7$. Kamu dibagi beberapa kartu; sisanya menjadi tumpukan.
+3. Sebuah kartu dipasang di salah satu ujung rantai, dengan sisi yang **bernilai sama** dengan ujung itu saling bersentuhan. $3+4$ dan $10-3$ sama-sama $7$, jadi boleh bersentuhan.
+4. Pada gilirannya, ketuk salah satu kartumu, lalu ketuk ujung tempat memasangnya, **ujung kiri** atau **ujung kanan**. Kartu pertama dalam permainan boleh kartu mana saja.
+5. Bila tidak ada kartumu yang cocok, tekan **Ambil kartu**, dan terus ambil sampai ada yang cocok. Bila tumpukan habis, tekan **Lewati**.
+6. Pemain pertama yang menghabiskan semua kartunya menang. Bila tidak ada yang bisa jalan, pemain dengan kartu tersisa paling sedikit menang.
+
+Kartu yang dipasang di tempat yang nilainya tidak sama dengan ujungnya dianggap salah hitung: kartu tetap di tanganmu, kamu mengambil satu kartu sebagai hukuman, dan gilirannya selesai. Game hanya mengatakan bahwa nilainya tidak sama; ia tidak pernah memberi jawabannya.`,
+        ),
+      },
+      {
+        id: 'the-ends',
+        heading: L('How do you tell the ends of the chain?', 'Bagaimana cara mengenali ujung-ujung rantai?'),
+        text: L(
+          `- **The left end is the left half of the first tile in the chain, and the right end is the right half of the last tile.** Everything in between is already joined and no longer counts.
+- Two big boxes above the chain always show the two ends, **green for the left end and gold for the right end**, even when the chain is long enough to scroll. The same two halves are outlined in the same colors inside the chain, with the words left and right above them.
+- A tile fits an end when **one of its two halves** has the same value as that end. The half that touches the end is joined; the other half becomes the new end.
+- When you pick a tile, the boxes light up and say **Put it here**; tap the one you want. On a keyboard, press Tab to move between your tiles and the two boxes, and Enter to choose.
+- At the start the chain is empty and has no ends yet, so the first tile can be any tile.
+- To check your work, switch on **Show the value of each end**. It writes what each end is worth, for example $3+4=7$. It is a help for beginners, and you can leave it off.`,
+          `- **Ujung kiri adalah sisi kiri dari kartu pertama dalam rantai, dan ujung kanan adalah sisi kanan dari kartu terakhir.** Semua yang ada di antaranya sudah tersambung dan tidak dihitung lagi.
+- Dua kotak besar di atas rantai selalu menunjukkan kedua ujung, **hijau untuk ujung kiri dan emas untuk ujung kanan**, bahkan ketika rantainya cukup panjang sampai harus digeser. Kedua sisi yang sama diberi garis tepi dengan warna yang sama di dalam rantai, dengan kata kiri dan kanan di atasnya.
+- Sebuah kartu cocok dengan sebuah ujung bila **salah satu dari dua sisinya** bernilai sama dengan ujung itu. Sisi yang bersentuhan dengan ujung menjadi tersambung; sisi lainnya menjadi ujung yang baru.
+- Saat kamu memilih kartu, kotak-kotak itu menyala dan bertuliskan **Pasang di sini**; ketuk yang kamu inginkan. Dengan keyboard, tekan Tab untuk berpindah antara kartumu dan kedua kotak, dan Enter untuk memilih.
+- Di awal, rantainya kosong dan belum punya ujung, jadi kartu pertama boleh kartu mana saja.
+- Untuk memeriksa pekerjaanmu, nyalakan **Tampilkan nilai tiap ujung**. Ia menuliskan nilai tiap ujung, misalnya $3+4=7$. Ini bantuan untuk pemula, dan boleh dibiarkan mati.`,
+        ),
+      },
+      {
+        id: 'modes',
+        heading: L('What kinds of calculation can you play?', 'Hitungan jenis apa saja yang bisa dimainkan?'),
+        text: L(
+          `| Kind | What the halves look like | The nine values |
+|---|---|---|
+| Natural numbers: add and subtract | $3+4$, $10-3$, $15-8$ | $1$ to $9$ |
+| Integers: add and subtract | $-3+5$, $4-(-2)$, $6-4$ | $-4$ to $4$ |
+| Natural numbers: multiply and divide | $2\\times4$, $24\\div3$ | $2$ to $10$ |
+| Integers: multiply and divide | $(-2)\\times3$, $12\\div(-4)$ | $-4$ to $4$ |
+| Fractions: add, subtract and simplify | $\\frac12$, $\\frac36$, $\\frac14+\\frac14$, $\\frac32-\\frac12$ | $\\frac12$ to $4\\frac12$ in steps of $\\frac12$ |
+| Order of operations | $2+3\\times4$, $(8-2)\\div3$ | $2$ to $10$ |
+
+**A half is usually a calculation, but about three halves in ten at level 1, one in four at level 2 and one in five at level 3 are just a number**, such as $7$, so the two halves of one tile are often of different kinds. Each kind has three levels. At level 1 the calculations are short and use small numbers. At level 2 they are longer. At level 3 the numbers are bigger, there are more steps, and fractions may have different denominators.
+
+Every set has **nine different values and 45 tiles, one for each pair of values**, so a value shows up on ten halves, each written differently.`,
+          `| Jenis | Bentuk sisi kartunya | Kesembilan nilai |
+|---|---|---|
+| Bilangan asli: tambah dan kurang | $3+4$, $10-3$, $15-8$ | $1$ sampai $9$ |
+| Bilangan bulat: tambah dan kurang | $-3+5$, $4-(-2)$, $6-4$ | $-4$ sampai $4$ |
+| Bilangan asli: kali dan bagi | $2\\times4$, $24\\div3$ | $2$ sampai $10$ |
+| Bilangan bulat: kali dan bagi | $(-2)\\times3$, $12\\div(-4)$ | $-4$ sampai $4$ |
+| Pecahan: tambah, kurang, dan sederhanakan | $\\frac12$, $\\frac36$, $\\frac14+\\frac14$, $\\frac32-\\frac12$ | $\\frac12$ sampai $4\\frac12$ dengan selisih $\\frac12$ |
+| Urutan operasi hitung | $2+3\\times4$, $(8-2)\\div3$ | $2$ sampai $10$ |
+
+**Sebuah sisi biasanya berupa hitungan, tetapi sekitar tiga dari sepuluh sisi pada tingkat 1, satu dari empat pada tingkat 2, dan satu dari lima pada tingkat 3 hanyalah bilangan**, seperti $7$, sehingga kedua sisi sebuah kartu sering berlainan jenis. Setiap jenis punya tiga tingkat. Pada tingkat 1 hitungannya pendek dan bilangannya kecil. Pada tingkat 2 hitungannya lebih panjang. Pada tingkat 3 bilangannya lebih besar, langkahnya lebih banyak, dan pecahan boleh berpenyebut berbeda.
+
+Setiap set punya **sembilan nilai berbeda dan 45 kartu, satu untuk setiap pasangan nilai**, sehingga sebuah nilai muncul pada sepuluh sisi, masing-masing ditulis berbeda.`,
+        ),
+      },
+      {
+        id: 'online',
+        heading: L('How do you play online with friends?', 'Bagaimana cara bermain online dengan teman?'),
+        text: L(
+          `1. Type a name and press **Make a room**. You get a code of four characters, such as K7QF, and a link you can copy.
+2. Friends open the link, or type the code under **Join**. From 2 to 8 players can be in one room.
+3. You, the host, choose the kind of calculation and the level, and press **Start the game** when everyone is in.
+4. Everybody plays the same tiles on their own screen, and each player's turn shows to all.
+
+| Players | Tiles for each | Tiles in the pile at the start |
+|---|---|---|
+| 2 | 7 | 31 |
+| 3 | 7 | 24 |
+| 4 | 7 | 17 |
+| 5 | 6 | 15 |
+| 6 | 5 | 15 |
+| 7 | 5 | 10 |
+| 8 | 5 | 5 |
+
+The host's browser keeps the rules for the room, so if the host leaves, the room closes. A player who is out of contact for about 13 seconds is dropped from the game and their tiles go back to the pile; the others play on. After a game the host can start another with the same players.`,
+          `1. Ketik nama dan tekan **Buat ruangan**. Kamu mendapat kode empat karakter, seperti K7QF, dan sebuah link yang bisa disalin.
+2. Teman membuka link itu, atau mengetik kodenya di bagian **Gabung**. Satu ruangan bisa diisi 2 sampai 8 pemain.
+3. Kamu, sebagai tuan rumah, memilih jenis hitungan dan tingkatnya, lalu menekan **Mulai permainan** ketika semua sudah masuk.
+4. Semua orang memainkan kartu yang sama di layarnya sendiri, dan giliran tiap pemain terlihat oleh semua.
+
+| Pemain | Kartu per pemain | Kartu di tumpukan pada awal |
+|---|---|---|
+| 2 | 7 | 31 |
+| 3 | 7 | 24 |
+| 4 | 7 | 17 |
+| 5 | 6 | 15 |
+| 6 | 5 | 15 |
+| 7 | 5 | 10 |
+| 8 | 5 | 5 |
+
+Browser tuan rumah menjaga aturan untuk ruangan itu, jadi bila tuan rumah keluar, ruangannya ditutup. Pemain yang putus hubungan sekitar 13 detik dikeluarkan dari permainan dan kartunya kembali ke tumpukan; yang lain melanjutkan. Setelah satu permainan, tuan rumah bisa memulai permainan lagi dengan pemain yang sama.`,
+        ),
+      },
+      {
+        id: 'against-the-computer',
+        heading: L('How does the computer play?', 'Bagaimana komputer bermain?'),
+        text: L(
+          `The computer sees only what you could see: its own tiles and the chain. It has three strengths:
+
+| Strength | How it plays |
+|---|---|
+| Easy | puts down any tile that fits, and miscalculates about one time in five |
+| Medium | keeps its hand flexible, so that more of its tiles still fit after its move, and miscalculates about one time in sixteen |
+| Hard | does the same and also leaves ends that few tiles in the game can match, and never miscalculates |
+
+A computer that miscalculates puts a tile where it does not fit, draws a tile as a penalty and loses its turn, just as you would.`,
+          `Komputer hanya melihat apa yang bisa kamu lihat: kartunya sendiri dan rantai. Ia punya tiga tingkat kekuatan:
+
+| Tingkat | Cara bermainnya |
+|---|---|
+| Mudah | memasang kartu apa pun yang cocok, dan salah hitung sekitar satu kali dari lima |
+| Sedang | menjaga tangannya tetap luwes, sehingga lebih banyak kartunya yang masih cocok setelah langkahnya, dan salah hitung sekitar satu kali dari enam belas |
+| Sulit | melakukan hal yang sama dan juga meninggalkan ujung yang sedikit kartu dalam permainan bisa mencocokinya, dan tidak pernah salah hitung |
+
+Komputer yang salah hitung memasang kartu di tempat yang tidak cocok, mengambil kartu sebagai hukuman, dan kehilangan gilirannya, persis seperti kamu.`,
+        ),
+      },
+      {
+        id: 'why-domino',
+        heading: L('Why practise math with dominoes?', 'Mengapa berlatih matematika dengan domino?'),
+        text: L(
+          `The one idea behind the game is that **one value has many names**. $3+4$, $10-3$ and $14\\div2$ all stand for $7$, and $\\frac12$, $\\frac36$ and $\\frac14+\\frac14$ all stand for the same number. To play, you have to work each half out and compare the results, which is how you check an equation, and a quick, correct answer is rewarded at once because it lets you play a tile.
+
+The integer kinds practise the sign rules, such as $4-(-2)=6$ and $(-2)\\times(-3)=6$; see [integers](article:integers). The fraction kind practises equal fractions and sums over a common denominator; see [rational numbers](article:rational-numbers). The last kind practises doing multiplication and division before addition and subtraction.`,
+          `Gagasan di balik game ini adalah bahwa **satu nilai punya banyak nama**. $3+4$, $10-3$, dan $14\\div2$ semuanya menyatakan $7$, dan $\\frac12$, $\\frac36$, dan $\\frac14+\\frac14$ semuanya menyatakan bilangan yang sama. Untuk bermain, kamu harus menghitung tiap sisi dan membandingkan hasilnya, seperti cara memeriksa sebuah persamaan, dan jawaban yang cepat dan benar langsung berbalas karena memungkinkanmu memasang kartu.
+
+Jenis bilangan bulat melatih aturan tanda, seperti $4-(-2)=6$ dan $(-2)\\times(-3)=6$; lihat [bilangan bulat](article:integers). Jenis pecahan melatih pecahan senilai dan penjumlahan dengan penyebut sama; lihat [bilangan rasional](article:rational-numbers). Jenis terakhir melatih pengerjaan perkalian dan pembagian sebelum penjumlahan dan pengurangan.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('How do I play Math Domino?', 'Bagaimana cara bermain Domino Matematika?'),
+        a: L(
+          'Tap one of your tiles, then tap the left or the right end of the chain. A tile fits an end when one of its halves has the same value as that end, for example $3+4$ next to $10-3$. If no tile fits, draw from the pile.',
+          'Ketuk salah satu kartumu, lalu ketuk ujung kiri atau ujung kanan rantai. Sebuah kartu cocok dengan ujung bila salah satu sisinya bernilai sama dengan ujung itu, misalnya $3+4$ di samping $10-3$. Bila tidak ada kartu yang cocok, ambil dari tumpukan.',
+        ),
+      },
+      {
+        q: L('How can I see which end is which?', 'Bagaimana cara melihat mana ujung yang mana?'),
+        a: L(
+          'The two big boxes above the chain always show the ends: green is the left end and gold is the right end. The same two halves are outlined in those colors inside the chain. You can also switch on a help that shows what each end is worth.',
+          'Dua kotak besar di atas rantai selalu menunjukkan ujungnya: hijau adalah ujung kiri dan emas adalah ujung kanan. Kedua sisi yang sama diberi garis tepi dengan warna itu di dalam rantai. Kamu juga bisa menyalakan bantuan yang menampilkan nilai tiap ujung.',
+        ),
+      },
+      {
+        q: L('What happens if I put a tile in the wrong place?', 'Apa yang terjadi bila aku memasang kartu di tempat yang salah?'),
+        a: L(
+          'It counts as a miscalculation: the tile stays in your hand, you draw one tile from the pile as a penalty, and your turn is over. The game tells you only that the values were not equal, not what they are.',
+          'Itu dihitung salah hitung: kartu tetap di tanganmu, kamu mengambil satu kartu dari tumpukan sebagai hukuman, dan gilirannya selesai. Game hanya memberi tahu bahwa nilainya tidak sama, bukan berapa nilainya.',
+        ),
+      },
+      {
+        q: L('How many people can play online?', 'Berapa orang yang bisa bermain online?'),
+        a: L(
+          'From 2 to 8 players in one room. One player makes the room and gets a four-character code; the others join with that code or with the link. No account is needed.',
+          'Dari 2 sampai 8 pemain dalam satu ruangan. Satu pemain membuat ruangan dan mendapat kode empat karakter; yang lain bergabung dengan kode itu atau dengan link-nya. Tidak perlu akun.',
+        ),
+      },
+      {
+        q: L('Is online play private and safe?', 'Apakah bermain online ini pribadi dan aman?'),
+        a: L(
+          'The only thing shared with the other players is the name you type, and nothing is stored on a server. A room is a channel named by its code, so anyone who has the code can join while the game has not started. A technically skilled player could also read the other players\' tiles from the network traffic, so play with friends and not for prizes.',
+          'Satu-satunya yang dibagikan ke pemain lain adalah nama yang kamu ketik, dan tidak ada yang disimpan di server. Ruangan adalah saluran yang namanya adalah kodenya, jadi siapa pun yang punya kodenya bisa bergabung selama permainan belum dimulai. Pemain yang ahli teknis juga bisa membaca kartu pemain lain dari lalu lintas jaringan, jadi bermainlah dengan teman dan bukan untuk hadiah.',
+        ),
+      },
+      {
+        q: L('How strong is the computer?', 'Seberapa kuat komputernya?'),
+        a: L(
+          'You choose: easy, medium or hard. An easy computer miscalculates about one time in five; a hard one never does and plays to keep your options narrow.',
+          'Kamu yang memilih: mudah, sedang, atau sulit. Komputer yang mudah salah hitung sekitar satu kali dari lima; yang sulit tidak pernah salah dan bermain untuk mempersempit pilihanmu.',
+        ),
+      },
+      {
+        q: L('Which math topics does Math Domino practise?', 'Topik matematika apa yang dilatih Domino Matematika?'),
+        a: L(
+          'Adding and subtracting natural numbers and integers, multiplying and dividing (also with negative numbers), equal fractions and adding fractions, and the order of operations.',
+          'Menjumlah dan mengurangi bilangan asli dan bilangan bulat, mengalikan dan membagi (juga dengan bilangan negatif), pecahan senilai dan penjumlahan pecahan, serta urutan operasi hitung.',
+        ),
+      },
+      {
+        q: L('Does Math Domino save my score?', 'Apakah Domino Matematika menyimpan skorku?'),
+        a: L(
+          'No. Only your choices (name, kind of calculation, level) are remembered in this browser, so you do not have to set them again. Nothing is sent to an account.',
+          'Tidak. Hanya pilihanmu (nama, jenis hitungan, tingkat) yang diingat di browser ini, jadi kamu tidak perlu mengaturnya lagi. Tidak ada yang dikirim ke sebuah akun.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Adding and subtracting natural numbers and integers', 'Menjumlah dan mengurangi bilangan asli dan bilangan bulat'),
+      L('Multiplying and dividing, with negative numbers too', 'Mengalikan dan membagi, juga dengan bilangan negatif'),
+      L('Equal fractions and adding fractions', 'Pecahan senilai dan penjumlahan pecahan'),
+      L('The order of operations', 'Urutan operasi hitung'),
     ],
   },
 ]
