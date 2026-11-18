@@ -1982,7 +1982,8 @@ main:focus, .page:focus { outline: none; }
 .dmstart { grid-column: 1 / -1; padding: 18px; border: 3px dashed var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); font: inherit; font-weight: 700; cursor: default; }
 .dmstart.armed { border: 3px solid var(--brand); cursor: pointer; animation: dmpulse 1.5s ease-in-out infinite; }
 .dmhelp { display: block; margin: 8px 0 0; font-size: 0.85rem; color: var(--muted); }
-.dmchainwrap { margin: 12px 0; }
+.dmchainwrap { margin: 0 0 10px; }
+.dmends + .dmhelp { margin-bottom: 4px; }
 .dmchain { display: flex; align-items: stretch; gap: 4px; overflow-x: auto; padding: 26px 8px 10px; }
 .dmchain::before, .dmchain::after { content: ''; margin: auto; }
 .dmempty { padding: 14px 0; }
@@ -2009,8 +2010,14 @@ main:focus, .page:focus { outline: none; }
 .dmlog p { margin: 2px 0; color: var(--muted); font-size: 0.88rem; }
 .dmlog p.last { color: var(--text); }
 .dmlog p.dmrefusal { color: var(--bad); font-weight: 600; }
-.dmresult { margin-top: 14px; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
-.dmresult h3 { margin: 0 0 8px; }
+.dmresult { position: relative; overflow: hidden; margin: 0 0 12px; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.dmresult.win { border: 2px solid var(--brand); background: var(--brand-soft); }
+.dmresult h3 { margin: 0 0 8px; font-size: 1.3rem; }
+.dmconfetti { position: absolute; inset: 0; pointer-events: none; }
+.dmconfetti i { position: absolute; top: -12px; width: 8px; height: 14px; border-radius: 2px; background: var(--brand); animation: dmfall 2.4s ease-in 2; opacity: 0; }
+.dmconfetti i:nth-child(3n) { background: var(--fig-c); }
+.dmconfetti i:nth-child(3n+1) { background: var(--fig-a); }
+@keyframes dmfall { 0% { transform: translateY(0) rotate(0); opacity: 1; } 100% { transform: translateY(200px) rotate(300deg); opacity: 0; } }
 .dmranks { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 6px; }
 .dmranks li { display: flex; gap: 10px; align-items: baseline; }
 .dmranks li.first .dmname { color: var(--brand); }
@@ -2018,6 +2025,7 @@ main:focus, .page:focus { outline: none; }
 @keyframes dmpulse { 0%, 100% { box-shadow: 0 0 0 0 transparent; } 50% { box-shadow: 0 0 0 5px var(--brand-soft); } }
 @media (prefers-reduced-motion: reduce) {
   .dmend.armed, .dmstart.armed { animation: none; }
+  .dmconfetti { display: none; }
   .dmtile.sel { transform: none; }
 }
 @media (max-width: 520px) {

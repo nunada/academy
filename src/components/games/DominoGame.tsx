@@ -142,7 +142,7 @@ interface TableProps {
   after?: ReactNode
 }
 
-function Table({ snap, hand, me, waiting, refusal, thinking, onAct, after }: TableProps) {
+function Table({ snap, hand, me, waiting, refusal, thinking, onAct: send, after }: TableProps) {
   const { lang } = useI18n()
   const t: T = (en, id) => (lang === 'id' ? id : en)
   const speak = (tex: string) => texSpeech(tex, lang)
@@ -152,6 +152,13 @@ function Table({ snap, hand, me, waiting, refusal, thinking, onAct, after }: Tab
   const chainRef = useRef<HTMLDivElement>(null)
   const lastVer = useRef(-1)
   const lastEnd = useRef<End>('right')
+  // a refusal ("one of your tiles still fits") is a passing remark: it goes after a few seconds, or as soon as the player does something else
+  const [hideN, setHideN] = useState(0)
+  const resultRef = useRef<HTMLDivElement>(null)
+  const onAct = (a: Action) => {
+    if (refusal) setHideN(refusal.n)
+    send(a)
+  }
 
   const nameOf = useCallback((id: string) => snap.players.find((p) => p.id === id)?.name ?? '?', [snap.players])
   const myTurn = snap.phase === 'play' && snap.turn === me
@@ -169,6 +176,22 @@ function Table({ snap, hand, me, waiting, refusal, thinking, onAct, after }: Tab
     if (lines.length) setLog((prev) => [...prev, ...lines.map((text, i) => ({ key: snap.ver * 10 + i, text }))].slice(-4))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [snap.ver])
+
+  useEffect(() => {
+    if (!refusal) return
+    const n = refusal.n
+    const timer = window.setTimeout(() => setHideN(n), 4000)
+    return () => window.clearTimeout(timer)
+  }, [refusal])
+  useEffect(() => {
+    if (sel !== null && refusal) setHideN(refusal.n)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sel])
+
+  // the result is next to the board: bring it into view when the game ends
+  useEffect(() => {
+    if (over) resultRef.current?.scrollIntoView({ block: 'nearest', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+  }, [over])
 
   // a tile that is no longer in the hand cannot stay selected
   useEffect(() => {
@@ -262,22 +285,35 @@ function Table({ snap, hand, me, waiting, refusal, thinking, onAct, after }: Tab
         </li>
       </ul>
 
-      <div className="dmends" role="group" aria-label={t('The two ends of the chain', 'Kedua ujung rantai')}>
-        {empty ? (
-          <button type="button" className={`dmstart${canAct && sel !== null ? ' armed' : ''}`} disabled={!(canAct && sel !== null)} onClick={() => place('right')}>
-            {canAct && sel !== null ? t('Start the chain with this tile', 'Mulai rantai dengan kartu ini') : t('The chain is empty: no ends yet', 'Rantai masih kosong: belum ada ujung')}
-          </button>
-        ) : (
-          <>
-            {endPanel('left')}
-            {endPanel('right')}
-          </>
-        )}
-      </div>
-      {!empty && (
-        <label className="dmhelp">
-          <input type="checkbox" checked={showValue} onChange={(e) => setShowValue(e.target.checked)} /> {t('Show the value of each end (a help)', 'Tampilkan nilai tiap ujung (bantuan)')}
-        </label>
+      {over && snap.ranks && (
+        <div className={`dmresult${mine && mine.rank === 1 ? ' win' : ''}`} ref={resultRef}>
+          {mine && mine.rank === 1 && (
+            <span className="dmconfetti" aria-hidden="true">
+              {Array.from({ length: 14 }, (_, i) => (
+                <i key={i} style={{ left: `${4 + i * 7}%`, animationDelay: `${(i % 5) * 0.18}s` }} />
+              ))}
+            </span>
+          )}
+          <h3>{mine && mine.rank === 1 ? '🎉 ' : ''}{headline}</h3>
+          <ol className="dmranks">
+            {[...snap.ranks]
+              .sort((a, b) => a.rank - b.rank)
+              .map((r) => {
+                const p = snap.players.find((x) => x.id === r.id)
+                return (
+                  <li key={r.id} className={r.rank === 1 ? 'first' : ''}>
+                    <span className="dmrank">{r.rank}</span>
+                    <span className="dmname">
+                      {p?.name ?? '?'}
+                      {mark(p?.name ?? '', r.id === me, t)}
+                    </span>
+                    <span className="dmcount">{p?.gone ? t('left', 'keluar') : `${r.count} ${t(r.count === 1 ? 'tile left' : 'tiles left', 'kartu tersisa')}`}</span>
+                  </li>
+                )
+              })}
+          </ol>
+          {after}
+        </div>
       )}
 
       <div className="dmchainwrap">
@@ -300,9 +336,35 @@ function Table({ snap, hand, me, waiting, refusal, thinking, onAct, after }: Tab
         </div>
       </div>
 
+      <div className="dmends" role="group" aria-label={t('The two ends of the chain', 'Kedua ujung rantai')}>
+        {empty ? (
+          <button type="button" className={`dmstart${canAct && sel !== null ? ' armed' : ''}`} disabled={!(canAct && sel !== null)} onClick={() => place('right')}>
+            {canAct && sel !== null ? t('Start the chain with this tile', 'Mulai rantai dengan kartu ini') : t('The chain is empty: no ends yet', 'Rantai masih kosong: belum ada ujung')}
+          </button>
+        ) : (
+          <>
+            {endPanel('left')}
+            {endPanel('right')}
+          </>
+        )}
+      </div>
+      {!empty && (
+        <label className="dmhelp">
+          <input type="checkbox" checked={showValue} onChange={(e) => setShowValue(e.target.checked)} /> {t('Show the value of each end (a help)', 'Tampilkan nilai tiap ujung (bantuan)')}
+        </label>
+      )}
+
+      {!over && <p className={`dmstatus${myTurn ? ' mine' : ''}`}>{status}</p>}
+      <div className="dmlog" aria-live="polite" role="log">
+        {refusal && refusal.why !== 'over' && refusal.n !== hideN && <p className="dmrefusal" key={`r${refusal.n}`}>{refusalText(refusal.why, t)}</p>}
+        {log.map((l, i) => (
+          <p key={l.key} className={i === log.length - 1 ? 'last' : ''}>
+            {l.text}
+          </p>
+        ))}
+      </div>
       {!over && (
         <>
-          <p className={`dmstatus${myTurn ? ' mine' : ''}`}>{status}</p>
           <div className="dmhandhead">
             <b>{t('Your tiles', 'Kartumu')}</b>
             <span className="dmactions">
@@ -337,38 +399,7 @@ function Table({ snap, hand, me, waiting, refusal, thinking, onAct, after }: Tab
         {hand.length === 0 && !over && <span className="muted small">{t('No tiles left.', 'Tidak ada kartu lagi.')}</span>}
       </div>
 
-      <div className="dmlog" aria-live="polite" role="log">
-        {refusal && refusal.why !== 'over' && <p className="dmrefusal" key={`r${refusal.n}`}>{refusalText(refusal.why, t)}</p>}
-        {log.map((l, i) => (
-          <p key={l.key} className={i === log.length - 1 ? 'last' : ''}>
-            {l.text}
-          </p>
-        ))}
-      </div>
 
-      {over && snap.ranks && (
-        <div className="dmresult">
-          <h3>{headline}</h3>
-          <ol className="dmranks">
-            {[...snap.ranks]
-              .sort((a, b) => a.rank - b.rank)
-              .map((r) => {
-                const p = snap.players.find((x) => x.id === r.id)
-                return (
-                  <li key={r.id} className={r.rank === 1 ? 'first' : ''}>
-                    <span className="dmrank">{r.rank}</span>
-                    <span className="dmname">
-                      {p?.name ?? '?'}
-                      {mark(p?.name ?? '', r.id === me, t)}
-                    </span>
-                    <span className="dmcount">{p?.gone ? t('left', 'keluar') : `${r.count} ${t(r.count === 1 ? 'tile left' : 'tiles left', 'kartu tersisa')}`}</span>
-                  </li>
-                )
-              })}
-          </ol>
-          {after}
-        </div>
-      )}
     </div>
   )
 }

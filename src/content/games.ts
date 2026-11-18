@@ -593,13 +593,13 @@ Kartu yang dipasang di tempat yang nilainya tidak sama dengan ujungnya dianggap 
         heading: L('How do you tell the ends of the chain?', 'Bagaimana cara mengenali ujung-ujung rantai?'),
         text: L(
           `- **The left end is the left half of the first tile in the chain, and the right end is the right half of the last tile.** Everything in between is already joined and no longer counts.
-- Two big boxes above the chain always show the two ends, **green for the left end and gold for the right end**, even when the chain is long enough to scroll. The same two halves are outlined in the same colors inside the chain, with the words left and right above them.
+- Two big boxes right below the chain always show the two ends, **green for the left end and gold for the right end**, even when the chain is long enough to scroll. The same two halves are outlined in the same colors inside the chain, with the words left and right above them.
 - A tile fits an end when **one of its two halves** has the same value as that end. The half that touches the end is joined; the other half becomes the new end.
 - When you pick a tile, the boxes light up and say **Put it here**; tap the one you want. On a keyboard, press Tab to move between your tiles and the two boxes, and Enter to choose.
 - At the start the chain is empty and has no ends yet, so the first tile can be any tile.
 - To check your work, switch on **Show the value of each end**. It writes what each end is worth, for example $3+4=7$. It is a help for beginners, and you can leave it off.`,
           `- **Ujung kiri adalah sisi kiri dari kartu pertama dalam rantai, dan ujung kanan adalah sisi kanan dari kartu terakhir.** Semua yang ada di antaranya sudah tersambung dan tidak dihitung lagi.
-- Dua kotak besar di atas rantai selalu menunjukkan kedua ujung, **hijau untuk ujung kiri dan emas untuk ujung kanan**, bahkan ketika rantainya cukup panjang sampai harus digeser. Kedua sisi yang sama diberi garis tepi dengan warna yang sama di dalam rantai, dengan kata kiri dan kanan di atasnya.
+- Dua kotak besar tepat di bawah rantai selalu menunjukkan kedua ujung, **hijau untuk ujung kiri dan emas untuk ujung kanan**, bahkan ketika rantainya cukup panjang sampai harus digeser. Kedua sisi yang sama diberi garis tepi dengan warna yang sama di dalam rantai, dengan kata kiri dan kanan di atasnya.
 - Sebuah kartu cocok dengan sebuah ujung bila **salah satu dari dua sisinya** bernilai sama dengan ujung itu. Sisi yang bersentuhan dengan ujung menjadi tersambung; sisi lainnya menjadi ujung yang baru.
 - Saat kamu memilih kartu, kotak-kotak itu menyala dan bertuliskan **Pasang di sini**; ketuk yang kamu inginkan. Dengan keyboard, tekan Tab untuk berpindah antara kartumu dan kedua kotak, dan Enter untuk memilih.
 - Di awal, rantainya kosong dan belum punya ujung, jadi kartu pertama boleh kartu mana saja.
@@ -722,8 +722,8 @@ Jenis bilangan bulat melatih aturan tanda, seperti $4-(-2)=6$ dan $(-2)\\times(-
       {
         q: L('How can I see which end is which?', 'Bagaimana cara melihat mana ujung yang mana?'),
         a: L(
-          'The two big boxes above the chain always show the ends: green is the left end and gold is the right end. The same two halves are outlined in those colors inside the chain. You can also switch on a help that shows what each end is worth.',
-          'Dua kotak besar di atas rantai selalu menunjukkan ujungnya: hijau adalah ujung kiri dan emas adalah ujung kanan. Kedua sisi yang sama diberi garis tepi dengan warna itu di dalam rantai. Kamu juga bisa menyalakan bantuan yang menampilkan nilai tiap ujung.',
+          'The two big boxes right below the chain always show the ends: green is the left end and gold is the right end. The same two halves are outlined in those colors inside the chain. You can also switch on a help that shows what each end is worth.',
+          'Dua kotak besar tepat di bawah rantai selalu menunjukkan ujungnya: hijau adalah ujung kiri dan emas adalah ujung kanan. Kedua sisi yang sama diberi garis tepi dengan warna itu di dalam rantai. Kamu juga bisa menyalakan bantuan yang menampilkan nilai tiap ujung.',
         ),
       },
       {
