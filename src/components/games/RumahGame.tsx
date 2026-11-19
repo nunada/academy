@@ -420,7 +420,7 @@ function Table({ op, game, names, mine, thinking, away, awayLeft, timer, ver, ev
   const strip = (c: Color) => (game.placing ? game.pending[c] : game.pawn[c])
 
   return (
-    <div className={`rhtable${over ? ' over' : ''}`}>
+    <div className={`rhtable${over ? ' rhover' : ''}`}>
       <ul className="rhscore" aria-label={t('Players', 'Pemain')}>
         {(['blue', 'gold'] as Color[]).map((c) => (
           <li key={c} className={`rhplayer ${c}${!over && c === cur ? ' turn' : ''}${away?.[c] ? ' away' : ''}`} aria-current={!over && c === cur ? 'true' : undefined}>
@@ -977,6 +977,8 @@ export default function RumahGame({ op }: { op: Op }) {
   }, [])
   useEffect(() => {
     if (stage.k === 'menu') setUnlocked(readUnlocked(op))
+    // a game that has begun is brought to the top of the window, where the board and what is beside it fit the screen
+    else document.querySelector('.rhgame')?.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
   }, [stage.k, op])
 
   const update = (patch: Partial<Settings>) =>

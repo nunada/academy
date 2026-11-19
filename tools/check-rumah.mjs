@@ -912,6 +912,11 @@ for (const op of ['times', 'plus']) {
   ok(/--rh-blue/.test(rule('.rhmark.blue')) && /--rh-gold/.test(rule('.rhmark.gold')) && /--rh-blue/.test(rule('.rhcell.own.blue')) && /--rh-gold/.test(rule('.rhcell.own.gold')), 'the two players have their own colors')
   ok((rh.match(/--rh-blue:/g) ?? []).length === 3 && (rh.match(/--rh-gold:/g) ?? []).length === 3 && /prefers-color-scheme: dark/.test(rh) && /data-theme="dark"/.test(rh), 'both colors are defined for light, dark by system and dark by choice')
   ok(/repeat\(9, minmax\(0, 1fr\)\)/.test(rule('.rhboard')) && /aspect-ratio: 1/.test(rule('.rhcell')), 'the board is nine equal columns of square cells, so it fits a phone')
+  // a class called `over` is the overline of a formula (.over in styles.css), so no element of the game may carry it: it drew a line above every text
+  ok(/\.over \{ text-decoration: overline/.test(css) && !/className=\{?[`"'][^`"']*(?:^|[ '`])over[ '`$"]/.test(ui) && /rhtable\$\{over \? ' rhover' : ''\}/.test(ui), 'the finished table is not given the class over, which draws a line above the text')
+  // on a laptop the board and everything beside it are two columns, so that the game fits the window without scrolling up and down
+  const wide = css.slice(css.indexOf('/* On a laptop the Houses use two columns'))
+  ok(/min-width: 900px/.test(wide) && /grid-template-columns: minmax\(0, 1fr\) 340px/.test(wide) && /calc\(100vh - 150px\)/.test(wide) && /\.rhtable > \.rhboard \{ grid-column: 1/.test(wide), 'a wide window shows the board on the left, as tall as the window allows, and the rest beside it')
 }
 
 console.log(`rumah check: ${checks} checks, ${bad} failure(s)`)

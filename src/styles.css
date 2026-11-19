@@ -2047,7 +2047,7 @@ main:focus, .page:focus { outline: none; }
   :root:not([data-theme="light"]) { --rh-blue: #8fb8ea; --rh-gold: #f5c65b; }
 }
 :root[data-theme="dark"] { --rh-blue: #8fb8ea; --rh-gold: #f5c65b; }
-.rhgame { max-width: 640px; }
+.rhgame { max-width: 640px; scroll-margin-top: 64px; }
 .rhtable { display: grid; gap: 10px; }
 .rhtable > * { margin: 0; }
 .rhscore { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0; margin: 0; }
@@ -2103,3 +2103,16 @@ main:focus, .page:focus { outline: none; }
 .dminvite .dmfield input { max-width: none; font-size: 1.05rem; }
 .dminvite-go { font-size: 1.1rem; padding: 12px 16px; justify-content: center; }
 .linkbtn { justify-self: start; padding: 0; border: 0; background: none; color: var(--brand); font: inherit; text-decoration: underline; cursor: pointer; }
+
+/* On a laptop the Houses use two columns: the board on the left, as tall as the window allows, and everything else beside it, so that the game fits the
+   screen without scrolling up and down. (A class called `over` is the overline of a formula, so the finished table is `rhover`.) */
+@media (min-width: 900px) {
+  .gamepage .article-body { max-width: none; }
+  .gamepage .article-body > :not(.rhgame) { max-width: 74ch; }
+  .rhgame { max-width: 1080px; }
+  .rhtable { grid-template-columns: minmax(0, 1fr) 340px; column-gap: 24px; align-items: start; align-content: start; }
+  .rhtable > * { grid-column: 2; }
+  .rhtable > .rhboard { grid-column: 1; grid-row: 1 / span 12; width: min(100%, calc(100vh - 150px)); min-width: 340px; justify-self: center; }
+  .rhstrip { gap: 3px; }
+  .rhpawn { min-height: 46px; }
+}
