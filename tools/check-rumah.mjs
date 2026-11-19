@@ -91,6 +91,8 @@ function randomGame(op, seed, { wrongChance = 0.02 } = {}) {
   const r = rng(seed * 7 + 3)
   let g = C.newGame(op, r() < 0.5 ? 'blue' : 'gold', seed)
   const owned = { blue: 0, gold: 0 }
+  /** the number the pawn stood on before it was moved this turn */
+  let from = null
   let steps = 0
   while (g.status === 'play' && steps++ < 400) {
     const before = clone(g)
@@ -107,6 +109,7 @@ function randomGame(op, seed, { wrongChance = 0.02 } = {}) {
     if (!g.moved) {
       // a pawn that stays where it is is refused; any other number is a move
       const stay = g.pawn[me]
+      from = stay
       const bad1 = C.setPawn(g, stay)
       ok(!bad1.ok && bad1.reason === 'same', 'a pawn must move to another number')
       ok(!C.setPawn(g, 0).ok && !C.setPawn(g, 10).ok && !C.setPawn(g, 1.5).ok && C.setPawn(g, 10).reason === 'bad', 'a number outside 1 to 9 is refused')
@@ -134,7 +137,13 @@ function randomGame(op, seed, { wrongChance = 0.02 } = {}) {
     const taken = g.board.findIndex((c) => c.owner !== null)
     if (taken >= 0) ok(C.claim(g, taken).reason === 'taken', 'a taken cell is refused')
     ok(C.claim(g, -1).reason === 'bad' && C.claim(g, 81).reason === 'bad' && C.claim(g, 2.5).reason === 'bad', 'a cell outside the board is refused')
-    ok(C.setPawn(g, 1 + ((g.pawn[me] + 1) % 9)).ok || true, 'moving the pawn again is not what is tested here')
+    // the pawn has moved this turn: it cannot move again, not to another number and not back to the place it left
+    {
+      const again = C.setPawn(g, 1 + ((g.pawn[me] + 1) % 9))
+      const back = from === null ? null : C.setPawn(g, from)
+      ok(!again.ok && again.reason === 'moved' && same(g, clone(g)), 'a pawn that has moved cannot move again in the same turn')
+      if (back) ok(!back.ok && back.reason === 'moved', 'and not back to the place it left')
+    }
     if (r() < wrongChance) {
       const wrongCells = g.board.map((c, i) => (c.owner === null && c.value !== v ? i : -1)).filter((i) => i >= 0)
       if (wrongCells.length) {
@@ -612,7 +621,7 @@ for (const op of ['times', 'plus']) {
   const cur = g().current
   now.act({ t: 'pawn', n: 5 })
   R.step(300)
-  ok(g().pawn.blue === 4 && g().pawn.gold === 4 && now.view().refusal.why === 'not-moved' || g().current === cur, 'after the first turn’s pawns a pawn is not moved again in the same turn')
+  ok(g().pawn.blue === 4 && g().pawn.gold === 4 && g().current === cur && now.view().refusal.why === 'moved', 'after the pawns of the first turn a pawn is not moved again in the same turn')
 }
 {
   // a wrong cell loses the game for the one who took it

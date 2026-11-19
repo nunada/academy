@@ -139,7 +139,7 @@ export type GameEvent =
   | { k: 'time'; c: Color }
   | { k: 'missed'; c: Color }
 
-export type Refusal = 'over' | 'bad' | 'same' | 'not-set' | 'not-moved' | 'taken' | 'turn'
+export type Refusal = 'over' | 'bad' | 'same' | 'moved' | 'not-set' | 'not-moved' | 'taken' | 'turn'
 export type Result = { ok: true; g: Game; events: GameEvent[] } | { ok: false; reason: Refusal }
 
 export function newGame(op: Op, first: Color, seed: number): Game {
@@ -193,7 +193,7 @@ function afterPawn(g: Game, events: GameEvent[]): void {
 }
 
 /** The player whose turn it is puts a pawn on a number. The first turn sets the blue pawn, then the gold one (any numbers, even the same); later the player
- *  moves their own pawn to a different number. */
+ *  moves their own pawn to a different number, once: the place the pawn left cannot be chosen again in the same turn. */
 export function setPawn(g0: Game, n: number): Result {
   if (g0.status !== 'play') return { ok: false, reason: 'over' }
   if (!Number.isInteger(n) || n < 1 || n > FACTORS) return { ok: false, reason: 'bad' }
@@ -210,6 +210,8 @@ export function setPawn(g0: Game, n: number): Result {
     }
     return { ok: true, g, events }
   }
+  // the pawn moves once a turn: when it has moved, the turn goes on with taking a cell, and the pawn cannot be moved again (nor back to where it was)
+  if (g.moved) return { ok: false, reason: 'moved' }
   if (g.pawn[g.current] === n) return { ok: false, reason: 'same' }
   g.pawn[g.current] = n
   events.push({ k: 'pawn', c: g.current, pawn: g.current, n, start: false })

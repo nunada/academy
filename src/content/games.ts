@@ -818,7 +818,7 @@ Jenis bilangan bulat melatih aturan tanda, seperti $4-(-2)=6$ dan $(-2)\\times(-
 2. The board holds the 81 products 1 × 1 to 9 × 9 (so 12 appears four times, 36 appears three times, and 1 only once). The cell in the middle is always 1, the one result that is on the board only once (1 × 1).
 3. Under the board is a strip with the numbers 1 to 9. Each player has a pawn on it: **blue** (●) and **yellow** (◆). The player who starts puts both pawns on a number each, the same number if they like.
 4. Then take a cell of the board that holds the product of the two pawns. For example, with the pawns on 3 and 4 the result is 12, because 3 × 4 = 12.
-5. On every later turn you **must move your own pawn** to a different number, work out the new product, and take a free cell that holds it.
+5. On every later turn you **must move your own pawn**, once, to a different number (the number it left is shut for the rest of the turn), work out the new product, and take a free cell that holds it.
 6. The first player to have **four cells in a row**, across, down or diagonally, wins. If the board fills up first, it is a draw.
 
 If every cell that holds the result is already taken, your turn passes without taking a cell.`,
@@ -826,7 +826,7 @@ If every cell that holds the result is already taken, your turn passes without t
 2. Papan berisi 81 hasil kali 1 × 1 sampai 9 × 9 (jadi 12 muncul empat kali, 36 muncul tiga kali, dan 1 hanya sekali). Petak di tengah selalu 1, satu-satunya hasil yang hanya sekali di papan (1 × 1).
 3. Di bawah papan ada deret angka 1 sampai 9. Tiap pemain punya satu pion di situ: **biru** (●) dan **kuning** (◆). Pemain yang mulai menaruh kedua pion, masing-masing di satu angka, boleh angka yang sama.
 4. Lalu ambil sebuah petak di papan yang berisi hasil kali kedua pion. Misalnya, dengan pion di 3 dan 4 hasilnya 12, karena 3 × 4 = 12.
-5. Pada setiap giliran berikutnya kamu **wajib memindahkan pionmu sendiri** ke angka lain, menghitung hasil kali yang baru, dan mengambil petak kosong yang berisinya.
+5. Pada setiap giliran berikutnya kamu **wajib memindahkan pionmu sendiri**, satu kali, ke angka lain (angka yang ditinggalkan tertutup sampai giliran selesai), menghitung hasil kali yang baru, dan mengambil petak kosong yang berisinya.
 6. Pemain pertama yang punya **empat petak sejajar**, mendatar, menurun, atau miring, menang. Bila papan penuh lebih dulu, hasilnya seri.
 
 Bila semua petak yang berisi hasilnya sudah terisi, gilirannya dilewati tanpa mengambil petak.`,
@@ -983,7 +983,7 @@ Langkah yang menang jarang yang pertama kamu lihat: kamu juga memperhatikan apa 
 2. The board holds the 81 sums 1 + 1 to 9 + 9 (so 10 appears nine times, and 2 and 18 only once each). The cell in the middle is always 2, the one result that is on the board only once (1 + 1).
 3. Under the board is a strip with the numbers 1 to 9. Each player has a pawn on it: **blue** (●) and **yellow** (◆). The player who starts puts both pawns on a number each, the same number if they like.
 4. Then take a cell of the board that holds the sum of the two pawns. For example, with the pawns on 3 and 4 the result is 7, because 3 + 4 = 7.
-5. On every later turn you **must move your own pawn** to a different number, work out the new sum, and take a free cell that holds it.
+5. On every later turn you **must move your own pawn**, once, to a different number (the number it left is shut for the rest of the turn), work out the new sum, and take a free cell that holds it.
 6. The first player to have **four cells in a row**, across, down or diagonally, wins. If the board fills up first, it is a draw.
 
 If every cell that holds the result is already taken, your turn passes without taking a cell.`,
@@ -991,7 +991,7 @@ If every cell that holds the result is already taken, your turn passes without t
 2. Papan berisi 81 hasil jumlah 1 + 1 sampai 9 + 9 (jadi 10 muncul sembilan kali, dan 2 serta 18 masing-masing hanya sekali). Petak di tengah selalu 2, satu-satunya hasil yang hanya sekali di papan (1 + 1).
 3. Di bawah papan ada deret angka 1 sampai 9. Tiap pemain punya satu pion di situ: **biru** (●) dan **kuning** (◆). Pemain yang mulai menaruh kedua pion, masing-masing di satu angka, boleh angka yang sama.
 4. Lalu ambil sebuah petak di papan yang berisi hasil jumlah kedua pion. Misalnya, dengan pion di 3 dan 4 hasilnya 7, karena 3 + 4 = 7.
-5. Pada setiap giliran berikutnya kamu **wajib memindahkan pionmu sendiri** ke angka lain, menghitung hasil jumlah yang baru, dan mengambil petak kosong yang berisinya.
+5. Pada setiap giliran berikutnya kamu **wajib memindahkan pionmu sendiri**, satu kali, ke angka lain (angka yang ditinggalkan tertutup sampai giliran selesai), menghitung hasil jumlah yang baru, dan mengambil petak kosong yang berisinya.
 6. Pemain pertama yang punya **empat petak sejajar**, mendatar, menurun, atau miring, menang. Bila papan penuh lebih dulu, hasilnya seri.
 
 Bila semua petak yang berisi hasilnya sudah terisi, gilirannya dilewati tanpa mengambil petak.`,

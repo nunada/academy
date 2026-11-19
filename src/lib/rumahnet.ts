@@ -202,7 +202,7 @@ export function parseAction(x: unknown): RAction | null {
   if (x.t === 'claim') return isInt(x.i, 0, CELLS - 1) ? { t: 'claim', i: x.i } : null
   return null
 }
-const REFUSALS: Refusal[] = ['over', 'bad', 'same', 'not-set', 'not-moved', 'taken', 'turn']
+const REFUSALS: Refusal[] = ['over', 'bad', 'same', 'moved', 'not-set', 'not-moved', 'taken', 'turn']
 /** A message from the network, or null if it is not one. Nothing else gets into the sessions. */
 export function parseMsg(x: unknown): Msg | null {
   if (!isObj(x)) return null

@@ -156,6 +156,8 @@ function refusalText(why: Refusal, t: T): string {
   switch (why) {
     case 'same':
       return t('Pick a different number: a pawn must move.', 'Pilih angka lain: pion wajib berpindah.')
+    case 'moved':
+      return t('Your pawn has moved already. Now pick a cell of the board.', 'Pionmu sudah pindah. Sekarang pilih petak di papan.')
     case 'not-moved':
       return t('Move your pawn to another number first, then pick the cell.', 'Pindahkan dulu pionmu ke angka lain, baru pilih petaknya.')
     case 'taken':
@@ -339,6 +341,10 @@ function Table({ op, game, names, mine, thinking, away, awayLeft, timer, ver, ev
 
   const pawnClick = (n: number) => {
     if (!canAct || pending !== null) return
+    if (game.moved) {
+      say(refusalText('moved', t))
+      return
+    }
     if (!game.placing && game.pawn[game.current] === n) {
       say(refusalText('same', t))
       return
@@ -483,7 +489,8 @@ function Table({ op, game, names, mine, thinking, away, awayLeft, timer, ver, ev
         </p>
         <div className="rhstrip" role="group" aria-label={t('Numbers for the pawns', 'Angka untuk pion')}>
           {Array.from({ length: FACTORS }, (_, k) => k + 1).map((n) => {
-            const movable = canAct && pending === null && (game.placing || game.pawn[cur] !== n)
+            // the pawn moves once a turn: the place it left, and every other place, is shut until the turn is over
+            const movable = canAct && pending === null && !game.moved && (game.placing || game.pawn[cur] !== n)
             return (
               <button
                 key={n}
