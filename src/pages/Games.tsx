@@ -7,6 +7,7 @@ import { siteUrl, useSeo } from '../lib/useSeo'
 import { useRouteLang } from '../lib/useRouteLang'
 import { useI18n } from '../i18n'
 import { Views, usePageViews } from '../components/ViewCount'
+import { gameCoverSvg } from '../content/gamecovers'
 
 /** The list of games. Open to everybody, signed in or not, like the articles. */
 export default function Games({ routeLang }: { routeLang: Lang }) {
@@ -25,9 +26,7 @@ export default function Games({ routeLang }: { routeLang: Lang }) {
       <div className="grid two" style={{ marginTop: 18 }}>
         {GAMES.map((g) => (
           <Link key={g.id} className="card artcard gamecard" to={gamePath(lang, g)}>
-            <div className="gameicon" aria-hidden="true">
-              {g.icon}
-            </div>
+            <div className="artcover" aria-hidden="true" dangerouslySetInnerHTML={{ __html: gameCoverSvg(g.id) }} />
             <h2 style={{ fontSize: '1.15rem', margin: '6px 0' }}>{tc(g.title)}</h2>
             <p className="small muted">{tc(g.tagline)}</p>
             <Views n={views[g.id]} className="small muted" />

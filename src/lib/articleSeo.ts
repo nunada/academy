@@ -56,6 +56,9 @@ export const OG_HEIGHT = 630
 export const ogImageUrl = (site: string, lang: Lang, id: string) => join(site, 'og', lang, `${id}.png`)
 export const ogListImageUrl = (site: string, lang: Lang) => join(site, 'og', lang, 'articles.png')
 export const ogDefaultImageUrl = (site: string) => join(site, 'og', 'default.png')
+/** The share pictures of the games: one for each game and language, and one for the list of games. */
+export const ogGameImageUrl = (site: string, lang: Lang, id: string) => join(site, 'og', lang, `game-${id}.png`)
+export const ogGamesListImageUrl = (site: string, lang: Lang) => join(site, 'og', lang, 'games.png')
 
 export interface Seo {
   title: string

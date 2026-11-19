@@ -67,6 +67,7 @@ export * from '${q('src/lib/articleSeo.ts')}'
 export * from '${q('src/lib/aboutSeo.ts')}'
 export * from '${q('src/lib/gameSeo.ts')}'
 export { GAMES, GAMES_PAGE } from '${q('src/content/games.ts')}'
+export { gameCoverSvg } from '${q('src/content/gamecovers.ts')}'
 export * from '${q('src/lib/orgSeo.ts')}'
 export { ABOUT, aboutStats, fillStats } from '${q('src/content/about.ts')}'
 export { ORG } from '${q('src/content/org.ts')}'
@@ -84,7 +85,7 @@ const stubCurricula = {
 }
 await build({ entryPoints: [entry], bundle: true, format: 'esm', platform: 'node', outfile: out, logLevel: 'error', plugins: [stubCurricula] })
 const lib = await import('file://' + out.replace(/\\/g, '/'))
-const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, coverSvg, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER, OG_WIDTH, OG_HEIGHT, ogImageUrl, ogListImageUrl, ogDefaultImageUrl, aboutSeo, aboutUrl, ABOUT_PATH, ABOUT, aboutStats, fillStats, ORG, COURSES, coursesIn, organizationNode, websiteNode, homeUrl, gamesSeo, gameSeo, gamesUrl, gameUrl, GAMES_PATH, GAMES, GAMES_PAGE } = lib
+const { ARTICLES, loadArticle, articleById, tagLabel, WIDGETS, coverSvg, articleSeo, listSeo, jsonLdText, plain, texToText, articleUrl, listUrl, LIST_PATH, SITE_NAME, LOCALE, OTHER, OG_WIDTH, OG_HEIGHT, ogImageUrl, ogListImageUrl, ogDefaultImageUrl, aboutSeo, aboutUrl, ABOUT_PATH, ABOUT, aboutStats, fillStats, ORG, COURSES, coursesIn, organizationNode, websiteNode, homeUrl, gamesSeo, gameSeo, gamesUrl, gameUrl, GAMES_PATH, GAMES, GAMES_PAGE, gameCoverSvg, ogGameImageUrl, ogGamesListImageUrl } = lib
 
 const LANGS = ['en', 'id']
 
@@ -230,7 +231,7 @@ ${related.length ? `<section class="artsection" aria-labelledby="related"><h2 id
 function gamesBodyHtml(lang) {
   curLang = lang
   return `<main class="page"><h1>${esc(GAMES_PAGE.title[lang])}</h1><p class="muted" style="max-width:62ch">${esc(GAMES_PAGE.intro[lang])}</p><div class="grid two" style="margin-top:18px">${GAMES.map(
-    (g) => `<a class="card artcard gamecard" href="${esc(gameUrl(SITE, lang, g))}"><div class="gameicon" aria-hidden="true">${esc(g.icon)}</div><h2 style="font-size:1.15rem;margin:6px 0">${esc(g.title[lang])}</h2><p class="small muted">${esc(g.tagline[lang])}</p></a>`,
+    (g) => `<a class="card artcard gamecard" href="${esc(gameUrl(SITE, lang, g))}"><div class="artcover" aria-hidden="true">${gameCoverSvg(g.id)}</div><h2 style="font-size:1.15rem;margin:6px 0">${esc(g.title[lang])}</h2><p class="small muted">${esc(g.tagline[lang])}</p></a>`,
   ).join('')}</div></main>${footerHtml(lang)}`
 }
 
@@ -443,6 +444,25 @@ for (const lang of LANGS) {
       title: lang === 'id' ? 'Artikel Matematika dan Coding' : 'Math and Coding Articles',
       kicker: lang === 'id' ? `${articles.length} artikel gratis, dua bahasa` : `${articles.length} free articles, two languages`,
       covers: articles.slice(0, 4).map((a) => coverSvg(a.id)),
+      domain,
+      brand: SITE_NAME,
+    }),
+  )
+}
+// Each game has a picture of its own, and so does the list of games, so that a shared link to a game shows that game.
+for (const lang of LANGS) {
+  for (const g of GAMES) {
+    pngTo(
+      ogGameImageUrl(SITE, lang, g.id),
+      ogSvg({ title: g.title[lang], kicker: lang === 'id' ? 'Game gratis · main di browser' : 'Free game · play in the browser', covers: [gameCoverSvg(g.id)], domain, brand: SITE_NAME }),
+    )
+  }
+  pngTo(
+    ogGamesListImageUrl(SITE, lang),
+    ogSvg({
+      title: lang === 'id' ? 'Game Matematika dan Coding' : 'Math and Coding Games',
+      kicker: lang === 'id' ? `${GAMES.length} game gratis, dua bahasa` : `${GAMES.length} free games, two languages`,
+      covers: ['number-fish', 'math-domino', 'multiplication-house', 'number-line'].map(gameCoverSvg),
       domain,
       brand: SITE_NAME,
     }),

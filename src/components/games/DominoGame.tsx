@@ -379,13 +379,9 @@ function Table({ snap, hand, me, waiting, refusal, thinking, onAct: send, after 
       )}
 
       {!over && <p className={`dmstatus${myTurn ? ' mine' : ''}`}>{status}</p>}
-      <div className="dmlog" aria-live="polite" role="log">
+      {/* the passing remark about the last action ("one of your tiles still fits") stays beside the status; the story of the game is under the hand */}
+      <div className="dmnote" aria-live="polite" role="status">
         {refusal && refusal.why !== 'over' && refusal.n !== hideN && <p className="dmrefusal" key={`r${refusal.n}`}>{refusalText(refusal.why, t)}</p>}
-        {log.map((l, i) => (
-          <p key={l.key} className={i === log.length - 1 ? 'last' : ''}>
-            {l.text}
-          </p>
-        ))}
       </div>
       {!over && (
         <>
@@ -421,6 +417,14 @@ function Table({ snap, hand, me, waiting, refusal, thinking, onAct: send, after 
           </button>
         ))}
         {hand.length === 0 && !over && <span className="muted small">{t('No tiles left.', 'Tidak ada kartu lagi.')}</span>}
+      </div>
+
+      <div className="dmlog" aria-live="polite" role="log" aria-label={t('What has happened', 'Riwayat permainan')}>
+        {log.map((l, i) => (
+          <p key={l.key} className={i === log.length - 1 ? 'last' : ''}>
+            {l.text}
+          </p>
+        ))}
       </div>
 
 

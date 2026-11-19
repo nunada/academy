@@ -1237,6 +1237,9 @@ a.chip.static { cursor: pointer; }
 .cv .sr { fill: none; stroke: var(--fig-result); }
 .cv .sm { fill: none; stroke: var(--fig-muted); }
 .cv .st { fill: none; stroke: var(--text); }
+.cv .sd { fill: none; stroke: var(--rh-blue); }
+.cv .fd { fill: var(--rh-blue); stroke: none; }
+.cv .pd { fill: var(--rh-blue); fill-opacity: 0.3; stroke: var(--rh-blue); stroke-width: 2; }
 .cv .fa { fill: var(--fig-a); stroke: none; }
 .cv .fb { fill: var(--fig-b); stroke: none; }
 .cv .fc { fill: var(--fig-c); stroke: none; }
@@ -2011,10 +2014,12 @@ main:focus, .page:focus { outline: none; }
 .dmhand { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; margin: 8px 0 12px; }
 .dmstatus { margin: 10px 0 0; font-weight: 600; min-height: 1.4em; }
 .dmstatus.mine { color: var(--brand); }
-.dmlog { min-height: 3.6rem; }
+.dmnote { min-height: 0; }
+.dmnote p { margin: 4px 0 0; }
+.dmlog { min-height: 3.6rem; margin-top: 4px; }
 .dmlog p { margin: 2px 0; color: var(--muted); font-size: 0.88rem; }
 .dmlog p.last { color: var(--text); }
-.dmlog p.dmrefusal { color: var(--bad); font-weight: 600; }
+.dmlog p.dmrefusal, .dmnote p.dmrefusal { color: var(--bad); font-weight: 600; }
 .dmresult { position: relative; overflow: hidden; margin: 0 0 12px; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
 .dmresult.win { border: 2px solid var(--brand); background: var(--brand-soft); }
 .dmresult h3 { margin: 0 0 8px; font-size: 1.3rem; }

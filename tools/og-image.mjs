@@ -29,6 +29,8 @@ const COVER_CSS = `
 .cv .pc{fill:#b8860b;fill-opacity:.3;stroke:#b8860b;stroke-width:2}
 .cv .pr{fill:#4f8b56;fill-opacity:.3;stroke:#4f8b56;stroke-width:2}
 .cv .pm{fill:#97a79c;fill-opacity:.22;stroke:#97a79c;stroke-width:2}
+.cv .sd{fill:none;stroke:#2b6cb0}.cv .fd{fill:#2b6cb0;stroke:none}
+.cv .pd{fill:#2b6cb0;fill-opacity:.3;stroke:#2b6cb0;stroke-width:2}
 .cv text{fill:#24463d;stroke:none;font-family:${SERIF};font-weight:700}
 .cv text.tm{fill:#5f7066;font-weight:600}
 .cv text.zh{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif;font-weight:500}

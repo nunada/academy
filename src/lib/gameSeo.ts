@@ -3,7 +3,7 @@
 
 import type { Lang } from '../content/types'
 import { GAMES, GAMES_PAGE, type GameMeta } from '../content/games'
-import { OTHER, SITE_NAME, ogDefaultImageUrl, plain, type Seo } from './articleSeo'
+import { OTHER, SITE_NAME, ogGameImageUrl, ogGamesListImageUrl, plain, type Seo } from './articleSeo'
 import { homeUrl, orgRef, websiteId } from './orgSeo'
 
 /** Where the games live, per language: /games and /permainan. Two addresses, because to a search engine they are two pages. */
@@ -40,7 +40,7 @@ export function gamesSeo(site: string, lang: Lang): Seo {
     description,
     canonical,
     lang,
-    image: { url: ogDefaultImageUrl(site), alt: title },
+    image: { url: ogGamesListImageUrl(site, lang), alt: title },
     alternates: { en: gamesUrl(site, 'en'), id: gamesUrl(site, 'id'), 'x-default': gamesUrl(site, 'en') },
     ogType: 'website',
     keywords: GAMES_PAGE.keywords[lang],
@@ -71,7 +71,7 @@ export function gameSeo(g: GameMeta, site: string, lang: Lang): Seo {
     description,
     canonical,
     lang,
-    image: { url: ogDefaultImageUrl(site), alt: title },
+    image: { url: ogGameImageUrl(site, lang, g.id), alt: title },
     alternates: { en: gameUrl(site, 'en', g), id: gameUrl(site, 'id', g), 'x-default': gameUrl(site, 'en', g) },
     ogType: 'website',
     published: g.published,

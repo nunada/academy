@@ -185,6 +185,9 @@ for (const p of pages) {
   }
 
   if (isGame) {
+    // every game has a share picture of its own (a PNG that exists in the language of the page), so that a shared link shows that game
+    const ogPath = (og ?? '').replace(/^https:\/\/[^/]+\//, '')
+    ok(/^og\/(en|id)\/game-[a-z-]+\.png$/.test(ogPath) && ogPath.startsWith(`og/${p.lang}/`) && fs.existsSync(path.join(DIST, ogPath)) && fs.statSync(path.join(DIST, ogPath)).size > 5000, where, `a game needs its own share picture, got ${ogPath}`)
     const game = find(d.jsonLd, 'Game')[0]
     if (ok(game, where, 'no Game structured data') && game) {
       ok(typesOf(game).includes('LearningResource'), where, 'a game should also be a LearningResource')
