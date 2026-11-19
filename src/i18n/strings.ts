@@ -27,6 +27,9 @@ export const ui = {
   navAbout: { en: 'About', id: 'Tentang' },
   footerTagline: { en: 'Learn math and coding, step by step.', id: 'Belajar matematika dan coding, langkah demi langkah.' },
   signOut: { en: 'Sign out', id: 'Keluar' },
+  /** the button of the top bar for a visitor who is not signed in; the short form is for a narrow phone */
+  navLogin: { en: 'Login / Register', id: 'Masuk / Daftar' },
+  navLoginShort: { en: 'Login', id: 'Masuk' },
 
   // auth
   signIn: { en: 'Sign in', id: 'Masuk' },

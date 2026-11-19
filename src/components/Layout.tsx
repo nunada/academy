@@ -163,14 +163,18 @@ export function TopBar({ signedIn, profile, xp, hearts, nextHeartIn, localMode, 
       )}
       {!signedIn && (
         <>
-          <Link className="btn ghost sm" to={articlesPath}>
+          <Link className="btn ghost sm morebtn" to={articlesPath}>
             {t('navArticles')}
           </Link>
           <Link className="btn ghost sm" to={gamesPath(lang)}>
             {t('navGames')}
           </Link>
-          <Link className="btn ghost sm" to="/help">
+          <Link className="btn ghost sm morebtn" to="/help">
             {t('navHelp')}
+          </Link>
+          <Link className="btn sm loginbtn" to="/auth">
+            <span className="long">{t('navLogin')}</span>
+            <span className="short">{t('navLoginShort')}</span>
           </Link>
         </>
       )}

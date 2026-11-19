@@ -1522,6 +1522,7 @@ a.chip.static { cursor: pointer; }
 .themecycle { display: none; }
 .hearts .hn { display: none; }
 .signout .i { display: none; }
+.loginbtn .short { display: none; }
 
 /* Up to a laptop: the controls are short (one button that cycles the theme, a count for the hearts, an
    icon for sign-out, no developer badge) so that the logo, the menu and the controls still fit on one row. */
@@ -1567,8 +1568,11 @@ a.chip.static { cursor: pointer; }
 @media (max-width: 480px) {
   .brand-name { display: none; }
   /* three short buttons (Articles, Games, Guide) for a signed-out visitor, so the language switch stays on the first row */
-  .topbar .btn.ghost.sm { padding: 5px 8px; font-size: 0.78rem; }
+  .topbar .btn.ghost.sm, .topbar .btn.loginbtn { padding: 5px 8px; font-size: 0.78rem; }
   .topbar { column-gap: 5px; }
+  .morebtn { display: none; } /* the footer links to the articles and the guide too */
+  .loginbtn .long { display: none; }
+  .loginbtn .short { display: inline; }
 }
 
 /* ---------- Code Blocks: the block editor and the robot's grid ---------- */
