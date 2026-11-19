@@ -15,7 +15,6 @@ import {
   parseProgress,
   reset,
   solve,
-  starsFor,
   tileAt,
   undo,
   type Blocked,
@@ -29,7 +28,7 @@ import {
 
 /* ------------------------------------------------------------------------------------------------ progress */
 
-const PROGRESS_KEY = 'nunada.numbermaze.v1'
+const PROGRESS_KEY = 'nunada.numbermaze.v2'
 const readProgress = (): Progress => {
   try {
     return parseProgress(JSON.parse(localStorage.getItem(PROGRESS_KEY) ?? 'null'), LEVEL_IDS)
@@ -39,7 +38,7 @@ const readProgress = (): Progress => {
 }
 const writeProgress = (p: Progress) => {
   try {
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify(p))
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(Object.keys(p)))
   } catch {
     /* a private window: the game works the same without saved progress */
   }
@@ -112,22 +111,12 @@ const goalText = (level: Level, lang: string, t: T): string => {
   return ''
 }
 
-const Stars = ({ n, t }: { n: number; t: T }) => (
-  <span className="nmstars" role="img" aria-label={t(`${n} of 3 stars`, `${n} dari 3 bintang`)}>
-    {[1, 2, 3].map((i) => (
-      <span key={i} className={i <= n ? 'on' : ''} aria-hidden="true">
-        ★
-      </span>
-    ))}
-  </span>
-)
-
 /* ------------------------------------------------------------------------------------------------ one level */
 
 const KEYS: Record<string, Dir> = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right', w: 'up', s: 'down', a: 'left', d: 'right', W: 'up', S: 'down', A: 'left', D: 'right' }
 const SWIPE = 22
 
-function Maze({ data, chapter, index, hasNext, onExit, onNext, onSolved }: { data: MazeLevel; chapter: MazeChapter; index: number; hasNext: boolean; onExit: () => void; onNext: () => void; onSolved: (moves: number, stars: 1 | 2 | 3) => void }) {
+function Maze({ data, chapter, index, hasNext, onExit, onNext, onSolved }: { data: MazeLevel; chapter: MazeChapter; index: number; hasNext: boolean; onExit: () => void; onNext: () => void; onSolved: () => void }) {
   const { lang, tc } = useI18n()
   const t: T = (en, id) => (lang === 'id' ? id : en)
   const level = useMemo(() => parseLevel(data), [data])
@@ -136,7 +125,6 @@ function Maze({ data, chapter, index, hasNext, onExit, onNext, onSolved }: { dat
   const bump = () => setVersion((v) => v + 1)
   const [note, setNote] = useState<{ n: number; text: string; info: boolean } | null>(null)
   const [hintDir, setHintDir] = useState<Dir | null>(null)
-  const [hinted, setHinted] = useState(false)
   const [idea, setIdea] = useState(false)
   const [cell, setCell] = useState(48)
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -192,10 +180,7 @@ function Maze({ data, chapter, index, hasNext, onExit, onNext, onSolved }: { dat
     }
     setNote(null)
     bump()
-    if (r.won) {
-      const stars = starsFor(g.moves, data.par, hinted)
-      onSolved(g.moves, stars)
-    }
+    if (r.won) onSolved()
   }
   const doUndo = () => {
     setHintDir(null)
@@ -205,7 +190,6 @@ function Maze({ data, chapter, index, hasNext, onExit, onNext, onSolved }: { dat
   const doReset = () => {
     reset(g)
     setHintDir(null)
-    setHinted(false)
     setNote(null)
     bump()
     wrapRef.current?.focus({ preventScroll: true })
@@ -213,9 +197,8 @@ function Maze({ data, chapter, index, hasNext, onExit, onNext, onSolved }: { dat
   const showWay = () => {
     const r = solve(level, { pos: g.pos, value: g.value, used: g.used }, 300_000)
     if (r.solved) {
-      setHinted(true)
       setHintDir(r.path[0])
-      say(t(`Next step: ${DIR_NAME[r.path[0]][0]}. From here the exit is ${r.path.length} ${r.path.length === 1 ? 'step' : 'steps'} away at best.`, `Langkah berikutnya: ${DIR_NAME[r.path[0]][1]}. Dari sini pintu keluar paling cepat ${r.path.length} langkah lagi.`), true)
+      say(t(`Next step: ${DIR_NAME[r.path[0]][0]}.`, `Langkah berikutnya: ${DIR_NAME[r.path[0]][1]}.`), true)
     } else if (r.exhausted) say(t('That is too far to see from here.', 'Itu terlalu jauh untuk dilihat dari sini.'), true)
     else say(t('There is no way to the exit from here any more. Undo some steps, or start again.', 'Tidak ada jalan lagi ke pintu keluar dari sini. Batalkan beberapa langkah, atau mulai lagi.'))
   }
@@ -247,10 +230,9 @@ function Maze({ data, chapter, index, hasNext, onExit, onNext, onSolved }: { dat
     if (g.won) resultRef.current?.scrollIntoView({ block: 'nearest', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
   })
 
-  const stars = g.won ? starsFor(g.moves, data.par, hinted) : null
   const here = tileAt(level, g.pos.x, g.pos.y)
   const hand = KEY_IDS.filter((k) => keysInHand(level, g.used, k) > 0)
-  const announcement = `${t('Value', 'Nilai')} ${g.value}. ${t('Step', 'Langkah')} ${g.moves}. ${t('Row', 'Baris')} ${g.pos.y + 1}, ${t('column', 'kolom')} ${g.pos.x + 1}: ${tileView(here, lang, t).sr}.`
+  const announcement = `${t('Value', 'Nilai')} ${g.value}. ${t('Row', 'Baris')} ${g.pos.y + 1}, ${t('column', 'kolom')} ${g.pos.x + 1}: ${tileView(here, lang, t).sr}.`
   const style = { '--cols': level.width, '--cell': `${cell}px`, '--gap': `${gap}px` } as CSSProperties
   const solved = g.won
 
@@ -266,7 +248,7 @@ function Maze({ data, chapter, index, hasNext, onExit, onNext, onSolved }: { dat
       </div>
       <h3 className="nmname">{tc(data.name)}</h3>
 
-      {solved && stars && (
+      {solved && (
         <div className="dmresult win" ref={resultRef}>
           <span className="dmconfetti" aria-hidden="true">
             {Array.from({ length: 14 }, (_, i) => (
@@ -274,11 +256,6 @@ function Maze({ data, chapter, index, hasNext, onExit, onNext, onSolved }: { dat
             ))}
           </span>
           <h3>🎉 {t('Solved!', 'Selesai!')}</h3>
-          <p>
-            <Stars n={stars} t={t} />{' '}
-            {t(`${g.moves} steps; the shortest way is ${data.par}.`, `${g.moves} langkah; yang tercepat ${data.par}.`)}
-            {hinted && stars < 3 ? ' ' + t('(Showing the way keeps it from three stars.)', '(Melihat jalan membuatnya tidak bisa tiga bintang.)') : ''}
-          </p>
           <div className="chips">
             {hasNext ? (
               <button type="button" className="btn" onClick={onNext}>
@@ -299,14 +276,6 @@ function Maze({ data, chapter, index, hasNext, onExit, onNext, onSolved }: { dat
         <div className="nmvalue" aria-hidden="true">
           <span className="small muted">{t('Your value', 'Nilaimu')}</span>
           <b>{g.value}</b>
-        </div>
-        <div className="nmcount">
-          <span>
-            {t('Steps', 'Langkah')} <b>{g.moves}</b>
-          </span>
-          <span className="muted">
-            {t('shortest', 'tercepat')} {data.par}
-          </span>
         </div>
         <div className="nmhand" aria-label={t('Keys in hand', 'Kunci di tangan')}>
           {hand.map((k) => (
@@ -412,10 +381,9 @@ export default function NumberMazeGame() {
           hasNext={hasNext}
           onExit={() => setStage({ k: 'menu' })}
           onNext={() => setStage({ k: 'play', chapter: stage.chapter, index: stage.index + 1 })}
-          onSolved={(moves, stars) =>
+          onSolved={() =>
             setProgress((p) => {
-              const before = p[data.id]
-              const next: Progress = { ...p, [data.id]: { best: before ? Math.min(before.best, moves) : moves, stars: (before ? Math.max(before.stars, stars) : stars) as 1 | 2 | 3 } }
+              const next: Progress = { ...p, [data.id]: true }
               writeProgress(next)
               return next
             })
@@ -442,12 +410,12 @@ export default function NumberMazeGame() {
             <div className="nmlevels" role="group" aria-label={tc(chapter.name)}>
               {chapter.levels.map((l, li) => {
                 const open = li === 0 || solved(chapter.levels[li - 1].id) || solved(l.id)
-                const p = progress[l.id]
+                const p = progress[l.id] === true
                 return (
-                  <button key={l.id} type="button" className={`nmlevel${p ? ' done' : ''}`} disabled={!open} onClick={() => setStage({ k: 'play', chapter: ci, index: li })} aria-label={`${li + 1}. ${tc(l.name)}${p ? `, ${t(`${p.stars} stars`, `${p.stars} bintang`)}` : open ? '' : t(', locked', ', terkunci')}`} title={tc(l.name)}>
+                  <button key={l.id} type="button" className={`nmlevel${p ? ' done' : ''}`} disabled={!open} onClick={() => setStage({ k: 'play', chapter: ci, index: li })} aria-label={`${li + 1}. ${tc(l.name)}${p ? t(', solved', ', selesai') : open ? '' : t(', locked', ', terkunci')}`} title={tc(l.name)}>
                     <b>{open ? li + 1 : '🔒'}</b>
                     <span className="nmlstars" aria-hidden="true">
-                      {p ? '★'.repeat(p.stars) + '☆'.repeat(3 - p.stars) : ' '}
+                      {p ? '✓' : ' '}
                     </span>
                   </button>
                 )

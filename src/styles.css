@@ -2138,14 +2138,11 @@ main:focus, .page:focus { outline: none; }
 .nmlevel:disabled { opacity: 0.55; cursor: default; }
 .nmlevel:not(:disabled):hover { border-color: var(--brand); }
 .nmlevel.done { border-color: var(--brand); background: var(--brand-soft); }
-.nmlstars { font-size: 0.75rem; color: var(--fig-c); letter-spacing: 1px; min-height: 1em; }
-.nmstars span { color: var(--border); font-size: 1.2rem; }
-.nmstars span.on { color: var(--fig-c); }
+.nmlstars { font-size: 0.85rem; color: var(--brand); font-weight: 800; min-height: 1.2em; }
 .nmname { margin: 6px 0 2px; }
 .nminfo { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 4px 0; }
 .nmvalue { display: flex; flex-direction: column; line-height: 1.1; }
 .nmvalue b { font-size: 2.1rem; }
-.nmcount { display: flex; flex-direction: column; font-size: 0.9rem; }
 .nmhand { display: flex; gap: 6px; margin-left: auto; min-height: 1.8rem; }
 .nmkey { padding: 2px 8px; border: 2px solid var(--border); border-radius: 999px; font-weight: 700; font-size: 0.85rem; }
 .nmkey.k1, .nmt.k1 { border-color: var(--fig-c); }

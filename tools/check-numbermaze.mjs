@@ -8,7 +8,7 @@
 //     the engine's path must also replay to the exit on the other simulator;
 //   - from many positions in the middle of a level the engine's solver must agree with the search here, whether a way is left and how long it is;
 //   - every operator and every condition is tried over a range of values against formulas written here;
-//   - the texts of the levels and of the page, the stars and the saved progress are checked against the engine.
+//   - the texts of the levels and of the page and the saved progress are checked against the engine.
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
@@ -543,17 +543,15 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
   ok(!r.out[0].ok && r.out[0].blocked.reason === 'undefined', 'a logarithm of zero is not defined')
 }
 
-/* ------------------------------------------------------------------------------------------- stars and progress */
+/* ------------------------------------------------------------------------------------------- progress (a level is solved or not; no steps are counted, no stars) */
 {
-  ok(M.starsFor(10, 10) === 3 && M.starsFor(5, 10) === 3 && M.starsFor(11, 10) === 2 && M.starsFor(15, 10) === 2 && M.starsFor(16, 10) === 1 && M.starsFor(50, 10) === 1, 'stars: the shortest way or less is three, up to half as many steps again two, more one')
-  ok(M.starsFor(5, 7) === 3 && M.starsFor(8, 7) === 2 && M.starsFor(11, 7) === 2 && M.starsFor(12, 7) === 1, 'stars for a short par: 7 → 3, 8..11 → 2 (7 × 1.5 = 10.5, up to 11), 12 → 1')
-  ok(M.starsFor(10, 10, true) === 2 && M.starsFor(12, 10, true) === 2 && M.starsFor(30, 10, true) === 1, 'asking for the next step keeps a level from three stars')
+  ok(M.starsFor === undefined, 'there are no stars: nothing in the engine scores the steps')
   const ids = M.LEVEL_IDS
-  const good = { ar01: { best: 4, stars: 3 }, ar02: { best: 5, stars: 1 } }
-  ok(JSON.stringify(M.parseProgress(JSON.parse(JSON.stringify(good)), ids)) === JSON.stringify(good), 'saved progress is read back')
-  const dirty = { ar01: { best: 0, stars: 3 }, ar02: { best: 5, stars: 4 }, ar03: { best: 'x', stars: 2 }, ng01: null, ng02: 7, zz: { best: 3, stars: 3 }, pw01: { best: 2.5, stars: 3 }, pw02: { best: 10000, stars: 1 }, lg01: { best: 9, stars: 2 } }
-  ok(JSON.stringify(M.parseProgress(dirty, ids)) === JSON.stringify({ lg01: { best: 9, stars: 2 } }), 'what is malformed is dropped, and so are levels that do not exist')
-  ok(Object.keys(M.parseProgress(null, ids)).length === 0 && Object.keys(M.parseProgress([1, 2], ids)).length === 0 && Object.keys(M.parseProgress('x', ids)).length === 0, 'no progress at all from something that is not an object')
+  const good = { ar01: true, ar02: true }
+  ok(JSON.stringify(M.parseProgress(JSON.parse(JSON.stringify(Object.keys(good))), ids)) === JSON.stringify(good), 'saved progress (a list of the solved levels) is read back')
+  const dirty = ['lg01', 'zz', 7, null, { a: 1 }, 'ar01', 'ar01', 'ng01 ']
+  ok(JSON.stringify(M.parseProgress(dirty, ids)) === JSON.stringify({ lg01: true, ar01: true }), 'what is malformed is dropped, and so are levels that do not exist')
+  ok(Object.keys(M.parseProgress(null, ids)).length === 0 && Object.keys(M.parseProgress({ ar01: true }, ids)).length === 0 && Object.keys(M.parseProgress('ar01', ids)).length === 0, 'no progress at all from something that is not a list')
 }
 
 /* ------------------------------------------------------------------------------------------- texts */
@@ -603,6 +601,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
   ok(firstTiles.every((t) => t.kind !== 'op' && t.kind !== 'gate'), 'the first level has nothing but a corridor')
 
   const game = M.GAMES.find((g) => g.id === 'number-maze')
+  const all_text = (g) => JSON.stringify([g.answer, g.description, g.sections.map((x) => x.text), g.faq.map((f) => [f.q, f.a])])
   if (ok(game, 'the game is in the list')) {
     const others = M.GAMES.filter((g) => g.id !== 'number-maze')
     ok(game.slug.en === 'number-maze' && game.slug.id === 'labirin-angka' && others.every((o) => o.slug.en !== game.slug.en && o.slug.id !== game.slug.id), 'its addresses are its own')
@@ -616,13 +615,13 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
     const ch = section('chapters')
     for (const [i, c] of M.CHAPTERS.entries())
       for (const loc of ['en', 'id']) ok(new RegExp(`\\| ${c.name[loc].replace(/[()]/g, '\\$&')} \\| ${c.levels.length} \\|`).test(ch.text[loc]), `the chapters table: "${c.name[loc]}" with ${c.levels.length} levels (${loc})`)
-    ok(section('stars').text.en.includes('three stars') && section('stars').text.en.includes('half as many steps again') && section('stars').text.id.includes('tiga bintang') && section('stars').text.id.includes('separuhnya lagi'), 'the page says how the stars are given')
+    ok(section('progress').text.en.includes('no step counter') && section('progress').text.id.includes('tidak ada penghitung langkah'), 'the page says that steps are not counted')
+    ok(!all_text({ ...game, sections: game.sections.filter((x) => x.id !== 'progress') }).match(/\bstars?\b|bintang|shortest|terpendek/i), 'apart from the section that says there are none, the page speaks of no stars and no shortest way')
     ok(section('how-to-play') && section('the-tiles') && section('think-backwards') && game.faq.length >= 6 && game.teaches.length >= 4 && game.keywords.en.split(',').length >= 8, 'the sections, the FAQ and what it teaches')
     ok(game.seoTitle.en.length <= 72 && game.seoTitle.id.length <= 80 && game.description.en.length <= 420 && game.description.id.length <= 450 && /^\*\*/.test(game.answer.en) && /^\*\*/.test(game.answer.id), 'titles and descriptions are of a sensible length')
     // the claims about the tiles are the ones of the engine
     const tiles = section('the-tiles').text.en
     ok(/\*\*blue\*\*, solid border/.test(tiles) && /\*\*gold\*\*, dashed border/.test(tiles) && /\*\*green\*\*/.test(tiles), 'the table of tiles names the colors')
-    ok(M.starsFor(15, 10) === 2 && M.starsFor(16, 10) === 1, 'the text "up to half as many steps again" is what starsFor does')
   }
 
   const page = read('src/pages/GamePage.tsx')
@@ -632,9 +631,9 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
   ok(M.COVER_IDS.includes('number-maze') && /<svg/.test(M.gameCoverSvg('number-maze')) && !/\d\.\d/.test(M.gameCoverSvg('number-maze')), 'the game has a cover, with no decimal point in it')
 
   const ui = read('src/components/games/NumberMazeGame.tsx')
-  ok(/e\.key === 'z'/.test(ui) && /e\.key === 'r'/.test(ui) && /ArrowUp/.test(ui) && /onPointerDown/.test(ui) && /onKeyDown/.test(ui) && /nunada\.numbermaze\.v1/.test(ui), 'the keys, the swipe and the saved progress are wired')
+  ok(/e\.key === 'z'/.test(ui) && /e\.key === 'r'/.test(ui) && /ArrowUp/.test(ui) && /onPointerDown/.test(ui) && /onKeyDown/.test(ui) && /nunada\.numbermaze\.v2/.test(ui), 'the keys, the swipe and the saved progress are wired')
   ok(/aria-live="polite"/.test(ui) && /role="application"/.test(ui) && /aria-label=\{t\(`The maze/.test(ui) && /sr-only/.test(ui), 'a screen reader is told the value, the place and why a step was refused')
-  ok(/starsFor\(g\.moves, data\.par, hinted\)/.test(ui) && /solve\(level, \{ pos: g\.pos/.test(ui), 'the stars use the par of the level and the hint caps them')
+  ok(/solve\(level, \{ pos: g\.pos/.test(ui) && !/starsFor|Stars|nmstars|nmcount|g\.moves|data\.par/.test(ui), 'the screen counts no steps, shows no shortest way and gives no stars; the hint uses the solver')
 
   const css = read('src/styles.css')
   const nmAt = css.indexOf('/* ---- Number Maze.')

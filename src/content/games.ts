@@ -1148,14 +1148,14 @@ Langkah yang menang jarang yang pertama kamu lihat: kamu juga memperhatikan apa 
 2. Move one tile at a time with the **arrow keys** (or W A S D), by **swiping** on the maze, or with the **buttons** under it.
 3. Every tile you step on can change your number: an operator such as $+3$ or $\\times2$ does its sum, a gate checks your value, and a wall stops you.
 4. Reach the **exit** (the flag). Many exits only open for one exact value, for example 12.
-5. If you go wrong, press **Undo** (Z) to take back a step or **Restart** (R) to start the level again. **Idea** shows a thought about the level, and **Show next step** points to the next move of a shortest way from where you are.
+5. If you go wrong, press **Undo** (Z) to take back a step or **Restart** (R) to start the level again. **Idea** shows a thought about the level, and **Show next step** points to the next move toward the exit from where you are.
 
 A step that is not allowed is simply not taken, and a short message says why: a wall, a locked gate, a division that does not come out even, or a one-way tile.`,
           `1. Pilih sebuah level. Kamu mulai di petak awal dengan nilai yang tertulis di atas.
 2. Bergerak satu petak setiap kali dengan **tombol panah** (atau W A S D), dengan **menggeser** layar di atas labirin, atau dengan **tombol** di bawahnya.
 3. Setiap petak yang kamu injak bisa mengubah angkamu: operator seperti $+3$ atau $\\times2$ menghitung, gerbang memeriksa nilaimu, dan tembok menghentikanmu.
 4. Capai **pintu keluar** (bendera). Banyak pintu keluar hanya terbuka untuk satu nilai yang tepat, misalnya 12.
-5. Kalau salah langkah, tekan **Undo** (Z) untuk menarik satu langkah atau **Ulang** (R) untuk memulai level dari awal. **Ide** menampilkan pikiran tentang level itu, dan **Lihat langkah berikutnya** menunjuk langkah berikutnya dari jalan terpendek dari tempatmu berada.
+5. Kalau salah langkah, tekan **Undo** (Z) untuk menarik satu langkah atau **Ulang** (R) untuk memulai level dari awal. **Ide** menampilkan pikiran tentang level itu, dan **Lihat langkah berikutnya** menunjuk langkah berikutnya menuju pintu keluar dari tempatmu berada.
 
 Langkah yang tidak boleh tidak diambil, dan sebuah pesan singkat menjelaskan sebabnya: tembok, gerbang terkunci, pembagian yang tidak habis, atau petak satu arah.`,
         ),
@@ -1189,15 +1189,15 @@ Operatornya adalah $+$, $-$, $\\times$, $\\div$, sisa bagi, pangkat ($x^2$, $x^3
         ),
       },
       {
-        id: 'stars',
-        heading: L('How are the stars given?', 'Bagaimana bintang diberikan?'),
+        id: 'progress',
+        heading: L('Are steps counted?', 'Apakah langkah dihitung?'),
         text: L(
-          `Every level has a **shortest way**, found by a solver. If you finish in that many steps or fewer you get **three stars**; in at most half as many steps again, **two stars**; otherwise **one star**. Pressing **Show next step** keeps a level from three stars, because then the solver did the thinking.
+          `No. A level is **solved or not solved**: there is no step counter, no score and no stars, so you can wander, try a path and take it back for as long as you like. What counts is only that you reach the exit with a value it accepts.
 
-A level opens when the one before it is solved. All three chapters are open from the start, so you can choose the topic you are learning.`,
-          `Setiap level punya **jalan terpendek**, yang dicari sebuah solver. Bila kamu menyelesaikannya dalam sebanyak itu langkah atau kurang, kamu mendapat **tiga bintang**; dalam paling banyak separuhnya lagi, **dua bintang**; selain itu **satu bintang**. Menekan **Lihat langkah berikutnya** membuat level tidak bisa tiga bintang, karena solver yang berpikir.
+A level opens when the one before it is solved. All the chapters are open from the start, so you can choose the topic you are learning.`,
+          `Tidak. Sebuah level **selesai atau belum selesai**: tidak ada penghitung langkah, skor, atau bintang, jadi kamu boleh berkeliling, mencoba sebuah jalan lalu menariknya kembali selama kamu mau. Yang penting hanyalah sampai di pintu keluar dengan nilai yang diterimanya.
 
-Sebuah level terbuka bila level sebelumnya sudah selesai. Ketiga bab terbuka sejak awal, jadi kamu bisa memilih topik yang sedang kamu pelajari.`,
+Sebuah level terbuka bila level sebelumnya sudah selesai. Semua bab terbuka sejak awal, jadi kamu bisa memilih topik yang sedang kamu pelajari.`,
         ),
       },
       {
@@ -1214,7 +1214,7 @@ Sebuah level terbuka bila level sebelumnya sudah selesai. Ketiga bab terbuka sej
 | Numbers | 14 | primes and numbers that are not prime, squares, multiples, keys and locks |
 | Final Rooms | 16 | everything at once, in the biggest rooms |
 
-The first levels are gentle: nothing can be spoiled. Then they become real puzzles: the shortest way can be 20, 30 or 40 steps, there are tiles that are only there to mislead you, and a tile you have already used up can make the exit impossible. When you ask for the next step the game tells you if there is no way from here, and you can undo or restart.`,
+The first levels are gentle: nothing can be spoiled. Then they become real puzzles: the way can be 20, 30 or 40 steps long, and a tile you have already used up can make the exit impossible. When you ask for the next step the game tells you if there is no way from here, and you can undo or restart.`,
           `| Bab | Level | Yang dilatih |
 |---|---|---|
 | Aritmetika | 14 | menjumlah, mengurangi, mengalikan, dan membagi dalam urutan yang tepat, dengan petak yang habis sekali pakai |
@@ -1225,7 +1225,7 @@ The first levels are gentle: nothing can be spoiled. Then they become real puzzl
 | Bilangan | 14 | bilangan prima dan yang bukan prima, kuadrat, kelipatan, kunci, dan gembok |
 | Ruang Pamungkas | 16 | semuanya sekaligus, di ruangan terbesar |
 
-Level-level awal ramah: tidak ada yang bisa dirusak. Lalu level menjadi teka-teki sungguhan: jalan terpendeknya bisa 20, 30, atau 40 langkah, ada petak yang hanya ada untuk mengecohmu, dan petak yang sudah kamu pakai sampai habis bisa membuat pintu keluar mustahil. Saat kamu meminta langkah berikutnya, game memberi tahu bila tidak ada jalan dari sini, dan kamu bisa Undo atau Ulang.`,
+Level-level awal ramah: tidak ada yang bisa dirusak. Lalu level menjadi teka-teki sungguhan: jalannya bisa 20, 30, atau 40 langkah, dan petak yang sudah kamu pakai sampai habis bisa membuat pintu keluar mustahil. Saat kamu meminta langkah berikutnya, game memberi tahu bila tidak ada jalan dari sini, dan kamu bisa Undo atau Ulang.`,
         ),
       },
       {
@@ -1236,12 +1236,12 @@ Level-level awal ramah: tidak ada yang bisa dirusak. Lalu level menjadi teka-tek
 - **Ask which tiles are used up once.** Spending a $\\times3$ early or late gives different numbers: $(2+1)\\times3 = 9$ but $2\\times3+1 = 7$.
 - **Look at parity.** If you start on an odd number and only add 2 and multiply by 3, you stay odd; an even exit means a tile that changes parity must be used.
 - **Use the tiles that never run out to tune.** A $+1$ and a $-1$ on blue let you walk back and forth to land on the exact value.
-- **Do not fear Undo.** Trying a path and taking it back costs a step on the counter, not a mistake.`,
+- **Do not fear Undo.** Trying a path and taking it back costs nothing: no step is counted.`,
           `- **Mulailah dari pintu keluar.** Bila pintu keluar menuntut tepat 12, petak mana yang bisa menghasilkan 12? Bekerjalah mundur, gerbang demi gerbang, sampai ke angka awalmu.
 - **Tanyakan petak mana yang habis sekali pakai.** Membelanjakan $\\times3$ lebih awal atau lebih lambat memberi angka berbeda: $(2+1)\\times3 = 9$ tetapi $2\\times3+1 = 7$.
 - **Perhatikan genap dan ganjil.** Bila kamu mulai dari bilangan ganjil dan hanya menambah 2 dan mengalikan 3, kamu tetap ganjil; pintu keluar genap berarti harus ada petak yang mengubah paritas.
 - **Pakai petak yang tidak pernah habis untuk menyetel.** $+1$ dan $-1$ biru memungkinkan kamu mondar-mandir sampai tepat di nilai yang diminta.
-- **Jangan takut Undo.** Mencoba sebuah jalan lalu menariknya kembali hanya menambah hitungan langkah, bukan kesalahan.`,
+- **Jangan takut Undo.** Mencoba sebuah jalan lalu menariknya kembali tidak merugikan: tidak ada langkah yang dihitung.`,
         ),
       },
     ],
@@ -1270,8 +1270,8 @@ Level-level awal ramah: tidak ada yang bisa dirusak. Lalu level menjadi teka-tek
       {
         q: L('What if I get stuck?', 'Bagaimana kalau aku buntu?'),
         a: L(
-          'Press Undo to take back steps, or Restart. Idea gives a thought about the level. Show next step points at the next move of a shortest way from where you are, and says so if no way is left; it keeps the level from three stars.',
-          'Tekan Undo untuk menarik langkah, atau Ulang. Ide memberi pikiran tentang level itu. Lihat langkah berikutnya menunjuk langkah berikutnya dari jalan terpendek dari tempatmu, dan memberi tahu bila tidak ada jalan lagi; ini membuat level tidak bisa tiga bintang.',
+          'Press Undo to take back steps, or Restart. Idea gives a thought about the level. Show next step points at the next move of a way out from where you are, and says so if no way is left.',
+          'Tekan Undo untuk menarik langkah, atau Ulang. Ide memberi pikiran tentang level itu. Lihat langkah berikutnya menunjuk langkah berikutnya menuju pintu keluar dari tempatmu, dan memberi tahu bila tidak ada jalan lagi.',
         ),
       },
       {
@@ -1284,8 +1284,8 @@ Level-level awal ramah: tidak ada yang bisa dirusak. Lalu level menjadi teka-tek
       {
         q: L('Does it save my progress?', 'Apakah progresku disimpan?'),
         a: L(
-          'Yes, in this browser: which levels you solved, the fewest steps and the stars. Nothing is sent to an account.',
-          'Ya, di browser ini: level mana yang sudah selesai, langkah paling sedikit, dan bintangnya. Tidak ada yang dikirim ke sebuah akun.',
+          'Yes, in this browser: which levels you have solved. Nothing is sent to an account.',
+          'Ya, di browser ini: level mana yang sudah selesai. Tidak ada yang dikirim ke sebuah akun.',
         ),
       },
     ],

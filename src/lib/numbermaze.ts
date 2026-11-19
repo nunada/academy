@@ -661,30 +661,15 @@ export function solve(level: Level, from?: { pos: Vec; value: number; used: bigi
   return { solved: false, path: [], statesExplored: seen.size, exhausted: false }
 }
 
-/* ----------------------------------------------------------------------------------------------- stars and progress */
+/* ----------------------------------------------------------------------------------------------- progress */
 
-/** One to three stars: the shortest way or less, up to half as many steps again, or more. */
-export const starsFor = (moves: number, par: number, hinted = false): 1 | 2 | 3 => {
-  const base = moves <= par ? 3 : moves <= Math.ceil(par * 1.5) ? 2 : 1
-  return hinted ? (Math.min(base, 2) as 1 | 2) : (base as 1 | 2 | 3)
-}
+/** The levels that are solved. A level is solved or not: there is no count of steps and no score. */
+export type Progress = Record<string, true>
 
-export interface LevelProgress {
-  best: number
-  stars: 1 | 2 | 3
-}
-export type Progress = Record<string, LevelProgress>
-
-/** What was stored, or nothing at all of it: anything malformed is dropped. */
+/** What was stored (a list of level ids), or nothing at all of it: anything that is not the id of a level is dropped. */
 export function parseProgress(raw: unknown, ids: readonly string[]): Progress {
   const out: Progress = {}
-  if (typeof raw !== 'object' || raw === null || Array.isArray(raw)) return out
-  const r = raw as Record<string, unknown>
-  for (const id of ids) {
-    const e = r[id]
-    if (typeof e !== 'object' || e === null) continue
-    const { best, stars } = e as { best?: unknown; stars?: unknown }
-    if (typeof best === 'number' && Number.isInteger(best) && best >= 1 && best <= 9999 && (stars === 1 || stars === 2 || stars === 3)) out[id] = { best, stars }
-  }
+  if (!Array.isArray(raw)) return out
+  for (const id of raw) if (typeof id === 'string' && ids.includes(id)) out[id] = true
   return out
 }

@@ -5,6 +5,7 @@
 // level: it is exactly what the generator made and the solver measured.
 import fs from 'node:fs'
 import process from 'node:process'
+import { M, analyze, prune, straight } from './maze-lib.mjs'
 
 const CHAPTERS = [
   { id: 'arithmetic', prefix: 'ar', total: 14, intro: 0 },
@@ -18,6 +19,30 @@ const CHAPTERS = [
 /** how many hand-made tutorial levels open a chapter (they are in numbermaze.ts) */
 const TUTORIAL = { arithmetic: 3 }
 const MAX_STATES = 40_000
+
+const refined = new Map()
+/** A candidate pruned and measured again, or null when what is left is no longer a puzzle. */
+function refine(c, isIntro) {
+  const key = c.grid.join('|') + c.startValue + isIntro
+  if (refined.has(key)) return refined.get(key)
+  let out = null
+  try {
+    const src = { id: 'x', startValue: c.startValue, minValue: c.minValue, maxValue: c.maxValue, grid: c.grid }
+    const p = prune(src, c.par)
+    const level = M.parseLevel(p)
+    const a = analyze(level, 120_000)
+    const geo = straight(level)
+    let placed = 0
+    for (const row of level.tiles) for (const t of row) if (['op', 'gate', 'key', 'lock', 'oneway'].includes(t.kind)) placed++
+    if (a && a.par !== null && geo !== null && placed >= 2 && a.par >= geo + (isIntro ? 2 : 6) && a.shortest <= 40 && a.states >= (isIntro ? 15 : 120)) {
+      out = { ...c, grid: p.grid, par: a.par, shortest: a.shortest, states: a.states, deadRate: Math.round(a.deadRate * 1000) / 1000, placed }
+    }
+  } catch {
+    out = null
+  }
+  refined.set(key, out)
+  return out
+}
 
 const score = (l) => l.par + 40 * l.deadRate - 3 * Math.log2(l.shortest) + 1.5 * Math.log2(l.states)
 const files = fs.readdirSync('tmp').filter((f) => /^gen-[a-z]+(-intro|-relax|-hard)?-\d+\.json$/.test(f))
@@ -40,12 +65,29 @@ for (const ch of CHAPTERS) {
   if (main.length < nMain) {
     report += `  NOT ENOUGH (${main.length} < ${nMain})\n`
   }
-  // the intro levels: the easiest ones, spread a little
-  const pickIntro = intro.length ? Array.from({ length: nIntro }, (_, i) => intro[Math.floor((i * intro.length) / Math.max(1, nIntro) * 0.6)]) : []
+  // every level that is chosen is pruned first: a tile that is not needed (taking it away changes nothing about the shortest way) is taken away, and what is left is measured again
+  const chosen = new Set()
+  const choose = (pool, wanted, isIntro) => {
+    const got = []
+    for (const target of wanted) {
+      for (let d = 0; d < 60; d++) {
+        const cand = [target + d, target - d].map((i) => pool[i]).find((c) => c && !chosen.has(c) && refine(c, isIntro))
+        if (cand) {
+          const r = refine(cand, isIntro)
+          chosen.add(cand)
+          got.push(r)
+          break
+        }
+      }
+    }
+    return got
+  }
+  const pickIntro = intro.length ? choose(intro, Array.from({ length: nIntro }, (_, i) => Math.floor(((i * intro.length) / Math.max(1, nIntro)) * 0.6)), true) : []
   // the others: evenly spaced over the sorted list, so the chapter climbs from the easy end to the hardest
   // (the easiest fifth of the pool is left out: the easy levels of a chapter are the intro ones)
   const pool = main.slice(Math.floor(main.length * 0.25))
-  const pickMain = Array.from({ length: Math.min(nMain, pool.length) }, (_, i) => pool[Math.round((i * (pool.length - 1)) / Math.max(1, Math.min(nMain, pool.length) - 1))])
+  const nPick = Math.min(nMain, pool.length)
+  const pickMain = choose(pool, Array.from({ length: nPick }, (_, i) => Math.round((i * (pool.length - 1)) / Math.max(1, nPick - 1))), false)
   out[ch.id] = [...pickIntro, ...pickMain].filter(Boolean)
   const pars = out[ch.id].map((l) => l.par)
   report += `  pars: ${pars.join(' ')}\n  dead: ${out[ch.id].map((l) => Math.round(l.deadRate * 100)).join(' ')}%\n`

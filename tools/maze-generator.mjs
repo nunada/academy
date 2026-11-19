@@ -13,18 +13,9 @@
 //
 // The output is a JSON list of {grid, startValue, minValue, maxValue, par, shortest, states, deadRate, needed, placed}, written to tmp/gen-<chapter>.json.
 import fs from 'node:fs'
-import os from 'node:os'
-import path from 'node:path'
 import process from 'node:process'
-import { build } from 'esbuild'
 
-const ROOT = process.cwd()
-const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'mazegen-'))
-const q = (p) => path.join(ROOT, p).split(path.sep).join('/')
-fs.writeFileSync(path.join(tmp, 'e.ts'), [`export * from '${q('src/lib/numbermaze.ts')}'`, `export { makeRng } from '${q('src/lib/domino.ts')}'`].join('\n'))
-await build({ entryPoints: [path.join(tmp, 'e.ts')], bundle: true, format: 'esm', outfile: path.join(tmp, 'e.mjs'), logLevel: 'error' })
-const M = await import('file://' + path.join(tmp, 'e.mjs').split(path.sep).join('/'))
-fs.rmSync(tmp, { recursive: true, force: true })
+import { M, analyze, straight, neededTiles } from './maze-lib.mjs'
 
 const chapter = process.argv[2] ?? 'arithmetic'
 const seconds = Number(process.argv[3] ?? 60)
@@ -215,125 +206,6 @@ function plant() {
   cell[S[1]][S[0]] = 'S'
   const grid = cell.map((r) => r.join('  '))
   return { grid, startValue, minValue, maxValue, planted: path.length - 1 }
-}
-
-/* ------------------------------------------------------------------------------------------- measuring a level */
-const ALL = ['up', 'right', 'down', 'left']
-/** The whole reachable game: its size, the shortest way, how many shortest ways, and how much of it is dead (the exit can no longer be reached). */
-function analyze(level, limit) {
-  const keyOf = (x, y, v, u) => `${x},${y},${v},${u}`
-  const ids = new Map()
-  const info = [] // [x, y, v, u, dist]
-  const ways = []
-  const adj = []
-  const wins = []
-  const add = (x, y, v, u, d) => {
-    ids.set(keyOf(x, y, v, u), info.length)
-    info.push([x, y, v, u, d])
-    ways.push(0)
-    adj.push([])
-    wins.push(0)
-    return info.length - 1
-  }
-  add(level.start.x, level.start.y, level.startValue, 0n, 0)
-  ways[0] = 1
-  for (let head = 0; head < info.length; head++) {
-    if (info.length > limit) return null
-    const [x, y, v, u, d] = info[head]
-    for (const dir of ALL) {
-      const r = M.peekMove(level, { x, y }, v, u, dir)
-      if (!r.ok) continue
-      if (r.step.won) {
-        wins[head]++
-        continue
-      }
-      const k = keyOf(r.step.pos.x, r.step.pos.y, r.step.value, r.step.used)
-      let id = ids.get(k)
-      if (id === undefined) id = add(r.step.pos.x, r.step.pos.y, r.step.value, r.step.used, d + 1)
-      adj[head].push(id)
-      if (info[id][4] === d + 1) ways[id] = Math.min(1e9, ways[id] + ways[head])
-    }
-  }
-  let par = Infinity
-  info.forEach((s, i) => {
-    if (wins[i] && s[4] + 1 < par) par = s[4] + 1
-  })
-  if (par === Infinity) return { par: null }
-  let shortest = 0
-  info.forEach((s, i) => {
-    if (wins[i] && s[4] + 1 === par) shortest += ways[i] * wins[i]
-  })
-  // which states can still reach the exit: propagate backwards
-  const back = info.map(() => [])
-  adj.forEach((list, i) => list.forEach((j) => back[j].push(i)))
-  const alive = new Uint8Array(info.length)
-  const stack = []
-  wins.forEach((w, i) => {
-    if (w) {
-      alive[i] = 1
-      stack.push(i)
-    }
-  })
-  while (stack.length) {
-    const j = stack.pop()
-    for (const i of back[j])
-      if (!alive[i]) {
-        alive[i] = 1
-        stack.push(i)
-      }
-  }
-  let dead = 0
-  alive.forEach((a) => {
-    if (!a) dead++
-  })
-  return { par, shortest, states: info.length, deadRate: dead / info.length }
-}
-/** the straight way between the start and the exit with walls only, the values not considered */
-function straight(level) {
-  const seen = new Set([`${level.start.x},${level.start.y}`])
-  let frontier = [[level.start.x, level.start.y]]
-  for (let d = 1; frontier.length; d++) {
-    const next = []
-    for (const [x, y] of frontier)
-      for (const [, dx, dy] of DIRS) {
-        const nx = x + dx
-        const ny = y + dy
-        const t = M.tileAt(level, nx, ny)
-        if (t.kind === 'wall' || seen.has(`${nx},${ny}`)) continue
-        if (t.kind === 'goal') return d
-        seen.add(`${nx},${ny}`)
-        next.push([nx, ny])
-      }
-    frontier = next
-  }
-  return null
-}
-/** how many of the placed tiles are needed: with one of them turned into floor, the shortest way changes or there is none */
-function neededTiles(src, par) {
-  const rows = src.grid.map((r) => r.split(/\s+/))
-  let placed = 0
-  let needed = 0
-  for (let y = 0; y < rows.length; y++)
-    for (let x = 0; x < rows[y].length; x++) {
-      const t = rows[y][x]
-      if (t === '#' || t === '.' || t === 'S' || t.startsWith('G')) continue
-      placed++
-      const was = rows[y][x]
-      rows[y][x] = '.'
-      let level
-      try {
-        level = M.parseLevel({ ...src, grid: rows.map((r) => r.join(' ')) })
-      } catch {
-        rows[y][x] = was
-        needed++
-        continue
-      }
-      const r = M.solve(level, undefined, 60_000)
-      if (r.exhausted) needed++
-      else if (!r.solved || r.path.length !== par) needed++
-      rows[y][x] = was
-    }
-  return { placed, needed }
 }
 
 /* ------------------------------------------------------------------------------------------- the search */
