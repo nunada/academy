@@ -682,7 +682,8 @@ for (const level of N.LEVELS) {
   const css = read('src/styles.css')
   ok(/\.nlfield\b/.test(css) && /\.nlpin\.mark\b/.test(css) && /\.nlpin\.target\b/.test(css), 'the styles exist')
   // the colors are the site's own tokens, so the dark themes need nothing more
-  const nlCss = css.slice(css.indexOf('/* Number Line:'))
+  // up to the styles of the next game (Math Domino comes right after), which have their own tokens
+  const nlCss = css.slice(css.indexOf('/* Number Line:'), css.includes('/* Math Domino') ? css.indexOf('/* Math Domino') : undefined)
   ok(!/#[0-9a-fA-F]{3,6}\b/.test(nlCss) && !/\brgb\(/.test(nlCss), 'the Number Line styles use color tokens only')
 }
 
