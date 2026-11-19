@@ -160,12 +160,13 @@ export function prune(src, par) {
         }
         const r = M.solve(level, undefined, 80_000)
         if (r.solved && r.path.length === par) {
-          // a gate is only pointless when it blocks nothing at all: the same positions can be reached with it taken away
+          // a gate has to matter to the best ways: with it taken away the shortest way must be shorter (that is already known not to be so here)
+          // or there must be more of them. A gate that only shuts some long way that is not the one anybody walks is for show.
           if (was.startsWith('?')) {
             const before = M.parseLevel({ ...src, grid: rows.map((q, qy) => q.map((c, qx) => (qy === y && qx === x ? was : c)).join(' ')) })
             const a0 = analyze(before, 120_000)
             const a1 = analyze(level, 120_000)
-            if (!a0 || !a1 || a1.states !== a0.states) {
+            if (!a0 || !a1 || a1.par !== a0.par || a1.shortest !== a0.shortest) {
               rows[y][x] = was
               continue
             }

@@ -14,6 +14,7 @@ import os from 'node:os'
 import path from 'node:path'
 import process from 'node:process'
 import { build } from 'esbuild'
+import * as lib from './maze-lib.mjs'
 
 const ROOT = process.cwd()
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'numbermaze-'))
@@ -365,7 +366,24 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
   // the exit is never an open door: every generated level has an exit that asks for something, and most have gates
   const askCount = made.filter((l) => l.grid.some((r) => /G\?/.test(r))).length
   ok(askCount === made.length, 'every generated level has an exit with a condition')
-  ok(made.filter((l) => l.grid.some((r) => /\?/.test(r.replace(/G\?/g, '')))).length >= 80, 'most levels have gates')
+  ok(made.filter((l) => l.grid.some((r) => /\?/.test(r.replace(/G\?/g, '')))).length >= 35, 'a good part of the levels have gates')
+  // a gate is not for show: taken away, the shortest way is shorter or there are more shortest ways (a gate that only shuts some long way nobody walks is a decoy that does nothing)
+  let gates = 0
+  for (const lv of made) {
+    const rows = lv.grid.map((r) => r.trim().split(/\s+/))
+    const mk = (g) => lib.M.parseLevel({ id: lv.id, startValue: lv.startValue, minValue: lv.minValue, maxValue: lv.maxValue, grid: g.map((r) => r.join(' ')) })
+    const base = lib.analyze(mk(rows), 150_000)
+    for (let y = 0; y < rows.length; y++)
+      for (let x = 0; x < rows[y].length; x++) {
+        if (!/^\?/.test(rows[y][x])) continue
+        gates++
+        const copy = rows.map((r) => r.slice())
+        copy[y][x] = '.'
+        const without = lib.analyze(mk(copy), 150_000)
+        ok(base && without && base.par !== null && (without.par !== base.par || without.shortest !== base.shortest), `${lv.id}: the gate ${rows[y][x]} at ${x},${y} changes the best ways (it is not for show)`)
+      }
+  }
+  ok(gates >= 50, `${gates} gates in the levels`)
 }
 
 /* ------------------------------------------------------------------------------------------- the engine against the second simulator, step by step */
@@ -572,7 +590,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
       }
   }
   ok([...usedOps].sort().join() === 'abs,add,div,exp,log,mod,mul,neg,pow,sub', `the operators of the levels are + − × ÷ remainder, powers, logarithms, ± and |x| (${[...usedOps].sort()})`)
-  ok([...usedConds].sort().join() === 'congruent,cube,eq,even,ge,gt,le,lt,multiple,not,odd,prime,range,square', `the conditions of the levels (${[...usedConds].sort()})`)
+  ok([...usedConds].sort().join() === 'congruent,cube,eq,ge,gt,le,lt,multiple,not,odd,prime,range,square', `the conditions of the levels (${[...usedConds].sort()})`)
   ok(tokens.some((t) => /^w[v^<>]$/.test(t)) && tokens.some((t) => /^key[12]$/.test(t)), 'one-way tiles and keys appear in the levels')
 
   const lvText = LEVELS.flatMap((l) => [l.name, l.hint])

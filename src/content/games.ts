@@ -1168,24 +1168,24 @@ Langkah yang tidak boleh tidak diambil, dan sebuah pesan singkat menjelaskan seb
 |---|---|---|
 | Operator that never runs out | **blue**, solid border, such as $+1$ | works every time you step on it, so you can go back and forth to tune your number |
 | Operator used up once | **gold**, dashed border, such as $\\times7$ | works once; afterwards it is just empty floor |
-| Gate | **green**, with a condition such as $\\ge 6$, even or prime | lets you through only if your value fits the condition; it never changes your value |
+| Gate | **green**, with a condition such as $\\ge 6$, odd or prime | lets you through only if your value fits the condition; it never changes your value |
 | Exit | a flag, dark green | ends the level; with a condition it needs exactly that kind of value |
 | One-way tile | an arrow | you may step onto it from anywhere, but leave it only the way the arrow points |
 | Key and lock | a key and a lock with the **same number** | a key you step on is picked up, and a lock of the same number uses it up |
 | Wall | dark | stops you |
 
-The operators are $+$, $-$, $\\times$, $\\div$, remainder, powers ($x^2$, $x^3$, $2^x$, $3^x$), logarithms ($\\log_2$, $\\log_3$), $\\pm$ (change the sign) and $|x|$ (absolute value). Gates and exits ask for things such as at least, less than, between, even, odd, a multiple of, a remainder, a perfect square or cube, prime and **not** prime. **All values are whole numbers:** a division only works when it comes out even, a logarithm only when it is exact, and a gate or an exit is judged on your value at that moment. Some levels also limit how high or how low your value may go.`,
+The operators are $+$, $-$, $\\times$, $\\div$, remainder, powers ($x^2$, $x^3$, $2^x$, $3^x$), logarithms ($\\log_2$, $\\log_3$), $\\pm$ (change the sign) and $|x|$ (absolute value). Gates and exits ask for things such as at least, less than, between, odd, a multiple of, a remainder, a perfect square or cube, prime and **not** prime. **All values are whole numbers:** a division only works when it comes out even, a logarithm only when it is exact, and a gate or an exit is judged on your value at that moment. Some levels also limit how high or how low your value may go.`,
           `| Petak | Tampilannya | Fungsinya |
 |---|---|---|
 | Operator yang tidak pernah habis | **biru**, bergaris tepi utuh, seperti $+1$ | bekerja setiap kali kamu menginjaknya, jadi kamu bisa mondar-mandir untuk menyetel angkamu |
 | Operator habis sekali pakai | **emas**, bergaris tepi putus-putus, seperti $\\times7$ | bekerja sekali; sesudahnya ia hanya lantai kosong |
-| Gerbang | **hijau**, dengan syarat seperti $\\ge 6$, genap, atau prima | meloloskanmu hanya bila nilaimu memenuhi syarat; ia tidak pernah mengubah nilaimu |
+| Gerbang | **hijau**, dengan syarat seperti $\\ge 6$, ganjil, atau prima | meloloskanmu hanya bila nilaimu memenuhi syarat; ia tidak pernah mengubah nilaimu |
 | Pintu keluar | bendera, hijau tua | mengakhiri level; bila bersyarat, ia butuh nilai yang tepat itu |
 | Petak satu arah | anak panah | boleh diinjak dari mana saja, tetapi keluarnya hanya searah panah |
 | Kunci dan gembok | kunci dan gembok dengan **nomor yang sama** | kunci yang kamu injak dipungut, dan gembok bernomor sama memakainya sampai habis |
 | Tembok | gelap | menghentikanmu |
 
-Operatornya adalah $+$, $-$, $\\times$, $\\div$, sisa bagi, pangkat ($x^2$, $x^3$, $2^x$, $3^x$), logaritma ($\\log_2$, $\\log_3$), $\\pm$ (ubah tanda) dan $|x|$ (nilai mutlak). Gerbang dan pintu keluar meminta hal seperti minimal, kurang dari, antara, genap, ganjil, kelipatan, sisa bagi, kuadrat atau pangkat tiga sempurna, prima, dan **bukan** prima. **Semua nilai bilangan bulat:** pembagian hanya jalan bila habis, logaritma hanya bila tepat, dan gerbang atau pintu keluar dinilai dari nilaimu saat itu. Sebagian level juga membatasi seberapa tinggi atau rendah nilaimu boleh.`,
+Operatornya adalah $+$, $-$, $\\times$, $\\div$, sisa bagi, pangkat ($x^2$, $x^3$, $2^x$, $3^x$), logaritma ($\\log_2$, $\\log_3$), $\\pm$ (ubah tanda) dan $|x|$ (nilai mutlak). Gerbang dan pintu keluar meminta hal seperti minimal, kurang dari, antara, ganjil, kelipatan, sisa bagi, kuadrat atau pangkat tiga sempurna, prima, dan **bukan** prima. **Semua nilai bilangan bulat:** pembagian hanya jalan bila habis, logaritma hanya bila tepat, dan gerbang atau pintu keluar dinilai dari nilaimu saat itu. Sebagian level juga membatasi seberapa tinggi atau rendah nilaimu boleh.`,
         ),
       },
       {
