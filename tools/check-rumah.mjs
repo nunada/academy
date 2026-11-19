@@ -916,7 +916,10 @@ for (const op of ['times', 'plus']) {
     const m = css.match(new RegExp(`(^|\\n)${sel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*\\{([^}]*)\\}`))
     return m ? m[2] : ''
   }
-  const rh = css.slice(css.indexOf('/* ---- The Houses'))
+  // the block of the Houses, up to the next game's block (a block of styles begins with a comment that starts with /* ---- )
+  const rhAt = css.indexOf('/* ---- The Houses')
+  const rhEnd = css.indexOf('/* ---- ', rhAt + 10)
+  const rh = css.slice(rhAt, rhEnd < 0 ? undefined : rhEnd)
   ok(rh.length > 500 && !/--bad|--fig-b|#[0-9a-f]*(?:c0|d4|e5|ef)[0-9a-f]{4}\b|\bred\b/i.test(rh.replace(/Red[^.]*\./g, '').replace(/never red[^.]*\./g, '')), 'the styles of the Houses never use the red of a mistake')
   ok(/--rh-blue/.test(rule('.rhmark.blue')) && /--rh-gold/.test(rule('.rhmark.gold')) && /--rh-blue/.test(rule('.rhcell.own.blue')) && /--rh-gold/.test(rule('.rhcell.own.gold')), 'the two players have their own colors')
   ok((rh.match(/--rh-blue:/g) ?? []).length === 3 && (rh.match(/--rh-gold:/g) ?? []).length === 3 && /prefers-color-scheme: dark/.test(rh) && /data-theme="dark"/.test(rh), 'both colors are defined for light, dark by system and dark by choice')

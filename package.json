@@ -79,6 +79,7 @@
     "check:numberline": "node tools/check-numberline.mjs",
     "check:domino": "node tools/check-domino.mjs",
     "check:rumah": "node tools/check-rumah.mjs",
+    "check:numbermaze": "node tools/check-numbermaze.mjs",
     "check:views": "node tools/check-views.mjs",
     "check:viewssql": "node tools/check-viewssql.mjs",
     "check:indexnow": "node tools/check-indexnow.mjs",

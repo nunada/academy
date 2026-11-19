@@ -5,7 +5,7 @@ import type { Loc } from './types'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
-export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house'
+export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house' | 'number-maze'
 
 export interface GameMeta {
   id: GameId
@@ -1116,6 +1116,177 @@ Langkah yang menang jarang yang pertama kamu lihat: kamu juga memperhatikan apa 
       L('Addition facts, 1 + 1 to 9 + 9', 'Fakta penjumlahan, 1 + 1 sampai 9 + 9'),
       L('Finding a sum in a table of results', 'Mencari hasil jumlah dalam tabel hasil'),
       L('Planning ahead and blocking an opponent', 'Merencanakan langkah dan menghalangi lawan'),
+    ],
+  },
+  {
+    id: 'number-maze',
+    slug: { en: 'number-maze', id: 'labirin-angka' },
+    icon: '🧮',
+    title: L('Number Maze: Walk a Number Through the Gates', 'Labirin Angka: Antar Sebuah Bilangan Melewati Gerbang'),
+    seoTitle: L('Number Maze: a Free Math Maze Puzzle Game', 'Labirin Angka: Game Teka-teki Labirin Matematika Gratis'),
+    description: L(
+      'A free math puzzle: you are a number walking through a maze. Operator tiles change your value, gates open only for the right values, and the exit wants an exact number. 35 levels on arithmetic, inequalities, absolute value, primes, keys and locks.',
+      'Teka-teki matematika gratis: kamu adalah sebuah bilangan yang berjalan di labirin. Petak operator mengubah nilaimu, gerbang hanya terbuka untuk nilai yang tepat, dan pintu keluar menuntut angka yang pas. 35 level tentang aritmetika, pertidaksamaan, nilai mutlak, bilangan prima, kunci, dan gembok.',
+    ),
+    keywords: L(
+      'number maze, math maze game, math puzzle game, arithmetic puzzle, order of operations puzzle, inequalities game, absolute value game, prime numbers game, logic puzzle for kids, brain teaser with numbers, free math puzzle, learn math by playing',
+      'labirin angka, game labirin matematika, game teka-teki matematika, teka-teki aritmetika, game urutan operasi, game pertidaksamaan, game nilai mutlak, game bilangan prima, game logika untuk anak, teka-teki angka, game matematika gratis, belajar matematika sambil bermain',
+    ),
+    tagline: L('Walk a number through gates and operators to the exit.', 'Antar sebuah bilangan melewati gerbang dan operator ke pintu keluar.'),
+    answer: L(
+      '**Number Maze is a math puzzle in which you are a number walking through a maze: operator tiles change your value, gates let you through only when your value fits, and the exit often wants one exact number.** Some tiles are used up once, so the puzzle is which ones to spend and in what order. There are 35 levels in three chapters, and you play with the arrow keys, a swipe or the buttons.',
+      '**Labirin Angka adalah teka-teki matematika di mana kamu adalah sebuah bilangan yang berjalan di labirin: petak operator mengubah nilaimu, gerbang hanya meloloskanmu bila nilaimu cocok, dan pintu keluar sering menuntut satu angka yang tepat.** Sebagian petak habis sekali pakai, jadi teka-tekinya adalah petak mana yang dibelanjakan dan urutannya. Ada 35 level dalam tiga bab, dan kamu bermain dengan tombol panah, geseran layar, atau tombol di layar.',
+    ),
+    published: '2026-11-20',
+    updated: '2026-11-20',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Number Maze?', 'Bagaimana cara memainkan Labirin Angka?'),
+        text: L(
+          `1. Pick a level. You start on the tile marked by your number, with the value shown at the top.
+2. Move one tile at a time with the **arrow keys** (or W A S D), by **swiping** on the maze, or with the **buttons** under it.
+3. Every tile you step on can change your number: an operator such as $+3$ or $\\times2$ does its sum, a gate checks your value, and a wall stops you.
+4. Reach the **exit** (the flag). Many exits only open for one exact value, for example 12.
+5. If you go wrong, press **Undo** (Z) to take back a step or **Restart** (R) to start the level again. **Idea** shows a thought about the level, and **Show next step** points to the next move of a shortest way from where you are.
+
+A step that is not allowed is simply not taken, and a short message says why: a wall, a locked gate, a division that does not come out even, or a one-way tile.`,
+          `1. Pilih sebuah level. Kamu mulai di petak awal dengan nilai yang tertulis di atas.
+2. Bergerak satu petak setiap kali dengan **tombol panah** (atau W A S D), dengan **menggeser** layar di atas labirin, atau dengan **tombol** di bawahnya.
+3. Setiap petak yang kamu injak bisa mengubah angkamu: operator seperti $+3$ atau $\\times2$ menghitung, gerbang memeriksa nilaimu, dan tembok menghentikanmu.
+4. Capai **pintu keluar** (bendera). Banyak pintu keluar hanya terbuka untuk satu nilai yang tepat, misalnya 12.
+5. Kalau salah langkah, tekan **Undo** (Z) untuk menarik satu langkah atau **Ulang** (R) untuk memulai level dari awal. **Ide** menampilkan pikiran tentang level itu, dan **Lihat langkah berikutnya** menunjuk langkah berikutnya dari jalan terpendek dari tempatmu berada.
+
+Langkah yang tidak boleh tidak diambil, dan sebuah pesan singkat menjelaskan sebabnya: tembok, gerbang terkunci, pembagian yang tidak habis, atau petak satu arah.`,
+        ),
+      },
+      {
+        id: 'the-tiles',
+        heading: L('What do the tiles do?', 'Apa yang dilakukan tiap petak?'),
+        text: L(
+          `| Tile | What it looks like | What it does |
+|---|---|---|
+| Operator that never runs out | **blue**, solid border, such as $+1$ | works every time you step on it, so you can go back and forth to tune your number |
+| Operator used up once | **gold**, dashed border, such as $\\times7$ | works once; afterwards it is just empty floor |
+| Gate | **green**, with a condition such as $\\ge 6$, even or prime | lets you through only if your value fits the condition; it never changes your value |
+| Exit | a flag, dark green | ends the level; with a condition it needs exactly that kind of value |
+| One-way tile | an arrow | you may step onto it from anywhere, but leave it only the way the arrow points |
+| Key and lock | a key and a lock with the **same number** | a key you step on is picked up, and a lock of the same number uses it up |
+| Wall | dark | stops you |
+
+The operators of the 35 levels are $+$, $-$, $\\times$, $\\div$, $\\pm$ (change the sign) and $|x|$ (absolute value). **All values are whole numbers:** a division only works when it comes out even, and a gate or an exit that says "at least 6" or "prime" is judged on your value at that moment.`,
+          `| Petak | Tampilannya | Fungsinya |
+|---|---|---|
+| Operator yang tidak pernah habis | **biru**, bergaris tepi utuh, seperti $+1$ | bekerja setiap kali kamu menginjaknya, jadi kamu bisa mondar-mandir untuk menyetel angkamu |
+| Operator habis sekali pakai | **emas**, bergaris tepi putus-putus, seperti $\\times7$ | bekerja sekali; sesudahnya ia hanya lantai kosong |
+| Gerbang | **hijau**, dengan syarat seperti $\\ge 6$, genap, atau prima | meloloskanmu hanya bila nilaimu memenuhi syarat; ia tidak pernah mengubah nilaimu |
+| Pintu keluar | bendera, hijau tua | mengakhiri level; bila bersyarat, ia butuh nilai yang tepat itu |
+| Petak satu arah | anak panah | boleh diinjak dari mana saja, tetapi keluarnya hanya searah panah |
+| Kunci dan gembok | kunci dan gembok dengan **nomor yang sama** | kunci yang kamu injak dipungut, dan gembok bernomor sama memakainya sampai habis |
+| Tembok | gelap | menghentikanmu |
+
+Operator di 35 level ini adalah $+$, $-$, $\\times$, $\\div$, $\\pm$ (ubah tanda) dan $|x|$ (nilai mutlak). **Semua nilai bilangan bulat:** pembagian hanya jalan bila habis, dan gerbang atau pintu keluar yang berbunyi "minimal 6" atau "prima" dinilai dari nilaimu saat itu.`,
+        ),
+      },
+      {
+        id: 'stars',
+        heading: L('How are the stars given?', 'Bagaimana bintang diberikan?'),
+        text: L(
+          `Every level has a **shortest way**, found by a solver. If you finish in that many steps or fewer you get **three stars**; in at most half as many steps again, **two stars**; otherwise **one star**. Pressing **Show next step** keeps a level from three stars, because then the solver did the thinking.
+
+A level opens when the one before it is solved. All three chapters are open from the start, so you can choose the topic you are learning.`,
+          `Setiap level punya **jalan terpendek**, yang dicari sebuah solver. Bila kamu menyelesaikannya dalam sebanyak itu langkah atau kurang, kamu mendapat **tiga bintang**; dalam paling banyak separuhnya lagi, **dua bintang**; selain itu **satu bintang**. Menekan **Lihat langkah berikutnya** membuat level tidak bisa tiga bintang, karena solver yang berpikir.
+
+Sebuah level terbuka bila level sebelumnya sudah selesai. Ketiga bab terbuka sejak awal, jadi kamu bisa memilih topik yang sedang kamu pelajari.`,
+        ),
+      },
+      {
+        id: 'chapters',
+        heading: L('What do the chapters practise?', 'Apa yang dilatih tiap bab?'),
+        text: L(
+          `| Chapter | Levels | What you practise |
+|---|---|---|
+| Arithmetic | 14 | adding, subtracting, multiplying and dividing in the right order, with tiles that are used up once |
+| Inequalities and Absolute Value | 14 | staying inside limits and ranges, negative numbers, folding the sign with the absolute value tile and flipping it with $\\pm$ |
+| Numbers | 7 | primes, even and odd, multiples, keys and locks (more levels will come) |
+
+In the first levels nothing can be spoiled. Later a tile you have already used up can make the exit impossible; the game then tells you, when you ask for the next step, that there is no way from here, and you can undo or restart.`,
+          `| Bab | Level | Yang dilatih |
+|---|---|---|
+| Aritmetika | 14 | menjumlah, mengurangi, mengalikan, dan membagi dalam urutan yang tepat, dengan petak yang habis sekali pakai |
+| Pertidaksamaan dan Nilai Mutlak | 14 | tetap di dalam batas dan rentang, bilangan negatif, melipat tanda dengan petak nilai mutlak dan membaliknya dengan $\\pm$ |
+| Bilangan | 7 | bilangan prima, genap dan ganjil, kelipatan, kunci, dan gembok (level lain akan menyusul) |
+
+Di level-level awal tidak ada yang bisa dirusak. Nanti, petak yang sudah kamu pakai sampai habis bisa membuat pintu keluar mustahil; game lalu memberi tahu, saat kamu meminta langkah berikutnya, bahwa tidak ada jalan dari sini, dan kamu bisa Undo atau Ulang.`,
+        ),
+      },
+      {
+        id: 'think-backwards',
+        heading: L('How do you solve a level?', 'Bagaimana cara menyelesaikan sebuah level?'),
+        text: L(
+          `- **Start from the exit.** If the exit wants exactly 12, which tiles could give 12? Work backwards, gate by gate, to the number you start with.
+- **Ask which tiles are used up once.** Spending a $\\times3$ early or late gives different numbers: $(2+1)\\times3 = 9$ but $2\\times3+1 = 7$.
+- **Look at parity.** If you start on an odd number and only add 2 and multiply by 3, you stay odd; an even exit means a tile that changes parity must be used.
+- **Use the tiles that never run out to tune.** A $+1$ and a $-1$ on blue let you walk back and forth to land on the exact value.
+- **Do not fear Undo.** Trying a path and taking it back costs a step on the counter, not a mistake.`,
+          `- **Mulailah dari pintu keluar.** Bila pintu keluar menuntut tepat 12, petak mana yang bisa menghasilkan 12? Bekerjalah mundur, gerbang demi gerbang, sampai ke angka awalmu.
+- **Tanyakan petak mana yang habis sekali pakai.** Membelanjakan $\\times3$ lebih awal atau lebih lambat memberi angka berbeda: $(2+1)\\times3 = 9$ tetapi $2\\times3+1 = 7$.
+- **Perhatikan genap dan ganjil.** Bila kamu mulai dari bilangan ganjil dan hanya menambah 2 dan mengalikan 3, kamu tetap ganjil; pintu keluar genap berarti harus ada petak yang mengubah paritas.
+- **Pakai petak yang tidak pernah habis untuk menyetel.** $+1$ dan $-1$ biru memungkinkan kamu mondar-mandir sampai tepat di nilai yang diminta.
+- **Jangan takut Undo.** Mencoba sebuah jalan lalu menariknya kembali hanya menambah hitungan langkah, bukan kesalahan.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('What is the goal of Number Maze?', 'Apa tujuan Labirin Angka?'),
+        a: L(
+          'Walk your number to the exit. Tiles on the way change your value, and gates and the exit only let you through when your value fits. Many exits need one exact value.',
+          'Antarkan angkamu ke pintu keluar. Petak di sepanjang jalan mengubah nilaimu, dan gerbang serta pintu keluar hanya meloloskanmu bila nilaimu cocok. Banyak pintu keluar butuh satu nilai yang tepat.',
+        ),
+      },
+      {
+        q: L('What is the difference between blue and gold tiles?', 'Apa beda petak biru dan emas?'),
+        a: L(
+          'A blue tile never runs out: it works every time you step on it. A gold tile with a dashed border works once and then it is only floor, so the puzzle is which gold tiles to spend and in what order.',
+          'Petak biru tidak pernah habis: ia bekerja setiap kali diinjak. Petak emas bergaris putus-putus bekerja sekali lalu hanya lantai, jadi teka-tekinya adalah petak emas mana yang dibelanjakan dan urutannya.',
+        ),
+      },
+      {
+        q: L('Why does a division sometimes not work?', 'Mengapa pembagian kadang tidak jalan?'),
+        a: L(
+          'All values in Number Maze are whole numbers. A division tile only works when your value divides evenly, so 12 ÷ 4 works and 13 ÷ 4 does not.',
+          'Semua nilai di Labirin Angka adalah bilangan bulat. Petak pembagian hanya jalan bila nilaimu habis dibagi, jadi 12 ÷ 4 jalan dan 13 ÷ 4 tidak.',
+        ),
+      },
+      {
+        q: L('What if I get stuck?', 'Bagaimana kalau aku buntu?'),
+        a: L(
+          'Press Undo to take back steps, or Restart. Idea gives a thought about the level. Show next step points at the next move of a shortest way from where you are, and says so if no way is left; it keeps the level from three stars.',
+          'Tekan Undo untuk menarik langkah, atau Ulang. Ide memberi pikiran tentang level itu. Lihat langkah berikutnya menunjuk langkah berikutnya dari jalan terpendek dari tempatmu, dan memberi tahu bila tidak ada jalan lagi; ini membuat level tidak bisa tiga bintang.',
+        ),
+      },
+      {
+        q: L('Can I play it on a phone?', 'Bisakah dimainkan di ponsel?'),
+        a: L(
+          'Yes. Swipe on the maze or use the buttons under it. On a computer you can also use the arrow keys or W A S D, Z to undo and R to restart.',
+          'Bisa. Geser layar di atas labirin atau pakai tombol di bawahnya. Di komputer kamu juga bisa memakai tombol panah atau W A S D, Z untuk Undo dan R untuk Ulang.',
+        ),
+      },
+      {
+        q: L('Does it save my progress?', 'Apakah progresku disimpan?'),
+        a: L(
+          'Yes, in this browser: which levels you solved, the fewest steps and the stars. Nothing is sent to an account.',
+          'Ya, di browser ini: level mana yang sudah selesai, langkah paling sedikit, dan bintangnya. Tidak ada yang dikirim ke sebuah akun.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Planning the order of arithmetic operations', 'Merencanakan urutan operasi hitung'),
+      L('Inequalities, ranges and negative numbers', 'Pertidaksamaan, rentang, dan bilangan negatif'),
+      L('Absolute value and changing the sign', 'Nilai mutlak dan mengubah tanda'),
+      L('Primes, even and odd numbers, and multiples', 'Bilangan prima, genap, ganjil, dan kelipatan'),
+      L('Working backwards from a goal', 'Bekerja mundur dari sebuah tujuan'),
     ],
   },
 ]

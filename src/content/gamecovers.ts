@@ -116,6 +116,35 @@ function house(op: 'times' | 'plus'): string {
   return s
 }
 
+/** A corridor of a maze: the number 3 goes through +3 (blue, never runs out), a gate that wants at least 6 (green) and ×2 (gold, used up once) to the exit, 12. */
+function numberMaze(): string {
+  const c = 56
+  const gap = 10
+  const x0 = 34
+  const y0 = 72
+  const xAt = (i: number): number => x0 + i * (c + gap)
+  let s = ''
+  // walls above and below, so that it reads as a maze
+  for (let k = 0; k < 8; k++) {
+    s += rect(xAt(0) - 6 + k * 46, 14, 40, 40, 'pm', 8)
+    s += rect(xAt(0) - 6 + k * 46, 146, 40, 40, 'pm', 8)
+  }
+  const cells: [number, string, string][] = [
+    [0, 'pm', ''],
+    [1, 'pd', '+3'],
+    [2, 'pa', '≥6'],
+    [3, 'pc', '×2'],
+    [4, 'pr', '12'],
+  ]
+  for (const [i, cls, label] of cells) {
+    s += rect(xAt(i), y0, c, c, cls, 10)
+    if (label) s += text(xAt(i) + c / 2, y0 + c / 2 + 8, label, 24)
+  }
+  s += dot(xAt(0) + c / 2, y0 + c / 2, 'pa', 20) + text(xAt(0) + c / 2, y0 + c / 2 + 8, '3', 24)
+  s += line(xAt(4) + c - 12, y0 - 24, xAt(4) + c - 12, y0 + 2, 'sb', 3) + poly([[xAt(4) + c - 12, y0 - 24], [xAt(4) + c - 12, y0 - 8], [xAt(4) + c + 8, y0 - 16]], 'fb')
+  return s
+}
+
 const generic = (): string => rect(120, 50, 160, 100, 'pa', 14) + text(200, 118, '?', 52)
 
 const COVERS: Record<string, () => string> = {
@@ -126,6 +155,7 @@ const COVERS: Record<string, () => string> = {
   'math-domino': mathDomino,
   'multiplication-house': () => house('times'),
   'addition-house': () => house('plus'),
+  'number-maze': numberMaze,
 }
 
 /** The whole `<svg>` of a game's cover, as markup. Decorative: the card already carries the title. */

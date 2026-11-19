@@ -2121,3 +2121,67 @@ main:focus, .page:focus { outline: none; }
   .rhstrip { gap: 3px; }
   .rhpawn { min-height: 46px; }
 }
+
+/* ---- Number Maze. The tiles are told apart by color AND by what is drawn on them (a dashed gold border for a tile that is used up once, a solid blue one for a tile that
+   never runs out, a number on every key and lock), never by red: red in the games is a mistake. ---- */
+:root { --nm-purple: #8a5a9c; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --nm-purple: #c9a0dc; }
+}
+:root[data-theme="dark"] { --nm-purple: #c9a0dc; }
+.nmgame { max-width: 640px; }
+.nmchapter { margin: 14px 0 20px; }
+.nmchapter h2 { margin-bottom: 2px; }
+.nmlevels { display: grid; grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)); gap: 8px; margin-top: 8px; }
+.nmlevel { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 4px; border: 2px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+.nmlevel b { font-size: 1.15rem; }
+.nmlevel:disabled { opacity: 0.55; cursor: default; }
+.nmlevel:not(:disabled):hover { border-color: var(--brand); }
+.nmlevel.done { border-color: var(--brand); background: var(--brand-soft); }
+.nmlstars { font-size: 0.75rem; color: var(--fig-c); letter-spacing: 1px; min-height: 1em; }
+.nmstars span { color: var(--border); font-size: 1.2rem; }
+.nmstars span.on { color: var(--fig-c); }
+.nmname { margin: 6px 0 2px; }
+.nminfo { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 4px 0; }
+.nmvalue { display: flex; flex-direction: column; line-height: 1.1; }
+.nmvalue b { font-size: 2.1rem; }
+.nmcount { display: flex; flex-direction: column; font-size: 0.9rem; }
+.nmhand { display: flex; gap: 6px; margin-left: auto; min-height: 1.8rem; }
+.nmkey { padding: 2px 8px; border: 2px solid var(--border); border-radius: 999px; font-weight: 700; font-size: 0.85rem; }
+.nmkey.k1, .nmt.k1 { border-color: var(--fig-c); }
+.nmkey.k2, .nmt.k2 { border-color: var(--rh-blue); }
+.nmkey.k3, .nmt.k3 { border-color: var(--nm-purple); }
+.nmkey.k4, .nmt.k4 { border-color: var(--fig-result); }
+.nmgoal { margin: 2px 0 8px; font-weight: 600; }
+.nmboardbox { display: flex; justify-content: center; }
+.nmboard { position: relative; display: grid; grid-template-columns: repeat(var(--cols), var(--cell)); grid-auto-rows: var(--cell); gap: var(--gap); padding: 8px; border-radius: var(--radius); background: var(--surface-2); touch-action: none; user-select: none; }
+.nmboard:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+.nmt { display: flex; align-items: center; justify-content: center; text-align: center; border: 2px solid transparent; border-radius: 8px; font-weight: 700; font-size: calc(var(--cell) * 0.34); line-height: 1.1; }
+.nmt.long { font-size: calc(var(--cell) * 0.23); }
+.nmt.wall { background: color-mix(in srgb, var(--surface-2) 45%, var(--bg)); border-color: transparent; }
+.nmchapter .pill { margin-left: 8px; }
+.nmt.floor, .nmt.start { background: var(--surface); border-color: var(--border); }
+.nmt.start { box-shadow: inset 0 0 0 3px var(--surface-2); }
+.nmt.op { background: color-mix(in srgb, var(--rh-blue) 22%, var(--surface)); border-color: var(--rh-blue); }
+.nmt.op.once { background: color-mix(in srgb, var(--fig-c) 26%, var(--surface)); border: 2px dashed var(--fig-c); }
+.nmt.gate { background: color-mix(in srgb, var(--fig-a) 16%, var(--surface)); border-color: var(--fig-a); }
+.nmt.goal { background: var(--brand); border-color: var(--brand); color: var(--surface); }
+.nmt.oneway { background: var(--surface); border-color: var(--border); color: var(--brand); }
+.nmt.key, .nmt.lock { background: var(--surface); border-width: 3px; font-size: calc(var(--cell) * 0.3); }
+.nmt.spent { opacity: 0.35; border-style: dotted; }
+.nmp { position: absolute; top: 8px; left: 8px; z-index: 2; display: flex; align-items: center; justify-content: center; width: var(--cell); height: var(--cell); border-radius: 50%; background: var(--brand); color: var(--surface); font-weight: 800; font-size: calc(var(--cell) * 0.4); transition: transform 0.12s ease-out; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); pointer-events: none; }
+.nmp.won { animation: dmpulse 1s ease-in-out infinite; }
+.nmnote { min-height: 1.5em; margin: 8px 0 0; font-weight: 600; opacity: 0; }
+.nmnote.on { opacity: 1; color: var(--bad); }
+.nmnote.on.info { color: var(--brand); }
+.nmcontrols { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 6px; }
+.nmdpad { display: grid; grid-template-columns: repeat(3, 52px); grid-template-rows: repeat(2, 52px); gap: 6px; }
+.nmd { font: inherit; font-size: 1.2rem; border: 2px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--text); cursor: pointer; }
+.nmd:disabled { opacity: 0.5; cursor: default; }
+.nmd.up { grid-column: 2; grid-row: 1; }
+.nmd.left { grid-column: 1; grid-row: 2; }
+.nmd.down { grid-column: 2; grid-row: 2; }
+.nmd.right { grid-column: 3; grid-row: 2; }
+.nmd.hint { border-color: var(--brand); background: var(--brand-soft); animation: dmpulse 1s ease-in-out infinite; }
+.nmidea { margin-top: 10px; }
+@media (prefers-reduced-motion: reduce) { .nmp { transition: none; } .nmp.won, .nmd.hint { animation: none; } }
