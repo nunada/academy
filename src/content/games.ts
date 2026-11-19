@@ -5,7 +5,7 @@ import type { Loc } from './types'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
-export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino'
+export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house'
 
 export interface GameMeta {
   id: GameId
@@ -774,6 +774,336 @@ Jenis bilangan bulat melatih aturan tanda, seperti $4-(-2)=6$ dan $(-2)\\times(-
       L('Multiplying and dividing, with negative numbers too', 'Mengalikan dan membagi, juga dengan bilangan negatif'),
       L('Equal fractions and adding fractions', 'Pecahan senilai dan penjumlahan pecahan'),
       L('The order of operations', 'Urutan operasi hitung'),
+    ],
+  },
+  {
+    id: 'multiplication-house',
+    slug: { en: 'multiplication-house', id: 'rumah-perkalian' },
+    icon: '🏠',
+    title: L('Multiplication House: Four in a Row With the Times Table', 'Rumah Perkalian: Empat Sejajar dengan Tabel Perkalian'),
+    seoTitle: L('Multiplication House: a Free Times Table Game for Two', 'Rumah Perkalian: Game Tabel Perkalian Gratis untuk Dua Pemain'),
+    description: L(
+      'A free times table game: move your pawn on the numbers 1 to 9, multiply the two pawns, and take that product on a 9 by 9 board. Four in a row wins. Play the computer (six levels), a friend on one screen, or a friend online.',
+      'Game tabel perkalian gratis: pindahkan pionmu di angka 1 sampai 9, kalikan kedua pion, lalu ambil hasil kalinya di papan 9 kali 9. Empat sejajar menang. Main melawan komputer (enam level), dengan teman di satu layar, atau dengan teman online.',
+    ),
+    keywords: L(
+      'multiplication game, times table game, learn multiplication by playing, multiplication facts game, four in a row multiplication, product game, game for two players, multiplication practice for kids, play math games with friends, online math game, memorize the multiplication table',
+      'game perkalian, game tabel perkalian, belajar perkalian sambil bermain, game hafalan perkalian, empat sejajar perkalian, game perkalian untuk anak, game dua pemain, latihan perkalian, main game matematika bersama teman, game matematika online, menghafal tabel perkalian',
+    ),
+    tagline: L('Multiply the two pawns and take the product on the board.', 'Kalikan kedua pion dan ambil hasil kalinya di papan.'),
+    answer: L(
+      '**Multiplication House is a board game for two in which you multiply the numbers under two pawns and take that product on a 9 by 9 board; four of your cells in a row win.** The board holds all 81 products from 1 × 1 to 9 × 9. You can play the computer (six levels), a friend on one screen, or a friend online.',
+      '**Rumah Perkalian adalah permainan papan untuk dua pemain: kamu mengalikan angka di bawah dua pion lalu mengambil hasil kalinya di papan 9 kali 9; empat petakmu yang sejajar menang.** Papan berisi semua 81 hasil kali dari 1 × 1 sampai 9 × 9. Kamu bisa main melawan komputer (enam level), dengan teman di satu layar, atau dengan teman online.',
+    ),
+    published: '2026-11-20',
+    updated: '2026-11-20',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Multiplication House?', 'Bagaimana cara memainkan Rumah Perkalian?'),
+        text: L(
+          `1. Choose how to play: against the computer, two players on one screen, or online. A coin toss decides who starts.
+2. The board holds the 81 products 1 × 1 to 9 × 9 (so 12 appears four times, 36 appears three times, and 1 only once). The cell in the middle is always 1, the one result that is on the board only once (1 × 1).
+3. Under the board is a strip with the numbers 1 to 9. Each player has a pawn on it: **blue** (●) and **yellow** (◆). The player who starts puts both pawns on a number each, the same number if they like.
+4. Then take a cell of the board that holds the product of the two pawns. For example, with the pawns on 3 and 4 the result is 12, because 3 × 4 = 12.
+5. On every later turn you **must move your own pawn** to a different number, work out the new product, and take a free cell that holds it.
+6. The first player to have **four cells in a row**, across, down or diagonally, wins. If the board fills up first, it is a draw.
+
+If every cell that holds the result is already taken, your turn passes without taking a cell.`,
+          `1. Pilih cara bermain: melawan komputer, dua pemain di satu layar, atau online. Lemparan koin menentukan siapa yang mulai.
+2. Papan berisi 81 hasil kali 1 × 1 sampai 9 × 9 (jadi 12 muncul empat kali, 36 muncul tiga kali, dan 1 hanya sekali). Petak di tengah selalu 1, satu-satunya hasil yang hanya sekali di papan (1 × 1).
+3. Di bawah papan ada deret angka 1 sampai 9. Tiap pemain punya satu pion di situ: **biru** (●) dan **kuning** (◆). Pemain yang mulai menaruh kedua pion, masing-masing di satu angka, boleh angka yang sama.
+4. Lalu ambil sebuah petak di papan yang berisi hasil kali kedua pion. Misalnya, dengan pion di 3 dan 4 hasilnya 12, karena 3 × 4 = 12.
+5. Pada setiap giliran berikutnya kamu **wajib memindahkan pionmu sendiri** ke angka lain, menghitung hasil kali yang baru, dan mengambil petak kosong yang berisinya.
+6. Pemain pertama yang punya **empat petak sejajar**, mendatar, menurun, atau miring, menang. Bila papan penuh lebih dulu, hasilnya seri.
+
+Bila semua petak yang berisi hasilnya sudah terisi, gilirannya dilewati tanpa mengambil petak.`,
+        ),
+      },
+      {
+        id: 'a-wrong-cell',
+        heading: L('What if I pick a cell that is not the product?', 'Bagaimana kalau aku memilih petak yang bukan hasil kali?'),
+        text: L(
+          `After you click a cell you have **5 seconds** to look at it. Press **Undo** if you doubt, or **Sure** to go on at once. If the time runs out and the cell does not hold the product of the pawns, **you lose the game.** A cell that is already taken is refused straight away and costs nothing.
+
+The game never tells you the right answer; it only says, at the end, that the cell was not the product. That is what makes it a game of knowing your times table, not of clicking until something works.
+
+**Memorised mode** is on at first: it hides the product and the cells that hold it. Switch the help on to see them, for learning. At level 0 the help is always on.`,
+          `Setelah kamu mengklik sebuah petak, kamu punya **5 detik** untuk memeriksanya. Tekan **Undo** bila ragu, atau **Yakin** untuk langsung lanjut. Bila waktunya habis dan petak itu bukan hasil kali kedua pion, **kamu kalah.** Petak yang sudah terisi langsung ditolak dan tidak merugikan apa-apa.
+
+Game tidak pernah memberi tahu jawaban yang benar; ia hanya mengatakan, di akhir, bahwa petak itu bukan hasil kali. Itulah yang membuatnya permainan untuk mengetahui tabel perkalianmu, bukan permainan mengklik sampai ada yang cocok.
+
+**Mode sudah hafal** menyala di awal: ia menyembunyikan hasil kali dan petak yang berisinya. Nyalakan bantuan untuk melihatnya, untuk belajar. Di level 0 bantuan selalu menyala.`,
+        ),
+      },
+      {
+        id: 'levels',
+        heading: L('How strong is the computer?', 'Seberapa kuat komputernya?'),
+        text: L(
+          `There are six levels, from 0 to 5. Each keeps everything the level below it does and adds something, so a higher level is never weaker. **Win a level to open the next one**; a level that is open can be played again whenever you like.
+
+| Level | How the computer plays |
+|---|---|
+| 0 | at random, and the help is always on: for learning the rules |
+| 1 | at random, but the help follows your own setting |
+| 2 | always takes a win that is free, and always blocks yours |
+| 3 | as level 2, and half of the time also avoids leaving a pawn number that gives you a win |
+| 4 | as level 3, and always avoids it |
+| 5 | as level 4, and among the safe moves builds threats of its own |`,
+          `Ada enam level, dari 0 sampai 5. Tiap level mempertahankan semua yang dilakukan level di bawahnya dan menambahkan sesuatu, jadi level yang lebih tinggi tidak pernah lebih lemah. **Menang di satu level membuka level berikutnya**; level yang sudah terbuka boleh dimainkan ulang kapan saja.
+
+| Level | Cara komputer bermain |
+|---|---|
+| 0 | acak, dan bantuan selalu menyala: untuk belajar aturan |
+| 1 | acak, tetapi bantuan mengikuti pengaturanmu sendiri |
+| 2 | selalu mengambil kemenangan gratis, dan selalu memblokir kemenanganmu |
+| 3 | seperti level 2, dan separuh waktu juga menghindari meninggalkan angka pion yang menguntungkanmu |
+| 4 | seperti level 3, dan selalu menghindarinya |
+| 5 | seperti level 4, dan di antara langkah aman ia membangun ancamannya sendiri |`,
+        ),
+      },
+      {
+        id: 'online',
+        heading: L('How do you play online with a friend?', 'Bagaimana cara bermain online dengan teman?'),
+        text: L(
+          `1. Type a name and press **Make a room**. You get a code of four characters, such as K7QF, and a link you can copy.
+2. Your friend opens the link, or types the code under **Join**. A room has two players: you are blue, your friend is yellow.
+3. You may set a **time limit** for each turn (from 5 to 300 seconds; 60 is the usual one). When you press **Start the game**, a coin toss decides who goes first.
+
+The host's browser keeps the rules, so if the host leaves, the room closes. **If your friend leaves** (or loses the connection for about 13 seconds), the game goes on: you keep playing as usual. Only when the turn comes to a friend who is still away do **30 seconds** start (or the time limit, if that is shorter). If they are back by then, the game goes on; if not, the turn is missed and you win. To come back, join again with the same code in the same browser tab.`,
+          `1. Ketik nama dan tekan **Buat ruangan**. Kamu mendapat kode empat karakter, seperti K7QF, dan sebuah link yang bisa disalin.
+2. Temanmu membuka link itu, atau mengetik kodenya di bagian **Gabung**. Satu ruangan berisi dua pemain: kamu biru, temanmu kuning.
+3. Kamu boleh menetapkan **batas waktu** tiap giliran (dari 5 sampai 300 detik; 60 detik adalah yang biasa). Saat kamu menekan **Mulai permainan**, lemparan koin menentukan siapa yang mulai.
+
+Browser tuan rumah menjaga aturan, jadi bila tuan rumah keluar, ruangannya ditutup. **Kalau temanmu keluar** (atau sambungannya putus sekitar 13 detik), permainan jalan terus: kamu tetap bermain seperti biasa. Baru ketika giliran tiba pada teman yang masih keluar, **30 detik** mulai berjalan (atau batas waktu, kalau lebih pendek). Bila ia sudah kembali, permainan lanjut; bila belum, gilirannya terlewat dan kamu menang. Untuk kembali, gabung lagi dengan kode yang sama di tab browser yang sama.`,
+        ),
+      },
+      {
+        id: 'why-multiplication-house',
+        heading: L('What does Multiplication House practise?', 'Apa yang dilatih Rumah Perkalian?'),
+        text: L(
+          `It practises your times table, because every turn asks for a new product that you must find yourself. Only a few products appear more than once, so each pair of pawns points at a small set of cells: you have to know the products, or find them by counting in steps.
+
+The move that wins is rarely the first one you see: you also look at what your pawn move leaves for your opponent. If you like this game, try **Addition House**, which has the same rules with the other operation.`,
+          `Ia melatih tabel perkalianmu, karena setiap giliran meminta hasil kali baru yang harus kamu temukan sendiri. Hanya sedikit hasil kali yang muncul lebih dari sekali, jadi tiap pasangan pion menunjuk ke sekumpulan kecil petak: kamu harus tahu hasil kalinya, atau mencarinya dengan berhitung loncat.
+
+Langkah yang menang jarang yang pertama kamu lihat: kamu juga memperhatikan apa yang ditinggalkan gerakan pionmu untuk lawan. Bila kamu suka game ini, coba **Rumah Penjumlahan**, yang aturannya sama dengan operasi yang lain.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('How do I play Multiplication House?', 'Bagaimana cara bermain Rumah Perkalian?'),
+        a: L(
+          'Move your pawn to a different number from 1 to 9, work out the product of the two pawns, and click a cell of the board that holds it. Four of your cells in a row win.',
+          'Pindahkan pionmu ke angka lain dari 1 sampai 9, hitung hasil kali kedua pion, lalu klik petak di papan yang berisinya. Empat petakmu yang sejajar menang.',
+        ),
+      },
+      {
+        q: L('What happens if I click the wrong cell?', 'Apa yang terjadi bila aku mengklik petak yang salah?'),
+        a: L(
+          'You have 5 seconds to press Undo. If you do not, and the cell does not hold the product, you lose the game. The game does not say what the right answer was.',
+          'Kamu punya 5 detik untuk menekan Undo. Bila tidak, dan petak itu bukan hasil kali, kamu kalah. Game tidak mengatakan apa jawaban yang benar.',
+        ),
+      },
+      {
+        q: L('Can two people play on one phone or computer?', 'Bisakah dua orang bermain di satu ponsel atau komputer?'),
+        a: L(
+          'Yes. Choose Two players, type two names and take turns. A coin toss decides who starts.',
+          'Bisa. Pilih 2 Pemain, ketik dua nama, lalu bergantian. Lemparan koin menentukan siapa yang mulai.',
+        ),
+      },
+      {
+        q: L('Can I play a friend online?', 'Bisakah aku bermain dengan teman secara online?'),
+        a: L(
+          'Yes. One player makes a room and gets a four-character code; the other joins with the code or the link. No account is needed, and nothing is stored on a server.',
+          'Bisa. Satu pemain membuat ruangan dan mendapat kode empat karakter; yang lain bergabung dengan kode atau link-nya. Tidak perlu akun, dan tidak ada yang disimpan di server.',
+        ),
+      },
+      {
+        q: L('Can a player who left come back?', 'Bisakah pemain yang keluar masuk lagi?'),
+        a: L(
+          'Yes, as long as they have not missed their turn. When the turn comes to a player who is away, 30 seconds start (or the time limit, if shorter); if they are not back by then, the turn is missed and the other player wins.',
+          'Bisa, selama ia belum melewatkan gilirannya. Ketika giliran tiba pada pemain yang sedang keluar, 30 detik mulai berjalan (atau batas waktu, kalau lebih pendek); bila ia belum kembali, gilirannya terlewat dan pemain lain menang.',
+        ),
+      },
+      {
+        q: L('Does Multiplication House save my score?', 'Apakah Rumah Perkalian menyimpan skorku?'),
+        a: L(
+          'No. Only your choices (names, level, options) and the highest computer level you have opened are remembered in this browser. Nothing is sent to an account.',
+          'Tidak. Hanya pilihanmu (nama, level, opsi) dan level komputer tertinggi yang sudah kamu buka yang diingat di browser ini. Tidak ada yang dikirim ke sebuah akun.',
+        ),
+      },
+    ],
+    teaches: [
+      L('The times table, 1 × 1 to 9 × 9', 'Tabel perkalian, 1 × 1 sampai 9 × 9'),
+      L('Finding a product in a table of results', 'Mencari hasil kali dalam tabel hasil'),
+      L('Planning ahead and blocking an opponent', 'Merencanakan langkah dan menghalangi lawan'),
+    ],
+  },
+  {
+    id: 'addition-house',
+    slug: { en: 'addition-house', id: 'rumah-penjumlahan' },
+    icon: '🏡',
+    title: L('Addition House: Four in a Row With Adding', 'Rumah Penjumlahan: Empat Sejajar dengan Penjumlahan'),
+    seoTitle: L('Addition House: a Free Adding Game for Two Players', 'Rumah Penjumlahan: Game Penjumlahan Gratis untuk Dua Pemain'),
+    description: L(
+      'A free addition game: move your pawn on the numbers 1 to 9, add the two pawns, and take that sum on a 9 by 9 board. Four in a row wins. Play the computer (six levels), a friend on one screen, or a friend online.',
+      'Game penjumlahan gratis: pindahkan pionmu di angka 1 sampai 9, jumlahkan kedua pion, lalu ambil hasil jumlahnya di papan 9 kali 9. Empat sejajar menang. Main melawan komputer (enam level), dengan teman di satu layar, atau dengan teman online.',
+    ),
+    keywords: L(
+      'addition game, adding game for kids, learn addition by playing, addition facts game, four in a row addition, sum game, game for two players, addition practice for kids, play math games with friends, online math game, mental addition game',
+      'game penjumlahan, game menjumlah untuk anak, belajar penjumlahan sambil bermain, game fakta penjumlahan, empat sejajar penjumlahan, game dua pemain, latihan penjumlahan, main game matematika bersama teman, game matematika online, game berhitung, game hitung cepat',
+    ),
+    tagline: L('Add the two pawns and take the sum on the board.', 'Jumlahkan kedua pion dan ambil hasil jumlahnya di papan.'),
+    answer: L(
+      '**Addition House is a board game for two in which you add the numbers under two pawns and take that sum on a 9 by 9 board; four of your cells in a row win.** The board holds all 81 sums from 1 + 1 to 9 + 9, which only run from 2 to 18, so every result appears on several cells. You can play the computer (six levels), a friend on one screen, or a friend online.',
+      '**Rumah Penjumlahan adalah permainan papan untuk dua pemain: kamu menjumlahkan angka di bawah dua pion lalu mengambil hasil jumlahnya di papan 9 kali 9; empat petakmu yang sejajar menang.** Papan berisi semua 81 hasil jumlah dari 1 + 1 sampai 9 + 9, yang hanya berkisar dari 2 sampai 18, jadi setiap hasil muncul di beberapa petak. Kamu bisa main melawan komputer (enam level), dengan teman di satu layar, atau dengan teman online.',
+    ),
+    published: '2026-11-20',
+    updated: '2026-11-20',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Addition House?', 'Bagaimana cara memainkan Rumah Penjumlahan?'),
+        text: L(
+          `1. Choose how to play: against the computer, two players on one screen, or online. A coin toss decides who starts.
+2. The board holds the 81 sums 1 + 1 to 9 + 9 (so 10 appears nine times, and 2 and 18 only once each). The cell in the middle is always 2, the one result that is on the board only once (1 + 1).
+3. Under the board is a strip with the numbers 1 to 9. Each player has a pawn on it: **blue** (●) and **yellow** (◆). The player who starts puts both pawns on a number each, the same number if they like.
+4. Then take a cell of the board that holds the sum of the two pawns. For example, with the pawns on 3 and 4 the result is 7, because 3 + 4 = 7.
+5. On every later turn you **must move your own pawn** to a different number, work out the new sum, and take a free cell that holds it.
+6. The first player to have **four cells in a row**, across, down or diagonally, wins. If the board fills up first, it is a draw.
+
+If every cell that holds the result is already taken, your turn passes without taking a cell.`,
+          `1. Pilih cara bermain: melawan komputer, dua pemain di satu layar, atau online. Lemparan koin menentukan siapa yang mulai.
+2. Papan berisi 81 hasil jumlah 1 + 1 sampai 9 + 9 (jadi 10 muncul sembilan kali, dan 2 serta 18 masing-masing hanya sekali). Petak di tengah selalu 2, satu-satunya hasil yang hanya sekali di papan (1 + 1).
+3. Di bawah papan ada deret angka 1 sampai 9. Tiap pemain punya satu pion di situ: **biru** (●) dan **kuning** (◆). Pemain yang mulai menaruh kedua pion, masing-masing di satu angka, boleh angka yang sama.
+4. Lalu ambil sebuah petak di papan yang berisi hasil jumlah kedua pion. Misalnya, dengan pion di 3 dan 4 hasilnya 7, karena 3 + 4 = 7.
+5. Pada setiap giliran berikutnya kamu **wajib memindahkan pionmu sendiri** ke angka lain, menghitung hasil jumlah yang baru, dan mengambil petak kosong yang berisinya.
+6. Pemain pertama yang punya **empat petak sejajar**, mendatar, menurun, atau miring, menang. Bila papan penuh lebih dulu, hasilnya seri.
+
+Bila semua petak yang berisi hasilnya sudah terisi, gilirannya dilewati tanpa mengambil petak.`,
+        ),
+      },
+      {
+        id: 'a-wrong-cell',
+        heading: L('What if I pick a cell that is not the sum?', 'Bagaimana kalau aku memilih petak yang bukan hasil jumlah?'),
+        text: L(
+          `After you click a cell you have **5 seconds** to look at it. Press **Undo** if you doubt, or **Sure** to go on at once. If the time runs out and the cell does not hold the sum of the pawns, **you lose the game.** A cell that is already taken is refused straight away and costs nothing.
+
+The game never tells you the right answer; it only says, at the end, that the cell was not the sum. That is what makes it a game of knowing your addition facts, not of clicking until something works.
+
+**Memorised mode** is on at first: it hides the sum and the cells that hold it. Switch the help on to see them, for learning. At level 0 the help is always on.`,
+          `Setelah kamu mengklik sebuah petak, kamu punya **5 detik** untuk memeriksanya. Tekan **Undo** bila ragu, atau **Yakin** untuk langsung lanjut. Bila waktunya habis dan petak itu bukan hasil jumlah kedua pion, **kamu kalah.** Petak yang sudah terisi langsung ditolak dan tidak merugikan apa-apa.
+
+Game tidak pernah memberi tahu jawaban yang benar; ia hanya mengatakan, di akhir, bahwa petak itu bukan hasil jumlah. Itulah yang membuatnya permainan untuk mengetahui fakta penjumlahanmu, bukan permainan mengklik sampai ada yang cocok.
+
+**Mode sudah hafal** menyala di awal: ia menyembunyikan hasil jumlah dan petak yang berisinya. Nyalakan bantuan untuk melihatnya, untuk belajar. Di level 0 bantuan selalu menyala.`,
+        ),
+      },
+      {
+        id: 'levels',
+        heading: L('How strong is the computer?', 'Seberapa kuat komputernya?'),
+        text: L(
+          `There are six levels, from 0 to 5. Each keeps everything the level below it does and adds something, so a higher level is never weaker. **Win a level to open the next one**; a level that is open can be played again whenever you like.
+
+| Level | How the computer plays |
+|---|---|
+| 0 | at random, and the help is always on: for learning the rules |
+| 1 | at random, but the help follows your own setting |
+| 2 | always takes a win that is free, and always blocks yours |
+| 3 | as level 2, and half of the time also avoids leaving a pawn number that gives you a win |
+| 4 | as level 3, and always avoids it |
+| 5 | as level 4, and among the safe moves builds threats of its own |`,
+          `Ada enam level, dari 0 sampai 5. Tiap level mempertahankan semua yang dilakukan level di bawahnya dan menambahkan sesuatu, jadi level yang lebih tinggi tidak pernah lebih lemah. **Menang di satu level membuka level berikutnya**; level yang sudah terbuka boleh dimainkan ulang kapan saja.
+
+| Level | Cara komputer bermain |
+|---|---|
+| 0 | acak, dan bantuan selalu menyala: untuk belajar aturan |
+| 1 | acak, tetapi bantuan mengikuti pengaturanmu sendiri |
+| 2 | selalu mengambil kemenangan gratis, dan selalu memblokir kemenanganmu |
+| 3 | seperti level 2, dan separuh waktu juga menghindari meninggalkan angka pion yang menguntungkanmu |
+| 4 | seperti level 3, dan selalu menghindarinya |
+| 5 | seperti level 4, dan di antara langkah aman ia membangun ancamannya sendiri |`,
+        ),
+      },
+      {
+        id: 'online',
+        heading: L('How do you play online with a friend?', 'Bagaimana cara bermain online dengan teman?'),
+        text: L(
+          `1. Type a name and press **Make a room**. You get a code of four characters, such as K7QF, and a link you can copy.
+2. Your friend opens the link, or types the code under **Join**. A room has two players: you are blue, your friend is yellow.
+3. You may set a **time limit** for each turn (from 5 to 300 seconds; 60 is the usual one). When you press **Start the game**, a coin toss decides who goes first.
+
+The host's browser keeps the rules, so if the host leaves, the room closes. **If your friend leaves** (or loses the connection for about 13 seconds), the game goes on: you keep playing as usual. Only when the turn comes to a friend who is still away do **30 seconds** start (or the time limit, if that is shorter). If they are back by then, the game goes on; if not, the turn is missed and you win. To come back, join again with the same code in the same browser tab.`,
+          `1. Ketik nama dan tekan **Buat ruangan**. Kamu mendapat kode empat karakter, seperti K7QF, dan sebuah link yang bisa disalin.
+2. Temanmu membuka link itu, atau mengetik kodenya di bagian **Gabung**. Satu ruangan berisi dua pemain: kamu biru, temanmu kuning.
+3. Kamu boleh menetapkan **batas waktu** tiap giliran (dari 5 sampai 300 detik; 60 detik adalah yang biasa). Saat kamu menekan **Mulai permainan**, lemparan koin menentukan siapa yang mulai.
+
+Browser tuan rumah menjaga aturan, jadi bila tuan rumah keluar, ruangannya ditutup. **Kalau temanmu keluar** (atau sambungannya putus sekitar 13 detik), permainan jalan terus: kamu tetap bermain seperti biasa. Baru ketika giliran tiba pada teman yang masih keluar, **30 detik** mulai berjalan (atau batas waktu, kalau lebih pendek). Bila ia sudah kembali, permainan lanjut; bila belum, gilirannya terlewat dan kamu menang. Untuk kembali, gabung lagi dengan kode yang sama di tab browser yang sama.`,
+        ),
+      },
+      {
+        id: 'why-addition-house',
+        heading: L('What does Addition House practise?', 'Apa yang dilatih Rumah Penjumlahan?'),
+        text: L(
+          `It practises your addition facts, because every turn asks for a new sum that you must find yourself. Sums only run from 2 to 18, so every result sits on many cells and the board is quick and friendly for younger players; the game is about seeing which pawn move keeps your options open and blocks your opponent.
+
+The move that wins is rarely the first one you see: you also look at what your pawn move leaves for your opponent. If you like this game, try **Multiplication House**, which has the same rules with the other operation.`,
+          `Ia melatih fakta penjumlahanmu, karena setiap giliran meminta hasil jumlah baru yang harus kamu temukan sendiri. Hasil jumlah hanya berkisar dari 2 sampai 18, jadi setiap hasil ada di banyak petak dan papannya cepat dan ramah untuk pemain yang lebih muda; yang dilatih adalah melihat gerakan pion mana yang menjaga pilihanmu tetap terbuka dan menghalangi lawan.
+
+Langkah yang menang jarang yang pertama kamu lihat: kamu juga memperhatikan apa yang ditinggalkan gerakan pionmu untuk lawan. Bila kamu suka game ini, coba **Rumah Perkalian**, yang aturannya sama dengan operasi yang lain.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('How do I play Addition House?', 'Bagaimana cara bermain Rumah Penjumlahan?'),
+        a: L(
+          'Move your pawn to a different number from 1 to 9, work out the sum of the two pawns, and click a cell of the board that holds it. Four of your cells in a row win.',
+          'Pindahkan pionmu ke angka lain dari 1 sampai 9, hitung hasil jumlah kedua pion, lalu klik petak di papan yang berisinya. Empat petakmu yang sejajar menang.',
+        ),
+      },
+      {
+        q: L('What happens if I click the wrong cell?', 'Apa yang terjadi bila aku mengklik petak yang salah?'),
+        a: L(
+          'You have 5 seconds to press Undo. If you do not, and the cell does not hold the sum, you lose the game. The game does not say what the right answer was.',
+          'Kamu punya 5 detik untuk menekan Undo. Bila tidak, dan petak itu bukan hasil jumlah, kamu kalah. Game tidak mengatakan apa jawaban yang benar.',
+        ),
+      },
+      {
+        q: L('Can two people play on one phone or computer?', 'Bisakah dua orang bermain di satu ponsel atau komputer?'),
+        a: L(
+          'Yes. Choose Two players, type two names and take turns. A coin toss decides who starts.',
+          'Bisa. Pilih 2 Pemain, ketik dua nama, lalu bergantian. Lemparan koin menentukan siapa yang mulai.',
+        ),
+      },
+      {
+        q: L('Can I play a friend online?', 'Bisakah aku bermain dengan teman secara online?'),
+        a: L(
+          'Yes. One player makes a room and gets a four-character code; the other joins with the code or the link. No account is needed, and nothing is stored on a server.',
+          'Bisa. Satu pemain membuat ruangan dan mendapat kode empat karakter; yang lain bergabung dengan kode atau link-nya. Tidak perlu akun, dan tidak ada yang disimpan di server.',
+        ),
+      },
+      {
+        q: L('Can a player who left come back?', 'Bisakah pemain yang keluar masuk lagi?'),
+        a: L(
+          'Yes, as long as they have not missed their turn. When the turn comes to a player who is away, 30 seconds start (or the time limit, if shorter); if they are not back by then, the turn is missed and the other player wins.',
+          'Bisa, selama ia belum melewatkan gilirannya. Ketika giliran tiba pada pemain yang sedang keluar, 30 detik mulai berjalan (atau batas waktu, kalau lebih pendek); bila ia belum kembali, gilirannya terlewat dan pemain lain menang.',
+        ),
+      },
+      {
+        q: L('Does Addition House save my score?', 'Apakah Rumah Penjumlahan menyimpan skorku?'),
+        a: L(
+          'No. Only your choices (names, level, options) and the highest computer level you have opened are remembered in this browser. Nothing is sent to an account.',
+          'Tidak. Hanya pilihanmu (nama, level, opsi) dan level komputer tertinggi yang sudah kamu buka yang diingat di browser ini. Tidak ada yang dikirim ke sebuah akun.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Addition facts, 1 + 1 to 9 + 9', 'Fakta penjumlahan, 1 + 1 sampai 9 + 9'),
+      L('Finding a sum in a table of results', 'Mencari hasil jumlah dalam tabel hasil'),
+      L('Planning ahead and blocking an opponent', 'Merencanakan langkah dan menghalangi lawan'),
     ],
   },
 ]

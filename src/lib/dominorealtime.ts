@@ -14,8 +14,14 @@ const env = (): { url?: string; key?: string } => {
 /** Online play needs the Supabase keys of the site; without them (a local copy with no keys) the menu says so. */
 export const onlineAvailable = (): boolean => Boolean(env().url && env().key)
 
-/** Join the channel of a room. Rejects if the channel cannot be reached. */
-export async function realtimeBus(code: string): Promise<Bus> {
+/** A room's channel: whatever `parse` accepts is handed to the listeners, nothing else. Rejects if the channel cannot be reached. Shared by the games that
+ *  play in rooms (Math Domino, the Houses): each has its own message type and its own channel names. */
+export interface Channel<M> {
+  send(msg: M): void
+  onMessage(fn: (msg: M) => void): () => void
+  close(): void
+}
+export async function openChannel<M>(name: string, parse: (x: unknown) => M | null): Promise<Channel<M>> {
   const { url, key } = env()
   if (!url || !key) throw new Error('no-keys')
   const { createClient } = await import('@supabase/supabase-js')
@@ -23,10 +29,10 @@ export async function realtimeBus(code: string): Promise<Bus> {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
     realtime: { params: { eventsPerSecond: 40 } },
   })
-  const channel = sb.channel(`nunada-domino-${code}`, { config: { broadcast: { self: false, ack: false } } })
-  const listeners = new Set<(m: Msg) => void>()
+  const channel = sb.channel(name, { config: { broadcast: { self: false, ack: false } } })
+  const listeners = new Set<(m: M) => void>()
   channel.on('broadcast', { event: 'm' }, ({ payload }) => {
-    const m = parseMsg(payload)
+    const m = parse(payload)
     if (m) listeners.forEach((f) => f(m))
   })
   await new Promise<void>((resolve, reject) => {
@@ -56,6 +62,9 @@ export async function realtimeBus(code: string): Promise<Bus> {
     },
   }
 }
+
+/** Join the channel of a Math Domino room. Rejects if the channel cannot be reached. */
+export const realtimeBus = (code: string): Promise<Bus> => openChannel<Msg>(`nunada-domino-${code}`, parseMsg)
 
 export const randomId = (): string => Array.from({ length: 10 }, () => 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]).join('')
 

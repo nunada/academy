@@ -1322,7 +1322,7 @@ for (const [n, mode, level, seed] of [[2, 'natural', 1, 1], [3, 'integer', 2, 2]
   ok(!/dangerouslySetInnerHTML/.test(ui), 'nothing is put on the page as raw HTML except by the formula component')
   // the style: only the page's colors, green and gold for the two ends, red for nothing here but a refusal
   const css = read('src/styles.css')
-  const dm = css.slice(css.indexOf('/* Math Domino'))
+  const dm = css.slice(css.indexOf('/* Math Domino'), css.includes('/* ---- The Houses') ? css.indexOf('/* ---- The Houses') : undefined)
   ok(dm.length > 3000 && !/#[0-9a-fA-F]{3,8}\b/.test(dm), 'the domino styles use color tokens only')
   const rule = (sel) => (dm.match(new RegExp(`(?:^|\\n)${sel.replace(/[.\[\]]/g, '\\$&')} \\{([^}]*)\\}`)) ?? [])[1] ?? ''
   ok(/border: 3px solid var\(--fig-a\)/.test(rule('.dmend')) && /var\(--fig-c\)/.test(rule('.dmend.right')), 'the end boxes: green left, gold right')
