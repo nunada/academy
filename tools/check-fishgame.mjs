@@ -327,13 +327,42 @@ for (const level of LEVELS) {
 
 /* ------------------------------------------------------------------------- whole games */
 
+/** A player that reads every number: it goes to a fish it can eat when no larger fish is near that fish, and otherwise moves to the place of the pond that is
+ *  farthest from the fish that could eat it. It is not limited to the speed of the fish (it is the proof that the game can be won with every life, not a model
+ *  of a child), but it never touches a larger fish. */
+function carefulMove(w, level) {
+  const mine = w.player.num
+  const danger = w.fish.filter((o) => refCmp(level, mine, o.num) < 0)
+  const clearAt = (x, y, gap) => danger.every((o) => Math.hypot(o.x - x, o.y - y) > o.r + w.player.r + gap)
+  const food = w.fish
+    .filter((f) => refCmp(level, mine, f.num) > 0 && clearAt(f.x, f.y, 70))
+    .sort((a, b) => Math.hypot(a.x - w.player.x, a.y - w.player.y) - Math.hypot(b.x - w.player.x, b.y - w.player.y))[0]
+  if (food) {
+    w.player.x = food.x
+    w.player.y = food.y
+  } else if (!clearAt(w.player.x, w.player.y, 70)) {
+    let best = null
+    let bestD = -1
+    for (let x = w.player.r; x <= w.W - w.player.r; x += 20)
+      for (let y = w.player.r; y <= w.H - w.player.r; y += 20) {
+        const d = Math.min(...danger.map((o) => Math.hypot(o.x - x, o.y - y) - o.r), 1e9)
+        if (d > bestD) {
+          bestD = d
+          best = [x, y]
+        }
+      }
+    if (best) [w.player.x, w.player.y] = best
+  }
+}
+
+
 const games = FAST ? 6 : 24
 
 function check(w, level, where) {
   ok(w.lives >= 0 && w.lives <= G.LIVES, `${where}: lives ${w.lives}`)
   ok(w.player.tier >= 0 && w.player.tier < G.TIERS[level].count && w.eatenInTier >= 0 && (w.eatenInTier < w.need || (w.status === 'won' && w.eatenInTier === w.need)), `${where}: tier ${w.player.tier}, eaten in tier ${w.eatenInTier}`)
   ok(w.score === 10 * w.eaten && w.lost === G.LIVES - w.lives, `${where}: score ${w.score} for ${w.eaten} fish, ${w.lost} lost for ${w.lives} lives`)
-  ok(w.fish.length <= { 1: 7, 2: 8, 3: 9 }[level], `${where}: ${w.fish.length} fish`)
+  ok(w.fish.length <= G.MAX_FISH[level], `${where}: ${w.fish.length} fish`)
   const nums = new Map(G.levelNums(level).map((n) => [n.key, n]))
   for (const f of w.fish) {
     ok(f.x > -f.w - 5 && f.x < G.WORLD.W + f.w + 5, `${where}: a fish at ${f.x.toFixed(0)} has left the pond and is still there`)
@@ -370,15 +399,7 @@ for (const level of LEVELS) {
       let spawns = 0
       let t = 0
       while (w.status === 'play' && t < 900) {
-        const mine = w.player.num
-        const safeFood = w.fish
-          .filter((f) => refCmp(level, mine, f.num) > 0 && w.fish.every((o) => o === f || refCmp(level, mine, o.num) >= 0 || Math.hypot(o.x - f.x, o.y - f.y) > 140))
-          .sort((a, b) => Math.hypot(a.x - w.player.x, a.y - w.player.y) - Math.hypot(b.x - w.player.x, b.y - w.player.y))[0]
-        if (safeFood) {
-          // swim to it as fast as the fish can: here, straight on to it
-          w.player.x = safeFood.x
-          w.player.y = safeFood.y
-        }
+        carefulMove(w, level)
         const mine0 = w.player.num
         const spec0 = w.player.spec
         const events = G.step(w, 1 / 30, {})
@@ -431,6 +452,68 @@ for (const level of LEVELS) {
   }
 }
 
+// how hard the game is, for players that swim at the speed of the fish: one that never reads the numbers and goes to the nearest fish, and one that reads them
+{
+  const input = (w, level, who) => {
+    const p = w.player
+    if (who === 'nearest') {
+      const f = [...w.fish].sort((a, b) => Math.hypot(a.x - p.x, a.y - p.y) - Math.hypot(b.x - p.x, b.y - p.y))[0]
+      return f ? { tx: f.x, ty: f.y } : {}
+    }
+    const mine = p.num
+    const danger = w.fish.filter((o) => refCmp(level, mine, o.num) < 0)
+    const near = danger.filter((o) => Math.hypot(o.x - p.x, o.y - p.y) < o.r + p.r + 85)
+    if (near.length) {
+      let vx = 0
+      let vy = 0
+      for (const o of near) {
+        const d = Math.hypot(o.x - p.x, o.y - p.y) || 1
+        vx -= (o.x - p.x) / d
+        vy -= (o.y - p.y) / d
+      }
+      const len = Math.hypot(vx, vy) || 1
+      return { tx: p.x + (vx / len) * 160, ty: p.y + (vy / len) * 160 }
+    }
+    const food = w.fish
+      .filter((f) => refCmp(level, mine, f.num) > 0 && danger.every((o) => Math.hypot(o.x - f.x, o.y - f.y) > o.r + p.r + 70))
+      .sort((a, b) => Math.hypot(a.x - p.x, a.y - p.y) - Math.hypot(b.x - p.x, b.y - p.y))[0]
+    return food ? { tx: food.x, ty: food.y } : {}
+  }
+  const play = (level, seed, who) => {
+    const w = G.createWorld(level, seed)
+    let t = 0
+    while (w.status === 'play' && t < 600) {
+      G.step(w, 1 / 30, input(w, level, who))
+      t += 1 / 30
+    }
+    return w.status === 'won' ? G.starsOf(w.lives) : 0
+  }
+  const N = FAST ? 12 : 40
+  for (const level of LEVELS) {
+    const hist = { nearest: [0, 0, 0, 0], careful: [0, 0, 0, 0] }
+    for (let g = 0; g < N; g++) {
+      for (const who of ['nearest', 'careful']) hist[who][play(level, 9000 + level * 100 + g, who)]++
+    }
+    const share = (h, i) => h[i] / N
+    ok(share(hist.nearest, 3) <= 0.05 && share(hist.nearest, 0) >= 0.9, `level ${level}: a player that does not read the numbers and swims to the nearest fish is eaten (${JSON.stringify(hist.nearest)})`)
+    if (!FAST) {
+      // a player that reads them, but swims only as fast as the fish does: it can win with every life, and it is not a certainty
+      const [lo, hi] = { 1: [0.5, 0.95], 2: [0.25, 0.85], 3: [0.15, 0.7] }[level]
+      ok(share(hist.careful, 3) >= lo && share(hist.careful, 3) <= hi, `level ${level}: a careful player wins with three stars ${share(hist.careful, 3).toFixed(2)} of the time, between ${lo} and ${hi} (${JSON.stringify(hist.careful)})`)
+    }
+    // what swims in: more than half of the fish are larger than the player's, whatever the player does
+    let kinds = { edible: 0, danger: 0, equal: 0 }
+    for (let g = 0; g < 10; g++) {
+      const w = G.createWorld(level, 5000 + g)
+      w.lives = 1e9
+      for (let t = 0; t < 60 * 30; t++)
+        for (const e of G.step(w, 1 / 30, { kx: 0, ky: 0 })) if (e.type === 'spawn') kinds[e.fish.kind]++
+    }
+    const total = kinds.edible + kinds.danger + kinds.equal
+    ok(kinds.danger / total >= G.DANGER_SHARE[level] - 0.08 && kinds.danger > kinds.edible, `level ${level}: the fish that swim in are mostly larger than the player's (${JSON.stringify(kinds)})`)
+  }
+}
+
 // the same seed and the same moves give the same game
 {
   const run = () => {
@@ -466,7 +549,7 @@ for (const level of LEVELS) {
       count[f.kind]++
       const c = refCmp(level, w.player.num, f.num)
       if (c !== (f.kind === 'edible' ? 1 : f.kind === 'danger' ? -1 : 0)) flag(`spawnFish(${kind}) made a ${f.kind} fish that is not one`)
-      ok(f.y >= 36 && f.y <= G.WORLD.H - 36 && (f.x < 0 || f.x > G.WORLD.W) && Math.abs(f.vx) >= 60 * 0.999 && Math.abs(f.vx) <= 100 * 1.001 && (f.vx > 0) === (f.x < 0), 'a new fish swims in from an edge at the level\'s pace')
+      ok(f.y >= 36 && f.y <= G.WORLD.H - 36 && (f.x < 0 || f.x > G.WORLD.W) && Math.abs(f.vx) >= G.SPEEDS[level][0] * 0.999 && Math.abs(f.vx) <= G.SPEEDS[level][1] * 1.001 && (f.vx > 0) === (f.x < 0), 'a new fish swims in from an edge at the level\'s pace')
       w.fish.length = 0
     }
   }
@@ -541,14 +624,7 @@ for (const level of LEVELS) {
       const w3 = G.createWorld(level, 77 + level, 1, size)
       let t = 0
       while (w3.status === 'play' && t < 900) {
-        const mine = w3.player.num
-        const food = w3.fish
-          .filter((f) => refCmp(level, mine, f.num) > 0 && w3.fish.every((o) => o === f || refCmp(level, mine, o.num) >= 0 || Math.hypot(o.x - f.x, o.y - f.y) > 140))
-          .sort((a, b) => Math.hypot(a.x - w3.player.x, a.y - w3.player.y) - Math.hypot(b.x - w3.player.x, b.y - w3.player.y))[0]
-        if (food) {
-          w3.player.x = food.x
-          w3.player.y = food.y
-        }
+        carefulMove(w3, level)
         G.step(w3, 1 / 30, {})
         t += 1 / 30
       }

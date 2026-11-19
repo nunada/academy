@@ -182,9 +182,19 @@ export const LIVES = 3
 /** how long the player's fish is safe after being eaten, in seconds */
 export const SAFE_TIME = 1.6
 const PLAYER_SPEED = 190
-const SPEEDS: Record<Level, [number, number]> = { 1: [45, 80], 2: [60, 100], 3: [70, 120] }
-const MAX_FISH: Record<Level, number> = { 1: 7, 2: 8, 3: 9 }
-const SPAWN_EVERY = 0.85
+/** the speed a fish swims at, in pond units a second, from the slowest to the fastest, at the first tier of a level */
+export const SPEEDS: Record<Level, [number, number]> = { 1: [55, 95], 2: [70, 118], 3: [85, 140] }
+/** every tier the player grows, the other fish swim this much faster (a share of their first-tier speed) */
+export const PACE_PER_TIER = 0.06
+export const MAX_FISH: Record<Level, number> = { 1: 9, 2: 10, 3: 12 }
+const SPAWN_EVERY = 0.7
+/** Of the fish that swim in, this share has a LARGER number than the player's (and the rest are smaller, but for the few that are equal): it is more
+ *  than a third at every level, so that a player who swims at whatever comes first is eaten, and has to read the numbers. */
+export const DANGER_SHARE: Record<Level, number> = { 1: 0.55, 2: 0.6, 3: 0.6 }
+/** the share of the fish that swim in that are equal to the player's number, written another way */
+export const EQUAL_SHARE = 0.1
+/** how much the fish drawn are pulled towards the player's own number: the nearer a number, the likelier it is, which makes telling near numbers apart the game */
+const NEAR_POWER = 2.4
 /** how far a fish has to be inside the player's, as a share of the two radii, before they touch */
 export const TOUCH = 0.7
 
@@ -293,7 +303,7 @@ const rankOf = (w: World, n: Num): number => w.nums.findIndex((x) => x.key === n
 export function spawnFish(w: World, kind: Fish['kind']): Fish | null {
   const r = rankOf(w, w.player.num)
   const n = w.nums.length
-  const skew = () => w.rand() ** 1.6
+  const skew = () => w.rand() ** NEAR_POWER
   let num: Num | undefined
   if (kind === 'edible' && r > 0) num = w.nums[r - 1 - Math.floor(skew() * r)]
   else if (kind === 'danger' && r < n - 1) num = w.nums[r + 1 + Math.floor(skew() * (n - 1 - r))]
@@ -302,7 +312,7 @@ export function spawnFish(w: World, kind: Fish['kind']): Fish | null {
   const spec = pickSpec(num, w.rand, kind === 'equal' ? w.player.spec : undefined)
   const wd = widthOf(spec)
   const [lo, hi] = SPEEDS[w.level]
-  const speed = (lo + w.rand() * (hi - lo)) * w.speedFactor
+  const speed = (lo + w.rand() * (hi - lo)) * w.speedFactor * (1 + PACE_PER_TIER * w.player.tier)
   const fromLeft = w.rand() < 0.5
   const fish: Fish = {
     id: w.nextId++,
@@ -382,7 +392,7 @@ export function step(w: World, dt: number, input: Input): GameEvent[] {
     w.spawnIn = SPAWN_EVERY * (0.7 + w.rand() * 0.6)
     const edibleOnScreen = w.fish.some((f) => compareValues(p.num.value, f.num.value) > 0)
     const roll = w.rand()
-    const kind: Fish['kind'] = !edibleOnScreen || roll < 0.5 ? 'edible' : roll < 0.8 ? 'danger' : 'equal'
+    const kind: Fish['kind'] = !edibleOnScreen || roll < 1 - DANGER_SHARE[w.level] - EQUAL_SHARE ? 'edible' : roll < 1 - EQUAL_SHARE ? 'danger' : 'equal'
     const f = spawnFish(w, kind) ?? spawnFish(w, 'edible') ?? spawnFish(w, 'danger')
     if (f) events.push({ type: 'spawn', fish: f })
   }
