@@ -273,8 +273,8 @@ function refSolve(L, from, cap = 400_000) {
 
 /* ------------------------------------------------------------------------------------------- the 35 levels */
 const LEVELS = M.ALL_LEVELS
-ok(LEVELS.length === 35 && M.CHAPTERS.map((c) => c.levels.length).join() === '14,14,7', 'three chapters of 14, 14 and 7 levels')
-ok(new Set(M.LEVEL_IDS).size === 35 && M.LEVEL_IDS.every((id) => /^[ain]\d\d$/.test(id)), 'the level ids are unique')
+ok(LEVELS.length === 100 && M.CHAPTERS.map((c) => c.levels.length).join() === '14,14,14,14,14,14,16', 'seven chapters of 14, 14, 14, 14, 14, 14 and 16 levels')
+ok(new Set(M.LEVEL_IDS).size === 100 && M.LEVEL_IDS.every((id) => /^(ar|ng|pw|in|lg|nb|fr)\d\d$/.test(id)), 'the level ids are unique')
 const parsed = new Map()
 const ref = new Map()
 let totalStates = 0
@@ -323,6 +323,50 @@ for (const lv of LEVELS) {
   }
 }
 console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalStates}`)
+
+/* ------------------------------------------------------------------------------------------- a puzzle, not a corridor */
+{
+  const made = LEVELS.filter((l) => !['ar01', 'ar02', 'ar03'].includes(l.id))
+  const pars = made.map((l) => l.par).sort((a, b) => a - b)
+  const median = pars[Math.floor(pars.length / 2)]
+  ok(made.length === 97 && median >= 16, `the median shortest way of the 97 generated levels is ${median} steps (at least 16)`)
+  ok(made.filter((l) => l.par >= 25).length >= 25 && Math.max(...pars) >= 35, `${made.filter((l) => l.par >= 25).length} levels need 25 steps or more, the longest ${Math.max(...pars)}`)
+  // each chapter climbs: its last half is longer than its first half on average
+  for (const c of M.CHAPTERS) {
+    const ps = c.levels.map((l) => l.par)
+    const half = Math.floor(ps.length / 2)
+    const avg = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length
+    ok(avg(ps.slice(half)) > avg(ps.slice(0, half)), `${c.id}: the second half is longer than the first (${avg(ps.slice(0, half)).toFixed(1)} → ${avg(ps.slice(half)).toFixed(1)})`)
+  }
+  // the values matter: the shortest way is well beyond the straight way between the start and the exit, with the values not considered (a wall-only search written here)
+  for (const lv of made) {
+    const R = ref.get(lv.id)
+    if (!R) continue
+    // the first two or three levels of a chapter are gentle: only a little beyond the straight way
+    const gentle = Number(lv.id.slice(2)) <= 3
+    const seen = new Set([R.start.join()])
+    let frontier = [R.start]
+    let straight = null
+    for (let d = 1; frontier.length && straight === null; d++) {
+      const next = []
+      for (const [x, y] of frontier)
+        for (const [dx, dy] of [[0, -1], [0, 1], [-1, 0], [1, 0]]) {
+          const nx = x + dx
+          const ny = y + dy
+          if (nx < 0 || ny < 0 || nx >= R.w || ny >= R.h || R.rows[ny][nx] === '#' || seen.has(`${nx},${ny}`)) continue
+          if (R.rows[ny][nx][0] === 'G') straight = straight ?? d
+          seen.add(`${nx},${ny}`)
+          next.push([nx, ny])
+        }
+      frontier = next
+    }
+    ok(straight !== null && lv.par >= straight + (gentle ? 2 : 6), `${lv.id}: the shortest way is ${lv.par} and the straight way ${straight}: the values must matter`)
+  }
+  // the exit is never an open door: every generated level has an exit that asks for something, and most have gates
+  const askCount = made.filter((l) => l.grid.some((r) => /G\?/.test(r))).length
+  ok(askCount === made.length, 'every generated level has an exit with a condition')
+  ok(made.filter((l) => l.grid.some((r) => /\?/.test(r.replace(/G\?/g, '')))).length >= 80, 'most levels have gates')
+}
 
 /* ------------------------------------------------------------------------------------------- the engine against the second simulator, step by step */
 {
@@ -383,7 +427,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
       ok(g.pos.x === level.start.x && g.value === level.startValue && g.used === 0n && g.moves === 0 && g.history.length === 0 && !g.won, `${lv.id}: restart`)
     }
   }
-  ok(walks === 35 * 150 && steps > 100000 && blocked > 10000, `${walks} random walks, ${steps} steps, ${blocked} refused`)
+  ok(walks === 100 * 150 && steps > 100000 && blocked > 10000, `${walks} random walks, ${steps} steps, ${blocked} refused`)
   // after the exit nothing moves
   const lv = M.parseLevel(LEVELS[0])
   const g = M.createGame(lv)
@@ -442,7 +486,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
 }
 {
   // the limit of states: a search that is stopped says so, and does not claim there is no way
-  const r = M.solve(parsed.get('a14'), undefined, 3)
+  const r = M.solve(parsed.get('ar08'), undefined, 3)
   ok(r.exhausted === true && r.solved === false, 'a search stopped at its limit says so')
 }
 
@@ -505,10 +549,10 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
   ok(M.starsFor(5, 7) === 3 && M.starsFor(8, 7) === 2 && M.starsFor(11, 7) === 2 && M.starsFor(12, 7) === 1, 'stars for a short par: 7 → 3, 8..11 → 2 (7 × 1.5 = 10.5, up to 11), 12 → 1')
   ok(M.starsFor(10, 10, true) === 2 && M.starsFor(12, 10, true) === 2 && M.starsFor(30, 10, true) === 1, 'asking for the next step keeps a level from three stars')
   const ids = M.LEVEL_IDS
-  const good = { a01: { best: 4, stars: 3 }, a02: { best: 5, stars: 1 } }
+  const good = { ar01: { best: 4, stars: 3 }, ar02: { best: 5, stars: 1 } }
   ok(JSON.stringify(M.parseProgress(JSON.parse(JSON.stringify(good)), ids)) === JSON.stringify(good), 'saved progress is read back')
-  const dirty = { a01: { best: 0, stars: 3 }, a02: { best: 5, stars: 4 }, a03: { best: 'x', stars: 2 }, a04: null, a05: 7, zz: { best: 3, stars: 3 }, a06: { best: 2.5, stars: 3 }, a07: { best: 10000, stars: 1 }, a08: { best: 9, stars: 2 } }
-  ok(JSON.stringify(M.parseProgress(dirty, ids)) === JSON.stringify({ a08: { best: 9, stars: 2 } }), 'what is malformed is dropped, and so are levels that do not exist')
+  const dirty = { ar01: { best: 0, stars: 3 }, ar02: { best: 5, stars: 4 }, ar03: { best: 'x', stars: 2 }, ng01: null, ng02: 7, zz: { best: 3, stars: 3 }, pw01: { best: 2.5, stars: 3 }, pw02: { best: 10000, stars: 1 }, lg01: { best: 9, stars: 2 } }
+  ok(JSON.stringify(M.parseProgress(dirty, ids)) === JSON.stringify({ lg01: { best: 9, stars: 2 } }), 'what is malformed is dropped, and so are levels that do not exist')
   ok(Object.keys(M.parseProgress(null, ids)).length === 0 && Object.keys(M.parseProgress([1, 2], ids)).length === 0 && Object.keys(M.parseProgress('x', ids)).length === 0, 'no progress at all from something that is not an object')
 }
 
@@ -529,15 +573,15 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
         }
       }
   }
-  ok([...usedOps].sort().join() === 'abs,add,div,mul,neg,sub', `the operators of the levels are + − × ÷ ± |x| (${[...usedOps].sort()})`)
-  ok([...usedConds].sort().join() === 'eq,even,ge,gt,le,lt,multiple,odd,prime,range', `the conditions of the levels (${[...usedConds].sort()})`)
+  ok([...usedOps].sort().join() === 'abs,add,div,exp,log,mod,mul,neg,pow,sub', `the operators of the levels are + − × ÷ remainder, powers, logarithms, ± and |x| (${[...usedOps].sort()})`)
+  ok([...usedConds].sort().join() === 'congruent,cube,eq,even,ge,gt,le,lt,multiple,not,odd,prime,range,square', `the conditions of the levels (${[...usedConds].sort()})`)
   ok(tokens.some((t) => /^w[v^<>]$/.test(t)) && tokens.some((t) => /^key[12]$/.test(t)), 'one-way tiles and keys appear in the levels')
 
   const lvText = LEVELS.flatMap((l) => [l.name, l.hint])
   ok(lvText.every((x) => x.en.trim().length > 0 && x.id.trim().length > 0 && x.en !== x.id), 'every level has a name and a hint in both languages, and they differ')
   ok(LEVELS.every((l) => l.name.en.length <= 32 && l.name.id.length <= 36 && l.hint.en.length <= 260 && l.hint.id.length <= 280), 'names and hints are short enough')
   ok(!lvText.some((x) => /(^|[^*])\*[^*\s][^*]*\*([^*]|$)/.test(x.en + ' ' + x.id)), 'no *word* emphasis')
-  ok(new Set(LEVELS.map((l) => l.name.en)).size === 35 && new Set(LEVELS.map((l) => l.name.id)).size === 35, 'every level has a name of its own')
+  ok(new Set(LEVELS.map((l) => l.name.en)).size === 100 && new Set(LEVELS.map((l) => l.name.id)).size === 100, 'every level has a name of its own')
   // the colors named in a hint are the colors of tiles that are in the level
   for (const lv of LEVELS) {
     const level = parsed.get(lv.id)
@@ -555,7 +599,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
     both({ en: /\bprime\b/i, id: /\bprima\b/i }, (t) => (t.kind === 'gate' || t.kind === 'goal') && t.condition && JSON.stringify(t.condition).includes('prime'), 'a prime gate')
   }
   // the levels begin without anything that can be spoiled, and the first level of the first chapter has no operator at all
-  const firstTiles = parsed.get('a01').tiles.flat()
+  const firstTiles = parsed.get('ar01').tiles.flat()
   ok(firstTiles.every((t) => t.kind !== 'op' && t.kind !== 'gate'), 'the first level has nothing but a corridor')
 
   const game = M.GAMES.find((g) => g.id === 'number-maze')
@@ -565,7 +609,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
     const section = (id) => game.sections.find((s) => s.id === id)
     for (const loc of ['en', 'id']) {
       const all = [game.answer, game.description, ...game.sections.map((s) => s.text), ...game.faq.map((f) => f.a)].map((x) => x[loc]).join('\n')
-      ok(/\b35\b/.test(all), `${loc}: the text says 35 levels`)
+      ok(/\b100\b/.test(all), `${loc}: the text says 100 levels`)
       ok(!/(^|[^*\w])\*[^*\s][^*\n]*\*([^*]|$)/m.test(all), `${loc}: no *word* emphasis`)
       ok(!/\b(red|merah)\b/i.test(all), `${loc}: no red tiles in the text (red is for mistakes)`)
     }
@@ -574,7 +618,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
       for (const loc of ['en', 'id']) ok(new RegExp(`\\| ${c.name[loc].replace(/[()]/g, '\\$&')} \\| ${c.levels.length} \\|`).test(ch.text[loc]), `the chapters table: "${c.name[loc]}" with ${c.levels.length} levels (${loc})`)
     ok(section('stars').text.en.includes('three stars') && section('stars').text.en.includes('half as many steps again') && section('stars').text.id.includes('tiga bintang') && section('stars').text.id.includes('separuhnya lagi'), 'the page says how the stars are given')
     ok(section('how-to-play') && section('the-tiles') && section('think-backwards') && game.faq.length >= 6 && game.teaches.length >= 4 && game.keywords.en.split(',').length >= 8, 'the sections, the FAQ and what it teaches')
-    ok(game.seoTitle.en.length <= 72 && game.seoTitle.id.length <= 80 && game.description.en.length <= 330 && game.description.id.length <= 350 && /^\*\*/.test(game.answer.en) && /^\*\*/.test(game.answer.id), 'titles and descriptions are of a sensible length')
+    ok(game.seoTitle.en.length <= 72 && game.seoTitle.id.length <= 80 && game.description.en.length <= 420 && game.description.id.length <= 450 && /^\*\*/.test(game.answer.en) && /^\*\*/.test(game.answer.id), 'titles and descriptions are of a sensible length')
     // the claims about the tiles are the ones of the engine
     const tiles = section('the-tiles').text.en
     ok(/\*\*blue\*\*, solid border/.test(tiles) && /\*\*gold\*\*, dashed border/.test(tiles) && /\*\*green\*\*/.test(tiles), 'the table of tiles names the colors')

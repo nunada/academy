@@ -1125,8 +1125,8 @@ Langkah yang menang jarang yang pertama kamu lihat: kamu juga memperhatikan apa 
     title: L('Number Maze: Walk a Number Through the Gates', 'Labirin Angka: Antar Sebuah Bilangan Melewati Gerbang'),
     seoTitle: L('Number Maze: a Free Math Maze Puzzle Game', 'Labirin Angka: Game Teka-teki Labirin Matematika Gratis'),
     description: L(
-      'A free math puzzle: you are a number walking through a maze. Operator tiles change your value, gates open only for the right values, and the exit wants an exact number. 35 levels on arithmetic, inequalities, absolute value, primes, keys and locks.',
-      'Teka-teki matematika gratis: kamu adalah sebuah bilangan yang berjalan di labirin. Petak operator mengubah nilaimu, gerbang hanya terbuka untuk nilai yang tepat, dan pintu keluar menuntut angka yang pas. 35 level tentang aritmetika, pertidaksamaan, nilai mutlak, bilangan prima, kunci, dan gembok.',
+      'A free math puzzle: you are a number walking through a maze. Operator tiles change your value, gates open only for the right values, and the exit wants an exact number. 100 hard levels in seven chapters: arithmetic, negatives, powers, inequalities and remainders, logarithms, primes with keys and locks, and the final rooms.',
+      'Teka-teki matematika gratis: kamu adalah sebuah bilangan yang berjalan di labirin. Petak operator mengubah nilaimu, gerbang hanya terbuka untuk nilai yang tepat, dan pintu keluar menuntut angka yang pas. 100 level yang sulit dalam tujuh bab: aritmetika, negatif, pangkat, pertidaksamaan dan sisa bagi, logaritma, bilangan prima dengan kunci dan gembok, dan ruang pamungkas.',
     ),
     keywords: L(
       'number maze, math maze game, math puzzle game, arithmetic puzzle, order of operations puzzle, inequalities game, absolute value game, prime numbers game, logic puzzle for kids, brain teaser with numbers, free math puzzle, learn math by playing',
@@ -1134,8 +1134,8 @@ Langkah yang menang jarang yang pertama kamu lihat: kamu juga memperhatikan apa 
     ),
     tagline: L('Walk a number through gates and operators to the exit.', 'Antar sebuah bilangan melewati gerbang dan operator ke pintu keluar.'),
     answer: L(
-      '**Number Maze is a math puzzle in which you are a number walking through a maze: operator tiles change your value, gates let you through only when your value fits, and the exit often wants one exact number.** Some tiles are used up once, so the puzzle is which ones to spend and in what order. There are 35 levels in three chapters, and you play with the arrow keys, a swipe or the buttons.',
-      '**Labirin Angka adalah teka-teki matematika di mana kamu adalah sebuah bilangan yang berjalan di labirin: petak operator mengubah nilaimu, gerbang hanya meloloskanmu bila nilaimu cocok, dan pintu keluar sering menuntut satu angka yang tepat.** Sebagian petak habis sekali pakai, jadi teka-tekinya adalah petak mana yang dibelanjakan dan urutannya. Ada 35 level dalam tiga bab, dan kamu bermain dengan tombol panah, geseran layar, atau tombol di layar.',
+      '**Number Maze is a math puzzle in which you are a number walking through a maze: operator tiles change your value, gates let you through only when your value fits, and the exit often wants one exact number.** Some tiles are used up once, so the puzzle is which ones to spend and in what order. There are 100 levels in seven chapters, and you play with the arrow keys, a swipe or the buttons.',
+      '**Labirin Angka adalah teka-teki matematika di mana kamu adalah sebuah bilangan yang berjalan di labirin: petak operator mengubah nilaimu, gerbang hanya meloloskanmu bila nilaimu cocok, dan pintu keluar sering menuntut satu angka yang tepat.** Sebagian petak habis sekali pakai, jadi teka-tekinya adalah petak mana yang dibelanjakan dan urutannya. Ada 100 level dalam tujuh bab, dan kamu bermain dengan tombol panah, geseran layar, atau tombol di layar.',
     ),
     published: '2026-11-20',
     updated: '2026-11-20',
@@ -1174,7 +1174,7 @@ Langkah yang tidak boleh tidak diambil, dan sebuah pesan singkat menjelaskan seb
 | Key and lock | a key and a lock with the **same number** | a key you step on is picked up, and a lock of the same number uses it up |
 | Wall | dark | stops you |
 
-The operators of the 35 levels are $+$, $-$, $\\times$, $\\div$, $\\pm$ (change the sign) and $|x|$ (absolute value). **All values are whole numbers:** a division only works when it comes out even, and a gate or an exit that says "at least 6" or "prime" is judged on your value at that moment.`,
+The operators are $+$, $-$, $\\times$, $\\div$, remainder, powers ($x^2$, $x^3$, $2^x$, $3^x$), logarithms ($\\log_2$, $\\log_3$), $\\pm$ (change the sign) and $|x|$ (absolute value). Gates and exits ask for things such as at least, less than, between, even, odd, a multiple of, a remainder, a perfect square or cube, prime and **not** prime. **All values are whole numbers:** a division only works when it comes out even, a logarithm only when it is exact, and a gate or an exit is judged on your value at that moment. Some levels also limit how high or how low your value may go.`,
           `| Petak | Tampilannya | Fungsinya |
 |---|---|---|
 | Operator yang tidak pernah habis | **biru**, bergaris tepi utuh, seperti $+1$ | bekerja setiap kali kamu menginjaknya, jadi kamu bisa mondar-mandir untuk menyetel angkamu |
@@ -1185,7 +1185,7 @@ The operators of the 35 levels are $+$, $-$, $\\times$, $\\div$, $\\pm$ (change 
 | Kunci dan gembok | kunci dan gembok dengan **nomor yang sama** | kunci yang kamu injak dipungut, dan gembok bernomor sama memakainya sampai habis |
 | Tembok | gelap | menghentikanmu |
 
-Operator di 35 level ini adalah $+$, $-$, $\\times$, $\\div$, $\\pm$ (ubah tanda) dan $|x|$ (nilai mutlak). **Semua nilai bilangan bulat:** pembagian hanya jalan bila habis, dan gerbang atau pintu keluar yang berbunyi "minimal 6" atau "prima" dinilai dari nilaimu saat itu.`,
+Operatornya adalah $+$, $-$, $\\times$, $\\div$, sisa bagi, pangkat ($x^2$, $x^3$, $2^x$, $3^x$), logaritma ($\\log_2$, $\\log_3$), $\\pm$ (ubah tanda) dan $|x|$ (nilai mutlak). Gerbang dan pintu keluar meminta hal seperti minimal, kurang dari, antara, genap, ganjil, kelipatan, sisa bagi, kuadrat atau pangkat tiga sempurna, prima, dan **bukan** prima. **Semua nilai bilangan bulat:** pembagian hanya jalan bila habis, logaritma hanya bila tepat, dan gerbang atau pintu keluar dinilai dari nilaimu saat itu. Sebagian level juga membatasi seberapa tinggi atau rendah nilaimu boleh.`,
         ),
       },
       {
@@ -1207,17 +1207,25 @@ Sebuah level terbuka bila level sebelumnya sudah selesai. Ketiga bab terbuka sej
           `| Chapter | Levels | What you practise |
 |---|---|---|
 | Arithmetic | 14 | adding, subtracting, multiplying and dividing in the right order, with tiles that are used up once |
-| Inequalities and Absolute Value | 14 | staying inside limits and ranges, negative numbers, folding the sign with the absolute value tile and flipping it with $\\pm$ |
-| Numbers | 7 | primes, even and odd, multiples, keys and locks (more levels will come) |
+| Negatives | 14 | going below zero, flipping and folding the sign, and the cost of climbing back up |
+| Powers | 14 | squares, cubes and the powers of two and three, and the order of squaring and adding |
+| Inequalities and Remainders | 14 | limits and ranges, remainders, and the absolute value |
+| Logarithms | 14 | making a power and taking its logarithm, which only works on an exact power |
+| Numbers | 14 | primes and numbers that are not prime, squares, multiples, keys and locks |
+| Final Rooms | 16 | everything at once, in the biggest rooms |
 
-In the first levels nothing can be spoiled. Later a tile you have already used up can make the exit impossible; the game then tells you, when you ask for the next step, that there is no way from here, and you can undo or restart.`,
+The first levels are gentle: nothing can be spoiled. Then they become real puzzles: the shortest way can be 20, 30 or 40 steps, there are tiles that are only there to mislead you, and a tile you have already used up can make the exit impossible. When you ask for the next step the game tells you if there is no way from here, and you can undo or restart.`,
           `| Bab | Level | Yang dilatih |
 |---|---|---|
 | Aritmetika | 14 | menjumlah, mengurangi, mengalikan, dan membagi dalam urutan yang tepat, dengan petak yang habis sekali pakai |
-| Pertidaksamaan dan Nilai Mutlak | 14 | tetap di dalam batas dan rentang, bilangan negatif, melipat tanda dengan petak nilai mutlak dan membaliknya dengan $\\pm$ |
-| Bilangan | 7 | bilangan prima, genap dan ganjil, kelipatan, kunci, dan gembok (level lain akan menyusul) |
+| Negatif | 14 | turun di bawah nol, membalik dan melipat tanda, dan ongkos naik kembali |
+| Pangkat | 14 | kuadrat, pangkat tiga, dan pangkat dari dua dan tiga, serta urutan memangkatkan dan menambah |
+| Pertidaksamaan dan Sisa Bagi | 14 | batas dan rentang, sisa bagi, dan nilai mutlak |
+| Logaritma | 14 | membuat sebuah pangkat lalu mengambil logaritmanya, yang hanya jalan pada pangkat yang tepat |
+| Bilangan | 14 | bilangan prima dan yang bukan prima, kuadrat, kelipatan, kunci, dan gembok |
+| Ruang Pamungkas | 16 | semuanya sekaligus, di ruangan terbesar |
 
-Di level-level awal tidak ada yang bisa dirusak. Nanti, petak yang sudah kamu pakai sampai habis bisa membuat pintu keluar mustahil; game lalu memberi tahu, saat kamu meminta langkah berikutnya, bahwa tidak ada jalan dari sini, dan kamu bisa Undo atau Ulang.`,
+Level-level awal ramah: tidak ada yang bisa dirusak. Lalu level menjadi teka-teki sungguhan: jalan terpendeknya bisa 20, 30, atau 40 langkah, ada petak yang hanya ada untuk mengecohmu, dan petak yang sudah kamu pakai sampai habis bisa membuat pintu keluar mustahil. Saat kamu meminta langkah berikutnya, game memberi tahu bila tidak ada jalan dari sini, dan kamu bisa Undo atau Ulang.`,
         ),
       },
       {

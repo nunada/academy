@@ -1,8 +1,13 @@
 import type { Loc } from './types'
+import { GENERATED } from './numbermaze-levels'
 
 /** The chapters and levels of Number Maze. The grids are text (see `lib/numbermaze.ts` for the tokens); `par` is the length of the shortest way, which the checker
- *  (`tools/check-numbermaze.mjs`) finds again with a solver of its own and compares. The levels are the ones of the Numaze project, original and not copies of any
- *  other game's; the order inside a chapter is the order of difficulty (how easily a step spoils the game), not of length.
+ *  (`tools/check-numbermaze.mjs`) finds again with a solver of its own and compares.
+ *
+ *  Three tutorial levels open the first chapter (a corridor, a tile that is used up, a tile that never runs out), by hand. All the others were *made by a program*
+ *  (`tools/maze-generator.mjs`: a solution is planted in a random open maze, decoys are added, and the level is kept only if the solver says it is a hard puzzle: a long
+ *  shortest way, few shortest ways, many dead positions, tiles that are needed) and chosen by `tools/maze-build-levels.mjs` into `numbermaze-levels.ts`. They are
+ *  original: none is a copy of a level of any other game.
  *
  *  Inside a chapter a level opens when the one before it is solved; all chapters are open from the start, so a player can choose the topic they are learning. */
 
@@ -28,9 +33,10 @@ export interface MazeChapter {
   levels: MazeLevel[]
 }
 
-const ARITHMETIC: MazeLevel[] = [
+
+const TUTORIAL: MazeLevel[] = [
   {
-    id: 'a01',
+    id: 'ar01',
     name: L('First Step', 'Langkah Pertama'),
     hint: L('Swipe, or use the arrow keys or the buttons, to move your number to the exit.', 'Geser layar, atau pakai tombol panah atau tombol di layar, untuk menggerakkan angkamu ke pintu keluar.'),
     startValue: 0,
@@ -38,7 +44,7 @@ const ARITHMETIC: MazeLevel[] = [
     par: 4,
   },
   {
-    id: 'a02',
+    id: 'ar02',
     name: L('Just Once', 'Sekali Saja'),
     hint: L('A gold dashed tile disappears after you step on it. Going back there adds nothing.', 'Petak emas bergaris putus-putus lenyap setelah dilewati. Kembali ke sana tidak akan menambah apa-apa lagi.'),
     startValue: 0,
@@ -46,281 +52,98 @@ const ARITHMETIC: MazeLevel[] = [
     par: 3,
   },
   {
-    id: 'a03',
-    name: L('Grab It, Then Come Back', 'Ambil Lalu Kembali'),
-    hint: L('The operator is in a dead end. Take it first, then go on to the right.', 'Operatornya ada di ujung buntu. Ambil dulu, baru lanjut ke kanan.'),
-    startValue: 3,
-    grid: ['#  #  #    #     #      #', '#  #  *3!  #     #      #', '#  S  .    ?>=9  G?=9   #', '#  #  #    #     #      #'],
-    par: 5,
-  },
-  {
-    id: 'a04',
-    name: L('Upper Limit', 'Batas Atas'),
-    hint: L('The gate in the middle refuses 10 or more. Luckily the addition stops just below it.', 'Gerbang di tengah menolak nilai 10 atau lebih. Untung tambahannya berhenti tepat di bawahnya.'),
-    startValue: 4,
-    grid: ['#  #  #    #  #     #    #  #     #', '#  S  +4!  .  ?<10  -3!  .  G?=5  #', '#  #  #    #  #     #    #  #     #'],
-    par: 6,
-  },
-  {
-    id: 'a05',
-    name: L('Choose a Path', 'Pilih Jalan'),
-    hint: L('Three is odd, so the lower gate is still closed. There is one more tile at the far right.', 'Tiga itu ganjil, jadi gerbang bawah masih tertutup. Ada satu petak lagi di ujung kanan.'),
-    startValue: 0,
-    grid: ['#  #  #    #      #    #', '#  S  +3!  .      *2!  #', '#  #  #    ?even  #    #', '#  #  #    G?=6   #    #', '#  #  #    #      #    #'],
-    par: 6,
-  },
-  {
-    id: 'a06',
-    name: L('Around the Ring', 'Keliling Cincin'),
-    hint: L('The map is a ring, but each operator works only once. The direction you go round decides the order.', 'Denah melingkar, tapi tiap operator hanya sekali. Arah putaranmu menentukan urutannya.'),
-    startValue: 3,
-    grid: ['#  #    #  #      #  #', '#  S    .  +2!    .  #', '#  *3!  #  #      .  #', '#  .    .  .      .  #', '#  #    #  ?>=12  #  #', '#  #    #  G?=15  #  #', '#  #    #  #      #  #'],
-    par: 10,
-  },
-  {
-    id: 'a07',
-    name: L('Shrinking Step by Step', 'Susut Bertahap'),
-    hint: L('Divide first and then subtract, or subtract first and then divide? The results differ.', 'Bagi dulu lalu kurangi, atau kurangi dulu lalu bagi? Hasilnya tidak sama.'),
-    startValue: 24,
-    grid: ['#  #    #  #      #  #', '#  S    .  /2!    .  #', '#  -4!  #  #      .  #', '#  .    .  .      .  #', '#  #    #  ?<=12  #  #', '#  #    #  G?=8   #  #', '#  #    #  #      #  #'],
-    par: 10,
-  },
-  {
-    id: 'a08',
-    name: L('Order Matters', 'Urutan Itu Penting'),
-    hint: L('Two paths, two orders of operations. Only one lands exactly on 10.', 'Dua jalur, dua urutan operasi. Hanya satu yang mendarat tepat di 10.'),
-    startValue: 2,
-    grid: ['#  #  #    #  #    #      #', '#  .  +3!  .  *2!  .      #', '#  S  #    #  #    G?=10  #', '#  .  *2!  .  +3!  .      #', '#  #  #    #  #    #      #'],
-    par: 6,
-  },
-  {
-    id: 'a09',
-    name: L('Three Purchases', 'Tiga Belanja'),
-    hint: L('Three operators are spread around the ring. You need all of them, and the order is not free.', 'Tiga operator tersebar di cincin. Kamu perlu ketiganya, dan urutannya tidak bebas.'),
-    startValue: 2,
-    grid: ['#  #    #     #      #  #', '#  S    .     +5!    .  #', '#  *2!  #     #      .  #', '#  .    -3!   .      .  #', '#  #    #     ?>=8   #  #', '#  #    #     G?=8   #  #', '#  #    #     #      #  #'],
-    par: 14,
-  },
-  {
-    id: 'a10',
-    name: L('Divide First or Add First', 'Bagi Dulu atau Tambah Dulu'),
-    hint: L('Division only works when the result is whole, and that depends on when you divide.', 'Pembagian hanya jalan kalau hasilnya bulat, dan itu tergantung kamu membaginya kapan.'),
-    startValue: 3,
-    grid: ['#  #  #    #  #    #     #', '#  .  +5!  .  /2!  .     #', '#  S  #    #  #    G?=4  #', '#  .  /3!  .  +5!  .     #', '#  #  #    #  #    #     #'],
-    par: 6,
-  },
-  {
-    id: 'a11',
-    name: L('Two Long Paths', 'Dua Jalur Panjang'),
-    hint: L('Four tiles, two orders. Multiply when your number is just right, not before.', 'Empat petak, dua urutan. Kalikan saat angkamu sudah pas, bukan sebelumnya.'),
-    startValue: 3,
-    grid: ['#  #  #    #  #    #  #      #', '#  .  +1!  .  *3!  .  .      #', '#  S  #    #  #    #  G?=12  #', '#  .  *3!  .  +1!  .  .      #', '#  #  #    #  #    #  #      #'],
-    par: 7,
-  },
-  {
-    id: 'a12',
+    id: 'ar03',
     name: L('Blue Tiles', 'Petak Biru'),
     hint: L('Blue tiles never run out: step on them as often as you like, back and forth. Nothing can be spoiled here.', 'Petak biru tidak pernah habis: injak sesukamu, maju dan mundur. Tidak ada yang bisa dirusak di sini.'),
     startValue: 1,
     grid: ['#  #   #    #   #', '#  .   S    .   #', '#  +1  .    -1  #', '#  .   .    .   #', '#  #   ?=7  #   #', '#  #   G    #   #', '#  #   #    #   #'],
     par: 16,
   },
-  {
-    id: 'a13',
-    name: L('One Precious Tile', 'Satu Yang Berharga'),
-    hint: L('The blue +1 tile can be used again and again. The gold ×7 tile only once: come to it with the right number already.', 'Petak +1 biru boleh dipakai berulang-ulang. Petak ×7 emas hanya sekali: datangi ia dengan angka yang sudah tepat.'),
-    startValue: 1,
-    grid: ['#  #   #  #      #  #', '#  S   .  *7!    .  #', '#  +1  #  #      .  #', '#  .   .  .      .  #', '#  #   #  ?>=20  #  #', '#  #   #  G?=21  #  #', '#  #   #  #      #  #'],
-    par: 12,
-  },
-  {
-    id: 'a14',
-    name: L('Arithmetic Exam', 'Ujian Aritmetika'),
-    hint: L('Make it big first with the two gold tiles, then tune it down with the blue tile until the last division fits.', 'Besarkan dulu dengan dua petak emas, lalu setel turun dengan petak biru sampai pembagian terakhir pas.'),
-    startValue: 2,
-    grid: ['#  #   #  #      #    #', '#  S   .  +3!    .    #', '#  -1  #  #      *2!  #', '#  .   .  .      .    #', '#  #   #  ?even  #    #', '#  #   #  /2!    #    #', '#  #   #  G?=4   #    #', '#  #   #  #      #    #'],
-    par: 11,
-  },
+
 ]
 
-const INEQUALITIES: MazeLevel[] = [
-  {
-    id: 'i01',
-    name: L('Fold', 'Lipat'),
-    hint: L('The |x| tile throws away the minus sign.', 'Petak |x| membuang tanda minus.'),
-    startValue: -7,
-    grid: ['#  #  #    #     #', '#  S  abs  G?=7  #', '#  #  #    #     #'],
-    par: 2,
-  },
-  {
-    id: 'i02',
-    name: L('Big Enough', 'Cukup Besar'),
-    hint: L('This gate needs at least 10. Step on +3 again and again until it is enough.', 'Gerbang ini butuh minimal 10. Injak +3 berulang kali sampai cukup.'),
-    startValue: 0,
-    grid: ['#  #  #  #  #      #  #', '#  S  +3 .  ?>=10  G  #', '#  #  #  #  #      #  #'],
-    par: 10,
-  },
-  {
-    id: 'i03',
-    name: L('Two Limits', 'Dua Batas'),
-    hint: L('A range gate accepts only values between the two numbers.', 'Gerbang rentang hanya menerima nilai di antara kedua angka itu.'),
-    startValue: 0,
-    grid: ['#  #  #  #  #        #      #', '#  S  +7 .  ?10..20  G?=14  #', '#  #  #  #  #        #      #'],
-    par: 6,
-  },
-  {
-    id: 'i04',
-    name: L('Below Zero', 'Ke Bawah Nol'),
-    hint: L('Values may be negative. Note that −12 is smaller than −10.', 'Nilai boleh negatif. Perhatikan bahwa −12 lebih kecil daripada −10.'),
-    startValue: 0,
-    grid: ['#  #  #  #  #       #        #', '#  S  -4 .  ?<=-10  G?=-12   #', '#  #  #  #  #       #        #'],
-    par: 8,
-  },
-  {
-    id: 'i05',
-    name: L('Down First', 'Turun Dulu'),
-    hint: L('To get 8, first go down to −8.', 'Untuk mendapat 8, turunlah sampai −8 lebih dulu.'),
-    startValue: 2,
-    grid: ['#  #  #  #  #    #     #', '#  S  -5 .  abs  G?=8  #', '#  #  #  #  #    #     #'],
-    par: 6,
-  },
-  {
-    id: 'i06',
-    name: L('A Little Further', 'Lewat Sedikit'),
-    hint: L('Stopping at 3 will never give 4. Go past zero.', 'Berhenti di 3 tidak akan pernah menghasilkan 4. Lewati nol.'),
-    startValue: 10,
-    grid: ['#  #  #  #  #     #    #     #', '#  S  -7 .  ?<=5  abs  G?=4  #', '#  #  #  #  #     #    #     #'],
-    par: 7,
-  },
-  {
-    id: 'i07',
-    name: L('Flip the Sign', 'Balik Tanda'),
-    hint: L('The ± tile flips the sign. Go down far enough first, then flip.', 'Petak ± membalik tanda. Turun dulu sampai cukup jauh, baru dibalik.'),
-    startValue: 1,
-    grid: ['#  #  #  #  #    #     #     #', '#  S  -3 .  neg  ?>0  G?=5   #', '#  #  #  #  #    #     #     #'],
-    par: 7,
-  },
-  {
-    id: 'i08',
-    name: L('Mirror Junction', 'Simpang Cermin'),
-    hint: L('The |x| tile is in the dead end on the right. Take it first, then go down.', 'Petak |x| ada di ujung buntu sebelah kanan. Ambil dulu, baru turun.'),
-    startValue: -3,
-    grid: ['#  #  #      #  #   #', '#  S  -4     .  abs #', '#  #  #      ?>=7   #  #', '#  #  #      G?=7   #  #', '#  #  #      #  #   #'],
-    par: 6,
-  },
-  {
-    id: 'i09',
-    name: L('Which Door', 'Pintu Mana'),
-    hint: L('Your own starting value decides which path is open.', 'Nilai awalmu sendiri yang menentukan jalur mana yang terbuka.'),
-    startValue: 4,
-    grid: ['#  #      #  #  #  #     #', '#  ?<5    *3 .  -4 .     #', '#  S      #  #  #  G?=8  #', '#  ?>=5   -4 .  *3 .     #', '#  #      #  #  #  #     #'],
-    par: 6,
-  },
-  {
-    id: 'i10',
-    name: L('How Many Laps', 'Berapa Putaran'),
-    hint: L('Every lap adds 4. The gate limits how many laps are allowed.', 'Tiap putaran menambah 4. Gerbangnya membatasi berapa putaran yang boleh.'),
-    startValue: 0,
-    grid: ['#  #  #  #         #  #', '#  S  .  +4        .  #', '#  .  #  #         .  #', '#  .  .  .         .  #', '#  #  #  ?12..16   #  #', '#  #  #  G?=16     #  #', '#  #  #  #         #  #'],
-    par: 14,
-  },
-  {
-    id: 'i11',
-    name: L('Must Go Below', 'Harus Lewat Bawah'),
-    hint: L('The ?<0 gate forces you negative first. Go down exactly as far as needed.', 'Gerbang ?<0 memaksamu negatif dulu. Turun tepat sejauh yang dibutuhkan.'),
-    startValue: 0,
-    grid: ['#  #  #   #    #    #      #', '#  S  -3  ?<0  abs  ?<10   #', '#  -1 #   .    #    .      #', '#  .  +2  .    .    G?=6   #', '#  #  #   #    #    #      #'],
-    par: 8,
-  },
-  {
-    id: 'i12',
-    name: L('A Long Fall', 'Jatuh Jauh'),
-    hint: L('Make it bigger first in the left branch, drop it in the ring, fold before leaving.', 'Besarkan dulu di cabang kiri, jatuhkan di cincin, lipat sebelum keluar.'),
-    startValue: 8,
-    grid: ['#  #    #  #      #    #', '#  .    .  -20    .    #', '#  .    #  #      abs  #', '#  .    .  .      .    #', '#  *2   #  ?<10   #    #', '#  S    #  G?=4   #    #', '#  #    #  #      #    #'],
-    par: 12,
-  },
-  {
-    id: 'i13',
-    name: L('Climbing One by One', 'Naik Satu-satu'),
-    hint: L('Go far down, then crawl up one at a time until the fold fits exactly.', 'Turun jauh sekali, lalu merangkak naik satu per satu sampai lipatannya pas.'),
-    startValue: 0,
-    grid: ['#  #  #   #    #   #      #', '#  S  -9  ?<0  +1  .      #', '#  .  #   .    #   .      #', '#  .  .   .    .   .      #', '#  #  #   #    #   abs    #', '#  #  #   #    #   G?=5   #', '#  #  #   #    #   #      #'],
-    par: 14,
-  },
-  {
-    id: 'i14',
-    name: L('Open Room Exam', 'Ujian Ruang Terbuka'),
-    hint: L('An open room: every tile has many neighbours. Build 23 before folding.', 'Ruang terbuka: tiap petak bertetangga dengan banyak petak. Bangun 23 sebelum melipat.'),
-    startValue: 1,
-    grid: ['#  #     #    #        #', '#  S     +3   *2       #', '#  -3    abs  ?prime   #', '#  ?<0   /2   G?=23    #', '#  #     #    #        #'],
-    par: 10,
-  },
-]
+/** The ideas that the hint of a generated level gives: there is no hint for the particular level, but a way of looking at this kind of puzzle. */
+const IDEAS: Record<string, Loc[]> = {
+  arithmetic: [
+    L('Work backwards from the exit: which tiles could give that exact number? A tile that is used up once can be spent only once, so the order matters.', 'Bekerjalah mundur dari pintu keluar: petak mana yang bisa menghasilkan angka yang tepat itu? Petak yang habis sekali pakai hanya bisa dibelanjakan sekali, jadi urutannya penting.'),
+    L('Not every tile is needed. A gate that no number you can make will pass is only there to mislead you.', 'Tidak semua petak diperlukan. Gerbang yang tidak bisa dilewati angka apa pun yang bisa kamu buat hanyalah pengecoh.'),
+    L('Look at even and odd. Some tiles never change it, and the exit may need the other kind.', 'Perhatikan genap dan ganjil. Sebagian petak tidak pernah mengubahnya, dan pintu keluar mungkin butuh yang lain.'),
+  ],
+  negatives: [
+    L('Going down is easy and coming back up costs steps. Plan how far down you really need to go.', 'Turun itu mudah, dan naik kembali memakan langkah. Rencanakan seberapa jauh kamu benar-benar harus turun.'),
+    L('A minus sign can be flipped or folded away: ask which sign the exit wants, and which tile can give it.', 'Tanda minus bisa dibalik atau dilipat: tanyakan tanda apa yang diminta pintu keluar, dan petak mana yang bisa memberikannya.'),
+    L('A gate with a limit can be passed from either side of the limit: check both ways before you spend a tile.', 'Gerbang dengan batas bisa dilewati dari kedua sisi batas itu: periksa kedua arah sebelum membelanjakan petak.'),
+  ],
+  powers: [
+    L('Powers grow fast. Try the small numbers first, and see which exact values the gates and the exit can ever get.', 'Pangkat tumbuh cepat. Coba angka kecil dulu, dan lihat nilai tepat mana yang bisa diraih gerbang dan pintu keluar.'),
+    L('Squaring before adding gives a different number from adding before squaring. Which order does the exit want?', 'Memangkatkan sebelum menambah memberi angka berbeda dari menambah sebelum memangkatkan. Urutan mana yang diminta pintu keluar?'),
+    L('A power of two or three ends in few digits. Look at what the last tiles must give, then go back.', 'Pangkat dua atau tiga berakhir dengan sedikit angka. Lihat apa yang harus diberikan petak terakhir, lalu mundur.'),
+  ],
+  inequalities: [
+    L('A remainder tile throws away the size of your number and keeps only what is left over. Which remainders can reach the exit?', 'Petak sisa bagi membuang besar angkamu dan hanya menyimpan sisanya. Sisa mana yang bisa mencapai pintu keluar?'),
+    L('A range gate has two sides. Check that you can arrive from the side you are on.', 'Gerbang rentang punya dua sisi. Periksa bahwa kamu bisa tiba dari sisi tempatmu berada.'),
+    L('Count how many tiles you have of each kind: the supply may leave you no room for a mistake.', 'Hitung berapa petak yang kamu punya dari tiap jenis: perbekalannya mungkin tidak menyisakan ruang untuk salah.'),
+  ],
+  logarithms: [
+    L('A logarithm undoes a power: it only works on a number that is exactly a power of its base. Which numbers can you make that way?', 'Logaritma membatalkan pangkat: ia hanya jalan pada angka yang tepat berupa pangkat dari basisnya. Angka mana yang bisa kamu buat begitu?'),
+    L('Build a power first, then take its logarithm: the exponent comes out. Plan the exponent you want.', 'Bangun sebuah pangkat dulu, lalu ambil logaritmanya: eksponennya keluar. Rencanakan eksponen yang kamu mau.'),
+    L('If a logarithm is refused, your number is not a power of its base yet: change it first.', 'Jika logaritma ditolak, angkamu belum berupa pangkat dari basisnya: ubah dulu.'),
+  ],
+  numbers: [
+    L('Primes, squares and multiples are rare among big numbers. List the ones near where you are, and see which tile reaches them.', 'Bilangan prima, kuadrat, dan kelipatan jarang di antara bilangan besar. Daftar yang dekat denganmu, dan lihat petak mana yang mencapainya.'),
+    L('A key you pick up opens one lock only. Decide which lock it is for before you take the next key.', 'Satu kunci yang kamu pungut hanya membuka satu gembok. Tentukan untuk gembok mana sebelum mengambil kunci berikutnya.'),
+    L('"Not prime" is also a condition: 1 is not prime, and neither is any number that divides evenly.', '"Bukan prima" juga syarat: 1 bukan prima, dan begitu pula bilangan apa pun yang habis dibagi.'),
+    L('Look at what the exit wants and work back: which tile could give exactly that, and what must you bring to it?', 'Lihat apa yang diminta pintu keluar dan bekerjalah mundur: petak mana yang bisa memberikan tepat itu, dan apa yang harus kamu bawa ke sana?'),
+  ],
+  fermat: [
+    L('These rooms use everything at once. Find the exit condition first, then the gate before it, and work back one tile at a time.', 'Ruangan ini memakai semuanya sekaligus. Cari syarat pintu keluar dulu, lalu gerbang sebelumnya, dan bekerja mundur satu petak demi satu.'),
+    L('There are decoys, and some of them are impossible on purpose. Prove a tile cannot work (parity, remainder, size) before you spend a step on it.', 'Ada pengecoh, dan sebagian sengaja mustahil. Buktikan bahwa sebuah petak tidak mungkin berhasil (genap-ganjil, sisa, ukuran) sebelum memakai langkah untuknya.'),
+    L('A tile that is used up is gone for good. Before you spend one, ask what you could no longer do.', 'Petak yang sudah habis hilang selamanya. Sebelum membelanjakannya, tanyakan apa yang tidak bisa lagi kamu lakukan.'),
+  ],
+}
 
-const NUMBERS: MazeLevel[] = [
-  {
-    id: 'n01',
-    name: L('Once Only', 'Sekali Pakai'),
-    hint: L('The dashed tiles disappear after you pass them. No second chances.', 'Petak bergaris putus-putus lenyap setelah kamu lewati. Tidak ada kesempatan kedua.'),
-    startValue: 0,
-    grid: ['#  #  #   #   #   #     #', '#  S  +2! +2! +2! G?=6  #', '#  #  #   #   #   #     #'],
-    par: 4,
-  },
-  {
-    id: 'n02',
-    name: L('The First Key', 'Kunci Pertama'),
-    hint: L('Pick up the key in the top branch, then the lock on the right opens by itself.', 'Pungut kunci di cabang atas, lalu gembok di kanan akan terbuka sendiri.'),
-    startValue: 0,
-    grid: ['#  #  #     #      #  #', '#  #  key1  #      #  #', '#  S  .     lock1  G  #', '#  #  #     #      #  #'],
-    par: 5,
-  },
-  {
-    id: 'n03',
-    name: L('Sieve the Primes', 'Saring Prima'),
-    hint: L('The prime gate rejects 1 and every composite number. Climb by twos until you find one.', 'Gerbang prima menolak 1 dan semua bilangan majemuk. Naik dua-dua sampai ketemu.'),
-    startValue: 1,
-    grid: ['#  #  #   #  #       #     #', '#  S  +2  .  ?prime  G?=7  #', '#  #  #   #  #       #     #'],
-    par: 8,
-  },
-  {
-    id: 'n04',
-    name: L('A Valuable Reserve', 'Simpanan Berharga'),
-    hint: L('There is only one ×3 tile and it is used up once. Come to it with the right number already.', 'Hanya ada satu petak ×3, dan ia habis sekali pakai. Datangi ia dengan angka yang sudah tepat.'),
-    startValue: 1,
-    grid: ['#  #  #  #      #  #', '#  S  .  .      .  #', '#  +2 #  #      .  #', '#  .  *3! .     .  #', '#  #  #  ?>=20  #  #', '#  #  #  G?=21  #  #', '#  #  #  #      #  #'],
-    par: 10,
-  },
-  {
-    id: 'n05',
-    name: L('Two Keys', 'Dua Kunci'),
-    hint: L('The left key can only be reached with value 2, the right key with value 5. Both operators are used up once: think about the order.', 'Kunci kiri hanya bisa diraih dengan nilai 2, kunci kanan dengan nilai 5. Kedua operator habis sekali pakai: pikirkan urutannya.'),
-    startValue: 1,
-    grid: ['#  #     #    #      #     #     #     #', '#  #     #    S      #     #     #     #', '#  #     #    +1!    #     #     #     #', '#  key1  ?=2  .      +3!   ?=5   key2  #', '#  #     #    lock1  #     #     #     #', '#  #     #    lock2  #     #     #     #', '#  #     #    G      #     #     #     #', '#  #     #    #      #     #     #     #'],
-    par: 15,
-  },
-  {
-    id: 'n06',
-    name: L('Factor Laps', 'Putaran Faktor'),
-    hint: L('This ring adds three every lap. Stop exactly at the prime that is asked for.', 'Cincin ini menambah tiga tiap putaran. Berhenti tepat di bilangan prima yang diminta.'),
-    startValue: 1,
-    grid: ['#  #  #  #       #  #', '#  S  .  *2      .  #', '#  +3 #  #       .  #', '#  .  .  .       .  #', '#  #  #  ?prime  #  #', '#  #  #  G?=13   #  #', '#  #  #  #       #  #'],
-    par: 12,
-  },
-  {
-    id: 'n07',
-    name: L('Even Staircase', 'Tangga Genap'),
-    hint: L('Starting from 1, the top row can only make odd numbers: +2 and ×3 never change that. The exit is even, so you must go down. The right-most rung can only be climbed.', 'Mulai dari 1, baris atas hanya bisa menghasilkan bilangan ganjil: +2 dan ×3 tidak pernah mengubah itu. Pintu keluarnya genap, jadi kamu wajib turun. Anak tangga paling kanan hanya bisa dinaiki.'),
-    startValue: 1,
-    grid: ['#  #     #   #     #   #     #   #       #', '#  S     +2  .     *3  .     .   .       #', '#  ?odd  #   ?>=9  #   ?x3   #   w^      #', '#  .     -4  .     *2  .     .   G?=30   #', '#  #     #   #     #   #     #   #       #'],
-    par: 12,
-  },
-]
+const NAMES: Record<string, [string, string]> = {
+  arithmetic: ['Arithmetic', 'Aritmetika'],
+  negatives: ['Negatives', 'Negatif'],
+  powers: ['Powers', 'Pangkat'],
+  inequalities: ['Inequalities', 'Pertidaksamaan'],
+  logarithms: ['Logarithms', 'Logaritma'],
+  numbers: ['Numbers', 'Bilangan'],
+  fermat: ['Final Rooms', 'Ruang Pamungkas'],
+}
+
+function generated(chapter: string, prefix: string, tutorial: MazeLevel[]): MazeLevel[] {
+  const [en, id] = NAMES[chapter]
+  const ideas = IDEAS[chapter]
+  return [
+    ...tutorial,
+    ...GENERATED[chapter].map((g, k): MazeLevel => {
+      const n = tutorial.length + k + 1
+      const text = g.grid.join(' ')
+      // an idea that talks of keys, locks or primes is given only to a level that has them
+      const usable = ideas.filter((h) => (!/\bkey\b|\block\b|\bkunci\b|\bgembok\b/i.test(h.en + ' ' + h.id) || (/key[1-4]/.test(text) && /lock[1-4]/.test(text))) && (!/\bprime\b|\bprima\b/i.test(h.en + ' ' + h.id) || /prime/.test(text)))
+      return {
+        id: `${prefix}${String(n).padStart(2, '0')}`,
+        name: L(`${en} ${n}`, `${id} ${n}`),
+        hint: usable.length ? usable[k % usable.length] : ideas[ideas.length - 1],
+        startValue: g.startValue,
+        minValue: g.minValue,
+        maxValue: g.maxValue,
+        grid: g.grid,
+        par: g.par,
+      }
+    }),
+  ]
+}
 
 export const CHAPTERS: MazeChapter[] = [
-  { id: 'arithmetic', name: L('Arithmetic', 'Aritmetika'), subtitle: L('Add, subtract, multiply, divide: some tiles only once', 'Tambah, kurang, kali, bagi: sebagian petak hanya sekali'), levels: ARITHMETIC },
-  { id: 'inequalities', name: L('Inequalities and Absolute Value', 'Pertidaksamaan dan Nilai Mutlak'), subtitle: L('Limits, ranges, folding the sign and flipping it', 'Batas, rentang, melipat tanda dan membaliknya'), levels: INEQUALITIES },
-  { id: 'numbers', name: L('Numbers', 'Bilangan'), subtitle: L('Primes, keys and locks', 'Prima, kunci, dan gembok'), draft: true, levels: NUMBERS },
+  { id: 'arithmetic', name: L('Arithmetic', 'Aritmetika'), subtitle: L('Add, subtract, multiply and divide: most tiles only once', 'Tambah, kurang, kali, dan bagi: kebanyakan petak hanya sekali'), levels: generated('arithmetic', 'ar', TUTORIAL.map((l, i) => ({ ...l, id: `ar${String(i + 1).padStart(2, '0')}` }))) },
+  { id: 'negatives', name: L('Negatives', 'Negatif'), subtitle: L('Below zero: signs, flipping them and the cost of climbing back', 'Di bawah nol: tanda, membaliknya, dan ongkos naik kembali'), levels: generated('negatives', 'ng', []) },
+  { id: 'powers', name: L('Powers', 'Pangkat'), subtitle: L('Squares, cubes and the powers of two and three', 'Kuadrat, pangkat tiga, dan pangkat dari dua dan tiga'), levels: generated('powers', 'pw', []) },
+  { id: 'inequalities', name: L('Inequalities and Remainders', 'Pertidaksamaan dan Sisa Bagi'), subtitle: L('Limits, ranges, remainders and the absolute value', 'Batas, rentang, sisa bagi, dan nilai mutlak'), levels: generated('inequalities', 'in', []) },
+  { id: 'logarithms', name: L('Logarithms', 'Logaritma'), subtitle: L('Logarithms and the powers they undo', 'Logaritma dan pangkat yang mereka batalkan'), levels: generated('logarithms', 'lg', []) },
+  { id: 'numbers', name: L('Numbers', 'Bilangan'), subtitle: L('Primes, squares, multiples, keys and locks', 'Bilangan prima, kuadrat, kelipatan, kunci, dan gembok'), levels: generated('numbers', 'nb', []) },
+  { id: 'fermat', name: L('Final Rooms', 'Ruang Pamungkas'), subtitle: L('Everything at once: the biggest rooms', 'Semuanya sekaligus: ruangan terbesar'), levels: generated('fermat', 'fr', []) },
 ]
 
 export const ALL_LEVELS: MazeLevel[] = CHAPTERS.flatMap((c) => c.levels)
