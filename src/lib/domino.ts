@@ -499,6 +499,9 @@ export type GameEvent =
   | { k: 'out'; p: number }
   | { k: 'blocked' }
   | { k: 'left'; p: number }
+  /** a player stepped away (left, or went silent): the tiles are kept until the turn comes to them */
+  | { k: 'away'; p: number }
+  | { k: 'back'; p: number }
   | { k: 'last' }
 
 export type Refusal = 'over' | 'turn' | 'tile' | 'has-move' | 'empty-boneyard' | 'draw-first' | 'bad'

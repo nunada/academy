@@ -57,7 +57,7 @@ export async function realtimeBus(code: string): Promise<Bus> {
   }
 }
 
-const randomId = (): string => Array.from({ length: 10 }, () => 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]).join('')
+export const randomId = (): string => Array.from({ length: 10 }, () => 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]).join('')
 
 /** Make a room: find a code nobody is hosting, and become its host. */
 export async function hostRoom(name: string, mode: ModeId, level: Level, me = randomId()): Promise<{ code: string; session: HostSession }> {

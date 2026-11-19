@@ -8,8 +8,10 @@
  *  message is only addressed to a player by an `id`, the room is a public channel, so a player who reads the network traffic could read the other hands:
  *  this keeps friends honest, it is not a protection against cheating.
  *
- *  Who is still there is told by heartbeats: every player pings every few seconds and the host beats. A player not heard from for `ABSENT_MS` is dropped
- *  (the tiles go back to the boneyard); a host not heard from for `LOST_MS` ends the game for everyone. A message that may have been missed is repaired by
+ *  Who is still there is told by heartbeats: every player pings every few seconds and the host beats. A player who says goodbye, or is not heard from for
+ *  `ABSENT_MS`, has *stepped away*: the seat and the tiles are kept, and the player can come back (the same id, or just the next ping) until the turn comes
+ *  to the seat. A player who is away when the turn arrives has missed it: out of the game, the tiles back to the boneyard. A host not heard from for
+ *  `LOST_MS` ends the game for everyone. A message that may have been missed is repaired by
  *  the version numbers: a beat that is ahead of what a player has makes the player ask again. */
 
 import {
@@ -37,7 +39,7 @@ import {
 
 export const BEAT_MS = 3000
 export const PING_MS = 3000
-/** A player not heard from for this long has left. */
+/** A player not heard from for this long has stepped away. */
 export const ABSENT_MS = 13000
 /** A host not heard from for this long has gone. */
 export const LOST_MS = 13000
@@ -55,6 +57,8 @@ export type NetEvent =
   | { k: 'out'; id: string }
   | { k: 'blocked' }
   | { k: 'left'; id: string }
+  | { k: 'away'; id: string }
+  | { k: 'back'; id: string }
   | { k: 'last' }
 
 export interface PlayerInfo {
@@ -63,6 +67,8 @@ export interface PlayerInfo {
   /** tiles in the hand */
   count: number
   gone: boolean
+  /** stepped away: can still come back until the turn reaches the seat */
+  away: boolean
   mistakes: number
 }
 export interface Snapshot {
@@ -155,6 +161,8 @@ function parseEvent(x: unknown): NetEvent | null {
     case 'pass':
     case 'out':
     case 'left':
+    case 'away':
+    case 'back':
       return isId(x.id) ? { k: x.k, id: x.id } : null
     case 'blocked':
     case 'last':
@@ -177,8 +185,8 @@ export function parseSnapshot(x: unknown): Snapshot | null {
   if (!isObj(x) || !isInt(x.ver, 0, 1e9) || !isId(x.host) || !isModeId(x.mode) || !isLevel(x.level) || !isInt(x.boneyard, 0, TILE_COUNT)) return null
   if (x.phase !== 'lobby' && x.phase !== 'play' && x.phase !== 'over') return null
   const players = parseList(x.players, MAX_PLAYERS, (p) =>
-    isObj(p) && isId(p.id) && isStr(p.name, NAME_MAX * 2) && isInt(p.count, 0, TILE_COUNT) && typeof p.gone === 'boolean' && isInt(p.mistakes, 0, 1e6)
-      ? { id: p.id, name: p.name, count: p.count, gone: p.gone, mistakes: p.mistakes }
+    isObj(p) && isId(p.id) && isStr(p.name, NAME_MAX * 2) && isInt(p.count, 0, TILE_COUNT) && typeof p.gone === 'boolean' && (p.away === undefined || typeof p.away === 'boolean') && isInt(p.mistakes, 0, 1e6)
+      ? { id: p.id, name: p.name, count: p.count, gone: p.gone, away: p.away === true, mistakes: p.mistakes }
       : null,
   )
   const chain = parseList(x.chain, TILE_COUNT, (c) => {
@@ -282,7 +290,7 @@ const netEvents = (events: GameEvent[], ids: string[]): NetEvent[] =>
   })
 
 /** The public picture of a table. `ids` and `names` are the players in seat order; with no game yet (a lobby) everyone holds nothing. */
-export function snapshotOf(a: { ver: number; phase: Snapshot['phase']; host: string; mode: ModeId; level: Level; ids: string[]; names: string[]; game: Game | null; events: GameEvent[] }): Snapshot {
+export function snapshotOf(a: { ver: number; phase: Snapshot['phase']; host: string; mode: ModeId; level: Level; ids: string[]; names: string[]; game: Game | null; events: GameEvent[]; away?: boolean[] }): Snapshot {
   const g = a.game
   return {
     ver: a.ver,
@@ -290,7 +298,7 @@ export function snapshotOf(a: { ver: number; phase: Snapshot['phase']; host: str
     host: a.host,
     mode: a.mode,
     level: a.level,
-    players: a.ids.map((id, p) => ({ id, name: a.names[p], count: g ? g.hands[p].length : 0, gone: g ? g.gone[p] : false, mistakes: g ? g.mistakes[p] : 0 })),
+    players: a.ids.map((id, p) => ({ id, name: a.names[p], count: g ? g.hands[p].length : 0, gone: g ? g.gone[p] : false, away: Boolean(a.away?.[p]) && !(g && g.gone[p]), mistakes: g ? g.mistakes[p] : 0 })),
     turn: g && g.status === 'play' ? a.ids[g.turn] : null,
     chain: g ? g.chain : [],
     boneyard: g ? g.boneyard.length : 0,
@@ -314,6 +322,8 @@ interface Member {
   id: string
   name: string
   seen: number
+  /** stepped away during a game (said goodbye, or went silent) and not yet back */
+  away: boolean
 }
 
 export class HostSession implements Session {
@@ -344,7 +354,7 @@ export class HostSession implements Session {
   ) {
     this.mode = mode
     this.level = level
-    this.members = [{ id: me, name: cleanName(name), seen: clock.now() }]
+    this.members = [{ id: me, name: cleanName(name), seen: clock.now(), away: false }]
     this.cache = this.makeView()
     this.off = bus.onMessage((m) => this.onMessage(m))
     this.changed()
@@ -354,7 +364,7 @@ export class HostSession implements Session {
   /* --- the table */
   private ids = (): string[] => this.members.map((m) => m.id)
   private snapshot(): Snapshot {
-    return snapshotOf({ ver: this.ver, phase: this.phase, host: this.me, mode: this.mode, level: this.level, ids: this.ids(), names: this.members.map((m) => m.name), game: this.game, events: this.events })
+    return snapshotOf({ ver: this.ver, phase: this.phase, host: this.me, mode: this.mode, level: this.level, ids: this.ids(), names: this.members.map((m) => m.name), game: this.game, events: this.events, away: this.members.map((m) => m.away) })
   }
   private makeView(): TableView {
     const at = this.members.findIndex((m) => m.id === this.me)
@@ -408,7 +418,8 @@ export class HostSession implements Session {
   again(): void {
     if (this.phase !== 'over') return
     const game = this.game
-    this.members = this.members.filter((_, p) => !game || !game.gone[p])
+    // those who are not here (out, or still away) are not in the next game
+    this.members = this.members.filter((m, p) => !(game && game.gone[p]) && !m.away)
     this.game = null
     this.phase = 'lobby'
     this.changed()
@@ -421,7 +432,8 @@ export class HostSession implements Session {
         return
       }
       this.members[at].seen = this.clock.now()
-      this.bus.send({ t: 'snap', s: this.cache.snap as Snapshot })
+      // back from a step away: everyone is told; otherwise the table is simply sent again
+      if (!this.welcomeBack(this.members[at])) this.bus.send({ t: 'snap', s: this.cache.snap as Snapshot })
       this.sendHand(id)
       return
     }
@@ -436,7 +448,7 @@ export class HostSession implements Session {
     let clean = cleanName(name)
     const taken = (n: string) => this.members.some((m) => m.name === n)
     for (let k = 2; taken(clean) && k < 20; k++) clean = `${cleanName(name).slice(0, NAME_MAX - 4)} ${k}`
-    this.members.push({ id, name: clean, seen: this.clock.now() })
+    this.members.push({ id, name: clean, seen: this.clock.now(), away: false })
     this.changed()
   }
   private drop(id: string): void {
@@ -445,13 +457,33 @@ export class HostSession implements Session {
     if (this.phase === 'lobby') {
       this.members.splice(at, 1)
       this.changed()
-    } else if (this.phase === 'play' && this.game && !this.game.gone[at]) {
+    } else if (this.phase === 'play' && this.game && !this.game.gone[at] && !this.members[at].away) {
+      // the seat and the tiles are kept until the turn comes to the seat
+      this.members[at].away = true
+      this.events.push({ k: 'away', p: at })
+      this.sweep()
+      this.changed()
+    }
+  }
+  /** A player who is away when the turn comes to them has missed it: out of the game, the tiles go back to the boneyard. */
+  private sweep(): void {
+    for (let k = 0; k <= this.members.length && this.game && this.phase === 'play'; k++) {
+      const at = this.game.turn
+      if (!this.members[at]?.away || this.game.gone[at]) return
       const r = removePlayer(this.game, at)
       this.game = r.g
       this.events.push(...r.events)
       if (this.game.status === 'over') this.phase = 'over'
-      this.changed()
     }
+  }
+  /** A player who was away is heard again: back in the seat, if the turn has not come and gone. Tells everyone; returns whether it did. */
+  private welcomeBack(m: Member): boolean {
+    const at = this.members.indexOf(m)
+    if (!m.away || !this.game || this.game.gone[at]) return false
+    m.away = false
+    this.events.push({ k: 'back', p: at })
+    this.changed()
+    return true
   }
 
   /* --- play */
@@ -473,6 +505,7 @@ export class HostSession implements Session {
     this.game = res.g
     this.events.push(...res.events)
     if (res.g.status === 'over') this.phase = 'over'
+    this.sweep()
     this.changed()
     this.sendHand(id)
   }
@@ -490,7 +523,10 @@ export class HostSession implements Session {
       case 'ping':
       case 'act': {
         const mem = this.members.find((x) => x.id === m.id)
-        if (mem) mem.seen = this.clock.now()
+        if (mem) {
+          mem.seen = this.clock.now()
+          if (this.welcomeBack(mem)) this.sendHand(mem.id)
+        }
         if (m.t === 'act' && m.id !== this.me) this.apply(m.id, m.a, m.n)
         break
       }

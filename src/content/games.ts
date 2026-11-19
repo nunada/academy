@@ -655,7 +655,7 @@ Setiap set punya **sembilan nilai berbeda dan 45 kartu, satu untuk setiap pasang
 | 7 | 5 | 10 |
 | 8 | 5 | 5 |
 
-The host's browser keeps the rules for the room, so if the host leaves, the room closes. A player who is out of contact for about 13 seconds is dropped from the game and their tiles go back to the pile; the others play on. After a game the host can start another with the same players.`,
+The host's browser keeps the rules for the room, so if the host leaves, the room closes. Anyone who leaves, or is out of contact for about 13 seconds, has only stepped away: the seat and the tiles are kept, and they can come back (join again with the same code, in the same browser tab) until the turn comes to their seat. If the turn comes while they are away, they have missed it: they are out, their tiles go back to the pile, and the others play on. After a game the host can start another with the same players.`,
           `1. Ketik nama dan tekan **Buat ruangan**. Kamu mendapat kode empat karakter, seperti K7QF, dan sebuah link yang bisa disalin.
 2. Teman membuka link itu, atau mengetik kodenya di bagian **Gabung**. Satu ruangan bisa diisi 2 sampai 8 pemain.
 3. Kamu, sebagai tuan rumah, memilih jenis hitungan dan tingkatnya, lalu menekan **Mulai permainan** ketika semua sudah masuk.
@@ -671,7 +671,7 @@ The host's browser keeps the rules for the room, so if the host leaves, the room
 | 7 | 5 | 10 |
 | 8 | 5 | 5 |
 
-Browser tuan rumah menjaga aturan untuk ruangan itu, jadi bila tuan rumah keluar, ruangannya ditutup. Pemain yang putus hubungan sekitar 13 detik dikeluarkan dari permainan dan kartunya kembali ke tumpukan; yang lain melanjutkan. Setelah satu permainan, tuan rumah bisa memulai permainan lagi dengan pemain yang sama.`,
+Browser tuan rumah menjaga aturan untuk ruangan itu, jadi bila tuan rumah keluar, ruangannya ditutup. Pemain yang keluar, atau putus hubungan sekitar 13 detik, hanya dianggap keluar dulu: kursi dan kartunya disimpan, dan ia bisa masuk lagi (gabung lagi dengan kode yang sama, di tab browser yang sama) sebelum gilirannya tiba. Kalau gilirannya tiba saat ia tidak ada, gilirannya terlewat: ia keluar dari permainan, kartunya kembali ke tumpukan, dan yang lain melanjutkan. Setelah satu permainan, tuan rumah bisa memulai permainan lagi dengan pemain yang sama.`,
         ),
       },
       {

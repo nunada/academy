@@ -27,8 +27,8 @@ import {
   type Strength,
   type Tile,
 } from '../../lib/domino'
-import { NAME_MAX, cleanName, snapshotOf, type HostSession, type NetEvent, type Session, type Snapshot } from '../../lib/dominonet'
-import { hostRoom, joinRoom, onlineAvailable } from '../../lib/dominorealtime'
+import { NAME_MAX, cleanName, parseRoomCode, snapshotOf, type HostSession, type NetEvent, type Session, type Snapshot } from '../../lib/dominonet'
+import { hostRoom, joinRoom, onlineAvailable, randomId } from '../../lib/dominorealtime'
 
 /* ------------------------------------------------------------------------------------------------ settings */
 
@@ -60,6 +60,23 @@ function writeSettings(s: Settings) {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(s))
   } catch {
     /* a private window: the game works the same without remembered settings */
+  }
+}
+/** The seat a player had in a room is remembered in this tab, so that a player who left or lost the page can rejoin the same seat (until the turn comes to it). */
+const SEAT_KEY = 'nunada.domino.seat'
+function seatFor(code: string): string | undefined {
+  try {
+    const v = JSON.parse(sessionStorage.getItem(SEAT_KEY) ?? 'null') as { code?: unknown; id?: unknown } | null
+    return v && v.code === code && typeof v.id === 'string' && /^[a-z0-9]{10}$/.test(v.id) ? v.id : undefined
+  } catch {
+    return undefined
+  }
+}
+function rememberSeat(code: string, id: string): void {
+  try {
+    sessionStorage.setItem(SEAT_KEY, JSON.stringify({ code, id }))
+  } catch {
+    /* without it the player comes back as a new player, which is only possible in the lobby */
   }
 }
 const freshSeed = () => Math.floor(Math.random() * 2 ** 31)
@@ -120,7 +137,11 @@ function eventText(e: NetEvent, name: (id: string) => string, me: string, t: T):
     case 'blocked':
       return t('Nobody can move: the game is blocked.', 'Tidak ada yang bisa jalan: permainan buntu.')
     case 'left':
-      return t(`${who(e.id)} left the game.`, `${who(e.id)} keluar dari permainan.`)
+      return t(`${who(e.id)} was away when the turn came, and is out of the game.`, `${who(e.id)} tidak ada saat gilirannya tiba, jadi keluar dari permainan.`)
+    case 'away':
+      return t(`${who(e.id)} stepped away, and can still rejoin until the turn reaches that seat.`, `${who(e.id)} keluar dulu. Ia masih bisa masuk lagi sebelum gilirannya tiba.`)
+    case 'back':
+      return t(`${who(e.id)} is back.`, `${who(e.id)} kembali.`)
     case 'last':
       return t('Only one player is left.', 'Tinggal satu pemain.')
   }
@@ -268,13 +289,13 @@ function Table({ snap, hand, me, waiting, refusal, thinking, onAct: send, after 
     <div className="dmtable">
       <ul className="dmplayers" aria-label={t('Players', 'Pemain')}>
         {snap.players.map((p) => (
-          <li key={p.id} className={`dmplayer${p.id === snap.turn ? ' turn' : ''}${p.gone ? ' gone' : ''}${p.id === me ? ' me' : ''}`} aria-current={p.id === snap.turn ? 'true' : undefined}>
+          <li key={p.id} className={`dmplayer${p.id === snap.turn ? ' turn' : ''}${p.gone ? ' gone' : ''}${p.away ? ' away' : ''}${p.id === me ? ' me' : ''}`} aria-current={p.id === snap.turn ? 'true' : undefined}>
             <span className="dmname">
               {p.name}
               {mark(p.name, p.id === me, t)}
             </span>
             <span className="dmcount">
-              {p.gone ? t('left', 'keluar') : `${p.count} ${t(p.count === 1 ? 'tile' : 'tiles', 'kartu')}`}
+              {p.gone ? t('out', 'keluar') : p.away ? t('away', 'keluar dulu') : `${p.count} ${t(p.count === 1 ? 'tile' : 'tiles', 'kartu')}`}
             </span>
             {p.id === snap.turn && <span className="pill brand">{t('Turn', 'Giliran')}</span>}
           </li>
@@ -546,7 +567,7 @@ function Room({ code, session, onExit }: { code: string; session: Session; onExi
         : link === 'started'
           ? t('The game in that room has already started.', 'Permainan di ruangan itu sudah dimulai.')
           : link === 'out'
-            ? t('You are no longer in this game.', 'Kamu tidak lagi ada di permainan ini.')
+            ? t('You were away when your turn came, so you are out of this game.', 'Giliranmu tiba saat kamu tidak ada, jadi kamu keluar dari permainan ini.')
             : link === 'closed'
               ? t('The host left, so the room is closed.', 'Tuan rumah keluar, jadi ruangan ditutup.')
               : ''
@@ -637,6 +658,7 @@ function Room({ code, session, onExit }: { code: string; session: Session; onExi
         <button type="button" className="btn ghost sm" onClick={onExit}>
           {t('Leave', 'Keluar')}
         </button>
+        {!host && snap.phase === 'play' && <span className="small muted">{t(`Left by accident? Join again with code ${code} before your turn comes.`, `Keluar tidak sengaja? Gabung lagi dengan kode ${code} sebelum gilirannya tiba.`)}</span>}
       </div>
       {link === 'lost' && (
         <p className="dmnotice warn" role="alert">
@@ -718,7 +740,9 @@ export default function DominoGame() {
     setBusy(true)
     setError('')
     try {
-      const joined = await joinRoom(code, myName())
+      const parsed = parseRoomCode(code)
+      const joined = await joinRoom(code, myName(), (parsed && seatFor(parsed)) || randomId())
+      if (joined) rememberSeat(joined.code, joined.session.me)
       if (!joined) setError(t('A room code has 4 letters and digits, like K7QF.', 'Kode ruangan terdiri dari 4 huruf dan angka, seperti K7QF.'))
       else setStage({ k: 'room', code: joined.code, session: joined.session })
     } catch {

@@ -836,6 +836,142 @@ for (const [n, mode, level, seed] of [[2, 'natural', 1, 1], [3, 'integer', 2, 2]
   ok(R4.until(() => R4.host.view().snap.phase === 'over', 600000) && conserved(R4.host.game), 'and the others finish')
 }
 {
+  // stepping away: the seat and the tiles are kept until the turn comes to the seat
+  const quiet = (R) => R.sessions.forEach((x) => R.muted.add(x.me))
+  const playOne = (R) => {
+    const s = R.sessions.find((x) => x.view().snap.turn === x.me)
+    const v = s.view()
+    s.act(C.choose({ hand: v.hand, chain: v.snap.chain, boneyard: v.snap.boneyard }, 'hard', rng(5)))
+    R.step(100)
+  }
+  const farSeat = (R) => {
+    const t = R.host.game.turn
+    const n = R.sessions.length
+    return [(t + 2) % n, (t + 3) % n].find((i) => i !== 0)
+  }
+  // A. leaves, comes back before the turn: the same tiles, in the same seat; everyone is told both times
+  {
+    const R = room(4, { seed: 51, mode: 'natural', level: 2 })
+    R.host.start()
+    quiet(R)
+    R.step(300)
+    const x = farSeat(R)
+    const id = R.sessions[x].me
+    const tiles = JSON.stringify(R.host.game.hands[x])
+    R.sessions[x].leave()
+    R.step(300)
+    const p = () => R.host.view().snap.players[x]
+    ok(p().away && !p().gone && JSON.stringify(R.host.game.hands[x]) === tiles && R.host.game.boneyard.length === 45 - 28, 'a player who leaves is away: the seat and the tiles are kept')
+    ok(R.clients.filter((c) => c.me !== id).every((c) => c.view().snap.players[x].away && c.view().snap.events.every((e) => e.k !== 'left')), 'and the others are told that the player is away, not out')
+    const back = new C.ClientSession(id, `Player ${x}`, R.hub.bus(id), R.clock)
+    R.step(300)
+    ok(back.view().link === 'ok' && JSON.stringify(back.view().hand) === tiles && !p().away && !back.view().snap.players[x].away, 'back before the turn: the same hand, the seat is theirs again')
+    ok(R.clients.filter((c) => c.me !== id).every((c) => !c.view().snap.players[x].away), 'and the others see them back')
+    // they can play on when it is their turn (the new session takes the seat of the old one)
+    R.sessions[x] = back
+    R.muted.clear()
+    ok(R.until(() => R.host.view().snap.phase === 'over', 600000) && conserved(R.host.game) && !R.host.game.gone[x], 'the game is played to the end with the player who came back')
+    ok(back.view().hand.length === R.host.game.hands[x].length, 'and their hand was kept right')
+  }
+  // B. still away when the turn comes: out, the tiles back in the pile; coming back is refused
+  {
+    const R = room(4, { seed: 52, mode: 'natural', level: 2 })
+    R.host.start()
+    quiet(R)
+    R.step(300)
+    const x = farSeat(R)
+    const id = R.sessions[x].me
+    const held = R.host.game.hands[x].length
+    R.sessions[x].leave()
+    R.step(300)
+    let guard = 0
+    while (!R.host.game.gone[x] && R.host.game.status === 'play' && guard++ < 6) playOne(R)
+    R.step(300)
+    ok(R.host.game.gone[x] && R.host.game.hands[x].length === 0 && conserved(R.host.game), `the turn came while away: out, no tile lost (${held} tiles back in the pile)`)
+    ok(R.host.view().snap.players[x].gone && !R.host.view().snap.players[x].away, 'and they are shown as out, not as away')
+    const logAt = R.hub.log.length
+    const late = new C.ClientSession(id, `Player ${x}`, R.hub.bus(id), R.clock)
+    R.step(300)
+    const ghost = R.hub.bus('ghost')
+    for (let k = 0; k < 4; k++) {
+      ghost.send({ t: 'ping', id })
+      R.step(C.PING_MS)
+    }
+    ok(!R.hub.log.slice(logAt).some((e) => e.msg.t === 'snap' && e.msg.s.events.some((v) => v.k === 'back')), 'a player who is out is never announced as back, though they keep pinging')
+    ok(late.view().link === 'out', `coming back after the turn went by is refused (${late.view().link})`)
+    ok(R.host.game.status === 'play' && R.host.game.turn !== x, 'the others play on')
+  }
+  // C. it is their turn when they leave: out at once
+  {
+    const R = room(3, { seed: 53, mode: 'natural', level: 2 })
+    R.host.start()
+    quiet(R)
+    R.step(300)
+    const x = R.host.game.turn === 0 ? 1 : R.host.game.turn
+    while (R.host.game.turn !== x) playOne(R)
+    R.sessions[x].leave()
+    R.step(300)
+    ok(R.host.game.gone[x] && R.host.game.turn !== x && conserved(R.host.game), 'a player who leaves on their own turn has missed it: out at once')
+  }
+  // D. a player who goes silent (not goodbye) is away after the patience, and a ping is enough to be back
+  {
+    const R = room(4, { seed: 54, mode: 'natural', level: 2 })
+    R.host.start()
+    quiet(R)
+    R.step(300)
+    const x = farSeat(R)
+    const id = R.sessions[x].me
+    R.hub.mute.add(id)
+    R.step(C.ABSENT_MS - 4000)
+    ok(!R.host.view().snap.players[x].away, 'a short silence is not yet away')
+    R.step(8000)
+    ok(R.host.view().snap.players[x].away && !R.host.game.gone[x], 'a silent player is away after the patience, not out')
+    R.hub.mute.delete(id)
+    R.step(C.PING_MS + 500)
+    ok(!R.host.view().snap.players[x].away && R.sessions[x].view().link === 'ok' && R.sessions[x].view().hand.length === R.host.game.hands[x].length, 'the next ping puts them back, with their hand')
+  }
+  // E. two players: the other steps away; once the host has played, the turn is theirs and they are out, so the host wins
+  {
+    const R = room(2, { seed: 55, mode: 'natural', level: 2 })
+    R.host.start()
+    quiet(R)
+    R.step(300)
+    if (R.host.game.turn !== 0) playOne(R)
+    R.clients[0].leave()
+    R.step(300)
+    ok(R.host.game.status === 'play' && R.host.view().snap.players[1].away, 'the other player is away, the game waits for the host')
+    playOne(R)
+    ok(R.host.game.status === 'over' && R.host.view().snap.ranks[0].id === 'h0' && R.host.view().snap.ranks[0].rank === 1, 'when the turn reaches the one who is away they are out, and the host wins')
+  }
+  // F. the next game is played by those who are here
+  {
+    const R = room(3, { seed: 56, mode: 'natural', level: 2 })
+    R.host.start()
+    quiet(R)
+    R.step(300)
+    const x = farSeat0(R)
+    function farSeat0(Q) { return Q.host.game.turn === 1 ? 2 : 1 }
+    R.sessions[x].leave()
+    R.step(300)
+    R.muted.clear()
+    R.until(() => R.host.view().snap.phase === 'over', 600000)
+    R.host.again()
+    R.step(300)
+    ok(!R.host.view().snap.players.some((p) => p.id === `p${x}`), 'a player who stayed away is not in the next game')
+  }
+  // G. the snapshot carries away, and an old one without it is still read
+  {
+    const R = room(3, { seed: 57 })
+    const s0 = JSON.parse(JSON.stringify(R.host.view().snap))
+    ok(s0.players.every((p) => p.away === false), 'every player of a snapshot says whether they are away')
+    delete s0.players[0].away
+    ok(C.parseMsg({ t: 'snap', s: s0 }).s.players[0].away === false, 'a snapshot with no away is read as nobody away')
+    s0.players[0].away = 'yes'
+    ok(C.parseMsg({ t: 'snap', s: s0 }) === null, 'a snapshot whose away is not true or false is refused')
+    ok(C.parseMsg({ t: 'snap', s: { ...JSON.parse(JSON.stringify(R.host.view().snap)), events: [{ k: 'away', id: 'p1' }, { k: 'back', id: 'p1' }] } }) !== null && C.parseMsg({ t: 'snap', s: { ...JSON.parse(JSON.stringify(R.host.view().snap)), events: [{ k: 'away' }] } }) === null, 'away and back are events with a player')
+  }
+}
+{
   // someone who loses the page and comes back with the same id gets the table and the hand again; a stranger acting is ignored
   const R = room(3, { seed: 17, mode: 'times', level: 1 })
   R.host.start()
@@ -1157,7 +1293,8 @@ for (const [n, mode, level, seed] of [[2, 'natural', 1, 1], [3, 'integer', 2, 2]
   ok(cpu.en.includes('one time in sixteen') && cpu.id.includes('satu kali dari enam belas') && C.MISS_CHANCE.medium === 1 / 16, 'medium computer: one in sixteen')
   ok(cpu.en.includes('never miscalculates') && cpu.id.includes('tidak pernah salah hitung') && C.MISS_CHANCE.hard === 0, 'hard computer never miscalculates')
   ok(game.faq.some((f) => f.a.en.includes('about one time in five') && f.a.id.includes('satu kali dari lima')), 'the FAQ on strength agrees')
-  ok(section('online').text.en.includes('about 13 seconds') && section('online').text.id.includes('sekitar 13 detik') && C.ABSENT_MS === 13000 && C.LOST_MS === 13000, 'players are dropped after about 13 seconds')
+  ok(section('online').text.en.includes('about 13 seconds') && section('online').text.id.includes('sekitar 13 detik') && C.ABSENT_MS === 13000 && C.LOST_MS === 13000, 'players step away after about 13 seconds')
+  ok(/come back/.test(section('online').text.en) && /until the turn comes to their seat/.test(section('online').text.en) && /masuk lagi/.test(section('online').text.id) && /sebelum gilirannya tiba/.test(section('online').text.id), 'the page says that a player can come back before the turn comes')
   ok(section('online').text.en.includes('four characters, such as K7QF') && section('online').text.id.includes('kode empat karakter, seperti K7QF') && C.CODE_LENGTH === 4 && C.parseRoomCode('K7QF') === 'K7QF', 'a room code has four characters')
   ok(C.NAME_MAX === 16, 'names are short')
   // what the page says about the ends: the colors of the screen

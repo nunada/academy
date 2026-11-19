@@ -1966,6 +1966,7 @@ main:focus, .page:focus { outline: none; }
 .dmplayer { display: flex; gap: 8px; align-items: center; padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); }
 .dmplayer.turn { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 2px var(--brand); }
 .dmplayer.gone { opacity: 0.55; }
+.dmplayer.away { opacity: 0.7; border-style: dashed; }
 .dmpile { display: flex; gap: 8px; align-items: center; padding: 6px 12px; border: 1px dashed var(--border); border-radius: 999px; color: var(--muted); }
 .dmname { font-weight: 700; }
 .dmcount { color: var(--muted); font-size: 0.85rem; }
