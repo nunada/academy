@@ -24,6 +24,7 @@ fs.writeFileSync(
     `export * from '${q('src/lib/domino.ts')}'`,
     `export * from '${q('src/lib/dominonet.ts')}'`,
     `export { onlineAvailable, joinRoom, hostRoom } from '${q('src/lib/dominorealtime.ts')}'`,
+    `export { texSpeech } from '${q('src/lib/texspeech.ts')}'`,
     `export { GAMES } from '${q('src/content/games.ts')}'`,
   ].join('\n'),
 )
@@ -60,10 +61,12 @@ const Q = (n, d = 1n) => {
 const qeq = (x, y) => x.n === y.n && x.d === y.d
 const isInt = (x) => x.d === 1n
 
-/** The value of a half's TeX, and what was in it: the numbers written, the operators, every intermediate result, and whether a division left a remainder. */
-function readTex(src) {
+/** The value of a half's TeX, and what was in it: the numbers written, the operators, every intermediate result, and whether a division left a remainder.
+ *  It reads whole numbers and decimals, + - × ÷, brackets, \frac, powers (^{k}), exact roots (\sqrt{n}, \sqrt[3]{n}), percents (25\%) and, when there is an
+ *  = in it, a linear equation in x, whose value is the solution. Everything is exact (BigInt fractions); a root that is not exact is refused. */
+const lexTex = (src) => {
   const toks = []
-  const re = /\s*(\\frac|\\times|\\div|\d+|[+\-(){}])/y
+  const re = /\s*(\\frac|\\times|\\div|\\sqrt|\\%|\d+\.\d+|\d+|[+\-(){}\[\]^=x])/y
   let pos = 0
   while (pos < src.length) {
     re.lastIndex = pos
@@ -75,8 +78,27 @@ function readTex(src) {
     toks.push(m[1])
     pos = re.lastIndex
   }
+  return toks
+}
+const qadd = (a, b) => Q(a.n * b.d + b.n * a.d, a.d * b.d)
+const qmul = (a, b) => Q(a.n * b.n, a.d * b.d)
+const qneg = (a) => Q(-a.n, a.d)
+const newInfo = () => ({ nums: [], vals: [], ops: new Set(), steps: [], inexact: false, fracs: [], decs: [], roots: [], pows: [], percents: [], equation: false, xs: 0 })
+/** the integer n-th root of a positive integer fraction, or an error */
+function exactRoot(r, index, src) {
+  if (r.d !== 1n || r.n < 1n) throw new Error(`the root of ${r.n}/${r.d} in ${src} is not a whole number`)
+  for (let k = 1n; k <= 1000n; k++) {
+    const p = k ** index
+    if (p === r.n) return Q(k)
+    if (p > r.n) break
+  }
+  throw new Error(`the ${index}th root of ${r.n} in ${src} is not exact`)
+}
+function readTex(src) {
+  if (src.includes('=')) return readEquation(src)
+  const toks = lexTex(src)
   let i = 0
-  const info = { nums: [], ops: new Set(), steps: [], inexact: false, fracs: [] }
+  const info = newInfo()
   const want = (t) => {
     if (toks[i] !== t) throw new Error(`expected ${t} in ${src}`)
     i++
@@ -87,7 +109,7 @@ function readTex(src) {
       const op = toks[i++]
       const w = term()
       info.ops.add(op)
-      v = op === '+' ? Q(v.n * w.d + w.n * v.d, v.d * w.d) : Q(v.n * w.d - w.n * v.d, v.d * w.d)
+      v = op === '+' ? qadd(v, w) : qadd(v, qneg(w))
       info.steps.push(v)
     }
     return v
@@ -119,19 +141,20 @@ function readTex(src) {
   const atom = () => {
     const t = toks[i]
     if (t === undefined) throw new Error(`unexpected end of ${src}`)
-    if (/^\d+$/.test(t)) {
+    let v
+    if (/^\d+(\.\d+)?$/.test(t)) {
       i++
-      info.nums.push(BigInt(t))
-      return Q(BigInt(t))
-    }
-    if (t === '(') {
+      const [ip, fp = ''] = t.split('.')
+      info.nums.push(BigInt(ip + fp))
+      if (fp) info.decs.push({ text: t, places: fp.length })
+      v = Q(BigInt(ip + fp), 10n ** BigInt(fp.length))
+      info.vals.push(v)
+    } else if (t === '(') {
       i++
       info.ops.add('paren')
-      const v = expr()
+      v = expr()
       want(')')
-      return v
-    }
-    if (t === '\\frac') {
+    } else if (t === '\\frac') {
       i++
       want('{')
       const a = expr()
@@ -141,22 +164,142 @@ function readTex(src) {
       want('}')
       info.ops.add('frac')
       info.fracs.push([a, b])
-      return Q(a.n * b.d, a.d * b.n)
+      v = Q(a.n * b.d, a.d * b.n)
+    } else if (t === '\\sqrt') {
+      i++
+      let index = 2n
+      if (toks[i] === '[') {
+        i++
+        index = BigInt(toks[i])
+        i++
+        want(']')
+      }
+      want('{')
+      const r = expr()
+      want('}')
+      info.ops.add('root')
+      info.roots.push([index, r])
+      v = exactRoot(r, index, src)
+    } else throw new Error(`unexpected ${t} in ${src}`)
+    // a power and a percent belong to the number just read
+    while (toks[i] === '^' || toks[i] === '\\%') {
+      if (toks[i] === '\\%') {
+        i++
+        info.ops.add('percent')
+        info.percents.push(v)
+        v = Q(v.n, v.d * 100n)
+      } else {
+        i++
+        want('{')
+        const e = expr()
+        want('}')
+        if (!isInt(e) || e.n < 0n || e.n > 12n) throw new Error(`the exponent in ${src} is not a small whole number`)
+        info.ops.add('pow')
+        info.pows.push([v, e])
+        v = Q(v.n ** e.n, v.d ** e.n)
+      }
     }
-    throw new Error(`unexpected ${t} in ${src}`)
+    return v
   }
   const value = expr()
   if (i !== toks.length) throw new Error(`left over after ${i} tokens in ${src}`)
   return { value, ...info }
 }
+/** A linear equation in x: each side is read as a x + b (exact), and the value of the half is the solution. */
+function readEquation(src) {
+  const toks = lexTex(src)
+  const at = toks.indexOf('=')
+  if (at < 1 || at === toks.length - 1 || toks.indexOf('=', at + 1) >= 0) throw new Error(`one = with something on both sides is needed in ${src}`)
+  const info = newInfo()
+  info.equation = true
+  info.ops.add('equation')
+  const side = (ts) => {
+    let i = 0
+    const startsFactor = () => ts[i] !== undefined && (/^\d/.test(ts[i]) || ts[i] === 'x' || ts[i] === '(' || ts[i] === '\\frac')
+    const expr = () => {
+      let p = term()
+      while (ts[i] === '+' || ts[i] === '-') {
+        const op = ts[i++]
+        const q = term()
+        info.ops.add(op)
+        p = { a: qadd(p.a, op === '+' ? q.a : qneg(q.a)), b: qadd(p.b, op === '+' ? q.b : qneg(q.b)) }
+      }
+      return p
+    }
+    const term = () => {
+      let p = unary()
+      while (startsFactor()) {
+        const q = unary()
+        info.ops.add('juxtaposition')
+        if (p.a.n !== 0n && q.a.n !== 0n) throw new Error(`x times x in ${src}`)
+        p = { a: qadd(qmul(p.a, q.b), qmul(p.b, q.a)), b: qmul(p.b, q.b) }
+      }
+      return p
+    }
+    const unary = () => {
+      if (ts[i] === '-') {
+        i++
+        info.ops.add('neg')
+        const p = unary()
+        return { a: qneg(p.a), b: qneg(p.b) }
+      }
+      return atom()
+    }
+    const atom = () => {
+      const t = ts[i]
+      if (t === undefined) throw new Error(`unexpected end of ${src}`)
+      if (/^\d+(\.\d+)?$/.test(t)) {
+        i++
+        const [ip, fp = ''] = t.split('.')
+        info.nums.push(BigInt(ip + fp))
+        if (fp) info.decs.push({ text: t, places: fp.length })
+        return { a: Q(0n), b: Q(BigInt(ip + fp), 10n ** BigInt(fp.length)) }
+      }
+      if (t === 'x') {
+        i++
+        info.xs++
+        return { a: Q(1n), b: Q(0n) }
+      }
+      if (t === '(') {
+        i++
+        info.ops.add('paren')
+        const p = expr()
+        if (ts[i++] !== ')') throw new Error(`expected ) in ${src}`)
+        return p
+      }
+      if (t === '\\frac') {
+        i++
+        if (ts[i++] !== '{') throw new Error(`expected { in ${src}`)
+        const p = expr()
+        if (ts[i++] !== '}' || ts[i++] !== '{') throw new Error(`expected }{ in ${src}`)
+        const d = expr()
+        if (ts[i++] !== '}') throw new Error(`expected } in ${src}`)
+        if (d.a.n !== 0n || d.b.n === 0n) throw new Error(`a denominator with x or 0 in ${src}`)
+        info.ops.add('frac')
+        info.fracs.push([p.b, d.b])
+        return { a: Q(p.a.n * d.b.d, p.a.d * d.b.n), b: Q(p.b.n * d.b.d, p.b.d * d.b.n) }
+      }
+      throw new Error(`unexpected ${t} in ${src}`)
+    }
+    const p = expr()
+    if (i !== ts.length) throw new Error(`left over in ${src}`)
+    return p
+  }
+  const L = side(toks.slice(0, at))
+  const R = side(toks.slice(at + 1))
+  const da = qadd(L.a, qneg(R.a))
+  if (da.n === 0n) throw new Error(`no single solution in ${src}`)
+  const value = qmul(qadd(R.b, qneg(L.b)), Q(da.d, da.n))
+  return { value, ...info }
+}
 const val = (h) => readTex(h.tex).value
 // the reader itself
-for (const [src, n, d] of [['3+4', 7n, 1n], ['10-3', 7n, 1n], ['-3+5', 2n, 1n], ['4-(-2)', 6n, 1n], ['(-2)\\times3', -6n, 1n], ['12\\div(-4)', -3n, 1n], ['\\frac{3}{6}', 1n, 2n], ['\\frac{1}{4}+\\frac{1}{4}', 1n, 2n], ['2+3\\times4', 14n, 1n], ['(8-2)\\div3', 2n, 1n], ['20-3\\times4', 8n, 1n], ['\\frac{3}{2}-\\frac{1}{2}', 1n, 1n], ['24\\div3\\times2', 16n, 1n], ['7-2-1', 4n, 1n]]) {
+for (const [src, n, d] of [['3+4', 7n, 1n], ['10-3', 7n, 1n], ['-3+5', 2n, 1n], ['4-(-2)', 6n, 1n], ['(-2)\\times3', -6n, 1n], ['12\\div(-4)', -3n, 1n], ['\\frac{3}{6}', 1n, 2n], ['\\frac{1}{4}+\\frac{1}{4}', 1n, 2n], ['2+3\\times4', 14n, 1n], ['(8-2)\\div3', 2n, 1n], ['20-3\\times4', 8n, 1n], ['\\frac{3}{2}-\\frac{1}{2}', 1n, 1n], ['24\\div3\\times2', 16n, 1n], ['7-2-1', 4n, 1n], ['0.4+0.3', 7n, 10n], ['1.25-0.5', 3n, 4n], ['50\\%\\times8', 4n, 1n], ['25\\%', 1n, 4n], ['3^{2}-2', 7n, 1n], ['\\sqrt{49}', 7n, 1n], ['\\sqrt[3]{27}+4', 7n, 1n], ['x+3=7', 4n, 1n], ['2x=8', 4n, 1n], ['3(x+2)=15', 3n, 1n], ['5x-2=2x+7', 3n, 1n], ['\\frac{x}{2}=3', 6n, 1n], ['\\frac{x+2}{3}=4', 10n, 1n], ['8-x=5', 3n, 1n], ['\\frac{3}{4}-25\\%', 1n, 2n]]) {
   const r = readTex(src).value
   ok(r.n === n && r.d === d, `the reader: ${src} is ${r.n}/${r.d}, not ${n}/${d}`)
 }
 let threw = 0
-for (const bad of ['3+', '(3', '3 4', '\\sqrt{4}', '2^3', '3*4', '\\frac{1}{2', '']) {
+for (const bad of ['3+', '(3', '3 4', '\\sqrt{3}', '2^3', '3*4', '\\frac{1}{2', '']) {
   try {
     readTex(bad)
   } catch {
@@ -164,17 +307,31 @@ for (const bad of ['3+', '(3', '3 4', '\\sqrt{4}', '2^3', '3*4', '\\frac{1}{2', 
   }
 }
 ok(threw === 8, 'the reader refuses what it does not know')
-/** A half is a calculation when it has an operation in it, or is a fraction that is not in lowest terms (3/6); otherwise it is just the number. */
-const isOpTex = (tex) => {
+for (const bad of ['x+3', 'x=x', 'x+1=x+2', '3=3', 'x*x=4', '2^{x}=4', '\\sqrt[3]{9}', '\\frac{1}{x}=2', '1=2=3', 'x=']) {
+  let refused = false
+  try {
+    readTex(bad)
+  } catch {
+    refused = true
+  }
+  ok(refused, `the reader refuses ${bad}`)
+}
+/** A half is a calculation when it has an operation in it (a power, a root, a percent, an equation to solve too), or is a fraction that is not in lowest terms
+ *  (3/6); otherwise it is just the number. In the mode about fractions, decimals and percents a half is a calculation unless it is the fraction itself. */
+const isOpTex = (tex, mode, v) => {
+  if (mode === 'forms') return tex !== C.valueTex('forms', v)
   const r = readTex(tex)
-  return r.ops.has('+') || r.ops.has('-') || r.ops.has('\\times') || r.ops.has('\\div') || r.fracs.some(([a, b]) => gcd(a.n, b.n) > 1n)
+  if (r.equation) return tex !== C.valueTex('linear', v)
+  return r.ops.has('+') || r.ops.has('-') || r.ops.has('\\times') || r.ops.has('\\div') || r.ops.has('pow') || r.ops.has('root') || r.ops.has('percent') || r.fracs.some(([a, b]) => gcd(a.n, b.n) > 1n)
 }
 ok(isOpTex('3+4') && isOpTex('\\frac{3}{6}') && isOpTex('12\\div(-4)') && !isOpTex('7') && !isOpTex('-3') && !isOpTex('\\frac{1}{2}') && !isOpTex('0'), 'what counts as a calculation')
+ok(isOpTex('3^{2}') && isOpTex('\\sqrt{49}') && isOpTex('25\\%') && isOpTex('0.4+0.3') && !isOpTex('0.7') && isOpTex('x+3=7', 'linear', 3) && !isOpTex('x=4', 'linear', 3) && isOpTex('0.25', 'forms', 2) && !isOpTex('\\frac{1}{4}', 'forms', 2), 'what counts as a calculation in the new modes')
 
 /* ------------------------------------------------------------------------------------------- the tiles */
 const MODES = C.MODES.map((m) => m.id)
 const LEVELS = [1, 2, 3]
-ok(MODES.join() === 'natural,integer,times,integer-times,fraction,mixed', `the modes: ${MODES}`)
+ok(MODES.join() === 'natural,integer,times,integer-times,fraction,mixed,decimal,percent,power,linear,forms', `the modes: ${MODES}`)
+ok(C.MODES.length === 11 && C.MODES.every((m) => ['int', 'frac', 'decimal', 'solve'].includes(m.style)), 'eleven modes, each with a style for its plain halves')
 ok(C.VALUES === 9 && C.TILE_COUNT === 45 && C.MIN_PLAYERS === 2 && C.MAX_PLAYERS === 8, 'nine values, 45 tiles, two to eight players')
 for (let n = 2; n <= 8; n++) ok(n * C.handSize(n) + 5 <= 45 && C.handSize(n) >= 5 && C.handSize(n) <= 7, `hand size for ${n} players leaves a boneyard`)
 ok([2, 3, 4, 5, 6, 7, 8].map(C.handSize).join() === '7,7,7,6,5,5,5', 'hand sizes: 7 up to four players, 6 for five, 5 for six to eight')
@@ -202,7 +359,7 @@ for (const mode of MODES) {
       const perValue = Array(9).fill(0)
       for (const t of tiles) {
         pairs.add([t.a.v, t.b.v].sort().join('-'))
-        kinds[(isOpTex(t.a.tex) ? 1 : 0) + (isOpTex(t.b.tex) ? 1 : 0)]++
+        kinds[(isOpTex(t.a.tex, mode, t.a.v) ? 1 : 0) + (isOpTex(t.b.tex, mode, t.b.v) ? 1 : 0)]++
         for (const h of [t.a, t.b]) {
           halves++
           perValue[h.v]++
@@ -217,7 +374,7 @@ for (const mode of MODES) {
           ok(C.TEX_OK.test(h.tex) && h.tex.length <= 60 && !/\d{4}/.test(h.tex), `${mode}: "${h.tex}" is short and only uses what the screen can show`)
           distinct[h.v].add(h.tex)
           // a half is a calculation (a sum, a difference, a product, a quotient, a fraction not in lowest terms such as 3/6) or just the number, written as the number itself
-          if (isOpTex(h.tex)) calcs++
+          if (isOpTex(h.tex, mode, h.v)) calcs++
           else {
             plain++
             ok(h.tex === C.valueTex(mode, h.v), `${mode}: a half that is just a number is the number itself: "${h.tex}" for place ${h.v}`)
@@ -232,6 +389,20 @@ for (const mode of MODES) {
           if (mode === 'fraction') ok(r.nums.every((n) => n >= 1n && n <= 60n) && !r.ops.has('\\times') && !r.ops.has('\\div') && r.fracs.every(([a, b]) => isInt(a) && isInt(b) && a.n >= 1n && b.n >= 2n && b.n <= 16n), `fraction: "${s}"`)
           if (mode === 'mixed') ok(r.nums.every((n) => n >= 1n && n <= 20n) && !r.ops.has('neg') && !r.ops.has('frac') && !r.inexact && r.steps.every((x) => isInt(x) && x.n >= 1n), `mixed: "${s}" has a negative or non-integer step`)
           if (mode === 'integer') ok(!r.nums.includes(0n) || s === '0', `integer: a 0 operand in "${s}"`)
+          if (s !== C.valueTex(mode, h.v)) {
+            const noOps = (...o) => o.every((x) => !r.ops.has(x))
+            const small = (x) => x.n > 0n
+            if (mode === 'decimal')
+              ok(r.decs.length === r.nums.length && r.decs.every((d) => d.places <= (level === 1 ? 1 : 2)) && !/\.\d0(?!\d)/.test(s) && noOps('\\times', '\\div', 'frac', 'neg', 'percent', 'pow', 'root', 'paren') && r.vals.every((x) => x.n * 20n >= x.d && x.n <= 10n * x.d) && r.steps.every(small) && (r.ops.has('+') || r.ops.has('-')), `decimal: "${s}"`)
+            if (mode === 'percent')
+              ok(r.decs.length === 0 && r.percents.length === 1 && isInt(r.percents[0]) && noOps('frac', 'neg', 'pow', 'root', 'paren', '\\div') && r.steps.every((x) => isInt(x) && small(x)) && (level >= 3 || (noOps('+', '-') && (level === 1 ? [50n, 25n, 10n].includes(r.percents[0].n) : true))) && r.ops.has('\\times'), `percent: "${s}"`)
+            if (mode === 'power')
+              ok(r.decs.length === 0 && noOps('frac', '\\times', '\\div', 'neg', 'percent', 'equation') && (r.ops.has('pow') || r.ops.has('root')) && r.steps.every((x) => isInt(x) && x.n >= 1n) && r.pows.every(([b, e]) => isInt(b) && ((e.n === 2n && b.n >= 2n && b.n <= 10n) || (e.n === 3n && b.n >= 2n && b.n <= 4n) || (b.n === 2n && e.n >= 2n && e.n <= 6n))) && r.roots.every(([ix]) => ix === 2n || (ix === 3n && level >= 2)), `power: "${s}"`)
+            if (mode === 'linear')
+              ok(r.equation && r.decs.length === 0 && r.nums.every((n) => n >= 1n && n <= 200n) && r.xs >= 1 && r.xs <= 2 && noOps('\\times', '\\div', 'percent', 'pow', 'root') && (level >= 2 || (noOps('paren', 'frac', 'neg') && r.xs === 1)) && !/\+-|--/.test(s), `linear: "${s}"`)
+            if (mode === 'forms')
+              ok(noOps('\\times', '\\div', 'neg', 'paren', 'pow', 'root', 'equation') && r.decs.every((d) => d.places <= 2) && !/\.\d0(?!\d)/.test(s) && r.fracs.every(([a, b]) => isInt(a) && isInt(b) && a.n >= 1n && b.n >= 2n && b.n <= 20n) && r.percents.every((p) => isInt(p) && p.n >= 5n && p.n <= 200n) && r.steps.every(small) && (level >= 2 || !(r.ops.has('+') || r.ops.has('-'))), `forms: "${s}"`)
+          }
         }
       }
       ok(pairs.size === 45 && perValue.every((c) => c === 10), `${mode} L${level} seed ${seed}: every pair of values once, each value on ten halves (${perValue})`)
@@ -246,9 +417,30 @@ for (const mode of MODES) {
   }
   // levels get harder: bigger numbers (not for fractions, whose size is the denominator)
   if (mode !== 'fraction') ok(stats[`${mode}-3`].maxNum > stats[`${mode}-1`].maxNum, `${mode}: level 3 uses bigger numbers than level 1 (${stats[`${mode}-3`].maxNum} against ${stats[`${mode}-1`].maxNum})`)
-  ok(stats[`${mode}-1`].maxNum <= (mode === 'times' ? 100n : mode === 'natural' ? 18n : mode === 'integer' ? 12n : mode === 'integer-times' ? 100n : 60n), `${mode}: level 1 keeps its numbers small (${stats[`${mode}-1`].maxNum})`)
+  ok(stats[`${mode}-1`].maxNum <= ({ times: 100n, natural: 18n, integer: 12n, 'integer-times': 100n, decimal: 30n, percent: 100n, power: 49n, linear: 100n, forms: 100n }[mode] ?? 60n), `${mode}: level 1 keeps its numbers small (${stats[`${mode}-1`].maxNum})`)
 }
 ok(C.PLAIN_CHANCE[1] === 0.3 && C.PLAIN_CHANCE[2] === 0.25 && C.PLAIN_CHANCE[3] === 0.2, 'the chance of a plain number, by level')
+
+// what a screen reader says: every half of every mode, in both languages, is read as words (no spelled-out commands), a minus after a percent is a subtraction,
+// and the decimal point is a comma in Indonesian
+{
+  ok(C.localTex('0.25+1.5', 'id') === '0{,}25+1{,}5' && C.localTex('0.25+1.5', 'en') === '0.25+1.5' && C.localTex('\\frac{1}{4}', 'id') === '\\frac{1}{4}' && C.localTex('25\\%', 'id') === '25\\%', 'the decimal point is a comma in Indonesian, and nothing else changes')
+  ok(/kurang/.test(C.texSpeech('100\\%-0.4', 'id')) && !/negatif/.test(C.texSpeech('100\\%-0.4', 'id')) && /minus/.test(C.texSpeech('30\\%-5\\%', 'en')), 'a minus after a percent is read as a subtraction')
+  let spoken = 0
+  for (const mode of MODES)
+    for (const level of LEVELS) {
+      const tiles = C.buildTiles(mode, level, rng(4000 + level))
+      for (const t of tiles)
+        for (const h of [t.a, t.b])
+          for (const lang of ['en', 'id']) {
+            const said = C.texSpeech(C.localTex(h.tex, lang), lang)
+            spoken++
+            ok(said.length > 0 && !/\b(?:[a-z] ){3,}/.test(said) && !/[\\^{}]/.test(said), `${mode} L${level}: "${h.tex}" is read as "${said}" in ${lang}`)
+            if (/\\%-/.test(h.tex)) ok(!/negatif/.test(said), `${mode}: "${h.tex}" has a subtraction after a percent, read as "${said}"`)
+          }
+    }
+  ok(spoken > 5000, `${spoken} halves were read aloud`)
+}
 
 /* ------------------------------------------------------------------------------------------- a referee of our own */
 /** The ends of a chain by value, read from the TeX. */
@@ -303,12 +495,20 @@ function conserved(g) {
   ok(C.placement(chain0, T(1, 5, 1), 'right').flip === false && C.placement(chain0, T(1, 1, 5), 'right').flip === true && C.placement(chain0, T(1, 2, 9), 'left').flip === true && C.placement(chain0, T(1, 9, 2), 'left').flip === false && C.placement(chain0, T(1, 0, 1), 'left') === null, 'placement at both ends')
   ok(C.endsOf(chain0).left.v === 2 && C.endsOf(chain0).right.v === 5 && C.endsOf([]).left === null && C.endsOf([{ tile: T(1, 1, 2), flip: true }]).left.v === 2 && C.endsOf([{ tile: T(1, 1, 2), flip: true }]).right.v === 1, 'the ends of a chain, flipped tiles too')
   // a miss: penalty tile, turn passes, tile stays
+  ok(C.MISS_PENALTY === 3, 'a miscalculation costs three tiles')
+  g = G({ chain: chain0, hands: [[T(7, 0, 1)], [T(6, 0, 0)]], boneyard: [T(20, 8, 8), T(21, 7, 7), T(22, 6, 6), T(23, 5, 5), T(24, 4, 4)] })
+  r = run(g, 0, { t: 'play', tile: 7, end: 'right' })
+  ok(r.ok && r.g.chain.length === 1 && r.g.hands[0].length === 4 && r.g.hands[0].map((t) => t.id).join() === '7,24,23,22' && r.g.boneyard.length === 2 && r.g.turn === 1 && r.g.mistakes[0] === 1 && r.events[0].k === 'miss' && r.events[0].penalty === 3, 'a tile that does not fit: back in the hand, three tiles drawn from the top of the pile, the turn passes')
   g = G({ chain: chain0, hands: [[T(7, 0, 1)], [T(6, 0, 0)]], boneyard: [T(20, 8, 8), T(21, 7, 7)] })
   r = run(g, 0, { t: 'play', tile: 7, end: 'right' })
-  ok(r.ok && r.g.chain.length === 1 && r.g.hands[0].length === 2 && r.g.hands[0][1].id === 21 && r.g.boneyard.length === 1 && r.g.turn === 1 && r.g.mistakes[0] === 1 && r.events[0].k === 'miss' && r.events[0].penalty === true, 'a tile that does not fit: back in the hand, one tile drawn, the turn passes')
+  ok(r.ok && r.g.hands[0].length === 3 && r.g.boneyard.length === 0 && r.events[0].penalty === 2, 'with only two tiles in the pile a miss draws those two')
+  // a wrong tile is never a cheap way to pass: with a tile that fits in the hand, a miss still costs the three tiles
+  g = G({ chain: chain0, hands: [[T(7, 0, 1), T(8, 2, 3)], [T(6, 0, 0)]], boneyard: [T(20, 8, 8), T(21, 7, 7), T(22, 6, 6), T(23, 5, 5)] })
+  r = run(g, 0, { t: 'play', tile: 7, end: 'right' })
+  ok(r.ok && r.g.hands[0].length === 5 && r.events[0].penalty === 3, 'a miss costs three tiles even when another tile of the hand would have fitted')
   g = G({ chain: chain0, hands: [[T(7, 0, 1)], [T(6, 0, 0)]] })
   r = run(g, 0, { t: 'play', tile: 7, end: 'left' })
-  ok(r.ok && r.g.hands[0].length === 1 && r.g.turn === 1 && r.g.mistakes[0] === 1 && r.events[0].penalty === false, 'a miss with an empty boneyard costs no tile')
+  ok(r.ok && r.g.hands[0].length === 1 && r.g.turn === 1 && r.g.mistakes[0] === 1 && r.events[0].penalty === 0, 'a miss with an empty boneyard costs no tile')
   // draw and pass
   g = G({ chain: chain0, hands: [[T(7, 0, 1)], [T(6, 0, 0)]], boneyard: [T(20, 8, 8), T(21, 5, 7)] })
   r = run(g, 0, { t: 'draw' })
@@ -467,7 +667,7 @@ function selfPlay(mode, level, n, seed, strengths) {
       }
     }
   }
-  ok(games === 7 * 6 * 3 * 4 && overs.out > overs.blocked, `${games} games, ended by an empty hand ${overs.out} times and blocked ${overs.blocked} times`)
+  ok(games === 7 * MODES.length * 3 * 4 && overs.out > overs.blocked, `${games} games, ended by an empty hand ${overs.out} times and blocked ${overs.blocked} times`)
   // the computer's strength: hard beats easy, in two-player games with the same deals
   let hardMisses = 0
   let easyMisses = 0
@@ -1074,7 +1274,7 @@ for (const [n, mode, level, seed] of [[2, 'natural', 1, 1], [3, 'integer', 2, 2]
   ok(bads.every((b) => C.parseMsg(b) === null), `malformed messages are refused (${bads.filter((b) => C.parseMsg(b) !== null).map((b) => JSON.stringify(b))})`)
   const tile = { id: 3, a: { v: 1, tex: '3+4' }, b: { v: 2, tex: '\\frac{1}{2}' } }
   ok(C.parseTile(tile) !== null && C.parseTile({ ...tile, id: 45 }) === null && C.parseTile({ ...tile, id: 1.5 }) === null && C.parseTile({ ...tile, a: { v: 9, tex: '1' } }) === null && C.parseTile({ ...tile, a: { v: 1, tex: '' } }) === null, 'tile shapes')
-  for (const evil of ['\\href{javascript:alert(1)}{x}', '<script>', '\\sqrt{2}', '3^2', '\\text{hi}', '3+4\n\\frac', 'x', '\\times\\foo', '3 \\cdot 4', '&', '%', '$3$', '\\\\', '\\frac{1}{2}.']) ok(C.parseTile({ ...tile, a: { v: 1, tex: evil } }) === null, `TeX that is not a calculation is refused: ${evil}`)
+  for (const evil of ['\\href{javascript:alert(1)}{x}', '<script>', '\\sqrt\\foo', '\\text{hi}', '3+4\n\\frac', '\\sqrt{2}!', '\\times\\foo', '3 \\cdot 4', '&', '%', '$3$', '\\\\', '\\%\\%\\%\\@']) ok(C.parseTile({ ...tile, a: { v: 1, tex: evil } }) === null, `TeX that is not a calculation is refused: ${evil}`)
   for (const fine of ['3+4', '(-3)\\times5', '12\\div(-4)', '\\frac{3}{4}+\\frac{1}{4}', '2+3\\times4', '-3+5', '4-(-2)']) ok(C.parseTile({ ...tile, a: { v: 1, tex: fine } }) !== null, `a calculation is accepted: ${fine}`)
   // a real snapshot goes through the wire unchanged
   const R = room(3, { seed: 5 })
@@ -1266,11 +1466,18 @@ for (const [n, mode, level, seed] of [[2, 'natural', 1, 1], [3, 'integer', 2, 2]
   for (const m of C.MODES) {
     ok(modes.text.en.includes(`| ${m.name.en} |`) && modes.text.id.includes(`| ${m.name.id} |`), `the modes table lists "${m.name.en}" in both languages`)
     const d = m.domain
-    if (m.id !== 'fraction') {
+    const consecutive = d.every((f, i) => f.d === 1 && f.n === d[0].n + i)
+    if (m.id !== 'fraction' && consecutive && m.style === 'int') {
       ok(modes.text.en.includes(`| ${m.name.en} | `) && new RegExp(`\\| ${m.name.en.replace(/[()]/g, '\\$&')} \\|[^\\n]*\\| \\$${d[0].n}\\$ to \\$${d[8].n}\\$ \\|`).test(modes.text.en), `the modes table: values of ${m.id} in English`)
       ok(new RegExp(`\\| ${m.name.id} \\|[^\\n]*\\| \\$${d[0].n}\\$ sampai \\$${d[8].n}\\$ \\|`).test(modes.text.id), `the modes table: values of ${m.id} in Indonesian`)
       ok(d.length === 9 && d.every((f, i) => f.d === 1 && f.n === d[0].n + i), `${m.id}: nine consecutive integers`)
-    } else ok(d[0].n === 1 && d[0].d === 2 && d[8].n === 9 && d[8].d === 2 && d.every((f, i) => f.n * 2 === (i + 1) * f.d), 'the fraction values are 1/2 to 9/2 in steps of 1/2')
+    } else if (m.id === 'fraction') ok(d[0].n === 1 && d[0].d === 2 && d[8].n === 9 && d[8].d === 2 && d.every((f, i) => f.n * 2 === (i + 1) * f.d), 'the fraction values are 1/2 to 9/2 in steps of 1/2')
+    else {
+      // the other modes write their range as it is in the mode: `values $0.1$ to $0.9$` becomes the cell `$0.1$ to $0.9$`
+      const cell = (loc) => m.range[loc].replace(/^(values|solutions|nilai|penyelesaian) /, '')
+      ok(modes.text.en.includes(`| ${m.name.en} |`) && modes.text.en.split('\n').some((l) => l.startsWith(`| ${m.name.en} |`) && l.endsWith(`| ${cell('en')} |`)), `the modes table: the values of ${m.id} in English`)
+      ok(modes.text.id.split('\n').some((l) => l.startsWith(`| ${m.name.id} |`) && l.endsWith(`| ${cell('id')} |`)), `the modes table: the values of ${m.id} in Indonesian`)
+    }
   }
   ok(modes.text.en.includes('nine different values and 45 tiles') && modes.text.id.includes('sembilan nilai berbeda dan 45 kartu') && C.VALUES === 9 && C.TILE_COUNT === 45, 'nine values and 45 tiles')
   ok(modes.text.en.includes('ten halves') && modes.text.id.includes('sepuluh sisi') && C.VALUES + 1 === 10, 'a value shows up on ten halves')
@@ -1318,7 +1525,7 @@ for (const [n, mode, level, seed] of [[2, 'natural', 1, 1], [3, 'integer', 2, 2]
   ok(/useSyncExternalStore/.test(ui) && /disabled=\{!armed\}/.test(ui) && /disabled=\{!canAct\}/.test(ui), 'buttons that cannot be used now are disabled')
   ok(/key=\{`r\$\{refusal\.n\}`\}|dmrefusal/.test(ui), 'a refusal is shown')
   ok(/ends\[end\]/.test(ui) && /first \? 'left' : undefined/.test(ui) && /last \? 'right' : undefined/.test(ui) && /dmflag left/.test(ui) && /dmflag right/.test(ui), 'the end halves of the chain are marked, and flagged with the words left and right')
-  ok(/valueTex\(mode, half\.v\)/.test(ui) && /showValue/.test(ui), 'the value of an end can be shown')
+  ok(/worthTex\(mode, half\.v\)/.test(ui) && /showValue/.test(ui), 'the value of an end can be shown')
   ok(!/dangerouslySetInnerHTML/.test(ui), 'nothing is put on the page as raw HTML except by the formula component')
   // the style: only the page's colors, green and gold for the two ends, red for nothing here but a refusal
   const css = read('src/styles.css')

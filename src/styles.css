@@ -2094,3 +2094,12 @@ main:focus, .page:focus { outline: none; }
 .rhopts { margin: 8px 0; display: grid; gap: 6px; }
 .rhfoot { margin-top: 4px; }
 @media (prefers-reduced-motion: reduce) { .rhcell.pending { animation: none; } .rhtimerfill { transition: none; } }
+
+/* The screen of a person who was invited with a room code: the room, a name, one button. */
+.dminvite { display: grid; gap: 12px; max-width: 440px; margin: 8px auto; padding: 18px; border: 2px solid var(--brand); border-radius: var(--radius); background: var(--brand-soft); }
+.dminvite > * { margin: 0; }
+.dminvite-title { font-size: 1.15rem; font-weight: 800; }
+.dminvite .dmfield { margin: 0; gap: 6px; font-weight: 600; }
+.dminvite .dmfield input { max-width: none; font-size: 1.05rem; }
+.dminvite-go { font-size: 1.1rem; padding: 12px 16px; justify-content: center; }
+.linkbtn { justify-self: start; padding: 0; border: 0; background: none; color: var(--brand); font: inherit; text-decoration: underline; cursor: pointer; }

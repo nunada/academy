@@ -551,17 +551,17 @@ Gambaran utuh bilangan-bilangan ini ada di [bilangan real](article:real-numbers)
     title: L('Math Domino: Match the Ends by Calculating', 'Domino Matematika: Cocokkan Ujungnya dengan Menghitung'),
     seoTitle: L('Math Domino: a Free Online Game for Integers, Fractions and More', 'Domino Matematika: Game Gratis Online untuk Bilangan Bulat, Pecahan, dan Lainnya'),
     description: L(
-      'A free math domino game for one player against the computer or 2 to 8 players online. Each half of a tile is a calculation or a plain number, and tiles touch when the values are equal. Natural numbers, integers, multiplication, fractions and order of operations.',
-      'Game domino matematika gratis untuk satu pemain melawan komputer atau 2 sampai 8 pemain online. Setiap sisi kartu berupa hitungan atau bilangan biasa, dan kartu bersentuhan bila nilainya sama. Bilangan asli, bilangan bulat, perkalian, pecahan, dan urutan operasi hitung.',
+      'A free math domino game for one player against the computer or 2 to 8 players online. Each half of a tile is a calculation or a plain number, and tiles touch when the values are equal. Eleven kinds of calculation: natural numbers, integers, multiplication, fractions, order of operations, decimals, percents, powers and roots, and solving for x.',
+      'Game domino matematika gratis untuk satu pemain melawan komputer atau 2 sampai 8 pemain online. Setiap sisi kartu berupa hitungan atau bilangan biasa, dan kartu bersentuhan bila nilainya sama. Sebelas jenis hitungan: bilangan asli, bilangan bulat, perkalian, pecahan, urutan operasi hitung, desimal, persen, pangkat dan akar, serta menyelesaikan x.',
     ),
     keywords: L(
-      'math domino, math domino game online, domino game for kids, integer domino, fraction domino, multiplayer math game, play math games with friends, adding and subtracting integers game, order of operations game, equivalent fractions game, learn math by playing',
-      'domino matematika, game domino matematika online, game domino untuk anak, domino bilangan bulat, domino pecahan, game matematika multiplayer, main game matematika bersama teman, game penjumlahan dan pengurangan bilangan bulat, game urutan operasi hitung, game pecahan senilai, belajar matematika sambil bermain',
+      'math domino, math domino game online, domino game for kids, integer domino, fraction domino, multiplayer math game, play math games with friends, adding and subtracting integers game, order of operations game, equivalent fractions game, decimals game, percent game, powers and roots game, solve for x game, learn math by playing',
+      'domino matematika, game domino matematika online, game domino untuk anak, domino bilangan bulat, domino pecahan, game matematika multiplayer, main game matematika bersama teman, game penjumlahan dan pengurangan bilangan bulat, game urutan operasi hitung, game pecahan senilai, game desimal, game persen, game pangkat dan akar, game persamaan linear, belajar matematika sambil bermain',
     ),
     tagline: L('Dominoes whose halves are calculations. Play the computer or friends.', 'Domino yang sisinya berupa hitungan. Lawan komputer atau teman.'),
     answer: L(
-      '**Math Domino is a domino game in which each half of a tile is a calculation or a plain number, and two halves touch when their values are equal.** $3+4$ can sit next to $10-3$, because both are $7$. You can play alone against the computer or online with 2 to 8 players, with natural numbers, integers, multiplication and division, fractions, or the order of operations.',
-      '**Domino Matematika adalah game domino yang setiap sisi kartunya berupa hitungan atau bilangan biasa, dan dua sisi bersentuhan bila nilainya sama.** $3+4$ boleh bersebelahan dengan $10-3$, karena keduanya bernilai $7$. Kamu bisa bermain sendiri melawan komputer atau online dengan 2 sampai 8 pemain, dengan bilangan asli, bilangan bulat, perkalian dan pembagian, pecahan, atau urutan operasi hitung.',
+      '**Math Domino is a domino game in which each half of a tile is a calculation or a plain number, and two halves touch when their values are equal.** $3+4$ can sit next to $10-3$, because both are $7$. You can play alone against the computer or online with 2 to 8 players, with eleven kinds of calculation: natural numbers, integers, multiplication and division, fractions, decimals, percents, powers and roots, solving for $x$, or the order of operations.',
+      '**Domino Matematika adalah game domino yang setiap sisi kartunya berupa hitungan atau bilangan biasa, dan dua sisi bersentuhan bila nilainya sama.** $3+4$ boleh bersebelahan dengan $10-3$, karena keduanya bernilai $7$. Kamu bisa bermain sendiri melawan komputer atau online dengan 2 sampai 8 pemain, dengan sebelas jenis hitungan: bilangan asli, bilangan bulat, perkalian dan pembagian, pecahan, desimal, persen, pangkat dan akar, menyelesaikan $x$, atau urutan operasi hitung.',
     ),
     published: '2026-11-18',
     updated: '2026-11-18',
@@ -577,7 +577,7 @@ Gambaran utuh bilangan-bilangan ini ada di [bilangan real](article:real-numbers)
 5. If none of your tiles fits, press **Draw a tile**, and go on drawing until one fits. When the pile is empty, press **Pass**.
 6. The first player to play all their tiles wins. If nobody can move, the player with the fewest tiles left wins.
 
-A tile put where its value does not equal the end is a miscalculation: the tile stays in your hand, you draw one tile as a penalty and your turn is over. The game only says that the values are not equal; it never gives the answer.`,
+A tile put where its value does not equal the end is a miscalculation: the tile stays in your hand, you draw **three tiles** from the pile as a penalty (fewer if the pile has fewer) and your turn is over. Three tiles is a heavy price, so a wrong tile is never a cheap way to skip a turn. The game only says that the values are not equal; it never gives the answer.`,
           `1. Pilih jenis hitungan dan tingkatnya. Lalu main melawan komputer, atau buat ruangan dan bagikan kodenya ke teman.
 2. Setiap kartu punya dua sisi, dan tiap sisi adalah hitungan seperti $3+4$ atau $10-3$, atau kadang hanya sebuah bilangan seperti $7$. Kamu dibagi beberapa kartu; sisanya menjadi tumpukan.
 3. Sebuah kartu dipasang di salah satu ujung rantai, dengan sisi yang **bernilai sama** dengan ujung itu saling bersentuhan. $3+4$ dan $10-3$ sama-sama $7$, jadi boleh bersentuhan.
@@ -585,7 +585,7 @@ A tile put where its value does not equal the end is a miscalculation: the tile 
 5. Bila tidak ada kartumu yang cocok, tekan **Ambil kartu**, dan terus ambil sampai ada yang cocok. Bila tumpukan habis, tekan **Lewati**.
 6. Pemain pertama yang menghabiskan semua kartunya menang. Bila tidak ada yang bisa jalan, pemain dengan kartu tersisa paling sedikit menang.
 
-Kartu yang dipasang di tempat yang nilainya tidak sama dengan ujungnya dianggap salah hitung: kartu tetap di tanganmu, kamu mengambil satu kartu sebagai hukuman, dan gilirannya selesai. Game hanya mengatakan bahwa nilainya tidak sama; ia tidak pernah memberi jawabannya.`,
+Kartu yang dipasang di tempat yang nilainya tidak sama dengan ujungnya dianggap salah hitung: kartu tetap di tanganmu, kamu mengambil **tiga kartu** dari tumpukan sebagai hukuman (lebih sedikit bila tumpukan lebih sedikit), dan gilirannya selesai. Tiga kartu adalah harga yang mahal, jadi kartu yang salah bukan cara murah untuk melewati giliran. Game hanya mengatakan bahwa nilainya tidak sama; ia tidak pernah memberi jawabannya.`,
         ),
       },
       {
@@ -618,6 +618,11 @@ Kartu yang dipasang di tempat yang nilainya tidak sama dengan ujungnya dianggap 
 | Integers: multiply and divide | $(-2)\\times3$, $12\\div(-4)$ | $-4$ to $4$ |
 | Fractions: add, subtract and simplify | $\\frac12$, $\\frac36$, $\\frac14+\\frac14$, $\\frac32-\\frac12$ | $\\frac12$ to $4\\frac12$ in steps of $\\frac12$ |
 | Order of operations | $2+3\\times4$, $(8-2)\\div3$ | $2$ to $10$ |
+| Decimals: add and subtract | $0.4+0.3$, $1.2-0.5$, $2.75-1.5$ | $0.1$ to $0.9$ |
+| Percentages of a number | $50\\%\\times8$, $10\\%\\times40$, $20\\times25\\%$ | $2$ to $10$ |
+| Powers and roots | $3^{2}-2$, $\\sqrt{49}$, $\\sqrt[3]{27}+4$ | $2$ to $10$ |
+| Solve for x | $x+3=7$, $2x=8$, $3(x+2)=15$ | $x=1$ to $x=9$ |
+| Fractions, decimals and percents | $\\frac14$, $0.25$, $25\\%$, $\\frac12+25\\%$ | $\\frac{1}{10}$ to $\\frac{9}{10}$ |
 
 **A half is usually a calculation, but about three halves in ten at level 1, one in four at level 2 and one in five at level 3 are just a number**, such as $7$, so the two halves of one tile are often of different kinds. Each kind has three levels. At level 1 the calculations are short and use small numbers. At level 2 they are longer. At level 3 the numbers are bigger, there are more steps, and fractions may have different denominators.
 
@@ -630,6 +635,11 @@ Every set has **nine different values and 45 tiles, one for each pair of values*
 | Bilangan bulat: kali dan bagi | $(-2)\\times3$, $12\\div(-4)$ | $-4$ sampai $4$ |
 | Pecahan: tambah, kurang, dan sederhanakan | $\\frac12$, $\\frac36$, $\\frac14+\\frac14$, $\\frac32-\\frac12$ | $\\frac12$ sampai $4\\frac12$ dengan selisih $\\frac12$ |
 | Urutan operasi hitung | $2+3\\times4$, $(8-2)\\div3$ | $2$ sampai $10$ |
+| Desimal: tambah dan kurang | $0{,}4+0{,}3$, $1{,}2-0{,}5$, $2{,}75-1{,}5$ | $0{,}1$ sampai $0{,}9$ |
+| Persen dari suatu bilangan | $50\\%\\times8$, $10\\%\\times40$, $20\\times25\\%$ | $2$ sampai $10$ |
+| Pangkat dan akar | $3^{2}-2$, $\\sqrt{49}$, $\\sqrt[3]{27}+4$ | $2$ sampai $10$ |
+| Selesaikan nilai x | $x+3=7$, $2x=8$, $3(x+2)=15$ | $x=1$ sampai $x=9$ |
+| Pecahan, desimal, dan persen | $\\frac14$, $0{,}25$, $25\\%$, $\\frac12+25\\%$ | $\\frac{1}{10}$ sampai $\\frac{9}{10}$ |
 
 **Sebuah sisi biasanya berupa hitungan, tetapi sekitar tiga dari sepuluh sisi pada tingkat 1, satu dari empat pada tingkat 2, dan satu dari lima pada tingkat 3 hanyalah bilangan**, seperti $7$, sehingga kedua sisi sebuah kartu sering berlainan jenis. Setiap jenis punya tiga tingkat. Pada tingkat 1 hitungannya pendek dan bilangannya kecil. Pada tingkat 2 hitungannya lebih panjang. Pada tingkat 3 bilangannya lebih besar, langkahnya lebih banyak, dan pecahan boleh berpenyebut berbeda.
 
@@ -686,7 +696,7 @@ Browser tuan rumah menjaga aturan untuk ruangan itu, jadi bila tuan rumah keluar
 | Medium | keeps its hand flexible, so that more of its tiles still fit after its move, and miscalculates about one time in sixteen |
 | Hard | does the same and also leaves ends that few tiles in the game can match, and never miscalculates |
 
-A computer that miscalculates puts a tile where it does not fit, draws a tile as a penalty and loses its turn, just as you would.`,
+A computer that miscalculates puts a tile where it does not fit, draws three tiles as a penalty and loses its turn, just as you would.`,
           `Komputer hanya melihat apa yang bisa kamu lihat: kartunya sendiri dan rantai. Ia punya tiga tingkat kekuatan:
 
 | Tingkat | Cara bermainnya |
@@ -695,7 +705,7 @@ A computer that miscalculates puts a tile where it does not fit, draws a tile as
 | Sedang | menjaga tangannya tetap luwes, sehingga lebih banyak kartunya yang masih cocok setelah langkahnya, dan salah hitung sekitar satu kali dari enam belas |
 | Sulit | melakukan hal yang sama dan juga meninggalkan ujung yang sedikit kartu dalam permainan bisa mencocokinya, dan tidak pernah salah hitung |
 
-Komputer yang salah hitung memasang kartu di tempat yang tidak cocok, mengambil kartu sebagai hukuman, dan kehilangan gilirannya, persis seperti kamu.`,
+Komputer yang salah hitung memasang kartu di tempat yang tidak cocok, mengambil tiga kartu sebagai hukuman, dan kehilangan gilirannya, persis seperti kamu.`,
         ),
       },
       {
@@ -729,8 +739,8 @@ Jenis bilangan bulat melatih aturan tanda, seperti $4-(-2)=6$ dan $(-2)\\times(-
       {
         q: L('What happens if I put a tile in the wrong place?', 'Apa yang terjadi bila aku memasang kartu di tempat yang salah?'),
         a: L(
-          'It counts as a miscalculation: the tile stays in your hand, you draw one tile from the pile as a penalty, and your turn is over. The game tells you only that the values were not equal, not what they are.',
-          'Itu dihitung salah hitung: kartu tetap di tanganmu, kamu mengambil satu kartu dari tumpukan sebagai hukuman, dan gilirannya selesai. Game hanya memberi tahu bahwa nilainya tidak sama, bukan berapa nilainya.',
+          'It counts as a miscalculation: the tile stays in your hand, you draw three tiles from the pile as a penalty, and your turn is over. The game tells you only that the values were not equal, not what they are.',
+          'Itu dihitung salah hitung: kartu tetap di tanganmu, kamu mengambil tiga kartu dari tumpukan sebagai hukuman, dan gilirannya selesai. Game hanya memberi tahu bahwa nilainya tidak sama, bukan berapa nilainya.',
         ),
       },
       {
@@ -757,8 +767,8 @@ Jenis bilangan bulat melatih aturan tanda, seperti $4-(-2)=6$ dan $(-2)\\times(-
       {
         q: L('Which math topics does Math Domino practise?', 'Topik matematika apa yang dilatih Domino Matematika?'),
         a: L(
-          'Adding and subtracting natural numbers and integers, multiplying and dividing (also with negative numbers), equal fractions and adding fractions, and the order of operations.',
-          'Menjumlah dan mengurangi bilangan asli dan bilangan bulat, mengalikan dan membagi (juga dengan bilangan negatif), pecahan senilai dan penjumlahan pecahan, serta urutan operasi hitung.',
+          'Adding and subtracting natural numbers, integers and decimals, multiplying and dividing (also with negative numbers), equal fractions and adding fractions, percents of a number, powers and roots, solving simple equations for x, and the order of operations.',
+          'Menjumlah dan mengurangi bilangan asli, bilangan bulat, dan desimal, mengalikan dan membagi (juga dengan bilangan negatif), pecahan senilai dan penjumlahan pecahan, persen dari suatu bilangan, pangkat dan akar, menyelesaikan persamaan sederhana untuk x, serta urutan operasi hitung.',
         ),
       },
       {
@@ -774,6 +784,8 @@ Jenis bilangan bulat melatih aturan tanda, seperti $4-(-2)=6$ dan $(-2)\\times(-
       L('Multiplying and dividing, with negative numbers too', 'Mengalikan dan membagi, juga dengan bilangan negatif'),
       L('Equal fractions and adding fractions', 'Pecahan senilai dan penjumlahan pecahan'),
       L('The order of operations', 'Urutan operasi hitung'),
+      L('Adding and subtracting decimals, and moving between fractions, decimals and percents', 'Menjumlah dan mengurangi desimal, dan berpindah antara pecahan, desimal, dan persen'),
+      L('Percents of a number, powers and roots, and solving for x', 'Persen dari suatu bilangan, pangkat dan akar, dan menyelesaikan x'),
     ],
   },
   {

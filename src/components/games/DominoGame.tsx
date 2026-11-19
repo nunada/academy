@@ -14,8 +14,9 @@ import {
   makeRng,
   modeInfo,
   newGame,
-  valueTex,
+  localTex,
   viewOf,
+  worthTex,
   type Action,
   type End,
   type Game,
@@ -29,6 +30,7 @@ import {
 } from '../../lib/domino'
 import { NAME_MAX, cleanName, parseRoomCode, snapshotOf, type HostSession, type NetEvent, type Session, type Snapshot } from '../../lib/dominonet'
 import { hostRoom, joinRoom, onlineAvailable, randomId } from '../../lib/dominorealtime'
+import InviteCard from './InviteCard'
 
 /* ------------------------------------------------------------------------------------------------ settings */
 
@@ -86,9 +88,10 @@ const guestName = (lang: string) => `${lang === 'id' ? 'Pemain' : 'Player'} ${10
 
 /** One half of a tile: the calculation. Long ones are set smaller so they fit. */
 const HalfView = memo(function HalfView({ half, end }: { half: Half; end?: 'left' | 'right' }) {
+  const { lang } = useI18n()
   return (
     <span className={`dmhalf${half.tex.length > 16 ? ' long' : ''}${end ? ` end-${end}` : ''}`}>
-      <Tex src={half.tex} />
+      <Tex src={localTex(half.tex, lang)} />
     </span>
   )
 })
@@ -126,8 +129,8 @@ function eventText(e: NetEvent, name: (id: string) => string, me: string, t: T):
       return e.start ? t(`${who(e.id)} started the chain.`, `${who(e.id)} memulai rantai.`) : t(`${who(e.id)} put a tile at ${side(e.end)}.`, `${who(e.id)} memasang kartu di ${side(e.end)}.`)
     case 'miss':
       return e.id === me
-        ? t(`Not equal: that tile does not match ${side(e.end)}.${e.penalty ? ' You draw a tile.' : ''}`, `Belum sama: nilai kartu itu tidak sama dengan ${side(e.end)}.${e.penalty ? ' Kamu mengambil 1 kartu.' : ''}`)
-        : t(`${who(e.id)} miscalculated${e.penalty ? ' and draws a tile' : ''}.`, `${who(e.id)} salah hitung${e.penalty ? ' dan mengambil 1 kartu' : ''}.`)
+        ? t(`Not equal: that tile does not match ${side(e.end)}.${e.penalty ? ` You draw ${e.penalty} ${e.penalty === 1 ? 'tile' : 'tiles'}.` : ''}`, `Belum sama: nilai kartu itu tidak sama dengan ${side(e.end)}.${e.penalty ? ` Kamu mengambil ${e.penalty} kartu.` : ''}`)
+        : t(`${who(e.id)} miscalculated${e.penalty ? ` and draws ${e.penalty} ${e.penalty === 1 ? 'tile' : 'tiles'}` : ''}.`, `${who(e.id)} salah hitung${e.penalty ? ` dan mengambil ${e.penalty} kartu` : ''}.`)
     case 'draw':
       return t(`${who(e.id)} drew a tile.`, `${who(e.id)} mengambil kartu.`)
     case 'pass':
@@ -166,7 +169,7 @@ interface TableProps {
 function Table({ snap, hand, me, waiting, refusal, thinking, onAct: send, after }: TableProps) {
   const { lang } = useI18n()
   const t: T = (en, id) => (lang === 'id' ? id : en)
-  const speak = (tex: string) => texSpeech(tex, lang)
+  const speak = (tex: string) => texSpeech(localTex(tex, lang), lang)
   const [sel, setSel] = useState<number | null>(null)
   const [showValue, setShowValue] = useState(false)
   const [log, setLog] = useState<{ key: number; text: string }[]>([])
@@ -252,10 +255,10 @@ function Table({ snap, hand, me, waiting, refusal, thinking, onAct: send, after 
         <span className="dmendlabel">
           {end === 'left' ? `${arrow} ${label}` : `${label} ${arrow}`}
         </span>
-        <span className="dmendval">{half ? <Tex src={half.tex} /> : '–'}</span>
+        <span className="dmendval">{half ? <Tex src={localTex(half.tex, lang)} /> : '–'}</span>
         {showValue && half && (
           <span className="dmendans">
-            = <Tex src={valueTex(mode, half.v)} />
+            = <Tex src={localTex(worthTex(mode, half.v), lang)} />
           </span>
         )}
         {armed && <span className="dmendgo">{t('Put it here', 'Pasang di sini')}</span>}
@@ -521,7 +524,7 @@ function ModePicker({ mode, level, onChange, disabled }: { mode: ModeId; level: 
           <button key={m.id} type="button" className={`dmmode${mode === m.id ? ' on' : ''}`} aria-pressed={mode === m.id} disabled={disabled} onClick={() => onChange(m.id, level)}>
             <span className="dmmodename">{tc(m.name)}</span>
             <span className="dmmodeex">
-              <Tex src={m.example[0]} /> <span aria-hidden="true">=</span> <Tex src={m.example[1]} />
+              <Tex src={localTex(m.example[0], lang)} /> <span aria-hidden="true">=</span> <Tex src={localTex(m.example[1], lang)} />
             </span>
           </button>
         ))}
@@ -611,7 +614,13 @@ function Room({ code, session, onExit }: { code: string; session: Session; onExi
             {copied ? t('Link copied', 'Link disalin') : t('Copy the link', 'Salin link')}
           </button>
         </div>
-        <p className="small muted">{t(`Friends join with this code. ${MIN_PLAYERS} to ${MAX_PLAYERS} players.`, `Teman bergabung dengan kode ini. ${MIN_PLAYERS} sampai ${MAX_PLAYERS} pemain.`)}</p>
+        {host ? (
+          <p className="small muted">{t(`Friends join with this code or this link. ${MIN_PLAYERS} to ${MAX_PLAYERS} players.`, `Teman bergabung dengan kode atau link ini. ${MIN_PLAYERS} sampai ${MAX_PLAYERS} pemain.`)}</p>
+        ) : (
+          <p className="dmnotice" role="status">
+            <b>{t('You are in!', 'Kamu sudah masuk!')}</b> {t('Wait here: the host will start the game, and it begins by itself on this screen.', 'Tunggu di sini: tuan rumah akan memulai permainan, dan permainan langsung muncul di layar ini.')}
+          </p>
+        )}
         <h3>
           {t('Players', 'Pemain')} ({snap.players.length}/{MAX_PLAYERS})
         </h3>
@@ -638,7 +647,7 @@ function Room({ code, session, onExit }: { code: string; session: Session; onExi
           </>
         ) : (
           <p>
-            <b>{tc(modeInfo(snap.mode).name)}</b> · {t('Level', 'Tingkat')} {snap.level}. {t('The host starts the game.', 'Tuan rumah yang memulai permainan.')}
+            {t('You will play:', 'Yang akan dimainkan:')} <b>{tc(modeInfo(snap.mode).name)}</b> · {t('Level', 'Tingkat')} {snap.level}.
           </p>
         )}
         <button type="button" className="btn ghost sm" onClick={onExit}>
@@ -715,6 +724,8 @@ export default function DominoGame() {
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const online = onlineAvailable()
+  // a link with a room code in it (an invitation) opens a screen with nothing but the room, a name and one button; the rest of the menu is a small link away
+  const [invited, setInvited] = useState(() => online && parseRoomCode(code) !== null)
 
   const update = (patch: Partial<Settings>) =>
     setCfg((c) => {
@@ -742,7 +753,10 @@ export default function DominoGame() {
     try {
       const parsed = parseRoomCode(code)
       const joined = await joinRoom(code, myName(), (parsed && seatFor(parsed)) || randomId())
-      if (joined) rememberSeat(joined.code, joined.session.me)
+      if (joined) {
+        rememberSeat(joined.code, joined.session.me)
+        setInvited(false)
+      }
       if (!joined) setError(t('A room code has 4 letters and digits, like K7QF.', 'Kode ruangan terdiri dari 4 huruf dan angka, seperti K7QF.'))
       else setStage({ k: 'room', code: joined.code, session: joined.session })
     } catch {
@@ -754,6 +768,26 @@ export default function DominoGame() {
 
   if (stage.k === 'solo') return <section className="dmgame" aria-label={t('Math Domino', 'Domino Matematika')}><Solo cfg={stage.cfg} onExit={() => setStage({ k: 'menu' })} /></section>
   if (stage.k === 'room') return <section className="dmgame" aria-label={t('Math Domino', 'Domino Matematika')}><Room code={stage.code} session={stage.session} onExit={() => setStage({ k: 'menu' })} /></section>
+
+  if (invited) {
+    return (
+      <section className="dmgame" aria-label={t('Math Domino', 'Domino Matematika')}>
+        <InviteCard
+          lang={lang}
+          game={t('Math Domino', 'Domino Matematika')}
+          code={parseRoomCode(code) as string}
+          name={cfg.name}
+          placeholder={t('Your name', 'Namamu')}
+          how={t('When it is your turn, tap one of your tiles, then tap the end of the chain where it goes.', 'Saat giliranmu, ketuk salah satu kartumu, lalu ketuk ujung rantai tempat memasangnya.')}
+          busy={busy}
+          error={error}
+          onName={(name) => update({ name })}
+          onJoin={() => void join()}
+          onMore={() => setInvited(false)}
+        />
+      </section>
+    )
+  }
 
   return (
     <section className="dmgame" aria-label={t('Math Domino', 'Domino Matematika')}>

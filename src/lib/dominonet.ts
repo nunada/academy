@@ -17,6 +17,7 @@
 import {
   MAX_PLAYERS,
   MIN_PLAYERS,
+  MISS_PENALTY,
   TILE_COUNT,
   VALUES,
   act as playAct,
@@ -51,7 +52,7 @@ export const NAME_MAX = 16
 
 export type NetEvent =
   | { k: 'play'; id: string; tile: Tile; end: End; start: boolean }
-  | { k: 'miss'; id: string; tile: Tile; end: End; penalty: boolean }
+  | { k: 'miss'; id: string; tile: Tile; end: End; penalty: number }
   | { k: 'draw'; id: string }
   | { k: 'pass'; id: string }
   | { k: 'out'; id: string }
@@ -123,8 +124,9 @@ export const realClock: Clock = {
 const isObj = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x)
 const isInt = (x: unknown, lo: number, hi: number): x is number => typeof x === 'number' && Number.isInteger(x) && x >= lo && x <= hi
 const isStr = (x: unknown, max: number): x is string => typeof x === 'string' && x.length >= 1 && x.length <= max
-/** The only TeX a tile ever shows: digits, signs, brackets, \frac, \times and \div. The host is another person's browser, so nothing else is rendered. */
-export const TEX_OK = /^(?:[0-9+\-(){} ]|\\frac|\\times|\\div)*$/
+/** The only TeX a tile ever shows: digits, signs, brackets, a decimal point, the letter x and =, powers and square brackets (^, [3]), \frac, \times, \div, \sqrt and \%.
+ *  The host is another person's browser, so nothing else is rendered. */
+export const TEX_OK = /^(?:[0-9+\-(){} .=x^[\]]|\\frac|\\times|\\div|\\sqrt|\\%)*$/
 const isId = (x: unknown): x is string => isStr(x, 24) && /^[A-Za-z0-9_-]+$/.test(x as string)
 
 function parseHalf(x: unknown): Half | null {
@@ -155,7 +157,7 @@ function parseEvent(x: unknown): NetEvent | null {
     case 'miss': {
       const tile = parseTile(x.tile)
       const end = parseEnd(x.end)
-      return isId(x.id) && tile && end && typeof x.penalty === 'boolean' ? { k: 'miss', id: x.id, tile, end, penalty: x.penalty } : null
+      return isId(x.id) && tile && end && isInt(x.penalty, 0, MISS_PENALTY) ? { k: 'miss', id: x.id, tile, end, penalty: x.penalty } : null
     }
     case 'draw':
     case 'pass':

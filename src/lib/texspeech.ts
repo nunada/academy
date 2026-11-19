@@ -273,7 +273,7 @@ class Speaker {
       case '!':
         return { text: this.w('factorial', 'faktorial'), atoms: 1 }
       case '%':
-        return { text: this.w('percent', 'persen'), atoms: 1 }
+        return { text: this.w('percent', 'persen'), atoms: 1, operand: true }
       case '(':
         return { text: this.w('left paren', 'buka kurung'), atoms: 1 }
       case ')':
@@ -397,7 +397,8 @@ class Speaker {
     if (name.length === 1) {
       // an escaped character: \% \& \# \_ \{ \} \| \$
       const one: Record<string, [string, string]> = { '%': ['percent', 'persen'], '&': ['and', 'dan'], '#': ['number sign', 'tanda pagar'], _: ['underscore', 'garis bawah'], '{': ['left brace', 'buka kurung kurawal'], '}': ['right brace', 'tutup kurung kurawal'], '|': ['double bar', 'garis ganda'], $: ['dollar', 'dolar'] }
-      if (name in one) return { text: one[name][this.lang === 'id' ? 1 : 0], atoms: 1 }
+      // a percent sign ends a number, so a minus after it is a subtraction (100% - 0.4), not a negative sign
+      if (name in one) return { text: one[name][this.lang === 'id' ? 1 : 0], atoms: 1, operand: name === '%' ? true : undefined }
       return { text: '', atoms: 0 }
     }
     return { text: name, atoms: 1 }

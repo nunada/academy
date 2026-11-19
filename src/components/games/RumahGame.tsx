@@ -34,6 +34,7 @@ import {
 import { NAME_MAX, cleanName, parseRoomCode, type NetEvent, type Session, type Snapshot } from '../../lib/rumahnet'
 import { hostRoom, joinRoom, onlineAvailable } from '../../lib/rumahrealtime'
 import { randomId } from '../../lib/dominorealtime'
+import InviteCard from './InviteCard'
 
 /* ------------------------------------------------------------------------------------------------ settings */
 
@@ -966,6 +967,8 @@ export default function RumahGame({ op }: { op: Op }) {
   const [error, setError] = useState('')
   const [resume, setResume] = useState<string | null>(() => rememberedRoom(op))
   const online = onlineAvailable()
+  // a link with a room code in it (an invitation) opens a screen with nothing but the room, a name and one button
+  const [invited, setInvited] = useState(() => online && code !== '')
 
   // a link with ?room=CODE opens the online tab
   useEffect(() => {
@@ -1015,6 +1018,7 @@ export default function RumahGame({ op }: { op: Op }) {
       else {
         rememberSeat(op, joined.code, joined.session.id)
         setResume(joined.code)
+        setInvited(false)
         setStage({ k: 'room', code: joined.code, session: joined.session })
       }
     } catch {
@@ -1053,6 +1057,26 @@ export default function RumahGame({ op }: { op: Op }) {
             else setResume(rememberedRoom(op))
             setStage({ k: 'menu' })
           }}
+        />
+      </section>
+    )
+  }
+
+  if (invited) {
+    return (
+      <section className="dmgame rhgame" aria-label={aria}>
+        <InviteCard
+          lang={lang}
+          game={aria}
+          code={code}
+          name={cfg.name}
+          placeholder={t('Your name', 'Namamu')}
+          how={t('When it is your turn, move your pawn to another number, work out the result, and tap a cell of the board that holds it.', 'Saat giliranmu, pindahkan pionmu ke angka lain, hitung hasilnya, lalu ketuk petak di papan yang berisi hasil itu.')}
+          busy={busy}
+          error={error}
+          onName={(name) => update({ name })}
+          onJoin={() => void join()}
+          onMore={() => setInvited(false)}
         />
       </section>
     )

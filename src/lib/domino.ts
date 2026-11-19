@@ -7,7 +7,9 @@
  *
  *   - the first player may put down any tile; after that a tile goes at the left end or at the right end of the chain, with a half of equal value touching;
  *   - a player with no tile that fits draws from the boneyard (one tile at a time) until one fits, and passes when the boneyard is empty;
- *   - putting a tile that does not fit is a miscalculation: the tile goes back, the player draws one tile as a penalty and the turn passes;
+ *   - putting a tile that does not fit is a miscalculation: the tile goes back, the player draws `MISS_PENALTY` tiles as a penalty (fewer if the boneyard
+ *     has fewer) and the turn passes. Three tiles is a heavy price, so putting a tile down on purpose
+ *     where it does not fit, to pass the turn, is never worth it;
  *   - the first player to run out of tiles wins; if nobody can move, the player with the fewest tiles left wins.
  *
  *  What a half is worth is a number of its own (`Half.v`, a place in the mode's list of nine values), and the expression is what the player has to read. The
@@ -19,7 +21,9 @@
 import type { Loc } from '../content/types'
 
 export type Level = 1 | 2 | 3
-export type ModeId = 'natural' | 'integer' | 'times' | 'integer-times' | 'fraction' | 'mixed'
+export type ModeId = 'natural' | 'integer' | 'times' | 'integer-times' | 'fraction' | 'mixed' | 'decimal' | 'percent' | 'power' | 'linear' | 'forms'
+/** How the value of a place of a mode is written when a half is just the number: 7, a fraction, a decimal, or the solution x=7. */
+export type Style = 'int' | 'frac' | 'decimal' | 'solve'
 export type End = 'left' | 'right'
 export type Strength = 'easy' | 'medium' | 'hard'
 
@@ -30,6 +34,8 @@ export const MIN_PLAYERS = 2
 export const MAX_PLAYERS = 8
 /** A game that has gone on this many turns is stopped as blocked (a guard against two players who keep missing on purpose). */
 export const MAX_TURNS = 300
+/** The tiles a player draws for a miscalculation: enough that a wrong tile is never a cheap way to pass the turn. */
+export const MISS_PENALTY = 3
 
 /** Tiles dealt to each player: seven up to four players, then fewer so that the boneyard never runs dry at the start. */
 export const handSize = (players: number): number => (players <= 4 ? 7 : players === 5 ? 6 : 5)
@@ -75,12 +81,21 @@ export interface ModeInfo {
   example: [string, string]
   /** the nine values a tile can have, smallest first */
   domain: Frac[]
+  /** how a plain half of this mode is written */
+  style: Style
   /** how the values are told to the player */
   range: Loc
 }
 
 const L = (en: string, id: string): Loc => ({ en, id })
 const ints = (lo: number, hi: number): Frac[] => Array.from({ length: hi - lo + 1 }, (_, i) => ({ n: lo + i, d: 1 }))
+/** n/d in lowest terms */
+const reduce = (n: number, d: number): Frac => {
+  const g = ((a: number, b: number): number => { while (b) [a, b] = [b, a % b]; return a })(n, d)
+  return { n: n / g, d: d / g }
+}
+/** the values of the mode about fractions, decimals and percents, as [numerator, denominator] */
+const FORMS_VALUES: [number, number][] = [[1, 10], [1, 5], [1, 4], [2, 5], [1, 2], [3, 5], [3, 4], [4, 5], [9, 10]]
 const halves = (): Frac[] => Array.from({ length: VALUES }, (_, i) => (i % 2 === 1 ? { n: (i + 1) / 2, d: 1 } : { n: i + 1, d: 2 }))
 
 export const MODES: ModeInfo[] = [
@@ -90,6 +105,7 @@ export const MODES: ModeInfo[] = [
     about: L('Sums and differences of natural numbers, such as $3+4$ and $10-3$.', 'Jumlah dan selisih bilangan asli, seperti $3+4$ dan $10-3$.'),
     example: ['3+4', '10-3'],
     domain: ints(1, 9),
+    style: 'int',
     range: L('values $1$ to $9$', 'nilai $1$ sampai $9$'),
   },
   {
@@ -98,6 +114,7 @@ export const MODES: ModeInfo[] = [
     about: L('Sums and differences with negative numbers, such as $-3+5$ and $4-(-2)$.', 'Jumlah dan selisih dengan bilangan negatif, seperti $-3+5$ dan $4-(-2)$.'),
     example: ['-3+5', '6-4'],
     domain: ints(-4, 4),
+    style: 'int',
     range: L('values $-4$ to $4$', 'nilai $-4$ sampai $4$'),
   },
   {
@@ -106,6 +123,7 @@ export const MODES: ModeInfo[] = [
     about: L('Products and quotients, such as $2\\times4$ and $24\\div3$.', 'Hasil kali dan hasil bagi, seperti $2\\times4$ dan $24\\div3$.'),
     example: ['2\\times4', '24\\div3'],
     domain: ints(2, 10),
+    style: 'int',
     range: L('values $2$ to $10$', 'nilai $2$ sampai $10$'),
   },
   {
@@ -114,6 +132,7 @@ export const MODES: ModeInfo[] = [
     about: L('Products and quotients with negative numbers, such as $(-2)\\times3$ and $12\\div(-4)$.', 'Hasil kali dan hasil bagi dengan bilangan negatif, seperti $(-2)\\times3$ dan $12\\div(-4)$.'),
     example: ['(-2)\\times3', '12\\div(-2)'],
     domain: ints(-4, 4),
+    style: 'int',
     range: L('values $-4$ to $4$', 'nilai $-4$ sampai $4$'),
   },
   {
@@ -122,6 +141,7 @@ export const MODES: ModeInfo[] = [
     about: L('Fractions that are equal in different forms, such as $\\frac12$ and $\\frac24$, and sums such as $\\frac14+\\frac14$.', 'Pecahan yang sama dalam bentuk berbeda, seperti $\\frac12$ dan $\\frac24$, dan jumlah seperti $\\frac14+\\frac14$.'),
     example: ['\\frac{1}{4}+\\frac{1}{4}', '\\frac{3}{6}'],
     domain: halves(),
+    style: 'frac',
     range: L('values $\\frac12$ to $4\\frac12$ in steps of $\\frac12$', 'nilai $\\frac12$ sampai $4\\frac12$ dengan selisih $\\frac12$'),
   },
   {
@@ -130,15 +150,68 @@ export const MODES: ModeInfo[] = [
     about: L('All four operations and brackets, such as $2+3\\times4$ and $(8-2)\\div3$: multiply and divide first.', 'Keempat operasi dan tanda kurung, seperti $2+3\\times4$ dan $(8-2)\\div3$: kali dan bagi dulu.'),
     example: ['2+3\\times4', '28\\div2'],
     domain: ints(2, 10),
+    style: 'int',
     range: L('values $2$ to $10$', 'nilai $2$ sampai $10$'),
+  },
+  {
+    id: 'decimal',
+    name: L('Decimals: add and subtract', 'Desimal: tambah dan kurang'),
+    about: L('Sums and differences of decimals, such as $0.4+0.3$ and $1.2-0.5$.', 'Jumlah dan selisih desimal, seperti $0{,}4+0{,}3$ dan $1{,}2-0{,}5$.'),
+    example: ['0.4+0.3', '1.2-0.5'],
+    domain: Array.from({ length: VALUES }, (_, i) => reduce(i + 1, 10)),
+    style: 'decimal',
+    range: L('values $0.1$ to $0.9$', 'nilai $0{,}1$ sampai $0{,}9$'),
+  },
+  {
+    id: 'percent',
+    name: L('Percentages of a number', 'Persen dari suatu bilangan'),
+    about: L('A percentage of a number, such as $50\\%\\times8$ and $10\\%\\times40$: both are $4$.', 'Persen dari suatu bilangan, seperti $50\\%\\times8$ dan $10\\%\\times40$: keduanya $4$.'),
+    example: ['50\\%\\times8', '10\\%\\times40'],
+    domain: ints(2, 10),
+    style: 'int',
+    range: L('values $2$ to $10$', 'nilai $2$ sampai $10$'),
+  },
+  {
+    id: 'power',
+    name: L('Powers and roots', 'Pangkat dan akar'),
+    about: L('Squares, cubes and roots, alone or with a small number added or taken away, such as $3^{2}-2$ and $\\sqrt{49}$: both are $7$.', 'Kuadrat, pangkat tiga, dan akar, sendiri atau ditambah atau dikurangi bilangan kecil, seperti $3^{2}-2$ dan $\\sqrt{49}$: keduanya $7$.'),
+    example: ['3^{2}-2', '\\sqrt{49}'],
+    domain: ints(2, 10),
+    style: 'int',
+    range: L('values $2$ to $10$', 'nilai $2$ sampai $10$'),
+  },
+  {
+    id: 'linear',
+    name: L('Solve for x', 'Selesaikan nilai x'),
+    about: L('Each half is an equation and its value is the solution, such as $x+3=7$ and $2x=8$: both have $x=4$.', 'Setiap sisi adalah persamaan dan nilainya adalah penyelesaiannya, seperti $x+3=7$ dan $2x=8$: keduanya $x=4$.'),
+    example: ['x+3=7', '2x=8'],
+    domain: ints(1, 9),
+    style: 'solve',
+    range: L('solutions $x=1$ to $x=9$', 'penyelesaian $x=1$ sampai $x=9$'),
+  },
+  {
+    id: 'forms',
+    name: L('Fractions, decimals and percents', 'Pecahan, desimal, dan persen'),
+    about: L('One number written as a fraction, a decimal or a percent, such as $\\frac{1}{4}$, $0.25$ and $25\\%$, and sums of them.', 'Satu bilangan yang ditulis sebagai pecahan, desimal, atau persen, seperti $\\frac{1}{4}$, $0{,}25$, dan $25\\%$, dan jumlah dari semuanya.'),
+    example: ['\\frac{1}{4}', '25\\%'],
+    domain: FORMS_VALUES.map(([n, d]) => ({ n, d })),
+    style: 'frac',
+    range: L('values $\\frac{1}{10}$ to $\\frac{9}{10}$', 'nilai $\\frac{1}{10}$ sampai $\\frac{9}{10}$'),
   },
 ]
 export const modeInfo = (id: ModeId): ModeInfo => MODES.find((m) => m.id === id) as ModeInfo
 /** What the value at place `i` of a mode is, as TeX: `-3`, `7`, `\frac{3}{2}`. Shown when the player asks to see the value of an end. */
 export function valueTex(mode: ModeId, i: number): string {
-  const f = modeInfo(mode).domain[i]
+  const m = modeInfo(mode)
+  const f = m.domain[i]
+  if (m.style === 'decimal') return dec(Math.round((f.n * 100) / f.d))
+  if (m.style === 'solve') return `x=${f.n}`
   return f.d === 1 ? String(f.n) : `\\frac{${f.n}}{${f.d}}`
 }
+/** What the value of a place is worth, as the number alone (the plain half of the mode about x is `x=4`, and what it is worth is `4`). */
+export const worthTex = (mode: ModeId, i: number): string => (modeInfo(mode).style === 'solve' ? valueTex(mode, i).slice(2) : valueTex(mode, i))
+/** The TeX of a half or a value as the player's language writes it: the decimal point is a comma in Indonesian. */
+export const localTex = (tex: string, lang: string): string => (lang === 'id' ? tex.replace(/(\d)\.(\d)/g, '$1{,}$2') : tex)
 export const isModeId = (s: unknown): s is ModeId => MODES.some((m) => m.id === s)
 export const isLevel = (n: unknown): n is Level => n === 1 || n === 2 || n === 3
 
@@ -353,6 +426,222 @@ const mixedForm: Form = (v, lv, rng) => {
   return null
 }
 
+/* decimals, + and -: the value is t/10 (0.1 to 0.9); every operand is a decimal of at least 0.05 and at most two places, written 1.2, 0.35, never 1.20 */
+/** Hundredths as a decimal number: 120 is 1.2, 35 is 0.35, 100 is 1.0. */
+const dec = (h: number): string => {
+  const whole = Math.floor(h / 100)
+  const rest = h % 100
+  return rest % 10 === 0 ? `${whole}.${rest / 10}` : `${whole}.${String(rest).padStart(2, '0')}`
+}
+const decimalForms: Form[] = [
+  (v, lv, rng) => {
+    const V = Math.round(v * 100)
+    const step = lv === 1 ? 10 : 5
+    if (V / step < 2) return null
+    const a = step * ri(rng, 1, V / step - 1)
+    return `${dec(a)}+${dec(V - a)}`
+  },
+  (v, lv, rng) => {
+    const V = Math.round(v * 100)
+    const step = lv === 1 ? 10 : 5
+    const b = step * ri(rng, 1, cap(lv, 100, 200, 450) / step)
+    return `${dec(V + b)}-${dec(b)}`
+  },
+  (v, lv, rng) => {
+    if (lv < 3) return null
+    const V = Math.round(v * 100)
+    const a = 5 * ri(rng, 2, 80)
+    const b = 5 * ri(rng, 1, 80)
+    const c = a + b - V
+    return c >= 5 && c <= 400 ? `${dec(a)}+${dec(b)}-${dec(c)}` : null
+  },
+  (v, lv, rng) => {
+    if (lv < 3) return null
+    const V = Math.round(v * 100)
+    const b = 5 * ri(rng, 1, 60)
+    const c = 5 * ri(rng, 1, 60)
+    return `${dec(V + b + c)}-${dec(b)}-${dec(c)}`
+  },
+  (v, lv, rng) => {
+    if (lv < 3) return null
+    // a - b + c: a stays above b, so that no step is below zero
+    const V = Math.round(v * 100)
+    if (V < 10) return null
+    const b = 5 * ri(rng, 1, 80)
+    const c = 5 * ri(rng, 1, V / 5 - 1)
+    return `${dec(V + b - c)}-${dec(b)}+${dec(c)}`
+  },
+]
+
+/* percentages of a number: p% × n, the value is a whole number from 2 to 10 */
+const PERCENTS: Record<Level, number[]> = { 1: [50, 25, 10], 2: [50, 25, 10, 20, 75, 5, 40, 60, 30, 80], 3: [50, 25, 10, 20, 75, 5, 40, 60, 30, 80, 15, 35, 45, 90, 120, 150, 200] }
+const PERCENT_N: Record<Level, number> = { 1: 100, 2: 200, 3: 400 }
+const percentBases = (w: number, lv: Level): [number, number][] =>
+  PERCENTS[lv].filter((p) => (100 * w) % p === 0 && (100 * w) / p >= 2 && (100 * w) / p <= PERCENT_N[lv]).map((p) => [p, (100 * w) / p])
+const percentForms: Form[] = [
+  (v, lv, rng) => {
+    const bs = percentBases(v, lv)
+    if (!bs.length) return null
+    const [p, n] = pick(rng, bs)
+    return `${p}\\%${TIMES}${n}`
+  },
+  (v, lv, rng) => {
+    if (lv < 2) return null
+    const bs = percentBases(v, lv)
+    if (!bs.length) return null
+    const [p, n] = pick(rng, bs)
+    return `${n}${TIMES}${p}\\%`
+  },
+  (v, lv, rng) => {
+    if (lv < 3) return null
+    const k = ri(rng, 1, 9)
+    const bs = v - k >= 2 ? percentBases(v - k, lv) : []
+    if (!bs.length) return null
+    const [p, n] = pick(rng, bs)
+    return `${p}\\%${TIMES}${n}+${k}`
+  },
+  (v, lv, rng) => {
+    if (lv < 3) return null
+    const k = ri(rng, 1, 9)
+    const bs = percentBases(v + k, lv)
+    if (!bs.length) return null
+    const [p, n] = pick(rng, bs)
+    return `${p}\\%${TIMES}${n}-${k}`
+  },
+]
+
+/* powers and roots: squares, cubes, powers of 2, square and cube roots, alone or with a small number added or taken away (two of them at level 3) */
+interface Atom {
+  tex: string
+  v: number
+}
+const powAtom = (a: number, k: number): Atom => ({ tex: `${a}^{${k}}`, v: a ** k })
+const rootAtom = (a: number): Atom => ({ tex: `\\sqrt{${a * a}}`, v: a })
+const cbrtAtom = (a: number): Atom => ({ tex: `\\sqrt[3]{${a ** 3}}`, v: a })
+function atomsOf(lv: Level): Atom[] {
+  const out: Atom[] = []
+  const sq = cap(lv, 6, 9, 10)
+  for (let a = 2; a <= sq; a++) out.push(powAtom(a, 2))
+  for (let a = 2; a <= cap(lv, 3, 4, 4); a++) out.push(powAtom(a, 3))
+  for (let k = 2; k <= cap(lv, 5, 6, 6); k++) out.push(powAtom(2, k))
+  for (let a = 2; a <= cap(lv, 7, 10, 10); a++) out.push(rootAtom(a))
+  if (lv >= 2) for (let a = 2; a <= 4; a++) out.push(cbrtAtom(a))
+  // 2^2 and 4^1-like duplicates are not wanted: keep one atom per text
+  return out.filter((x, i, xs) => xs.findIndex((y) => y.tex === x.tex) === i)
+}
+const powerCache = new Map<Level, Atom[]>()
+const powerForm: Form = (v, lv, rng) => {
+  let atoms = powerCache.get(lv)
+  if (!atoms) powerCache.set(lv, (atoms = atomsOf(lv)))
+  const out: string[] = []
+  for (const A of atoms) {
+    if (A.v === v) out.push(A.tex)
+    for (let b = 1; b <= 9; b++) {
+      if (A.v + b === v) out.push(`${A.tex}+${b}`, `${b}+${A.tex}`)
+      if (A.v - b === v) out.push(`${A.tex}-${b}`)
+      if (b - A.v === v) out.push(`${b}-${A.tex}`)
+    }
+    if (lv >= 3)
+      for (const B of atoms) {
+        if (B.tex === A.tex) continue
+        if (A.v + B.v === v) out.push(`${A.tex}+${B.tex}`)
+        if (A.v - B.v === v) out.push(`${A.tex}-${B.tex}`)
+      }
+  }
+  // the plain atom alone is a calculation too (3^2, the root of 49); a value the list cannot reach is declined
+  return out.length ? pick(rng, out) : null
+}
+
+/* solving for x: the half is an equation and its value is the solution, 1 to 9 */
+const fr = (a: string, d: number): string => `\\frac{${a}}{${d}}`
+const linearForms: Form[] = [
+  (v, _lv, rng) => {
+    const b = ri(rng, 1, 9)
+    return `x+${b}=${v + b}`
+  },
+  (v, _lv, rng) => (v >= 2 ? (() => { const b = ri(rng, 1, Math.min(9, v - 1)); return `x-${b}=${v - b}` })() : null),
+  (v, _lv, rng) => { const a = ri(rng, 2, 9); return `${a}x=${a * v}` },
+  (v, lv, rng) => (lv >= 2 ? (() => { const a = ri(rng, 2, 9); const b = ri(rng, 1, 9); return `${a}x+${b}=${a * v + b}` })() : null),
+  (v, lv, rng) => {
+    if (lv < 2) return null
+    const a = ri(rng, 2, 9)
+    const b = ri(rng, 1, 9)
+    return a * v - b >= 1 ? `${a}x-${b}=${a * v - b}` : null
+  },
+  (v, lv, rng) => {
+    if (lv < 2) return null
+    const ds = [2, 3, 4, 5, 6, 7, 8, 9].filter((a) => v % a === 0)
+    return ds.length ? (() => { const a = pick(rng, ds); return `${fr('x', a)}=${v / a}` })() : null
+  },
+  (v, lv, rng) => {
+    if (lv < 2) return null
+    const b = ri(rng, v + 1, 9 + v)
+    return b - v >= 1 ? `${b}-x=${b - v}` : null
+  },
+  (v, lv, rng) => {
+    if (lv < 3) return null
+    const a = ri(rng, 2, 9)
+    const b = ri(rng, 1, 9)
+    return `${a}(x+${b})=${a * (v + b)}`
+  },
+  (v, lv, rng) => {
+    if (lv < 3) return null
+    const a = ri(rng, 2, 9)
+    const b = ri(rng, 1, Math.max(1, v - 1))
+    return v > b ? `${a}(x-${b})=${a * (v - b)}` : null
+  },
+  (v, lv, rng) => {
+    if (lv < 3) return null
+    const a = ri(rng, 3, 9)
+    const c = ri(rng, 1, a - 1)
+    const b = ri(rng, 1, 9)
+    const d = (a - c) * v + b
+    return d <= 99 ? `${a}x+${b}=${c}x+${d}` : null
+  },
+  (v, lv, rng) => {
+    if (lv < 3) return null
+    const a = ri(rng, 2, 9)
+    const b = ri(rng, 1, 9)
+    return (v + b) % a === 0 ? `${fr(`x+${b}`, a)}=${(v + b) / a}` : null
+  },
+]
+
+/* fractions, decimals and percents: the value is one of 1/10 1/5 1/4 2/5 1/2 3/5 3/4 4/5 9/10 written as a fraction (in other terms too), a decimal or a
+ * percent; at levels 2 and 3 two or three of them added or taken away. W is a number of hundredths (a percent). */
+const gcdN = (a: number, b: number): number => (b === 0 ? a : gcdN(b, a % b))
+/** A number of hundredths written one of three ways: the fraction (maybe not in lowest terms, with a denominator up to 20), the decimal, the percent. */
+function formOf(W: number, kind: 0 | 1 | 2, rng: Rng, minK = 1): string {
+  if (kind === 1) return dec(W)
+  if (kind === 2) return `${W}\\%`
+  const g = gcdN(W, 100)
+  const n0 = W / g
+  const d0 = 100 / g
+  // a denominator of at least 2 (never 1/1), and at level 1 never the fraction in lowest terms itself, which is how a plain half is written
+  const lo = Math.max(minK, d0 === 1 ? 2 : 1)
+  const k = ri(rng, lo, Math.max(lo, Math.floor(20 / d0)))
+  return frac(n0 * k, d0 * k)
+}
+const formsForm: Form = (v, lv, rng) => {
+  const V = Math.round(v * 100)
+  for (let tries = 0; tries < 60; tries++) {
+    if (lv === 1) {
+      const kind = ri(rng, 0, 2) as 0 | 1 | 2
+      return formOf(V, kind, rng, 2)
+    }
+    const a = 5 * ri(rng, 1, lv === 2 ? 30 : 40)
+    const b = V - a
+    if (b >= 5 && lv >= 2 && rng() < 0.55) return `${formOf(a, ri(rng, 0, 2) as 0 | 1 | 2, rng)}+${formOf(b, ri(rng, 0, 2) as 0 | 1 | 2, rng)}`
+    const c = a - V
+    if (c >= 5) return `${formOf(a, ri(rng, 0, 2) as 0 | 1 | 2, rng)}-${formOf(c, ri(rng, 0, 2) as 0 | 1 | 2, rng)}`
+    if (lv >= 3) {
+      const e = 5 * ri(rng, 1, 30)
+      const f = a + e - V
+      if (f >= 5 && f <= 150) return `${formOf(a, ri(rng, 0, 2) as 0 | 1 | 2, rng)}+${formOf(e, ri(rng, 0, 2) as 0 | 1 | 2, rng)}-${formOf(f, ri(rng, 0, 2) as 0 | 1 | 2, rng)}`
+    }
+  }
+  return null
+}
+
 /** An expression that is worth the value at index `i` of the mode's list, at the given level. */
 export function expressionFor(mode: ModeId, i: number, level: Level, rng: Rng): string {
   const m = modeInfo(mode)
@@ -371,6 +660,16 @@ export function expressionFor(mode: ModeId, i: number, level: Level, rng: Rng): 
       return express(fractionForms(i + 1), v, level, rng, frac((i + 1) * 2, 4))
     case 'mixed':
       return express([mixedForm, (w) => `${w - 1}+1`], v, level, rng, `${v - 1}+1`)
+    case 'decimal':
+      return express(decimalForms, v, level, rng, `${dec(Math.round(v * 100) + 10)}-0.1`)
+    case 'percent':
+      return express(percentForms, v, level, rng, `100\\%${TIMES}${v}`)
+    case 'power':
+      return express([powerForm], v, level, rng, `\\sqrt{${v * v}}`)
+    case 'linear':
+      return express(linearForms, v, level, rng, `x+1=${v + 1}`)
+    case 'forms':
+      return express([formsForm], v, level, rng, frac(i + 1 === 1 ? 2 : FORMS_VALUES[i][0] * 2, FORMS_VALUES[i][1] * 2))
   }
 }
 
@@ -493,7 +792,8 @@ export type Action = { t: 'play'; tile: number; end: End } | { t: 'draw' } | { t
 
 export type GameEvent =
   | { k: 'play'; p: number; tile: Tile; end: End; start: boolean }
-  | { k: 'miss'; p: number; tile: Tile; end: End; penalty: boolean }
+  /** `penalty` is how many tiles were drawn for it, from 0 (the boneyard was empty) to MISS_PENALTY */
+  | { k: 'miss'; p: number; tile: Tile; end: End; penalty: number }
   | { k: 'draw'; p: number }
   | { k: 'pass'; p: number }
   | { k: 'out'; p: number }
@@ -585,13 +885,13 @@ export function act(g0: Game, p: number, action: Action): { ok: true; g: Game; e
   const tile = g.hands[p][at]
   const placed = placement(g.chain, tile, action.end)
   if (!placed) {
-    // a miscalculation: the tile stays in the hand, a tile is drawn as a penalty, the turn passes
-    const penalty = g.boneyard.pop()
-    if (penalty) g.hands[p].push(penalty)
+    // a miscalculation: the tile stays in the hand, tiles are drawn as a penalty, the turn passes
+    let drawn = 0
+    for (; drawn < MISS_PENALTY && g.boneyard.length > 0; drawn++) g.hands[p].push(g.boneyard.pop() as Tile)
     g.mistakes[p]++
     g.passes = 0
     g.turns++
-    events.push({ k: 'miss', p, tile, end: action.end, penalty: Boolean(penalty) })
+    events.push({ k: 'miss', p, tile, end: action.end, penalty: drawn })
     finish()
     return { ok: true, g, events }
   }
