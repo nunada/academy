@@ -22,6 +22,7 @@ const DIRS = [['up', 0, -1, 'w^'], ['down', 0, 1, 'wv'], ['left', -1, 0, 'w<'], 
 /* ------------------------------------------------------------------------------------------- measuring a level */
 const ALL = ['up', 'right', 'down', 'left']
 /** The whole reachable game: its size, the shortest way, how many shortest ways, and how much of it is dead (the exit can no longer be reached). */
+export const ROUTE_CAP = 60
 export function analyze(level, limit) {
   const keyOf = (x, y, v, u) => `${x},${y},${v},${u}`
   const ids = new Map()
@@ -29,6 +30,7 @@ export function analyze(level, limit) {
   const ways = []
   const adj = []
   const wins = []
+  const floorMoves = [] // moves onto plain floor: they change nothing, so they are not a different way
   const add = (x, y, v, u, d) => {
     ids.set(keyOf(x, y, v, u), info.length)
     info.push([x, y, v, u, d])
@@ -53,6 +55,8 @@ export function analyze(level, limit) {
       let id = ids.get(k)
       if (id === undefined) id = add(r.step.pos.x, r.step.pos.y, r.step.value, r.step.used, d + 1)
       adj[head].push(id)
+      const kind = M.tileAt(level, r.step.pos.x, r.step.pos.y).kind
+      if (kind === 'floor' || kind === 'start') floorMoves.push([head, id])
       if (info[id][4] === d + 1) ways[id] = Math.min(1e9, ways[id] + ways[head])
     }
   }
@@ -88,7 +92,42 @@ export function analyze(level, limit) {
   alive.forEach((a) => {
     if (!a) dead++
   })
-  return { par, shortest, states: info.length, deadRate: dead / info.length }
+  // how many different ways win. Where you walk over plain floor is not a different way, so the positions that are joined by floor moves (same value, same used-up tiles)
+  // are one place; a way is then a simple path through these places, the tiles that do something being the steps of it. Counted up to ROUTE_CAP.
+  const up = Array.from({ length: info.length }, (_, i) => i)
+  const find = (x) => {
+    while (up[x] !== x) x = up[x] = up[up[x]]
+    return x
+  }
+  for (const [p, q] of floorMoves) up[find(p)] = find(q)
+  const cls = info.map((_, i) => find(i))
+  const edges = new Map()
+  const clsWins = new Set()
+  info.forEach((_, i) => {
+    if (!alive[i]) return
+    if (wins[i]) clsWins.add(cls[i])
+    for (const j of adj[i]) if (alive[j] && cls[j] !== cls[i]) (edges.get(cls[i]) ?? edges.set(cls[i], new Set()).get(cls[i])).add(cls[j])
+  })
+  let routes = 0
+  let budget = 4_000_000
+  const onPath = new Set()
+  const walk = (u) => {
+    onPath.add(u)
+    if (clsWins.has(u)) routes++
+    for (const v of edges.get(u) ?? []) {
+      if (routes >= ROUTE_CAP || budget-- < 0) break
+      if (!onPath.has(v)) walk(v)
+    }
+    onPath.delete(u)
+  }
+  try {
+    walk(cls[0])
+  } catch {
+    routes = ROUTE_CAP
+  }
+  if (budget < 0) routes = ROUTE_CAP
+  routes = Math.min(routes, ROUTE_CAP)
+  return { par, shortest, routes, states: info.length, deadRate: dead / info.length }
 }
 /** the straight way between the start and the exit with walls only, the values not considered */
 export function straight(level) {
@@ -139,42 +178,33 @@ export function neededTiles(src, par) {
 }
 
 
-/** Takes away, one at a time, every tile that is not needed (with it turned into floor the shortest way stays the same length and there still is one), until all that is left
- *  is needed. A gate or an operator that only sits at the side of the way, and a key whose lock has gone, are not left in a level to clutter it. */
+/** Takes away, one at a time, every tile that does nothing for the puzzle, until all that is left matters. A tile matters when, with it turned into floor, the level is no longer
+ *  the same: the shortest way is another, or the number of ways that win is another (a gate that shuts a second way makes the level more nearly unique, so it matters even when
+ *  nobody walks that second way). A key whose lock has gone, or a gate that shuts nothing, is not left in a level for show. */
 export function prune(src, par) {
   const rows = src.grid.map((r) => r.trim().split(/\s+/))
+  const mk = () => M.parseLevel({ ...src, grid: rows.map((r) => r.join(' ')) })
+  let cur = analyze(mk(), 150_000)
+  if (!cur || cur.par !== par) return { ...src, grid: rows.map((r) => r.join('  ')) }
   for (let again = true; again; ) {
     again = false
     outer: for (let y = 0; y < rows.length; y++)
       for (let x = 0; x < rows[y].length; x++) {
         const t = rows[y][x]
         if (t === '#' || t === '.' || t === 'S' || t.startsWith('G')) continue
-        const was = rows[y][x]
         rows[y][x] = '.'
-        let level
+        let a1 = null
         try {
-          level = M.parseLevel({ ...src, grid: rows.map((r) => r.join(' ')) })
+          a1 = analyze(mk(), 150_000)
         } catch {
-          rows[y][x] = was
-          continue
+          a1 = null
         }
-        const r = M.solve(level, undefined, 80_000)
-        if (r.solved && r.path.length === par) {
-          // a gate has to matter to the best ways: with it taken away the shortest way must be shorter (that is already known not to be so here)
-          // or there must be more of them. A gate that only shuts some long way that is not the one anybody walks is for show.
-          if (was.startsWith('?')) {
-            const before = M.parseLevel({ ...src, grid: rows.map((q, qy) => q.map((c, qx) => (qy === y && qx === x ? was : c)).join(' ')) })
-            const a0 = analyze(before, 120_000)
-            const a1 = analyze(level, 120_000)
-            if (!a0 || !a1 || a1.par !== a0.par || a1.shortest !== a0.shortest) {
-              rows[y][x] = was
-              continue
-            }
-          }
+        if (a1 && a1.par === cur.par && a1.routes === cur.routes) {
+          cur = a1
           again = true
           break outer
         }
-        rows[y][x] = was
+        rows[y][x] = t
       }
   }
   return { ...src, grid: rows.map((r) => r.join('  ')) }

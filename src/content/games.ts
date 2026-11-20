@@ -1174,7 +1174,7 @@ Langkah yang tidak boleh tidak diambil, dan sebuah pesan singkat menjelaskan seb
 | Key and lock | a key and a lock with the **same number** | a key you step on is picked up, and a lock of the same number uses it up |
 | Wall | dark | stops you |
 
-The operators are $+$, $-$, $\\times$, $\\div$, remainder, powers ($x^2$, $x^3$, $2^x$, $3^x$), logarithms ($\\log_2$, $\\log_3$), $\\pm$ (change the sign) and $|x|$ (absolute value). Gates and exits ask for things such as at least, less than, between, odd, a multiple of, a remainder, a perfect square or cube, prime and **not** prime. **All values are whole numbers:** a division only works when it comes out even, a logarithm only when it is exact, and a gate or an exit is judged on your value at that moment. Some levels also limit how high or how low your value may go.`,
+The operators are $+$, $-$, $\\times$, $\\div$, remainder, powers ($x^2$, $x^3$, $2^x$, $3^x$), logarithms ($\\log_2$, $\\log_3$), $\\pm$ (change the sign) and $|x|$ (absolute value). Gates and exits ask for things such as at least, less than, between, odd, a multiple of, a remainder, a perfect square, prime and **not** prime. **All values are whole numbers:** a division only works when it comes out even, a logarithm only when it is exact, and a gate or an exit is judged on your value at that moment. Some levels also limit how high or how low your value may go.`,
           `| Petak | Tampilannya | Fungsinya |
 |---|---|---|
 | Operator yang tidak pernah habis | **biru**, bergaris tepi utuh, seperti $+1$ | bekerja setiap kali kamu menginjaknya, jadi kamu bisa mondar-mandir untuk menyetel angkamu |
@@ -1185,7 +1185,7 @@ The operators are $+$, $-$, $\\times$, $\\div$, remainder, powers ($x^2$, $x^3$,
 | Kunci dan gembok | kunci dan gembok dengan **nomor yang sama** | kunci yang kamu injak dipungut, dan gembok bernomor sama memakainya sampai habis |
 | Tembok | gelap | menghentikanmu |
 
-Operatornya adalah $+$, $-$, $\\times$, $\\div$, sisa bagi, pangkat ($x^2$, $x^3$, $2^x$, $3^x$), logaritma ($\\log_2$, $\\log_3$), $\\pm$ (ubah tanda) dan $|x|$ (nilai mutlak). Gerbang dan pintu keluar meminta hal seperti minimal, kurang dari, antara, ganjil, kelipatan, sisa bagi, kuadrat atau pangkat tiga sempurna, prima, dan **bukan** prima. **Semua nilai bilangan bulat:** pembagian hanya jalan bila habis, logaritma hanya bila tepat, dan gerbang atau pintu keluar dinilai dari nilaimu saat itu. Sebagian level juga membatasi seberapa tinggi atau rendah nilaimu boleh.`,
+Operatornya adalah $+$, $-$, $\\times$, $\\div$, sisa bagi, pangkat ($x^2$, $x^3$, $2^x$, $3^x$), logaritma ($\\log_2$, $\\log_3$), $\\pm$ (ubah tanda) dan $|x|$ (nilai mutlak). Gerbang dan pintu keluar meminta hal seperti minimal, kurang dari, antara, ganjil, kelipatan, sisa bagi, kuadrat sempurna, prima, dan **bukan** prima. **Semua nilai bilangan bulat:** pembagian hanya jalan bila habis, logaritma hanya bila tepat, dan gerbang atau pintu keluar dinilai dari nilaimu saat itu. Sebagian level juga membatasi seberapa tinggi atau rendah nilaimu boleh.`,
         ),
       },
       {

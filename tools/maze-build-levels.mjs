@@ -20,10 +20,14 @@ const CHAPTERS = [
 const TUTORIAL = { arithmetic: 3 }
 const MAX_STATES = 40_000
 
-const refined = new Map()
+/** how many different ways may win a level: Sumaze levels are, for the most part, a single way (floor walked over differently is not a different way) */
+const MAX_ROUTES = Number(process.env.MAX_ROUTES ?? 3)
+const CACHE = 'tmp/refine-cache.json'
+const refined = new Map(fs.existsSync(CACHE) ? Object.entries(JSON.parse(fs.readFileSync(CACHE, 'utf8'))) : [])
+const saveCache = () => fs.writeFileSync(CACHE, JSON.stringify(Object.fromEntries(refined)))
 /** A candidate pruned and measured again, or null when what is left is no longer a puzzle. */
 function refine(c, isIntro) {
-  const key = c.grid.join('|') + c.startValue + isIntro
+  const key = c.grid.join('|') + c.startValue + isIntro + MAX_ROUTES
   if (refined.has(key)) return refined.get(key)
   let out = null
   try {
@@ -34,19 +38,21 @@ function refine(c, isIntro) {
     const geo = straight(level)
     let placed = 0
     for (const row of level.tiles) for (const t of row) if (['op', 'gate', 'key', 'lock', 'oneway'].includes(t.kind)) placed++
-    if (a && a.par !== null && geo !== null && placed >= 2 && a.par >= geo + (isIntro ? 2 : 6) && a.shortest <= 40 && a.states >= (isIntro ? 15 : 120)) {
-      out = { ...c, grid: p.grid, par: a.par, shortest: a.shortest, states: a.states, deadRate: Math.round(a.deadRate * 1000) / 1000, placed }
+    if (a && a.par !== null && geo !== null && placed >= 2 && a.par >= geo + (isIntro ? 2 : 6) && a.shortest <= 40 && a.routes <= MAX_ROUTES && a.states >= (isIntro ? 15 : 120)) {
+      out = { ...c, grid: p.grid, par: a.par, shortest: a.shortest, routes: a.routes, states: a.states, deadRate: Math.round(a.deadRate * 1000) / 1000, placed }
     }
   } catch {
     out = null
   }
   refined.set(key, out)
+  if (refined.size % 20 === 0) saveCache()
   return out
 }
 
-const score = (l) => l.par + 40 * l.deadRate - 3 * Math.log2(l.shortest) + 1.5 * Math.log2(l.states)
+const score = (l) => l.par + 40 * l.deadRate - 2 * (l.routes ?? 1) - 3 * Math.log2(l.shortest) + 1.5 * Math.log2(l.states)
 const files = fs.readdirSync('tmp').filter((f) => /^gen-[a-z]+(-intro|-relax|-hard)?-\d+\.json$/.test(f))
 const out = {}
+const usedOrig = new Set()
 let report = ''
 for (const ch of CHAPTERS) {
   const read = (intro) =>
@@ -56,7 +62,16 @@ for (const ch of CHAPTERS) {
       .filter((l) => l.states <= MAX_STATES)
   const seen = new Set()
   const uniq = (xs) => xs.filter((l) => (seen.has(l.grid.join('|') + l.startValue) ? false : (seen.add(l.grid.join('|') + l.startValue), true)))
-  const main = uniq(read(false)).sort((a, b) => score(a) - score(b))
+  // the last chapter is "everything at once": what the other chapters did not use, with operators of three kinds or more in the room, is a candidate for it too
+  const families = (l) => new Set(l.grid.flatMap((r) => r.trim().split(/\s+/)).map((t) => (/^(\+|-)\d/.test(t) ? 'addsub' : /^\*\d/.test(t) ? 'mul' : /^\/\d/.test(t) ? 'div' : /^%\d/.test(t) ? 'mod' : /^(\^\d|\d+\^)/.test(t) ? 'pow' : /^log/.test(t) ? 'log' : t === 'neg' || t === 'abs' ? 'sign' : /^\?/.test(t) ? 'gate' : /^key|^lock/.test(t) ? 'key' : null)).filter(Boolean)).size
+  const borrowed =
+    ch.id === 'fermat'
+      ? files
+          .filter((f) => !f.startsWith('gen-fermat') && !f.includes('-intro-'))
+          .flatMap((f) => JSON.parse(fs.readFileSync(`tmp/${f}`, 'utf8')))
+          .filter((l) => l.states <= MAX_STATES && !usedOrig.has(l.grid.join('|') + l.startValue) && families(l) >= 4 && l.par >= 14)
+      : []
+  const main = uniq([...read(false), ...borrowed]).sort((a, b) => score(a) - score(b))
   const intro = uniq(read(true)).sort((a, b) => score(a) - score(b))
   const need = ch.total - (TUTORIAL[ch.id] ?? 0)
   const nIntro = Math.min(ch.intro, intro.length)
@@ -70,15 +85,24 @@ for (const ch of CHAPTERS) {
   const choose = (pool, wanted, isIntro) => {
     const got = []
     for (const target of wanted) {
-      for (let d = 0; d < 60; d++) {
-        const cand = [target + d, target - d].map((i) => pool[i]).find((c) => c && !chosen.has(c) && refine(c, isIntro))
-        if (cand) {
-          const r = refine(cand, isIntro)
-          chosen.add(cand)
-          got.push(r)
-          break
+      // near the wanted place of the climb, a level with one or two ways that win is preferred; failing that one with more, and failing that anywhere in the pool
+      let found = null
+      for (const [maxRoutes, reach] of [[2, 14], [MAX_ROUTES, 14], [MAX_ROUTES, pool.length]]) {
+        for (let d = 0; d < reach && !found; d++) {
+          for (const i of [target + d, target - d]) {
+            const c = pool[i]
+            if (!c || chosen.has(c) || found) continue
+            const r = refine(c, isIntro)
+            if (r && r.routes <= maxRoutes) {
+              chosen.add(c)
+              usedOrig.add(c.grid.join('|') + c.startValue)
+              found = r
+            }
+          }
         }
+        if (found) break
       }
+      if (found) got.push(found)
     }
     return got
   }
@@ -88,10 +112,14 @@ for (const ch of CHAPTERS) {
   const pool = main.slice(Math.floor(main.length * 0.25))
   const nPick = Math.min(nMain, pool.length)
   const pickMain = choose(pool, Array.from({ length: nPick }, (_, i) => Math.round((i * (pool.length - 1)) / Math.max(1, nPick - 1))), false)
-  out[ch.id] = [...pickIntro, ...pickMain].filter(Boolean)
+  // a chapter that is short of levels (what the generator found did not survive the pruning and the count of ways) is filled up with the hardest of its easy runs
+  const missing = nMain - pickMain.length
+  const fill = missing > 0 ? choose(intro, Array.from({ length: missing }, (_, i) => intro.length - 1 - i * 3), true) : []
+  out[ch.id] = [...pickIntro, ...fill, ...pickMain].filter(Boolean)
   const pars = out[ch.id].map((l) => l.par)
   report += `  pars: ${pars.join(' ')}\n  dead: ${out[ch.id].map((l) => Math.round(l.deadRate * 100)).join(' ')}%\n`
 }
+saveCache()
 console.log(report)
 
 const body = Object.entries(out)

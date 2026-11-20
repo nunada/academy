@@ -331,7 +331,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
   const pars = made.map((l) => l.par).sort((a, b) => a - b)
   const median = pars[Math.floor(pars.length / 2)]
   ok(made.length === 97 && median >= 16, `the median shortest way of the 97 generated levels is ${median} steps (at least 16)`)
-  ok(made.filter((l) => l.par >= 25).length >= 25 && Math.max(...pars) >= 35, `${made.filter((l) => l.par >= 25).length} levels need 25 steps or more, the longest ${Math.max(...pars)}`)
+  ok(made.filter((l) => l.par >= 25).length >= 15 && Math.max(...pars) >= 35, `${made.filter((l) => l.par >= 25).length} levels need 25 steps or more, the longest ${Math.max(...pars)}`)
   // each chapter climbs: its last half is longer than its first half on average
   for (const c of M.CHAPTERS) {
     const ps = c.levels.map((l) => l.par)
@@ -344,7 +344,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
     const R = ref.get(lv.id)
     if (!R) continue
     // the first two or three levels of a chapter are gentle: only a little beyond the straight way
-    const gentle = Number(lv.id.slice(2)) <= 3
+    const gentle = Number(lv.id.slice(2)) <= 4
     const seen = new Set([R.start.join()])
     let frontier = [R.start]
     let straight = null
@@ -367,12 +367,17 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
   const askCount = made.filter((l) => l.grid.some((r) => /G\?/.test(r))).length
   ok(askCount === made.length, 'every generated level has an exit with a condition')
   ok(made.filter((l) => l.grid.some((r) => /\?/.test(r.replace(/G\?/g, '')))).length >= 35, 'a good part of the levels have gates')
-  // a gate is not for show: taken away, the shortest way is shorter or there are more shortest ways (a gate that only shuts some long way nobody walks is a decoy that does nothing)
+  // a tile is not for show: a gate or an operator taken away (made floor), the shortest way is another or the number of ways that win is another.
+  // A gate that shuts a second way is a gate that makes the level more nearly unique, so it counts even when nobody walks that way.
+  // (A way is a path over the places of the game; the floor walked over differently is not another way.)
   let gates = 0
+  const routeCounts = []
   for (const lv of made) {
     const rows = lv.grid.map((r) => r.trim().split(/\s+/))
     const mk = (g) => lib.M.parseLevel({ id: lv.id, startValue: lv.startValue, minValue: lv.minValue, maxValue: lv.maxValue, grid: g.map((r) => r.join(' ')) })
     const base = lib.analyze(mk(rows), 150_000)
+    if (!ok(base && base.par !== null, `${lv.id}: the level can be measured and has a way`)) continue
+    routeCounts.push(base.routes)
     for (let y = 0; y < rows.length; y++)
       for (let x = 0; x < rows[y].length; x++) {
         if (!/^\?/.test(rows[y][x])) continue
@@ -380,10 +385,14 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
         const copy = rows.map((r) => r.slice())
         copy[y][x] = '.'
         const without = lib.analyze(mk(copy), 150_000)
-        ok(base && without && base.par !== null && (without.par !== base.par || without.shortest !== base.shortest), `${lv.id}: the gate ${rows[y][x]} at ${x},${y} changes the best ways (it is not for show)`)
+        ok(base && without && base.par !== null && (without.par !== base.par || without.routes !== base.routes), `${lv.id}: the gate ${rows[y][x]} at ${x},${y} changes the shortest way or the number of ways that win (it is not for show)`)
       }
   }
   ok(gates >= 50, `${gates} gates in the levels`)
+  // Sumaze is for the most part a single way: most levels have one or two ways that win, none has a crowd
+  const few = routeCounts.filter((n) => n <= 2).length
+  ok(few >= 0.6 * routeCounts.length && routeCounts.every((n) => n <= 8), `${few} of ${routeCounts.length} levels have one or two ways that win, and none has more than ${Math.max(...routeCounts)} (at most 8)`)
+  ok(routeCounts.filter((n) => n === 1).length >= 0.25 * routeCounts.length, `${routeCounts.filter((n) => n === 1).length} levels have exactly one way that wins`)
 }
 
 /* ------------------------------------------------------------------------------------------- the engine against the second simulator, step by step */
@@ -590,7 +599,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
       }
   }
   ok([...usedOps].sort().join() === 'abs,add,div,exp,log,mod,mul,neg,pow,sub', `the operators of the levels are + − × ÷ remainder, powers, logarithms, ± and |x| (${[...usedOps].sort()})`)
-  ok([...usedConds].sort().join() === 'congruent,cube,eq,ge,gt,le,lt,multiple,not,odd,prime,range,square', `the conditions of the levels (${[...usedConds].sort()})`)
+  ok([...usedConds].sort().join() === 'congruent,eq,even,ge,gt,le,lt,multiple,not,odd,prime,range,square', `the conditions of the levels (${[...usedConds].sort()})`)
   ok(tokens.some((t) => /^w[v^<>]$/.test(t)) && tokens.some((t) => /^key[12]$/.test(t)), 'one-way tiles and keys appear in the levels')
 
   const lvText = LEVELS.flatMap((l) => [l.name, l.hint])

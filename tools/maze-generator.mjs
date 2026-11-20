@@ -237,10 +237,12 @@ while (Date.now() - started < seconds * 1000) {
   const geo = straight(level)
   if (geo === null || a.par < geo + (intro ? 2 : hard ? 10 : 6)) continue
   if (a.shortest > (intro ? 60 : relax || hard ? 40 : 24)) continue
+  // Sumaze levels are, for the most part, a single way: the floor walked over differently is not another way
+  if (a.routes > (intro ? 8 : 6)) continue
   if (a.states < (intro ? 20 : 150)) continue
   const need = neededTiles(cand, a.par)
   if (need.placed < 3 || need.needed < Math.ceil(need.placed * (intro || relax ? 0.5 : hard ? 0.55 : 0.6))) continue
-  results.push({ grid: cand.grid, startValue: cand.startValue, minValue: cand.minValue, maxValue: cand.maxValue, par: a.par, shortest: a.shortest, states: a.states, deadRate: Math.round(a.deadRate * 1000) / 1000, needed: need.needed, placed: need.placed, geo })
+  results.push({ grid: cand.grid, startValue: cand.startValue, minValue: cand.minValue, maxValue: cand.maxValue, par: a.par, shortest: a.shortest, routes: a.routes, states: a.states, deadRate: Math.round(a.deadRate * 1000) / 1000, needed: need.needed, placed: need.placed, geo })
 }
 fs.mkdirSync('tmp', { recursive: true })
 fs.writeFileSync(`tmp/gen-${chapter}${intro ? '-intro' : relax ? '-relax' : hard ? '-hard' : ''}-${seed}.json`, JSON.stringify(results))
