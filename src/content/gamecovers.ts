@@ -145,6 +145,30 @@ function numberMaze(): string {
   return s
 }
 
+/** A small Nurikabe, a real one with one answer: the sea is blue and runs between the islands; the islands carry their numbers (a 2, a 1 and a 3, and a 1). */
+function nurikabe(): string {
+  const c = 40
+  const gap = 5
+  const x0 = 113
+  const y0 = 36
+  // '#' sea, a digit an island with its number, '.' land that belongs to an island
+  const rows = ['2.#1', '####', '3..#']
+  let s = ''
+  rows.forEach((row, r) => {
+    for (let k = 0; k < 4; k++) {
+      const ch = row[k]
+      const x = x0 + k * (c + gap)
+      const y = y0 + r * (c + gap)
+      if (ch === '#') s += rect(x, y, c, c, 'pb', 5)
+      else {
+        s += rect(x, y, c, c, 'pm', 5)
+        if (/\d/.test(ch)) s += text(x + c / 2, y + c / 2 + 9, ch, 26)
+      }
+    }
+  })
+  return s
+}
+
 const generic = (): string => rect(120, 50, 160, 100, 'pa', 14) + text(200, 118, '?', 52)
 
 const COVERS: Record<string, () => string> = {
@@ -156,6 +180,7 @@ const COVERS: Record<string, () => string> = {
   'multiplication-house': () => house('times'),
   'addition-house': () => house('plus'),
   'number-maze': numberMaze,
+  nurikabe,
 }
 
 /** The whole `<svg>` of a game's cover, as markup. Decorative: the card already carries the title. */

@@ -5,7 +5,7 @@ import type { Loc } from './types'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
-export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house' | 'number-maze'
+export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house' | 'number-maze' | 'nurikabe'
 
 export interface GameMeta {
   id: GameId
@@ -1295,6 +1295,170 @@ Level-level awal ramah: tidak ada yang bisa dirusak. Lalu level menjadi teka-tek
       L('Absolute value and changing the sign', 'Nilai mutlak dan mengubah tanda'),
       L('Primes, even and odd numbers, and multiples', 'Bilangan prima, genap, ganjil, dan kelipatan'),
       L('Working backwards from a goal', 'Bekerja mundur dari sebuah tujuan'),
+    ],
+  },
+  {
+    id: 'nurikabe',
+    slug: { en: 'nurikabe', id: 'nurikabe' },
+    icon: '🏝️',
+    title: L('Nurikabe: Shade the Sea Around the Islands', 'Nurikabe: Warnai Laut di Sekitar Pulau'),
+    seoTitle: L('Nurikabe: a Free Logic Puzzle Game', 'Nurikabe: Game Teka-teki Logika Gratis'),
+    description: L(
+      'A free Nurikabe logic puzzle with 40 puzzles in five sizes, 5×5 to 9×9. Each number is an island of that many cells; shade the sea around them so the sea stays in one piece with no 2×2 block. Every puzzle has exactly one answer, found by reasoning alone.',
+      'Teka-teki logika Nurikabe gratis dengan 40 teka-teki dalam lima ukuran, 5×5 sampai 9×9. Setiap angka adalah pulau dengan sebanyak itu petak; warnai laut di sekitarnya sehingga laut tetap satu bagian tanpa blok 2×2. Setiap teka-teki punya tepat satu jawaban, yang ditemukan dengan penalaran saja.',
+    ),
+    keywords: L(
+      'nurikabe, nurikabe puzzle, free nurikabe online, logic puzzle game, japanese logic puzzle, islands and sea puzzle, grid logic puzzle, deduction puzzle, brain teaser, puzzle with one solution, learn logic by playing',
+      'nurikabe, teka-teki nurikabe, nurikabe online gratis, game teka-teki logika, teka-teki logika jepang, teka-teki pulau dan laut, teka-teki kotak logika, teka-teki deduksi, asah otak, teka-teki dengan satu jawaban, belajar logika sambil bermain',
+    ),
+    tagline: L('Shade the sea so every number is an island of that size.', 'Warnai laut sehingga setiap angka menjadi pulau seukuran itu.'),
+    answer: L(
+      '**Nurikabe is a logic puzzle on a grid: each number is an island of that many cells, and you shade all the other cells as sea so that the sea is one connected piece and has no 2×2 block.** Every puzzle here has exactly one answer, and you can always reach it by reasoning, without guessing. There are 40 puzzles in five sizes, and you play with a tap, a drag or the keyboard.',
+      '**Nurikabe adalah teka-teki logika di atas kotak: setiap angka adalah pulau dengan sebanyak itu petak, dan kamu mewarnai semua petak lain sebagai laut sehingga laut menjadi satu bagian yang tersambung dan tidak punya blok 2×2.** Setiap teka-teki di sini punya tepat satu jawaban, dan kamu selalu bisa mencapainya dengan penalaran, tanpa menebak. Ada 40 teka-teki dalam lima ukuran, dan kamu bermain dengan ketukan, geseran, atau keyboard.',
+    ),
+    published: '2026-11-20',
+    updated: '2026-11-20',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Nurikabe?', 'Bagaimana cara memainkan Nurikabe?'),
+        text: L(
+          `1. Pick a puzzle. Some cells hold a number; the others are empty.
+2. **Press an empty cell** to shade it as **sea**. Press it again to put a **dot** on it (a dot says "this one is land"), and once more to clear it. You can also **drag** across cells to mark several at once.
+3. With the keyboard, move with the **arrow keys** (or W A S D) and press **Space** or **Enter** to change the cell. **B** shades, **.** puts a dot, **C** clears.
+4. Keep going until every rule below is kept. The game notices by itself and shows **Solved!**
+5. **Undo** (Z) takes back a move, **Restart** (R) clears the grid, **Check** tells you which rule is broken (if any), and **Hint** (H) points at a cell: first a mark that is not right, otherwise a cell that the rules decide.
+
+A ring around cells means they break a rule: a 2×2 block of sea, an island with too many cells, or two numbers in one island. The cells you have not marked count as land when the game decides whether you are done, so dots are only there to help you think.`,
+          `1. Pilih sebuah teka-teki. Beberapa petak berisi angka; yang lain kosong.
+2. **Tekan petak kosong** untuk mewarnainya sebagai **laut**. Tekan lagi untuk memberi **titik** (titik berarti "petak ini daratan"), dan sekali lagi untuk menghapusnya. Kamu juga bisa **menggeser** melintasi petak untuk menandai beberapa sekaligus.
+3. Dengan keyboard, berpindah dengan **tombol panah** (atau W A S D) dan tekan **Spasi** atau **Enter** untuk mengubah petak. **B** mewarnai, **.** memberi titik, **C** menghapus.
+4. Teruskan sampai semua aturan di bawah terpenuhi. Game menyadarinya sendiri dan menampilkan **Selesai!**
+5. **Undo** (Z) menarik satu langkah, **Ulang** (R) mengosongkan kotak, **Periksa** memberi tahu aturan mana yang dilanggar (kalau ada), dan **Petunjuk** (H) menunjuk sebuah petak: pertama tanda yang belum benar, kalau tidak ada maka petak yang ditentukan oleh aturan.
+
+Lingkaran di sekeliling petak berarti petak-petak itu melanggar aturan: blok laut 2×2, pulau dengan terlalu banyak petak, atau dua angka dalam satu pulau. Petak yang belum kamu tandai dianggap daratan saat game memutuskan kamu sudah selesai, jadi titik hanya membantumu berpikir.`,
+        ),
+      },
+      {
+        id: 'the-rules',
+        heading: L('What are the rules of Nurikabe?', 'Apa aturan Nurikabe?'),
+        text: L(
+          `| Rule | What it means |
+|---|---|
+| Every number is an island | the cells that are not sea and touch along an edge form an island; it holds **exactly one** number, and has **exactly that many cells** |
+| The sea is one piece | all the sea cells are joined, cell to cell along edges (touching only at a corner does not count) |
+| No pools | no 2×2 block of the grid is all sea |
+| Islands do not touch | two islands never share an edge; sea always lies between them |
+
+Only the cells that touch along an edge count as neighbors, never the ones that touch at a corner. A good Nurikabe puzzle has **exactly one answer**, and every puzzle in this game was checked by two different solvers to be so: you never have to guess, there is always a cell that the rules force.`,
+          `| Aturan | Artinya |
+|---|---|
+| Setiap angka adalah pulau | petak yang bukan laut dan bersisian membentuk sebuah pulau; di dalamnya ada **tepat satu** angka, dan petaknya **tepat sebanyak angka itu** |
+| Laut satu bagian | semua petak laut tersambung, petak ke petak lewat sisinya (yang bersentuhan hanya di sudut tidak dihitung) |
+| Tidak ada kolam | tidak ada blok 2×2 di kotak yang semuanya laut |
+| Pulau tidak bersentuhan | dua pulau tidak pernah berbagi sisi; di antaranya selalu ada laut |
+
+Hanya petak yang bersisian yang dihitung bertetangga, tidak pernah yang bersentuhan di sudut. Teka-teki Nurikabe yang baik punya **tepat satu jawaban**, dan setiap teka-teki di game ini sudah diperiksa oleh dua solver berbeda bahwa memang begitu: kamu tidak perlu menebak, selalu ada petak yang dipaksa oleh aturan.`,
+        ),
+      },
+      {
+        id: 'how-to-solve',
+        heading: L('How do you solve a Nurikabe puzzle?', 'Bagaimana cara menyelesaikan teka-teki Nurikabe?'),
+        text: L(
+          `- **A 1 is alone.** All four cells around a 1 are sea.
+- **A cell between two numbers is sea.** If a cell touches two different islands, it cannot be land: it would join them.
+- **A finished island is walled in.** When an island already has as many cells as its number, shade every cell around it.
+- **Far away means sea.** A cell that no number can reach (the island would need more cells than its number allows) must be sea.
+- **No pools.** If three cells of a 2×2 block are sea, the fourth is land, and it has to belong to some island.
+- **The sea cannot be cut.** If shading a cell would split the sea in two, that cell is land, and if the only way to join two sea cells runs through one cell, that cell is sea.
+- **An island with one way out grows that way.** If an island is too small and has one open cell next to it, that cell is land.
+
+Work with the biggest numbers last, and look for places where two rules together leave only one choice. When you are stuck, press **Hint**: it never fills a cell for you, it only points at one.`,
+          `- **Angka 1 sendirian.** Keempat petak di sekeliling angka 1 adalah laut.
+- **Petak di antara dua angka adalah laut.** Kalau sebuah petak bersisian dengan dua pulau berbeda, ia tidak boleh daratan: ia akan menggabungkan keduanya.
+- **Pulau yang selesai dikelilingi laut.** Bila sebuah pulau sudah punya petak sebanyak angkanya, warnai semua petak di sekelilingnya.
+- **Yang jauh adalah laut.** Petak yang tidak terjangkau angka mana pun (pulaunya akan butuh petak lebih banyak daripada angkanya) pasti laut.
+- **Tidak ada kolam.** Bila tiga petak dari blok 2×2 adalah laut, petak keempat adalah daratan, dan ia harus termasuk ke sebuah pulau.
+- **Laut tidak boleh terpotong.** Bila mewarnai sebuah petak akan membelah laut menjadi dua, petak itu daratan, dan bila satu-satunya cara menyambung dua petak laut lewat satu petak, petak itu laut.
+- **Pulau dengan satu jalan keluar tumbuh ke sana.** Bila sebuah pulau masih terlalu kecil dan hanya ada satu petak kosong di sebelahnya, petak itu daratan.
+
+Kerjakan angka terbesar paling akhir, dan cari tempat di mana dua aturan bersama hanya menyisakan satu pilihan. Bila buntu, tekan **Petunjuk**: ia tidak pernah mengisi petak untukmu, hanya menunjuknya.`,
+        ),
+      },
+      {
+        id: 'sizes',
+        heading: L('How big are the puzzles?', 'Seberapa besar teka-tekinya?'),
+        text: L(
+          `| Size | Puzzles | What it is like |
+|---|---|---|
+| 5×5 Tiny | 8 | learn the rules; a few cells settle the rest |
+| 6×6 Small | 8 | islands begin to compete for room |
+| 7×7 Medium | 8 | the sea has to stay in one piece |
+| 8×8 Large | 8 | long chains of reasoning |
+| 9×9 Huge | 8 | the big ones |
+
+Inside each size the puzzles climb: the first needs only the simplest rules, the last needs several rules working together. All sizes are open from the start, and a puzzle is solved or not: nothing counts your time, your moves or your mistakes.`,
+          `| Ukuran | Teka-teki | Rasanya |
+|---|---|---|
+| 5×5 Mungil | 8 | belajar aturannya; beberapa petak menentukan sisanya |
+| 6×6 Kecil | 8 | pulau-pulau mulai berebut tempat |
+| 7×7 Sedang | 8 | laut harus tetap satu bagian |
+| 8×8 Besar | 8 | rantai penalaran yang panjang |
+| 9×9 Raksasa | 8 | yang besar |
+
+Di dalam tiap ukuran teka-tekinya menanjak: yang pertama hanya butuh aturan paling sederhana, yang terakhir butuh beberapa aturan bekerja bersama. Semua ukuran terbuka sejak awal, dan sebuah teka-teki selesai atau belum: tidak ada yang menghitung waktu, langkah, atau kesalahanmu.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('What is Nurikabe?', 'Apa itu Nurikabe?'),
+        a: L(
+          'Nurikabe is a logic puzzle that began in Japan, and its name means "painted wall". Numbers on a grid are islands, and you paint the rest as a wall of sea around them, following three rules about size, connection and 2×2 blocks.',
+          'Nurikabe adalah teka-teki logika yang berawal di Jepang, dan namanya berarti "dinding yang dicat". Angka-angka di kotak adalah pulau, dan kamu mengecat sisanya sebagai dinding laut di sekeliling mereka, mengikuti tiga aturan tentang ukuran, sambungan, dan blok 2×2.',
+        ),
+      },
+      {
+        q: L('Do I have to guess?', 'Apakah aku harus menebak?'),
+        a: L(
+          'No. Every puzzle has exactly one answer and can be solved by reasoning. A solver written for this game checked that each puzzle has one answer, and a second, different solver checked it again.',
+          'Tidak. Setiap teka-teki punya tepat satu jawaban dan bisa diselesaikan dengan penalaran. Sebuah solver yang ditulis untuk game ini memeriksa bahwa tiap teka-teki punya satu jawaban, dan solver kedua yang berbeda memeriksanya lagi.',
+        ),
+      },
+      {
+        q: L('What do the dots mean?', 'Apa arti titik-titik itu?'),
+        a: L(
+          'A dot says "this cell is land". It changes nothing for the rules: the cells you leave empty are counted as land when the game decides if you are done. Dots only help you remember what you have worked out.',
+          'Titik berarti "petak ini daratan". Ia tidak mengubah apa pun bagi aturan: petak yang kamu biarkan kosong dihitung sebagai daratan saat game memutuskan kamu sudah selesai. Titik hanya membantumu mengingat apa yang sudah kamu simpulkan.',
+        ),
+      },
+      {
+        q: L('What do Check and Hint do?', 'Apa fungsi Periksa dan Petunjuk?'),
+        a: L(
+          'Check says which rule is broken right now, without telling you where the answer is. Hint points at one cell: first a mark of yours that is not right, then a cell that the rules decide, so you still have to work out what goes in it.',
+          'Periksa memberi tahu aturan mana yang sedang dilanggar, tanpa memberi tahu di mana jawabannya. Petunjuk menunjuk satu petak: pertama tanda milikmu yang belum benar, lalu petak yang ditentukan oleh aturan, sehingga kamu tetap harus mencari apa isinya.',
+        ),
+      },
+      {
+        q: L('Can I play it on a phone?', 'Bisakah dimainkan di ponsel?'),
+        a: L(
+          'Yes. Tap a cell to shade it and drag across cells to mark several. On a computer you can also use the arrow keys, Space, Z to undo, R to restart and H for a hint.',
+          'Bisa. Ketuk sebuah petak untuk mewarnainya dan geser melintasi petak untuk menandai beberapa sekaligus. Di komputer kamu juga bisa memakai tombol panah, Spasi, Z untuk Undo, R untuk Ulang, dan H untuk petunjuk.',
+        ),
+      },
+      {
+        q: L('Does it save my progress?', 'Apakah progresku disimpan?'),
+        a: L(
+          'Yes, in this browser: which puzzles you have solved. Nothing is sent to an account.',
+          'Ya, di browser ini: teka-teki mana yang sudah selesai. Tidak ada yang dikirim ke sebuah akun.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Logical deduction without guessing', 'Deduksi logis tanpa menebak'),
+      L('Reasoning about connected regions', 'Bernalar tentang daerah yang tersambung'),
+      L('Counting cells and spatial reasoning', 'Menghitung petak dan penalaran ruang'),
+      L('Combining several rules to find one forced move', 'Menggabungkan beberapa aturan untuk menemukan satu langkah yang dipaksa'),
     ],
   },
 ]

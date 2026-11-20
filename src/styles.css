@@ -2182,3 +2182,38 @@ main:focus, .page:focus { outline: none; }
 .nmd.hint { border-color: var(--brand); background: var(--brand-soft); animation: dmpulse 1s ease-in-out infinite; }
 .nmidea { margin-top: 10px; }
 @media (prefers-reduced-motion: reduce) { .nmp { transition: none; } .nmp.won, .nmd.hint { animation: none; } }
+
+/* ---- Nurikabe. The sea is told apart from the land by color AND by being filled in; a dot says "this one is land"; a number sits on its own cell. Red is only for a mistake (a ring
+   around the cells that break a rule), never for sea or land. ---- */
+:root { --nk-sea: #4f86b8; --nk-sea-edge: #3b6c9a; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --nk-sea: #35648f; --nk-sea-edge: #5d93c4; }
+}
+:root[data-theme="dark"] { --nk-sea: #35648f; --nk-sea-edge: #5d93c4; }
+.nkgame { max-width: 640px; }
+.nktier { margin: 14px 0 20px; }
+.nktier h2 { margin-bottom: 2px; }
+.nklevels { display: grid; grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)); gap: 8px; margin-top: 8px; }
+.nklevel { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 4px; border: 2px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+.nklevel b { font-size: 1.15rem; }
+.nklevel:hover { border-color: var(--brand); }
+.nklevel.done { border-color: var(--brand); background: var(--brand-soft); }
+.nklmark { font-size: 0.85rem; color: var(--brand); font-weight: 800; min-height: 1.2em; }
+.nkgoal { margin: 6px 0 8px; }
+.nkboardbox { display: flex; justify-content: center; }
+.nkboard { display: grid; grid-template-columns: repeat(var(--cols), var(--cell)); grid-auto-rows: var(--cell); gap: var(--gap); padding: 8px; border-radius: var(--radius); background: var(--surface-2); touch-action: none; user-select: none; -webkit-user-select: none; }
+.nkboard:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+.nkc { position: relative; display: flex; align-items: center; justify-content: center; border: 2px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text); font-weight: 800; font-size: calc(var(--cell) * 0.46); line-height: 1; cursor: pointer; }
+.nkc.clue { background: color-mix(in srgb, var(--brand) 14%, var(--surface)); border-color: var(--brand); cursor: default; }
+.nkc.sea { background: var(--nk-sea); border-color: var(--nk-sea-edge); }
+.nkc.dot::after { content: ''; width: 24%; height: 24%; border-radius: 50%; background: var(--text); opacity: 0.75; }
+.nkc.bad { box-shadow: inset 0 0 0 3px var(--bad); }
+.nkc.cur { outline: 3px solid var(--brand); outline-offset: 1px; z-index: 1; }
+.nkc.flash { animation: dmpulse 1s ease-in-out infinite; box-shadow: inset 0 0 0 4px var(--brand); }
+.nkc.won { cursor: default; }
+.nknote { min-height: 1.5em; margin: 8px 0 0; font-weight: 600; opacity: 0; }
+.nknote.on { opacity: 1; color: var(--bad); }
+.nknote.on.info { color: var(--brand); }
+.nkcontrols { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; }
+.nkhelp { margin-top: 8px; }
+@media (prefers-reduced-motion: reduce) { .nkc.flash { animation: none; } }

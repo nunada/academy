@@ -15,6 +15,7 @@ import NumberLineGame from '../components/games/NumberLineGame'
 import DominoGame from '../components/games/DominoGame'
 import RumahGame from '../components/games/RumahGame'
 import NumberMazeGame from '../components/games/NumberMazeGame'
+import NurikabeGame from '../components/games/NurikabeGame'
 
 /** The game itself, by id. A new game is one more case here, one more entry in `content/games.ts`, and one more `lib/` engine. */
 const PLAYERS: Record<GameId, () => ReactNode> = {
@@ -26,6 +27,7 @@ const PLAYERS: Record<GameId, () => ReactNode> = {
   'multiplication-house': () => <RumahGame op="times" />,
   'addition-house': () => <RumahGame op="plus" />,
   'number-maze': () => <NumberMazeGame />,
+  nurikabe: () => <NurikabeGame />,
 }
 
 /** A game's page: the game on top, then what it is, how to play it and what it practises, in words a visitor and a search engine can both read.
