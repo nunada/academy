@@ -127,7 +127,12 @@ export function analyze(level, limit) {
   }
   if (budget < 0) routes = ROUTE_CAP
   routes = Math.min(routes, ROUTE_CAP)
-  return { par, shortest, routes, states: info.length, deadRate: dead / info.length }
+  // the tiles that a way that wins goes over (a position from which the exit can still be reached, and that can be reached)
+  const onRoute = new Set()
+  info.forEach((p, i) => {
+    if (alive[i]) onRoute.add(`${p[0]},${p[1]}`)
+  })
+  return { par, shortest, routes, onRoute, states: info.length, deadRate: dead / info.length }
 }
 /** the straight way between the start and the exit with walls only, the values not considered */
 export function straight(level) {
@@ -208,4 +213,16 @@ export function prune(src, par) {
       }
   }
   return { ...src, grid: rows.map((r) => r.join('  ')) }
+}
+
+/** The gates that no way that wins goes through. Such a gate lets nobody pass, whatever the way: it is a wall that is called a gate, and a level that is unique only
+ *  because of it is unique because of a wall. Returns their places as "x,y". */
+export function gatesOffRoute(level, a) {
+  const off = []
+  level.tiles.forEach((row, y) =>
+    row.forEach((t, x) => {
+      if (t.kind === 'gate' && !a.onRoute.has(`${x},${y}`)) off.push(`${x},${y}`)
+    }),
+  )
+  return off
 }

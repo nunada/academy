@@ -15,7 +15,7 @@
 import fs from 'node:fs'
 import process from 'node:process'
 
-import { M, analyze, straight, neededTiles } from './maze-lib.mjs'
+import { M, analyze, straight, neededTiles, gatesOffRoute } from './maze-lib.mjs'
 
 const chapter = process.argv[2] ?? 'arithmetic'
 const seconds = Number(process.argv[3] ?? 60)
@@ -239,6 +239,8 @@ while (Date.now() - started < seconds * 1000) {
   if (a.shortest > (intro ? 60 : relax || hard ? 40 : 24)) continue
   // Sumaze levels are, for the most part, a single way: the floor walked over differently is not another way
   if (a.routes > (intro ? 8 : 6)) continue
+  // a gate that no winning way goes through is a wall with another name
+  if (gatesOffRoute(level, a).length) continue
   if (a.states < (intro ? 20 : 150)) continue
   const need = neededTiles(cand, a.par)
   if (need.placed < 3 || need.needed < Math.ceil(need.placed * (intro || relax ? 0.5 : hard ? 0.55 : 0.6))) continue

@@ -378,6 +378,7 @@ console.log(`levels: ${LEVELS.length}, states searched by the engine: ${totalSta
     const base = lib.analyze(mk(rows), 150_000)
     if (!ok(base && base.par !== null, `${lv.id}: the level can be measured and has a way`)) continue
     routeCounts.push(base.routes)
+    ok(lib.gatesOffRoute(mk(rows), base).length === 0, `${lv.id}: every gate is gone through by a way that wins (a gate nobody can pass is a wall with another name)`)
     for (let y = 0; y < rows.length; y++)
       for (let x = 0; x < rows[y].length; x++) {
         if (!/^\?/.test(rows[y][x])) continue

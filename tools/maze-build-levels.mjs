@@ -5,7 +5,7 @@
 // level: it is exactly what the generator made and the solver measured.
 import fs from 'node:fs'
 import process from 'node:process'
-import { M, analyze, prune, straight } from './maze-lib.mjs'
+import { M, analyze, prune, straight, gatesOffRoute } from './maze-lib.mjs'
 
 const CHAPTERS = [
   { id: 'arithmetic', prefix: 'ar', total: 14, intro: 0 },
@@ -21,24 +21,36 @@ const TUTORIAL = { arithmetic: 3 }
 const MAX_STATES = 40_000
 
 /** how many different ways may win a level: Sumaze levels are, for the most part, a single way (floor walked over differently is not a different way) */
-const MAX_ROUTES = Number(process.env.MAX_ROUTES ?? 3)
+const MAX_ROUTES = Number(process.env.MAX_ROUTES ?? 8)
 const CACHE = 'tmp/refine-cache.json'
 const refined = new Map(fs.existsSync(CACHE) ? Object.entries(JSON.parse(fs.readFileSync(CACHE, 'utf8'))) : [])
 const saveCache = () => fs.writeFileSync(CACHE, JSON.stringify(Object.fromEntries(refined)))
 /** A candidate pruned and measured again, or null when what is left is no longer a puzzle. */
 function refine(c, isIntro) {
-  const key = c.grid.join('|') + c.startValue + isIntro + MAX_ROUTES
+  const key = c.grid.join('|') + c.startValue + isIntro + MAX_ROUTES + 'w'
   if (refined.has(key)) return refined.get(key)
   let out = null
   try {
     const src = { id: 'x', startValue: c.startValue, minValue: c.minValue, maxValue: c.maxValue, grid: c.grid }
-    const p = prune(src, c.par)
-    const level = M.parseLevel(p)
-    const a = analyze(level, 120_000)
+    let p = prune(src, c.par)
+    let level = M.parseLevel(p)
+    let a = analyze(level, 120_000)
+    // a gate that no way that wins goes through lets nobody pass: it is a wall that is called a gate, and is made the wall it is
+    const off = a && a.par !== null ? gatesOffRoute(level, a) : []
+    if (off.length) {
+      const rows = p.grid.map((r) => r.trim().split(/\s+/))
+      for (const k of off) {
+        const [x, y] = k.split(',').map(Number)
+        rows[y][x] = '#'
+      }
+      p = { ...p, grid: rows.map((r) => r.join('  ')) }
+      level = M.parseLevel(p)
+      a = analyze(level, 120_000)
+    }
     const geo = straight(level)
     let placed = 0
     for (const row of level.tiles) for (const t of row) if (['op', 'gate', 'key', 'lock', 'oneway'].includes(t.kind)) placed++
-    if (a && a.par !== null && geo !== null && placed >= 2 && a.par >= geo + (isIntro ? 2 : 6) && a.shortest <= 40 && a.routes <= MAX_ROUTES && a.states >= (isIntro ? 15 : 120)) {
+    if (a && a.par !== null && geo !== null && placed >= 2 && a.par >= geo + (isIntro ? 2 : 6) && a.shortest <= 40 && a.routes <= MAX_ROUTES && gatesOffRoute(level, a).length === 0 && a.states >= (isIntro ? 15 : 120)) {
       out = { ...c, grid: p.grid, par: a.par, shortest: a.shortest, routes: a.routes, states: a.states, deadRate: Math.round(a.deadRate * 1000) / 1000, placed }
     }
   } catch {
