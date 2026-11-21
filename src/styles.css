@@ -189,6 +189,8 @@ code.inline {
 .brand small { display: block; font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 
 .nav { display: flex; gap: 2px; margin-left: 8px; flex-wrap: wrap; }
+/* the menu of a visitor who is not signed in: buttons on the first row, except on a phone (see the max-width: 480px rule) */
+.nav.publicnav { display: none; }
 .nav a {
   padding: 6px 11px;
   border-radius: 999px;
@@ -1570,10 +1572,11 @@ a.chip.static { cursor: pointer; }
 /* On the narrowest phones the logo alone stands for the brand. */
 @media (max-width: 480px) {
   .brand-name { display: none; }
-  /* three short buttons (Articles, Games, Guide) for a signed-out visitor, so the language switch stays on the first row */
+  /* short buttons for a signed-out visitor (the menu row under the logo has the links), so the language switch stays on the first row */
   .topbar .btn.ghost.sm, .topbar .btn.loginbtn { padding: 5px 8px; font-size: 0.78rem; }
   .topbar { column-gap: 5px; }
-  .morebtn { display: none; } /* the footer links to the articles and the guide too */
+  .morebtn { display: none; } /* the same links are in the menu row under the logo (.publicnav), and in the footer */
+  .nav.publicnav { display: flex; }
   .loginbtn .long { display: none; }
   .loginbtn .short { display: inline; }
 }
