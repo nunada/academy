@@ -5,7 +5,7 @@ import type { Loc } from './types'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
-export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house' | 'number-maze' | 'nurikabe' | 'hashi'
+export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house' | 'number-maze' | 'nurikabe' | 'hashi' | 'tic-tac-logic'
 
 export interface GameMeta {
   id: GameId
@@ -1623,6 +1623,166 @@ Di dalam tiap ukuran teka-tekinya menanjak: yang pertama hanya butuh aturan pali
       L('Counting and satisfying several constraints at once', 'Menghitung dan memenuhi beberapa syarat sekaligus'),
       L('Reasoning about connected networks', 'Bernalar tentang jaringan yang tersambung'),
       L('Spatial reasoning on a grid', 'Penalaran ruang pada kotak'),
+    ],
+  },
+  {
+    id: 'tic-tac-logic',
+    slug: { en: 'tic-tac-logic', id: 'tic-tac-logic' },
+    icon: '❌',
+    title: L('Tic-Tac-Logic: Fill the Grid with X and O', 'Tic-Tac-Logic: Isi Kotak dengan X dan O'),
+    seoTitle: L('Tic-Tac-Logic: a Free X and O Logic Puzzle', 'Tic-Tac-Logic: Teka-teki Logika X dan O Gratis'),
+    description: L(
+      'A free Tic-Tac-Logic puzzle with 40 puzzles in five sizes, 4×4 to 12×12. Fill the grid with X and O so that no three of a kind sit in a row, every row and column has as many X as O, and no two rows or columns are the same. Every puzzle has exactly one answer, found by reasoning alone.',
+      'Teka-teki Tic-Tac-Logic gratis dengan 40 teka-teki dalam lima ukuran, 4×4 sampai 12×12. Isi kotak dengan X dan O sehingga tidak ada tiga yang sama berurutan, setiap baris dan kolom punya X dan O sama banyak, dan tidak ada dua baris atau kolom yang sama. Setiap teka-teki punya tepat satu jawaban, yang ditemukan dengan penalaran saja.',
+    ),
+    keywords: L(
+      'tic-tac-logic, tic tac logic puzzle, x and o puzzle, binary puzzle, takuzu, binairo, logic puzzle game, free logic puzzle online, deduction puzzle, brain teaser, puzzle with one solution, learn logic by playing',
+      'tic-tac-logic, teka-teki tic tac logic, teka-teki x dan o, teka-teki biner, takuzu, binairo, game teka-teki logika, teka-teki logika online gratis, teka-teki deduksi, asah otak, teka-teki dengan satu jawaban, belajar logika sambil bermain',
+    ),
+    tagline: L('Fill the grid with X and O without three in a row.', 'Isi kotak dengan X dan O tanpa tiga berurutan.'),
+    answer: L(
+      '**Tic-Tac-Logic is a logic puzzle on a grid: some X and O are given, and you fill every other cell with X or O so that no three of a kind are next to each other, every row and column has as many X as O, and no two rows or two columns are the same.** Every puzzle here has exactly one answer, and you can always reach it by reasoning, without guessing. There are 40 puzzles in five sizes, and you play with a tap, a drag or the keyboard.',
+      '**Tic-Tac-Logic adalah teka-teki logika di atas kotak: beberapa X dan O sudah diberikan, dan kamu mengisi setiap petak lain dengan X atau O sehingga tidak ada tiga yang sama berdampingan, setiap baris dan kolom punya X dan O sama banyak, dan tidak ada dua baris atau dua kolom yang sama.** Setiap teka-teki di sini punya tepat satu jawaban, dan kamu selalu bisa mencapainya dengan penalaran, tanpa menebak. Ada 40 teka-teki dalam lima ukuran, dan kamu bermain dengan ketukan, geseran, atau keyboard.',
+    ),
+    published: '2026-11-23',
+    updated: '2026-11-23',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Tic-Tac-Logic?', 'Bagaimana cara memainkan Tic-Tac-Logic?'),
+        text: L(
+          `1. Pick a puzzle. Some cells already hold an X or an O, in a lighter box; they cannot be changed.
+2. **Press an empty cell** to put an **X**. Press it again for an **O**, and once more to clear it. You can also **drag** across cells to mark several at once.
+3. With the keyboard, move with the **arrow keys** and press **Space** or **Enter** to change the cell. **X** and **O** put that symbol, **C** clears.
+4. Keep going until every cell is filled and every rule below is kept. The game notices by itself and shows **Solved!**
+5. **Undo** (Z) takes back a move, **Restart** (R) clears your marks, **Check** tells you which rule is broken (if any), and **Hint** (H) points at a cell: first a mark that is not right, otherwise a cell that the rules decide.
+
+A ring around cells means they break a rule: three of a kind in a row, more than half of a row or column with one symbol, or two rows (or columns) that are the same.`,
+          `1. Pilih sebuah teka-teki. Beberapa petak sudah berisi X atau O, dalam kotak yang lebih terang; petak itu tidak bisa diubah.
+2. **Tekan petak kosong** untuk menaruh **X**. Tekan lagi untuk **O**, dan sekali lagi untuk menghapusnya. Kamu juga bisa **menggeser** melintasi petak untuk menandai beberapa sekaligus.
+3. Dengan keyboard, berpindah dengan **tombol panah** dan tekan **Spasi** atau **Enter** untuk mengubah petak. **X** dan **O** menaruh simbol itu, **C** menghapus.
+4. Teruskan sampai setiap petak terisi dan semua aturan di bawah terpenuhi. Game menyadarinya sendiri dan menampilkan **Selesai!**
+5. **Undo** (Z) menarik satu langkah, **Ulang** (R) menghapus tandamu, **Periksa** memberi tahu aturan mana yang dilanggar (kalau ada), dan **Petunjuk** (H) menunjuk sebuah petak: pertama tanda yang belum benar, kalau tidak ada maka petak yang ditentukan oleh aturan.
+
+Lingkaran di sekeliling petak berarti petak-petak itu melanggar aturan: tiga yang sama berurutan, satu simbol lebih dari separuh baris atau kolom, atau dua baris (atau kolom) yang sama.`,
+        ),
+      },
+      {
+        id: 'the-rules',
+        heading: L('What are the rules of Tic-Tac-Logic?', 'Apa aturan Tic-Tac-Logic?'),
+        text: L(
+          `| Rule | What it means |
+|---|---|
+| No three in a row | no row and no column has three X, or three O, next to each other |
+| Equal numbers | every row and every column has **as many X as O**, so half each |
+| No twins | no two rows are exactly the same, and no two columns are exactly the same |
+
+A good Tic-Tac-Logic puzzle has **exactly one answer**, and every puzzle in this game was checked by two different solvers to be so: you never have to guess, there is always a cell that the rules force.`,
+          `| Aturan | Artinya |
+|---|---|
+| Tidak ada tiga berurutan | tidak ada baris dan kolom yang punya tiga X, atau tiga O, berdampingan |
+| Sama banyak | setiap baris dan kolom punya **X sebanyak O**, jadi masing-masing separuh |
+| Tidak ada kembar | tidak ada dua baris yang persis sama, dan tidak ada dua kolom yang persis sama |
+
+Teka-teki Tic-Tac-Logic yang baik punya **tepat satu jawaban**, dan setiap teka-teki di game ini sudah diperiksa oleh dua solver berbeda bahwa memang begitu: kamu tidak perlu menebak, selalu ada petak yang dipaksa oleh aturan.`,
+        ),
+      },
+      {
+        id: 'how-to-solve',
+        heading: L('How do you solve a Tic-Tac-Logic puzzle?', 'Bagaimana cara menyelesaikan teka-teki Tic-Tac-Logic?'),
+        text: L(
+          `- **A pair shuts both ends.** Two X next to each other cannot have a third X beside them, so the cells on both sides are O. The same for two O.
+- **A gap between two of a kind is the other symbol.** In X _ X the middle cell must be O, or the three would be X X X.
+- **Count a whole line.** When a row already has half of its cells as X, every empty cell in it is O. The same goes for O, and for columns.
+- **Count what is left to place.** If a row needs three more O and has exactly three empty cells, they are all O. Look at which cells can hold an X without making three in a row.
+- **Rows must differ.** When one row is complete and another matches it in every cell filled so far, the last empty cell of the other row has to be different from it.
+- **Work on rows and columns together.** A cell that you settle in a row is a new clue for its column.
+
+If you are stuck, press **Hint**: it never fills a cell for you, it only points at one.`,
+          `- **Sepasang menutup kedua ujung.** Dua X yang berdampingan tidak boleh punya X ketiga di sebelahnya, jadi petak di kedua sisinya adalah O. Begitu juga untuk dua O.
+- **Celah di antara dua yang sama adalah simbol lain.** Pada X _ X petak tengah harus O, kalau tidak, ketiganya menjadi X X X.
+- **Hitung satu baris penuh.** Bila sebuah baris sudah punya separuh petaknya berupa X, setiap petak kosong di dalamnya adalah O. Begitu juga untuk O, dan untuk kolom.
+- **Hitung yang masih harus ditaruh.** Bila sebuah baris butuh tiga O lagi dan punya tepat tiga petak kosong, ketiganya O. Lihat petak mana yang bisa berisi X tanpa membuat tiga berurutan.
+- **Baris harus berbeda.** Bila satu baris sudah lengkap dan baris lain sama dengannya di semua petak yang terisi sejauh ini, petak kosong terakhir di baris lain itu harus berbeda darinya.
+- **Kerjakan baris dan kolom bersama.** Petak yang kamu tentukan di sebuah baris adalah petunjuk baru bagi kolomnya.
+
+Bila buntu, tekan **Petunjuk**: ia tidak pernah mengisi petak untukmu, hanya menunjuknya.`,
+        ),
+      },
+      {
+        id: 'sizes',
+        heading: L('How big are the puzzles?', 'Seberapa besar teka-tekinya?'),
+        text: L(
+          `| Size | Puzzles | What it is like |
+|---|---|---|
+| 4×4 Tiny | 8 | learn the three rules on a small grid |
+| 6×6 Small | 8 | pairs and gaps start to decide cells |
+| 8×8 Medium | 8 | counting a whole row or column |
+| 10×10 Large | 8 | rows that must not be the same |
+| 12×12 Huge | 8 | the big ones |
+
+Inside each size the puzzles climb: the first has many given cells and needs only the simplest rules, the last has few and needs several rules working together. All sizes are open from the start, and a puzzle is solved or not: nothing counts your time, your moves or your mistakes.`,
+          `| Ukuran | Teka-teki | Rasanya |
+|---|---|---|
+| 4×4 Mungil | 8 | belajar tiga aturan di kotak kecil |
+| 6×6 Kecil | 8 | pasangan dan celah mulai menentukan petak |
+| 8×8 Sedang | 8 | menghitung satu baris atau kolom penuh |
+| 10×10 Besar | 8 | baris yang tidak boleh sama |
+| 12×12 Raksasa | 8 | yang besar |
+
+Di dalam tiap ukuran teka-tekinya menanjak: yang pertama punya banyak petak yang diberikan dan hanya butuh aturan paling sederhana, yang terakhir punya sedikit dan butuh beberapa aturan bekerja bersama. Semua ukuran terbuka sejak awal, dan sebuah teka-teki selesai atau belum: tidak ada yang menghitung waktu, langkah, atau kesalahanmu.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('What is Tic-Tac-Logic?', 'Apa itu Tic-Tac-Logic?'),
+        a: L(
+          'Tic-Tac-Logic is a logic puzzle played on a grid with X and O. You fill in the empty cells using three rules: no three of a kind in a row, equal numbers of X and O in every row and column, and no two identical rows or columns. Similar puzzles go by the names Takuzu and Binairo.',
+          'Tic-Tac-Logic adalah teka-teki logika yang dimainkan di kotak dengan X dan O. Kamu mengisi petak kosong dengan tiga aturan: tidak ada tiga yang sama berurutan, X dan O sama banyak di setiap baris dan kolom, dan tidak ada dua baris atau kolom yang identik. Teka-teki serupa dikenal dengan nama Takuzu dan Binairo.',
+        ),
+      },
+      {
+        q: L('Do I have to guess?', 'Apakah aku harus menebak?'),
+        a: L(
+          'No. Every puzzle has exactly one answer and can be solved by reasoning. A solver written for this game checked that each puzzle has one answer, and a second, different solver checked it again.',
+          'Tidak. Setiap teka-teki punya tepat satu jawaban dan bisa diselesaikan dengan penalaran. Sebuah solver yang ditulis untuk game ini memeriksa bahwa tiap teka-teki punya satu jawaban, dan solver kedua yang berbeda memeriksanya lagi.',
+        ),
+      },
+      {
+        q: L('Why can I not change some cells?', 'Mengapa beberapa petak tidak bisa diubah?'),
+        a: L(
+          'The cells in a lighter box are given: they are the clues of the puzzle. Everything else is for you to fill in.',
+          'Petak dalam kotak yang lebih terang adalah petak yang diberikan: itulah petunjuk teka-teki. Selebihnya untuk kamu isi.',
+        ),
+      },
+      {
+        q: L('What do Check and Hint do?', 'Apa fungsi Periksa dan Petunjuk?'),
+        a: L(
+          'Check says which rule is broken right now, without telling you where the answer is. Hint points at one cell: first a mark of yours that is not right, then a cell that the rules decide, so you still have to work out what goes in it.',
+          'Periksa memberi tahu aturan mana yang sedang dilanggar, tanpa memberi tahu di mana jawabannya. Petunjuk menunjuk satu petak: pertama tanda milikmu yang belum benar, lalu petak yang ditentukan oleh aturan, sehingga kamu tetap harus mencari apa isinya.',
+        ),
+      },
+      {
+        q: L('Can I play it on a phone?', 'Bisakah dimainkan di ponsel?'),
+        a: L(
+          'Yes. Tap a cell to put an X, tap again for an O, and drag across cells to mark several. On a computer you can also use the arrow keys, Space, X, O, Z to undo, R to restart and H for a hint.',
+          'Bisa. Ketuk sebuah petak untuk menaruh X, ketuk lagi untuk O, dan geser melintasi petak untuk menandai beberapa sekaligus. Di komputer kamu juga bisa memakai tombol panah, Spasi, X, O, Z untuk Undo, R untuk Ulang, dan H untuk petunjuk.',
+        ),
+      },
+      {
+        q: L('Does it save my progress?', 'Apakah progresku disimpan?'),
+        a: L(
+          'Yes, in this browser: which puzzles you have solved. Nothing is sent to an account.',
+          'Ya, di browser ini: teka-teki mana yang sudah selesai. Tidak ada yang dikirim ke sebuah akun.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Logical deduction without guessing', 'Deduksi logis tanpa menebak'),
+      L('Counting and balance (as many of each in every line)', 'Menghitung dan keseimbangan (sama banyak di setiap baris)'),
+      L('Spotting patterns in rows and columns', 'Mengenali pola di baris dan kolom'),
+      L('Combining several rules to find one forced move', 'Menggabungkan beberapa aturan untuk menemukan satu langkah yang dipaksa'),
     ],
   },
 ]

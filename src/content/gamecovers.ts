@@ -179,6 +179,28 @@ function hashi(): string {
   return s
 }
 
+/** A 4x4 Tic-Tac-Logic, a full grid that keeps the rules: X in blue, O in gold, no three of a kind in a row. */
+function ticTacLogic(): string {
+  const c = 40
+  const gap = 5
+  const x0 = 112
+  const y0 = 12
+  const rows = ['XXOO', 'OXOX', 'XOXO', 'OOXX']
+  let s = ''
+  rows.forEach((row, r) => {
+    for (let k = 0; k < 4; k++) {
+      const x = x0 + k * (c + gap)
+      const y = y0 + r * (c + gap)
+      s += rect(x, y, c, c, 'pm', 6)
+      const mx = x + c / 2
+      const my = y + c / 2
+      if (row[k] === 'X') s += line(mx - 11, my - 11, mx + 11, my + 11, 'sd', 5) + line(mx - 11, my + 11, mx + 11, my - 11, 'sd', 5)
+      else s += ellipse(mx, my, 12, 12, 'sc')
+    }
+  })
+  return s
+}
+
 const generic = (): string => rect(120, 50, 160, 100, 'pa', 14) + text(200, 118, '?', 52)
 
 const COVERS: Record<string, () => string> = {
@@ -192,6 +214,7 @@ const COVERS: Record<string, () => string> = {
   'number-maze': numberMaze,
   nurikabe,
   hashi,
+  'tic-tac-logic': ticTacLogic,
 }
 
 /** The whole `<svg>` of a game's cover, as markup. Decorative: the card already carries the title. */
