@@ -201,6 +201,54 @@ function ticTacLogic(): string {
   return s
 }
 
+/** The 4x4 grid of a cover: thin lines between cells, thick lines around the 2x2 boxes. */
+function sudokuGrid(x0: number, y0: number, c: number): string {
+  let s = ''
+  for (let k = 1; k < 4; k++) if (k !== 2) s += line(x0 + k * c, y0, x0 + k * c, y0 + 4 * c, 'sm', 1.5) + line(x0, y0 + k * c, x0 + 4 * c, y0 + k * c, 'sm', 1.5)
+  s += line(x0 + 2 * c, y0, x0 + 2 * c, y0 + 4 * c, 'st', 4) + line(x0, y0 + 2 * c, x0 + 4 * c, y0 + 2 * c, 'st', 4)
+  return s + rect(x0, y0, 4 * c, 4 * c, 'st', 4)
+}
+
+/** A small Sudoku, a real one with one answer: the digits given sit in shaded cells. */
+function sudoku(): string {
+  const c = 42
+  const x0 = 116
+  const y0 = 16
+  const rows = ['4...', '21.4', '..2.', '324.']
+  let s = ''
+  rows.forEach((row, r) => {
+    for (let k = 0; k < 4; k++) if (row[k] !== '.') s += rect(x0 + k * c + 1.5, y0 + r * c + 1.5, c - 3, c - 3, 'pm', 2) + text(x0 + k * c + c / 2, y0 + r * c + c / 2 + 10, row[k], 28)
+  })
+  return s + sudokuGrid(x0, y0, c)
+}
+
+/** A small Sum Sudoku, a real one with one answer: six cages, each with its sum in the corner, drawn with dashed lines inside the cells. */
+function sumSudoku(): string {
+  const c = 42
+  const x0 = 116
+  const y0 = 16
+  const cages: [number, number[]][] = [[4, [0, 4]], [10, [1, 2, 3, 6]], [2, [5]], [9, [7, 11, 15]], [10, [8, 9, 10, 12]], [5, [13, 14]]]
+  const of = new Map<number, number>()
+  cages.forEach(([, cells], k) => cells.forEach((i) => of.set(i, k)))
+  let s = ''
+  cages.forEach(([sum, cells], k) => {
+    for (const i of cells) {
+      const r = Math.floor(i / 4)
+      const q = i % 4
+      const x = x0 + q * c
+      const y = y0 + r * c
+      const d = 5
+      if (r === 0 || of.get(i - 4) !== k) s += line(x + d, y + d, x + c - d, y + d, 'sm', 2, '5 4')
+      if (r === 3 || of.get(i + 4) !== k) s += line(x + d, y + c - d, x + c - d, y + c - d, 'sm', 2, '5 4')
+      if (q === 0 || of.get(i - 1) !== k) s += line(x + d, y + d, x + d, y + c - d, 'sm', 2, '5 4')
+      if (q === 3 || of.get(i + 1) !== k) s += line(x + c - d, y + d, x + c - d, y + c - d, 'sm', 2, '5 4')
+    }
+    const first = cells[0]
+    s += text(x0 + (first % 4) * c + 8, y0 + Math.floor(first / 4) * c + 20, String(sum), 15, '', 'start')
+  })
+  return s + sudokuGrid(x0, y0, c)
+}
+
 const generic = (): string => rect(120, 50, 160, 100, 'pa', 14) + text(200, 118, '?', 52)
 
 const COVERS: Record<string, () => string> = {
@@ -215,6 +263,8 @@ const COVERS: Record<string, () => string> = {
   nurikabe,
   hashi,
   'tic-tac-logic': ticTacLogic,
+  sudoku,
+  'sum-sudoku': sumSudoku,
 }
 
 /** The whole `<svg>` of a game's cover, as markup. Decorative: the card already carries the title. */

@@ -307,7 +307,7 @@ function Board({ data, tier, index, hasNext, onExit, onNext, onSolved }: { data:
         >
           {Array.from({ length: w * h }, (_, i) => {
             const m = marks.current[i]
-            const cls = ['ttc', given[i] !== BLANK ? 'given' : '', m === X ? 'x' : m === O ? 'o' : '', bad.has(i) ? 'bad' : '', i === cur ? 'cur' : '', flash === i ? 'flash' : '', won ? 'won' : ''].filter(Boolean).join(' ')
+            const cls = ['ttc', given[i] !== BLANK ? 'ttgiven' : '', m === X ? 'x' : m === O ? 'o' : '', bad.has(i) ? 'bad' : '', i === cur ? 'cur' : '', flash === i ? 'flash' : '', won ? 'won' : ''].filter(Boolean).join(' ')
             return (
               <div key={i} data-i={i} className={cls} aria-hidden="true">
                 {SYMBOL(m)}

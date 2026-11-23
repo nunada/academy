@@ -83,6 +83,8 @@
     "check:nurikabe": "node tools/check-nurikabe.mjs",
     "check:hashi": "node tools/check-hashi.mjs",
     "check:tictaclogic": "node tools/check-tictaclogic.mjs",
+    "check:sudoku": "node tools/check-sudoku.mjs",
+    "check:sumsudoku": "node tools/check-sumsudoku.mjs",
     "check:views": "node tools/check-views.mjs",
     "check:viewssql": "node tools/check-viewssql.mjs",
     "check:indexnow": "node tools/check-indexnow.mjs",

@@ -5,7 +5,7 @@ import type { Loc } from './types'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
-export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house' | 'number-maze' | 'nurikabe' | 'hashi' | 'tic-tac-logic'
+export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house' | 'number-maze' | 'nurikabe' | 'hashi' | 'tic-tac-logic' | 'sudoku' | 'sum-sudoku'
 
 export interface GameMeta {
   id: GameId
@@ -1783,6 +1783,324 @@ Di dalam tiap ukuran teka-tekinya menanjak: yang pertama punya banyak petak yang
       L('Counting and balance (as many of each in every line)', 'Menghitung dan keseimbangan (sama banyak di setiap baris)'),
       L('Spotting patterns in rows and columns', 'Mengenali pola di baris dan kolom'),
       L('Combining several rules to find one forced move', 'Menggabungkan beberapa aturan untuk menemukan satu langkah yang dipaksa'),
+    ],
+  },
+  {
+    id: 'sudoku',
+    slug: { en: 'sudoku', id: 'sudoku' },
+    icon: '🔢',
+    title: L('Sudoku: Fill the Grid with Digits', 'Sudoku: Isi Kotak dengan Angka'),
+    seoTitle: L('Sudoku: Free Online Sudoku, 4×4 to 9×9', 'Sudoku Gratis: Teka-teki Angka 4×4 sampai 9×9'),
+    description: L(
+      'A free Sudoku game with 40 puzzles in five sizes, from a small 4×4 to the classic 9×9. Fill the grid so that no digit appears twice in a row, a column or a box. Every puzzle has exactly one answer, there are notes, and a hint that points at a cell without filling it.',
+      'Game Sudoku gratis dengan 40 teka-teki dalam lima ukuran, dari 4×4 yang kecil sampai 9×9 yang klasik. Isi kotak sehingga tidak ada angka yang muncul dua kali dalam satu baris, kolom, atau kotak kecil. Setiap teka-teki punya tepat satu jawaban, ada catatan, dan petunjuk yang menunjuk sebuah petak tanpa mengisinya.',
+    ),
+    keywords: L(
+      'sudoku, free sudoku online, sudoku game, sudoku 9x9, easy sudoku, hard sudoku, mini sudoku 4x4, sudoku 6x6, number puzzle, logic puzzle, sudoku with notes, learn sudoku, sudoku for kids',
+      'sudoku, sudoku gratis online, game sudoku, sudoku 9x9, sudoku mudah, sudoku sulit, sudoku mini 4x4, sudoku 6x6, teka-teki angka, teka-teki logika, sudoku dengan catatan, belajar sudoku, sudoku untuk anak',
+    ),
+    tagline: L('Every digit once in every row, column and box.', 'Setiap angka sekali di setiap baris, kolom, dan kotak.'),
+    answer: L(
+      '**Sudoku is a number puzzle on a grid: you fill every cell with a digit so that no digit appears twice in a row, in a column or in a box.** Some digits are given, and every puzzle here has exactly one answer that you can reach by reasoning, with no blind guessing. There are 40 puzzles in five sizes, from a small 4×4 to the classic 9×9, and you play with a tap, a keyboard, notes, a check and a hint.',
+      '**Sudoku adalah teka-teki angka di atas kotak: kamu mengisi setiap petak dengan satu angka sehingga tidak ada angka yang muncul dua kali dalam satu baris, satu kolom, atau satu kotak kecil.** Beberapa angka sudah diberikan, dan setiap teka-teki di sini punya tepat satu jawaban yang bisa dicapai dengan penalaran, tanpa menebak buta. Ada 40 teka-teki dalam lima ukuran, dari 4×4 yang kecil sampai 9×9 yang klasik, dan kamu bermain dengan ketukan, keyboard, catatan, pemeriksaan, dan petunjuk.',
+    ),
+    published: '2026-11-23',
+    updated: '2026-11-23',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Sudoku?', 'Bagaimana cara memainkan Sudoku?'),
+        text: L(
+          `1. Pick a puzzle. Some cells already hold a digit, in a shaded cell; they cannot be changed.
+2. **Tap a cell** to select it, then tap a **digit** below the grid (or press the digit on the keyboard) to put it there. Tap the same digit again to take it out.
+3. Switch **Notes** on to write a digit small in a cell, as a candidate that may still go there. **Fill notes** writes every candidate for you; a digit that you place is taken out of the notes of the cells that see it.
+4. With the keyboard, move with the **arrow keys**, type a digit to place it, **Delete** clears, **N** switches notes, **Z** undoes, **R** restarts, **C** checks and **H** gives a hint.
+5. Keep going until every cell is filled and every rule below is kept. The game notices by itself and shows **Solved!**
+
+A red ring and a red digit mean that digit is twice in a row, a column or a box. **Check** tells you which of those it is, and **Hint** points at a cell: first a digit of yours that is not right, then a cell that the rules decide.`,
+          `1. Pilih sebuah teka-teki. Beberapa petak sudah berisi angka, dalam petak yang diarsir; petak itu tidak bisa diubah.
+2. **Ketuk sebuah petak** untuk memilihnya, lalu ketuk sebuah **angka** di bawah kotak (atau tekan angkanya di keyboard) untuk menaruhnya. Ketuk angka yang sama sekali lagi untuk mencabutnya.
+3. Nyalakan **Catatan** untuk menulis angka kecil di sebuah petak, sebagai calon yang mungkin masih masuk ke situ. **Isi catatan** menuliskan semua calon untukmu; angka yang kamu taruh dicabut dari catatan petak-petak yang melihatnya.
+4. Dengan keyboard, berpindah dengan **tombol panah**, ketik angka untuk menaruhnya, **Delete** menghapus, **N** mengganti catatan, **Z** membatalkan, **R** mengulang, **C** memeriksa, dan **H** memberi petunjuk.
+5. Teruskan sampai setiap petak terisi dan semua aturan di bawah terpenuhi. Game menyadarinya sendiri dan menampilkan **Selesai!**
+
+Lingkaran merah dan angka merah berarti angka itu muncul dua kali dalam satu baris, kolom, atau kotak kecil. **Periksa** memberi tahu yang mana, dan **Petunjuk** menunjuk sebuah petak: pertama angka milikmu yang belum benar, lalu petak yang ditentukan oleh aturan.`,
+        ),
+      },
+      {
+        id: 'the-rules',
+        heading: L('What are the rules of Sudoku?', 'Apa aturan Sudoku?'),
+        text: L(
+          `| Rule | What it means |
+|---|---|
+| Rows | every row has each digit from 1 up to the size of the grid **once** |
+| Columns | every column has each digit **once** |
+| Boxes | every box has each digit **once**: 2×2 boxes on the 4×4 grid, 2 rows by 3 columns on the 6×6 grid, 3×3 on the 9×9 grid |
+
+So on a 9×9 grid the digits are 1 to 9, on a 6×6 grid 1 to 6, and on a 4×4 grid 1 to 4. A good Sudoku puzzle has **exactly one answer**, and every puzzle in this game was checked by two different solvers to be so.`,
+          `| Aturan | Artinya |
+|---|---|
+| Baris | setiap baris memuat setiap angka dari 1 sampai ukuran kotak **sekali** |
+| Kolom | setiap kolom memuat setiap angka **sekali** |
+| Kotak kecil | setiap kotak kecil memuat setiap angka **sekali**: 2×2 di kotak 4×4, 2 baris kali 3 kolom di kotak 6×6, 3×3 di kotak 9×9 |
+
+Jadi di kotak 9×9 angkanya 1 sampai 9, di kotak 6×6 angkanya 1 sampai 6, dan di kotak 4×4 angkanya 1 sampai 4. Teka-teki Sudoku yang baik punya **tepat satu jawaban**, dan setiap teka-teki di game ini sudah diperiksa oleh dua solver berbeda bahwa memang begitu.`,
+        ),
+      },
+      {
+        id: 'how-to-solve',
+        heading: L('How do you solve a Sudoku?', 'Bagaimana cara menyelesaikan Sudoku?'),
+        text: L(
+          `- **Only one digit fits.** Look at a cell and the digits already in its row, its column and its box. If eight of the nine digits are taken, the ninth goes there. (The hint calls this the last candidate.)
+- **Only one place is left.** Pick a digit and a row, a column or a box. If every cell but one is shut for that digit, the digit goes in that cell.
+- **Use notes.** Write the candidates small. Each digit you place removes that digit from the notes of the 20 cells that see it, and a cell with a single note left is decided.
+- **Work around the grid.** Pick the digit that is already there most often and see where it still fits; then the next one.
+- **Try and follow.** In the hard puzzles the rules alone stop for a moment. Take a cell with only two candidates, try one, and follow what it forces: if it leads to a digit twice in a row, the other candidate is the one. This is reasoning, not luck, because the puzzle has only one answer.
+
+If you are stuck, press **Hint**: it never fills a cell for you, it only points at one.`,
+          `- **Hanya satu angka yang cocok.** Lihat sebuah petak dan angka yang sudah ada di baris, kolom, dan kotak kecilnya. Kalau delapan dari sembilan angka sudah terpakai, angka kesembilan masuk ke situ. (Petunjuk menyebutnya calon terakhir.)
+- **Hanya satu tempat tersisa.** Pilih sebuah angka dan sebuah baris, kolom, atau kotak kecil. Kalau semua petak kecuali satu tertutup untuk angka itu, angka itu masuk ke petak tersebut.
+- **Pakai catatan.** Tulis para calon dengan kecil. Setiap angka yang kamu taruh mencabut angka itu dari catatan 20 petak yang melihatnya, dan petak yang tinggal satu catatan sudah tertentu.
+- **Berkelilinglah di kotak.** Pilih angka yang paling sering sudah muncul dan lihat di mana ia masih muat; lalu angka berikutnya.
+- **Coba dan ikuti.** Pada teka-teki sulit, aturan saja berhenti sejenak. Ambil petak yang hanya punya dua calon, coba satu, dan ikuti apa yang dipaksakannya: kalau berakhir dengan angka kembar dalam satu baris, calon yang lain adalah jawabannya. Ini penalaran, bukan untung-untungan, karena teka-teki hanya punya satu jawaban.
+
+Bila buntu, tekan **Petunjuk**: ia tidak pernah mengisi petak untukmu, hanya menunjuknya.`,
+        ),
+      },
+      {
+        id: 'sizes',
+        heading: L('How big are the puzzles?', 'Seberapa besar teka-tekinya?'),
+        text: L(
+          `| Size | Puzzles | What it is like |
+|---|---|---|
+| 4×4 Tiny | 8 | digits 1 to 4, boxes of 2×2: learn the rules |
+| 6×6 Small | 8 | digits 1 to 6, boxes of 2 rows by 3 columns |
+| 9×9 Easy | 8 | the classic grid with many digits given |
+| 9×9 Medium | 8 | fewer digits given, still no trying needed |
+| 9×9 Hard | 8 | singles are not enough: try a digit and follow it |
+
+Inside each size the puzzles climb, the first being the easiest. All sizes are open from the start, and a puzzle is solved or not: nothing counts your time, your moves or your mistakes.`,
+          `| Ukuran | Teka-teki | Rasanya |
+|---|---|---|
+| 4×4 Mungil | 8 | angka 1 sampai 4, kotak kecil 2×2: pelajari aturannya |
+| 6×6 Kecil | 8 | angka 1 sampai 6, kotak kecil 2 baris kali 3 kolom |
+| 9×9 Mudah | 8 | kotak klasik dengan banyak angka diberikan |
+| 9×9 Sedang | 8 | angka diberikan lebih sedikit, tetap tanpa mencoba-coba |
+| 9×9 Sulit | 8 | satu-satunya tempat tidak cukup: coba satu angka dan ikuti akibatnya |
+
+Di dalam tiap ukuran teka-tekinya menanjak, yang pertama paling mudah. Semua ukuran terbuka sejak awal, dan sebuah teka-teki selesai atau belum: tidak ada yang menghitung waktu, langkah, atau kesalahanmu.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('What is Sudoku?', 'Apa itu Sudoku?'),
+        a: L(
+          'Sudoku is a logic puzzle played on a grid. You put a digit in every empty cell so that no digit is repeated in a row, a column or a box. No arithmetic is needed: the digits could be letters or colors, and the puzzle would be the same.',
+          'Sudoku adalah teka-teki logika yang dimainkan di kotak. Kamu menaruh angka di setiap petak kosong sehingga tidak ada angka yang berulang dalam satu baris, kolom, atau kotak kecil. Tidak ada hitung-hitungan: angkanya bisa diganti huruf atau warna, dan teka-tekinya tetap sama.',
+        ),
+      },
+      {
+        q: L('Do I have to guess?', 'Apakah aku harus menebak?'),
+        a: L(
+          'Not blindly. Every puzzle has exactly one answer. In the easy and medium puzzles each next digit follows from the rules alone. In the hard ones you may have to try a digit and follow what it forces, which is reasoning and not luck. A solver written for this game checked that each puzzle has one answer, and a second, different solver checked it again.',
+          'Tidak secara buta. Setiap teka-teki punya tepat satu jawaban. Pada teka-teki mudah dan sedang, setiap angka berikutnya mengikuti dari aturan saja. Pada yang sulit, kamu mungkin harus mencoba satu angka dan mengikuti apa yang dipaksakannya, yaitu penalaran dan bukan untung-untungan. Sebuah solver yang ditulis untuk game ini memeriksa bahwa tiap teka-teki punya satu jawaban, dan solver kedua yang berbeda memeriksanya lagi.',
+        ),
+      },
+      {
+        q: L('What are notes for?', 'Untuk apa catatan?'),
+        a: L(
+          'Notes are small digits in a cell: the digits that could still go there. They keep track of what you have worked out, so you do not have to hold it in your head. Fill notes writes all of them for you, and placing a digit clears it from the notes of the cells that see it.',
+          'Catatan adalah angka kecil di sebuah petak: angka yang masih mungkin masuk ke situ. Catatan menyimpan apa yang sudah kamu temukan, jadi kamu tidak perlu mengingatnya di kepala. Isi catatan menuliskan semuanya untukmu, dan menaruh sebuah angka akan mencabutnya dari catatan petak-petak yang melihatnya.',
+        ),
+      },
+      {
+        q: L('What do Check and Hint do?', 'Apa fungsi Periksa dan Petunjuk?'),
+        a: L(
+          'Check says which rule is broken right now (a digit twice in a row, a column or a box), without telling you where the answer is. Hint points at one cell: first a digit of yours that is not right, then a cell that the rules decide, and it tells you the kind of reason, so you still have to work out the digit.',
+          'Periksa memberi tahu aturan mana yang sedang dilanggar (angka kembar dalam satu baris, kolom, atau kotak kecil), tanpa memberi tahu di mana jawabannya. Petunjuk menunjuk satu petak: pertama angka milikmu yang belum benar, lalu petak yang ditentukan oleh aturan, dengan menyebut jenis alasannya, sehingga kamu tetap harus mencari angkanya.',
+        ),
+      },
+      {
+        q: L('Can I play it on a phone?', 'Bisakah dimainkan di ponsel?'),
+        a: L(
+          'Yes. Tap a cell, then a digit under the grid. On a computer you can also use the arrow keys, the digit keys, N for notes, Z to undo, R to restart, C to check and H for a hint.',
+          'Bisa. Ketuk sebuah petak, lalu sebuah angka di bawah kotak. Di komputer kamu juga bisa memakai tombol panah, tombol angka, N untuk catatan, Z untuk Undo, R untuk Ulang, C untuk Periksa, dan H untuk petunjuk.',
+        ),
+      },
+      {
+        q: L('Does it save my progress?', 'Apakah progresku disimpan?'),
+        a: L(
+          'Yes, in this browser: which puzzles you have solved. Nothing is sent to an account.',
+          'Ya, di browser ini: teka-teki mana yang sudah selesai. Tidak ada yang dikirim ke sebuah akun.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Logical deduction without blind guessing', 'Deduksi logis tanpa menebak buta'),
+      L('Keeping track of possibilities (candidates and notes)', 'Melacak kemungkinan (calon dan catatan)'),
+      L('Reasoning by elimination', 'Bernalar dengan menyingkirkan kemungkinan'),
+      L('Trying a case and following what it forces', 'Mencoba satu kasus dan mengikuti akibatnya'),
+    ],
+  },
+  {
+    id: 'sum-sudoku',
+    slug: { en: 'sum-sudoku', id: 'sum-sudoku' },
+    icon: '➕',
+    title: L('Sum Sudoku: Sudoku with Cages and Sums', 'Sum Sudoku: Sudoku dengan Kandang dan Jumlah'),
+    seoTitle: L('Sum Sudoku: a Free Sudoku with Cage Sums', 'Sum Sudoku: Sudoku Gratis dengan Jumlah Kandang'),
+    description: L(
+      'A free Sum Sudoku game (also called Killer Sudoku) with 40 puzzles in five sizes, from 4×4 to 9×9. The grid is cut into dashed cages that each show a sum: the digits in a cage are all different and add up to it, on top of the usual Sudoku rules. Every puzzle has exactly one answer.',
+      'Game Sum Sudoku gratis (juga disebut Killer Sudoku) dengan 40 teka-teki dalam lima ukuran, dari 4×4 sampai 9×9. Kotak dibagi menjadi kandang bergaris putus-putus yang masing-masing menunjukkan jumlah: angka dalam satu kandang semuanya berbeda dan berjumlah sesuai angkanya, di atas aturan Sudoku yang biasa. Setiap teka-teki punya tepat satu jawaban.',
+    ),
+    keywords: L(
+      'sum sudoku, sumsudoku, killer sudoku, sudoku with sums, cage sudoku, sudoku with cages, sum puzzle, free killer sudoku online, number puzzle, logic puzzle, addition puzzle, math puzzle game',
+      'sum sudoku, sumsudoku, killer sudoku, sudoku dengan jumlah, sudoku kandang, sudoku dengan kandang, teka-teki jumlah, killer sudoku gratis online, teka-teki angka, teka-teki logika, teka-teki penjumlahan, game teka-teki matematika',
+    ),
+    tagline: L('Sudoku where cages tell you the sum.', 'Sudoku di mana kandang memberi tahu jumlahnya.'),
+    answer: L(
+      '**Sum Sudoku is a Sudoku in which the grid is cut into cages, each showing a number: the digits in a cage are all different and add up to that number.** The usual rules still hold, so no digit appears twice in a row, a column or a box. Often there are few or no digits given at all, and the sums do the work. There are 40 puzzles in five sizes, each with exactly one answer that you can reach by reasoning.',
+      '**Sum Sudoku adalah Sudoku di mana kotak dibagi menjadi kandang, masing-masing menunjukkan sebuah angka: angka-angka dalam satu kandang semuanya berbeda dan berjumlah angka itu.** Aturan yang biasa tetap berlaku, jadi tidak ada angka yang muncul dua kali dalam satu baris, kolom, atau kotak kecil. Sering kali hanya sedikit angka yang diberikan, atau tidak sama sekali, dan jumlah-jumlah itulah yang bekerja. Ada 40 teka-teki dalam lima ukuran, masing-masing dengan tepat satu jawaban yang bisa dicapai dengan penalaran.',
+    ),
+    published: '2026-11-23',
+    updated: '2026-11-23',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Sum Sudoku?', 'Bagaimana cara memainkan Sum Sudoku?'),
+        text: L(
+          `1. Pick a puzzle. The grid is cut into **cages**, drawn with a dashed line inside their cells; the small number in the corner of a cage is its **sum**. A cage of one cell is a digit that is given.
+2. **Tap a cell** to select it, then tap a **digit** below the grid (or press the digit on the keyboard) to put it there. Tap the same digit again to take it out.
+3. Switch **Notes** on to write a digit small in a cell, as a candidate that may still go there. **Fill notes** writes the candidates that the rows, columns and boxes leave; the cage sums are for you to use.
+4. With the keyboard, move with the **arrow keys**, type a digit to place it, **Delete** clears, **N** switches notes, **Z** undoes, **R** restarts, **C** checks and **H** gives a hint.
+5. Keep going until every cell is filled and every rule below is kept. The game notices by itself and shows **Solved!**
+
+A red ring and a red digit mean a digit twice in a row, a column, a box or a cage. A cage whose number turns red can no longer add up to its sum. **Check** says which rule is broken, and **Hint** points at a cell.`,
+          `1. Pilih sebuah teka-teki. Kotak dibagi menjadi **kandang**, digambar dengan garis putus-putus di dalam petak-petaknya; angka kecil di pojok sebuah kandang adalah **jumlahnya**. Kandang satu petak adalah angka yang diberikan.
+2. **Ketuk sebuah petak** untuk memilihnya, lalu ketuk sebuah **angka** di bawah kotak (atau tekan angkanya di keyboard) untuk menaruhnya. Ketuk angka yang sama sekali lagi untuk mencabutnya.
+3. Nyalakan **Catatan** untuk menulis angka kecil di sebuah petak, sebagai calon yang mungkin masih masuk ke situ. **Isi catatan** menuliskan calon yang tersisa dari baris, kolom, dan kotak kecil; jumlah kandang untuk kamu pakai sendiri.
+4. Dengan keyboard, berpindah dengan **tombol panah**, ketik angka untuk menaruhnya, **Delete** menghapus, **N** mengganti catatan, **Z** membatalkan, **R** mengulang, **C** memeriksa, dan **H** memberi petunjuk.
+5. Teruskan sampai setiap petak terisi dan semua aturan di bawah terpenuhi. Game menyadarinya sendiri dan menampilkan **Selesai!**
+
+Lingkaran merah dan angka merah berarti angka kembar dalam satu baris, kolom, kotak kecil, atau kandang. Kandang yang angkanya menjadi merah tidak mungkin lagi berjumlah sesuai angkanya. **Periksa** memberi tahu aturan mana yang dilanggar, dan **Petunjuk** menunjuk sebuah petak.`,
+        ),
+      },
+      {
+        id: 'the-rules',
+        heading: L('What are the rules of Sum Sudoku?', 'Apa aturan Sum Sudoku?'),
+        text: L(
+          `| Rule | What it means |
+|---|---|
+| Rows, columns, boxes | each has every digit from 1 up to the size of the grid **once**, as in Sudoku |
+| Cage sum | the digits in a cage **add up** to the small number in its corner |
+| Cage digits | a digit is used **only once** in a cage, even if the cage bends |
+
+For example, a cage of two cells with the sum 3 can only hold 1 and 2, in some order, because 3 + 0 is not possible and 1 + 1 would repeat a digit. A cage of two cells with the sum 17 holds 8 and 9. Good Sum Sudoku puzzles have **exactly one answer**, and every puzzle in this game was checked by two different solvers to be so.`,
+          `| Aturan | Artinya |
+|---|---|
+| Baris, kolom, kotak kecil | masing-masing memuat setiap angka dari 1 sampai ukuran kotak **sekali**, seperti di Sudoku |
+| Jumlah kandang | angka-angka dalam satu kandang **berjumlah** angka kecil di pojoknya |
+| Angka dalam kandang | sebuah angka dipakai **hanya sekali** dalam satu kandang, walaupun kandangnya berbelok |
+
+Misalnya, kandang dua petak dengan jumlah 3 hanya bisa berisi 1 dan 2, dalam urutan apa pun, karena 3 + 0 tidak mungkin dan 1 + 1 mengulang angka. Kandang dua petak dengan jumlah 17 berisi 8 dan 9. Teka-teki Sum Sudoku yang baik punya **tepat satu jawaban**, dan setiap teka-teki di game ini sudah diperiksa oleh dua solver berbeda bahwa memang begitu.`,
+        ),
+      },
+      {
+        id: 'how-to-solve',
+        heading: L('How do you solve a Sum Sudoku?', 'Bagaimana cara menyelesaikan Sum Sudoku?'),
+        text: L(
+          `- **Small and big sums.** Few sets of digits make a very small or a very big sum. In a cage of two cells, 3 is {1, 2} and 4 is {1, 3}, and on a 9×9 grid 16 is {7, 9} and 17 is {8, 9}. A cage of three cells with the sum 6 can only be {1, 2, 3}.
+- **List the sets.** For a cage, write down the sets of different digits that give its sum. A digit that is in none of the sets cannot go in the cage.
+- **Use the rest of the cage.** If a cage has the sum 10 with two cells and one of them is 4, the other is 6. Subtract what is placed from the sum.
+- **Cages inside a row.** When a cage lies in one row, its digits cannot appear anywhere else in that row; the same for a column and a box.
+- **Then the usual Sudoku ways.** Only one digit fits a cell, or only one place is left for a digit in a row, a column or a box.
+- **Try and follow.** In the hard puzzles, try a digit in a cell with two candidates and follow what it forces; a digit twice in a row or a cage that cannot add up ends that try.
+
+If you are stuck, press **Hint**: it never fills a cell for you, it only points at one, and says whether the cage sums are needed.`,
+          `- **Jumlah kecil dan besar.** Hanya sedikit himpunan angka yang menghasilkan jumlah yang sangat kecil atau sangat besar. Pada kandang dua petak, 3 adalah {1, 2} dan 4 adalah {1, 3}, dan di kotak 9×9 jumlah 16 adalah {7, 9} dan 17 adalah {8, 9}. Kandang tiga petak dengan jumlah 6 hanya bisa {1, 2, 3}.
+- **Daftar himpunannya.** Untuk sebuah kandang, tuliskan himpunan angka berbeda yang menghasilkan jumlahnya. Angka yang tidak ada di himpunan mana pun tidak bisa masuk kandang itu.
+- **Pakai sisa kandang.** Bila kandang dua petak berjumlah 10 dan salah satunya 4, yang lain 6. Kurangkan yang sudah terisi dari jumlahnya.
+- **Kandang di dalam satu baris.** Bila sebuah kandang terletak dalam satu baris, angkanya tidak boleh muncul di tempat lain pada baris itu; begitu juga untuk kolom dan kotak kecil.
+- **Lalu cara Sudoku biasa.** Hanya satu angka yang cocok untuk sebuah petak, atau hanya satu tempat tersisa untuk sebuah angka di baris, kolom, atau kotak kecil.
+- **Coba dan ikuti.** Pada teka-teki sulit, coba satu angka di petak yang punya dua calon dan ikuti apa yang dipaksakannya; angka kembar dalam satu baris atau kandang yang tidak mungkin berjumlah sesuai angkanya mengakhiri percobaan itu.
+
+Bila buntu, tekan **Petunjuk**: ia tidak pernah mengisi petak untukmu, hanya menunjuknya, dan menyebut apakah jumlah kandang dibutuhkan.`,
+        ),
+      },
+      {
+        id: 'sizes',
+        heading: L('How big are the puzzles?', 'Seberapa besar teka-tekinya?'),
+        text: L(
+          `| Size | Puzzles | What it is like |
+|---|---|---|
+| 4×4 Tiny | 8 | meet the cages on a small grid |
+| 6×6 Small | 8 | boxes of 2 rows by 3 columns, cages of two to five cells |
+| 9×9 Easy | 8 | small cages: many of them are one, two or three cells |
+| 9×9 Medium | 8 | bigger cages and fewer one-cell cages |
+| 9×9 Hard | 8 | few cages: try a digit and follow what it forces |
+
+Inside each size the puzzles climb, the first being the easiest. All sizes are open from the start, and a puzzle is solved or not: nothing counts your time, your moves or your mistakes.`,
+          `| Ukuran | Teka-teki | Rasanya |
+|---|---|---|
+| 4×4 Mungil | 8 | berkenalan dengan kandang di kotak kecil |
+| 6×6 Kecil | 8 | kotak kecil 2 baris kali 3 kolom, kandang dua sampai lima petak |
+| 9×9 Mudah | 8 | kandang kecil: banyak yang hanya satu, dua, atau tiga petak |
+| 9×9 Sedang | 8 | kandang lebih besar dan lebih sedikit kandang satu petak |
+| 9×9 Sulit | 8 | sedikit kandang: coba satu angka dan ikuti akibatnya |
+
+Di dalam tiap ukuran teka-tekinya menanjak, yang pertama paling mudah. Semua ukuran terbuka sejak awal, dan sebuah teka-teki selesai atau belum: tidak ada yang menghitung waktu, langkah, atau kesalahanmu.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('What is Sum Sudoku?', 'Apa itu Sum Sudoku?'),
+        a: L(
+          'Sum Sudoku is a Sudoku with an extra rule: the grid is cut into cages, and the digits of a cage are different and add up to the number shown in its corner. It is also known as Killer Sudoku. You still keep the Sudoku rules for rows, columns and boxes.',
+          'Sum Sudoku adalah Sudoku dengan satu aturan tambahan: kotak dibagi menjadi kandang, dan angka-angka dalam sebuah kandang berbeda satu sama lain dan berjumlah angka yang tertulis di pojoknya. Ia juga dikenal sebagai Killer Sudoku. Aturan Sudoku untuk baris, kolom, dan kotak kecil tetap berlaku.',
+        ),
+      },
+      {
+        q: L('How is it different from Sudoku?', 'Apa bedanya dengan Sudoku?'),
+        a: L(
+          'In Sudoku the clues are digits. In Sum Sudoku the clues are sums, so you add and subtract as you reason, and there are often only a few given digits, or none. The grid and the rules for rows, columns and boxes are the same.',
+          'Di Sudoku petunjuknya adalah angka. Di Sum Sudoku petunjuknya adalah jumlah, jadi kamu menjumlah dan mengurang saat bernalar, dan angka yang diberikan sering kali hanya sedikit atau tidak ada. Kotak serta aturan baris, kolom, dan kotak kecil sama saja.',
+        ),
+      },
+      {
+        q: L('Do I have to guess?', 'Apakah aku harus menebak?'),
+        a: L(
+          'Not blindly. Every puzzle has exactly one answer. In the easy and medium puzzles the rules and the cage sums decide each next digit. In the hard ones you may have to try a digit and follow what it forces, which is reasoning and not luck. A solver written for this game checked that each puzzle has one answer, and a second, different solver checked it again.',
+          'Tidak secara buta. Setiap teka-teki punya tepat satu jawaban. Pada teka-teki mudah dan sedang, aturan dan jumlah kandang menentukan setiap angka berikutnya. Pada yang sulit, kamu mungkin harus mencoba satu angka dan mengikuti apa yang dipaksakannya, yaitu penalaran dan bukan untung-untungan. Sebuah solver yang ditulis untuk game ini memeriksa bahwa tiap teka-teki punya satu jawaban, dan solver kedua yang berbeda memeriksanya lagi.',
+        ),
+      },
+      {
+        q: L('What do Check and Hint do?', 'Apa fungsi Periksa dan Petunjuk?'),
+        a: L(
+          'Check says which rule is broken right now (a digit twice in a row, a column, a box or a cage, or a cage that cannot add up to its sum), without telling you where the answer is. Hint points at one cell: first a digit of yours that is not right, then a cell that the rules and the sums decide, so you still have to work out the digit.',
+          'Periksa memberi tahu aturan mana yang sedang dilanggar (angka kembar dalam satu baris, kolom, kotak kecil, atau kandang, atau kandang yang tidak mungkin berjumlah sesuai angkanya), tanpa memberi tahu di mana jawabannya. Petunjuk menunjuk satu petak: pertama angka milikmu yang belum benar, lalu petak yang ditentukan oleh aturan dan jumlah, sehingga kamu tetap harus mencari angkanya.',
+        ),
+      },
+      {
+        q: L('Can I play it on a phone?', 'Bisakah dimainkan di ponsel?'),
+        a: L(
+          'Yes. Tap a cell, then a digit under the grid. On a computer you can also use the arrow keys, the digit keys, N for notes, Z to undo, R to restart, C to check and H for a hint.',
+          'Bisa. Ketuk sebuah petak, lalu sebuah angka di bawah kotak. Di komputer kamu juga bisa memakai tombol panah, tombol angka, N untuk catatan, Z untuk Undo, R untuk Ulang, C untuk Periksa, dan H untuk petunjuk.',
+        ),
+      },
+      {
+        q: L('Does it save my progress?', 'Apakah progresku disimpan?'),
+        a: L(
+          'Yes, in this browser: which puzzles you have solved. Nothing is sent to an account.',
+          'Ya, di browser ini: teka-teki mana yang sudah selesai. Tidak ada yang dikirim ke sebuah akun.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Addition and subtraction used as a tool for reasoning', 'Penjumlahan dan pengurangan sebagai alat bernalar'),
+      L('Splitting a number into different parts (which digits make 10?)', 'Memecah bilangan menjadi bagian-bagian berbeda (angka apa yang berjumlah 10?)'),
+      L('Combining several constraints at once', 'Menggabungkan beberapa syarat sekaligus'),
+      L('Logical deduction without blind guessing', 'Deduksi logis tanpa menebak buta'),
     ],
   },
 ]
