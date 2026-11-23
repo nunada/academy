@@ -169,6 +169,16 @@ function nurikabe(): string {
   return s
 }
 
+/** Four islands joined by bridges, a real Hashi with one answer: 3 and 3 on top (a double bridge between them), 2 and 2 below, single bridges down and across. */
+function hashi(): string {
+  const at: [number, number, string][] = [[100, 50, '3'], [300, 50, '3'], [100, 150, '2'], [300, 150, '2']]
+  let s = ''
+  s += line(126, 44, 274, 44, 'st', 4) + line(126, 56, 274, 56, 'st', 4)
+  s += line(100, 76, 100, 124, 'st', 4) + line(300, 76, 300, 124, 'st', 4) + line(126, 150, 274, 150, 'st', 4)
+  for (const [x, y, n] of at) s += dot(x, y, 'pc', 26) + text(x, y + 10, n, 30)
+  return s
+}
+
 const generic = (): string => rect(120, 50, 160, 100, 'pa', 14) + text(200, 118, '?', 52)
 
 const COVERS: Record<string, () => string> = {
@@ -181,6 +191,7 @@ const COVERS: Record<string, () => string> = {
   'addition-house': () => house('plus'),
   'number-maze': numberMaze,
   nurikabe,
+  hashi,
 }
 
 /** The whole `<svg>` of a game's cover, as markup. Decorative: the card already carries the title. */

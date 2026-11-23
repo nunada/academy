@@ -256,6 +256,7 @@ jobs:
       - run: npm run check:rumah
       - run: npm run check:numbermaze
       - run: npm run check:nurikabe
+      - run: npm run check:hashi
 
       # IndexNow: the key file, the reading of the sitemap, the choice of pages and the request, against a fake service.
       - run: npm run check:indexnow

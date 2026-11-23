@@ -2220,3 +2220,41 @@ main:focus, .page:focus { outline: none; }
 .nkcontrols { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; }
 .nkhelp { margin-top: 8px; }
 @media (prefers-reduced-motion: reduce) { .nkc.flash { animation: none; } }
+
+/* ---- Hashi. The map is drawn as an SVG; an island that has all its bridges is filled, a bridge is a line (two lines for a double one), so the count is told without color. Red is only
+   for a mistake (a ring around an island with too many bridges, or one cut off). ---- */
+.hsgame { max-width: 640px; }
+.hstier { margin: 14px 0 20px; }
+.hstier h2 { margin-bottom: 2px; }
+.hslevels { display: grid; grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)); gap: 8px; margin-top: 8px; }
+.hslevel { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 4px; border: 2px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+.hslevel b { font-size: 1.15rem; }
+.hslevel:hover { border-color: var(--brand); }
+.hslevel.done { border-color: var(--brand); background: var(--brand-soft); }
+.hslmark { font-size: 0.85rem; color: var(--brand); font-weight: 800; min-height: 1.2em; }
+.hsgoal { margin: 6px 0 8px; }
+.hsboardbox { display: flex; justify-content: center; }
+.hsboard { display: block; box-sizing: border-box; width: 100%; height: auto; padding: 8px; border-radius: var(--radius); background: var(--surface-2); touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+.hsboard:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+.hsdot { fill: var(--border); }
+.hshit { fill: transparent; cursor: pointer; }
+.hshit:hover { fill: var(--brand-soft); }
+.hshit.blocked { cursor: not-allowed; }
+.hshit.blocked:hover { fill: transparent; }
+.hshit.flash { fill: var(--brand-soft); stroke: var(--brand); stroke-width: 3; animation: dmpulse 1s ease-in-out infinite; }
+.hsbridge { stroke: var(--text); stroke-width: 3; stroke-linecap: round; pointer-events: none; }
+.hsbridge.bad { stroke: var(--bad); }
+.hsi { cursor: pointer; }
+.hsi circle { fill: var(--surface); stroke: var(--text); stroke-width: 2.5; }
+.hsi text { font-family: inherit; font-size: 19px; font-weight: 800; fill: var(--text); pointer-events: none; }
+.hsi.full circle { fill: var(--brand-soft); stroke: var(--brand); }
+.hsi.cur circle { stroke: var(--brand); stroke-width: 4.5; }
+.hsi.picked circle { fill: var(--brand); stroke: var(--brand); }
+.hsi.picked text { fill: var(--surface); }
+.hsi.bad circle { stroke: var(--bad); stroke-width: 4.5; }
+.hsnote { min-height: 1.5em; margin: 8px 0 0; font-weight: 600; opacity: 0; }
+.hsnote.on { opacity: 1; color: var(--bad); }
+.hsnote.on.info { color: var(--brand); }
+.hscontrols { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; }
+.hshelp { margin-top: 8px; }
+@media (prefers-reduced-motion: reduce) { .hshit.flash { animation: none; } }

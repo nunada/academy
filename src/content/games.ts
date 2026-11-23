@@ -5,7 +5,7 @@ import type { Loc } from './types'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
-export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house' | 'number-maze' | 'nurikabe'
+export type GameId = 'real-number-match' | 'number-fish' | 'code-maze' | 'number-line' | 'math-domino' | 'multiplication-house' | 'addition-house' | 'number-maze' | 'nurikabe' | 'hashi'
 
 export interface GameMeta {
   id: GameId
@@ -1459,6 +1459,170 @@ Di dalam tiap ukuran teka-tekinya menanjak: yang pertama hanya butuh aturan pali
       L('Reasoning about connected regions', 'Bernalar tentang daerah yang tersambung'),
       L('Counting cells and spatial reasoning', 'Menghitung petak dan penalaran ruang'),
       L('Combining several rules to find one forced move', 'Menggabungkan beberapa aturan untuk menemukan satu langkah yang dipaksa'),
+    ],
+  },
+  {
+    id: 'hashi',
+    slug: { en: 'hashi', id: 'hashi' },
+    icon: '🌉',
+    title: L('Hashi: Connect the Islands with Bridges', 'Hashi: Hubungkan Pulau dengan Jembatan'),
+    seoTitle: L('Hashi (Bridges): a Free Logic Puzzle Game', 'Hashi (Jembatan): Game Teka-teki Logika Gratis'),
+    description: L(
+      'A free Hashi (Hashiwokakero, bridges) logic puzzle with 40 puzzles in five sizes, 5×5 to 13×13. Each number says how many bridges end at its island; join all the islands into one network without crossing bridges. Every puzzle has exactly one answer, found by reasoning alone.',
+      'Teka-teki logika Hashi (Hashiwokakero, jembatan) gratis dengan 40 teka-teki dalam lima ukuran, 5×5 sampai 13×13. Setiap angka menyatakan berapa jembatan yang berujung di pulaunya; sambungkan semua pulau menjadi satu jaringan tanpa jembatan yang bersilang. Setiap teka-teki punya tepat satu jawaban, yang ditemukan dengan penalaran saja.',
+    ),
+    keywords: L(
+      'hashi, hashiwokakero, bridges puzzle, hashi puzzle online, free hashi game, logic puzzle game, japanese logic puzzle, connect the islands, deduction puzzle, brain teaser, puzzle with one solution, learn logic by playing',
+      'hashi, hashiwokakero, teka-teki jembatan, hashi online gratis, game hashi, game teka-teki logika, teka-teki logika jepang, hubungkan pulau, teka-teki deduksi, asah otak, teka-teki dengan satu jawaban, belajar logika sambil bermain',
+    ),
+    tagline: L('Join the islands with bridges so every number is met.', 'Sambungkan pulau dengan jembatan sehingga setiap angka terpenuhi.'),
+    answer: L(
+      '**Hashi is a logic puzzle on a map of islands: each number says how many bridges end at that island, and you build bridges along rows and columns, at most two between a pair of islands and never crossing, until all the islands are one connected network.** Every puzzle here has exactly one answer, and you can always reach it by reasoning, without guessing. There are 40 puzzles in five sizes, and you play with a tap or the keyboard.',
+      '**Hashi adalah teka-teki logika di atas peta pulau: setiap angka menyatakan berapa jembatan yang berujung di pulau itu, dan kamu membangun jembatan sepanjang baris dan kolom, paling banyak dua di antara sepasang pulau dan tidak pernah bersilang, sampai semua pulau menjadi satu jaringan yang tersambung.** Setiap teka-teki di sini punya tepat satu jawaban, dan kamu selalu bisa mencapainya dengan penalaran, tanpa menebak. Ada 40 teka-teki dalam lima ukuran, dan kamu bermain dengan ketukan atau keyboard.',
+    ),
+    published: '2026-11-23',
+    updated: '2026-11-23',
+    sections: [
+      {
+        id: 'how-to-play',
+        heading: L('How do you play Hashi?', 'Bagaimana cara memainkan Hashi?'),
+        text: L(
+          `1. Pick a puzzle. The circles are islands, and the number in each is how many bridges must end there.
+2. **Press the space between two islands** that see each other along a row or a column: once builds a **single bridge**, twice a **double bridge**, a third time takes it away. You can also press one island and then the other.
+3. With the keyboard, the **arrow keys** move to the next island, **Space** picks an island (a second Space on another island in line with it builds the bridge), and **Shift with an arrow** builds a bridge from the island you are on in that direction.
+4. Keep going until every rule below is kept. The game notices by itself and shows **Solved!**
+5. **Undo** (Z) takes back a move, **Restart** (R) removes all the bridges, **Check** tells you which rule is broken (if any), and **Hint** (H) points at a place for a bridge: first a bridge that is not right, otherwise a bridge that the rules decide.
+
+An island is drawn filled when it has all its bridges. A ring around an island means a rule is broken: it has too many bridges, or it belongs to a group that is complete but cut off from the others.`,
+          `1. Pilih sebuah teka-teki. Lingkaran adalah pulau, dan angka di dalamnya adalah berapa jembatan yang harus berujung di sana.
+2. **Tekan ruang di antara dua pulau** yang saling melihat sepanjang baris atau kolom: sekali membangun **jembatan tunggal**, dua kali **jembatan ganda**, tiga kali menghapusnya. Kamu juga bisa menekan sebuah pulau lalu pulau yang lain.
+3. Dengan keyboard, **tombol panah** berpindah ke pulau berikutnya, **Spasi** memilih sebuah pulau (Spasi kedua di pulau lain yang sebaris membangun jembatannya), dan **Shift dengan panah** membangun jembatan dari pulau tempatmu berada ke arah itu.
+4. Teruskan sampai semua aturan di bawah terpenuhi. Game menyadarinya sendiri dan menampilkan **Selesai!**
+5. **Undo** (Z) menarik satu langkah, **Ulang** (R) menghapus semua jembatan, **Periksa** memberi tahu aturan mana yang dilanggar (kalau ada), dan **Petunjuk** (H) menunjuk tempat sebuah jembatan: pertama jembatan yang belum benar, kalau tidak ada maka jembatan yang ditentukan oleh aturan.
+
+Pulau digambar terisi bila sudah punya semua jembatannya. Lingkaran merah di sekeliling pulau berarti aturan dilanggar: jembatannya kebanyakan, atau ia termasuk kelompok yang sudah lengkap tetapi terpisah dari yang lain.`,
+        ),
+      },
+      {
+        id: 'the-rules',
+        heading: L('What are the rules of Hashi?', 'Apa aturan Hashi?'),
+        text: L(
+          `| Rule | What it means |
+|---|---|
+| The number is the count | an island with a 3 has **exactly three bridges** ending at it, a double bridge counting as two |
+| At most two | between two islands there is no bridge, a single one, or a double one, never more |
+| Straight and clear | a bridge runs along a row or a column, never turns, and never passes over another island |
+| No crossing | two bridges never cross each other |
+| One network | from any island you can reach every other island by walking over bridges |
+
+A good Hashi puzzle has **exactly one answer**, and every puzzle in this game was checked by two different solvers to be so: you never have to guess, there is always a bridge that the rules force.`,
+          `| Aturan | Artinya |
+|---|---|
+| Angka adalah jumlahnya | pulau dengan angka 3 punya **tepat tiga jembatan** yang berujung di sana, dan jembatan ganda dihitung dua |
+| Paling banyak dua | di antara dua pulau tidak ada jembatan, satu jembatan tunggal, atau satu jembatan ganda, tidak pernah lebih |
+| Lurus dan bebas | jembatan berjalan sepanjang baris atau kolom, tidak pernah berbelok, dan tidak pernah melewati pulau lain |
+| Tidak bersilang | dua jembatan tidak pernah bersilang |
+| Satu jaringan | dari pulau mana pun kamu bisa mencapai semua pulau lain dengan berjalan di atas jembatan |
+
+Teka-teki Hashi yang baik punya **tepat satu jawaban**, dan setiap teka-teki di game ini sudah diperiksa oleh dua solver berbeda bahwa memang begitu: kamu tidak perlu menebak, selalu ada jembatan yang dipaksa oleh aturan.`,
+        ),
+      },
+      {
+        id: 'how-to-solve',
+        heading: L('How do you solve a Hashi puzzle?', 'Bagaimana cara menyelesaikan teka-teki Hashi?'),
+        text: L(
+          `- **Count the neighbors.** An island can only have bridges toward the islands it sees (at most four). If its number is twice the count of those neighbors, every bridge is double: a 4 in a corner, a 6 on an edge with three neighbors, an 8 in the middle.
+- **More than the rest can take.** If an island's number is more than twice the count of its neighbors minus one, every neighbor gets at least one bridge: leave one neighbor out and the others can take at most two bridges each, which is not enough. Examples: a 3 with two neighbors, a 5 with three.
+- **A 1 has one bridge.** Once it is built, the island is full and nothing else can end there.
+- **Full islands close doors.** When an island has all its bridges, the places toward it are shut, and bridges that would cross a finished bridge are impossible.
+- **Do not close a group.** Two islands that are both full with a bridge between them, with nothing else joined to them, would make a closed pair: if there are more islands, that bridge is wrong. Two 1s side by side can never be joined to each other.
+- **Count what is left.** An island that needs two more bridges and has one open neighbor must send a double bridge there.
+
+Work from the corners and edges first, and when you are stuck, look for an island whose number leaves only one choice. If you are still stuck, press **Hint**: it never builds a bridge for you, it only points at a place.`,
+          `- **Hitung tetangganya.** Sebuah pulau hanya bisa punya jembatan ke pulau yang ia lihat (paling banyak empat). Bila angkanya dua kali jumlah tetangga itu, semua jembatannya ganda: angka 4 di sudut, angka 6 di tepi dengan tiga tetangga, angka 8 di tengah.
+- **Lebih dari yang bisa ditampung sisanya.** Bila angka sebuah pulau lebih dari dua kali jumlah tetangganya dikurangi satu, setiap tetangga mendapat setidaknya satu jembatan: kalau satu tetangga dilewati, tetangga lainnya paling banyak menampung dua jembatan masing-masing, dan itu tidak cukup. Contoh: angka 3 dengan dua tetangga, angka 5 dengan tiga.
+- **Angka 1 punya satu jembatan.** Begitu dibangun, pulau itu penuh dan tidak ada lagi yang bisa berujung di sana.
+- **Pulau penuh menutup pintu.** Bila sebuah pulau punya semua jembatannya, tempat-tempat menuju ke sana tertutup, dan jembatan yang akan bersilang dengan jembatan yang sudah jadi tidak mungkin.
+- **Jangan menutup sebuah kelompok.** Dua pulau yang sama-sama penuh dengan satu jembatan di antaranya, tanpa ada yang lain tersambung, akan menjadi pasangan tertutup: bila masih ada pulau lain, jembatan itu salah. Dua angka 1 yang bersebelahan tidak pernah bisa disambung satu sama lain.
+- **Hitung sisanya.** Pulau yang butuh dua jembatan lagi dan hanya punya satu tetangga terbuka harus mengirim jembatan ganda ke sana.
+
+Kerjakan dari sudut dan tepi dulu, dan bila buntu, cari pulau yang angkanya hanya menyisakan satu pilihan. Bila masih buntu, tekan **Petunjuk**: ia tidak pernah membangun jembatan untukmu, hanya menunjuk sebuah tempat.`,
+        ),
+      },
+      {
+        id: 'sizes',
+        heading: L('How big are the puzzles?', 'Seberapa besar teka-tekinya?'),
+        text: L(
+          `| Size | Puzzles | What it is like |
+|---|---|---|
+| 5×5 Tiny | 8 | learn the rules on a small map |
+| 7×7 Small | 8 | bridges start to get in each other's way |
+| 9×9 Medium | 8 | every island must join the network |
+| 11×11 Large | 8 | long chains of reasoning |
+| 13×13 Huge | 8 | the big ones |
+
+Inside each size the puzzles climb: the first needs only the simplest rules, the last needs several rules working together. All sizes are open from the start, and a puzzle is solved or not: nothing counts your time, your moves or your mistakes.`,
+          `| Ukuran | Teka-teki | Rasanya |
+|---|---|---|
+| 5×5 Mungil | 8 | belajar aturan di peta kecil |
+| 7×7 Kecil | 8 | jembatan mulai saling menghalangi |
+| 9×9 Sedang | 8 | setiap pulau harus tersambung ke jaringan |
+| 11×11 Besar | 8 | rantai penalaran yang panjang |
+| 13×13 Raksasa | 8 | yang besar |
+
+Di dalam tiap ukuran teka-tekinya menanjak: yang pertama hanya butuh aturan paling sederhana, yang terakhir butuh beberapa aturan bekerja bersama. Semua ukuran terbuka sejak awal, dan sebuah teka-teki selesai atau belum: tidak ada yang menghitung waktu, langkah, atau kesalahanmu.`,
+        ),
+      },
+    ],
+    faq: [
+      {
+        q: L('What is Hashi?', 'Apa itu Hashi?'),
+        a: L(
+          'Hashi is short for Hashiwokakero, a logic puzzle from Japan whose name means roughly "build bridges". Numbers in circles are islands, and you join them with bridges following the rules about counts, crossings and one connected network.',
+          'Hashi adalah singkatan dari Hashiwokakero, teka-teki logika dari Jepang yang namanya kurang lebih berarti "bangunlah jembatan". Angka di dalam lingkaran adalah pulau, dan kamu menyambungnya dengan jembatan mengikuti aturan tentang jumlah, persilangan, dan satu jaringan yang tersambung.',
+        ),
+      },
+      {
+        q: L('Do I have to guess?', 'Apakah aku harus menebak?'),
+        a: L(
+          'No. Every puzzle has exactly one answer and can be solved by reasoning. A solver written for this game checked that each puzzle has one answer, and a second, different solver checked it again.',
+          'Tidak. Setiap teka-teki punya tepat satu jawaban dan bisa diselesaikan dengan penalaran. Sebuah solver yang ditulis untuk game ini memeriksa bahwa tiap teka-teki punya satu jawaban, dan solver kedua yang berbeda memeriksanya lagi.',
+        ),
+      },
+      {
+        q: L('How do I build a double bridge?', 'Bagaimana membangun jembatan ganda?'),
+        a: L(
+          'Press the space between the two islands twice. The first press builds a single bridge, the second makes it double, and a third press removes it.',
+          'Tekan ruang di antara kedua pulau dua kali. Tekanan pertama membangun jembatan tunggal, yang kedua membuatnya ganda, dan tekanan ketiga menghapusnya.',
+        ),
+      },
+      {
+        q: L('What do Check and Hint do?', 'Apa fungsi Periksa dan Petunjuk?'),
+        a: L(
+          'Check says which rule is broken right now, without telling you where the answer is. Hint points at one place for a bridge: first a bridge of yours that is not right, then a bridge that the rules decide, so you still have to work out how many bridges go there.',
+          'Periksa memberi tahu aturan mana yang sedang dilanggar, tanpa memberi tahu di mana jawabannya. Petunjuk menunjuk satu tempat jembatan: pertama jembatan milikmu yang belum benar, lalu jembatan yang ditentukan oleh aturan, sehingga kamu tetap harus mencari berapa jembatan yang ada di sana.',
+        ),
+      },
+      {
+        q: L('Can I play it on a phone?', 'Bisakah dimainkan di ponsel?'),
+        a: L(
+          'Yes. Tap the space between two islands to build a bridge. On a computer you can also use the arrow keys, Space, Shift with an arrow, Z to undo, R to restart and H for a hint.',
+          'Bisa. Ketuk ruang di antara dua pulau untuk membangun jembatan. Di komputer kamu juga bisa memakai tombol panah, Spasi, Shift dengan panah, Z untuk Undo, R untuk Ulang, dan H untuk petunjuk.',
+        ),
+      },
+      {
+        q: L('Does it save my progress?', 'Apakah progresku disimpan?'),
+        a: L(
+          'Yes, in this browser: which puzzles you have solved. Nothing is sent to an account.',
+          'Ya, di browser ini: teka-teki mana yang sudah selesai. Tidak ada yang dikirim ke sebuah akun.',
+        ),
+      },
+    ],
+    teaches: [
+      L('Logical deduction without guessing', 'Deduksi logis tanpa menebak'),
+      L('Counting and satisfying several constraints at once', 'Menghitung dan memenuhi beberapa syarat sekaligus'),
+      L('Reasoning about connected networks', 'Bernalar tentang jaringan yang tersambung'),
+      L('Spatial reasoning on a grid', 'Penalaran ruang pada kotak'),
     ],
   },
 ]
