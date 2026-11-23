@@ -145,14 +145,6 @@ export function TopBar({ signedIn, profile, xp, hearts, nextHeartIn, localMode, 
           {classPage && <NavLink to="/teacher">{isAdmin(profile) ? t('navAdmin') : t('navTeacher')}</NavLink>}
         </nav>
       )}
-      {!signedIn && (
-        // on a phone the buttons on the first row are too many for the width: the same links get a row of their own, like the menu of a signed-in visitor
-        <nav className="nav publicnav" aria-label={t('mainNavLabel')}>
-          <NavLink to={articlesPath}>{t('navArticles')}</NavLink>
-          <NavLink to={gamesPath(lang)}>{t('navGames')}</NavLink>
-          <NavLink to="/help">{t('navHelp')}</NavLink>
-        </nav>
-      )}
 
       <span className="spacer" />
 
@@ -171,10 +163,10 @@ export function TopBar({ signedIn, profile, xp, hearts, nextHeartIn, localMode, 
       )}
       {!signedIn && (
         <>
-          <Link className="btn ghost sm morebtn" to={articlesPath}>
+          <Link className="btn ghost sm" to={articlesPath}>
             {t('navArticles')}
           </Link>
-          <Link className="btn ghost sm morebtn" to={gamesPath(lang)}>
+          <Link className="btn ghost sm gamesbtn" to={gamesPath(lang)}>
             {t('navGames')}
           </Link>
           <Link className="btn ghost sm morebtn" to="/help">
