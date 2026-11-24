@@ -2009,6 +2009,10 @@ main:focus, .page:focus { outline: none; }
 .dmtile.h .dmhalf + .dmhalf { border-left: 2px solid var(--border); }
 .dmtile.v .dmhalf + .dmhalf { border-top: 2px solid var(--border); }
 .dmhalf.long { font-size: 0.78rem; }
+.dmhalf.fr { font-size: 1.1rem; min-width: 92px; min-height: 62px; }
+.dmhalf.fr.long { font-size: 0.95rem; }
+/* The element math has its own math-style (compact for display="inline"), which beats the one of .tex, so a fraction's numbers shrank to 73% of the line: set it on the math itself. */
+.dmhalf math, .dmendval math, .dmendans math, .dmmodeex math { math-style: normal; }
 .dmhalf.end-left { box-shadow: inset 0 0 0 3px var(--fig-a); border-radius: 8px 0 0 8px; background: color-mix(in srgb, var(--fig-a) 14%, transparent); }
 .dmhalf.end-right { box-shadow: inset 0 0 0 3px var(--fig-c); border-radius: 0 8px 8px 0; background: color-mix(in srgb, var(--fig-c) 16%, transparent); }
 .dmflag { position: absolute; top: -21px; font-size: 0.72rem; font-weight: 800; white-space: nowrap; }
