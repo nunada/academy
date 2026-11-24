@@ -7,7 +7,8 @@
  *   - `valueOf`, `compareValues`, `compareSpecs`: the order of the real numbers, decided exactly where that can be (rational numbers and square roots
  *     through their exact value, a multiple of π or e against another of the same through the multipliers) and by 40 digits otherwise. The numbers of the
  *     game are chosen far enough apart that 40 digits never decide a close call, and two numbers are equal only when they are exactly equal;
- *   - `levelNums`: the numbers of a level, sorted, each with the forms it can be written in; `tiersOf`: the numbers the player's fish grows through;
+ *   - `levelNums`: the numbers of a level, sorted, each with the forms it can be written in (level 0, the very easy one, has natural numbers up to the
+ *     thousands, each written as digits only); `tiersOf`: the numbers the player's fish grows through;
  *   - `createWorld`, `step`: the pond. The player's fish follows a target point or the keys, other fish swim across, and a collision is settled by
  *     comparing the two numbers: eat, be eaten (a life, then a moment of safety), or nothing. Eat enough fish and the player's fish takes the next, larger
  *     number; take the last one and the level is won; lose all lives and it is lost.
@@ -17,9 +18,12 @@
 
 import { constantScaled, surdApprox, type Surd } from './irrational'
 import { rat, ratCmp, type Rat } from './realnum'
-import { ALLOWED, POOL, evalSpec, repsOf, rng, surdEq, texOf, type Lang, type Level, type Spec } from './realcards'
+import { ALLOWED, POOL, evalSpec, repsOf, rng, surdEq, texOf, type Lang, type Level as RealLevel, type Spec } from './realcards'
 
-export type { Lang, Level } from './realcards'
+export type { Lang } from './realcards'
+
+/** The levels of the game: 0 is the very easy one, with natural numbers up to the thousands; 1 to 3 are the levels of the Real Number Match cards. */
+export type Level = 0 | RealLevel
 
 /* ----------------------------------------------------------------------------- numbers on fish */
 
@@ -111,6 +115,14 @@ const CONSTS: { name: 'pi' | 'e'; mult: Rat }[] = [
   { name: 'pi', mult: rat(-1n, 1n) },
 ]
 
+/** The natural numbers of the very easy level, up to the thousands: one or two digits, three and four, each size with the numbers well apart (never 1250 next to 1205),
+ *  so that what is read is the number of digits first and then the digits from the left. Each is written one way only, as digits. */
+export const NATURALS: number[] = [
+  5, 12, 28, 37, 49, 63, 78, 91,
+  105, 180, 245, 320, 408, 475, 560, 634, 720, 805, 890, 950,
+  1000, 1250, 1500, 1840, 2100, 2460, 2800, 3050, 3375, 3720, 4090, 4500, 4860, 5230, 5640, 6000, 6385, 6750, 7120, 7500, 7945, 8300, 8650, 9020, 9480, 9875,
+]
+
 const numCache = new Map<Level, Num[]>()
 
 /** The numbers a game level draws from, smallest first. Easy: the fractions, decimals and percents of the first card level. Medium: those and the
@@ -118,6 +130,14 @@ const numCache = new Map<Level, Num[]>()
 export function levelNums(level: Level): Num[] {
   const hit = numCache.get(level)
   if (hit) return hit
+  if (level === 0) {
+    const nums = NATURALS.map((n): Num => {
+      const spec: Spec = { k: 'dec', neg: false, whole: String(n), frac: '' }
+      return { key: `${n}/1|0/1|1`, value: { exact: evalSpec(spec), konst: null, scaled: scaledOfSurd(evalSpec(spec)) }, reps: [spec] }
+    })
+    numCache.set(level, nums)
+    return nums
+  }
   const byKey = new Map<string, { value: Value; reps: Map<string, FishSpec> }>()
   for (const e of POOL) {
     if (!e.levels.some((l) => l <= level)) continue
@@ -142,6 +162,7 @@ export function levelNums(level: Level): Num[] {
 }
 
 export const TIERS: Record<Level, { count: number; need: number }> = {
+  0: { count: 5, need: 3 },
   1: { count: 5, need: 3 },
   2: { count: 6, need: 4 },
   3: { count: 7, need: 4 },
@@ -183,14 +204,14 @@ export const LIVES = 3
 export const SAFE_TIME = 1.6
 const PLAYER_SPEED = 190
 /** the speed a fish swims at, in pond units a second, from the slowest to the fastest, at the first tier of a level */
-export const SPEEDS: Record<Level, [number, number]> = { 1: [55, 95], 2: [70, 118], 3: [85, 140] }
+export const SPEEDS: Record<Level, [number, number]> = { 0: [42, 74], 1: [55, 95], 2: [70, 118], 3: [85, 140] }
 /** every tier the player grows, the other fish swim this much faster (a share of their first-tier speed) */
 export const PACE_PER_TIER = 0.06
-export const MAX_FISH: Record<Level, number> = { 1: 9, 2: 10, 3: 12 }
+export const MAX_FISH: Record<Level, number> = { 0: 8, 1: 9, 2: 10, 3: 12 }
 const SPAWN_EVERY = 0.7
 /** Of the fish that swim in, this share has a LARGER number than the player's (and the rest are smaller, but for the few that are equal): it is more
  *  than a third at every level, so that a player who swims at whatever comes first is eaten, and has to read the numbers. */
-export const DANGER_SHARE: Record<Level, number> = { 1: 0.55, 2: 0.6, 3: 0.6 }
+export const DANGER_SHARE: Record<Level, number> = { 0: 0.55, 1: 0.55, 2: 0.6, 3: 0.6 }
 /** the share of the fish that swim in that are equal to the player's number, written another way */
 export const EQUAL_SHARE = 0.1
 /** how much the fish drawn are pulled towards the player's own number: the nearer a number, the likelier it is, which makes telling near numbers apart the game */

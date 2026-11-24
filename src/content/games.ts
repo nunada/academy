@@ -161,12 +161,12 @@ Karena sebuah bilangan dapat ditulis dengan banyak cara, dua kartu yang tampak b
     title: L('Number Fish: Eat the Smaller Numbers, Flee the Larger', 'Ikan Bilangan: Makan Bilangan yang Lebih Kecil, Hindari yang Lebih Besar'),
     seoTitle: L('Number Fish: a Real Number Comparing Game', 'Ikan Bilangan: Game Membandingkan Bilangan Real'),
     description: L(
-      'A free fish game for comparing real numbers: eat the fish with a smaller number and flee the larger. Fractions, decimals, roots, π and e. Three levels.',
-      'Permainan ikan gratis untuk membandingkan bilangan real: makan ikan berbilangan lebih kecil dan hindari yang lebih besar. Pecahan, desimal, akar, π, dan e.',
+      'A free fish game for comparing numbers: eat the fish with a smaller number and flee the larger. Natural numbers up to the thousands, then fractions, decimals, roots, π and e. Four levels.',
+      'Permainan ikan gratis untuk membandingkan bilangan: makan ikan berbilangan lebih kecil dan hindari yang lebih besar. Bilangan asli sampai ribuan, lalu pecahan, desimal, akar, π, dan e. Empat tingkat.',
     ),
     keywords: L(
-      'number fish game, comparing real numbers game, ordering fractions and decimals game, which number is larger game, compare fractions decimals and percents, compare square roots and pi, comparing negative numbers game, feeding frenzy math game, greater than and less than game, math game for ordering numbers',
-      'game ikan bilangan, game membandingkan bilangan real, game mengurutkan pecahan dan desimal, game bilangan mana yang lebih besar, membandingkan pecahan desimal dan persen, membandingkan akar dan pi, game membandingkan bilangan negatif, game matematika seperti feeding frenzy, game lebih besar dan lebih kecil, game matematika mengurutkan bilangan',
+      'number fish game, comparing natural numbers game, comparing numbers up to thousands, comparing real numbers game, ordering fractions and decimals game, which number is larger game, compare fractions decimals and percents, compare square roots and pi, comparing negative numbers game, feeding frenzy math game, greater than and less than game, math game for ordering numbers',
+      'game ikan bilangan, game membandingkan bilangan asli, game membandingkan bilangan sampai ribuan, game membandingkan bilangan real, game mengurutkan pecahan dan desimal, game bilangan mana yang lebih besar, membandingkan pecahan desimal dan persen, membandingkan akar dan pi, game membandingkan bilangan negatif, game matematika seperti feeding frenzy, game lebih besar dan lebih kecil, game matematika mengurutkan bilangan',
     ),
     tagline: L('Eat the fish with the smaller number; the larger ones eat you.', 'Makan ikan yang bilangannya lebih kecil; yang lebih besar akan memakanmu.'),
     answer: L(
@@ -174,7 +174,7 @@ Karena sebuah bilangan dapat ditulis dengan banyak cara, dua kartu yang tampak b
       '**Kamu menggerakkan seekor ikan yang membawa bilangan real, dan ia memakan setiap ikan yang bilangannya lebih kecil daripada miliknya; ikan yang bilangannya lebih besar akan memakanmu.** Bilangan yang sama, seperti $\\frac12$ dan $0{,}5$, saling membiarkan. Makan cukup banyak ikan dan ikanmu tumbuh menjadi bilangan yang lebih besar; capai yang terbesar dan kamu menang.',
     ),
     published: '2026-11-06',
-    updated: '2026-11-06',
+    updated: '2026-11-25',
     sections: [
       {
         id: 'how-to-play',
@@ -200,6 +200,7 @@ Kamu mendapat tiga bintang bila tidak pernah kehilangan nyawa, dua bila kehilang
         text: L(
           `| Level | Numbers on the fish |
 |---|---|
+| Very easy | natural numbers up to the thousands, from $5$ to $9875$, written as digits; the other fish swim slower |
 | Easy | fractions (also not in lowest terms), decimals that end and percents, from $\\frac1{20}$ up to $\\frac72$ |
 | Medium | adds negative numbers, repeating decimals, scientific notation, powers such as $2^{-3}$, and one large number, $2500$ |
 | Hard | adds square roots in several forms ($\\sqrt2$, $3\\sqrt2$, $\\frac{\\sqrt3}{3}$), roots and powers of whole numbers, and $\\pi$, $e$, $2\\pi$, $\\frac{\\pi}{2}$ |
@@ -207,6 +208,7 @@ Kamu mendapat tiga bintang bila tidak pernah kehilangan nyawa, dua bila kehilang
 Most of the time the fish that swim in have numbers close to yours, because telling near numbers apart is the whole game: $0.6$ against $\\frac58$, or $\\sqrt5$ against $\\frac94$.`,
           `| Tingkat | Bilangan pada ikan |
 |---|---|
+| Sangat mudah | bilangan asli sampai ribuan, dari $5$ sampai $9875$, ditulis dengan angka; ikan lain berenang lebih lambat |
 | Mudah | pecahan (juga yang belum sederhana), desimal berhingga, dan persen, dari $\\frac1{20}$ sampai $\\frac72$ |
 | Sedang | ditambah bilangan negatif, desimal berulang, notasi ilmiah, pangkat seperti $2^{-3}$, dan satu bilangan besar, $2500$ |
 | Sulit | ditambah akar kuadrat dalam beberapa bentuk ($\\sqrt2$, $3\\sqrt2$, $\\frac{\\sqrt3}{3}$), akar dan pangkat bilangan bulat, serta $\\pi$, $e$, $2\\pi$, $\\frac{\\pi}{2}$ |
@@ -218,14 +220,16 @@ Sebagian besar ikan yang datang bilangannya dekat dengan milikmu, karena membeda
         id: 'how-to-compare',
         heading: L('How do you tell quickly which number is larger?', 'Bagaimana cara cepat mengetahui bilangan mana yang lebih besar?'),
         text: L(
-          `- **Turn both into decimals** when you can: $\\frac58=0.625$ is more than $0.6$, and $\\frac13=0.\\overline3$ is more than $0.33$.
+          `- **Natural numbers:** the one with more digits is larger, $875<1250$. With the same number of digits, compare from the left, the thousands first: $3720>3375$ because the hundreds, $7$ and $3$, are the first digits that differ.
+- **Turn both into decimals** when you can: $\\frac58=0.625$ is more than $0.6$, and $\\frac13=0.\\overline3$ is more than $0.33$.
 - **Fractions:** put them over a common denominator, or cross-multiply: $\\frac35$ against $\\frac58$ is $3\\cdot8=24$ against $5\\cdot5=25$, so $\\frac58$ is the larger.
 - **Negatives run backwards:** $-\\frac34$ is less than $-\\frac12$, and every negative number is less than every positive one.
 - **Roots:** compare the squares. $\\sqrt5$ against $\\frac94$ is $5$ against $\\frac{81}{16}=5.0625$, so $\\sqrt5$ is the smaller.
 - **$\\pi$ and $e$:** $\\pi=3.14159\\ldots$ is a little less than $\\frac{22}{7}=3.142857\\ldots$, and $e=2.71828\\ldots$.
 
 The numbers behind these forms are explained in [real numbers](article:real-numbers), [rational numbers](article:rational-numbers) and [irrational numbers](article:irrational-numbers), and the powers and roots in [exponents and radicals](article:exponents-and-radicals).`,
-          `- **Ubah keduanya menjadi desimal** bila bisa: $\\frac58=0{,}625$ lebih besar daripada $0{,}6$, dan $\\frac13=0{,}\\overline3$ lebih besar daripada $0{,}33$.
+          `- **Bilangan asli:** yang angkanya lebih banyak lebih besar, $875<1250$. Bila banyak angkanya sama, bandingkan dari kiri, dari ribuan dulu: $3720>3375$ karena ratusan, $7$ dan $3$, adalah angka pertama yang berbeda.
+- **Ubah keduanya menjadi desimal** bila bisa: $\\frac58=0{,}625$ lebih besar daripada $0{,}6$, dan $\\frac13=0{,}\\overline3$ lebih besar daripada $0{,}33$.
 - **Pecahan:** samakan penyebutnya, atau kalikan silang: $\\frac35$ melawan $\\frac58$ adalah $3\\cdot8=24$ melawan $5\\cdot5=25$, jadi $\\frac58$ yang lebih besar.
 - **Bilangan negatif terbalik:** $-\\frac34$ lebih kecil daripada $-\\frac12$, dan setiap bilangan negatif lebih kecil daripada setiap bilangan positif.
 - **Akar:** bandingkan kuadratnya. $\\sqrt5$ melawan $\\frac94$ adalah $5$ melawan $\\frac{81}{16}=5{,}0625$, jadi $\\sqrt5$ yang lebih kecil.

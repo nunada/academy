@@ -41,7 +41,7 @@ const ok = (cond, msg) => {
   return cond
 }
 
-const LEVELS = [1, 2, 3]
+const LEVELS = [0, 1, 2, 3]
 const rs = (r) => `${r.n}/${r.d}`
 
 /* --------------------------------------------------------------------- what goes to Python */
@@ -158,9 +158,27 @@ for (const level of LEVELS) {
   const withConst = G.levelNums(level).filter((n) => n.value.konst).length
   ok(level === 3 ? withConst === 7 : withConst === 0, `level ${level}: ${withConst} numbers made of π or e`)
   const negatives = G.levelNums(level).filter((n) => n.value.scaled < 0n).length
-  ok(level === 1 ? negatives === 0 : negatives >= 6, `level ${level}: ${negatives} negative numbers`)
+  ok(level <= 1 ? negatives === 0 : negatives >= 6, `level ${level}: ${negatives} negative numbers`)
 }
-ok(JSON.stringify(G.TIERS) === JSON.stringify({ 1: { count: 5, need: 3 }, 2: { count: 6, need: 4 }, 3: { count: 7, need: 4 } }), 'the tiers and the fish needed for each')
+ok(JSON.stringify(G.TIERS) === JSON.stringify({ 0: { count: 5, need: 3 }, 1: { count: 5, need: 3 }, 2: { count: 6, need: 4 }, 3: { count: 7, need: 4 } }), 'the tiers and the fish needed for each')
+
+// the very easy level: natural numbers up to the thousands, each written as digits only, one way, and well apart inside a size
+{
+  const nums = G.levelNums(0)
+  const values = nums.map((n) => Number(n.value.scaled / 10n ** 40n))
+  ok(nums.every((n, i) => n.reps.length === 1 && n.reps[0].k === 'dec' && n.reps[0].frac === '' && n.value.exact && n.value.exact.m === 1n && n.value.exact.a.d === 1n && n.value.exact.b.n === 0n), 'level 0: every number is a whole number with one form')
+  ok(values.every((v) => Number.isInteger(v) && v >= 1 && v <= 9999), `level 0: a number is not a natural number of at most four digits (${values.filter((v) => !(Number.isInteger(v) && v >= 1 && v <= 9999))})`)
+  ok(nums.every((n, i) => G.fishTex(n.reps[0], 'en') === String(values[i]) && G.fishTex(n.reps[0], 'id') === String(values[i])), 'level 0: a fish shows the digits of its number, the same in both languages')
+  const size = (v) => String(v).length
+  for (const digits of [1, 2, 3, 4]) {
+    const of = values.filter((v) => size(v) === digits)
+    ok(digits === 1 ? of.length <= 3 : of.length >= (digits === 2 ? 5 : 10), `level 0: ${of.length} numbers of ${digits} digits`)
+    // the first two digits tell two numbers of a size apart
+    const heads = of.map((v) => String(v).slice(0, 2))
+    ok(new Set(heads).size === heads.length, `level 0: two numbers of ${digits} digits begin with the same two digits`)
+  }
+  ok(values.filter((v) => v >= 1000).length >= 20 && values.some((v) => v >= 9000) && values.some((v) => v < 100), 'level 0: the numbers reach from tens to the end of the thousands')
+}
 
 let pairs = 0
 for (const level of LEVELS) {
@@ -360,7 +378,7 @@ const games = FAST ? 6 : 24
 
 function check(w, level, where) {
   ok(w.lives >= 0 && w.lives <= G.LIVES, `${where}: lives ${w.lives}`)
-  ok(w.player.tier >= 0 && w.player.tier < G.TIERS[level].count && w.eatenInTier >= 0 && (w.eatenInTier < w.need || (w.status === 'won' && w.eatenInTier === w.need)), `${where}: tier ${w.player.tier}, eaten in tier ${w.eatenInTier}`)
+  ok(w.player.tier >= 0 && w.player.tier < G.TIERS[level].count && w.eatenInTier >= 0 && (w.eatenInTier < w.need || (w.status === 'won' && w.eatenInTier === w.need) || (w.status === 'lost' && w.eatenInTier === w.need && w.lives === 0)), `${where}: tier ${w.player.tier}, eaten in tier ${w.eatenInTier}`)
   ok(w.score === 10 * w.eaten && w.lost === G.LIVES - w.lives, `${where}: score ${w.score} for ${w.eaten} fish, ${w.lost} lost for ${w.lives} lives`)
   ok(w.fish.length <= G.MAX_FISH[level], `${where}: ${w.fish.length} fish`)
   const nums = new Map(G.levelNums(level).map((n) => [n.key, n]))
@@ -498,7 +516,7 @@ for (const level of LEVELS) {
     ok(share(hist.nearest, 3) <= 0.05 && share(hist.nearest, 0) >= 0.9, `level ${level}: a player that does not read the numbers and swims to the nearest fish is eaten (${JSON.stringify(hist.nearest)})`)
     if (!FAST) {
       // a player that reads them, but swims only as fast as the fish does: it can win with every life, and it is not a certainty
-      const [lo, hi] = { 1: [0.5, 0.95], 2: [0.25, 0.85], 3: [0.15, 0.7] }[level]
+      const [lo, hi] = { 0: [0.6, 0.98], 1: [0.5, 0.95], 2: [0.25, 0.85], 3: [0.15, 0.7] }[level]
       ok(share(hist.careful, 3) >= lo && share(hist.careful, 3) <= hi, `level ${level}: a careful player wins with three stars ${share(hist.careful, 3).toFixed(2)} of the time, between ${lo} and ${hi} (${JSON.stringify(hist.careful)})`)
     }
     // what swims in: more than half of the fish are larger than the player's, whatever the player does

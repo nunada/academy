@@ -8,6 +8,7 @@ import { LIVES, TIERS, WORLD, createWorld, fishTex, pondFor, starsOf, step, type
 const L = (en: string, id: string): Loc => ({ en, id })
 
 const LEVELS: { id: Level; name: Loc; blurb: Loc }[] = [
+  { id: 0, name: L('Very easy', 'Sangat mudah'), blurb: L('natural numbers up to the thousands', 'bilangan asli sampai ribuan') },
   { id: 1, name: L('Easy', 'Mudah'), blurb: L('fractions, decimals, percents', 'pecahan, desimal, persen') },
   { id: 2, name: L('Medium', 'Sedang'), blurb: L('plus negatives, repeating decimals, powers', 'ditambah negatif, desimal berulang, pangkat') },
   { id: 3, name: L('Hard', 'Sulit'), blurb: L('plus roots, π and e', 'ditambah akar, π, dan e') },
@@ -392,7 +393,7 @@ export default function NumberFishGame() {
                   <li>{tc(L('Swim with the mouse, a finger, or the arrow keys or W A S D.', 'Berenanglah dengan mouse, jari, atau tombol panah atau W A S D.'))}</li>
                   <li>{tc(L('Your fish eats a fish with a smaller number than its own.', 'Ikanmu memakan ikan yang bilangannya lebih kecil daripada miliknya.'))}</li>
                   <li>{tc(L('A fish with a larger number eats you: you lose a life.', 'Ikan yang bilangannya lebih besar memakanmu: kamu kehilangan satu nyawa.'))}</li>
-                  <li className="more">{tc(L('Equal numbers, written in another way, leave each other alone.', 'Bilangan yang sama, ditulis dengan cara lain, saling membiarkan.'))}</li>
+                  {level !== 0 && <li className="more">{tc(L('Equal numbers, written in another way, leave each other alone.', 'Bilangan yang sama, ditulis dengan cara lain, saling membiarkan.'))}</li>}
                   <li className="more">{tc(L(`Eat ${tiers.need} fish to grow into a larger number. Reach the largest one to win.`, `Makan ${tiers.need} ikan untuk tumbuh menjadi bilangan yang lebih besar. Capai yang terbesar untuk menang.`))}</li>
                 </ul>
               </div>
