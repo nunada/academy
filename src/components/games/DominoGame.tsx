@@ -86,14 +86,16 @@ const guestName = (lang: string) => `${lang === 'id' ? 'Pemain' : 'Player'} ${10
 
 /* ------------------------------------------------------------------------------------------------ pieces */
 
-/** How much of a half is seen: the TeX without its commands and braces, so that `\frac{1}{4}+\frac{1}{4}` counts as 5 and not as 23. */
-const seenLength = (src: string): number => src.replace(/\\[a-zA-Z]+|[{}\s]/g, '').length
+/** How much of a half is seen: the TeX without its braces, a command counting as one sign, so that `\frac{1}{4}+\frac{1}{4}` counts as 7 and not as 23. A fraction
+ *  stacks its numbers, so its commands are not counted at all (5). */
+const seenLength = (src: string, stacked: boolean): number => src.replace(/\\[a-zA-Z]+|\\./g, stacked ? '' : 'x').replace(/[{}\s]/g, '').length
 
-/** One half of a tile: the calculation. Long ones are set smaller so they fit; fractions are set larger, since their numbers are small. */
+/** One half of a tile: the calculation. Every half is set at the same size, a fraction, a decimal, a percent or a plain number alike; only a long one is set smaller
+ *  so that it fits. */
 const HalfView = memo(function HalfView({ half, end }: { half: Half; end?: 'left' | 'right' }) {
   const { lang } = useI18n()
   const frac = half.tex.includes('\\frac')
-  const long = frac ? seenLength(half.tex) > 9 : half.tex.length > 16
+  const long = seenLength(half.tex, frac) > (frac ? 9 : 12)
   return (
     <span className={`dmhalf${frac ? ' fr' : ''}${long ? ' long' : ''}${end ? ` end-${end}` : ''}`}>
       <Tex src={localTex(half.tex, lang)} />

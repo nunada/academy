@@ -161,11 +161,22 @@ export function levelNums(level: Level): Num[] {
   return nums
 }
 
+/** `count` sizes of fish to grow through; `need` is the number of fish to eat at the first size. The bigger the fish, the more it has to eat to grow again: one more at every size (see `needAt`). */
 export const TIERS: Record<Level, { count: number; need: number }> = {
-  0: { count: 5, need: 3 },
-  1: { count: 5, need: 3 },
-  2: { count: 6, need: 4 },
-  3: { count: 7, need: 4 },
+  0: { count: 5, need: 2 },
+  1: { count: 5, need: 2 },
+  2: { count: 6, need: 2 },
+  3: { count: 7, need: 2 },
+}
+
+/** How many fish the player's fish at size `tier` (0 is the first) has to eat to grow, or, at the last size, to win: one more for every size it has grown. */
+export const needAt = (level: Level, tier: number): number => TIERS[level].need + tier
+
+/** All the fish a whole game takes, if none is wasted. */
+export const totalNeed = (level: Level): number => {
+  let sum = 0
+  for (let t = 0; t < TIERS[level].count; t++) sum += needAt(level, t)
+  return sum
 }
 
 /** The numbers the player's fish grows through: the first has a few smaller numbers to eat, the last is the largest of the level, and the steps between
@@ -204,7 +215,7 @@ export const LIVES = 3
 export const SAFE_TIME = 1.6
 const PLAYER_SPEED = 190
 /** the speed a fish swims at, in pond units a second, from the slowest to the fastest, at the first tier of a level */
-export const SPEEDS: Record<Level, [number, number]> = { 0: [42, 74], 1: [55, 95], 2: [70, 118], 3: [85, 140] }
+export const SPEEDS: Record<Level, [number, number]> = { 0: [34, 60], 1: [55, 95], 2: [70, 118], 3: [85, 140] }
 /** every tier the player grows, the other fish swim this much faster (a share of their first-tier speed) */
 export const PACE_PER_TIER = 0.06
 export const MAX_FISH: Record<Level, number> = { 0: 8, 1: 9, 2: 10, 3: 12 }
@@ -286,7 +297,10 @@ const pickSpec = (n: Num, rand: () => number, not?: FishSpec): FishSpec => {
   return from[Math.floor(rand() * from.length)]
 }
 
-const widthOf = (s: FishSpec) => Math.max(84, Math.min(140, 9.5 * fishTex(s, 'en').replace(/\\[a-z]+/g, 'x').length + 46))
+/** Digits only, such as 1250: set larger on the fish (see `.fishnum.digits`), and the fish is wider so that four digits sit clear of the tail and the eye. */
+export const isDigits = (s: FishSpec): boolean => /^\d+$/.test(fishTex(s, 'en'))
+const widthOf = (s: FishSpec) =>
+  isDigits(s) ? Math.max(84, Math.min(140, 13 * fishTex(s, 'en').length + 52)) : Math.max(84, Math.min(140, 9.5 * fishTex(s, 'en').replace(/\\[a-z]+/g, 'x').length + 46))
 
 export function createWorld(level: Level, seed: number, speedFactor = 1, size: Size = WORLD): World {
   const rand = rng(seed)
@@ -308,7 +322,7 @@ export function createWorld(level: Level, seed: number, speedFactor = 1, size: S
     nextId: 1,
     spawnIn: 0.2,
     eatenInTier: 0,
-    need: TIERS[level].need,
+    need: needAt(level, 0),
     eaten: 0,
     lives: LIVES,
     lost: 0,
@@ -454,6 +468,7 @@ export function step(w: World, dt: number, input: Input): GameEvent[] {
       p.spec = pickSpec(p.num, w.rand)
       p.r += 2.5
       w.eatenInTier = 0
+      w.need = needAt(w.level, p.tier)
       events.push({ type: 'grow', tier: p.tier, spec: p.spec })
     }
   }

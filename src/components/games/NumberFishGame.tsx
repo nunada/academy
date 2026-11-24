@@ -3,7 +3,7 @@ import { useI18n } from '../../i18n'
 import type { Loc } from '../../content/types'
 import { Bar, Tex } from '../ui'
 import { texSpeech } from '../../lib/texspeech'
-import { LIVES, TIERS, WORLD, createWorld, fishTex, pondFor, starsOf, step, type Fish, type FishSpec, type GameEvent, type Input, type Level, type World } from '../../lib/fishgame'
+import { LIVES, TIERS, WORLD, createWorld, fishTex, isDigits, pondFor, starsOf, step, type Fish, type FishSpec, type GameEvent, type Input, type Level, type World } from '../../lib/fishgame'
 
 const L = (en: string, id: string): Loc => ({ en, id })
 
@@ -270,7 +270,7 @@ export default function NumberFishGame() {
   const w = world.current
   const tiers = TIERS[level]
   const hue = (f: Fish) => (f.id * 47) % 360
-  const playerW = 92 + w.player.tier * 7
+  const playerW = Math.max(92 + w.player.tier * 7, isDigits(w.player.spec) ? 13 * fishTex(w.player.spec, 'en').length + 52 : 0)
   const stars = w.status === 'won' ? starsOf(w.lives) : 0
 
   return (
@@ -308,6 +308,9 @@ export default function NumberFishGame() {
         <span className="fishgrow" aria-hidden="true">
           <Bar percent={Math.round((w.eatenInTier / w.need) * 100)} />
         </span>
+        <span className="pill" title={tc(L('Fish eaten at this size, and how many it takes to grow', 'Ikan yang dimakan pada ukuran ini, dan berapa yang dibutuhkan untuk tumbuh'))} aria-label={`${w.eatenInTier} ${tc(L('of', 'dari'))} ${w.need} ${tc(L('fish to grow', 'ikan untuk tumbuh'))}`}>
+          🐟 {w.eatenInTier}/{w.need}
+        </span>
         {best && (
           <span className="pill good" title={tc(L('Your best score at this level', 'Skor terbaikmu pada tingkat ini'))}>
             {tc(L('Best', 'Terbaik'))} {best.score}
@@ -343,7 +346,7 @@ export default function NumberFishGame() {
           {w.fish.map((f) => (
             <div
               key={f.id}
-              className="fish"
+              className={`fish${f.vx < 0 ? ' left' : ''}`}
               ref={(el) => {
                 if (el) {
                   fishEls.current.set(f.id, el)
@@ -353,7 +356,7 @@ export default function NumberFishGame() {
               style={{ width: f.w, height: f.w * 0.53 }}
             >
               <FishBody hue={hue(f)} left={f.vx < 0} />
-              <span className="fishnum">
+              <span className={`fishnum${isDigits(f.spec) ? ' digits' : ''}`}>
                 <Tex src={fishTex(f.spec, lang)} />
               </span>
             </div>
@@ -369,7 +372,7 @@ export default function NumberFishGame() {
             style={{ width: playerW, height: playerW * 0.53 }}
           >
             <FishBody hue={45} left={false} />
-            <span className="fishnum">
+            <span className={`fishnum${isDigits(w.player.spec) ? ' digits' : ''}`}>
               <Tex src={fishTex(w.player.spec, lang)} />
             </span>
           </div>
@@ -394,7 +397,7 @@ export default function NumberFishGame() {
                   <li>{tc(L('Your fish eats a fish with a smaller number than its own.', 'Ikanmu memakan ikan yang bilangannya lebih kecil daripada miliknya.'))}</li>
                   <li>{tc(L('A fish with a larger number eats you: you lose a life.', 'Ikan yang bilangannya lebih besar memakanmu: kamu kehilangan satu nyawa.'))}</li>
                   {level !== 0 && <li className="more">{tc(L('Equal numbers, written in another way, leave each other alone.', 'Bilangan yang sama, ditulis dengan cara lain, saling membiarkan.'))}</li>}
-                  <li className="more">{tc(L(`Eat ${tiers.need} fish to grow into a larger number. Reach the largest one to win.`, `Makan ${tiers.need} ikan untuk tumbuh menjadi bilangan yang lebih besar. Capai yang terbesar untuk menang.`))}</li>
+                  <li className="more">{tc(L(`Eat ${tiers.need} fish to grow into a larger number; the bigger your fish, the more it has to eat to grow again. Reach the largest one to win.`, `Makan ${tiers.need} ikan untuk tumbuh menjadi bilangan yang lebih besar; makin besar ikanmu, makin banyak yang harus dimakan untuk tumbuh lagi. Capai yang terbesar untuk menang.`))}</li>
                 </ul>
               </div>
             )}

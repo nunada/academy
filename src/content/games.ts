@@ -183,13 +183,13 @@ Karena sebuah bilangan dapat ditulis dengan banyak cara, dua kartu yang tampak b
           `1. Choose a level and press Start. Your fish is the gold one, with its number on its body.
 2. Swim with the mouse, with a finger on a phone, or with the arrow keys or W A S D. Swim into a fish whose number is **smaller** than yours to eat it.
 3. A fish with a **larger** number eats you: you lose one of your three lives and are safe for a moment. Fish with an **equal** number, written another way, do nothing.
-4. Every few fish you eat, your fish grows and takes a larger number. Take the largest number of the level to win. Space or P pauses.
+4. Eat two fish and your fish grows and takes a larger number. The bigger it gets, the more it has to eat to grow again: three fish, then four, and so on, one more at every size. Take the largest number of the level to win. Space or P pauses.
 
 You earn three stars if you never lose a life, two if you lose one and one if you lose two. Each time something is eaten the two numbers are shown as a comparison, such as $\\frac35<\\frac58$, at the top of the pond.`,
           `1. Pilih tingkat lalu tekan Mulai. Ikanmu yang berwarna emas, dengan bilangannya di badan.
 2. Berenanglah dengan mouse, dengan jari di ponsel, atau dengan tombol panah atau W A S D. Berenanglah ke ikan yang bilangannya **lebih kecil** daripada milikmu untuk memakannya.
 3. Ikan yang bilangannya **lebih besar** memakanmu: kamu kehilangan satu dari tiga nyawa dan aman sesaat. Ikan dengan bilangan yang **sama**, ditulis dengan cara lain, tidak berbuat apa-apa.
-4. Setiap beberapa ikan yang kamu makan, ikanmu tumbuh dan mengambil bilangan yang lebih besar. Ambil bilangan terbesar tingkat itu untuk menang. Spasi atau P menjeda.
+4. Makan dua ikan dan ikanmu tumbuh dan mengambil bilangan yang lebih besar. Makin besar ikanmu, makin banyak yang harus dimakan untuk tumbuh lagi: tiga ikan, lalu empat, dan seterusnya, satu lebih banyak pada setiap ukuran. Ambil bilangan terbesar tingkat itu untuk menang. Spasi atau P menjeda.
 
 Kamu mendapat tiga bintang bila tidak pernah kehilangan nyawa, dua bila kehilangan satu, dan satu bila kehilangan dua. Setiap ada yang termakan, kedua bilangan ditunjukkan sebagai perbandingan, seperti $\\frac35<\\frac58$, di bagian atas kolam.`,
         ),
@@ -243,8 +243,8 @@ Bilangan di balik bentuk-bentuk ini dijelaskan di [bilangan real](article:real-n
       {
         q: L('How do I play Number Fish?', 'Bagaimana cara bermain Ikan Bilangan?'),
         a: L(
-          'Swim your fish with the mouse, a finger or the arrow keys. It eats any fish with a smaller number than its own, and a fish with a larger number eats you. Eat enough fish to grow, and reach the largest number to win.',
-          'Gerakkan ikanmu dengan mouse, jari, atau tombol panah. Ia memakan ikan yang bilangannya lebih kecil daripada miliknya, dan ikan yang bilangannya lebih besar memakanmu. Makan cukup banyak ikan untuk tumbuh, dan capai bilangan terbesar untuk menang.',
+          'Swim your fish with the mouse, a finger or the arrow keys. It eats any fish with a smaller number than its own, and a fish with a larger number eats you. Eat enough fish to grow (two at first, one more at every size), and reach the largest number to win.',
+          'Gerakkan ikanmu dengan mouse, jari, atau tombol panah. Ia memakan ikan yang bilangannya lebih kecil daripada miliknya, dan ikan yang bilangannya lebih besar memakanmu. Makan cukup banyak ikan untuk tumbuh (dua pada awalnya, satu lebih banyak pada setiap ukuran), dan capai bilangan terbesar untuk menang.',
         ),
       },
       {

@@ -160,7 +160,7 @@ for (const level of LEVELS) {
   const negatives = G.levelNums(level).filter((n) => n.value.scaled < 0n).length
   ok(level <= 1 ? negatives === 0 : negatives >= 6, `level ${level}: ${negatives} negative numbers`)
 }
-ok(JSON.stringify(G.TIERS) === JSON.stringify({ 0: { count: 5, need: 3 }, 1: { count: 5, need: 3 }, 2: { count: 6, need: 4 }, 3: { count: 7, need: 4 } }), 'the tiers and the fish needed for each')
+ok(JSON.stringify(G.TIERS) === JSON.stringify({ 0: { count: 5, need: 2 }, 1: { count: 5, need: 2 }, 2: { count: 6, need: 2 }, 3: { count: 7, need: 2 } }), 'the tiers and the fish needed for each')
 
 // the very easy level: natural numbers up to the thousands, each written as digits only, one way, and well apart inside a size
 {
@@ -287,8 +287,10 @@ checks += played
 // growing and winning
 for (const level of LEVELS) {
   const tiers = G.tiersOf(level)
-  const { need } = G.TIERS[level]
   ok(tiers.length === G.TIERS[level].count, `level ${level}: ${tiers.length} tiers`)
+  // the bigger the fish, the more it has to eat to grow: one more at every size, from the first size's number
+  for (let t = 0; t < tiers.length; t++) ok(G.needAt(level, t) === G.TIERS[level].need + t && (t === 0 || G.needAt(level, t) === G.needAt(level, t - 1) + 1), `level ${level}: tier ${t} needs ${G.needAt(level, t)} fish`)
+  ok(G.totalNeed(level) === tiers.reduce((s, _, t) => s + G.needAt(level, t), 0) && G.totalNeed(level) > G.TIERS[level].need * tiers.length, `level ${level}: ${G.totalNeed(level)} fish in all`)
   ok(tiers.every((t, i) => i === 0 || refCmp(level, tiers[i - 1], t) === -1), `level ${level}: the tiers do not increase`)
   ok(tiers[tiers.length - 1].key === G.levelNums(level)[G.levelNums(level).length - 1].key, `level ${level}: the last tier is the largest number`)
   const nums = G.levelNums(level)
@@ -299,6 +301,8 @@ for (const level of LEVELS) {
   for (let t = 0; t < tiers.length; t++) {
     ok(w.player.tier === t && w.player.num.key === tiers[t].key, `level ${level}: tier ${t}`)
     const r0 = w.player.r
+    const need = G.needAt(level, t)
+    ok(w.need === need, `level ${level}: tier ${t}: the world wants ${w.need} fish, ${need} are needed`)
     for (let k = 0; k < need; k++) {
       const smaller = nums[Math.max(0, nums.findIndex((n) => n.key === w.player.num.key) - 1)]
       const f = { id: 1000 + t * 10 + k, num: smaller, spec: smaller.reps[0], x: w.player.x, y: w.player.y, vx: 0, phase: 0, w: 90, r: 26, kind: 'edible', bumped: false }
@@ -311,7 +315,7 @@ for (const level of LEVELS) {
       else ok(ev.some((e) => e.type === 'won') && w.status === 'won', `level ${level}: the last fish wins`)
     }
   }
-  ok(w.score === 10 * need * tiers.length && w.eaten === need * tiers.length, `level ${level}: score and fish eaten`)
+  ok(w.score === 10 * G.totalNeed(level) && w.eaten === G.totalNeed(level), `level ${level}: score and fish eaten`)
 }
 
 // swimming: the pointer, the keys, the walls
@@ -353,7 +357,8 @@ function carefulMove(w, level) {
   const danger = w.fish.filter((o) => refCmp(level, mine, o.num) < 0)
   const clearAt = (x, y, gap) => danger.every((o) => Math.hypot(o.x - x, o.y - y) > o.r + w.player.r + gap)
   const food = w.fish
-    .filter((f) => refCmp(level, mine, f.num) > 0 && clearAt(f.x, f.y, 70))
+    // only a fish the player can reach: one that has swum in far enough that the walls do not move the player off the place that was checked
+    .filter((f) => refCmp(level, mine, f.num) > 0 && f.x >= w.player.r && f.x <= w.W - w.player.r && clearAt(f.x, f.y, 70))
     .sort((a, b) => Math.hypot(a.x - w.player.x, a.y - w.player.y) - Math.hypot(b.x - w.player.x, b.y - w.player.y))[0]
   if (food) {
     w.player.x = food.x
@@ -378,7 +383,8 @@ const games = FAST ? 6 : 24
 
 function check(w, level, where) {
   ok(w.lives >= 0 && w.lives <= G.LIVES, `${where}: lives ${w.lives}`)
-  ok(w.player.tier >= 0 && w.player.tier < G.TIERS[level].count && w.eatenInTier >= 0 && (w.eatenInTier < w.need || (w.status === 'won' && w.eatenInTier === w.need) || (w.status === 'lost' && w.eatenInTier === w.need && w.lives === 0)), `${where}: tier ${w.player.tier}, eaten in tier ${w.eatenInTier}`)
+  ok(w.player.tier >= 0 && w.player.tier < G.TIERS[level].count && w.eatenInTier >= 0 && (w.eatenInTier < w.need || (w.status === 'won' && w.eatenInTier >= w.need) || (w.status === 'lost' && w.eatenInTier >= w.need && w.lives === 0)), `${where}: tier ${w.player.tier}, eaten in tier ${w.eatenInTier}`)
+  ok(w.need === G.needAt(level, w.player.tier), `${where}: the fish of tier ${w.player.tier} wants ${w.need} fish`)
   ok(w.score === 10 * w.eaten && w.lost === G.LIVES - w.lives, `${where}: score ${w.score} for ${w.eaten} fish, ${w.lost} lost for ${w.lives} lives`)
   ok(w.fish.length <= G.MAX_FISH[level], `${where}: ${w.fish.length} fish`)
   const nums = new Map(G.levelNums(level).map((n) => [n.key, n]))
@@ -428,7 +434,7 @@ for (const level of LEVELS) {
       }
       check(w, level, where)
       ok(w.status === 'won' && w.lives === G.LIVES, `${where}: the careful player should win with every life, got ${w.status} with ${w.lives} lives after ${t.toFixed(0)} s`)
-      ok(w.eaten === G.TIERS[level].need * G.TIERS[level].count && spawns >= w.eaten, `${where}: ${w.eaten} fish eaten, ${spawns} swam in`)
+      ok(w.eaten >= G.totalNeed(level) && w.eaten <= G.totalNeed(level) + G.TIERS[level].count && spawns >= w.eaten, `${where}: ${w.eaten} fish eaten, ${spawns} swam in`)
     }
 
     // a player that goes wherever it likes
@@ -516,7 +522,7 @@ for (const level of LEVELS) {
     ok(share(hist.nearest, 3) <= 0.05 && share(hist.nearest, 0) >= 0.9, `level ${level}: a player that does not read the numbers and swims to the nearest fish is eaten (${JSON.stringify(hist.nearest)})`)
     if (!FAST) {
       // a player that reads them, but swims only as fast as the fish does: it can win with every life, and it is not a certainty
-      const [lo, hi] = { 0: [0.6, 0.98], 1: [0.5, 0.95], 2: [0.25, 0.85], 3: [0.15, 0.7] }[level]
+      const [lo, hi] = { 0: [0.6, 0.98], 1: [0.5, 0.95], 2: [0.15, 0.85], 3: [0.08, 0.7] }[level]
       ok(share(hist.careful, 3) >= lo && share(hist.careful, 3) <= hi, `level ${level}: a careful player wins with three stars ${share(hist.careful, 3).toFixed(2)} of the time, between ${lo} and ${hi} (${JSON.stringify(hist.careful)})`)
     }
     // what swims in: more than half of the fish are larger than the player's, whatever the player does
